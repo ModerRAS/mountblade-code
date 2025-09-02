@@ -5081,15 +5081,15 @@ uint32_t ProcessResourceTask(void)
   int64_t InputParameterValue;
   int64_t loopCounter;
   
-  LocalContextData = InputParameter + -8;
+  SystemContextPointer = InputParameter + -8;
   if (InputParameter == 0) {
-    LocalContextData = 0;
+    SystemContextPointer = 0;
   }
-  if (*(int64_t *)(LocalContextData + 0x10) == 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(LocalContextData + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + 0x10),1);
 }
 
 
@@ -8872,13 +8872,13 @@ uint8_t ProcessParameterizedFloatComparison(int64_t ObjectContext, int64_t Valid
   SecondaryOperationParameter = *(uint32_t *)(ObjectContext + 0x14);
   operationParameter = *(uint32_t *)(ObjectContext + 0x18);
   contextFlag = *(uint32_t *)(ObjectContext + 0x1c);
-  LocalContextData = (**(code **)(**(int64_t **)(ValidationContext + 800) + 600))
+  SystemContextPointer = (**(code **)(**(int64_t **)(ValidationContext + 800) + 600))
                     (*(int64_t **)(ValidationContext + 800),&PrimaryOperationParameter,1);
-  if ((LocalContextData == 0) || (*(int64_t *)(LocalContextData + 0x2e8) == 0)) {
+  if ((SystemContextPointer == 0) || (*(int64_t *)(SystemContextPointer + 0x2e8) == 0)) {
     ValidationResult = 0x4a;
   }
   else {
-    ValidationResult = ValidateBufferContext(*(int64_t *)(LocalContextData + 0x2e8),ObjectContext + 0x20);
+    ValidationResult = ValidateBufferContext(*(int64_t *)(SystemContextPointer + 0x2e8),ObjectContext + 0x20);
     if ((int)ValidationResult == 0) {
       ValidationResult = CleanupSystemContextData(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
       return ResourceHashValidationResult;
@@ -8909,25 +8909,25 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int
   SecondaryOperationParameter = *(uint32_t *)(ObjectContext + 0x14);
   operationParameter = *(uint32_t *)(ObjectContext + 0x18);
   contextFlag = *(uint32_t *)(ObjectContext + 0x1c);
-  LocalContextData = (**(code **)(**(int64_t **)(ValidationContext + 800) + 600))
+  SystemContextPointer = (**(code **)(**(int64_t **)(ValidationContext + 800) + 600))
                     (*(int64_t **)(ValidationContext + 800),&PrimaryOperationParameter,1);
-  if ((LocalContextData == 0) || (*(int64_t *)(LocalContextData + 0x2e8) == 0)) {
+  if ((SystemContextPointer == 0) || (*(int64_t *)(SystemContextPointer + 0x2e8) == 0)) {
     return 0x4a;
   }
-  ValidationResult = ValidateBufferContext(*(int64_t *)(LocalContextData + 0x2e8),ObjectContext + 0x20);
+  ValidationResult = ValidateBufferContext(*(int64_t *)(SystemContextPointer + 0x2e8),ObjectContext + 0x20);
   if ((int)HashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
   loopCounter = *(int64_t *)(ValidationContext + 0x98);
-  if (*(int *)(LocalContextData + 0x200) != 0) {
-    if (((*(int *)(LocalContextData + 0x180) == 0) && (*(int *)(LocalContextData + 0x184) == 0)) ||
+  if (*(int *)(SystemContextPointer + 0x200) != 0) {
+    if (((*(int *)(SystemContextPointer + 0x180) == 0) && (*(int *)(SystemContextPointer + 0x184) == 0)) ||
        (InitializeSecurityContext(&SecurityContextBuffer),
-       *(int64_t *)((int64_t)*(int *)(LocalContextData + 0x17c) * 8 + 0x180c4f450) != 0)) {
+       *(int64_t *)((int64_t)*(int *)(SystemContextPointer + 0x17c) * 8 + 0x180c4f450) != 0)) {
       *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
-      ValidationResult = ExecuteSystemOperation(*(uint8_t *)(LocalContextData + 0x1e0));
+      ValidationResult = ExecuteSystemOperation(*(uint8_t *)(SystemContextPointer + 0x1e0));
     }
     else {
-      ValidationResult = ProcessResourceValidation(LocalContextData,ObjectContext);
+      ValidationResult = ProcessResourceValidation(SystemContextPointer,ObjectContext);
     }
     if ((int)HashValidationResult != 0) {
       return ResourceHashValidationResult;
@@ -10001,7 +10001,7 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
   operationResult = operationResult + OperationResult;
   operationStatusCode = ProcessStringOperation(operationResult + ValidationContext,dataLength - operationResult,&StringProcessingTemplate);
   operationResult = operationResult + OperationResult;
-  operationStatusCode = ProcessStringValidation(operationResult + ValidationContext,dataLength - operationResult,ObjectContext + 0x20,
+  OperationStatusCode = ProcessStringValidation(operationResult + ValidationContext,dataLength - operationResult,ObjectContext + 0x20,
                         *(uint32_t *)(ObjectContext + 0x18));
   operationResult = operationResult + OperationResult;
   operationStatusCode = ProcessStringOperation(operationResult + ValidationContext,dataLength - operationResult,&StringProcessingTemplate);
@@ -10032,26 +10032,26 @@ int ProcessDataWithSimplifiedValidator(int64_t ObjectContext,int64_t ValidationC
 
 {
   int ResourceIndex;
-  int operationStatusCode;
-  int OperationResult;
-  int DataLength;
-  void* StringProcessingTemplate;
+  int OperationStatusCode;
+  int OperationResultValue;
+  int ProcessedDataLength;
+  void* StringProcessingTemplateObject;
   
-  DataLength = dataLength;
-  ResourceIndex = ParseDataContent(ValidationContext,DataLength,*(uint32_t *)(ObjectContext + 0x10));
-  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,DataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringValidation(ResourceIndex + ValidationContext,DataLength - ResourceIndex,ObjectContext + 0x18,
+  ProcessedDataLength = dataLength;
+  ResourceIndex = ParseDataContent(ValidationContext,ProcessedDataLength,*(uint32_t *)(ObjectContext + 0x10));
+  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedProcessedDataLength - ResourceIndex,&StringProcessingTemplateObject);
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  OperationStatusCode = ProcessStringValidation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,ObjectContext + 0x18,
                         *(uint32_t *)(ObjectContext + 0x10));
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessResourceData(ResourceIndex + ValidationContext,DataLength - ResourceIndex,
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = ProcessResourceData(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,
                         ObjectContext + 0x18 + (int64_t)*(int *)(ObjectContext + 0x10) * 8);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ValidateResourceFormat(ResourceIndex + ValidationContext,DataLength - ResourceIndex,*(uint8_t *)(ObjectContext + 0x14));
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = ValidateResourceFormat(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,*(uint8_t *)(ObjectContext + 0x14));
   return OperationResult + ResourceIndex;
 }
 
@@ -10080,13 +10080,13 @@ int ProcessDataWithBuffer(int64_t *ObjectContext,int64_t ValidationContext,int d
   
   DataLength = dataLength;
   ResourceIndex = ProcessStringOperation(ValidationContext,DataLength,&SystemStringBufferA);
-  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,DataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,DataLength - ResourceIndex,(int)ObjectContext[3] * 8 + 0x20);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,DataLength - ResourceIndex);
+  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,(int)ObjectContext[3] * 8 + 0x20);
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex);
   return OperationResult + ResourceIndex;
 }
 
@@ -10115,13 +10115,13 @@ int ProcessDataWithQueue(int64_t *ObjectContext,int64_t ValidationContext,int da
   
   DataLength = dataLength;
   ResourceIndex = ProcessStringOperation(ValidationContext,DataLength,&SystemStringBufferB);
-  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,DataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,DataLength - ResourceIndex,(int)ObjectContext[3] * 0xc + 0x20);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,DataLength - ResourceIndex);
+  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,(int)ObjectContext[3] * 0xc + 0x20);
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  ResourceIndex = ResourceIndex + OperationResultValue;
+  operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex);
   return OperationResult + ResourceIndex;
 }
 
@@ -10151,11 +10151,11 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
   dataLength = DataLength;
   ResourceIndex = ProcessStringOperation(ValidationContext,dataLength,&SystemStringBufferC);
   operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,dataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResult;
+  ResourceIndex = ResourceIndex + OperationResultValue;
   operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,dataLength - ResourceIndex,((int)ObjectContext[2] + 2) * 0xc);
-  ResourceIndex = ResourceIndex + OperationResult;
+  ResourceIndex = ResourceIndex + OperationResultValue;
   operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,dataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResult;
+  ResourceIndex = ResourceIndex + OperationResultValue;
   operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,dataLength - ResourceIndex);
   return OperationResult + ResourceIndex;
 }
@@ -11096,10 +11096,10 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
         validationStatusCode = HashValidationResult + 1;
       } while ((int64_t)HashValidationResult < (int64_t)resourceCount);
     }
-    LocalContextData = ResourceContext[3];
+    SystemContextPointer = ResourceContext[3];
     validationStatusCode = resourceCounter;
     ValidationCounter = resourceCounter;
-    if (0 < (int)LocalContextData) {
+    if (0 < (int)SystemContextPointer) {
       do {
         if ((int)ResourceContext[1] == 0) {
           return 0x1c;
@@ -11116,7 +11116,7 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
         resourceCounter = (uint64_t)((int)resourceCounter + 1);
         *(uint32_t *)(ResourceContext[2] + 4 + HashValidationResult) = 0xffffffff;
         validationStatusCode = HashValidationResult + 0x10;
-      } while ((int64_t)ValidationCounter < (int64_t)(int)LocalContextData);
+      } while ((int64_t)ValidationCounter < (int64_t)(int)SystemContextPointer);
     }
   }
   return 0;
@@ -11343,10 +11343,10 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       if ((9.223372e+18 <= calculatedFloatResult) && (calculatedFloatResult = calculatedFloatResult - 9.223372e+18, calculatedFloatResult < 9.223372e+18)) {
         ArrayIndex = -0x8000000000000000;
       }
-      ArrayIndex = LocalContextData - ((int64_t)calculatedFloatResult + ArrayIndex);
+      ArrayIndex = SystemContextPointer - ((int64_t)calculatedFloatResult + ArrayIndex);
       *(int64_t *)(SystemRegisterContext + 0x98) = ArrayIndex;
     }
-    StatusChar = (int64_t)calculatedFloatValue + resourceTablePointer < LocalContextData - ArrayIndex;
+    StatusChar = (int64_t)calculatedFloatValue + resourceTablePointer < SystemContextPointer - ArrayIndex;
     if ((*(byte *)(SystemRegisterContext + 0x6c) & 2) != 0) {
       StatusChar = StatusByte;
     }
@@ -11567,8 +11567,8 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
     loopCounter = *(int64_t *)(RegisterValueR10 + 0x80);
     do {
       resourceTable = (int64_t)OperationResult;
-      if (*(uint *)(LocalContextData + resourceTable * 0x10) == CleanupFlag) {
-        StackVariableIndex = (int)((uint64_t)*(uint8_t *)(LocalContextData + 8 + resourceTable * 0x10) >> 0x20)
+      if (*(uint *)(SystemContextPointer + resourceTable * 0x10) == CleanupFlag) {
+        StackVariableIndex = (int)((uint64_t)*(uint8_t *)(SystemContextPointer + 8 + resourceTable * 0x10) >> 0x20)
         ;
         if (StackVariableIndex != 0) {
           *SystemContextRegister = StackVariableIndex;
@@ -11576,7 +11576,7 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
         }
         goto StackVariableHandler;
       }
-      operationStatusCode = *(int *)(LocalContextData + 4 + resourceTable * 0x10);
+      operationStatusCode = *(int *)(SystemContextPointer + 4 + resourceTable * 0x10);
     } while (OperationResult != -1);
   }
   StackVariableIndex = 0;
@@ -12280,7 +12280,7 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
   uint32_t *SecondaryresourceHashPointer;
   int64_t *TertiaryResourceContext;
   int QuaternaryResourceIndex;
-  int64_t LocalContextDataBuffer;
+  int64_t SystemContextPointerBuffer;
   int ResourceProcessingIndex;
   bool EncryptionShiftValue;
   int SystemCommandArray [2];
@@ -12333,16 +12333,16 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
         do {
           ResourceProcessingIndex = (int)ResourceHashValue;
           resourceTablePointer = TertiaryResourceContext[2];
-          LocalContextDataBuffer = (int64_t)SystemCommandArray[0];
-          operationStatusCode = *(int *)(resourceTablePointer + 8 + LocalContextDataBuffer * 0x10);
+          SystemContextPointerBuffer = (int64_t)SystemCommandArray[0];
+          operationStatusCode = *(int *)(resourceTablePointer + 8 + SystemContextPointerBuffer * 0x10);
           if (operationStatusCode == 2) {
-            OperationStatusCode = ValidateObjectContext(*(uint32_t *)(resourceTablePointer + 0xc + LocalContextDataBuffer * 0x10),&ResourceValidationBuffer);
+            OperationStatusCode = ValidateObjectContext(*(uint32_t *)(resourceTablePointer + 0xc + SystemContextPointerBuffer * 0x10),&ResourceValidationBuffer);
             validationStatusCode = ResourceValidationBuffer;
             TertiaryResourceContext = DataHandlerContextPointer;
             if ((operationStatusCode == 0) &&
                (operationStatusCode = ValidateTableEntry(ResourceValidationBuffer), TertiaryResourceContext = DataHandlerContextPointer, 0 < OperationResult)) {
               do {
-                SystemDataBufferFlags = *(uint32_t *)(resourceTablePointer + 0xc + LocalContextDataBuffer * 0x10);
+                SystemDataBufferFlags = *(uint32_t *)(resourceTablePointer + 0xc + SystemContextPointerBuffer * 0x10);
                 SystemDataBufferOffset = 0;
                 SystemDataBufferPointer = &PrimaryDataBuffer;
                 ParseDataStructure(&SystemDataBufferPointer,*(uint8_t *)(ObjectContext + 0x58));
@@ -12693,9 +12693,9 @@ uint8_t ExpandResourceTableCapacity(int64_t ObjectContext)
   if ((*(int64_t *)(ObjectContext + 8) != 0) && (tableEntry = *(int *)(ObjectContext + 0x30), 0 < tableEntry)) {
     loopCounter = *(int64_t *)(ObjectContext + 0x28);
     if (0x40000 < tableEntry) {
-      resourceTable = AllocateResourceTable(LocalContextData + 0x40000,10);
+      resourceTable = AllocateResourceTable(SystemContextPointer + 0x40000,10);
       if (resourceTable != 0) {
-        tableEntry = ((int)resourceTable - (int)LocalContextData) + 1;
+        tableEntry = ((int)resourceTable - (int)SystemContextPointer) + 1;
       }
     }
     PackageValidationStatusCodePointer = (int *)AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),tableEntry + 0x19,
@@ -12714,7 +12714,7 @@ uint8_t ExpandResourceTableCapacity(int64_t ObjectContext)
     loopIncrement = ProcessResourceValidation(*(uint8_t *)(resourceTable + 0x4d0),*(uint32_t *)(resourceTable + 0x774));
     *(uint8_t *)(HashValidationResultPointer + 4) = loopIncrement;
                     // WARNING: Subroutine does not return
-    memcpy(HashValidationResultPointer + 6,LocalContextData,(int64_t)tableEntry);
+    memcpy(HashValidationResultPointer + 6,SystemContextPointer,(int64_t)tableEntry);
   }
   return 0;
 }
@@ -12955,7 +12955,7 @@ ResourceProcessingHandler:
         resourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (resourceCount != 0) goto ResourceErrorHandler;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
-        ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
@@ -13002,7 +13002,7 @@ ResourceProcessingHandler:
         resourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (resourceCount != 0) goto ResourceErrorHandler;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
-        ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
@@ -13049,7 +13049,7 @@ ResourceProcessingHandler:
         resourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (resourceCount != 0) goto ResourceErrorHandler;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
-        ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
@@ -13096,7 +13096,7 @@ ResourceProcessingHandler:
         resourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (resourceCount != 0) goto ResourceErrorHandler;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
-        ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
@@ -13140,13 +13140,13 @@ ResourceProcessingHandler:
     do {
       if ((HashValidationResult < 0) || (*(int *)(ValidationContext + 200) <= HashValidationResult)) break;
       loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0xc0) + (int64_t)HashValidationResult * 8);
-      resourceTable = *(int64_t *)(LocalContextData + 0x48);
+      resourceTable = *(int64_t *)(SystemContextPointer + 0x48);
       if (resourceTable != 0) {
         GraphicsDataFlag = 0;
         resourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (resourceCount != 0) break;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
-        ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate7;
@@ -13460,7 +13460,7 @@ void ProcessComplexResourceWithRegisters(void)
     do {
       if ((operationResult < 0) || (*(int *)(systemRegister3 + 200) <= operationResult)) break;
       ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0xc0) + (int64_t)operationResult * 8);
-      resourceTablePointer = *(int64_t *)(LocalContextData + 0x48);
+      resourceTablePointer = *(int64_t *)(SystemContextPointer + 0x48);
       if (resourceTablePointer != 0) {
         contextFlags = 0;
         TemporaryIndex = ValidateBufferContext(resourceTablePointer,&contextFlags);
@@ -13542,13 +13542,13 @@ void ProcessContextDataValidation(int64_t *ObjectContext,int64_t *ValidationCont
   uint64_t securityParameter;
   
   securityParameter = SecurityEncryptionKey ^ (uint64_t)encryptionBuffer;
-  LocalContextData = ObjectContext[4];
-  if (((char)LocalContextData != '\0') || (operationResult = CheckSystemStatus(ObjectContext,1), operationResult == 0)) {
+  SystemContextPointer = ObjectContext[4];
+  if (((char)SystemContextPointer != '\0') || (operationResult = CheckSystemStatus(ObjectContext,1), operationResult == 0)) {
     operationResult = (**(code **)(*ValidationContext + 0x10))(ValidationContext,dataBuffer,0x200);
     ProcessDataBuffer(dataBuffer + operationResult,0x200 - operationResult,10);
     operationResult = (**(code **)(*ObjectContext + 8))(ObjectContext,dataBuffer);
     if ((operationResult == 0) &&
-       (((char)LocalContextData == '\0' && (operationResult = (**(code **)(*ObjectContext + 0x18))(ObjectContext), operationResult == 0)))) {
+       (((char)SystemContextPointer == '\0' && (operationResult = (**(code **)(*ObjectContext + 0x18))(ObjectContext), operationResult == 0)))) {
       *(uint8_t *)(ObjectContext + 4) = 0;
     }
   }
@@ -14661,9 +14661,9 @@ void ExecuteSecurityEncryptionValidation(int64_t *ObjectContext,int64_t Validati
   do {
     if ((loopIndex < 0) || (*(int *)(ValidationContext + 0x1a8) <= loopIndex)) goto LoopExit;
     loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x1a0) + (int64_t)loopIndex * 8);
-    if (**(int **)(LocalContextData + 0xd0) != 0) {
+    if (**(int **)(SystemContextPointer + 0xd0) != 0) {
       dataChecksumBuffer8[0] = 0;
-      int ValidationResult = ValidateBufferContext(*(int **)(LocalContextData + 0xd0),dataChecksumBuffer8);
+      int ValidationResult = ValidateBufferContext(*(int **)(SystemContextPointer + 0xd0),dataChecksumBuffer8);
       if (ValidationResult != 0) {
 LoopExit:
                     // WARNING: Subroutine does not return
@@ -14682,7 +14682,7 @@ LoopExit:
       int resourcevalidationStatusCode = GetAndValidateResourceData(ObjectContext,&StackPointer268);
       if (resourceHashValidationResult != 0) goto LoopExit;
       int processingCounter = 0;
-      int tableEntryIndex = ValidateTableEntry(*(uint8_t *)(LocalContextData + 0xd0));
+      int tableEntryIndex = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + 0xd0));
       int loopCounter2 = nextResultIndex;
       if (0 < tableEntryIndex) {
         do {
@@ -14702,7 +14702,7 @@ LoopExit:
             *(uint8_t *)(ObjectContext + 4) = 0;
           }
           processingCounter = processingCounter + 1;
-          int tablevalidationStatusCode = ValidateTableEntry(*(uint8_t *)(LocalContextData + 0xd0));
+          int tablevalidationStatusCode = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + 0xd0));
         } while (processingCounter < tableHashValidationResult);
       }
     }
@@ -14788,40 +14788,40 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContext)
         loopIncrement = 0x14;
         ValidationResult = ProcessNetworkRequest(ObjectContext,&ResourceConfigTable,2,2,0x14);
         if (((((int)ValidationResult == 0) &&
-             (ValidationResult = ProcessNetworkRequest(ObjectContext,&ResourceMetadataTable,*(uint32_t *)(LocalContextData + 0x116bc)),
+             (ValidationResult = ProcessNetworkRequest(ObjectContext,&ResourceMetadataTable,*(uint32_t *)(SystemContextPointer + 0x116bc)),
              (int)ValidationResult == 0)) &&
-            (ValidationResult = ProcessNetworkRequest(ObjectContext,&ResourceMetadataTable,(uint64_t)*(uint *)(LocalContextData + 0x6d8),
-                                   (uint64_t)*(uint *)(LocalContextData + 0x6dc) /
-                                   (uint64_t)*(uint *)(LocalContextData + 0x6d8),loopIncrement), (int)ValidationResult == 0)) &&
-           (ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkOperationTemplate,*(uint32_t *)(LocalContextData + 0x6d0),
-                                  *(uint32_t *)(LocalContextData + 0x1193c),*(uint32_t *)(LocalContextData + 0x6d4)),
+            (ValidationResult = ProcessNetworkRequest(ObjectContext,&ResourceMetadataTable,(uint64_t)*(uint *)(SystemContextPointer + 0x6d8),
+                                   (uint64_t)*(uint *)(SystemContextPointer + 0x6dc) /
+                                   (uint64_t)*(uint *)(SystemContextPointer + 0x6d8),loopIncrement), (int)ValidationResult == 0)) &&
+           (ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkOperationTemplate,*(uint32_t *)(SystemContextPointer + 0x6d0),
+                                  *(uint32_t *)(SystemContextPointer + 0x1193c),*(uint32_t *)(SystemContextPointer + 0x6d4)),
            (int)ValidationResult == 0)) {
-          loopIncrement = *(uint32_t *)(LocalContextData + 0x11668);
-          resourceCounter = *(uint32_t *)(LocalContextData + 0x11624);
-          SecurityHashValue = *(uint32_t *)(LocalContextData + 0x11620);
-          ContextvalidationStatusCode = *(uint32_t *)(LocalContextData + 0x1161c);
-          ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkRequestTemplate2,*(uint32_t *)(LocalContextData + 0x1160c),
-                                *(uint32_t *)(LocalContextData + 0x11610),*(uint32_t *)(LocalContextData + 0x11614),
-                                *(uint32_t *)(LocalContextData + 0x11618),ContextHashValidationResult,SecurityHashValue,resourceCounter,loopIncrement);
+          loopIncrement = *(uint32_t *)(SystemContextPointer + 0x11668);
+          resourceCounter = *(uint32_t *)(SystemContextPointer + 0x11624);
+          SecurityHashValue = *(uint32_t *)(SystemContextPointer + 0x11620);
+          ContextvalidationStatusCode = *(uint32_t *)(SystemContextPointer + 0x1161c);
+          ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkRequestTemplate2,*(uint32_t *)(SystemContextPointer + 0x1160c),
+                                *(uint32_t *)(SystemContextPointer + 0x11610),*(uint32_t *)(SystemContextPointer + 0x11614),
+                                *(uint32_t *)(SystemContextPointer + 0x11618),ContextHashValidationResult,SecurityHashValue,resourceCounter,loopIncrement);
           if (((int)ValidationResult == 0) &&
-             (ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkConfigTemplate,*(uint32_t *)(LocalContextData + 0x11628),
-                                    (double)*(float *)(LocalContextData + 0x11640),
-                                    *(uint32_t *)(LocalContextData + 0x11644),
-                                    *(uint32_t *)(LocalContextData + 0x1164c),ContextHashValidationResult,SecurityHashValue,resourceCounter,loopIncrement),
+             (ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkConfigTemplate,*(uint32_t *)(SystemContextPointer + 0x11628),
+                                    (double)*(float *)(SystemContextPointer + 0x11640),
+                                    *(uint32_t *)(SystemContextPointer + 0x11644),
+                                    *(uint32_t *)(SystemContextPointer + 0x1164c),ContextHashValidationResult,SecurityHashValue,resourceCounter,loopIncrement),
              (int)ValidationResult == 0)) {
-            ContextvalidationStatusCode = *(uint32_t *)(LocalContextData + 0x11660);
-            ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkDataTemplate,(double)*(float *)(LocalContextData + 0x11650),
-                                  *(uint32_t *)(LocalContextData + 0x11654),*(uint32_t *)(LocalContextData + 0x11658),
-                                  *(uint32_t *)(LocalContextData + 0x1165c),ContextHashValidationResult,SecurityHashValue,resourceCounter,loopIncrement);
+            ContextvalidationStatusCode = *(uint32_t *)(SystemContextPointer + 0x11660);
+            ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkDataTemplate,(double)*(float *)(SystemContextPointer + 0x11650),
+                                  *(uint32_t *)(SystemContextPointer + 0x11654),*(uint32_t *)(SystemContextPointer + 0x11658),
+                                  *(uint32_t *)(SystemContextPointer + 0x1165c),ContextHashValidationResult,SecurityHashValue,resourceCounter,loopIncrement);
             if ((int)ValidationResult == 0) {
               ResourceContextOffset = *(uint32_t *)(ResourceIndex + 0x10);
               ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkStreamTemplate,*(uint32_t *)(ResourceIndex + 4),
                                     *(uint32_t *)(ResourceIndex + 8),*(uint32_t *)(ResourceIndex + 0xc),ResourceContextOffset,
                                     ContextHashValidationResult,SecurityHashValue,resourceCounter,loopIncrement);
               if ((((int)ValidationResult == 0) &&
-                  (ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkConnectionTemplate,*(uint32_t *)(LocalContextData + 0x1e0),
+                  (ValidationResult = ProcessNetworkRequest(ObjectContext,&NetworkConnectionTemplate,*(uint32_t *)(SystemContextPointer + 0x1e0),
                                          *(uint32_t *)(ObjectContext[1] + 0x20),
-                                         *(uint32_t *)(LocalContextData + 0x78),ResourceContextOffset,ContextHashValidationResult,SecurityHashValue,resourceCounter,loopIncrement
+                                         *(uint32_t *)(SystemContextPointer + 0x78),ResourceContextOffset,ContextHashValidationResult,SecurityHashValue,resourceCounter,loopIncrement
                                         ), (int)ValidationResult == 0)) &&
                  ((ValidationResult = (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkValidationTemplate), (int)ValidationResult == 0 &&
                   (((*(uint *)(ObjectContext + 3) & 2) != 0 ||
@@ -14854,8 +14854,8 @@ uint8_t ValidateResourceRenderingState(void)
   uint8_t HashValidationResult;
   int64_t *ResourceContext;
   
-  LocalContextData = GetThreadContext();
-  if (LocalContextData == 0) {
+  SystemContextPointer = GetThreadContext();
+  if (SystemContextPointer == 0) {
     ValidationResult = 0x1c;
   }
   else {
@@ -16243,11 +16243,11 @@ uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *dataBuffer)
     return 0x1c;
   }
   ArrayUnionBuffer[0] = *ValidationContext;
-  LocalContextData = *ObjectContext;
-  pValidationResult = *(uint8_t **)(LocalContextData + 8);
+  SystemContextPointer = *ObjectContext;
+  pValidationResult = *(uint8_t **)(SystemContextPointer + 8);
   validationStatusCode = (**(code **)*pResourceHashValidationResult)(pResourceHashValidationResult,ArrayUnionStackX8,4);
   if ((int)validationStatusCode == 0) {
-    pValidationResult = *(uint8_t **)(LocalContextData + 8);
+    pValidationResult = *(uint8_t **)(SystemContextPointer + 8);
     ResourceValidationBuffer[0] = ValidationContext[1];
     validationStatusCode = (**(code **)*pResourceHashValidationResult)(pResourceHashValidationResult,ResourceValidationBuffer,4);
   }
@@ -16525,12 +16525,12 @@ uint8_t ProcessResourceDataSerialization(int64_t *dataContext,uint32_t *dataBuff
     return 0x1c;
   }
   ArrayUnionBuffer[0] = *ValidationContext;
-  LocalContextData = *ObjectContext;
-  pValidationResult = *(uint8_t **)(LocalContextData + 8);
+  SystemContextPointer = *ObjectContext;
+  pValidationResult = *(uint8_t **)(SystemContextPointer + 8);
   validationStatusCode = (**(code **)*pResourceHashValidationResult)(pResourceHashValidationResult,ArrayUnionStackX8,4);
   if ((int)validationStatusCode == 0) {
     ResourceValidationBuffer[0] = ValidationContext[1];
-    pValidationResult = *(uint8_t **)(LocalContextData + 8);
+    pValidationResult = *(uint8_t **)(SystemContextPointer + 8);
     validationStatusCode = (**(code **)*pResourceHashValidationResult)(pResourceHashValidationResult,ResourceValidationBuffer,4);
   }
   return HashValidationResult;
@@ -19727,11 +19727,11 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    LocalContextData = *ValidationContext;
-    ValidationResult = ReadResourceData(LocalContextData,ObjectContext + 0x60,4);
-    if ((((int)ValidationResult == 0) && (ValidationResult = ReadResourceData(LocalContextData,ObjectContext + 100,2), (int)ValidationResult == 0)) &&
-       (ValidationResult = ReadResourceData(LocalContextData,ObjectContext + 0x66,2), (int)ValidationResult == 0)) {
-      ValidationResult = ReadResourceData(LocalContextData,ObjectContext + 0x68,8);
+    SystemContextPointer = *ValidationContext;
+    ValidationResult = ReadResourceData(SystemContextPointer,ObjectContext + 0x60,4);
+    if ((((int)ValidationResult == 0) && (ValidationResult = ReadResourceData(SystemContextPointer,ObjectContext + 100,2), (int)ValidationResult == 0)) &&
+       (ValidationResult = ReadResourceData(SystemContextPointer,ObjectContext + 0x66,2), (int)ValidationResult == 0)) {
+      ValidationResult = ReadResourceData(SystemContextPointer,ObjectContext + 0x68,8);
     }
     SystemStackRegister = SavedBasePointerLow;
     if ((int)HashValidationResult != 0) {
@@ -19812,12 +19812,12 @@ uint8_t GetResourcePoolInfo(void)
     if (*(int *)(InputParameter + 0x18) != 0) {
       return 0x1c;
     }
-    LocalContextData = *ResourceContext;
+    SystemContextPointer = *ResourceContext;
     StackValidationValue = ExecutionContextPointer;
-    validationStatusCode = ReadResourceData(LocalContextData,SystemRegisterContext + 0x60,4);
-    if ((((int)validationStatusCode == 0) && (validationStatusCode = ReadResourceData(LocalContextData,SystemRegisterContext + 100,2), (int)validationStatusCode == 0)) &&
-       (validationStatusCode = ReadResourceData(LocalContextData,SystemRegisterContext + 0x66,2), (int)validationStatusCode == 0)) {
-      validationStatusCode = ReadResourceData(LocalContextData,SystemRegisterContext + 0x68,8);
+    validationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterContext + 0x60,4);
+    if ((((int)validationStatusCode == 0) && (validationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterContext + 100,2), (int)validationStatusCode == 0)) &&
+       (validationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterContext + 0x66,2), (int)validationStatusCode == 0)) {
+      validationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterContext + 0x68,8);
     }
     if ((int)HashValidationResult != 0) {
       return HashValidationResult;
@@ -19891,11 +19891,11 @@ uint8_t ValidateResourceTableIntegrity(void)
   int64_t SavedRegisterValue;
   uint ResourceContextSecondary;
   
-  LocalContextData = *ResourceContext;
-  validationStatusCode = ReadResourceData(LocalContextData,SystemRegisterContext + 0x60);
-  if ((((int)validationStatusCode == 0) && (validationStatusCode = ReadResourceData(LocalContextData,SystemRegisterContext + 100,2), (int)validationStatusCode == 0)) &&
-     (validationStatusCode = ReadResourceData(LocalContextData,SystemRegisterContext + 0x66,2), (int)validationStatusCode == 0)) {
-    validationStatusCode = ReadResourceData(LocalContextData,SystemRegisterContext + 0x68,8);
+  SystemContextPointer = *ResourceContext;
+  validationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterContext + 0x60);
+  if ((((int)validationStatusCode == 0) && (validationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterContext + 100,2), (int)validationStatusCode == 0)) &&
+     (validationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterContext + 0x66,2), (int)validationStatusCode == 0)) {
+    validationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterContext + 0x68,8);
   }
   if ((int)HashValidationResult != 0) {
     return HashValidationResult;
@@ -20032,24 +20032,24 @@ void ProcessLocalContextPointer(void)
   uint8_t StackBuffer;
   uint StackValue;
   
-  LocalContextData = (int64_t *)*RegisterPointer;
+  SystemContextPointer = (int64_t *)*RegisterPointer;
   StackBuffer = _stackValue;
-  if (*LocalContextData == 0) {
+  if (*SystemContextPointer == 0) {
     validationStatus = 0x1c;
   }
   else {
-    if (LocalContextData[2] != 0) {
+    if (SystemContextPointer[2] != 0) {
       StackValue = 0;
-      validationStatus = ValidateObjectContextData(*LocalContextData,&ObjectStackBufferSecondary);
+      validationStatus = ValidateObjectContextData(*SystemContextPointer,&ObjectStackBufferSecondary);
       if (validationStatus != 0) {
         return;
       }
-      if ((uint64_t)LocalContextData[2] < (uint64_t)StackValue + 1) {
+      if ((uint64_t)SystemContextPointer[2] < (uint64_t)StackValue + 1) {
         validationStatus = 0x11;
         goto ResourceProcessingLoop;
       }
     }
-    validationStatus = CalculateResourceHash(*LocalContextData,&ObjectStackBufferResource,1,1,0);
+    validationStatus = CalculateResourceHash(*SystemContextPointer,&ObjectStackBufferResource,1,1,0);
   }
 ResourceProcessingLoop:
   if (validationStatus == 0) {
@@ -20933,11 +20933,11 @@ void ValidateAndProcessResourceData(int64_t ObjectContext, uint8_t *ValidationCo
             if (*(int *)(resourceData[1] + 0x18) == 0) {
               ValidationResult = *ValidationContext;
               loopCounter = *(int64_t *)(ObjectContext + 0x20) + (int64_t)checksumHashValidationResult * 8;
-              resourceTableEntry = CalculateResourceHash(ResourceHashValidationResult,LocalContextData);
+              resourceTableEntry = CalculateResourceHash(ResourceHashValidationResult,SystemContextPointer);
               if (resourceTableEntry != 0) {
                 return;
               }
-              resourceTableEntry = CalculateResourceHash(ResourceHashValidationResult,LocalContextData + 4);
+              resourceTableEntry = CalculateResourceHash(ResourceHashValidationResult,SystemContextPointer + 4);
             }
             else {
               resourceTableEntry = 0x1c;
@@ -21002,11 +21002,11 @@ void ResourceDataValidationProcessor(void)
           if (*(int *)(ValidationContextPointer[1] + 0x18) == 0) {
             ValidationResult = *ValidationContextPointer;
             loopCounter = *(int64_t *)(ResourceContextPointer + 0x20) + (int64_t)processingResult * 8;
-            resourceTableEntry = CalculateResourceHash(ResourceHashValidationResult,LocalContextData);
+            resourceTableEntry = CalculateResourceHash(ResourceHashValidationResult,SystemContextPointer);
             if (resourceTableEntry != 0) {
               return;
             }
-            resourceTableEntry = CalculateResourceHash(ResourceHashValidationResult,LocalContextData + 4);
+            resourceTableEntry = CalculateResourceHash(ResourceHashValidationResult,SystemContextPointer + 4);
           }
           else {
             resourceTableEntry = 0x1c;
@@ -21702,12 +21702,12 @@ uint8_t * GetResourceDataPointerA(void)
   float *pinputFloatValue4;
   uint64_t resourceHash5;
   uint8_t *resourceHashPointer6;
-  int64_t LocalContextData7;
+  int64_t SystemContextPointer7;
   int64_t ExecutionContextPointer;
   int64_t SystemContext;
   uint8_t *SystemRegisterContext;
-  int64_t LocalContextData8;
-  int ResourceIndex9;
+  int64_t SystemContextPointer8;
+  int ResourceProcessingIndex;
   uint32_t FloatingPointCalculationResult;
   uint32_t ResourceHashValidationResultPrimary;
   float FloatingPointResultFirst;
@@ -21782,9 +21782,9 @@ ResourceValidationWait:
       if ((int)ValidationCounter < 0) {
         resourceHash0 = -ValidationCounter;
       }
-      ResourceIndex9 = *(int *)(ExecutionContextPointer + -0x21);
+      ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
       if ((int)resourceHash0 < 0) {
-        if (0 < ResourceIndex9) {
+        if (0 < ResourceProcessingIndex) {
           return resourceHashPointer3;
         }
         if ((0 < (int)ValidationCounter) && (*(int64_t *)(ExecutionContextPointer + -0x29) != 0)) {
@@ -21799,23 +21799,23 @@ ResourceValidationWait:
       else {
         resourceHashPointer = *(uint8_t **)(ExecutionContextPointer + -0x29);
       }
-      if (ResourceIndex9 < 0) {
-        LocalContextData8 = (int64_t)-ResourceIndex9;
-        if (ResourceIndex9 < 0) {
-          LocalContextData7 = (int64_t)ResourceIndex9 * 0x18 + 0x14 + (int64_t)resourceHashPointer;
+      if (ResourceProcessingIndex < 0) {
+        SystemContextPointer8 = (int64_t)-ResourceProcessingIndex;
+        if (ResourceProcessingIndex < 0) {
+          SystemContextPointer7 = (int64_t)ResourceProcessingIndex * 0x18 + 0x14 + (int64_t)resourceHashPointer;
           do {
             resourceHashPointer2 = (uint32_t *)AllocateMemoryBlock();
             ResourceHashValidationResultPrimary = resourceHashPointer2[1];
             ValidationResult = resourceHashPointer2[2];
             validationStatusCode = resourceHashPointer2[3];
-            *(uint32_t *)(LocalContextData7 + -0x14) = *resourceHashPointer2;
-            *(uint32_t *)(LocalContextData7 + -0x10) = ResourceHashValidationResultPrimary;
-            *(uint32_t *)(LocalContextData7 + -0xc) = ResourceHashValidationResult;
-            *(uint32_t *)(LocalContextData7 + -8) = HashValidationResult;
-            *(uint8_t *)(LocalContextData7 + -4) = 0;
-            LocalContextData8 = LocalContextData8 + -1;
-            LocalContextData7 = LocalContextData7 + 0x18;
-          } while (LocalContextData8 != 0);
+            *(uint32_t *)(SystemContextPointer7 + -0x14) = *resourceHashPointer2;
+            *(uint32_t *)(SystemContextPointer7 + -0x10) = ResourceHashValidationResultPrimary;
+            *(uint32_t *)(SystemContextPointer7 + -0xc) = ResourceHashValidationResult;
+            *(uint32_t *)(SystemContextPointer7 + -8) = HashValidationResult;
+            *(uint8_t *)(SystemContextPointer7 + -4) = 0;
+            SystemContextPointer8 = SystemContextPointer8 + -1;
+            SystemContextPointer7 = SystemContextPointer7 + 0x18;
+          } while (SystemContextPointer8 != 0);
           ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
         }
       }
@@ -21829,22 +21829,22 @@ ResourceValidationWait:
       FreeMemoryBlock(ExecutionContextPointer + -0x29,0);
       return resourceHashPointer3;
     }
-    ResourceIndex9 = *(int *)(ExecutionContextPointer + -0x21);
+    ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
     calculatedFloatResult = FloatingPointResultFourth;
-    if (ResourceIndex9 == 0) {
+    if (ResourceProcessingIndex == 0) {
       resourceHashPointer3 = *(uint8_t **)(ExecutionContextPointer + -0x29);
     }
     else {
       ValidationCounter = (int)*(uint *)(SystemContext + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(SystemContext + 0x54) ^ ValidationCounter) - ValidationCounter) < ResourceIndex9) {
-        ValidationCounter = CalculateResourceHash(SystemContext + 0x48,ResourceIndex9);
+      if ((int)((*(uint *)(SystemContext + 0x54) ^ ValidationCounter) - ValidationCounter) < ResourceProcessingIndex) {
+        ValidationCounter = CalculateResourceHash(SystemContext + 0x48,ResourceProcessingIndex);
         resourceHashPointer3 = (uint8_t *)(uint64_t)ValidationCounter;
         if (ValidationCounter != 0) goto ResourceValidationWait;
-        ResourceIndex9 = *(int *)(ExecutionContextPointer + -0x21);
+        ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
         calculatedFloatResult = FloatingPointResultFifth;
       }
       resourceHashPointer3 = *(uint8_t **)(ExecutionContextPointer + -0x29);
-      for (resourceHashPointer6 = resourceHashPointer3; (resourceHashPointer3 <= resourceHashPointer6 && (resourceHashPointer6 < resourceHashPointer3 + (int64_t)ResourceIndex9 * 3));
+      for (resourceHashPointer6 = resourceHashPointer3; (resourceHashPointer3 <= resourceHashPointer6 && (resourceHashPointer6 < resourceHashPointer3 + (int64_t)ResourceProcessingIndex * 3));
           resourceHashPointer6 = resourceHashPointer6 + 3) {
         *(uint8_t *)(ExecutionContextPointer + 0x77) = 0;
         ValidationCounter = InitializeResourceBuffer(SystemContext + 0x48,ExecutionContextPointer + 0x77);
@@ -21858,7 +21858,7 @@ ResourceValidationWait:
         calculatedFloatResult = *(float *)((int64_t)resourceHashPointer6 + 0x14) + *(float *)(resourceHashPointer6 + 2);
         *(float *)((int64_t)resourceHashPointer3 + 0x14) = calculatedFloatResult;
         *(uint8_t *)(resourceHashPointer3 + 3) = 1;
-        ResourceIndex9 = *(int *)(ExecutionContextPointer + -0x21);
+        ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
         resourceHashPointer3 = *(uint8_t **)(ExecutionContextPointer + -0x29);
       }
     }
@@ -21868,7 +21868,7 @@ ResourceValidationWait:
       resourceHash0 = -ValidationCounter;
     }
     if ((int)resourceHash0 < 0) {
-      if (0 < ResourceIndex9) goto ResourceIndexProcessing;
+      if (0 < ResourceProcessingIndex) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (resourceHashPointer3 != (uint8_t *)0x0)) {
                     // WARNING: Subroutine does not return
         ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),resourceHashPointer3,&ResourceTableTemplate,0x100,1);
@@ -21881,20 +21881,20 @@ ResourceValidationWait:
     if (resourceAllocationCount < 0) {
       memoryAllocationSize = (int64_t)-resourceAllocationCount;
       if (resourceAllocationCount < 0) {
-        LocalContextData7 = (int64_t)resourceAllocationCount * 0x18 + 0x14 + (int64_t)resourceHashPointer3;
+        SystemContextPointer7 = (int64_t)resourceAllocationCount * 0x18 + 0x14 + (int64_t)resourceHashPointer3;
         do {
           matrixDataPointer = (float *)AllocateMemoryBlock();
           matrixElementXCoordinate = *matrixDataPointer;
           matrixElementY = matrixDataPointer[1];
           matrixElementZ = matrixDataPointer[2];
           matrixElementWComponent = matrixDataPointer[3];
-          *(float *)(LocalContextData7 + -0x14) = matrixElementXCoordinate;
-          *(float *)(LocalContextData7 + -0x10) = matrixElementY;
-          *(float *)(LocalContextData7 + -0xc) = matrixElementZ;
-          *(float *)(LocalContextData7 + -8) = matrixElementWComponent;
-          *(uint8_t *)(LocalContextData7 + -4) = 0;
+          *(float *)(SystemContextPointer7 + -0x14) = matrixElementXCoordinate;
+          *(float *)(SystemContextPointer7 + -0x10) = matrixElementY;
+          *(float *)(SystemContextPointer7 + -0xc) = matrixElementZ;
+          *(float *)(SystemContextPointer7 + -8) = matrixElementWComponent;
+          *(uint8_t *)(SystemContextPointer7 + -4) = 0;
           memoryAllocationSize = memoryAllocationSize + -1;
-          LocalContextData7 = LocalContextData7 + 0x18;
+          SystemContextPointer7 = SystemContextPointer7 + 0x18;
         } while (memoryAllocationSize != 0);
         memoryBlockSize = *(uint *)(ExecutionContextPointer + -0x1d);
       }
@@ -21964,12 +21964,12 @@ uint8_t * GetResourceDataPointerB(void)
   float *pinputFloatValue4;
   uint64_t resourceHash5;
   uint8_t *resourceHashPointer6;
-  int64_t LocalContextData7;
+  int64_t SystemContextPointer7;
   int64_t ExecutionContextPointer;
   int64_t SystemContext;
   uint8_t *SystemRegisterContext;
-  int64_t LocalContextData8;
-  int ResourceIndex9;
+  int64_t SystemContextPointer8;
+  int ResourceProcessingIndex;
   uint32_t FloatingPointCalculationResult;
   uint32_t ResourceHashValidationResultPrimary;
   float FloatingPointResultFirst;
@@ -22037,9 +22037,9 @@ ResourceValidationWait:
       if ((int)ValidationCounter < 0) {
         resourceHash0 = -ValidationCounter;
       }
-      ResourceIndex9 = *(int *)(ExecutionContextPointer + -0x21);
+      ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
       if ((int)resourceHash0 < 0) {
-        if (0 < ResourceIndex9) {
+        if (0 < ResourceProcessingIndex) {
           return resourceHashPointer2;
         }
         if ((0 < (int)ValidationCounter) && (*(int64_t *)(ExecutionContextPointer + -0x29) != 0)) {
@@ -22054,23 +22054,23 @@ ResourceValidationWait:
       else {
         resourceHashPointer3 = *(uint8_t **)(ExecutionContextPointer + -0x29);
       }
-      if (ResourceIndex9 < 0) {
-        LocalContextData8 = (int64_t)-ResourceIndex9;
-        if (ResourceIndex9 < 0) {
-          LocalContextData7 = (int64_t)ResourceIndex9 * 0x18 + 0x14 + (int64_t)resourceHashPointer3;
+      if (ResourceProcessingIndex < 0) {
+        SystemContextPointer8 = (int64_t)-ResourceProcessingIndex;
+        if (ResourceProcessingIndex < 0) {
+          SystemContextPointer7 = (int64_t)ResourceProcessingIndex * 0x18 + 0x14 + (int64_t)resourceHashPointer3;
           do {
             resourceHashPointer = (uint32_t *)AllocateMemoryBlock();
             ResourceHashValidationResultPrimary = resourceHashPointer[1];
             ValidationResult = resourceHashPointer[2];
             validationStatusCode = resourceHashPointer[3];
-            *(uint32_t *)(LocalContextData7 + -0x14) = *resourceHashPointer;
-            *(uint32_t *)(LocalContextData7 + -0x10) = ResourceHashValidationResultPrimary;
-            *(uint32_t *)(LocalContextData7 + -0xc) = ResourceHashValidationResult;
-            *(uint32_t *)(LocalContextData7 + -8) = HashValidationResult;
-            *(uint8_t *)(LocalContextData7 + -4) = 0;
-            LocalContextData8 = LocalContextData8 + -1;
-            LocalContextData7 = LocalContextData7 + 0x18;
-          } while (LocalContextData8 != 0);
+            *(uint32_t *)(SystemContextPointer7 + -0x14) = *resourceHashPointer;
+            *(uint32_t *)(SystemContextPointer7 + -0x10) = ResourceHashValidationResultPrimary;
+            *(uint32_t *)(SystemContextPointer7 + -0xc) = ResourceHashValidationResult;
+            *(uint32_t *)(SystemContextPointer7 + -8) = HashValidationResult;
+            *(uint8_t *)(SystemContextPointer7 + -4) = 0;
+            SystemContextPointer8 = SystemContextPointer8 + -1;
+            SystemContextPointer7 = SystemContextPointer7 + 0x18;
+          } while (SystemContextPointer8 != 0);
           ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
         }
       }
@@ -22084,22 +22084,22 @@ ResourceValidationWait:
       FreeMemoryBlock(ExecutionContextPointer + -0x29,0);
       return resourceHashPointer2;
     }
-    ResourceIndex9 = *(int *)(ExecutionContextPointer + -0x21);
+    ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
     calculatedFloatResult = FloatingPointResultFourth;
-    if (ResourceIndex9 == 0) {
+    if (ResourceProcessingIndex == 0) {
       resourceHashPointer2 = *(uint8_t **)(ExecutionContextPointer + -0x29);
     }
     else {
       ValidationCounter = (int)*(uint *)(SystemContext + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(SystemContext + 0x54) ^ ValidationCounter) - ValidationCounter) < ResourceIndex9) {
-        ValidationCounter = CalculateResourceHash(SystemContext + 0x48,ResourceIndex9);
+      if ((int)((*(uint *)(SystemContext + 0x54) ^ ValidationCounter) - ValidationCounter) < ResourceProcessingIndex) {
+        ValidationCounter = CalculateResourceHash(SystemContext + 0x48,ResourceProcessingIndex);
         resourceHashPointer2 = (uint8_t *)(uint64_t)ValidationCounter;
         if (ValidationCounter != 0) goto ResourceValidationWait;
-        ResourceIndex9 = *(int *)(ExecutionContextPointer + -0x21);
+        ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
         calculatedFloatResult = FloatingPointResultFifth;
       }
       resourceHashPointer2 = *(uint8_t **)(ExecutionContextPointer + -0x29);
-      for (resourceHashPointer6 = resourceHashPointer2; (resourceHashPointer2 <= resourceHashPointer6 && (resourceHashPointer6 < resourceHashPointer2 + (int64_t)ResourceIndex9 * 3));
+      for (resourceHashPointer6 = resourceHashPointer2; (resourceHashPointer2 <= resourceHashPointer6 && (resourceHashPointer6 < resourceHashPointer2 + (int64_t)ResourceProcessingIndex * 3));
           resourceHashPointer6 = resourceHashPointer6 + 3) {
         *(uint8_t *)(ExecutionContextPointer + 0x77) = 0;
         ValidationCounter = InitializeResourceBuffer(SystemContext + 0x48,ExecutionContextPointer + 0x77);
@@ -22113,7 +22113,7 @@ ResourceValidationWait:
         calculatedFloatResult = *(float *)((int64_t)resourceHashPointer6 + 0x14) + *(float *)(resourceHashPointer6 + 2);
         *(float *)((int64_t)resourceHashPointer2 + 0x14) = calculatedFloatResult;
         *(uint8_t *)(resourceHashPointer2 + 3) = 1;
-        ResourceIndex9 = *(int *)(ExecutionContextPointer + -0x21);
+        ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
         resourceHashPointer2 = *(uint8_t **)(ExecutionContextPointer + -0x29);
       }
     }
@@ -22123,7 +22123,7 @@ ResourceValidationWait:
       resourceHash0 = -ValidationCounter;
     }
     if ((int)resourceHash0 < 0) {
-      if (0 < ResourceIndex9) goto ResourceIndexProcessing;
+      if (0 < ResourceProcessingIndex) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (resourceHashPointer2 != (uint8_t *)0x0)) {
                     // WARNING: Subroutine does not return
         ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),resourceHashPointer2,&ResourceTableTemplate,0x100,1);
@@ -22133,24 +22133,24 @@ ResourceValidationWait:
       resourceHashPointer2 = resourceHashPointer3;
       ValidationCounter = resourceCounter;
     }
-    if (ResourceIndex9 < 0) {
-      LocalContextData8 = (int64_t)-ResourceIndex9;
-      if (ResourceIndex9 < 0) {
-        LocalContextData7 = (int64_t)ResourceIndex9 * 0x18 + 0x14 + (int64_t)resourceHashPointer2;
+    if (ResourceProcessingIndex < 0) {
+      SystemContextPointer8 = (int64_t)-ResourceProcessingIndex;
+      if (ResourceProcessingIndex < 0) {
+        SystemContextPointer7 = (int64_t)ResourceProcessingIndex * 0x18 + 0x14 + (int64_t)resourceHashPointer2;
         do {
           pinputFloatValue4 = (float *)AllocateMemoryBlock();
           calculatedFloatResult = *pinputFloatValue4;
           thirdFloatResult = pinputFloatValue4[1];
           fourthFloatResult = pinputFloatValue4[2];
           FloatValue7 = pinputFloatValue4[3];
-          *(float *)(LocalContextData7 + -0x14) = calculatedFloatResult;
-          *(float *)(LocalContextData7 + -0x10) = resultFloatValue;
-          *(float *)(LocalContextData7 + -0xc) = TemporaryFloatValue;
-          *(float *)(LocalContextData7 + -8) = FloatValue7;
-          *(uint8_t *)(LocalContextData7 + -4) = 0;
-          LocalContextData8 = LocalContextData8 + -1;
-          LocalContextData7 = LocalContextData7 + 0x18;
-        } while (LocalContextData8 != 0);
+          *(float *)(SystemContextPointer7 + -0x14) = calculatedFloatResult;
+          *(float *)(SystemContextPointer7 + -0x10) = resultFloatValue;
+          *(float *)(SystemContextPointer7 + -0xc) = TemporaryFloatValue;
+          *(float *)(SystemContextPointer7 + -8) = FloatValue7;
+          *(uint8_t *)(SystemContextPointer7 + -4) = 0;
+          SystemContextPointer8 = SystemContextPointer8 + -1;
+          SystemContextPointer7 = SystemContextPointer7 + 0x18;
+        } while (SystemContextPointer8 != 0);
         ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
       }
     }
@@ -22220,11 +22220,11 @@ uint64_t ResourceProcessingHandler(uint8_t ObjectContext)
   float *pinputFloatValue3;
   uint8_t *resourceHashPointer4;
   uint8_t *resourceHashPointer5;
-  int64_t LocalContextData6;
+  int64_t SystemContextPointer6;
   int64_t ExecutionContextPointer;
   int64_t SystemContext;
   uint8_t *SystemRegisterContext;
-  int64_t LocalContextData7;
+  int64_t SystemContextPointer7;
   int ResourceIndexOctal;
   uint8_t *ResourceDataPointer;
   uint RegisterR15D;
@@ -22276,22 +22276,22 @@ ResourceValidationWait:
         resourceHashPointer4 = *(uint8_t **)(ExecutionContextPointer + -0x29);
       }
       if (ResourceIndexOctal < 0) {
-        LocalContextData7 = (int64_t)-ResourceIndexOctal;
+        SystemContextPointer7 = (int64_t)-ResourceIndexOctal;
         if (ResourceIndexOctal < 0) {
-          LocalContextData6 = (int64_t)ResourceIndexOctal * 0x18 + 0x14 + (int64_t)resourceHashPointer4;
+          SystemContextPointer6 = (int64_t)ResourceIndexOctal * 0x18 + 0x14 + (int64_t)resourceHashPointer4;
           do {
             resourceHashPointer2 = (uint32_t *)AllocateMemoryBlock();
             resourceHash = resourceHashPointer2[1];
             ValidationResult = resourceHashPointer2[2];
             validationStatusCode = resourceHashPointer2[3];
-            *(uint32_t *)(LocalContextData6 + -0x14) = *resourceHashPointer2;
-            *(uint32_t *)(LocalContextData6 + -0x10) = resourceHash;
-            *(uint32_t *)(LocalContextData6 + -0xc) = ResourceHashValidationResult;
-            *(uint32_t *)(LocalContextData6 + -8) = HashValidationResult;
-            *(uint8_t **)(LocalContextData6 + -4) = ResourceDataPointer;
-            LocalContextData7 = LocalContextData7 + -1;
-            LocalContextData6 = LocalContextData6 + 0x18;
-          } while (LocalContextData7 != 0);
+            *(uint32_t *)(SystemContextPointer6 + -0x14) = *resourceHashPointer2;
+            *(uint32_t *)(SystemContextPointer6 + -0x10) = resourceHash;
+            *(uint32_t *)(SystemContextPointer6 + -0xc) = ResourceHashValidationResult;
+            *(uint32_t *)(SystemContextPointer6 + -8) = HashValidationResult;
+            *(uint8_t **)(SystemContextPointer6 + -4) = ResourceDataPointer;
+            SystemContextPointer7 = SystemContextPointer7 + -1;
+            SystemContextPointer6 = SystemContextPointer6 + 0x18;
+          } while (SystemContextPointer7 != 0);
           ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
         }
       }
@@ -22355,23 +22355,23 @@ ResourceValidationWait:
       ValidationCounter = resourceCounter;
     }
     if (ResourceIndexOctal < 0) {
-      LocalContextData7 = (int64_t)-ResourceIndexOctal;
+      SystemContextPointer7 = (int64_t)-ResourceIndexOctal;
       if (ResourceIndexOctal < 0) {
-        LocalContextData6 = (int64_t)ResourceIndexOctal * 0x18 + 0x14 + (int64_t)resourceHashPointer4;
+        SystemContextPointer6 = (int64_t)ResourceIndexOctal * 0x18 + 0x14 + (int64_t)resourceHashPointer4;
         do {
           pinputFloatValue3 = (float *)AllocateMemoryBlock();
           MemoryFloatValue = *pinputFloatValue3;
           secondFloatResult = pinputFloatValue3[1];
           thirdFloatResult = pinputFloatValue3[2];
           fourthFloatResult = pinputFloatValue3[3];
-          *(float *)(LocalContextData6 + -0x14) = MemoryFloatValue;
-          *(float *)(LocalContextData6 + -0x10) = inputFloatValue;
-          *(float *)(LocalContextData6 + -0xc) = resultFloatValue;
-          *(float *)(LocalContextData6 + -8) = TemporaryFloatValue;
-          *(uint8_t **)(LocalContextData6 + -4) = ResourceDataPointer;
-          LocalContextData7 = LocalContextData7 + -1;
-          LocalContextData6 = LocalContextData6 + 0x18;
-        } while (LocalContextData7 != 0);
+          *(float *)(SystemContextPointer6 + -0x14) = MemoryFloatValue;
+          *(float *)(SystemContextPointer6 + -0x10) = inputFloatValue;
+          *(float *)(SystemContextPointer6 + -0xc) = resultFloatValue;
+          *(float *)(SystemContextPointer6 + -8) = TemporaryFloatValue;
+          *(uint8_t **)(SystemContextPointer6 + -4) = ResourceDataPointer;
+          SystemContextPointer7 = SystemContextPointer7 + -1;
+          SystemContextPointer6 = SystemContextPointer6 + 0x18;
+        } while (SystemContextPointer7 != 0);
         ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
       }
     }
@@ -26855,17 +26855,17 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t ObjectContext,i
   if (*(int *)(ResourceMetadataTable[1] + 0x18) != 0) {
     return 0x1c;
   }
-  LocalContextData = *ValidationContext;
-  validationStatusCode = ReadResourceData(LocalContextData,ObjectContext + 0x10,4);
+  SystemContextPointer = *ValidationContext;
+  validationStatusCode = ReadResourceData(SystemContextPointer,ObjectContext + 0x10,4);
   loopIncrement = (uint64_t)HashValidationResult;
   if (validationStatusCode == 0) {
-    validationStatusCode = ReadResourceData(LocalContextData,ObjectContext + 0x14,2);
+    validationStatusCode = ReadResourceData(SystemContextPointer,ObjectContext + 0x14,2);
     loopIncrement = (uint64_t)HashValidationResult;
     if (validationStatusCode == 0) {
-      validationStatusCode = ReadResourceData(LocalContextData,ObjectContext + 0x16,2);
+      validationStatusCode = ReadResourceData(SystemContextPointer,ObjectContext + 0x16,2);
       loopIncrement = (uint64_t)HashValidationResult;
       if (validationStatusCode == 0) {
-        validationStatusCode = ReadResourceData(LocalContextData,ObjectContext + 0x18,8);
+        validationStatusCode = ReadResourceData(SystemContextPointer,ObjectContext + 0x18,8);
         loopIncrement = (uint64_t)HashValidationResult;
       }
     }
@@ -27160,17 +27160,17 @@ uint64_t ProcessResourceTableValidationAndOperations(void)
   if (*(int *)(InputParameter + 0x18) != 0) {
     return 0x1c;
   }
-  LocalContextData = *SystemRegisterContext;
-  validationStatusCode = ReadResourceData(LocalContextData,RegisterR15 + 0x10,ResourceDataPointerD + 3);
+  SystemContextPointer = *SystemRegisterContext;
+  validationStatusCode = ReadResourceData(SystemContextPointer,RegisterR15 + 0x10,ResourceDataPointerD + 3);
   loopIncrement = (uint64_t)HashValidationResult;
   if (validationStatusCode == 0) {
-    validationStatusCode = ReadResourceData(LocalContextData,RegisterR15 + 0x14,ResourceDataPointerD + 1);
+    validationStatusCode = ReadResourceData(SystemContextPointer,RegisterR15 + 0x14,ResourceDataPointerD + 1);
     loopIncrement = (uint64_t)HashValidationResult;
     if (validationStatusCode == 0) {
-      validationStatusCode = ReadResourceData(LocalContextData,RegisterR15 + 0x16,ResourceDataPointerD + 1);
+      validationStatusCode = ReadResourceData(SystemContextPointer,RegisterR15 + 0x16,ResourceDataPointerD + 1);
       loopIncrement = (uint64_t)HashValidationResult;
       if (validationStatusCode == 0) {
-        validationStatusCode = ReadResourceData(LocalContextData,RegisterR15 + 0x18,ResourceDataPointerD + 7);
+        validationStatusCode = ReadResourceData(SystemContextPointer,RegisterR15 + 0x18,ResourceDataPointerD + 7);
         loopIncrement = (uint64_t)HashValidationResult;
       }
     }
@@ -27217,8 +27217,8 @@ uint64_t ProcessResourceTableValidationAndOperations(void)
     return 0x1c;
   }
   presourceTable = (int64_t *)*SystemRegisterContext;
-  LocalContextData = *presourceTable;
-  if (LocalContextData == 0) {
+  SystemContextPointer = *presourceTable;
+  if (SystemContextPointer == 0) {
     loopIncrement = 0x1c;
   }
   else if (presourceTable[2] == 0) {
@@ -27227,7 +27227,7 @@ ContextDataValidation:
   }
   else {
     *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
-    loopIncrement = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + 0x77);
+    loopIncrement = ValidateResourceAccess(SystemContextPointer,ExecutionContextPointer + 0x77);
     if ((int)loopCondition == 0) {
       if ((uint64_t)*(uint *)(ExecutionContextPointer + 0x77) + 4 <= (uint64_t)presourceTable[2]) goto ContextValidationLoop;
       loopIncrement = 0x11;
@@ -27244,8 +27244,8 @@ ContextDataValidation:
   if (0x37 < *(uint *)(SystemRegisterContext + 8)) {
     if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
       presourceTable = (int64_t *)*SystemRegisterContext;
-      LocalContextData = *presourceTable;
-      if (LocalContextData == 0) {
+      SystemContextPointer = *presourceTable;
+      if (SystemContextPointer == 0) {
         validationStatusCode = 0x1c;
 ResourceAccessCheck:
         MemorySizeCheck = validationStatusCode == 0;
@@ -27261,7 +27261,7 @@ ContextValidationCheck:
           goto ResourceAccessCheck;
         }
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
+        validationStatusCode = ValidateResourceAccess(SystemContextPointer,ExecutionContextPointer + -0x45);
         MemorySizeCheck = validationStatusCode == 0;
         if (MemorySizeCheck) {
           if ((uint64_t)presourceTable[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
@@ -27287,8 +27287,8 @@ ContextValidationCheck:
   if (0x66 < *(uint *)(SystemRegisterContext + 8)) {
     if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
       presourceTable = (int64_t *)*SystemRegisterContext;
-      LocalContextData = *presourceTable;
-      if (LocalContextData == 0) {
+      SystemContextPointer = *presourceTable;
+      if (SystemContextPointer == 0) {
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
@@ -27297,7 +27297,7 @@ MemoryBoundaryCheck1:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
+        validationStatusCode = ValidateResourceAccess(SystemContextPointer,ExecutionContextPointer + -0x45);
         if (validationStatusCode == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
           goto MemoryBoundaryCheck1;
@@ -27323,8 +27323,8 @@ MemoryBoundaryCheck1:
   if (0x78 < *(uint *)(SystemRegisterContext + 8)) {
     if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
       presourceTable = (int64_t *)*SystemRegisterContext;
-      LocalContextData = *presourceTable;
-      if (LocalContextData == 0) {
+      SystemContextPointer = *presourceTable;
+      if (SystemContextPointer == 0) {
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
@@ -27333,7 +27333,7 @@ MemoryBoundaryCheck2:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
+        validationStatusCode = ValidateResourceAccess(SystemContextPointer,ExecutionContextPointer + -0x45);
         if (validationStatusCode == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
           goto MemoryBoundaryCheck2;
@@ -27359,8 +27359,8 @@ MemoryBoundaryCheck2:
   if (0x79 < *(uint *)(SystemRegisterContext + 8)) {
     if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
       presourceTable = (int64_t *)*SystemRegisterContext;
-      LocalContextData = *presourceTable;
-      if (LocalContextData == 0) {
+      SystemContextPointer = *presourceTable;
+      if (SystemContextPointer == 0) {
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
@@ -27369,7 +27369,7 @@ MemoryBoundaryCheck3:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
+        validationStatusCode = ValidateResourceAccess(SystemContextPointer,ExecutionContextPointer + -0x45);
         if (validationStatusCode == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
           goto MemoryBoundaryCheck3;
@@ -27395,8 +27395,8 @@ MemoryBoundaryCheck3:
   if (0x7a < *(uint *)(SystemRegisterContext + 8)) {
     if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
       presourceTable = (int64_t *)*SystemRegisterContext;
-      LocalContextData = *presourceTable;
-      if (LocalContextData == 0) {
+      SystemContextPointer = *presourceTable;
+      if (SystemContextPointer == 0) {
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
@@ -27405,7 +27405,7 @@ MemoryBoundaryCheck4:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
+        validationStatusCode = ValidateResourceAccess(SystemContextPointer,ExecutionContextPointer + -0x45);
         if (validationStatusCode == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
           goto MemoryBoundaryCheck4;
@@ -28560,20 +28560,20 @@ uint64_t ProcessResourceCertificateValidation(int64_t ObjectContext,int64_t *Val
         ValidationResult = 0;
         if ((*(uint *)(resourceData + 8) < 0x5a) && (ValidationResult = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
           ResourceOperationBuffer[0] = ResourceValidationByte2;
-          LocalContextData = *ValidationContext;
-          ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                            (*(uint8_t **)(LocalContextData + 8),ResourceOperationBuffer,4);
+          SystemContextPointer = *ValidationContext;
+          ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                            (*(uint8_t **)(SystemContextPointer + 8),ResourceOperationBuffer,4);
           if (ValidationResult == 0) {
             ResourceValidationBuffer[0] = (uint16_t)ResourceValidationByte3;
-            ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                              (*(uint8_t **)(LocalContextData + 8),ResourceValidationBuffer,2);
+            ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                              (*(uint8_t **)(SystemContextPointer + 8),ResourceValidationBuffer,2);
             if (ValidationResult == 0) {
               StackContextBuffer[0] = ResourceValidationByte3.ShortValue;
-              ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                                (*(uint8_t **)(LocalContextData + 8),StackContextBuffer,2);
+              ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                                (*(uint8_t **)(SystemContextPointer + 8),StackContextBuffer,2);
               if (ValidationResult == 0) {
-                ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                                  (*(uint8_t **)(LocalContextData + 8),&ValidationParameter,8);
+                ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                                  (*(uint8_t **)(SystemContextPointer + 8),&ValidationParameter,8);
               }
             }
           }
@@ -28636,20 +28636,20 @@ uint64_t ValidateResourceCertificateChain(void)
       if ((*(uint *)(SystemRegisterContext + 8) < 0x5a) &&
          (ValidationResult = 0x1c, *(uint *)(SystemRegisterContext[1] + 0x18) == RegisterESI)) {
         StackVariable30 = StackVariable38;
-        LocalContextData = *SystemRegisterContext;
-        ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                          (*(uint8_t **)(LocalContextData + 8),&ObjectStackBufferResource,4);
+        SystemContextPointer = *SystemRegisterContext;
+        ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                          (*(uint8_t **)(SystemContextPointer + 8),&ObjectStackBufferResource,4);
         if (ValidationResult == 0) {
           StackVariableA0 = StackVariable3C;
-          ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                            (*(uint8_t **)(LocalContextData + 8),&stack0x000000a0,2);
+          ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                            (*(uint8_t **)(SystemContextPointer + 8),&StackBufferPrimary,2);
           if (ValidationResult == 0) {
             StackVariableA8 = StackVariable3E;
-            ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                              (*(uint8_t **)(LocalContextData + 8),&stack0x000000a8,2);
+            ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                              (*(uint8_t **)(SystemContextPointer + 8),&StackBufferSecondary,2);
             if (ValidationResult == 0) {
-              ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                                (*(uint8_t **)(LocalContextData + 8),&ObjectStackBufferSecondary,8);
+              ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                                (*(uint8_t **)(SystemContextPointer + 8),&ObjectStackBufferSecondary,8);
             }
           }
         }
@@ -28700,20 +28700,20 @@ uint64_t ProcessResourceCertificateSigning(void)
     if ((*(uint *)(SystemRegisterContext + 8) < 0x5a) &&
        (ValidationResult = 0x1c, *(uint *)(SystemRegisterContext[1] + 0x18) == RegisterESI)) {
       StackVariable30 = StackVariable38;
-      LocalContextData = *SystemRegisterContext;
-      ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                        (*(uint8_t **)(LocalContextData + 8),&ObjectStackBufferResource,4);
+      SystemContextPointer = *SystemRegisterContext;
+      ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                        (*(uint8_t **)(SystemContextPointer + 8),&ObjectStackBufferResource,4);
       if (ValidationResult == 0) {
         StackVariableA0 = StackVariable3C;
-        ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                          (*(uint8_t **)(LocalContextData + 8),&stack0x000000a0,2);
+        ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                          (*(uint8_t **)(SystemContextPointer + 8),&StackBufferPrimary,2);
         if (ValidationResult == 0) {
           StackVariableA8 = StackVariable3E;
-          ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                            (*(uint8_t **)(LocalContextData + 8),&stack0x000000a8,2);
+          ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                            (*(uint8_t **)(SystemContextPointer + 8),&StackBufferSecondary,2);
           if (ValidationResult == 0) {
-            ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                              (*(uint8_t **)(LocalContextData + 8),&ObjectStackBufferSecondary,8);
+            ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                              (*(uint8_t **)(SystemContextPointer + 8),&ObjectStackBufferSecondary,8);
           }
         }
       }
@@ -28752,19 +28752,19 @@ uint64_t VerifyResourceCertificateIntegrity(void)
   uint16_t StackVariableA0;
   uint16_t StackVariableA8;
   
-  LocalContextData = *SystemRegisterContext;
-  ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))();
+  SystemContextPointer = *SystemRegisterContext;
+  ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))();
   if (ValidationResult == 0) {
     StackVariableA0 = StackRegisterStorageOctal.ShortValue;
-    ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                      (*(uint8_t **)(LocalContextData + 8),&stack0x000000a0,2);
+    ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                      (*(uint8_t **)(SystemContextPointer + 8),&StackBufferPrimary,2);
     if (ValidationResult == 0) {
       StackVariableA8 = StackRegisterStorageOctal.ShortValue;
-      ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                        (*(uint8_t **)(LocalContextData + 8),&stack0x000000a8,2);
+      ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                        (*(uint8_t **)(SystemContextPointer + 8),&StackBufferSecondary,2);
       if (ValidationResult == 0) {
-        ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
-                          (*(uint8_t **)(LocalContextData + 8),&ObjectStackBufferSecondary,8);
+        ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
+                          (*(uint8_t **)(SystemContextPointer + 8),&ObjectStackBufferSecondary,8);
       }
     }
   }
@@ -30804,28 +30804,28 @@ void CleanupSystemDataOnException(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerA;
-  if (*(char *)(LocalContextData + 0xd1) != '\0') {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerA;
+  if (*(char *)(SystemContextPointer + 0xd1) != '\0') {
     SystemMemoryCleanup();
   }
   _Mtx_destroy_in_situ();
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerB;
-  *(uint8_t *)(LocalContextData + 0x58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerB;
+  *(uint8_t *)(SystemContextPointer + 0x58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x60) = 0;
-  *(uint32_t *)(LocalContextData + 0x70) = 0;
-  *(uint8_t *)(LocalContextData + 0x58) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -30847,28 +30847,28 @@ void ResetResourceManagerOnException(uint8_t ObjectContext, int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
-  *(uint8_t *)(LocalContextData + 0xd8) = &SystemResourceHandlerA;
-  if (*(char *)(LocalContextData + 0x189) != '\0') {
+  *(uint8_t *)(SystemContextPointer + 0xd8) = &SystemResourceHandlerA;
+  if (*(char *)(SystemContextPointer + 0x189) != '\0') {
     SystemMemoryCleanup();
   }
   _Mtx_destroy_in_situ();
-  *(uint8_t *)(LocalContextData + 0xd8) = &SystemResourceHandlerB;
-  *(uint8_t *)(LocalContextData + 0x110) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x118) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd8) = &SystemResourceHandlerB;
+  *(uint8_t *)(SystemContextPointer + 0x110) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x118) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x118) = 0;
-  *(uint32_t *)(LocalContextData + 0x128) = 0;
-  *(uint8_t *)(LocalContextData + 0x110) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x118) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x128) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x110) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe8) = 0;
-  *(uint32_t *)(LocalContextData + 0xf8) = 0;
-  *(uint8_t *)(LocalContextData + 0xe0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -31226,7 +31226,7 @@ void ResourceTableCleanupHandler(uint8_t ObjectContext, int64_t ValidationContex
   
   pResourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x50);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x58);
-  for (ResourceIndex = *pResourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x48) {
+  for (ResourceIndex = *pResourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x48) {
     CleanupResourceHandle(ResourceIndex);
   }
   if (*pResourceTable == 0) {
@@ -31257,8 +31257,8 @@ void ResourceLoopCleanupHandler(uint8_t ObjectContext, int64_t ValidationContext
   int64_t ResourceIndex;
   
   pResourceTable = *(int64_t **)(ValidationContext + 0x78);
-  LocalContextData = pResourceTable[1];
-  for (ResourceIndex = *pResourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x48) {
+  SystemContextPointer = pResourceTable[1];
+  for (ResourceIndex = *pResourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x48) {
     CleanupResourceHandle(ResourceIndex);
   }
   if (*pResourceTable == 0) {
@@ -31365,7 +31365,7 @@ void ResourceTableValidationHandler(uint8_t ObjectContext,int64_t ValidationCont
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x18);
   ResourceIndex = *presourceTable;
   while( true ) {
-    if (ResourceIndex == LocalContextData) {
+    if (ResourceIndex == SystemContextPointer) {
       if (*presourceTable == 0) {
         return;
       }
@@ -31800,14 +31800,14 @@ void SystemResourceHandlerInitializer(uint8_t ObjectContext, int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -31831,14 +31831,14 @@ void UnwindSystemContextBase(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
-  *(uint8_t *)(LocalContextData + 0x50) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x58) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x50) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x58) = 0;
-  *(uint32_t *)(LocalContextData + 0x68) = 0;
-  *(uint8_t *)(LocalContextData + 0x50) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x58) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x68) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x50) = &SystemDataStructure;
   return;
 }
 
@@ -32155,14 +32155,14 @@ void UnwindExceptionHandlerBase(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
-  *(uint8_t *)(LocalContextData + 0x40) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x48) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x40) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x48) = 0;
-  *(uint32_t *)(LocalContextData + 0x58) = 0;
-  *(uint8_t *)(LocalContextData + 0x40) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x48) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x58) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x40) = &SystemDataStructure;
   return;
 }
 
@@ -32475,7 +32475,7 @@ void CleanupResourceTableBuffer(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x70);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x78);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x18) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     HandleBufferOperations(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -32713,8 +32713,8 @@ void UnwindResourceTableOperations(uint8_t ObjectContext, int64_t ValidationCont
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x78);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x18) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     HandleBufferOperations(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -32754,7 +32754,7 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContext, int64_t ValidationCo
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + currentIndex * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 0x10) + 0x38))();
@@ -32762,7 +32762,7 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContext, int64_t ValidationCo
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + currentIndex * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
     resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
@@ -32805,7 +32805,7 @@ void UnwindResourceTableCleanup(uint8_t ObjectContext, int64_t ValidationContext
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + currentIndex * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 0x10) + 0x38))();
@@ -32813,7 +32813,7 @@ void UnwindResourceTableCleanup(uint8_t ObjectContext, int64_t ValidationContext
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + currentIndex * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
     resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
@@ -32856,7 +32856,7 @@ void UnwindBatchResourceRelease(uint8_t ObjectContext, int64_t ValidationContext
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + currentIndex * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 0x10) + 0x38))();
@@ -32864,7 +32864,7 @@ void UnwindBatchResourceRelease(uint8_t ObjectContext, int64_t ValidationContext
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + currentIndex * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
     resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
@@ -33096,7 +33096,7 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContext,int64_t ValidationC
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + currentIndex * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 0x10) + 0x38))();
@@ -33104,7 +33104,7 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContext,int64_t ValidationC
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + currentIndex * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
     resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
@@ -33146,7 +33146,7 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContext,int64_t ValidationC
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + currentIndex * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 0x10) + 0x38))();
@@ -33154,7 +33154,7 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContext,int64_t ValidationC
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + currentIndex * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
     resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
@@ -33187,14 +33187,14 @@ void UnwindSystemResourceProcessorSetupStandard(uint8_t ObjectContext,int64_t Va
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
-  *(uint8_t *)(LocalContextData + 8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10) = 0;
-  *(uint32_t *)(LocalContextData + 0x20) = 0;
-  *(uint8_t *)(LocalContextData + 8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemDataStructure;
   return;
 }
 
@@ -33218,14 +33218,14 @@ void CleanupSystemResourceHandlerPrimary(uint8_t ObjectContext,int64_t Validatio
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10) = 0;
-  *(uint32_t *)(LocalContextData + 0x20) = 0;
-  *(uint8_t *)(LocalContextData + 8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemDataStructure;
   return;
 }
 
@@ -33249,14 +33249,14 @@ void CleanupSystemResourceHandlerB(uint8_t ObjectContext,int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -33378,14 +33378,14 @@ void SystemResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x90);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -33870,10 +33870,10 @@ void SystemGarbageCollector(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   ValidationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  RegisterResourceHandler(LocalContextData + 0x3e0,0x20,0x20,ReleaseSystemResource,ResourceHashValidationResult);
+  RegisterResourceHandler(SystemContextPointer + 0x3e0,0x20,0x20,ReleaseSystemResource,ResourceHashValidationResult);
   InitializeResourceSystem();
-  RegisterResourceHandler(LocalContextData + 0x138,8,0x20,ProcessResourceOperation);
-  RegisterResourceHandler(LocalContextData + 0x38,8,0x20,ProcessResourceOperation);
+  RegisterResourceHandler(SystemContextPointer + 0x138,8,0x20,ProcessResourceOperation);
+  RegisterResourceHandler(SystemContextPointer + 0x38,8,0x20,ProcessResourceOperation);
   return;
 }
 
@@ -34060,14 +34060,14 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -34250,14 +34250,14 @@ void UnwindMemoryPoolInitializer(uint8_t ObjectContext,int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x148) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x150) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x148) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x150) = 0;
-  *(uint32_t *)(LocalContextData + 0x160) = 0;
-  *(uint8_t *)(LocalContextData + 0x148) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x150) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x160) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x148) = &SystemDataStructure;
   return;
 }
 
@@ -34510,14 +34510,14 @@ void UnwindContextResetHandler(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x918) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x920) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x918) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x920) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x920) = 0;
-  *(uint32_t *)(LocalContextData + 0x930) = 0;
-  *(uint8_t *)(LocalContextData + 0x918) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x920) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x930) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x918) = &SystemDataStructure;
   return;
 }
 
@@ -34752,15 +34752,15 @@ void UnwindContextResetter(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x68);
-  FinalizeResourceOperation(LocalContextData + 0x40);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  FinalizeResourceOperation(SystemContextPointer + 0x40);
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -34775,12 +34775,12 @@ void UnwindFinalCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,u
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
   ValidationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  ProcessResourceOperation(LocalContextData + 0x110,*(uint8_t *)(LocalContextData + 0x120),CleanupOption,CleanupFlag,ResourceHashValidationResult);
-  ProcessResourceOperation(LocalContextData + 0xe0,*(uint8_t *)(LocalContextData + 0xf0));
-  ProcessResourceOperation(LocalContextData + 0xb0,*(uint8_t *)(LocalContextData + 0xc0));
-  ProcessResourceRelease(LocalContextData + 0x80,*(uint8_t *)(LocalContextData + 0x90));
-  HandleResourceRequest(LocalContextData + 0x50,*(uint8_t *)(LocalContextData + 0x60));
-  ProcessResourceRelease(LocalContextData + 0x20,*(uint8_t *)(LocalContextData + 0x30));
+  ProcessResourceOperation(SystemContextPointer + 0x110,*(uint8_t *)(SystemContextPointer + 0x120),CleanupOption,CleanupFlag,ResourceHashValidationResult);
+  ProcessResourceOperation(SystemContextPointer + 0xe0,*(uint8_t *)(SystemContextPointer + 0xf0));
+  ProcessResourceOperation(SystemContextPointer + 0xb0,*(uint8_t *)(SystemContextPointer + 0xc0));
+  ProcessResourceRelease(SystemContextPointer + 0x80,*(uint8_t *)(SystemContextPointer + 0x90));
+  HandleResourceRequest(SystemContextPointer + 0x50,*(uint8_t *)(SystemContextPointer + 0x60));
+  ProcessResourceRelease(SystemContextPointer + 0x20,*(uint8_t *)(SystemContextPointer + 0x30));
   return;
 }
 
@@ -34792,14 +34792,14 @@ void UnwindResourceInitializer(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x68);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -34811,18 +34811,18 @@ void UnwindSystemValidator(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
-  if (*(int64_t *)(LocalContextData + 0x40) != 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -34906,18 +34906,18 @@ void UnwindDataProcessor(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
-  if (*(int64_t *)(LocalContextData + 0x40) != 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -34965,18 +34965,18 @@ void UnwindThreadManager(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
-  if (*(int64_t *)(LocalContextData + 0x40) != 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -35046,7 +35046,7 @@ void UnwindMutexHandler(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x28);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x30);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x548) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x548) {
     ReleaseResourceMemory(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -35066,8 +35066,8 @@ void UnwindEventNotifier(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x48);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x548) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x548) {
     ReleaseResourceMemory(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -35102,12 +35102,12 @@ void UnwindAsyncCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,u
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   ValidationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  ProcessResourceOperation(LocalContextData + 0x110,*(uint8_t *)(LocalContextData + 0x120),CleanupOption,CleanupFlag,ResourceHashValidationResult);
-  ProcessResourceOperation(LocalContextData + 0xe0,*(uint8_t *)(LocalContextData + 0xf0));
-  ProcessResourceOperation(LocalContextData + 0xb0,*(uint8_t *)(LocalContextData + 0xc0));
-  ProcessResourceRelease(LocalContextData + 0x80,*(uint8_t *)(LocalContextData + 0x90));
-  HandleResourceRequest(LocalContextData + 0x50,*(uint8_t *)(LocalContextData + 0x60));
-  ProcessResourceRelease(LocalContextData + 0x20,*(uint8_t *)(LocalContextData + 0x30));
+  ProcessResourceOperation(SystemContextPointer + 0x110,*(uint8_t *)(SystemContextPointer + 0x120),CleanupOption,CleanupFlag,ResourceHashValidationResult);
+  ProcessResourceOperation(SystemContextPointer + 0xe0,*(uint8_t *)(SystemContextPointer + 0xf0));
+  ProcessResourceOperation(SystemContextPointer + 0xb0,*(uint8_t *)(SystemContextPointer + 0xc0));
+  ProcessResourceRelease(SystemContextPointer + 0x80,*(uint8_t *)(SystemContextPointer + 0x90));
+  HandleResourceRequest(SystemContextPointer + 0x50,*(uint8_t *)(SystemContextPointer + 0x60));
+  ProcessResourceRelease(SystemContextPointer + 0x20,*(uint8_t *)(SystemContextPointer + 0x30));
   return;
 }
 
@@ -35213,8 +35213,8 @@ void CleanupResourceTable(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x40);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x548) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x548) {
     ReleaseResourceMemory(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -35527,14 +35527,14 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext,int64_t ValidationC
   
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
   InitializeResourceSystem();
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -35651,14 +35651,14 @@ void ProcessResourceContextValidation(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  *(uint8_t *)(LocalContextData + 0x40) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x48) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x40) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x48) = 0;
-  *(uint32_t *)(LocalContextData + 0x58) = 0;
-  *(uint8_t *)(LocalContextData + 0x40) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x48) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x58) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x40) = &SystemDataStructure;
   return;
 }
 
@@ -35749,8 +35749,8 @@ void ProcessResourceReleaseOperation(uint8_t ObjectContext,int64_t ValidationCon
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x40);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x50) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x50) {
     ReleaseResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -36667,25 +36667,25 @@ void ProcessResourceTransactionSecondary(uint8_t ObjectContext, int64_t Validati
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x140) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x140))(LocalContextData + 0x130,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x140) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x140))(SystemContextPointer + 0x130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x110) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x110) = 0;
-  *(uint32_t *)(LocalContextData + 0x120) = 0;
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x110) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x120) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf0) = 0;
-  *(uint32_t *)(LocalContextData + 0x100) = 0;
-  *(uint8_t *)(LocalContextData + 0xe8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x100) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe8) = &SystemDataStructure;
   return;
 }
 
@@ -36711,25 +36711,25 @@ void ProcessResourceTransactionTertiary(uint8_t ObjectContext, int64_t Validatio
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1b0))(LocalContextData + 0x1a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1b0))(SystemContextPointer + 0x1a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x178) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x180) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x178) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x180) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x180) = 0;
-  *(uint32_t *)(LocalContextData + 400) = 0;
-  *(uint8_t *)(LocalContextData + 0x178) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x158) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x160) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x180) = 0;
+  *(uint32_t *)(SystemContextPointer + 400) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x178) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x158) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x160) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x160) = 0;
-  *(uint32_t *)(LocalContextData + 0x170) = 0;
-  *(uint8_t *)(LocalContextData + 0x158) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x160) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x170) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x158) = &SystemDataStructure;
   return;
 }
 
@@ -36755,25 +36755,25 @@ void ProcessResourceTransactionQuaternary(uint8_t ObjectContext, int64_t Validat
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x220) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x220))(LocalContextData + 0x210,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x220) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x220))(SystemContextPointer + 0x210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x200) = 0;
-  *(uint8_t *)(LocalContextData + 0x1e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x200) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c8) = &SystemDataStructure;
   return;
 }
 
@@ -36799,25 +36799,25 @@ void ProcessResourceTransactionQuinary(uint8_t ObjectContext, int64_t Validation
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x290) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x290))(LocalContextData + 0x280,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x290) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x290))(SystemContextPointer + 0x280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 600) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x260) != 0) {
+  *(uint8_t *)(SystemContextPointer + 600) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x260) = 0;
-  *(uint32_t *)(LocalContextData + 0x270) = 0;
-  *(uint8_t *)(LocalContextData + 600) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x238) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x240) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x260) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x270) = 0;
+  *(uint8_t *)(SystemContextPointer + 600) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x238) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x240) = 0;
-  *(uint32_t *)(LocalContextData + 0x250) = 0;
-  *(uint8_t *)(LocalContextData + 0x238) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x240) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x250) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x238) = &SystemDataStructure;
   return;
 }
 
@@ -36843,25 +36843,25 @@ void ProcessResourceTransactionSenary(uint8_t ObjectContext, int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x300) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x300))(LocalContextData + 0x2f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x300) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x300))(SystemContextPointer + 0x2f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x2e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x2c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2a8) = &SystemDataStructure;
   return;
 }
 
@@ -36887,25 +36887,25 @@ void ProcessResourceTransactionSeptenary(uint8_t ObjectContext, int64_t Validati
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x370) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x370))(LocalContextData + 0x360,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x370) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x370))(SystemContextPointer + 0x360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x338) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x340) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x338) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x340) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x340) = 0;
-  *(uint32_t *)(LocalContextData + 0x350) = 0;
-  *(uint8_t *)(LocalContextData + 0x338) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x318) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 800) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x340) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x350) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x338) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x318) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 800) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 800) = 0;
-  *(uint32_t *)(LocalContextData + 0x330) = 0;
-  *(uint8_t *)(LocalContextData + 0x318) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 800) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x330) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x318) = &SystemDataStructure;
   return;
 }
 
@@ -36931,25 +36931,25 @@ void ProcessResourceTransactionOctonary(uint8_t ObjectContext, int64_t Validatio
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x3e0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x3e0))(LocalContextData + 0x3d0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x3e0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x3e0))(SystemContextPointer + 0x3d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x3a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x3b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x3b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x3c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x3a8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x388) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x390) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x3b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x388) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x390) = 0;
-  *(uint32_t *)(LocalContextData + 0x3a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x388) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x390) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x388) = &SystemDataStructure;
   return;
 }
 
@@ -36975,25 +36975,25 @@ void ProcessResourceTransactionNonary(uint8_t ObjectContext, int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x450) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x450))(LocalContextData + 0x440,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x450) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x450))(SystemContextPointer + 0x440,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x418) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x420) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x418) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x420) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x420) = 0;
-  *(uint32_t *)(LocalContextData + 0x430) = 0;
-  *(uint8_t *)(LocalContextData + 0x418) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x3f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x400) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x420) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x430) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x418) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x3f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x400) = 0;
-  *(uint32_t *)(LocalContextData + 0x410) = 0;
-  *(uint8_t *)(LocalContextData + 0x3f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x400) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x410) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x3f8) = &SystemDataStructure;
   return;
 }
 
@@ -37019,49 +37019,49 @@ void ProcessResourceTransactionDenary(uint8_t ObjectContext, int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x510) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x510))(LocalContextData + 0x500,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x510) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x510))(SystemContextPointer + 0x500,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x4e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x480) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x488) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x480) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x488) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x488) = 0;
-  *(uint32_t *)(LocalContextData + 0x498) = 0;
-  *(uint8_t *)(LocalContextData + 0x480) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x460) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x468) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x488) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x498) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x480) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x460) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x468) = 0;
-  *(uint32_t *)(LocalContextData + 0x478) = 0;
-  *(uint8_t *)(LocalContextData + 0x460) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x468) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x478) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x460) = &SystemDataStructure;
   return;
 }
 
@@ -37087,25 +37087,25 @@ void ValidateMemoryAccess(uint8_t ObjectContext, int64_t ValidationContext, uint
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x580) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x580))(LocalContextData + 0x570,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x580) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x580))(SystemContextPointer + 0x570,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x548) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x550) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x548) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x550) = 0;
-  *(uint32_t *)(LocalContextData + 0x560) = 0;
-  *(uint8_t *)(LocalContextData + 0x548) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x528) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x530) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x550) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x560) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x548) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x528) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x530) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x530) = 0;
-  *(uint32_t *)(LocalContextData + 0x540) = 0;
-  *(uint8_t *)(LocalContextData + 0x528) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x530) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x540) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x528) = &SystemDataStructure;
   return;
 }
 
@@ -37182,25 +37182,25 @@ void ValidateMemoryAccessTertiary(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x140) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x140))(LocalContextData + 0x130,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x140) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x140))(SystemContextPointer + 0x130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x110) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x110) = 0;
-  *(uint32_t *)(LocalContextData + 0x120) = 0;
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x110) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x120) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf0) = 0;
-  *(uint32_t *)(LocalContextData + 0x100) = 0;
-  *(uint8_t *)(LocalContextData + 0xe8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x100) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe8) = &SystemDataStructure;
   return;
 }
 
@@ -37226,25 +37226,25 @@ void ValidateMemoryAccessQuaternary(uint8_t ObjectContext, int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1b0))(LocalContextData + 0x1a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1b0))(SystemContextPointer + 0x1a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x178) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x180) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x178) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x180) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x180) = 0;
-  *(uint32_t *)(LocalContextData + 400) = 0;
-  *(uint8_t *)(LocalContextData + 0x178) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x158) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x160) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x180) = 0;
+  *(uint32_t *)(SystemContextPointer + 400) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x178) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x158) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x160) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x160) = 0;
-  *(uint32_t *)(LocalContextData + 0x170) = 0;
-  *(uint8_t *)(LocalContextData + 0x158) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x160) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x170) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x158) = &SystemDataStructure;
   return;
 }
 
@@ -37270,25 +37270,25 @@ void ValidateMemoryAccessQuinary(uint8_t ObjectContext, int64_t ValidationContex
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x220) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x220))(LocalContextData + 0x210,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x220) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x220))(SystemContextPointer + 0x210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x200) = 0;
-  *(uint8_t *)(LocalContextData + 0x1e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x200) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c8) = &SystemDataStructure;
   return;
 }
 
@@ -37314,25 +37314,25 @@ void ValidateMemoryAccessSenary(uint8_t ObjectContext, int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x290) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x290))(LocalContextData + 0x280,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x290) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x290))(SystemContextPointer + 0x280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 600) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x260) != 0) {
+  *(uint8_t *)(SystemContextPointer + 600) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x260) = 0;
-  *(uint32_t *)(LocalContextData + 0x270) = 0;
-  *(uint8_t *)(LocalContextData + 600) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x238) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x240) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x260) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x270) = 0;
+  *(uint8_t *)(SystemContextPointer + 600) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x238) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x240) = 0;
-  *(uint32_t *)(LocalContextData + 0x250) = 0;
-  *(uint8_t *)(LocalContextData + 0x238) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x240) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x250) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x238) = &SystemDataStructure;
   return;
 }
 
@@ -37358,25 +37358,25 @@ void ValidateMemoryAccessSeptenary(uint8_t ObjectContext, int64_t ValidationCont
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x300) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x300))(LocalContextData + 0x2f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x300) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x300))(SystemContextPointer + 0x2f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x2e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x2c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2a8) = &SystemDataStructure;
   return;
 }
 
@@ -37402,25 +37402,25 @@ void ValidateMemoryAccessOctonary(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x370) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x370))(LocalContextData + 0x360,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x370) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x370))(SystemContextPointer + 0x360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x338) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x340) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x338) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x340) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x340) = 0;
-  *(uint32_t *)(LocalContextData + 0x350) = 0;
-  *(uint8_t *)(LocalContextData + 0x338) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x318) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 800) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x340) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x350) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x338) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x318) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 800) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 800) = 0;
-  *(uint32_t *)(LocalContextData + 0x330) = 0;
-  *(uint8_t *)(LocalContextData + 0x318) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 800) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x330) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x318) = &SystemDataStructure;
   return;
 }
 
@@ -37446,25 +37446,25 @@ void ValidateMemoryAccessNonary(uint8_t ObjectContext, int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x3e0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x3e0))(LocalContextData + 0x3d0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x3e0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x3e0))(SystemContextPointer + 0x3d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x3a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x3b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x3b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x3c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x3a8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x388) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x390) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x3b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x388) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x390) = 0;
-  *(uint32_t *)(LocalContextData + 0x3a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x388) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x390) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x388) = &SystemDataStructure;
   return;
 }
 
@@ -37490,25 +37490,25 @@ void ValidateMemoryAccessDenary(uint8_t ObjectContext, int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x450) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x450))(LocalContextData + 0x440,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x450) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x450))(SystemContextPointer + 0x440,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x418) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x420) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x418) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x420) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x420) = 0;
-  *(uint32_t *)(LocalContextData + 0x430) = 0;
-  *(uint8_t *)(LocalContextData + 0x418) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x3f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x400) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x420) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x430) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x418) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x3f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x400) = 0;
-  *(uint32_t *)(LocalContextData + 0x410) = 0;
-  *(uint8_t *)(LocalContextData + 0x3f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x400) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x410) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x3f8) = &SystemDataStructure;
   return;
 }
 
@@ -37534,49 +37534,49 @@ void ValidateMemoryAccessUndenary(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x510) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x510))(LocalContextData + 0x500,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x510) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x510))(SystemContextPointer + 0x500,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x4e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x480) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x488) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x480) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x488) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x488) = 0;
-  *(uint32_t *)(LocalContextData + 0x498) = 0;
-  *(uint8_t *)(LocalContextData + 0x480) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x460) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x468) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x488) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x498) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x480) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x460) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x468) = 0;
-  *(uint32_t *)(LocalContextData + 0x478) = 0;
-  *(uint8_t *)(LocalContextData + 0x460) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x468) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x478) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x460) = &SystemDataStructure;
   return;
 }
 
@@ -37602,25 +37602,25 @@ void ValidateMemoryAccessDuodenary(uint8_t ObjectContext, int64_t ValidationCont
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x580) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x580))(LocalContextData + 0x570,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x580) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x580))(SystemContextPointer + 0x570,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x548) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x550) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x548) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x550) = 0;
-  *(uint32_t *)(LocalContextData + 0x560) = 0;
-  *(uint8_t *)(LocalContextData + 0x548) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x528) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x530) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x550) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x560) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x548) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x528) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x530) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x530) = 0;
-  *(uint32_t *)(LocalContextData + 0x540) = 0;
-  *(uint8_t *)(LocalContextData + 0x528) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x530) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x540) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x528) = &SystemDataStructure;
   return;
 }
 
@@ -37644,14 +37644,14 @@ void ValidateContext(uint8_t ObjectContext, int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x88);
-  *(uint8_t *)(LocalContextData + 8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10) = 0;
-  *(uint32_t *)(LocalContextData + 0x20) = 0;
-  *(uint8_t *)(LocalContextData + 8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemDataStructure;
   return;
 }
 
@@ -37675,14 +37675,14 @@ void ValidateContextSecondary(uint8_t ObjectContext, int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x88);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -37762,25 +37762,25 @@ void UnwindSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x4c0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x4c0))(LocalContextData + 0x4b0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x4c0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x4c0))(SystemContextPointer + 0x4b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x488) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x490) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x488) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x490) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x490) = 0;
-  *(uint32_t *)(LocalContextData + 0x4a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x488) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x468) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x470) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x490) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x488) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x468) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x470) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x470) = 0;
-  *(uint32_t *)(LocalContextData + 0x480) = 0;
-  *(uint8_t *)(LocalContextData + 0x468) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x470) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x480) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x468) = &SystemDataStructure;
   return;
 }
 
@@ -37804,25 +37804,25 @@ void UnwindSystemDataStructureHandler(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x530) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x530))(LocalContextData + 0x520,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x530) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x530))(SystemContextPointer + 0x520,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x4f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x500) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x500) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x500) = 0;
-  *(uint32_t *)(LocalContextData + 0x510) = 0;
-  *(uint8_t *)(LocalContextData + 0x4f8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x500) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x510) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x4f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x4d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4d8) = &SystemDataStructure;
   return;
 }
 
@@ -37848,25 +37848,25 @@ void CleanupLocalContextResources(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x5a0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x5a0))(LocalContextData + 0x590,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x5a0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x5a0))(SystemContextPointer + 0x590,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x568) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x570) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x568) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x570) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x570) = 0;
-  *(uint32_t *)(LocalContextData + 0x580) = 0;
-  *(uint8_t *)(LocalContextData + 0x568) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x548) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x550) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x570) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x580) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x568) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x548) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x550) = 0;
-  *(uint32_t *)(LocalContextData + 0x560) = 0;
-  *(uint8_t *)(LocalContextData + 0x548) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x550) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x560) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x548) = &SystemDataStructure;
   return;
 }
 
@@ -37892,25 +37892,25 @@ void ReleaseSystemDataStructures(uint8_t ObjectContext, int64_t ValidationContex
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x610) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x610))(LocalContextData + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x610) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x610))(SystemContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x5d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x5f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x5d8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x5b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x5b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x5d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x5b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x5c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5b8) = &SystemDataStructure;
   return;
 }
 
@@ -37936,25 +37936,25 @@ void CleanupResourceWithParameters(uint8_t ObjectContext,int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x680) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x680))(LocalContextData + 0x670,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x680) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x680))(SystemContextPointer + 0x670,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x648) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x650) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x648) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x650) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x650) = 0;
-  *(uint32_t *)(LocalContextData + 0x660) = 0;
-  *(uint8_t *)(LocalContextData + 0x648) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x628) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x630) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x650) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x660) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x648) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x628) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x630) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x630) = 0;
-  *(uint32_t *)(LocalContextData + 0x640) = 0;
-  *(uint8_t *)(LocalContextData + 0x628) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x630) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x640) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x628) = &SystemDataStructure;
   return;
 }
 
@@ -37980,25 +37980,25 @@ void CleanupResourceWithValidation(uint8_t ObjectContext,int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x6f0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x6f0))(LocalContextData + 0x6e0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x6f0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x6f0))(SystemContextPointer + 0x6e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x6b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x6c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x6b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x6c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x6d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x6b8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x698) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x6a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x6c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x6d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x6b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x698) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x6a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x6b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x698) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x6a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x6b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x698) = &SystemDataStructure;
   return;
 }
 
@@ -38010,25 +38010,25 @@ void CleanupResourceWithStatusCheck(uint8_t ObjectContext,int64_t ValidationCont
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x760) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x760))(LocalContextData + 0x750,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x760) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x760))(SystemContextPointer + 0x750,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x728) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x730) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x728) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x730) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x730) = 0;
-  *(uint32_t *)(LocalContextData + 0x740) = 0;
-  *(uint8_t *)(LocalContextData + 0x728) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x708) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x710) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x730) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x740) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x728) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x708) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x710) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x710) = 0;
-  *(uint32_t *)(LocalContextData + 0x720) = 0;
-  *(uint8_t *)(LocalContextData + 0x708) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x710) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x720) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x708) = &SystemDataStructure;
   return;
 }
 
@@ -38055,25 +38055,25 @@ void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 2000) != (code *)0x0) {
-    (**(code **)(LocalContextData + 2000))(LocalContextData + 0x7c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 2000) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 2000))(SystemContextPointer + 0x7c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x798) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x798) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x7b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x798) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x778) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x780) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x7a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x7b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x798) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x778) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x780) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x780) = 0;
-  *(uint32_t *)(LocalContextData + 0x790) = 0;
-  *(uint8_t *)(LocalContextData + 0x778) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x780) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x790) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x778) = &SystemDataStructure;
   return;
 }
 
@@ -38098,25 +38098,25 @@ void CleanupSystemResourceHandler9f0(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x840) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x840))(LocalContextData + 0x830,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x840) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x840))(SystemContextPointer + 0x830,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x808) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x810) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x808) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x810) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x810) = 0;
-  *(uint32_t *)(LocalContextData + 0x820) = 0;
-  *(uint8_t *)(LocalContextData + 0x808) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x7e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x810) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x820) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x808) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x800) = 0;
-  *(uint8_t *)(LocalContextData + 0x7e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x800) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x7e8) = &SystemDataStructure;
   return;
 }
 
@@ -38141,25 +38141,25 @@ void CleanupSystemResourceHandlerA10(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x8b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x8b0))(LocalContextData + 0x8a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x8b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x8b0))(SystemContextPointer + 0x8a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x878) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x880) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x878) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x880) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x880) = 0;
-  *(uint32_t *)(LocalContextData + 0x890) = 0;
-  *(uint8_t *)(LocalContextData + 0x878) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x858) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x860) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x880) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x890) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x878) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x858) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x860) = 0;
-  *(uint32_t *)(LocalContextData + 0x870) = 0;
-  *(uint8_t *)(LocalContextData + 0x858) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x860) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x870) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x858) = &SystemDataStructure;
   return;
 }
 
@@ -38184,25 +38184,25 @@ void CleanupSystemResourceHandlerA30(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x920) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x920))(LocalContextData + 0x910,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x920) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x920))(SystemContextPointer + 0x910,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x8e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x900) = 0;
-  *(uint8_t *)(LocalContextData + 0x8e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x8c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x900) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x8c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x8e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x8c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x8d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x8e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8c8) = &SystemDataStructure;
   return;
 }
 
@@ -38227,25 +38227,25 @@ void CleanupSystemResourceHandlerA50(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x990) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x990))(LocalContextData + 0x980,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x990) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x990))(SystemContextPointer + 0x980,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x958) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x960) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x958) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x960) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x960) = 0;
-  *(uint32_t *)(LocalContextData + 0x970) = 0;
-  *(uint8_t *)(LocalContextData + 0x958) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x938) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x940) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x960) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x970) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x958) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x938) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x940) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x940) = 0;
-  *(uint32_t *)(LocalContextData + 0x950) = 0;
-  *(uint8_t *)(LocalContextData + 0x938) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x940) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x950) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x938) = &SystemDataStructure;
   return;
 }
 
@@ -38270,25 +38270,25 @@ void CleanupSystemResourceHandlerA70(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xa08) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa08))(LocalContextData + 0x9f8,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa08) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa08))(SystemContextPointer + 0x9f8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x9d0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9d8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9d0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9d8) = 0;
-  *(uint32_t *)(LocalContextData + 0x9e8) = 0;
-  *(uint8_t *)(LocalContextData + 0x9d0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x9b0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9b8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9d8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9e8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9d0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9b0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9b8) = 0;
-  *(uint32_t *)(LocalContextData + 0x9c8) = 0;
-  *(uint8_t *)(LocalContextData + 0x9b0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9b8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9c8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9b0) = &SystemDataStructure;
   return;
 }
 
@@ -38313,25 +38313,25 @@ void CleanupSystemResourceHandlerA90(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xa80) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa80))(LocalContextData + 0xa70,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa80) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa80))(SystemContextPointer + 0xa70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xa48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa50) = 0;
-  *(uint32_t *)(LocalContextData + 0xa60) = 0;
-  *(uint8_t *)(LocalContextData + 0xa48) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa30) = 0;
-  *(uint32_t *)(LocalContextData + 0xa40) = 0;
-  *(uint8_t *)(LocalContextData + 0xa28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa28) = &SystemDataStructure;
   return;
 }
 
@@ -38381,14 +38381,14 @@ void ValidateResourceContextAC0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  *(uint8_t *)(LocalContextData + 0x10) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x18) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x10) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x18) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x18) = 0;
-  *(uint32_t *)(LocalContextData + 0x28) = 0;
-  *(uint8_t *)(LocalContextData + 0x10) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x18) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -38412,14 +38412,14 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  *(uint8_t *)(LocalContextData + 0x30) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x38) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x30) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x38) = 0;
-  *(uint32_t *)(LocalContextData + 0x48) = 0;
-  *(uint8_t *)(LocalContextData + 0x30) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x48) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -38501,25 +38501,25 @@ void CleanupDualResourceHandlers(uint8_t ObjectContext,int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x4c0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x4c0))(LocalContextData + 0x4b0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x4c0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x4c0))(SystemContextPointer + 0x4b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x488) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x490) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x488) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x490) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x490) = 0;
-  *(uint32_t *)(LocalContextData + 0x4a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x488) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x468) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x470) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x490) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x488) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x468) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x470) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x470) = 0;
-  *(uint32_t *)(LocalContextData + 0x480) = 0;
-  *(uint8_t *)(LocalContextData + 0x468) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x470) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x480) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x468) = &SystemDataStructure;
   return;
 }
 
@@ -38543,25 +38543,25 @@ void ProcessSystemResourceCleanup1(uint8_t ObjectContext,int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x530) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x530))(LocalContextData + 0x520,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x530) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x530))(SystemContextPointer + 0x520,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x4f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x500) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x500) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x500) = 0;
-  *(uint32_t *)(LocalContextData + 0x510) = 0;
-  *(uint8_t *)(LocalContextData + 0x4f8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x500) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x510) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x4f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x4d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4d8) = &SystemDataStructure;
   return;
 }
 
@@ -38585,25 +38585,25 @@ void ProcessSystemResourceCleanup2(uint8_t ObjectContext,int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x5a0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x5a0))(LocalContextData + 0x590,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x5a0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x5a0))(SystemContextPointer + 0x590,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x568) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x570) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x568) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x570) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x570) = 0;
-  *(uint32_t *)(LocalContextData + 0x580) = 0;
-  *(uint8_t *)(LocalContextData + 0x568) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x548) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x550) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x570) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x580) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x568) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x548) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x550) = 0;
-  *(uint32_t *)(LocalContextData + 0x560) = 0;
-  *(uint8_t *)(LocalContextData + 0x548) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x550) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x560) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x548) = &SystemDataStructure;
   return;
 }
 
@@ -38627,25 +38627,25 @@ void ProcessSystemResourceCleanup3(uint8_t ObjectContext,int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x610) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x610))(LocalContextData + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x610) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x610))(SystemContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x5d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x5f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x5d8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x5b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x5b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x5d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x5b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x5c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5b8) = &SystemDataStructure;
   return;
 }
 
@@ -38669,25 +38669,25 @@ void ProcessSystemResourceCleanup4(uint8_t ObjectContext,int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x680) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x680))(LocalContextData + 0x670,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x680) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x680))(SystemContextPointer + 0x670,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x648) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x650) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x648) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x650) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x650) = 0;
-  *(uint32_t *)(LocalContextData + 0x660) = 0;
-  *(uint8_t *)(LocalContextData + 0x648) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x628) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x630) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x650) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x660) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x648) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x628) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x630) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x630) = 0;
-  *(uint32_t *)(LocalContextData + 0x640) = 0;
-  *(uint8_t *)(LocalContextData + 0x628) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x630) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x640) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x628) = &SystemDataStructure;
   return;
 }
 
@@ -38713,25 +38713,25 @@ void CleanupSystemResourcesPhase1(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x6f0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x6f0))(LocalContextData + 0x6e0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x6f0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x6f0))(SystemContextPointer + 0x6e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x6b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x6c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x6b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x6c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x6d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x6b8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x698) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x6a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x6c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x6d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x6b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x698) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x6a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x6b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x698) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x6a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x6b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x698) = &SystemDataStructure;
   return;
 }
 
@@ -38757,25 +38757,25 @@ void CleanupSystemResourcesPhase2(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x760) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x760))(LocalContextData + 0x750,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x760) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x760))(SystemContextPointer + 0x750,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x728) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x730) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x728) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x730) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x730) = 0;
-  *(uint32_t *)(LocalContextData + 0x740) = 0;
-  *(uint8_t *)(LocalContextData + 0x728) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x708) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x710) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x730) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x740) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x728) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x708) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x710) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x710) = 0;
-  *(uint32_t *)(LocalContextData + 0x720) = 0;
-  *(uint8_t *)(LocalContextData + 0x708) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x710) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x720) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x708) = &SystemDataStructure;
   return;
 }
 
@@ -38801,25 +38801,25 @@ void CleanupSystemResourcesPhase3(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 2000) != (code *)0x0) {
-    (**(code **)(LocalContextData + 2000))(LocalContextData + 0x7c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 2000) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 2000))(SystemContextPointer + 0x7c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x798) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x798) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x7b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x798) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x778) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x780) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x7a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x7b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x798) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x778) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x780) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x780) = 0;
-  *(uint32_t *)(LocalContextData + 0x790) = 0;
-  *(uint8_t *)(LocalContextData + 0x778) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x780) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x790) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x778) = &SystemDataStructure;
   return;
 }
 
@@ -38845,25 +38845,25 @@ void CleanupSystemResourcesPhase4(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x840) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x840))(LocalContextData + 0x830,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x840) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x840))(SystemContextPointer + 0x830,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x808) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x810) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x808) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x810) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x810) = 0;
-  *(uint32_t *)(LocalContextData + 0x820) = 0;
-  *(uint8_t *)(LocalContextData + 0x808) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x7e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x810) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x820) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x808) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x800) = 0;
-  *(uint8_t *)(LocalContextData + 0x7e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x800) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x7e8) = &SystemDataStructure;
   return;
 }
 
@@ -38889,25 +38889,25 @@ void CleanupSystemResourcesPhase5(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x8b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x8b0))(LocalContextData + 0x8a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x8b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x8b0))(SystemContextPointer + 0x8a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x878) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x880) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x878) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x880) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x880) = 0;
-  *(uint32_t *)(LocalContextData + 0x890) = 0;
-  *(uint8_t *)(LocalContextData + 0x878) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x858) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x860) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x880) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x890) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x878) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x858) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x860) = 0;
-  *(uint32_t *)(LocalContextData + 0x870) = 0;
-  *(uint8_t *)(LocalContextData + 0x858) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x860) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x870) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x858) = &SystemDataStructure;
   return;
 }
 
@@ -38933,25 +38933,25 @@ void CleanupSystemResourcesPhase6(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x920) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x920))(LocalContextData + 0x910,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x920) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x920))(SystemContextPointer + 0x910,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x8e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x900) = 0;
-  *(uint8_t *)(LocalContextData + 0x8e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x8c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x900) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x8c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x8e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x8c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x8d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x8e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8c8) = &SystemDataStructure;
   return;
 }
 
@@ -38977,25 +38977,25 @@ void CleanupSystemResourcesPhase7(uint8_t ObjectContext, int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x990) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x990))(LocalContextData + 0x980,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x990) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x990))(SystemContextPointer + 0x980,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x958) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x960) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x958) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x960) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x960) = 0;
-  *(uint32_t *)(LocalContextData + 0x970) = 0;
-  *(uint8_t *)(LocalContextData + 0x958) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x938) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x940) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x960) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x970) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x958) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x938) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x940) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x940) = 0;
-  *(uint32_t *)(LocalContextData + 0x950) = 0;
-  *(uint8_t *)(LocalContextData + 0x938) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x940) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x950) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x938) = &SystemDataStructure;
   return;
 }
 
@@ -39019,25 +39019,25 @@ void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xa08) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa08))(LocalContextData + 0x9f8,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa08) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa08))(SystemContextPointer + 0x9f8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x9d0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9d8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9d0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9d8) = 0;
-  *(uint32_t *)(LocalContextData + 0x9e8) = 0;
-  *(uint8_t *)(LocalContextData + 0x9d0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x9b0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9b8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9d8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9e8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9d0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9b0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9b8) = 0;
-  *(uint32_t *)(LocalContextData + 0x9c8) = 0;
-  *(uint8_t *)(LocalContextData + 0x9b0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9b8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9c8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9b0) = &SystemDataStructure;
   return;
 }
 
@@ -39061,25 +39061,25 @@ void CleanupAdvancedSystemResourceHandler(uint8_t ObjectContext,int64_t Validati
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xa80) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa80))(LocalContextData + 0xa70,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa80) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa80))(SystemContextPointer + 0xa70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xa48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa50) = 0;
-  *(uint32_t *)(LocalContextData + 0xa60) = 0;
-  *(uint8_t *)(LocalContextData + 0xa48) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa30) = 0;
-  *(uint32_t *)(LocalContextData + 0xa40) = 0;
-  *(uint8_t *)(LocalContextData + 0xa28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa28) = &SystemDataStructure;
   return;
 }
 
@@ -39103,14 +39103,14 @@ void ReleaseObjectContextResources(uint8_t ObjectContext, int64_t ValidationCont
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x88);
-  *(uint8_t *)(LocalContextData + 0x10) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x18) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x10) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x18) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x18) = 0;
-  *(uint32_t *)(LocalContextData + 0x28) = 0;
-  *(uint8_t *)(LocalContextData + 0x10) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x18) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10) = &SystemDataStructure;
   return;
 }
 
@@ -39134,14 +39134,14 @@ void ReleaseValidationContextResources(uint8_t ObjectContext, int64_t Validation
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x88);
-  *(uint8_t *)(LocalContextData + 0x30) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x38) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x30) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x38) = 0;
-  *(uint32_t *)(LocalContextData + 0x48) = 0;
-  *(uint8_t *)(LocalContextData + 0x30) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x48) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -39195,49 +39195,49 @@ void CleanupThreadManagerResources(uint8_t ObjectContext, int64_t ValidationCont
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 400) != (code *)0x0) {
-    (**(code **)(LocalContextData + 400))(LocalContextData + 0x180,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 400) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 400))(SystemContextPointer + 0x180,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x160) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x168) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x160) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x168) = 0;
-  *(uint32_t *)(LocalContextData + 0x178) = 0;
-  *(uint8_t *)(LocalContextData + 0x160) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x140) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x148) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x168) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x178) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x160) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x140) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x148) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x148) = 0;
-  *(uint32_t *)(LocalContextData + 0x158) = 0;
-  *(uint8_t *)(LocalContextData + 0x140) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x120) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x128) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x148) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x158) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x140) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x120) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x128) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x128) = 0;
-  *(uint32_t *)(LocalContextData + 0x138) = 0;
-  *(uint8_t *)(LocalContextData + 0x120) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x100) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x108) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x128) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x138) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x120) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x100) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x108) = 0;
-  *(uint32_t *)(LocalContextData + 0x118) = 0;
-  *(uint8_t *)(LocalContextData + 0x100) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x108) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x118) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x100) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe8) = 0;
-  *(uint32_t *)(LocalContextData + 0xf8) = 0;
-  *(uint8_t *)(LocalContextData + 0xe0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -39263,49 +39263,49 @@ void CleanupFileSystemResources(uint8_t ObjectContext, int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x250) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x250))(LocalContextData + 0x240,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x250) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x250))(SystemContextPointer + 0x240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x220) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x228) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x220) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x228) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x228) = 0;
-  *(uint32_t *)(LocalContextData + 0x238) = 0;
-  *(uint8_t *)(LocalContextData + 0x220) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x200) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x208) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x228) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x238) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x220) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x200) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x208) = 0;
-  *(uint32_t *)(LocalContextData + 0x218) = 0;
-  *(uint8_t *)(LocalContextData + 0x200) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x208) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x218) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x200) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x1f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x1e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x1b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x1a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1a0) = &SystemDataStructure;
   return;
 }
 
@@ -39329,49 +39329,49 @@ void CleanupExtendedSystemResourceHandler(uint8_t ObjectContext,int64_t Validati
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x310) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x310))(LocalContextData + 0x300,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x310) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x310))(SystemContextPointer + 0x300,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x2f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x2e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x2d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x2c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x2b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x2a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x280) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x288) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x280) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x288) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x288) = 0;
-  *(uint32_t *)(LocalContextData + 0x298) = 0;
-  *(uint8_t *)(LocalContextData + 0x280) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x260) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x268) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x288) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x298) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x280) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x260) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x268) = 0;
-  *(uint32_t *)(LocalContextData + 0x278) = 0;
-  *(uint8_t *)(LocalContextData + 0x260) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x268) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x278) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x260) = &SystemDataStructure;
   return;
 }
 
@@ -39397,49 +39397,49 @@ void ResetSystemResourceHandlers(uint8_t ObjectContext, int64_t ValidationContex
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x3d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x3d0))(LocalContextData + 0x3c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x3d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x3d0))(SystemContextPointer + 0x3c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x3a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x3a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x3a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x3a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x3b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x3a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x380) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x388) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x3a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x3a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x380) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x388) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x388) = 0;
-  *(uint32_t *)(LocalContextData + 0x398) = 0;
-  *(uint8_t *)(LocalContextData + 0x380) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x360) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x368) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x388) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x398) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x380) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x360) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x368) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x368) = 0;
-  *(uint32_t *)(LocalContextData + 0x378) = 0;
-  *(uint8_t *)(LocalContextData + 0x360) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x340) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x348) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x368) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x378) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x360) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x340) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x348) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x348) = 0;
-  *(uint32_t *)(LocalContextData + 0x358) = 0;
-  *(uint8_t *)(LocalContextData + 0x340) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 800) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x328) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x348) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x358) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x340) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 800) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x328) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x328) = 0;
-  *(uint32_t *)(LocalContextData + 0x338) = 0;
-  *(uint8_t *)(LocalContextData + 800) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x328) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x338) = 0;
+  *(uint8_t *)(SystemContextPointer + 800) = &SystemDataStructure;
   return;
 }
 
@@ -39451,49 +39451,49 @@ void CleanupSystemResourceHandler1(uint8_t ObjectContext,int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x490) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x490))(LocalContextData + 0x480,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x490) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x490))(SystemContextPointer + 0x480,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x460) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x468) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x460) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x468) = 0;
-  *(uint32_t *)(LocalContextData + 0x478) = 0;
-  *(uint8_t *)(LocalContextData + 0x460) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x440) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x448) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x468) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x478) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x460) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x440) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x448) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x448) = 0;
-  *(uint32_t *)(LocalContextData + 0x458) = 0;
-  *(uint8_t *)(LocalContextData + 0x440) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x420) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x428) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x448) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x458) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x440) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x420) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x428) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x428) = 0;
-  *(uint32_t *)(LocalContextData + 0x438) = 0;
-  *(uint8_t *)(LocalContextData + 0x420) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x400) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x408) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x428) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x438) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x420) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x400) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x408) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x408) = 0;
-  *(uint32_t *)(LocalContextData + 0x418) = 0;
-  *(uint8_t *)(LocalContextData + 0x400) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x3e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 1000) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x408) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x418) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x400) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x3e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 1000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 1000) = 0;
-  *(uint32_t *)(LocalContextData + 0x3f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x3e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 1000) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x3e0) = &SystemDataStructure;
   return;
 }
 
@@ -39519,49 +39519,49 @@ void CleanupSystemResourceHandlerSet1(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x550) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x550))(LocalContextData + 0x540,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x550) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x550))(SystemContextPointer + 0x540,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x520) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x528) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x520) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x528) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x528) = 0;
-  *(uint32_t *)(LocalContextData + 0x538) = 0;
-  *(uint8_t *)(LocalContextData + 0x520) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x500) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x508) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x528) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x538) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x520) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x500) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x508) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x508) = 0;
-  *(uint32_t *)(LocalContextData + 0x518) = 0;
-  *(uint8_t *)(LocalContextData + 0x500) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x508) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x518) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x500) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemDataStructure;
   return;
 }
 
@@ -39587,49 +39587,49 @@ void CleanupSystemResourceHandlerSet2(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x610) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x610))(LocalContextData + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x610) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x610))(SystemContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x5e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x5f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x5e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x5c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x5c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x5d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x5c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x5a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x5a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x5b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x5a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x580) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x588) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x580) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x588) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x588) = 0;
-  *(uint32_t *)(LocalContextData + 0x598) = 0;
-  *(uint8_t *)(LocalContextData + 0x580) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x560) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x568) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x588) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x598) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x580) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x568) = 0;
-  *(uint32_t *)(LocalContextData + 0x578) = 0;
-  *(uint8_t *)(LocalContextData + 0x560) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x568) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x578) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x560) = &SystemDataStructure;
   return;
 }
 
@@ -39655,49 +39655,49 @@ void CleanupSystemResourceHandlerSet3(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x6d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x6d0))(LocalContextData + 0x6c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x6d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x6d0))(SystemContextPointer + 0x6c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x6a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x6a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x6a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x6a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x6b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x6a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x680) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x688) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x6a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x6b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x6a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x680) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x688) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x688) = 0;
-  *(uint32_t *)(LocalContextData + 0x698) = 0;
-  *(uint8_t *)(LocalContextData + 0x680) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x660) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x668) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x688) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x698) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x680) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x660) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x668) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x668) = 0;
-  *(uint32_t *)(LocalContextData + 0x678) = 0;
-  *(uint8_t *)(LocalContextData + 0x660) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x640) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x648) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x668) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x678) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x660) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x640) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x648) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x648) = 0;
-  *(uint32_t *)(LocalContextData + 0x658) = 0;
-  *(uint8_t *)(LocalContextData + 0x640) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x620) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x628) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x648) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x658) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x640) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x620) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x628) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x628) = 0;
-  *(uint32_t *)(LocalContextData + 0x638) = 0;
-  *(uint8_t *)(LocalContextData + 0x620) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x628) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x638) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x620) = &SystemDataStructure;
   return;
 }
 
@@ -39723,49 +39723,49 @@ void CleanupSystemResourceHandlerSet4(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x790) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x790))(LocalContextData + 0x780,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x790) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x790))(SystemContextPointer + 0x780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x760) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x768) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x760) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x768) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x768) = 0;
-  *(uint32_t *)(LocalContextData + 0x778) = 0;
-  *(uint8_t *)(LocalContextData + 0x760) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x740) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x748) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x768) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x778) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x760) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x740) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x748) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x748) = 0;
-  *(uint32_t *)(LocalContextData + 0x758) = 0;
-  *(uint8_t *)(LocalContextData + 0x740) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x720) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x728) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x748) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x758) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x740) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x720) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x728) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x728) = 0;
-  *(uint32_t *)(LocalContextData + 0x738) = 0;
-  *(uint8_t *)(LocalContextData + 0x720) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x700) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x708) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x728) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x738) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x720) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x700) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x708) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x708) = 0;
-  *(uint32_t *)(LocalContextData + 0x718) = 0;
-  *(uint8_t *)(LocalContextData + 0x700) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x6e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x6e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x708) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x718) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x700) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x6e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x6e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x6f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x6e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x6e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x6f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x6e0) = &SystemDataStructure;
   return;
 }
 
@@ -39792,49 +39792,49 @@ void CleanupThreadPoolContextAndManageSystemState(uint8_t ObjectContext, int64_t
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x850) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x850))(LocalContextData + 0x840,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x850) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x850))(SystemContextPointer + 0x840,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x820) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x828) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x820) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x828) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x828) = 0;
-  *(uint32_t *)(LocalContextData + 0x838) = 0;
-  *(uint8_t *)(LocalContextData + 0x820) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x800) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x808) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x828) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x838) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x820) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x800) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x808) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x808) = 0;
-  *(uint32_t *)(LocalContextData + 0x818) = 0;
-  *(uint8_t *)(LocalContextData + 0x800) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x7e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x808) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x818) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x800) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x7f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x7e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x7c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x7e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x7f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x7e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x7d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x7c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x7a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x7c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x7d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x7c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x7b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x7a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x7b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x7a0) = &SystemDataStructure;
   return;
 }
 
@@ -39861,49 +39861,49 @@ void CleanupMemoryPoolContextAndProcessSystemState(uint8_t ObjectContext, int64_
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x910) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x910))(LocalContextData + 0x900,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x910) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x910))(SystemContextPointer + 0x900,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x8e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x8f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x8e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x8c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x8f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x8c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x8d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x8c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x8a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x8d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x8a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x8b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x8a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x880) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x888) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x8b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x880) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x888) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x888) = 0;
-  *(uint32_t *)(LocalContextData + 0x898) = 0;
-  *(uint8_t *)(LocalContextData + 0x880) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x860) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x868) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x888) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x898) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x880) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x860) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x868) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x868) = 0;
-  *(uint32_t *)(LocalContextData + 0x878) = 0;
-  *(uint8_t *)(LocalContextData + 0x860) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x868) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x878) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x860) = &SystemDataStructure;
   return;
 }
 
@@ -39930,49 +39930,49 @@ void CleanupEventSystemContextAndManageSystemResources(uint8_t ObjectContext, in
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x9d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x9d0))(LocalContextData + 0x9c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x9d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x9d0))(SystemContextPointer + 0x9c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x9a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x9b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x9a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x980) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x988) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x980) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x988) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x988) = 0;
-  *(uint32_t *)(LocalContextData + 0x998) = 0;
-  *(uint8_t *)(LocalContextData + 0x980) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x960) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x968) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x988) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x998) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x980) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x960) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x968) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x968) = 0;
-  *(uint32_t *)(LocalContextData + 0x978) = 0;
-  *(uint8_t *)(LocalContextData + 0x960) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x940) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x948) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x968) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x978) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x960) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x940) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x948) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x948) = 0;
-  *(uint32_t *)(LocalContextData + 0x958) = 0;
-  *(uint8_t *)(LocalContextData + 0x940) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x920) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x928) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x948) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x958) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x940) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x920) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x928) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x928) = 0;
-  *(uint32_t *)(LocalContextData + 0x938) = 0;
-  *(uint8_t *)(LocalContextData + 0x920) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x928) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x938) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x920) = &SystemDataStructure;
   return;
 }
 
@@ -39999,49 +39999,49 @@ void CleanupLoggingSystemContextAndProcessSystemState(uint8_t ObjectContext, int
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xa90) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa90))(LocalContextData + 0xa80,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa90) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa90))(SystemContextPointer + 0xa80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xa60) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa68) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa60) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa68) = 0;
-  *(uint32_t *)(LocalContextData + 0xa78) = 0;
-  *(uint8_t *)(LocalContextData + 0xa60) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa40) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa48) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa68) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa78) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa60) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa40) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa48) = 0;
-  *(uint32_t *)(LocalContextData + 0xa58) = 0;
-  *(uint8_t *)(LocalContextData + 0xa40) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa48) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa58) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa40) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa28) = 0;
-  *(uint32_t *)(LocalContextData + 0xa38) = 0;
-  *(uint8_t *)(LocalContextData + 0xa20) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa00) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa08) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa00) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa08) = 0;
-  *(uint32_t *)(LocalContextData + 0xa18) = 0;
-  *(uint8_t *)(LocalContextData + 0xa00) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x9e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa08) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa18) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa00) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x9f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x9e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9e0) = &SystemDataStructure;
   return;
 }
 
@@ -40068,49 +40068,49 @@ void CleanupNetworkSystemContextAndManageSystemResources(uint8_t ObjectContext, 
   int64_t LoopCounter;
   
   LoopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xb50) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xb50))(LocalContextData + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xb50) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xb50))(SystemContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xb20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb28) = 0;
-  *(uint32_t *)(LocalContextData + 0xb38) = 0;
-  *(uint8_t *)(LocalContextData + 0xb20) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xb00) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb08) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb00) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb08) = 0;
-  *(uint32_t *)(LocalContextData + 0xb18) = 0;
-  *(uint8_t *)(LocalContextData + 0xb00) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xae0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xae8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb08) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb18) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb00) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xae0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xae8) = 0;
-  *(uint32_t *)(LocalContextData + 0xaf8) = 0;
-  *(uint8_t *)(LocalContextData + 0xae0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xac0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xac8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xae8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xaf8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xae0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xac0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xac8) = 0;
-  *(uint32_t *)(LocalContextData + 0xad8) = 0;
-  *(uint8_t *)(LocalContextData + 0xac0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xaa0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xaa8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xac8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xad8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xac0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xaa0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xaa8) = 0;
-  *(uint32_t *)(LocalContextData + 0xab8) = 0;
-  *(uint8_t *)(LocalContextData + 0xaa0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xaa8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xab8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xaa0) = &SystemDataStructure;
   return;
 }
 
@@ -40137,49 +40137,49 @@ void CleanupSecuritySystemContextAndProcessSystemState(uint8_t ObjectContext, in
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xc10) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xc10))(LocalContextData + 0xc00,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xc10) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xc10))(SystemContextPointer + 0xc00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xbe0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xbe8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xbe0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xbe8) = 0;
-  *(uint32_t *)(LocalContextData + 0xbf8) = 0;
-  *(uint8_t *)(LocalContextData + 0xbe0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xbc0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xbc8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xbe8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xbf8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xbe0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xbc0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xbc8) = 0;
-  *(uint32_t *)(LocalContextData + 0xbd8) = 0;
-  *(uint8_t *)(LocalContextData + 0xbc0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xba0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xba8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xbc8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xbd8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xbc0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xba0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xba8) = 0;
-  *(uint32_t *)(LocalContextData + 3000) = 0;
-  *(uint8_t *)(LocalContextData + 0xba0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xb80) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb88) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xba8) = 0;
+  *(uint32_t *)(SystemContextPointer + 3000) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xba0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb80) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb88) = 0;
-  *(uint32_t *)(LocalContextData + 0xb98) = 0;
-  *(uint8_t *)(LocalContextData + 0xb80) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xb60) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb68) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb88) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb98) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb80) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb60) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb68) = 0;
-  *(uint32_t *)(LocalContextData + 0xb78) = 0;
-  *(uint8_t *)(LocalContextData + 0xb60) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb68) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb78) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb60) = &SystemDataStructure;
   return;
 }
 
@@ -40206,49 +40206,49 @@ void CleanupConfigurationSystemContextAndManageSystemResources(uint8_t ObjectCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xcd0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xcd0))(LocalContextData + 0xcc0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xcd0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xcd0))(SystemContextPointer + 0xcc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xca0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xca8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xca0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xca8) = 0;
-  *(uint32_t *)(LocalContextData + 0xcb8) = 0;
-  *(uint8_t *)(LocalContextData + 0xca0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc80) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc88) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xca8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xcb8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xca0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc80) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc88) = 0;
-  *(uint32_t *)(LocalContextData + 0xc98) = 0;
-  *(uint8_t *)(LocalContextData + 0xc80) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc60) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc68) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc88) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc98) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc80) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc60) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc68) = 0;
-  *(uint32_t *)(LocalContextData + 0xc78) = 0;
-  *(uint8_t *)(LocalContextData + 0xc60) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc40) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc48) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc68) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc78) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc60) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc40) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc48) = 0;
-  *(uint32_t *)(LocalContextData + 0xc58) = 0;
-  *(uint8_t *)(LocalContextData + 0xc40) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc48) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc58) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc40) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc28) = 0;
-  *(uint32_t *)(LocalContextData + 0xc38) = 0;
-  *(uint8_t *)(LocalContextData + 0xc20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc20) = &SystemDataStructure;
   return;
 }
 
@@ -40275,25 +40275,25 @@ void CleanupDiagnosticsSystemContextAndProcessSystemState(uint8_t ObjectContext,
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xd40) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xd40))(LocalContextData + 0xd30,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xd40) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xd40))(SystemContextPointer + 0xd30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xd08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd10) = 0;
-  *(uint32_t *)(LocalContextData + 0xd20) = 0;
-  *(uint8_t *)(LocalContextData + 0xd08) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xce8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xcf0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xce8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xcf0) = 0;
-  *(uint32_t *)(LocalContextData + 0xd00) = 0;
-  *(uint8_t *)(LocalContextData + 0xce8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xcf0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xce8) = &SystemDataStructure;
   return;
 }
 
@@ -40320,25 +40320,25 @@ void CleanupPerformanceMonitoringContextAndManageSystemResources(uint8_t ObjectC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xdb0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xdb0))(LocalContextData + 0xda0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xdb0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xdb0))(SystemContextPointer + 0xda0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xd78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd80) = 0;
-  *(uint32_t *)(LocalContextData + 0xd90) = 0;
-  *(uint8_t *)(LocalContextData + 0xd78) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xd58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd60) = 0;
-  *(uint32_t *)(LocalContextData + 0xd70) = 0;
-  *(uint8_t *)(LocalContextData + 0xd58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd58) = &SystemDataStructure;
   return;
 }
 
@@ -40364,25 +40364,25 @@ void CleanupSystemResourceHandlerSet5(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xe20) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xe20))(LocalContextData + 0xe10,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xe20) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xe20))(SystemContextPointer + 0xe10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xde8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xdf0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xde8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xdf0) = 0;
-  *(uint32_t *)(LocalContextData + 0xe00) = 0;
-  *(uint8_t *)(LocalContextData + 0xde8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xdc8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xdd0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xdf0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xde8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xdc8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xdd0) = 0;
-  *(uint32_t *)(LocalContextData + 0xde0) = 0;
-  *(uint8_t *)(LocalContextData + 0xdc8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xdd0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xde0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xdc8) = &SystemDataStructure;
   return;
 }
 
@@ -40408,49 +40408,49 @@ void CleanupSystemResourceHandlerSet6(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xee0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xee0))(LocalContextData + 0xed0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xee0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xee0))(SystemContextPointer + 0xed0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xeb0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xeb8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xeb0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xeb8) = 0;
-  *(uint32_t *)(LocalContextData + 0xec8) = 0;
-  *(uint8_t *)(LocalContextData + 0xeb0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe90) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe98) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xeb8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xec8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xeb0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe90) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe98) = 0;
-  *(uint32_t *)(LocalContextData + 0xea8) = 0;
-  *(uint8_t *)(LocalContextData + 0xe90) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe70) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe78) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe98) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xea8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe90) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe70) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe78) = 0;
-  *(uint32_t *)(LocalContextData + 0xe88) = 0;
-  *(uint8_t *)(LocalContextData + 0xe70) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe50) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe58) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe78) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe88) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe70) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe50) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe58) = 0;
-  *(uint32_t *)(LocalContextData + 0xe68) = 0;
-  *(uint8_t *)(LocalContextData + 0xe50) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe30) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe38) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe58) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe68) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe50) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe30) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe38) = 0;
-  *(uint32_t *)(LocalContextData + 0xe48) = 0;
-  *(uint8_t *)(LocalContextData + 0xe30) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe38) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe48) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe30) = &SystemDataStructure;
   return;
 }
 
@@ -40476,49 +40476,49 @@ void CleanupSystemResourceHandlerSet7(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 4000) != (code *)0x0) {
-    (**(code **)(LocalContextData + 4000))(LocalContextData + 0xf90,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 4000) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 4000))(SystemContextPointer + 0xf90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xf70) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf78) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf70) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf78) = 0;
-  *(uint32_t *)(LocalContextData + 0xf88) = 0;
-  *(uint8_t *)(LocalContextData + 0xf70) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xf50) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf58) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf78) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf88) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf70) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf50) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf58) = 0;
-  *(uint32_t *)(LocalContextData + 0xf68) = 0;
-  *(uint8_t *)(LocalContextData + 0xf50) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xf30) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf38) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf58) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf68) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf50) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf30) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf38) = 0;
-  *(uint32_t *)(LocalContextData + 0xf48) = 0;
-  *(uint8_t *)(LocalContextData + 0xf30) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xf10) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf18) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf38) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf48) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf30) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf10) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf18) = 0;
-  *(uint32_t *)(LocalContextData + 0xf28) = 0;
-  *(uint8_t *)(LocalContextData + 0xf10) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xef0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xef8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf18) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf28) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf10) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xef0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xef8) = 0;
-  *(uint32_t *)(LocalContextData + 0xf08) = 0;
-  *(uint8_t *)(LocalContextData + 0xef0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xef8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf08) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xef0) = &SystemDataStructure;
   return;
 }
 
@@ -40544,49 +40544,49 @@ void CleanupSystemResourceHandlerSet8(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1060) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1060))(LocalContextData + 0x1050,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1060) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1060))(SystemContextPointer + 0x1050,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1030) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1038) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1030) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1038) = 0;
-  *(uint32_t *)(LocalContextData + 0x1048) = 0;
-  *(uint8_t *)(LocalContextData + 0x1030) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1010) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1018) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1038) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1048) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1030) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1010) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1018) = 0;
-  *(uint32_t *)(LocalContextData + 0x1028) = 0;
-  *(uint8_t *)(LocalContextData + 0x1010) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xff0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xff8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1018) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1028) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1010) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xff0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xff8) = 0;
-  *(uint32_t *)(LocalContextData + 0x1008) = 0;
-  *(uint8_t *)(LocalContextData + 0xff0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xfd0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xfd8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xff8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1008) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xff0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfd0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xfd8) = 0;
-  *(uint32_t *)(LocalContextData + 0xfe8) = 0;
-  *(uint8_t *)(LocalContextData + 0xfd0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xfb0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xfb8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xfd8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xfe8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xfd0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfb0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xfb8) = 0;
-  *(uint32_t *)(LocalContextData + 0xfc8) = 0;
-  *(uint8_t *)(LocalContextData + 0xfb0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfb8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xfc8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xfb0) = &SystemDataStructure;
   return;
 }
 
@@ -40612,25 +40612,25 @@ void CleanupSystemResourceHandlerSet9(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x10d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x10d0))(LocalContextData + 0x10c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x10d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x10d0))(SystemContextPointer + 0x10c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1098) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1098) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x10b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1098) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1078) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1080) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x10a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x10b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1098) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1078) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1080) = 0;
-  *(uint32_t *)(LocalContextData + 0x1090) = 0;
-  *(uint8_t *)(LocalContextData + 0x1078) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1080) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1090) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1078) = &SystemDataStructure;
   return;
 }
 
@@ -40656,25 +40656,25 @@ void CleanupSystemResourceHandlerSet10(uint8_t ObjectContext,int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1140) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1140))(LocalContextData + 0x1130,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1140) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1140))(SystemContextPointer + 0x1130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1108) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1110) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1108) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1110) = 0;
-  *(uint32_t *)(LocalContextData + 0x1120) = 0;
-  *(uint8_t *)(LocalContextData + 0x1108) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x10e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1110) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1120) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1108) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1100) = 0;
-  *(uint8_t *)(LocalContextData + 0x10e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1100) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10e8) = &SystemDataStructure;
   return;
 }
 
@@ -40700,25 +40700,25 @@ void CleanupSystemResourceHandlerSet11(uint8_t ObjectContext,int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x11b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x11b0))(LocalContextData + 0x11a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x11b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x11b0))(SystemContextPointer + 0x11a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1178) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1180) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1178) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1180) = 0;
-  *(uint32_t *)(LocalContextData + 0x1190) = 0;
-  *(uint8_t *)(LocalContextData + 0x1178) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1158) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1160) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1180) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1190) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1178) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1158) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1160) = 0;
-  *(uint32_t *)(LocalContextData + 0x1170) = 0;
-  *(uint8_t *)(LocalContextData + 0x1158) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1160) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1170) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1158) = &SystemDataStructure;
   return;
 }
 
@@ -40744,25 +40744,25 @@ void CleanupSystemResourceHandlerSet12(uint8_t ObjectContext,int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1220) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1220))(LocalContextData + 0x1210,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1220) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1220))(SystemContextPointer + 0x1210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x11e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x11f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x11e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x11f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1200) = 0;
-  *(uint8_t *)(LocalContextData + 0x11e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x11c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x11d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x11f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1200) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x11e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x11c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x11d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x11e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x11c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x11d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x11e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x11c8) = &SystemDataStructure;
   return;
 }
 
@@ -40788,25 +40788,25 @@ void CleanupSystemResourceHandlerSet13(uint8_t ObjectContext,int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1290) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1290))(LocalContextData + 0x1280,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1290) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1290))(SystemContextPointer + 0x1280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1258) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1260) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1258) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1260) = 0;
-  *(uint32_t *)(LocalContextData + 0x1270) = 0;
-  *(uint8_t *)(LocalContextData + 0x1258) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1238) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1240) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1260) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1270) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1258) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1238) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1240) = 0;
-  *(uint32_t *)(LocalContextData + 0x1250) = 0;
-  *(uint8_t *)(LocalContextData + 0x1238) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1240) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1250) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1238) = &SystemDataStructure;
   return;
 }
 
@@ -40832,25 +40832,25 @@ void CleanupSystemResourceHandlerSet14(uint8_t ObjectContext,int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1300) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1300))(LocalContextData + 0x12f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1300) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1300))(SystemContextPointer + 0x12f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x12c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x12d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x12c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x12d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x12e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x12c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x12a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x12b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x12d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x12e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x12c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x12a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x12b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x12c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x12a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x12b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x12c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x12a8) = &SystemDataStructure;
   return;
 }
 
@@ -40876,25 +40876,25 @@ void CleanupSystemResourceHandlerSet15(uint8_t ObjectContext,int64_t ValidationC
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1370) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1370))(LocalContextData + 0x1360,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1370) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1370))(SystemContextPointer + 0x1360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1338) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1340) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1338) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1340) = 0;
-  *(uint32_t *)(LocalContextData + 0x1350) = 0;
-  *(uint8_t *)(LocalContextData + 0x1338) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1318) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1320) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1340) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1350) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1338) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1318) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1320) = 0;
-  *(uint32_t *)(LocalContextData + 0x1330) = 0;
-  *(uint8_t *)(LocalContextData + 0x1318) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1320) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1330) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1318) = &SystemDataStructure;
   return;
 }
 
@@ -40992,14 +40992,14 @@ void ResetSystemResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -41075,14 +41075,14 @@ void CleanupObjectContext(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -41164,14 +41164,14 @@ void ResetObjectContext(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -41194,14 +41194,14 @@ void UnwindSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
-  *(uint8_t *)(LocalContextData + 0x40) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x48) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x40) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x48) = 0;
-  *(uint32_t *)(LocalContextData + 0x58) = 0;
-  *(uint8_t *)(LocalContextData + 0x40) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x48) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x58) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x40) = &SystemDataStructure;
   return;
 }
 
@@ -41225,14 +41225,14 @@ void UnwindSystemResourceSecondaryHandler(uint8_t ObjectContext,int64_t Validati
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
-  *(uint8_t *)(LocalContextData + 0x60) = &SystemResourceHandlerTemplate;
+  *(uint8_t *)(SystemContextPointer + 0x60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemResourceContext + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x68) = 0;
-  *(uint32_t *)(LocalContextData + 0x78) = 0;
-  *(uint8_t *)(LocalContextData + 0x60) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x68) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x78) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x60) = &SystemDataStructure;
   return;
 }
 
@@ -41256,14 +41256,14 @@ void UnwindSystemResourceTertiaryHandler(uint8_t ObjectContext,int64_t Validatio
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
-  *(uint8_t *)(LocalContextData + 0x80) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x88) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x80) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x88) = 0;
-  *(uint32_t *)(LocalContextData + 0x98) = 0;
-  *(uint8_t *)(LocalContextData + 0x80) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x88) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x98) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x80) = &SystemDataStructure;
   return;
 }
 
@@ -41315,14 +41315,14 @@ void ResetSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  *(uint8_t *)(LocalContextData + 0x60) = &SystemResourceHandlerTemplate;
+  *(uint8_t *)(SystemContextPointer + 0x60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemResourceContext + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x68) = 0;
-  *(uint32_t *)(LocalContextData + 0x78) = 0;
-  *(uint8_t *)(LocalContextData + 0x60) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x68) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x78) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x60) = &SystemDataStructure;
   return;
 }
 
@@ -41376,49 +41376,49 @@ void ResetMultiLayerSystemResourceHandler(uint8_t ObjectContext, int64_t Validat
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 400) != (code *)0x0) {
-    (**(code **)(LocalContextData + 400))(LocalContextData + 0x180,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 400) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 400))(SystemContextPointer + 0x180,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x160) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x168) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x160) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x168) = 0;
-  *(uint32_t *)(LocalContextData + 0x178) = 0;
-  *(uint8_t *)(LocalContextData + 0x160) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x140) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x148) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x168) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x178) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x160) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x140) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x148) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x148) = 0;
-  *(uint32_t *)(LocalContextData + 0x158) = 0;
-  *(uint8_t *)(LocalContextData + 0x140) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x120) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x128) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x148) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x158) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x140) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x120) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x128) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x128) = 0;
-  *(uint32_t *)(LocalContextData + 0x138) = 0;
-  *(uint8_t *)(LocalContextData + 0x120) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x100) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x108) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x128) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x138) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x120) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x100) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x108) = 0;
-  *(uint32_t *)(LocalContextData + 0x118) = 0;
-  *(uint8_t *)(LocalContextData + 0x100) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x108) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x118) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x100) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe8) = 0;
-  *(uint32_t *)(LocalContextData + 0xf8) = 0;
-  *(uint8_t *)(LocalContextData + 0xe0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe0) = &SystemDataStructure;
   return;
 }
 
@@ -41451,49 +41451,49 @@ void Unwind_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t Validatio
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x250) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x250))(LocalContextData + 0x240,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x250) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x250))(SystemContextPointer + 0x240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x220) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x228) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x220) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x228) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x228) = 0;
-  *(uint32_t *)(LocalContextData + 0x238) = 0;
-  *(uint8_t *)(LocalContextData + 0x220) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x200) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x208) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x228) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x238) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x220) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x200) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x208) = 0;
-  *(uint32_t *)(LocalContextData + 0x218) = 0;
-  *(uint8_t *)(LocalContextData + 0x200) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x208) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x218) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x200) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x1f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x1e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x1b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x1a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1a0) = &SystemDataStructure;
   return;
 }
 
@@ -41526,49 +41526,49 @@ void Unwind_SystemResourceCleanup_Batch2(uint8_t ObjectContext,int64_t Validatio
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x310) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x310))(LocalContextData + 0x300,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x310) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x310))(SystemContextPointer + 0x300,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x2f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x2e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x2d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x2c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x2b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x2a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x280) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x288) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x280) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x288) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x288) = 0;
-  *(uint32_t *)(LocalContextData + 0x298) = 0;
-  *(uint8_t *)(LocalContextData + 0x280) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x260) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x268) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x288) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x298) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x280) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x260) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x268) = 0;
-  *(uint32_t *)(LocalContextData + 0x278) = 0;
-  *(uint8_t *)(LocalContextData + 0x260) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x268) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x278) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x260) = &SystemDataStructure;
   return;
 }
 
@@ -41601,49 +41601,49 @@ void Unwind_SystemResourceCleanup_Batch3(uint8_t ObjectContext,int64_t Validatio
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x3d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x3d0))(LocalContextData + 0x3c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x3d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x3d0))(SystemContextPointer + 0x3c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x3a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x3a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x3a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x3a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x3b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x3a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x380) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x388) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x3a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x3a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x380) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x388) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x388) = 0;
-  *(uint32_t *)(LocalContextData + 0x398) = 0;
-  *(uint8_t *)(LocalContextData + 0x380) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x360) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x368) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x388) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x398) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x380) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x360) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x368) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x368) = 0;
-  *(uint32_t *)(LocalContextData + 0x378) = 0;
-  *(uint8_t *)(LocalContextData + 0x360) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x340) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x348) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x368) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x378) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x360) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x340) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x348) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x348) = 0;
-  *(uint32_t *)(LocalContextData + 0x358) = 0;
-  *(uint8_t *)(LocalContextData + 0x340) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 800) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x328) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x348) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x358) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x340) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 800) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x328) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x328) = 0;
-  *(uint32_t *)(LocalContextData + 0x338) = 0;
-  *(uint8_t *)(LocalContextData + 800) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x328) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x338) = 0;
+  *(uint8_t *)(SystemContextPointer + 800) = &SystemDataStructure;
   return;
 }
 
@@ -41676,49 +41676,49 @@ void Unwind_SystemResourceCleanup_Batch4(uint8_t ObjectContext,int64_t Validatio
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x490) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x490))(LocalContextData + 0x480,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x490) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x490))(SystemContextPointer + 0x480,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x460) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x468) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x460) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x468) = 0;
-  *(uint32_t *)(LocalContextData + 0x478) = 0;
-  *(uint8_t *)(LocalContextData + 0x460) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x440) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x448) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x468) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x478) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x460) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x440) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x448) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x448) = 0;
-  *(uint32_t *)(LocalContextData + 0x458) = 0;
-  *(uint8_t *)(LocalContextData + 0x440) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x420) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x428) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x448) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x458) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x440) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x420) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x428) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x428) = 0;
-  *(uint32_t *)(LocalContextData + 0x438) = 0;
-  *(uint8_t *)(LocalContextData + 0x420) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x400) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x408) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x428) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x438) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x420) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x400) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x408) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x408) = 0;
-  *(uint32_t *)(LocalContextData + 0x418) = 0;
-  *(uint8_t *)(LocalContextData + 0x400) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x3e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 1000) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x408) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x418) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x400) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x3e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 1000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 1000) = 0;
-  *(uint32_t *)(LocalContextData + 0x3f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x3e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 1000) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x3e0) = &SystemDataStructure;
   return;
 }
 
@@ -41751,49 +41751,49 @@ void Unwind_SystemResourceCleanup_Batch5(uint8_t ObjectContext,int64_t Validatio
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x550) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x550))(LocalContextData + 0x540,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x550) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x550))(SystemContextPointer + 0x540,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x520) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x528) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x520) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x528) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x528) = 0;
-  *(uint32_t *)(LocalContextData + 0x538) = 0;
-  *(uint8_t *)(LocalContextData + 0x520) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x500) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x508) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x528) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x538) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x520) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x500) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x508) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x508) = 0;
-  *(uint32_t *)(LocalContextData + 0x518) = 0;
-  *(uint8_t *)(LocalContextData + 0x500) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x508) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x518) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x500) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x4a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x4b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemDataStructure;
   return;
 }
 
@@ -41820,49 +41820,49 @@ void InitializeSystemResourceHandlers(uint8_t ObjectContext,int64_t ValidationCo
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x610) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x610))(LocalContextData + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x610) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x610))(SystemContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x5e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x5f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x5e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x5c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x5c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x5d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x5c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x5a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x5a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x5a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x5b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x5a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x580) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x588) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x5a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x5b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x580) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x588) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x588) = 0;
-  *(uint32_t *)(LocalContextData + 0x598) = 0;
-  *(uint8_t *)(LocalContextData + 0x580) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x560) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x568) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x588) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x598) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x580) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x568) = 0;
-  *(uint32_t *)(LocalContextData + 0x578) = 0;
-  *(uint8_t *)(LocalContextData + 0x560) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x568) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x578) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x560) = &SystemDataStructure;
   return;
 }
 
@@ -41889,49 +41889,49 @@ void SetupSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext,
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x6d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x6d0))(LocalContextData + 0x6c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x6d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x6d0))(SystemContextPointer + 0x6c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x6a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x6a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x6a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x6a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x6b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x6a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x680) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x688) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x6a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x6b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x6a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x680) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x688) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x688) = 0;
-  *(uint32_t *)(LocalContextData + 0x698) = 0;
-  *(uint8_t *)(LocalContextData + 0x680) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x660) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x668) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x688) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x698) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x680) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x660) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x668) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x668) = 0;
-  *(uint32_t *)(LocalContextData + 0x678) = 0;
-  *(uint8_t *)(LocalContextData + 0x660) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x640) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x648) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x668) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x678) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x660) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x640) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x648) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x648) = 0;
-  *(uint32_t *)(LocalContextData + 0x658) = 0;
-  *(uint8_t *)(LocalContextData + 0x640) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x620) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x628) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x648) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x658) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x640) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x620) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x628) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x628) = 0;
-  *(uint32_t *)(LocalContextData + 0x638) = 0;
-  *(uint8_t *)(LocalContextData + 0x620) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x628) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x638) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x620) = &SystemDataStructure;
   return;
 }
 
@@ -41958,49 +41958,49 @@ void ConfigureResourceValidation(uint8_t ObjectContext,int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x790) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x790))(LocalContextData + 0x780,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x790) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x790))(SystemContextPointer + 0x780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x760) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x768) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x760) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x768) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x768) = 0;
-  *(uint32_t *)(LocalContextData + 0x778) = 0;
-  *(uint8_t *)(LocalContextData + 0x760) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x740) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x748) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x768) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x778) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x760) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x740) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x748) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x748) = 0;
-  *(uint32_t *)(LocalContextData + 0x758) = 0;
-  *(uint8_t *)(LocalContextData + 0x740) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x720) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x728) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x748) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x758) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x740) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x720) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x728) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x728) = 0;
-  *(uint32_t *)(LocalContextData + 0x738) = 0;
-  *(uint8_t *)(LocalContextData + 0x720) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x700) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x708) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x728) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x738) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x720) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x700) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x708) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x708) = 0;
-  *(uint32_t *)(LocalContextData + 0x718) = 0;
-  *(uint8_t *)(LocalContextData + 0x700) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x6e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x6e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x708) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x718) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x700) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x6e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x6e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x6f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x6e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x6e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x6f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x6e0) = &SystemDataStructure;
   return;
 }
 
@@ -42026,49 +42026,49 @@ void CleanupResourceBlock1(uint8_t ObjectContext,int64_t ValidationContext,uint8
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x850) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x850))(LocalContextData + 0x840,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x850) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x850))(SystemContextPointer + 0x840,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x820) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x828) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x820) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x828) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x828) = 0;
-  *(uint32_t *)(LocalContextData + 0x838) = 0;
-  *(uint8_t *)(LocalContextData + 0x820) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x800) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x808) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x828) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x838) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x820) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x800) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x808) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x808) = 0;
-  *(uint32_t *)(LocalContextData + 0x818) = 0;
-  *(uint8_t *)(LocalContextData + 0x800) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x7e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x808) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x818) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x800) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x7f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x7e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x7c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x7e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x7f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x7e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x7d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x7c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x7a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x7a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x7c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x7d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x7c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x7a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x7b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x7a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x7a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x7b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x7a0) = &SystemDataStructure;
   return;
 }
 
@@ -42094,49 +42094,49 @@ void CleanupResourceBlock2(uint8_t ObjectContext,int64_t ValidationContext,uint8
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x910) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x910))(LocalContextData + 0x900,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x910) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x910))(SystemContextPointer + 0x900,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x8e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x8f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x8e0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x8c0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8c8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x8f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x8c0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8c8) = 0;
-  *(uint32_t *)(LocalContextData + 0x8d8) = 0;
-  *(uint8_t *)(LocalContextData + 0x8c0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x8a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x8a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8c8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x8d8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8c0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x8a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x8a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x8b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x8a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x880) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x888) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x8a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x8b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x8a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x880) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x888) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x888) = 0;
-  *(uint32_t *)(LocalContextData + 0x898) = 0;
-  *(uint8_t *)(LocalContextData + 0x880) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x860) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x868) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x888) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x898) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x880) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x860) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x868) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x868) = 0;
-  *(uint32_t *)(LocalContextData + 0x878) = 0;
-  *(uint8_t *)(LocalContextData + 0x860) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x868) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x878) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x860) = &SystemDataStructure;
   return;
 }
 
@@ -42162,49 +42162,49 @@ void CleanupResourceBlock3(uint8_t ObjectContext,int64_t ValidationContext,uint8
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x9d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x9d0))(LocalContextData + 0x9c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x9d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x9d0))(SystemContextPointer + 0x9c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x9a0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9a8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9a0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9a8) = 0;
-  *(uint32_t *)(LocalContextData + 0x9b8) = 0;
-  *(uint8_t *)(LocalContextData + 0x9a0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x980) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x988) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9a8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9b8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9a0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x980) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x988) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x988) = 0;
-  *(uint32_t *)(LocalContextData + 0x998) = 0;
-  *(uint8_t *)(LocalContextData + 0x980) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x960) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x968) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x988) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x998) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x980) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x960) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x968) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x968) = 0;
-  *(uint32_t *)(LocalContextData + 0x978) = 0;
-  *(uint8_t *)(LocalContextData + 0x960) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x940) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x948) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x968) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x978) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x960) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x940) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x948) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x948) = 0;
-  *(uint32_t *)(LocalContextData + 0x958) = 0;
-  *(uint8_t *)(LocalContextData + 0x940) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x920) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x928) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x948) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x958) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x940) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x920) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x928) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x928) = 0;
-  *(uint32_t *)(LocalContextData + 0x938) = 0;
-  *(uint8_t *)(LocalContextData + 0x920) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x928) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x938) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x920) = &SystemDataStructure;
   return;
 }
 
@@ -42230,49 +42230,49 @@ void CleanupResourceBlock4(uint8_t ObjectContext,int64_t ValidationContext,uint8
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xa90) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa90))(LocalContextData + 0xa80,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa90) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa90))(SystemContextPointer + 0xa80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xa60) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa68) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa60) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa68) = 0;
-  *(uint32_t *)(LocalContextData + 0xa78) = 0;
-  *(uint8_t *)(LocalContextData + 0xa60) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa40) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa48) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa68) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa78) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa60) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa40) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa48) = 0;
-  *(uint32_t *)(LocalContextData + 0xa58) = 0;
-  *(uint8_t *)(LocalContextData + 0xa40) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa48) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa58) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa40) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa28) = 0;
-  *(uint32_t *)(LocalContextData + 0xa38) = 0;
-  *(uint8_t *)(LocalContextData + 0xa20) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa00) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa08) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa00) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa08) = 0;
-  *(uint32_t *)(LocalContextData + 0xa18) = 0;
-  *(uint8_t *)(LocalContextData + 0xa00) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x9e0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9e8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa08) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa18) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa00) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9e0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9e8) = 0;
-  *(uint32_t *)(LocalContextData + 0x9f8) = 0;
-  *(uint8_t *)(LocalContextData + 0x9e0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9e8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9f8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9e0) = &SystemDataStructure;
   return;
 }
 
@@ -42298,49 +42298,49 @@ void CleanupResourceBlock5(uint8_t ObjectContext,int64_t ValidationContext,uint8
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xb50) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xb50))(LocalContextData + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xb50) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xb50))(SystemContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xb20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb28) = 0;
-  *(uint32_t *)(LocalContextData + 0xb38) = 0;
-  *(uint8_t *)(LocalContextData + 0xb20) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xb00) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb08) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb00) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb08) = 0;
-  *(uint32_t *)(LocalContextData + 0xb18) = 0;
-  *(uint8_t *)(LocalContextData + 0xb00) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xae0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xae8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb08) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb18) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb00) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xae0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xae8) = 0;
-  *(uint32_t *)(LocalContextData + 0xaf8) = 0;
-  *(uint8_t *)(LocalContextData + 0xae0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xac0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xac8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xae8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xaf8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xae0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xac0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xac8) = 0;
-  *(uint32_t *)(LocalContextData + 0xad8) = 0;
-  *(uint8_t *)(LocalContextData + 0xac0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xaa0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xaa8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xac8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xad8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xac0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xaa0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xaa8) = 0;
-  *(uint32_t *)(LocalContextData + 0xab8) = 0;
-  *(uint8_t *)(LocalContextData + 0xaa0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xaa8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xab8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xaa0) = &SystemDataStructure;
   return;
 }
 
@@ -42366,49 +42366,49 @@ void CleanupResourceBlock6(uint8_t ObjectContext,int64_t ValidationContext,uint8
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xc10) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xc10))(LocalContextData + 0xc00,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xc10) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xc10))(SystemContextPointer + 0xc00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xbe0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xbe8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xbe0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xbe8) = 0;
-  *(uint32_t *)(LocalContextData + 0xbf8) = 0;
-  *(uint8_t *)(LocalContextData + 0xbe0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xbc0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xbc8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xbe8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xbf8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xbe0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xbc0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xbc8) = 0;
-  *(uint32_t *)(LocalContextData + 0xbd8) = 0;
-  *(uint8_t *)(LocalContextData + 0xbc0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xba0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xba8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xbc8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xbd8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xbc0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xba0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xba8) = 0;
-  *(uint32_t *)(LocalContextData + 3000) = 0;
-  *(uint8_t *)(LocalContextData + 0xba0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xb80) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb88) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xba8) = 0;
+  *(uint32_t *)(SystemContextPointer + 3000) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xba0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb80) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb88) = 0;
-  *(uint32_t *)(LocalContextData + 0xb98) = 0;
-  *(uint8_t *)(LocalContextData + 0xb80) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xb60) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb68) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb88) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb98) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb80) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb60) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb68) = 0;
-  *(uint32_t *)(LocalContextData + 0xb78) = 0;
-  *(uint8_t *)(LocalContextData + 0xb60) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb68) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb78) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb60) = &SystemDataStructure;
   return;
 }
 
@@ -42434,49 +42434,49 @@ void CleanupResourceBlock7(uint8_t ObjectContext,int64_t ValidationContext,uint8
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xcd0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xcd0))(LocalContextData + 0xcc0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xcd0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xcd0))(SystemContextPointer + 0xcc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xca0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xca8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xca0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xca8) = 0;
-  *(uint32_t *)(LocalContextData + 0xcb8) = 0;
-  *(uint8_t *)(LocalContextData + 0xca0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc80) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc88) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xca8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xcb8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xca0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc80) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc88) = 0;
-  *(uint32_t *)(LocalContextData + 0xc98) = 0;
-  *(uint8_t *)(LocalContextData + 0xc80) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc60) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc68) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc88) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc98) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc80) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc60) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc68) = 0;
-  *(uint32_t *)(LocalContextData + 0xc78) = 0;
-  *(uint8_t *)(LocalContextData + 0xc60) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc40) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc48) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc68) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc78) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc60) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc40) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc48) = 0;
-  *(uint32_t *)(LocalContextData + 0xc58) = 0;
-  *(uint8_t *)(LocalContextData + 0xc40) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc48) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc58) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc40) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc28) = 0;
-  *(uint32_t *)(LocalContextData + 0xc38) = 0;
-  *(uint8_t *)(LocalContextData + 0xc20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc20) = &SystemDataStructure;
   return;
 }
 
@@ -42502,25 +42502,25 @@ void CleanupResourceBlock8(uint8_t ObjectContext,int64_t ValidationContext,uint8
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xd40) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xd40))(LocalContextData + 0xd30,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xd40) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xd40))(SystemContextPointer + 0xd30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xd08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd10) = 0;
-  *(uint32_t *)(LocalContextData + 0xd20) = 0;
-  *(uint8_t *)(LocalContextData + 0xd08) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xce8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xcf0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xce8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xcf0) = 0;
-  *(uint32_t *)(LocalContextData + 0xd00) = 0;
-  *(uint8_t *)(LocalContextData + 0xce8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xcf0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xce8) = &SystemDataStructure;
   return;
 }
 
@@ -42546,25 +42546,25 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xdb0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xdb0))(LocalContextData + 0xda0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xdb0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xdb0))(SystemContextPointer + 0xda0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xd78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd80) = 0;
-  *(uint32_t *)(LocalContextData + 0xd90) = 0;
-  *(uint8_t *)(LocalContextData + 0xd78) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xd58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd60) = 0;
-  *(uint32_t *)(LocalContextData + 0xd70) = 0;
-  *(uint8_t *)(LocalContextData + 0xd58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd58) = &SystemDataStructure;
   return;
 }
 
@@ -42590,25 +42590,25 @@ void ValidateSystemResourceContext(uint8_t ObjectContext,int64_t ValidationConte
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xe20) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xe20))(LocalContextData + 0xe10,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xe20) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xe20))(SystemContextPointer + 0xe10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xde8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xdf0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xde8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xdf0) = 0;
-  *(uint32_t *)(LocalContextData + 0xe00) = 0;
-  *(uint8_t *)(LocalContextData + 0xde8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xdc8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xdd0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xdf0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xde8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xdc8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xdd0) = 0;
-  *(uint32_t *)(LocalContextData + 0xde0) = 0;
-  *(uint8_t *)(LocalContextData + 0xdc8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xdd0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xde0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xdc8) = &SystemDataStructure;
   return;
 }
 
@@ -42634,49 +42634,49 @@ void CleanupSystemResourceMemory(uint8_t ObjectContext,int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xee0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xee0))(LocalContextData + 0xed0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xee0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xee0))(SystemContextPointer + 0xed0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xeb0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xeb8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xeb0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xeb8) = 0;
-  *(uint32_t *)(LocalContextData + 0xec8) = 0;
-  *(uint8_t *)(LocalContextData + 0xeb0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe90) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe98) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xeb8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xec8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xeb0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe90) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe98) = 0;
-  *(uint32_t *)(LocalContextData + 0xea8) = 0;
-  *(uint8_t *)(LocalContextData + 0xe90) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe70) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe78) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe98) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xea8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe90) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe70) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe78) = 0;
-  *(uint32_t *)(LocalContextData + 0xe88) = 0;
-  *(uint8_t *)(LocalContextData + 0xe70) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe50) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe58) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe78) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe88) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe70) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe50) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe58) = 0;
-  *(uint32_t *)(LocalContextData + 0xe68) = 0;
-  *(uint8_t *)(LocalContextData + 0xe50) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe30) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe38) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe58) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe68) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe50) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe30) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe38) = 0;
-  *(uint32_t *)(LocalContextData + 0xe48) = 0;
-  *(uint8_t *)(LocalContextData + 0xe30) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe38) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe48) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe30) = &SystemDataStructure;
   return;
 }
 
@@ -42702,49 +42702,49 @@ void ReleaseSystemResourceHandle(uint8_t ObjectContext,int64_t ValidationContext
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 4000) != (code *)0x0) {
-    (**(code **)(LocalContextData + 4000))(LocalContextData + 0xf90,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 4000) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 4000))(SystemContextPointer + 0xf90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xf70) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf78) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf70) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf78) = 0;
-  *(uint32_t *)(LocalContextData + 0xf88) = 0;
-  *(uint8_t *)(LocalContextData + 0xf70) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xf50) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf58) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf78) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf88) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf70) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf50) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf58) = 0;
-  *(uint32_t *)(LocalContextData + 0xf68) = 0;
-  *(uint8_t *)(LocalContextData + 0xf50) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xf30) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf38) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf58) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf68) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf50) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf30) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf38) = 0;
-  *(uint32_t *)(LocalContextData + 0xf48) = 0;
-  *(uint8_t *)(LocalContextData + 0xf30) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xf10) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf18) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf38) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf48) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf30) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf10) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf18) = 0;
-  *(uint32_t *)(LocalContextData + 0xf28) = 0;
-  *(uint8_t *)(LocalContextData + 0xf10) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xef0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xef8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf18) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf28) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf10) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xef0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xef8) = 0;
-  *(uint32_t *)(LocalContextData + 0xf08) = 0;
-  *(uint8_t *)(LocalContextData + 0xef0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xef8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf08) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xef0) = &SystemDataStructure;
   return;
 }
 
@@ -42770,49 +42770,49 @@ void FreeSystemResourceMemory(uint8_t ObjectContext,int64_t ValidationContext,ui
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1060) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1060))(LocalContextData + 0x1050,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1060) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1060))(SystemContextPointer + 0x1050,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1030) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1038) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1030) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1038) = 0;
-  *(uint32_t *)(LocalContextData + 0x1048) = 0;
-  *(uint8_t *)(LocalContextData + 0x1030) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1010) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1018) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1038) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1048) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1030) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1010) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1018) = 0;
-  *(uint32_t *)(LocalContextData + 0x1028) = 0;
-  *(uint8_t *)(LocalContextData + 0x1010) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xff0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xff8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1018) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1028) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1010) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xff0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xff8) = 0;
-  *(uint32_t *)(LocalContextData + 0x1008) = 0;
-  *(uint8_t *)(LocalContextData + 0xff0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xfd0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xfd8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xff8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1008) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xff0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfd0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xfd8) = 0;
-  *(uint32_t *)(LocalContextData + 0xfe8) = 0;
-  *(uint8_t *)(LocalContextData + 0xfd0) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xfb0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xfb8) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xfd8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xfe8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xfd0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfb0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xfb8) = 0;
-  *(uint32_t *)(LocalContextData + 0xfc8) = 0;
-  *(uint8_t *)(LocalContextData + 0xfb0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfb8) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xfc8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xfb0) = &SystemDataStructure;
   return;
 }
 
@@ -42838,25 +42838,25 @@ void ResetSystemResourceState(uint8_t ObjectContext,int64_t ValidationContext,ui
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x10d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x10d0))(LocalContextData + 0x10c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x10d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x10d0))(SystemContextPointer + 0x10c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1098) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1098) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x10b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1098) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1078) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1080) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x10a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x10b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1098) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1078) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1080) = 0;
-  *(uint32_t *)(LocalContextData + 0x1090) = 0;
-  *(uint8_t *)(LocalContextData + 0x1078) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1080) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1090) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1078) = &SystemDataStructure;
   return;
 }
 
@@ -42882,25 +42882,25 @@ void InitializeResourceHandler(uint8_t ObjectContext,int64_t ValidationContext,u
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1140) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1140))(LocalContextData + 0x1130,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1140) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1140))(SystemContextPointer + 0x1130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1108) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1110) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1108) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1110) = 0;
-  *(uint32_t *)(LocalContextData + 0x1120) = 0;
-  *(uint8_t *)(LocalContextData + 0x1108) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x10e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1110) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1120) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1108) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1100) = 0;
-  *(uint8_t *)(LocalContextData + 0x10e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1100) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10e8) = &SystemDataStructure;
   return;
 }
 
@@ -42926,25 +42926,25 @@ void ConfigureSystemResourceManager(uint8_t ObjectContext,int64_t ValidationCont
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x11b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x11b0))(LocalContextData + 0x11a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x11b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x11b0))(SystemContextPointer + 0x11a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1178) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1180) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1178) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1180) = 0;
-  *(uint32_t *)(LocalContextData + 0x1190) = 0;
-  *(uint8_t *)(LocalContextData + 0x1178) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1158) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1160) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1180) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1190) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1178) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1158) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1160) = 0;
-  *(uint32_t *)(LocalContextData + 0x1170) = 0;
-  *(uint8_t *)(LocalContextData + 0x1158) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1160) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1170) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1158) = &SystemDataStructure;
   return;
 }
 
@@ -42970,25 +42970,25 @@ void ValidateSystemResourceIntegrity(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1220) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1220))(LocalContextData + 0x1210,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1220) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1220))(SystemContextPointer + 0x1210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x11e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x11f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x11e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x11f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1200) = 0;
-  *(uint8_t *)(LocalContextData + 0x11e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x11c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x11d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x11f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1200) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x11e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x11c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x11d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x11e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x11c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x11d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x11e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x11c8) = &SystemDataStructure;
   return;
 }
 
@@ -43016,25 +43016,25 @@ void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t Vali
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1290) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1290))(LocalContextData + 0x1280,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1290) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1290))(SystemContextPointer + 0x1280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1258) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1260) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1258) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1260) = 0;
-  *(uint32_t *)(LocalContextData + 0x1270) = 0;
-  *(uint8_t *)(LocalContextData + 0x1258) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1238) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1240) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1260) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1270) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1258) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1238) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1240) = 0;
-  *(uint32_t *)(LocalContextData + 0x1250) = 0;
-  *(uint8_t *)(LocalContextData + 0x1238) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1240) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1250) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1238) = &SystemDataStructure;
   return;
 }
 
@@ -43062,25 +43062,25 @@ void InitializeSystemResourceHandlerExtended3(uint8_t ObjectContext,int64_t Vali
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1300) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1300))(LocalContextData + 0x12f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1300) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1300))(SystemContextPointer + 0x12f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x12c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x12d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x12c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x12d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x12e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x12c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x12a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x12b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x12d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x12e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x12c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x12a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x12b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x12c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x12a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x12b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x12c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x12a8) = &SystemDataStructure;
   return;
 }
 
@@ -43106,25 +43106,25 @@ void ExecuteSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContex
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1370) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1370))(LocalContextData + 0x1360,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1370) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1370))(SystemContextPointer + 0x1360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1338) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1340) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1338) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1340) = 0;
-  *(uint32_t *)(LocalContextData + 0x1350) = 0;
-  *(uint8_t *)(LocalContextData + 0x1338) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1318) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1320) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1340) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1350) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1338) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1318) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1320) = 0;
-  *(uint32_t *)(LocalContextData + 0x1330) = 0;
-  *(uint8_t *)(LocalContextData + 0x1318) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1320) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1330) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1318) = &SystemDataStructure;
   return;
 }
 
@@ -43540,14 +43540,14 @@ void Unwind_ContextCleanup_Basic1(uint8_t ObjectContext,int64_t ValidationContex
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = 0;
-  *(uint32_t *)(LocalContextData + 0x30) = 0;
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -43571,14 +43571,14 @@ void ReleaseSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = 0;
-  *(uint32_t *)(LocalContextData + 0x30) = 0;
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -44057,14 +44057,14 @@ void InitializeSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t Valid
   int64_t ResourceIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x60);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -44226,14 +44226,14 @@ void CleanupSystemResourceContextPrimary(uint8_t ObjectContext,int64_t Validatio
   int64_t ResourceIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x48);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -44245,14 +44245,14 @@ void CleanupSystemResourceContextB(uint8_t ObjectContext,int64_t ValidationConte
   int64_t contextIndex;
   
   contextIndex = *(int64_t *)(ValidationContext + 0x68);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -45427,12 +45427,12 @@ void HandleExceptionAndResourceTable(uint8_t ObjectContext,int64_t ValidationCon
   int64_t ResourceTable;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  *(uint8_t *)(LocalContextData + 0x60) = *(uint8_t *)(ValidationContext + 0x70);
+  *(uint8_t *)(SystemContextPointer + 0x60) = *(uint8_t *)(ValidationContext + 0x70);
   ResourceTable = *(int64_t *)(ValidationContext + 0x78);
   if (ResourceTable == 0) {
-    ResourceTable = *(int64_t *)(LocalContextData + 0x40);
+    ResourceTable = *(int64_t *)(SystemContextPointer + 0x40);
   }
-  *(int64_t *)(LocalContextData + 0x40) = ResourceTable;
+  *(int64_t *)(SystemContextPointer + 0x40) = ResourceTable;
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
@@ -45453,9 +45453,9 @@ void HandleException(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  CleanupSystemResources(LocalContextData);
+  CleanupSystemResources(SystemContextPointer);
   ResetSystemMemory(*(int64_t *)(ValidationContext + 0x60) + 8,0);
-  ConfigureSystemParameters(*(uint8_t *)(LocalContextData + 0x50),*(uint8_t *)(ValidationContext + 0x68));
+  ConfigureSystemParameters(*(uint8_t *)(SystemContextPointer + 0x50),*(uint8_t *)(ValidationContext + 0x68));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
@@ -45545,7 +45545,7 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
   
   resourceCounter = *(uint64_t *)(ValidationContext + 0x20);
   loopCounter = *(int64_t *)(ValidationContext + 0x90);
-  SystemDataPointer = *(int64_t *)(LocalContextData + 0x40);
+  SystemDataPointer = *(int64_t *)(SystemContextPointer + 0x40);
   loopIncrement = *(uint64_t *)(ValidationContext + 0x30);
   resourceTable = *(int64_t *)(ValidationContext + 0xa0);
   ResourceEntryPointer = *(int64_t *)(ValidationContext + 0xa8);
@@ -45577,21 +45577,21 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
   if (resourceTable != 0) {
     while( true ) {
       *(uint64_t *)(ValidationContext + 0x20) = resourceCounter + 0x20;
-      pResourceIndex = *(int64_t **)(LocalContextData + 0x60);
+      pResourceIndex = *(int64_t **)(SystemContextPointer + 0x60);
       *(uint8_t *)
        (*(int64_t *)
          (pResourceIndex[3] +
          (((resourceCounter + 0x20 & 0xffffffffffffffe0) - **(int64_t **)(pResourceIndex[3] + pResourceIndex[1] * 8) >> 5) +
           pResourceIndex[1] & *pResourceIndex - 1U) * 8) + 8) = 0;
-      pResourceIndex = *(int64_t **)(LocalContextData + 0x60);
+      pResourceIndex = *(int64_t **)(SystemContextPointer + 0x60);
       pResourceIndex[1] = pResourceIndex[1] - 1U & *pResourceIndex - 1U;
       SystemDataPointer = *(int64_t *)(SystemDataPointer + 0x100);
       if (SystemDataPointer == 0) break;
       resourceCounter = *(uint64_t *)(ValidationContext + 0x20);
     }
   }
-  SetupSystemTable(*(uint8_t *)(LocalContextData + 0x50),resourceTable);
-  *(uint8_t *)(LocalContextData + 0x40) = *(uint8_t *)(ValidationContext + 0xa8);
+  SetupSystemTable(*(uint8_t *)(SystemContextPointer + 0x50),resourceTable);
+  *(uint8_t *)(SystemContextPointer + 0x40) = *(uint8_t *)(ValidationContext + 0xa8);
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
@@ -46253,14 +46253,14 @@ void InitializeLocalContextAndResourceHandler(uint8_t ObjectContext,int64_t Vali
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x30) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x38) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x30) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x38) = 0;
-  *(uint32_t *)(LocalContextData + 0x48) = 0;
-  *(uint8_t *)(LocalContextData + 0x30) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x48) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x30) = &SystemDataStructure;
   return;
 }
 
@@ -48356,13 +48356,13 @@ void ExecuteResourceCleanupCallbacks(uint8_t ObjectContext,int64_t ValidationCon
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0xa8);
-  if (*(code **)(LocalContextData + 0x198) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x198))(LocalContextData + 0x188,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x198) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x198))(SystemContextPointer + 0x188,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  if (*(code **)(LocalContextData + 0x178) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x178))(LocalContextData + 0x168,0,0);
+  if (*(code **)(SystemContextPointer + 0x178) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x178))(SystemContextPointer + 0x168,0,0);
   }
-  *(uint8_t **)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t **)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -48387,13 +48387,13 @@ void ExecuteResourceValidationCallbacks(uint8_t ObjectContext,int64_t Validation
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
-  if (*(code **)(LocalContextData + 0x198) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x198))(LocalContextData + 0x188,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x198) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x198))(SystemContextPointer + 0x188,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  if (*(code **)(LocalContextData + 0x178) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x178))(LocalContextData + 0x168,0,0);
+  if (*(code **)(SystemContextPointer + 0x178) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x178))(SystemContextPointer + 0x168,0,0);
   }
-  *(uint8_t **)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t **)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -48731,14 +48731,14 @@ void Unwind_1809057c0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0xc0) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 200) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc0) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 200) = 0;
-  *(uint32_t *)(LocalContextData + 0xd8) = 0;
-  *(uint8_t *)(LocalContextData + 0xc0) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 200) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc0) = &SystemDataStructure;
   return;
 }
 
@@ -48999,8 +48999,8 @@ void CleanupSystemResourceTable(uint8_t ObjectContext, int64_t ValidationContext
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x2e0);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x28) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x28) {
     *(uint8_t *)(ResourceIndex + 8) = &SystemResourceHandlerTemplate;
     if (*(int64_t *)(ResourceIndex + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -49113,11 +49113,11 @@ void ResetResourceIndexAndCleanup(uint8_t ObjectContext, int64_t ValidationConte
   int64_t ResourceloopCounter;
   int64_t *resourceTablePointer;
   int64_t CurrentResourceIndex;
-  int64_t LocalContextData;
+  int64_t SystemContextPointer;
   
   resourceTablePointer = *(int64_t **)(ValidationContext + 0x2e8);
-  LocalContextData = resourceTablePointer[1];
-  for (CurrentResourceIndex = *resourceTablePointer; CurrentResourceIndex != LocalContextData; CurrentResourceIndex = CurrentResourceIndex + 0x28) {
+  SystemContextPointer = resourceTablePointer[1];
+  for (CurrentResourceIndex = *resourceTablePointer; CurrentResourceIndex != SystemContextPointer; CurrentResourceIndex = CurrentResourceIndex + 0x28) {
     *(uint8_t *)(CurrentResourceIndex + 8) = &SystemResourceHandlerTemplate;
     if (*(int64_t *)(CurrentResourceIndex + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -49919,14 +49919,14 @@ void Unwind_180905b40(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -50246,13 +50246,13 @@ void UnwindAndCleanupResourceIndex(uint8_t ObjectContext,int64_t ValidationConte
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
-      ResourceHashValidationResultPointer = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      ResourceHashValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
         *ResourceHashValidationResultPointer = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < MemoryAddressIncrement);
     MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -50294,13 +50294,13 @@ void UnwindResourceContextCleanupType1(uint8_t ObjectContext,int64_t ValidationC
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
-      ResourceHashValidationResultPointer = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      ResourceHashValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
         *ResourceHashValidationResultPointer = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < MemoryAddressIncrement);
     MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -50343,13 +50343,13 @@ void UnwindResourceContextCleanupType2(uint8_t ObjectContext,int64_t ValidationC
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
-      ResourceHashValidationResultPointer = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      ResourceHashValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
         *ResourceHashValidationResultPointer = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < MemoryAddressIncrement);
     MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -50379,13 +50379,13 @@ void UnwindResourceContextCleanupType3(uint8_t ObjectContext,int64_t ValidationC
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      pValidationResult = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      pValidationResult = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (pValidationResult != (uint8_t *)0x0) {
         *pValidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -50479,13 +50479,13 @@ void Unwind_180905c60(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      pValidationResult = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      pValidationResult = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (pValidationResult != (uint8_t *)0x0) {
         *pValidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x340);
@@ -50515,13 +50515,13 @@ void Unwind_180905c80(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      pValidationResult = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      pValidationResult = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (pValidationResult != (uint8_t *)0x0) {
         *pValidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -50551,13 +50551,13 @@ void Unwind_180905c90(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      pValidationResult = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      pValidationResult = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (pValidationResult != (uint8_t *)0x0) {
         *pValidationResult = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -50992,9 +50992,9 @@ void Catch_180905e00(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  CleanupSystemResources(LocalContextData);
+  CleanupSystemResources(SystemContextPointer);
   ResetSystemMemory(*(int64_t *)(ValidationContext + 0x70) + 8,0);
-  FinalizeSystemSetup(*(uint8_t *)(LocalContextData + 0x50),*(uint8_t *)(ValidationContext + 0x78));
+  FinalizeSystemSetup(*(uint8_t *)(SystemContextPointer + 0x50),*(uint8_t *)(ValidationContext + 0x78));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
@@ -51176,7 +51176,7 @@ void Unwind_180905ec0(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x50) + 0x3c8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x50) + 0x3d0);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x1a8) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
     ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -51196,8 +51196,8 @@ void Unwind_180905ee0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x60);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x1a8) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
     ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -51384,8 +51384,8 @@ void Unwind_180905f80(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x40);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x1a8) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
     ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -51487,7 +51487,7 @@ void Unwind_180905fc0(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x3c8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x3d0);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x1a8) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
     ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -51652,8 +51652,8 @@ void ProcessResourceTableEntries(uint8_t ObjectContext,int64_t ValidationContext
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x78);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x1a8) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
     ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -52614,16 +52614,16 @@ void Unwind_1809064e0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(int64_t *)(LocalContextData + 0x40) != 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(int64_t *)(LocalContextData + 0x40) = 0;
-  if (*(int64_t *)(LocalContextData + 0x48) != 0) {
+  *(int64_t *)(SystemContextPointer + 0x40) = 0;
+  if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x48) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x48) = 0;
   return;
 }
 
@@ -52635,16 +52635,16 @@ void Unwind_1809064f0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(int64_t *)(LocalContextData + 0x52) != 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x52) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(int64_t *)(LocalContextData + 0x52) = 0;
-  if (*(int64_t *)(LocalContextData + 0x5a) != 0) {
+  *(int64_t *)(SystemContextPointer + 0x52) = 0;
+  if (*(int64_t *)(SystemContextPointer + 0x5a) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x5a) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x5a) = 0;
   return;
 }
 
@@ -52796,16 +52796,16 @@ void Unwind_180906560(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x58);
-  if (*(int64_t *)(LocalContextData + 0x12) != 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x12) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(int64_t *)(LocalContextData + 0x12) = 0;
-  if (*(int64_t *)(LocalContextData + 0x1a) != 0) {
+  *(int64_t *)(SystemContextPointer + 0x12) = 0;
+  if (*(int64_t *)(SystemContextPointer + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1a) = 0;
   return;
 }
 
@@ -52838,16 +52838,16 @@ void Unwind_180906580(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  if (*(int64_t *)(LocalContextData + 0x12) != 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x12) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(int64_t *)(LocalContextData + 0x12) = 0;
-  if (*(int64_t *)(LocalContextData + 0x1a) != 0) {
+  *(int64_t *)(SystemContextPointer + 0x12) = 0;
+  if (*(int64_t *)(SystemContextPointer + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1a) = 0;
   return;
 }
 
@@ -52880,16 +52880,16 @@ void Unwind_1809065a0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  if (*(int64_t *)(LocalContextData + 0x12) != 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x12) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(int64_t *)(LocalContextData + 0x12) = 0;
-  if (*(int64_t *)(LocalContextData + 0x1a) != 0) {
+  *(int64_t *)(SystemContextPointer + 0x12) = 0;
+  if (*(int64_t *)(SystemContextPointer + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1a) = 0;
   return;
 }
 
@@ -53224,14 +53224,14 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext, int64_t Validation
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -56104,13 +56104,13 @@ void Unwind_180907230(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
-  ReleaseSystemResourceHandle(*(uint8_t *)(LocalContextData + 0xb0));
-  *(uint8_t *)(LocalContextData + 0xb0) = 0;
-  if (*(int64_t *)(LocalContextData + 0xb8) != 0) {
+  ReleaseSystemResourceHandle(*(uint8_t *)(SystemContextPointer + 0xb0));
+  *(uint8_t *)(SystemContextPointer + 0xb0) = 0;
+  if (*(int64_t *)(SystemContextPointer + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb8) = 0;
   return;
 }
 
@@ -56182,13 +56182,13 @@ void Unwind_1809072c0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  ReleaseSystemResourceHandle(*(uint8_t *)(LocalContextData + 0xb0));
-  *(uint8_t *)(LocalContextData + 0xb0) = 0;
-  if (*(int64_t *)(LocalContextData + 0xb8) != 0) {
+  ReleaseSystemResourceHandle(*(uint8_t *)(SystemContextPointer + 0xb0));
+  *(uint8_t *)(SystemContextPointer + 0xb0) = 0;
+  if (*(int64_t *)(SystemContextPointer + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb8) = 0;
   return;
 }
 
@@ -57009,14 +57009,14 @@ void Unwind_180907700(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -57252,7 +57252,7 @@ void ValidateResourceVersionExtended(uint8_t ObjectContext,int64_t ValidationCon
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x10);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x60) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x60) {
     CheckResourceVersion(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -57425,8 +57425,8 @@ void Unwind_1809078a0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x28);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x60) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x60) {
     CheckResourceVersion(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -57541,8 +57541,8 @@ void Unwind_180907920(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x40);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x60) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x60) {
     CheckResourceVersion(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -57656,14 +57656,14 @@ void Unwind_1809079a0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = 0;
-  *(uint32_t *)(LocalContextData + 0x30) = 0;
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -57675,14 +57675,14 @@ void Unwind_1809079b0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  *(uint8_t *)(LocalContextData + 0x38) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x40) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x38) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x40) = 0;
-  *(uint32_t *)(LocalContextData + 0x50) = 0;
-  *(uint8_t *)(LocalContextData + 0x38) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x50) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x38) = &SystemDataStructure;
   return;
 }
 
@@ -57694,14 +57694,14 @@ void UnwindSystemResourceHandler001(uint8_t ObjectContext,int64_t ValidationCont
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  *(uint8_t *)(LocalContextData + 0x58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x60) = 0;
-  *(uint32_t *)(LocalContextData + 0x70) = 0;
-  *(uint8_t *)(LocalContextData + 0x58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x58) = &SystemDataStructure;
   return;
 }
 
@@ -57979,14 +57979,14 @@ void Unwind_180907a90(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x28);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -60080,10 +60080,10 @@ void Unwind_180908660(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   ValidationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  RegisterResourceHandler(LocalContextData + 0x3e0,0x20,0x20,ReleaseSystemResource,ResourceHashValidationResult);
+  RegisterResourceHandler(SystemContextPointer + 0x3e0,0x20,0x20,ReleaseSystemResource,ResourceHashValidationResult);
   InitializeResourceSystem();
-  RegisterResourceHandler(LocalContextData + 0x138,8,0x20,ProcessResourceOperation);
-  RegisterResourceHandler(LocalContextData + 0x38,8,0x20,ProcessResourceOperation);
+  RegisterResourceHandler(SystemContextPointer + 0x138,8,0x20,ProcessResourceOperation);
+  RegisterResourceHandler(SystemContextPointer + 0x38,8,0x20,ProcessResourceOperation);
   return;
 }
 
@@ -60683,14 +60683,14 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext, int64_t Validation
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = 0;
-  *(uint32_t *)(LocalContextData + 0x30) = 0;
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -60702,14 +60702,14 @@ void Unwind_180908910(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = 0;
-  *(uint32_t *)(LocalContextData + 0x30) = 0;
-  *(uint8_t *)(LocalContextData + 0x18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
 
@@ -61333,14 +61333,14 @@ void Unwind_180908b00(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x30);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -61538,19 +61538,19 @@ void Unwind_180908bd0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x1b8);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -61662,14 +61662,14 @@ void Unwind_180908c60(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x1b8);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -61836,14 +61836,14 @@ void Unwind_180908dc0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x108);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -62111,12 +62111,12 @@ void Unwind_180908e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
   ValidationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  ProcessResourceOperation(LocalContextData + 0x110,*(uint8_t *)(LocalContextData + 0x120),CleanupOption,CleanupFlag,ResourceHashValidationResult);
-  ProcessResourceOperation(LocalContextData + 0xe0,*(uint8_t *)(LocalContextData + 0xf0));
-  ProcessResourceOperation(LocalContextData + 0xb0,*(uint8_t *)(LocalContextData + 0xc0));
-  ProcessResourceRelease(LocalContextData + 0x80,*(uint8_t *)(LocalContextData + 0x90));
-  HandleResourceRequest(LocalContextData + 0x50,*(uint8_t *)(LocalContextData + 0x60));
-  ProcessResourceRelease(LocalContextData + 0x20,*(uint8_t *)(LocalContextData + 0x30));
+  ProcessResourceOperation(SystemContextPointer + 0x110,*(uint8_t *)(SystemContextPointer + 0x120),CleanupOption,CleanupFlag,ResourceHashValidationResult);
+  ProcessResourceOperation(SystemContextPointer + 0xe0,*(uint8_t *)(SystemContextPointer + 0xf0));
+  ProcessResourceOperation(SystemContextPointer + 0xb0,*(uint8_t *)(SystemContextPointer + 0xc0));
+  ProcessResourceRelease(SystemContextPointer + 0x80,*(uint8_t *)(SystemContextPointer + 0x90));
+  HandleResourceRequest(SystemContextPointer + 0x50,*(uint8_t *)(SystemContextPointer + 0x60));
+  ProcessResourceRelease(SystemContextPointer + 0x20,*(uint8_t *)(SystemContextPointer + 0x30));
   return;
 }
 
@@ -62128,14 +62128,14 @@ void Unwind_180908e90(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -62384,16 +62384,16 @@ void Unwind_180909010(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   int ProcessingResult;
   
-  LocalContextData = ValidationContext + 0x128;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ValidationContext + 0x80) + 4) + -0xa8 + LocalContextData) =
+  SystemContextPointer = ValidationContext + 0x128;
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ValidationContext + 0x80) + 4) + -0xa8 + SystemContextPointer) =
        &SystemModuleDataTemplateD;
   operationStatusCode = *(int *)(*(int64_t *)(ValidationContext + 0x80) + 4);
-  *(int *)((int64_t)OperationResult + -0xac + LocalContextData) = OperationResult + -0xa8;
+  *(int *)((int64_t)OperationResult + -0xac + SystemContextPointer) = OperationResult + -0xa8;
   ValidateSystemResource(ValidationContext + 0x88);
   __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(ValidationContext + 0x90);
                     // WARNING: Could not recover jumptable at 0x00018009fc52. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(LocalContextData);
+  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(SystemContextPointer);
   return;
 }
 
@@ -62492,48 +62492,48 @@ void Unwind_1809090a0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  if (*(int64_t **)(LocalContextData + 0x1d50) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1d50) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1d50) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1d50) + 0x38))();
   }
   ExecuteSystemCleanup();
-  if (*(int64_t **)(LocalContextData + 0x1cd0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1cd0) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1cd0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1cd0) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1cc8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1cc8) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1cc8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1cc8) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1cc0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1cc0) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1cc0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1cc0) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1cb8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1cb8) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1cb8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1cb8) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1cb0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1cb0) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1cb0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1cb0) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1ca8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1ca8) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1ca8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1ca8) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1ca0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1ca0) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1ca0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1ca0) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1c98) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1c98) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1c98) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1c98) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1c90) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1c90) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1c90) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1c90) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1c88) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1c88) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1c88) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1c88) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1c80) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1c80) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1c80) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1c80) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1c78) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1c78) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1c78) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1c78) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x1c70) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x1c70) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x1c70) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x1c70) + 0x38))();
   }
   _Mtx_destroy_in_situ();
   return;
@@ -63370,7 +63370,7 @@ void Unwind_180909480(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceTable;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x148);
-  for (resourceTable = *(int64_t *)(ValidationContext + 0x140); resourceTable != LocalContextData; resourceTable = resourceTable + 0x78) {
+  for (resourceTable = *(int64_t *)(ValidationContext + 0x140); resourceTable != SystemContextPointer; resourceTable = resourceTable + 0x78) {
     UpdateResourceTable(resourceTable);
   }
   if (*(int64_t *)(ValidationContext + 0x140) == 0) {
@@ -63407,7 +63407,7 @@ void Unwind_1809094b0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceTable;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x148);
-  for (resourceTable = *(int64_t *)(ValidationContext + 0x140); resourceTable != LocalContextData; resourceTable = resourceTable + 0x78) {
+  for (resourceTable = *(int64_t *)(ValidationContext + 0x140); resourceTable != SystemContextPointer; resourceTable = resourceTable + 0x78) {
     UpdateResourceTable(resourceTable);
   }
   if (*(int64_t *)(ValidationContext + 0x140) == 0) {
@@ -63427,8 +63427,8 @@ void Unwind_1809094c0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x40);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x78) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x78) {
     UpdateResourceTable(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -63447,7 +63447,7 @@ void Unwind_1809094d0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceTable;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x1c0);
-  for (resourceTable = *(int64_t *)(ValidationContext + 0x1b8); resourceTable != LocalContextData; resourceTable = resourceTable + 0x78) {
+  for (resourceTable = *(int64_t *)(ValidationContext + 0x1b8); resourceTable != SystemContextPointer; resourceTable = resourceTable + 0x78) {
     UpdateResourceTable(resourceTable);
   }
   if (*(int64_t *)(ValidationContext + 0x1b8) == 0) {
@@ -63762,7 +63762,7 @@ void Unwind_180909650(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceTable;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x1c0);
-  for (resourceTable = *(int64_t *)(ValidationContext + 0x1b8); resourceTable != LocalContextData; resourceTable = resourceTable + 0x78) {
+  for (resourceTable = *(int64_t *)(ValidationContext + 0x1b8); resourceTable != SystemContextPointer; resourceTable = resourceTable + 0x78) {
     UpdateResourceTable(resourceTable);
   }
   if (*(int64_t *)(ValidationContext + 0x1b8) == 0) {
@@ -64168,14 +64168,14 @@ void Unwind_180909740(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x60) = 0;
-  *(uint32_t *)(LocalContextData + 0x70) = 0;
-  *(uint8_t *)(LocalContextData + 0x58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x58) = &SystemDataStructure;
   return;
 }
 
@@ -64212,14 +64212,14 @@ void Unwind_180909770(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -64231,14 +64231,14 @@ void Unwind_180909780(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  *(uint8_t *)(LocalContextData + 8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10) = 0;
-  *(uint32_t *)(LocalContextData + 0x20) = 0;
-  *(uint8_t *)(LocalContextData + 8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemDataStructure;
   return;
 }
 
@@ -65090,14 +65090,14 @@ void Unwind_180909ce0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x560) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x568) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x568) = 0;
-  *(uint32_t *)(LocalContextData + 0x578) = 0;
-  *(uint8_t *)(LocalContextData + 0x560) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x568) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x578) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x560) = &SystemDataStructure;
   return;
 }
 
@@ -65719,14 +65719,14 @@ void Unwind_18090a1d0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  *(uint8_t *)(LocalContextData + 0x560) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x568) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x568) = 0;
-  *(uint32_t *)(LocalContextData + 0x578) = 0;
-  *(uint8_t *)(LocalContextData + 0x560) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x568) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x578) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x560) = &SystemDataStructure;
   return;
 }
 
@@ -66910,17 +66910,17 @@ void Unwind_18090a910(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(int64_t **)(LocalContextData + 0x40) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x40) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -67790,7 +67790,7 @@ void Unwind_18090af70(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + ResourceContextOffset * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 8) + 0x38))();
@@ -67798,7 +67798,7 @@ void Unwind_18090af70(uint8_t ObjectContext,int64_t ValidationContext)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
@@ -68397,7 +68397,7 @@ void Unwind_18090b4b0(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + ResourceContextOffset * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 8) + 0x38))();
@@ -68405,7 +68405,7 @@ void Unwind_18090b4b0(uint8_t ObjectContext,int64_t ValidationContext)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -68435,7 +68435,7 @@ void Unwind_18090b4c0(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + ResourceContextOffset * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 8) + 0x38))();
@@ -68443,7 +68443,7 @@ void Unwind_18090b4c0(uint8_t ObjectContext,int64_t ValidationContext)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -68491,7 +68491,7 @@ void Unwind_18090b4f0(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + ResourceContextOffset * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 8) + 0x38))();
@@ -68499,7 +68499,7 @@ void Unwind_18090b4f0(uint8_t ObjectContext,int64_t ValidationContext)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -68529,7 +68529,7 @@ void Unwind_18090b500(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + ResourceContextOffset * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 8) + 0x38))();
@@ -68537,7 +68537,7 @@ void Unwind_18090b500(uint8_t ObjectContext,int64_t ValidationContext)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -68832,7 +68832,7 @@ void Unwind_18090b7d0(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + ResourceContextOffset * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 8) + 0x38))();
@@ -68840,7 +68840,7 @@ void Unwind_18090b7d0(uint8_t ObjectContext,int64_t ValidationContext)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
@@ -69439,7 +69439,7 @@ void Unwind_18090bd10(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + ResourceContextOffset * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 8) + 0x38))();
@@ -69447,7 +69447,7 @@ void Unwind_18090bd10(uint8_t ObjectContext,int64_t ValidationContext)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -69477,7 +69477,7 @@ void Unwind_18090bd20(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContextOffset = 0;
   if (loopIncrement != 0) {
     do {
-      resourceTable = *(int64_t *)(LocalContextData + ResourceContextOffset * 8);
+      resourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 8) + 0x38))();
@@ -69485,7 +69485,7 @@ void Unwind_18090bd20(uint8_t ObjectContext,int64_t ValidationContext)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
+      *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < loopIncrement);
     loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
@@ -70176,17 +70176,17 @@ void Unwind_18090c150(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
-  if (*(int64_t **)(LocalContextData + 0x40) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x40) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -70212,17 +70212,17 @@ void Unwind_18090c170(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x68);
-  if (*(int64_t **)(LocalContextData + 0x40) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x40) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -70321,16 +70321,16 @@ void Unwind_18090c1d0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   int ProcessingResult;
   
-  LocalContextData = ValidationContext + 0x138;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ValidationContext + 0x80) + 4) + -0xb8 + LocalContextData) =
+  SystemContextPointer = ValidationContext + 0x138;
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ValidationContext + 0x80) + 4) + -0xb8 + SystemContextPointer) =
        &SystemMemoryPointer001;
   operationStatusCode = *(int *)(*(int64_t *)(ValidationContext + 0x80) + 4);
-  *(int *)((int64_t)OperationResult + -0xbc + LocalContextData) = OperationResult + -0xb8;
+  *(int *)((int64_t)OperationResult + -0xbc + SystemContextPointer) = OperationResult + -0xb8;
   ValidateSystemResource(ValidationContext + 0x98);
   __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(ValidationContext + 0xa0);
                     // WARNING: Could not recover jumptable at 0x0001800c3c62. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(LocalContextData);
+  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(SystemContextPointer);
   return;
 }
 
@@ -70602,14 +70602,14 @@ void Unwind_18090c310(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -70934,19 +70934,19 @@ void Unwind_18090c4b0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x118);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -71020,14 +71020,14 @@ void Unwind_18090c510(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x118);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -71099,21 +71099,21 @@ void Unwind_18090c540(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -71145,21 +71145,21 @@ void Unwind_18090c550(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -71221,21 +71221,21 @@ void Unwind_18090c590(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -71288,21 +71288,21 @@ void Unwind_18090c5c0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -71334,21 +71334,21 @@ void Unwind_18090c5d0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -71392,21 +71392,21 @@ void Unwind_18090c5f0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -71438,21 +71438,21 @@ void Unwind_18090c600(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72127,21 +72127,21 @@ void Unwind_18090ca20(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72185,21 +72185,21 @@ void Unwind_18090ca40(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72255,21 +72255,21 @@ void Unwind_18090ca70(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72322,21 +72322,21 @@ void Unwind_18090caa0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72389,21 +72389,21 @@ void Unwind_18090cad0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72456,21 +72456,21 @@ void Unwind_18090cb00(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72511,21 +72511,21 @@ void Unwind_18090cb20(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72566,21 +72566,21 @@ void Unwind_18090cb40(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72624,21 +72624,21 @@ void Unwind_18090cb60(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72679,21 +72679,21 @@ void Unwind_18090cb80(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72770,21 +72770,21 @@ void Unwind_18090cbd0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -72837,21 +72837,21 @@ void Unwind_18090cc00(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -73003,21 +73003,21 @@ void Unwind_18090cce0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -73130,19 +73130,19 @@ void Unwind_18090ce00(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x38);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -73177,19 +73177,19 @@ void Unwind_18090ce20(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x98);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -73290,19 +73290,19 @@ void Unwind_18090ce70(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -73367,14 +73367,14 @@ void Unwind_18090cec0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x38);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -76444,19 +76444,19 @@ void Unwind_18090d530(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x130);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -76492,14 +76492,14 @@ void Unwind_18090d560(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x130);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -76547,19 +76547,19 @@ void Unwind_18090d590(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x150);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -76707,22 +76707,22 @@ void Unwind_18090d660(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   ValidationResult = 0xfffffffffffffffe;
-  if (*(int64_t **)(LocalContextData + 0xed0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0xed0) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0xed0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0xed0) + 0x38))();
   }
-  RegisterResourceHandler(LocalContextData + 0xec0,8,2,ProcessResourceOperation,ResourceHashValidationResult);
-  if (*(int64_t **)(LocalContextData + 0xeb8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0xeb8) + 0x38))();
+  RegisterResourceHandler(SystemContextPointer + 0xec0,8,2,ProcessResourceOperation,ResourceHashValidationResult);
+  if (*(int64_t **)(SystemContextPointer + 0xeb8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0xeb8) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0xeb0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0xeb0) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0xeb0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0xeb0) + 0x38))();
   }
-  RegisterResourceHandler(LocalContextData + 0xea0,8,2,ProcessResourceOperation,ResourceHashValidationResult);
-  RegisterResourceHandler(LocalContextData + 0xe90,8,2,ProcessResourceOperation);
-  RegisterResourceHandler(LocalContextData + 0xe80,8,2,ProcessResourceOperation);
-  RegisterResourceHandler(LocalContextData + 0xc28,0x128,2,ResourceTypeHandler128);
-  RegisterResourceHandler(LocalContextData + 0x9d0,0x128,2,ResourceTypeHandler128);
-  RegisterResourceHandler(LocalContextData + 0xb8,0x488,2,ResourceTypeHandler488);
+  RegisterResourceHandler(SystemContextPointer + 0xea0,8,2,ProcessResourceOperation,ResourceHashValidationResult);
+  RegisterResourceHandler(SystemContextPointer + 0xe90,8,2,ProcessResourceOperation);
+  RegisterResourceHandler(SystemContextPointer + 0xe80,8,2,ProcessResourceOperation);
+  RegisterResourceHandler(SystemContextPointer + 0xc28,0x128,2,ResourceTypeHandler128);
+  RegisterResourceHandler(SystemContextPointer + 0x9d0,0x128,2,ResourceTypeHandler128);
+  RegisterResourceHandler(SystemContextPointer + 0xb8,0x488,2,ResourceTypeHandler488);
   return;
 }
 
@@ -77481,22 +77481,22 @@ void Unwind_18090de80(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0xe0);
   ValidationResult = 0xfffffffffffffffe;
-  if (*(int64_t **)(LocalContextData + 0xed0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0xed0) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0xed0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0xed0) + 0x38))();
   }
-  RegisterResourceHandler(LocalContextData + 0xec0,8,2,ProcessResourceOperation,ResourceHashValidationResult);
-  if (*(int64_t **)(LocalContextData + 0xeb8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0xeb8) + 0x38))();
+  RegisterResourceHandler(SystemContextPointer + 0xec0,8,2,ProcessResourceOperation,ResourceHashValidationResult);
+  if (*(int64_t **)(SystemContextPointer + 0xeb8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0xeb8) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0xeb0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0xeb0) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0xeb0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0xeb0) + 0x38))();
   }
-  RegisterResourceHandler(LocalContextData + 0xea0,8,2,ProcessResourceOperation,ResourceHashValidationResult);
-  RegisterResourceHandler(LocalContextData + 0xe90,8,2,ProcessResourceOperation);
-  RegisterResourceHandler(LocalContextData + 0xe80,8,2,ProcessResourceOperation);
-  RegisterResourceHandler(LocalContextData + 0xc28,0x128,2,ResourceTypeHandler128);
-  RegisterResourceHandler(LocalContextData + 0x9d0,0x128,2,ResourceTypeHandler128);
-  RegisterResourceHandler(LocalContextData + 0xb8,0x488,2,ResourceTypeHandler488);
+  RegisterResourceHandler(SystemContextPointer + 0xea0,8,2,ProcessResourceOperation,ResourceHashValidationResult);
+  RegisterResourceHandler(SystemContextPointer + 0xe90,8,2,ProcessResourceOperation);
+  RegisterResourceHandler(SystemContextPointer + 0xe80,8,2,ProcessResourceOperation);
+  RegisterResourceHandler(SystemContextPointer + 0xc28,0x128,2,ResourceTypeHandler128);
+  RegisterResourceHandler(SystemContextPointer + 0x9d0,0x128,2,ResourceTypeHandler128);
+  RegisterResourceHandler(SystemContextPointer + 0xb8,0x488,2,ResourceTypeHandler488);
   return;
 }
 
@@ -78290,21 +78290,21 @@ void Unwind_18090e760(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78348,21 +78348,21 @@ void Unwind_18090e7a0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78394,21 +78394,21 @@ void Unwind_18090e7b0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78440,21 +78440,21 @@ void Unwind_18090e7c0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78486,21 +78486,21 @@ void Unwind_18090e7d0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78532,21 +78532,21 @@ void Unwind_18090e7e0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78578,21 +78578,21 @@ void Unwind_18090e7f0(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78624,21 +78624,21 @@ void Unwind_18090e800(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78682,21 +78682,21 @@ void Unwind_18090e820(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78740,21 +78740,21 @@ void Unwind_18090e840(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78798,21 +78798,21 @@ void Unwind_18090e860(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -78913,19 +78913,19 @@ void Unwind_18090e8e0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x28);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -79021,14 +79021,14 @@ void Unwind_18090e950(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x28);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -79237,21 +79237,21 @@ void Unwind_18090eb00(uint8_t ObjectContext,int64_t ValidationContext)
     if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
-      LocalContextData = *pLoopOffset;
-      loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
+      SystemContextPointer = *pLoopOffset;
+      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(pLoopOffset[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = LocalContextData;
+        *(int64_t *)(resourceTablePointer + 0x80b0 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20;
       loopCounter = *(int64_t *)(ResourceIndex + 200 + resourceTablePointer + 0x7f20);
-      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - LocalContextData >> 3) + -1;
+      operationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + resourceTablePointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         resourceTablePointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(LocalContextData + resourceTablePointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + resourceTablePointer * 8) + 0x60) == '\x01') {
             if (OperationResult != -1) {
-              ProcessMemoryDataAccess(*(uint8_t *)(LocalContextData + (int64_t)OperationResult * 8));
+              ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
             break;
           }
@@ -79282,19 +79282,19 @@ void Unwind_18090eb20(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x108);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -79330,14 +79330,14 @@ void Unwind_18090eb50(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x108);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -79421,19 +79421,19 @@ void Unwind_18090ec00(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x30);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -79484,14 +79484,14 @@ void Unwind_18090ec40(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x30);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -79659,19 +79659,19 @@ void Unwind_18090ed30(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -79722,14 +79722,14 @@ void Unwind_18090ed70(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -80280,11 +80280,11 @@ void Unwind_18090efe0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t *presourceTablePointer;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
-  presourceTable = (int64_t *)(LocalContextData + 0x300);
-  ResourceIndex = *(int64_t *)(LocalContextData + 0x310);
-  LoopOffset = *(int64_t *)(LocalContextData + 800);
-  presourceTablePointer = *(int64_t **)(LocalContextData + 0x328);
-  if (ResourceIndex != *(int64_t *)(LocalContextData + 0x330)) {
+  presourceTable = (int64_t *)(SystemContextPointer + 0x300);
+  ResourceIndex = *(int64_t *)(SystemContextPointer + 0x310);
+  LoopOffset = *(int64_t *)(SystemContextPointer + 800);
+  presourceTablePointer = *(int64_t **)(SystemContextPointer + 0x328);
+  if (ResourceIndex != *(int64_t *)(SystemContextPointer + 0x330)) {
     do {
       ResourceCleanupHandler(ResourceIndex);
       ResourceIndex = ResourceIndex + 0x78;
@@ -80293,11 +80293,11 @@ void Unwind_18090efe0(uint8_t ObjectContext,int64_t ValidationContext)
         ResourceIndex = *presourceTablePointer;
         LoopOffset = ResourceIndex + 0x1e0;
       }
-    } while (ResourceIndex != *(int64_t *)(LocalContextData + 0x330));
+    } while (ResourceIndex != *(int64_t *)(SystemContextPointer + 0x330));
   }
   if (*presourceTable != 0) {
-    presourceTablePointer = *(int64_t **)(LocalContextData + 0x328);
-    while (presourceTablePointer < (int64_t *)(*(int64_t *)(LocalContextData + 0x348) + 8)) {
+    presourceTablePointer = *(int64_t **)(SystemContextPointer + 0x328);
+    while (presourceTablePointer < (int64_t *)(*(int64_t *)(SystemContextPointer + 0x348) + 8)) {
       LoopOffset = *presourceTablePointer;
       presourceTablePointer = presourceTablePointer + 1;
       if (LoopOffset != 0) {
@@ -80708,14 +80708,14 @@ void Unwind_18090f140(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -80727,14 +80727,14 @@ void Unwind_18090f150(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  *(uint8_t *)(LocalContextData + 8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10) = 0;
-  *(uint32_t *)(LocalContextData + 0x20) = 0;
-  *(uint8_t *)(LocalContextData + 8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemDataStructure;
   return;
 }
 
@@ -80746,14 +80746,14 @@ void Unwind_18090f160(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
-  *(uint8_t *)(LocalContextData + 8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10) = 0;
-  *(uint32_t *)(LocalContextData + 0x20) = 0;
-  *(uint8_t *)(LocalContextData + 8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemDataStructure;
   return;
 }
 
@@ -80793,14 +80793,14 @@ void Unwind_18090f190(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10) = 0;
-  *(uint32_t *)(LocalContextData + 0x20) = 0;
-  *(uint8_t *)(LocalContextData + 8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20) = 0;
+  *(uint8_t *)(SystemContextPointer + 8) = &SystemDataStructure;
   return;
 }
 
@@ -81139,7 +81139,7 @@ void Unwind_18090f2d0(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x60) + 0x180);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x60) + 0x188);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x30) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x30) {
     ExecuteResourceFinalization();
   }
   if (*presourceTable == 0) {
@@ -81252,7 +81252,7 @@ void Unwind_18090f370(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
   validationStatusCode = 0;
-  pLoopOffset = (int64_t *)(LocalContextData + 600);
+  pLoopOffset = (int64_t *)(SystemContextPointer + 600);
   do {
     if (*pLoopOffset != 0) {
                     // WARNING: Subroutine does not return
@@ -81261,7 +81261,7 @@ void Unwind_18090f370(uint8_t ObjectContext,int64_t ValidationContext)
     resourceTable = (int64_t)(int)HashValidationResult;
     pLoopOffset = pLoopOffset + 1;
     validationStatusCode = HashValidationResult + 1;
-    *(uint8_t *)(LocalContextData + 600 + resourceTable * 8) = 0;
+    *(uint8_t *)(SystemContextPointer + 600 + resourceTable * 8) = 0;
   } while (HashValidationResult < 10);
   return;
 }
@@ -81285,25 +81285,25 @@ void Unwind_18090f3b0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  if (*(int64_t **)(LocalContextData + 0x398) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x398) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x398) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x398) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x390) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x390) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x390) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x390) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x388) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x388) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x388) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x388) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x380) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x380) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x380) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x380) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x378) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x378) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x378) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x378) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x370) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x370) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x370) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x370) + 0x38))();
   }
-  RegisterResourceHandler(LocalContextData + 0x308,8,0xd,ProcessResourceOperation);
+  RegisterResourceHandler(SystemContextPointer + 0x308,8,0xd,ProcessResourceOperation);
   return;
 }
 
@@ -81567,14 +81567,14 @@ void Unwind_18090f650(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  *(uint8_t *)(LocalContextData + 0x4140) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4148) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4140) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4148) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4148) = 0;
-  *(uint32_t *)(LocalContextData + 0x4158) = 0;
-  *(uint8_t *)(LocalContextData + 0x4140) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4148) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x4158) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4140) = &SystemDataStructure;
   return;
 }
 
@@ -81586,14 +81586,14 @@ void Unwind_18090f670(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  *(uint8_t *)(LocalContextData + 0x4190) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x4198) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x4190) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x4198) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x4198) = 0;
-  *(uint32_t *)(LocalContextData + 0x41a8) = 0;
-  *(uint8_t *)(LocalContextData + 0x4190) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x4198) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x41a8) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x4190) = &SystemDataStructure;
   return;
 }
 
@@ -81607,8 +81607,8 @@ void Unwind_18090f690(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x68);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x30) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x30) {
     ExecuteResourceFinalization();
   }
   if (*presourceTable == 0) {
@@ -81801,8 +81801,8 @@ void Unwind_18090f7e0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x40);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x30) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x30) {
     ExecuteResourceFinalization();
   }
   if (*presourceTable == 0) {
@@ -82276,19 +82276,19 @@ void Unwind_18090fac0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x120);
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
   return;
 }
@@ -82324,14 +82324,14 @@ void Unwind_18090faf0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x120);
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint32_t *)(LocalContextData + 0x40) = 0;
-  *(uint8_t *)(LocalContextData + 0x28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
 
@@ -82748,7 +82748,7 @@ void Unwind_18090fe50(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x10);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x128) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -82768,8 +82768,8 @@ void Unwind_18090fe60(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x80);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x128) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -82875,7 +82875,7 @@ void Unwind_18090ff10(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x100) + 0x18);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x100) + 0x20);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x128) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -82936,8 +82936,8 @@ void Unwind_18090ff80(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x158);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x128) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -83015,7 +83015,7 @@ void Unwind_18090ffe0(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x58) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x58) + 0x10);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x128) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -83035,8 +83035,8 @@ void Unwind_18090fff0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x60);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x128) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -83071,7 +83071,7 @@ void Unwind_180910010(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x60) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x60) + 0x10);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x128) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -83091,8 +83091,8 @@ void Unwind_180910020(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x68);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x128) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -83136,7 +83136,7 @@ void Unwind_180910040(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x10);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x18) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
       (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
@@ -83158,8 +83158,8 @@ void Unwind_180910050(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x78);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x18) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
       (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
@@ -83193,44 +83193,44 @@ void Unwind_180910070(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
-  if (*(int64_t **)(LocalContextData + 0x88) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x88) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x88) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x88) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x80) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x80) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x80) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x80) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x78) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x78) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x78) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x78) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x70) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x70) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x70) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x70) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x68) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x68) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x68) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x68) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x60) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x60) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x60) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x60) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x50) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x50) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x50) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x50) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x48) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x48) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x48) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x48) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x40) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x40) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x38) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x38) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x38) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x38) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x30) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x30) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x30) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x30) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x28) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x28) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x28) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x28) + 0x38))();
   }
   return;
 }
@@ -83243,44 +83243,44 @@ void Unwind_180910080(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  if (*(int64_t **)(LocalContextData + 0x68) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x68) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x68) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x68) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x60) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x60) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x60) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x60) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x50) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x50) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x50) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x50) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x48) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x48) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x48) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x48) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x40) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x40) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x38) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x38) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x38) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x38) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x30) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x30) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x30) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x30) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x28) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x28) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x28) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x28) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x18) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x18) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x18) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x18) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x10) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x10) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x10) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x10) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 8) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 8) + 0x38))();
   }
   return;
 }
@@ -83328,7 +83328,7 @@ void Unwind_1809100d0(uint8_t ObjectContext,int64_t ValidationContext)
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x10);
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x18) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
       (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
@@ -83350,8 +83350,8 @@ void Unwind_1809100e0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x48);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x18) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
       (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
@@ -83371,44 +83371,44 @@ void Unwind_1809100f0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(int64_t **)(LocalContextData + 0x68) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x68) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x68) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x68) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x60) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x60) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x60) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x60) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x50) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x50) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x50) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x50) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x48) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x48) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x48) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x48) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x40) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x40) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x38) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x38) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x38) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x38) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x30) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x30) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x30) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x30) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x28) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x28) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x28) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x28) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x18) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x18) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x18) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x18) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x10) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x10) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x10) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x10) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 8) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 8) + 0x38))();
   }
   return;
 }
@@ -83423,8 +83423,8 @@ void Unwind_180910100(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x40);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x18) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
       (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
@@ -83444,14 +83444,14 @@ void Unwind_180910110(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x110) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x110) = 0;
-  *(uint32_t *)(LocalContextData + 0x120) = 0;
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x110) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x120) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemDataStructure;
   return;
 }
 
@@ -83463,14 +83463,14 @@ void Unwind_180910130(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x110) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x110) = 0;
-  *(uint32_t *)(LocalContextData + 0x120) = 0;
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x110) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x120) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemDataStructure;
   return;
 }
 
@@ -83484,8 +83484,8 @@ void Unwind_180910150(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContext + 0x40);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x128) {
+  SystemContextPointer = presourceTable[1];
+  for (ResourceIndex = *presourceTable; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
@@ -83521,14 +83521,14 @@ void Unwind_1809101c0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x110) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x110) = 0;
-  *(uint32_t *)(LocalContextData + 0x120) = 0;
-  *(uint8_t *)(LocalContextData + 0x108) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x110) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x120) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x108) = &SystemDataStructure;
   return;
 }
 
@@ -83540,44 +83540,44 @@ void Unwind_1809101e0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
-  if (*(int64_t **)(LocalContextData + 0x68) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x68) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x68) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x68) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x60) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x60) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x60) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x60) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x58) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x50) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x50) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x50) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x50) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x48) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x48) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x48) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x48) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x40) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x40) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x38) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x38) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x38) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x38) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x30) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x30) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x30) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x30) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x28) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x28) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x28) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x28) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x20) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x18) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x18) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x18) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x18) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 0x10) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 0x10) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 0x10) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 0x10) + 0x38))();
   }
-  if (*(int64_t **)(LocalContextData + 8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(LocalContextData + 8) + 0x38))();
+  if (*(int64_t **)(SystemContextPointer + 8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + 8) + 0x38))();
   }
   return;
 }
@@ -84110,16 +84110,16 @@ void Unwind_180910450(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x60);
-  LocalContextData = ResourceIndex + 0x1d8;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4) + -0xb0 + LocalContextData) =
+  SystemContextPointer = ResourceIndex + 0x1d8;
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4) + -0xb0 + SystemContextPointer) =
        &SystemResourcePointer001;
   operationStatusCode = *(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4);
-  *(int *)((int64_t)OperationResult + -0xb4 + LocalContextData) = OperationResult + -0xb0;
+  *(int *)((int64_t)OperationResult + -0xb4 + SystemContextPointer) = OperationResult + -0xb0;
   ValidateSystemResource(ResourceIndex + 0x138);
   __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(ResourceIndex + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(LocalContextData);
+  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(SystemContextPointer);
   return;
 }
 
@@ -84331,16 +84331,16 @@ void Unwind_1809105a0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x40);
-  LocalContextData = ResourceIndex + 0x1d8;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4) + -0xb0 + LocalContextData) =
+  SystemContextPointer = ResourceIndex + 0x1d8;
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4) + -0xb0 + SystemContextPointer) =
        &SystemResourcePointer001;
   operationStatusCode = *(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4);
-  *(int *)((int64_t)OperationResult + -0xb4 + LocalContextData) = OperationResult + -0xb0;
+  *(int *)((int64_t)OperationResult + -0xb4 + SystemContextPointer) = OperationResult + -0xb0;
   ValidateSystemResource(ResourceIndex + 0x138);
   __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(ResourceIndex + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(LocalContextData);
+  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(SystemContextPointer);
   return;
 }
 
@@ -84777,25 +84777,25 @@ void Unwind_1809107a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xa00) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa00))(LocalContextData + 0x9f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa00) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa00))(SystemContextPointer + 0x9f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x9c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x9e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x9c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x9a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x9c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x9a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9a8) = &SystemDataStructure;
   return;
 }
 
@@ -84807,25 +84807,25 @@ void Unwind_1809107c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xa70) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa70))(LocalContextData + 0xa60,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa70) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa70))(SystemContextPointer + 0xa60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xa38) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa40) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa38) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa40) = 0;
-  *(uint32_t *)(LocalContextData + 0xa50) = 0;
-  *(uint8_t *)(LocalContextData + 0xa38) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa40) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa50) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa38) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa20) = 0;
-  *(uint32_t *)(LocalContextData + 0xa30) = 0;
-  *(uint8_t *)(LocalContextData + 0xa18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa18) = &SystemDataStructure;
   return;
 }
 
@@ -84837,25 +84837,25 @@ void Unwind_1809107e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xae0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xae0))(LocalContextData + 0xad0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xae0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xae0))(SystemContextPointer + 0xad0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xaa8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xab0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xaa8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xab0) = 0;
-  *(uint32_t *)(LocalContextData + 0xac0) = 0;
-  *(uint8_t *)(LocalContextData + 0xaa8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa88) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa90) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xab0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xac0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xaa8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa88) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa90) = 0;
-  *(uint32_t *)(LocalContextData + 0xaa0) = 0;
-  *(uint8_t *)(LocalContextData + 0xa88) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa90) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xaa0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa88) = &SystemDataStructure;
   return;
 }
 
@@ -84867,25 +84867,25 @@ void Unwind_180910800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xb50) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xb50))(LocalContextData + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xb50) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xb50))(SystemContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xb18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb20) = 0;
-  *(uint32_t *)(LocalContextData + 0xb30) = 0;
-  *(uint8_t *)(LocalContextData + 0xb18) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xaf8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb00) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xaf8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb00) = 0;
-  *(uint32_t *)(LocalContextData + 0xb10) = 0;
-  *(uint8_t *)(LocalContextData + 0xaf8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb00) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb10) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xaf8) = &SystemDataStructure;
   return;
 }
 
@@ -84897,25 +84897,25 @@ void Unwind_180910820(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xbc0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xbc0))(LocalContextData + 0xbb0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xbc0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xbc0))(SystemContextPointer + 0xbb0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xb88) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb90) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb88) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb90) = 0;
-  *(uint32_t *)(LocalContextData + 0xba0) = 0;
-  *(uint8_t *)(LocalContextData + 0xb88) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xb68) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb70) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb90) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xba0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb88) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb68) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb70) = 0;
-  *(uint32_t *)(LocalContextData + 0xb80) = 0;
-  *(uint8_t *)(LocalContextData + 0xb68) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb70) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb80) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb68) = &SystemDataStructure;
   return;
 }
 
@@ -84927,25 +84927,25 @@ void Unwind_180910840(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xc30) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xc30))(LocalContextData + 0xc20,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xc30) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xc30))(SystemContextPointer + 0xc20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xbf8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc00) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xbf8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc00) = 0;
-  *(uint32_t *)(LocalContextData + 0xc10) = 0;
-  *(uint8_t *)(LocalContextData + 0xbf8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xbd8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xbe0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc00) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc10) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xbf8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xbd8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xbe0) = 0;
-  *(uint32_t *)(LocalContextData + 0xbf0) = 0;
-  *(uint8_t *)(LocalContextData + 0xbd8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xbe0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xbf0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xbd8) = &SystemDataStructure;
   return;
 }
 
@@ -84957,25 +84957,25 @@ void Unwind_180910860(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xca0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xca0))(LocalContextData + 0xc90,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xca0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xca0))(SystemContextPointer + 0xc90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xc68) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc70) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc68) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc70) = 0;
-  *(uint32_t *)(LocalContextData + 0xc80) = 0;
-  *(uint8_t *)(LocalContextData + 0xc68) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc70) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc80) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc68) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc50) = 0;
-  *(uint32_t *)(LocalContextData + 0xc60) = 0;
-  *(uint8_t *)(LocalContextData + 0xc48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc48) = &SystemDataStructure;
   return;
 }
 
@@ -84987,25 +84987,25 @@ void Unwind_180910880(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xd10) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xd10))(LocalContextData + 0xd00,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xd10) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xd10))(SystemContextPointer + 0xd00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xcd8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xce0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xcd8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xce0) = 0;
-  *(uint32_t *)(LocalContextData + 0xcf0) = 0;
-  *(uint8_t *)(LocalContextData + 0xcd8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xcb8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xcc0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xce0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xcf0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xcd8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xcb8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xcc0) = 0;
-  *(uint32_t *)(LocalContextData + 0xcd0) = 0;
-  *(uint8_t *)(LocalContextData + 0xcb8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xcc0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xcd0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xcb8) = &SystemDataStructure;
   return;
 }
 
@@ -85017,25 +85017,25 @@ void Unwind_1809108a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xd80) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xd80))(LocalContextData + 0xd70,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xd80) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xd80))(SystemContextPointer + 0xd70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xd48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd50) = 0;
-  *(uint32_t *)(LocalContextData + 0xd60) = 0;
-  *(uint8_t *)(LocalContextData + 0xd48) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xd28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd30) = 0;
-  *(uint32_t *)(LocalContextData + 0xd40) = 0;
-  *(uint8_t *)(LocalContextData + 0xd28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd28) = &SystemDataStructure;
   return;
 }
 
@@ -85047,25 +85047,25 @@ void Unwind_1809108c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xdf0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xdf0))(LocalContextData + 0xde0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xdf0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xdf0))(SystemContextPointer + 0xde0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xdb8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xdc0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xdb8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xdc0) = 0;
-  *(uint32_t *)(LocalContextData + 0xdd0) = 0;
-  *(uint8_t *)(LocalContextData + 0xdb8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xd98) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xda0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xdc0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xdd0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xdb8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd98) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xda0) = 0;
-  *(uint32_t *)(LocalContextData + 0xdb0) = 0;
-  *(uint8_t *)(LocalContextData + 0xd98) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xda0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xdb0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd98) = &SystemDataStructure;
   return;
 }
 
@@ -85077,25 +85077,25 @@ void Unwind_1809108e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xe60) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xe60))(LocalContextData + 0xe50,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xe60) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xe60))(SystemContextPointer + 0xe50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xe28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe30) = 0;
-  *(uint32_t *)(LocalContextData + 0xe40) = 0;
-  *(uint8_t *)(LocalContextData + 0xe28) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe10) = 0;
-  *(uint32_t *)(LocalContextData + 0xe20) = 0;
-  *(uint8_t *)(LocalContextData + 0xe08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe08) = &SystemDataStructure;
   return;
 }
 
@@ -85107,25 +85107,25 @@ void Unwind_180910900(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xed0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xed0))(LocalContextData + 0xec0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xed0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xed0))(SystemContextPointer + 0xec0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xe98) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xea0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe98) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xea0) = 0;
-  *(uint32_t *)(LocalContextData + 0xeb0) = 0;
-  *(uint8_t *)(LocalContextData + 0xe98) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xea0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xeb0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe98) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe80) = 0;
-  *(uint32_t *)(LocalContextData + 0xe90) = 0;
-  *(uint8_t *)(LocalContextData + 0xe78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe78) = &SystemDataStructure;
   return;
 }
 
@@ -85137,25 +85137,25 @@ void Unwind_180910920(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xf40) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xf40))(LocalContextData + 0xf30,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xf40) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xf40))(SystemContextPointer + 0xf30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xf08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf10) = 0;
-  *(uint32_t *)(LocalContextData + 0xf20) = 0;
-  *(uint8_t *)(LocalContextData + 0xf08) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xee8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xef0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xee8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xef0) = 0;
-  *(uint32_t *)(LocalContextData + 0xf00) = 0;
-  *(uint8_t *)(LocalContextData + 0xee8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xef0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xee8) = &SystemDataStructure;
   return;
 }
 
@@ -85167,25 +85167,25 @@ void Unwind_180910940(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0xfb0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xfb0))(LocalContextData + 4000,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xfb0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xfb0))(SystemContextPointer + 4000,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xf78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf80) = 0;
-  *(uint32_t *)(LocalContextData + 0xf90) = 0;
-  *(uint8_t *)(LocalContextData + 0xf78) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xf58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf60) = 0;
-  *(uint32_t *)(LocalContextData + 0xf70) = 0;
-  *(uint8_t *)(LocalContextData + 0xf58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf58) = &SystemDataStructure;
   return;
 }
 
@@ -85197,25 +85197,25 @@ void Unwind_180910960(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1020) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1020))(LocalContextData + 0x1010,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1020) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1020))(SystemContextPointer + 0x1010,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xfe8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xff0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xfe8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xff0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1000) = 0;
-  *(uint8_t *)(LocalContextData + 0xfe8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xfc8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xfd0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xff0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1000) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xfe8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfc8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xfd0) = 0;
-  *(uint32_t *)(LocalContextData + 0xfe0) = 0;
-  *(uint8_t *)(LocalContextData + 0xfc8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfd0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xfe0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xfc8) = &SystemDataStructure;
   return;
 }
 
@@ -85227,25 +85227,25 @@ void Unwind_180910980(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1090) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1090))(LocalContextData + 0x1080,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1090) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1090))(SystemContextPointer + 0x1080,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1058) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1060) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1058) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1060) = 0;
-  *(uint32_t *)(LocalContextData + 0x1070) = 0;
-  *(uint8_t *)(LocalContextData + 0x1058) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1038) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1040) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1060) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1070) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1058) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1038) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1040) = 0;
-  *(uint32_t *)(LocalContextData + 0x1050) = 0;
-  *(uint8_t *)(LocalContextData + 0x1038) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1040) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1050) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1038) = &SystemDataStructure;
   return;
 }
 
@@ -85257,25 +85257,25 @@ void Unwind_1809109a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1100) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1100))(LocalContextData + 0x10f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1100) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1100))(SystemContextPointer + 0x10f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x10c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x10c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x10e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x10c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x10a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x10d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x10e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x10c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x10a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x10c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10a8) = &SystemDataStructure;
   return;
 }
 
@@ -85287,25 +85287,25 @@ void Unwind_1809109c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1170) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1170))(LocalContextData + 0x1160,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1170) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1170))(SystemContextPointer + 0x1160,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1138) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1140) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1138) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1140) = 0;
-  *(uint32_t *)(LocalContextData + 0x1150) = 0;
-  *(uint8_t *)(LocalContextData + 0x1138) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1118) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1120) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1140) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1150) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1138) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1118) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1120) = 0;
-  *(uint32_t *)(LocalContextData + 0x1130) = 0;
-  *(uint8_t *)(LocalContextData + 0x1118) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1120) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1130) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1118) = &SystemDataStructure;
   return;
 }
 
@@ -85317,25 +85317,25 @@ void Unwind_1809109e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x11e0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x11e0))(LocalContextData + 0x11d0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x11e0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x11e0))(SystemContextPointer + 0x11d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x11a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x11b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x11a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x11b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x11c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x11a8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1188) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1190) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x11b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x11c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x11a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1188) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1190) = 0;
-  *(uint32_t *)(LocalContextData + 0x11a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1188) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1190) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x11a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1188) = &SystemDataStructure;
   return;
 }
 
@@ -85347,25 +85347,25 @@ void Unwind_180910a00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1250) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1250))(LocalContextData + 0x1240,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1250) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1250))(SystemContextPointer + 0x1240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1218) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1220) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1218) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1220) = 0;
-  *(uint32_t *)(LocalContextData + 0x1230) = 0;
-  *(uint8_t *)(LocalContextData + 0x1218) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x11f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1200) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1220) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1230) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1218) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x11f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1200) = 0;
-  *(uint32_t *)(LocalContextData + 0x1210) = 0;
-  *(uint8_t *)(LocalContextData + 0x11f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1200) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1210) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x11f8) = &SystemDataStructure;
   return;
 }
 
@@ -85377,25 +85377,25 @@ void Unwind_180910a20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x12c0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x12c0))(LocalContextData + 0x12b0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x12c0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x12c0))(SystemContextPointer + 0x12b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1288) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1290) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1288) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1290) = 0;
-  *(uint32_t *)(LocalContextData + 0x12a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1288) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1268) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1270) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1290) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x12a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1288) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1268) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1270) = 0;
-  *(uint32_t *)(LocalContextData + 0x1280) = 0;
-  *(uint8_t *)(LocalContextData + 0x1268) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1270) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1280) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1268) = &SystemDataStructure;
   return;
 }
 
@@ -85407,25 +85407,25 @@ void Unwind_180910a40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1330) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1330))(LocalContextData + 0x1320,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1330) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1330))(SystemContextPointer + 0x1320,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x12f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1300) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x12f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1300) = 0;
-  *(uint32_t *)(LocalContextData + 0x1310) = 0;
-  *(uint8_t *)(LocalContextData + 0x12f8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x12d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x12e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1300) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1310) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x12f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x12d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x12e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x12f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x12d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x12e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x12f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x12d8) = &SystemDataStructure;
   return;
 }
 
@@ -85437,25 +85437,25 @@ void Unwind_180910a60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x13a0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x13a0))(LocalContextData + 0x1390,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x13a0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x13a0))(SystemContextPointer + 0x1390,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1368) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1370) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1368) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1370) = 0;
-  *(uint32_t *)(LocalContextData + 0x1380) = 0;
-  *(uint8_t *)(LocalContextData + 0x1368) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1348) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1350) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1370) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1380) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1368) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1348) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1350) = 0;
-  *(uint32_t *)(LocalContextData + 0x1360) = 0;
-  *(uint8_t *)(LocalContextData + 0x1348) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1350) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1360) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1348) = &SystemDataStructure;
   return;
 }
 
@@ -85467,25 +85467,25 @@ void Unwind_180910a80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1410) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1410))(LocalContextData + 0x1400,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1410) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1410))(SystemContextPointer + 0x1400,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x13d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x13e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x13d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x13e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x13f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x13d8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x13b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x13c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x13e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x13f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x13d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x13b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x13c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x13d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x13b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x13c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x13d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x13b8) = &SystemDataStructure;
   return;
 }
 
@@ -85497,25 +85497,25 @@ void Unwind_180910aa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1480) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1480))(LocalContextData + 0x1470,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1480) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1480))(SystemContextPointer + 0x1470,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1448) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1450) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1448) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1450) = 0;
-  *(uint32_t *)(LocalContextData + 0x1460) = 0;
-  *(uint8_t *)(LocalContextData + 0x1448) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1428) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1430) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1450) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1460) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1448) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1428) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1430) = 0;
-  *(uint32_t *)(LocalContextData + 0x1440) = 0;
-  *(uint8_t *)(LocalContextData + 0x1428) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1430) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1440) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1428) = &SystemDataStructure;
   return;
 }
 
@@ -85527,25 +85527,25 @@ void Unwind_180910ac0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x14f0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x14f0))(LocalContextData + 0x14e0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x14f0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x14f0))(SystemContextPointer + 0x14e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x14b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x14c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x14b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x14c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x14d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x14b8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1498) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x14a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x14c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x14d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x14b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1498) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x14a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x14b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1498) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x14a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x14b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1498) = &SystemDataStructure;
   return;
 }
 
@@ -85557,25 +85557,25 @@ void Unwind_180910ae0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1560) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1560))(LocalContextData + 0x1550,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1560) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1560))(SystemContextPointer + 0x1550,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1528) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1530) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1528) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1530) = 0;
-  *(uint32_t *)(LocalContextData + 0x1540) = 0;
-  *(uint8_t *)(LocalContextData + 0x1528) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1508) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1510) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1530) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1540) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1528) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1508) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1510) = 0;
-  *(uint32_t *)(LocalContextData + 0x1520) = 0;
-  *(uint8_t *)(LocalContextData + 0x1508) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1510) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1520) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1508) = &SystemDataStructure;
   return;
 }
 
@@ -85587,25 +85587,25 @@ void Unwind_180910b00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x15d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x15d0))(LocalContextData + 0x15c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x15d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x15d0))(SystemContextPointer + 0x15c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1598) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x15a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1598) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x15a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x15b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1598) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1578) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1580) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x15a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x15b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1598) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1578) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1580) = 0;
-  *(uint32_t *)(LocalContextData + 0x1590) = 0;
-  *(uint8_t *)(LocalContextData + 0x1578) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1580) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1590) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1578) = &SystemDataStructure;
   return;
 }
 
@@ -85617,25 +85617,25 @@ void Unwind_180910b20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1640) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1640))(LocalContextData + 0x1630,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1640) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1640))(SystemContextPointer + 0x1630,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1608) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1610) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1608) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1610) = 0;
-  *(uint32_t *)(LocalContextData + 0x1620) = 0;
-  *(uint8_t *)(LocalContextData + 0x1608) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x15e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x15f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1610) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1620) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1608) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x15e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x15f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1600) = 0;
-  *(uint8_t *)(LocalContextData + 0x15e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x15f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1600) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x15e8) = &SystemDataStructure;
   return;
 }
 
@@ -85647,25 +85647,25 @@ void Unwind_180910b40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x16b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x16b0))(LocalContextData + 0x16a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x16b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x16b0))(SystemContextPointer + 0x16a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1678) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1680) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1678) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1680) = 0;
-  *(uint32_t *)(LocalContextData + 0x1690) = 0;
-  *(uint8_t *)(LocalContextData + 0x1678) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1658) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1660) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1680) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1690) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1678) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1658) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1660) = 0;
-  *(uint32_t *)(LocalContextData + 0x1670) = 0;
-  *(uint8_t *)(LocalContextData + 0x1658) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1660) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1670) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1658) = &SystemDataStructure;
   return;
 }
 
@@ -85677,25 +85677,25 @@ void Unwind_180910b60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1720) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1720))(LocalContextData + 0x1710,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1720) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1720))(SystemContextPointer + 0x1710,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x16e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x16f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x16e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x16f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1700) = 0;
-  *(uint8_t *)(LocalContextData + 0x16e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x16c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x16d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x16f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1700) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x16e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x16c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x16d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x16e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x16c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x16d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x16e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x16c8) = &SystemDataStructure;
   return;
 }
 
@@ -85707,25 +85707,25 @@ void Unwind_180910b80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1790) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1790))(LocalContextData + 0x1780,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1790) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1790))(SystemContextPointer + 0x1780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1758) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1760) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1758) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1760) = 0;
-  *(uint32_t *)(LocalContextData + 6000) = 0;
-  *(uint8_t *)(LocalContextData + 0x1758) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1738) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1740) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1760) = 0;
+  *(uint32_t *)(SystemContextPointer + 6000) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1758) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1738) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1740) = 0;
-  *(uint32_t *)(LocalContextData + 0x1750) = 0;
-  *(uint8_t *)(LocalContextData + 0x1738) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1740) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1750) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1738) = &SystemDataStructure;
   return;
 }
 
@@ -85737,25 +85737,25 @@ void Unwind_180910ba0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1800) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1800))(LocalContextData + 0x17f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1800) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1800))(SystemContextPointer + 0x17f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x17c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x17d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x17c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x17d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x17e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x17c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x17a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x17b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x17d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x17e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x17c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x17a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x17b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x17c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x17a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x17b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x17c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x17a8) = &SystemDataStructure;
   return;
 }
 
@@ -85767,25 +85767,25 @@ void Unwind_180910bc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1870) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1870))(LocalContextData + 0x1860,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1870) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1870))(SystemContextPointer + 0x1860,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1838) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1840) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1838) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1840) = 0;
-  *(uint32_t *)(LocalContextData + 0x1850) = 0;
-  *(uint8_t *)(LocalContextData + 0x1838) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1818) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1820) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1840) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1850) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1838) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1818) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1820) = 0;
-  *(uint32_t *)(LocalContextData + 0x1830) = 0;
-  *(uint8_t *)(LocalContextData + 0x1818) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1820) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1830) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1818) = &SystemDataStructure;
   return;
 }
 
@@ -85797,25 +85797,25 @@ void Unwind_180910be0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x18e0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x18e0))(LocalContextData + 0x18d0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x18e0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x18e0))(SystemContextPointer + 0x18d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x18a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x18b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x18a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x18b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x18c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x18a8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1888) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1890) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x18b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x18c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1888) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1890) = 0;
-  *(uint32_t *)(LocalContextData + 0x18a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1888) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1890) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x18a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1888) = &SystemDataStructure;
   return;
 }
 
@@ -85827,25 +85827,25 @@ void Unwind_180910c00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1950) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1950))(LocalContextData + 0x1940,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1950) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1950))(SystemContextPointer + 0x1940,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1918) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1920) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1918) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1920) = 0;
-  *(uint32_t *)(LocalContextData + 0x1930) = 0;
-  *(uint8_t *)(LocalContextData + 0x1918) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x18f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1900) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1920) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1930) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1918) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x18f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1900) = 0;
-  *(uint32_t *)(LocalContextData + 0x1910) = 0;
-  *(uint8_t *)(LocalContextData + 0x18f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1900) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1910) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18f8) = &SystemDataStructure;
   return;
 }
 
@@ -85857,25 +85857,25 @@ void Unwind_180910c20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x19c0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x19c0))(LocalContextData + 0x19b0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x19c0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x19c0))(SystemContextPointer + 0x19b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1988) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1990) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1988) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1990) = 0;
-  *(uint32_t *)(LocalContextData + 0x19a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1988) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1968) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1970) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1990) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x19a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1988) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1968) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1970) = 0;
-  *(uint32_t *)(LocalContextData + 0x1980) = 0;
-  *(uint8_t *)(LocalContextData + 0x1968) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1970) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1980) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1968) = &SystemDataStructure;
   return;
 }
 
@@ -85887,25 +85887,25 @@ void Unwind_180910c40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1a30) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1a30))(LocalContextData + 0x1a20,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1a30) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1a30))(SystemContextPointer + 0x1a20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x19f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1a00) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x19f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a00) = 0;
-  *(uint32_t *)(LocalContextData + 0x1a10) = 0;
-  *(uint8_t *)(LocalContextData + 0x19f8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x19d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x19e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1a00) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1a10) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x19f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x19d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x19e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x19f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x19d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x19e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x19f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x19d8) = &SystemDataStructure;
   return;
 }
 
@@ -85917,25 +85917,25 @@ void Unwind_180910c60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1aa0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1aa0))(LocalContextData + 0x1a90,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1aa0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1aa0))(SystemContextPointer + 0x1a90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1a68) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1a70) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1a68) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a70) = 0;
-  *(uint32_t *)(LocalContextData + 0x1a80) = 0;
-  *(uint8_t *)(LocalContextData + 0x1a68) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1a48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1a50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1a70) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1a80) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1a68) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1a48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a50) = 0;
-  *(uint32_t *)(LocalContextData + 0x1a60) = 0;
-  *(uint8_t *)(LocalContextData + 0x1a48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1a50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1a60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1a48) = &SystemDataStructure;
   return;
 }
 
@@ -85947,25 +85947,25 @@ void Unwind_180910c80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1b10) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1b10))(LocalContextData + 0x1b00,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1b10) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1b10))(SystemContextPointer + 0x1b00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1ad8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ae0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ad8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ae0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1af0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ad8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1ab8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ac0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ae0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1af0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ad8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ab8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ac0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1ad0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ab8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ac0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1ad0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ab8) = &SystemDataStructure;
   return;
 }
 
@@ -85977,25 +85977,25 @@ void Unwind_180910ca0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1b80) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1b80))(LocalContextData + 0x1b70,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1b80) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1b80))(SystemContextPointer + 0x1b70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1b48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1b50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1b48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1b50) = 0;
-  *(uint32_t *)(LocalContextData + 0x1b60) = 0;
-  *(uint8_t *)(LocalContextData + 0x1b48) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1b28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1b30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1b50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1b60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1b48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1b28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1b30) = 0;
-  *(uint32_t *)(LocalContextData + 0x1b40) = 0;
-  *(uint8_t *)(LocalContextData + 0x1b28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1b30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1b40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1b28) = &SystemDataStructure;
   return;
 }
 
@@ -86007,25 +86007,25 @@ void Unwind_180910cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1bf0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1bf0))(LocalContextData + 0x1be0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1bf0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1bf0))(SystemContextPointer + 0x1be0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1bb8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1bc0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1bb8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1bc0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1bd0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1bb8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1b98) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ba0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1bc0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1bd0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1bb8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1b98) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ba0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1bb0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1b98) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ba0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1bb0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1b98) = &SystemDataStructure;
   return;
 }
 
@@ -86037,25 +86037,25 @@ void Unwind_180910ce0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1c60) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1c60))(LocalContextData + 0x1c50,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1c60) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1c60))(SystemContextPointer + 0x1c50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1c28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1c30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1c28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1c30) = 0;
-  *(uint32_t *)(LocalContextData + 0x1c40) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c28) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1c08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1c10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1c30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1c40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1c10) = 0;
-  *(uint32_t *)(LocalContextData + 0x1c20) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1c20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c08) = &SystemDataStructure;
   return;
 }
 
@@ -86067,25 +86067,25 @@ void Unwind_180910d00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1cd0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1cd0))(LocalContextData + 0x1cc0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1cd0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1cd0))(SystemContextPointer + 0x1cc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1c98) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ca0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1c98) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ca0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1cb0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c98) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1c78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1c80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ca0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1cb0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c98) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1c80) = 0;
-  *(uint32_t *)(LocalContextData + 0x1c90) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1c90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c78) = &SystemDataStructure;
   return;
 }
 
@@ -86097,25 +86097,25 @@ void Unwind_180910d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1d40) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1d40))(LocalContextData + 0x1d30,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1d40) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1d40))(SystemContextPointer + 0x1d30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1d08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1d10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1d08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1d10) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d20) = 0;
-  *(uint8_t *)(LocalContextData + 0x1d08) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1ce8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1cf0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1d10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1d08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ce8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1cf0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d00) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ce8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1cf0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ce8) = &SystemDataStructure;
   return;
 }
 
@@ -86127,25 +86127,25 @@ void Unwind_180910d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1db0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1db0))(LocalContextData + 0x1da0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1db0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1db0))(SystemContextPointer + 0x1da0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1d78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1d80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1d78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1d80) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d90) = 0;
-  *(uint8_t *)(LocalContextData + 0x1d78) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1d58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1d60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1d80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1d78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1d58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1d60) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d70) = 0;
-  *(uint8_t *)(LocalContextData + 0x1d58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1d60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1d58) = &SystemDataStructure;
   return;
 }
 
@@ -86157,25 +86157,25 @@ void Unwind_180910d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1e20) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1e20))(LocalContextData + 0x1e10,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1e20) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1e20))(SystemContextPointer + 0x1e10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1de8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1df0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1de8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1df0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1e00) = 0;
-  *(uint8_t *)(LocalContextData + 0x1de8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1dc8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1dd0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1df0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1e00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1de8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1dc8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1dd0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1de0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1dc8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1dd0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1de0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1dc8) = &SystemDataStructure;
   return;
 }
 
@@ -86187,25 +86187,25 @@ void Unwind_180910d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1e90) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1e90))(LocalContextData + 0x1e80,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1e90) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1e90))(SystemContextPointer + 0x1e80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1e58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1e60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1e58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1e60) = 0;
-  *(uint32_t *)(LocalContextData + 0x1e70) = 0;
-  *(uint8_t *)(LocalContextData + 0x1e58) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1e38) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1e40) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1e60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1e70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1e58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1e38) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1e40) = 0;
-  *(uint32_t *)(LocalContextData + 0x1e50) = 0;
-  *(uint8_t *)(LocalContextData + 0x1e38) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1e40) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1e50) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1e38) = &SystemDataStructure;
   return;
 }
 
@@ -86217,25 +86217,25 @@ void Unwind_180910da0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1f00) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1f00))(LocalContextData + 0x1ef0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1f00) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1f00))(SystemContextPointer + 0x1ef0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1ec8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ed0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ec8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ed0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1ee0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ec8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1ea8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1eb0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ed0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1ee0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ec8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ea8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1eb0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1ec0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ea8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1eb0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1ec0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ea8) = &SystemDataStructure;
   return;
 }
 
@@ -86247,25 +86247,25 @@ void Unwind_180910dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1f70) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1f70))(LocalContextData + 0x1f60,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1f70) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1f70))(SystemContextPointer + 0x1f60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1f38) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 8000) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1f38) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 8000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 8000) = 0;
-  *(uint32_t *)(LocalContextData + 0x1f50) = 0;
-  *(uint8_t *)(LocalContextData + 0x1f38) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1f18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1f20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 8000) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1f50) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1f38) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1f18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1f20) = 0;
-  *(uint32_t *)(LocalContextData + 0x1f30) = 0;
-  *(uint8_t *)(LocalContextData + 0x1f18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1f20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1f30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1f18) = &SystemDataStructure;
   return;
 }
 
@@ -86277,25 +86277,25 @@ void Unwind_180910de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x1fe0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1fe0))(LocalContextData + 0x1fd0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1fe0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1fe0))(SystemContextPointer + 0x1fd0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1fa8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1fb0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1fa8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1fb0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1fc0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1fa8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1f88) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1f90) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1fb0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1fc0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1fa8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1f88) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1f90) = 0;
-  *(uint32_t *)(LocalContextData + 0x1fa0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1f88) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1f90) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1fa0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1f88) = &SystemDataStructure;
   return;
 }
 
@@ -86307,25 +86307,25 @@ void Unwind_180910e00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x2050) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2050))(LocalContextData + 0x2040,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2050) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2050))(SystemContextPointer + 0x2040,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2018) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2020) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2018) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2020) = 0;
-  *(uint32_t *)(LocalContextData + 0x2030) = 0;
-  *(uint8_t *)(LocalContextData + 0x2018) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1ff8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2000) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2020) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2030) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2018) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ff8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2000) = 0;
-  *(uint32_t *)(LocalContextData + 0x2010) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ff8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2000) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2010) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ff8) = &SystemDataStructure;
   return;
 }
 
@@ -86337,25 +86337,25 @@ void Unwind_180910e20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x20c0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x20c0))(LocalContextData + 0x20b0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x20c0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x20c0))(SystemContextPointer + 0x20b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2088) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2090) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2088) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2090) = 0;
-  *(uint32_t *)(LocalContextData + 0x20a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2088) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2068) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2070) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2090) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2088) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2068) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2070) = 0;
-  *(uint32_t *)(LocalContextData + 0x2080) = 0;
-  *(uint8_t *)(LocalContextData + 0x2068) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2070) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2080) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2068) = &SystemDataStructure;
   return;
 }
 
@@ -86367,25 +86367,25 @@ void Unwind_180910e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x2130) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2130))(LocalContextData + 0x2120,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2130) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2130))(SystemContextPointer + 0x2120,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x20f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2100) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2100) = 0;
-  *(uint32_t *)(LocalContextData + 0x2110) = 0;
-  *(uint8_t *)(LocalContextData + 0x20f8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x20d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x20e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2100) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2110) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x20d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x20f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x20d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x20e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20d8) = &SystemDataStructure;
   return;
 }
 
@@ -86397,25 +86397,25 @@ void Unwind_180910e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x21a0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x21a0))(LocalContextData + 0x2190,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x21a0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x21a0))(SystemContextPointer + 0x2190,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2168) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2170) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2168) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2170) = 0;
-  *(uint32_t *)(LocalContextData + 0x2180) = 0;
-  *(uint8_t *)(LocalContextData + 0x2168) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2148) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2150) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2170) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2180) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2168) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2148) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2150) = 0;
-  *(uint32_t *)(LocalContextData + 0x2160) = 0;
-  *(uint8_t *)(LocalContextData + 0x2148) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2150) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2160) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2148) = &SystemDataStructure;
   return;
 }
 
@@ -86427,25 +86427,25 @@ void Unwind_180910e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x2210) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2210))(LocalContextData + 0x2200,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2210) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2210))(SystemContextPointer + 0x2200,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x21d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x21e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x21d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x21e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x21f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x21d8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x21b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x21c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x21e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x21f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x21d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x21b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x21c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x21d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x21b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x21c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x21d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x21b8) = &SystemDataStructure;
   return;
 }
 
@@ -86457,25 +86457,25 @@ void Unwind_180910ea0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x2280) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2280))(LocalContextData + 0x2270,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2280) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2280))(SystemContextPointer + 0x2270,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2248) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2250) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2248) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2250) = 0;
-  *(uint32_t *)(LocalContextData + 0x2260) = 0;
-  *(uint8_t *)(LocalContextData + 0x2248) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2228) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2230) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2250) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2260) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2248) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2228) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2230) = 0;
-  *(uint32_t *)(LocalContextData + 0x2240) = 0;
-  *(uint8_t *)(LocalContextData + 0x2228) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2230) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2240) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2228) = &SystemDataStructure;
   return;
 }
 
@@ -86487,25 +86487,25 @@ void Unwind_180910ec0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x22f0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x22f0))(LocalContextData + 0x22e0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x22f0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x22f0))(SystemContextPointer + 0x22e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x22b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x22c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x22b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x22c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x22d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x22b8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2298) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x22a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x22c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x22d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x22b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2298) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x22a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x22b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2298) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x22a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x22b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2298) = &SystemDataStructure;
   return;
 }
 
@@ -86517,25 +86517,25 @@ void Unwind_180910ee0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x2360) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2360))(LocalContextData + 0x2350,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2360) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2360))(SystemContextPointer + 0x2350,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 9000) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2330) != 0) {
+  *(uint8_t *)(SystemContextPointer + 9000) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2330) = 0;
-  *(uint32_t *)(LocalContextData + 0x2340) = 0;
-  *(uint8_t *)(LocalContextData + 9000) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2308) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2310) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2330) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2340) = 0;
+  *(uint8_t *)(SystemContextPointer + 9000) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2308) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2310) = 0;
-  *(uint32_t *)(LocalContextData + 0x2320) = 0;
-  *(uint8_t *)(LocalContextData + 0x2308) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2310) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2320) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2308) = &SystemDataStructure;
   return;
 }
 
@@ -86547,25 +86547,25 @@ void Unwind_180910f00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x23d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x23d0))(LocalContextData + 0x23c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x23d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x23d0))(SystemContextPointer + 0x23c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2398) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x23a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2398) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x23a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x23b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2398) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2378) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2380) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x23a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x23b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2398) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2378) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2380) = 0;
-  *(uint32_t *)(LocalContextData + 0x2390) = 0;
-  *(uint8_t *)(LocalContextData + 0x2378) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2380) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2390) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2378) = &SystemDataStructure;
   return;
 }
 
@@ -86577,25 +86577,25 @@ void Unwind_180910f20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x2440) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2440))(LocalContextData + 0x2430,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2440) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2440))(SystemContextPointer + 0x2430,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2408) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2410) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2408) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2410) = 0;
-  *(uint32_t *)(LocalContextData + 0x2420) = 0;
-  *(uint8_t *)(LocalContextData + 0x2408) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x23e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x23f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2410) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2420) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2408) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x23e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x23f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x2400) = 0;
-  *(uint8_t *)(LocalContextData + 0x23e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x23f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2400) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x23e8) = &SystemDataStructure;
   return;
 }
 
@@ -86607,25 +86607,25 @@ void Unwind_180910f40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x24b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x24b0))(LocalContextData + 0x24a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x24b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x24b0))(SystemContextPointer + 0x24a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2478) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2480) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2478) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2480) = 0;
-  *(uint32_t *)(LocalContextData + 0x2490) = 0;
-  *(uint8_t *)(LocalContextData + 0x2478) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2458) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2460) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2480) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2490) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2478) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2458) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2460) = 0;
-  *(uint32_t *)(LocalContextData + 0x2470) = 0;
-  *(uint8_t *)(LocalContextData + 0x2458) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2460) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2470) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2458) = &SystemDataStructure;
   return;
 }
 
@@ -86637,25 +86637,25 @@ void Unwind_180910f60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x2520) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2520))(LocalContextData + 0x2510,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2520) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2520))(SystemContextPointer + 0x2510,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x24e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x24f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x24e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x24f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x2500) = 0;
-  *(uint8_t *)(LocalContextData + 0x24e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x24c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x24d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x24f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2500) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x24e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x24c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x24d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x24e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x24c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x24d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x24e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x24c8) = &SystemDataStructure;
   return;
 }
 
@@ -86667,25 +86667,25 @@ void Unwind_180910f80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x2590) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2590))(LocalContextData + 0x2580,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2590) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2590))(SystemContextPointer + 0x2580,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2558) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2560) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2558) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2560) = 0;
-  *(uint32_t *)(LocalContextData + 0x2570) = 0;
-  *(uint8_t *)(LocalContextData + 0x2558) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2538) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2540) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2560) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2570) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2558) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2538) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2540) = 0;
-  *(uint32_t *)(LocalContextData + 0x2550) = 0;
-  *(uint8_t *)(LocalContextData + 0x2538) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2540) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2550) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2538) = &SystemDataStructure;
   return;
 }
 
@@ -86697,25 +86697,25 @@ void Unwind_180910fa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(LocalContextData + 0x2600) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2600))(LocalContextData + 0x25f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2600) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2600))(SystemContextPointer + 0x25f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x25c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x25d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x25c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x25d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x25e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x25c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x25a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x25b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x25d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x25e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x25c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x25a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x25b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x25c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x25a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x25b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x25c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x25a8) = &SystemDataStructure;
   return;
 }
 
@@ -86773,25 +86773,25 @@ void Unwind_180911000(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xa00) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa00))(LocalContextData + 0x9f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa00) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa00))(SystemContextPointer + 0x9f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x9c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x9e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x9c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x9a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x9b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x9d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x9b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x9c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x9a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x9b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x9c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9a8) = &SystemDataStructure;
   return;
 }
 
@@ -86803,25 +86803,25 @@ void Unwind_180911020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xa70) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xa70))(LocalContextData + 0xa60,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xa70) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xa70))(SystemContextPointer + 0xa60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xa38) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa40) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa38) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa40) = 0;
-  *(uint32_t *)(LocalContextData + 0xa50) = 0;
-  *(uint8_t *)(LocalContextData + 0xa38) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xa40) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa50) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa38) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa20) = 0;
-  *(uint32_t *)(LocalContextData + 0xa30) = 0;
-  *(uint8_t *)(LocalContextData + 0xa18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xa30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa18) = &SystemDataStructure;
   return;
 }
 
@@ -86833,25 +86833,25 @@ void Unwind_180911040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xae0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xae0))(LocalContextData + 0xad0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xae0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xae0))(SystemContextPointer + 0xad0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xaa8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xab0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xaa8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xab0) = 0;
-  *(uint32_t *)(LocalContextData + 0xac0) = 0;
-  *(uint8_t *)(LocalContextData + 0xaa8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xa88) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xa90) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xab0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xac0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xaa8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa88) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xa90) = 0;
-  *(uint32_t *)(LocalContextData + 0xaa0) = 0;
-  *(uint8_t *)(LocalContextData + 0xa88) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xa90) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xaa0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa88) = &SystemDataStructure;
   return;
 }
 
@@ -86863,25 +86863,25 @@ void Unwind_180911060(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xb50) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xb50))(LocalContextData + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xb50) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xb50))(SystemContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xb18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb20) = 0;
-  *(uint32_t *)(LocalContextData + 0xb30) = 0;
-  *(uint8_t *)(LocalContextData + 0xb18) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xaf8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb00) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xaf8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb00) = 0;
-  *(uint32_t *)(LocalContextData + 0xb10) = 0;
-  *(uint8_t *)(LocalContextData + 0xaf8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb00) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb10) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xaf8) = &SystemDataStructure;
   return;
 }
 
@@ -86893,25 +86893,25 @@ void Unwind_180911080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xbc0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xbc0))(LocalContextData + 0xbb0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xbc0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xbc0))(SystemContextPointer + 0xbb0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xb88) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb90) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb88) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb90) = 0;
-  *(uint32_t *)(LocalContextData + 0xba0) = 0;
-  *(uint8_t *)(LocalContextData + 0xb88) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xb68) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xb70) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xb90) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xba0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb88) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb68) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xb70) = 0;
-  *(uint32_t *)(LocalContextData + 0xb80) = 0;
-  *(uint8_t *)(LocalContextData + 0xb68) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xb70) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xb80) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xb68) = &SystemDataStructure;
   return;
 }
 
@@ -86923,25 +86923,25 @@ void Unwind_1809110a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xc30) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xc30))(LocalContextData + 0xc20,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xc30) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xc30))(SystemContextPointer + 0xc20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xbf8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc00) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xbf8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc00) = 0;
-  *(uint32_t *)(LocalContextData + 0xc10) = 0;
-  *(uint8_t *)(LocalContextData + 0xbf8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xbd8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xbe0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc00) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc10) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xbf8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xbd8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xbe0) = 0;
-  *(uint32_t *)(LocalContextData + 0xbf0) = 0;
-  *(uint8_t *)(LocalContextData + 0xbd8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xbe0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xbf0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xbd8) = &SystemDataStructure;
   return;
 }
 
@@ -86953,25 +86953,25 @@ void Unwind_1809110c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xca0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xca0))(LocalContextData + 0xc90,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xca0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xca0))(SystemContextPointer + 0xc90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xc68) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc70) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc68) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc70) = 0;
-  *(uint32_t *)(LocalContextData + 0xc80) = 0;
-  *(uint8_t *)(LocalContextData + 0xc68) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xc48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xc50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xc70) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc80) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc68) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xc50) = 0;
-  *(uint32_t *)(LocalContextData + 0xc60) = 0;
-  *(uint8_t *)(LocalContextData + 0xc48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xc50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xc60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xc48) = &SystemDataStructure;
   return;
 }
 
@@ -86983,25 +86983,25 @@ void Unwind_1809110e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xd10) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xd10))(LocalContextData + 0xd00,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xd10) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xd10))(SystemContextPointer + 0xd00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xcd8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xce0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xcd8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xce0) = 0;
-  *(uint32_t *)(LocalContextData + 0xcf0) = 0;
-  *(uint8_t *)(LocalContextData + 0xcd8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xcb8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xcc0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xce0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xcf0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xcd8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xcb8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xcc0) = 0;
-  *(uint32_t *)(LocalContextData + 0xcd0) = 0;
-  *(uint8_t *)(LocalContextData + 0xcb8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xcc0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xcd0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xcb8) = &SystemDataStructure;
   return;
 }
 
@@ -87013,25 +87013,25 @@ void Unwind_180911100(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xd80) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xd80))(LocalContextData + 0xd70,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xd80) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xd80))(SystemContextPointer + 0xd70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xd48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd50) = 0;
-  *(uint32_t *)(LocalContextData + 0xd60) = 0;
-  *(uint8_t *)(LocalContextData + 0xd48) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xd28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xd30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xd50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xd30) = 0;
-  *(uint32_t *)(LocalContextData + 0xd40) = 0;
-  *(uint8_t *)(LocalContextData + 0xd28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xd40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd28) = &SystemDataStructure;
   return;
 }
 
@@ -87043,25 +87043,25 @@ void Unwind_180911120(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xdf0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xdf0))(LocalContextData + 0xde0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xdf0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xdf0))(SystemContextPointer + 0xde0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xdb8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xdc0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xdb8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xdc0) = 0;
-  *(uint32_t *)(LocalContextData + 0xdd0) = 0;
-  *(uint8_t *)(LocalContextData + 0xdb8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xd98) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xda0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xdc0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xdd0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xdb8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xd98) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xda0) = 0;
-  *(uint32_t *)(LocalContextData + 0xdb0) = 0;
-  *(uint8_t *)(LocalContextData + 0xd98) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xda0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xdb0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xd98) = &SystemDataStructure;
   return;
 }
 
@@ -87073,25 +87073,25 @@ void Unwind_180911140(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xe60) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xe60))(LocalContextData + 0xe50,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xe60) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xe60))(SystemContextPointer + 0xe50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xe28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe30) = 0;
-  *(uint32_t *)(LocalContextData + 0xe40) = 0;
-  *(uint8_t *)(LocalContextData + 0xe28) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe10) = 0;
-  *(uint32_t *)(LocalContextData + 0xe20) = 0;
-  *(uint8_t *)(LocalContextData + 0xe08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe08) = &SystemDataStructure;
   return;
 }
 
@@ -87103,25 +87103,25 @@ void Unwind_180911160(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xed0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xed0))(LocalContextData + 0xec0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xed0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xed0))(SystemContextPointer + 0xec0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xe98) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xea0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xe98) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xea0) = 0;
-  *(uint32_t *)(LocalContextData + 0xeb0) = 0;
-  *(uint8_t *)(LocalContextData + 0xe98) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xe78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xe80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xea0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xeb0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe98) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xe80) = 0;
-  *(uint32_t *)(LocalContextData + 0xe90) = 0;
-  *(uint8_t *)(LocalContextData + 0xe78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xe80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xe90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xe78) = &SystemDataStructure;
   return;
 }
 
@@ -87133,25 +87133,25 @@ void Unwind_180911180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xf40) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xf40))(LocalContextData + 0xf30,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xf40) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xf40))(SystemContextPointer + 0xf30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xf08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf10) = 0;
-  *(uint32_t *)(LocalContextData + 0xf20) = 0;
-  *(uint8_t *)(LocalContextData + 0xf08) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xee8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xef0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xee8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xef0) = 0;
-  *(uint32_t *)(LocalContextData + 0xf00) = 0;
-  *(uint8_t *)(LocalContextData + 0xee8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xef0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xee8) = &SystemDataStructure;
   return;
 }
 
@@ -87163,25 +87163,25 @@ void Unwind_1809111a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0xfb0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0xfb0))(LocalContextData + 4000,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0xfb0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0xfb0))(SystemContextPointer + 4000,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xf78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf80) = 0;
-  *(uint32_t *)(LocalContextData + 0xf90) = 0;
-  *(uint8_t *)(LocalContextData + 0xf78) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xf58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xf60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xf80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xf60) = 0;
-  *(uint32_t *)(LocalContextData + 0xf70) = 0;
-  *(uint8_t *)(LocalContextData + 0xf58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xf60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xf70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xf58) = &SystemDataStructure;
   return;
 }
 
@@ -87193,25 +87193,25 @@ void Unwind_1809111c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1020) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1020))(LocalContextData + 0x1010,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1020) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1020))(SystemContextPointer + 0x1010,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0xfe8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xff0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xfe8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xff0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1000) = 0;
-  *(uint8_t *)(LocalContextData + 0xfe8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0xfc8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0xfd0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0xff0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1000) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xfe8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfc8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0xfd0) = 0;
-  *(uint32_t *)(LocalContextData + 0xfe0) = 0;
-  *(uint8_t *)(LocalContextData + 0xfc8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0xfd0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0xfe0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xfc8) = &SystemDataStructure;
   return;
 }
 
@@ -87223,25 +87223,25 @@ void Unwind_1809111e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1090) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1090))(LocalContextData + 0x1080,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1090) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1090))(SystemContextPointer + 0x1080,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1058) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1060) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1058) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1060) = 0;
-  *(uint32_t *)(LocalContextData + 0x1070) = 0;
-  *(uint8_t *)(LocalContextData + 0x1058) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1038) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1040) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1060) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1070) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1058) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1038) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1040) = 0;
-  *(uint32_t *)(LocalContextData + 0x1050) = 0;
-  *(uint8_t *)(LocalContextData + 0x1038) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1040) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1050) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1038) = &SystemDataStructure;
   return;
 }
 
@@ -87253,25 +87253,25 @@ void Unwind_180911200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1100) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1100))(LocalContextData + 0x10f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1100) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1100))(SystemContextPointer + 0x10f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x10c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x10c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x10e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x10c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x10a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x10b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x10d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x10e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x10b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x10c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x10a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x10b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x10c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10a8) = &SystemDataStructure;
   return;
 }
 
@@ -87283,25 +87283,25 @@ void Unwind_180911220(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1170) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1170))(LocalContextData + 0x1160,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1170) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1170))(SystemContextPointer + 0x1160,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1138) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1140) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1138) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1140) = 0;
-  *(uint32_t *)(LocalContextData + 0x1150) = 0;
-  *(uint8_t *)(LocalContextData + 0x1138) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1118) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1120) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1140) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1150) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1138) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1118) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1120) = 0;
-  *(uint32_t *)(LocalContextData + 0x1130) = 0;
-  *(uint8_t *)(LocalContextData + 0x1118) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1120) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1130) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1118) = &SystemDataStructure;
   return;
 }
 
@@ -87313,25 +87313,25 @@ void Unwind_180911240(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x11e0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x11e0))(LocalContextData + 0x11d0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x11e0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x11e0))(SystemContextPointer + 0x11d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x11a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x11b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x11a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x11b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x11c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x11a8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1188) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1190) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x11b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x11c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x11a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1188) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1190) = 0;
-  *(uint32_t *)(LocalContextData + 0x11a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1188) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1190) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x11a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1188) = &SystemDataStructure;
   return;
 }
 
@@ -87343,25 +87343,25 @@ void Unwind_180911260(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1250) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1250))(LocalContextData + 0x1240,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1250) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1250))(SystemContextPointer + 0x1240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1218) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1220) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1218) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1220) = 0;
-  *(uint32_t *)(LocalContextData + 0x1230) = 0;
-  *(uint8_t *)(LocalContextData + 0x1218) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x11f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1200) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1220) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1230) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1218) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x11f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1200) = 0;
-  *(uint32_t *)(LocalContextData + 0x1210) = 0;
-  *(uint8_t *)(LocalContextData + 0x11f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1200) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1210) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x11f8) = &SystemDataStructure;
   return;
 }
 
@@ -87373,25 +87373,25 @@ void Unwind_180911280(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x12c0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x12c0))(LocalContextData + 0x12b0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x12c0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x12c0))(SystemContextPointer + 0x12b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1288) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1290) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1288) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1290) = 0;
-  *(uint32_t *)(LocalContextData + 0x12a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1288) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1268) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1270) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1290) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x12a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1288) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1268) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1270) = 0;
-  *(uint32_t *)(LocalContextData + 0x1280) = 0;
-  *(uint8_t *)(LocalContextData + 0x1268) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1270) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1280) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1268) = &SystemDataStructure;
   return;
 }
 
@@ -87403,25 +87403,25 @@ void Unwind_1809112a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1330) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1330))(LocalContextData + 0x1320,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1330) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1330))(SystemContextPointer + 0x1320,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x12f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1300) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x12f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1300) = 0;
-  *(uint32_t *)(LocalContextData + 0x1310) = 0;
-  *(uint8_t *)(LocalContextData + 0x12f8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x12d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x12e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1300) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1310) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x12f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x12d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x12e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x12f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x12d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x12e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x12f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x12d8) = &SystemDataStructure;
   return;
 }
 
@@ -87433,25 +87433,25 @@ void Unwind_1809112c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x13a0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x13a0))(LocalContextData + 0x1390,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x13a0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x13a0))(SystemContextPointer + 0x1390,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1368) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1370) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1368) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1370) = 0;
-  *(uint32_t *)(LocalContextData + 0x1380) = 0;
-  *(uint8_t *)(LocalContextData + 0x1368) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1348) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1350) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1370) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1380) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1368) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1348) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1350) = 0;
-  *(uint32_t *)(LocalContextData + 0x1360) = 0;
-  *(uint8_t *)(LocalContextData + 0x1348) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1350) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1360) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1348) = &SystemDataStructure;
   return;
 }
 
@@ -87463,25 +87463,25 @@ void Unwind_1809112e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1410) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1410))(LocalContextData + 0x1400,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1410) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1410))(SystemContextPointer + 0x1400,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x13d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x13e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x13d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x13e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x13f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x13d8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x13b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x13c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x13e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x13f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x13d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x13b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x13c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x13d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x13b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x13c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x13d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x13b8) = &SystemDataStructure;
   return;
 }
 
@@ -87493,25 +87493,25 @@ void Unwind_180911300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1480) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1480))(LocalContextData + 0x1470,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1480) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1480))(SystemContextPointer + 0x1470,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1448) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1450) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1448) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1450) = 0;
-  *(uint32_t *)(LocalContextData + 0x1460) = 0;
-  *(uint8_t *)(LocalContextData + 0x1448) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1428) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1430) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1450) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1460) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1448) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1428) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1430) = 0;
-  *(uint32_t *)(LocalContextData + 0x1440) = 0;
-  *(uint8_t *)(LocalContextData + 0x1428) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1430) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1440) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1428) = &SystemDataStructure;
   return;
 }
 
@@ -87523,25 +87523,25 @@ void Unwind_180911320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x14f0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x14f0))(LocalContextData + 0x14e0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x14f0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x14f0))(SystemContextPointer + 0x14e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x14b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x14c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x14b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x14c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x14d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x14b8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1498) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x14a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x14c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x14d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x14b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1498) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x14a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x14b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1498) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x14a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x14b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1498) = &SystemDataStructure;
   return;
 }
 
@@ -87553,25 +87553,25 @@ void Unwind_180911340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1560) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1560))(LocalContextData + 0x1550,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1560) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1560))(SystemContextPointer + 0x1550,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1528) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1530) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1528) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1530) = 0;
-  *(uint32_t *)(LocalContextData + 0x1540) = 0;
-  *(uint8_t *)(LocalContextData + 0x1528) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1508) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1510) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1530) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1540) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1528) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1508) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1510) = 0;
-  *(uint32_t *)(LocalContextData + 0x1520) = 0;
-  *(uint8_t *)(LocalContextData + 0x1508) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1510) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1520) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1508) = &SystemDataStructure;
   return;
 }
 
@@ -87583,25 +87583,25 @@ void Unwind_180911360(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x15d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x15d0))(LocalContextData + 0x15c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x15d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x15d0))(SystemContextPointer + 0x15c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1598) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x15a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1598) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x15a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x15b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1598) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1578) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1580) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x15a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x15b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1598) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1578) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1580) = 0;
-  *(uint32_t *)(LocalContextData + 0x1590) = 0;
-  *(uint8_t *)(LocalContextData + 0x1578) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1580) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1590) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1578) = &SystemDataStructure;
   return;
 }
 
@@ -87613,25 +87613,25 @@ void Unwind_180911380(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1640) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1640))(LocalContextData + 0x1630,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1640) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1640))(SystemContextPointer + 0x1630,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1608) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1610) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1608) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1610) = 0;
-  *(uint32_t *)(LocalContextData + 0x1620) = 0;
-  *(uint8_t *)(LocalContextData + 0x1608) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x15e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x15f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1610) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1620) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1608) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x15e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x15f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1600) = 0;
-  *(uint8_t *)(LocalContextData + 0x15e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x15f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1600) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x15e8) = &SystemDataStructure;
   return;
 }
 
@@ -87643,25 +87643,25 @@ void Unwind_1809113a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x16b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x16b0))(LocalContextData + 0x16a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x16b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x16b0))(SystemContextPointer + 0x16a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1678) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1680) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1678) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1680) = 0;
-  *(uint32_t *)(LocalContextData + 0x1690) = 0;
-  *(uint8_t *)(LocalContextData + 0x1678) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1658) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1660) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1680) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1690) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1678) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1658) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1660) = 0;
-  *(uint32_t *)(LocalContextData + 0x1670) = 0;
-  *(uint8_t *)(LocalContextData + 0x1658) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1660) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1670) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1658) = &SystemDataStructure;
   return;
 }
 
@@ -87673,25 +87673,25 @@ void Unwind_1809113c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1720) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1720))(LocalContextData + 0x1710,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1720) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1720))(SystemContextPointer + 0x1710,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x16e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x16f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x16e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x16f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1700) = 0;
-  *(uint8_t *)(LocalContextData + 0x16e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x16c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x16d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x16f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1700) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x16e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x16c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x16d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x16e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x16c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x16d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x16e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x16c8) = &SystemDataStructure;
   return;
 }
 
@@ -87703,25 +87703,25 @@ void Unwind_1809113e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1790) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1790))(LocalContextData + 0x1780,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1790) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1790))(SystemContextPointer + 0x1780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1758) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1760) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1758) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1760) = 0;
-  *(uint32_t *)(LocalContextData + 6000) = 0;
-  *(uint8_t *)(LocalContextData + 0x1758) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1738) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1740) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1760) = 0;
+  *(uint32_t *)(SystemContextPointer + 6000) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1758) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1738) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1740) = 0;
-  *(uint32_t *)(LocalContextData + 0x1750) = 0;
-  *(uint8_t *)(LocalContextData + 0x1738) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1740) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1750) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1738) = &SystemDataStructure;
   return;
 }
 
@@ -87733,25 +87733,25 @@ void Unwind_180911400(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1800) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1800))(LocalContextData + 0x17f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1800) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1800))(SystemContextPointer + 0x17f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x17c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x17d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x17c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x17d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x17e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x17c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x17a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x17b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x17d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x17e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x17c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x17a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x17b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x17c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x17a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x17b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x17c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x17a8) = &SystemDataStructure;
   return;
 }
 
@@ -87763,25 +87763,25 @@ void Unwind_180911420(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1870) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1870))(LocalContextData + 0x1860,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1870) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1870))(SystemContextPointer + 0x1860,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1838) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1840) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1838) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1840) = 0;
-  *(uint32_t *)(LocalContextData + 0x1850) = 0;
-  *(uint8_t *)(LocalContextData + 0x1838) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1818) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1820) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1840) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1850) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1838) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1818) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1820) = 0;
-  *(uint32_t *)(LocalContextData + 0x1830) = 0;
-  *(uint8_t *)(LocalContextData + 0x1818) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1820) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1830) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1818) = &SystemDataStructure;
   return;
 }
 
@@ -87793,25 +87793,25 @@ void Unwind_180911440(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x18e0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x18e0))(LocalContextData + 0x18d0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x18e0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x18e0))(SystemContextPointer + 0x18d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x18a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x18b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x18a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x18b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x18c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x18a8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1888) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1890) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x18b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x18c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1888) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1890) = 0;
-  *(uint32_t *)(LocalContextData + 0x18a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1888) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1890) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x18a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1888) = &SystemDataStructure;
   return;
 }
 
@@ -87823,25 +87823,25 @@ void Unwind_180911460(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1950) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1950))(LocalContextData + 0x1940,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1950) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1950))(SystemContextPointer + 0x1940,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1918) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1920) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1918) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1920) = 0;
-  *(uint32_t *)(LocalContextData + 0x1930) = 0;
-  *(uint8_t *)(LocalContextData + 0x1918) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x18f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1900) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1920) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1930) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1918) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x18f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1900) = 0;
-  *(uint32_t *)(LocalContextData + 0x1910) = 0;
-  *(uint8_t *)(LocalContextData + 0x18f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1900) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1910) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18f8) = &SystemDataStructure;
   return;
 }
 
@@ -87853,25 +87853,25 @@ void Unwind_180911480(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x19c0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x19c0))(LocalContextData + 0x19b0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x19c0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x19c0))(SystemContextPointer + 0x19b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1988) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1990) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1988) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1990) = 0;
-  *(uint32_t *)(LocalContextData + 0x19a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1988) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1968) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1970) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1990) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x19a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1988) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1968) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1970) = 0;
-  *(uint32_t *)(LocalContextData + 0x1980) = 0;
-  *(uint8_t *)(LocalContextData + 0x1968) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1970) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1980) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1968) = &SystemDataStructure;
   return;
 }
 
@@ -87883,25 +87883,25 @@ void Unwind_1809114a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1a30) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1a30))(LocalContextData + 0x1a20,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1a30) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1a30))(SystemContextPointer + 0x1a20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x19f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1a00) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x19f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a00) = 0;
-  *(uint32_t *)(LocalContextData + 0x1a10) = 0;
-  *(uint8_t *)(LocalContextData + 0x19f8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x19d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x19e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1a00) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1a10) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x19f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x19d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x19e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x19f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x19d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x19e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x19f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x19d8) = &SystemDataStructure;
   return;
 }
 
@@ -87913,25 +87913,25 @@ void Unwind_1809114c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1aa0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1aa0))(LocalContextData + 0x1a90,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1aa0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1aa0))(SystemContextPointer + 0x1a90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1a68) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1a70) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1a68) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a70) = 0;
-  *(uint32_t *)(LocalContextData + 0x1a80) = 0;
-  *(uint8_t *)(LocalContextData + 0x1a68) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1a48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1a50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1a70) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1a80) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1a68) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1a48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1a50) = 0;
-  *(uint32_t *)(LocalContextData + 0x1a60) = 0;
-  *(uint8_t *)(LocalContextData + 0x1a48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1a50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1a60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1a48) = &SystemDataStructure;
   return;
 }
 
@@ -87943,25 +87943,25 @@ void Unwind_1809114e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1b10) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1b10))(LocalContextData + 0x1b00,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1b10) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1b10))(SystemContextPointer + 0x1b00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1ad8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ae0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ad8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ae0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1af0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ad8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1ab8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ac0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ae0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1af0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ad8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ab8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ac0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1ad0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ab8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ac0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1ad0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ab8) = &SystemDataStructure;
   return;
 }
 
@@ -87973,25 +87973,25 @@ void Unwind_180911500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1b80) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1b80))(LocalContextData + 0x1b70,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1b80) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1b80))(SystemContextPointer + 0x1b70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1b48) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1b50) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1b48) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1b50) = 0;
-  *(uint32_t *)(LocalContextData + 0x1b60) = 0;
-  *(uint8_t *)(LocalContextData + 0x1b48) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1b28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1b30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1b50) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1b60) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1b48) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1b28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1b30) = 0;
-  *(uint32_t *)(LocalContextData + 0x1b40) = 0;
-  *(uint8_t *)(LocalContextData + 0x1b28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1b30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1b40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1b28) = &SystemDataStructure;
   return;
 }
 
@@ -88003,25 +88003,25 @@ void Unwind_180911520(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1bf0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1bf0))(LocalContextData + 0x1be0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1bf0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1bf0))(SystemContextPointer + 0x1be0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1bb8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1bc0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1bb8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1bc0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1bd0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1bb8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1b98) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ba0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1bc0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1bd0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1bb8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1b98) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ba0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1bb0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1b98) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ba0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1bb0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1b98) = &SystemDataStructure;
   return;
 }
 
@@ -88033,25 +88033,25 @@ void Unwind_180911540(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1c60) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1c60))(LocalContextData + 0x1c50,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1c60) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1c60))(SystemContextPointer + 0x1c50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1c28) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1c30) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1c28) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1c30) = 0;
-  *(uint32_t *)(LocalContextData + 0x1c40) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c28) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1c08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1c10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1c30) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1c40) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c28) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1c10) = 0;
-  *(uint32_t *)(LocalContextData + 0x1c20) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1c20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c08) = &SystemDataStructure;
   return;
 }
 
@@ -88063,25 +88063,25 @@ void Unwind_180911560(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1cd0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1cd0))(LocalContextData + 0x1cc0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1cd0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1cd0))(SystemContextPointer + 0x1cc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1c98) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ca0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1c98) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ca0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1cb0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c98) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1c78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1c80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ca0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1cb0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c98) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1c80) = 0;
-  *(uint32_t *)(LocalContextData + 0x1c90) = 0;
-  *(uint8_t *)(LocalContextData + 0x1c78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1c80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1c90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1c78) = &SystemDataStructure;
   return;
 }
 
@@ -88093,25 +88093,25 @@ void Unwind_180911580(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1d40) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1d40))(LocalContextData + 0x1d30,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1d40) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1d40))(SystemContextPointer + 0x1d30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1d08) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1d10) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1d08) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1d10) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d20) = 0;
-  *(uint8_t *)(LocalContextData + 0x1d08) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1ce8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1cf0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1d10) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d20) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1d08) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ce8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1cf0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d00) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ce8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1cf0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ce8) = &SystemDataStructure;
   return;
 }
 
@@ -88123,25 +88123,25 @@ void Unwind_1809115a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1db0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1db0))(LocalContextData + 0x1da0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1db0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1db0))(SystemContextPointer + 0x1da0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1d78) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1d80) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1d78) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1d80) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d90) = 0;
-  *(uint8_t *)(LocalContextData + 0x1d78) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1d58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1d60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1d80) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1d78) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1d58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1d60) = 0;
-  *(uint32_t *)(LocalContextData + 0x1d70) = 0;
-  *(uint8_t *)(LocalContextData + 0x1d58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1d60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1d70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1d58) = &SystemDataStructure;
   return;
 }
 
@@ -88153,25 +88153,25 @@ void Unwind_1809115c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1e20) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1e20))(LocalContextData + 0x1e10,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1e20) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1e20))(SystemContextPointer + 0x1e10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1de8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1df0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1de8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1df0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1e00) = 0;
-  *(uint8_t *)(LocalContextData + 0x1de8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1dc8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1dd0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1df0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1e00) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1de8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1dc8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1dd0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1de0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1dc8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1dd0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1de0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1dc8) = &SystemDataStructure;
   return;
 }
 
@@ -88183,25 +88183,25 @@ void Unwind_1809115e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1e90) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1e90))(LocalContextData + 0x1e80,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1e90) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1e90))(SystemContextPointer + 0x1e80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1e58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1e60) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1e58) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1e60) = 0;
-  *(uint32_t *)(LocalContextData + 0x1e70) = 0;
-  *(uint8_t *)(LocalContextData + 0x1e58) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1e38) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1e40) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1e60) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1e70) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1e58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1e38) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1e40) = 0;
-  *(uint32_t *)(LocalContextData + 0x1e50) = 0;
-  *(uint8_t *)(LocalContextData + 0x1e38) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1e40) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1e50) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1e38) = &SystemDataStructure;
   return;
 }
 
@@ -88213,25 +88213,25 @@ void Unwind_180911600(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1f00) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1f00))(LocalContextData + 0x1ef0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1f00) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1f00))(SystemContextPointer + 0x1ef0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1ec8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1ed0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ec8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1ed0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1ee0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ec8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1ea8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1eb0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1ed0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1ee0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ec8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ea8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1eb0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1ec0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ea8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1eb0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1ec0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ea8) = &SystemDataStructure;
   return;
 }
 
@@ -88243,25 +88243,25 @@ void Unwind_180911620(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1f70) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1f70))(LocalContextData + 0x1f60,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1f70) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1f70))(SystemContextPointer + 0x1f60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1f38) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 8000) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1f38) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 8000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 8000) = 0;
-  *(uint32_t *)(LocalContextData + 0x1f50) = 0;
-  *(uint8_t *)(LocalContextData + 0x1f38) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1f18) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1f20) != 0) {
+  *(uint8_t *)(SystemContextPointer + 8000) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1f50) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1f38) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1f18) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1f20) = 0;
-  *(uint32_t *)(LocalContextData + 0x1f30) = 0;
-  *(uint8_t *)(LocalContextData + 0x1f18) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1f20) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1f30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1f18) = &SystemDataStructure;
   return;
 }
 
@@ -88273,25 +88273,25 @@ void Unwind_180911640(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x1fe0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x1fe0))(LocalContextData + 0x1fd0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x1fe0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x1fe0))(SystemContextPointer + 0x1fd0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x1fa8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1fb0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1fa8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1fb0) = 0;
-  *(uint32_t *)(LocalContextData + 0x1fc0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1fa8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1f88) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x1f90) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x1fb0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1fc0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1fa8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1f88) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x1f90) = 0;
-  *(uint32_t *)(LocalContextData + 0x1fa0) = 0;
-  *(uint8_t *)(LocalContextData + 0x1f88) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1f90) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x1fa0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1f88) = &SystemDataStructure;
   return;
 }
 
@@ -88303,25 +88303,25 @@ void Unwind_180911660(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x2050) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2050))(LocalContextData + 0x2040,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2050) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2050))(SystemContextPointer + 0x2040,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2018) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2020) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2018) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2020) = 0;
-  *(uint32_t *)(LocalContextData + 0x2030) = 0;
-  *(uint8_t *)(LocalContextData + 0x2018) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1ff8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2000) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2020) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2030) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2018) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1ff8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2000) = 0;
-  *(uint32_t *)(LocalContextData + 0x2010) = 0;
-  *(uint8_t *)(LocalContextData + 0x1ff8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2000) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2010) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1ff8) = &SystemDataStructure;
   return;
 }
 
@@ -88333,25 +88333,25 @@ void Unwind_180911680(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x20c0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x20c0))(LocalContextData + 0x20b0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x20c0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x20c0))(SystemContextPointer + 0x20b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2088) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2090) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2088) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2090) = 0;
-  *(uint32_t *)(LocalContextData + 0x20a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2088) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2068) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2070) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2090) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2088) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2068) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2070) = 0;
-  *(uint32_t *)(LocalContextData + 0x2080) = 0;
-  *(uint8_t *)(LocalContextData + 0x2068) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2070) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2080) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2068) = &SystemDataStructure;
   return;
 }
 
@@ -88363,25 +88363,25 @@ void Unwind_1809116a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x2130) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2130))(LocalContextData + 0x2120,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2130) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2130))(SystemContextPointer + 0x2120,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x20f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2100) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x20f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2100) = 0;
-  *(uint32_t *)(LocalContextData + 0x2110) = 0;
-  *(uint8_t *)(LocalContextData + 0x20f8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x20d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x20e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2100) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2110) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x20d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x20e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x20f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x20d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x20e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x20f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x20d8) = &SystemDataStructure;
   return;
 }
 
@@ -88393,25 +88393,25 @@ void Unwind_1809116c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x21a0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x21a0))(LocalContextData + 0x2190,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x21a0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x21a0))(SystemContextPointer + 0x2190,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2168) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2170) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2168) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2170) = 0;
-  *(uint32_t *)(LocalContextData + 0x2180) = 0;
-  *(uint8_t *)(LocalContextData + 0x2168) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2148) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2150) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2170) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2180) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2168) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2148) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2150) = 0;
-  *(uint32_t *)(LocalContextData + 0x2160) = 0;
-  *(uint8_t *)(LocalContextData + 0x2148) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2150) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2160) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2148) = &SystemDataStructure;
   return;
 }
 
@@ -88423,25 +88423,25 @@ void Unwind_1809116e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x2210) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2210))(LocalContextData + 0x2200,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2210) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2210))(SystemContextPointer + 0x2200,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x21d8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x21e0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x21d8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x21e0) = 0;
-  *(uint32_t *)(LocalContextData + 0x21f0) = 0;
-  *(uint8_t *)(LocalContextData + 0x21d8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x21b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x21c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x21e0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x21f0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x21d8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x21b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x21c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x21d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x21b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x21c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x21d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x21b8) = &SystemDataStructure;
   return;
 }
 
@@ -88453,25 +88453,25 @@ void Unwind_180911700(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x2280) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2280))(LocalContextData + 0x2270,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2280) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2280))(SystemContextPointer + 0x2270,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2248) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2250) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2248) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2250) = 0;
-  *(uint32_t *)(LocalContextData + 0x2260) = 0;
-  *(uint8_t *)(LocalContextData + 0x2248) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2228) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2230) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2250) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2260) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2248) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2228) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2230) = 0;
-  *(uint32_t *)(LocalContextData + 0x2240) = 0;
-  *(uint8_t *)(LocalContextData + 0x2228) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2230) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2240) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2228) = &SystemDataStructure;
   return;
 }
 
@@ -88483,25 +88483,25 @@ void Unwind_180911720(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x22f0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x22f0))(LocalContextData + 0x22e0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x22f0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x22f0))(SystemContextPointer + 0x22e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x22b8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x22c0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x22b8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x22c0) = 0;
-  *(uint32_t *)(LocalContextData + 0x22d0) = 0;
-  *(uint8_t *)(LocalContextData + 0x22b8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2298) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x22a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x22c0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x22d0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x22b8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2298) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x22a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x22b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2298) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x22a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x22b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2298) = &SystemDataStructure;
   return;
 }
 
@@ -88513,25 +88513,25 @@ void Unwind_180911740(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x2360) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2360))(LocalContextData + 0x2350,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2360) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2360))(SystemContextPointer + 0x2350,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 9000) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2330) != 0) {
+  *(uint8_t *)(SystemContextPointer + 9000) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2330) = 0;
-  *(uint32_t *)(LocalContextData + 0x2340) = 0;
-  *(uint8_t *)(LocalContextData + 9000) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2308) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2310) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2330) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2340) = 0;
+  *(uint8_t *)(SystemContextPointer + 9000) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2308) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2310) = 0;
-  *(uint32_t *)(LocalContextData + 0x2320) = 0;
-  *(uint8_t *)(LocalContextData + 0x2308) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2310) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2320) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2308) = &SystemDataStructure;
   return;
 }
 
@@ -88543,25 +88543,25 @@ void Unwind_180911760(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x23d0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x23d0))(LocalContextData + 0x23c0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x23d0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x23d0))(SystemContextPointer + 0x23c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2398) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x23a0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2398) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x23a0) = 0;
-  *(uint32_t *)(LocalContextData + 0x23b0) = 0;
-  *(uint8_t *)(LocalContextData + 0x2398) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2378) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2380) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x23a0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x23b0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2398) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2378) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2380) = 0;
-  *(uint32_t *)(LocalContextData + 0x2390) = 0;
-  *(uint8_t *)(LocalContextData + 0x2378) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2380) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2390) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2378) = &SystemDataStructure;
   return;
 }
 
@@ -88573,25 +88573,25 @@ void Unwind_180911780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x2440) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2440))(LocalContextData + 0x2430,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2440) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2440))(SystemContextPointer + 0x2430,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2408) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2410) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2408) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2410) = 0;
-  *(uint32_t *)(LocalContextData + 0x2420) = 0;
-  *(uint8_t *)(LocalContextData + 0x2408) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x23e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x23f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2410) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2420) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2408) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x23e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x23f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x2400) = 0;
-  *(uint8_t *)(LocalContextData + 0x23e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x23f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2400) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x23e8) = &SystemDataStructure;
   return;
 }
 
@@ -88603,25 +88603,25 @@ void Unwind_1809117a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x24b0) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x24b0))(LocalContextData + 0x24a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x24b0) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x24b0))(SystemContextPointer + 0x24a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2478) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2480) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2478) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2480) = 0;
-  *(uint32_t *)(LocalContextData + 0x2490) = 0;
-  *(uint8_t *)(LocalContextData + 0x2478) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2458) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2460) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2480) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2490) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2478) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2458) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2460) = 0;
-  *(uint32_t *)(LocalContextData + 0x2470) = 0;
-  *(uint8_t *)(LocalContextData + 0x2458) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2460) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2470) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2458) = &SystemDataStructure;
   return;
 }
 
@@ -88633,25 +88633,25 @@ void Unwind_1809117c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x2520) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2520))(LocalContextData + 0x2510,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2520) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2520))(SystemContextPointer + 0x2510,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x24e8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x24f0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x24e8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x24f0) = 0;
-  *(uint32_t *)(LocalContextData + 0x2500) = 0;
-  *(uint8_t *)(LocalContextData + 0x24e8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x24c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x24d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x24f0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2500) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x24e8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x24c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x24d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x24e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x24c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x24d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x24e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x24c8) = &SystemDataStructure;
   return;
 }
 
@@ -88663,25 +88663,25 @@ void Unwind_1809117e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x2590) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2590))(LocalContextData + 0x2580,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2590) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2590))(SystemContextPointer + 0x2580,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x2558) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2560) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2558) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2560) = 0;
-  *(uint32_t *)(LocalContextData + 0x2570) = 0;
-  *(uint8_t *)(LocalContextData + 0x2558) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x2538) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x2540) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x2560) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2570) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2558) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2538) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x2540) = 0;
-  *(uint32_t *)(LocalContextData + 0x2550) = 0;
-  *(uint8_t *)(LocalContextData + 0x2538) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x2540) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x2550) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x2538) = &SystemDataStructure;
   return;
 }
 
@@ -88693,25 +88693,25 @@ void Unwind_180911800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  if (*(code **)(LocalContextData + 0x2600) != (code *)0x0) {
-    (**(code **)(LocalContextData + 0x2600))(LocalContextData + 0x25f0,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(code **)(SystemContextPointer + 0x2600) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + 0x2600))(SystemContextPointer + 0x25f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LocalContextData + 0x25c8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x25d0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x25c8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x25d0) = 0;
-  *(uint32_t *)(LocalContextData + 0x25e0) = 0;
-  *(uint8_t *)(LocalContextData + 0x25c8) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x25a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x25b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x25d0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x25e0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x25c8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x25a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x25b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x25c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x25a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x25b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x25c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x25a8) = &SystemDataStructure;
   return;
 }
 
@@ -89305,7 +89305,7 @@ void Unwind_180911b00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89325,7 +89325,7 @@ void Unwind_180911b10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89345,7 +89345,7 @@ void Unwind_180911b20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89365,7 +89365,7 @@ void Unwind_180911b30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89385,7 +89385,7 @@ void Unwind_180911b40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89405,7 +89405,7 @@ void Unwind_180911b50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89425,7 +89425,7 @@ void Unwind_180911b70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89438,12 +89438,12 @@ void Unwind_180911b90(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
-  *(uint8_t *)(LocalContextData + 0x88) = 0;
-  *(uint8_t *)(LocalContextData + 0x90) = 0;
-  *(uint8_t *)(LocalContextData + 0x9c) = 0;
-  *(uint32_t *)(LocalContextData + 0x98) = 0;
-  *(uint8_t *)(LocalContextData + 0xac) = 0;
-  *(uint8_t *)(LocalContextData + 0xa4) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x88) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9c) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x98) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xac) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa4) = 0;
   return;
 }
 
@@ -89489,7 +89489,7 @@ void Unwind_180911c30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89509,7 +89509,7 @@ void Unwind_180911c40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x1608);
   if (loopCounter != 0) {
@@ -89517,7 +89517,7 @@ void Unwind_180911c40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89537,7 +89537,7 @@ void Unwind_180911c60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89557,7 +89557,7 @@ void Unwind_180911c80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89577,7 +89577,7 @@ void Unwind_180911ca0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89597,7 +89597,7 @@ void Unwind_180911cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89617,7 +89617,7 @@ void Unwind_180911ce0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89637,7 +89637,7 @@ void Unwind_180911d00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89657,7 +89657,7 @@ void Unwind_180911d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89677,7 +89677,7 @@ void Unwind_180911d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89697,7 +89697,7 @@ void Unwind_180911d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89717,7 +89717,7 @@ void Unwind_180911d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89737,7 +89737,7 @@ void Unwind_180911da0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89757,7 +89757,7 @@ void Unwind_180911dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89852,7 +89852,7 @@ void Unwind_180911e00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89872,7 +89872,7 @@ void Unwind_180911e20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89894,7 +89894,7 @@ void Unwind_180911e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1ec8);
   if (loopCounter != 0) {
@@ -89902,7 +89902,7 @@ void Unwind_180911e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1eb8);
   if (loopCounter != 0) {
@@ -89910,7 +89910,7 @@ void Unwind_180911e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89935,7 +89935,7 @@ void Unwind_180911e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x2d58);
   if (loopCounter != 0) {
@@ -89943,7 +89943,7 @@ void Unwind_180911e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x2d48);
   if (loopCounter != 0) {
@@ -89951,7 +89951,7 @@ void Unwind_180911e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   return;
 }
@@ -89971,7 +89971,7 @@ void Unwind_180911e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -89991,7 +89991,7 @@ void Unwind_180911ea0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90011,7 +90011,7 @@ void Unwind_180911ec0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90031,7 +90031,7 @@ void Unwind_180911ee0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90051,7 +90051,7 @@ void Unwind_180911f00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90081,7 +90081,7 @@ void Unwind_180911f50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90101,7 +90101,7 @@ void Unwind_180911f70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90121,7 +90121,7 @@ void Unwind_180911f90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90141,7 +90141,7 @@ void Unwind_180911fa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90161,7 +90161,7 @@ void Unwind_180911fb0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90181,7 +90181,7 @@ void Unwind_180911fc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90201,7 +90201,7 @@ void Unwind_180911fd0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90221,7 +90221,7 @@ void Unwind_180911fe0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90241,7 +90241,7 @@ void Unwind_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t Validatio
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90261,7 +90261,7 @@ void Unwind_SystemResourceCleanup_Batch2(uint8_t ObjectContext,int64_t Validatio
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90281,7 +90281,7 @@ void Unwind_180912010(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90301,7 +90301,7 @@ void Unwind_180912020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90321,7 +90321,7 @@ void Unwind_180912040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90341,7 +90341,7 @@ void Unwind_180912060(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90361,7 +90361,7 @@ void Unwind_180912080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90381,7 +90381,7 @@ void Unwind_180912090(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90401,7 +90401,7 @@ void Unwind_1809120a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90421,7 +90421,7 @@ void Unwind_1809120b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90441,7 +90441,7 @@ void Unwind_1809120d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90461,7 +90461,7 @@ void Unwind_1809120f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90481,7 +90481,7 @@ void Unwind_180912110(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90501,7 +90501,7 @@ void Unwind_180912130(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90521,7 +90521,7 @@ void Unwind_180912150(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90541,7 +90541,7 @@ void Unwind_180912170(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90563,7 +90563,7 @@ void Unwind_180912180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1e0);
   if (loopCounter != 0) {
@@ -90571,7 +90571,7 @@ void Unwind_180912180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1d0);
   if (loopCounter != 0) {
@@ -90579,7 +90579,7 @@ void Unwind_180912180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1c0);
   if (loopCounter != 0) {
@@ -90587,7 +90587,7 @@ void Unwind_180912180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 400);
   if (loopCounter != 0) {
@@ -90595,7 +90595,7 @@ void Unwind_180912180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90615,7 +90615,7 @@ void Unwind_1809121a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90635,7 +90635,7 @@ void Unwind_1809121c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90655,7 +90655,7 @@ void Unwind_1809121e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90680,7 +90680,7 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x378);
   if (loopCounter != 0) {
@@ -90688,7 +90688,7 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x368);
   if (loopCounter != 0) {
@@ -90696,7 +90696,7 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x358);
   if (loopCounter != 0) {
@@ -90704,7 +90704,7 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x318);
   if (loopCounter != 0) {
@@ -90712,7 +90712,7 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x308);
   if (loopCounter != 0) {
@@ -90720,7 +90720,7 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x2f8);
   if (loopCounter != 0) {
@@ -90728,7 +90728,7 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   return;
 }
@@ -90748,7 +90748,7 @@ void Unwind_180912220(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90768,7 +90768,7 @@ void Unwind_180912240(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90788,7 +90788,7 @@ void Unwind_180912260(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90808,7 +90808,7 @@ void Unwind_180912280(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90830,7 +90830,7 @@ void Unwind_1809122a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1e0);
   if (loopCounter != 0) {
@@ -90838,7 +90838,7 @@ void Unwind_1809122a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1d0);
   if (loopCounter != 0) {
@@ -90846,7 +90846,7 @@ void Unwind_1809122a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1c0);
   if (loopCounter != 0) {
@@ -90854,7 +90854,7 @@ void Unwind_1809122a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 400);
   if (loopCounter != 0) {
@@ -90862,7 +90862,7 @@ void Unwind_1809122a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90882,7 +90882,7 @@ void Unwind_1809122c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90902,7 +90902,7 @@ void Unwind_1809122e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90922,7 +90922,7 @@ void Unwind_180912300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90947,7 +90947,7 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x378);
   if (loopCounter != 0) {
@@ -90955,7 +90955,7 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x368);
   if (loopCounter != 0) {
@@ -90963,7 +90963,7 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x358);
   if (loopCounter != 0) {
@@ -90971,7 +90971,7 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x318);
   if (loopCounter != 0) {
@@ -90979,7 +90979,7 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x308);
   if (loopCounter != 0) {
@@ -90987,7 +90987,7 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x2f8);
   if (loopCounter != 0) {
@@ -90995,7 +90995,7 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   return;
 }
@@ -91015,7 +91015,7 @@ void Unwind_180912340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91035,7 +91035,7 @@ void Unwind_180912350(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91055,7 +91055,7 @@ void Unwind_180912360(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91105,7 +91105,7 @@ void Unwind_180912400(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91125,7 +91125,7 @@ void Unwind_180912410(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91145,7 +91145,7 @@ void Unwind_180912420(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91165,7 +91165,7 @@ void Unwind_180912430(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91185,7 +91185,7 @@ void Unwind_180912440(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91205,7 +91205,7 @@ void Unwind_180912450(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91225,7 +91225,7 @@ void Unwind_180912460(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91265,7 +91265,7 @@ void Unwind_1809124d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91285,7 +91285,7 @@ void Unwind_1809124e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91302,17 +91302,17 @@ void Unwind_1809124f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   ValidationResult = 0xfffffffffffffffe;
-  SystemResourceCleanupHandler(*(uint8_t *)(LocalContextData + 0x30));
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint8_t *)(LocalContextData + 0x18) = 0;
-  *(uint8_t *)(LocalContextData + 0x10) = 0;
-  loopCounter = *(int64_t *)(LocalContextData + 0x28);
+  SystemResourceCleanupHandler(*(uint8_t *)(SystemContextPointer + 0x30));
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10) = 0;
+  loopCounter = *(int64_t *)(SystemContextPointer + 0x28);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -91332,7 +91332,7 @@ void Unwind_180912500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91352,7 +91352,7 @@ void Unwind_180912510(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91372,7 +91372,7 @@ void Unwind_180912520(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91392,7 +91392,7 @@ void Unwind_180912530(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91412,7 +91412,7 @@ void Unwind_180912540(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91442,7 +91442,7 @@ void Unwind_180912580(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91463,7 +91463,7 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (loopCounter != 0) {
@@ -91472,7 +91472,7 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint32_t *)(ValidationContext + 0x60) = 0;
   loopCounter = *(int64_t *)(ValidationContext + 0x58);
@@ -91481,7 +91481,7 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (loopCounter != 0) {
@@ -91489,7 +91489,7 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91509,7 +91509,7 @@ void Unwind_1809125a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91529,7 +91529,7 @@ void Unwind_1809125b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91549,7 +91549,7 @@ void Unwind_1809125c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91599,7 +91599,7 @@ void Unwind_180912660(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91629,7 +91629,7 @@ void Unwind_1809126a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91688,7 +91688,7 @@ void Unwind_180912770(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91714,7 +91714,7 @@ void Unwind_180912780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -91740,7 +91740,7 @@ void Unwind_180912790(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -91766,7 +91766,7 @@ void Unwind_1809127a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -91792,7 +91792,7 @@ void Unwind_1809127b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -91809,17 +91809,17 @@ void Unwind_1809127c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   ValidationResult = 0xfffffffffffffffe;
-  SystemResourceCleanupHandler(*(uint8_t *)(LocalContextData + 0x30));
-  *(uint8_t *)(LocalContextData + 0x30) = 0;
-  *(uint8_t *)(LocalContextData + 0x18) = 0;
-  *(uint8_t *)(LocalContextData + 0x10) = 0;
-  loopCounter = *(int64_t *)(LocalContextData + 0x28);
+  SystemResourceCleanupHandler(*(uint8_t *)(SystemContextPointer + 0x30));
+  *(uint8_t *)(SystemContextPointer + 0x30) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x18) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x10) = 0;
+  loopCounter = *(int64_t *)(SystemContextPointer + 0x28);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -91866,7 +91866,7 @@ void Unwind_1809127e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91886,7 +91886,7 @@ void Unwind_1809127f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91906,7 +91906,7 @@ void Unwind_180912800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(LocalContextData,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91919,12 +91919,12 @@ void Unwind_180912810(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(LocalContextData + 0x88) = 0;
-  *(uint8_t *)(LocalContextData + 0x90) = 0;
-  *(uint8_t *)(LocalContextData + 0x9c) = 0;
-  *(uint32_t *)(LocalContextData + 0x98) = 0;
-  *(uint8_t *)(LocalContextData + 0xac) = 0;
-  *(uint8_t *)(LocalContextData + 0xa4) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x88) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x90) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x9c) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x98) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xac) = 0;
+  *(uint8_t *)(SystemContextPointer + 0xa4) = 0;
   return;
 }
 
@@ -92002,22 +92002,22 @@ void Unwind_180912910(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  *(uint8_t *)(LocalContextData + 0x218) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x220) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x218) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x220) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x220) = 0;
-  *(uint32_t *)(LocalContextData + 0x230) = 0;
-  *(uint8_t *)(LocalContextData + 0x218) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x1f8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x200) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x220) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x230) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x218) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x1f8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x200) = 0;
-  *(uint32_t *)(LocalContextData + 0x210) = 0;
-  *(uint8_t *)(LocalContextData + 0x1f8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x200) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x210) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x1f8) = &SystemDataStructure;
   return;
 }
 
@@ -92065,14 +92065,14 @@ void Unwind_180912950(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  *(uint8_t *)(LocalContextData + 0x388) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x390) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x388) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x390) = 0;
-  *(uint32_t *)(LocalContextData + 0x3a0) = 0;
-  *(uint8_t *)(LocalContextData + 0x388) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x390) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3a0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x388) = &SystemDataStructure;
   return;
 }
 
@@ -92084,14 +92084,14 @@ void Unwind_180912970(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
-  *(uint8_t *)(LocalContextData + 0x3a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x3b0) != 0) {
+  *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x3b0) = 0;
-  *(uint32_t *)(LocalContextData + 0x3c0) = 0;
-  *(uint8_t *)(LocalContextData + 0x3a8) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + 0x3b0) = 0;
+  *(uint32_t *)(SystemContextPointer + 0x3c0) = 0;
+  *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemDataStructure;
   return;
 }
 
@@ -92274,8 +92274,8 @@ void InitializeResourceTableManager(void)
   SystemResourceHandler = &SystemDataStructure;
   if (SystemresourceTablePointer == 0) {
     ResetResourceSystem();
-    LocalContextData = SystemResourceTableEnd;
-    for (resourceTable = SystemResourceTableStart; resourceTable != LocalContextData; resourceTable = resourceTable + 0x100) {
+    SystemContextPointer = SystemResourceTableEnd;
+    for (resourceTable = SystemResourceTableStart; resourceTable != SystemContextPointer; resourceTable = resourceTable + 0x100) {
       SystemResourceTableCleanup(resourceTable);
     }
     if (SystemResourceTableStart == 0) {
@@ -93152,16 +93152,16 @@ void InitializeSystemDataStructureAI(void)
   
   if (MemoryPoolStartAddress != 0) {
     ValidationResult = MemoryPoolEndAddress - MemoryPoolStartAddress & 0xfffffffffffffff8;
-    LocalContextData = MemoryPoolStartAddress;
+    SystemContextPointer = MemoryPoolStartAddress;
     if (0xfff < ResourceHashValidationResult) {
       loopCounter = *(int64_t *)(MemoryPoolStartAddress + -8);
       ValidationResult = ResourceHashValidationResult + 0x27;
-      if (0x1f < (MemoryPoolStartAddress - LocalContextData) - 8U) {
+      if (0x1f < (MemoryPoolStartAddress - SystemContextPointer) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn();
       }
     }
-    free(LocalContextData,ResourceHashValidationResult);
+    free(SystemContextPointer,ResourceHashValidationResult);
     MemoryPoolEndAddress = 0;
     MemoryPoolStartAddress = 0;
     MemoryPoolCounter = 0;
@@ -94283,13 +94283,13 @@ void InitializeSystemDataStructureCB(void)
   
   SystemResourceCleanupHandler(&SystemResourceCleanupData);
   if (0xf < SystemresourceCounter) {
-    LocalContextData = CONCAT71(SystemResourceHighPointer,SystemResourceLowPointer);
-    resourceTable = LocalContextData;
+    SystemContextPointer = CONCAT71(SystemResourceHighPointer,SystemResourceLowPointer);
+    resourceTable = SystemContextPointer;
     if (0xfff < SystemresourceCounter + 1) {
-      resourceTable = *(int64_t *)(LocalContextData + -8);
-      if (0x1f < (LocalContextData - resourceTable) - 8U) {
+      resourceTable = *(int64_t *)(SystemContextPointer + -8);
+      if (0x1f < (SystemContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,SystemresourceCounter + 0x28);
+        _invalid_parameter_noinfo_noreturn(SystemContextPointer - resourceTable,SystemresourceCounter + 0x28);
       }
     }
     free(resourceTable);
@@ -94331,13 +94331,13 @@ void InitializeSystemDataStructureCC(void)
   int64_t ResourceTable;
   
   if (0xf < SystemResourcePrimaryCounter) {
-    LocalContextData = CONCAT71(SystemDataStructureHighPointer,SystemDataStructureLowPointer);
-    resourceTable = LocalContextData;
+    SystemContextPointer = CONCAT71(SystemDataStructureHighPointer,SystemDataStructureLowPointer);
+    resourceTable = SystemContextPointer;
     if (0xfff < SystemResourcePrimaryCounter + 1) {
-      resourceTable = *(int64_t *)(LocalContextData + -8);
-      if (0x1f < (LocalContextData - resourceTable) - 8U) {
+      resourceTable = *(int64_t *)(SystemContextPointer + -8);
+      if (0x1f < (SystemContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,SystemResourcePrimaryCounter + 0x28);
+        _invalid_parameter_noinfo_noreturn(SystemContextPointer - resourceTable,SystemResourcePrimaryCounter + 0x28);
       }
     }
     free(resourceTable);
@@ -94361,13 +94361,13 @@ void InitializeSystemDataStructureCD(void)
   int64_t ResourceTable;
   
   if (0xf < ResourcePoolCounter) {
-    LocalContextData = CONCAT71(ResourcePoolHighPointer,ResourcePoolLowPointer);
-    resourceTable = LocalContextData;
+    SystemContextPointer = CONCAT71(ResourcePoolHighPointer,ResourcePoolLowPointer);
+    resourceTable = SystemContextPointer;
     if (0xfff < ResourcePoolCounter + 1) {
-      resourceTable = *(int64_t *)(LocalContextData + -8);
-      if (0x1f < (LocalContextData - resourceTable) - 8U) {
+      resourceTable = *(int64_t *)(SystemContextPointer + -8);
+      if (0x1f < (SystemContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,ResourcePoolCounter + 0x28);
+        _invalid_parameter_noinfo_noreturn(SystemContextPointer - resourceTable,ResourcePoolCounter + 0x28);
       }
     }
     free(resourceTable);
@@ -94397,13 +94397,13 @@ void InitializeSystemDataStructureCE(void)
   int64_t ResourceTable;
   
   if (0xf < MemoryPoolCounter) {
-    LocalContextData = CONCAT71(MemoryPoolHighPointer,MemoryPoolLowPointer);
-    resourceTable = LocalContextData;
+    SystemContextPointer = CONCAT71(MemoryPoolHighPointer,MemoryPoolLowPointer);
+    resourceTable = SystemContextPointer;
     if (0xfff < MemoryPoolCounter + 1) {
-      resourceTable = *(int64_t *)(LocalContextData + -8);
-      if (0x1f < (LocalContextData - resourceTable) - 8U) {
+      resourceTable = *(int64_t *)(SystemContextPointer + -8);
+      if (0x1f < (SystemContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,MemoryPoolCounter + 0x28);
+        _invalid_parameter_noinfo_noreturn(SystemContextPointer - resourceTable,MemoryPoolCounter + 0x28);
       }
     }
     free(resourceTable);
@@ -94903,12 +94903,12 @@ void InitializeSystemDataStructureCR(void)
   
   if (0xf < SystemResourceSecondaryCounter) {
     LocalContextPointer = CONCAT71(SystemMemoryContextHighPointer,SystemDataTablePointer);
-    resourceTable = LocalContextData;
+    resourceTable = SystemContextPointer;
     if (0xfff < SystemResourceSecondaryCounter + 1) {
-      resourceTable = *(int64_t *)(LocalContextData + -8);
-      if (0x1f < (LocalContextData - resourceTable) - 8U) {
+      resourceTable = *(int64_t *)(SystemContextPointer + -8);
+      if (0x1f < (SystemContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,SystemResourceSecondaryCounter + 0x28);
+        _invalid_parameter_noinfo_noreturn(SystemContextPointer - resourceTable,SystemResourceSecondaryCounter + 0x28);
       }
     }
     free(resourceTable);
@@ -94984,15 +94984,15 @@ void ReleaseHashValidationResultTable(void)
   if (SystemMemoryBufferPointer != 0) {
     MemoryAllocator(SystemMemoryBufferPointer,SystemMemoryAllocationSize);
     ValidationResult = SystemMemoryEndAddress - SystemMemoryBufferPointer & 0xfffffffffffffff0;
-    LocalContextData = SystemMemoryBufferPointer;
+    SystemContextPointer = SystemMemoryBufferPointer;
     if (0xfff < ResourceHashValidationResult) {
       loopCounter = *(int64_t *)(SystemMemoryBufferPointer + -8);
-      if (0x1f < (SystemMemoryBufferPointer - LocalContextData) - 8U) {
+      if (0x1f < (SystemMemoryBufferPointer - SystemContextPointer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(SystemMemoryBufferPointer - LocalContextData,ResourceHashValidationResult + 0x27);
+        _invalid_parameter_noinfo_noreturn(SystemMemoryBufferPointer - SystemContextPointer,ResourceHashValidationResult + 0x27);
       }
     }
-    free(LocalContextData);
+    free(SystemContextPointer);
     SystemMemoryBufferPointer = 0;
     SystemMemoryAllocationSize = 0;
     lRam0000000180d49da0 = 0;
@@ -95242,7 +95242,7 @@ void InitializeSystemDataStructureCV(void)
 {
   int64_t loopCounter;
   
-  LocalContextData = ResourceHandlerContextPointer;
+  SystemContextPointer = ResourceHandlerContextPointer;
   if (DataStructureCVFlag != '\0') {
     if (EmergencyExitHandler2 != 0) {
                     // WARNING: Subroutine does not return
@@ -95253,10 +95253,10 @@ void InitializeSystemDataStructureCV(void)
       RegisterResourceHandler(ResourceHandlerContextPointer + 0x360,0xcc8,8,ResourceTypeHandlerCC8,0xfffffffffffffffe);
       _Mtx_destroy_in_situ();
       _Cnd_destroy_in_situ();
-      SystemContextHandler(LocalContextData + 0x60);
+      SystemContextHandler(SystemContextPointer + 0x60);
       SystemContextFinalizer();
                     // WARNING: Subroutine does not return
-      ReleaseResourceHandle(LocalContextData);
+      ReleaseResourceHandle(SystemContextPointer);
     }
     ResourceHandlerContextPointer = 0;
 
