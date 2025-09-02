@@ -8524,8 +8524,8 @@ uint8_t ProcessParameterizedFloatComparison(int64_t objectContext, int64_t valid
 {
   int64_t loopCounter;
   uint8_t validationResult;
-  uint32_t OperationParam1;
-  uint32_t OperationParam2;
+  uint32_t PrimaryOperationParameter;
+  uint32_t SecondaryOperationParameter;
   uint32_t operationParameter;
   uint32_t contextFlag;
   
@@ -8561,8 +8561,8 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t objectContext, int
 {
   int64_t loopCounter;
   uint8_t validationResult;
-  uint32_t OperationParam1;
-  uint32_t OperationParam2;
+  uint32_t PrimaryOperationParameter;
+  uint32_t SecondaryOperationParameter;
   uint32_t operationParameter;
   uint32_t contextFlag;
   
@@ -9771,20 +9771,20 @@ int ProcessDataWithQueue(int64_t *objectContext,int64_t validationContext,int da
  * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithStack(int64_t *objectContext,int64_t validationContext,int dataLength)
+int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int DataLength)
 
 {
   int OperationResult;
   int OperationResult;
   
-  ResourceIndex = ProcessStringOperation(validationContext,dataLength,&SystemStringBufferC);
-  operationStatusCode = ProcessStringOperation(validationContext + ResourceIndex,dataLength - ResourceIndex,&StringProcessingTemplate);
+  ResourceIndex = ProcessStringOperation(ValidationContext,DataLength,&SystemStringBufferC);
+  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,DataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ParseDataContent(ResourceIndex + validationContext,dataLength - ResourceIndex,((int)objectContext[2] + 2) * 0xc);
+  operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,DataLength - ResourceIndex,((int)ObjectContext[2] + 2) * 0xc);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + validationContext,dataLength - ResourceIndex,&StringProcessingTemplate);
+  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = (**(code **)(*objectContext + 8))(objectContext,ResourceIndex + validationContext,dataLength - ResourceIndex);
+  operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,DataLength - ResourceIndex);
   return OperationResult + ResourceIndex;
 }
 
@@ -9799,20 +9799,20 @@ int ProcessDataWithStack(int64_t *objectContext,int64_t validationContext,int da
   int OperationResult;
   int64_t ResourceIndex;
   uint8_t SecurityDataBuffer [32];
-  uint resourceFlagHigh;
-  uint resourceFlagLow;
-  uint ResourceFlag1;
-  uint ResourceFlag2;
-  uint ResourceFlag3;
-  uint ResourceFlag4;
-  uint ResourceFlag5;
-  uint ResourceFlag6;
-  uint ResourceFlag7;
-  uint ResourceFlag8;
-  uint32_t ResourceFlag9;
-  uint ResourceFlag10;
-  uint ResourceFlag11;
-  uint ResourceFlag12;
+  uint ResourceValidationFlagHigh;
+  uint ResourceValidationFlagLow;
+  uint ResourceValidationFlag1;
+  uint ResourceValidationFlag2;
+  uint ResourceValidationFlag3;
+  uint ResourceValidationFlag4;
+  uint ResourceValidationFlag5;
+  uint ResourceValidationFlag6;
+  uint ResourceValidationFlag7;
+  uint ResourceValidationFlag8;
+  uint32_t ResourceValidationFlag9;
+  uint ResourceValidationFlag10;
+  uint ResourceValidationFlag11;
+  uint ResourceValidationFlag12;
   int64_t ResourceHandleBackup;
   uint8_t ResourceDataBuffer [40];
   uint64_t OperationParam1;
@@ -9883,15 +9883,15 @@ void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationC
   int OperationResult;
   int64_t ResourceIndex;
   uint8_t SecurityDataBuffer [32];
-  uint ResourceFlag1;
-  uint ResourceFlag2;
-  uint ResourceFlag3;
-  uint ResourceFlag4;
-  uint ResourceFlag5;
-  uint ResourceFlag6;
-  uint ResourceFlag7;
-  uint ResourceFlag8;
-  uint ResourceFlag9;
+  uint ResourceValidationFlag1;
+  uint ResourceValidationFlag2;
+  uint ResourceValidationFlag3;
+  uint ResourceValidationFlag4;
+  uint ResourceValidationFlag5;
+  uint ResourceValidationFlag6;
+  uint ResourceValidationFlag7;
+  uint ResourceValidationFlag8;
+  uint ResourceValidationFlag9;
   uint ResourceFlag11;
   uint32_t validationParameter;
   uint validationParameterSecondary;
@@ -14325,8 +14325,8 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *objectContext)
   uint32_t ResourceCounter;
   uint8_t *puStack_28;
   uint32_t uStack_20;
-  uint32_t OperationParam1;
-  uint32_t OperationParam2;
+  uint32_t PrimaryOperationParameter;
+  uint32_t SecondaryOperationParameter;
   
   uStack_20 = 0;
   puStack_28 = &NetworkRequestTemplate;
@@ -38805,7 +38805,7 @@ void ResetSystemResourceHandlers(uint8_t objectContext, int64_t validationContex
 
 
 
-void Unwind_180903d70(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandler1(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
