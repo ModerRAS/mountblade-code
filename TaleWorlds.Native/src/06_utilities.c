@@ -2227,7 +2227,7 @@ uint8_t LogConfigQuaternary;          // 第四日志配置
 // 系统内存配置数据模板特殊变量
 uint8_t SystemMemoryConfigSecureSixth;   // 系统内存安全第6配置项
 uint8_t SystemMemoryConfigPrimary;     // 系统内存主要配置
-uint8_t MemoryConfigSecureSeventh;    // 安全第7配置项
+uint8_t SystemMemoryConfigSecureSeventh; // 系统内存安全第7配置项
 uint8_t MemoryConfigEighth;           // 第8配置项
 uint8_t MemoryConfigNinth;            // 普通第9配置项
 uint8_t MemoryConfigTenth;             // 第10配置项
