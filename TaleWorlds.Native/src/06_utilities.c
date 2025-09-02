@@ -2866,8 +2866,8 @@ uint8_t SystemConfigDataPremium;           // 系统配置优先数据
 // 系统资源和管理器变量
 uint8_t SystemResourceTracker;               // 系统资源跟踪器
 void* SystemExceptionListPointer;             // 系统异常列表指针
-uint8_t SystemMemoryConfigOptionalBackup;          // 系统内存配置可选项备份
-uint8_t SystemMemoryConfigSpecial;         // 系统内存配置特殊项
+uint8_t SystemMemoryConfigOptionalBackup; // 系统内存配置可选备份
+uint8_t SystemMemoryConfigSpecial;         // 系统内存配置特殊数据
 uint8_t SystemPerformanceMonitor;              // 系统性能监视器
 // 线程管理器 - 管理系统线程生命周期
 uint8_t SystemThreadManager;                   // 系统线程管理器
