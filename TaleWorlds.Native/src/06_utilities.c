@@ -8209,7 +8209,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
 uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectContext, int64_t SystemContext, uint8_t OperationControlParam1, uint8_t OperationControlParam2)
 
 {
-  float inputValue;
+  float InputParameterValue;
   int arrayElementIndex;
   int64_t elementPointer;
   uint8_t validationStatus;
@@ -13764,37 +13764,37 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
                 ProcessStatus = GetAndValidateResourceData(ObjectContext,&ResourceStackPointer);
                 if (ProcessStatus != 0) goto HandleMemoryCleanup;
               }
-              inputFloatValue = 0.0;
-              pinputFloatValue = (float *)(ResourceTable + 0x94);
+              FloatLoopCounter = 0.0;
+              FloatLoopPointer = (float *)(ResourceTable + 0x94);
               do {
-                if (*pinputFloatValue != 0.0) {
+                if (*FloatLoopPointer != 0.0) {
                   ResourceContextSize = BufferContextSize;
                   ResourceContextFlags = 0;
                   ResourceStackPointer = &SystemResourceTemplateHardware;
-                  FloatStackValue = inputFloatValue;
-                  FloatInputHardwareValue = *pinputFloatValue;
+                  FloatStackValue = FloatLoopCounter;
+                  FloatInputHardwareValue = *FloatLoopPointer;
                   ProcessStatus = GetAndValidateResourceData(ObjectContext,&ResourceStackPointer);
                   if (ProcessStatus != 0) goto HandleMemoryCleanup;
                 }
-                inputFloatValue = (float)((int)inputFloatValue + 1);
-                pinputFloatValue = pinputFloatValue + 1;
-              } while ((int)inputFloatValue < 4);
-              pinputFloatValue = (float *)&SystemFloatTemplateActive;
-              inputFloatValue = 0.0;
+                FloatLoopCounter = (float)((int)FloatLoopCounter + 1);
+                FloatLoopPointer = FloatLoopPointer + 1;
+              } while ((int)FloatLoopCounter < 4);
+              FloatLoopPointer = (float *)&SystemFloatTemplateActive;
+              FloatLoopCounter = 0.0;
               do {
-                floatComparisonResult = *(float *)(ResourceTable + -0x180985054 + (int64_t)pinputFloatValue);
-                if (inputFloatValue != *pinputFloatValue) {
+                floatComparisonResult = *(float *)(ResourceTable + -0x180985054 + (int64_t)FloatLoopPointer);
+                if (FloatLoopCounter != *FloatLoopPointer) {
                   ResourceContextSize = BufferContextSize;
                   ResourceContextFlags = 0;
                   ResourceStackPointer = &SystemResourceTemplateInput;
-                  FloatStackValue = inputFloatValue;
-                  FloatInputHardwareValue = inputFloatValue;
+                  FloatStackValue = FloatLoopCounter;
+                  FloatInputHardwareValue = FloatLoopCounter;
                   ProcessStatus = GetAndValidateResourceData(ObjectContext,&ResourceStackPointer);
                   if (ProcessStatus != 0) goto HandleMemoryCleanup;
                 }
-                inputFloatValue = (float)((int)inputFloatValue + 1);
-                pinputFloatValue = pinputFloatValue + 1;
-              } while ((int)inputFloatValue < 6);
+                FloatLoopCounter = (float)((int)FloatLoopCounter + 1);
+                FloatLoopPointer = FloatLoopPointer + 1;
+              } while ((int)FloatLoopCounter < 6);
               SecurityHashValue = CalculateSecurityHash(ValidationContext + 200);
               if ((float)(SecurityHashValue / 0x30) != 0.0) {
                 ResourceStackPointer = &SystemResourceTemplateJob;
@@ -65880,7 +65880,13 @@ void Unwind_180908e00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908e10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源状态重置处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180908e10
+ */
+void Unwind_ResourceStatusResetHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -65892,7 +65898,15 @@ void Unwind_180908e10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 资源哈希清理处理器6
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_180908e40
+ */
+void Unwind_ResourceHashCleanupHandler6(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
