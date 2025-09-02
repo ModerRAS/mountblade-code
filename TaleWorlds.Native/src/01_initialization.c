@@ -769,7 +769,7 @@ void* SystemDataTableEntryFirmware;
  * 初始化任务，与入口点A协同工作
  */
 void* SystemInitializationEntryPointBeta;
-void* SystemMemoryRegionHundredSix;
+void* SystemMemoryRegionExtendedSix;
 
 // 函数: 系统初始化入口点C
 /**
@@ -795,12 +795,12 @@ void* SystemInitializationEntryPointDelta;
  * 该函数负责系统初始化过程中的网络组件配置
  */
 void* SystemInitializationEntryPointEpsilon;
-void* SystemMemoryRegionHundredSeven;
-void* SystemMemoryRegionHundredEight;
-void* SystemMemoryRegionHundredNine;
-void* SystemMemoryRegionTwoHundred;
-void* SystemMemoryRegionTwoHundredOne;
-void* SystemMemoryRegionTwoHundredTwo;
+void* SystemMemoryRegionExtendedSeven;
+void* SystemMemoryRegionExtendedEight;
+void* SystemMemoryRegionExtendedNine;
+void* SystemMemoryRegionExtendedTwoHundred;
+void* SystemMemoryRegionExtendedTwoHundredOne;
+void* SystemMemoryRegionExtendedTwoHundredTwo;
 
 // 函数: 系统初始化入口点F
 /**
@@ -22901,12 +22901,12 @@ bool SystemNodeCheckStatus(void)
   long long longValue40;
   void* *pointerUnsigned30;
   void* *pEncryptionKeyValue;
-  uint unsignedValue20;
+  uint stringOffsetValue;
   
   InitializeSystemStringBuffer(&pointerUnsigned30);
-  systemIndex = unsignedValue20 + 0x11;
+  systemIndex = stringOffsetValue + 0x11;
   ProcessSystemStringData(&pointerUnsigned30,systemIndex);
-  HashEntryPointer = (uint32_t *)(pEncryptionKeyValue + unsignedValue20);
+  HashEntryPointer = (uint32_t *)(pEncryptionKeyValue + stringOffsetValue);
   *HashEntryPointer = 0x69676e65;
   HashEntryPointer[1] = 0x635f656e;
   HashEntryPointer[2] = 0x69666e6f;
@@ -22918,7 +22918,7 @@ bool SystemNodeCheckStatus(void)
   if (pEncryptionKeyValue != (void* *)0x0) {
     HashNodeData = pEncryptionKeyValue;
   }
-  unsignedValue20 = systemIndex;
+  stringOffsetValue = systemIndex;
   ValidateSystemStringFormat(&SystemEncryptionKey,HashNodeData,&SystemStringConstant);
   if (longValue40 == 0) {
     systemNodeStatus = false;
@@ -23077,7 +23077,7 @@ void InitializeSystemDataCleaner(void)
   uint unsignedSystemValue9;
   ulong long systemOperationFlags;
   void* *pEncryptionKeyValue;
-  uint unsignedValue20;
+  uint stringOffsetValue;
   
   InitializeSystemComponents();
   systemCode = 0;
@@ -23262,7 +23262,7 @@ void* InitializeSystemResourceValidation(char SystemResourceManager)
   long long longValue40;
   void* *pointerUnsigned30;
   void* *pEncryptionKeyValue;
-  uint unsignedValue20;
+  uint stringOffsetValue;
   
   if (SystemResourceManager == '\0') {
     if ((void* *)*SystemNodeManagerPointer == &SystemResourceTemplateQuaternary) {
@@ -53000,16 +53000,16 @@ LAB_1800721e1:
   if (SystemDataPointer0 != (uint8_t *)0x0) {
       SystemCleanupFunction(SystemDataPointer0);
   }
-  punsignedValue108 = (uint8_t *)0x0;
+  SystemDataPointer0 = (uint8_t *)0x0;
   unsignedValueF8 = (ulong long)unsignedValueF8._4_4_ << 0x20;
-  pUnsignedStackFlag110 = &SystemMemoryAllocatorReference;
-  puStack_f0 = &SystemGlobalDataReference;
-  if (lStack_e8 != 0) {
+  SystemMemoryAllocatorReference = &SystemMemoryAllocatorReference;
+  SystemGlobalDataReference = &SystemGlobalDataReference;
+  if (SystemCleanupFlag != 0) {
       SystemCleanupFunction();
   }
-  lStack_e8 = 0;
-  unsignedValueD8 = 0;
-  puStack_f0 = &SystemMemoryAllocatorReference;
+  SystemCleanupFlag = 0;
+  SystemDataIndex = 0;
+  SystemGlobalDataReference = &SystemMemoryAllocatorReference;
   ThreadLocalStorageEntry = &SystemStringTemplate;
   if (stackParameterA != (void* *)0x0) {
     ThreadLocalStorageEntry = stackParameterA;
