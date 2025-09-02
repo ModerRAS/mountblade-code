@@ -27667,7 +27667,7 @@ SystemResourceValidationHandler(void)
   int64_t *ResourceContextPointer;
   int SavedBasePointer;
   int64_t SystemContextPointer;
-  uint32_t in_stack_000000b0;
+  uint32_t ValidationStatusCode;
   
   if (InputRegisterValue == 0x1b) {
     if (*(uint *)(ResourceContextPointer + 8) < 0x3b) {
@@ -27726,8 +27726,8 @@ LAB_18089f45f:
 
 
 
- f474(void)
-f474(void)
+ EmptySystemOperation(void)
+EmptySystemOperation(void)
 
 {
   return;
