@@ -2921,13 +2921,13 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
   StackParameter4 = 0;
   StackParameter2 = 3;
   InitializeSystemBufferStructure(&StackBufferSize,&StackCounter1);
-  ProcessSystemBufferData(&StackBufferSize,auStack_a8);
+  ProcessSystemBufferData(&StackBufferSize,StackBufferDataArea);
   if (0x1fff < StackLimitValue) {
     StackLimitValue = 0x1fff;
   }
   pMemoryAddress = &SystemConstantStringPrimary;
-  if (puStack_a0 != (void *)0x0) {
-    pMemoryAddress = puStack_a0;
+  if (StackPointerBuffer != (void *)0x0) {
+    pMemoryAddress = StackPointerBuffer;
   }
   memcpy(&SystemStringDataBufferB,pMemoryAddress,(longlong)(int)StackLimitValue);
 }
@@ -2948,7 +2948,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
           SystemProcessStatus = 0;
           *(uint8_t *)(SystemEngineContext + 0x1f0) = 0;
           StackBuffer2C8 = &SystemNullPointer;
-          uStack_2b0 = 0;
+          StackProcessingBuffer1 = 0;
           puStack_2c0 = (uint8_t *)0x0;
           uStack_2b8 = 0;
           if (pMemoryAddress7 != (void *)0x0) {
@@ -2967,7 +2967,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
               *pMemoryAddress1 = 0;
               puStack_2c0 = pMemoryAddress1;
               allocationSize = GetMemoryAllocationSize(pMemoryAddress1);
-              uStack_2b0 = CONCAT44(uStack_2b0._4_4_,allocationSize);
+              StackProcessingBuffer1 = CONCAT44(StackProcessingBuffer1._4_4_,allocationSize);
               memcpy(pMemoryAddress1,pMemoryAddress7,LoopCounter9);
             }
           }
@@ -3002,7 +3002,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
             *(uint16_t *)(SystemDataPointer + 0x24) = 0;
           }
           puStack_2c0 = (uint8_t *)0x0;
-          uStack_2b0 = uStack_2b0 & 0xffffffff00000000;
+          StackProcessingBuffer1 = StackProcessingBuffer1 & 0xffffffff00000000;
           puStack_2c8 = &SystemBufferTemplate;
         }
         else if (systemMode == 0xb) {
@@ -4394,10 +4394,10 @@ ProcessMemoryAllocation(uint64_t *memoryPtr, ulonglong controlFlags, uint64_t me
     }
   }
   puStack_a8 = &SystemNullPointer;
-  if (puStack_a0 != (void *)0x0) {
+  if (StackPointerBuffer != (void *)0x0) {
     CleanupSystemResources();
   }
-  puStack_a0 = (void *)0x0;
+  StackPointerBuffer = (void *)0x0;
   uStack_90 = 0;
   puStack_a8 = &SystemBufferTemplate;
 Label_180072d7b:
@@ -5294,7 +5294,7 @@ Label_1801d5c43:
               }
               if (((uint64_t ********)ppppppPointerValue == &pppppppStackCounter58) ||
                  (StringIndex1 < *(int *)(ppppppPointerValue + 4))) {
-                pUnsignedValue = (uint64_t *)CreateSystemMemoryBuffer(&pppppppStackCounter58,&ppppppuStack_a0);
+                pUnsignedValue = (uint64_t *)CreateSystemMemoryBuffer(&pppppppStackCounter58,&pppppStackPointerBuffer);
                 ppppppPointerValue = (uint64_t *******)*pUnsignedValue;
               }
               ppppppMemoryAddress2 = ppppppPointerValue[5];
@@ -5413,7 +5413,7 @@ Label_1801d5c43:
         pppppppUnsignedIndex = (uint64_t *******)*pUnsignedValue;
       }
       ppppppMemoryAddress2 = pppppppUnsignedIndex[5];
-      ppppppuStack_a0 = ppppppMemoryAddress2;
+      pppppStackPointerBuffer = ppppppMemoryAddress2;
       if (ppppppMemoryAddress2 != (uint64_t ******)0x0) {
         FinalizeSystemMemoryAllocation(ppppppMemoryAddress2);
         SystemBufferValidate(ppppppMemoryAddress2);
@@ -5661,7 +5661,7 @@ Label_180203fb6:
         OutputDebugStringA(auStack_258);
       }
       FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)param_1 + 0x5e) - 1) *
-                            uStackX_18._4_4_,&uStack_2b0);
+                            uStackX_18._4_4_,&StackProcessingBuffer1);
       FloatResult = (float)modff();
       fStack_298 = (fStack_28c - fStack_298) * FloatResult + fStack_298;
       fStack_294 = (fStack_288 - fStack_294) * FloatResult + fStack_294;
@@ -5674,9 +5674,9 @@ Label_180203fb6:
                fStack_298;
     }
     else {
-      fVar16 = (float)uStack_2b0;
-      FloatTemp = (float)uStack_2b0;
-      FloatCalculationResult = (float)uStack_2b0;
+      fVar16 = (float)StackProcessingBuffer1;
+      FloatTemp = (float)StackProcessingBuffer1;
+      FloatCalculationResult = (float)StackProcessingBuffer1;
     }
     *param_2 = FloatTemp;
     param_2[1] = fVar16;
@@ -5685,15 +5685,15 @@ Label_180203fb6:
     break;
   case 0x16:
     iStack_2c8 = param_4;
-    ProcessModuleInitializationData(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    ProcessModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,param_1,&uStackX_18);
 code_r0x0001802a14f5:
-    *param_2 = (float)uStack_2b0._2_1_ * 0.003921569;
-    CharValue = (byte)uStack_2b0;
+    *param_2 = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
+    CharValue = (byte)StackProcessingBuffer1;
 code_r0x0001802a151f:
     fVar16 = 0.003921569;
-    MemoryAllocationResult = (ushort)uStack_2b0._1_1_;
+    MemoryAllocationResult = (ushort)StackProcessingBuffer1._1_1_;
     StringProcessingResult = (ushort)CharValue;
-    NetworkRequestResult = (ushort)uStack_2b0._3_1_;
+    NetworkRequestResult = (ushort)StackProcessingBuffer1._3_1_;
 code_r0x0001802a1528:
     param_2[1] = (float)MemoryAllocationResult * fVar16;
     param_2[2] = (float)StringProcessingResult * fVar16;
@@ -5701,7 +5701,7 @@ code_r0x0001802a1528:
     break;
   case 0x1e:
     iStack_2c8 = param_4;
-    pUnsignedIndex = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    pUnsignedIndex = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,param_1,&uStackX_18);
     fVar16 = (float)ConvertToFloatValue(pUnsignedIndex[2]);
     FloatTemp = (float)ConvertToFloatValue(pUnsignedIndex[1]);
     FloatCalculationResult = (float)ConvertToFloatValue(*pUnsignedIndex);
@@ -5713,12 +5713,12 @@ code_r0x0001802a1528:
     break;
   case 0x20:
     iStack_2c8 = param_4;
-    ValidateModuleInitializationData(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
-    *param_2 = (float)uStack_2b0;
+    ValidateModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,param_1,&uStackX_18);
+    *param_2 = (float)StackProcessingBuffer1;
     param_2[2] = (float)uStack_2a8;
 code_r0x0001802a1ad1:
     param_2[3] = 1.0;
-    fVar16 = uStack_2b0._4_4_;
+    fVar16 = StackProcessingBuffer1._4_4_;
 code_r0x0001802a1ade:
     param_2[1] = fVar16;
     break;
@@ -5752,7 +5752,7 @@ code_r0x0001802a1ade:
     else if (param_4 == 1) {
       ConfigureModuleInitializationSettings(param_1,&uStackX_18,param_3,&fStack_298);
       fVar16 = (float)modff((float)(int)(*(ushort *)((longlong)param_1 + 0x5e) - 1) *
-                            uStackX_18._4_4_,&uStack_2b0);
+                            uStackX_18._4_4_,&StackProcessingBuffer1);
       FloatTemp = (float)modff();
       fStack_298 = (fStack_288 - fStack_298) * FloatTemp + fStack_298;
       fStack_294 = (fStack_284 - fStack_294) * FloatTemp + fStack_294;
@@ -5766,7 +5766,7 @@ code_r0x0001802a1ade:
       param_2[3] = 3.4028235e+38;
     }
     else {
-      uStack_2b0 = 0;
+      StackProcessingBuffer1 = 0;
       uStack_2a8 = 0;
       param_2[0] = 0.0;
       param_2[1] = 0.0;
@@ -5776,28 +5776,28 @@ code_r0x0001802a1ade:
     break;
   case 0x27:
     iStack_2c8 = param_4;
-    ProcessModuleConfigurationData(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    ProcessModuleConfigurationData(ModuleInitializationResult0,&StackProcessingBuffer1,param_1,&uStackX_18);
     fVar16 = 1.5259022e-05;
-    *param_2 = (float)(ushort)uStack_2b0 * 1.5259022e-05;
-    uVar6 = (uint)uStack_2b0._2_2_;
-    MemoryAllocationResult = uStack_2b0._4_2_;
+    *param_2 = (float)(ushort)StackProcessingBuffer1 * 1.5259022e-05;
+    uVar6 = (uint)StackProcessingBuffer1._2_2_;
+    MemoryAllocationResult = StackProcessingBuffer1._4_2_;
     goto code_r0x0001802a16a1;
   case 0x28:
     iStack_2c8 = param_4;
-    InitializeModuleConfiguration(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,param_1,&uStackX_18);
     fVar16 = 0.003921569;
-    *param_2 = (float)(byte)uStack_2b0 * 0.003921569;
-    uVar6 = (uint)uStack_2b0._1_1_;
-    MemoryAllocationResult = (ushort)uStack_2b0._2_1_;
+    *param_2 = (float)(byte)StackProcessingBuffer1 * 0.003921569;
+    uVar6 = (uint)StackProcessingBuffer1._1_1_;
+    MemoryAllocationResult = (ushort)StackProcessingBuffer1._2_1_;
     goto code_r0x0001802a16a1;
   case 0x29:
     iStack_2c8 = param_4;
-    InitializeModuleConfiguration(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,param_1,&uStackX_18);
 code_r0x0001802a1677:
     fVar16 = 0.003921569;
-    *param_2 = (float)uStack_2b0._2_1_ * 0.003921569;
-    uVar6 = (uint)((ulonglong)uStack_2b0 >> 8) & 0xff;
-    MemoryAllocationResult = (ushort)(byte)uStack_2b0;
+    *param_2 = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
+    uVar6 = (uint)((ulonglong)StackProcessingBuffer1 >> 8) & 0xff;
+    MemoryAllocationResult = (ushort)(byte)StackProcessingBuffer1;
 code_r0x0001802a16a1:
     param_2[3] = 1.0;
     param_2[2] = (float)MemoryAllocationResult * fVar16;
@@ -8627,31 +8627,31 @@ Label_18060b76f:
                                                         goto Label_18060bbae;
                                                       }
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a9d8);
+                                                                                  &NetworkValidationDataPointer1);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0x118;
                                                         goto Label_18060bbae;
                                                       }
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a9c8);
+                                                                                  &NetworkValidationDataPointer2);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0x11c;
                                                         goto Label_18060bbae;
                                                       }
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a9f0);
+                                                                                  &NetworkValidationDataPointer3);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0x11e;
                                                         goto Label_18060bbae;
                                                       }
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a9e0);
+                                                                                  &NetworkValidationDataPointer4);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0x120;
                                                         goto Label_18060bbae;
                                                       }
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a988);
+                                                                                  &NetworkValidationDataPointer5);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0x130;
                                                         goto Label_18060bbae;
@@ -10213,7 +10213,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   uint32_t *puStack_b8;
   uint32_t uStack_b0;
   ulonglong uStack_a8;
-  uint64_t *puStack_a0;
+  uint64_t *StackPointerBuffer;
   void *StackBufferPointer;
   uint32_t *puStack_90;
   uint32_t StackBufferSize;
@@ -10229,7 +10229,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   plStack_120 = param_5;
   lStack_d0 = param_6;
   uStack_d8 = param_7;
-  puStack_a0 = param_8;
+  StackPointerBuffer = param_8;
   piStack_78 = param_9;
   puStack_c8 = param_10;
   pStackParameter1 = param_10;
@@ -10362,7 +10362,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
         }
       }
 Label_18062e835:
-      *puStack_a0 = pNetworkRequestStatus8;
+      *StackPointerBuffer = pNetworkRequestStatus8;
       if (pNetworkRequestStatus8 != (char *)0x0) {
         if (param_3 == (char *)0x0) {
           pNetworkRequestStatus9 = *(char **)(pNetworkRequestStatus8 + 0x30);
@@ -10397,7 +10397,7 @@ Label_18062e835:
           }
         }
 Label_18062e8bc:
-        *puStack_a0 = pNetworkRequestStatus9;
+        *StackPointerBuffer = pNetworkRequestStatus9;
         if (pNetworkRequestStatus9 == (char *)0x0) {
           puStack_f8 = &SystemNullPointer;
           puStack_f0 = (uint32_t *)0x0;
