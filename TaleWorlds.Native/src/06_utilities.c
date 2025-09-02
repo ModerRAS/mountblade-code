@@ -4040,10 +4040,10 @@ uint8_t CleanupObjectHandle(void)
  * 
  * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作
  */
-uint8_t ValidateCharacterParameter(char CharInput)
+uint8_t ValidateCharacterParameter(char InputCharacter)
 
 {
-  if (CharInput != '\0') {
+  if (InputCharacter != '\0') {
                     // WARNING: Subroutine does not return
     ExecuteSystemExitOperation();
   }
@@ -4073,7 +4073,7 @@ void InitializeSystemResources(void)
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
  */
-uint8_t ValidateObjectHandle(int64_t ObjectContextPointer)
+uint8_t ValidateObjectHandle(int64_t ObjectHandle)
 
 {
   uint8_t ContextHashValidationResult;
@@ -4162,7 +4162,7 @@ void CleanupSystemResources(void)
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
  * 这是validateObjectHandle函数的另一个版本
  */
-uint8_t ValidateAndProcessObjectHandle(int64_t objectHandle)
+uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleIdentifier)
 
 {
   uint8_t OperationStatusCode;
@@ -4817,7 +4817,7 @@ void PerformNoOperation(void)
  * @param resourceHandle 资源句柄，用于标识要处理的资源
  * @return 处理结果，0表示成功，非0表示错误码
  */
-uint64_t HandleResourceProcessing(int64_t resourceHandle)
+uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 
 {
   uint8_t ResourceHash;
@@ -7435,23 +7435,23 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
     if (ValidationContextBuffer[0] != 0) {
       MatrixContextPointer = ValidationContextBuffer[0] + -8;
     }
-    uint8_t matrixTypeValue = *(uint8_t *)(objectContext + 0x20);
+    uint8_t MatrixConfigurationType;
     *(uint8_t *)(MatrixContextPointer + 0x38) = *(uint8_t *)(objectContext + 0x18);
-    *(uint8_t *)(MatrixContextPointer + 0x40) = matrixTypeValue;
-    uint32_t matrixRotationFlags = *(uint32_t *)(objectContext + 0x2c);
-    uint32_t matrixScaleFlags = *(uint32_t *)(objectContext + 0x30);
-    uint32_t matrixTranslationFlags = *(uint32_t *)(objectContext + 0x34);
+    *(uint8_t *)(MatrixContextPointer + 0x40) = MatrixConfigurationType;
+    uint32_t MatrixRotationFlags = *(uint32_t *)(objectContext + 0x2c);
+    uint32_t MatrixScaleFlags = *(uint32_t *)(objectContext + 0x30);
+    uint32_t MatrixTranslationFlags = *(uint32_t *)(objectContext + 0x34);
     *(uint32_t *)(MatrixContextPointer + 0x48) = *(uint32_t *)(objectContext + 0x28);
-    *(uint32_t *)(MatrixContextPointer + 0x4c) = matrixRotationFlags;
-    *(uint32_t *)(MatrixContextPointer + 0x50) = matrixScaleFlags;
-    *(uint32_t *)(MatrixContextPointer + 0x54) = matrixTranslationFlags;
-    uint32_t matrixProjectionFlags = *(uint32_t *)(objectContext + 0x3c);
-    uint32_t matrixViewFlags = *(uint32_t *)(objectContext + 0x40);
-    uint32_t matrixWorldFlags = *(uint32_t *)(objectContext + 0x44);
+    *(uint32_t *)(MatrixContextPointer + 0x4c) = MatrixRotationFlags;
+    *(uint32_t *)(MatrixContextPointer + 0x50) = MatrixScaleFlags;
+    *(uint32_t *)(MatrixContextPointer + 0x54) = MatrixTranslationFlags;
+    uint32_t MatrixProjectionFlags = *(uint32_t *)(objectContext + 0x3c);
+    uint32_t MatrixViewFlags = *(uint32_t *)(objectContext + 0x40);
+    uint32_t MatrixWorldFlags = *(uint32_t *)(objectContext + 0x44);
     *(uint32_t *)(MatrixContextPointer + 0x58) = *(uint32_t *)(objectContext + 0x38);
-    *(uint32_t *)(MatrixContextPointer + 0x5c) = matrixProjectionFlags;
-    *(uint32_t *)(MatrixContextPointer + 0x60) = matrixViewFlags;
-    *(uint32_t *)(MatrixContextPointer + 100) = matrixWorldFlags;
+    *(uint32_t *)(MatrixContextPointer + 0x5c) = MatrixProjectionFlags;
+    *(uint32_t *)(MatrixContextPointer + 0x60) = MatrixViewFlags;
+    *(uint32_t *)(MatrixContextPointer + 100) = MatrixWorldFlags;
     MatrixContextPointer = *(int64_t *)(validationContext + 0x98);
     if ((*(int *)(MatrixContextPointer + 0x180) != 0) || (*(int *)(MatrixContextPointer + 0x184) != 0)) {
       ValidationContextBuffer[0] = 0;
@@ -16600,8 +16600,15 @@ uint8_t ValidateResourceHash(void)
 
 
 
- 9790(void)
-9790(void)
+ /**
+ * @brief 执行系统空操作
+ * 
+ * 该函数是一个空操作函数，不执行任何操作直接返回
+ * 用于系统占位或作为默认的空实现
+ * 
+ * @return 无返回值
+ */
+void ExecuteSystemNoOperation(void)
 
 {
   return;
@@ -16610,8 +16617,15 @@ uint8_t ValidateResourceHash(void)
 
 
 
- 9799(void)
-9799(void)
+ /**
+ * @brief 执行系统备用空操作
+ * 
+ * 该函数是一个备用空操作函数，不执行任何操作直接返回
+ * 用于系统占位或作为替代的空实现
+ * 
+ * @return 无返回值
+ */
+void ExecuteSystemAlternateNoOperation(void)
 
 {
   return;
@@ -16620,8 +16634,18 @@ uint8_t ValidateResourceHash(void)
 
 
 
- 97b0(uint8_t objectContext,int64_t validationContext)
-97b0(uint8_t objectContext,int64_t validationContext)
+ /**
+ * @brief 读取资源数据块
+ * 
+ * 该函数从指定对象上下文中读取资源数据块
+ * 支持连续读取多个数据块的操作
+ * 
+ * @param objectContext 对象上下文
+ * @param validationContext 验证上下文
+ * @return 无返回值
+ * @note 如果第一次读取成功，会继续读取第二个数据块
+ */
+void ReadResourceDataBlock(uint8_t objectContext,int64_t validationContext)
 
 {
   int ProcessingResult;
@@ -16734,12 +16758,15 @@ uint8_t InitializeResourceBuffer(void)
 
 
 
- 9891(void)
-9891(void)
-
-{
-  return;
-}
+ /**
+ * 空操作函数
+ * 
+ * 这是一个空操作函数，不执行任何操作。
+ * 通常用作占位符或默认实现。
+ * 
+ * @return 无返回值
+ */
+void PerformNoOperation(void)
 
 
 
@@ -16794,8 +16821,17 @@ uint8_t ProcessResourceTableEntries(int64_t objectContext, int64_t *validationCo
 
 
 
- 9950(int64_t objectContext,uint32_t *validationContext)
-9950(int64_t objectContext,uint32_t *validationContext)
+ /**
+ * 处理资源验证上下文
+ * 
+ * 该函数处理资源验证上下文，包括资源索引、内存区域和安全哈希值。
+ * 它遍历资源数据并调用相应的处理函数。
+ * 
+ * @param objectContext 对象上下文，包含资源和处理环境
+ * @param validationContext 验证上下文指针，包含验证信息
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+uint8_t ProcessResourceValidationContext(int64_t objectContext, uint32_t *validationContext)
 
 {
   int ProcessingResult;
@@ -16945,8 +16981,17 @@ uint8_t ProcessResourceTableEntries(int64_t objectContext, int64_t *validationCo
 
 
 
- 99c1(uint8_t *objectContext,uint8_t validationContext)
-99c1(uint8_t *objectContext,uint8_t validationContext)
+ /**
+ * 处理资源注册器
+ * 
+ * 该函数处理资源注册器，包括浮点计算结果和验证计数器。
+ * 它遍历资源条目并执行相应的操作。
+ * 
+ * @param objectContext 对象上下文指针
+ * @param validationContext 验证上下文
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+uint8_t ProcessResourceRegistry(uint8_t *objectContext, uint8_t validationContext)
 
 {
   uint8_t *resourceHashPointer;
@@ -17102,8 +17147,16 @@ uint8_t ProcessResourceTableEntries(int64_t objectContext, int64_t *validationCo
 
 
 
- 9ae6(uint8_t *objectContext)
-9ae6(uint8_t *objectContext)
+ /**
+ * 处理资源哈希验证
+ * 
+ * 该函数处理资源哈希验证，包括资源条目指针和资源计数器。
+ * 它验证资源条目的完整性并处理资源数据。
+ * 
+ * @param objectContext 对象上下文指针
+ * @return 处理结果，无返回值
+ */
+void ProcessResourceHashValidation(uint8_t *objectContext)
 
 {
   uint ResourceHash;
