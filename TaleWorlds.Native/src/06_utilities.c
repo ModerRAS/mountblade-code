@@ -3904,6 +3904,18 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数会进行安全验证，确保只有有效的对象被处理
  * @warning 调用此函数前必须确保游戏上下文和系统上下文已正确初始化
  */
+/**
+ * @brief 处理游戏对象集合
+ * 
+ * 该函数负责处理和验证游戏中的对象集合，确保所有对象的有效性和完整性
+ * 通过获取对象列表并逐个验证每个对象的状态
+ * 
+ * @param GameContext 游戏上下文指针，包含游戏相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时的状态信息
+ * @return 无返回值
+ * @note 此函数在游戏循环中定期调用以维护对象集合的完整性
+ * @warning 验证失败的对象将被标记为无效状态并可能被移除
+ */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t ObjectValidationState;
@@ -8482,7 +8494,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
  * @param OperationControlParam2 第二个操作控制参数，用于控制操作行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
-uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectContext, int64_t SystemContext, uint8_t OperationControlParam1, uint8_t OperationControlParam2)
+uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectContext, int64_t SystemContext, uint8_t OperationControlPrimaryParam, uint8_t OperationControlSecondaryParam)
 
 {
   float InputParameterValue;
@@ -8531,7 +8543,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
     ResourceTableSystemContext = *(int64_t *)(validationContext + 0x98);
     if ((*(int *)(ResourceTableSystemContext + SystemContextStatusFlag1Offset) != 0) || (*(int *)(ResourceTableSystemContext + SystemContextStatusFlag2Offset) != 0)) {
       SecurityContext = 0;
-      InitializeSecurityContext(&SecurityContext,ObjectContext,OperationControlParam1,OperationControlParam2,SecurityContext);
+      InitializeSecurityContext(&SecurityContext,ObjectContext,OperationControlPrimaryParam,OperationControlSecondaryParam,SecurityContext);
       if (SecurityContext == SystemDataBaseAddress(ResourceTableSystemContext)) {
         ValidationStatus = ProcessResourceValidation(ResourceTableSystemContext,ObjectContext);
         if ((int)loopCondition == 0) {
@@ -19380,7 +19392,7 @@ void InitializeNetworkSystem(void)
  * @param authenticationFlag 认证标志，指示是否需要进行数据认证
  * @return 无返回值
  */
-void ValidateAndProcessResourceData(int64_t ResourceContext, uint8_t ResourceData, uint32_t checksumParam1, uint32_t checksumParam2,
+void ValidateAndProcessResourceData(int64_t ResourceContext, uint8_t ResourceData, uint32_t ChecksumPrimaryParam, uint32_t ChecksumSecondaryParam,
                   char authenticationFlag)
 
 {
@@ -19389,8 +19401,8 @@ void ValidateAndProcessResourceData(int64_t ResourceContext, uint8_t ResourceDat
   uint8_t checksumBufferSecondary [32];
   int ValidationResult;
   
-  ValidationResult = ComputeDataChecksum(ResourceData,checksumBufferSecondary,1,checksumParam1);
-  if (((ValidationResult == 0) && (ValidationResult = ComputeDataChecksum(ResourceData,checksumBufferPrimary,0,checksumParam2), ValidationResult == 0)) &&
+  ValidationResult = ComputeDataChecksum(ResourceData,checksumBufferSecondary,1,ChecksumPrimaryParam);
+  if (((ValidationResult == 0) && (ValidationResult = ComputeDataChecksum(ResourceData,checksumBufferPrimary,0,ChecksumSecondaryParam), ValidationResult == 0)) &&
      (ValidationResult = ValidateResourceHash(ResourceData,ResourceContext + 0x10), ValidationResult == 0)) {
     if ((authenticationFlag != '\0') && (ValidationResult = ResourceDataAuthenticator(ResourceContext + 0x48,ResourceData), ValidationResult != 0)) {
       return;
@@ -24010,7 +24022,7 @@ uint64_t ProcessFloatParameterResourceHash(float ObjectContext)
   
   ArrayIndex = (int)SystemRegisterContext;
   ValidationStatusCode = (uint64_t)(SystemRegisterContext >> 8);
-  ResourceAccessIndex = ArrayIndex;
+  ResourceAccessCounter = ArrayIndex;
   ResourceIterationIndex = ResourceRegisterPointerD;
   if (CarryFlag) {
     if (*(int *)(ResourceContext[1] + 0x18) == ArrayIndex) {
@@ -89844,7 +89856,16 @@ void Unwind_18090fff0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910000(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证对象上下文并执行相关清理操作
+ * 
+ * 该函数用于验证对象上下文的有效性，并在验证通过后执行相关的资源清理操作。
+ * 这是系统资源管理中的重要函数，确保对象在释放前处于有效状态。
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ */
+void UnwindObjectContextValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -89858,7 +89879,7 @@ void Unwind_180910000(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910010(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -89878,7 +89899,7 @@ void Unwind_180910010(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910020(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindMemoryReleaseHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -89898,7 +89919,7 @@ void Unwind_180910020(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910030(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemStateReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -89920,7 +89941,7 @@ void Unwind_180910030(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910040(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindThreadCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -100614,10 +100635,10 @@ void ProcessSystemOperationA(uint8_t ObjectContext,uint8_t ValidationContext,uin
   uint8_t *ResourceHashValidationResultAddress;
   uint8_t HashValidationResult;
   
-  ResourceHashAddress = SystemDataHashPointer001;
+  ResourceHashAddress = SystemDataHashPrimaryPointer;
   ValidationStatusCode = 0xfffffffffffffffe;
   ValidationResultAddress = SystemDataValidationPointer001;
-  if (SystemDataValidationPointer001 != SystemDataHashPointer001) {
+  if (SystemDataValidationPointer001 != SystemDataHashPrimaryPointer) {
     do {
       (**(code **)*ResourceHashValidationResultAddress)(ResourceHashValidationResultAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
       ValidationResultAddress = ResourceHashValidationResultAddress + ResourceHashValidationResultOffset;
