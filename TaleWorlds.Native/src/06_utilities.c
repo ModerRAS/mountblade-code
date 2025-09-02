@@ -29738,7 +29738,13 @@ void ProcessResourceValidation(uint8_t objectContext, int64_t validationContext,
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContextOffsetF0(uint8_t objectContext, int64_t validationContext)
+/**
+ * 在异常处理时恢复系统数据结构指针到验证上下文的0xf0偏移位置
+ * 用于系统异常处理过程中的状态恢复
+ * @param objectContext 对象上下文参数
+ * @param validationContext 验证上下文参数
+ */
+void RestoreSystemDataStructureToContextOffset240(uint8_t objectContext, int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0xf0) = &SystemDataStructure;
@@ -29850,7 +29856,7 @@ void ReleaseSystemResourceAndResetState(uint8_t objectContext, int64_t validatio
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void RestoreSystemResourceHandlerToContextOffsetB4(uint8_t objectContext, int64_t validationContext)
+void RestoreSystemResourceHandlerToContextOffset180(uint8_t objectContext, int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0x180) = &SystemResourceHandlerTemplate;
@@ -29872,7 +29878,7 @@ void RestoreSystemResourceHandlerToContextOffsetB4(uint8_t objectContext, int64_
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContext138(uint8_t objectContext, int64_t validationContext)
+void RestoreSystemDataStructureToContextOffset312(uint8_t objectContext, int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x138) = &SystemDataStructure;
@@ -29887,7 +29893,7 @@ void RestoreSystemDataStructureToContext138(uint8_t objectContext, int64_t valid
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void ReleaseSpecificSystemResourceAtContext78(uint8_t objectContext, int64_t validationContext)
+void ReleaseSpecificSystemResourceAtContextOffset120(uint8_t objectContext, int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
@@ -29908,7 +29914,7 @@ void ReleaseSpecificSystemResourceAtContext78(uint8_t objectContext, int64_t val
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContext78(uint8_t objectContext,int64_t validationContext)
+void RestoreSystemDataStructureToContextOffset120(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x78) = &SystemDataStructure;
@@ -29926,7 +29932,7 @@ void RestoreSystemDataStructureToContext78(uint8_t objectContext,int64_t validat
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void ReleaseSystemResourceWithFlag4(uint8_t objectContext,int64_t validationContext)
+void ReleaseSystemResourceWithValidationFlag4(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 4) != 0) {
@@ -29947,7 +29953,7 @@ void ReleaseSystemResourceWithFlag4(uint8_t objectContext,int64_t validationCont
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContext118(uint8_t objectContext,int64_t validationContext)
+void RestoreSystemDataStructureToContextOffset280(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x118) = &SystemDataStructure;
