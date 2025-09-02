@@ -11284,9 +11284,9 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   
   int64_t resourceTablePointer = CONCAT44(SavedRegisterValue1c,RegisterEBX) + CONCAT44(SavedRegisterValue1c,RegisterEBX) * 2;
   ResourceDataOffset = (int64_t)*(int *)(InputParameter + resourceTablePointer * 4) + *(int64_t *)(ObjectContext + 8);
-  char StatusChar = *(char *)(InputParameter + 8 + resourceTablePointer * 4);
+  char resourceStatusFlag = *(char *)(InputParameter + 8 + resourceTablePointer * 4);
   *(int64_t *)(ExecutionContextPointer + -0x80) = resourceTablePointer;
-  if (StatusChar == StatusByte) {
+  if (resourceStatusFlag == StatusByte) {
     int operationStatusCode = *(int *)(ObjectContext + 0xb0);
     if (RegisterEBX < OperationResult) {
       *(int *)(ObjectContext + 0xac) = RegisterEBX + 1;
@@ -47493,7 +47493,19 @@ void Unwind_SystemCleanup_InputManager(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_SystemCleanup_FileManager(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置文件管理器的系统数据结构指针
+ * 
+ * 该函数负责重置文件管理器中偏移量0x168处的系统数据结构指针
+ * 确保文件管理器的数据结构引用正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在文件管理器重置时调用
+ * @warning 调用此函数前必须确保文件管理器已停止工作
+ */
+void ResetFileManagerSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x168) = &SystemDataStructure;
@@ -47502,7 +47514,19 @@ void Unwind_SystemCleanup_FileManager(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_SystemCleanup_ScriptManager(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置脚本管理器的系统数据结构指针
+ * 
+ * 该函数负责重置脚本管理器中偏移量0x1e8处的系统数据结构指针
+ * 确保脚本管理器的数据结构引用正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在脚本管理器重置时调用
+ * @warning 调用此函数前必须确保脚本管理器已停止工作
+ */
+void ResetScriptManagerSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1e8) = &SystemDataStructure;
@@ -47511,7 +47535,19 @@ void Unwind_SystemCleanup_ScriptManager(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_SystemCleanup_AnimationManager(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理动画管理器的资源和动画状态
+ * 
+ * 该函数负责清理动画管理器中的资源和动画状态
+ * 释放动画资源，确保动画系统正确关闭
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在动画管理器清理过程中调用
+ * @warning 调用此函数前必须确保所有动画播放已停止
+ */
+void CleanupAnimationManagerResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -48802,7 +48838,19 @@ void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_1809056b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置验证上下文间接引用的系统数据结构指针
+ * 
+ * 该函数负责重置通过验证上下文间接引用的系统数据结构指针
+ * 确保间接引用的数据结构指针正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统间接重置时调用
+ * @warning 调用此函数前必须确保间接引用已正确初始化
+ */
+void ResetIndirectSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 8) = &SystemDataStructure;
@@ -48811,7 +48859,21 @@ void Unwind_1809056b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809056c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行间接引用的清理回调函数
+ * 
+ * 该函数负责执行通过验证上下文间接引用的清理回调函数
+ * 根据清理标志调用相应的清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @return 无返回值
+ * @note 此函数在间接清理过程中调用
+ * @warning 调用此函数前必须确保回调函数已正确设置
+ */
+void ExecuteIndirectCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *charPointer;
@@ -48825,7 +48887,21 @@ void Unwind_1809056c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809056e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行间接引用的扩展清理回调函数
+ * 
+ * 该函数负责执行通过验证上下文间接引用的扩展清理回调函数
+ * 根据清理标志调用相应的扩展清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @return 无返回值
+ * @note 此函数在扩展清理过程中调用
+ * @warning 调用此函数前必须确保回调函数已正确设置
+ */
+void ExecuteIndirectExtendedCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *charPointer;
