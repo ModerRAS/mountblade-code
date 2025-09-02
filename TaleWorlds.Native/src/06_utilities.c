@@ -70185,6 +70185,18 @@ void InitializeResourceTemplates(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
+/**
+ * @brief 初始化资源上下文数据
+ * 
+ * 该函数负责初始化资源上下文的数据
+ * 调用InitializeResourceContext函数来设置具体的资源上下文
+ * 
+ * @param ObjectContext 对象上下文，包含要初始化的对象信息
+ * @param ValidationContext 验证上下文，包含资源上下文初始化所需的数据
+ * @return 无返回值
+ * @note 此函数会调用InitializeResourceContext来初始化ValidationContext + 0xe0 + 0x10处的资源上下文
+ * @warning 资源上下文初始化会影响系统的资源管理和访问
+ */
 void InitializeResourceContextData(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -70194,7 +70206,19 @@ void InitializeResourceContextData(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void ResetResourceSystemData(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源系统数据
+ * 
+ * 该函数负责重置资源系统的数据结构指针
+ * 将资源系统中的特定指针指向系统数据结构
+ * 
+ * @param ObjectContext 对象上下文，包含要重置的对象信息
+ * @param ValidationContext 验证上下文，包含资源系统数据重置所需的信息
+ * @return 无返回值
+ * @note 此函数会设置ValidationContext + 0xe0 + 0x50处的指针为SystemDataStructure的地址
+ * @warning 重置操作可能会影响资源系统的数据访问和管理
+ */
+void ResetResourceSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + 0xe0) + 0x50) = &SystemDataStructure;
@@ -70203,6 +70227,18 @@ void ResetResourceSystemData(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 初始化资源哈希表
+ * 
+ * 该函数负责初始化系统资源的哈希表
+ * 设置哈希表的指针指向预定义的资源哈希表
+ * 
+ * @param ObjectContext 对象上下文，包含要初始化的对象信息
+ * @param ValidationContext 验证上下文，包含哈希表初始化所需的数据
+ * @return 无返回值
+ * @note 此函数会设置ValidationContext + 0xe0处的哈希表指针为ResourceHashTable003
+ * @warning 哈希表初始化会影响系统的资源查找和管理
+ */
 void InitializeResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -70212,7 +70248,19 @@ void InitializeResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
-void CleanupResourceHashFlag(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希标志
+ * 
+ * 该函数负责清理资源哈希的标志位
+ * 当资源哈希的特定标志位被设置时，清除该标志并处理相关资源操作
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的对象信息
+ * @param ValidationContext 验证上下文，包含哈希标志清理所需的数据
+ * @return 无返回值
+ * @note 此函数会检查ResourceData + 0x58处的标志位
+ * @warning 清理操作会触发资源操作处理，可能影响系统状态
+ */
+void ClearResourceHashFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x58) & 1) != 0) {
@@ -70224,6 +70272,18 @@ void CleanupResourceHashFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 验证资源哈希地址
+ * 
+ * 该函数负责验证资源哈希地址的有效性
+ * 检查哈希地址的内存访问权限，并处理相关的资源索引
+ * 
+ * @param ObjectContext 对象上下文，包含要验证的对象信息
+ * @param ValidationContext 验证上下文，包含哈希地址验证所需的数据
+ * @return 无返回值
+ * @note 此函数会检查ValidationContext + 0x38处的哈希验证结果地址
+ * @warning 验证过程可能会触发内存访问检查和系统清理操作
+ */
 void ValidateResourceHashAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -70232,7 +70292,7 @@ void ValidateResourceHashAddress(uint8_t ObjectContext,int64_t ValidationContext
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultAddress = *(uint8_t **)(ValidationContext + 0x38);
+  ResourceHashValidationResultAddress = *(uint8_t **)(ValidationContext + 0x38);
   if (ResourceHashValidationResultAddress == (uint8_t *)0x0) {
     return;
   }
