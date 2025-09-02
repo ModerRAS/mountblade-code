@@ -50990,7 +50990,20 @@ ulong long InitializeSystemResourceManagerA(void* ResourceManagerPointer,void* C
 00018006fc6b)
 00018006fe26)
 
-ulong long FUN_18006f940(void* ResourceManagerPointer,void* ConfigurationDataPointer,char AdditionalParameter)
+/**
+ * @brief 系统资源初始化和处理函数
+ * 
+ * 该函数负责系统资源的初始化和处理，包括调试器检测、信号量等待、
+ * 系统配置和资源管理等功能
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @return 系统状态码
+ * 
+ * 原始函数名为FUN_18006f940，现已重命名为InitializeAndProcessSystemResources
+ */
+ulong long InitializeAndProcessSystemResources(void* ResourceManagerPointer,void* ConfigurationDataPointer,char AdditionalParameter)
 
 {
   uint8_t systemStatus;
@@ -51217,7 +51230,20 @@ ulong long FUN_18006f940(void* ResourceManagerPointer,void* ConfigurationDataPoi
 
 
 
-ulong long FUN_18006ff80(void* ResourceManagerPointer,void* ConfigurationDataPointer,char AdditionalParameter)
+/**
+ * @brief 系统资源配置和管理函数
+ * 
+ * 该函数负责系统资源的配置和管理，包括内存分配、字符处理、
+ * 系统索引管理等操作
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @return 系统状态码
+ * 
+ * 原始函数名为FUN_18006ff80，现已重命名为ConfigureAndManageSystemResources
+ */
+ulong long ConfigureAndManageSystemResources(void* ResourceManagerPointer,void* ConfigurationDataPointer,char AdditionalParameter)
 
 {
   code *systemFunctionPointer;
@@ -65694,7 +65720,16 @@ void AllocateSystemMemoryBlock(void)
 
 
 // 函数: void FUN_18007e988(void)
-void FUN_18007e988(void)
+/**
+ * @brief 系统空操作函数F
+ * 
+ * 该函数是一个空操作函数，不做任何实际操作
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18007e988，现已重命名为SystemNoOperationF
+ */
+void SystemNoOperationF(void)
 
 {
   return;
@@ -66200,8 +66235,16 @@ void FUN_18007ef9a(long long ResourceManagerPointer,long long ConfigurationDataP
 
 
 
-// 函数: void FUN_18007f0b5(void)
-void FUN_18007f0b5(void)
+/**
+ * @brief 系统空操作函数G
+ * 
+ * 该函数是一个空操作函数，不做任何实际操作
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18007f0b5，现已重命名为SystemNoOperationG
+ */
+void SystemNoOperationG(void)
 
 {
   return;
@@ -66210,8 +66253,16 @@ void FUN_18007f0b5(void)
 
 
 
-// 函数: void FUN_18007f0bf(void)
-void FUN_18007f0bf(void)
+/**
+ * @brief 系统空操作函数H
+ * 
+ * 该函数是一个空操作函数，不做任何实际操作
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18007f0bf，现已重命名为SystemNoOperationH
+ */
+void SystemNoOperationH(void)
 
 {
   return;
