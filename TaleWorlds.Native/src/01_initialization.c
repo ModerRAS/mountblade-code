@@ -43961,8 +43961,8 @@ void InitializeSystemResourceObject(void* ResourceManagerPointer,long long Confi
   }
   ppEncryptionValue68 = &puStack_a8;
   pplStack_60 = &plStack_b0;
-  FUN_180066140(&ppEncryptionValue68,SystemNodeManagerPointer,&SystemNodeManagerConfig);
-  FUN_180066140(&ppEncryptionValue68,SystemMemoryManagerPointer,&SystemMemoryManagerConfig);
+  ExecuteSystemResourceCommand(&ppEncryptionValue68,SystemNodeManagerPointer,&SystemNodeManagerConfig);
+  ExecuteSystemResourceCommand(&ppEncryptionValue68,SystemMemoryManagerPointer,&SystemMemoryManagerConfig);
   systemFunctionPointer = *(code **)(*plStack_b0 + 0x40);
   allocationContext = CreateSystemObject(&ppEncryptionValue68,SystemContextManagerPointer + 0x28);
   (*systemFunctionPointer)(plStack_b0,allocationContext);
