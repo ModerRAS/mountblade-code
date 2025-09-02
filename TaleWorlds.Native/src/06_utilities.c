@@ -9870,14 +9870,14 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
     if (ResourceIndex == 0) {
       ResourceFlag4 = ResourceFlag11 >> 0x18;
       ResourceFlag8 = ResourceFlag12 >> 0x18;
-      resourceFlagLow = ResourceFlag10 >> 0x10;
+      ResourceFlagLowBits = ResourceFlag10 >> 0x10;
       ResourceFlag7 = ResourceFlag12 >> 0x10 & 0xff;
       ResourceFlag6 = ResourceFlag12 >> 8 & 0xff;
       ResourceFlag5 = ResourceFlag12 & 0xff;
       ResourceFlag3 = ResourceFlag11 >> 0x10 & 0xff;
       ResourceFlag2 = ResourceFlag11 >> 8 & 0xff;
       ResourceFlag1 = ResourceFlag11 & 0xff;
-      resourceFlagHigh = ResourceFlag10 & 0xffff;
+      ResourceFlagHighBits = ResourceFlag10 & 0xffff;
                     // WARNING: Subroutine does not return
       ExecuteSecurityOperation(ResourceDataBuffer,0x27,&SecurityOperationData,ResourceFlag9);
     }
@@ -11881,17 +11881,17 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
   uint ResourceCounter;
   uint ValidationCounter;
   uint64_t resourceHash0;
-  int ResourceIndex1;
-  uint32_t *presourceHash2;
-  int64_t *resourceContext3;
-  int ResourceIndex4;
-  int64_t LocalContextData5;
-  int ResourceIndex6;
-  bool encryptionShiftValue7;
+  int PrimaryResourceIndex;
+  uint32_t *SecondaryResourceHashPointer;
+  int64_t *TertiaryResourceContext;
+  int QuaternaryResourceIndex;
+  int64_t LocalContextDataBuffer;
+  int ResourceProcessingIndex;
+  bool EncryptionShiftValue;
   int SystemCommandArray [2];
   uint SystemCommandParams [2];
   uint8_t SecurityValidationContext;
-  uint8_t aStackContextBuffer [8];
+  uint8_t StackContextBuffer [8];
   uint64_t ResourceHandlerFlag1;
   uint8_t ResourceHandlerFlag2;
   int64_t *DataHandlerContextPointer;
@@ -11907,13 +11907,13 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
   uint8_t *EncodingContextPointer;
   uint32_t EncodingContextOffset;
   uint32_t EncodingContextFlags;
-  uint resourceFlagLow;
-  uint8_t *pResourceFlag1;
-  uint32_t ResourceFlag2;
-  uint32_t ResourceFlag3;
-  uint8_t ResourceFlag4;
-  uint8_t aResourceFlag5 [8];
-  uint8_t aResourceFlag6 [8];
+  uint ResourceFlagLowBits;
+  uint8_t *PrimaryResourceFlagPointer;
+  uint32_t SecondaryResourceFlag;
+  uint32_t TertiaryResourceFlag;
+  uint8_t ResourceValidationFlag;
+  uint8_t ResourceEncryptionKey [8];
+  uint8_t ResourceDecryptionKey [8];
   uint8_t EncryptionBuffer [40];
   
   ResourceCounter = *(uint *)(objectContext + 0x6c);
@@ -12495,12 +12495,12 @@ void ProcessComplexResourceOperation(uint8_t objectContext,int64_t validationCon
   if (CleanupOption != 0) {
     validationStatusCode = *(int *)(validationContext + 0x220);
     if (validationStatusCode == 0) {
-      puStack_278 = &BufferTemplate1;
-      uStack_270 = 0;
-      uStack_264 = 0;
-      uStack_268 = CleanupOption;
-      CopySecurityData(auStack_260,*(uint8_t *)(validationContext + 0x228),0x200);
-      ppContextvalidationStatusCode = &puStack_278;
+      StackPointer278 = &BufferTemplate1;
+      StackVariable270 = 0;
+      StackVariable264 = 0;
+      StackVariable268 = CleanupOption;
+      CopySecurityData(StackArray260,*(uint8_t *)(validationContext + 0x228),0x200);
+      ppContextvalidationStatusCode = &StackPointer278;
 ResourceProcessingHandler:
       validationStatusCode = GetAndValidateResourceData(objectContext,ppContextValidationResult);
     }
@@ -45608,7 +45608,7 @@ void Unwind_180905460(uint8_t objectContext,int64_t validationContext,uint8_t Cl
  * @note 此函数会调用清理函数来释放验证上下文中的资源
  * @warning 清理操作不可逆，调用后资源将不再可用
  */
-void ExecuteSystemCleanupOperationA(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemCleanupOperationPrimary(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *CleanupFunctionPointer;
@@ -45690,7 +45690,7 @@ void ExecuteSystemCleanupOperationC(uint8_t objectContext, int64_t validationCon
  * @note 此函数会检查系统状态并在必要时触发紧急退出
  * @warning 如果触发紧急退出，程序将不会返回
  */
-void ValidateSystemStatusAndEmergencyExitA(uint8_t objectContext, int64_t validationContext)
+void ValidateSystemStatusAndEmergencyExitPrimary(uint8_t objectContext, int64_t validationContext)
 
 {
   if ((*(char *)(validationContext + 0x48) == '\0') && (*(int64_t *)(validationContext + 0x30) != 0)) {
@@ -46542,7 +46542,7 @@ void Unwind_180905810(uint8_t objectContext,int64_t validationContext)
  * @return 无返回值
  * @note 此函数通常在系统初始化过程中调用
  */
-void InitializeSystemResourceBufferA(uint8_t objectContext,int64_t validationContext)
+void InitializeSystemResourceBufferPrimary(uint8_t objectContext,int64_t validationContext)
 
 {
   **(uint8_t **)(validationContext + 0x2e0) = &SystemResourceBufferA0e170;
@@ -52968,7 +52968,7 @@ void Unwind_180906ff0(uint8_t objectContext,int64_t validationContext)
  * @param objectContext 清理参数，用于指定清理的类型和范围
  * @param validationContext 资源句柄，标识需要清理的资源
  */
-void CleanupResourceHandleA(uint8_t objectContext,int64_t validationContext)
+void CleanupResourceHandlePrimary(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t *processPointer;
