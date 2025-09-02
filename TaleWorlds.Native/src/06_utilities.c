@@ -5582,14 +5582,14 @@ int InitializeSystemManager(int64_t ManagerHandle)
   if (0 < *(int *)(objectContext + 0x20)) {
     SystemResourceTableHandle = *(int64_t *)(objectContext + 0x18);
   }
-  ValidationOperationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x4c),validationContextBuffer);
+  ValidationOperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x4c),ValidationContextBuffer);
   if (ValidationOperationResult == 0) {
     ValidationOperationResult = *(int *)(objectContext + 0x10);
     if (0x38 < *(int *)(objectContext + 0x10)) {
       ValidationOperationResult = 0x38;
     }
                     // WARNING: Subroutine does not return
-    memcpy(objectContextDataBuffer,objectContext + 0x10,(int64_t)ValidationOperationResult);
+    memcpy(ObjectContextDataBuffer,ObjectContext + 0x10,(int64_t)ValidationOperationResult);
   }
   if (SystemResourceTableHandle != 0) {
                     // WARNING: Subroutine does not return
