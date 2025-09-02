@@ -215,10 +215,10 @@ void* SystemEngineInternalDataShadowMapping;
 void* SystemEngineInternalDataCollisionSystem;
 
 // 系统模块数据指针 - 用于存储模块相关数据
-void* SystemModuleDataPointer01;
-void* SystemModuleDataPointer02;
-void* SystemModuleDataPointer03;
-void* SystemModuleDataPointer04;
+void* SystemModuleDataPointerAudioCore;
+void* SystemModuleDataPointerGraphicsCore;
+void* SystemModuleDataPointerPhysicsCore;
+void* SystemModuleDataPointerNetworkCore;
 void* SystemModuleDataPointer05;
 void* SystemModuleDataPointer06;
 void* SystemModuleDataPointer07;
@@ -4803,12 +4803,12 @@ LAB_1800d3d65:
       SystemMemoryPoolPointer3 = &SystemMemoryPoolData2;
       SystemMemoryPoolData2 = 0;
       SystemMemoryPoolSize2 = 6;
-      strcpy_s(&SystemMemoryPoolData2,0x40,&DAT_180a069a8);
+      strcpy_s(&SystemMemoryPoolData2,0x40,&SystemMemoryTemplate2);
       SystemMemoryPoolPointer4 = &SystemMemoryPool;
-      SystemMemoryPoolDataPointer2 = &DAT_180d493b0;
-      DAT_180d493b0 = 0;
+      SystemMemoryPoolDataPointer2 = &SystemMemoryPoolData3;
+      SystemMemoryPoolData3 = 0;
       SystemMemoryPoolDataSize = 6;
-      strcpy_s(&DAT_180d493b0,0x40,&DAT_180a069a0);
+      strcpy_s(&SystemMemoryPoolData3,0x40,&SystemMemoryTemplate3);
       InitializeSystemConfigurationTemplate(&SystemConfigurationTemplate);
       ValidateSystemConfigurationData(&SystemConfigurationDataTable);
     }
@@ -4912,9 +4912,9 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
   } while (0 < unaff_RDI);
   return unaff_RBP + lVar2;
 }
-      DAT_180d48d64 = DAT_180d48d64 == '\0';
+      SystemMemoryInitialized = SystemMemoryInitialized == '\0';
     }
-    if (DAT_180d48d64 != '\0') {
+    if (SystemMemoryInitialized != '\0') {
       (*(code *)(*in_RCX[0xc170])[9])(in_RCX[0xc170],alStackX_10[0] + 0x120);
     }
   }
