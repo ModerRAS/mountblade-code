@@ -4442,7 +4442,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleToValidate)
   uint8_t ValidationResult;
   int64_t HandleMemoryBuffer;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(objectHandle + ObjectContextValidationOffset), &HandleMemoryBuffer);
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectContextValidationOffset), &HandleMemoryBuffer);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
@@ -4559,13 +4559,13 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
         OperationResult = ProcessResourceOperation(*(int64_t *)(ResultBuffer[0] + 8), *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset),
                                       *(uint8_t *)(ObjectContext + ObjectContextStatusDataOffset));
         if ((int)OperationResult != 0) {
-          return OperationStatusCode;
+          return OperationResult;
         }
       }
       OperationResult = 0;
     }
   }
-  return OperationStatusCode;
+  return OperationResult;
 }
 
 
@@ -5018,7 +5018,7 @@ uint64_t GetSystemConstantValue(void)
  * @param resourceHandle 要验证的资源句柄
  * @return 验证结果，0表示成功，非0表示错误代码
  */
-uint8_t ValidateResourceHandle(int64_t resourceHandle)
+uint8_t ValidateResourceHandle(int64_t ResourceHandle)
 
 {
   uint8_t ResourceValidationStatus;
@@ -5215,7 +5215,7 @@ void ReturnNoOperation(void)
  * @param resourceHandle 资源句柄，用于标识要处理的资源
  * @return 处理结果，0表示成功，非0表示错误码
  */
-uint64_t HandleResourceOperation(int64_t resourceHandle)
+uint64_t HandleResourceOperation(int64_t ResourceHandle)
 
 {
   uint8_t ContextValidationStatus;
@@ -5400,7 +5400,7 @@ void ReturnNoOperation(void)
  * @param extendedObjectHandle 扩展对象句柄指针
  * @return 处理结果，成功返回0，失败返回错误码
  */
-uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
+uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t ExtendedObjectHandle)
 
 {
   uint64_t HashValidationResult;
@@ -5493,7 +5493,7 @@ void SystemCleanupHandler(void)
  * @param advancedObjectHandle 高级对象句柄指针
  * @return 处理结果，成功返回0，失败返回错误码
  */
-uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
+uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t AdvancedObjectHandle)
 
 {
   uint64_t ResourceHashValidationResult;
@@ -6230,7 +6230,7 @@ void ProcessSystemObjectQueue(int64_t objectHandle, int64_t queueContext)
  * @param configHandle 配置句柄，指向要验证的配置数据
  * @return 验证结果，0表示成功，非0表示失败
  */
-uint8_t ValidateSystemConfiguration(int64_t configHandle)
+uint8_t ValidateSystemConfiguration(int64_t ConfigHandle)
 
 {
   uint8_t HashValidationResult;
@@ -10898,7 +10898,7 @@ uint ValidateAndProcessDataContainer(int64_t *ObjectContext)
  * @param objectHandle 对象句柄，用于标识和管理特定的对象
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t ProcessObjectLifecycleManagement(int64_t objectHandle)
+uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
 
 {
   int64_t *processPointer;
@@ -12108,7 +12108,7 @@ void PerformNoOperation(void)
  * @param bufferContext 缓冲区上下文参数，包含缓冲区的标识和状态信息
  * @return uint32_t 验证结果，成功返回缓冲区状态，失败返回0
  */
-uint32_t ValidateAndGetBufferContext(uint8_t bufferContext)
+uint32_t ValidateAndGetBufferContext(uint8_t BufferContext)
 
 {
   int PackageValidationStatusCode;
@@ -18048,7 +18048,7 @@ uint8_t ProcessResourcePropertySet(int64_t ObjectContext, uint32_t *ValidationCo
  * @return 无返回值
  * @note 此函数会在资源验证过程中调用多个资源属性检查函数
  */
-void ValidateResourcePropertiesAndProcessHash(uint32_t resourceId)
+void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
 {
   uint ResourceHash;
   uint8_t *ResourceHashValidationResult;
@@ -69822,7 +69822,7 @@ void Unwind_1809097b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809097c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_ResourceHashSecondaryCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashAddress;
