@@ -48370,7 +48370,21 @@ void ExecuteResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_1809055c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行高级资源哈希验证和清理操作
+ * 
+ * 该函数负责执行高级资源哈希验证和清理操作。
+ * 检查资源索引和验证结果，执行必要的内存访问验证和资源清理。
+ * 功能与ExecuteResourceHashValidationAndCleanup类似，但处理不同的验证上下文偏移。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会验证资源哈希并执行清理操作
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_1809055c0
+ */
+void ExecuteAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
