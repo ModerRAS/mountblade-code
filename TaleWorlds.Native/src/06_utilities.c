@@ -103,6 +103,18 @@
 #define ChecksumSeedValueTIW 0x54494157
 #define ChecksumSeedValueBTIW 0x42494157
 
+// 系统请求处理相关偏移量常量
+#define RequestParameterPrimaryOffset 0x10
+#define RequestParameterSecondaryOffset 0x18
+#define SystemContextSecondaryDataOffset 0x90
+#define ValidationContextObjectDataOffset 8
+#define ValidationContextSecurityDataOffset 0xf8
+#define MemoryContextResourceTableOffset 0x240
+#define MemoryContextCleanupDataOffset 0x80
+#define ResourceTableEntrySize 0x18
+#define ValidationContextCleanupOffset -8
+#define ResourceDataEntryOffset 4
+
 // 对象上下文偏移量常量
 #define ObjectContextDataArrayOffset 0x10
 #define ObjectContextValidationDataOffset 0x18
@@ -3844,15 +3856,15 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
   int64_t MemoryContextHandle;
   int64_t ValidationContext;
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + 0x18),&ValidationContext);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterSecondaryOffset),&ValidationContext);
   PackageValidationStatusCode = (int)OperationResult;
   if (PackageValidationStatusCode == 0) {
     NullDataPointer = (int64_t *)0x0;
     CleanupDataPointer = NullDataPointer;
     if (ValidationContext != 0) {
-      CleanupDataPointer = (int64_t *)(ValidationContext + -8);
+      CleanupDataPointer = (int64_t *)(ValidationContext + ValidationContextCleanupOffset);
     }
-    OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + 0x10),&ValidationContext);
+    OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterPrimaryOffset),&ValidationContext);
     PackageValidationStatusCode = (int)OperationResult;
     if (PackageValidationStatusCode == 0) {
       MemoryContextHandle = 0;
