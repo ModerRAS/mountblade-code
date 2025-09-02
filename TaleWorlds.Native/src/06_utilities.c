@@ -6531,13 +6531,13 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   int64_t bufferContext;
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&bufferContext);
-  if (((validationStatus != 0) || (validationStatus = InitializeTempBuffer(&TemporaryStackBuffer), validationStatus != 0)) ||
-     (validationStatus = ProcessSystemContext(TemporaryStackBuffer,SystemContext,*(uint8_t *)(bufferContext + 8)), validationStatus != 0)) {
+  if (((validationStatus != 0) || (validationStatus = InitializeTempBuffer(&temporaryStackBuffer), validationStatus != 0)) ||
+     (validationStatus = ProcessSystemContext(temporaryStackBuffer,SystemContext,*(uint8_t *)(bufferContext + 8)), validationStatus != 0)) {
     return;
   }
   newBufferPointer = 0;
-  bufferOffset = TemporaryStackBuffer + 8;
-  if (TemporaryStackBuffer == 0) {
+  bufferOffset = temporaryStackBuffer + 8;
+  if (temporaryStackBuffer == 0) {
     bufferOffset = newBufferPointer;
   }
   validationStatus = ValidateBufferContext(bufferOffset,ObjectContext + 0x18);
