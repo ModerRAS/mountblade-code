@@ -5432,18 +5432,18 @@ void InitializeSystemMemoryNodeManager(void)
 void InitializeSystemStringConfigurationManager(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0xb;
-  strcpy_s(StackBuffer,0x80,&SystemConfigurationTemplateA,in_R9,0xfffffffffffffffe);
-  SystemGlobalDataProcessorResult = SystemGlobalDataProcessor(&stackParameterA);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0xb;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemConfigurationTemplateA,SystemRegisterValue,0xfffffffffffffffe);
+  SystemGlobalDataProcessorResult = SystemGlobalDataProcessor(&SystemDataPointer);
   return;
 }
 
@@ -5891,7 +5891,7 @@ int InitializeSystemDebugManager(void)
 
 {
   long long DebugManagerStatus;
-  void* RegisterR9Value;
+  void* SystemRegisterValue;
   
   SystemConfigDataPointerF = &SystemGlobalDataPointerB;
   SystemGlobalDataReferenceA = &SystemGlobalDataBufferA;
@@ -8788,17 +8788,17 @@ void InitializeSystemPluginManager(void)
 void InitializeSystemConfigurationManager(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0xc;
-  strcpy_s(StackBuffer,0x80,&SystemConfigurationTemplateB,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0xc;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemConfigurationTemplateB,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry001 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -8829,17 +8829,17 @@ int InitializeSystemModuleLoader(void)
 void InitializeSystemExtensionManager(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x16;
-  strcpy_s(StackBuffer,0x80,&SystemStringConstantA,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x16;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantA,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry002 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -8853,17 +8853,17 @@ void InitializeSystemExtensionManager(void)
 void InitializeSystemLibraryManager(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x16;
-  strcpy_s(StackBuffer,0x80,&SystemStringConstantB,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x16;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantB,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry003 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -9304,17 +9304,17 @@ void InitializeSystemThreadNode(void)
 void InitializeSystemPerformanceNode(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x1c;
-  strcpy_s(StackBuffer,0x80,&SystemInitializationStringTemplate,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x1c;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemInitializationStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry004 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -9921,17 +9921,17 @@ void InitializeSystemSearchConfigurationManager(void)
 void InitializeSystemDebugInfoManager(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 9;
-  strcpy_s(StackBuffer,0x80,&SystemConfigurationStringTemplate,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 9;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemConfigurationStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry005 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -9952,17 +9952,17 @@ void InitializeSystemDebugInfoManager(void)
 void InitializeSystemLogManager(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 8;
-  strcpy_s(StackBuffer,0x80,&SystemResourceStringTemplate,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 8;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemResourceStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry006 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -10024,8 +10024,8 @@ void InitializeSystemStringProcessorB(void)
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0xd;
-  strcpy_s(SystemStringBuffer,0x80,&SystemStringTemplateB,systemRegisterR9,0xfffffffffffffffe);
-  SystemStringProcessorB = SystemStringProcessingCallback(&systemStringPointer);
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringTemplateB,systemRegisterR9,0xfffffffffffffffe);
+  SystemStringProcessorB = SystemStringProcessingCallback(&SystemStringPointer);
   return;
 }
 
@@ -10068,17 +10068,17 @@ void InitializeSystemStringProcessorC(void)
 void InitializeSystemStringProcessorA(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x15;
-  strcpy_s(StackBuffer,0x80,&SystemMemoryStringTemplate,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x15;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemMemoryStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry007 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -10091,17 +10091,17 @@ void InitializeSystemStringProcessorA(void)
 void InitializeSystemStringProcessorB(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0xe;
-  strcpy_s(StackBuffer,0x80,&SystemThreadStringTemplate,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0xe;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemThreadStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry008 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -10110,21 +10110,28 @@ void InitializeSystemStringProcessorB(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorC(void)
+/**
+ * @brief 初始化系统字符串处理器C
+ * 
+ * 该函数负责初始化系统的字符串处理组件C，设置字符串处理的基础结构。
+ * 它会配置字符串缓冲区，设置处理参数，并建立字符串处理的回调机制。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保字符串处理系统的正常运行
+ */
 void InitializeSystemStringProcessorC(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x1a;
-  strcpy_s(StackBuffer,0x80,&SystemFileSystemStringTemplate,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x1a;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemFileSystemStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry009 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -10133,21 +10140,28 @@ void InitializeSystemStringProcessorC(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorD(void)
+/**
+ * @brief 初始化系统字符串处理器D
+ * 
+ * 该函数负责初始化系统的字符串处理组件D，设置字符串处理的基础结构。
+ * 它会配置字符串缓冲区，设置处理参数，并建立字符串处理的回调机制。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保字符串处理系统的正常运行
+ */
 void InitializeSystemStringProcessorD(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x13;
-  strcpy_s(StackBuffer,0x80,&SystemNetworkStringTemplate,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x13;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemNetworkStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry010 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -12734,17 +12748,17 @@ void InitializeSystemStringProcessor(void)
 void InitializeSystemMemoryNodeManager(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x12;
-  strcpy_s(StackBuffer,0x80,&SystemStringTemplateA,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x12;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringTemplateA,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry012 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -12763,17 +12777,17 @@ void InitializeSystemMemoryNodeManager(void)
 void InitializeSystemDeviceNodeManager(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 8;
-  strcpy_s(StackBuffer,0x80,&SystemStringTemplateB,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 8;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringTemplateB,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry013 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -13193,7 +13207,7 @@ int InitializeSystemGlobalDataTable(void)
 
 {
   long long DataTableStatus;
-  void* RegisterR9Value;
+  void* SystemRegisterValue;
   
   SystemGlobalDataPointerD = &SystemMemoryNodeTemplateA;
   SystemGlobalDataReferenceB = &SystemGlobalDataBufferB;
@@ -14043,17 +14057,17 @@ void InitializeSystemEventManagerM(void)
 void InitializeSystemEventManagerN(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x1b;
-  strcpy_s(StackBuffer,0x80,&SystemStringTemplateC,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x1b;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringTemplateC,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry014 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -14675,17 +14689,17 @@ void InitializeSystemResourceManagerJ(void)
 void InitializeSystemResourceManagerK(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x10;
-  strcpy_s(StackBuffer,0x80,&SystemStringTemplateD,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x10;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringTemplateD,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry015 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -14701,17 +14715,17 @@ void InitializeSystemResourceManagerK(void)
 void InitializeSystemResourceManagerL(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0xf;
-  strcpy_s(StackBuffer,0x80,&SystemStringConstantC,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0xf;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantC,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry016 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -14727,17 +14741,17 @@ void InitializeSystemResourceManagerL(void)
 void InitializeSystemResourceManagerM(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x19;
-  strcpy_s(StackBuffer,0x80,&SystemStringConstantD,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x19;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantD,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry017 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -14753,17 +14767,17 @@ void InitializeSystemResourceManagerM(void)
 void InitializeSystemResourceManagerN(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x14;
-  strcpy_s(StackBuffer,0x80,&SystemStringConstantE,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x14;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantE,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry018 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -16506,17 +16520,17 @@ void InitializeSystemSubcomponentL(void)
 void InitializeSystemSubcomponentM(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0xd;
-  strcpy_s(StackBuffer,0x80,&SystemStringConstantErrorMessageA,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0xd;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantErrorMessageA,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryRegionCacheB = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -17743,17 +17757,17 @@ void SystemResourceTrackerInitializer(void)
 void SystemPerformanceMonitorInitializer(void)
 
 {
-  void* RegisterR9Value;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t StackParameterC;
-  uint8_t StackBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemDataPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = StackBuffer;
-  StackBuffer[0] = 0;
-  StackParameterC = 0x1b;
-  strcpy_s(StackBuffer,0x80,&SystemStringConstantErrorMessageB,in_R9,0xfffffffffffffffe);
+  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x1b;
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantErrorMessageB,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryRegionCacheA = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -17888,13 +17902,13 @@ void SystemNetworkManagerInitializer(void)
   void* *stackPointerParameter;
   uint8_t *StackBufferPointer;
   uint32_t StackBufferSize;
-  uint8_t StackBuffer [136];
+  uint8_t SystemProcessingBuffer [136];
   
   stackPointerParameter = &SystemGlobalDataPointerC;
   StackBufferPointer = StackBuffer;
-  StackBuffer[0] = 0;
+  SystemProcessingBuffer[0] = 0;
   StackBufferSize = 0x10;
-  strcpy_s(StackBuffer,0x80,&SystemStringConstantConfigPathC,registerR9Value,0xfffffffffffffffe);
+  strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantConfigPathC,registerR9Value,0xfffffffffffffffe);
   SystemMemoryRegionCacheC = SystemMemoryAllocationFunction(&stackPointerParameter);
   return;
 }
@@ -20063,7 +20077,7 @@ int InitializeSystemCoreComponents(long long ResourceManagerPointer,long long In
   uStack_a8 = 0;
   uStack_a0 = 0;
   uStack_98 = 0;
-  StackParameterC = 0;
+  SystemConfigurationValue = 0;
   uStack_88 = 0;
   uStack_80 = 0;
   uStack_78 = 0;
@@ -20932,7 +20946,7 @@ void InitializeSystemConfigurationData(void* ResourceManagerPointer,void* Config
       while (nextDataIndex1 != nextDataIndex3) {
         localSystemFlags = 0;
         puStack_a8 = &SystemGlobalDataReference;
-        StackParameterC = 0;
+        SystemConfigurationValue = 0;
         pcStack_a0 = (char *)0x0;
         uStack_98 = 0;
         InitializeSystemDataBuffer(&puStack_a8,*(uint32_t *)(nextDataIndex1 + 0x50));
@@ -20944,7 +20958,7 @@ void InitializeSystemConfigurationData(void* ResourceManagerPointer,void* Config
           if (pcStack_a0 != (char *)0x0) {
             *pcStack_a0 = '\0';
           }
-          StackParameterC = StackParameterC & 0xffffffff;
+          SystemConfigurationValue = StackParameterC & 0xffffffff;
         }
         validationStatusFlag = *pcStack_a0;
         while (validationStatusFlag != '\0') {
@@ -20965,7 +20979,7 @@ void InitializeSystemConfigurationData(void* ResourceManagerPointer,void* Config
             SystemCleanupFunction();
         }
         pcStack_a0 = (char *)0x0;
-        StackParameterC = StackParameterC & 0xffffffff00000000;
+        SystemConfigurationValue = StackParameterC & 0xffffffff00000000;
         puStack_a8 = &SystemMemoryAllocatorReference;
         nextDataIndex1 = SystemMemoryNodeGetNext(nextDataIndex1);
         unsignedSystemValue4 = systemStatus6;
@@ -23060,7 +23074,7 @@ void ExecuteSystemFinalCleanup(void)
   long long *PrimaryResourcePointer;
   long long localSystemHandle;
   long long localResourceOffset;
-  void* RegisterR9Value;
+  void* SystemRegisterValue;
   void* unsignedSystemValue4;
   
   unsignedSystemValue4 = 0xfffffffffffffffe;
@@ -23073,7 +23087,7 @@ void ExecuteSystemFinalCleanup(void)
   PrimaryResourcePointer = *(long long **)(localSystemHandle + 0x30);
   if (PrimaryResourcePointer != (long long *)0x0) {
     localResourceOffset = __RTCastToVoid(PrimaryResourcePointer);
-    (**(code **)(*PrimaryResourcePointer + 0x10))(PrimaryResourcePointer,0,*(code **)(*PrimaryResourcePointer + 0x10),in_R9,unsignedSystemValue4);
+    (**(code **)(*PrimaryResourcePointer + 0x10))(PrimaryResourcePointer,0,*(code **)(*PrimaryResourcePointer + 0x10),SystemRegisterValue,unsignedSystemValue4);
     if (localResourceOffset != 0) {
         SystemCleanupFunction(localResourceOffset);
     }
@@ -24441,7 +24455,7 @@ void SystemResourceAllocate(long long ResourceManagerPointer)
 {
   void* *pointerToUnsigned1;
   uint8_t auStack_a8 [8];
-  void* *stackParameterA;
+  void* *SystemDataPointer;
   uint uStack_98;
   void* uStack_88;
   void* uStack_80;
@@ -25579,7 +25593,7 @@ uint32_t GetSystemResourceStatus(void)
   asystemStatus = *(uint8_t (*) [16])(localSystemHandle + 0xdc + (ulong long)(*(uint *)(localSystemHandle + 0x13c) & 1) * 0x48);
   if ((asystemStatus._12_4_ != 0) && (asystemStatus._8_4_ != 0)) {
     puStack_a8 = &SystemGlobalDataReference;
-    StackParameterC = 0;
+    SystemConfigurationValue = 0;
     lStack_a0 = 0;
     uStack_98 = 0;
     ProcessSystemData(&puStack_a8,asystemStatus._0_4_);
@@ -27045,7 +27059,7 @@ void SystemMemoryAllocator(long long ResourceManagerPointer,long long parameter2
   uStack_60 = 10;
   systemCounter = GetSystemCounter(ResourceManagerPointer + 0x2c0,&puStack_70);
   if (-1 < systemCounter) {
-    pStackParameterC = &SystemGlobalDataReference;
+    pSystemConfigurationValue = &SystemGlobalDataReference;
     uStack_78 = 0;
     puStack_88 = (void* *)0x0;
     uStack_80 = 0;
@@ -27059,7 +27073,7 @@ void SystemMemoryAllocator(long long ResourceManagerPointer,long long parameter2
     *(uint8_t *)((long long)punsignedSystemValue4 + 10) = 0;
     uStack_80 = 10;
     GetSystemCounter(ResourceManagerPointer + 0x2c0,&pStackParameterC);
-    pStackParameterC = &SystemGlobalDataReference;
+    pSystemConfigurationValue = &SystemGlobalDataReference;
       SystemCleanupFunction(punsignedSystemValue4);
   }
   puStack_70 = &SystemGlobalDataReference;
@@ -28531,7 +28545,7 @@ PathSeparatorFound:
                 if (pStackParameterC != (void* *)0x0) {
                     SystemCleanupFunction();
                 }
-                pStackParameterC = (void* *)0x0;
+                pSystemConfigurationValue = (void* *)0x0;
                 uStack_80 = 0;
                 stackParameterB = &SystemMemoryAllocatorReference;
                 puStack_158 = &SystemGlobalDataReference;
@@ -29399,7 +29413,7 @@ void ProcessSystemConfigurationParameters(long long ResourceManagerPointer)
     UNLOCK();
     stackParameterB = &SystemGlobalDataReference;
     uStack_80 = 0;
-    pStackParameterC = (void* *)0x0;
+    pSystemConfigurationValue = (void* *)0x0;
     uStack_88 = 0;
     ExecuteSystemCommand(&stackParameterB,0x1c);
     pcurrentThreadId = (uint32_t *)(pStackParameterC + uStack_88);
@@ -29465,7 +29479,7 @@ void ProcessSystemConfigurationParameters(long long ResourceManagerPointer)
     if (pStackParameterC != (void* *)0x0) {
         SystemCleanupFunction();
     }
-    pStackParameterC = (void* *)0x0;
+    pSystemConfigurationValue = (void* *)0x0;
     uStack_80 = uStack_80 & 0xffffffff00000000;
     stackParameterB = &SystemMemoryAllocatorReference;
   }
@@ -42530,7 +42544,7 @@ void ConfigureSecurityParameters(void* ResourceManagerPointer,long long Configur
   
   stackValue1 = 0;
   outputStream = 0;
-  FUN_180627e10(ResourceManagerPointer,&stackPointer1,&SystemStackAllocationTemplate);
+  AllocateSystemStackMemory(ResourceManagerPointer,&stackPointer1,&SystemStackAllocationTemplate);
   dataPointer = &SystemStringTemplate;
   if (stackPointer2 != (void* *)0x0) {
     dataPointer = stackPointer2;
@@ -42613,7 +42627,7 @@ void CleanupAndValidateSystemResources(void)
   uStack_270 = 0xfffffffffffffffe;
   uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_2f8;
   systemStatus1 = 0;
-  FUN_1800ba980(&puStack_290);
+  InitializeSystemStackPointer(&puStack_290);
   puStack_2d8 = (void* *)0x0;
   puStack_2d0 = (void* *)0x0;
   uStack_2c8 = 0;
@@ -42622,7 +42636,7 @@ void CleanupAndValidateSystemResources(void)
   puStack_2a8 = (void* *)0x0;
   uStack_2a0 = 0;
   uStack_298 = 3;
-  FUN_18062d3b0(&puStack_290,&puStack_2d8,&puStack_2b0);
+  ConfigureSystemStackAllocation(&puStack_290,&puStack_2d8,&puStack_2b0);
   systemStatus4 = -1;
   nextDataIndex5 = -0x8000000000000000;
   systemStatus6 = (uint)((long long)puStack_2d0 - (long long)puStack_2d8 >> 5);
@@ -42767,7 +42781,7 @@ void InitializeAndConfigureSystemResources(void* ResourceManagerPointer)
   puStack_2b8 = (void* *)0x0;
   uStack_2b0 = 0;
   uStack_2a8 = 3;
-  FUN_18062d3b0(&puStack_2a0,&puStack_318,&puStack_2c0);
+  ConfigureSystemStackAllocation(&puStack_2a0,&puStack_318,&puStack_2c0);
   HashEntryStatus = puStack_2b8;
   pointerToUnsigned1 = puStack_310;
   punsignedSystemValue4 = puStack_2c0;
@@ -42797,7 +42811,7 @@ void InitializeAndConfigureSystemResources(void* ResourceManagerPointer)
   puStack_2a0 = &SystemMemoryAllocatorReference;
   uStack_2f8 = 0;
   lStack_2f0 = 0;
-  FUN_180627e10(ResourceManagerPointer,&pEncryptionKeyValue0,&SystemDataBufferTemplate1);
+  AllocateSystemStackMemory(ResourceManagerPointer,&pEncryptionKeyValue0,&SystemDataBufferTemplate1);
   HashNodePointer = &SystemStringTemplate;
   if (puStack_278 != (void* *)0x0) {
     HashNodePointer = puStack_278;
@@ -42929,7 +42943,7 @@ ulong long ProcessAndManageSystemResources(void* ResourceManagerPointer)
   
   uStack_38 = 0xfffffffffffffffe;
   stackParameterB = (void* *)0x0;
-  pStackParameterC = (void* *)0x0;
+  pSystemConfigurationValue = (void* *)0x0;
   uStack_88 = 0;
   uStack_80 = 3;
   cVar1 = FUN_180064400(&stackParameterB);
@@ -43120,7 +43134,7 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
   nextDataIndex2 = lStack_78;
   systemStatus = uStack_a8;
   uStack_98 = 0;
-  StackParameterC = 0xf;
+  SystemConfigurationValue = 0xf;
   uStack_a8 = uStack_a8 & 0xffffff00;
   allocationFlags = CONCAT71(uStack_87,uStack_88);
   unsignedSystemValue9 = CONCAT44(uStack_a4,systemStatus) & 0xffffffffffffff00;
@@ -43145,7 +43159,7 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
       free(systemStatus3,unsignedSystemValue8);
     }
     uStack_98 = 0;
-    StackParameterC = 0xf;
+    SystemConfigurationValue = 0xf;
     uStack_a8 = uStack_a8 & 0xffffff00;
     if (0xf < uStack_70) {
       unsignedSystemValue9 = uStack_70 + 1;
@@ -43200,7 +43214,7 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
   uStack_a4 = uStack_64;
   uStack_a0 = uStack_60;
   uStack_9c = uStack_5c;
-  StackParameterC = uStack_50;
+  SystemConfigurationValue = uStack_50;
   uStack_e8 = 0;
   uStack_58 = 0;
   uStack_50 = 0xf;
@@ -44350,9 +44364,9 @@ void ConfigureSystemDataProcessing(void* ResourceManagerPointer,void* Configurat
   void* *pcurrentThreadId;
   int systemFlag;
   long long localDataIndex;
-  void* *stackParameterA;
+  void* *SystemDataPointer;
   void* *stackParameterB;
-  uint32_t StackParameterC;
+  uint32_t SystemConfigurationValue;
   void* uStack_88;
   uint8_t auStack_80 [72];
   
@@ -44366,14 +44380,14 @@ LAB_180066bf4:
         stackParameterA = &SystemGlobalDataReference;
         uStack_88 = 0;
         stackParameterB = (void* *)0x0;
-        StackParameterC = 0;
+        SystemConfigurationValue = 0;
         pcurrentThreadId = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
         *(uint8_t *)pcurrentThreadId = 0;
         stackParameterB = pcurrentThreadId;
         unsignedSystemValue4 = StartSystemThread(pcurrentThreadId);
         uStack_88 = CONCAT44(uStack_88._4_4_,unsignedSystemValue4);
         *pcurrentThreadId = 0x73656873617263;
-        StackParameterC = 7;
+        SystemConfigurationValue = 7;
         GetSystemCounter(auStack_80,&stackParameterA);
         stackParameterA = &SystemGlobalDataReference;
           SystemCleanupFunction(pcurrentThreadId);
@@ -44416,7 +44430,7 @@ LAB_180066bf4:
     stackParameterA = &SystemGlobalDataReference;
     uStack_88 = 0;
     stackParameterB = (void* *)0x0;
-    StackParameterC = 0;
+    SystemConfigurationValue = 0;
     nextDataIndex = -1;
     do {
       localDataIndex = nextDataIndex;
@@ -44434,7 +44448,7 @@ LAB_180066bf4:
       uStack_88 = CONCAT44(uStack_88._4_4_,unsignedSystemValue4);
         memcpy(stackParameterB,&SystemStringBuffer,systemFlag);
     }
-    StackParameterC = 0;
+    SystemConfigurationValue = 0;
     FUN_180065f00(&stackParameterA,SystemParameter);
     stackParameterA = &SystemGlobalDataReference;
     if (stackParameterB != (void* *)0x0) {
@@ -50767,9 +50781,9 @@ ulong long FUN_18006f940(void* ResourceManagerPointer,void* ConfigurationDataPoi
   void* *systemGlobalDataPtrB8;
   uint32_t uStack_b0;
   void* uStack_a8;
-  void* *stackParameterA;
+  void* *SystemDataPointer;
   void* *stackParameterB;
-  uint32_t StackParameterC;
+  uint32_t SystemConfigurationValue;
   ulong long uStack_88;
   void* *puStack_80;
   long long lStack_78;
@@ -50824,7 +50838,7 @@ ulong long FUN_18006f940(void* ResourceManagerPointer,void* ConfigurationDataPoi
     stackParameterA = &SystemGlobalDataReference;
     uStack_88 = 0;
     stackParameterB = (void* *)0x0;
-    StackParameterC = 0;
+    SystemConfigurationValue = 0;
     ConfigureSystemDataBuffer(&stackParameterA,&SystemDataTemplateC,ConfigurationDataPointer);
     FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationTemplate);
     ThreadLocalStorage = &SystemStringTemplate;
@@ -51113,7 +51127,7 @@ LAB_180070230:
       bVar15 = SystemStatusFlagsPointer == 0;
       if (bVar15) {
         systemStatus3 = 0;
-        pStackParameterC = &SystemGlobalDataReference;
+        pSystemConfigurationValue = &SystemGlobalDataReference;
         uStack_78 = 0;
         puStack_88 = (void* *)0x0;
         uStack_80 = 0;
@@ -51141,13 +51155,13 @@ LAB_180070230:
       }
       systemStatus6 = CreateSystemObject(&puStack_70,pnewThreadLocalStorage);
       if (bVar15) {
-        pStackParameterC = &SystemGlobalDataReference;
+        pSystemConfigurationValue = &SystemGlobalDataReference;
         if (punsignedSystemValue9 != (void* *)0x0) {
             SystemCleanupFunction(punsignedSystemValue9);
         }
         puStack_88 = (void* *)0x0;
         uStack_78 = uStack_78 & 0xffffffff00000000;
-        pStackParameterC = &SystemMemoryAllocatorReference;
+        pSystemConfigurationValue = &SystemMemoryAllocatorReference;
       }
       if (!bVar15) {
         memoryAllocationEnd = &SystemGlobalDataReference;
@@ -51988,7 +52002,7 @@ void FUN_180071940(void* ResourceManagerPointer,long long ConfigurationDataPoint
     uStack_38 = 0;
     memoryAllocationEnd = &SystemMemoryAllocatorReference;
   }
-  pStackParameterC = &SystemGlobalDataReference;
+  pSystemConfigurationValue = &SystemGlobalDataReference;
   uStack_78 = 0;
   puStack_88 = (uint8_t *)0x0;
   uStack_80 = 0;
@@ -52195,11 +52209,11 @@ LAB_180071eb0:
   do {
     systemStatus = ReleaseSemaphore(SystemSemaphoreHandle,1);
   } while (systemStatus == 0);
-  pStackParameterC = &SystemGlobalDataReference;
+  pSystemConfigurationValue = &SystemGlobalDataReference;
   if (puStack_88 == (uint8_t *)0x0) {
     puStack_88 = (uint8_t *)0x0;
     uStack_78 = uStack_78 & 0xffffffff00000000;
-    pStackParameterC = &SystemMemoryAllocatorReference;
+    pSystemConfigurationValue = &SystemMemoryAllocatorReference;
     puStack_70 = &SystemGlobalDataReference;
     if (punsignedSystemValue9 == (void* *)0x0) {
       return;
@@ -52264,8 +52278,8 @@ void FUN_180072000(void* ResourceManagerPointer,long long ConfigurationDataPoint
   ulong long uStack_b8;
   uint32_t uStack_b0;
   void* *puStack_a8;
-  void* *stackParameterA;
-  uint32_t StackParameterC;
+  void* *SystemDataPointer;
+  uint32_t SystemConfigurationValue;
   long long lStack_88;
   void* *puStack_80;
   long long lStack_78;
@@ -52992,7 +53006,7 @@ bool FUN_180072f00(void* ResourceManagerPointer,void* *ConfigurationDataPointer)
     pHashBucketNode = &puStack_a8;
     resourceEntryPointer = puStack_108;
   }
-  pStackParameterC = &SystemGlobalDataReference;
+  pSystemConfigurationValue = &SystemGlobalDataReference;
   uStack_78 = 0;
   puStack_88 = (uint8_t *)0x0;
   uStack_80 = 0;
@@ -53047,11 +53061,11 @@ bool FUN_180072f00(void* ResourceManagerPointer,void* *ConfigurationDataPointer)
   fflush(unsignedSystemValue9);
   unsignedSystemValue9 = __acrt_iob_func(2);
   fflush(unsignedSystemValue9);
-  pStackParameterC = &SystemGlobalDataReference;
+  pSystemConfigurationValue = &SystemGlobalDataReference;
   if (puStack_88 == (uint8_t *)0x0) {
     puStack_88 = (uint8_t *)0x0;
     uStack_78 = uStack_78 & 0xffffffff00000000;
-    pStackParameterC = &SystemMemoryAllocatorReference;
+    pSystemConfigurationValue = &SystemMemoryAllocatorReference;
     for (pcurrentThreadId = pEncryptionValue68; pcurrentThreadId != puStack_60; pcurrentThreadId = pcurrentThreadId + 4) {
       (**(code **)*pcurrentThreadId)(pcurrentThreadId,0);
     }
@@ -55901,7 +55915,7 @@ float * FUN_180075b70(float *ResourceManagerPointer)
   float fStack_a0;
   uint32_t uStack_9c;
   float *pfStack_98;
-  uint32_t StackParameterC;
+  uint32_t SystemConfigurationValue;
   long long lStack_88;
   void* uStack_78;
   void* uStack_70;
@@ -55936,7 +55950,7 @@ float * FUN_180075b70(float *ResourceManagerPointer)
     ResourceManagerPointer[0xa6] = 0.0;
     ResourceManagerPointer[0xa7] = 0.0;
     ResourceManagerPointer[0xa8] = 3.4028235e+38;
-    StackParameterC = 0;
+    SystemConfigurationValue = 0;
     pfStack_98 = pfVar6;
     FUN_18007f770(&pfStack_98);
     if (*(int *)(lStack_88 + 0x10) != 0) {
@@ -56137,7 +56151,7 @@ void FUN_180075ff0(long long *ResourceManagerPointer)
   void* uStack_a0;
   void* StackParameterC;
   
-  StackParameterC = 0xfffffffffffffffe;
+  SystemConfigurationValue = 0xfffffffffffffffe;
   while( true ) {
     if (((int)ResourceManagerPointer[0x41] != 0) &&
        ((fVar8 = *(float *)(ResourceManagerPointer + 0x5b) - *(float *)((long long)ResourceManagerPointer + 0x2dc), fVar8 <= -0.01
@@ -61649,7 +61663,7 @@ float * FUN_1800795b0(float *ResourceManagerPointer)
   float fStack_a0;
   uint32_t uStack_9c;
   float *pfStack_98;
-  uint32_t StackParameterC;
+  uint32_t SystemConfigurationValue;
   long long lStack_88;
   void* uStack_80;
   void* uStack_78;
@@ -61713,7 +61727,7 @@ float * FUN_1800795b0(float *ResourceManagerPointer)
     ResourceManagerPointer[0xa6] = 0.0;
     ResourceManagerPointer[0xa7] = 0.0;
     ResourceManagerPointer[0xa8] = 3.4028235e+38;
-    StackParameterC = 0;
+    SystemConfigurationValue = 0;
     pfStack_98 = pfVar7;
     FUN_18007f770(&pfStack_98);
     if (*(int *)(lStack_88 + 0x10) != 0) {
@@ -69149,4 +69163,118 @@ void* SystemDataBufferEmergencyTemplateSexvigintenary;
 void* SystemDataBufferTemplateSeptenvigintenary;
 void* SystemDataBufferTemplateOctovigintenary;
 void* SystemDataBufferTemplateNovemvigintenary;
+
+/**
+ * @brief 获取资源偏移指针函数
+ * 
+ * 该函数负责获取系统资源的偏移指针，用于资源定位和访问
+ * 
+ * @param resourcePointer 资源指针
+ * @return 资源偏移指针
+ * 
+ * 原始函数名为FUN_18005ff50，现已重命名为GetResourceOffsetPointer
+ */
+void* GetResourceOffsetPointer(void* resourcePointer);
+
+/**
+ * @brief 获取系统资源状态函数
+ * 
+ * 该函数负责获取系统资源的当前状态，用于资源监控和管理
+ * 
+ * @return 系统资源状态
+ * 
+ * 原始函数名为FUN_18005f430，现已重命名为GetSystemResourceStatus
+ */
+long long GetSystemResourceStatus(void);
+
+/**
+ * @brief 初始化系统资源处理器函数
+ * 
+ * 该函数负责初始化系统资源处理器，设置资源处理环境和参数
+ * 
+ * 原始函数名为FUN_180060200，现已重命名为InitializeSystemResourceHandler
+ */
+void InitializeSystemResourceHandler(void);
+
+/**
+ * @brief 验证系统资源上下文函数
+ * 
+ * 该函数负责验证系统资源上下文的有效性和完整性
+ * 
+ * 原始函数名为FUN_180060420，现已重命名为ValidateSystemResourceContext
+ */
+void ValidateSystemResourceContext(void);
+
+/**
+ * @brief 配置系统资源上下文函数
+ * 
+ * 该函数负责配置系统资源上下文，设置资源处理参数和属性
+ * 
+ * @param resourcePointer 资源指针
+ * @param configFlag 配置标志
+ * @param additionalParameter 额外参数
+ * @param configurationFlag 配置标志
+ * @param configurationMask 配置掩码
+ * @return 配置结果状态
+ * 
+ * 原始函数名为FUN_18020eba0，现已重命名为ConfigureSystemResourceContext
+ */
+char ConfigureSystemResourceContext(void* resourcePointer, int configFlag, long long additionalParameter, long long configurationFlag, long long configurationMask);
+
+/**
+ * @brief 完成系统资源配置函数
+ * 
+ * 该函数负责完成系统资源的配置过程，进行最终的状态设置
+ * 
+ * 原始函数名为FUN_18020f530，现已重命名为FinalizeSystemResourceConfiguration
+ */
+void FinalizeSystemResourceConfiguration(void);
+
+/**
+ * @brief 清理系统资源处理器函数
+ * 
+ * 该函数负责清理系统资源处理器，释放相关资源
+ * 
+ * 原始函数名为FUN_18020e6c0，现已重命名为CleanupSystemResourceHandler
+ */
+void CleanupSystemResourceHandler(void);
+
+/**
+ * @brief 释放系统资源句柄函数
+ * 
+ * 该函数负责释放系统资源句柄，清理相关资源
+ * 
+ * @param resourceHandle 资源句柄
+ * @param releaseFlag 释放标志
+ * 
+ * 原始函数名为FUN_18064e0d0，现已重命名为ReleaseSystemResourceHandle
+ */
+void ReleaseSystemResourceHandle(void* resourceHandle, int releaseFlag);
+
+/**
+ * @brief 处理系统资源数据函数
+ * 
+ * 该函数负责处理系统资源数据，进行数据的操作和管理
+ * 
+ * @param resourcePointer 资源指针
+ * @param dataPointer 数据指针
+ * @param resultPointer 结果指针
+ * @param configurationFlag 配置标志
+ * @param systemStatus 系统状态
+ * @return 处理结果状态
+ * 
+ * 原始函数名为FUN_180060e40，现已重命名为ProcessSystemResourceData
+ */
+char ProcessSystemResourceData(void* resourcePointer, void* dataPointer, void* resultPointer, long long configurationFlag, long long systemStatus);
+
+/**
+ * @brief 验证系统资源状态函数
+ * 
+ * 该函数负责验证系统资源的当前状态
+ * 
+ * @return 系统资源状态
+ * 
+ * 原始函数名为FUN_180060a50，现已重命名为ValidateSystemResourceStatus
+ */
+char ValidateSystemResourceStatus(void);
 

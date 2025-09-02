@@ -43885,7 +43885,17 @@ void DestroyConditionVariable(uint8_t ObjectContext,int64_t ValidationContext)
  * - 确保互斥锁资源正确释放
  * - 防止资源泄漏
  */
-void Unwind_SystemCleanup_MutexDestroy(void)
+/**
+ * @brief 执行全局互斥锁销毁操作
+ * 
+ * 该函数负责销毁全局的互斥锁资源
+ * 确保系统中的互斥锁资源正确释放，维护系统稳定性
+ * 
+ * @return 无返回值
+ * @note 此函数会销毁全局互斥锁
+ * @warning 调用此函数后，被销毁的互斥锁将不再可用
+ */
+void DestroyGlobalMutexLock(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -47043,7 +47053,19 @@ void ResetSystemResourceHandlerAtOffset0xd0(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_ValidationContextCleanup_1a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证上下文中的系统资源标志
+ * 
+ * 该函数负责清理验证上下文中偏移量0x1a0处的系统资源标志
+ * 重置资源状态标志，确保系统资源能够正确释放
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中调用
+ * @warning 调用此函数前必须确保资源已停止使用
+ */
+void CleanupValidationContextResourceFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x58) & 4) != 0) {
@@ -47055,7 +47077,19 @@ void Unwind_ValidationContextCleanup_1a0(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_ValidationContextCleanup_1d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置验证上下文中的系统数据结构指针
+ * 
+ * 该函数负责重置验证上下文中偏移量0x1d0处的系统数据结构指针
+ * 确保系统数据结构引用的正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统重置时调用
+ * @warning 调用此函数前必须确保数据结构已正确初始化
+ */
+void ResetValidationContextSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x188) = &SystemDataStructure;
@@ -47064,7 +47098,19 @@ void Unwind_ValidationContextCleanup_1d0(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_ValidationContextCleanup_1e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置验证上下文中的扩展系统数据结构指针
+ * 
+ * 该函数负责重置验证上下文中偏移量0x1e0处的扩展系统数据结构指针
+ * 确保扩展系统数据结构引用的正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统扩展重置时调用
+ * @warning 调用此函数前必须确保扩展数据结构已正确初始化
+ */
+void ResetValidationContextExtendedSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1a8) = &SystemDataStructure;
@@ -47073,7 +47119,21 @@ void Unwind_ValidationContextCleanup_1e0(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_ResourceHandleCleanup_1f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源句柄和相关哈希验证结果
+ * 
+ * 该函数负责清理资源句柄以及相关的哈希验证结果
+ * 遍历验证结果数组，调用相应的清理函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @return 无返回值
+ * @note 此函数在资源释放过程中调用
+ * @warning 调用此函数前必须确保资源已停止使用
+ */
+void CleanupResourceHandleAndHashValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -47216,7 +47276,19 @@ void ValidateResourceContextAndProcessHash(uint8_t ObjectContext,int64_t Validat
 
 
 
-void Unwind_SystemCleanup_ResourceManager(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源管理器的系统数据结构指针
+ * 
+ * 该函数负责重置资源管理器中偏移量0x278处的系统数据结构指针
+ * 确保资源管理器的数据结构引用正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在资源管理器重置时调用
+ * @warning 调用此函数前必须确保资源管理器已停止工作
+ */
+void ResetResourceManagerSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x278) = &SystemDataStructure;
@@ -47225,7 +47297,19 @@ void Unwind_SystemCleanup_ResourceManager(uint8_t ObjectContext,int64_t Validati
 
 
 
-void Unwind_SystemCleanup_MemoryManager(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置内存管理器的系统数据结构指针
+ * 
+ * 该函数负责重置内存管理器中偏移量0x250处的系统数据结构指针
+ * 确保内存管理器的数据结构引用正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在内存管理器重置时调用
+ * @warning 调用此函数前必须确保内存管理器已停止工作
+ */
+void ResetMemoryManagerSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x250) = &SystemDataStructure;
