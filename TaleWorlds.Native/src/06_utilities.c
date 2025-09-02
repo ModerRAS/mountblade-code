@@ -70054,7 +70054,18 @@ void ExecuteResourceIndexValidationAndMemoryManagement(uint8_t ObjectContext, in
 
 
 
-void Unwind_18090a960(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源索引验证和内存管理操作（验证上下文偏移量0x50版本）
+ * 
+ * 该函数负责执行资源索引的验证和内存管理操作
+ * 与ExecuteResourceIndexValidationAndMemoryManagement功能相同，但从验证上下文的0x50偏移量获取资源索引
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数与ExecuteResourceIndexValidationAndMemoryManagement功能相同，但使用不同的验证上下文偏移量
+ */
+void ExecuteResourceIndexValidationAndMemoryManagementExtended(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
