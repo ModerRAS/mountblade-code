@@ -752,7 +752,7 @@ int InitializeRenderingSystem(void)
 int InitializePhysicsEngine(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalPhysicsEngineData = &GlobalUnknownDataPointer;
+  GlobalPhysicsEngineData = &GlobalSystemDataPointer;
   GlobalPhysicsEngineConfig = &GlobalPhysicsEngineState;
   GlobalPhysicsEngineFlags = 0;
   GlobalPhysicsEngineState = 0;
@@ -768,7 +768,7 @@ int InitializePhysicsEngine(void)
 int InitializeAudioSystem(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalAudioSystemData = &GlobalUnknownDataPointer;
+  GlobalAudioSystemData = &GlobalSystemDataPointer;
   GlobalAudioSystemConfig = &GlobalAudioSystemState;
   GlobalAudioSystemFlags = 0;
   GlobalAudioSystemState = 0;
@@ -816,7 +816,7 @@ int InitializeNetworkSystem(void)
 int InitializeFileSystem(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalFileSystemData = &GlobalUnknownDataPointer;
+  GlobalFileSystemData = &GlobalSystemDataPointer;
   GlobalFileSystemConfig = &GlobalFileSystemState;
   GlobalFileSystemFlags = 0;
   GlobalFileSystemState = 0;
@@ -832,7 +832,7 @@ int InitializeFileSystem(void)
 int InitializeMemoryManager(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalMemoryManagerData = &GlobalUnknownDataPointer;
+  GlobalMemoryManagerData = &GlobalSystemDataPointer;
   GlobalMemoryManagerConfig = &GlobalMemoryManagerState;
   GlobalMemoryManagerFlags = 0;
   GlobalMemoryManagerState = 0;
@@ -2509,7 +2509,7 @@ int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,u
   SystemMemoryConfigPointerTertiary = &SystemMemoryDataBufferPrimary;
   SystemMemoryDataBufferPrimary = 0;
   SystemMemoryBufferSizePrimary = 0xc;
-  strcpy_s(&SystemMemoryDataBufferPrimary,128,&UnknownDataPointer180a0f178);
+  strcpy_s(&SystemMemoryDataBufferPrimary,128,&SystemMemoryDataPointer1);
   SystemMemoryConfigPointerQuaternary = &SystemMemoryConfigTemplate;
   SystemMemoryConfigPointerQuinary = &SystemMemoryDataBufferSecondary;
   SystemMemoryDataBufferSecondary = 0;
