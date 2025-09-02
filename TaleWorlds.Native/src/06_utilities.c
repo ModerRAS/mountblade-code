@@ -4000,29 +4000,29 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
  */
 uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemContextParameters)
 {
-  int64_t ObjectHandle;
-  int PackageValidationStatusCode;
-  uint8_t AccessValidationCode;
-  int64_t ValidationContext [2];
+  int64_t SystemObjectHandle;
+  int SystemValidationStatusCode;
+  uint8_t AccessValidationResult;
+  int64_t SecurityValidationContext [2];
   
-  AccessValidationCode = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + 0x10),ValidationContext);
-  ObjectHandle = ValidationContext[0];
-  if ((int)AccessValidationCode != 0) {
-    return AccessValidationCode;
+  AccessValidationResult = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + 0x10),SecurityValidationContext);
+  SystemObjectHandle = SecurityValidationContext[0];
+  if ((int)AccessValidationResult != 0) {
+    return AccessValidationResult;
   }
-  *(int *)(ValidationContext[0] + ResourceCounterOffset) = *(int *)(ValidationContext[0] + ResourceCounterOffset) + 1;
-  if (*(int *)(ValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(ValidationContext[0] + ResourceSecondaryCounterOffset) +
-      *(int *)(ValidationContext[0] + ResourceCounterOffset) == 1) {
-    ValidationContext[0] = 0;
-    PackageValidationStatus = ValidateSystemObjectConfiguration(ValidationContext);
-    if (PackageValidationStatus == 0) {
-      PackageValidationStatus = ProcessSystemObjectValidation(ObjectHandle,*(uint8_t *)(ObjectHandle + 8),*(uint8_t *)(SystemContextParameters + 0x90),
+  *(int *)(SecurityValidationContext[0] + ResourceCounterOffset) = *(int *)(SecurityValidationContext[0] + ResourceCounterOffset) + 1;
+  if (*(int *)(SecurityValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(SecurityValidationContext[0] + ResourceSecondaryCounterOffset) +
+      *(int *)(SecurityValidationContext[0] + ResourceCounterOffset) == 1) {
+    SecurityValidationContext[0] = 0;
+    SystemValidationStatusCode = ValidateSystemObjectConfiguration(SecurityValidationContext);
+    if (SystemValidationStatusCode == 0) {
+      SystemValidationStatusCode = ProcessSystemObjectValidation(SystemObjectHandle,*(uint8_t *)(SystemObjectHandle + 8),*(uint8_t *)(SystemContextParameters + 0x90),
                             *(uint8_t *)(SystemContextParameters + 800));
-      if (PackageValidationStatus == 0) {
-              ReleaseValidationResources(ValidationContext);
+      if (SystemValidationStatusCode == 0) {
+              ReleaseValidationResources(SecurityValidationContext);
       }
     }
-          ReleaseValidationResources(ValidationContext);
+          ReleaseValidationResources(SecurityValidationContext);
   }
   return 0;
 }
@@ -4052,28 +4052,28 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
  */
 uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
 {
-  uint *StatusFlagsPointer;
-  int64_t ObjectDataPointer;
-  uint64_t OperationResult;
-  int64_t *ObjectIterator;
-  int64_t ContextHandles[4];
+  uint *ObjectStatusFlagsPointer;
+  int64_t ObjectInstancePointer;
+  uint64_t UpdateOperationResult;
+  int64_t *ObjectCollectionIterator;
+  int64_t SystemContextHandles[4];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandles);
-  if ((int)OperationResult == 0) {
-    ObjectIterator = *(int64_t **)(ContextHandles[0] + ContextHandlesIteratorOffset);
-    while ((*(int64_t **)(ContextHandles[0] + ContextHandlesIteratorOffset) <= ObjectIterator &&
-           (ObjectIterator < *(int64_t **)(ContextHandles[0] + ContextHandlesIteratorOffset) + *(int *)(ContextHandles[0] + ContextHandlesCapacityOffset)))) {
-      ObjectDataPointer = *ObjectIterator;
-      ObjectIterator = ObjectIterator + 1;
-      if ((*(int64_t *)(ObjectDataPointer + ObjectContextValidationDataOffset) == *(int64_t *)(ContextHandles[0] + ObjectHandleSecondaryOffset)) &&
-         (ObjectDataPointer = *(int64_t *)(ObjectDataPointer + ObjectContextOffset), ObjectDataPointer != 0)) {
-        StatusFlagsPointer = (uint *)(ObjectDataPointer + SystemContextFlagCheckOffset);
-        *StatusFlagsPointer = *StatusFlagsPointer | 4;
+  UpdateOperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextHandles);
+  if ((int)UpdateOperationResult == 0) {
+    ObjectCollectionIterator = *(int64_t **)(SystemContextHandles[0] + ContextHandlesIteratorOffset);
+    while ((*(int64_t **)(SystemContextHandles[0] + ContextHandlesIteratorOffset) <= ObjectCollectionIterator &&
+           (ObjectCollectionIterator < *(int64_t **)(SystemContextHandles[0] + ContextHandlesIteratorOffset) + *(int *)(SystemContextHandles[0] + ContextHandlesCapacityOffset)))) {
+      ObjectInstancePointer = *ObjectCollectionIterator;
+      ObjectCollectionIterator = ObjectCollectionIterator + 1;
+      if ((*(int64_t *)(ObjectInstancePointer + ObjectContextValidationDataOffset) == *(int64_t *)(SystemContextHandles[0] + ObjectHandleSecondaryOffset)) &&
+         (ObjectInstancePointer = *(int64_t *)(ObjectInstancePointer + ObjectContextOffset), ObjectInstancePointer != 0)) {
+        ObjectStatusFlagsPointer = (uint *)(ObjectInstancePointer + SystemContextFlagCheckOffset);
+        *ObjectStatusFlagsPointer = *ObjectStatusFlagsPointer | 4;
       }
     }
-    OperationResult = 0;
+    UpdateOperationResult = 0;
   }
-  return OperationResult;
+  return UpdateOperationResult;
 }
 
 
@@ -4090,36 +4090,36 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
  */
 uint64_t DecrementSystemResourceCounter(int64_t SystemContext, uint64_t ResourceHandle)
 {
-  int64_t ContextData;
-  uint64_t OperationResult;
-  int ResourceCounter;
-  int64_t ContextHandles[2];
+  int64_t SystemContextData;
+  uint64_t ResourceManagementResult;
+  int ActiveResourceCount;
+  int64_t ResourceContextHandles[2];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(SystemContext + ObjectContextOffset), ContextHandles);
-  ContextData = ContextHandles[0];
-  if ((int)OperationResult != 0) {
-    return OperationResult;
+  ResourceManagementResult = ValidateObjectContext(*(uint32_t *)(SystemContext + ObjectContextOffset), ResourceContextHandles);
+  SystemContextData = ResourceContextHandles[0];
+  if ((int)ResourceManagementResult != 0) {
+    return ResourceManagementResult;
   }
-  if (*(int *)(ContextHandles[0] + ResourceCounterOffset) < 1) {
+  if (*(int *)(ResourceContextHandles[0] + ResourceCounterOffset) < 1) {
     return 0x1c;
   }
-  ResourceCounter = *(int *)(ContextHandles[0] + ResourceCounterOffset) + -1;
-  *(int *)(ContextHandles[0] + ResourceCounterOffset) = ResourceCounter;
-  if (*(int *)(ContextHandles[0] + ResourceTertiaryCounterOffset) + *(int *)(ContextHandles[0] + ResourceSecondaryCounterOffset) + ResourceCounter != 0) {
+  ActiveResourceCount = *(int *)(ResourceContextHandles[0] + ResourceCounterOffset) + -1;
+  *(int *)(ResourceContextHandles[0] + ResourceCounterOffset) = ActiveResourceCount;
+  if (*(int *)(ResourceContextHandles[0] + ResourceTertiaryCounterOffset) + *(int *)(ResourceContextHandles[0] + ResourceSecondaryCounterOffset) + ActiveResourceCount != 0) {
     return 0;
   }
-  ContextHandles[0] = 0;
-  int PackageValidationStatus = ValidateSystemObjectConfiguration(ContextHandles);
-  if (PackageValidationStatus == 0) {
-    PackageValidationStatus = ProcessSystemObjectOperation(ContextData,0);
-    if (PackageValidationStatus == 0) {
-      PackageValidationStatus = ProcessSystemContextValidation(SystemContext);
-      if (PackageValidationStatus == 0) {
-              ReleaseValidationResources(ContextHandles);
+  ResourceContextHandles[0] = 0;
+  int SystemValidationStatus = ValidateSystemObjectConfiguration(ResourceContextHandles);
+  if (SystemValidationStatus == 0) {
+    SystemValidationStatus = ProcessSystemObjectOperation(SystemContextData,0);
+    if (SystemValidationStatus == 0) {
+      SystemValidationStatus = ProcessSystemContextValidation(SystemContext);
+      if (SystemValidationStatus == 0) {
+              ReleaseValidationResources(ResourceContextHandles);
       }
     }
   }
-        ReleaseValidationResources(ContextHandles);
+        ReleaseValidationResources(ResourceContextHandles);
 }
 
 
@@ -4136,22 +4136,22 @@ uint64_t DecrementSystemResourceCounter(int64_t SystemContext, uint64_t Resource
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext)
 
 {
-  int64_t ObjectPointer;
-  uint8_t OperationResult;
-  int64_t ContextHandles [4];
+  int64_t SystemObjectPointer;
+  uint8_t ReferenceCountResult;
+  int64_t ObjectContextHandles [4];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandles);
-  if ((int)OperationResult != 0) {
-    return OperationResult;
+  ReferenceCountResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
+  if ((int)ReferenceCountResult != 0) {
+    return ReferenceCountResult;
   }
-  if (ContextHandles[0] != 0) {
-    ContextHandles[0] = ContextHandles[0] + -8;
+  if (ObjectContextHandles[0] != 0) {
+    ObjectContextHandles[0] = ObjectContextHandles[0] + -8;
   }
-  ObjectPointer = *(int64_t *)(ContextHandles[0] + 0x10);
-  if (ObjectPointer != 0) {
-    *(int *)(ObjectPointer + 500) = *(int *)(ObjectPointer + 500) + 1;
-    if ((*(char *)(ObjectPointer + 0x204) != '\0') && (OperationResult = CheckSystemStatus(), (int)OperationResult != 0)) {
-      return OperationResult;
+  SystemObjectPointer = *(int64_t *)(ObjectContextHandles[0] + 0x10);
+  if (SystemObjectPointer != 0) {
+    *(int *)(SystemObjectPointer + 500) = *(int *)(SystemObjectPointer + 500) + 1;
+    if ((*(char *)(SystemObjectPointer + 0x204) != '\0') && (ReferenceCountResult = CheckSystemStatus(), (int)ReferenceCountResult != 0)) {
+      return ReferenceCountResult;
     }
     return 0;
   }
@@ -4172,23 +4172,23 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext)
 uint8_t InitializeObjectHandleBasic(int64_t ObjectContext)
 
 {
-  uint8_t ResourceValidationHash;
-  int64_t ObjectValidationContext;
+  uint8_t ObjectValidationResult;
+  int64_t SystemValidationContext;
   
-  ResourceValidationHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset),&ObjectValidationContext);
-  if ((int)ResourceValidationHash == 0) {
-    if (ObjectValidationContext == 0) {
-      ObjectValidationContext = 0;
+  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset),&SystemValidationContext);
+  if ((int)ObjectValidationResult == 0) {
+    if (SystemValidationContext == 0) {
+      SystemValidationContext = 0;
     }
     else {
-      ObjectValidationContext = ObjectValidationContext + -8;
+      SystemValidationContext = SystemValidationContext + -8;
     }
-    if (*(int64_t *)(ObjectValidationContext + 0x10) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(ObjectValidationContext + 0x10),1);
+    if (*(int64_t *)(SystemValidationContext + 0x10) != 0) {
+            ExecuteSystemExitOperation(*(int64_t *)(SystemValidationContext + 0x10),1);
     }
-    ResourceValidationHash = 0;
+    ObjectValidationResult = 0;
   }
-  return ResourceValidationHash;
+  return ObjectValidationResult;
 }
 
 
@@ -13858,7 +13858,7 @@ void SystemInitializerPrimary(void)
   float FloatRegisterValue;
   int64_t ResourceRegisterPointer;
   uint64_t ResourceHashValidationTertiary;
-  int64_t SystemRegisterR15;
+  int64_t SystemContextRegister;
   uint32_t FloatRegisterPrimaryValue;
   uint32_t ResourceHashValidationQuaternary;
   uint32_t FloatRegisterSecondaryValue;
@@ -13902,12 +13902,12 @@ void SystemInitializerPrimary(void)
     FloatRegisterParameter = FloatRegisterValue;
     ResourceIndexTertiary = GetAndValidateResourceData(FloatRegisterPrimaryValue,&ResourceDataBuffer);
     if (ResourceIndexTertiary == 0) {
-      StackParameterContext = (int64_t)*(int *)(SystemRegisterR15 + 0x28);
+      StackParameterContext = (int64_t)*(int *)(SystemContextRegister + 0x28);
       if (0 < StackParameterContext) {
         ResourceHashValidationTertiary = (uint64_t)(uint)FloatRegisterValue;
         ResourceHashValidationResultPrimary = (uint64_t)(uint)FloatRegisterValue;
         do {
-          LocalContextPointer = *(int64_t *)(SystemRegisterR15 + 0x20);
+          LocalContextPointer = *(int64_t *)(SystemContextRegister + 0x20);
           ResourceTable = *(int64_t *)(ResourceHashValidationResultPrimary + 0x10 + LocalContextPointer);
           ResourceIndex = *(int64_t *)(ResourceHashValidationResultPrimary + 8 + LocalContextPointer);
           ValidationResult = CheckResourceIndex(ResourceTable,1);
@@ -13945,23 +13945,23 @@ void SystemInitializerPrimary(void)
         ResourceHashValidationQuaternary = FloatRegisterSecondaryValue;
         if (SecondaryHashBuffer[0] != '\0') {
           ResourceHashValueTertiary = GenerateResourceHash();
-          ResourceIndexTertiary = memcmp(SystemRegisterR15 + 0x38,ResourceHashValueTertiary,0x30);
+          ResourceIndexTertiary = memcmp(SystemContextRegister + 0x38,ResourceHashValueTertiary,0x30);
           ResourceHashValidationQuaternary = FloatRegisterTertiaryValue;
           if (ResourceIndexTertiary != 0) {
-            ResourceHashValueTertiary = *(uint8_t *)(SystemRegisterR15 + 0x38);
-            ResourceHashValueSecondary = *(uint8_t *)(SystemRegisterR15 + 0x40);
-            ResourceHashValidationQuaternary = *(uint32_t *)(SystemRegisterR15 + 0x48);
-            ResourceContextOffset = *(uint32_t *)(SystemRegisterR15 + 0x4c);
-            ContextValidationStatusCode = *(uint32_t *)(SystemRegisterR15 + 0x50);
-            SecurityHashValue = *(uint32_t *)(SystemRegisterR15 + 0x54);
+            ResourceHashValueTertiary = *(uint8_t *)(SystemContextRegister + 0x38);
+            ResourceHashValueSecondary = *(uint8_t *)(SystemContextRegister + 0x40);
+            ResourceHashValidationQuaternary = *(uint32_t *)(SystemContextRegister + 0x48);
+            ResourceContextOffset = *(uint32_t *)(SystemContextRegister + 0x4c);
+            ContextValidationStatusCode = *(uint32_t *)(SystemContextRegister + 0x50);
+            SecurityHashValue = *(uint32_t *)(SystemContextRegister + 0x54);
             SystemExecutionPointer[-0xe] = &SystemResourceTemplateEvent;
             SystemExecutionPointer[-0xb] = ResourceHashGeneratedValue;
             SystemExecutionPointer[-10] = ResourceHashCalculatedValue;
             *(float *)(SystemExecutionPointer + -0xd) = FloatRegisterValue;
-            ResourceCounter = *(uint32_t *)(SystemRegisterR15 + 0x58);
-            ValidationCounter = *(uint32_t *)(SystemRegisterR15 + 0x5c);
-            ResourceHashInitialValue = *(uint32_t *)(SystemRegisterR15 + 0x60);
-            PrimaryResourceHash = *(uint32_t *)(SystemRegisterR15 + 100);
+            ResourceCounter = *(uint32_t *)(SystemContextRegister + 0x58);
+            ValidationCounter = *(uint32_t *)(SystemContextRegister + 0x5c);
+            ResourceHashInitialValue = *(uint32_t *)(SystemContextRegister + 0x60);
+            PrimaryResourceHash = *(uint32_t *)(SystemContextRegister + 100);
             *(uint32_t *)(SystemExecutionPointer + -0xc) = StackContextBuffer;
             *(uint32_t *)(SystemExecutionPointer + -9) = ResourceHashValidationQuaternary;
             *(uint32_t *)((int64_t)SystemExecutionPointer + -0x44) = ResourceContextOffset;
@@ -13999,7 +13999,7 @@ void SystemInitializerPrimary(void)
               ResourceIndexTertiary = GetAndValidateResourceData(StackFloatParameter,&PrimaryObjectResourceBuffer);
               if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
             }
-            FloatDataPointer = (float *)(SystemRegisterR15 + 0x94);
+            FloatDataPointer = (float *)(SystemContextRegister + 0x94);
             FloatIterationValue = FloatRegisterValue;
             do {
               floatComparisonResult = *FloatPointer;
@@ -14018,7 +14018,7 @@ void SystemInitializerPrimary(void)
             FloatDataPointer = (float *)&SystemFloatTemplateActive;
             FloatIterationValue = FloatRegisterValue;
             do {
-              floatComparisonResult = *(float *)(SystemRegisterR15 + -0x180985054 + (int64_t)FloatPointer);
+              floatComparisonResult = *(float *)(SystemContextRegister + -0x180985054 + (int64_t)FloatPointer);
               if (inputFloatValue != *FloatPointer) {
                 temporaryContextBufferPointer = StackContextBuffer;
                 temporaryResourceTemplatePointer = &SystemResourceTemplateInput;
@@ -14142,7 +14142,7 @@ void CalculateFloatValueAndValidateResources(void)
   float FloatRegisterValue;
   int64_t ResourceRegisterPointer;
   uint64_t ResourceHashValidationSecondary;
-  int64_t SystemRegisterR15;
+  int64_t SystemContextRegister;
   uint32_t ResourceHashValidationTertiary;
   uint32_t FloatingPointCalculationResult;
   uint32_t PackageValidationStatusCode;
@@ -14175,7 +14175,7 @@ void CalculateFloatValueAndValidateResources(void)
     ResourceHashValidationResultPrimary = (uint64_t)(uint)FloatRegisterValue;
     InputParameterLimit = InputParameter;
     do {
-      LocalContextPointer = *(int64_t *)(SystemRegisterR15 + 0x20);
+      LocalContextPointer = *(int64_t *)(SystemContextRegister + 0x20);
       ResourceTable = *(int64_t *)(ResourceHashValidationResultPrimary + 0x10 + LocalContextPointer);
       ResourceIndex = *(int64_t *)(ResourceHashValidationResultPrimary + 8 + LocalContextPointer);
       ValidationResult = CheckResourceIndex(ResourceTable,1);
@@ -14213,23 +14213,23 @@ void CalculateFloatValueAndValidateResources(void)
     ResourceHashValidationTertiary = FloatingPointCalculationResult;
     if (SecondaryHashBuffer[0] != '\0') {
       ResourceHashGeneratedValue = GenerateResourceHash();
-      ResourceIndexTertiary = memcmp(SystemRegisterR15 + 0x38,ResourceHashGeneratedValue,0x30);
+      ResourceIndexTertiary = memcmp(SystemContextRegister + 0x38,ResourceHashGeneratedValue,0x30);
       ResourceHashValidationTertiary = FloatingPointResultFirst;
       if (ResourceIndexTertiary != 0) {
-        ResourceHashGeneratedValue = *(uint8_t *)(SystemRegisterR15 + 0x38);
-        ResourceHashCalculatedValue = *(uint8_t *)(SystemRegisterR15 + 0x40);
-        ResourceHashValidationTertiary = *(uint32_t *)(SystemRegisterR15 + 0x48);
-        ResourceContextOffset = *(uint32_t *)(SystemRegisterR15 + 0x4c);
-        ContextValidationStatusCode = *(uint32_t *)(SystemRegisterR15 + 0x50);
-        SecurityHashValue = *(uint32_t *)(SystemRegisterR15 + 0x54);
+        ResourceHashGeneratedValue = *(uint8_t *)(SystemContextRegister + 0x38);
+        ResourceHashCalculatedValue = *(uint8_t *)(SystemContextRegister + 0x40);
+        ResourceHashValidationTertiary = *(uint32_t *)(SystemContextRegister + 0x48);
+        ResourceContextOffset = *(uint32_t *)(SystemContextRegister + 0x4c);
+        ContextValidationStatusCode = *(uint32_t *)(SystemContextRegister + 0x50);
+        SecurityHashValue = *(uint32_t *)(SystemContextRegister + 0x54);
         SystemExecutionPointer[-0xe] = &SystemResourceTemplateEvent;
         SystemExecutionPointer[-0xb] = ResourceHashGeneratedValue;
         SystemExecutionPointer[-10] = ResourceHashCalculatedValue;
         *(float *)(SystemExecutionPointer + -0xd) = FloatRegisterValue;
-        ResourceCounter = *(uint32_t *)(SystemRegisterR15 + 0x58);
-        ValidationCounter = *(uint32_t *)(SystemRegisterR15 + 0x5c);
-        ResourceHashInitialValue = *(uint32_t *)(SystemRegisterR15 + 0x60);
-        PrimaryResourceHash = *(uint32_t *)(SystemRegisterR15 + 100);
+        ResourceCounter = *(uint32_t *)(SystemContextRegister + 0x58);
+        ValidationCounter = *(uint32_t *)(SystemContextRegister + 0x5c);
+        ResourceHashInitialValue = *(uint32_t *)(SystemContextRegister + 0x60);
+        PrimaryResourceHash = *(uint32_t *)(SystemContextRegister + 100);
         *(uint32_t *)(SystemExecutionPointer + -0xc) = StackContextBuffer;
         *(uint32_t *)(SystemExecutionPointer + -9) = ResourceHashValidationTertiary;
         *(uint32_t *)((int64_t)SystemExecutionPointer + -0x44) = ResourceContextOffset;
@@ -14267,7 +14267,7 @@ void CalculateFloatValueAndValidateResources(void)
           ResourceIndexTertiary = GetAndValidateResourceData(StackFloatParameter,&PrimaryObjectResourceBuffer);
           if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
         }
-        FloatDataPointer = (float *)(SystemRegisterR15 + 0x94);
+        FloatDataPointer = (float *)(SystemContextRegister + 0x94);
         FloatIterationValue = FloatRegisterValue;
         do {
           floatComparisonResult = *FloatPointer;
@@ -14286,7 +14286,7 @@ void CalculateFloatValueAndValidateResources(void)
         FloatDataPointer = (float *)&SystemFloatTemplateActive;
         FloatIterationValue = FloatRegisterValue;
         do {
-          floatComparisonResult = *(float *)(SystemRegisterR15 + -0x180985054 + (int64_t)FloatPointer);
+          floatComparisonResult = *(float *)(SystemContextRegister + -0x180985054 + (int64_t)FloatPointer);
           if (inputFloatValue != *FloatPointer) {
             temporaryContextBufferPointer = StackContextBuffer;
             temporaryResourceTemplatePointer = &SystemResourceTemplateInput;
@@ -14389,7 +14389,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
   int64_t SystemExecutionPointer;
   float FloatRegisterValue;
   int64_t ResourceRegisterPointer;
-  int64_t SystemRegisterR15;
+  int64_t SystemContextRegister;
   float FloatingPointCalculationResult;
   uint32_t FloatingPointResultFirst;
   uint32_t FloatingPointResultSecond;
@@ -14424,7 +14424,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
       OperationStatusCode = GetAndValidateResourceData(StackFloatParameter,&PrimaryObjectResourceBuffer);
       if (OperationResult != 0) goto OperationResultHandler;
     }
-    pthirdFloatResult = (float *)(SystemRegisterR15 + 0x94);
+    pthirdFloatResult = (float *)(SystemContextRegister + 0x94);
     secondFloatResult = FloatRegisterValue;
     do {
       floatComparisonResult = *presultFloatValue;
@@ -14443,7 +14443,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
     pthirdFloatResult = (float *)&SystemFloatTemplateActive;
     secondFloatResult = FloatRegisterValue;
     do {
-      floatComparisonResult = *(float *)(SystemRegisterR15 + -0x180985054 + (int64_t)presultFloatValue);
+      floatComparisonResult = *(float *)(SystemContextRegister + -0x180985054 + (int64_t)presultFloatValue);
       if (inputFloatValue != *presultFloatValue) {
         temporaryContextBufferPointer = StackContextBuffer;
         temporaryResourceTemplatePointer = &SystemResourceTemplateInput;
@@ -20027,7 +20027,7 @@ uint8_t ValidateResourceHash(int64_t ResourceContext,uint8_t *ResourceData)
         ResourceValidationBuffer[0] = 0;
         ValidationStatusCode = StackContextBuffer[0] & 1;
         loopIncrement = StackContextBuffer[0] >> 1;
-        if (loopIncrement != 0) {
+        if (MemoryAddressIncrement != 0) {
           do {
             ResourceHash = ExtractResourceInfo(ValidationContext,ResourceValidationBuffer[0]);
             if ((int)ResourceHash != 0) {
@@ -20367,7 +20367,7 @@ ResourceValidationLoop:
       ValidationStatusCode = (uint)(SecurityValidationValue == '\0');
       loopIncrement = 0;
     }
-    if (loopIncrement != 0) {
+    if (MemoryAddressIncrement != 0) {
       return (uint64_t)loopIncrement;
     }
     *(uint *)(SystemContext + 0xb8) = (*(uint *)(SystemContext + 0xb8) | ContextHashValidationResult) & ~HashValidationResult;
@@ -20520,7 +20520,7 @@ ResourceValidationLoop:
       ValidationStatusCode = (uint)(SecurityValidationValue == '\0');
       loopIncrement = 0;
     }
-    if (loopIncrement != 0) {
+    if (MemoryAddressIncrement != 0) {
       return (uint64_t)loopIncrement;
     }
     *(uint *)(SystemContext + 0xb8) = (*(uint *)(SystemContext + 0xb8) | ContextHashValidationResult) & ~HashValidationResult;
@@ -21120,7 +21120,7 @@ void ResourceIntegrityValidator(void)
   uint LoopIncrement;
   int64_t MemoryRegion;
   int ResourceDataPointerD;
-  int64_t SystemRegisterR15;
+  int64_t SystemContextRegister;
   uint StackParameter;
   uint RegisterStorage;
   
@@ -21129,18 +21129,18 @@ void ResourceIntegrityValidator(void)
   if (ResourceIndex != 0) {
     return;
   }
-  ValidationStatusCode = (int)*(uint *)(SystemRegisterR15 + 0x1c) >> 0x1f;
+  ValidationStatusCode = (int)*(uint *)(SystemContextRegister + 0x1c) >> 0x1f;
   loopIncrement = RegisterStorage >> 1;
-  if (((int)((*(uint *)(SystemRegisterR15 + 0x1c) ^ HashValidationResult) - HashValidationResult) < (int)LoopCondition) &&
-     (ResourceIndex = ValidateResourcePointer(SystemRegisterR15 + 0x10,loopIncrement), ResourceIndex != 0)) {
+  if (((int)((*(uint *)(SystemContextRegister + 0x1c) ^ HashValidationResult) - HashValidationResult) < (int)LoopCondition) &&
+     (ResourceIndex = ValidateResourcePointer(SystemContextRegister + 0x10,loopIncrement), ResourceIndex != 0)) {
     return;
   }
-  ResourceIndex = *(int *)(SystemRegisterR15 + 0x18);
+  ResourceIndex = *(int *)(SystemContextRegister + 0x18);
   if (ResourceIndex < (int)LoopCondition) {
-          memset((int64_t)ResourceIndex * 0x10 + *(int64_t *)(SystemRegisterR15 + 0x10),0,
+          memset((int64_t)ResourceIndex * 0x10 + *(int64_t *)(SystemContextRegister + 0x10),0,
            (int64_t)(int)(loopIncrement - ResourceIndex) << 4);
   }
-  *(uint *)(SystemRegisterR15 + 0x18) = loopIncrement;
+  *(uint *)(SystemContextRegister + 0x18) = loopIncrement;
   StackParameter = 0;
   ResourceIndex = 0;
   if (RegisterStorage >> 1 != 0) {
@@ -21150,7 +21150,7 @@ void ResourceIntegrityValidator(void)
         return;
       }
       if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-        OperationStatusCode = GetResourceHashValue(*ResourceContext,(int64_t)ResourceIndex * 0x10 + *(int64_t *)(SystemRegisterR15 + 0x10));
+        OperationStatusCode = GetResourceHashValue(*ResourceContext,(int64_t)ResourceIndex * 0x10 + *(int64_t *)(SystemContextRegister + 0x10));
       }
       else {
         OperationStatusCode = 0x1c;
@@ -21173,19 +21173,19 @@ void ResourceIntegrityValidator(void)
     return;
   }
   ResourceTablePointer = (int64_t)(int)RegisterStorageQuinary;
-  ValidationStatusCode = (int)*(uint *)(SystemRegisterR15 + 0x2c) >> 0x1f;
-  if (((int)((*(uint *)(SystemRegisterR15 + 0x2c) ^ HashValidationResult) - HashValidationResult) < (int)RegisterStorageQuinary) &&
-     (OperationStatusCode = CheckResourceTableStatus(SystemRegisterR15 + 0x20,ValidationParameterBuffer), OperationResult != 0)) {
+  ValidationStatusCode = (int)*(uint *)(SystemContextRegister + 0x2c) >> 0x1f;
+  if (((int)((*(uint *)(SystemContextRegister + 0x2c) ^ HashValidationResult) - HashValidationResult) < (int)RegisterStorageQuinary) &&
+     (OperationStatusCode = CheckResourceTableStatus(SystemContextRegister + 0x20,ValidationParameterBuffer), OperationResult != 0)) {
     return;
   }
-  OperationStatusCode = *(int *)(SystemRegisterR15 + 0x28);
+  OperationStatusCode = *(int *)(SystemContextRegister + 0x28);
   if (OperationResult < ResourceIndex) {
-          memset((int64_t)OperationResult + *(int64_t *)(SystemRegisterR15 + 0x20),0,(int64_t)(ResourceIndex - OperationResult));
+          memset((int64_t)OperationResult + *(int64_t *)(SystemContextRegister + 0x20),0,(int64_t)(ResourceIndex - OperationResult));
   }
-  *(int *)(SystemRegisterR15 + 0x28) = ResourceIndex;
+  *(int *)(SystemContextRegister + 0x28) = ResourceIndex;
   if (ResourceIndex != 0) {
     if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-      ResourceIndex = ReadResourceData(*ResourceContext,*(uint8_t *)(SystemRegisterR15 + 0x20),ResourceTablePointer);
+      ResourceIndex = ReadResourceData(*ResourceContext,*(uint8_t *)(SystemContextRegister + 0x20),ResourceTablePointer);
       if (ResourceIndex == 0) goto ResourceOperationStatus;
     }
     else {
@@ -24360,7 +24360,7 @@ uint64_t ProcessResourceDataValidationFlow(void)
   uint64_t ResourceContext;
   int64_t *RegisterContext;
   int64_t ResourceRegisterPointer;
-  uint64_t SystemRegisterR15;
+  uint64_t SystemContextRegister;
   char SecurityValidationValue;
   uint HashValidationValue;
   uint64_t PackageValidationStatus;
@@ -24370,15 +24370,15 @@ uint64_t ProcessResourceDataValidationFlow(void)
   
   PackageValidationStatus = (uint)ResourceContext;
   if (2 < InputParameterValue) goto FinalizeValidation;
-  if (*(uint *)(RegisterContext[1] + 0x18) != (uint)SystemRegisterR15) goto ReturnHashValidationResult;
+  if (*(uint *)(RegisterContext[1] + 0x18) != (uint)SystemContextRegister) goto ReturnHashValidationResult;
   ResourceContext = (int64_t *)*RegisterContext;
   if (*ResourceContext != 0) {
-    if (ResourceContext[2] == SystemRegisterR15) {
+    if (ResourceContext[2] == SystemContextRegister) {
 CalculateResourceHash:
       PackageValidationStatus = CalculateResourceHash(*ResourceContext, ResourceValidationBuffer, 1);
     }
     else {
-      HashValidationValue = (uint)SystemRegisterR15;
+      HashValidationValue = (uint)SystemContextRegister;
       PackageValidationStatus = ValidateResourceAccess(*ResourceContext, ResourceHashBuffer);
       if (PackageValidationStatus == 0) {
         if ((uint64_t)HashValidationValue + 1 <= (uint64_t)ResourceContext[2]) goto CalculateResourceHash;
@@ -24388,13 +24388,13 @@ CalculateResourceHash:
   }
   ResourceSize = (uint64_t)ResourceHashValidationResult;
   if (PackageValidationStatus == 0) {
-    ResourceSize = SystemRegisterR15 & 0xffffffff;
+    ResourceSize = SystemContextRegister & 0xffffffff;
   }
   if ((int)ResourceSize != 0) {
 ReturnHashValidationResult:
     return ResourceSize & 0xffffffff;
   }
-  if (PackageValidationStatus == 0 && SecurityValidationValue != (char)SystemRegisterR15) {
+  if (PackageValidationStatus == 0 && SecurityValidationValue != (char)SystemContextRegister) {
     *(uint32_t *)(ResourceRegisterPointer + 0x10) = 3;
   }
 FinalizeValidation:
@@ -26036,7 +26036,7 @@ uint64_t ValidateAndProcessResourceData(void)
     return 0x1c;
   }
   loopIncrement = ProcessResourceHash(*ResourceContext,SystemContext + 0x48);
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     return (uint64_t)loopIncrement;
   }
   if (*(int *)(ResourceContext[1] + 0x18) != 0) {
@@ -26146,7 +26146,7 @@ uint64_t ValidateAndProcessResourceDataVariantB(void)
     return 0x1c;
   }
   loopIncrement = ProcessResourceHash(*ResourceContext,SystemContext + 0x48);
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     return (uint64_t)loopIncrement;
   }
   if (*(int *)(ResourceContext[1] + 0x18) != 0) {
@@ -26252,7 +26252,7 @@ uint64_t ValidateAndProcessResourceDataVariantC(void)
     return 0x1c;
   }
   loopIncrement = ProcessResourceHash(*ResourceContext,SystemContext + 0x48);
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     return (uint64_t)loopIncrement;
   }
   if (*(int *)(ResourceContext[1] + 0x18) != 0) {
@@ -26458,7 +26458,7 @@ uint64_t ProcessResourceHashCalculationAndValidation(void)
   int64_t SystemExecutionPointer;
   uint32_t *ResourceHashStartPointer;
   uint8_t *SystemRegisterContext;
-  int64_t SystemRegisterR15;
+  int64_t SystemContextRegister;
   uint32_t FloatingPointCalculationResult;
   uint32_t FloatingPointResultFirst;
   uint32_t FloatingPointResultSecond;
@@ -26500,8 +26500,8 @@ uint64_t ProcessResourceHashCalculationAndValidation(void)
       ResourceCounter = 0x1c;
     }
   }
-  if ((((int)ResourceCounter == 0) && (ResourceCounter = CheckResourceHash(PrimaryResourceHash,SystemRegisterR15 + 0x38,0), (int)ResourceCounter == 0)) &&
-     (ResourceCounter = CheckResourceHash(FloatingPointResultFirst,SystemRegisterR15 + 0x48,0), (int)ResourceCounter == 0)) {
+  if ((((int)ResourceCounter == 0) && (ResourceCounter = CheckResourceHash(PrimaryResourceHash,SystemContextRegister + 0x38,0), (int)ResourceCounter == 0)) &&
+     (ResourceCounter = CheckResourceHash(FloatingPointResultFirst,SystemContextRegister + 0x48,0), (int)ResourceCounter == 0)) {
     if (*(uint *)(SystemRegisterContext + 8) < 0x84) {
       *(uint8_t *)(SystemExecutionPointer + -0x29) = 0;
       *(uint8_t *)(SystemExecutionPointer + -0x21) = 0;
@@ -26529,7 +26529,7 @@ SecurityValidationLoop:
           *(uint32_t *)(SystemDataPointer + 0x10) = PrimaryResourceHash;
           *(uint8_t *)(SystemDataPointer + 0x18) = 0;
           *(uint32_t *)(SystemDataPointer + 0x20) = 0;
-          ResourceContextOffset = VerifyResourceIntegrity(SystemRegisterR15 + 0x58,SystemDataPointer);
+          ResourceContextOffset = VerifyResourceIntegrity(SystemContextRegister + 0x58,SystemDataPointer);
           ResourceCounter = (uint64_t)ResourceContextOffset;
           if (ResourceContextOffset != 0) goto SecurityValidationLoop;
           ProcessStatus = *(int *)(SystemExecutionPointer + -0x21);
@@ -26539,15 +26539,15 @@ SecurityValidationLoop:
       PrimaryResourceHash = ReleaseResourceBuffer(SystemExecutionPointer + -0x29);
     }
     else {
-      ResourceCounter = GetResourceIdentifier(FloatingPointResultSecond,SystemRegisterR15 + 0x58);
+      ResourceCounter = GetResourceIdentifier(FloatingPointResultSecond,SystemContextRegister + 0x58);
       PrimaryResourceHash = FloatingPointResultThird;
       if ((int)ResourceCounter != 0) {
         return ResourceCounter;
       }
     }
-    ResourceCounter = ProcessResourceData(PrimaryResourceHash,SystemRegisterR15 + 0x78,0);
+    ResourceCounter = ProcessResourceData(PrimaryResourceHash,SystemContextRegister + 0x78,0);
     if (((int)ResourceCounter == 0) &&
-       (ResourceCounter = CheckResourceFinalization(FloatingPointResultFourth,SystemRegisterR15 + 0x88,0), (int)ResourceCounter == 0)) {
+       (ResourceCounter = CheckResourceFinalization(FloatingPointResultFourth,SystemContextRegister + 0x88,0), (int)ResourceCounter == 0)) {
             CleanupResourceData(FloatingPointResultFifth,SystemExecutionPointer + 7);
     }
   }
@@ -26581,7 +26581,7 @@ uint64_t ProcessResourceValidationAndMemoryAllocation(void)
   int64_t SystemExecutionPointer;
   uint32_t *pSecurityHashValue;
   int64_t SavedRegisterValue;
-  int64_t SystemRegisterR15;
+  int64_t SystemContextRegister;
   
   if (*(uint *)(SystemRegisterContext + 0x40) < 0x84) {
     *(uint8_t *)(SystemExecutionPointer + -0x29) = ResourceContext;
@@ -26608,7 +26608,7 @@ SecurityValidationLoop:
         *(uint32_t *)(ResourceTablePointer + 0x10) = ResourceHash;
         *(uint8_t *)(ResourceTablePointer + 0x18) = ResourceContext;
         *(int *)(ResourceTablePointer + 0x20) = (int)ResourceContext;
-        ValidationResult = VerifyResourceIntegrity(SystemRegisterR15 + 0x58,ResourceTablePointer);
+        ValidationResult = VerifyResourceIntegrity(SystemContextRegister + 0x58,ResourceTablePointer);
         loopIncrement = (uint64_t)ResourceHashValidationResult;
         if (ValidationResult != 0) goto SecurityValidationLoop;
         ValidationStatusCode = *(int *)(SystemExecutionPointer + -0x21);
@@ -27006,7 +27006,7 @@ uint64_t ProcessResourceTableValidationAndOperations(void)
   int64_t SystemExecutionPointer;
   int64_t *SystemRegisterContext;
   int ResourceDataPointerD;
-  int64_t SystemRegisterR15;
+  int64_t SystemContextRegister;
   bool ContextValidationFlag;
   bool MemorySizeCheck;
   bool ValidationSuccess;
@@ -27015,16 +27015,16 @@ uint64_t ProcessResourceTableValidationAndOperations(void)
     return 0x1c;
   }
   SystemContextPointer = *SystemRegisterContext;
-  ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterR15 + 0x10,ResourceDataPointerD + 3);
+  ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x10,ResourceDataPointerD + 3);
   loopIncrement = (uint64_t)HashValidationResult;
   if (ValidationStatusCode == 0) {
-    ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterR15 + 0x14,ResourceDataPointerD + 1);
+    ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x14,ResourceDataPointerD + 1);
     loopIncrement = (uint64_t)HashValidationResult;
     if (ValidationStatusCode == 0) {
-      ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterR15 + 0x16,ResourceDataPointerD + 1);
+      ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x16,ResourceDataPointerD + 1);
       loopIncrement = (uint64_t)HashValidationResult;
       if (ValidationStatusCode == 0) {
-        ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemRegisterR15 + 0x18,ResourceDataPointerD + 7);
+        ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x18,ResourceDataPointerD + 7);
         loopIncrement = (uint64_t)HashValidationResult;
       }
     }
@@ -27039,14 +27039,14 @@ uint64_t ProcessResourceTableValidationAndOperations(void)
   if (*(int *)(SystemRegisterContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  ValidationStatusCode = ReadResourceData(*SystemRegisterContext,SystemRegisterR15 + 0x30,4);
+  ValidationStatusCode = ReadResourceData(*SystemRegisterContext,SystemContextRegister + 0x30,4);
   if (HashValidationResult != 0) {
     return (uint64_t)HashValidationResult;
   }
   if (*(int *)(SystemRegisterContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  ValidationStatusCode = ReadResourceData(*SystemRegisterContext,SystemRegisterR15 + 0x34);
+  ValidationStatusCode = ReadResourceData(*SystemRegisterContext,SystemContextRegister + 0x34);
   if (HashValidationResult != 0) {
     return (uint64_t)HashValidationResult;
   }
@@ -27061,7 +27061,7 @@ uint64_t ProcessResourceTableValidationAndOperations(void)
   if (*(int *)(SystemRegisterContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  ValidationStatusCode = CalculateResourceHash(*SystemRegisterContext,SystemRegisterR15 + 0x58);
+  ValidationStatusCode = CalculateResourceHash(*SystemRegisterContext,SystemContextRegister + 0x58);
   if (HashValidationResult != 0) {
     return (uint64_t)HashValidationResult;
   }
@@ -27285,12 +27285,12 @@ MemoryBoundaryCheck4:
      && (!ValidationSuccess)) {
     ResourceDataPointerD = 0;
   }
-  *(int *)(SystemRegisterR15 + 0x38) = ResourceDataPointerD;
+  *(int *)(SystemContextRegister + 0x38) = ResourceDataPointerD;
   ValidationStatusCode = *(uint *)(SystemRegisterContext + 8);
 SecurityValidationFailed:
   loopIncrement = 0;
   if ((0x7e < HashValidationResult) && (loopIncrement = 0x1c, *(int *)(SystemRegisterContext[1] + 0x18) == 0)) {
-    ValidationStatusCode = ReadResourceData(*SystemRegisterContext,SystemRegisterR15 + 0x38,4);
+    ValidationStatusCode = ReadResourceData(*SystemRegisterContext,SystemContextRegister + 0x38,4);
     loopIncrement = (uint64_t)HashValidationResult;
   }
   if ((int)LoopCondition == 0) {
@@ -27313,7 +27313,7 @@ uint64_t ProcessResourceDataValidationAndAllocation(uint8_t ObjectContext,uint8_
   int64_t SystemExecutionPointer;
   int64_t *SystemRegisterContext;
   uint32_t ResourceDataPointerD;
-  int64_t SystemRegisterR15;
+  int64_t SystemContextRegister;
   bool ContextValidationFlag;
   bool MemorySizeCheck;
   bool ValidationSuccess;
@@ -27575,14 +27575,14 @@ VerificationComplete:
      && (!ValidationSuccess)) {
     ResourceDataPointerD = (uint32_t)CleanupOption;
   }
-  *(uint32_t *)(SystemRegisterR15 + 0x38) = ResourceDataPointerD;
+  *(uint32_t *)(SystemContextRegister + 0x38) = ResourceDataPointerD;
   InputParameterValue = *(uint *)(SystemRegisterContext + 8);
 SecurityValidationFailed:
   if (InputParameterValue < 0x7f) {
     ResourceContextOffset = CleanupOption & 0xffffffff;
   }
   else if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
-    ValidationStatusCode = ReadResourceData(*SystemRegisterContext,SystemRegisterR15 + 0x38,4);
+    ValidationStatusCode = ReadResourceData(*SystemRegisterContext,SystemContextRegister + 0x38,4);
     ResourceContextOffset = (uint64_t)HashValidationResult;
   }
   if ((int)ResourceContextOffset != 0) {
@@ -29211,15 +29211,15 @@ void CleanupHashValidationResultPointerResources(uint8_t exceptionHandlerType, i
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2b8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -29229,8 +29229,8 @@ void CleanupHashValidationResultPointerResources(uint8_t exceptionHandlerType, i
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -30246,7 +30246,7 @@ void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t ObjectContext, int
   uint64_t MemoryAddressOffset;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
   MemoryAddressOffset = (uint64_t)ValidationResultDataPointer & 0xffffffffffc00000;
@@ -30254,7 +30254,7 @@ void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t ObjectContext, int
     ResourceIndex = MemoryAddressOffset + 0x80 + ((int64_t)ValidationResultDataPointer - MemoryAddressOffset >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(MemoryAddressOffset + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ValidationResultDataPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -30619,15 +30619,15 @@ void ReleaseResourceHandleOnException(uint8_t ObjectContext, int64_t ValidationC
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x120);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -30637,8 +30637,8 @@ void ReleaseResourceHandleOnException(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -30994,15 +30994,15 @@ void ExceptionResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationCon
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0xc0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -31012,8 +31012,8 @@ void ExceptionResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -31955,15 +31955,15 @@ void UnwindProcessControllerBase(uint8_t ObjectContext,int64_t ValidationContext
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x98);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -31973,8 +31973,8 @@ void UnwindProcessControllerBase(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -32053,15 +32053,15 @@ void UnwindStackFrameBase(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x68);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -32071,8 +32071,8 @@ void UnwindStackFrameBase(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -32101,15 +32101,15 @@ void MutexUnlockHandler(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x88);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -32119,8 +32119,8 @@ void MutexUnlockHandler(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -32762,7 +32762,7 @@ void UnwindExceptionResourceValidator(uint8_t ObjectContext,int64_t ValidationCo
   uint64_t memoryAddressMask;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x30);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
   memoryAddressMask = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
@@ -32770,7 +32770,7 @@ void UnwindExceptionResourceValidator(uint8_t ObjectContext,int64_t ValidationCo
     ResourceIndex = memoryAddressMask + 0x80 + ((int64_t)ResourceHashValidationResultPointer - memoryAddressMask >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(memoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       presourceReferenceCount = (int *)(ResourceIndex + 0x18);
       *presourceReferenceCount = *presourceReferenceCount + -1;
@@ -33127,15 +33127,15 @@ void CleanupSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationConte
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33145,8 +33145,8 @@ void CleanupSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -33252,15 +33252,15 @@ void MemoryValidationCleanupHandler(uint8_t ObjectContext,int64_t ValidationCont
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x90) + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33270,8 +33270,8 @@ void MemoryValidationCleanupHandler(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -33288,15 +33288,15 @@ void ExceptionHandlerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x98);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33306,8 +33306,8 @@ void ExceptionHandlerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -33324,15 +33324,15 @@ void ResourceIndexCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x98);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33342,8 +33342,8 @@ void ResourceIndexCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -33369,15 +33369,15 @@ void SystemContextInitializer(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x28);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33387,8 +33387,8 @@ void SystemContextInitializer(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -33405,15 +33405,15 @@ void ExceptionListManager(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x28);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33423,8 +33423,8 @@ void ExceptionListManager(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -33568,15 +33568,15 @@ void MemoryAllocator(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33586,8 +33586,8 @@ void MemoryAllocator(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -33604,15 +33604,15 @@ void ResourcePoolManager(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33622,8 +33622,8 @@ void ResourcePoolManager(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -33917,15 +33917,15 @@ void UnwindSystemContextInitializer(uint8_t ObjectContext,int64_t ValidationCont
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x50) + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33935,8 +33935,8 @@ void UnwindSystemContextInitializer(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -33963,15 +33963,15 @@ void ValidateAndProcessResourceIndex(uint8_t ObjectContext, int64_t ValidationCo
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x58);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -33981,8 +33981,8 @@ void ValidateAndProcessResourceIndex(uint8_t ObjectContext, int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -34009,15 +34009,15 @@ void ExecuteSystemResourceRelease(uint8_t ObjectContext, int64_t ValidationConte
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x58);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -34027,8 +34027,8 @@ void ExecuteSystemResourceRelease(uint8_t ObjectContext, int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -34119,7 +34119,7 @@ void UnwindProcessControllerSetup(uint8_t ObjectContext,int64_t ValidationContex
       ResourceIndex = ContextHashValidationResult + 0x80 + ((int64_t)ResourceHashValidationResultPointer - ContextHashValidationResult >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
       if ((*(void ***)(ContextHashValidationResult + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -34287,15 +34287,15 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x8c8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -34305,8 +34305,8 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -34657,15 +34657,15 @@ void UnwindErrorHandler(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -34675,8 +34675,8 @@ void UnwindErrorHandler(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -34693,15 +34693,15 @@ void UnwindStateSynchronizer(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x88);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -34711,8 +34711,8 @@ void UnwindStateSynchronizer(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -34750,15 +34750,15 @@ void UnwindBufferManager(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -34768,8 +34768,8 @@ void UnwindBufferManager(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -34825,15 +34825,15 @@ void UnwindCriticalSectionHandler(uint8_t ObjectContext,int64_t ValidationContex
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x48) + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -34843,8 +34843,8 @@ void UnwindCriticalSectionHandler(uint8_t ObjectContext,int64_t ValidationContex
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -34935,15 +34935,15 @@ void UnwindIoCompletionHandler(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -34953,8 +34953,8 @@ void UnwindIoCompletionHandler(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -34981,15 +34981,15 @@ void ProcessResourceValidation(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -34999,8 +34999,8 @@ void ProcessResourceValidation(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -35292,15 +35292,15 @@ void ProcessResourceValidationUnwindPrimary(uint8_t ObjectContext, int64_t Valid
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -35310,8 +35310,8 @@ void ProcessResourceValidationUnwindPrimary(uint8_t ObjectContext, int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -35673,15 +35673,15 @@ void ValidateResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x18);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -35691,8 +35691,8 @@ void ValidateResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -35721,15 +35721,15 @@ void ValidateResourceCleanupSecondary(uint8_t ObjectContext, int64_t ValidationC
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x18);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -35739,8 +35739,8 @@ void ValidateResourceCleanupSecondary(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -35769,15 +35769,15 @@ void ValidateResourceCleanupTertiary(uint8_t ObjectContext, int64_t ValidationCo
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x18);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -35787,8 +35787,8 @@ void ValidateResourceCleanupTertiary(uint8_t ObjectContext, int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -35817,15 +35817,15 @@ void ValidateResourceCleanupQuaternary(uint8_t ObjectContext, int64_t Validation
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x60);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -35835,8 +35835,8 @@ void ValidateResourceCleanupQuaternary(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -35868,12 +35868,12 @@ void ValidateResourceCleanupQuinary(uint8_t ObjectContext, int64_t ValidationCon
   CleanupResourceSystem();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 8), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -35883,8 +35883,8 @@ void ValidateResourceCleanupQuinary(uint8_t ObjectContext, int64_t ValidationCon
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -35918,12 +35918,12 @@ void ValidateResourceIndex(uint8_t ObjectContext, int64_t ValidationContext)
   CleanupResourceSystem();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 8), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -35933,8 +35933,8 @@ void ValidateResourceIndex(uint8_t ObjectContext, int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -36037,15 +36037,15 @@ void DestroyMutexAndConditionVariables(uint8_t ObjectContext, int64_t Validation
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x300);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -36055,8 +36055,8 @@ void DestroyMutexAndConditionVariables(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -36114,12 +36114,12 @@ void CleanupThreadLocalStorage(uint8_t ObjectContext, int64_t ValidationContext)
   CleanupResourceSystem();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x340)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0x338), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -36129,8 +36129,8 @@ void CleanupThreadLocalStorage(uint8_t ObjectContext, int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -36293,12 +36293,12 @@ void ExecuteSystemCleanupQuaternary(uint8_t ObjectContext, int64_t ValidationCon
   CleanupResourceSystem();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 8), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -36308,8 +36308,8 @@ void ExecuteSystemCleanupQuaternary(uint8_t ObjectContext, int64_t ValidationCon
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -36343,12 +36343,12 @@ void ExecuteSystemCleanupQuinary(uint8_t ObjectContext, int64_t ValidationContex
   CleanupResourceSystem();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 8), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -36358,8 +36358,8 @@ void ExecuteSystemCleanupQuinary(uint8_t ObjectContext, int64_t ValidationContex
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -43758,7 +43758,7 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAlignmentMask;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x28);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
   MemoryAlignmentMask = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
@@ -43766,7 +43766,7 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext,int64_t ValidationContext)
     ResourceIndex = MemoryAlignmentMask + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAlignmentMask >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       pResourceReferenceCount = (int *)(ResourceIndex + 0x18);
       *pResourceReferenceCount = *pResourceReferenceCount + -1;
@@ -43808,7 +43808,7 @@ void ReleaseSystemResourceIndexExtended(uint8_t ObjectContext,int64_t Validation
   uint64_t MemoryAlignmentMask;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
   MemoryAlignmentMask = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
@@ -43816,7 +43816,7 @@ void ReleaseSystemResourceIndexExtended(uint8_t ObjectContext,int64_t Validation
     ResourceIndex = MemoryAlignmentMask + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAlignmentMask >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       pResourceReferenceCount = (int *)(ResourceIndex + 0x18);
       *pResourceReferenceCount = *pResourceReferenceCount + -1;
@@ -44160,15 +44160,15 @@ void ProcessResourceIndexValidationAndCleanup(uint8_t ObjectContext,int64_t Vali
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -44178,8 +44178,8 @@ void ProcessResourceIndexValidationAndCleanup(uint8_t ObjectContext,int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -44208,15 +44208,15 @@ void ProcessExtendedResourceIndexValidationAndCleanup(uint8_t ObjectContext,int6
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x28);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -44226,8 +44226,8 @@ void ProcessExtendedResourceIndexValidationAndCleanup(uint8_t ObjectContext,int6
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -44256,15 +44256,15 @@ void ReleaseResourceHandleAtContextOffset48(uint8_t ObjectContext,int64_t Valida
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -44274,8 +44274,8 @@ void ReleaseResourceHandleAtContextOffset48(uint8_t ObjectContext,int64_t Valida
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -44580,15 +44580,15 @@ void ReleaseDoublePointerResourceHandle(uint8_t ObjectContext,int64_t Validation
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x70);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -44598,8 +44598,8 @@ void ReleaseDoublePointerResourceHandle(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -45414,15 +45414,15 @@ void ValidateResourceIndexAndHash(uint8_t ObjectContext,int64_t ValidationContex
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xc0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -45432,8 +45432,8 @@ void ValidateResourceIndexAndHash(uint8_t ObjectContext,int64_t ValidationContex
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -45606,15 +45606,15 @@ void ValidateResourceHashAndMemoryAccess(uint8_t ObjectContext,int64_t Validatio
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x90);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -45624,8 +45624,8 @@ void ValidateResourceHashAndMemoryAccess(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -45800,15 +45800,15 @@ void ValidateResourceIndexAndHandleMemoryAccess(uint8_t ObjectContext,int64_t Va
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -45818,8 +45818,8 @@ void ValidateResourceIndexAndHandleMemoryAccess(uint8_t ObjectContext,int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -46014,15 +46014,15 @@ void ValidateSystemResourceContext(uint8_t ObjectContext,int64_t ValidationConte
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x40);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -46032,8 +46032,8 @@ void ValidateSystemResourceContext(uint8_t ObjectContext,int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -46070,15 +46070,15 @@ void CleanupResourceHashValidation(uint8_t ObjectContext,int64_t ValidationConte
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x98);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -46088,8 +46088,8 @@ void CleanupResourceHashValidation(uint8_t ObjectContext,int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -46607,7 +46607,7 @@ void ProcessResourceHashValidationAndUpdateIndex(uint8_t ObjectContext, int64_t 
   uint64_t MemoryAddressIncrement;
   
   uint8_t *ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x148);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
   uint64_t AddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
@@ -46615,7 +46615,7 @@ void ProcessResourceHashValidationAndUpdateIndex(uint8_t ObjectContext, int64_t 
     ResourceIndex = AddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - AddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(AddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       int *ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -46683,15 +46683,15 @@ void ValidateResourceContextAndProcessHash(uint8_t ObjectContext,int64_t Validat
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x208);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -46701,8 +46701,8 @@ void ValidateResourceContextAndProcessHash(uint8_t ObjectContext,int64_t Validat
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -46807,15 +46807,15 @@ void CleanupNetworkManagerResources(uint8_t ObjectContext,int64_t ValidationCont
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x108);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -46825,8 +46825,8 @@ void CleanupNetworkManagerResources(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -46889,15 +46889,15 @@ void CleanupAudioManagerResources(uint8_t ObjectContext,int64_t ValidationContex
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x228);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -46907,8 +46907,8 @@ void CleanupAudioManagerResources(uint8_t ObjectContext,int64_t ValidationContex
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -47137,15 +47137,15 @@ void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t Validati
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -47155,8 +47155,8 @@ void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -47848,15 +47848,15 @@ void ValidateResourceIndexAndExecuteCleanup(uint8_t ObjectContext, int64_t Valid
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x50) + 0x213438);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -47866,8 +47866,8 @@ void ValidateResourceIndexAndExecuteCleanup(uint8_t ObjectContext, int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -47948,15 +47948,15 @@ void ExecuteResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x30);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -47966,8 +47966,8 @@ void ExecuteResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -47998,15 +47998,15 @@ void ExecuteAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x30);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -48016,8 +48016,8 @@ void ExecuteAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -48935,15 +48935,15 @@ void CleanupResourceHashValidationResultPointers(uint8_t ObjectContext, int64_t 
   uint64_t cleanupLoopIncrement;
   
   ResourceHashValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x2e8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -48953,8 +48953,8 @@ void CleanupResourceHashValidationResultPointers(uint8_t ObjectContext, int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -50433,7 +50433,7 @@ void UnwindResourceContextCleanupType3(uint8_t ObjectContext,int64_t ValidationC
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ValidationResultPointer != (uint8_t *)0x0) {
@@ -50560,7 +50560,7 @@ void ResetResourceContextValidationState(uint8_t ObjectContext,int64_t Validatio
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x340);
   loopCounter = *(int64_t *)(ResourceIndex + 0x338);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ValidationResultPointer != (uint8_t *)0x0) {
@@ -50608,7 +50608,7 @@ void ValidateResourceHashAndCleanupContext(uint8_t ObjectContext,int64_t Validat
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ValidationResultPointer != (uint8_t *)0x0) {
@@ -50656,7 +50656,7 @@ void ExecuteResourceIntegrityCheckAndUpdate(uint8_t ObjectContext,int64_t Valida
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ValidationResultPointer != (uint8_t *)0x0) {
@@ -52294,15 +52294,15 @@ void UnwindResourceValidationAtContextOffset(uint8_t ObjectContext,int64_t Valid
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0xa8) + 0x1d8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -52312,8 +52312,8 @@ void UnwindResourceValidationAtContextOffset(uint8_t ObjectContext,int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -52342,16 +52342,16 @@ void ProcessResourceHashValidationAndMemoryAddress(uint8_t ObjectContext, int64_
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xb0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  ResourceHashValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xb0);
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -52361,8 +52361,8 @@ void ProcessResourceHashValidationAndMemoryAddress(uint8_t ObjectContext, int64_
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -52391,16 +52391,16 @@ void ProcessResourceHashValidationAndMemoryAddressVariant(uint8_t ObjectContext,
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xb0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  ResourceHashValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xb0);
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -52410,8 +52410,8 @@ void ProcessResourceHashValidationAndMemoryAddressVariant(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -52520,15 +52520,15 @@ void ProcessResourceHashTableValidation(uint8_t ObjectContext,int64_t Validation
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x1d8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -52538,8 +52538,8 @@ void ProcessResourceHashTableValidation(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -52916,15 +52916,15 @@ void ReleaseSystemResourceAtOffset152(uint8_t ObjectContext,int64_t ValidationCo
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xe0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -52934,8 +52934,8 @@ void ReleaseSystemResourceAtOffset152(uint8_t ObjectContext,int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -54946,15 +54946,15 @@ void ValidateResourceHashAtIndex(uint8_t ObjectContext,int64_t ValidationContext
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x88);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -54964,8 +54964,8 @@ void ValidateResourceHashAtIndex(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55132,15 +55132,15 @@ void ValidateResourceHashAtSecondaryIndex(uint8_t ObjectContext,int64_t Validati
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x58);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55150,8 +55150,8 @@ void ValidateResourceHashAtSecondaryIndex(uint8_t ObjectContext,int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55168,15 +55168,15 @@ void ValidateObjectContextBasic(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x58);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55186,8 +55186,8 @@ void ValidateObjectContextBasic(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55313,15 +55313,15 @@ void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x118);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55331,8 +55331,8 @@ void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55423,15 +55423,15 @@ void ProcessSecondaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xa8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55441,8 +55441,8 @@ void ProcessSecondaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55471,15 +55471,15 @@ void ProcessExtendedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x30);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55489,8 +55489,8 @@ void ProcessExtendedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55519,15 +55519,15 @@ void ProcessCompleteResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x88);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55537,8 +55537,8 @@ void ProcessCompleteResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55599,15 +55599,15 @@ void ValidateAndCleanupResourceContext(uint8_t ObjectContext, int64_t Validation
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x118);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55617,8 +55617,8 @@ void ValidateAndCleanupResourceContext(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55647,15 +55647,15 @@ void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t Validati
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x118);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55665,8 +55665,8 @@ void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55702,15 +55702,15 @@ void ProcessResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t Va
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xf8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55720,8 +55720,8 @@ void ProcessResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55738,15 +55738,15 @@ void HandleResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t Val
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x260);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55756,8 +55756,8 @@ void HandleResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55786,15 +55786,15 @@ void ProcessResourceCleanupBasic(uint8_t ObjectContext,int64_t ValidationContext
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x260);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55804,8 +55804,8 @@ void ProcessResourceCleanupBasic(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55865,15 +55865,15 @@ void ProcessResourceCleanupWithFlags(uint8_t ObjectContext,int64_t ValidationCon
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xd8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55883,8 +55883,8 @@ void ProcessResourceCleanupWithFlags(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55913,15 +55913,15 @@ void ProcessResourceCleanupWithValidation(uint8_t ObjectContext,int64_t Validati
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xa8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55931,8 +55931,8 @@ void ProcessResourceCleanupWithValidation(uint8_t ObjectContext,int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -55961,15 +55961,15 @@ void ProcessResourceCleanupWithResources(uint8_t ObjectContext,int64_t Validatio
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xa8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -55979,8 +55979,8 @@ void ProcessResourceCleanupWithResources(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -56009,15 +56009,15 @@ void ValidateCompleteResourceContextIntegrity(uint8_t ObjectContext, int64_t Val
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x30);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -56027,8 +56027,8 @@ void ValidateCompleteResourceContextIntegrity(uint8_t ObjectContext, int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -56057,15 +56057,15 @@ void ProcessAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x30);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -56075,8 +56075,8 @@ void ProcessAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -56106,15 +56106,15 @@ void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationCon
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x88);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -56124,8 +56124,8 @@ void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -56155,15 +56155,15 @@ void ValidateResourceContextIntegrity(uint8_t ObjectContext, int64_t ValidationC
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x268);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -56173,8 +56173,8 @@ void ValidateResourceContextIntegrity(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -56204,15 +56204,15 @@ void ValidateSecondaryResourceContextIntegrity(uint8_t ObjectContext, int64_t Va
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x268);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -56222,8 +56222,8 @@ void ValidateSecondaryResourceContextIntegrity(uint8_t ObjectContext, int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -56285,15 +56285,15 @@ void ProcessPrimaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int64
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x30);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -56303,8 +56303,8 @@ void ProcessPrimaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int64
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -58153,15 +58153,15 @@ void CleanupResourceHashValidationResult(uint8_t ObjectContext,int64_t Validatio
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x40);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -58171,8 +58171,8 @@ void CleanupResourceHashValidationResult(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -58198,15 +58198,15 @@ void ResourceHashValidationHandler(uint8_t ObjectContext, int64_t ValidationCont
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -58216,8 +58216,8 @@ void ResourceHashValidationHandler(uint8_t ObjectContext, int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -58255,15 +58255,15 @@ void ResourceIntegrityValidationHandler(uint8_t ObjectContext, int64_t Validatio
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -58273,8 +58273,8 @@ void ResourceIntegrityValidationHandler(uint8_t ObjectContext, int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -58615,15 +58615,15 @@ void ProcessResourceIndexAndMemoryValidation(uint8_t ObjectContext,int64_t Valid
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x50);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -58633,8 +58633,8 @@ void ProcessResourceIndexAndMemoryValidation(uint8_t ObjectContext,int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -58664,15 +58664,15 @@ void ValidateResourceHashAndReleaseIndex(uint8_t ObjectContext,int64_t Validatio
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x50);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -58682,8 +58682,8 @@ void ValidateResourceHashAndReleaseIndex(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -58713,15 +58713,15 @@ void ProcessResourceIndexAndMemoryValidationExtended(uint8_t ObjectContext,int64
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x40);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -58731,8 +58731,8 @@ void ProcessResourceIndexAndMemoryValidationExtended(uint8_t ObjectContext,int64
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -59834,15 +59834,15 @@ void ValidateResourceHashResult(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 0x110);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -59852,8 +59852,8 @@ void ValidateResourceHashResult(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -60349,12 +60349,12 @@ void UnwindSystemResourceHandler002(uint8_t ObjectContext,int64_t ValidationCont
   UpdateResourceTimestamp(ResourceIndex + 0x78);
   if ((1 < *(uint64_t *)(ResourceIndex + 0x88)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0x80), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -60364,8 +60364,8 @@ void UnwindSystemResourceHandler002(uint8_t ObjectContext,int64_t ValidationCont
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -60437,15 +60437,15 @@ void ProcessResourceValidationCleanup(uint8_t ObjectContext,int64_t ValidationCo
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x130);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -60455,8 +60455,8 @@ void ProcessResourceValidationCleanup(uint8_t ObjectContext,int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -60566,15 +60566,15 @@ void ProcessResourceIndexValidation(uint8_t ObjectContext, int64_t ValidationCon
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x130);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -60584,8 +60584,8 @@ void ProcessResourceIndexValidation(uint8_t ObjectContext, int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -60613,15 +60613,15 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext, int64_t Val
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x130);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -60631,8 +60631,8 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext, int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -61180,15 +61180,15 @@ void UnwindResourceValidationAndCleanup(uint8_t ExceptionContext, int64_t System
   uint64_t resourceBaseAddress;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x230);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -61198,8 +61198,8 @@ void UnwindResourceValidationAndCleanup(uint8_t ExceptionContext, int64_t System
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -61228,15 +61228,15 @@ void ProcessResourceIndexValidation(uint8_t ObjectContext,int64_t ValidationCont
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x230);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -61246,8 +61246,8 @@ void ProcessResourceIndexValidation(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -61540,15 +61540,15 @@ void ValidateResourceHashAndExecuteCleanup(uint8_t ObjectContext,int64_t Validat
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x168);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -61558,8 +61558,8 @@ void ValidateResourceHashAndExecuteCleanup(uint8_t ObjectContext,int64_t Validat
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -61892,15 +61892,15 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext,int64_t Vali
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x28);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -61910,8 +61910,8 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext,int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -62064,15 +62064,15 @@ void ValidateResourceHashAndHandleReferenceCount(uint8_t ObjectContext,int64_t V
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x38);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -62082,8 +62082,8 @@ void ValidateResourceHashAndHandleReferenceCount(uint8_t ObjectContext,int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -62451,15 +62451,15 @@ void ValidateResourceHashAndCleanupReferenceCountAtOffset48(uint8_t ObjectContex
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -62469,8 +62469,8 @@ void ValidateResourceHashAndCleanupReferenceCountAtOffset48(uint8_t ObjectContex
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -62551,15 +62551,15 @@ void ValidateResourceHashAndHandleReferenceCountExtended(uint8_t ObjectContext,i
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -62569,8 +62569,8 @@ void ValidateResourceHashAndHandleReferenceCountExtended(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -63735,15 +63735,15 @@ void ResetResourcePointers(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x50) + 0x10);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -63753,8 +63753,8 @@ void ResetResourcePointers(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64012,15 +64012,15 @@ void ReleaseSystemMemory(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xa0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64030,8 +64030,8 @@ void ReleaseSystemMemory(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64141,15 +64141,15 @@ void Unwind_180908830(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xa0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64159,8 +64159,8 @@ void Unwind_180908830(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64177,15 +64177,15 @@ void Unwind_180908840(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xa0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64195,8 +64195,8 @@ void Unwind_180908840(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64244,15 +64244,15 @@ void Unwind_180908870(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x160);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64262,8 +64262,8 @@ void Unwind_180908870(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64630,15 +64630,15 @@ void UnwindMutexLockD(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1a0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64648,8 +64648,8 @@ void UnwindMutexLockD(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64677,15 +64677,15 @@ void CleanupResourceHashValidationResultPointer(uint8_t ObjectContext, int64_t V
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x160);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64695,8 +64695,8 @@ void CleanupResourceHashValidationResultPointer(uint8_t ObjectContext, int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64724,15 +64724,15 @@ void CleanupSecondaryResourceHashValidationResult(uint8_t ObjectContext, int64_t
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x120);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64742,8 +64742,8 @@ void CleanupSecondaryResourceHashValidationResult(uint8_t ObjectContext, int64_t
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64760,15 +64760,15 @@ void Unwind_180908a50(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1a0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64778,8 +64778,8 @@ void Unwind_180908a50(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64796,15 +64796,15 @@ void Unwind_180908a60(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1a0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64814,8 +64814,8 @@ void Unwind_180908a60(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64832,15 +64832,15 @@ void Unwind_180908a70(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x160);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64850,8 +64850,8 @@ void Unwind_180908a70(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64868,15 +64868,15 @@ void Unwind_180908a80(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x120);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64886,8 +64886,8 @@ void Unwind_180908a80(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64904,15 +64904,15 @@ void Unwind_180908a90(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x68);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64922,8 +64922,8 @@ void Unwind_180908a90(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64949,15 +64949,15 @@ void Unwind_180908ab0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -64967,8 +64967,8 @@ void Unwind_180908ab0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -64985,15 +64985,15 @@ void Unwind_180908ac0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x68);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -65003,8 +65003,8 @@ void Unwind_180908ac0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -65021,15 +65021,15 @@ void Unwind_180908ad0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x68);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -65039,8 +65039,8 @@ void Unwind_180908ad0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -65093,15 +65093,15 @@ void Unwind_180908b10(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x30) + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -65111,8 +65111,8 @@ void Unwind_180908b10(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -65598,15 +65598,15 @@ void Unwind_180908dd0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x108) + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -65616,8 +65616,8 @@ void Unwind_180908dd0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -65643,15 +65643,15 @@ void Unwind_180908df0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xa0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -65661,8 +65661,8 @@ void Unwind_180908df0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -65679,15 +65679,15 @@ void Unwind_180908e00(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xa0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -65697,8 +65697,8 @@ void Unwind_180908e00(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -65742,15 +65742,15 @@ void Unwind_180908e50(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -65760,8 +65760,8 @@ void Unwind_180908e50(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -65778,15 +65778,15 @@ void Unwind_180908e60(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x68);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -65796,8 +65796,8 @@ void Unwind_180908e60(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -65814,15 +65814,15 @@ void Unwind_180908e70(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x68);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -65832,8 +65832,8 @@ void Unwind_180908e70(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -66195,15 +66195,15 @@ void Unwind_180909090(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 0x48);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -66213,8 +66213,8 @@ void Unwind_180909090(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -66286,15 +66286,15 @@ void Unwind_1809090b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x121c0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -66304,8 +66304,8 @@ void Unwind_1809090b0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -66531,7 +66531,7 @@ void Unwind_180909290(uint8_t ObjectContext,int64_t ValidationContext)
       ResourceIndex = ContextHashValidationResult + 0x80 + ((int64_t)ResourceHashValidationResultPointer - ContextHashValidationResult >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
       if ((*(void ***)(ContextHashValidationResult + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -67523,15 +67523,15 @@ void Unwind_180909660(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xd8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -67541,8 +67541,8 @@ void Unwind_180909660(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -67559,15 +67559,15 @@ void Unwind_180909670(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xd8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -67577,8 +67577,8 @@ void Unwind_180909670(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -67595,15 +67595,15 @@ void Unwind_180909680(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0xb8) + 8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -67613,8 +67613,8 @@ void Unwind_180909680(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -67631,15 +67631,15 @@ void Unwind_180909690(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xb8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -67649,8 +67649,8 @@ void Unwind_180909690(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -67667,15 +67667,15 @@ void Unwind_1809096a0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xb8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -67685,8 +67685,8 @@ void Unwind_1809096a0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -68111,15 +68111,15 @@ void Unwind_180909860(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x68);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -68129,8 +68129,8 @@ void Unwind_180909860(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -68318,15 +68318,15 @@ void Unwind_180909a00(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x38);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -68336,8 +68336,8 @@ void Unwind_180909a00(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -68428,15 +68428,15 @@ void CleanupPrimaryResourceHashValidationResult(uint8_t ObjectContext, int64_t V
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x38);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -68446,8 +68446,8 @@ void CleanupPrimaryResourceHashValidationResult(uint8_t ObjectContext, int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -68464,15 +68464,15 @@ void Unwind_180909a50(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x38);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -68482,8 +68482,8 @@ void Unwind_180909a50(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -68726,15 +68726,15 @@ void Unwind_180909c20(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x30) + 8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -68744,8 +68744,8 @@ void Unwind_180909c20(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -69119,12 +69119,12 @@ void Unwind_180909f60(uint8_t ObjectContext,int64_t ValidationContext)
   }
   ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0xac0);
   if (ValidationResultPointer != (uint8_t *)0x0) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -69134,8 +69134,8 @@ void Unwind_180909f60(uint8_t ObjectContext,int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -69829,12 +69829,12 @@ void Unwind_18090a450(uint8_t ObjectContext,int64_t ValidationContext)
   }
   ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0xac0);
   if (ValidationResultPointer != (uint8_t *)0x0) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -69844,8 +69844,8 @@ void Unwind_18090a450(uint8_t ObjectContext,int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -70023,15 +70023,15 @@ void Unwind_18090a5c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x68);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70041,8 +70041,8 @@ void Unwind_18090a5c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -70059,15 +70059,15 @@ void Unwind_18090a5d0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x68) + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70077,8 +70077,8 @@ void Unwind_18090a5d0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -70297,15 +70297,15 @@ void Unwind_18090a780(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x40);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70315,8 +70315,8 @@ void Unwind_18090a780(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -70347,15 +70347,15 @@ void Unwind_18090a7a0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x40);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70365,8 +70365,8 @@ void Unwind_18090a7a0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -70522,15 +70522,15 @@ void Unwind_18090a880(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x50) + 8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70540,8 +70540,8 @@ void Unwind_18090a880(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -70558,15 +70558,15 @@ void Unwind_18090a890(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70576,8 +70576,8 @@ void Unwind_18090a890(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -70778,12 +70778,12 @@ void Unwind_18090a930(uint8_t ObjectContext,int64_t ValidationContext)
   ExecuteResourceInitialization();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 8), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70793,8 +70793,8 @@ void Unwind_18090a930(uint8_t ObjectContext,int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -70816,12 +70816,12 @@ void Unwind_18090a940(uint8_t ObjectContext,int64_t ValidationContext)
   ExecuteResourceInitialization();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 8), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70831,8 +70831,8 @@ void Unwind_18090a940(uint8_t ObjectContext,int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -70870,7 +70870,7 @@ void ExecuteResourceIndexValidationAndMemoryManagement(uint8_t ObjectContext, in
       ResourceIndex = MemoryAddressBase + 0x80 + ((int64_t)ValidationResultPointer - MemoryAddressBase >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
       if ((*(void ***)(MemoryAddressBase + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70914,12 +70914,12 @@ void ExecuteResourceIndexValidationAndMemoryManagementExtended(uint8_t ObjectCon
   ExecuteResourceInitialization();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 8), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70929,8 +70929,8 @@ void ExecuteResourceIndexValidationAndMemoryManagementExtended(uint8_t ObjectCon
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -70963,12 +70963,12 @@ void ExecuteResourceIndexValidationAndMemoryManagementThird(uint8_t ObjectContex
   ExecuteResourceInitialization();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 8), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressIncrement != 0) {
+      ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+      if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
         *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -70978,8 +70978,8 @@ void ExecuteResourceIndexValidationAndMemoryManagementThird(uint8_t ObjectContex
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                            ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
     return;
@@ -71637,7 +71637,7 @@ void Unwind_18090af70(uint8_t ObjectContext,int64_t ValidationContext)
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
   loopCounter = *(int64_t *)(ResourceIndex + 0x2a8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ResourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceTable != 0) {
@@ -72286,7 +72286,7 @@ void Unwind_18090b4b0(uint8_t ObjectContext,int64_t ValidationContext)
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ResourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceTable != 0) {
@@ -72322,7 +72322,7 @@ void Unwind_18090b4c0(uint8_t ObjectContext,int64_t ValidationContext)
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ResourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceTable != 0) {
@@ -72376,7 +72376,7 @@ void Unwind_18090b4f0(uint8_t ObjectContext,int64_t ValidationContext)
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ResourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceTable != 0) {
@@ -72412,7 +72412,7 @@ void Unwind_18090b500(uint8_t ObjectContext,int64_t ValidationContext)
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ResourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceTable != 0) {
@@ -72713,7 +72713,7 @@ void Unwind_18090b7d0(uint8_t ObjectContext,int64_t ValidationContext)
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
   loopCounter = *(int64_t *)(ResourceIndex + 0x2a8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ResourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceTable != 0) {
@@ -73318,7 +73318,7 @@ void Unwind_18090bd10(uint8_t ObjectContext,int64_t ValidationContext)
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ResourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceTable != 0) {
@@ -73354,7 +73354,7 @@ void Unwind_18090bd20(uint8_t ObjectContext,int64_t ValidationContext)
   loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
       ResourceTable = *(int64_t *)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceTable != 0) {
@@ -74014,15 +74014,15 @@ void Unwind_18090c140(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x50);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -74032,8 +74032,8 @@ void Unwind_18090c140(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -74157,15 +74157,15 @@ void Unwind_18090c1c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -74175,8 +74175,8 @@ void Unwind_18090c1c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -74308,15 +74308,15 @@ void Unwind_18090c280(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xe8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -74326,8 +74326,8 @@ void Unwind_18090c280(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -74380,15 +74380,15 @@ void Unwind_18090c2d0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xe8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -74398,8 +74398,8 @@ void Unwind_18090c2d0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -74416,15 +74416,15 @@ void Unwind_18090c2e0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xe8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -74434,8 +74434,8 @@ void Unwind_18090c2e0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -74561,15 +74561,15 @@ void Unwind_18090c3b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x1d8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -74579,8 +74579,8 @@ void Unwind_18090c3b0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -74620,15 +74620,15 @@ void Unwind_18090c400(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x2d0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -74638,8 +74638,8 @@ void Unwind_18090c400(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -74911,15 +74911,15 @@ void Unwind_18090c530(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xb8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -74929,8 +74929,8 @@ void Unwind_18090c530(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -75322,15 +75322,15 @@ void Unwind_18090c610(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xb8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -75340,8 +75340,8 @@ void Unwind_18090c610(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -75358,15 +75358,15 @@ void Unwind_18090c620(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xb8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -75376,8 +75376,8 @@ void Unwind_18090c620(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77437,15 +77437,15 @@ void Unwind_18090d000(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xb0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77455,8 +77455,8 @@ void Unwind_18090d000(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77473,15 +77473,15 @@ void Unwind_18090d010(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xd0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77491,8 +77491,8 @@ void Unwind_18090d010(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77509,15 +77509,15 @@ void Unwind_18090d020(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xf0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77527,8 +77527,8 @@ void Unwind_18090d020(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77545,15 +77545,15 @@ void Unwind_18090d030(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x110);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77563,8 +77563,8 @@ void Unwind_18090d030(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77581,15 +77581,15 @@ void Unwind_18090d040(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x150);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77599,8 +77599,8 @@ void Unwind_18090d040(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77617,15 +77617,15 @@ void Unwind_18090d050(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x170);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77635,8 +77635,8 @@ void Unwind_18090d050(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77653,15 +77653,15 @@ void Unwind_18090d060(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 400);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77671,8 +77671,8 @@ void Unwind_18090d060(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77689,15 +77689,15 @@ void Unwind_18090d070(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1b0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77707,8 +77707,8 @@ void Unwind_18090d070(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77725,15 +77725,15 @@ void Unwind_18090d080(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1d0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77743,8 +77743,8 @@ void Unwind_18090d080(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77761,15 +77761,15 @@ void Unwind_18090d090(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1f0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77779,8 +77779,8 @@ void Unwind_18090d090(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77797,15 +77797,15 @@ void Unwind_18090d0a0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x210);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77815,8 +77815,8 @@ void Unwind_18090d0a0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77833,15 +77833,15 @@ void Unwind_18090d0b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x250);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77851,8 +77851,8 @@ void Unwind_18090d0b0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77869,15 +77869,15 @@ void Unwind_18090d0c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x390);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77887,8 +77887,8 @@ void Unwind_18090d0c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77905,15 +77905,15 @@ void Unwind_18090d0d0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x3b0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77923,8 +77923,8 @@ void Unwind_18090d0d0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77941,15 +77941,15 @@ void Unwind_18090d0e0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x490);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77959,8 +77959,8 @@ void Unwind_18090d0e0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -77977,15 +77977,15 @@ void Unwind_18090d0f0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2f0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -77995,8 +77995,8 @@ void Unwind_18090d0f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78013,15 +78013,15 @@ void Unwind_18090d100(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x310);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78031,8 +78031,8 @@ void Unwind_18090d100(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78049,15 +78049,15 @@ void Unwind_18090d110(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x330);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78067,8 +78067,8 @@ void Unwind_18090d110(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78085,15 +78085,15 @@ void Unwind_18090d120(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x350);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78103,8 +78103,8 @@ void Unwind_18090d120(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78121,15 +78121,15 @@ void Unwind_18090d130(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x470);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78139,8 +78139,8 @@ void Unwind_18090d130(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78157,15 +78157,15 @@ void Unwind_18090d140(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x370);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78175,8 +78175,8 @@ void Unwind_18090d140(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78193,15 +78193,15 @@ void Unwind_18090d150(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x270);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78211,8 +78211,8 @@ void Unwind_18090d150(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78229,15 +78229,15 @@ void Unwind_18090d160(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x290);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78247,8 +78247,8 @@ void Unwind_18090d160(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78265,15 +78265,15 @@ void Unwind_18090d170(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2b0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78283,8 +78283,8 @@ void Unwind_18090d170(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78301,15 +78301,15 @@ void Unwind_18090d180(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2d0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78319,8 +78319,8 @@ void Unwind_18090d180(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78348,15 +78348,15 @@ void Unwind_18090d1a0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xb0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78366,8 +78366,8 @@ void Unwind_18090d1a0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78384,15 +78384,15 @@ void Unwind_18090d1b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xb0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78402,8 +78402,8 @@ void Unwind_18090d1b0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78420,15 +78420,15 @@ void Unwind_18090d1c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xd0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78438,8 +78438,8 @@ void Unwind_18090d1c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78456,15 +78456,15 @@ void Unwind_18090d1d0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xd0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78474,8 +78474,8 @@ void Unwind_18090d1d0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78492,15 +78492,15 @@ void Unwind_18090d1e0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xf0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78510,8 +78510,8 @@ void Unwind_18090d1e0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78528,15 +78528,15 @@ void Unwind_18090d1f0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xf0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78546,8 +78546,8 @@ void Unwind_18090d1f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78564,15 +78564,15 @@ void Unwind_18090d200(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x110);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78582,8 +78582,8 @@ void Unwind_18090d200(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78600,15 +78600,15 @@ void Unwind_18090d210(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x110);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78618,8 +78618,8 @@ void Unwind_18090d210(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78636,15 +78636,15 @@ void Unwind_18090d220(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x150);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78654,8 +78654,8 @@ void Unwind_18090d220(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78672,15 +78672,15 @@ void Unwind_18090d230(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x150);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78690,8 +78690,8 @@ void Unwind_18090d230(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78708,15 +78708,15 @@ void Unwind_18090d240(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x170);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78726,8 +78726,8 @@ void Unwind_18090d240(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78744,15 +78744,15 @@ void Unwind_18090d250(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x170);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78762,8 +78762,8 @@ void Unwind_18090d250(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78780,15 +78780,15 @@ void Unwind_18090d260(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 400);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78798,8 +78798,8 @@ void Unwind_18090d260(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78816,15 +78816,15 @@ void Unwind_18090d270(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 400);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78834,8 +78834,8 @@ void Unwind_18090d270(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78852,15 +78852,15 @@ void Unwind_18090d280(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1b0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78870,8 +78870,8 @@ void Unwind_18090d280(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78888,15 +78888,15 @@ void Unwind_18090d290(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1b0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78906,8 +78906,8 @@ void Unwind_18090d290(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78924,15 +78924,15 @@ void Unwind_18090d2a0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1d0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78942,8 +78942,8 @@ void Unwind_18090d2a0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78960,15 +78960,15 @@ void Unwind_18090d2b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1d0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -78978,8 +78978,8 @@ void Unwind_18090d2b0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -78996,15 +78996,15 @@ void Unwind_18090d2c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1f0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79014,8 +79014,8 @@ void Unwind_18090d2c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79032,15 +79032,15 @@ void Unwind_18090d2d0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1f0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79050,8 +79050,8 @@ void Unwind_18090d2d0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79068,15 +79068,15 @@ void Unwind_18090d2e0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x210);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79086,8 +79086,8 @@ void Unwind_18090d2e0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79104,15 +79104,15 @@ void Unwind_18090d2f0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x210);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79122,8 +79122,8 @@ void Unwind_18090d2f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79140,15 +79140,15 @@ void Unwind_18090d300(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x250);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79158,8 +79158,8 @@ void Unwind_18090d300(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79176,15 +79176,15 @@ void Unwind_18090d310(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x250);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79194,8 +79194,8 @@ void Unwind_18090d310(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79268,15 +79268,15 @@ void Unwind_18090d360(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x390);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79286,8 +79286,8 @@ void Unwind_18090d360(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79304,15 +79304,15 @@ void Unwind_18090d370(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x390);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79322,8 +79322,8 @@ void Unwind_18090d370(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79340,15 +79340,15 @@ void Unwind_18090d380(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x3b0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79358,8 +79358,8 @@ void Unwind_18090d380(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79376,15 +79376,15 @@ void Unwind_18090d390(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x3b0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79394,8 +79394,8 @@ void Unwind_18090d390(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79412,15 +79412,15 @@ void Unwind_18090d3a0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x490);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79430,8 +79430,8 @@ void Unwind_18090d3a0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79448,15 +79448,15 @@ void Unwind_18090d3b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x490);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79466,8 +79466,8 @@ void Unwind_18090d3b0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79484,15 +79484,15 @@ void Unwind_18090d3c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2f0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79502,8 +79502,8 @@ void Unwind_18090d3c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79520,15 +79520,15 @@ void Unwind_18090d3d0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2f0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79538,8 +79538,8 @@ void Unwind_18090d3d0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79556,15 +79556,15 @@ void Unwind_18090d3e0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x310);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79574,8 +79574,8 @@ void Unwind_18090d3e0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79592,15 +79592,15 @@ void Unwind_18090d3f0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x310);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79610,8 +79610,8 @@ void Unwind_18090d3f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79628,15 +79628,15 @@ void Unwind_18090d400(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x330);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79646,8 +79646,8 @@ void Unwind_18090d400(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79664,15 +79664,15 @@ void Unwind_18090d410(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x330);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79682,8 +79682,8 @@ void Unwind_18090d410(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79700,15 +79700,15 @@ void Unwind_18090d420(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x350);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79718,8 +79718,8 @@ void Unwind_18090d420(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79736,15 +79736,15 @@ void Unwind_18090d430(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x350);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79754,8 +79754,8 @@ void Unwind_18090d430(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79772,15 +79772,15 @@ void Unwind_18090d440(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x470);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79790,8 +79790,8 @@ void Unwind_18090d440(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79808,15 +79808,15 @@ void Unwind_18090d450(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x470);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79826,8 +79826,8 @@ void Unwind_18090d450(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79844,15 +79844,15 @@ void Unwind_18090d460(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x370);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79862,8 +79862,8 @@ void Unwind_18090d460(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79880,15 +79880,15 @@ void Unwind_18090d470(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x370);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79898,8 +79898,8 @@ void Unwind_18090d470(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79916,15 +79916,15 @@ void Unwind_18090d480(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x270);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79934,8 +79934,8 @@ void Unwind_18090d480(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79952,15 +79952,15 @@ void Unwind_18090d490(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x270);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -79970,8 +79970,8 @@ void Unwind_18090d490(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -79988,15 +79988,15 @@ void Unwind_18090d4a0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x290);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -80006,8 +80006,8 @@ void Unwind_18090d4a0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -80024,15 +80024,15 @@ void Unwind_18090d4b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x290);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -80042,8 +80042,8 @@ void Unwind_18090d4b0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -80060,15 +80060,15 @@ void Unwind_18090d4c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2b0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -80078,8 +80078,8 @@ void Unwind_18090d4c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -80096,15 +80096,15 @@ void Unwind_18090d4d0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2b0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -80114,8 +80114,8 @@ void Unwind_18090d4d0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -80132,15 +80132,15 @@ void Unwind_18090d4e0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2d0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -80150,8 +80150,8 @@ void Unwind_18090d4e0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -80168,15 +80168,15 @@ void Unwind_18090d4f0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x2d0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -80186,8 +80186,8 @@ void Unwind_18090d4f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -80737,15 +80737,15 @@ void Unwind_18090d7e0(uint8_t ObjectContext,int64_t ValidationContext)
           ExecuteSystemEmergencyExit();
   }
   ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0x1460);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -80755,8 +80755,8 @@ void Unwind_18090d7e0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -81308,15 +81308,15 @@ void Unwind_18090de40(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0xe0) + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -81326,8 +81326,8 @@ void Unwind_18090de40(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -81557,15 +81557,15 @@ void Unwind_18090e000(uint8_t ObjectContext,int64_t ValidationContext)
           ExecuteSystemEmergencyExit();
   }
   ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0x1460);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -81575,8 +81575,8 @@ void Unwind_18090e000(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -81868,15 +81868,15 @@ void Unwind_18090e3c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xe8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -81886,8 +81886,8 @@ void Unwind_18090e3c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -81904,15 +81904,15 @@ void UnwindResourceHashValidator(uint8_t ObjectContext,int64_t ValidationContext
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xe8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -81922,8 +81922,8 @@ void UnwindResourceHashValidator(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -83962,15 +83962,15 @@ void Unwind_18090eeb0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x88) + 8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -83980,8 +83980,8 @@ void Unwind_18090eeb0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -84019,15 +84019,15 @@ void UnwindSystemResourceValidation(uint8_t ObjectContext,int64_t ValidationCont
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x88) + 0x2d0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -84037,8 +84037,8 @@ void UnwindSystemResourceValidation(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -84081,15 +84081,15 @@ void Unwind_18090ef20(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x48) + 0x1d8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -84099,8 +84099,8 @@ void Unwind_18090ef20(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -84149,15 +84149,15 @@ void Unwind_ResourceHashValidation(uint8_t ObjectContext,int64_t ValidationConte
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x10);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -84167,8 +84167,8 @@ void Unwind_ResourceHashValidation(uint8_t ObjectContext,int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -84185,15 +84185,15 @@ void Unwind_18090ef60(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x10);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -84203,8 +84203,8 @@ void Unwind_18090ef60(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -84802,15 +84802,15 @@ void Unwind_18090f1b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 0x130);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -84820,8 +84820,8 @@ void Unwind_18090f1b0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -84838,15 +84838,15 @@ void Unwind_18090f1d0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 0x150);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -84856,8 +84856,8 @@ void Unwind_18090f1d0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -84895,15 +84895,15 @@ void Unwind_18090f210(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0xc0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -84913,8 +84913,8 @@ void Unwind_18090f210(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -84931,15 +84931,15 @@ void Unwind_18090f230(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0xe0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -84949,8 +84949,8 @@ void Unwind_18090f230(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -84967,15 +84967,15 @@ void Unwind_18090f250(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x100);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -84985,8 +84985,8 @@ void Unwind_18090f250(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -85003,15 +85003,15 @@ void Unwind_18090f270(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x120);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -85021,8 +85021,8 @@ void Unwind_18090f270(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -85039,15 +85039,15 @@ void Unwind_18090f290(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x140);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -85057,8 +85057,8 @@ void Unwind_18090f290(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -85075,15 +85075,15 @@ void Unwind_18090f2b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x160);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -85093,8 +85093,8 @@ void Unwind_18090f2b0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -85131,15 +85131,15 @@ void Unwind_18090f2f0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x1a0);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -85149,8 +85149,8 @@ void Unwind_18090f2f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -86915,15 +86915,15 @@ void Unwind_18090ff90(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x158);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -86933,8 +86933,8 @@ void Unwind_18090ff90(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -87765,15 +87765,15 @@ void Unwind_180910320(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x150);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -87783,8 +87783,8 @@ void Unwind_180910320(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -87821,15 +87821,15 @@ void Unwind_180910340(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0xa8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -87839,8 +87839,8 @@ void Unwind_180910340(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -87857,15 +87857,15 @@ void Unwind_180910350(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0x150);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -87875,8 +87875,8 @@ void Unwind_180910350(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -87932,15 +87932,15 @@ void Unwind_1809103c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x48) + 8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -87950,8 +87950,8 @@ void Unwind_1809103c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -88136,15 +88136,15 @@ void Unwind_1809104f0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x338);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -88154,8 +88154,8 @@ void Unwind_1809104f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -88172,15 +88172,15 @@ void Unwind_180910510(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x358);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -88190,8 +88190,8 @@ void Unwind_180910510(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -88354,15 +88354,15 @@ void Unwind_180910640(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x338);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -88372,8 +88372,8 @@ void Unwind_180910640(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -88390,15 +88390,15 @@ void Unwind_180910660(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x358);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -88408,8 +88408,8 @@ void Unwind_180910660(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -88486,15 +88486,15 @@ void Unwind_1809106e0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x78);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -88504,8 +88504,8 @@ void Unwind_1809106e0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -88546,15 +88546,15 @@ void Unwind_180910750(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x78);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -88564,8 +88564,8 @@ void Unwind_180910750(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -88602,15 +88602,15 @@ void Unwind_180910770(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x30);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -88620,8 +88620,8 @@ void Unwind_180910770(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -88638,15 +88638,15 @@ void Unwind_180910780(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x30);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -88656,8 +88656,8 @@ void Unwind_180910780(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -88674,15 +88674,15 @@ void Unwind_180910790(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x58) + 8);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -88692,8 +88692,8 @@ void Unwind_180910790(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -92690,15 +92690,15 @@ void Unwind_1809118c0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -92708,8 +92708,8 @@ void Unwind_1809118c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -92755,15 +92755,15 @@ void Unwind_1809118f0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x70);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -92773,8 +92773,8 @@ void Unwind_1809118f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -92891,15 +92891,15 @@ void Unwind_180911950(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x20);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -92909,8 +92909,8 @@ void Unwind_180911950(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -95573,15 +95573,15 @@ void Unwind_180912930(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x360);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -95591,8 +95591,8 @@ void Unwind_180912930(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -96345,10 +96345,10 @@ void InitializeSystemDataStructureW(void)
     return;
   }
   loopIncrement = (uint64_t)ResourceValidator & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceValidator - loopIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *ResourceValidator = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
@@ -96359,7 +96359,7 @@ void InitializeSystemDataStructureW(void)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                           ResourceValidator,loopIncrement,0xfffffffffffffffe);
     }
   }
