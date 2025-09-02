@@ -57359,10 +57359,10 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
           UnsignedStackFlagA0 = 0;
           SystemStackFlagB0 = 0;
           systemDataBuffer = 0;
-          InitializeSystemDataBuffer(&uStack_c8,SystemResourceManager,0);
+          InitializeSystemDataBuffer(&SystemDataBufferContext,SystemResourceManager,0);
           (**(code **)(*SystemResourceManager + 0x38))(SystemResourceManager);
-          ProcessSystemBufferData(&uStack_c8,localDataIndex,systemValue,CalculationFlags,floatValue8);
-          CleanupSystemDataBuffer(&uStack_c8);
+          ProcessSystemBufferData(&SystemDataBufferContext,localDataIndex,systemValue,CalculationFlags,floatValue8);
+          CleanupSystemDataBuffer(&SystemDataBufferContext);
         }
         ProcessSystemStackContext(&pStackValue3);
       }
@@ -60007,7 +60007,7 @@ LAB_180077fcf:
         SystemFloatValue2 = BaseValue * OffsetValue + floatValue2 * InterpolationParam2 + floatValue6 * InterpolationParam5 + ConfigurationFlag[0xd];
         SystemFloatValue3 = BaseValue * RatioValue + floatValue2 * InterpolationParam3 + floatValue6 * MagnitudeSquared + ConfigurationFlag[0xe];
       }
-      uStack_4c = 0x3f800000;
+      SystemFloatValue = 0x3f800000;
       SystemThreadContext = (ulong long)(uint)(float)SystemThreadContext;
       SystemProcessFlags70 = (ulong long)(uint)(float)SystemProcessFlags70;
       UnsignedStackFlag80 = (ulong long)(uint)(float)UnsignedStackFlag80;
@@ -64385,13 +64385,13 @@ LAB_18007a312:
     MemoryBufferAddress = *SystemHashNodeData;
     SystemResourceDataIndex = SystemHashNodeData[1];
     SystemHashNodeData = (void* *)(ResourceDataOffset1 + 0x20 + SystemThreadHandle1);
-    uStack_e8 = *SystemHashNodeData;
-    uStack_e0 = SystemHashNodeData[1];
+    SystemHashNodeData0 = *SystemHashNodeData;
+    SystemHashNodeData0_1 = SystemHashNodeData[1];
     SystemHashNodeData = (void* *)(ResourceDataOffset1 + 0x30 + SystemThreadHandle1);
     SystemMemoryAllocatorStatus = *SystemHashNodeData;
-    uStack_d0 = SystemHashNodeData[1];
+    SystemHashNodeData1 = SystemHashNodeData[1];
     SystemHashNodeData = (void* *)(ResourceDataOffset1 + 0x40 + SystemThreadHandle1);
-    uStack_c8 = *SystemHashNodeData;
+    SystemHashNodeData2 = *SystemHashNodeData;
     UnsignedStackFlagC0 = SystemHashNodeData[1];
     systemDataBuffer = *(void* *)(ResourceDataOffset1 + 0x50 + SystemThreadHandle1);
     UnsignedStackFlagB0 = *(uint32_t *)(ResourceDataOffset1 + 0x58 + SystemThreadHandle1);
