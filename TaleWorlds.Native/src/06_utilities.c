@@ -60007,7 +60007,7 @@ void Unwind_180908190(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809081a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindProcessResourceOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + 0x68),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x68) + 0x10),
@@ -60017,7 +60017,7 @@ void Unwind_1809081a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809081b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindExecuteResourceOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + 0x68),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x68) + 0x10),
@@ -60027,7 +60027,7 @@ void Unwind_1809081b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809081c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindInitializeResourceSystem(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -60048,7 +60048,7 @@ void Unwind_1809081c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809081d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindExecuteResourceCommand(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -60063,7 +60063,7 @@ void Unwind_1809081d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809081e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindProcessResourceWithOffset(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + 0x40) + 0x30,
@@ -60074,7 +60074,7 @@ void Unwind_1809081e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809081f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindExecuteResourceWithCommand(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -60089,14 +60089,14 @@ void Unwind_1809081f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180908200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindExecuteCallbackFunction(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  code *CallbackPointer;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0x58) + 0x18);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0x58) + 8,0,0,CleanupFlag,0xfffffffffffffffe);
+  CallbackPointer = *(code **)(*(int64_t *)(ValidationContext + 0x58) + 0x18);
+  if (CallbackPointer != (code *)0x0) {
+    (*CallbackPointer)(*(int64_t *)(ValidationContext + 0x58) + 8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
