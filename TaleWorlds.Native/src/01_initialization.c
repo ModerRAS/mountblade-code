@@ -1007,8 +1007,8 @@ void* SystemConfigDataPrimary;        // SystemConfigDataPointerA
 void* SystemConfigDataSecondary;        // SystemConfigDataPointerB
 void* SystemConfigDataTertiary;        // SystemConfigDataPointerC
 void* SystemConfigDataQuaternary;        // SystemConfigDataPointerD
-void* SystemConfigDataQuinary;        // SystemConfigDataSecondary
-void* SystemConfigDataSenary;        // SystemConfigDataTertiary
+void* SystemConfigDataQuinary;        // 系统配置数据第五个 (原SystemConfigDataSecondary)
+void* SystemConfigDataSenary;        // 系统配置数据第六个 (原SystemConfigDataTertiary)
 void* SystemSemaphoreInstance;            // 系统信号量实例
 /**
  * @brief 系统内存分配器函数
@@ -1046,16 +1046,16 @@ void* SystemConfigurationDataTertiary;
 void* SystemConfigurationDataQuaternary;
 void* SystemConfigurationDataQuinary;
 void* SystemConfigurationDataSenary;
-// 系统数据缓冲区
-void* SystemDataBufferPrimaryFirst;
-void* SystemDataBufferPrimarySecond;
-void* SystemDataBufferPrimaryThird;
-void* SystemDataBufferPrimaryFourth;
-void* SystemDataBufferPrimaryFifth;
-void* SystemDataBufferPrimarySixth;
-void* SystemDataBufferPrimarySeventh;
-void* SystemDataBufferPrimaryEighth;
-void* SystemDataBufferPrimaryNinth;
+// 系统数据缓冲区 - 主要数据序列
+void* SystemDataBufferPrimaryFirst;     // 主要数据缓冲区第一个
+void* SystemDataBufferPrimarySecond;    // 主要数据缓冲区第二个
+void* SystemDataBufferPrimaryThird;     // 主要数据缓冲区第三个
+void* SystemDataBufferPrimaryFourth;    // 主要数据缓冲区第四个
+void* SystemDataBufferPrimaryFifth;     // 主要数据缓冲区第五个
+void* SystemDataBufferPrimarySixth;     // 主要数据缓冲区第六个
+void* SystemDataBufferPrimarySeventh;   // 主要数据缓冲区第七个
+void* SystemDataBufferPrimaryEighth;    // 主要数据缓冲区第八个
+void* SystemDataBufferPrimaryNinth;     // 主要数据缓冲区第九个
 
 // 函数: 系统配置加载器 - 负责加载系统配置参数
 // 系统配置管理器
@@ -1563,39 +1563,39 @@ void InitializeSystemCoreConfig(void)
   uint64_t InitializationFlag;
   long long AllocationSize;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
-  SystemRootNodePointer = (void**)*SystemDataTablePointer;
-  IsSystemNodeActive = *(char*)((long long)SystemRootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  SystemInitializationFlag = 0;
-  PreviousSystemNode = SystemRootNodePointer;
-  CurrentSystemNode = (void**)SystemRootNodePointer[1];
+  DataTablePointer = (long long*)GetSystemRootPointer();
+  RootNodePointer = (void**)*DataTablePointer;
+  IsNodeActive = *(char*)((long long)RootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  InitializationFlag = 0;
+  PreviousNode = RootNodePointer;
+  CurrentNode = (void**)RootNodePointer[1];
   
-  while (IsSystemNodeActive == '\0') {
-    NodeIdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SystemMemoryIdentifier, SYSTEM_IDENTIFIER_SIZE);
-    if (NodeIdentifierComparisonResult < 0) {
-      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
-      CurrentSystemNode = PreviousSystemNode;
+  while (IsNodeActive == '\0') {
+    IdentifierComparisonResult = memcmp(CurrentNode + 4, &MEMORY_IDENTIFIER, SYSTEM_IDENTIFIER_SIZE);
+    if (IdentifierComparisonResult < 0) {
+      NextNode = (void**)CurrentNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
+      CurrentNode = PreviousNode;
     }
     else {
-      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_HEAD_POINTER_OFFSET];
+      NextNode = (void**)CurrentNode[SYSTEM_NODE_HEAD_POINTER_OFFSET];
     }
-    PreviousSystemNode = CurrentSystemNode;
-    CurrentSystemNode = NextSystemNode;
-    IsSystemNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    IsNodeActive = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   
-  if ((PreviousSystemNode == SystemRootNodePointer) || 
-      (NodeIdentifierComparisonResult = memcmp(&SystemMemoryIdentifier, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), NodeIdentifierComparisonResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    PreviousSystemNode = AllocatedSystemNode;
+  if ((PreviousNode == RootNodePointer) || 
+      (IdentifierComparisonResult = memcmp(&MEMORY_IDENTIFIER, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierComparisonResult < 0)) {
+    AllocationSize = GetSystemMemorySize(DataTablePointer);
+    AllocateSystemMemory(DataTablePointer, &AllocatedNode, PreviousNode, AllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, AllocationSize);
+    PreviousNode = AllocatedNode;
   }
   
-  PreviousSystemNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_MEMORY_NODE_IDENTIFIER1;
-  PreviousSystemNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_MEMORY_NODE_IDENTIFIER2;
-  PreviousSystemNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeId;
-  PreviousSystemNode[SYSTEM_NODE_FLAG_INDEX] = SYSTEM_MEMORY_NODE_FLAG;
-  PreviousSystemNode[SYSTEM_NODE_HANDLER_INDEX] = ResourceInitializationCallback;
+  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_MEMORY_NODE_IDENTIFIER1;
+  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_MEMORY_NODE_IDENTIFIER2;
+  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &MemoryNodeId;
+  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = SYSTEM_MEMORY_NODE_FLAG;
+  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = InitializationHandler;
   return;
 }
 
@@ -2008,16 +2008,16 @@ void InitializeCoreEngine(void)
 void InitializeRenderingSystemConfig(void)
 
 {
-  char IsSystemNodeActive;
-  void** SystemRootNodePointer;
-  int NodeIdentifierComparisonResult;
-  long long *SystemDataTablePointer;
-  long long RequiredAllocationSize;
-  void** CurrentSystemNode;
-  void** PreviousSystemNode;
-  void** NextSystemNode;
-  void** AllocatedSystemNode;
-  void* RenderingSystemHandler;
+  char SystemNodeActiveFlag;
+  void** SystemRootNode;
+  int NodeIdentifierCompareResult;
+  long long *SystemDataTable;
+  long long RequiredMemorySize;
+  void** CurrentNode;
+  void** PreviousNode;
+  void** NextNode;
+  void** AllocatedNode;
+  void* RendererHandler;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   SystemRootNodePointer = (void* *)*SystemDataTablePointer;

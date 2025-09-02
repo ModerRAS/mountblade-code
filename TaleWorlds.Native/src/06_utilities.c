@@ -208,6 +208,14 @@
 #define SystemContextPrimaryPointer SystemContextPointer
 #define SystemResourceSecondaryPointer SystemResourcePointer002
 
+// Common memory offset constants
+#define ContextBufferStatusOffset 0x2c
+#define SystemContextStatusOffset 0x98
+#define SystemStatusValidationOffset 0x18
+#define ObjectContextHandleOffset 0x18
+#define BufferContextValidationOffset 0xd0
+#define BufferArraySizeOffset 0x28
+
 // System scheduler context related constants
 #define SystemSchedulerContextObjectOffset 0x98
 #define ObjectContextValidationDataOffset 0x14
@@ -97325,12 +97333,12 @@ void ProcessSystemResourceCleanupOperationOffsetA0(uint8_t ObjectContext, int64_
 {
   int64_t ResourceCounter;
   
-  ResourceCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xa0);
+  ResourceCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + ResourceCounterOffsetA0);
   if (ResourceCounter != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) = *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPrimaryPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
