@@ -58875,7 +58875,19 @@ void SetResourceHashTablePointerToTable003(uint8_t ObjectContext,int64_t Validat
 
 
 
-void Unwind_180907560(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源回调函数
+ * 
+ * 该函数负责执行资源的回调函数
+ * 通过验证上下文获取回调函数指针并执行相应的回调操作
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含回调函数指针的信息
+ * @return 无返回值
+ * @note 此函数用于执行资源相关的回调函数
+ * @warning 确保回调函数指针有效，否则可能导致系统崩溃
+ */
+void ExecuteResourceCallbackFunction(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x50) != (int64_t *)0x0) {
