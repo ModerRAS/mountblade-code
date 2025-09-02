@@ -53304,7 +53304,7 @@ LAB_1800729bd:
         SystemThreadLocalStoragePointer = ResourceBufferPointer130;
       }
       OutputDebugStringA(SystemThreadLocalStoragePointer);
-      FUN_18004c2b0(ConfigurationFlag);
+      ProcessResourceDataIndex(ConfigurationFlag);
       ThreadLocalStorageEntry = &SystemStringTemplate;
       if (stackParameterA != (void* *)0x0) {
         ThreadLocalStorageEntry = stackParameterA;
@@ -53386,7 +53386,7 @@ LAB_1800729bd:
       if (stackParameterA != (void* *)0x0) {
         ThreadLocalStorageEntry = stackParameterA;
       }
-      FUN_1800f96b0(ThreadLocalStorageEntry,1);
+      UpdateThreadLocalStorageEntry(ThreadLocalStorageEntry,1);
       if (cStack_117 != '\0') {
         if (*(long long *)(SystemGlobalStatusFlags + 8) != 0) {
           CleanupSystemResources();
@@ -55437,7 +55437,7 @@ void ManageSystemResourceTimestamp(long long SystemResourceManager, long long Ti
     SystemDataPointer = *(uint **)(ConfigurationDataPointer + 8) + 1;
     *(uint **)(ConfigurationDataPointer + 8) = SystemDataPointer;
     if (resourceAllocationContext != 0) {
-      FUN_180049910(&pointerUnsignedC8,SystemDataPointer,resourceAllocationContext);
+      ProcessSystemDataPointer(&pointerUnsignedC8,SystemDataPointer,resourceAllocationContext);
       *(long long *)(ComparisonDataPointer + 8) = *(long long *)(ComparisonDataPointer + 8) + (ulong long)resourceAllocationContext;
     }
     pointerUnsignedC8 = &SystemMemoryAllocatorReference;
@@ -56410,7 +56410,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager, 
   SystemOperationStatus = *(uint*)(SystemResourceManager + 0x100) & 0xfbffffff;
   *(uint*)(SystemResourceManager + 0x100) = SystemOperationStatus;
   Value30 = (void*)0x180075655;
-  CharacterInput = FUN_1800861a0(ConfigurationDataPointer);
+  CharacterInput = GetCharacterInputFromConfiguration(ConfigurationDataPointer);
   if (CharacterInput == '\0') {
     *(uint*)(SystemResourceManager + 0x100) = SystemOperationStatus | 0x4000000;
   }
@@ -56479,7 +56479,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager, 
                *(uint32_t*)(*(long long*)ResourcePoolPointer[7] + 0x2a4);
         }
         else {
-          FUN_1800b9f60(SystemDataPointer);
+          CleanupSystemDataPointer(SystemDataPointer);
           PrimaryResourcePointer0 = (long long*)ResourcePoolPointer[7];
           InterpolationFactor2 = 0.0;
           if (PrimaryResourcePointer0 < (long long*)ResourcePoolPointer[8]) {
@@ -56708,11 +56708,11 @@ void ConfigureSystemResourceManager(long long SystemResourceManager,long long *C
       aEncryptionKeyValue[0] = 0;
       CONCAT44 = 0;
       lStack_20 = SystemResourceManager;
-      FUN_18007f4c0(aEncryptionKeyValue);
+      InitializeSystemEncryptionContext(aEncryptionKeyValue);
       if ((*(int *)(SystemResourceManager + 0x208) != 0) || (*(int *)(SystemResourceManager + 0x204) != 0)) {
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x1b0);
         SystemContextValue = 0;
-        FUN_18007f770(&SystemOperationCounter);
+        AcquireSystemOperationCounter(&SystemOperationCounter);
         PrimaryResourcePointer = plStack_10;
         FUN_1800860f0(plStack_10 + 2,lStack_30 + 0x10);
         FUN_1800860f0(PrimaryResourcePointer + 7,lStack_30 + 0x38);
@@ -56721,7 +56721,7 @@ void ConfigureSystemResourceManager(long long SystemResourceManager,long long *C
         FUN_180085ec0(PrimaryResourcePointer + 0x19,lStack_30 + 200);
         FUN_18007f840(&SystemOperationCounter);
       }
-      FUN_18007f6a0(aEncryptionKeyValue);
+      CleanupSystemResourceEncryption(aEncryptionKeyValue);
       if (plStack_10 != (long long *)0x0) {
         (**(code **)(*plStack_10 + 0x38))();
       }
@@ -57073,7 +57073,7 @@ void InitializeSystemResourceManagerExtended(long long *SystemResourceManager)
         StackBuffer2[0] = 0;
         SystemMemoryOffset = 0;
         pLocalStackInitializationFlag = resourcePoolPointer;
-        FUN_18007f4c0(StackBuffer2);
+        InitializeSystemResourceEncryption(StackBuffer2);
         resourcePoolPointer = plStack_120 + 0x16;
         SystemOperationStatus = *(ushort *)(plStack_120 + 0x18);
         floatValue8 = *(float *)(plStack_120[0x17] + -4 + (ulong long)SystemOperationStatus * 4);
@@ -57124,7 +57124,7 @@ void InitializeSystemResourceManagerExtended(long long *SystemResourceManager)
           FUN_18022f9b0(&EncryptionOffset2,resourcePoolPointer,systemValue,CalculationFlags,floatValue8);
           FUN_18022f410(&EncryptionOffset2);
         }
-        FUN_18007f6a0(StackBuffer2);
+        CleanupSystemResourceEncryption(StackBuffer2);
         if (plStack_120 != (long long *)0x0) {
           (**(code **)(*plStack_120 + 0x38))();
         }
@@ -57465,7 +57465,7 @@ void ConfigureSystemResourceManagerAdvanced(long long *SystemResourceManager,voi
       if (cStack_e != '\0') {
         FUN_180075b70();
       }
-      FUN_18007f6a0(aSystemResourceStatusFlag);
+      CleanupSystemResourceEncryption(aSystemResourceStatusFlag);
       if ((char)SystemEncryptionOffset != '\0') {
         FUN_180079520(plongValue40);
       }
@@ -57478,7 +57478,7 @@ void ConfigureSystemResourceManagerAdvanced(long long *SystemResourceManager,voi
         (**(code **)(*PrimaryResourcePointer + 0x38))();
       }
     }
-    FUN_18007f6a0(aSystemResourceStatusFlag);
+    CleanupSystemResourceEncryption(aSystemResourceStatusFlag);
     if (plStack_18 != (long long *)0x0) {
       (**(code **)(*plStack_18 + 0x38))();
     }
@@ -58055,7 +58055,7 @@ void DestroySystemResourceManager(long long *SystemResourceManager)
         if (cStack_26 != '\0') {
           FUN_180075b70(memoryAllocationBuffer);
         }
-        FUN_18007f6a0(&SystemEncryptionKey);
+        CleanupSystemResourceEncryption(&SystemEncryptionKey);
         if (cStack_28 != '\0') {
           FUN_180079520(memoryAllocationBuffer);
         }
@@ -62898,7 +62898,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     SystemMaxOperationCount = 0;
     UnsignedStackFlag80 = 0x1800795fa;
     pfStack_28 = SystemResourceManager;
-    FUN_18007f4c0(aSystemResourceStatusFlag);
+    InitializeSystemResourceEncryption(aSystemResourceStatusFlag);
     UnsignedStackFlag80 = 0x180079605;
     floatValue6 = (float)FUN_1802349a0(0);
     if ((10 < (int)floatValue6) ||
@@ -62916,7 +62916,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     }
     SystemResourceManager[0x40] = (float)((uint)SystemResourceManager[0x40] | 0x10000);
     UnsignedStackFlag80 = 0x18007968e;
-    FUN_18007f6a0(aSystemResourceStatusFlag);
+    CleanupSystemResourceEncryption(aSystemResourceStatusFlag);
   }
   SystemContextValue = 0xfffffffffffffffe;
   pfloatValue7 = SystemResourceManager;
@@ -64585,13 +64585,13 @@ LAB_18007b8dc:
         aUnsignedStackFlagB0[0] = 0;
         UnsignedStackFlagA0 = 3;
         lStack_a8 = SystemResourceManager;
-        FUN_18007f4c0(aUnsignedStackFlagB0);
+        InitializeSystemResourceEncryption(aUnsignedStackFlagB0);
         PrimaryResourcePointer2 = plStack_98;
         plStack_98 = (long long *)0x0;
         if (PrimaryResourcePointer2 != (long long *)0x0) {
           (**(code **)(*PrimaryResourcePointer2 + 0x38))();
         }
-        FUN_18007f6a0(aUnsignedStackFlagB0);
+        CleanupSystemResourceEncryption(aUnsignedStackFlagB0);
         if (plStack_98 != (long long *)0x0) {
           SystemThreadFlags = *plStack_98;
           PrimaryResourcePointer2 = plStack_98;
@@ -64672,14 +64672,14 @@ void ProcessSystemResourceAllocation(long long *SystemResourceManager)
     plStack_28 = (long long *)0x0;
     StackBuffer40[0] = 0;
     SystemResourceStatusFlag = 3;
-    FUN_18007f4c0(StackBuffer40);
+    InitializeSystemResourceEncryption(StackBuffer40);
     resourcePoolPointer = plStack_28;
     plStackX_10 = plStack_28;
     plStack_28 = (long long *)0x0;
     if (resourcePoolPointer != (long long *)0x0) {
       (**(code **)(*resourcePoolPointer + 0x38))();
     }
-    FUN_18007f6a0(StackBuffer40);
+    CleanupSystemResourceEncryption(StackBuffer40);
     if (plStack_28 != (long long *)0x0) {
       (**(code **)(*plStack_28 + 0x38))();
     }
@@ -66787,8 +66787,8 @@ void ConfigureSystemResourceManagerPrimaryResourcePointer(long long SystemResour
 
 
 
-// 函数: void FUN_18007ea10(long long SystemResourceManager,char ConfigurationDataPointer)
-void FUN_18007ea10(long long SystemResourceManager,char ConfigurationDataPointer)
+// 函数: void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char ConfigurationDataPointer)
+void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char ConfigurationDataPointer)
 
 {
   byte isByteValid;
@@ -66814,7 +66814,7 @@ void FUN_18007ea10(long long SystemResourceManager,char ConfigurationDataPointer
   StackBuffer40[0] = 0;
   SystemResourceStatusFlag = 1;
   longValue38 = SystemResourceManager;
-  FUN_18007f4c0(StackBuffer40);
+  InitializeSystemResourceEncryption(StackBuffer40);
   if (plStack_28 == (long long *)0x0) goto LAB_18007eb55;
   SystemResourceOffsetPointer = plStack_28;
   if (ConfigurationDataPointer != '\0') {
@@ -66836,7 +66836,7 @@ void FUN_18007ea10(long long SystemResourceManager,char ConfigurationDataPointer
   }
 LAB_18007eb55:
   *(char *)(SystemResourceManager + 0xf4) = ConfigurationDataPointer;
-  FUN_18007f6a0(StackBuffer40);
+  CleanupSystemResourceEncryption(StackBuffer40);
   if (plStack_28 != (long long *)0x0) {
     (**(code **)(*plStack_28 + 0x38))();
   }
@@ -67089,8 +67089,8 @@ void CheckSystemStatus(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_18007eea1(long long SystemResourceManager,int ConfigurationDataPointer,int AdditionalParameter)
-void FUN_18007eea1(long long SystemResourceManager,int ConfigurationDataPointer,int AdditionalParameter)
+// 函数: void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int ConfigurationDataPointer,int AdditionalParameter)
+void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int ConfigurationDataPointer,int AdditionalParameter)
 
 {
   uint SystemOperationStatus;
@@ -67192,8 +67192,8 @@ void FUN_18007eea1(long long SystemResourceManager,int ConfigurationDataPointer,
 
 
 
-// 函数: void FUN_18007ef9a(long long SystemResourceManager,long long ConfigurationDataPointer)
-void FUN_18007ef9a(long long SystemResourceManager,long long ConfigurationDataPointer)
+// 函数: void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager,long long ConfigurationDataPointer)
+void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager,long long ConfigurationDataPointer)
 
 {
   uint SystemOperationStatus;
@@ -67315,8 +67315,8 @@ void ResetSystemResourceManagerStatusFlags(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_18007f0e0(long long SystemResourceManager,long long ConfigurationDataPointer,int AdditionalParameter)
-void FUN_18007f0e0(long long SystemResourceManager,long long ConfigurationDataPointer,int AdditionalParameter)
+// 函数: void ProcessSystemResourceManagerThread(long long SystemResourceManager,long long ConfigurationDataPointer,int AdditionalParameter)
+void ProcessSystemResourceManagerThread(long long SystemResourceManager,long long ConfigurationDataPointer,int AdditionalParameter)
 
 {
   int *SystemIntegerPointer;
@@ -67390,8 +67390,8 @@ void FUN_18007f0e0(long long SystemResourceManager,long long ConfigurationDataPo
 
 
 
-// 函数: void FUN_18007f11f(void)
-void FUN_18007f11f(void)
+// 函数: void InitializeSystemResourceManagerData(void)
+void InitializeSystemResourceManagerData(void)
 
 {
   int *SystemIntegerPointer;
@@ -67458,8 +67458,8 @@ void FUN_18007f11f(void)
 
 
 
-// 函数: void FUN_18007f176(void)
-void FUN_18007f176(void)
+// 函数: void ProcessSystemResourceManagerThreadData(void)
+void ProcessSystemResourceManagerThreadData(void)
 
 {
   int *SystemIntegerPointer;
@@ -67503,8 +67503,8 @@ void FUN_18007f176(void)
 
 
 
-// 函数: void FUN_18007f27a(void)
-void FUN_18007f27a(void)
+// 函数: void ProcessSystemResourceManagerMemory(void)
+void ProcessSystemResourceManagerMemory(void)
 
 {
   long long memoryBlockAddress;
@@ -67623,8 +67623,8 @@ void* * FUN_18007f3b0(void* *SystemResourceManager,ulong long ConfigurationDataP
 
 
 
-// 函数: void FUN_18007f4c0(uint8_t *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18007f4c0(uint8_t *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void InitializeSystemResourceEncryption(uint8_t *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void InitializeSystemResourceEncryption(uint8_t *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long resourceDataIndex;
@@ -67719,7 +67719,7 @@ LAB_18007f5cb:
 void UpdateSystemState(long long SystemState)
 
 {
-  FUN_18007f6a0();
+  CleanupSystemResourceEncryption();
   if (*(long long **)(SystemResourceManager + 0x18) != (long long *)0x0) {
     (**(code **)(**(long long **)(SystemResourceManager + 0x18) + 0x38))();
   }
@@ -67729,8 +67729,8 @@ void UpdateSystemState(long long SystemState)
 
 
 
-// 函数: void FUN_18007f6a0(char *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18007f6a0(char *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void CleanupSystemResourceEncryption(char *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void CleanupSystemResourceEncryption(char *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long resourceDataIndex;
@@ -67923,7 +67923,7 @@ LAB_18007f89f:
 
 
 
-uint FUN_18007f859(void)
+uint GetSystemResourceStatusFlag(void)
 
 {
   uint *SystemDataPointer;
@@ -67996,8 +67996,8 @@ uint8_t FUN_18007f8bb(void)
 
 
 
-// 函数: void FUN_18007f8f0(long long SystemResourceManager)
-void FUN_18007f8f0(long long SystemResourceManager)
+// 函数: void ProcessSystemResourceManagerPointer(long long SystemResourceManager)
+void ProcessSystemResourceManagerPointer(long long SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -68197,8 +68197,8 @@ void FUN_18007f8f0(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_18007f90f(uint32_t SystemResourceManager)
-void FUN_18007f90f(uint32_t SystemResourceManager)
+// 函数: void ProcessSystemResourceManagerExtended(uint32_t SystemResourceManager)
+void ProcessSystemResourceManagerExtended(uint32_t SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;

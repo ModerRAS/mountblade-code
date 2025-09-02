@@ -38848,7 +38848,7 @@ void CleanupSystemResourcesPhaseThree(uint8_t ObjectContext, int64_t ValidationC
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourcesPhase4(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSet4(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38890,7 +38890,7 @@ void CleanupSystemResourcesPhase4(uint8_t ObjectContext, int64_t ValidationConte
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourcesPhase5(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSet5(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38932,7 +38932,7 @@ void CleanupSystemResourcesPhase5(uint8_t ObjectContext, int64_t ValidationConte
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourcesPhase6(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSet6(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38974,7 +38974,7 @@ void CleanupSystemResourcesPhase6(uint8_t ObjectContext, int64_t ValidationConte
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourcesPhase7(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSet7(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -64848,7 +64848,7 @@ void UnwindMemoryAccessValidatorTypeThree(uint8_t ObjectContext, int64_t Validat
 
 
 
-void UnwindMutexUnlockHandler180908880(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindMutexUnlockHandlerPrimary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -71086,7 +71086,13 @@ void DestroyMutexWithContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909ca0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数类型一：互斥锁解锁处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909ca0
+ */
+void UnwindMutexUnlockHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -71102,7 +71108,13 @@ void Unwind_180909ca0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909cb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数类型二：资源处理器注册器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909cb0
+ */
+void UnwindResourceHandlerRegistrar(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8,0x98,9,HandleResourceEvent);
