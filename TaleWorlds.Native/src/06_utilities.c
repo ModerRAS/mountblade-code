@@ -35270,6 +35270,19 @@ void SystemExceptionCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint
 
 
 
+/**
+ * @brief 内存池清理操作
+ * 
+ * 该函数负责处理内存池的清理操作
+ * 执行资源请求处理以清理内存池
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @note 此函数在内存池清理过程中被调用
+ */
 void MemoryPoolCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
