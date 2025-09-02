@@ -2655,10 +2655,10 @@ int InitializeSystemDebugManager(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfaef0 = &SystemMemoryPoolTemplate;
-  _DAT_180bfaef8 = &SystemConfigTemplateBuffer;
+  SystemDebugMemoryTemplate = &SystemMemoryPoolTemplate;
+  SystemDebugConfigAddress = &SystemConfigTemplateBuffer;
   SystemConfigTemplateBuffer = 0;
-  _DAT_180bfaf00 = 0x10;
+  SystemDebugConfigSize = 0x10;
   strcpy_s(&SystemConfigTemplateBuffer,0x400,&SystemConfigTemplateString,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeDebugManagerModule);
   return (ModuleInitializationResult != 0) - 1;
@@ -2673,10 +2673,10 @@ int InitializeSystemPerformanceMonitor(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfb310 = &SystemMemoryPoolTemplate;
-  _DAT_180bfb318 = &SystemMemoryConfigBuffer;
+  SystemNetworkMemoryTemplate = &SystemMemoryPoolTemplate;
+  SystemNetworkConfigAddress = &SystemMemoryConfigBuffer;
   SystemMemoryConfigBuffer = 0;
-  _DAT_180bfb320 = 3;
+  SystemNetworkConfigSize = 3;
   strcpy_s(&SystemMemoryConfigBuffer,0x400,&SystemMemoryConfigString,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializePerformanceMonitorModule);
   return (ModuleInitializationResult != 0) - 1;
@@ -2691,10 +2691,10 @@ int InitializeSystemLogManager(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfb730 = &SystemMemoryPoolTemplate;
-  _DAT_180bfb738 = &SystemThreadConfigBuffer;
+  SystemThreadMemoryTemplate = &SystemMemoryPoolTemplate;
+  SystemThreadConfigAddress = &SystemThreadConfigBuffer;
   SystemThreadConfigBuffer = 0;
-  _DAT_180bfb740 = 5;
+  SystemThreadConfigSize = 5;
   strcpy_s(&SystemThreadConfigBuffer,0x400,&SystemThreadConfigString,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeLogManagerModule);
   return (ModuleInitializationResult != 0) - 1;
