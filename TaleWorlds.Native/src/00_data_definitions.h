@@ -11542,7 +11542,7 @@ uint32_t SystemGetDeviceParameter(int deviceId)
   if (0x1fff < MemoryAddress) {
     MemoryAddress = 0x1fff;
   }
-  memcpy(&DAT_180c8f020,param_1,(longlong)(int)MemoryAddress);
+  memcpy(&SystemConfigurationDataBuffer,param_1,(longlong)(int)MemoryAddress);
 }
   SystemConfigFlag10 = 0;
   return;
@@ -11554,7 +11554,7 @@ uint64_t SystemMemoryAllocate(uint64_t memorySize)
   MemoryAddress = MemoryAllocateEx(SystemMemoryAllocator,memorySize,0x19);
   LongCounter = MemoryValidateEx(MemoryAddress);
   LOCK();
-  _DAT_180c967c8 = _DAT_180c967c8 + LongCounter;
+  SystemInitializationCounter = SystemInitializationCounter + LongCounter;
   UNLOCK();
   return MemoryAddress;
 }
@@ -11565,11 +11565,11 @@ uint64_t SystemMemoryResize(uint64_t memoryAddress, uint64_t newSize)
   ModuleInitializationResult = MemoryValidateEx();
   BufferSize = ResizeSystemBuffer(SystemMemoryAllocator,memoryAddress,newSize,0x19);
   LOCK();
-  _DAT_180c967c8 = _DAT_180c967c8 - ModuleInitializationResult;
+  SystemInitializationCounter = SystemInitializationCounter - ModuleInitializationResult;
   UNLOCK();
   ModuleInitializationResult = MemoryValidateEx(BufferSize);
   LOCK();
-  _DAT_180c967c8 = _DAT_180c967c8 + ModuleInitializationResult;
+  SystemInitializationCounter = SystemInitializationCounter + ModuleInitializationResult;
   UNLOCK();
   return BufferSize;
 }
@@ -11580,10 +11580,10 @@ longlong SystemMemoryFree(longlong *memoryPtr)
   longlong LongIndex;
   ulonglong NetworkRequestResult;
   LongCounter = MemoryValidateEx();
-  LongIndex = _DAT_180c967c8;
+  LongIndex = SystemInitializationCounter;
   LOCK();
-  LongCounter = _DAT_180c967c8 - LongCounter;
-  _DAT_180c967c8 = LongCounter;
+  LongCounter = SystemInitializationCounter - LongCounter;
+  SystemInitializationCounter = LongCounter;
   UNLOCK();
   if (memoryPtr == (longlong *)0x0) {
     return LongIndex;

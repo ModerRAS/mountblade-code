@@ -47578,32 +47578,41 @@ void* FUN_18006bd20(void* SystemResourcePointer,ulong long ConfigurationDataPoin
 
 
 
-// 函数: void FUN_18006bd60(long long SystemResourcePointer)
-void FUN_18006bd60(long long SystemResourcePointer)
+/**
+ * @brief 清理系统资源指针数组
+ * 
+ * 该函数负责清理系统资源指针数组，将所有指针重置为系统内存分配器引用，
+ * 并执行必要的清理操作。主要用于系统资源的释放和重置。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向需要清理的资源数据结构
+ * 
+ * 原始函数名为FUN_18006bd60，现已重命名为CleanupSystemResourcePointerArray
+ */
+void CleanupSystemResourcePointerArray(long long SystemResourcePointer)
 
 {
-  long long nextDataIndex;
-  void** SystemDataTable;
-  ulong long unsignedSystemValue3;
-  ulong long unsignedSystemValue4;
+  long long arrayIndex;
+  void** systemDataTable;
+  ulong long arraySize;
+  ulong long currentIndex;
   
-  unsignedSystemValue3 = *(ulong long *)(SystemResourcePointer + 0x10);
-  nextDataIndex = *(long long *)(SystemResourcePointer + 8);
-  unsignedSystemValue4 = 0;
-  if (unsignedSystemValue3 != 0) {
+  arraySize = *(ulong long *)(SystemResourcePointer + 0x10);
+  arrayIndex = *(long long *)(SystemResourcePointer + 8);
+  currentIndex = 0;
+  if (arraySize != 0) {
     do {
-      pointerToUnsigned2 = *(void* **)(nextDataIndex + unsignedSystemValue4 * 8);
-      if (pointerToUnsigned2 != (void* *)0x0) {
-        *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
+      resourcePointer = *(void* **)(arrayIndex + currentIndex * 8);
+      if (resourcePointer != (void* *)0x0) {
+        *resourcePointer = &SystemMemoryAllocatorReference;
           SystemCleanupFunction();
       }
-      *(void* *)(nextDataIndex + unsignedSystemValue4 * 8) = 0;
-      unsignedSystemValue4 = unsignedSystemValue4 + 1;
-    } while (unsignedSystemValue4 < unsignedSystemValue3);
-    unsignedSystemValue3 = *(ulong long *)(SystemResourcePointer + 0x10);
+      *(void* *)(arrayIndex + currentIndex * 8) = 0;
+      currentIndex = currentIndex + 1;
+    } while (currentIndex < arraySize);
+    arraySize = *(ulong long *)(SystemResourcePointer + 0x10);
   }
   *(void* *)(SystemResourcePointer + 0x18) = 0;
-  if ((1 < unsignedSystemValue3) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
+  if ((1 < arraySize) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
       SystemCleanupFunction();
   }
   return;
@@ -47612,32 +47621,41 @@ void FUN_18006bd60(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18006bd80(long long SystemResourcePointer)
-void FUN_18006bd80(long long SystemResourcePointer)
+/**
+ * @brief 重置系统资源指针数组
+ * 
+ * 该函数负责重置系统资源指针数组，将所有指针重置为系统内存分配器引用，
+ * 并执行必要的清理操作。主要用于系统资源的重置和初始化。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向需要重置的资源数据结构
+ * 
+ * 原始函数名为FUN_18006bd80，现已重命名为ResetSystemResourcePointerArray
+ */
+void ResetSystemResourcePointerArray(long long SystemResourcePointer)
 
 {
-  long long nextDataIndex;
-  void** SystemDataTable;
-  ulong long unsignedSystemValue3;
-  ulong long unsignedSystemValue4;
+  long long arrayIndex;
+  void** systemDataTable;
+  ulong long arraySize;
+  ulong long currentIndex;
   
-  unsignedSystemValue3 = *(ulong long *)(SystemResourcePointer + 0x10);
-  nextDataIndex = *(long long *)(SystemResourcePointer + 8);
-  unsignedSystemValue4 = 0;
-  if (unsignedSystemValue3 != 0) {
+  arraySize = *(ulong long *)(SystemResourcePointer + 0x10);
+  arrayIndex = *(long long *)(SystemResourcePointer + 8);
+  currentIndex = 0;
+  if (arraySize != 0) {
     do {
-      pointerToUnsigned2 = *(void* **)(nextDataIndex + unsignedSystemValue4 * 8);
-      if (pointerToUnsigned2 != (void* *)0x0) {
-        *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
+      resourcePointer = *(void* **)(arrayIndex + currentIndex * 8);
+      if (resourcePointer != (void* *)0x0) {
+        *resourcePointer = &SystemMemoryAllocatorReference;
           SystemCleanupFunction();
       }
-      *(void* *)(nextDataIndex + unsignedSystemValue4 * 8) = 0;
-      unsignedSystemValue4 = unsignedSystemValue4 + 1;
-    } while (unsignedSystemValue4 < unsignedSystemValue3);
-    unsignedSystemValue3 = *(ulong long *)(SystemResourcePointer + 0x10);
+      *(void* *)(arrayIndex + currentIndex * 8) = 0;
+      currentIndex = currentIndex + 1;
+    } while (currentIndex < arraySize);
+    arraySize = *(ulong long *)(SystemResourcePointer + 0x10);
   }
-  *(void* *)(SystemResourcePointer + 0x18) = 0;
-  if ((1 < unsignedSystemValue3) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
+  *(void* )(SystemResourcePointer + 0x18) = 0;
+  if ((1 < arraySize) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
       SystemCleanupFunction();
   }
   return;

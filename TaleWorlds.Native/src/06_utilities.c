@@ -10054,9 +10054,9 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
   resourceContext = *(int64_t **)(objectContext + 800);
   if (resourceContext != (int64_t *)0x0) {
     ResourceSecurityFlag = *validationContext;
-    ResourceValidationByte1 = validationContext[1];
-    ResourceValidationByte2 = validationContext[2];
-    ResourceValidationByte3 = validationContext[3];
+    ResourceValidationByteFirst = validationContext[1];
+    ResourceValidationByteSecond = validationContext[2];
+    ResourceValidationByteThird = validationContext[3];
     ResourceIndex = (**(code **)(*resourceContext + 0x150))(resourceContext,&ResourceSecurityFlag,1);
     if (ResourceIndex == 0) {
       ResourceQuaternaryFlag = ResourceValidationByte2 >> 0x18;
