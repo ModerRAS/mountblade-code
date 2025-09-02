@@ -1,5 +1,16 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 内存地址对齐和资源处理常量
+#define MemoryAddressAlignmentMask 0xffffffffffc00000
+#define MemoryResourceTableOffset 0x70
+#define MemoryResourceDataOffset 0x80
+#define MemoryResourceEntrySize 0x50
+#define MemoryResourceHeaderSize 0x18
+#define MemoryResourceStatusOffset 0xe
+#define MemoryResourceValueOffset 0x20
+#define MemoryResourceReferenceOffset 4
+#define MemoryCleanupTriggerValue 0xfffffffffffffffe
+
 // 系统常量定义
 #define ObjectContextOffset 0x10
 #define ObjectContextSecondaryDataOffset 0x18
@@ -4312,25 +4323,25 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   int Size;
   
   // 获取注册上下文数据
-  ValidationResult = GetRegistrationContextData(*(uint32_t *)(ObjectContext + OBJECT_CONTEXT_OFFSET), &StackPointer);
+  ValidationResult = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &StackPointer);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
   
   // 验证注册句柄
   RegistrationHandle = *(int64_t *)(StackPointer + 8);
-  if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + REGISTRATION_HANDLE_OFFSET) != StackPointer)) {
-    return ERROR_INVALID_OBJECT_HANDLE;
+  if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + RegistrationHandleOffset) != StackPointer)) {
+    return ErrorInvalidObjectHandle;
   }
   
   // 获取注册数据
-  RegistrationData = *(int64_t *)(RegistrationHandle + REGISTRATION_DATA_OFFSET);
+  RegistrationData = *(int64_t *)(RegistrationHandle + RegistrationDataOffset);
   if (RegistrationData == 0) {
-    return ERROR_INVALID_REGISTRATION_DATA;
+    return ErrorInvalidRegistrationData;
   }
   
   // 检查注册状态
-  if (*(int *)(RegistrationHandle + REGISTRATION_STATUS_OFFSET) == INVALID_REGISTRATION_STATUS) {
+  if (*(int *)(RegistrationHandle + RegistrationStatusOffset) == InvalidRegistrationStatus) {
     // 获取对象名称
     ValidationResult = GetRegisteredObjectName(RegistrationHandle, ObjectName);
     if ((int)ValidationResult != 0) {
@@ -4347,9 +4358,9 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
     if ((char)ValidationResult == (char)StatusResult) {
       if (ObjectName[0] == (char)StatusResult) {
         // 搜索现有注册项
-        BasePointer = (int64_t *)(RegistrationData + REGISTRATION_ARRAY_OFFSET);
+        BasePointer = (int64_t *)(RegistrationData + RegistrationArrayOffset);
         Iterator = 0;
-        RegistrationArraySize = *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET);
+        RegistrationArraySize = *(int *)(RegistrationData + RegistrationSizeOffset);
         if (0 < RegistrationArraySize) {
           RegistrationEntryArray = (int64_t *)*BasePointer;
           Index = Iterator;
@@ -4368,15 +4379,15 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
         
         // 检查是否需要扩容
         Counter = Counter + 1;
-        if (*(int *)(RegistrationData + REGISTRATION_CAPACITY_OFFSET) < Counter) {
+        if (*(int *)(RegistrationData + RegistrationCapacityOffset) < Counter) {
           // 计算新的容量大小
-          NewSize = (int)((float)*(int *)(RegistrationData + REGISTRATION_CAPACITY_OFFSET) * REGISTRATION_ARRAY_GROWTH_FACTOR);
+          NewSize = (int)((float)*(int *)(RegistrationData + RegistrationCapacityOffset) * RegistrationArrayGrowthFactor);
           Size = Counter;
           if (Counter <= NewSize) {
             Size = NewSize;
           }
-          if (Size < REGISTRATION_ARRAY_INITIAL_SIZE) {
-            NewSize = REGISTRATION_ARRAY_INITIAL_SIZE;
+          if (Size < RegistrationArrayInitialSize) {
+            NewSize = RegistrationArrayInitialSize;
           }
           else if (NewSize < Counter) {
             NewSize = Counter;
@@ -4390,13 +4401,13 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
         }
         
         // 添加新的注册项
-        *(int64_t *)(*BasePointer + (int64_t)*(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) * 8) = RegistrationHandle;
-        *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) = *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) + 1;
-        *(int *)(RegistrationData + REGISTRATION_COUNT_OFFSET) = *(int *)(RegistrationData + REGISTRATION_COUNT_OFFSET) + 1;
+        *(int64_t *)(*BasePointer + (int64_t)*(int *)(RegistrationData + RegistrationSizeOffset) * 8) = RegistrationHandle;
+        *(int *)(RegistrationData + RegistrationSizeOffset) = *(int *)(RegistrationData + RegistrationSizeOffset) + 1;
+        *(int *)(RegistrationData + RegistrationCountOffset) = *(int *)(RegistrationData + RegistrationCountOffset) + 1;
       }
       else {
         // 验证对象注册数据
-        uint8_t DataValidationResult = ValidateObjectRegistrationData(RegistrationData + REGISTRATION_VALIDATION_DATA_OFFSET, RegistrationHandle);
+        uint8_t DataValidationResult = ValidateObjectRegistrationData(RegistrationData + RegistrationValidationDataOffset, RegistrationHandle);
         if ((int)DataValidationResult != 0) {
           return DataValidationResult;
         }
@@ -7039,8 +7050,8 @@ void SetObjectContextPackageValidationStatusFlag(int64_t ObjectContext, int64_t 
   
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&ContextBuffer);
   if (ValidationStatus == 0) {
-    *(uint8_t *)(contextBuffer + ContextBufferDataOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
-          ProcessContext(*(uint8_t *)(processContext + ProcessContextObjectOffset),ObjectContext);
+    *(uint8_t *)(ContextBuffer + ContextBufferDataOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
+          ProcessContext(*(uint8_t *)(ProcessContext + ProcessContextObjectOffset),ObjectContext);
   }
   return;
 }
@@ -7094,14 +7105,14 @@ uint8_t ValidateAndClearObjectState(int64_t ObjectContext, int64_t SystemContext
   uint8_t HashValidationResult;
   int64_t ContextBuffer;
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&contextBuffer);
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&ContextBuffer);
   if ((int)HashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
-  if (*(char *)(contextBuffer + 0x2c) == '\0') {
+  if (*(char *)(ContextBuffer + 0x2c) == '\0') {
     return SystemInvalidDataStatusCode;
   }
-  *(uint8_t *)(contextBuffer + 0x2c) = 0;
+  *(uint8_t *)(ContextBuffer + 0x2c) = 0;
         ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset),ObjectContext);
 }
 
@@ -7129,13 +7140,13 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   int64_t MemoryContextBuffer;
   int64_t BufferContext;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&bufferContext);
-  if (((ValidationStatus != 0) || (ValidationStatus = InitializeTempBuffer(&memoryContextBuffer), ValidationStatus != 0)) ||
-     (ValidationStatus = ProcessSystemContext(memoryContextBuffer,SystemContext,*(uint8_t *)(bufferContext + 8)), ValidationStatus != 0)) {
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&BufferContext);
+  if (((ValidationStatus != 0) || (ValidationStatus = InitializeTempBuffer(&MemoryContextBuffer), ValidationStatus != 0)) ||
+     (ValidationStatus = ProcessSystemContext(MemoryContextBuffer,SystemContext,*(uint8_t *)(BufferContext + 8)), ValidationStatus != 0)) {
     return;
   }
   NewBufferPointer = 0;
-  BufferOffset = memoryContextBuffer + 8;
+  BufferOffset = MemoryContextBuffer + 8;
   if (MemoryContextBuffer == 0) {
     BufferOffset = NewBufferPointer;
   }
@@ -7143,9 +7154,9 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   if (ValidationStatus != 0) {
     return;
   }
-  CapacitySignBit = (int)*(uint *)(bufferContext + 0x2c) >> ErrorResourceValidationFailed;
-  CurrentCapacity = (*(uint *)(bufferContext + 0x2c) ^ CapacitySignBit) - CapacitySignBit;
-  ValidationStatus = *(int *)(bufferContext + BufferContextSizeOffset) + 1;
+  CapacitySignBit = (int)*(uint *)(BufferContext + 0x2c) >> ErrorResourceValidationFailed;
+  CurrentCapacity = (*(uint *)(BufferContext + 0x2c) ^ CapacitySignBit) - CapacitySignBit;
+  ValidationStatus = *(int *)(BufferContext + BufferContextSizeOffset) + 1;
   if (CurrentCapacity < ValidationStatus) {
     CurrentCapacity = (int)((float)CurrentCapacity * 1.5);
     if (ValidationStatus <= CurrentCapacity) {
@@ -11728,8 +11739,8 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *Val
     ObjectContextOffset = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
     SecurityContextOffset = ArrayIterationIndex * 3;
     int64_t SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + ArrayIterationIndex * 0xc) + *(int64_t *)(ObjectContext + ObjectContextHandleDataOffset);
-    char SystemStatusCharacter = *(char *)(ObjectContextOffset + ResourceCleanupOffset + ArrayIterationIndex * 0xc);
-    if (SystemStatusCharacter == '\x01') {
+    char SystemOperationStatus = *(char *)(ObjectContextOffset + ResourceCleanupOffset + ArrayIterationIndex * 0xc);
+    if (SystemOperationStatus == '\x01') {
       int MaxOperationCount = *(int *)(ObjectContext + ObjectContextResourceCountOffset);
       if (OperationResult < MaxOperationCount) {
         *(int *)(ObjectContext + ObjectContextProcessingDataOffset) = OperationResult + 1;
@@ -11777,15 +11788,15 @@ VALIDATION_FAILURE_HANDLER:
       }
     }
     else {
-      if (SystemStatusCharacter == '\x06') {
-        SystemStatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-        if (SystemStatusCharacter == '\0') goto HANDLE_VALIDATION_FAILED;
+      if (SystemOperationStatus == '\x06') {
+        SystemOperationStatus = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+        if (SystemOperationStatus == '\0') goto HANDLE_VALIDATION_FAILED;
         *ValidationContext = 0;
         goto HandleSystemError;
       }
-      if (SystemStatusCharacter == '\a') {
-        SystemStatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-        if (SystemStatusCharacter == '\0') {
+      if (SystemOperationStatus == '\a') {
+        SystemOperationStatus = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+        if (SystemOperationStatus == '\0') {
           if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(ObjectContext + 0x58) + 0x90) + 0x790) +
                       0x1c8) != 0) {
             *ValidationContext = 0;
@@ -11795,7 +11806,7 @@ VALIDATION_FAILURE_HANDLER:
         }
       }
       else {
-        if ((SystemStatusCharacter != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
+        if ((SystemOperationStatus != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
         SecurityValidationFlag = *(uint32_t *)(SystemDataPointer + 0x20);
         OperationStatusCode = ProcessDataWithContext(ObjectContext,OperationResult,&SecurityValidationFlag);
         if (OperationResult != 0) goto HandleSystemError;
@@ -19263,20 +19274,20 @@ void ProcessObjectContextValidation(int64_t ObjectContext,int *ValidationContext
   
   ContextValidationStatusCode = (uint32_t)((uint)InputParameterValue >> 8);
   StatusCharacter = (char)InputParameterValue + -0x57 + OverflowFlag;
-  loopCounter = CONCAT31(HashValidationResult,StatusCharacter);
-  *(uint32_t *)CONCAT44(RegisterParameter,loopCounter) = loopCounter;
+  LoopCounter = CONCAT31(HashValidationResult,StatusCharacter);
+  *(uint32_t *)CONCAT44(RegisterParameter,LoopCounter) = LoopCounter;
   *(uint *)(ObjectContext + -0x565dff77) = *(uint *)(ObjectContext + -0x565dff77) & BasePointer;
-  *(uint32_t *)CONCAT44(RegisterParameter,loopCounter) = loopCounter;
+  *(uint32_t *)CONCAT44(RegisterParameter,LoopCounter) = LoopCounter;
   StackContextPointer = ValidationContext;
-  *(uint32_t *)CONCAT44(RegisterParameter,loopCounter) = loopCounter;
-  *(char *)CONCAT44(RegisterParameter,loopCounter) =
-       *(char *)CONCAT44(RegisterParameter,loopCounter) + StatusCharacter;
-  *(char *)CONCAT44(RegisterParameter,loopCounter) =
-       *(char *)CONCAT44(RegisterParameter,loopCounter) + StatusCharacter;
+  *(uint32_t *)CONCAT44(RegisterParameter,LoopCounter) = LoopCounter;
+  *(char *)CONCAT44(RegisterParameter,LoopCounter) =
+       *(char *)CONCAT44(RegisterParameter,LoopCounter) + StatusCharacter;
+  *(char *)CONCAT44(RegisterParameter,LoopCounter) =
+       *(char *)CONCAT44(RegisterParameter,LoopCounter) + StatusCharacter;
   TableIndex = CONCAT31(HashValidationResult,StatusCharacter + '\x18');
   *ValidationContext = *ValidationContext + ResourceTableIndex;
   ContextValidationPointer = (char *)((int64_t)&PointerStackValue8 + CONCAT44(InputParameterValue,ResourceTableIndex));
-  *ContextValidationPointer = *ContextValidationPointer + SystemStatusCharacter + '\x18';
+  *ContextValidationPointer = *ContextValidationPointer + SystemOperationStatus + '\x18';
   SystemCallHandler = (code *)swi(3);
   (*SystemCallHandler)();
   return;
@@ -29670,6 +29681,18 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * 该函数负责处理异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
  * 专门处理主级异常情况的资源清理工作
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
+/**
+ * @brief 异常处理函数：解卷主上下文异常处理器
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理一级异常情况的资源清理工作
  * 
  * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
  * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
@@ -47470,9 +47493,9 @@ void ProcessResourceHashValidationAndUpdateIndex(uint8_t ObjectContext, int64_t 
   if (ResourceHashValidationResultAddress == (uint8_t *)0x0) {
     return;
   }
-  uint64_t MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultAddress & 0xffffffffffc00000;
+  uint64_t MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultAddress & MemoryAddressAlignmentMask;
   if (MemoryAddressIncrement != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultAddress - MemoryAddressIncrement >> 0x10) * 0x50;
+    ResourceIndex = MemoryAddressIncrement + MemoryResourceDataOffset + ((int64_t)ResourceHashValidationResultAddress - MemoryAddressIncrement >> 0x10) * MemoryResourceEntrySize;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *ResourceHashValidationResultAddress = *(uint8_t *)(ResourceIndex + 0x20);
