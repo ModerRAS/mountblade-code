@@ -16988,7 +16988,7 @@ uint8_t ProcessResourceTableEntries(int64_t ObjectContextParameter, int64_t *Val
   int operationResult;
   int64_t ResourceContextPointer;
   int64_t SavedRegisterValue;
-  uint32_t in_stack_00000030;
+  uint32_t StackVariable30;
   
   ResourceIndex = ValidateResourceEntry();
   if (ResourceIndex == 0) {
@@ -24253,7 +24253,7 @@ uint8_t ManageResourceTable(void)
   int64_t resourceTable;
   uint8_t ValidationResult;
   int64_t *ResourceContextPointer;
-  uint32_t in_stack_00000030;
+  uint32_t StackVariable30;
   int64_t StackRegisterStorage38;
   int iStack00000000000000b0;
   uint StackRegisterStorageB8;
@@ -27949,7 +27949,7 @@ uint64_t ValidateResourceCertificateChain(void)
   int64_t ExecutionContextPointer;
   uint RegisterESI;
   int64_t *RegisterContext;
-  uint32_t in_stack_00000030;
+  uint32_t StackVariable30;
   uint32_t uStack0000000000000038;
   uint16_t uStack000000000000003c;
   uint16_t uStack000000000000003e;
@@ -28022,7 +28022,7 @@ uint64_t ProcessResourceCertificateSigning(void)
   int64_t ExecutionContextPointer;
   uint RegisterESI;
   int64_t *RegisterContext;
-  uint32_t in_stack_00000030;
+  uint32_t StackVariable30;
   uint32_t uStack0000000000000038;
   uint16_t uStack000000000000003c;
   uint16_t uStack000000000000003e;
