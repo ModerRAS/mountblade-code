@@ -4383,7 +4383,7 @@ uint8_t InitializeObjectHandleOperationD(void)
   else {
     SystemContextHandle = InputContext - 8;
   }
-  if (InputContext == 0) {
+  SystemContext = SystemContextHandle;
   ResourceIdentifierPointer = (uint32_t *)(SystemContext + 0x20 + (int64_t)*(int *)(SystemContext + 0x18) * 4);
   if (0 < *(int *)(SystemContext + 0x18)) {
     BaseAddressOffset = (SystemContext + 0x20) - (int64_t)ResourceIdentifierPointer;
