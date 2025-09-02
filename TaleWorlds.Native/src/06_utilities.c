@@ -20086,7 +20086,7 @@ void ProcessLocalContextPointer(void)
   else {
     if (SystemContextPointer[2] != 0) {
       ProcessedStackValue = 0;
-      DataValidationStatusCode = ValidateObjectContextData(*SystemContextPointer,&ObjectSecondaryBuffer);
+      DataValidationStatusCode = ValidateObjectContextData(*SystemContextPointer,&SecondaryResourceBuffer);
       if (DataValidationStatusCode != 0) {
         return;
       }
@@ -20095,7 +20095,7 @@ void ProcessLocalContextPointer(void)
         goto ResourceProcessingLoop;
       }
     }
-    DataValidationStatusCode = CalculateResourceHash(*SystemContextPointer,&ObjectResourceBuffer,1,1,0);
+    DataValidationStatusCode = CalculateResourceHash(*SystemContextPointer,&PrimaryResourceBuffer,1,1,0);
   }
 ResourceProcessingLoop:
   if (DataValidationStatusCode == 0) {

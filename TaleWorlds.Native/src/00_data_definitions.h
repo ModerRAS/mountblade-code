@@ -9474,7 +9474,7 @@ Label_18060b805:
                               if (NetworkRequestStatus != '\0') goto Label_18060b8d7;
                               NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkConfigValidationParameter240);
                               if (NetworkRequestStatus != '\0') goto Label_18060b34b;
-                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a278);
+                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameter278);
                               if (NetworkRequestStatus != '\0') goto Label_18060a7ec;
                             }
                           }

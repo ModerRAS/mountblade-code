@@ -55575,7 +55575,7 @@ void InitializeSystemResourceBuffer(long long SystemResourceManager)
     SystemCalculatedBufferAddress = *(long long **)(SystemResourceManager + 0xb0);
     systemResult = (**(code **)(*SystemCalculatedBufferAddress + 0x60))(SystemCalculatedBufferAddress);
     *(uint8_t *)((long long)SystemCalculatedBufferAddress + 0xb2) = 1;
-    FUN_1802abe00((long long)systemResult * 0x98 + resourceDataIndex + 8,SystemCalculatedBufferAddress);
+    CalculateSystemMemoryAddress((long long)systemResult * 0x98 + resourceDataIndex + 8,SystemCalculatedBufferAddress);
   }
   return;
 }
@@ -55607,7 +55607,7 @@ void ReleaseSystemResourceBuffer(long long SystemResourceManager)
     if (plStackX_8 != (long long *)0x0) {
       (**(code **)(*plStackX_8 + 0x28))();
     }
-    FUN_1800b55b0();
+    ReleaseSystemMemoryBuffer();
     pplStackX_10 = *(long long ***)(SystemResourceManager + 0xb0);
     *(void* *)(SystemResourceManager + 0xb0) = 0;
     if (pplStackX_10 != (long long **)0x0) {
@@ -55791,7 +55791,7 @@ void AllocateSystemResourceMemory(long long *SystemResourceManager,ulong long Co
   resourceCreationFlags = ((long long)PrimaryResourcePointer - localSystemPointer) / 0x24;
   if (resourceCreationFlags < ConfigurationDataPointer) {
     SystemBufferAddress = ConfigurationDataPointer - resourceCreationFlags;
-    FUN_180074c20(SystemResourceManager,SystemBufferAddress,(long long)PrimaryResourcePointer - localSystemPointer,SystemBufferAddress,0xfffffffffffffffe);
+    ExpandSystemResourceManagerHashTable(SystemResourceManager,SystemBufferAddress,(long long)PrimaryResourcePointer - localSystemPointer,SystemBufferAddress,0xfffffffffffffffe);
   }
   else {
     SystemResourceOffsetPointer = (long long *)(ConfigurationDataPointer * 0x24 + localSystemPointer);
