@@ -3568,7 +3568,6 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  * @warning 如果对象验证失败，函数将不会返回
  */
 void ValidateSystemObjectCollection(void)
-
 {
   uint8_t ObjectIdentifier;
   int ValidationResult;
@@ -3627,7 +3626,6 @@ void ValidateSystemObjectCollection(void)
  * @warning 调用此函数将导致系统关闭，应谨慎使用
  */
 void TerminateSystemProcess(void)
-
 {
   uint64_t SystemTerminationToken;
   
@@ -8598,16 +8596,16 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
   uint8_t HashValidationResult;
   int64_t ResourceIndex;
   int64_t StackContextPointer;
-  float floatValueToValidate;
+  float FloatValueToValidate;
   
-  floatValueToValidate = *(float *)(ObjectContext + ObjectContextHandleDataOffset);
-  StackContextPointer = CONCAT44(StackContextPointer.Field44,floatValueToValidate);
-  if (((uint)floatValueToValidate & 0x7f800000) == 0x7f800000) {
+  FloatValueToValidate = *(float *)(ObjectContext + ObjectContextHandleDataOffset);
+  StackContextPointer = CONCAT44(StackContextPointer.Field44,FloatValueToValidate);
+  if (((uint)FloatValueToValidate & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
   switch(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset)) {
   case 0:
-    if ((0.0 <= floatValueToValidate) && (floatValueToValidate <= 256.0)) goto code_r0x00018089322c;
+    if ((0.0 <= FloatValueToValidate) && (FloatValueToValidate <= 256.0)) goto code_r0x00018089322c;
     goto joined_r0x00018089322a;
   case 1:
   case 2:
@@ -8619,9 +8617,9 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
   default:
     goto ValidationContinueLabel;
   }
-  if (floatValueToValidate < 0.0) {
+  if (FloatValueToValidate < 0.0) {
 ValidationNegativePath:
-    if (floatValueToValidate != -1.0) {
+    if (FloatValueToValidate != -1.0) {
 ValidationContinueLabel:
       return 0x1f;
     }
@@ -29300,16 +29298,16 @@ void UnwindExceptionHandlerTypeSix(uint8_t ObjectContext,int64_t ValidationConte
  * 如果解锁失败，则抛出C标准错误
  * 
  * @param exceptionHandlerType 异常处理器类型
- * @param exceptionContext 异常上下文指针
+ * @param ExceptionContext 异常上下文指针
  */
-void UnlockMutexAndHandleException(uint8_t exceptionHandlerType, int64_t exceptionContext)
+void UnlockMutexAndHandleException(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
-  int unlockResult;
+  int UnlockResult;
   
-  unlockResult = _Mtx_unlock(*(uint8_t *)(exceptionContext + 0x60));
-  if (unlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(unlockResult);
+  UnlockResult = _Mtx_unlock(*(uint8_t *)(ExceptionContext + 0x60));
+  if (UnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(UnlockResult);
   }
   return;
 }
@@ -29324,21 +29322,21 @@ void UnlockMutexAndHandleException(uint8_t exceptionHandlerType, int64_t excepti
  * 能够正确释放，避免资源泄漏。
  * 
  * @param exceptionHandlerType 异常处理器类型
- * @param exceptionContext 异常上下文，包含资源句柄信息
+ * @param ExceptionContext 异常上下文，包含资源句柄信息
  * @return 无
  * 
  * @note 此函数是异常处理链的一部分
  * @note 如果解锁失败，会抛出C标准错误
  */
-void UnlockResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_t exceptionContext)
+void UnlockResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
-  int unlockResult;
+  int UnlockResult;
   
-  ResourceHandlePointer = *(uint8_t *)(exceptionContext + 0x40);
-  unlockResult = _Mtx_unlock(0x180c91970);
-  if (unlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(unlockResult);
+  ResourceHandlePointer = *(uint8_t *)(ExceptionContext + 0x40);
+  UnlockResult = _Mtx_unlock(0x180c91970);
+  if (UnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(UnlockResult);
   }
   return;
 }
@@ -29352,9 +29350,9 @@ void UnlockResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_
  * 释放验证结果占用的内存，并在必要时调用系统清理处理器
  * 
  * @param exceptionHandlerType 异常处理器类型
- * @param exceptionContext 异常上下文指针
+ * @param ExceptionContext 异常上下文指针
  */
-void CleanuHashValidationResultPointerResources(uint8_t exceptionHandlerType, int64_t exceptionContext)
+void CleanuHashValidationResultPointerResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
   int *ResourceIndexPointer;
@@ -29397,12 +29395,12 @@ void CleanuHashValidationResultPointerResources(uint8_t exceptionHandlerType, in
  * 释放验证结果占用的内存，并在必要时调用系统清理处理器
  * 
  * @param exceptionHandlerType 异常处理器类型
- * @param exceptionContext 异常上下文指针
+ * @param ExceptionContext 异常上下文指针
  * 
  * @note 此函数与CleanuHashValidationResultPointerResources功能完全相同
  * @note 可能是编译器生成的重复代码或用于不同的异常处理路径
  */
-void CleanuHashValidationResultPointerResourcesDuplicate(uint8_t exceptionHandlerType, int64_t exceptionContext)
+void CleanuHashValidationResultPointerResourcesDuplicate(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
   int *referenceCount;
@@ -29410,7 +29408,7 @@ void CleanuHashValidationResultPointerResourcesDuplicate(uint8_t exceptionHandle
   int64_t ResourceIndex;
   uint64_t resourceBase;
   
-  ValidationResult = *(uint8_t **)(exceptionContext + 0x2b8);
+  ValidationResult = *(uint8_t **)(ExceptionContext + 0x2b8);
   if (ValidationResult == (uint8_t *)0x0) {
     return;
   }
@@ -29446,21 +29444,21 @@ void CleanuHashValidationResultPointerResourcesDuplicate(uint8_t exceptionHandle
  * 能够正确释放，避免资源泄漏。
  * 
  * @param exceptionHandlerType 异常处理器类型
- * @param exceptionContext 异常上下文，包含辅助资源句柄信息
+ * @param ExceptionContext 异常上下文，包含辅助资源句柄信息
  * @return 无
  * 
  * @note 此函数与UnlockResourceHandleAndHandleException类似，但操作不同的资源句柄
  * @note 此函数访问偏移量0x88处的资源句柄
  */
-void UnlockSecondaryResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_t exceptionContext)
+void UnlockSecondaryResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
-  int unlockResult;
+  int UnlockResult;
   
-  ResourceHandlePointer = *(uint8_t *)(exceptionContext + 0x88);
-  unlockResult = _Mtx_unlock(0x180c91970);
-  if (unlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(unlockResult);
+  ResourceHandlePointer = *(uint8_t *)(ExceptionContext + 0x88);
+  UnlockResult = _Mtx_unlock(0x180c91970);
+  if (UnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(UnlockResult);
   }
   return;
 }
@@ -29474,12 +29472,12 @@ void UnlockSecondaryResourceHandleAndHandleException(uint8_t exceptionHandlerTyp
  * 释放验证结果占用的内存，并在必要时调用系统清理处理器
  * 
  * @param exceptionHandlerType 异常处理器类型
- * @param exceptionContext 异常上下文指针
+ * @param ExceptionContext 异常上下文指针
  * 
  * @note 此函数通过两层间接寻址访问验证结果
- * @note 首先从exceptionContext+0x20获取结构体指针，然后从该指针+0x218处获取验证结果
+ * @note 首先从ExceptionContext+0x20获取结构体指针，然后从该指针+0x218处获取验证结果
  */
-void CleanupNestedHashValidationResultResources(uint8_t exceptionHandlerType, int64_t exceptionContext)
+void CleanupNestedHashValidationResultResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
   int *referenceCount;
@@ -29487,7 +29485,7 @@ void CleanupNestedHashValidationResultResources(uint8_t exceptionHandlerType, in
   int64_t ResourceIndex;
   uint64_t resourceBase;
   
-  ValidationResult = *(uint8_t **)(*(int64_t *)(exceptionContext + 0x20) + 0x218);
+  ValidationResult = *(uint8_t **)(*(int64_t *)(ExceptionContext + 0x20) + 0x218);
   if (ValidationResult == (uint8_t *)0x0) {
     return;
   }
@@ -29522,9 +29520,9 @@ void CleanupNestedHashValidationResultResources(uint8_t exceptionHandlerType, in
  * 检查资源状态并在必要时调用系统清理处理器
  * 
  * @param exceptionCode 异常代码
- * @param exceptionContext 异常上下文
+ * @param ExceptionContext 异常上下文
  */
-void HandleExceptionResourceCleanup(uint8_t exceptionCode, int64_t exceptionContext)
+void HandleExceptionResourceCleanup(uint8_t exceptionCode, int64_t ExceptionContext)
 
 {
   int *resourceReferenceCount;
@@ -29532,7 +29530,7 @@ void HandleExceptionResourceCleanup(uint8_t exceptionCode, int64_t exceptionCont
   int64_t calculatedResourceIndex;
   uint64_t memoryMask;
   
-  resourcePointer = *(uint8_t **)(*(int64_t *)(exceptionContext + 0x40) + 0x218);
+  resourcePointer = *(uint8_t **)(*(int64_t *)(ExceptionContext + 0x40) + 0x218);
   if (resourcePointer == (uint8_t *)0x0) {
     return;
   }
@@ -29567,14 +29565,14 @@ void HandleExceptionResourceCleanup(uint8_t exceptionCode, int64_t exceptionCont
  * 检查资源标记状态并在必要时释放资源
  * 
  * @param exceptionCode 异常代码
- * @param exceptionContext 异常上下文
+ * @param ExceptionContext 异常上下文
  */
-void ReleaseSystemResourceFlag(uint8_t exceptionCode, int64_t exceptionContext)
+void ReleaseSystemResourceFlag(uint8_t exceptionCode, int64_t ExceptionContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
     *(uint *)(ResourceData + 0x20) = *(uint *)(ResourceData + 0x20) & 0xfffffffe;
-    ReleaseSystemResource(*(uint8_t *)(exceptionContext + 0x48));
+    ReleaseSystemResource(*(uint8_t *)(ExceptionContext + 0x48));
   }
   return;
 }
@@ -29588,14 +29586,14 @@ void ReleaseSystemResourceFlag(uint8_t exceptionCode, int64_t exceptionContext)
  * 检查资源标记状态并在必要时释放资源
  * 
  * @param exceptionCode 异常代码
- * @param exceptionContext 异常上下文
+ * @param ExceptionContext 异常上下文
  */
-void ReleaseSystemResourceFlagVariantOne(uint8_t exceptionCode, int64_t exceptionContext)
+void ReleaseSystemResourceFlagVariantOne(uint8_t exceptionCode, int64_t ExceptionContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
     *(uint *)(ResourceData + 0x20) = *(uint *)(ResourceData + 0x20) & 0xfffffffe;
-    ReleaseSystemResource(*(uint8_t *)(exceptionContext + 0x58));
+    ReleaseSystemResource(*(uint8_t *)(ExceptionContext + 0x58));
   }
   return;
 }
@@ -29609,14 +29607,14 @@ void ReleaseSystemResourceFlagVariantOne(uint8_t exceptionCode, int64_t exceptio
  * 检查不同的资源标记状态并在必要时释放资源
  * 
  * @param exceptionCode 异常代码
- * @param exceptionContext 异常上下文
+ * @param ExceptionContext 异常上下文
  */
-void ReleaseSystemResourceFlagVariantTwo(uint8_t exceptionCode, int64_t exceptionContext)
+void ReleaseSystemResourceFlagVariantTwo(uint8_t exceptionCode, int64_t ExceptionContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 2) != 0) {
     *(uint *)(ResourceData + 0x20) = *(uint *)(ResourceData + 0x20) & 0xfffffffd;
-    ReleaseSystemResource(exceptionContext + 0x30);
+    ReleaseSystemResource(ExceptionContext + 0x30);
   }
   return;
 }
@@ -29630,19 +29628,19 @@ void ReleaseSystemResourceFlagVariantTwo(uint8_t exceptionCode, int64_t exceptio
  * 在异常处理过程中确保资源描述符处于正确的状态
  * 
  * @param exceptionCode 异常代码
- * @param exceptionContext 异常上下文
+ * @param ExceptionContext 异常上下文
  */
-void ResetResourceDescriptor(uint8_t exceptionCode, int64_t exceptionContext)
+void ResetResourceDescriptor(uint8_t exceptionCode, int64_t ExceptionContext)
 
 {
-  *(uint8_t *)(exceptionContext + 0x68) = &ResourceDescriptorTemplate;
-  if (*(int64_t *)(exceptionContext + 0x70) != 0) {
+  *(uint8_t *)(ExceptionContext + 0x68) = &ResourceDescriptorTemplate;
+  if (*(int64_t *)(ExceptionContext + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(exceptionContext + 0x70) = 0;
-  *(uint32_t *)(exceptionContext + 0x80) = 0;
-  *(uint8_t *)(exceptionContext + 0x68) = &SystemDataStructure;
+  *(uint8_t *)(ExceptionContext + 0x70) = 0;
+  *(uint32_t *)(ExceptionContext + 0x80) = 0;
+  *(uint8_t *)(ExceptionContext + 0x68) = &SystemDataStructure;
   return;
 }
 
@@ -51576,7 +51574,7 @@ void ExecuteResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationCont
 void ExecuteMutexUnlockOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int unlockResult;
+  int UnlockResult;
   
   if (*(char *)(ValidationContext + 0x50) != '\0') {
     ResourceIndex = _Mtx_unlock(*(uint8_t *)(ValidationContext + 0x48));
@@ -59294,10 +59292,10 @@ void Unwind_180907c30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
  * 该函数在异常解卷过程中设置清理回调函数A
  * 用于异常处理时的资源清理和状态恢复
  * 
- * @param exceptionContext 异常上下文参数
+ * @param ExceptionContext 异常上下文参数
  * @param SystemContext 系统上下文指针
  */
-void UnwindCleanupCallbackA(uint8_t exceptionContext, int64_t SystemContext)
+void UnwindCleanupCallbackA(uint8_t ExceptionContext, int64_t SystemContext)
 
 {
   *(uint8_t **)(SystemContext + 0x298) = &SystemDataStructure;
@@ -59312,10 +59310,10 @@ void UnwindCleanupCallbackA(uint8_t exceptionContext, int64_t SystemContext)
  * 该函数在异常解卷过程中设置清理回调函数B
  * 用于异常处理时的资源清理和状态恢复
  * 
- * @param exceptionContext 异常上下文参数
+ * @param ExceptionContext 异常上下文参数
  * @param SystemContext 系统上下文指针
  */
-void UnwindCleanupCallbackB(uint8_t exceptionContext, int64_t SystemContext)
+void UnwindCleanupCallbackB(uint8_t ExceptionContext, int64_t SystemContext)
 
 {
   **(uint8_t **)(SystemContext + 600) = &SystemDataStructure;
@@ -59339,10 +59337,10 @@ void Unwind_180907c60(uint8_t ObjectContext,int64_t ValidationContext)
  * 该函数在异常解卷过程中验证资源状态并进行必要的清理
  * 处理资源的引用计数和内存管理
  * 
- * @param exceptionContext 异常上下文参数
+ * @param ExceptionContext 异常上下文参数
  * @param SystemContext 系统上下文指针
  */
-void UnwindResourceValidationAndCleanup(uint8_t exceptionContext, int64_t SystemContext)
+void UnwindResourceValidationAndCleanup(uint8_t ExceptionContext, int64_t SystemContext)
 
 {
   int *referenceCount;
