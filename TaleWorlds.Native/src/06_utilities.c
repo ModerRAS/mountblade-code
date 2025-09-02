@@ -35224,6 +35224,19 @@ void HandleUserMemoryCleanup(uint8_t ObjectContext,int64_t ValidationContext,uin
 
 
 
+/**
+ * @brief 重置内存分配器状态
+ * 
+ * 该函数负责重置内存分配器的状态
+ * 执行资源操作处理以重置内存分配器
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @note 此函数在内存分配器状态重置过程中被调用
+ */
 void ResetMemoryAllocatorState(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -35234,6 +35247,19 @@ void ResetMemoryAllocatorState(uint8_t ObjectContext,int64_t ValidationContext,u
 
 
 
+/**
+ * @brief 系统异常清理操作
+ * 
+ * 该函数负责处理系统异常的清理操作
+ * 执行资源操作处理以清理系统异常
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @note 此函数在系统异常清理过程中被调用
+ */
 void SystemExceptionCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
