@@ -196,7 +196,7 @@ void UpdateSystemData(void* dataPointer);
  * @param memoryContext 内存上下文指针
  * @return 验证结果状态码
  * 
- *FUN_180624a00：ValidateSystemMemoryAllocation
+ * 原始函数名：FUN_180624a00
  */
 char ValidateSystemMemoryAllocation(void* memoryContext);
 
@@ -209,7 +209,7 @@ char ValidateSystemMemoryAllocation(void* memoryContext);
  * @param memoryContext 内存上下文指针
  * @param allocationBuffer 分配缓冲区指针
  * 
- *FUN_18062c5f0：AllocateSystemMemoryResources
+ * 原始函数名：FUN_18062c5f0
  */
 void AllocateSystemMemoryResources(void* memoryContext, void* allocationBuffer);
 
@@ -223,7 +223,7 @@ void AllocateSystemMemoryResources(void* memoryContext, void* allocationBuffer);
  * @param configTemplate 配置模板指针
  * @param dataSource 数据源指针
  * 
- *FUN_180628040：ConfigureSystemDataBuffer
+ * 原始函数名：FUN_180628040
  */
 void ConfigureSystemDataBuffer(void* bufferContext, void* configTemplate, void* dataSource);
 
