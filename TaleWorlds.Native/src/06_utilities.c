@@ -10732,9 +10732,20 @@ uint8_t ReturnResourcePoolErrorCode(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessResourceCalculationAndValidation(int64_t ObjectContextParameter,uint8_t *ValidationContextParameter,int *calculationResult)
-void ProcessResourceCalculationAndValidation(int64_t ObjectContextParameter,uint8_t *ValidationContextParameter,int *calculationResult)
-
+ /**
+ * @brief 处理资源计算和验证
+ * 
+ * 该函数负责处理系统资源的计算和验证操作
+ * 包括资源表查询、数据验证和安全检查
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的相关信息
+ * @param ValidationContextParameter 验证上下文参数，用于存储验证结果
+ * @param calculationResult 计算结果指针，用于返回计算结果
+ * @return 无返回值
+ * @note 此函数会修改传入的参数值
+ * @warning 调用此函数前必须确保对象上下文已正确初始化
+ */
+void ProcessResourceCalculationAndValidation(int64_t ObjectContextParameter, uint8_t *ValidationContextParameter, int *calculationResult)
 {
   byte encryptionShiftValue;
   int64_t resourceTable;
@@ -10745,7 +10756,7 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContextParameter,uint
   int64_t BufferPointer;
   int OperationCounter;
   int64_t ResourceHandle;
-  float ResultFloatValue;
+  float CalculatedFloatValue;
   float ResultFloatValue;
   uint8_t SecurityValidationBuffer [68];
   uint32_t SecurityValidationFlag;
@@ -10757,16 +10768,16 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContextParameter,uint
   uint64_t ValidationParam1;
   
   ValidationParam1 = SecurityEncryptionKey ^ (uint64_t)SecurityValidationBuffer;
-  OperationStatusCode = *(int *)(ObjectContextParameter + 0xac);
-  ArrayIndex = (int64_t)OperationResult;
+  int OperationStatusCode = *(int *)(ObjectContextParameter + 0xac);
+  int64_t ArrayIndex = (int64_t)OperationResult;
   ParameterPointer = CleanupOption;
   if (OperationResult < *(int *)(ObjectContextParameter + 0x20)) {
     ObjectContextOffset = *(int64_t *)(ObjectContextParameter + 0x18);
     SecurityContextOffset = ArrayIndex * 3;
-    SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + ArrayIndex * 0xc) + *(int64_t *)(ObjectContextParameter + 8);
-    SystemStatusChar = *(char *)(ObjectContextOffset + 8 + ArrayIndex * 0xc);
+    int64_t SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + ArrayIndex * 0xc) + *(int64_t *)(ObjectContextParameter + 8);
+    char SystemStatusChar = *(char *)(ObjectContextOffset + 8 + ArrayIndex * 0xc);
     if (SystemStatusChar == '\x01') {
-      MaxOperationCount = *(int *)(ObjectContextParameter + 0xb0);
+      int MaxOperationCount = *(int *)(ObjectContextParameter + 0xb0);
       if (OperationResult < MaxOperationCount) {
         *(int *)(ObjectContextParameter + 0xac) = OperationResult + 1;
         goto HandleSystemError;
@@ -10786,7 +10797,7 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContextParameter,uint
         ArrayIndex = -0x8000000000000000;
       }
       resourceTable = *(int64_t *)(ObjectContextParameter + 0xa0);
-      ResourceEntryPointer = *(int64_t *)(ObjectContextParameter + 0x98);
+      int64_t ResourceEntryPointer = *(int64_t *)(ObjectContextParameter + 0x98);
       if (ResourceEntryPointer == 0) {
         ResultFloatValue = (float)*(uint *)(ObjectContextParameter + 0x68) * ResultFloatValue;
         ResourceEntryPointer = 0;
