@@ -37451,7 +37451,20 @@ void* * FindMatchingConfigurationResource(void* SystemResourcePointer,void* *Con
 
 
 
-void* * FUN_18005d534(void* SystemResourcePointer,void* *ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 查找配置数据中的匹配资源
+ * 
+ * 该函数在配置数据指针链表中查找与指定参数匹配的资源
+ * 通过遍历链表和字符串比较来实现资源匹配
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数（用于匹配）
+ * @return 匹配的配置数据指针，未找到返回NULL
+ * 
+ * 原始函数名为FUN_18005d534，现已重命名为FindMatchingConfigurationDataResource
+ */
+void* * FindMatchingConfigurationDataResource(void* SystemResourcePointer,void* *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   char *pcVar1;
