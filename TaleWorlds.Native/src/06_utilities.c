@@ -37942,7 +37942,7 @@ void CleanupSystemResourceHandlerTertiary(uint8_t ObjectContext,int64_t Validati
  * @return 无返回值
  * @note 此函数用于系统资源清理和释放
  */
-void CleanupSystemResourceHandlerA50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerQuaternary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37983,7 +37983,7 @@ void CleanupSystemResourceHandlerA50(uint8_t ObjectContext,int64_t ValidationCon
  * @return 无返回值
  * @note 此函数用于系统资源清理和释放
  */
-void CleanupSystemResourceHandlerA70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerQuinary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38024,7 +38024,7 @@ void CleanupSystemResourceHandlerA70(uint8_t ObjectContext,int64_t ValidationCon
  * @return 无返回值
  * @note 此函数用于系统资源清理和释放
  */
-void CleanupSystemResourceHandlerA90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSenary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38065,7 +38065,7 @@ void CleanupSystemResourceHandlerA90(uint8_t ObjectContext,int64_t ValidationCon
  * @return 无返回值
  * @note 此函数用于系统资源清理和释放
  */
-void CleanupSystemResourceHandlerAB0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSeptenary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *charPointer;
@@ -39108,7 +39108,7 @@ void ResetSystemResourceHandlers(uint8_t ObjectContext, int64_t ValidationContex
 
 
 
-void CleanupSystemResourceHandler1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerBasic(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -59934,7 +59934,20 @@ void SetResourceHashPointerToAllocationTemplate(uint8_t ObjectContext, int64_t V
 
 
 
-void Unwind_1809078c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行主要资源处理回调函数
+ * 
+ * 该函数负责执行主要资源处理的回调操作
+ * 处理资源数据并执行相应的清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数在主要资源处理过程中被调用
+ */
+void ExecutePrimaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(ValidationContext + 0x28),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x10),
@@ -59944,7 +59957,20 @@ void Unwind_1809078c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809078d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行次要资源处理回调函数
+ * 
+ * 该函数负责执行次要资源处理的回调操作
+ * 处理资源数据并执行相应的清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数在次要资源处理过程中被调用
+ */
+void ExecuteSecondaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(ValidationContext + 0x28),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x10),
@@ -59954,7 +59980,20 @@ void Unwind_1809078d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809078e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行第三级资源处理回调函数
+ * 
+ * 该函数负责执行第三级资源处理的回调操作
+ * 处理资源验证并执行相应的清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数在第三级资源处理过程中被调用
+ */
+void ExecuteTertiaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + 0x28),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x10),
