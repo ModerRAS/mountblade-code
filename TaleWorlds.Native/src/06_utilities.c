@@ -69833,7 +69833,7 @@ void Unwind_18090a2d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090a2f0(void)
+void ResetSystemResourceHandler(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -69842,7 +69842,7 @@ void Unwind_18090a2f0(void)
 
 
 
-void Unwind_18090a310(void)
+void CleanupSystemResourceMutex(void)
 
 {
   _Mtx_destroy_in_situ();
