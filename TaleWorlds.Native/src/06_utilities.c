@@ -4774,6 +4774,17 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文参数，包含对象的初始化信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
+/**
+ * @brief 初始化对象句柄基础操作
+ * 
+ * 该函数负责初始化对象句柄的基础操作，包括验证对象上下文和系统上下文。
+ * 如果系统上下文有效且对象句柄内存指针不为空，会执行系统退出操作。
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @return uint8_t 返回操作状态码，0表示成功，非0表示失败
+ * @note 此函数用于对象句柄的初始化处理
+ * @warning 如果对象上下文无效，函数会返回错误码
+ */
 uint8_t InitializeObjectHandleBasic(int64_t ObjectContext) {
   uint8_t ObjectValidationResult;
   int64_t ValidatedSystemContext;
@@ -8135,14 +8146,14 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer,int64_t Conte
 
 {
     uint8_t ValidationStatus;
-  int Row1InfinityStatus;
-  int Row2InfinityStatus;
-  int Row3InfinityStatus;
+  int FirstRowInfinityStatus;
+  int SecondRowInfinityStatus;
+  int ThirdRowInfinityStatus;
   int OverallInfinityStatus;
-  int Row1InfinityCheck;
-  int Row2InfinityCheck;
-  int Row3InfinityCheck;
-  int InfinityStatusFlag;
+  int FirstRowInfinityCheck;
+  int SecondRowInfinityCheck;
+  int ThirdRowInfinityCheck;
+  int InfinityValidationFlag;
   int64_t TransformContext;
   int64_t MatrixBuffer[2];
   uint MatrixFlags;
@@ -8150,68 +8161,68 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer,int64_t Conte
   int64_t MatrixContextPointer;
   
   MatrixContextPointer = 0;
-  Row1InfinityStatus = 0;
-  Row2InfinityStatus = Row1InfinityStatus;
+  FirstRowInfinityStatus = 0;
+  SecondRowInfinityStatus = FirstRowInfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextProcessingDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    Row2InfinityStatus = FloatValidationErrorCode;
+    SecondRowInfinityStatus = FloatValidationErrorCode;
   }
-  Row3InfinityStatus = Row1InfinityStatus;
+  ThirdRowInfinityStatus = FirstRowInfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextHandleDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    Row3InfinityStatus = FloatValidationErrorCode;
+    ThirdRowInfinityStatus = FloatValidationErrorCode;
   }
-  OverallInfinityStatus = Row1InfinityStatus;
+  OverallInfinityStatus = FirstRowInfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextValidationDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
     OverallInfinityStatus = FloatValidationErrorCode;
   }
-  if ((Row2InfinityStatus != 0 || Row3InfinityStatus != 0) || OverallInfinityStatus != 0) {
+  if ((SecondRowInfinityStatus != 0 || ThirdRowInfinityStatus != 0) || OverallInfinityStatus != 0) {
     return ErrorResourceValidationFailed;
   }
-  Row2InfinityCheck = 0;
+  SecondRowInfinityCheck = 0;
   if ((*(uint *)(ObjectContext + ObjectContextMatrixFlagsOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    Row1InfinityCheck = 0x1d;
+    FirstRowInfinityCheck = 0x1d;
   }
-  Row3InfinityCheck = Row2InfinityCheck;
+  ThirdRowInfinityCheck = SecondRowInfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextRangeDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    Row3InfinityCheck = 0x1d;
+    ThirdRowInfinityCheck = 0x1d;
   }
-  InfinityStatusFlag = Row2InfinityCheck;
+  InfinityValidationFlag = SecondRowInfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextStatusDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    InfinityStatusFlag = 0x1d;
+    InfinityValidationFlag = 0x1d;
   }
-  if ((Row1InfinityCheck != 0 || Row3InfinityCheck != 0) || InfinityStatusFlag != 0) {
+  if ((FirstRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || InfinityValidationFlag != 0) {
     return ErrorResourceValidationFailed;
   }
-  Row1InfinityCheck = Row2InfinityCheck;
+  FirstRowInfinityCheck = SecondRowInfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextFloatValueOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    Row1InfinityCheck = 0x1d;
+    FirstRowInfinityCheck = 0x1d;
   }
-  Row3InfinityCheck = Row2InfinityCheck;
+  ThirdRowInfinityCheck = SecondRowInfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextMatrixTranslationOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    Row3InfinityCheck = 0x1d;
+    ThirdRowInfinityCheck = 0x1d;
   }
   if (((uint)*(float *)(ObjectContext + ObjectContextMatrixScaleOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    Row2InfinityCheck = 0x1d;
+    SecondRowInfinityCheck = 0x1d;
   }
-  if ((Row1InfinityCheck != 0 || Row3InfinityCheck != 0) || Row2InfinityCheck != 0) {
+  if ((FirstRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || SecondRowInfinityCheck != 0) {
     return ErrorResourceValidationFailed;
   }
   float MatrixElementX = *(float *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
-  Row1InfinityCheck = 0;
+  FirstRowInfinityCheck = 0;
   uint32_t SecurityValidationContext = *(uint *)(ObjectContext + ObjectContextSecurityContextOffset);
   float MatrixElementW = *(float *)(ObjectContext + ObjectContextMatrixWComponentOffset);
   ResourceValidationData[0] = CombineFloatAndInt(ResourceValidationData[0].VectorComponent,MatrixElementX);
-  Row2InfinityCheck = Row1InfinityCheck;
+  SecondRowInfinityCheck = FirstRowInfinityCheck;
   if (((uint)MatrixElementX & FloatInfinityMask) == FloatInfinityMask) {
-    Row2InfinityCheck = 0x1d;
+    SecondRowInfinityCheck = 0x1d;
   }
-  Row3InfinityCheck = Row1InfinityCheck;
+  ThirdRowInfinityCheck = FirstRowInfinityCheck;
   if ((SecurityValidationContext & FloatInfinityMask) == FloatInfinityMask) {
-    Row3InfinityCheck = 0x1d;
+    ThirdRowInfinityCheck = 0x1d;
   }
   if (((uint)MatrixElementW & FloatInfinityMask) == FloatInfinityMask) {
-    Row1InfinityCheck = 0x1d;
+    FirstRowInfinityCheck = 0x1d;
   }
-  if ((Row2InfinityCheck == 0 && Row3InfinityCheck == 0) && Row1InfinityCheck == 0) {
+  if ((SecondRowInfinityCheck == 0 && ThirdRowInfinityCheck == 0) && FirstRowInfinityCheck == 0) {
     if (((*(float *)(ObjectContext + ObjectContextMatrixScaleOffset) == 0.0) && (*(float *)(ObjectContext + ObjectContextMatrixTranslationOffset) == 0.0)) &&
        (*(float *)(ObjectContext + ObjectContextFloatValueOffset) == 0.0)) {
       return ErrorResourceValidationFailed;
