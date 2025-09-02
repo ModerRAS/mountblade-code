@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 内存地址对齐和资源处理常量
 #define MemoryAddressAlignmentMask 0xffffffffffc00000
 #define MemoryResourceTablePointerOffset 0x70
 #define MemoryResourceDataOffset 0x80
