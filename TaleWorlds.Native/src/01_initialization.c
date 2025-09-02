@@ -37606,8 +37606,18 @@ uint8_t * InitializeSystemSynchronizationObjects(uint8_t *SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005d760(void* *SystemResourcePointer)
-void FUN_18005d760(void* *SystemResourcePointer)
+/**
+ * @brief 关闭系统句柄
+ * 
+ * 该函数负责关闭系统句柄，释放相关资源
+ * 确保系统资源被正确清理
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 无返回值
+ * @note 此函数会调用系统API关闭句柄
+ * @warning 关闭后的句柄将不再有效
+ */
+void CloseSystemHandle(void* *SystemResourcePointer)
 
 {
   CloseHandle(*SystemResourcePointer);
