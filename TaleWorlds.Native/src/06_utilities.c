@@ -50578,7 +50578,7 @@ void CleanupResourceTableAndValidationContext(uint8_t ObjectContext,int64_t Vali
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *ResourceStatusChar;
   uint8_t *HashValidationResultPointer;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -50601,9 +50601,9 @@ void CleanupResourceTableAndValidationContext(uint8_t ObjectContext,int64_t Vali
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x38);
   while (LoopOffset != 0) {
-    StatusChar = (char *)(LoopOffset + 0x141);
+    ResourceStatusChar = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
-    if (*StatusChar != '\0') {
+    if (*ResourceStatusChar != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
