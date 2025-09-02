@@ -7093,7 +7093,7 @@ uint8_t ValidateObjectContextAndUpdateStatus(int64_t ObjectContext, int64_t Syst
   }
   ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&ValidationContext);
   if ((int)ResourceHash == 0) {
-    *(uint32_t *)(CombineFloatAndInt(ValidationContextParam,ValidationContext) + 0x24) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
+    *(uint32_t *)(CombineFloatAndInt(ValidationParameterValue,ValidationContext) + 0x24) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
           ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
   }
   return ResourceHash;
@@ -8008,7 +8008,7 @@ void ProcessPointerValidationAndSystemObjectHandling(int64_t *ObjectPointer, int
   }
   pointerReference = (int64_t *)(AllocatedMemory + ResourceTertiaryCounterOffset);
   if (((int64_t *)*pointerReference == pointerReference) && (*(int64_t **)(AllocatedMemory + ValidationContextHashOffset) == pointerReference)) {
-          CleanupSecurityToken(securityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+          CleanupSecurityToken(SecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
   }
         ProcessSystemObject(*(uint8_t *)(SystemContext + SystemContextCleanupOffset));
 }
@@ -8027,7 +8027,7 @@ void CleanupSecurityTokenFunction(void)
 {
   uint64_t SecurityToken;
   
-        CleanupSecurityToken(securityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+        CleanupSecurityToken(SecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -8081,11 +8081,11 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   if ((MatrixRow2InfinityStatus != 0 || MatrixRow3InfinityStatus != 0) || MatrixOverallInfinityStatus != 0) {
     return ErrorResourceValidationFailed;
   }
-  MatrixRow2InfinityStatus = 0;
+  MatrixRow2InfinityCheck = 0;
   if ((*(uint *)(ObjectContext + ObjectContextMatrixFlagsOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow1InfinityStatus = 0x1d;
+    MatrixRow1InfinityCheck = 0x1d;
   }
-  MatrixRow3InfinityStatus = MatrixRow2InfinityStatus;
+  MatrixRow3InfinityCheck = MatrixRow2InfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextRangeDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
     MatrixRow3InfinityCheck = 0x1d;
   }
@@ -8120,7 +8120,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
     MatrixRow2InfinityCheck = 0x1d;
   }
   MatrixRow3InfinityCheck = MatrixRow1InfinityCheck;
-  if ((securityValidationContext & FloatInfinityMask) == FloatInfinityMask) {
+  if ((SecurityValidationContext & FloatInfinityMask) == FloatInfinityMask) {
     MatrixRow3InfinityCheck = 0x1d;
   }
   if (((uint)matrixElementWComponent & FloatInfinityMask) == FloatInfinityMask) {
