@@ -74043,7 +74043,19 @@ void ResetResourceOperationFlag(uint8_t ObjectContext, int64_t ValidationContext
 
 
 
-void Unwind_18090a870(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行主资源管理器回调
+ * 
+ * 该函数负责执行主资源管理器的回调函数
+ * 从系统上下文中获取主资源管理器并执行其回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会执行主资源管理器的回调函数
+ * @warning 如果主资源管理器不存在，函数会直接返回
+ */
+void ExecutePrimaryResourceManagerCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
