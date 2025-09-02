@@ -5210,7 +5210,7 @@ uint32_t ValidateStackObject(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(StackPointer + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(StackPointer + 0x10), 1);
 }
 
 
@@ -5992,33 +5992,33 @@ void ResetObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedulerCo
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  * @return 处理结果状态码，0表示成功，其他值表示不同的错误状态
  */
-uint8_t CheckObjectPropertiesAndDecrementCounter(int64_t ObjectContext, int64_t schedulerContext)
+uint8_t CheckObjectPropertiesAndDecrementCounter(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
-  int counterValue;
-  uint8_t operationResult;
-  int64_t propertyBuffer;
+  int CounterValue;
+  uint8_t OperationResult;
+  int64_t PropertyBuffer;
   
-  operationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&propertyBuffer);
-  if ((int)operationResult == 0) {
-    if (*(int *)(propertyBuffer + 0x34) != 0) {
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &PropertyBuffer);
+  if ((int)OperationResult == 0) {
+    if (*(int *)(PropertyBuffer + 0x34) != 0) {
       return 0x2e;
     }
-    counterValue = *(int *)(propertyBuffer + 0x28);
-    if (counterValue < 0) {
+    CounterValue = *(int *)(PropertyBuffer + 0x28);
+    if (CounterValue < 0) {
       return 0x1c;
     }
-    if (counterValue == 0) {
+    if (CounterValue == 0) {
       return 0x4c;
     }
-    *(int *)(propertyBuffer + 0x28) = counterValue + -1;
-    if (counterValue == 1) {
+    *(int *)(PropertyBuffer + 0x28) = CounterValue + -1;
+    if (CounterValue == 1) {
                     // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+      ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
     }
-    operationResult = 0;
+    OperationResult = 0;
   }
-  return operationResult;
+  return OperationResult;
 }
 
 
@@ -6034,21 +6034,21 @@ uint8_t CheckObjectPropertiesAndDecrementCounter(int64_t ObjectContext, int64_t 
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  * @return 处理结果状态码，0表示成功，0x4c表示指针检查失败
  */
-uint8_t ExtractObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedulerContext)
+uint8_t ExtractObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
-  uint8_t operationResult;
-  int64_t propertyBuffer;
+  uint8_t OperationResult;
+  int64_t PropertyBuffer;
   
-  operationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&propertyBuffer);
-  if ((int)operationResult == 0) {
-    if (*(int64_t *)(propertyBuffer + 8) == 0) {
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &PropertyBuffer);
+  if ((int)OperationResult == 0) {
+    if (*(int64_t *)(PropertyBuffer + 8) == 0) {
       return 0x4c;
     }
-    *(uint8_t *)(ObjectContext + 0x18) = *(uint8_t *)(*(int64_t *)(propertyBuffer + 8) + 0x78);
-    operationResult = CleanupSystemContextData(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+    *(uint8_t *)(ObjectContext + 0x18) = *(uint8_t *)(*(int64_t *)(PropertyBuffer + 8) + 0x78);
+    OperationResult = CleanupSystemContextData(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
   }
-  return operationResult;
+  return OperationResult;
 }
 
 
@@ -6064,13 +6064,13 @@ uint8_t ExtractObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedu
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  * @return 处理结果状态码，成功时不会返回，失败时返回错误码
  */
-uint8_t ActivateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedulerContext)
+uint8_t ActivateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
-  uint8_t operationResult;
-  int64_t propertyBuffer;
+  uint8_t OperationResult;
+  int64_t PropertyBuffer;
   
-  operationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&propertyBuffer);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &PropertyBuffer);
   if ((int)operationResult != 0) {
     return operationResult;
   }
