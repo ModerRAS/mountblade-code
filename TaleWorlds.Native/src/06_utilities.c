@@ -1965,21 +1965,31 @@ uint8_t SystemEnvironmentDataTemplatePrimary;
 
 void InitializeSystemResources(void);
 
-void InitializeSystemMemoryManager(void);
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，建立资源管理的基础结构
+ * 设置资源分配、跟踪和释放的管理机制
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
+ * @warning 初始化失败会导致系统资源管理功能不可用
+ */
+void InitializeSystemResourceManager(void);
 
 void InitializeThreadManager(void);
-uint8_t AggressiveMemoryManagerConfig;
-uint8_t SecureMemoryConfigData;
-uint8_t BalancedMemoryManagerConfig;
-uint8_t ConservativeMemoryManagerConfig;
-uint8_t DynamicMemoryManagerConfig;
-uint8_t EfficientMemoryManagerConfig;
-uint8_t FastMemoryManagerConfig;
-uint8_t GeneralSystemMemoryConfig;
-uint8_t HighPerformanceSystemMemoryConfig;
-uint8_t IntelligentSystemMemoryConfig;
-uint8_t JustInTimeSystemMemoryConfig;
-uint8_t KernelOptimizedSystemMemoryConfig;
+uint8_t AggressiveMemoryConfiguration;
+uint8_t SecureMemoryConfiguration;
+uint8_t BalancedMemoryConfiguration;
+uint8_t ConservativeMemoryConfiguration;
+uint8_t DynamicMemoryConfiguration;
+uint8_t EfficientMemoryConfiguration;
+uint8_t FastMemoryConfiguration;
+uint8_t GeneralSystemMemoryConfiguration;
+uint8_t HighPerformanceMemoryConfiguration;
+uint8_t IntelligentMemoryConfiguration;
+uint8_t JustInTimeMemoryConfiguration;
+uint8_t KernelOptimizedMemoryConfiguration;
 
 /**
  * @brief 初始化系统线程管理器
@@ -1988,7 +1998,7 @@ uint8_t KernelOptimizedSystemMemoryConfig;
  * 设置线程创建、调度和同步的机制
  */
 void InitializeThreadManager(void);
-uint8_t DataStructureReferencePointer;
+uint8_t DataStructureReference;
 uint8_t DataTableInstance;
 uint8_t DataBufferStorage;
 uint8_t DataCacheMemory;
@@ -2001,11 +2011,11 @@ uint8_t DataCacheMemory;
  */
 void CleanupMemoryBlock(void);
 uint8_t SecurityContextDatabase;
-uint8_t SecurityContextStatusFlags;
+uint8_t SecurityContextStatus;
 uint8_t SecurityContextIdentifier;
 uint8_t SecurityContextConfiguration;
 uint8_t SecurityValidationDatabase;
-uint8_t SecurityPackageValidationStatusFlags;
+uint8_t SecurityPackageValidationStatus;
 uint8_t SecurityValidationIdentifier;
 
  /**
