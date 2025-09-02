@@ -2862,7 +2862,7 @@ uint8_t SystemMemoryConfigOptional;       // 系统内存配置可选数据
 uint8_t SystemConfigurationTemplate;      // 系统配置模板数据
 uint8_t SystemConfigDataAdvanced;          // 系统配置高级数据
 char SystemConfigStatusFlag;                // 系统配置状态标志
-uint8_t SystemConfigDataPremium;           // 系统配置优先项
+uint8_t SystemConfigDataPremium;           // 系统配置优先数据
 // 系统资源和管理器变量
 uint8_t SystemResourceTracker;               // 系统资源跟踪器
 void* SystemExceptionListPointer;             // 系统异常列表指针
