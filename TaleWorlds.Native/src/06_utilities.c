@@ -4736,6 +4736,7 @@ uint32_t ProcessSystemResource(void)
 {
   int64_t InputRegisterValue;
   int64_t loopCounter;
+  int64_t LocalContextData;
   
   if (InputRAX == 0) {
     LocalContextData = 0;
