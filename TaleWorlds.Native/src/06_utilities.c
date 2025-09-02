@@ -353,7 +353,7 @@ void ResourceSettingsConfigFlag(void);
  * @return 无返回值
  * @note 此函数会批量处理所有待处理的资源操作
  */
-void ProcessResourceOperations(void);
+void ResourceOperationsProcessor(void);
 
 /**
  * @brief 验证资源完整性
