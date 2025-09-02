@@ -57588,7 +57588,18 @@ void ProcessObjectValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907170(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证例程
+ * 
+ * 该函数负责在异常处理时执行验证例程
+ * 对系统进行全面的验证检查，确保系统状态正确
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在异常处理的展开阶段调用
+ */
+void ExecuteValidationRoutine(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x168) != (int64_t *)0x0) {
@@ -96665,6 +96676,33 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
   ResourceHandle[ResourceManagementStateOffset] = &ResourceResetMarker;
   FinalizeResourceCleanup(ResourceHandle);
 }
+
+// 额外的常量定义用于美化十六进制偏移量
+#define ResourceCounterOffset 0x4c
+#define ResourceArraySizeOffset 0x50
+#define ResourceSecondaryCounterOffset 0x54
+#define ResourceTertiaryCounterOffset 0x58
+#define SystemContextSecondaryOffset 0x90
+#define SystemContextSchedulerOffset 0x98
+#define SystemContextResourceManagerOffset 0x1a0
+#define SystemContextFlagsOffset 0x2d8
+#define SystemContextResourceTableOffset 0x240
+#define ResourceDataBaseOffset 0x20
+#define ResourceStatusOffset 0x30
+#define ResourceConfigurationOffset 0x34
+#define ResourceHandleTableOffset 0xf8
+#define ValidationCounterOffset 0x28
+#define ValidationStatusOffset 0x29
+#define ValidationCapacityOffset 0x2c
+#define ValidationContextOffset 0x78
+#define SecondaryDataOffset 0x14
+#define ExtendedDataOffset 0x554
+#define ProcessingDataOffset 0x60
+#define BufferPrimaryOffset 0x70
+#define BufferSecondaryOffset 0x80
+#define BufferTertiaryOffset 0x88
+#define BufferHandleOffset 0xb8
+#define DataProcessingBufferOffset 0xd0
 
 
 
