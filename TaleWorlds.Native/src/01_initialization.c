@@ -37467,11 +37467,11 @@ void* * FindMatchingConfigurationResource(void* SystemResourcePointer,void* *Con
 void* * FindMatchingConfigurationDataResource(void* SystemResourcePointer,void* *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
-  char *pcVar1;
-  char *pcVar2;
+  char *stringEndPointer;
+  char *configString;
   char *systemMemoryBlockPtr;
-  long long localResourceOffset;
-  long long in_R11;
+  long long configLength;
+  long long systemResourceValue;
   
   while( true ) {
     do {
@@ -37480,20 +37480,20 @@ void* * FindMatchingConfigurationDataResource(void* SystemResourcePointer,void* 
         return (void* *)0x0;
       }
       if ((char *)*ConfigurationDataPointer == (char *)0x0) {
-        localResourceOffset = 0;
-        pcVar2 = systemMemoryBlockPtr;
+        configLength = 0;
+        configString = systemMemoryBlockPtr;
       }
       else {
-        localResourceOffset = ConfigurationDataPointer[2];
-        pcVar2 = (char *)*ConfigurationDataPointer;
+        configLength = ConfigurationDataPointer[2];
+        configString = (char *)*ConfigurationDataPointer;
       }
-    } while (localResourceOffset != AdditionalParameter);
-    pcVar1 = pcVar2 + localResourceOffset;
-    if (pcVar1 <= pcVar2) break;
-    localResourceOffset = in_R11 - (long long)pcVar2;
-    while (*pcVar2 == pcVar2[localResourceOffset]) {
-      pcVar2 = pcVar2 + 1;
-      if (pcVar1 <= pcVar2) {
+    } while (configLength != AdditionalParameter);
+    stringEndPointer = configString + configLength;
+    if (stringEndPointer <= configString) break;
+    configLength = systemResourceValue - (long long)configString;
+    while (*configString == configString[configLength]) {
+      configString = configString + 1;
+      if (stringEndPointer <= configString) {
         return ConfigurationDataPointer;
       }
     }
@@ -37503,7 +37503,17 @@ void* * FindMatchingConfigurationDataResource(void* SystemResourcePointer,void* 
 
 
 
-void* FUN_18005d548(long long SystemResourcePointer)
+/**
+ * @brief 获取系统资源配置指针
+ * 
+ * 该函数从系统资源指针的指定偏移量处获取配置指针
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 配置指针
+ * 
+ * 原始函数名为FUN_18005d548，现已重命名为GetSystemResourceConfigurationPointer
+ */
+void* GetSystemResourceConfigurationPointer(long long SystemResourcePointer)
 
 {
   return *(void* *)(SystemResourcePointer + 0x30);
