@@ -856,17 +856,17 @@ void* SystemDataNodeLinkageCache;                // 系统数据节点链接缓�
 void* SystemDataNodeLinkageBackup;                // 系统数据节点链接备份
 void* SystemDataNodeLinkagePrimary;               // 系统数据节点链接主表
 void* SystemDataNodeLinkageSecondary;             // 系统数据节点链接次表
-void* SystemComparisonTemplateA;  // SystemComparisonTemplateA
-void* SystemComparisonTemplateB;  // SystemComparisonTemplateB
+void* SystemDataComparisonTemplateA;  // 系统数据比较模板A
+void* SystemDataComparisonTemplateB;  // 系统数据比较模板B
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
 void* SystemDataNodeLinkageQuaternary;            // 系统数据节点链接第四表
 void* SystemDataNodeLinkageQuinary;               // 系统数据节点链接第五表
-void* SystemComparisonTemplateC;  // SystemComparisonTemplateC
-void* SystemConfigDataPointerSeptenary;        // SystemConfigDataPointerG
-void* SystemConfigDataPointerH;  // SystemConfigDataPointerH
-void* SystemResourceTemplate;  // SystemResourceTemplate
+void* SystemDataComparisonTemplateC;  // 系统数据比较模板C
+void* SystemConfigDataPointerG;        // 系统配置数据指针G
+void* SystemConfigDataPointerH;        // 系统配置数据指针H
+void* SystemResourceTemplate;        // 系统资源模板
 void* SystemDebugStatusFlag;  // 系统调试状态标志
-void* SystemStringBuffer;  // SystemStringBuffer
+void* SystemStringBuffer;        // 系统字符串缓冲区
 void* SystemNodeLinkPointerPrimary;        // 系统节点链接指针主表
 void* SystemNodeLinkPointerSecondary;        // 系统节点链接指针次表
 void* SystemRootNodePointer;         // 系统根节点指针
@@ -904,7 +904,7 @@ void* SystemConfigDataTertiary;        // SystemConfigDataPointerC
 void* SystemConfigDataQuaternary;        // SystemConfigDataPointerD
 void* SystemConfigDataQuinary;        // SystemConfigDataSecondary
 void* SystemConfigDataSenary;        // SystemConfigDataTertiary
-void* SystemSemaphoreInstance;            // SystemSemaphoreInstance
+void* SystemSemaphoreInstance;            // 系统信号量实例
 /**
  * @brief 系统内存分配器函数
  * 
