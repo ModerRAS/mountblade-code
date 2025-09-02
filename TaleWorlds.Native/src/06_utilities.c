@@ -3445,6 +3445,16 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
  * @note 此函数会在系统初始化和运行时定期调用
  * @warning 验证失败会导致系统进入安全模式
  */
+/**
+ * @brief 验证系统对象集合
+ * 
+ * 该函数负责验证系统中的对象集合，确保所有对象都处于有效状态
+ * 从系统上下文中获取对象集合，并对每个对象进行验证
+ * 
+ * @return 无返回值
+ * @note 此函数会验证所有系统对象的状态，并执行相应的处理逻辑
+ * @warning 如果对象验证失败，函数将不会返回
+ */
 void ValidateSystemObjectCollection(void)
 
 {

@@ -67984,51 +67984,51 @@ void* ProcessAudioSignal(void)
       audioStatusIndex2 = audioStatusIndex0;
       do {
         audioSignal1 = *audioDataPointer11;
-        fVar2 = pfVar11[1];
-        fVar3 = pfVar11[2];
-        fVar4 = pfVar11[3];
-        unsignedSystemValue13 = -(uint)(0.0001 < fVar1);
-        unsignedSystemValue14 = -(uint)(0.0001 < fVar2);
-        unsignedSystemValue15 = -(uint)(0.0001 < fVar3);
-        unsignedSystemValue16 = -(uint)(0.0001 < fVar4);
-        systemStatus0 = systemStatus2 + 8;
-        fVar5 = pfVar11[4];
-        fVar6 = pfVar11[5];
-        fVar7 = pfVar11[6];
-        fVar8 = pfVar11[7];
-        pfVar11 = pfVar11 + 8;
-        fVar25 = (float)((uint)((float)systemStatus2 * (float)unaff_XMM12_Da * 0.5 * fVar19 * fVar1 +
-                               fVar25) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar25);
-        fVar29 = (float)((uint)((float)(systemStatus2 + 1) * (float)unaff_XMM12_Db * 0.5 * fVar21 * fVar2 +
-                               fVar29) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar29);
-        fVar31 = (float)((uint)((float)(systemStatus2 + 2) * (float)unaff_XMM12_Dc * 0.5 * fVar22 * fVar3 +
-                               fVar31) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar31);
-        fVar18 = (float)((uint)((float)(systemStatus2 + 3) * (float)unaff_XMM12_Dd * 0.5 * fVar23 * fVar4 +
-                               fVar18) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar18);
-        fVar24 = (float)((uint)(fVar1 + fVar24) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar24);
-        fVar26 = (float)((uint)(fVar2 + fVar26) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar26);
-        fVar27 = (float)((uint)(fVar3 + fVar27) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar27);
-        fVar28 = (float)((uint)(fVar4 + fVar28) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar28);
-        unsignedSystemValue13 = -(uint)(0.0001 < fVar5);
-        unsignedSystemValue14 = -(uint)(0.0001 < fVar6);
-        unsignedSystemValue15 = -(uint)(0.0001 < fVar7);
-        unsignedSystemValue16 = -(uint)(0.0001 < fVar8);
-        fVar30 = (float)((uint)((float)(systemStatus2 + 4) * (float)unaff_XMM12_Da * 0.5 * fVar19 * fVar5 +
-                               fVar30) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar30);
-        fVar32 = (float)((uint)((float)(systemStatus2 + 5) * (float)unaff_XMM12_Db * 0.5 * fVar21 * fVar6 +
-                               fVar32) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar32);
-        fVar33 = (float)((uint)((float)(systemStatus2 + 6) * (float)unaff_XMM12_Dc * 0.5 * fVar22 * fVar7 +
-                               fVar33) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar33);
-        fVar34 = (float)((uint)((float)(systemStatus2 + 7) * (float)unaff_XMM12_Dd * 0.5 * fVar23 * fVar8 +
-                               fVar34) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar34);
-        fVar35 = (float)((uint)(fVar5 + fVar35) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar35);
-        fVar36 = (float)((uint)(fVar6 + fVar36) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar36);
-        fVar37 = (float)((uint)(fVar7 + fVar37) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar37);
-        fVar38 = (float)((uint)(fVar8 + fVar38) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar38);
-        systemStatus2 = systemStatus0;
-      } while (systemStatus0 < (int)(in_R9D - unsignedSystemValue9));
-      unaff_XMM6_Da = fVar27 + fVar37 + fVar24 + fVar35 + fVar28 + fVar38 + fVar26 + fVar36;
-      fVar25 = fVar31 + fVar33 + fVar25 + fVar30 + fVar18 + fVar34 + fVar29 + fVar32;
+        audioSignal2 = audioDataPointer11[1];
+        audioSignal3 = audioDataPointer11[2];
+        audioSignal4 = audioDataPointer11[3];
+        audioThresholdFlag13 = -(uint)(0.0001 < audioSignal1);
+        audioThresholdFlag14 = -(uint)(0.0001 < audioSignal2);
+        audioThresholdFlag15 = -(uint)(0.0001 < audioSignal3);
+        audioThresholdFlag16 = -(uint)(0.0001 < audioSignal4);
+        audioStatusIndex0 = audioStatusIndex2 + 8;
+        audioSignal5 = audioDataPointer11[4];
+        audioSignal6 = audioDataPointer11[5];
+        audioSignal7 = audioDataPointer11[6];
+        audioSignal8 = audioDataPointer11[7];
+        audioDataPointer11 = audioDataPointer11 + 8;
+        audioSignal25 = (float)((uint)((float)audioStatusIndex2 * (float)unaff_XMM12_Da * 0.5 * audioSignal19 * audioSignal1 +
+                               audioSignal25) & audioThresholdFlag13 | ~audioThresholdFlag13 & (uint)audioSignal25);
+        audioSignal29 = (float)((uint)((float)(audioStatusIndex2 + 1) * (float)unaff_XMM12_Db * 0.5 * audioSignal21 * audioSignal2 +
+                               audioSignal29) & audioThresholdFlag14 | ~audioThresholdFlag14 & (uint)audioSignal29);
+        audioSignal31 = (float)((uint)((float)(audioStatusIndex2 + 2) * (float)unaff_XMM12_Dc * 0.5 * audioSignal22 * audioSignal3 +
+                               audioSignal31) & audioThresholdFlag15 | ~audioThresholdFlag15 & (uint)audioSignal31);
+        audioSignal18 = (float)((uint)((float)(audioStatusIndex2 + 3) * (float)unaff_XMM12_Dd * 0.5 * audioSignal23 * audioSignal4 +
+                               audioSignal18) & audioThresholdFlag16 | ~audioThresholdFlag16 & (uint)audioSignal18);
+        audioSignal24 = (float)((uint)(audioSignal1 + audioSignal24) & audioThresholdFlag13 | ~audioThresholdFlag13 & (uint)audioSignal24);
+        audioSignal26 = (float)((uint)(audioSignal2 + audioSignal26) & audioThresholdFlag14 | ~audioThresholdFlag14 & (uint)audioSignal26);
+        audioSignal27 = (float)((uint)(audioSignal3 + audioSignal27) & audioThresholdFlag15 | ~audioThresholdFlag15 & (uint)audioSignal27);
+        audioSignal28 = (float)((uint)(audioSignal4 + audioSignal28) & audioThresholdFlag16 | ~audioThresholdFlag16 & (uint)audioSignal28);
+        audioThresholdFlag13 = -(uint)(0.0001 < audioSignal5);
+        audioThresholdFlag14 = -(uint)(0.0001 < audioSignal6);
+        audioThresholdFlag15 = -(uint)(0.0001 < audioSignal7);
+        audioThresholdFlag16 = -(uint)(0.0001 < audioSignal8);
+        audioSignal30 = (float)((uint)((float)(audioStatusIndex2 + 4) * (float)unaff_XMM12_Da * 0.5 * audioSignal19 * audioSignal5 +
+                               audioSignal30) & audioThresholdFlag13 | ~audioThresholdFlag13 & (uint)audioSignal30);
+        audioSignal32 = (float)((uint)((float)(audioStatusIndex2 + 5) * (float)unaff_XMM12_Db * 0.5 * audioSignal21 * audioSignal6 +
+                               audioSignal32) & audioThresholdFlag14 | ~audioThresholdFlag14 & (uint)audioSignal32);
+        audioSignal33 = (float)((uint)((float)(audioStatusIndex2 + 6) * (float)unaff_XMM12_Dc * 0.5 * audioSignal22 * audioSignal7 +
+                               audioSignal33) & audioThresholdFlag15 | ~audioThresholdFlag15 & (uint)audioSignal33);
+        audioSignal34 = (float)((uint)((float)(audioStatusIndex2 + 7) * (float)unaff_XMM12_Dd * 0.5 * audioSignal23 * audioSignal8 +
+                               audioSignal34) & audioThresholdFlag16 | ~audioThresholdFlag16 & (uint)audioSignal34);
+        audioSignal35 = (float)((uint)(audioSignal5 + audioSignal35) & audioThresholdFlag13 | ~audioThresholdFlag13 & (uint)audioSignal35);
+        audioSignal36 = (float)((uint)(audioSignal6 + audioSignal36) & audioThresholdFlag14 | ~audioThresholdFlag14 & (uint)audioSignal36);
+        audioSignal37 = (float)((uint)(audioSignal7 + audioSignal37) & audioThresholdFlag15 | ~audioThresholdFlag15 & (uint)audioSignal37);
+        audioSignal38 = (float)((uint)(audioSignal8 + audioSignal38) & audioThresholdFlag16 | ~audioThresholdFlag16 & (uint)audioSignal38);
+        audioStatusIndex2 = audioStatusIndex0;
+      } while (audioStatusIndex0 < (int)(audioTotalChannels - audioProcessingFlag9));
+      audioTotalSum = audioSignal27 + audioSignal37 + audioSignal24 + audioSignal35 + audioSignal28 + audioSignal38 + audioSignal26 + audioSignal36;
+      audioSignal25 = audioSignal31 + audioSignal33 + audioSignal25 + audioSignal30 + audioSignal18 + audioSignal34 + audioSignal29 + audioSignal32;
     }
     if (systemStatus0 < (int)in_R9D) {
       if (3 < (int)(in_R9D - systemStatus0)) {
