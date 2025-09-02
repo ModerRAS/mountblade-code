@@ -3263,13 +3263,13 @@ Label_SecondCompatibilitySpaceFound:
                   if (LoopCounterValue == 0) {
                     SystemResourceStatus = 1;
                     SystemMemoryStatus = 1;
-                    goto Label_18004d527;
+                    goto Label_SystemModeSet;
                   }
-Label_18004dbe3:
+Label_ModeCheckFailed:
                   BooleanCondition = false;
                 }
                 else {
-                  if (UnsignedIndex != 0x12) goto Label_18004dbe3;
+                  if (UnsignedIndex != 0x12) goto Label_ModeCheckFailed;
                   LoopCounterValue = strcmp(pMemoryAddress1,&SystemEncryptionModeString);
                   BooleanCondition = LoopCounterValue == 0;
                 }
@@ -3280,14 +3280,14 @@ Label_18004dbe3:
                   if (UnsignedIndex < uStack_1c8) {
                     StringPointer = (char *)(lStack_1d0 + BufferSize1);
                     do {
-                      if (*StringPointer == ' ') goto Label_18004dc44;
+                      if (*StringPointer == ' ') goto Label_EncryptionSpaceFound;
                       UnsignedIndex = (int)BufferSize1 + 1;
                       BufferSize1 = (ulonglong)UnsignedIndex;
                       StringPointer = StringPointer + 1;
                     } while (UnsignedIndex < uStack_1c8);
                   }
                   BufferSize1 = 0xffffffff;
-Label_18004dc44:
+Label_EncryptionSpaceFound:
                   UnsignedIndex = (int)BufferSize1 + 1;
                   BufferSize8 = (ulonglong)(int)UnsignedIndex;
                   if (UnsignedIndex < uStack_1c8) {

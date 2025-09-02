@@ -4108,20 +4108,20 @@ uint8_t ValidateObjectHandle(int64_t ObjectContextPointer)
 uint32_t ValidateObjectHandleFromRegister(void)
 
 {
-  int64_t RegisterValue;
-  int64_t AdjustedPointer;
+  int64_t RegisterContextValue;
+  int64_t AdjustedMemoryPointer;
   
-  if (RegisterValue == 0) {
-    AdjustedPointer = 0;
+  if (RegisterContextValue == 0) {
+    AdjustedMemoryPointer = 0;
   }
   else {
-    AdjustedPointer = RegisterValue + -8;
+    AdjustedMemoryPointer = RegisterContextValue + -8;
   }
-  if (*(int64_t *)(AdjustedPointer + 0x10) == 0) {
+  if (*(int64_t *)(AdjustedMemoryPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(AdjustedPointer + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(AdjustedMemoryPointer + 0x10), 1);
 }
 
 
@@ -5007,27 +5007,27 @@ void PerformNoOperation(void)
  * @param objectHandle 对象句柄指针
  * @return 处理结果，成功返回0，失败返回错误码
  */
-uint64_t ValidateAndProcessObjectHandle(uint64_t objectHandle)
+uint64_t ValidateAndProcessObjectHandle(uint64_t ObjectHandleIdentifier)
 
 {
   uint64_t ResourceHashValidationResult;
-  int64_t stackOffset;
+  int64_t StackMemoryOffset;
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(objectHandle + 0x10),&stackOffset);
-  if ((int)HashValidationResult != 0) {
+  ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleIdentifier + 0x10), &StackMemoryOffset);
+  if ((int)ResourceHashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
-  if (stackOffset == 0) {
-    StackOffset = 0;
+  if (StackMemoryOffset == 0) {
+    StackMemoryOffset = 0;
   }
   else {
-    stackOffset = stackOffset + -8;
+    StackMemoryOffset = StackMemoryOffset + -8;
   }
-  if (*(int64_t *)(stackOffset + 0x10) == 0) {
+  if (*(int64_t *)(StackMemoryOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(stackOffset + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(StackMemoryOffset + 0x10), 1);
 }
 
 
