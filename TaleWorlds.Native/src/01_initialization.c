@@ -21286,11 +21286,11 @@ void* * SystemMemoryNodeFinder(long long *SystemResourcePointer,void* *OutputNod
           if (ByteValue != UIntValue) break;
           StringPointer = StringPointer + 1;
         } while (UIntValue != 0);
-        if ((int)(ByteValue - UIntValue) < 1) goto LAB_180048dd7;
+        if ((int)(ByteValue - UIntValue) < 1) goto ComparisonResultHandler;
       }
-LAB_180048db7:
+LABEL_TARGET_NODE_VALIDATION_START:
       VoidPointer = 0;
-LAB_180048dba:
+LABEL_TARGET_NODE_VALIDATION_CONTINUE:
       if (TargetNodePointer != (long long *)0x0) {
         ProcessSystemNodeSearch(SystemResourcePointer,OutputNodePointer,TargetNodePointer,VoidPointer,SearchParameters);
         return OutputNodePointer;
@@ -21309,7 +21309,7 @@ LAB_180048dba:
           if (ByteValue != UIntValue) break;
           StringPointer = StringPointer + 1;
         } while (UIntValue != 0);
-        if ((int)(ByteValue - UIntValue) < 1) goto LAB_180048dd7;
+        if ((int)(ByteValue - UIntValue) < 1) goto ComparisonResultHandler;
       }
       if ((int)MemoryListNode[6] != 0) {
         StringPointer = (byte *)MemoryListNode[5];
@@ -21329,7 +21329,7 @@ LAB_180048dba:
       }
     }
   }
-LAB_180048dd7:
+ComparisonResultHandler:
   ComparisonResult = true;
   MemoryListNode = (long long *)SystemResourcePointer[2];
   SystemMemoryPointer = SystemResourcePointer;
@@ -45861,7 +45861,26 @@ void* FUN_180068ce0(long long SystemResourcePointer,void* *ConfigurationDataPoin
 
 
 
-long long FUN_180068ec0(long long *SystemResourcePointer,long long *ConfigurationDataPointer,int AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源管理器处理函数
+ * 
+ * 该函数负责管理系统资源的不同操作，包括资源清理、内存分配和资源转移。
+ * 根据不同的AdditionalParameter值执行不同的操作：
+ * - 0: 清理系统资源
+ * - 1: 分配系统内存并复制资源数据
+ * - 2: 转移系统资源所有权
+ * - 3: 使用默认系统句柄
+ * - 4: 使用指定系统句柄
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数，指定操作类型
+ * @param ConfigurationFlag 配置标志
+ * @return 操作结果或系统句柄
+ * 
+ * 原始函数名为FUN_180068ec0，现已重命名为ProcessSystemResourceManager
+ */
+long long ProcessSystemResourceManager(long long *SystemResourcePointer,long long *ConfigurationDataPointer,int AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -45915,8 +45934,22 @@ long long FUN_180068ec0(long long *SystemResourcePointer,long long *Configuratio
 
 
 
+/**
+ * @brief 初始化系统资源字符串模板
+ * 
+ * 该函数负责初始化系统资源的字符串模板，设置内存分配器引用和字符串数据。
+ * 用于系统资源字符串管理的前期准备工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @return 初始化后的系统资源指针
+ * 
+ * 原始函数名为FUN_180068ff0，现已重命名为InitializeSystemResourceStringTemplate
+ */
 void* *
-FUN_180068ff0(void* *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+InitializeSystemResourceStringTemplate(void* *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -45939,7 +45972,18 @@ FUN_180068ff0(void* *SystemResourcePointer,long long ConfigurationDataPointer,vo
 
 
 
-void* * FUN_180069070(void* *SystemResourcePointer)
+/**
+ * @brief 初始化系统内存分配器模板
+ * 
+ * 该函数负责初始化系统内存分配器模板，设置内存分配器引用和相关参数。
+ * 用于系统内存管理的前期准备工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 初始化后的系统资源指针
+ * 
+ * 原始函数名为FUN_180069070，现已重命名为InitializeSystemMemoryAllocatorTemplate
+ */
+void* * InitializeSystemMemoryAllocatorTemplate(void* *SystemResourcePointer)
 
 {
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
@@ -45985,7 +46029,21 @@ void ConfigureSystemResourceCallbacks(long long SystemResourcePointer,long long 
 
 
 
-long long FUN_180069190(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 释放系统资源内存
+ * 
+ * 该函数负责释放系统资源内存，根据配置数据指针的标志决定是否执行释放操作。
+ * 用于系统内存管理的清理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @return 系统资源指针
+ * 
+ * 原始函数名为FUN_180069190，现已重命名为ReleaseSystemResourceMemory
+ */
+long long ReleaseSystemResourceMemory(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *(void* **)(SystemResourcePointer + 8) = &SystemMemoryAllocatorReference;
@@ -45997,8 +46055,22 @@ long long FUN_180069190(long long SystemResourcePointer,ulong long Configuration
 
 
 
+/**
+ * @brief 释放系统资源指针内存
+ * 
+ * 该函数负责释放系统资源指针的内存，根据配置数据指针的标志决定是否执行释放操作。
+ * 用于系统资源指针管理的清理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @return 系统资源指针
+ * 
+ * 原始函数名为FUN_1800691e0，现已重命名为ReleaseSystemResourcePointerMemory
+ */
 void* *
-FUN_1800691e0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+ReleaseSystemResourcePointerMemory(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
