@@ -48292,9 +48292,9 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     SystemFunctionPointer78 = _guard_check_icall;
     lStack_c0 = -1;
     SystemMemoryAllocatorStatus = 0xffffffffffffffff;
-    uStack_e0 = 0xffffffffffffffff;
-    lStack_d0 = 0;
-    lStack_c8 = 0;
+    SystemMemoryManagerHandle = 0xffffffffffffffff;
+    SystemMemoryOffset = 0;
+    SystemMemoryAllocationCounter = 0;
     systemDataBuffer = 0;
     resourceDataIndex3 = *(long long *)(SystemResourceManager + 0x3c8);
     resourceDataIndex4 = *(long long *)(SystemResourceManager + 0x3d0) - resourceDataIndex3;
@@ -48355,11 +48355,11 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         SystemHashEntryPointer4 = *(void* **)(resourceDataIndex3 + 8);
       }
       strcpy_s(pbStack_1f0,0x100,SystemHashEntryPointer4);
-      uStack_e0 = *(void* *)(resourceDataIndex3 + 0x118);
+      SystemMemoryManagerHandle = *(void* *)(resourceDataIndex3 + 0x118);
       SystemMemoryAllocatorStatus = *(ulong long *)(resourceDataIndex3 + 0x120);
-      lStack_d0 = *(long long *)(resourceDataIndex3 + 0x128);
-      lStack_c8 = *(long long *)(resourceDataIndex3 + 0x130);
-      lStack_c0 = *(long long *)(resourceDataIndex3 + 0x138);
+      SystemMemoryOffset = *(long long *)(resourceDataIndex3 + 0x128);
+      SystemMemoryAllocationCounter = *(long long *)(resourceDataIndex3 + 0x130);
+      SystemMemoryBufferSize = *(long long *)(resourceDataIndex3 + 0x138);
       systemDataBuffer = *(uint8_t *)(resourceDataIndex3 + 0x140);
       if (aUnsignedStackFlagB0 != (uint8_t *)(resourceDataIndex3 + 0x148)) {
         if (charPointerA0 != (code *)0x0) {

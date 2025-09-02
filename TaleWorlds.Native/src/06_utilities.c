@@ -4569,26 +4569,26 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
   int64_t SystemObjectHandle;
   int SystemValidationStatusCode;
   uint8_t AccessValidationStatusCode;
-  int64_t SecurityValidationContext [2];
+  int64_t ObjectValidationContext [2];
   
-  AccessValidationStatusCode = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + ObjectHandleMemoryOffset),SecurityValidationContext);
-  SystemObjectHandle = SecurityValidationContext[0];
+  AccessValidationStatusCode = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + ObjectHandleMemoryOffset), ObjectValidationContext);
+  SystemObjectHandle = ObjectValidationContext[0];
   if ((int)AccessValidationStatusCode != 0) {
     return AccessValidationStatusCode;
   }
-  (*(int *)(SecurityValidationContext[0] + ResourceCountOffset))++;
-  if (*(int *)(SecurityValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(SecurityValidationContext[0] + ResourceSecondaryCounterOffset) +
-      *(int *)(SecurityValidationContext[0] + ResourceCountOffset) == 1) {
-    SecurityValidationContext[0] = 0;
-    SystemValidationStatusCode = ValidateSystemObjectConfiguration(SecurityValidationContext);
+  (*(int *)(ObjectValidationContext[0] + ResourceCountOffset))++;
+  if (*(int *)(ObjectValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(ObjectValidationContext[0] + ResourceSecondaryCounterOffset) +
+      *(int *)(ObjectValidationContext[0] + ResourceCountOffset) == 1) {
+    ObjectValidationContext[0] = 0;
+    SystemValidationStatusCode = ValidateSystemObjectConfiguration(ObjectValidationContext);
     if (SystemValidationStatusCode == 0) {
       SystemValidationStatusCode = ProcessSystemObjectValidation(SystemObjectHandle,*(uint8_t *)(SystemObjectHandle + 8),*(uint8_t *)(SystemContextParameters + SystemContextSecondaryDataOffset),
                             *(uint8_t *)(SystemContextParameters + 800));
       if (SystemValidationStatusCode == 0) {
-              ReleaseValidationResources(SecurityValidationContext);
+              ReleaseValidationResources(ObjectValidationContext);
       }
     }
-          ReleaseValidationResources(SecurityValidationContext);
+          ReleaseValidationResources(ObjectValidationContext);
   }
   return 0;
 }
@@ -4611,12 +4611,12 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
 {
   uint64_t *SystemStatusFlagsPointer;
   int64_t ObjectInstancePointer;
-  uint64_t UpdateOperationResult;
+  uint64_t StatusUpdateResult;
   int64_t *ObjectCollectionIterator;
   int64_t SystemContextPointers[4];
   
-  UpdateOperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextPointers);
-  if ((int)UpdateOperationResult == 0) {
+  StatusUpdateResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextPointers);
+  if ((int)StatusUpdateResult == 0) {
     ObjectCollectionIterator = *(int64_t **)(SystemContextPointers[0] + ContextHandlesIteratorOffset);
     while ((*(int64_t **)(SystemContextPointers[0] + ContextHandlesIteratorOffset) <= ObjectCollectionIterator &&
            (ObjectCollectionIterator < *(int64_t **)(SystemContextPointers[0] + ContextHandlesIteratorOffset) + *(int *)(SystemContextPointers[0] + ContextHandlesCapacityOffset)))) {
@@ -4628,9 +4628,9 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
         *ObjectStatusFlagsPointer = *ObjectStatusFlagsPointer | 4;
       }
     }
-    UpdateOperationResult = 0;
+    StatusUpdateResult = 0;
   }
-  return UpdateOperationResult;
+  return StatusUpdateResult;
 }
 
 
@@ -4647,36 +4647,36 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
  */
 uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHandle)
 {
-  int64_t SystemContextData;
+  int64_t ValidatedSystemContext;
   uint64_t ResourceManagementResult;
   int ActiveResourceCount;
-  int64_t ResourceContextHandles[2];
+  int64_t ResourceValidationContext[2];
   
-  ResourceManagementResult = ValidateObjectContext(*(uint32_t *)(SystemContext + ObjectContextOffset), ResourceContextHandles);
-  SystemContextData = ResourceContextHandles[0];
+  ResourceManagementResult = ValidateObjectContext(*(uint32_t *)(SystemContext + ObjectContextOffset), ResourceValidationContext);
+  ValidatedSystemContext = ResourceValidationContext[0];
   if ((int)ResourceManagementResult != 0) {
     return ResourceManagementResult;
   }
-  if (*(int *)(ResourceContextHandles[0] + ResourceCountOffset) < 1) {
+  if (*(int *)(ResourceValidationContext[0] + ResourceCountOffset) < 1) {
     return ErrorInvalidObjectHandle;
   }
-  ActiveResourceCount = *(int *)(ResourceContextHandles[0] + ResourceCountOffset) + -1;
-  *(int *)(ResourceContextHandles[0] + ResourceCountOffset) = ActiveResourceCount;
-  if (*(int *)(ResourceContextHandles[0] + ResourceTertiaryCounterOffset) + *(int *)(ResourceContextHandles[0] + ResourceSecondaryCounterOffset) + ActiveResourceCount != 0) {
+  ActiveResourceCount = *(int *)(ResourceValidationContext[0] + ResourceCountOffset) + -1;
+  *(int *)(ResourceValidationContext[0] + ResourceCountOffset) = ActiveResourceCount;
+  if (*(int *)(ResourceValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(ResourceValidationContext[0] + ResourceSecondaryCounterOffset) + ActiveResourceCount != 0) {
     return 0;
   }
-  ResourceContextHandles[0] = 0;
-  int SystemValidationStatus = ValidateSystemObjectConfiguration(ResourceContextHandles);
+  ResourceValidationContext[0] = 0;
+  int SystemValidationStatus = ValidateSystemObjectConfiguration(ResourceValidationContext);
   if (SystemValidationStatus == 0) {
-    SystemValidationStatus = ProcessSystemObjectOperation(SystemContextData,0);
+    SystemValidationStatus = ProcessSystemObjectOperation(ValidatedSystemContext,0);
     if (SystemValidationStatus == 0) {
       SystemValidationStatus = ProcessSystemContextValidation(SystemContext);
       if (SystemValidationStatus == 0) {
-              ReleaseValidationResources(ResourceContextHandles);
+              ReleaseValidationResources(ResourceValidationContext);
       }
     }
   }
-        ReleaseValidationResources(ResourceContextHandles);
+        ReleaseValidationResources(ResourceValidationContext);
   return 0;
 }
 
@@ -8045,7 +8045,7 @@ void ProcessPointerValidationAndSystemObjectHandling(int64_t *ObjectPointer, int
           ProcessMemoryAllocationFailure(SystemContext + ThreadResourceCountOffset, &PrimaryObjectResourceBuffer);
   }
   PointerReference = (int64_t *)(AllocatedMemory + ResourceTertiaryCounterOffset);
-  if (((int64_t *)*PointerReference == pointerReference) && (*(int64_t **)(AllocatedMemory + ValidationContextHashOffset) == pointerReference)) {
+  if (((int64_t *)*PointerReference == PointerReference) && (*(int64_t **)(AllocatedMemory + ValidationContextHashOffset) == PointerReference)) {
           CleanupSecurityToken(SecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
   }
         ProcessSystemObject(*(uint8_t *)(SystemContext + SystemContextCleanupOffset));
@@ -29795,12 +29795,12 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindPrimaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  int64_t* ExceptionHandlerPointer;
+void UnwindPrimaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+  int64_t* ExceptionHandlerFunctionPointer;
   
-  ExceptionHandlerPointer = (int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset);
-  if (ExceptionHandlerPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -29819,12 +29819,12 @@ void UnwindPrimaryContextExceptionHandler(uint8_t ObjectContext, int64_t Validat
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindSecondaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  int64_t** SecondaryExceptionHandlerPointer;
+void UnwindSecondaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+  int64_t** SecondaryExceptionHandlerFunctionPointer;
   
-  SecondaryExceptionHandlerPointer = *(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset);
-  if (SecondaryExceptionHandlerPointer != (int64_t *)0x0) {
-    (**(code **)(*SecondaryExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
+  SecondaryExceptionHandlerFunctionPointer = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
+  if (SecondaryExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+    (**(code **)(*SecondaryExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -29855,12 +29855,12 @@ void UnwindSecondaryContextExceptionHandler(uint8_t ObjectContext, int64_t Valid
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindTertiaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  int64_t* TertiaryExceptionHandlerPointer;
+void UnwindTertiaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+  int64_t* TertiaryExceptionHandlerFunctionPointer;
   
-  TertiaryExceptionHandlerPointer = (int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset);
-  if (TertiaryExceptionHandlerPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)TertiaryExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
+  TertiaryExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
+  if (TertiaryExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)TertiaryExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -29879,12 +29879,12 @@ void UnwindTertiaryContextExceptionHandler(uint8_t ObjectContext, int64_t Valida
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindQuaternaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  uint8_t *ResourceHashPointer;
+void UnwindQuaternaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+  uint8_t *ResourceHashDataPointer;
   
-  ResourceHashPointer = *(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset);
-  *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceAllocationTemplate;
+  ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
+  *ResourceHashDataPointer = &ResourceHashTemplate;
+  *ResourceHashDataPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -29903,12 +29903,12 @@ void UnwindQuaternaryContextExceptionHandler(uint8_t ObjectContext, int64_t Vali
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindQuinaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  uint8_t *ResourceHashPointer;
+void UnwindQuinaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+  uint8_t *ResourceHashDataPointer;
   
-  ResourceHashPointer = *(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset);
-  *ResourceHashPointer = &ResourceAllocationTemplate;
-  *ResourceHashPointer = &ResourceCacheTemplate;
+  ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
+  *ResourceHashDataPointer = &ResourceAllocationTemplate;
+  *ResourceHashDataPointer = &ResourceCacheTemplate;
   return;
 }
 
@@ -29926,8 +29926,8 @@ void UnwindQuinaryContextExceptionHandler(uint8_t ObjectContext, int64_t Validat
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindSenaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  **(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
+void UnwindSenaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+  **(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
   return;
 }
 
@@ -35018,8 +35018,8 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindSystemDataStructureExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x438) = &SystemDataStructure;
+void UnwindSystemDataStructureExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+  *(uint8_t **)(*(int64_t *)(SystemContext + SystemContextResourceOffset) + 0x438) = &SystemDataStructure;
   return;
 }
 
@@ -35039,9 +35039,9 @@ void UnwindSystemDataStructureExceptionHandler(uint8_t ObjectContext, int64_t Va
  * @note 此函数在文件系统操作完成后调用
  * @warning 调用此函数前必须确保锁资源已被正确获取
  */
-void ReleaseFileSystemLock(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
-  HandleResourceRequest(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x858,
-                *(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x868),CleanupOption,CleanupFlag,
+void ReleaseFileSystemLock(uint8_t FileSystemContext, int64_t SystemContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
+  HandleResourceRequest(*(int64_t *)(SystemContext + SystemContextResourceOffset) + 0x858,
+                *(uint8_t *)(*(int64_t *)(SystemContext + SystemContextResourceOffset) + 0x868),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
