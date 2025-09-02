@@ -26910,7 +26910,7 @@ bool SystemResourceValidator(long long ResourceManagerPointer)
       }
 SystemValidationCheck:
       pointerToUnsigned10 = newThreadLocalStorage;
-      if (bVar3) {
+      if (isValidOperation) {
         pointerToUnsigned10 = ThreadLocalStorage;
       }
       newThreadLocalStorage = punsignedSystemValue9;
@@ -26919,15 +26919,15 @@ SystemValidationCheck:
     if (pointerToUnsigned10 != pointerToUnsigned1) {
       if (*(int *)(pointerToUnsigned10 + 6) == 0) goto SystemValueValidation;
       if (iStack_20 != 0) {
-        pbVar4 = (byte *)pointerToUnsigned10[5];
-        localDataIndex = (long long)pbStack_28 - (long long)pbVar4;
+        stringPointer = (byte *)pointerToUnsigned10[5];
+        localDataIndex = (long long)pbStack_28 - (long long)stringPointer;
         do {
-          bVar2 = *pbVar4;
-          currentThreadId = (uint)pbVar4[localDataIndex];
-          if (bVar2 != currentThreadId) break;
-          pbVar4 = pbVar4 + 1;
+          byteValue = *stringPointer;
+          currentThreadId = (uint)stringPointer[localDataIndex];
+          if (byteValue != currentThreadId) break;
+          stringPointer = stringPointer + 1;
         } while (currentThreadId != 0);
-        if ((int)(bVar2 - currentThreadId) < 1) goto SystemValueValidationCheck;
+        if ((int)(byteValue - currentThreadId) < 1) goto SystemValueValidationCheck;
       }
     }
   }
@@ -27199,8 +27199,8 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   uint systemStatus1;
   uint systemStatus2;
   uint systemStatus3;
-  bool bVar14;
-  float fVar15;
+  bool isSystemConfigured;
+  float scaleFactorX;
   float fVar16;
   float fVar17;
   float fVar18;
