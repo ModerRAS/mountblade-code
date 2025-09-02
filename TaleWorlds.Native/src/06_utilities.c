@@ -65625,12 +65625,24 @@ void Unwind_180908bc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908bd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统上下文资源管理器清理处理器
+ * 
+ * 该函数负责执行系统上下文资源管理器的清理操作，处理系统上下文资源相关的异常情况
+ * 清理系统上下文中的资源管理器状态和数据结构
+ * 
+ * @param ObjectContext 对象上下文，包含资源管理器处理的对象信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908bd0
+ */
+void ExecuteSystemContextResourceManagerCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t contextLoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x1b8);
+  // 获取上下文循环计数器
+  contextLoopCounter = *(int64_t *)(ValidationContext + 0x1b8);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
