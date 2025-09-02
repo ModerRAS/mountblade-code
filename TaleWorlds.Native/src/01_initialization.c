@@ -52242,7 +52242,7 @@ LAB_180070b00:
   }
   AllocateSystemMemoryBuffer(&pUnsignedStackFlag118,&pMemoryBufferAddress,&SystemProcessFlags58);
   SystemControlFlag = 0;
-  uStack_11c = 0;
+  SystemOperationMode = 0;
   pUnsignedStackFlag118 = &SystemGlobalDataReference;
   if (SystemDataPointer0 != (uint8_t *)0x0) {
       SystemCleanupFunction(SystemDataPointer0);
