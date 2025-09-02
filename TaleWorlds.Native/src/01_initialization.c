@@ -43694,7 +43694,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   ConfigureSystemDataBuffer(&pointerUnsigned330,&SystemDataBufferConfigTemplate,&SystemGlobalDataReference,&SystemConfigParam3);
   SystemStringTemplatePtr2 = (void* *)0x0;
   SystemStringTemplatePtr = (void* *)0x0;
-  uStack_210 = 0;
+  SystemTemporaryFlag210 = 0;
   SystemMaxOperationCount8 = 3;
   SystemResourcePointer160 = (void* *)0x0;
   pSystemConfigurationId = (void* *)0x0;
@@ -43742,7 +43742,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
     ProcessSystemQueue(&pSystemThreadStackSize,SystemResourceStringPointer);
     SystemResourceHandle = (void* *)0x0;
     pointerUnsigned258 = (void* *)0x0;
-    uStack_250 = 0;
+    SystemTemporaryFlag250 = 0;
     SystemDataBufferOffset = 3;
     aSystemThreadFlag338[0] = 10;
     if (StackInteger238 != 0) {
@@ -44075,10 +44075,10 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   resourceAllocationContext = CreateSystemObject(&pUnsignedStackFlag88,SystemContextManagerPointer + 0xe0);
   (*systemFunctionPointer)(plStack_b0,resourceAllocationContext);
   pUnsignedStackFlag88 = &SystemGlobalDataReference;
-  if (lStack_80 != 0) {
+  if (SystemMemoryAllocationFlag80 != 0) {
       SystemCleanupFunction();
   }
-  lStack_80 = 0;
+  SystemMemoryAllocationFlag80 = 0;
   SystemProcessFlags70 = 0;
   pUnsignedStackFlag88 = &SystemMemoryAllocatorReference;
   if (sourceString == 0) {
@@ -44090,16 +44090,16 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
     resourceAllocationContext = ProcessSystemQueue(&pUnsignedStackFlag88,ConfigurationDataPointer);
     (*systemFunctionPointer)(plStack_b0,SystemResourceManager,resourceAllocationContext);
     pUnsignedStackFlag88 = &SystemGlobalDataReference;
-    if (lStack_80 != 0) {
+    if (SystemMemoryAllocationFlag80 != 0) {
         SystemCleanupFunction();
     }
-    lStack_80 = 0;
+    SystemMemoryAllocationFlag80 = 0;
     SystemProcessFlags70 = 0;
     pUnsignedStackFlag88 = &SystemMemoryAllocatorReference;
   }
   CleanupSystemMemoryBuffer(&SystemDataBufferPointerA8);
   SystemStackFlagA8 = &SystemGlobalDataReference;
-  if (lStack_a0 != 0) {
+  if (SystemMemoryAllocationFlagA0 != 0) {
       SystemCleanupFunction();
   }
   return;
@@ -44153,22 +44153,22 @@ void ExecuteSystemResourceCommand(long long *SystemResourceManager,void* Configu
     ExecuteSystemCommand(&SystemProcessFlagsPointer,resourceAddress,AdditionalParameter,ConfigurationFlag,1,0xfffffffffffffffe);
   }
   if (SystemOperationStatus != 0) {
-      memcpy(lStack_68,*(void* *)(SystemThreadHandle + 8),resourceAddress);
+      memcpy(SystemMemoryBuffer68,*(void* *)(SystemThreadHandle + 8),resourceAddress);
   }
-  if (lStack_68 != 0) {
-    *(uint8_t *)(resourceAddress + lStack_68) = 0;
+  if (SystemMemoryBuffer68 != 0) {
+    *(uint8_t *)(resourceAddress + SystemMemoryBuffer68) = 0;
   }
   SystemThreadContext = SystemOperationStatus;
   SystemProcessFlags58.HighPart = *(uint *)(SystemThreadHandle + 0x1c);
   ExecuteSystemCommand(&SystemProcessFlagsPointer,1);
-  *(void*2 *)((ulong long)SystemThreadContext + lStack_68) = 0x5c;
+  *(void*2 *)((ulong long)SystemThreadContext + SystemMemoryBuffer68) = 0x5c;
   SystemThreadContext = 1;
   ConfigureSystemResources(&SystemProcessFlagsPointer,&memoryAllocationEnd,AdditionalParameter);
   SystemProcessFlagsPointer = &SystemGlobalDataReference;
-  if (lStack_68 != 0) {
+  if (SystemMemoryBuffer68 != 0) {
       SystemCleanupFunction();
   }
-  lStack_68 = 0;
+  SystemMemoryBuffer68 = 0;
   SystemProcessFlags58 = (ulong long)SystemProcessFlags58.HighPart << 0x20;
   SystemProcessFlagsPointer = &SystemMemoryAllocatorReference;
   SystemHashNodeData = &SystemStringTemplate;
