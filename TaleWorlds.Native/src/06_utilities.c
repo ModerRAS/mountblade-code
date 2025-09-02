@@ -76088,7 +76088,10 @@ void Unwind_18090b470(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b490(void)
+/**
+ * @brief 销毁基本互斥锁
+ */
+void Unwind_DestroyMutexBasic(void)
 
 {
   MutexDestroyInPlace();
@@ -77120,7 +77123,10 @@ void Unwind_18090bcd0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bcf0(void)
+/**
+ * @brief 销毁第三级互斥锁
+ */
+void Unwind_DestroyMutexTertiary(void)
 
 {
   MutexDestroyInPlace();
@@ -78534,7 +78540,10 @@ void Unwind_18090c470(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c480(void)
+/**
+ * @brief 销毁第四级互斥锁
+ */
+void Unwind_DestroyMutexQuaternary(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
