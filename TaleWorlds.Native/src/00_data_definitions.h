@@ -8963,7 +8963,7 @@ Label_18060ad8c:
                                     else {
                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryBufferTretrigesimal);
                                       if (NetworkRequestStatus == '\0') {
-                                        NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a5e0);
+                                        NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalSenary);
                                         if (NetworkRequestStatus != '\0') goto Label_18060b9cb;
                                         pBufferSize = &SystemMemoryBufferQuattuortrigesimal;
 Label_18060ad2d:
@@ -8977,7 +8977,7 @@ Label_18060ad2d:
                                     if (NetworkRequestStatus == '\0') {
                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkRequestValidationBuffer2);
                                       if (NetworkRequestStatus != '\0') goto Label_18060b9cb;
-                                      NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a5d0);
+                                      NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalSeptenary);
                                       if (NetworkRequestStatus != '\0') goto Label_18060ad3e;
                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemBufferSizeBuffer3);
                                       if (NetworkRequestStatus != '\0') goto Label_18060acd8;
@@ -8985,25 +8985,25 @@ Label_18060ad2d:
                                   }
                                 }
                                 else {
-                                  NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a2f8);
+                                  NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalOctonary);
                                   if (NetworkRequestStatus == '\0') {
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a2e8);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalNonary);
                                     if (NetworkRequestStatus != '\0') goto Label_18060b9cb;
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a310);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalDenary);
                                     if (NetworkRequestStatus != '\0') goto Label_18060ad3e;
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a300);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalUndenary);
                                     if (NetworkRequestStatus != '\0') goto Label_18060acd8;
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a418);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalDuodenary);
                                     if (NetworkRequestStatus != '\0') goto Label_18060a114;
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a408);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalTredecenary);
                                     if (NetworkRequestStatus != '\0') goto Label_18060a91e;
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a440);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalQuattuordecenary);
                                     if (NetworkRequestStatus != '\0') goto Label_18060ba49;
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a428);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalQuindecenary);
                                     if (NetworkRequestStatus != '\0') goto Label_18060ba67;
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a3d0);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalSexdecenary);
                                     if (NetworkRequestStatus != '\0') goto Label_18060b32d;
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a3c0);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryQuadragesimalSeptendecenary);
                                     if (NetworkRequestStatus != '\0') goto Label_18060b0f9;
                                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a3f8);
                                     if (NetworkRequestStatus != '\0') goto Label_1806091a3;
