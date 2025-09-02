@@ -51567,7 +51567,19 @@ void ProcessValidationContextResourceTable(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_180905f90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希表和同步对象
+ * 
+ * 该函数负责初始化资源哈希表指针
+ * 销毁旧的互斥锁和条件变量，并设置新的资源模板
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会初始化资源哈希表和同步对象
+ * @remark 原始函数名：Unwind_180905f90
+ */
+void InitializeResourceHashTableAndSyncObjects(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -51584,7 +51596,20 @@ void Unwind_180905f90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905fa0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表同步对象销毁和状态验证
+ * 
+ * 该函数负责销毁资源表中的同步对象（互斥锁和条件变量）
+ * 验证资源状态，处理哈希验证结果，并维护系统稳定性
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源表同步对象销毁和状态验证
+ * @warning 如果发现无效状态，将触发系统紧急退出
+ * @remark 原始函数名：Unwind_180905fa0
+ */
+void DestroyResourceTableSyncObjectsAndValidateStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -51645,7 +51670,20 @@ void Unwind_180905fa0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905fc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表中的资源索引遍历
+ * 
+ * 该函数负责遍历资源表中的资源索引
+ * 从验证上下文偏移0x70处获取资源表指针和计数器
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会遍历资源表并处理每个资源索引
+ * @warning 如果资源表指针为空，将触发系统紧急退出
+ * @remark 原始函数名：Unwind_180905fc0
+ */
+void ProcessResourceTableIndexTraversal(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -51665,7 +51703,21 @@ void Unwind_180905fc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905fe0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表偏移量的状态验证
+ * 
+ * 该函数负责处理资源表偏移量的状态验证
+ * 从验证上下文偏移0x78处获取资源表指针
+ * 验证资源状态并处理哈希验证结果
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源表偏移量的状态验证
+ * @warning 如果发现无效状态，将触发系统紧急退出
+ * @remark 原始函数名：Unwind_180905fe0
+ */
+void ValidateResourceTableOffsetStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -52154,7 +52206,20 @@ void UnwindResourceValidationAtContextOffset(uint8_t ObjectContext,int64_t Valid
 
 
 
-void Unwind_180906180(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希验证结果和内存地址计算
+ * 
+ * 该函数负责处理资源哈希验证结果
+ * 从验证上下文偏移0xb0处获取验证结果指针
+ * 计算内存地址增量并验证资源索引
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源哈希验证结果和内存地址计算
+ * @remark 原始函数名：Unwind_180906180
+ */
+void ProcessResourceHashValidationAndMemoryAddress(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -52190,7 +52255,20 @@ void Unwind_180906180(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906190(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希验证和内存地址计算（变体）
+ * 
+ * 该函数负责处理资源哈希验证结果
+ * 从验证上下文偏移0xb0处获取验证结果指针
+ * 计算内存地址增量并验证资源索引
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源哈希验证结果和内存地址计算
+ * @remark 原始函数名：Unwind_180906190
+ */
+void ProcessResourceHashValidationAndMemoryAddressVariant(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -52226,7 +52304,19 @@ void Unwind_180906190(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809061a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解包处理函数：从验证上下文中解包资源上下文
+ * 
+ * 该函数负责从验证上下文的指定偏移量中解包资源上下文
+ * 如果资源上下文存在，则调用相应的解包处理函数
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源上下文的地址信息
+ * @return 无返回值
+ * @note 此函数会检查验证上下文中指定偏移量的资源上下文
+ * @warning 如果资源上下文不存在，函数将直接返回
+ */
+void UnwindResourceContextFromValidationOffsetB8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -52240,7 +52330,19 @@ void Unwind_1809061a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809061b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解包处理函数：从验证上下文中解包资源上下文
+ * 
+ * 该函数负责从验证上下文的指定偏移量中解包资源上下文
+ * 如果资源上下文存在，则调用相应的解包处理函数
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源上下文的地址信息
+ * @return 无返回值
+ * @note 此函数会检查验证上下文中指定偏移量的资源上下文
+ * @warning 如果资源上下文不存在，函数将直接返回
+ */
+void UnwindResourceContextFromValidationOffset30(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -52254,7 +52356,19 @@ void Unwind_1809061b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809061c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解包处理函数：从验证上下文中解包资源上下文
+ * 
+ * 该函数负责从验证上下文的指定偏移量中解包资源上下文
+ * 如果资源上下文存在，则调用相应的解包处理函数
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源上下文的地址信息
+ * @return 无返回值
+ * @note 此函数会检查验证上下文中指定偏移量的资源上下文
+ * @warning 如果资源上下文不存在，函数将直接返回
+ */
+void UnwindResourceContextFromValidationOffset40(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -52390,7 +52504,19 @@ void UnwindResetSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_1809062c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统资源：在偏移量0x108处释放资源
+ * 
+ * 该函数负责在验证上下文的指定偏移量处释放系统资源
+ * 检查资源数据中的标志位，如果设置了相应的标志，则释放资源
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源的地址信息
+ * @return 无返回值
+ * @note 此函数会检查资源数据中的标志位来决定是否释放资源
+ * @warning 调用此函数会修改资源数据中的标志位状态
+ */
+void UnwindReleaseSystemResourceAtOffset108(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x6c) & 1) != 0) {
@@ -52402,7 +52528,19 @@ void Unwind_1809062c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809062f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统资源：在偏移量0xd0处释放资源
+ * 
+ * 该函数负责在验证上下文的指定偏移量处释放系统资源
+ * 检查资源数据中的标志位，如果设置了相应的标志，则释放资源
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源的地址信息
+ * @return 无返回值
+ * @note 此函数会检查资源数据中的标志位来决定是否释放资源
+ * @warning 调用此函数会修改资源数据中的标志位状态
+ */
+void UnwindReleaseSystemResourceAtOffsetD0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x6c) & 2) != 0) {
@@ -52414,7 +52552,19 @@ void Unwind_1809062f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906320(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统资源：在偏移量0x70处释放资源
+ * 
+ * 该函数负责在验证上下文的指定偏移量处释放系统资源
+ * 检查资源数据中的标志位，如果设置了相应的标志，则释放资源
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源的地址信息
+ * @return 无返回值
+ * @note 此函数会检查资源数据中的标志位来决定是否释放资源
+ * @warning 调用此函数会修改资源数据中的标志位状态
+ */
+void UnwindReleaseSystemResourceAtOffset70(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x6c) & 4) != 0) {
@@ -52426,7 +52576,19 @@ void Unwind_180906320(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906350(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统数据结构指针
+ * 
+ * 该函数负责重置验证上下文中的系统数据结构指针
+ * 将系统数据结构指针设置为预定义的系统数据结构地址
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含系统数据结构指针的地址
+ * @return 无返回值
+ * @note 此函数会直接修改验证上下文中的系统数据结构指针
+ * @warning 调用此函数会覆盖原有的系统数据结构指针
+ */
+void UnwindResetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0xb0) = &SystemDataStructure;
@@ -79895,12 +80057,25 @@ void Unwind_18090ed60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ed70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源清理和状态恢复
+ * 
+ * 该函数负责在系统异常或退出时清理资源状态，恢复系统到初始状态
+ * 处理系统上下文中的资源句柄，确保系统安全退出
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态和资源信息
+ * @return 无返回值
+ * @note 此函数通常在系统异常处理或退出时调用
+ * @warning 调用此函数会导致系统资源被重置，可能影响正在进行的操作
+ * @remark 原始函数名：Unwind_18090ed70
+ */
+void ExecuteSystemResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t ResourceCleanupCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x60);
+  ResourceCleanupCounter = *(int64_t *)(ValidationContext + 0x60);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
           ExecuteSystemEmergencyExit();
