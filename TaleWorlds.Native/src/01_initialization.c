@@ -20034,40 +20034,40 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   long long LocalSystemFlags;               // 本地系统标志
   long long DataIndex;                     // 数据索引
   ulong long MemoryAddress;                // 内存地址
-  void* ****ppppunsignedSystemValue9;
-  void* ***encryptionPointerTripleX;
-  void* *systemMemoryContext;
+  void* ****SystemResourceTablePointer;
+  void* ***EncryptionContextPointer;
+  void* *MemoryContextPointer;
   long long LocalMemoryBufferHandle;
-  uint32_t LocalInitializationFlags;
-  void* LocalSystemContextA;
-  void* LocalSystemContextB;
-  void* LocalMemoryPointerA;
-  void* LocalMemoryPointerB;
-  void* LocalMemoryPointerC;
-  void* LocalMemoryPointerD;
-  void* LocalMemoryPointerE;
-  void* LocalMemoryPointerF;
-  void* LocalMemoryPointerG;
-  void* LocalMemoryPointerH;
-  void* LocalMemoryPointerI;
-  void* LocalMemoryPointerJ;
-  void* LocalMemoryPointerK;
-  void* LocalMemoryPointerL;
-  void* LocalMemoryPointerM;
-  void* LocalMemoryPointerN;
-  void* LocalMemoryPointerO;
-  void* LocalMemoryParameterC;
-  void* LocalMemoryPointerP;
-  void* LocalMemoryPointerQ;
-  void* LocalMemoryPointerR;
-  void* LocalMemoryPointerS;
-  void* ***LocalEncryptionContext;
-  void* ***LocalSystemContextX;
-  void* LocalMemoryPointerT;
-  void* LocalMemoryPointerU;
-  void* LocalEncryptionValue;
-  uint32_t LocalSystemStatus;
-  void* LocalSystemHandle;
+  uint32_t ResourceAllocationFlags;
+  void* SystemContextPrimary;
+  void* SystemContextSecondary;
+  void* MemoryBufferPrimary;
+  void* MemoryBufferSecondary;
+  void* MemoryBufferTertiary;
+  void* MemoryBufferQuaternary;
+  void* MemoryBufferQuinary;
+  void* MemoryBufferSenary;
+  void* MemoryBufferSeptenary;
+  void* MemoryBufferOctonary;
+  void* MemoryBufferNonary;
+  void* MemoryBufferDenary;
+  void* MemoryBufferUndenary;
+  void* MemoryBufferDuodenary;
+  void* MemoryBufferTredecenary;
+  void* MemoryBufferQuattuordecenary;
+  void* MemoryBufferQuindecenary;
+  void* ThreadLocalStorageParameter;
+  void* MemoryBufferSexdecenary;
+  void* MemoryBufferSeptendecenary;
+  void* MemoryBufferOctodecenary;
+  void* MemoryBufferNovemdecenary;
+  void* ***ResourceEncryptionContext;
+  void* ***SystemResourceManagerContext;
+  void* MemoryBufferVigesimal;
+  void* MemoryBufferUnvigesimal;
+  void* EncryptionKeyValue;
+  uint32_t SystemOperationStatus;
+  void* SystemResourceHandle;
   
   SystemGlobalHandle = 0xfffffffffffffffe;
   SystemHandle = 0;
@@ -59382,22 +59382,22 @@ void FUN_180077dc6(void)
     fStack00000000000000b4 = FloatTransformValue4 * FloatVectorSixthComponent + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue6 * InterpolationFactorW;
     fStack00000000000000b8 = FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * InterpolationFactorV;
     fStack00000000000000bc = FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * MagnitudeSquared;
-    floatValue1 = *(float *)(systemMemoryBlockPtr + 0x148);
-    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x154);
-    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x150);
-    fStack00000000000000c0 = floatValue3 * floatValue11 + floatValue2 * floatValue7 + floatValue1 * interpolationFactor3;
-    fStack00000000000000c4 = floatValue3 * FloatRatioValue + floatValue2 * floatValue8 + floatValue1 * interpolationFactor4;
-    fStack00000000000000c8 = floatValue3 * interpolationFactor1 + floatValue2 * floatValue9 + floatValue1 * interpolationFactor5;
-    fStack00000000000000cc = floatValue3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
-    floatValue1 = *(float *)(systemMemoryBlockPtr + 0x158);
+    FloatTransformValue9 = *(float *)(systemMemoryBlockPtr + 0x148);
+    FloatTransformValue4 = *(float *)(systemMemoryBlockPtr + 0x154);
+    FloatTransformValue5 = *(float *)(systemMemoryBlockPtr + 0x150);
+    fStack00000000000000c0 = FloatTransformValue8 * FloatVectorFifthComponent + FloatTransformValue7 * FloatVectorFirstComponent + FloatTransformValue9 * InterpolationFactorZ;
+    fStack00000000000000c4 = FloatTransformValue8 * FloatVectorSixthComponent + FloatTransformValue7 * FloatVectorSecondComponent + FloatTransformValue9 * InterpolationFactorW;
+    fStack00000000000000c8 = FloatTransformValue8 * InterpolationFactorX + FloatTransformValue7 * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV;
+    fStack00000000000000cc = FloatTransformValue8 * InterpolationFactorY + FloatTransformValue7 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared;
+    FloatTransformValue9 = *(float *)(systemMemoryBlockPtr + 0x158);
     fStack00000000000000d0 =
-         floatValue4 * floatValue11 + floatValue5 * floatValue7 + floatValue1 * interpolationFactor3 + in_stack_00000180[0xc];
+         FloatTransformValue4 * FloatVectorFifthComponent + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue9 * InterpolationFactorZ + FloatParameterArray[0xc];
     fStack00000000000000d4 =
-         floatValue4 * FloatRatioValue + floatValue5 * floatValue8 + floatValue1 * interpolationFactor4 + in_stack_00000180[0xd];
+         FloatTransformValue4 * FloatVectorSixthComponent + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue9 * InterpolationFactorW + FloatParameterArray[0xd];
     fStack00000000000000d8 =
-         floatValue4 * interpolationFactor1 + floatValue5 * floatValue9 + floatValue1 * interpolationFactor5 + in_stack_00000180[0xe];
+         FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV + FloatParameterArray[0xe];
     fStack00000000000000dc =
-         floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + in_stack_00000180[0xf];
+         FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared + FloatParameterArray[0xf];
     pfloatValue29 = &stack0x000000a0;
   }
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfloatValue29);
