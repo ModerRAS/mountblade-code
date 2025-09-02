@@ -57181,7 +57181,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
   uint8_t StackBuffer2 [8];
   long long *pLocalStackInitializationFlag;
   uint32_t SystemMemoryOffset;
-  long long *plStack_120;
+  long long *SecondaryResourcePointer;
   long long *pStackValue3;
   uint32_t UnsignedStackFlag110;
   long long LocalSystemAddress;
@@ -57209,18 +57209,18 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
       }
       CalculationFlags = 0;
       if (resourcePoolPointer == SystemResourceManager) {
-        plStack_120 = (long long *)0x0;
+        SecondaryResourcePointer = (long long *)0x0;
         StackBuffer2[0] = 0;
         SystemMemoryOffset = 0;
         pLocalStackInitializationFlag = resourcePoolPointer;
         InitializeSystemResourceEncryption(StackBuffer2);
-        resourcePoolPointer = plStack_120 + 0x16;
-        SystemOperationStatus = *(ushort *)(plStack_120 + 0x18);
-        floatValue8 = *(float *)(plStack_120[0x17] + -4 + (ulong long)SystemOperationStatus * 4);
+        resourcePoolPointer = SecondaryResourcePointer + 0x16;
+        SystemOperationStatus = *(ushort *)(SecondaryResourcePointer + 0x18);
+        floatValue8 = *(float *)(SecondaryResourcePointer[0x17] + -4 + (ulong long)SystemOperationStatus * 4);
         ScaleValue = *(float *)((long long)SystemResourceManager + 0x2dc);
         if (floatValue8 < *(float *)((long long)SystemResourceManager + 0x2dc)) {
           *(float *)((long long)SystemResourceManager + 0x2dc) = floatValue8;
-          SystemOperationStatus = *(ushort *)(plStack_120 + 0x18);
+          SystemOperationStatus = *(ushort *)(SecondaryResourcePointer + 0x18);
           ScaleValue = floatValue8;
         }
         resourceAllocationContext = (uint)SystemOperationStatus;
@@ -57234,15 +57234,15 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
           if (0 < (int)(resourceAllocationContext - 2)) {
             do {
               systemIndex = systemValue + CalculationFlags >> 1;
-              if (*(float *)(plStack_120[0x17] + (long long)systemIndex * 4) <= ScaleValue) {
+              if (*(float *)(SecondaryResourcePointer[0x17] + (long long)systemIndex * 4) <= ScaleValue) {
                 CalculationFlags = systemIndex;
                 systemIndex = systemValue;
               }
               systemValue = systemIndex;
             } while (CalculationFlags < systemValue + -1);
           }
-          floatValue8 = *(float *)(plStack_120[0x17] + (long long)CalculationFlags * 4);
-          floatValue8 = (ScaleValue - floatValue8) / (*(float *)(plStack_120[0x17] + (long long)systemValue * 4) - floatValue8);
+          floatValue8 = *(float *)(SecondaryResourcePointer[0x17] + (long long)CalculationFlags * 4);
+          floatValue8 = (ScaleValue - floatValue8) / (*(float *)(SecondaryResourcePointer[0x17] + (long long)systemValue * 4) - floatValue8);
           if (0.0 <= floatValue8) {
             if (1.0 <= floatValue8) {
               floatValue8 = 1.0;
@@ -57265,8 +57265,8 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
           FinalizeSystemEncryptionContext(&EncryptionOffset2);
         }
         CleanupSystemResourceEncryption(StackBuffer2);
-        if (plStack_120 != (long long *)0x0) {
-          (**(code **)(*plStack_120 + 0x38))();
+        if (SecondaryResourcePointer != (long long *)0x0) {
+          (**(code **)(*SecondaryResourcePointer + 0x38))();
         }
       }
       else {
@@ -57567,7 +57567,7 @@ void ConfigureSystemResourceManagerAdvanced(long long* SystemResourceManager,voi
   long long *plongValue38;
   uint8_t SystemResourceStatusFlagCompact [8];
   void* EncryptionKeyValue;
-  long long *plStack_18;
+  long long *PrimarySystemPointer;
   void*2 SystemEncryptionOffset;
   char cStack_e;
   
@@ -57582,7 +57582,7 @@ void ConfigureSystemResourceManagerAdvanced(long long* SystemResourceManager,voi
     (**(code **)(*SystemResourceManager + 0x28))();
     plongValue40 = (long long *)0x0;
     plongValue38 = (long long *)0x0;
-    plStack_18 = (long long *)0x0;
+    PrimarySystemPointer = (long long *)0x0;
     EncryptionKeyValue = 0;
     SystemResourceStatusFlagCompact[0] = 0;
     InitializeMemoryAllocatorWithFlags(&plongValue40,SystemResourceManager,0,ConfigurationFlag,resourceCreationFlags);
@@ -57619,8 +57619,8 @@ void ConfigureSystemResourceManagerAdvanced(long long* SystemResourceManager,voi
       }
     }
     CleanupSystemResourceEncryption(SystemResourceStatusFlagCompact);
-    if (plStack_18 != (long long *)0x0) {
-      (**(code **)(*plStack_18 + 0x38))();
+    if (PrimarySystemPointer != (long long *)0x0) {
+      (**(code **)(*PrimarySystemPointer + 0x38))();
     }
     if (plongValue38 != (long long *)0x0) {
       (**(code **)(*plongValue38 + 0x38))();
