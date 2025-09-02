@@ -11464,7 +11464,7 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
-      LongCounter = strchr(&UNK_180a3c9ec,(int)pcStack_28[ModuleInitializationResult]);
+      LongCounter = strchr(&SystemMemoryProcessingBuffer,(int)pcStack_28[ModuleInitializationResult]);
       if (LongCounter != 0) {
         pcStack_28[ModuleInitializationResult] = ' ';
       }
@@ -11490,7 +11490,7 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   longlong LongValue;
   void *pStackCounter4;
   char *pcStack_28;
-  ModuleInitializationResult = ProcessSystemInitializationData(param_1,&UNK_180a0696c,param_3,param_4,SystemMutexFlags);
+  ModuleInitializationResult = ProcessSystemInitializationData(param_1,&SystemInitializationDataBuffer,param_3,param_4,SystemMutexFlags);
   if (ModuleInitializationResult == 0) {
     return 0;
   }
@@ -11543,7 +11543,7 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   if (*pcStack_28 != '\0') {
     LongCounter = 0;
     do {
-      LongIndex = strchr(&UNK_180a3c9ec,(int)pcStack_28[LongCounter]);
+      LongIndex = strchr(&SystemMemoryProcessingBuffer,(int)pcStack_28[LongCounter]);
       if (LongIndex != 0) {
         pcStack_28[LongCounter] = ' ';
       }
