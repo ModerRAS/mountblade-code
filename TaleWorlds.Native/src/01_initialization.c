@@ -57517,8 +57517,16 @@ void ConfigureSystemResourceManagerThread(long long SystemResourceManager,long l
 
 
 
-// 函数: void FUN_180076a20(long long SystemResourceManager)
-void FUN_180076a20(long long SystemResourceManager)
+/**
+ * @brief 增加系统资源引用计数
+ * 
+ * 该函数负责增加系统资源的引用计数，确保资源在使用过程中不会被意外释放。
+ * 它使用互斥锁确保线程安全，防止多线程环境下的竞态条件。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含资源信息和引用计数
+ * @note 这是系统资源生命周期管理的重要函数
+ */
+void IncrementSystemResourceReferenceCount(long long SystemResourceManager)
 
 {
   int SystemOperationStatus;
@@ -57794,8 +57802,16 @@ LAB_180076feb:
 
 
 
-// 函数: void FUN_180077020(long long *SystemResourceManager)
-void FUN_180077020(long long *SystemResourceManager)
+/**
+ * @brief 释放系统资源管理器
+ * 
+ * 该函数负责释放系统资源管理器及其关联的资源。
+ * 它会递减引用计数，当计数降为0时执行实际的资源释放操作。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针的指针，指向要释放的资源管理器
+ * @note 这是系统资源清理的关键函数
+ */
+void ReleaseSystemResourceManager(long long *SystemResourceManager)
 
 {
   void* *SystemDataPointer;
@@ -57877,8 +57893,16 @@ ulong long FUN_180077040(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_180077150(long long *SystemResourceManager)
-void FUN_180077150(long long *SystemResourceManager)
+/**
+ * @brief 销毁系统资源管理器
+ * 
+ * 该函数负责完全销毁系统资源管理器，释放所有关联的内存和资源。
+ * 它会清理资源池、释放内存并重置管理器状态。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针的指针，指向要销毁的资源管理器
+ * @note 这是系统资源完全清理的最终函数
+ */
+void DestroySystemResourceManager(long long *SystemResourceManager)
 
 {
   void* SystemOperationStatus;
@@ -58123,8 +58147,16 @@ void* FUN_180077420(long long SystemResourceManager,long long ConfigurationDataP
 
 
 
-// 函数: void FUN_180077710(long long SystemResourceManager)
-void FUN_180077710(long long SystemResourceManager)
+/**
+ * @brief 重置系统资源管理器状态
+ * 
+ * 该函数负责重置系统资源管理器的状态，将其恢复到初始状态。
+ * 它会清理当前的资源状态，但不会释放管理器本身。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，指向要重置的资源管理器
+ * @note 这是系统资源状态重置的核心函数
+ */
+void ResetSystemResourceManagerState(long long SystemResourceManager)
 
 {
   int *pointerToInteger1;
@@ -58875,8 +58907,15 @@ void SystemNoOperationA(void)
 
 
 
-// 函数: void FUN_180077ad8(void)
-void FUN_180077ad8(void)
+/**
+ * @brief 全局系统资源清理器
+ * 
+ * 该函数负责清理全局系统资源，释放所有未使用的资源。
+ * 它会在系统关闭或资源回收时被调用，确保系统资源的正确释放。
+ * 
+ * @note 这是系统全局资源清理的最终函数
+ */
+void CleanupGlobalSystemResources(void)
 
 {
   float FloatVariable1;
