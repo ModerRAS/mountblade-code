@@ -5074,6 +5074,7 @@ uint8_t InitializeObjectHandleAdvanced(int64_t ObjectContext)
   float ProcessedFloatValue;
   uint8_t ResourceMetadata[16];
   int64_t ContextHandle;
+  uint SystemValidationStatus;
   
   ContextHashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset), &ContextHandle);
   if ((int)ContextHashValidationResult != 0) {
@@ -5082,19 +5083,19 @@ uint8_t InitializeObjectHandleAdvanced(int64_t ObjectContext)
   ResourceCount = *(int64_t *)(ContextHandle + 8);
   if (ResourceCount != 0) {
     ProcessedFloatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
-    for (ResourcePointer = *(uint8_t **)(contextHandle + RegistrationHandleOffset);
-        (*(uint8_t **)(contextHandle + RegistrationHandleOffset) <= ResourcePointer &&
-        (ResourcePointer < *(uint8_t **)(contextHandle + ContextHandleResourceArrayOffset) + *(int *)(contextHandle + ContextHandleResourceCountOffset))); ResourcePointer = ResourcePointer + 1) {
+    for (ResourcePointer = *(uint8_t **)(ContextHandle + RegistrationHandleOffset);
+        (*(uint8_t **)(ContextHandle + RegistrationHandleOffset) <= ResourcePointer &&
+        (ResourcePointer < *(uint8_t **)(ContextHandle + ContextHandleResourceArrayOffset) + *(int *)(ContextHandle + ContextHandleResourceCountOffset))); ResourcePointer = ResourcePointer + 1) {
       ResourceHash = ProcessResourceOperation(*ResourcePointer, ProcessedFloatValue, 0);
       if ((int)ResourceHash != 0) {
         return ResourceHash;
       }
     }
-    if ((*(char *)(contextHandle + ContextHandleSystemFlagsOffset) == '\0') ||
-       ((*(uint *)(*(int64_t *)(contextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset) >> 1 & 1) == 0)) {
-      uint SystemConfigurationFlags = *(uint *)(*(int64_t *)(contextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset);
-      ValidationStatus = SystemConfigurationFlags >> SystemConfigurationValidationShift;
-      if ((ValidationStatus & 1) == 0) {
+    if ((*(char *)(ContextHandle + ContextHandleSystemFlagsOffset) == '\0') ||
+       ((*(uint *)(*(int64_t *)(ContextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset) >> 1 & 1) == 0)) {
+      uint SystemConfigurationFlags = *(uint *)(*(int64_t *)(ContextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset);
+      SystemValidationStatus = SystemConfigurationFlags >> SystemConfigurationValidationShift;
+      if ((SystemValidationStatus & 1) == 0) {
         if ((((SystemConfigurationFlags >> SystemConfigurationFloatCheckShift & 1) != 0) && (FloatConversionResult = (int)ProcessedFloatValue, FloatConversionResult != Int32MinimumValue)) &&
            ((float)FloatConversionResult != ProcessedFloatValue)) {
           union {
@@ -5107,16 +5108,16 @@ uint8_t InitializeObjectHandleAdvanced(int64_t ObjectContext)
           } FloatUnion;
           FloatUnion.ProcessedFloatParameter = ProcessedFloatValue;
           FloatUnion.Parts.HighPart = 0;
-          ResourceHash = movmskps(ValidationStatus, FloatUnion.FullValue);
+          ResourceHash = movmskps(SystemValidationStatus, FloatUnion.FullValue);
           ProcessedFloatValue = (float)(int)(FloatConversionResult - (ResourceHash & 1));
         }
-        ProcessedFloatValue = (float)CalculateFloatValue(*(int64_t *)(contextHandle + ExecutionContextSecondaryOffset), ProcessedFloatValue);
-        if (((*(char *)(contextHandle + ContextConfigurationFlagsOffset) == '\0') ||
-            ((*(uint *)(*(int64_t *)(contextHandle + ExecutionContextSecondaryOffset) + ContextConfigurationFlagsOffset) >> 1 & 1) == 0)) &&
-           (ProcessedFloatValue != *(float *)(contextHandle + ContextFloatValueOffset))) {
-          *(float *)(contextHandle + ContextFloatValueOffset) = ProcessedFloatValue;
-          ReleaseResourceHandle(contextHandle);
-          *(uint8_t *)(contextHandle + ContextUpdateFlagOffset) = 0;
+        ProcessedFloatValue = (float)CalculateFloatValue(*(int64_t *)(ContextHandle + ExecutionContextSecondaryOffset), ProcessedFloatValue);
+        if (((*(char *)(ContextHandle + ContextConfigurationFlagsOffset) == '\0') ||
+            ((*(uint *)(*(int64_t *)(ContextHandle + ExecutionContextSecondaryOffset) + ContextConfigurationFlagsOffset) >> 1 & 1) == 0)) &&
+           (ProcessedFloatValue != *(float *)(ContextHandle + ContextFloatValueOffset))) {
+          *(float *)(ContextHandle + ContextFloatValueOffset) = ProcessedFloatValue;
+          ReleaseResourceHandle(ContextHandle);
+          *(uint8_t *)(ContextHandle + ContextUpdateFlagOffset) = 0;
         }
       }
     }
