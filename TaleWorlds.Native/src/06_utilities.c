@@ -5746,20 +5746,23 @@ int InitializeSystemManager(int64_t ManagerHandle)
  * 该函数处理系统消息队列，根据配置数据执行相应的操作
  * 包括消息验证、队列管理和状态更新等功能
  * 
- * @param messageQueueHandle 消息队列句柄，用于访问消息队列
+ * @param MessageQueueHandle 消息队列句柄，用于访问消息队列
  * @param ConfigurationData 配置数据，包含系统配置信息
+ * @return 无返回值
+ * @note 此函数在系统消息处理循环中调用
+ * @warning 验证失败时会跳过资源操作
  */
-void ProcessMessageQueue(int64_t messageQueueHandle, uint8_t ConfigurationData)
+void ProcessMessageQueue(int64_t MessageQueueHandle, uint8_t ConfigurationData)
 
 {
   uint8_t ValidationContext;
-  int operationResult [2];
-  int64_t messageDataOffset;
+  int OperationResult[2];
+  int64_t MessageDataOffset;
   
-  operationResult[0] = ValidateObjectContext(*(uint32_t *)(messageQueueHandle + 0x10),&ValidationContext);
-  if (operationResult[0] == 0) {
-    messageDataOffset = messageQueueHandle + 0x18;
-    ProcessResourceOperationEx(ConfigurationData,operationResult,*(uint32_t *)(messageQueueHandle + 0x14),ValidationContext);
+  OperationResult[0] = ValidateObjectContext(*(uint32_t *)(MessageQueueHandle + 0x10), &ValidationContext);
+  if (OperationResult[0] == 0) {
+    MessageDataOffset = MessageQueueHandle + 0x18;
+    ProcessResourceOperationEx(ConfigurationData, OperationResult, *(uint32_t *)(MessageQueueHandle + 0x14), ValidationContext);
   }
   return;
 }
