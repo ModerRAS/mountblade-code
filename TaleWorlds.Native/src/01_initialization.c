@@ -273,8 +273,6 @@ char CheckSystemMemoryStatus(void* memoryContext);
  * @param parameterBuffer 参数缓冲区指针
  * @param operationId 操作ID
  * @param operationFlags 操作标志
- * 
- * 原始函数名：FUN_180629a40
  */
 void ExecuteSystemOperation(void* operationContext, void* parameterBuffer, int operationId, uint operationFlags);
 
@@ -286,8 +284,6 @@ void ExecuteSystemOperation(void* operationContext, void* parameterBuffer, int o
  * 
  * @param sourceContext 源上下文指针
  * @param targetContext 目标上下文指针
- * 
- * 原始函数名：FUN_18062db60
  */
 void ProcessSystemDataTransfer(void* sourceContext, void* targetContext);
 
@@ -299,8 +295,6 @@ void ProcessSystemDataTransfer(void* sourceContext, void* targetContext);
  * 
  * @param dataIndex 数据索引
  * @return 数据指针
- * 
- * 原始函数名：FUN_18015c450
  */
 void* GetSystemDataPointer(int dataIndex);
 
@@ -314,8 +308,6 @@ void* GetSystemDataPointer(int dataIndex);
  * @param configFlags 配置标志
  * @param primaryConfigParam 主要配置参数
  * @param secondaryConfigParam 次要配置参数
- * 
- * 原始函数名：FUN_1801299b0
  */
 void InitializeSystemConfiguration(void* configContext, int configFlags, int primaryConfigParam, int secondaryConfigParam);
 
@@ -328,8 +320,6 @@ void InitializeSystemConfiguration(void* configContext, int configFlags, int pri
  * @param dataFieldContext 数据字段上下文指针
  * @param fieldValue 字段值
  * @param additionalParameter 额外参数
- * 
- * 原始函数名：FUN_18010f010
  */
 void SetupSystemDataField(void* dataFieldContext, uint fieldValue, uint additionalParameter);
 
@@ -338,8 +328,6 @@ void SetupSystemDataField(void* dataFieldContext, uint fieldValue, uint addition
  * 
  * 该函数负责完成系统初始化，执行最后的初始化操作
  * 用于系统初始化的收尾工作
- * 
- * 原始函数名：FUN_18012cfe0
  */
 void FinalizeSystemInitialization(void);
 
@@ -26286,14 +26274,14 @@ void SystemDataInitializer(void)
   SystemDataPointer0[3] = 0x6372756f;
   SystemDataPointer0[4] = 0x2f7365;
   EncryptionValue68 = 0x13;
-  SystemValue60._0_4_ = unsignedSystemValue7;
+  SystemValue60.PrimaryField = unsignedSystemValue7;
   InitializeSystemStack(&pSystemUnsignedFlag78,&memoryAllocationEnd);
   pSystemUnsignedFlag78 = &SystemGlobalDataReference;
   if (pSystemProcessFlags70 != (uint32_t *)0x0) {
       SystemCleanupFunction();
   }
   pSystemProcessFlags70 = (uint32_t *)0x0;
-  SystemValue60 = (ulong long)SystemValue60._4_4_ << 0x20;
+  SystemValue60 = (ulong long)SystemValue60.SecondaryField << 0x20;
   pSystemUnsignedFlag78 = &SystemMemoryAllocatorReference;
   memoryAllocationEnd = &SystemMemoryAllocatorReference;
     UpdateContextManagerSystem(SystemContextManagerPointer,&ContextManagerConfigurationData);
@@ -33625,8 +33613,6 @@ void MoveSystemResourceData(long long SystemResourceManager,long long Configurat
  * 用于系统资源管理的前期准备工作。
  * 
  * @param SystemResourceManager 系统资源指针数组
- * 
- *FUN_180059380：InitializeSystemResourceManager
  */
 void InitializeSystemResourceManager(void* *SystemResourceManager)
 
@@ -59789,7 +59775,7 @@ LAB_180077fcf:
         SystemUnsignedFlag78 = *(void* *)(ConfigurationFlag + 4);
         SystemProcessFlags70._0_4_ = (float)*(void* *)(ConfigurationFlag + 6);
         EncryptionValue68 = *(void* *)(ConfigurationFlag + 8);
-        SystemValue60._0_4_ = (float)*(void* *)(ConfigurationFlag + 10);
+        SystemValue60.PrimaryField = (float)*(void* *)(ConfigurationFlag + 10);
         fStack_58 = ConfigurationFlag[0xc];
         fStack_54 = ConfigurationFlag[0xd];
         fStack_50 = ConfigurationFlag[0xe];
@@ -59819,7 +59805,7 @@ LAB_180077fcf:
                              floatValue6 * FloatScaleFactor + floatValue1 * interpolationFactor1 + floatValue2 * interpolationFactor4);
         floatValue1 = *(float *)(SystemResourceManager + 0x148);
         floatValue2 = *(float *)(SystemResourceManager + 0x150);
-        SystemValue60._0_4_ = floatValue4 * FloatRatioValue + floatValue9 * interpolationFactor3 + floatValue1 * magnitudeSquared1;
+        SystemValue60.PrimaryField = floatValue4 * FloatRatioValue + floatValue9 * interpolationFactor3 + floatValue1 * magnitudeSquared1;
         floatValue6 = *(float *)(SystemResourceManager + 0x158);
         SystemUnsignedFlag78 = CONCAT44(floatValue3 * floatValue11 + floatValue7 * interpolationFactor2 + floatValue8 * interpolationFactor5,
                              floatValue3 * FloatScaleFactor + floatValue7 * interpolationFactor1 + floatValue8 * interpolationFactor4);
