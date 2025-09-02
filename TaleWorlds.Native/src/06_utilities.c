@@ -31352,7 +31352,7 @@ void RestoreSystemResourceHandlerAtSecondaryContext(uint8_t ObjectContext, int64
  * @note 此函数会遍历所有验证结果并执行清理操作
  * @warning 如果清理失败，可能会触发系统紧急退出
  */
-void CleanupResourceHashValidationStatusCodeAddresss(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupResourceHashValidationStatus(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -50023,7 +50023,7 @@ void CleanupResourceHashResourceHashValidationStatusCodes(uint8_t ObjectContext,
  * @note 此函数会处理资源验证结果的清理工作
  * @warning 如果验证结果无效，函数将直接返回
  */
-void CleanupResourceHashValidationStatusCodeAddresss(uint8_t ObjectContext, int64_t ValidationContext)
+void CleanupResourceHashValidationStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -73726,49 +73726,75 @@ void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationCon
 
 
 
-void Unwind_18090a790(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解锁系统互斥锁处理器
+ * 
+ * 该函数在异常处理过程中解锁系统互斥锁，确保资源在异常情况下
+ * 能够正确释放，避免资源泄漏和死锁。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含互斥锁信息
+ * @return 无返回值
+ * 
+ * @note 此函数访问偏移量0x90处的互斥锁句柄
+ * @note 如果解锁失败会抛出C标准错误
+ */
+void Unwind_SystemMutexUnlockHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int ProcessingStatusCode;
+  int UnlockResult;
   
-  ResourceIndex = MutexUnlock(*(uint8_t *)(ValidationContext + 0x90));
-  if (ResourceIndex != 0) {
-    ThrowCStandardError(ResourceIndex);
+  UnlockResult = MutexUnlock(*(uint8_t *)(ValidationContext + 0x90));
+  if (UnlockResult != 0) {
+    ThrowCStandardError(UnlockResult);
   }
   return;
 }
 
 
 
-void Unwind_18090a7a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证状态码地址资源
+ * 
+ * 该函数在异常处理过程中清理资源哈希验证状态码相关的资源
+ * 释放验证状态码占用的内存，并在必要时调用系统清理处理器
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希验证状态码信息
+ * @return 无返回值
+ * 
+ * @note 此函数访问偏移量0x40处的资源哈希验证状态码地址
+ * @note 当引用计数为0时会调用系统清理处理器
+ */
+void Unwind_ResourceHashValidationStatusCodeCleanupHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int32_t *ResourceTablePointerIndexPointer;
+  int32_t *ResourceReferenceCountPointer;
   uint8_t *ResourceHashValidationStatusCodeAddress;
   int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  uint64_t ResourceBaseAddress;
   
-  ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x40);
+  ResourceHashValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x40);
   if (ResourceHashValidationStatusCodeAddress == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashValidationStatusCodeAddress & 0xffffffffffc00000;
-  if (MemoryAddressIncrement != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationStatusCodeAddress - MemoryAddressIncrement >> 0x10) * 0x50;
+  ResourceBaseAddress = (uint64_t)ResourceHashValidationStatusCodeAddress & 0xffffffffffc00000;
+  if (ResourceBaseAddress != 0) {
+    ResourceIndex = ResourceBaseAddress + 0x80 + ((int64_t)ResourceHashValidationStatusCodeAddress - ResourceBaseAddress >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+    if ((*(void ***)(ResourceBaseAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *ResourceHashValidationStatusCodeAddress = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationStatusCodeAddress;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
-      *ResourceIndexPointer = *ResourceIndexPointer + -1;
-      if (*ResourceIndexPointer == 0) {
+      ResourceReferenceCountPointer = (int *)(ResourceIndex + 0x18);
+      *ResourceReferenceCountPointer = *ResourceReferenceCountPointer - 1;
+      if (*ResourceReferenceCountPointer == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationStatusCodeAddress,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(ResourceBaseAddress,CONCAT71(0xff000000,*(void ***)(ResourceBaseAddress + 0x70) == &ExceptionList),
+                          ResourceHashValidationStatusCodeAddress,ResourceBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -99746,12 +99772,12 @@ void InitializeGlobalModuleB(void)
 
 
  /**
- * @brief 初始化系统数据结构A
+ * @brief 初始化系统数据结构主控制器
  * 
- * 该函数负责初始化系统的数据结构A，设置相应的指针指向全局系统数据结构
+ * 该函数负责初始化系统的数据结构主控制器，设置相应的指针指向全局系统数据结构
  * 主要用于系统启动时的数据结构初始化
  */
-void InitializeSystemDataStructureA(void)
+void InitializeSystemDataStructureMainController(void)
 {
   SystemDataStructurePointerA = &SystemDataStructure;
 }
@@ -100267,7 +100293,6 @@ void InitializeSystemDataStructureValidationManager(void)
  * 最后重置相关状态变量并将指针设置为指向默认数据结构。
  */
 void InitializeSystemDataStructureAllocationManager(void)
-void InitializeSystemDataStructureX(void)
 
 {
   MemoryAllocator = &SystemResourceHandlerTemplate;
@@ -100285,14 +100310,13 @@ void InitializeSystemDataStructureX(void)
 
 
  /**
- * 初始化系统数据结构Y
+ * 初始化系统数据结构配置管理器
  * 
- * 此函数负责初始化系统中的某个关键数据结构Y，将全局变量
+ * 此函数负责初始化系统中的关键数据结构配置管理器，将全局变量
  * SystemDataStructurePointerA设置为指向预定义的数据结构SystemDataStructure001。
  * 这个数据结构可能用于系统启动时的基础配置。
  */
-void InitializeSystemDataStructureY(void)
-void InitializeSystemDataStructureY(void)
+void InitializeSystemDataStructureConfigurationManager(void)
 
 {
   SystemDataStructurePointerA = &SystemDataStructure;
