@@ -6004,23 +6004,23 @@ ValidationFailureLabel:
  * @param ObjectContext 对象上下文指针，包含对象的状态信息
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  */
-void ProcessObjectStateAndSchedule(int64_t ObjectContext, int64_t schedulerContext)
+void ProcessObjectStateAndSchedule(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
-  int ProcessingStatus;
-  int64_t ProcessingBuffer;
+  int ObjectProcessingStatus;
+  int64_t ProcessingDataBuffer;
   
   if (*(int *)(ObjectContext + 0x2c) == 0) {
-    ProcessingStatus = ProcessSchedulerOperation(schedulerContext,ObjectContext + 0x1c,&ProcessingBuffer);
-    if (ProcessingStatus != 0) {
+    ObjectProcessingStatus = ProcessSchedulerOperation(SchedulerContext, ObjectContext + 0x1c, &ProcessingDataBuffer);
+    if (ObjectProcessingStatus != 0) {
       return;
     }
-    ProcessingStatus = ValidateBufferContext(*(uint8_t *)(ProcessingBuffer + 0xd0),ObjectContext + 0x2c);
-    if (ProcessingStatus != 0) {
+    ObjectProcessingStatus = ValidateBufferContext(*(uint8_t *)(ProcessingDataBuffer + 0xd0), ObjectContext + 0x2c);
+    if (ObjectProcessingStatus != 0) {
       return;
     }
   }
-  CleanupSystemContextData(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+  CleanupSystemContextData(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
   return;
 }
 
