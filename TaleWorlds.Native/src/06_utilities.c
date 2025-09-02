@@ -29843,18 +29843,6 @@ void UnwindSecondaryContextExceptionHandler(uint8_t ExceptionContext, int64_t Sy
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-/**
- * @brief 异常处理函数：解卷三级上下文异常处理器
- * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理三级异常情况的资源清理工作
- * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
 void UnwindTertiaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* TertiaryExceptionHandlerFunctionPointer;
   
@@ -74339,7 +74327,19 @@ void ProcessSystemResourceCleanupAtAddress8f0(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_18090a900(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调函数
+ * 
+ * 该函数负责执行系统资源的回调函数
+ * 遍历资源表并调用每个资源的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含要操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数会遍历所有资源并执行回调
+ * @warning 调用此函数可能会触发系统紧急退出
+ */
+void ExecuteSystemResourceCallbacks(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
