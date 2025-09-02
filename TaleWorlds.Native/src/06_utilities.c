@@ -95055,13 +95055,6 @@ void ExecuteSystemCleanupOperation2(void)
  * 检查系统状态并执行相应的清理任务
  */
 void ExecuteSystemCleanupOperation3(void)
-/**
- * @brief 执行系统清理操作3
- * 
- * 该函数负责执行系统清理操作3
- * 检查系统状态并执行相应的清理任务
- */
-void ExecuteSystemCleanupOperation3(void)
 
 {
   if (CleanupOperation3Flag != '\0') {
@@ -95071,13 +95064,14 @@ void ExecuteSystemCleanupOperation3(void)
     }
 
  /**
- * 初始化系统数据结构CT
+ * @brief 初始化系统数据结构CT
+ * 
+ * 该函数负责初始化系统数据结构CT
  * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureCT(void)
-/**
- * 初始化系统数据结构CT
- * 设置全局系统数据结构指针，用于系统初始化
+ * 
+ * @return 无返回值
+ * @note 此函数在系统初始化时调用
+ * @warning 调用此函数前必须确保系统已准备好初始化数据结构
  */
 void InitializeSystemDataStructureCT(void)
 
@@ -95087,13 +95081,14 @@ void InitializeSystemDataStructureCT(void)
     StateInitializerPointer = 0;
 
  /**
- * 初始化系统数据结构CU
+ * @brief 初始化系统数据结构CU
+ * 
+ * 该函数负责初始化系统数据结构CU
  * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureCU(void)
-/**
- * 初始化系统数据结构CU
- * 设置全局系统数据结构指针，用于系统初始化
+ * 
+ * @return 无返回值
+ * @note 此函数在系统初始化时调用
+ * @warning 调用此函数前必须确保系统已准备好初始化数据结构
  */
 void InitializeSystemDataStructureCU(void)
 
