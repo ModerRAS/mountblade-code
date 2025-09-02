@@ -115,24 +115,24 @@
  * @warning 调用此函数前必须确保系统已准备好处理模块依赖关系
  */
 void InitializeModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
-void* ModuleDependencyGlobalRegistryTable;
-uint32_t ModuleDependencyRegistryEntryCount;
-uint32_t ModuleDependencySystemConfigurationFlags;
-uint32_t ModuleDependencySystemInitializationStatus;
-void* ModuleDependencyAccessControlLock;
-void* ModuleDependencyThreadSynchronizationMutex;
-bool ModuleDependencySystemInitialized;
-void* ModuleDependencyRuntimeExecutionContext;
-void* ModuleDependencyGlobalSystemConfiguration;
-bool ModuleDependencySystemEnabled;
-void* ModuleDependencyPersistentDataStorage;
-void* ModuleDependencySystemCacheStorage;
-void* ModuleDependencyRuntimeDataBuffer;
-uint32_t ModuleDependencyCurrentSystemVersion;
-uint32_t ModuleDependencySystemBuildNumber;
-uint32_t ModuleDependencyDataIntegrityChecksum;
-void* ModuleDependencyDigitalSignature;
-void* ModuleDependencySystemHandle;
+void* GlobalModuleDependencyRegistryTable;
+uint32_t ModuleDependencyEntryCount;
+uint32_t ModuleDependencyConfigurationFlags;
+uint32_t ModuleDependencyInitializationStatus;
+void* ModuleDependencyAccessLock;
+void* ModuleDependencySyncMutex;
+bool ModuleDependencyIsInitialized;
+void* ModuleDependencyExecutionContext;
+void* ModuleDependencySystemConfig;
+bool ModuleDependencyIsEnabled;
+void* ModuleDependencyPersistentStorage;
+void* ModuleDependencyCacheStorage;
+void* ModuleDependencyRuntimeBuffer;
+uint32_t ModuleDependencySystemVersion;
+uint32_t ModuleDependencyBuildNumber;
+uint32_t ModuleDependencyIntegrityChecksum;
+void* ModuleDependencySignature;
+void* ModuleDependencyHandle;
 
 /**
  * @brief 初始化核心引擎模块
@@ -146,10 +146,10 @@ void* ModuleDependencySystemHandle;
  * @warning 调用此函数前必须确保系统资源已准备就绪
  */
 void InitializeCoreEngineModule(void);
-void* CoreEngineSystemModuleInstance;
-void* CoreEngineSystemModuleConfiguration;
-uint32_t CoreEngineSystemInitializationStatus;
-void* CoreEngineSystemModuleHandle;
+void* CoreEngineModuleInstance;
+void* CoreEngineModuleConfiguration;
+uint32_t CoreEngineInitializationStatus;
+void* CoreEngineModuleHandle;
 
  /**
  * @brief 初始化渲染引擎模块
@@ -163,11 +163,11 @@ void* CoreEngineSystemModuleHandle;
  * @warning 调用此函数前必须确保图形设备已初始化
  */
 void InitializeRenderingEngineModule(void);
-void* RenderingEngineSystemModuleInstance;
-void* RenderingEngineSystemModuleConfiguration;
-uint32_t RenderingEngineSystemInitializationStatus;
-void* RenderingEngineSystemModuleHandle;
-void* RenderingEngineRuntimeExecutionContext;
+void* RenderingEngineModuleInstance;
+void* RenderingEngineModuleConfiguration;
+uint32_t RenderingEngineInitializationStatus;
+void* RenderingEngineModuleHandle;
+void* RenderingEngineExecutionContext;
 /**
  * @brief 初始化图形系统模块
  * 
@@ -180,11 +180,11 @@ void* RenderingEngineRuntimeExecutionContext;
  * @warning 调用此函数前必须确保渲染引擎已初始化
  */
 void InitializeGraphicsSystemModule(void);
-void* GraphicsSystemModuleInstance;
-void* GraphicsSystemModuleConfiguration;
-uint32_t GraphicsSystemInitializationStatus;
-void* GraphicsSystemModuleHandle;
-void* GraphicsSystemModuleExecutionContext;
+void* GraphicsModuleInstance;
+void* GraphicsModuleConfiguration;
+uint32_t GraphicsInitializationStatus;
+void* GraphicsModuleHandle;
+void* GraphicsModuleExecutionContext;
 
 
 /**
@@ -199,10 +199,10 @@ void* GraphicsSystemModuleExecutionContext;
  * @warning 调用此函数前必须确保音频设备可用
  */
 void InitializeAudioSystemModule(void);
-void* AudioSystemModuleInstance;
-void* AudioSystemModuleConfiguration;
-uint32_t AudioSystemInitializationStatus;
-void* AudioSystemModuleHandle;
+void* AudioModuleInstance;
+void* AudioModuleConfiguration;
+uint32_t AudioInitializationStatus;
+void* AudioModuleHandle;
 
 
 /**
@@ -217,10 +217,10 @@ void* AudioSystemModuleHandle;
  * @warning 调用此函数前必须确保网络设备可用
  */
 void InitializeNetworkSystemModule(void);
-void* NetworkSystemModuleInstance;
-void* NetworkSystemModuleConfiguration;
-uint32_t NetworkSystemInitializationStatus;
-void* NetworkSystemModuleHandle;
+void* NetworkModuleInstance;
+void* NetworkModuleConfiguration;
+uint32_t NetworkInitializationStatus;
+void* NetworkModuleHandle;
 
 
 /**
@@ -244,7 +244,7 @@ void* NetworkSystemModuleHandle;
  * @warning 状态标志值的含义取决于具体的核心引擎实现
  */
 uint32_t GetCoreEngineSystemStatusFlag(void);
-bool CoreEngineSystemInitialized;
+bool CoreEngineIsInitialized;
 
 
 /**
