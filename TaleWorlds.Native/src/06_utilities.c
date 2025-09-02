@@ -5032,13 +5032,13 @@ void ResetSystemState(void)
  * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
+uint8_t ProcessComplexObjectHandle(int64_t objectContext)
 {
-  uint8_t OperationResult;
-  int64_t OperationResultBuffer[2];
-  int64_t ContextHandleBuffer[2];
+  uint8_t operationResult;
+  int64_t operationResultBuffer[2];
+  int64_t contextHandleBuffer[2];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandleBuffer);
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), contextHandleBuffer);
   if ((int)OperationResult == 0) {
     if (ContextHandleBuffer[0] == 0) {
       ContextHandleBuffer[0] = 0;
