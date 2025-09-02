@@ -43373,7 +43373,19 @@ void DestroyMutex(void)
 
 
 
-void Unwind_1809047a0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 销毁条件变量
+ * 
+ * 该函数负责销毁指定验证上下文中的条件变量资源
+ * 确保条件变量资源正确释放，维护系统稳定性
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含条件变量的位置信息
+ * @return 无返回值
+ * @note 此函数会销毁指定位置的条件变量
+ * @warning 调用此函数后，被销毁的条件变量将不再可用
+ */
+void DestroyConditionVariable(uint8_t objectContext,int64_t validationContext)
 
 {
   _Cnd_destroy_in_situ(*(uint8_t *)(validationContext + 0x20));
@@ -43409,7 +43421,19 @@ void Unwind_SystemCleanup_MutexDestroy(void)
 
 
 
-void Unwind_1809047c0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁指定验证上下文中的互斥锁资源
+ * 确保互斥锁资源正确释放，维护系统稳定性
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含互斥锁的位置信息
+ * @return 无返回值
+ * @note 此函数会销毁指定位置的互斥锁
+ * @warning 调用此函数后，被销毁的互斥锁将不再可用
+ */
+void DestroyMutexLock(uint8_t objectContext,int64_t validationContext)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(validationContext + 0x20));
@@ -43418,14 +43442,28 @@ void Unwind_1809047c0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809047d0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理回调函数
+ * 
+ * 该函数负责执行资源清理过程中的回调函数
+ * 根据验证上下文中的信息调用相应的清理回调
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含回调函数的位置信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，用于控制清理行为
+ * @return 无返回值
+ * @note 此函数会调用注册的清理回调函数
+ * @warning 如果回调函数不存在，则不会执行任何操作
+ */
+void ExecuteResourceCleanupCallback(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  code *CharPointer;
+  code *CleanupCallbackPointer;
   
-  CharPointer = *(code **)(*(int64_t *)(validationContext + 0x20) + 0x10);
-  if (CharPointer != (code *)0x0) {
-    (*CharPointer)(*(int64_t *)(validationContext + 0x20),0,0,CleanupFlag,0xfffffffffffffffe);
+  CleanupCallbackPointer = *(code **)(*(int64_t *)(validationContext + 0x20) + 0x10);
+  if (CleanupCallbackPointer != (code *)0x0) {
+    (*CleanupCallbackPointer)(*(int64_t *)(validationContext + 0x20),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -43499,28 +43537,40 @@ void DestroyConditionVariableResource(uint8_t objectContext,int64_t validationCo
 
 
 
-void Unwind_180904810(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 初始化系统资源处理器
+ * 
+ * 该函数负责初始化系统资源处理器，设置必要的指针和状态
+ * 确保系统资源处理器在正确的状态下运行
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统初始化过程中被调用
+ * @warning 初始化失败时可能会触发系统紧急退出
+ */
+void InitializeSystemResourceProcessor(uint8_t objectContext,int64_t validationContext)
 
 {
-  int64_t loopCounter;
+  int64_t resourceIndex;
   
-  loopCounter = *(int64_t *)(validationContext + 0x60);
-  *(uint8_t *)(LocalContextData + 0x40) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x48) != 0) {
+  resourceIndex = *(int64_t *)(validationContext + 0x60);
+  *(uint8_t *)(SystemResourceContext + 0x40) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemResourceContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x48) = 0;
-  *(uint32_t *)(LocalContextData + 0x58) = 0;
-  *(uint8_t *)(LocalContextData + 0x40) = &SystemDataStructure;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x28) != 0) {
+  *(uint8_t *)(SystemResourceContext + 0x48) = 0;
+  *(uint32_t *)(SystemResourceContext + 0x58) = 0;
+  *(uint8_t *)(SystemResourceContext + 0x40) = &SystemDataStructure;
+  *(uint8_t *)(SystemResourceContext + 0x20) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemResourceContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(LocalContextData + 0x28) = 0;
-  *(uint32_t *)(LocalContextData + 0x38) = 0;
-  *(uint8_t *)(LocalContextData + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemResourceContext + 0x28) = 0;
+  *(uint32_t *)(SystemResourceContext + 0x38) = 0;
+  *(uint8_t *)(SystemResourceContext + 0x20) = &SystemDataStructure;
   return;
 }
 
@@ -43913,11 +43963,23 @@ void CloseSystemHandleExtended(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904960(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放系统资源索引
+ * 
+ * 该函数负责释放系统资源索引，清理资源相关的标记和状态
+ * 确保系统资源正确释放，维护系统稳定性
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 清理失败时可能会触发系统紧急退出
+ */
+void ReleaseSystemResourceIndex(uint8_t objectContext,int64_t validationContext)
 
 {
-  int *pResourceIndex;
-  char *pStatusChar;
+  int *ResourceIndexPointer;
+  char *StatusCharPointer;
   uint8_t *ValidationResultPointer;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -43940,9 +44002,9 @@ void Unwind_180904960(uint8_t objectContext,int64_t validationContext)
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0xa0);
   while (LoopOffset != 0) {
-    pStatusChar = (char *)(LoopOffset + 0x141);
+    StatusCharPointer = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
-    if (*pStatusChar != '\0') {
+    if (*StatusCharPointer != '\0') {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
@@ -43958,9 +44020,9 @@ void Unwind_180904960(uint8_t objectContext,int64_t validationContext)
     if ((*(void ***)(ContextValidationResult + 0x70) == &ExceptionList) && (*(char *)(ResourceTablePointer + 0xe) == '\0')) {
       *ValidationStatusCodePointer = *(uint8_t *)(ResourceTablePointer + 0x20);
       *(uint8_t **)(ResourceTablePointer + 0x20) = ValidationResultPointer;
-      pResourceIndex = (int *)(ResourceTablePointer + 0x18);
-      *pResourceIndex = *pResourceIndex + -1;
-      if (*pResourceIndex == 0) {
+      ResourceIndexPointer = (int *)(ResourceTablePointer + 0x18);
+      *ResourceIndexPointer = *ResourceIndexPointer + -1;
+      if (*ResourceIndexPointer == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -43975,25 +44037,40 @@ void Unwind_180904960(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904970(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放系统资源索引扩展版
+ * 
+ * 该函数负责释放系统资源索引，清理资源相关的标记和状态
+ * 确保系统资源正确释放，维护系统稳定性。这是扩展版本，
+ * 处理更复杂的资源清理场景
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 清理失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904970，现已重命名为ReleaseSystemResourceIndexExtended
+ */
+void ReleaseSystemResourceIndexExtended(uint8_t objectContext,int64_t validationContext)
 
 {
-  int *pResourceIndex;
-  char *pStatusChar;
-  uint8_t *ValidationResultPointer;
-  int64_t DataOffset;
-  int64_t MemoryRegion;
-  uint64_t ContextValidationResult;
+  int *resourceCounterPointer;
+  char *statusFlagPointer;
+  uint8_t *validationResultPointer;
+  int64_t loopIterationData;
+  int64_t memoryRegion;
+  uint64_t contextValidationResult;
   
   ResourceTablePointer = *(int64_t *)(validationContext + 0x40);
   ValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0x2e0);
-  if (ValidationResultPointer != (uint8_t *)0x0) {
-    if ((uint8_t *)ValidationResultPointer[3] != (uint8_t *)0x0) {
-      *(uint8_t *)ValidationResultPointer[3] = 0;
+  if (validationResultPointer != (uint8_t *)0x0) {
+    if ((uint8_t *)validationResultPointer[3] != (uint8_t *)0x0) {
+      *(uint8_t *)validationResultPointer[3] = 0;
     }
-    (**(code **)*ValidationResultPointer)(ValidationResultPointer,0);
+    (**(code **)*validationResultPointer)(validationResultPointer,0);
                     // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ValidationResultPointer);
+    ReleaseResourceHandle(validationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0x310) != 0) &&
      (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0x310) + 0x10) != 0)) {
@@ -44002,9 +44079,9 @@ void Unwind_180904970(uint8_t objectContext,int64_t validationContext)
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x308);
   while (LoopOffset != 0) {
-    pStatusChar = (char *)(LoopOffset + 0x141);
+    statusFlagPointer = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
-    if (*pStatusChar != '\0') {
+    if (*statusFlagPointer != '\0') {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
@@ -44013,23 +44090,23 @@ void Unwind_180904970(uint8_t objectContext,int64_t validationContext)
   if (ValidationStatusCodePointer == (uint8_t *)0x0) {
     return;
   }
-  ContextvalidationStatusCode = (uint64_t)ValidationResultPointer & 0xffffffffffc00000;
-  if (ContextValidationResult != 0) {
-    ResourceTablePointer = ContextValidationResult + 0x80 + ((int64_t)ValidationResultPointer - ContextValidationResult >> 0x10) * 0x50;
+  contextValidationResult = (uint64_t)validationResultPointer & 0xffffffffffc00000;
+  if (contextValidationResult != 0) {
+    ResourceTablePointer = contextValidationResult + 0x80 + ((int64_t)validationResultPointer - contextValidationResult >> 0x10) * 0x50;
     ResourceTablePointer = ResourceTablePointer - (uint64_t)*(uint *)(ResourceTablePointer + 4);
-    if ((*(void ***)(ContextValidationResult + 0x70) == &ExceptionList) && (*(char *)(ResourceTablePointer + 0xe) == '\0')) {
+    if ((*(void ***)(contextValidationResult + 0x70) == &ExceptionList) && (*(char *)(ResourceTablePointer + 0xe) == '\0')) {
       *ValidationStatusCodePointer = *(uint8_t *)(ResourceTablePointer + 0x20);
-      *(uint8_t **)(ResourceTablePointer + 0x20) = ValidationResultPointer;
-      pResourceIndex = (int *)(ResourceTablePointer + 0x18);
-      *pResourceIndex = *pResourceIndex + -1;
-      if (*pResourceIndex == 0) {
+      *(uint8_t **)(ResourceTablePointer + 0x20) = validationResultPointer;
+      resourceCounterPointer = (int *)(ResourceTablePointer + 0x18);
+      *resourceCounterPointer = *resourceCounterPointer + -1;
+      if (*resourceCounterPointer == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(ContextValidationResult,CONCAT71(0xff000000,*(void ***)(ContextValidationResult + 0x70) == &ExceptionList),
-                          ValidationResultPointer,ContextValidationResult,0xfffffffffffffffe);
+      ValidateMemoryAccess(contextValidationResult,CONCAT71(0xff000000,*(void ***)(contextValidationResult + 0x70) == &ExceptionList),
+                          validationResultPointer,contextValidationResult,0xfffffffffffffffe);
     }
   }
   return;
