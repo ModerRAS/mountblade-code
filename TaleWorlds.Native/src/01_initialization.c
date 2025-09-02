@@ -35997,8 +35997,8 @@ void ProcessSystemResourceData(long long *SystemResourceManager)
   long long *SystemMemoryPointer108;
   long long **SystemMemoryManagerPointer100;
   long long alStack_f8 [2];
-  code *pcStack_e8;
-  code *pcStack_e0;
+  code *SystemFunctionPointerE8;
+  code *SystemFunctionPointerE0;
   void* unsignedValueD8;
   long long *plStack_d0;
   long long *plStack_c8;
@@ -36023,16 +36023,16 @@ void ProcessSystemResourceData(long long *SystemResourceManager)
     unsignedValue20 = 0;
     SystemResourceAddress = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xe8,8,3);
     SystemMemoryPointer108 = alStack_f8;
-    pcStack_e8 = (code *)0x0;
-    pcStack_e0 = _guard_check_icall;
+    SystemFunctionPointerE8 = (code *)0x0;
+    SystemFunctionPointerE0 = _guard_check_icall;
     if (alStack_f8 != SystemResourceManager) {
       configurationStringPointer = (code *)SystemResourceManager[2];
       if (configurationStringPointer != (code *)0x0) {
         (*configurationStringPointer)(alStack_f8,SystemResourceManager,1);
         configurationStringPointer = (code *)SystemResourceManager[2];
       }
-      pcStack_e0 = (code *)SystemResourceManager[3];
-      pcStack_e8 = configurationStringPointer;
+      SystemFunctionPointerE0 = (code *)SystemResourceManager[3];
+      SystemFunctionPointerE8 = configurationStringPointer;
     }
     plocalSystemPointer = (long long *)ProcessSystemResourceData(SystemResourceAddress,alStack_f8,alStack_b8);
     plStack_c8 = plocalSystemPointer;
@@ -43462,7 +43462,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   uint32_t unsignedValue2b0;
   ulong long SystemOperationFlag2a8;
   void* *pointerUnsigned2a0;
-  char *pcStack_298;
+  char *StringProcessingBuffer;
   int iStack_290;
   uint32_t EncryptionKeyValue8;
   void* EncryptionKeyValue0;
@@ -43741,23 +43741,23 @@ void ReleaseSystemResource(void* SystemResourceManager)
         SystemDataPointer8 = pSystemThreadContext140;
         if (((long long)systemMemoryContext - (long long)pSystemThreadContext140 & 0xffffffffffffffe0U) == 0x40) {
           CreateSystemObject(&pointerUnsigned2a0,pSystemThreadContext140);
-          if (pcStack_298 != (char *)0x0) {
+          if (StringProcessingBuffer != (char *)0x0) {
             iStack_290 = 0;
             nextDataIndex4 = 0;
             resourceCounter = 0;
             charBuffer = *pcStack_298;
             while (charBuffer != '\0') {
-              if (' ' < pcStack_298[resourceCounter]) {
+              if (' ' < StringProcessingBuffer[resourceCounter]) {
                 if (nextDataIndex4 != resourceCounter) {
-                  pcStack_298[nextDataIndex4] = pcStack_298[resourceCounter];
+                  StringProcessingBuffer[nextDataIndex4] = StringProcessingBuffer[resourceCounter];
                 }
                 iStack_290 = iStack_290 + 1;
                 nextDataIndex4 = nextDataIndex4 + 1;
               }
               resourceCounter = resourceCounter + 1;
-              charBuffer = pcStack_298[resourceCounter];
+              charBuffer = StringProcessingBuffer[resourceCounter];
             }
-            pcStack_298[nextDataIndex4] = '\0';
+            StringProcessingBuffer[nextDataIndex4] = '\0';
           }
           systemCode = 0;
           if (systemOperationFlags != 0) {
@@ -43796,10 +43796,10 @@ LAB_180065a3e:
             } while ((ulong long)(long long)systemCode < systemOperationFlags);
           }
           pointerUnsigned2a0 = &SystemGlobalDataReference;
-          if (pcStack_298 != (char *)0x0) {
+          if (StringProcessingBuffer != (char *)0x0) {
               SystemCleanupFunction();
           }
-          pcStack_298 = (char *)0x0;
+          StringProcessingBuffer = (char *)0x0;
           EncryptionKeyValue8 = 0;
           pointerUnsigned2a0 = &SystemMemoryAllocatorReference;
           for (SystemDataPointer8 = SystemDataPointer7; SystemDataPointer8 != SystemThreadContext; SystemDataPointer8 = SystemDataPointer8 + 4) {
