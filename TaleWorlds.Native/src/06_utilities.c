@@ -2514,58 +2514,58 @@ uint8_t NetworkConfigSecondary;
 uint8_t NetworkConfigTertiary;
 uint8_t QuinaryConfigData;
 uint8_t AdditionalConfigData;
-bool CoreStatusFlag;
-bool EngineStatusFlag;
-uint8_t GraphicsStatusFlag;
-uint8_t AudioStatusFlag;
-uint8_t ResourceBufferPoolSize;
-uint8_t ResourceBufferConfigMain;
-uint8_t ResourceBufferConfigSecondary;
-uint8_t ResourceBufferConfigTertiary;
-uint8_t ConfigDataExtended;
-uint8_t ConfigDataSupplementary;
+bool SystemCoreStatusFlag;                  // 系统核心状态标志
+bool SystemEngineStatusFlag;                 // 系统引擎状态标志
+uint8_t SystemGraphicsStatusFlag;            // 系统图形状态标志
+uint8_t SystemAudioStatusFlag;               // 系统音频状态标志
+uint8_t SystemResourceBufferPoolSize;        // 系统资源缓冲池大小
+uint8_t SystemResourceBufferConfigMain;       // 系统资源缓冲区主配置
+uint8_t SystemResourceBufferConfigSecondary;  // 系统资源缓冲区次配置
+uint8_t SystemResourceBufferConfigTertiary;   // 系统资源缓冲区第三配置
+uint8_t SystemConfigDataExtended;             // 系统配置数据扩展项
+uint8_t SystemConfigDataSupplementary;        // 系统配置数据补充项
 // 系统内存配置数据模板中级变量
-uint8_t MemoryConfigSecondary;       // 次要配置项
-uint8_t MemoryConfigTertiary;        // 第三级配置项
-uint8_t MemoryConfigQuaternary;      // 第四级配置项
+uint8_t SystemMemoryConfigSecondary;       // 系统内存配置次要项
+uint8_t SystemMemoryConfigTertiary;        // 系统内存配置第三级项
+uint8_t SystemMemoryConfigQuaternary;      // 系统内存配置第四级项
 uint8_t SecurityEncryptionKey;             // 安全加密密钥
-uint8_t MemoryConfigQuaternaryBackup; // 第四级配置项备用
-uint8_t MemoryConfigQuinary;       // 第五级配置项
-uint8_t MemoryConfigSecureAdditional;  // 安全附加配置项
-uint8_t MemoryConfigSecureExtended; // 安全扩展配置项
-uint8_t MemoryConfigExtended;        // 扩展配置项
-uint8_t MemoryConfigSupplementary;   // 补充配置项
+uint8_t SystemMemoryConfigQuaternaryBackup; // 系统内存配置第四级项备用
+uint8_t SystemMemoryConfigQuinary;       // 系统内存配置第五级项
+uint8_t SystemMemoryConfigSecureAdditional;  // 系统内存配置安全附加项
+uint8_t SystemMemoryConfigSecureExtended; // 系统内存配置安全扩展项
+uint8_t SystemMemoryConfigExtended;        // 系统内存配置扩展项
+uint8_t SystemMemoryConfigSupplementary;   // 系统内存配置补充项
 // 系统内存配置数据模板高级变量
-uint8_t MemoryConfigAdvanced;              // 高级配置项
-uint8_t MemoryConfigSupplementaryBackup;   // 补充配置项备用
-uint8_t MemoryConfigAdvancedBackup;        // 高级配置项备用
-uint8_t MemoryConfigPremium;               // 优先配置项
-uint8_t MemoryConfigPremiumBackup;         // 优先配置项备用
-uint8_t MemoryConfigPremiumExtended;       // 优先配置项扩展
-uint8_t GlobalMemoryPoolSize;         // 全局内存池大小
-uint8_t ResourceAllocator;           // 系统资源分配器
-char MemoryConfigFlag;                // 内存配置标志
-uint8_t MemoryConfigData;            // 内存配置数据
-uint8_t ResourceCacheSize;
-uint8_t MemoryPoolBuffer;
+uint8_t SystemMemoryConfigAdvanced;              // 系统内存配置高级项
+uint8_t SystemMemoryConfigSupplementaryBackup;   // 系统内存配置补充项备用
+uint8_t SystemMemoryConfigAdvancedBackup;        // 系统内存配置高级项备用
+uint8_t SystemMemoryConfigPremium;               // 系统内存配置优先项
+uint8_t SystemMemoryConfigPremiumBackup;         // 系统内存配置优先项备用
+uint8_t SystemMemoryConfigPremiumExtended;       // 系统内存配置优先项扩展
+uint8_t SystemGlobalMemoryPoolSize;         // 系统全局内存池大小
+uint8_t SystemResourceAllocator;           // 系统资源分配器
+char SystemMemoryConfigFlag;                // 系统内存配置标志
+uint8_t SystemMemoryConfigData;            // 系统内存配置数据
+uint8_t SystemResourceCacheSize;
+uint8_t SystemMemoryPoolBuffer;
 // 内存分配器 - 负责内存分配操作
-uint8_t MemoryAllocator;
+uint8_t SystemMemoryAllocator;
 // 系统内存配置数据模板扩展变量
-uint8_t MemoryConfigAdditional;      // 附加配置项
-uint8_t MemoryConfigExtra;    // 扩展配置项
-uint8_t MemoryConfigOptional;      // 可选配置项
-uint8_t ConfigurationTemplate;        // 系统配置模板
-uint8_t ConfigDataAdvanced;              // 高级配置项
-char ConfigStatusFlag;                // 配置状态标志
-uint8_t ConfigDataPremium;           // 优先配置项
+uint8_t SystemMemoryConfigAdditional;      // 系统内存配置附加项
+uint8_t SystemMemoryConfigExtra;    // 系统内存配置扩展项
+uint8_t SystemMemoryConfigOptional;      // 系统内存配置可选项
+uint8_t SystemConfigurationTemplate;        // 系统配置模板
+uint8_t SystemConfigDataAdvanced;              // 系统配置高级项
+char SystemConfigStatusFlag;                // 系统配置状态标志
+uint8_t SystemConfigDataPremium;           // 系统配置优先项
 // 系统资源和管理器变量
-uint8_t ResourceTracker;               // 系统资源跟踪器
-void* ExceptionListPointer;             // 系统异常列表指针
-uint8_t MemoryConfigOptionalBackup;          // 可选配置项备份
-uint8_t MemoryConfigSpecial;         // 特殊配置项
-uint8_t PerformanceMonitor;              // 系统性能监视器
+uint8_t SystemResourceTracker;               // 系统资源跟踪器
+void* SystemExceptionListPointer;             // 系统异常列表指针
+uint8_t SystemMemoryConfigOptionalBackup;          // 系统内存配置可选项备份
+uint8_t SystemMemoryConfigSpecial;         // 系统内存配置特殊项
+uint8_t SystemPerformanceMonitor;              // 系统性能监视器
 // 线程管理器 - 管理系统线程生命周期
-uint8_t ThreadManager;                   // 系统线程管理器
+uint8_t SystemThreadManager;                   // 系统线程管理器
 uint8_t SecurityManager;                 // 系统安全管理器
 uint8_t NetworkManager;                  // 系统网络管理器
 uint8_t ResourceReferenceCounter;               // 资源引用计数器
