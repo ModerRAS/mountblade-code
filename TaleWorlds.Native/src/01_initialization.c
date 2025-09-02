@@ -56644,7 +56644,7 @@ void InitializeSystemResourceManager(void* *SystemResourceManager)
   }
   SystemResourceManager[0x3c] = 0;
   InitializeSystemResourceTable(SystemResourceManager + 0x5e);
-  FUN_1800809a0(SystemResourceManager + 0x5c);
+  ConfigureSystemResourceTable(SystemResourceManager + 0x5c);
   if ((long long *)SystemResourceManager[0x4d] != (long long *)0x0) {
     (**(code **)(*(long long *)SystemResourceManager[0x4d] + 0x38))();
   }
@@ -57270,13 +57270,13 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemReso
   *(int *)(ResourceDataOffset + 0xe0) = (int)resourceDataIndex3;
   *(uint32_t *)(ResourceDataOffset + 0xe4) = resourceHashValue;
   if ((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x20) == 0) {
-    FUN_180075990(*ConfigurationDataPointer,SystemResourceManager + 0x36);
+    ConfigureSystemResourceManager(*ConfigurationDataPointer,SystemResourceManager + 0x36);
   }
   else {
     ResourceDataOffset = *ConfigurationDataPointer;
     plStackX_8 = SystemResourceManager;
     (**(code **)(*SystemResourceManager + 0x28))(SystemResourceManager);
-    FUN_180075990(ResourceDataOffset,&plStackX_8);
+    ConfigureSystemResourceManager(ResourceDataOffset,&plStackX_8);
     (**(code **)(*SystemResourceManager + 0x38))(SystemResourceManager);
   }
   *(long long *)(*ConfigurationDataPointer + 0xa8) = SystemResourceManager[0x15];

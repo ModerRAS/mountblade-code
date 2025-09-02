@@ -9490,11 +9490,11 @@ Label_18060b805:
                         }
                       }
                       else {
-                        NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39e78);
+                        NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterE78);
                         if (NetworkRequestStatus == '\0') {
-                          NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39eb8);
+                          NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterEB8);
                           if (NetworkRequestStatus != '\0') goto Label_18060a114;
-                          NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ea8);
+                          NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterEA8);
                           if (NetworkRequestStatus != '\0') goto Label_18060b32d;
                           NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f88);
                           if (NetworkRequestStatus != '\0') goto Label_18060ae57;

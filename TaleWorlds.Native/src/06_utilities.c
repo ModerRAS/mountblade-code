@@ -2859,7 +2859,7 @@ uint8_t MemoryAllocator;
 uint8_t MemoryPool;
 // 任务调度器 - 负责任务调度执行
 uint8_t TaskScheduler;
-uint8_t ResourcePool;
+uint8_t ResourcePoolSecondary;
 // 数据管理器 - 管理系统数据操作
 uint8_t DataManager;
 // 数据缓冲管理器 - 管理数据缓冲区
@@ -3040,7 +3040,7 @@ uint8_t SystemResourceRestorer;
 uint8_t SystemResourceMementoManager;
 uint8_t SystemResourceCache;
 uint8_t SystemResourceBuffer;
-uint8_t ResourcePool;
+uint8_t ResourcePoolTertiary;
 uint8_t SystemResourceQueue;
 uint8_t SystemResourceStack;
 uint8_t SystemResourceHeap;
