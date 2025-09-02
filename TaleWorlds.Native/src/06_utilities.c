@@ -406,11 +406,11 @@ void* SystemResourceManagerHandle;
 uint32_t SystemResourceManagementStatus;
 void* ResourceConfigurationContext;
 void* ResourceStatusMonitor;
-void* ResourceSmallBufferPool;
-void* ResourceMediumBufferPool;
-void* ResourceLargeBufferPool;
-void* SystemResourceManagerPointer;
-void* SystemResourceData;
+void* SmallBufferPool;
+void* MediumBufferPool;
+void* LargeBufferPool;
+void* SystemResourceManager;
+void* SystemResourceDatabase;
 
  /**
  * @brief 初始化纹理管理器
@@ -423,9 +423,9 @@ void* SystemResourceData;
  * @warning 调用此函数前必须确保图形子系统已经初始化
  */
 void InitializeTextureManager(void);
-void* TextureManagerInstance;
-void* TextureManagementExecutionContext;
-void* TextureCacheSystemHandle;
+void* TextureManager;
+void* TextureExecutionContext;
+void* TextureCacheHandle;
 void* TextureLoaderSystemHandle;
 void* TextureMemoryPool;
 void* TextureDescriptorTable;
@@ -2558,7 +2558,7 @@ uint8_t AnimationEventTable;
 uint8_t AnimationLayerTable;
 uint8_t AnimationMixerTable;
 uint8_t SystemResourceTracker;
-uint32_t SystemresourceFlags;
+uint32_t SystemResourceFlags;
 uint32_t SystemResourceState;
 uint8_t SystemResourceHandler;
 uint8_t ScriptFunctionTable;
@@ -3882,7 +3882,7 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
  * @param resourceHandle 资源句柄，标识要管理的特定资源
  * @return uint8_t 操作状态码，0表示成功，0x1c表示错误
  */
-uint64_t DecrementSystemresourceCounter(int64_t SystemContext, uint64_t ResourceHandle)
+uint64_t DecrementSystemResourceCounter(int64_t SystemContext, uint64_t ResourceHandle)
 {
   int64_t ContextData;
   uint64_t OperationResult;
@@ -29138,7 +29138,7 @@ void HandleExceptionResourceCleanup(uint8_t exceptionCode, int64_t exceptionCont
  * @param exceptionCode 异常代码
  * @param exceptionContext 异常上下文
  */
-void ReleaseSystemresourceFlag(uint8_t exceptionCode, int64_t exceptionContext)
+void ReleaseSystemResourceFlag(uint8_t exceptionCode, int64_t exceptionContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
@@ -29159,7 +29159,7 @@ void ReleaseSystemresourceFlag(uint8_t exceptionCode, int64_t exceptionContext)
  * @param exceptionCode 异常代码
  * @param exceptionContext 异常上下文
  */
-void ReleaseSystemresourceFlagVariantOne(uint8_t exceptionCode, int64_t exceptionContext)
+void ReleaseSystemResourceFlagVariantOne(uint8_t exceptionCode, int64_t exceptionContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
@@ -29180,7 +29180,7 @@ void ReleaseSystemresourceFlagVariantOne(uint8_t exceptionCode, int64_t exceptio
  * @param exceptionCode 异常代码
  * @param exceptionContext 异常上下文
  */
-void ReleaseSystemresourceFlagVariantTwo(uint8_t exceptionCode, int64_t exceptionContext)
+void ReleaseSystemResourceFlagVariantTwo(uint8_t exceptionCode, int64_t exceptionContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
