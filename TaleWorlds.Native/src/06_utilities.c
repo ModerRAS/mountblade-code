@@ -13859,17 +13859,17 @@ void SystemInitializerPrimary(void)
   int64_t ResourceRegisterPointer;
   uint64_t ResourceHashValidationTertiary;
   int64_t SystemContextRegister;
-  uint32_t FloatRegisterPrimaryValue;
+  uint32_t FloatPrimaryRegister;
   uint32_t ResourceHashValidationQuaternary;
-  uint32_t FloatRegisterSecondaryValue;
-  uint32_t FloatRegisterTertiaryValue;
+  uint32_t FloatSecondaryRegister;
+  uint32_t FloatTertiaryRegister;
   uint32_t FloatRegisterQuaternaryValue;
   float FloatRegisterFifthValue;
   uint32_t FloatRegisterTransformX;
   uint32_t FloatRegisterTransformY;
   uint32_t FloatRegisterTransformZ;
   uint32_t FloatResourceRegisterValue;
-  uint32_t FloatRegisterPrimaryValue;
+  uint32_t FloatPrimaryRegister;
   uint32_t XmmRegisterPrimaryComponent;
   uint32_t XmmRegisterSecondaryComponent;
   uint32_t StackContextBuffer;
@@ -13900,7 +13900,7 @@ void SystemInitializerPrimary(void)
     *(uint32_t *)(SystemExecutionPointer + -0xf) = StackContextBuffer;
     *(float *)(SystemExecutionPointer + -0x10) = StackParameterContextExtended;
     FloatRegisterParameter = FloatRegisterValue;
-    ResourceIndexTertiary = GetAndValidateResourceData(FloatRegisterPrimaryValue,&ResourceDataBuffer);
+    ResourceIndexTertiary = GetAndValidateResourceData(FloatPrimaryRegister,&ResourceDataBuffer);
     if (ResourceIndexTertiary == 0) {
       StackParameterContext = (int64_t)*(int *)(SystemContextRegister + 0x28);
       if (0 < StackParameterContext) {
@@ -13942,11 +13942,11 @@ void SystemInitializerPrimary(void)
       ResourceHashValueSecondary = (**(code **)*ResourceHashSecondaryResultPointer)(ResourceHashSecondaryResultPointer);
       ResourceIndexTertiary = CalculateDataHash(ResourceHashValueSecondary,ResourceHashValueTertiary,SecondaryHashBuffer);
       if (ResourceIndexTertiary == 0) {
-        ResourceHashValidationQuaternary = FloatRegisterSecondaryValue;
+        ResourceHashValidationQuaternary = FloatSecondaryRegister;
         if (SecondaryHashBuffer[0] != '\0') {
           ResourceHashValueTertiary = GenerateResourceHash();
           ResourceIndexTertiary = memcmp(SystemContextRegister + 0x38,ResourceHashValueTertiary,0x30);
-          ResourceHashValidationQuaternary = FloatRegisterTertiaryValue;
+          ResourceHashValidationQuaternary = FloatTertiaryRegister;
           if (ResourceIndexTertiary != 0) {
             ResourceHashValueTertiary = *(uint8_t *)(SystemContextRegister + 0x38);
             ResourceHashValueSecondary = *(uint8_t *)(SystemContextRegister + 0x40);
