@@ -5042,12 +5042,13 @@ uint64_t HandleResourceOperation(int64_t resourceHandle)
 
 
  /**
- * @brief 处理资源任务
+ * @brief 处理系统资源任务
  * 
- * 该函数负责处理资源任务，根据任务状态执行相应操作
+ * 该函数负责处理系统资源任务，根据任务状态执行相应操作
  * 如果任务无效则返回错误码，否则执行任务操作
  * 
- * @return 处理结果，0表示成功，非0表示错误码
+ * @return uint32_t 处理结果，0表示成功，非0表示错误码
+ * @note 此函数会验证系统上下文的有效性，并在验证失败时返回错误码
  */
 uint32_t ProcessResourceTask(void)
 {
