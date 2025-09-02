@@ -68030,58 +68030,58 @@ void* ProcessAudioSignal(void)
       audioTotalSum = audioSignal27 + audioSignal37 + audioSignal24 + audioSignal35 + audioSignal28 + audioSignal38 + audioSignal26 + audioSignal36;
       audioSignal25 = audioSignal31 + audioSignal33 + audioSignal25 + audioSignal30 + audioSignal18 + audioSignal34 + audioSignal29 + audioSignal32;
     }
-    if (systemStatus0 < (int)in_R9D) {
-      if (3 < (int)(in_R9D - systemStatus0)) {
-        systemStatus2 = systemStatus0 + 2;
-        fVar29 = (float)unaff_EBX;
-        pfVar11 = systemDataIndexPtr + (long long)systemStatus0 + 2;
-        fVar31 = (float)(int)in_R9D;
+    if (audioStatusIndex0 < (int)audioTotalChannels) {
+      if (3 < (int)(audioTotalChannels - audioStatusIndex0)) {
+        audioStatusIndex2 = audioStatusIndex0 + 2;
+        audioSignal29 = (float)audioProcessingFactor;
+        audioDataPointer11 = audioDataIndexPtr + (long long)audioStatusIndex0 + 2;
+        audioSignal31 = (float)(int)audioTotalChannels;
         do {
-          fVar18 = pfVar11[-2];
-          if (0.0001 < fVar18) {
-            unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
-            fVar25 = fVar25 + ((fVar29 * 0.5 * (float)systemStatus0) / fVar31) * fVar18;
+          audioSignal18 = audioDataPointer11[-2];
+          if (0.0001 < audioSignal18) {
+            audioTotalSum = audioTotalSum + audioSignal18;
+            audioSignal25 = audioSignal25 + ((audioSignal29 * 0.5 * (float)audioStatusIndex0) / audioSignal31) * audioSignal18;
           }
-          fVar18 = pfVar11[-1];
-          if (0.0001 < fVar18) {
-            unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
-            fVar25 = fVar25 + (((float)(systemStatus2 + -1) * fVar29 * 0.5) / fVar31) * fVar18;
+          audioSignal18 = audioDataPointer11[-1];
+          if (0.0001 < audioSignal18) {
+            audioTotalSum = audioTotalSum + audioSignal18;
+            audioSignal25 = audioSignal25 + (((float)(audioStatusIndex2 + -1) * audioSignal29 * 0.5) / audioSignal31) * audioSignal18;
           }
-          fVar18 = *pfVar11;
-          if (0.0001 < fVar18) {
-            unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
-            fVar25 = fVar25 + (((float)systemStatus2 * fVar29 * 0.5) / fVar31) * fVar18;
+          audioSignal18 = *audioDataPointer11;
+          if (0.0001 < audioSignal18) {
+            audioTotalSum = audioTotalSum + audioSignal18;
+            audioSignal25 = audioSignal25 + (((float)audioStatusIndex2 * audioSignal29 * 0.5) / audioSignal31) * audioSignal18;
           }
-          fVar18 = pfVar11[1];
-          if (0.0001 < fVar18) {
-            unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
-            fVar25 = fVar25 + (((float)(systemStatus2 + 1) * fVar29 * 0.5) / fVar31) * fVar18;
+          audioSignal18 = audioDataPointer11[1];
+          if (0.0001 < audioSignal18) {
+            audioTotalSum = audioTotalSum + audioSignal18;
+            audioSignal25 = audioSignal25 + (((float)(audioStatusIndex2 + 1) * audioSignal29 * 0.5) / audioSignal31) * audioSignal18;
           }
-          pfVar11 = pfVar11 + 4;
-          systemStatus0 = systemStatus0 + 4;
-          systemStatus2 = systemStatus2 + 4;
-        } while (systemStatus0 < (int)(in_R9D - 3));
+          audioDataPointer11 = audioDataPointer11 + 4;
+          audioStatusIndex0 = audioStatusIndex0 + 4;
+          audioStatusIndex2 = audioStatusIndex2 + 4;
+        } while (audioStatusIndex0 < (int)(audioTotalChannels - 3));
       }
-      if (systemStatus0 < (int)in_R9D) {
-        pfVar11 = systemDataIndexPtr + systemStatus0;
+      if (audioStatusIndex0 < (int)audioTotalChannels) {
+        audioDataPointer11 = audioDataIndexPtr + audioStatusIndex0;
         do {
-          fVar29 = *pfVar11;
-          if (0.0001 < fVar29) {
-            unaff_XMM6_Da = unaff_XMM6_Da + fVar29;
-            fVar25 = fVar25 + (((float)unaff_EBX * 0.5 * (float)systemStatus0) / (float)(int)in_R9D) *
-                              fVar29;
+          audioSignal29 = *audioDataPointer11;
+          if (0.0001 < audioSignal29) {
+            audioTotalSum = audioTotalSum + audioSignal29;
+            audioSignal25 = audioSignal25 + (((float)audioProcessingFactor * 0.5 * (float)audioStatusIndex0) / (float)(int)audioTotalChannels) *
+                              audioSignal29;
           }
-          pfVar11 = pfVar11 + 1;
-          systemStatus0 = systemStatus0 + 1;
-        } while (systemStatus0 < (int)in_R9D);
+          audioDataPointer11 = audioDataPointer11 + 1;
+          audioStatusIndex0 = audioStatusIndex0 + 1;
+        } while (audioStatusIndex0 < (int)audioTotalChannels);
       }
     }
-    if (0.001 < unaff_XMM6_Da) {
-      *in_R11 = fVar25 / unaff_XMM6_Da;
+    if (0.001 < audioTotalSum) {
+      *audioOutputBuffer = audioSignal25 / audioTotalSum;
       return 0;
     }
   }
-  *in_R11 = 0.0;
+  *audioOutputBuffer = 0.0;
   return 0;
 }
 
