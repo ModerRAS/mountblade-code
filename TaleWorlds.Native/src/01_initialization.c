@@ -41089,7 +41089,20 @@ uint8_t UpdateSystemStringIndex(void)
 
 
 
-void* FUN_180060e40(void* *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter)
+/**
+ * @brief 系统资源分配和同步函数
+ * 
+ * 该函数负责分配系统资源并进行同步操作，包括内存分配、资源验证
+ * 和状态同步。用于系统资源的动态分配和管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @return 分配的资源指针或错误代码
+ * 
+ * 原始函数名为FUN_180060e40，现已重命名为AllocateAndSynchronizeSystemResource
+ */
+void* AllocateAndSynchronizeSystemResource(void* *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   char SystemNodeFlag;
@@ -41951,7 +41964,19 @@ void ProcessSystemResourceCounter(int *SystemResourcePointer)
 
 
 
-void* FUN_180062ee0(void* SystemResourcePointer,uint32_t ConfigurationDataPointer)
+/**
+ * @brief 系统控制台文本属性设置函数
+ * 
+ * 该函数根据配置数据指针的值来设置控制台文本属性，包括颜色和样式。
+ * 用于系统输出和用户界面的显示控制。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针（用于选择文本属性）
+ * @return 设置结果（成功返回1，失败返回0）
+ * 
+ * 原始函数名为FUN_180062ee0，现已重命名为SetSystemConsoleTextAttribute
+ */
+void* SetSystemConsoleTextAttribute(void* SystemResourcePointer,uint32_t ConfigurationDataPointer)
 
 {
   void*2 unsignedSystemValue1;
@@ -45345,7 +45370,20 @@ void CreateSystemIoCompletionPort(long long SystemResourcePointer,long long Conf
 
 
 
-void* FUN_180068250(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 系统内存分配和互斥锁管理函数
+ * 
+ * 该函数负责管理系统内存分配，包括内存对齐、互斥锁操作和内存页面管理。
+ * 用于系统内存资源的动态分配和同步控制。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数（包含内存分配信息）
+ * @return 分配结果或错误代码
+ * 
+ * 原始函数名为FUN_180068250，现已重命名为AllocateSystemMemoryWithMutex
+ */
+void* AllocateSystemMemoryWithMutex(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   ulong long unsignedSystemValue1;
@@ -45640,7 +45678,19 @@ FUN_180068860(long long SystemResourcePointer,long long *ConfigurationDataPointe
 
 
 
-void* FUN_180068a90(ulong long *SystemResourcePointer,void* *ConfigurationDataPointer)
+/**
+ * @brief 系统资源指针映射和查找函数
+ * 
+ * 该函数负责在系统资源指针和配置数据指针之间进行映射和查找操作，
+ * 包括资源地址计算、偏移量处理和数据验证。用于系统资源的管理和访问。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @param ConfigurationDataPointer 配置数据指针数组
+ * @return 找到的资源指针或空指针
+ * 
+ * 原始函数名为FUN_180068a90，现已重命名为FindSystemResourcePointerMapping
+ */
+void* FindSystemResourcePointerMapping(ulong long *SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -45776,7 +45826,19 @@ LAB_180068c94:
 
 
 
-void* FUN_180068ce0(long long SystemResourcePointer,void* *ConfigurationDataPointer)
+/**
+ * @brief 系统资源分配和锁定管理函数
+ * 
+ * 该函数负责管理系统资源的分配和锁定操作，包括资源计数、
+ * 锁定机制和时间戳处理。用于系统资源的动态分配和同步控制。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 分配的资源指针或错误代码
+ * 
+ * 原始函数名为FUN_180068ce0，现已重命名为AllocateAndLockSystemResource
+ */
+void* AllocateAndLockSystemResource(long long SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;

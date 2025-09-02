@@ -44218,7 +44218,19 @@ void CloseSystemHandleExtended(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809049d0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 处理资源索引验证和清理
+ * 
+ * 该函数负责处理资源索引的验证和清理操作
+ * 检查资源状态并在必要时触发系统清理
+ * 
+ * @param objectContext 对象上下文参数
+ * @param validationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数会验证资源索引的完整性
+ * @warning 如果资源索引验证失败，可能触发系统清理
+ */
+void ProcessResourceIndexValidationAndCleanup(uint8_t objectContext,int64_t validationContext)
 
 {
   int *pResourceIndex;
@@ -44254,7 +44266,19 @@ void Unwind_1809049d0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809049e0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 处理扩展资源索引验证和清理
+ * 
+ * 该函数负责处理扩展资源索引的验证和清理操作
+ * 检查资源状态并在必要时触发系统清理
+ * 
+ * @param objectContext 对象上下文参数
+ * @param validationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数会验证扩展资源索引的完整性
+ * @warning 如果资源索引验证失败，可能触发系统清理
+ */
+void ProcessExtendedResourceIndexValidationAndCleanup(uint8_t objectContext,int64_t validationContext)
 
 {
   int *pResourceIndex;
