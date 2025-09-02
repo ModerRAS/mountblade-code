@@ -5936,12 +5936,12 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
     if ((0 < ResourceCount) && (*(uint *)(ResourceHandle + ObjectStatusFlagsOffset) < 2)) {
       ResourceIndex = 0;
       if (*(uint *)(ResourceHandle + ObjectStatusFlagsOffset) == 0) {
-        ResourceHandleValue = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
+        ResourceHandleIdentifier = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
         ResourceProcessingOperationBuffer[0] = 1;
-        ResourceIndex = ResourceHandleValue;
+        ResourceIndex = ResourceHandleIdentifier;
       }
       else {
-        ResourceHandleValue = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
+        ResourceHandleIdentifier = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
         ResourceProcessingOperationBuffer[0] = 2;
       }
       ResourceHash = ProcessResourceOperationEx(OperationFlag,ResourceProcessingOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
@@ -5975,32 +5975,32 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
 int ValidateSystemConfigurationParameter(uint32_t ConfigParameter)
 
 {
-  int InputRegisterResult;
-  int ProcessingStatusCode;
-  int64_t ResourceTable;
-  int64_t SavedRegisterValue;
-  int64_t UnaffectedRegisterValue;
+  int RegisterValidationResult;
+  int ConfigurationProcessingStatus;
+  int64_t SystemResourceTable;
+  int64_t PreservedRegisterValue;
+  int64_t OriginalRegisterValue;
   uint32_t ValidationStatusCode;
   int64_t StackMemoryOffset;
   uint32_t StackValidationBuffer;
   
-  ResourceTable = 0;
+  SystemResourceTable = 0;
   if (ConfigParameter == 0) {
-    StackMemoryOffset = *(int64_t *)(UnaffectedRegisterValue + 0x10);
+    StackMemoryOffset = *(int64_t *)(OriginalRegisterValue + 0x10);
     ValidationStatusCode = 1;
-    ResourceTable = StackMemoryOffset;
+    SystemResourceTable = StackMemoryOffset;
   }
   else {
-    int64_t *LocalContextPointer = *(int64_t *)(ObjectContext + 0x10);
+    int64_t *ObjectContextPointer = *(int64_t *)(ObjectContext + 0x10);
     ValidationStatusCode = 2;
   }
-  int64_t *ContextParameterPointer = ObjectContext;
+  int64_t *ConfigurationContextPointer = ObjectContext;
   ResourceIndex = ProcessResourceOperationEx();
   if (ResourceIndex == 0) {
     ResourceIndex = 0;
   }
-  else if (ResourceTable != 0) {
-    ProcessResourceRelease(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),ResourceTable,&ResourceAllocationTemplate,0xe9,HashValidationResult);
+  else if (SystemResourceTable != 0) {
+    ProcessResourceRelease(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),SystemResourceTable,&ResourceAllocationTemplate,0xe9,HashValidationResult);
     return ResourceIndex;
   }
   return ResourceIndex;
@@ -8088,18 +8088,18 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t SimplifiedCompari
   int64_t SimplifiedObjectContext;
   int64_t SimplifiedStackBuffer;
   
-  SimplifiedHashValidationResult = ValidateObjectContextAndProcessData(SimplifiedObjectContext,SimplifiedProcessingContext + 0x25,SimplifiedProcessingContext + 0x20);
-  if ((int)SimplifiedValidationResult == 0) {
-    SimplifiedFirstFloatValue = *(float *)(SimplifiedProcessingContext + 0x20);
-    if ((*(float *)(SimplifiedResourceContext + 0x38) <= SimplifiedFirstFloatValue) &&
-       (SimplifiedFirstFloatValue < *(float *)(SimplifiedResourceContext + 0x3c) || SimplifiedFirstFloatValue == *(float *)(SimplifiedResourceContext + 0x3c))) {
-      SimplifiedValidationResult = *(uint8_t *)(SimplifiedSystemExecutionPointer + 0x98);
-      *(float *)(SimplifiedResourceContextSecondary + 4) = SimplifiedFirstFloatValue;
-            ReleaseSystemContextResources(SimplifiedValidationResult);
+  SimplifiedComparisonResult = ValidateObjectContextAndProcessData(SimplifiedObjectContext,SimplifiedProcessingContext + 0x25,SimplifiedProcessingContext + 0x20);
+  if ((int)SimplifiedComparisonResult == 0) {
+    SimplifiedProcessedFloatValue = *(float *)(SimplifiedProcessingContext + 0x20);
+    if ((*(float *)(SimplifiedResourceContext + 0x38) <= SimplifiedProcessedFloatValue) &&
+       (SimplifiedProcessedFloatValue < *(float *)(SimplifiedResourceContext + 0x3c) || SimplifiedProcessedFloatValue == *(float *)(SimplifiedResourceContext + 0x3c))) {
+      SimplifiedComparisonResult = *(uint8_t *)(SimplifiedSystemExecutionPointer + 0x98);
+      *(float *)(SimplifiedResourceContextSecondary + 4) = SimplifiedProcessedFloatValue;
+            ReleaseSystemContextResources(SimplifiedComparisonResult);
     }
-    SimplifiedValidationResult = 0x1c;
+    SimplifiedComparisonResult = 0x1c;
   }
-  return SimplifiedResourceHashValidationResult;
+  return SimplifiedComparisonResult;
 }
 
 
@@ -70337,7 +70337,7 @@ void ResetSystemResourceManagerData(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_180909ab0(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetSystemSecondaryResourceManagerData(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x2e0) = &SystemDataStructure;
@@ -70346,7 +70346,7 @@ void Unwind_180909ab0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909ac0(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemDataStructure(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x58) = &SystemDataStructure;
@@ -70364,7 +70364,7 @@ void Unwind_180909ad0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909ae0(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetSystemSecondaryResourceManagerDataAgain(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x2e0) = &SystemDataStructure;
@@ -70373,7 +70373,7 @@ void Unwind_180909ae0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909af0(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupPrimaryResourceOperationFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -70385,7 +70385,7 @@ void Unwind_180909af0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909b20(uint8_t ObjectContext,int64_t ValidationContext)
+void UnlockValidationContextMutexAgain(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
