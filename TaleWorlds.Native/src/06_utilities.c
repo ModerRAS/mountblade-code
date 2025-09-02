@@ -74069,7 +74069,19 @@ void ExecutePrimaryResourceManagerCallback(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_18090a880(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希状态码
+ * 
+ * 该函数负责验证资源哈希状态码的有效性
+ * 检查资源哈希的状态码地址，并根据需要进行内存访问验证
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会验证资源哈希的状态码并执行相应的清理操作
+ * @warning 如果资源索引为0，系统会执行清理处理程序
+ */
+void ValidateResourceHashStatusCode(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
