@@ -46269,7 +46269,7 @@ ReleaseSystemResourceManagerMemory(void* *SystemResourceManager,ulong long Confi
 
 
 
-// 函数: void FUN_180069220(long long SystemResourceManager,void* ConfigurationDataPointer,int AdditionalParameter)
+// 函数: void CopySystemDataToBuffer(long long SystemResourceManager,void* ConfigurationDataPointer,int AdditionalParameter)
 /**
  * @brief 系统数据拷贝函数
  * 
@@ -46295,7 +46295,7 @@ void CopySystemDataToBuffer(long long SystemResourceManager,void* ConfigurationD
 
 
 
-// 函数: void FUN_180069241(void)
+// 函数: void SystemMemoryCopy(void)
 /**
  * @brief 系统内存拷贝函数
  * 
@@ -46312,7 +46312,7 @@ void SystemMemoryCopy(void)
 
 
 
-// 函数: void FUN_180069266(uint8_t *SystemResourceManager)
+// 函数: void ResetSystemResourceData(uint8_t *SystemResourceManager)
 /**
  * @brief 重置系统资源数据
  * 
@@ -46334,7 +46334,7 @@ void ResetSystemResourceData(uint8_t *SystemResourceManager)
 
 
 
-// 函数: void FUN_180069280(long long SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter)
+// 函数: void ConfigureSystemResourceAndProcessData(long long SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter)
 /**
  * @brief 系统资源配置和数据处理函数
  * 
@@ -48015,7 +48015,7 @@ void ConfigureSystemBuffer(void* *SystemResourceManager)
 
 
 
-// 函数: void FUN_18006c070(long long SystemResourceManager)
+// 函数: void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
 /**
  * @brief 处理系统资源节点队列
  * 
@@ -48483,7 +48483,7 @@ LAB_18006ca95:
 
 
 
-// 函数: void FUN_18006cb90(long long SystemResourceManager)
+// 函数: void CleanupSystemResourceDataTable(long long SystemResourceManager)
 /**
  * @brief 清理系统资源数据表
  * 
@@ -48527,7 +48527,7 @@ void CleanupSystemResourceDataTable(long long SystemResourceManager)
 
 
 
-// 函数: ulong long FUN_18006cc50(long long *SystemResourceManager,long long ConfigurationDataPointer)
+// 函数: ulong long AllocateSystemResourceNode(long long *SystemResourceManager,long long ConfigurationDataPointer)
 /**
  * @brief 分配系统资源节点
  * 
