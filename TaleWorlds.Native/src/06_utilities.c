@@ -12212,10 +12212,10 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
   if ((ResourceCounter >> 0x1a & 1) == 0) goto ResourceValidationComplete;
   if ((ResourceCounter & 1) == 0) {
     DataHandlerContextPointer = (int64_t *)(dataContext + 0x70);
-    ResourceHandlerFlag1 = 0;
-    ResourceIndex6 = 0;
+    ResourceAllocationFlag = 0;
+    ResourceCapacityMultiplier = 0;
     SystemCommandParams[0] = 0;
-    ResourceHandlerFlag2 = 0;
+    ResourceValidationFlag = 0;
     ResourceHandlerParam = 0xffffffffffffffff;
     ResourceHandlerArray[0] = -1;
     SetupResourceHandlers(DataHandlerContextPointer,&ResourceHandlerParam,ResourceHandlerArray);
@@ -12244,12 +12244,12 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
                 OperationStatusCode = ValidateTableEntry(HashValidationResult);
               } while (0 < OperationResult);
               ContextValidationStatusCode = (uint64_t)SystemCommandParams[0];
-              ResourceContext3 = DataHandlerContextPointer;
+              ResourceContextSecondary = DataHandlerContextPointer;
             }
           }
           else if (OperationStatusCode == 3) {
             OperationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10),StackContextBuffer);
-            ResourceContext3 = DataHandlerContextPointer;
+            ResourceContextSecondary = DataHandlerContextPointer;
             if (OperationStatusCode == 0) {
               SerializationContextPointer = &SerializationTemplate;
               SerializationContextFlags = *(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10);
@@ -12260,12 +12260,12 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
               DeserializationContextFlags = *(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10);
               DeserializationContextOffset = 0;
               DeserializeData(&DeserializationContextPointer,*(uint8_t *)(ObjectContext + 0x58));
-              ResourceContext3 = DataHandlerContextPointer;
+              ResourceContextSecondary = DataHandlerContextPointer;
             }
           }
           else if (OperationStatusCode == 5) {
             OperationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10),ResourceLowByteFlag);
-            ResourceContext3 = DataHandlerContextPointer;
+            ResourceContextSecondary = DataHandlerContextPointer;
             if (OperationStatusCode == 0) {
               CompressionDataPointer = &CompressionTemplate;
               CompressionResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10);
@@ -12286,19 +12286,19 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
               DecodingResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextPointer * 0x10);
               DecodingFlags = 0;
               DecodeData(&DecodingDataPointer,*(uint8_t *)(ObjectContext + 0x58));
-              ResourceContext3 = DataHandlerContextPointer;
+              ResourceContextSecondary = DataHandlerContextPointer;
             }
           }
           else if (OperationStatusCode == 6) {
             OperationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + LocalContextPointer * 0x10),ResourceMidByteFlag);
-            ResourceContext3 = DataHandlerContextPointer;
+            ResourceContextSecondary = DataHandlerContextPointer;
             if (OperationStatusCode == 0) {
               TransformationDataPointer = &TransformationTemplate;
               TransformationResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextPointer * 0x10);
               TransformationFlags = 0;
               TransformationScaleFactor = 0x3f800000;
               TransformData(&TransformationDataPointer,*(uint8_t *)(ObjectContext + 0x58));
-              ResourceContext3 = DataHandlerContextPointer;
+              ResourceContextSecondary = DataHandlerContextPointer;
             }
           }
           else if ((OperationStatusCode == 7) &&
@@ -12306,85 +12306,85 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
                                                EncryptionBuffer), ResourceContext3 = DataHandlerContextPointer, OperationStatusCode == 0)) {
             ValidationResult = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextPointer * 0x10);
             ResourceCount = (int)ContextHashValidationResult + 1;
-            OperationStatusCode = ResourceIndex6;
-            if (ResourceIndex6 < 0) {
-              OperationStatusCode = -ResourceIndex6;
+            OperationStatusCode = ResourceCapacityMultiplier;
+            if (ResourceCapacityMultiplier < 0) {
+              OperationStatusCode = -ResourceCapacityMultiplier;
             }
-            ResourceIndex4 = (int)ContextHashValidationResult;
+            ResourceCapacityIndex = (int)ContextHashValidationResult;
             if (OperationResult < ResourceCount) {
-              if (ResourceIndex6 < 0) {
-                ResourceIndex6 = -ResourceIndex6;
+              if (ResourceCapacityMultiplier < 0) {
+                ResourceCapacityMultiplier = -ResourceCapacityMultiplier;
               }
-              ResourceIndex6 = (int)((float)ResourceIndex6 * 1.5);
+              ResourceCapacityMultiplier = (int)((float)ResourceCapacityMultiplier * 1.5);
               OperationStatusCode = ResourceCount;
-              if (ResourceCount <= ResourceIndex6) {
-                OperationStatusCode = ResourceIndex6;
+              if (ResourceCount <= ResourceCapacityMultiplier) {
+                OperationStatusCode = ResourceCapacityMultiplier;
               }
               if (OperationResult < 0x10) {
-                ResourceIndex6 = 0x10;
+                ResourceCapacityMultiplier = 0x10;
               }
-              else if (ResourceIndex6 < ResourceCount) {
-                ResourceIndex6 = ResourceCount;
+              else if (ResourceCapacityMultiplier < ResourceCount) {
+                ResourceCapacityMultiplier = ResourceCount;
               }
-              ResourceCounter = ValidateDataIntegrity(&ResourceHandlerFlag1,ResourceIndex6);
+              ResourceCounter = ValidateDataIntegrity(&ResourceAllocationFlag,ResourceCapacityMultiplier);
               ContextValidationStatusCode = (uint64_t)ResourceCounter;
-              OperationStatusCode = (int)ResourceHandlerFlag2;
+              OperationStatusCode = (int)ResourceValidationFlag;
               if (ResourceCounter != 0) {
-                ResourceCounter = ResourceHandlerFlag2.Field44;
-                if ((int64_t)ResourceHandlerFlag2 < 0) {
-                  ResourceCounter = -ResourceHandlerFlag2.Field44;
+                ResourceCounter = ResourceValidationFlag.Field44;
+                if ((int64_t)ResourceValidationFlag < 0) {
+                  ResourceCounter = -ResourceValidationFlag.Field44;
                 }
-                ResourceTablePointer = (int64_t)(int)ResourceHandlerFlag2;
-                ValidationCounter = ResourceHandlerFlag2.Field44;
+                ResourceTablePointer = (int64_t)(int)ResourceValidationFlag;
+                ValidationCounter = ResourceValidationFlag.Field44;
                 if ((int)ResourceCounter < 0) {
-                  if (0 < (int)ResourceHandlerFlag2) {
+                  if (0 < (int)ResourceValidationFlag) {
                     return ContextHashValidationResult;
                   }
-                  if ((0 < (int)ResourceHandlerFlag2.Field44) && (ResourceHandlerFlag1 != 0)) {
-                          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHandlerFlag1,&ResourceAllocationTemplate,
+                  if ((0 < (int)ResourceValidationFlag.Field44) && (ResourceAllocationFlag != 0)) {
+                          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceAllocationFlag,&ResourceAllocationTemplate,
                                   0x100,1);
                   }
-                  ResourceHandlerFlag1 = 0;
-                  ResourceHandlerFlag2 = 0;
+                  ResourceAllocationFlag = 0;
+                  ResourceValidationFlag = 0;
                   ValidationCounter = 0;
                 }
                 if (OperationResult < 0) {
-                  ResourceHashPointer2 = (uint32_t *)(ResourceHandlerFlag1 + ResourceTablePointer * 4);
+                  ResourceHashSecondaryPointer = (uint32_t *)(ResourceAllocationFlag + ResourceTablePointer * 4);
                   ResourceTablePointer = (int64_t)-OperationResult;
                   if (OperationResult < 0) {
                     for (; ResourceTablePointer != 0; ResourceTablePointer = ResourceTablePointer + -1) {
-                      *ResourceHashPointer2 = 0;
-                      ResourceHashPointer2 = ResourceHashPointer2 + 1;
+                      *ResourceHashSecondaryPointer = 0;
+                      ResourceHashSecondaryPointer = ResourceHashSecondaryPointer + 1;
                     }
                   }
                 }
-                ResourceHandlerFlag2 = ResourceHandlerFlag2 & 0xffffffff00000000;
+                ResourceValidationFlag = ResourceValidationFlag & 0xffffffff00000000;
                 if ((int)ValidationCounter < 0) {
                   ValidationCounter = -ValidationCounter;
                 }
                 if (ValidationCounter == 0) {
                   return ContextHashValidationResult;
                 }
-                ValidateDataIntegrity(&ResourceHandlerFlag1,0);
+                ValidateDataIntegrity(&ResourceAllocationFlag,0);
                 return ContextHashValidationResult;
               }
-              ResourceHashValue0 = (uint64_t)ResourceHandlerFlag2.Field44;
-              ResourceIndex4 = (int)ResourceHandlerFlag2;
+              ResourceHashInitialValue = (uint64_t)ResourceValidationFlag.Field44;
+              ResourceCapacityIndex = (int)ResourceValidationFlag;
             }
-            SystemCommandParams[0] = ResourceIndex4 + 1;
+            SystemCommandParams[0] = ResourceCapacityIndex + 1;
             ContextValidationStatusCode = (uint64_t)SystemCommandParams[0];
-            ResourceHandlerFlag2 = CONCAT44(ResourceHandlerFlag2.Field44,SystemCommandParams[0]);
-            *(uint32_t *)(ResourceHandlerFlag1 + (int64_t)ResourceIndex4 * 4) = ResourceHashValidationResult;
-            ResourceContext3 = DataHandlerContextPointer;
+            ResourceValidationFlag = CONCAT44(ResourceValidationFlag.Field44,SystemCommandParams[0]);
+            *(uint32_t *)(ResourceAllocationFlag + (int64_t)ResourceCapacityIndex * 4) = ResourceHashValidationResult;
+            ResourceContextSecondary = DataHandlerContextPointer;
           }
-          OperationStatusCode = (int)ResourceHashValue0;
-          ResourceIndex6 = (int)ContextHashValidationResult;
+          OperationStatusCode = (int)ResourceHashInitialValue;
+          ResourceCapacityMultiplier = (int)ContextHashValidationResult;
         } while ((SystemCommandArray[0] != -1) &&
                 (SystemCommandArray[0] = *(int *)(ResourceContext3[2] + 4 + LocalContextPointer * 0x10), SystemCommandArray[0] != -1));
         ResourceCount = ResourceIndex1 + 1;
-        encryptionShiftValue7 = ResourceIndex1 != -1;
+        EncryptionValidationResult = ResourceIndex1 != -1;
         ResourceIndex1 = 0;
-        if (encryptionShiftValue7) {
+        if (EncryptionValidationResult) {
           ResourceIndex1 = ResourceCount;
         }
         if (ResourceIndex1 != (int)ResourceContext3[1]) {
@@ -12403,10 +12403,10 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
 ResourceAllocationSuccess:
       } while (SystemCommandArray[0] != -1);
       SystemCommandArray[0] = -1;
-      ContextValidationStatusCode = ResourceHandlerFlag1;
+      ContextValidationStatusCode = ResourceAllocationFlag;
     }
-    ResourceTablePointer = (int64_t)(ResourceIndex6 + -1);
-    if (-1 < ResourceIndex6 + -1) {
+    ResourceTablePointer = (int64_t)(ResourceCapacityMultiplier + -1);
+    if (-1 < ResourceCapacityMultiplier + -1) {
       do {
         ResourceHandlerParam = ResourceHandlerParam & 0xffffffff00000000;
         DataHandlerContextPointer = (int64_t *)&SystemDataTemplateActive;
@@ -12420,43 +12420,43 @@ ResourceAllocationSuccess:
       ResourceIndex1 = -OperationResult;
     }
     if (ResourceIndex1 < 0) {
-      if (0 < ResourceIndex6) goto ErrorHandler;
+      if (0 < ResourceCapacityMultiplier) goto ErrorHandler;
       if ((0 < OperationResult) && (ContextHashValidationResult != 0)) {
               ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ContextHashValidationResult,&ResourceAllocationTemplate,0x100,1);
       }
-      ResourceHandlerFlag1 = 0;
-      ResourceHandlerFlag2 = 0;
+      ResourceAllocationFlag = 0;
+      ResourceValidationFlag = 0;
       ContextValidationStatusCode = 0;
       OperationStatusCode = 0;
     }
-    if (ResourceIndex6 < 0) {
-      ResourceTablePointer = (int64_t)-ResourceIndex6;
-      ResourceHashPointer2 = (uint32_t *)(ContextHashValidationResult + (int64_t)ResourceIndex6 * 4);
-      if (ResourceIndex6 < 0) {
+    if (ResourceCapacityMultiplier < 0) {
+      ResourceTablePointer = (int64_t)-ResourceCapacityMultiplier;
+      ResourceHashSecondaryPointer = (uint32_t *)(ContextHashValidationResult + (int64_t)ResourceCapacityMultiplier * 4);
+      if (ResourceCapacityMultiplier < 0) {
         for (; ResourceTablePointer != 0; ResourceTablePointer = ResourceTablePointer + -1) {
-          *ResourceHashPointer2 = 0;
-          ResourceHashPointer2 = ResourceHashPointer2 + 1;
+          *ResourceHashSecondaryPointer = 0;
+          ResourceHashSecondaryPointer = ResourceHashSecondaryPointer + 1;
         }
       }
     }
-    ResourceHandlerFlag2 = ResourceHandlerFlag2 & 0xffffffff00000000;
+    ResourceValidationFlag = ResourceValidationFlag & 0xffffffff00000000;
     if (OperationResult < 0) {
       OperationStatusCode = -OperationResult;
     }
     if (OperationResult != 0) {
-      ValidateDataIntegrity(&ResourceHandlerFlag1,0);
+      ValidateDataIntegrity(&ResourceAllocationFlag,0);
     }
   }
 ErrorHandler:
   ContextValidationStatusCode = 0;
-  ResourceHashValue0 = ContextHashValidationResult;
+  ResourceHashInitialValue = ContextHashValidationResult;
   if (0 < *(int *)(ObjectContext + ObjectContextProcessingDataOffset)) {
     do {
-      ResourceCounter = (int)ResourceHashValue0 + 1;
+      ResourceCounter = (int)ResourceHashInitialValue + 1;
       pencryptionShiftValue = (byte *)(ContextHashValidationResult + 0xb + *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset));
       *pencryptionShiftValue = *pencryptionShiftValue & 0xfe;
       ContextValidationStatusCode = ContextHashValidationResult + 0xc;
-      ResourceHashValue0 = (uint64_t)ResourceCounter;
+      ResourceHashInitialValue = (uint64_t)ResourceCounter;
     } while ((int)ResourceCounter < *(int *)(ObjectContext + ObjectContextProcessingDataOffset));
   }
   OperationStatusCode = ProcessDataContextOperations(dataContext + 0x70);
@@ -13600,12 +13600,12 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               ResourceValidationStatus = *(uint8_t *)(*(int64_t *)(SystemDataPointer + 0x90) + ResourceContextDataPointer * 8);
               ResourceValidationFlag = 0;
               if (*(int *)(ResourceIndex + 0x58) < 1) {
-                ResourceHashPointer2 = &ResourceHashTemplate;
+                ResourceHashSecondaryPointer = &ResourceHashTemplate;
               }
               else {
-                ResourceHashPointer2 = *(uint8_t **)(ResourceIndex + 0x50);
+                ResourceHashSecondaryPointer = *(uint8_t **)(ResourceIndex + 0x50);
               }
-              CopySecurityData(ResourceHashStackArray,ResourceHashPointer2,0x80);
+              CopySecurityData(ResourceHashStackArray,ResourceHashSecondaryPointer,0x80);
               ProcessStatus = GetAndValidateResourceData(ObjectContext,&ResourceOperationParameter);
               if (ProcessStatus != 0) goto HandleMemoryCleanup;
             }
@@ -13615,8 +13615,8 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
           } while (ResourceContextDataPointer < ResourceValidationBuffer);
         }
         PrimaryResourceHash = *(uint8_t *)(*(int64_t *)(ObjectContext + 8) + 800);
-        ResourceHashValue0 = (**(code **)*ResourceHashPointer6)(ResourceHashPointer6);
-        ProcessStatus = CalculateDataHash(ResourceHashValue0,PrimaryResourceHash,ResourceHashBuffer);
+        ResourceHashInitialValue = (**(code **)*ResourceHashPointer6)(ResourceHashPointer6);
+        ProcessStatus = CalculateDataHash(ResourceHashInitialValue,PrimaryResourceHash,ResourceHashBuffer);
         if (ProcessStatus == 0) {
           if (ResourceHashBuffer[0] != '\0') {
             PrimaryResourceHash = GenerateResourceHash();
@@ -13632,7 +13632,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               ResourceOperationState = 0;
               ResourceDataOffset = *(uint32_t *)(ResourceTable + 0x58);
               ResourceDataSize = *(uint32_t *)(ResourceTable + 0x5c);
-              ResourceHandlerFlag1 = *(uint32_t *)(ResourceTable + 0x60);
+              ResourceAllocationFlag = *(uint32_t *)(ResourceTable + 0x60);
               ResourceAlignment = *(uint32_t *)(ResourceTable + 100);
               SecondaryOperationParameter8 = BufferContextSize;
               ProcessStatus = GetAndValidateResourceData(ObjectContext,&ResourceTemplatePointer);
@@ -13899,7 +13899,7 @@ void SystemInitializerPrimary(void)
             *(float *)(ExecutionContextPointer + -0xd) = FloatRegisterValue;
             ResourceCounter = *(uint32_t *)(CpuRegisterR15 + 0x58);
             ValidationCounter = *(uint32_t *)(CpuRegisterR15 + 0x5c);
-            ResourceHashValue0 = *(uint32_t *)(CpuRegisterR15 + 0x60);
+            ResourceHashInitialValue = *(uint32_t *)(CpuRegisterR15 + 0x60);
             PrimaryResourceHash = *(uint32_t *)(CpuRegisterR15 + 100);
             *(uint32_t *)(ExecutionContextPointer + -0xc) = StackContextBuffer;
             *(uint32_t *)(ExecutionContextPointer + -9) = ResourceHashValidationQuaternary;
@@ -13908,7 +13908,7 @@ void SystemInitializerPrimary(void)
             *(uint32_t *)((int64_t)ExecutionContextPointer + -0x3c) = SecurityHashValue;
             *(uint32_t *)(ExecutionContextPointer + -7) = ResourceCounter;
             *(uint32_t *)((int64_t)ExecutionContextPointer + -0x34) = ValidationCounter;
-            *(uint32_t *)(ExecutionContextPointer + -6) = ResourceHashValue0;
+            *(uint32_t *)(ExecutionContextPointer + -6) = ResourceHashInitialValue;
             *(uint32_t *)((int64_t)ExecutionContextPointer + -0x2c) = PrimaryResourceHash;
             ResourceIndexTertiary = GetAndValidateResourceData(ResourceCounter,ExecutionContextPointer + -0xe);
             ResourceHashValidationQuaternary = FloatingPointResultThird;
@@ -14167,7 +14167,7 @@ void CalculateFloatValueAndValidateResources(void)
         *(float *)(ExecutionContextPointer + -0xd) = FloatRegisterValue;
         ResourceCounter = *(uint32_t *)(CpuRegisterR15 + 0x58);
         ValidationCounter = *(uint32_t *)(CpuRegisterR15 + 0x5c);
-        ResourceHashValue0 = *(uint32_t *)(CpuRegisterR15 + 0x60);
+        ResourceHashInitialValue = *(uint32_t *)(CpuRegisterR15 + 0x60);
         PrimaryResourceHash = *(uint32_t *)(CpuRegisterR15 + 100);
         *(uint32_t *)(ExecutionContextPointer + -0xc) = StackContextBuffer;
         *(uint32_t *)(ExecutionContextPointer + -9) = ResourceHashValidationTertiary;
@@ -14176,7 +14176,7 @@ void CalculateFloatValueAndValidateResources(void)
         *(uint32_t *)((int64_t)ExecutionContextPointer + -0x3c) = SecurityHashValue;
         *(uint32_t *)(ExecutionContextPointer + -7) = ResourceCounter;
         *(uint32_t *)((int64_t)ExecutionContextPointer + -0x34) = ValidationCounter;
-        *(uint32_t *)(ExecutionContextPointer + -6) = ResourceHashValue0;
+        *(uint32_t *)(ExecutionContextPointer + -6) = ResourceHashInitialValue;
         *(uint32_t *)((int64_t)ExecutionContextPointer + -0x2c) = PrimaryResourceHash;
         ResourceIndexTertiary = GetAndValidateResourceData(ResourceCounter,ExecutionContextPointer + -0xe);
         ResourceHashValidationTertiary = FloatingPointResultSecond;
@@ -14944,12 +14944,12 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
             StackPointer = &SystemMemoryTemplateE;
             ResourceDataWidth = ResourceDataWidth & 0xffffff00;
             if (*(int *)(LocalContextHandle + 0x58) < 1) {
-              ResourceHashPointer2 = &ResourceHashTemplate;
+              ResourceHashSecondaryPointer = &ResourceHashTemplate;
             }
             else {
-              ResourceHashPointer2 = *(uint8_t **)(LocalContextHandle + 0x50);
+              ResourceHashSecondaryPointer = *(uint8_t **)(LocalContextHandle + 0x50);
             }
-            CopySecurityData(&GraphicsOperationFlag6,ResourceHashPointer2,0x80);
+            CopySecurityData(&GraphicsOperationFlag6,ResourceHashSecondaryPointer,0x80);
             LocalContextHandle = ObjectContext[4];
             if ((char)LocalContextHandle == '\0') {
               *(uint8_t *)(ObjectContext + 4) = 1;
@@ -21517,7 +21517,7 @@ uint8_t * GetResourceDataPointerA(void)
   float FloatValue7;
   uint ResourceCounter;
   uint ValidationCounter;
-  uint ResourceHashValue0;
+  uint ResourceHashInitialValue;
   int64_t InputParameterValue;
   uint8_t *ResourceHashPointerMain;
   uint32_t *ResourceHashPointerAlternate;
@@ -21547,13 +21547,13 @@ uint8_t * GetResourceDataPointerA(void)
   if ((int)ResourceHashPointer != 0) {
     return ResourceHashPointer;
   }
-  ResourceHashPointer2 = (uint32_t *)AllocateMemoryBlock();
+  ResourceHashSecondaryPointer = (uint32_t *)AllocateMemoryBlock();
   ResourceHashPointer = (uint8_t *)0x0;
   ValidationCounter = *(uint *)(SystemRegisterContext + 8);
-  ResourceHashValidationResultPrimary = *ResourceHashPointer2;
-  ValidationResult = ResourceHashPointer2[1];
-  ValidationStatusCode = ResourceHashPointer2[2];
-  loopIncrement = ResourceHashPointer2[3];
+  ResourceHashValidationResultPrimary = *ResourceHashSecondaryPointer;
+  ValidationResult = ResourceHashSecondaryPointer[1];
+  ValidationStatusCode = ResourceHashSecondaryPointer[2];
+  loopIncrement = ResourceHashSecondaryPointer[3];
   *(uint32_t *)(ExecutionContextPointer + -0x19) = ResourceHashValidationResultPrimary;
   *(uint32_t *)(ExecutionContextPointer + -0x15) = ResourceHashValidationResult;
   *(uint32_t *)(ExecutionContextPointer + -0x11) = HashValidationResult;
@@ -21601,12 +21601,12 @@ uint8_t * GetResourceDataPointerA(void)
     if (ValidationCounter != 0) {
 ResourceValidationWait:
       ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
-      ResourceHashValue0 = ValidationCounter;
+      ResourceHashInitialValue = ValidationCounter;
       if ((int)ValidationCounter < 0) {
-        ResourceHashValue0 = -ValidationCounter;
+        ResourceHashInitialValue = -ValidationCounter;
       }
       ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
-      if ((int)ResourceHashValue0 < 0) {
+      if ((int)ResourceHashInitialValue < 0) {
         if (0 < ResourceProcessingIndex) {
           return ResourceHashPointer3;
         }
@@ -21626,11 +21626,11 @@ ResourceValidationWait:
         if (ResourceProcessingIndex < 0) {
           SystemContextPointer7 = (int64_t)ResourceProcessingIndex * 0x18 + 0x14 + (int64_t)ResourceHashPointer;
           do {
-            ResourceHashPointer2 = (uint32_t *)AllocateMemoryBlock();
-            ResourceHashValidationResultPrimary = ResourceHashPointer2[1];
-            ValidationResult = ResourceHashPointer2[2];
-            ValidationStatusCode = ResourceHashPointer2[3];
-            *(uint32_t *)(SystemContextPointer7 + -0x14) = *ResourceHashPointer2;
+            ResourceHashSecondaryPointer = (uint32_t *)AllocateMemoryBlock();
+            ResourceHashValidationResultPrimary = ResourceHashSecondaryPointer[1];
+            ValidationResult = ResourceHashSecondaryPointer[2];
+            ValidationStatusCode = ResourceHashSecondaryPointer[3];
+            *(uint32_t *)(SystemContextPointer7 + -0x14) = *ResourceHashSecondaryPointer;
             *(uint32_t *)(SystemContextPointer7 + -0x10) = ResourceHashValidationResultPrimary;
             *(uint32_t *)(SystemContextPointer7 + -0xc) = ResourceHashValidationResult;
             *(uint32_t *)(SystemContextPointer7 + -8) = HashValidationResult;
@@ -21685,11 +21685,11 @@ ResourceValidationWait:
       }
     }
     ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
-    ResourceHashValue0 = ValidationCounter;
+    ResourceHashInitialValue = ValidationCounter;
     if ((int)ValidationCounter < 0) {
-      ResourceHashValue0 = -ValidationCounter;
+      ResourceHashInitialValue = -ValidationCounter;
     }
-    if ((int)ResourceHashValue0 < 0) {
+    if ((int)ResourceHashInitialValue < 0) {
       if (0 < ResourceProcessingIndex) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (ResourceHashPointer3 != (uint8_t *)0x0)) {
               ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer3,&ResourceAllocationTemplate,0x100,1);
@@ -21776,9 +21776,9 @@ uint8_t * GetResourceDataPointerB(void)
   float FloatValue7;
   uint ResourceCounter;
   uint ValidationCounter;
-  uint ResourceHashValue0;
+  uint ResourceHashInitialValue;
   uint32_t *ResourceHashPointer;
-  uint8_t *ResourceHashPointer2;
+  uint8_t *ResourceHashSecondaryPointer;
   uint8_t *ResourceHashPointerBuffer;
   float *InputFloatValuePointerSecondary;
   uint64_t ResourceHashValue5;
@@ -21810,31 +21810,31 @@ uint8_t * GetResourceDataPointerB(void)
   *(uint32_t *)(ExecutionContextPointer + -0x11) = HashValidationResult;
   *(uint32_t *)(ExecutionContextPointer + -0xd) = loopIncrement;
   ResourceCounter = 0;
-  ResourceHashPointer2 = ResourceHashPointer3;
+  ResourceHashSecondaryPointer = ResourceHashPointer3;
   if (ValidationCounter < 0x6d) {
     if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
       ResourceHash = *SystemRegisterContext;
-      ResourceHashPointer2 = (uint8_t *)ReadResourceData(ResourceHash,ExecutionContextPointer + -0x19,4);
-      if ((int)ResourceHashPointer2 != 0) {
-        return ResourceHashPointer2;
+      ResourceHashSecondaryPointer = (uint8_t *)ReadResourceData(ResourceHash,ExecutionContextPointer + -0x19,4);
+      if ((int)ResourceHashSecondaryPointer != 0) {
+        return ResourceHashSecondaryPointer;
       }
-      ResourceHashPointer2 = (uint8_t *)ReadResourceData(ResourceHash,ExecutionContextPointer + -0x15,2);
-      if ((int)ResourceHashPointer2 != 0) {
-        return ResourceHashPointer2;
+      ResourceHashSecondaryPointer = (uint8_t *)ReadResourceData(ResourceHash,ExecutionContextPointer + -0x15,2);
+      if ((int)ResourceHashSecondaryPointer != 0) {
+        return ResourceHashSecondaryPointer;
       }
-      ResourceHashPointer2 = (uint8_t *)ReadResourceData(ResourceHash,ExecutionContextPointer + -0x13,2);
-      if ((int)ResourceHashPointer2 != 0) {
-        return ResourceHashPointer2;
+      ResourceHashSecondaryPointer = (uint8_t *)ReadResourceData(ResourceHash,ExecutionContextPointer + -0x13,2);
+      if ((int)ResourceHashSecondaryPointer != 0) {
+        return ResourceHashSecondaryPointer;
       }
-      ResourceHashPointer2 = (uint8_t *)ReadResourceData(ResourceHash,ExecutionContextPointer + -0x11,8);
+      ResourceHashSecondaryPointer = (uint8_t *)ReadResourceData(ResourceHash,ExecutionContextPointer + -0x11,8);
       ResourceHashValidationResultPrimary = FloatingPointCalculationResult;
     }
     else {
-      ResourceHashPointer2 = (uint8_t *)0x1c;
+      ResourceHashSecondaryPointer = (uint8_t *)0x1c;
     }
   }
-  if ((int)ResourceHashPointer2 != 0) {
-    return ResourceHashPointer2;
+  if ((int)ResourceHashSecondaryPointer != 0) {
+    return ResourceHashSecondaryPointer;
   }
   if (0x81 < *(uint *)(SystemRegisterContext + 8)) {
     ResourceHashPointer3 = (uint8_t *)ComputeDataChecksum(ResourceHashValidationResultPrimary,SystemContext + 0x58);
@@ -21848,18 +21848,18 @@ uint8_t * GetResourceDataPointerB(void)
     *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
     *(uint8_t *)(ExecutionContextPointer + -0x21) = 0;
     ValidationCounter = ProcessResourceAllocation(ResourceHashValidationResultPrimary,ExecutionContextPointer + -0x29,0);
-    ResourceHashPointer2 = (uint8_t *)(uint64_t)ValidationCounter;
+    ResourceHashSecondaryPointer = (uint8_t *)(uint64_t)ValidationCounter;
     if (ValidationCounter != 0) {
 ResourceValidationWait:
       ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
-      ResourceHashValue0 = ValidationCounter;
+      ResourceHashInitialValue = ValidationCounter;
       if ((int)ValidationCounter < 0) {
-        ResourceHashValue0 = -ValidationCounter;
+        ResourceHashInitialValue = -ValidationCounter;
       }
       ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
-      if ((int)ResourceHashValue0 < 0) {
+      if ((int)ResourceHashInitialValue < 0) {
         if (0 < ResourceProcessingIndex) {
-          return ResourceHashPointer2;
+          return ResourceHashSecondaryPointer;
         }
         if ((0 < (int)ValidationCounter) && (*(int64_t *)(ExecutionContextPointer + -0x29) != 0)) {
                 ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
@@ -21897,63 +21897,63 @@ ResourceValidationWait:
         ValidationCounter = -ValidationCounter;
       }
       if (ValidationCounter == 0) {
-        return ResourceHashPointer2;
+        return ResourceHashSecondaryPointer;
       }
       FreeMemoryBlock(ExecutionContextPointer + -0x29,0);
-      return ResourceHashPointer2;
+      return ResourceHashSecondaryPointer;
     }
     ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
     CalculatedFloatResult = FloatingPointResultFourth;
     if (ResourceProcessingIndex == 0) {
-      ResourceHashPointer2 = *(uint8_t **)(ExecutionContextPointer + -0x29);
+      ResourceHashSecondaryPointer = *(uint8_t **)(ExecutionContextPointer + -0x29);
     }
     else {
       ValidationCounter = (int)*(uint *)(SystemContext + 0x54) >> 0x1f;
       if ((int)((*(uint *)(SystemContext + 0x54) ^ ValidationCounter) - ValidationCounter) < ResourceProcessingIndex) {
         ValidationCounter = CalculateResourceHash(SystemContext + 0x48,ResourceProcessingIndex);
-        ResourceHashPointer2 = (uint8_t *)(uint64_t)ValidationCounter;
+        ResourceHashSecondaryPointer = (uint8_t *)(uint64_t)ValidationCounter;
         if (ValidationCounter != 0) goto ResourceValidationWait;
         ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
         CalculatedFloatResult = FloatingPointResultFifth;
       }
-      ResourceHashPointer2 = *(uint8_t **)(ExecutionContextPointer + -0x29);
-      for (ResourceHashPointer6 = ResourceHashPointer2; (ResourceHashPointer2 <= ResourceHashPointer6 && (ResourceHashPointer6 < ResourceHashPointer2 + (int64_t)ResourceProcessingIndex * 3));
+      ResourceHashSecondaryPointer = *(uint8_t **)(ExecutionContextPointer + -0x29);
+      for (ResourceHashPointer6 = ResourceHashSecondaryPointer; (ResourceHashSecondaryPointer <= ResourceHashPointer6 && (ResourceHashPointer6 < ResourceHashSecondaryPointer + (int64_t)ResourceProcessingIndex * 3));
           ResourceHashPointer6 = ResourceHashPointer6 + 3) {
         *(uint8_t *)(ExecutionContextPointer + 0x77) = 0;
         ValidationCounter = InitializeResourceBuffer(SystemContext + 0x48,ExecutionContextPointer + 0x77);
-        ResourceHashPointer2 = (uint8_t *)(uint64_t)ValidationCounter;
+        ResourceHashSecondaryPointer = (uint8_t *)(uint64_t)ValidationCounter;
         if (ValidationCounter != 0) goto ResourceValidationWait;
         ResourceHash = ResourceHashPointer6[1];
-        ResourceHashPointer2 = *(uint8_t **)(ExecutionContextPointer + 0x77);
-        *ResourceHashPointer2 = *ResourceHashPointer6;
-        ResourceHashPointer2[1] = ResourceHash;
-        *(uint32_t *)(ResourceHashPointer2 + 2) = *(uint32_t *)(ResourceHashPointer6 + 2);
+        ResourceHashSecondaryPointer = *(uint8_t **)(ExecutionContextPointer + 0x77);
+        *ResourceHashSecondaryPointer = *ResourceHashPointer6;
+        ResourceHashSecondaryPointer[1] = ResourceHash;
+        *(uint32_t *)(ResourceHashSecondaryPointer + 2) = *(uint32_t *)(ResourceHashPointer6 + 2);
         CalculatedFloatResult = *(float *)((int64_t)ResourceHashPointer6 + 0x14) + *(float *)(ResourceHashPointer6 + 2);
-        *(float *)((int64_t)ResourceHashPointer2 + 0x14) = CalculatedFloatResult;
-        *(uint8_t *)(ResourceHashPointer2 + 3) = 1;
+        *(float *)((int64_t)ResourceHashSecondaryPointer + 0x14) = CalculatedFloatResult;
+        *(uint8_t *)(ResourceHashSecondaryPointer + 3) = 1;
         ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
-        ResourceHashPointer2 = *(uint8_t **)(ExecutionContextPointer + -0x29);
+        ResourceHashSecondaryPointer = *(uint8_t **)(ExecutionContextPointer + -0x29);
       }
     }
     ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
-    ResourceHashValue0 = ValidationCounter;
+    ResourceHashInitialValue = ValidationCounter;
     if ((int)ValidationCounter < 0) {
-      ResourceHashValue0 = -ValidationCounter;
+      ResourceHashInitialValue = -ValidationCounter;
     }
-    if ((int)ResourceHashValue0 < 0) {
+    if ((int)ResourceHashInitialValue < 0) {
       if (0 < ResourceProcessingIndex) goto ResourceIndexProcessing;
-      if ((0 < (int)ValidationCounter) && (ResourceHashPointer2 != (uint8_t *)0x0)) {
-              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer2,&ResourceAllocationTemplate,0x100,1);
+      if ((0 < (int)ValidationCounter) && (ResourceHashSecondaryPointer != (uint8_t *)0x0)) {
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashSecondaryPointer,&ResourceAllocationTemplate,0x100,1);
       }
       *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
       *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
-      ResourceHashPointer2 = ResourceHashPointer3;
+      ResourceHashSecondaryPointer = ResourceHashPointer3;
       ValidationCounter = ResourceCounter;
     }
     if (ResourceProcessingIndex < 0) {
       SystemContextPointer8 = (int64_t)-ResourceProcessingIndex;
       if (ResourceProcessingIndex < 0) {
-        SystemContextPointer7 = (int64_t)ResourceProcessingIndex * 0x18 + 0x14 + (int64_t)ResourceHashPointer2;
+        SystemContextPointer7 = (int64_t)ResourceProcessingIndex * 0x18 + 0x14 + (int64_t)ResourceHashSecondaryPointer;
         do {
           pinputFloatValue4 = (float *)AllocateMemoryBlock();
           CalculatedFloatResult = *pinputFloatValue4;
@@ -22029,9 +22029,9 @@ uint64_t ResourceProcessingHandler(uint8_t ObjectContext)
   uint InputRegisterResult;
   uint ResourceCounter;
   uint ValidationCounter;
-  uint ResourceHashValue0;
+  uint ResourceHashInitialValue;
   uint64_t PrimaryResourceHash;
-  uint32_t *ResourceHashPointer2;
+  uint32_t *ResourceHashSecondaryPointer;
   float *pinputFloatValue3;
   uint8_t *ResourceHashPointer4;
   uint8_t *ResourceHashPointer5;
@@ -22068,12 +22068,12 @@ uint64_t ResourceProcessingHandler(uint8_t ObjectContext)
     if (ValidationCounter != 0) {
 ResourceValidationWait:
       ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
-      ResourceHashValue0 = ValidationCounter;
+      ResourceHashInitialValue = ValidationCounter;
       if ((int)ValidationCounter < 0) {
-        ResourceHashValue0 = -ValidationCounter;
+        ResourceHashInitialValue = -ValidationCounter;
       }
       ResourceIndexOctal = *(int *)(ExecutionContextPointer + -0x21);
-      if ((int)ResourceHashValue0 < 0) {
+      if ((int)ResourceHashInitialValue < 0) {
         if (0 < ResourceIndexOctal) {
           return PrimaryResourceHash;
         }
@@ -22094,11 +22094,11 @@ ResourceValidationWait:
         if (ResourceIndexOctal < 0) {
           SystemContextPointer6 = (int64_t)ResourceIndexOctal * 0x18 + 0x14 + (int64_t)ResourceHashPointer4;
           do {
-            ResourceHashPointer2 = (uint32_t *)AllocateMemoryBlock();
-            ResourceHash = ResourceHashPointer2[1];
-            ValidationResult = ResourceHashPointer2[2];
-            ValidationStatusCode = ResourceHashPointer2[3];
-            *(uint32_t *)(SystemContextPointer6 + -0x14) = *ResourceHashPointer2;
+            ResourceHashSecondaryPointer = (uint32_t *)AllocateMemoryBlock();
+            ResourceHash = ResourceHashSecondaryPointer[1];
+            ValidationResult = ResourceHashSecondaryPointer[2];
+            ValidationStatusCode = ResourceHashSecondaryPointer[3];
+            *(uint32_t *)(SystemContextPointer6 + -0x14) = *ResourceHashSecondaryPointer;
             *(uint32_t *)(SystemContextPointer6 + -0x10) = ResourceHash;
             *(uint32_t *)(SystemContextPointer6 + -0xc) = ResourceHashValidationResult;
             *(uint32_t *)(SystemContextPointer6 + -8) = HashValidationResult;
@@ -22153,11 +22153,11 @@ ResourceValidationWait:
       }
     }
     ValidationCounter = *(uint *)(ExecutionContextPointer + -0x1d);
-    ResourceHashValue0 = ValidationCounter;
+    ResourceHashInitialValue = ValidationCounter;
     if ((int)ValidationCounter < 0) {
-      ResourceHashValue0 = -ValidationCounter;
+      ResourceHashInitialValue = -ValidationCounter;
     }
-    if ((int)ResourceHashValue0 < 0) {
+    if ((int)ResourceHashInitialValue < 0) {
       if (0 < ResourceIndexOctal) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (ResourceHashPointer4 != (uint8_t *)0x0)) {
               ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer4,&ResourceAllocationTemplate,0x100,1);
@@ -22979,16 +22979,16 @@ ResourceOperationEnd:
         if (*(int *)(ResourceContext[1] + 0x18) == 0) {
           loopIncrement = GetResourceHash(*ResourceContext,
                                 (int64_t)(int)SecurityHashValue * 0x10 + *(int64_t *)(SystemContextBase + 0x60));
-          ResourceHashValue0 = FloatingPointResultNinth;
+          ResourceHashInitialValue = FloatingPointResultNinth;
         }
         else {
           loopIncrement = 0x1c;
-          ResourceHashValue0 = FloatingPointResultEighth;
+          ResourceHashInitialValue = FloatingPointResultEighth;
         }
         if ((int)LoopCondition != 0) {
           return LoopCondition;
         }
-        loopIncrement = ParseResourceMetadata(ResourceHashValue0,ExecutionContextPointer + 0x77);
+        loopIncrement = ParseResourceMetadata(ResourceHashInitialValue,ExecutionContextPointer + 0x77);
         if ((int)LoopCondition != 0) {
           return LoopCondition;
         }
@@ -23542,7 +23542,7 @@ uint64_t ProcessFloatParameterResourceHash(float ObjectContext)
   int64_t ExecutionContextPointer;
   uint ResourceCounter;
   int ArrayIndex;
-  uint ResourceHashValue0;
+  uint ResourceHashInitialValue;
   uint64_t SavedRegisterValue;
   int ResourceIndex1;
   int64_t SystemContextBase;
@@ -23719,9 +23719,9 @@ ResourceOperationLoop:
             }
             ResourceCounter = (int)ContextHashValidationResult + 1;
             ContextValidationStatusCode = (uint64_t)ResourceCounter;
-            ResourceHashValue0 = *(uint *)(ExecutionContextPointer + 0x77) & -(loopIncrement & 1);
-            SystemRegisterContext = (uint64_t)ResourceHashValue0;
-            *(uint *)(ExecutionContextPointer + 0x77) = ResourceHashValue0;
+            ResourceHashInitialValue = *(uint *)(ExecutionContextPointer + 0x77) & -(loopIncrement & 1);
+            SystemRegisterContext = (uint64_t)ResourceHashInitialValue;
+            *(uint *)(ExecutionContextPointer + 0x77) = ResourceHashInitialValue;
             ObjectContext = FloatingPointResultNinth;
             inputFloatValue3 = FloatingPointResultNinth;
           } while ((int)ResourceCounter < (int)(loopIncrement >> 1));
@@ -49307,7 +49307,7 @@ void Unwind_ResourceTableRelease(uint8_t ObjectContext,int64_t ValidationContext
   int64_t *ResourceDataPointer;
   int64_t *ResourceSecondaryPointer;
   int64_t *ResourceTertiaryPointer;
-  uint64_t ResourceHashValue0;
+  uint64_t ResourceHashInitialValue;
   
   ByteDataPointer = *(uint8_t **)(ValidationContext + 0x2e8);
   *ResourceDataPointer6 = &ResourceHashTable003;
@@ -49318,12 +49318,12 @@ void Unwind_ResourceTableRelease(uint8_t ObjectContext,int64_t ValidationContext
   if (ProcessStatus != 0) {
     __Throw_C_error_std__YAXH_Z(ProcessStatus);
   }
-  ResourceHashValue0 = 0;
-  PrimaryResourceHash = ResourceHashValue0;
+  ResourceHashInitialValue = 0;
+  PrimaryResourceHash = ResourceHashInitialValue;
   if (ResourceDataPointer[9] != 0) {
     do {
       SecondaryResourceHash = PrimaryResourceHash % (uint64_t)*(uint *)(ResourceDataPointer + 8);
-      ProcessStatus = (int)ResourceHashValue0;
+      ProcessStatus = (int)ResourceHashInitialValue;
       for (ResourceCountPointer = *(int **)(ResourceDataPointer[7] + SecondaryResourceHash * 8); ResourceCountPointer != (int *)0x0;
           ResourceCountPointer = *(int **)(ResourceCountPointer + 4)) {
         if (ProcessStatus == *ResourceCountPointer) {
@@ -49354,7 +49354,7 @@ ResourceCleanupHandler:
         (**(code **)(*ResourceSecondaryPointer + 0x38))();
       }
       ValidationCounter = ProcessStatus + 1;
-      ResourceHashValue0 = (uint64_t)ValidationCounter;
+      ResourceHashInitialValue = (uint64_t)ValidationCounter;
       PrimaryResourceHash = (int64_t)(int)ValidationCounter;
     } while ((uint64_t)(int64_t)(int)ValidationCounter < (uint64_t)ResourceDataPointer[9]);
   }
