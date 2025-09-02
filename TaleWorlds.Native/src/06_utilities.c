@@ -4786,23 +4786,23 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandleBasic(int64_t ObjectContext) {
-  uint8_t ObjectValidationResult;
-  int64_t ValidatedSystemContext;
+  uint8_t ValidationStatus;
+  int64_t SystemContextHandle;
   
-  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &ValidatedSystemContext);
-  if ((int)ObjectValidationResult == 0) {
-    if (ValidatedSystemContext == 0) {
-      ValidatedSystemContext = 0;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &SystemContextHandle);
+  if ((int)ValidationStatus == 0) {
+    if (SystemContextHandle == 0) {
+      SystemContextHandle = 0;
     }
     else {
-      ValidatedSystemContext = ValidatedSystemContext - 8;
+      SystemContextHandle = SystemContextHandle - 8;
     }
-    if (*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset), 1);
+    if (*(int64_t *)(SystemContextHandle + ObjectHandleMemoryOffset) != 0) {
+            ExecuteSystemExitOperation(*(int64_t *)(SystemContextHandle + ObjectHandleMemoryOffset), 1);
     }
-    ObjectValidationResult = 0;
+    ValidationStatus = 0;
   }
-  return ObjectValidationResult;
+  return ValidationStatus;
 }
 
 
@@ -29896,11 +29896,11 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void UnwindPrimaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerFunctionPointer;
+  int64_t* HandlerFunctionPointer;
   
-  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
-  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
+  HandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  if (HandlerFunctionPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)HandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -79968,7 +79968,15 @@ void Unwind_18090c9d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ca00(void)
+/**
+ * @brief 释放资源引用计数器A
+ * 
+ * 该函数负责减少资源引用计数并调用资源管理器的清理函数。
+ * 用于系统资源的释放和清理操作。
+ * 
+ * @note 这是资源释放链中的第一个函数
+ */
+void ReleaseResourceReferenceCounterA(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
