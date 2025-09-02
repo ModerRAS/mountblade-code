@@ -268,7 +268,7 @@
  * @param ValidationParameter 验证参数值低7位
  * @return 合并后的64位值
  */
-uint64_t CombineSystemContextWithValidation(uint64_t systemContext, uint8_t validationParameter);
+uint64_t CombineSystemContextWithValidation(uint64_t SystemContext, uint8_t ValidationParameter);
 
 /**
  * @brief 计算数据校验和
@@ -282,7 +282,7 @@ uint64_t CombineSystemContextWithValidation(uint64_t systemContext, uint8_t vali
  * @param ChecksumSeed 校验种子值
  * @return 计算得到的校验和值
  */
-uint64_t ComputeDataChecksum(uint64_t systemContext, void* dataBuffer, int algorithmType, uint32_t checksumSeed);
+uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t checksumSeed);
 
 /**
  * @brief 计算数据校验和(扩展版)
@@ -4181,7 +4181,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   int SystemProcessingStatus;
   int64_t CurrentObjectIndex;
   int ProcessedObjectCount;
-  uint8_t ObjectMetadataBuffer[32];
+  uint8_t ObjectMetaDataBuffer[32];
   int64_t SystemHandleBuffer[2];
   uint8_t *DataBuffer;
   int BufferPosition;
@@ -4189,7 +4189,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   uint8_t ObjectProcessingWorkspace[512];
   uint64_t SecurityValidationKey;
   
-  SecurityValidationKey = 0x12345678 ^ (uint64_t)ObjectMetadataBuffer;
+  SecurityValidationKey = 0x12345678 ^ (uint64_t)ObjectMetaDataBuffer;
   SystemProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleBuffer);
   if ((SystemProcessingStatus == 0) && (*(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
     DataBuffer = ObjectProcessingWorkspace;
@@ -4217,7 +4217,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
       FreeObjectListMemory(&DataBuffer);
     }
   }
-        PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetadataBuffer);
+        PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetaDataBuffer);
 }
 
 
@@ -14149,15 +14149,15 @@ void ProcessContextDataValidation(int64_t *ObjectContext,int64_t *ValidationCont
   int64_t loopCounter;
   int ProcessingStatusCode;
   uint8_t encryptionBuffer [32];
-  uint8_t dataBuffer [512];
+  uint8_t DataBuffer [512];
   uint64_t SecurityParameter;
   
   securityParameter = SecurityEncryptionKey ^ (uint64_t)encryptionBuffer;
   SystemContextPointer = ObjectContext[4];
   if (((char)SystemContextPointer != '\0') || (OperationResult = CheckSystemStatus(ObjectContext,1), OperationResult == 0)) {
-    OperationResult = (**(code **)(*ValidationContext + 0x10))(ValidationContext,dataBuffer,0x200);
-    ProcessDataBuffer(dataBuffer + OperationResult,0x200 - OperationResult,10);
-    OperationResult = (**(code **)(*ObjectContext + 8))(ObjectContext,dataBuffer);
+    OperationResult = (**(code **)(*ValidationContext + 0x10))(ValidationContext,DataBuffer,0x200);
+    ProcessDataBuffer(DataBuffer + OperationResult,0x200 - OperationResult,10);
+    OperationResult = (**(code **)(*ObjectContext + 8))(ObjectContext,DataBuffer);
     if ((OperationResult == 0) &&
        (((char)SystemContextPointer == '\0' && (OperationResult = (**(code **)(*ObjectContext + ObjectContextValidationDataOffset))(ObjectContext), OperationResult == 0)))) {
       *(uint8_t *)(ObjectContext + 4) = 0;
@@ -15328,14 +15328,14 @@ void ProcessResourceDataValidationOperation(int64_t *ObjectContext,uint8_t Valid
   uint8_t securityValidationContext;
   uint8_t validationFlags;
   uint8_t securityBuffer [32];
-  uint8_t dataBuffer [1024];
+  uint8_t DataBuffer [1024];
   uint64_t OperationParameter;
   
   SecurityOperationParameter = SecurityEncryptionKey ^ (uint64_t)securityBuffer;
   securityValidationContext = ResourceDataParam;
   validationFlags = validationFlagsParam;
-  ProcessDataBuffer(dataBuffer,0x400,ValidationContext,&securityValidationContext);
-  (**(code **)(*ObjectContext + 8))(ObjectContext,dataBuffer);
+  ProcessDataBuffer(DataBuffer,0x400,ValidationContext,&securityValidationContext);
+  (**(code **)(*ObjectContext + 8))(ObjectContext,DataBuffer);
         FinalizeSecurityOperation(SecurityOperationParameter ^ (uint64_t)securityBuffer);
 }
 
@@ -16818,10 +16818,10 @@ uint8_t ProcessResourceHashValidation(uint8_t *resourceHandle,int64_t offset)
  * 该函数解析资源数据，支持多种数据格式的处理。
  * 
  * @param dataContext 数据上下文指针
- * @param dataBuffer 数据缓冲区
+ * @param DataBuffer 数据缓冲区
  * @return 解析结果，0x1c表示失败，其他值表示解析结果
  */
-uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *dataBuffer)
+uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *DataBuffer)
 
 {
   int64_t loopCounter;
@@ -17100,10 +17100,10 @@ void ExecuteResourceDataReadOperation(void)
  * 该函数处理资源数据的序列化操作，将数据转换为可存储或传输的格式。
  * 
  * @param dataContext 数据上下文指针
- * @param dataBuffer 数据缓冲区
+ * @param DataBuffer 数据缓冲区
  * @return 序列化结果，0x1c表示失败，其他值表示序列化结果
  */
-uint8_t ProcessResourceDataSerialization(int64_t *dataContext,uint32_t *dataBuffer)
+uint8_t ProcessResourceDataSerialization(int64_t *dataContext,uint32_t *DataBuffer)
 
 {
   int64_t loopCounter;

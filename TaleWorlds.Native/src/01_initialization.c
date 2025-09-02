@@ -8875,7 +8875,7 @@ void InitializeSystemConfigurationManager(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0xc;
   strcpy_s(SystemProcessingBuffer,0x80,&SystemConfigurationTemplateB,SystemRegisterValue,0xfffffffffffffffe);
-  SystemMemoryAllocationTableEntry001 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntryPrimary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -8916,7 +8916,7 @@ void InitializeSystemExtensionManager(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x16;
   strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantA,SystemRegisterValue,0xfffffffffffffffe);
-  SystemMemoryAllocationTableEntry002 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntrySecondary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -8940,7 +8940,7 @@ void InitializeSystemLibraryManager(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x16;
   strcpy_s(SystemProcessingBuffer,0x80,&SystemStringConstantB,SystemRegisterValue,0xfffffffffffffffe);
-  SystemMemoryAllocationTableEntry003 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntryTertiary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -9391,7 +9391,7 @@ void InitializeSystemPerformanceNode(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x1c;
   strcpy_s(SystemProcessingBuffer,0x80,&SystemInitializationStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
-  SystemMemoryAllocationTableEntry004 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntryQuaternary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -10077,7 +10077,7 @@ void InitializeSystemDebugInfoManager(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 9;
   strcpy_s(SystemProcessingBuffer,0x80,&SystemConfigurationStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
-  SystemMemoryAllocationTableEntry005 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntryQuinary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
