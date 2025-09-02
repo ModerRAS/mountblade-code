@@ -25391,12 +25391,12 @@ void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long Confi
         ProcessResourcePointerOperation(localResourcePointer + 0x20,&puStack_310);
         localAllocationFlags = SystemResourceAllocator(localSystemHandle0,&cStack_337,localResourcePointer + 0x20);
         if (cStack_337 != '\0') {
-          if (localAllocationFlags == localSystemHandle0) goto LAB_ResourceAllocationCheck;
-          if (*(int *)(localAllocationFlags + 0x30) == 0) goto LAB_AllocationFlagCheck;
-          if (*(int *)(localResourcePointer + 0x30) == 0) goto LAB_ResourceAllocationCheck;
+          if (localAllocationFlags == localSystemHandle0) goto ResourceAllocationCheck;
+          if (*(int *)(localAllocationFlags + 0x30) == 0) goto AllocationFlagCheck;
+          if (*(int *)(localResourcePointer + 0x30) == 0) goto ResourceAllocationCheck;
           pbVar15 = *(byte **)(localAllocationFlags + 0x28);
           localSystemHandle4 = *(long long *)(localResourcePointer + 0x28) - (long long)pbVar15;
-          goto LAB_AllocationHandler;
+          goto AllocationHandler;
         }
         SystemUtilityHandler(extraout_XMM0_Da,localResourcePointer);
         if (unsignedSystemValue8 == 8) {
@@ -25446,7 +25446,7 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
       ProcessSystemResourceData(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,
                     *(uint8_t *)(SystemResourcePointer + 0x3d5));
       bVar6 = true;
-      goto LAB_ErrorHandler;
+      goto ErrorHandler;
     }
   }
   else {
@@ -25460,14 +25460,14 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
       }
       ProcessSystemResourceData(*(long long *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,unsignedSystemValue5);
       bVar6 = systemCounter == 2;
-      goto LAB_ErrorHandler;
+      goto ErrorHandler;
     }
     if (!bVar4) {
       return;
     }
   }
   bVar6 = false;
-LAB_ErrorHandler:
+ErrorHandler:
   UpdateTextureManagerSystem(SystemTextureManagerPointer,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,bVar6);
   if (!bVar4) {
     return;
@@ -26487,7 +26487,7 @@ void InitializeSystemDataSynchronizer(long long systemResourcePointer,void* data
   systemFlag2 = CheckSystemFlag(1,0x51);
   localMemoryPointer2 = 0xe0;
   if (systemFlag2 == '\0') {
-    if (systemFlag1 == '\0') goto LAB_18005122d;
+    if (systemFlag1 == '\0') goto SystemValidation;
   }
   else {
 
@@ -26862,7 +26862,7 @@ LAB_SystemValidation:
       pointerToUnsigned11 = pointerToUnsigned10;
     } while (punsignedSystemValue9 != (void* *)0x0);
     if (pointerToUnsigned10 != pointerToUnsigned1) {
-      if (*(int *)(pointerToUnsigned10 + 6) == 0) goto LAB_180051fc9;
+      if (*(int *)(pointerToUnsigned10 + 6) == 0) goto SystemValueValidation;
       if (iStack_20 != 0) {
         pbVar4 = (byte *)pointerToUnsigned10[5];
         localDataPointer = (long long)pbStack_28 - (long long)pbVar4;
