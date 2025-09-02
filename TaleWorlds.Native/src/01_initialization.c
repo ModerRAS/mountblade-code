@@ -48864,7 +48864,18 @@ void* FUN_18006d810(long long SystemResourcePointer,void* ConfigurationDataPoint
 
 
 
-long long FUN_18006d920(long long SystemResourcePointer)
+/**
+ * @brief 系统资源指针计算和查找函数
+ * 
+ * 该函数负责计算和查找系统资源指针，包括资源地址计算、
+ * 锁定操作和偏移量处理。用于系统资源的动态管理和访问。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 计算结果或资源地址
+ * 
+ * 原始函数名为FUN_18006d920，现已重命名为CalculateAndFindSystemResourcePointer
+ */
+long long CalculateAndFindSystemResourcePointer(long long SystemResourcePointer)
 
 {
   ulong long *pointerToUnsigned1;
@@ -57320,8 +57331,14 @@ LAB_180077879:
 
 
 
-// 函数: void FUN_18007799c(void)
-void FUN_18007799c(void)
+/**
+ * @brief 系统空操作函数A
+ * 
+ * 该函数是一个空操作函数，用于系统调试和测试目的。
+ * 
+ * 原始函数名为FUN_18007799c，现已重命名为SystemNoOperationA
+ */
+void SystemNoOperationA(void)
 
 {
   uint unsignedSystemValue1;
