@@ -258,7 +258,7 @@ bool CoreEngineIsInitialized;
  * @warning 状态标志值的含义取决于具体的渲染引擎实现
  */
 uint32_t GetRenderingEngineSystemStatusFlag(void);
-bool RenderingEngineSystemInitialized;
+bool RenderingEngineIsInitialized;
 
 
 /**
@@ -272,7 +272,7 @@ bool RenderingEngineSystemInitialized;
  * @warning 状态标志值的含义取决于具体的图形系统实现
  */
 uint32_t GetGraphicsSystemStatusFlag(void);
-bool GraphicsSystemInitialized;
+bool GraphicsIsInitialized;
 
  /**
  * @brief 获取音频系统状态标志
@@ -285,7 +285,7 @@ bool GraphicsSystemInitialized;
  * @warning 状态标志值的含义取决于具体的音频系统实现
  */
 uint32_t GetAudioSystemStatusFlag(void);
-bool AudioSystemInitialized;
+bool AudioIsInitialized;
 
 
 /**
