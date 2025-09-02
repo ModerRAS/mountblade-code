@@ -5969,7 +5969,7 @@ void InitializeSystemPerformanceMonitor(void)
   PerformanceConfigurationBuffer = PerformanceConfigurationBuffer;
   PerformanceConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 0xf;
-  strcpy_s(PerformanceConfigurationBuffer,0x80,&SystemPerformanceMonitorTemplate,systemContextParameter,0xfffffffffffffffe);
+  strcpy_s(PerformanceConfigurationBuffer,0x80,&SystemPerformanceMonitorTemplate,SystemContextParameter,0xfffffffffffffffe);
   SystemPerformanceMonitorHandle = InitializePerformanceMonitorCallback(&performanceMonitorReference);
   return;
 }
@@ -5999,7 +5999,7 @@ void InitializeSystemSecurityMonitor(void)
   SecurityConfigurationBuffer = SecurityConfigurationBuffer;
   SecurityConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 0xc;
-  strcpy_s(SecurityConfigurationBuffer,0x80,&SystemSecurityMonitorTemplate,systemContextParameter,0xfffffffffffffffe);
+  strcpy_s(SecurityConfigurationBuffer,0x80,&SystemSecurityMonitorTemplate,SystemContextParameter,0xfffffffffffffffe);
   SystemSecurityMonitorHandle = InitializeSecurityMonitorCallback(&securityMonitorReference);
   return;
 }
@@ -6059,7 +6059,7 @@ void InitializeSystemNetworkManager(void)
   NetworkConfigurationBuffer = NetworkConfigurationBuffer;
   NetworkConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 0x13;
-  strcpy_s(NetworkConfigurationBuffer,0x80,&SystemNetworkManagerTemplate,systemContextParameter,0xfffffffffffffffe);
+  strcpy_s(NetworkConfigurationBuffer,0x80,&SystemNetworkManagerTemplate,SystemContextParameter,0xfffffffffffffffe);
   SystemNetworkManagerHandle = InitializeNetworkManagerCallback(&networkManagerReference);
   return;
 }
