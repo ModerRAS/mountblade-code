@@ -13318,11 +13318,11 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
   uint32_t OperationParameter28;
   uint8_t OperationParameter20;
   uint8_t StackVariable138;
-  uint32_t StackValue_130;
-  uint32_t StackValue_12c;
-  uint32_t StackValue_128;
-  uint32_t StackValue_124;
-  uint32_t StackValue_120;
+  uint32_t StackVariable130;
+  uint32_t StackVariable12c;
+  uint32_t StackVariable128;
+  uint32_t StackVariable124;
+  uint32_t StackVariable120;
   uint32_t StackValue_11c;
   uint32_t ResourceHandlerFlag1;
   uint32_t StackValue_114;
