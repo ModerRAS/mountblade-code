@@ -43471,7 +43471,21 @@ void DestroyMutexResourceExtended(uint8_t objectContext,int64_t validationContex
 
 
 
-void Unwind_180904800(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 销毁条件变量资源
+ * 
+ * 该函数负责销毁系统中的条件变量资源
+ * 释放条件变量占用的系统资源，确保系统资源正确清理
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 销毁失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904800，现已重命名为DestroyConditionVariableResource
+ */
+void DestroyConditionVariableResource(uint8_t objectContext,int64_t validationContext)
 
 {
   _Cnd_destroy_in_situ(*(uint8_t *)(validationContext + 0x28));
