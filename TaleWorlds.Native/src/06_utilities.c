@@ -6544,13 +6544,13 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   if (validationStatus != 0) {
     return;
   }
-  capacityCheck = (int)*(uint *)(bufferContext + 0x2c) >> 0x1f;
-  newCapacity = (*(uint *)(bufferContext + 0x2c) ^ capacityCheck) - capacityCheck;
+  capacitySignBit = (int)*(uint *)(bufferContext + 0x2c) >> 0x1f;
+  currentCapacity = (*(uint *)(bufferContext + 0x2c) ^ capacitySignBit) - capacitySignBit;
   validationStatus = *(int *)(bufferContext + 0x28) + 1;
-  if (newCapacity < validationStatus) {
-    newCapacity = (int)((float)newCapacity * 1.5);
-    if (validationStatus <= newCapacity) {
-      validationStatus = newCapacity;
+  if (currentCapacity < validationStatus) {
+    currentCapacity = (int)((float)currentCapacity * 1.5);
+    if (validationStatus <= currentCapacity) {
+      validationStatus = currentCapacity;
     }
     if (validationStatus < 8) {
       validationStatus = 8;
@@ -6574,11 +6574,11 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
     *(int *)(bufferContext + 0x2c) = validationStatus;
   }
   *(int64_t *)(*(int64_t *)(bufferContext + 0x20) + (int64_t)*(int *)(bufferContext + 0x28) * 8) =
-       TemporaryStackBuffer;
+       temporaryStackBuffer;
   *(int *)(bufferContext + 0x28) = *(int *)(bufferContext + 0x28) + 1;
 ErrorHandler:
                     // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+  ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
 }
 
 
@@ -7453,61 +7453,61 @@ void CleanupSecurityTokenFunction(void)
 uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t contextPointer)
 
 {
-    uint8_t MatrixPackageValidationStatus;
-  int FirstRowInfinityCheck;
-  int SecondRowInfinityCheck;
-  int ThirdRowInfinityCheck;
-  int InfinityStatusFlag;
-  int64_t TransformContext;
-  int64_t MatrixBuffer [2];
-  uint MatrixFlags;
-  float MatrixScaleFactor;
-  int64_t MatrixContextPointer;
+    uint8_t matrixValidationStatus;
+  int firstRowInfinityCheck;
+  int secondRowInfinityCheck;
+  int thirdRowInfinityCheck;
+  int infinityStatusFlag;
+  int64_t transformContext;
+  int64_t matrixBuffer [2];
+  uint matrixFlags;
+  float matrixScaleFactor;
+  int64_t matrixContextPointer;
   
-  MatrixContextPointer = 0;
-  FirstRowInfinityCheck = 0;
-  SecondRowInfinityCheck = FirstRowInfinityCheck;
+  matrixContextPointer = 0;
+  firstRowInfinityCheck = 0;
+  secondRowInfinityCheck = firstRowInfinityCheck;
   if ((*(uint *)(ObjectContext + 0x20) & 0x7f800000) == 0x7f800000) {
-    SecondRowInfinityCheck = 0x1d;
+    secondRowInfinityCheck = 0x1d;
   }
-  ThirdRowInfinityCheck = FirstRowInfinityCheck;
+  thirdRowInfinityCheck = firstRowInfinityCheck;
   if ((*(uint *)(ObjectContext + 0x1c) & 0x7f800000) == 0x7f800000) {
-    ThirdRowInfinityCheck = 0x1d;
+    thirdRowInfinityCheck = 0x1d;
   }
-  InfinityStatusFlag = FirstRowInfinityCheck;
+  infinityStatusFlag = firstRowInfinityCheck;
   if ((*(uint *)(ObjectContext + 0x18) & 0x7f800000) == 0x7f800000) {
-    InfinityStatusFlag = 0x1d;
+    infinityStatusFlag = 0x1d;
   }
-  if ((SecondRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || InfinityStatusFlag != 0) {
+  if ((secondRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || infinityStatusFlag != 0) {
     return 0x1f;
   }
-  SecondRowInfinityCheck = 0;
+  secondRowInfinityCheck = 0;
   if ((*(uint *)(ObjectContext + 0x2c) & 0x7f800000) == 0x7f800000) {
-    FirstRowInfinityCheck = 0x1d;
+    firstRowInfinityCheck = 0x1d;
   }
-  ThirdRowInfinityCheck = SecondRowInfinityCheck;
+  thirdRowInfinityCheck = secondRowInfinityCheck;
   if ((*(uint *)(ObjectContext + 0x28) & 0x7f800000) == 0x7f800000) {
-    ThirdRowInfinityCheck = 0x1d;
+    thirdRowInfinityCheck = 0x1d;
   }
-  InfinityStatusFlag = SecondRowInfinityCheck;
+  infinityStatusFlag = secondRowInfinityCheck;
   if ((*(uint *)(ObjectContext + 0x24) & 0x7f800000) == 0x7f800000) {
-    InfinityStatusFlag = 0x1d;
+    infinityStatusFlag = 0x1d;
   }
-  if ((FirstRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || InfinityStatusFlag != 0) {
+  if ((firstRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || infinityStatusFlag != 0) {
     return 0x1f;
   }
-  FirstRowInfinityCheck = SecondRowInfinityCheck;
+  firstRowInfinityCheck = secondRowInfinityCheck;
   if ((*(uint *)(ObjectContext + 0x38) & 0x7f800000) == 0x7f800000) {
-    FirstRowInfinityCheck = 0x1d;
+    firstRowInfinityCheck = 0x1d;
   }
-  ThirdRowInfinityCheck = SecondRowInfinityCheck;
+  thirdRowInfinityCheck = secondRowInfinityCheck;
   if ((*(uint *)(ObjectContext + 0x34) & 0x7f800000) == 0x7f800000) {
-    ThirdRowInfinityCheck = 0x1d;
+    thirdRowInfinityCheck = 0x1d;
   }
   if (((uint)*(float *)(ObjectContext + 0x30) & 0x7f800000) == 0x7f800000) {
-    SecondRowInfinityCheck = 0x1d;
+    secondRowInfinityCheck = 0x1d;
   }
-  if ((FirstRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || SecondRowInfinityCheck != 0) {
+  if ((firstRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || secondRowInfinityCheck != 0) {
     return 0x1f;
   }
   float matrixElementXCoordinate = *(float *)(ObjectContext + 0x44);
@@ -7534,27 +7534,27 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
     if (((matrixElementWComponent == 0.0) && (*(float *)(ObjectContext + 0x40) == 0.0)) && (matrixElementXCoordinate == 0.0)) {
       return 0x1f;
     }
-    uint32_t ValidationContextResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),ResourceValidationBuffer);
-    if ((int)ValidationContextResult != 0) {
-      return ValidationContextResult;
+    uint32_t validationContextResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),ResourceValidationBuffer);
+    if ((int)validationContextResult != 0) {
+      return validationContextResult;
     }
     if (ResourceValidationBuffer[0] != 0) {
-      MatrixContextPointer = ResourceValidationBuffer[0] + -8;
+      matrixContextPointer = ResourceValidationBuffer[0] + -8;
     }
-    uint8_t MatrixConfigurationType;
-    *(uint8_t *)(MatrixContextPointer + 0x38) = *(uint8_t *)(ObjectContext + 0x18);
-    *(uint8_t *)(MatrixContextPointer + 0x40) = MatrixConfigurationType;
-    uint32_t MatrixRotationFlags = *(uint32_t *)(ObjectContext + 0x2c);
-    uint32_t MatrixScaleFlags = *(uint32_t *)(ObjectContext + 0x30);
-    uint32_t MatrixTranslationFlags = *(uint32_t *)(ObjectContext + 0x34);
-    *(uint32_t *)(MatrixContextPointer + 0x48) = *(uint32_t *)(ObjectContext + 0x28);
-    *(uint32_t *)(MatrixContextPointer + 0x4c) = MatrixRotationFlags;
-    *(uint32_t *)(MatrixContextPointer + 0x50) = MatrixScaleFlags;
-    *(uint32_t *)(MatrixContextPointer + 0x54) = MatrixTranslationFlags;
-    uint32_t MatrixProjectionFlags = *(uint32_t *)(ObjectContext + 0x3c);
-    uint32_t MatrixViewFlags = *(uint32_t *)(ObjectContext + 0x40);
-    uint32_t MatrixWorldFlags = *(uint32_t *)(ObjectContext + 0x44);
-    *(uint32_t *)(MatrixContextPointer + 0x58) = *(uint32_t *)(ObjectContext + 0x38);
+    uint8_t matrixConfigurationType;
+    *(uint8_t *)(matrixContextPointer + 0x38) = *(uint8_t *)(ObjectContext + 0x18);
+    *(uint8_t *)(matrixContextPointer + 0x40) = matrixConfigurationType;
+    uint32_t matrixRotationFlags = *(uint32_t *)(ObjectContext + 0x2c);
+    uint32_t matrixScaleFlags = *(uint32_t *)(ObjectContext + 0x30);
+    uint32_t matrixTranslationFlags = *(uint32_t *)(ObjectContext + 0x34);
+    *(uint32_t *)(matrixContextPointer + 0x48) = *(uint32_t *)(ObjectContext + 0x28);
+    *(uint32_t *)(matrixContextPointer + 0x4c) = matrixRotationFlags;
+    *(uint32_t *)(matrixContextPointer + 0x50) = matrixScaleFlags;
+    *(uint32_t *)(matrixContextPointer + 0x54) = matrixTranslationFlags;
+    uint32_t matrixProjectionFlags = *(uint32_t *)(ObjectContext + 0x3c);
+    uint32_t matrixViewFlags = *(uint32_t *)(ObjectContext + 0x40);
+    uint32_t matrixWorldFlags = *(uint32_t *)(ObjectContext + 0x44);
+    *(uint32_t *)(matrixContextPointer + 0x58) = *(uint32_t *)(ObjectContext + 0x38);
     *(uint32_t *)(MatrixContextPointer + 0x5c) = MatrixProjectionFlags;
     *(uint32_t *)(MatrixContextPointer + 0x60) = MatrixViewFlags;
     *(uint32_t *)(MatrixContextPointer + 100) = MatrixWorldFlags;
