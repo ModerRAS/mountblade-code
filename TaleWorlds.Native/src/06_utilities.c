@@ -198,6 +198,16 @@
 #define SystemTemporaryVariableInitialValue -0x8000000000000000
 #define SystemTemporarySecondaryVariableInitialValue -0x80000000
 
+// Resource counter offset constants
+#define ResourceCounterOffset78 0x78
+#define ResourceCounterOffset88 0x88
+#define ResourceCounterOffsetA0 0xa0
+#define GlobalUnwindCounterOffset 0x3a8
+
+// System pointer constants
+#define SystemContextPrimaryPointer SystemContextPointer
+#define SystemResourceSecondaryPointer SystemResourcePointer002
+
 // System scheduler context related constants
 #define SystemSchedulerContextObjectOffset 0x98
 #define ObjectContextValidationDataOffset 0x14
@@ -4035,7 +4045,6 @@ uint8_t MemoryPoolBufferEventHandler;
 uint8_t MemoryPoolBufferMessageHandler;
 uint8_t MemoryPoolBufferRequestHandler;
 uint8_t MemoryPoolBufferResponseHandler;
-/* 内存池缓冲区的保留区域 - 用于特殊用途和系统内部操作 */
 uint8_t MemoryPoolBufferReserved;
 uint8_t MemoryPoolBufferExtended;
 uint8_t MemoryPoolBufferSpecial;
