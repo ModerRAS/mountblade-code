@@ -20514,44 +20514,44 @@ void InitializeSystemCoreEngine(void)
     *(int *)(localSystemFlags + 0xb0 + SystemInitializationDataStart) = (int)(long long)SystemScaleFactorXStorage;
     *(int *)(localSystemFlags + 200 + SystemInitializationDataStart) = (int)(long long)SystemScaleFactorYStorage;
     *(double *)(localSystemFlags + 0x20 + SystemInitializationDataStart) = (double)(currentThreadId >> 0x14);
-    pointerUnsigned538 = &SystemGlobalDataReference;
+    globalDataReferencePointer = &SystemGlobalDataReference;
     if (longValue530 != 0) {
         SystemCleanupFunction();
     }
     longValue530 = 0;
     unsignedValue520 = 0;
-    pointerUnsigned538 = &SystemMemoryAllocatorReference;
-    pointerUnsigned558 = &SystemGlobalDataReference;
+    memoryAllocatorReferencePointer = &SystemMemoryAllocatorReference;
+    globalDataReferencePointer2 = &SystemGlobalDataReference;
     if (LocalStackStringBuffer != 0) {
         SystemCleanupFunction();
     }
     LocalStackStringBuffer = 0;
     unsignedValue540 = 0;
-    pointerUnsigned558 = &SystemMemoryAllocatorReference;
+    memoryAllocatorReferencePointer2 = &SystemMemoryAllocatorReference;
   }
-  pointerUnsigned578 = &SystemGlobalDataReference;
+  globalDataReferencePointer3 = &SystemGlobalDataReference;
   unsignedValue560 = 0;
   unsignedValue570 = 0;
   unsignedValue568 = 0;
-  pointerUnsigned618 = &SystemGlobalDataReference;
+  globalDataReferencePointer4 = &SystemGlobalDataReference;
   unsignedValue600 = 0;
-  pointerUnsigned610 = (uint8_t *)0x0;
+  dataBufferPointer = (uint8_t *)0x0;
   unsignedValue608 = 0;
-  WriteDataToBuffer(&pointerUnsigned618,IntegerStackInitializationFlag);
+  WriteDataToBuffer(&globalDataReferencePointer4,IntegerStackInitializationFlag);
   if (IntegerStackInitializationFlag != 0) {
-      memcpy(pointerUnsigned610,longValue670,IntegerStackInitializationFlag + 1);
+      memcpy(dataBufferPointer,longValue670,IntegerStackInitializationFlag + 1);
   }
   if (longValue670 != 0) {
     unsignedValue608 = 0;
-    if (pointerUnsigned610 != (uint8_t *)0x0) {
-      *pointerUnsigned610 = 0;
+    if (dataBufferPointer != (uint8_t *)0x0) {
+      *dataBufferPointer = 0;
     }
     unsignedValue600 = unsignedValue600 & 0xffffffff;
   }
   InitializeSystemRuntimeState(&LocalStackConfigurationPointer,1);
   systemCounter = unsignedValue608 + 0x11;
-  WriteDataToBuffer(&pointerUnsigned618,systemCounter);
-  newThreadLocalStorage = (uint32_t *)(pointerUnsigned610 + unsignedValue608);
+  WriteDataToBuffer(&globalDataReferencePointer4,systemCounter);
+  newThreadLocalStorage = (uint32_t *)(dataBufferPointer + unsignedValue608);
   *newThreadLocalStorage = 0x69676e65;
   newThreadLocalStorage[1] = 0x635f656e;
   newThreadLocalStorage[2] = 0x69666e6f;
