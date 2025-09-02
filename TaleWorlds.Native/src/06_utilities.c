@@ -10,7 +10,7 @@
 #define RegistrationCapacityOffset 0x4e8
 #define RegistrationCountOffset 0x4e0
 #define RegistrationValidationDataOffset 0x368
-#define ThreadLocalStorageDataOffset 0x18
+#define ThreadLocalStorageDataOffset 0x18 // 线程本地存储数据偏移量
 #define ThreadResourceStateOffset 0x20
 #define ThreadResourceCountOffset 0x30
 #define ResourceManagementStateOffset 0x4
@@ -2079,7 +2079,7 @@ uint8_t SecureRandomGeneratorState;
  */
 void GenerateSecureRandom(void);
 uint8_t ThreadLocalStorageIndex;
-void* ThreadLocalStorageDataPointer;
+void* ThreadLocalStoragePointer; // 线程本地存储数据指针
 // 系统内存配置数据模板基础变量
 uint8_t SystemMemoryConfigVersion;        // 版本信息
 uint8_t SystemMemoryConfigType;           // 类型标识
@@ -2499,19 +2499,19 @@ uint8_t WorkerThreadQueueData;
 
  void CreateWorkerThread(void);
 uint8_t MainThreadMemoryConfig;
-uint8_t WorkerThreadContextData;
-uint8_t SystemMemoryConfigDataTemplateWorkerBackgroundThread;
-uint8_t ThreadLocalStorageData;
-uint8_t ThreadStackData;
-uint8_t ThreadRegistryData;
-uint8_t ThreadHandleData;
-uint8_t SystemMemoryConfigDataTemplateThreadStackMain;
-uint8_t SystemMemoryConfigDataTemplateThreadStackSecondary;
-uint8_t SystemMemoryConfigDataTemplateThreadStackTertiary;
-uint8_t SystemThreadAllocatorPrimary;
-uint8_t SystemThreadAllocatorSecondary;
-uint8_t SystemThreadAllocatorTertiary;
-uint8_t SystemThreadAllocatorQuaternary;
+uint8_t WorkerThreadContext; // 工作线程上下文数据
+uint8_t BackgroundThreadMemoryConfig; // 后台线程内存配置模板
+uint8_t ThreadLocalStorage; // 线程本地存储数据
+uint8_t ThreadStackBuffer; // 线程堆栈数据缓冲区
+uint8_t ThreadRegistry; // 线程注册表数据
+uint8_t ThreadHandle; // 线程句柄数据
+uint8_t MainThreadStackConfig; // 主线程堆栈配置模板
+uint8_t SecondaryThreadStackConfig; // 次要线程堆栈配置模板
+uint8_t TertiaryThreadStackConfig; // 第三线程堆栈配置模板
+uint8_t PrimaryThreadAllocator; // 主线程分配器
+uint8_t SecondaryThreadAllocator; // 次要线程分配器
+uint8_t TertiaryThreadAllocator; // 第三线程分配器
+uint8_t QuaternaryThreadAllocator; // 第四线程分配器
 uint8_t MemoryTemplateHeader;
 uint8_t MemoryTemplateData;
 uint8_t MemoryTemplateConfig;
@@ -46456,6 +46456,17 @@ void ReleaseSystemComponentAtOffset0x70(uint8_t objectContext,int64_t validation
 
 
 
+/**
+ * @brief 释放偏移量0xb0处的系统组件
+ * 
+ * 该函数负责释放验证上下文中偏移量0xb0处的系统组件
+ * 用于系统资源清理和内存管理
+ * 
+ * @param objectContext 对象上下文参数，用于标识当前处理的对象
+ * @param validationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理或异常处理时调用
+ */
 void ReleaseSystemComponentAtOffset0xb0(uint8_t objectContext,int64_t validationContext)
 
 {
@@ -46535,7 +46546,7 @@ void ResetSystemResourceHandlerAtOffset0x168(uint8_t objectContext,int64_t valid
 
 
 
-void Unwind_1809050f0(uint8_t objectContext,int64_t validationContext)
+void ResetSystemResourceHandlerAtOffset0x1a8(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0x1a8) = &SystemResourceHandlerTemplate;
@@ -46567,7 +46578,7 @@ void Unwind_180905100(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905110(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceHandlersAtOffset0x148(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -46588,7 +46599,7 @@ void Unwind_180905110(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180905120(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceHandlersAtOffset0x208(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -46609,7 +46620,7 @@ void Unwind_180905120(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180905130(uint8_t objectContext,int64_t validationContext)
+void SetSystemDataStructureAtOffset0x278(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x278) = &SystemDataStructure;
