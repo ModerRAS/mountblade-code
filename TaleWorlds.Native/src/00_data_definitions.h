@@ -7216,7 +7216,7 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   SystemRenderConfigFlag2 = 0;
   SystemRenderConfigFlag3 = 0;
   SystemEffectActive = 1;
-  _DAT_180c96050 = 0;
+  SystemTextureConfigFlag1 = 0;
   SystemTextureEnabled = 1;
   _DAT_180c96030 = 0;
   SystemTextureActive = 1;

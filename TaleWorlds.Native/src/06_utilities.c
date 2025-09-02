@@ -45961,7 +45961,18 @@ void BatchExecuteResourceCleanupAndValidateSystem(uint8_t objectContext,int64_t 
 
 
 
-void Unwind_180904fb0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 验证资源索引并处理内存访问异常
+ * 
+ * 该函数负责验证资源索引的有效性，处理内存访问异常
+ * 并在检测到异常状态时执行相应的清理操作
+ * 
+ * @param objectContext 对象上下文，包含资源相关的上下文信息
+ * @param validationContext 验证上下文，用于验证操作的环境信息
+ * @return 无返回值
+ * @note 此函数主要用于资源索引验证和内存访问异常处理
+ */
+void ValidateResourceIndexAndHandleMemoryAccess(uint8_t objectContext,int64_t validationContext)
 
 {
   int *ResourceIndexPointer;
