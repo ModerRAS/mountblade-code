@@ -41656,22 +41656,22 @@ void StartInputSystem(void* SystemResourceManager,long long ConfigurationDataPoi
   SystemHashNodeData = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
   SystemMemoryOffset248 = resourceDataIndex + 0x70;
   SystemHashNodePointer = SystemHashNodeData;
-  InitializeSystemDataMemoryContext(SystemHashNodeData,&SystemResourcePointer1a8,3,resourceDataIndex + 0x2e0);
+  InitializeSystemDataMemoryContext(SystemHashNodeData,&SystemResourcePointer,3,resourceDataIndex + 0x2e0);
   *SystemHashNodeData = &SystemValueReference;
-  pointerUnsigned238 = SystemHashNodeData;
+  SystemHashNodePointer = SystemHashNodeData;
   ProcessSystemHashNodeData(SystemHashNodeData);
-  InitializeSystemHandle(resourceDataIndex + 0x48,&pointerUnsigned238);
+  InitializeSystemHandle(resourceDataIndex + 0x48,&SystemHashNodePointer);
   *(void* **)(SystemThreadHandle + 400) = SystemHashNodeData;
-  SystemResourcePointer1a8 = &SystemMemoryAllocatorReference;
-  ExecuteSystemConfigurationUpdate(SystemGlobalStatusFlags + 0x170,SystemDataBuffer230,&SystemConfigurationData);
+  SystemResourcePointer = &SystemMemoryAllocatorReference;
+  ExecuteSystemConfigurationUpdate(SystemGlobalStatusFlags + 0x170,SystemConfigBuffer,&SystemConfigurationData);
   if (0 < *(int *)(ConfigurationDataPointer + 0x10)) {
-    ExecuteSystemCommand(SystemDataBuffer230,SystemAllocationSize + *(int *)(ConfigurationDataPointer + 0x10));
+    ExecuteSystemCommand(SystemConfigBuffer,SystemAllocationSize + *(int *)(ConfigurationDataPointer + 0x10));
       memcpy((ulong long)SystemAllocationSize + SystemMemoryOffset228,*(void* *)(ConfigurationDataPointer + 8),
            (long long)(*(int *)(ConfigurationDataPointer + 0x10) + 1));
   }
-  InitializeSystemMemoryPool(aSystemMaxOperationCount8,SystemDataBuffer230);
+  InitializeSystemMemoryPool(aSystemMaxOperationCount8,SystemConfigBuffer);
   ConfigureSystemMemoryPool(aSystemMaxOperationCount8,1);
-    memset(StackBuffer2,0,0x100);
+    memset(SystemStackBuffer,0,0x100);
 }
 
 
