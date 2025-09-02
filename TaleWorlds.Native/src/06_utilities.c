@@ -10144,9 +10144,10 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
 
 
  
+void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationContext,int64_t *resourceIndexOutput)
 {
   int64_t *processPointer;
-  int ProcessingResult;
+  int operationStatusCode;
   int64_t ResourceIndex;
   uint8_t SecurityDataBuffer [32];
   uint ResourceValidationFlagHigh;
@@ -10166,6 +10167,23 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
   int64_t ResourceHandleBackup;
   uint8_t ResourceChecksumBuffer [40];
   uint64_t PrimaryOperationParameter;
+  int64_t* ResourceContext;
+  uint32_t ResourceSecurityFlag;
+  uint32_t ResourceValidationByteFirst;
+  uint32_t ResourceValidationByteSecond;
+  uint32_t ResourceValidationByteThird;
+  uint32_t ResourceQuaternaryFlag;
+  uint32_t ResourceTopByteFlag;
+  uint32_t resourceFlagLowBits;
+  uint32_t ResourceHighByteFlag;
+  uint32_t ResourceMidByteFlag;
+  uint32_t ResourceLowByteFlag;
+  uint32_t ResourceTertiaryFlag;
+  uint32_t ResourceSecondaryFlag;
+  uint32_t ResourcePrimaryFlag;
+  uint32_t resourceFlagHighBits;
+  void* SecurityOperationData;
+  uint64_t SecurityEncryptionKey;
   
   PrimaryOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
   ResourceContext = *(int64_t **)(objectContext + 800);
@@ -10192,7 +10210,7 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
     if (((*(byte *)(ResourceIndex + 0xc4) & 1) != 0) &&
        ((ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x68), ResourceHandleBackup != 0 ||
         (operationStatusCode = ValidateResourceAccess(objectContext,ResourceIndex,&ResourceHandleBackup), operationStatusCode == 0)))) {
-      *ResourceIndexOutput = ResourceHandleBackup;
+      *resourceIndexOutput = ResourceHandleBackup;
     }
   }
                     // WARNING: Subroutine does not return
@@ -10203,6 +10221,7 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
 
 
  
+void ExecuteSecurityOperationHandler(void)
 {
                     // WARNING: Subroutine does not return
   ExecuteSecurityOperation();
@@ -10468,6 +10487,7 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *Resource
  */
 void ExecuteSecurityOperationHandler(void)
 
+void ExecuteSecurityOperationHandler(void)
 {
                     // WARNING: Subroutine does not return
   ExecuteSecurityOperation();
