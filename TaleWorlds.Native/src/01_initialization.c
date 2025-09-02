@@ -60993,8 +60993,18 @@ void ProcessSystemFloatCalculations(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_180078c70(uint32_t *SystemResourceManager,long long *ConfigurationDataPointer)
-void FUN_180078c70(uint32_t *SystemResourceManager,long long *ConfigurationDataPointer)
+/**
+ * @brief 序列化系统资源管理器数据
+ * 
+ * 将系统资源管理器中的数据按照固定格式序列化到配置数据缓冲区中。
+ * 该函数处理一个20元素的数据结构，其中特定位置（索引4, 8, 12）被设置为浮点数1.0。
+ * 用于系统资源数据的标准化存储和传输。
+ * 
+ * @param SystemResourceManager 资源管理器指针，包含要序列化的源数据
+ * @param ConfigurationDataPointer 配置数据指针，目标缓冲区用于存储序列化后的数据
+ * @return 无返回值
+ */
+void SerializeSystemResourceManagerData(uint32_t *SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
   uint32_t SystemOperationStatus;
