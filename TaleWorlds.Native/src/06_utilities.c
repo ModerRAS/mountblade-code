@@ -5693,7 +5693,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
  * @param configParameter 配置参数，包含要验证的配置信息
  * @return 验证结果，0表示验证成功，非0表示验证失败
  */
-int ValidateSystemConfigurationParameter(uint32_t configParameter)
+int ValidateSystemConfigurationParameter(uint32_t ConfigParameter)
 
 {
   int InputRegisterResult;
@@ -5705,10 +5705,10 @@ int ValidateSystemConfigurationParameter(uint32_t configParameter)
   uint32_t StackValidationBuffer;
   
   ResourceTable = 0;
-  if (InputParameterValue == 0) {
+  if (ConfigParameter == 0) {
     StackMemoryOffset = *(int64_t *)(UnaffectedRegisterValue + 0x10);
     validationStatusCode = 1;
-    resourceTable = StackMemoryOffset;
+    ResourceTable = StackMemoryOffset;
   }
   else {
     int64_t *LocalContextPointer = *(int64_t *)(objectContext + 0x10);
