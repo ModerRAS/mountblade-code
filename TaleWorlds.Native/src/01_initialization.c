@@ -25684,7 +25684,7 @@ uint32_t GetSystemResourceStatus(void)
     *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
     systemDataBuffer = CalculationFlags;
     ProcessSystemData(&systemDataReference,SystemOperationStatusArray._8_8_ >> 0x20);
-    presourceAddress = (void* *)CreateSystemObject(aUnsignedStackFlag80,&systemDataReference);
+    presourceAddress = (void* *)CreateSystemObject(SystemCounterBuffer80,&systemDataReference);
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xe30,presourceAddress);
     *presourceAddress = &SystemGlobalDataReference;
     if (presourceAddress[1] != 0) {
@@ -42713,10 +42713,10 @@ void CleanupAndValidateSystemResources(void)
   void* *SystemHashBucket;
   uint systemOperationFlags;
   void* *pSystemSecondaryStatus;
-  ulong long SystemOperationStatus3;
-  int SystemOperationStatus4;
-  long long resourceDataIndex5;
-  uint SystemOperationStatus6;
+  ulong long SystemOperationResultCode;
+  int SystemOperationStatusCode;
+  long long ResourceDataIndex;
+  uint SystemOperationStatusFlag;
   uint8_t aSystemResourceValue [32];
   void* *punsignedValue2d8;
   void* *punsignedValue2d0;
@@ -44488,7 +44488,7 @@ void ConfigureSystemDataProcessing(void* SystemResourceManager,void* Configurati
       systemCounter = 0;
       if ((AdditionalParameter != '\0') || (SystemDebugFlag != '\0')) {
 LAB_180066bf4:
-        InitializeSystemCounter(aUnsignedStackFlag80);
+        InitializeSystemCounter(SystemCounterBuffer80);
         stackParameterA = &SystemGlobalDataReference;
         UnsignedStackFlag88 = 0;
         stackParameterB = (void* *)0x0;
@@ -44500,7 +44500,7 @@ LAB_180066bf4:
         UnsignedStackFlag88 = CONCAT44(UnsignedStackFlag88._4_4_,resourceAddress);
         *SystemThreadContext = 0x73656873617263;
         SystemConfigurationValue = 7;
-        GetSystemCounter(aUnsignedStackFlag80,&SystemParameterPointerA);
+        GetSystemCounter(SystemCounterBuffer80,&SystemParameterPointerA);
         stackParameterA = &SystemGlobalDataReference;
           SystemCleanupFunction(SystemThreadContext);
       }
