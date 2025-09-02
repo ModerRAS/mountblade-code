@@ -24,6 +24,10 @@
 #define ErrorInvalidObjectHandle 0x1c
 #define ErrorInvalidRegistrationData 0x1f
 
+// 系统常量定义
+#define MaximumProcessableItemsLimit 0xffffffc0
+#define MaximumCapacityLimit 0xffffffc0
+
 /**
  * @brief 初始化模块依赖关系
  * 
@@ -3294,7 +3298,7 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
     GameObjectDataBuffer = ObjectProcessingWorkspace;
     ProcessedObjectCount = 0;
     BufferIndex = 0;
-    MaximumProcessableItems = 0xffffffc0;
+    MaximumProcessableItems = MaximumProcessableItemsLimit;
     ProcessingResultCode = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
                           &GameObjectDataBuffer);
     if (ProcessingResultCode == 0) {
@@ -3365,7 +3369,7 @@ void ValidateSystemObjectCollection(void)
     ObjectCollectionBuffer = &SystemObjectDataBuffer;
     ProcessedObjectTotal = 0;
     RetrievedObjectTotal = 0;
-    MaximumCapacity = 0xffffffc0;
+    MaximumCapacity = MaximumCapacityLimit;
     ValidationResultCode = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(SystemObjectContext + 8),
                           &RetrievedObjectDataBuffer);
     if (ValidationResultCode == 0) {
@@ -4738,11 +4742,12 @@ uint32_t ProcessSystemResource(void)
   int64_t loopCounter;
   int64_t LocalContextData;
   
-  if (InputRAX == 0) {
+  InputRegisterValue = InputRAX;
+  if (InputRegisterValue == 0) {
     LocalContextData = 0;
   }
   else {
-    LocalContextData = InputRAX + -8;
+    LocalContextData = InputRegisterValue - 8;
   }
   if (*(int64_t *)(LocalContextData + 0x10) == 0) {
     return 0x1c;
@@ -41108,7 +41113,28 @@ void Unwind_SystemResourceCleanup_Batch3(uint8_t objectContext,int64_t validatio
 
 
 
-void Unwind_180904250(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * 清理系统资源处理器 - 批量模式4
+ * 
+ * 功能描述：
+ * 清理第四组系统资源处理器，执行回调函数并重置系统状态。
+ * 该函数处理另一组内存偏移量的系统资源处理器，确保系统资源正确释放。
+ * 
+ * 参数说明：
+ * @param objectContext 对象上下文，标识要清理的对象
+ * @param validationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 处理不同内存偏移量的资源处理器
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ */
+void Unwind_SystemResourceCleanup_Batch4(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41162,7 +41188,28 @@ void Unwind_180904250(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904270(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * 清理系统资源处理器 - 批量模式5
+ * 
+ * 功能描述：
+ * 清理第五组系统资源处理器，执行回调函数并重置系统状态。
+ * 该函数处理另一组内存偏移量的系统资源处理器，确保系统资源正确释放。
+ * 
+ * 参数说明：
+ * @param objectContext 对象上下文，标识要清理的对象
+ * @param validationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 处理不同内存偏移量的资源处理器
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ */
+void Unwind_SystemResourceCleanup_Batch5(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42575,7 +42622,26 @@ void ResetResourceHashTablePointer(uint8_t objectContext, int64_t validationCont
 
 
 
-void Unwind_1809046c0(uint8_t objectContext,int64_t validationContext)
+/**
+ * 上下文清理函数 - 基础模式1
+ * 
+ * 功能描述：
+ * 清理对象和验证上下文，重置相关状态标志。
+ * 该函数处理基本的上下文清理操作，确保相关资源被正确释放。
+ * 
+ * 参数说明：
+ * @param objectContext 对象上下文，标识要清理的对象
+ * @param validationContext 验证上下文，包含清理所需的验证信息
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 确保上下文相关资源被正确释放
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 重置所有相关的状态标志和计数器
+ */
+void Unwind_ContextCleanup_Basic1(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -42767,7 +42833,25 @@ void Unwind_1809047a0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809047b0(void)
+/**
+ * 系统清理函数 - 互斥锁销毁
+ * 
+ * 功能描述：
+ * 执行系统级别的清理操作，销毁互斥锁资源。
+ * 该函数确保系统互斥锁资源正确释放，维护系统稳定性。
+ * 
+ * 参数说明：
+ * 无参数
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 执行互斥锁的销毁操作
+ * - 确保互斥锁资源正确释放
+ * - 防止资源泄漏
+ */
+void Unwind_SystemCleanup_MutexDestroy(void)
 
 {
   _Mtx_destroy_in_situ();
