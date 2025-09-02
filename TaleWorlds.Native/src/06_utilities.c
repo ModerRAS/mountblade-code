@@ -427,7 +427,6 @@ uint32_t ProcessSystemContextValidation(void* SystemContext);
 uint32_t ReleaseValidationResources(void* ResourceHandles);
 
 // 新增的偏移量常量
-#define ObjectContextValidationDataOffset 0x14
 #define SystemObjectContextSize 0x1000
 #define SystemDataStructureSize 0x1000
 #define ResourceDataPointerOffset 0x20
@@ -447,7 +446,6 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
 #define ObjectContextPointerOffset 0x10
 #define ResourceTableOffset 0x2b0
 #define ResourceDataOffset 0x78
-#define ObjectContextProcessingDataOffset 0x20
 #define SystemResourceManagerOffset 0x98
 #define ObjectArrayDataOffset 0x20
 #define ObjectArrayCapacityOffset 0x28
@@ -691,9 +689,6 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
 #define ObjectContextMatrixXCoordinateOffset 0x44
 #define ObjectContextSecurityContextOffset 0x40
 #define ObjectHandleSecondaryOffset 0x8
-#define ObjectContextValidationDataOffset 0x18
-#define ObjectContextProcessingDataOffset 0x20
-#define ObjectContextStatusDataOffset 0x24
 #define ObjectContextRangeDataOffset 0x28
 #define SystemContextResourceManagerOffset 0x1a0
 #define SystemContextFlagCheckOffset 0x2d8
@@ -6674,7 +6669,7 @@ void HandleSystemObjectQueue(int64_t ObjectHandle, int64_t QueueContext)
         break;
       }
       QueueHeadPointer = QueueCurrentIterator;
-      if (QueueCurrentIterator != (int64_t *)(queueContext + 0x50)) {
+      if (QueueCurrentIterator != (int64_t *)(queueContext + QueueContextIteratorOffset)) {
         QueueCurrentNode = (int64_t *)(*QueueCurrentIterator + -8);
         if (*QueueCurrentIterator == 0) {
           QueueCurrentNode = QueueTailPointer;
@@ -6713,7 +6708,7 @@ uint8_t ValidateSystemConfiguration(int64_t ConfigHandle)
   
   ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(configHandle + ObjectContextOffset),ConfigBuffer);
   if ((int)ResourceHashValidationResult == 0) {
-    *(uint32_t *)(*(int64_t *)(ConfigBuffer[0] + ObjectContextOffset) + 0x50) = *(uint32_t *)(configHandle + RegistrationHandleOffset);
+    *(uint32_t *)(*(int64_t *)(ConfigBuffer[0] + ObjectContextOffset) + RegistrationHandleMemoryOffset) = *(uint32_t *)(configHandle + RegistrationHandleOffset);
     if ((*(int64_t *)(ConfigBuffer[0] + 8) != 0) && (ResourceHashValidationResult = ValidateSecurityContext(), (int)ResourceHashValidationResult != 0)) {
       return ResourceHashValidationResult;
     }
@@ -7058,7 +7053,7 @@ void SetObjectContextProcessingStatusFlag(int64_t ObjectContext, int64_t Process
   PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ContextBuffer);
   if (PackageValidationStatusCode == 0) {
     *(uint8_t *)(ContextBuffer + ContextBufferStatusOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
-          ProcessContext(*(uint8_t *)(ProcessContext + 0x98), ObjectContext);
+          ProcessContext(*(uint8_t *)(ProcessContext + SystemResourceManagerOffset), ObjectContext);
   }
   return;
 }
@@ -7114,7 +7109,7 @@ uint8_t ValidateObjectContextAndUpdateStatus(int64_t ObjectContext, int64_t Syst
   }
   ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&ValidationContext);
   if ((int)ResourceHash == 0) {
-    *(uint32_t *)(CombineFloatAndInt(ValidationParameterValue,ValidationContext) + 0x24) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
+    *(uint32_t *)(CombineFloatAndInt(ValidationParameterValue,ValidationContext) + ResourceContextValidationOffset) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
           ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
   }
   return ResourceHash;
@@ -29792,18 +29787,6 @@ void UnwindPrimaryContextExceptionHandler(uint8_t ObjectContext, int64_t Validat
 
 
 
-/**
- * @brief 异常处理函数：解卷次级上下文异常处理器
- * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理二级异常情况的资源清理工作
- * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
 /**
  * @brief 异常处理函数：解卷次级上下文异常处理器
  * 
@@ -90769,18 +90752,32 @@ void UnwindThreadCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910050(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表清理操作
+ * 
+ * 该函数负责遍历资源表并执行清理操作，对每个资源项调用相应的清理函数
+ * 确保系统资源被正确释放，防止资源泄漏
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含资源表信息
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 清理失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180910050，现已重命名为ExecuteResourceTableCleanup
+ */
+void ExecuteResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t CleanupLoopCounter;
   int64_t *ResourceTablePointer;
-  int64_t ResourceIndex;
+  int64_t CurrentResourceIndex;
   
   ResourceTablePointer = *(int64_t **)(ValidationContext + ResourceContextSecondaryOffset);
   SystemContextPointer = ResourceTablePointer[1];
-  for (ResourceIndex = *ResourceTablePointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
-    if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
-      (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
+  for (CurrentResourceIndex = *ResourceTablePointer; CurrentResourceIndex != SystemContextPointer; CurrentResourceIndex = CurrentResourceIndex + 0x18) {
+    if (*(int64_t **)(CurrentResourceIndex + 8) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(CurrentResourceIndex + 8) + 0x38))();
     }
   }
   if (*ResourceTablePointer == 0) {
@@ -90791,10 +90788,23 @@ void Unwind_180910050(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910060(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理操作
+ * 
+ * 该函数负责执行资源上下文的清理操作，调用资源上下文中的清理函数
+ * 确保资源上下文被正确清理和释放
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含资源上下文信息
+ * @return 无返回值
+ * @note 此函数在资源上下文清理过程中被调用
+ * 
+ * 原始函数名为Unwind_180910060，现已重命名为ExecuteResourceContextCleanup
+ */
+void ExecuteResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ResourceContextPointer;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x68) + 8);
   if (ResourceContext != (int64_t *)0x0) {
@@ -90805,12 +90815,25 @@ void Unwind_180910060(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910070(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统上下文全面清理操作
+ * 
+ * 该函数负责执行系统上下文的全面清理操作，依次清理系统上下文中的各个资源项
+ * 确保所有系统资源被正确释放，防止资源泄漏
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统全面清理过程中被调用
+ * 
+ * 原始函数名为Unwind_180910070，现已重命名为ExecuteSystemContextComprehensiveCleanup
+ */
+void ExecuteSystemContextComprehensiveCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t CleanupLoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x48);
+  CleanupLoopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (*(int64_t **)(SystemContextPointer + 0x88) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x88) + 0x38))();
   }
