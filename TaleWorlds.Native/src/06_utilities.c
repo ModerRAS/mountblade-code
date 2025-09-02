@@ -3329,7 +3329,7 @@ uint8_t UndenaryConfigEntry;
 uint8_t DuodenaryConfigEntry;
 
 // 系统资源管理相关全局变量
-uint8_t SystemResourceDatabasebase[0x1000];        // 系统资源数据库
+uint8_t SystemResourceDatabase[0x1000];        // 系统资源数据库
 uint8_t* SystemResourceManagerHandle;     // 系统资源管理器句柄
 uint8_t ResourceCleanupStateMarker;             // 资源清理状态标记
 uint8_t ResourceResetStateMarker;                // 资源重置状态标记
@@ -3337,7 +3337,7 @@ uint8_t ResourceResetStateMarker;                // 资源重置状态标记
 // 系统数据结构相关全局变量
 uint8_t SystemDataStructure[0x1000];       // 系统数据结构缓冲区
 
-byte SystemConfigurationStatusFlag;
+uint8_t SystemConfigurationStatusFlag;
 uint8_t SystemStatusIndicator;
 uint8_t SystemConfigurationDebugMode;
 uint8_t SystemConfigurationLogLevel;
@@ -4010,28 +4010,28 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
 {
   int64_t RegistrationData;
   int64_t RegistrationHandle;
-  uint8_t HashValidationResult;
-  uint8_t ObjectStatusResult;
+  uint8_t ValidationResult;
+  uint8_t StatusResult;
   int64_t *RegistrationEntryArray;
-  int RegistrationArrayCurrentSize;
-  uint64_t ArrayIterator;
-  int CalculatedNewSize;
-  uint64_t SearchIndex;
-  int64_t *ArrayBasePointer;
-  int64_t ContextStackPointer;
+  int RegistrationArraySize;
+  uint64_t Iterator;
+  int NewSize;
+  uint64_t Index;
+  int64_t *BasePointer;
+  int64_t StackPointer;
   char ObjectName[16];
-  int RegistrationCounter;
-  int TargetSize;
+  int Counter;
+  int Size;
   
   // 获取注册上下文数据
-  HashValidationResult = GetRegistrationContextData(*(uint32_t *)(ObjectContext + OBJECT_CONTEXT_OFFSET), &ContextStackPointer);
-  if ((int)HashValidationResult != 0) {
-    return HashValidationResult;
+  ValidationResult = GetRegistrationContextData(*(uint32_t *)(ObjectContext + OBJECT_CONTEXT_OFFSET), &StackPointer);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
   
   // 验证注册句柄
-  RegistrationHandle = *(int64_t *)(ContextStackPointer + 8);
-  if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + REGISTRATION_HANDLE_OFFSET) != ContextStackPointer)) {
+  RegistrationHandle = *(int64_t *)(StackPointer + 8);
+  if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + REGISTRATION_HANDLE_OFFSET) != StackPointer)) {
     return ERROR_INVALID_OBJECT_HANDLE;
   }
   
@@ -4044,58 +4044,58 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   // 检查注册状态
   if (*(int *)(RegistrationHandle + REGISTRATION_STATUS_OFFSET) == INVALID_REGISTRATION_STATUS) {
     // 获取对象名称
-    HashValidationResult = GetRegisteredObjectName(RegistrationHandle, ObjectName);
-    if ((int)HashValidationResult != 0) {
-      return HashValidationResult;
+    ValidationResult = GetRegisteredObjectName(RegistrationHandle, ObjectName);
+    if ((int)ValidationResult != 0) {
+      return ValidationResult;
     }
     
     // 验证对象状态
-    ObjectStatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
-    if ((int)ObjectStatusResult != 0) {
-      return ObjectStatusResult;
+    StatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
+    if ((int)StatusResult != 0) {
+      return StatusResult;
     }
     
     // 验证状态一致性
-    if ((char)HashValidationResult == (char)ObjectStatusResult) {
-      if (ObjectName[0] == (char)ObjectStatusResult) {
+    if ((char)ValidationResult == (char)StatusResult) {
+      if (ObjectName[0] == (char)StatusResult) {
         // 搜索现有注册项
-        ArrayBasePointer = (int64_t *)(RegistrationData + REGISTRATION_ARRAY_OFFSET);
-        ArrayIterator = 0;
-        RegistrationArrayCurrentSize = *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET);
-        if (0 < RegistrationArrayCurrentSize) {
-          RegistrationEntryArray = (int64_t *)*ArrayBasePointer;
-          SearchIndex = ArrayIterator;
+        BasePointer = (int64_t *)(RegistrationData + REGISTRATION_ARRAY_OFFSET);
+        Iterator = 0;
+        RegistrationArraySize = *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET);
+        if (0 < RegistrationArraySize) {
+          RegistrationEntryArray = (int64_t *)*BasePointer;
+          Index = Iterator;
           do {
             if (*RegistrationEntryArray == RegistrationHandle) {
-              if (-1 < (int)SearchIndex) {
+              if (-1 < (int)Index) {
                 return 0;
               }
               break;
             }
-            SearchIndex = (uint64_t)((int)SearchIndex + 1);
-            ArrayIterator = ArrayIterator + 1;
+            Index = (uint64_t)((int)Index + 1);
+            Iterator = Iterator + 1;
             RegistrationEntryArray = RegistrationEntryArray + 1;
-          } while ((int64_t)ArrayIterator < (int64_t)RegistrationArrayCurrentSize);
+          } while ((int64_t)Iterator < (int64_t)RegistrationArraySize);
         }
         
         // 检查是否需要扩容
-        RegistrationCounter = RegistrationCounter + 1;
-        if (*(int *)(RegistrationData + REGISTRATION_CAPACITY_OFFSET) < RegistrationCounter) {
+        Counter = Counter + 1;
+        if (*(int *)(RegistrationData + REGISTRATION_CAPACITY_OFFSET) < Counter) {
           // 计算新的容量大小
-          CalculatedNewSize = (int)((float)*(int *)(RegistrationData + REGISTRATION_CAPACITY_OFFSET) * REGISTRATION_ARRAY_GROWTH_FACTOR);
-          TargetSize = RegistrationCounter;
-          if (RegistrationCounter <= CalculatedNewSize) {
-            TargetSize = CalculatedNewSize;
+          NewSize = (int)((float)*(int *)(RegistrationData + REGISTRATION_CAPACITY_OFFSET) * REGISTRATION_ARRAY_GROWTH_FACTOR);
+          Size = Counter;
+          if (Counter <= NewSize) {
+            Size = NewSize;
           }
-          if (TargetSize < REGISTRATION_ARRAY_INITIAL_SIZE) {
-            CalculatedNewSize = REGISTRATION_ARRAY_INITIAL_SIZE;
+          if (Size < REGISTRATION_ARRAY_INITIAL_SIZE) {
+            NewSize = REGISTRATION_ARRAY_INITIAL_SIZE;
           }
-          else if (CalculatedNewSize < RegistrationCounter) {
-            CalculatedNewSize = RegistrationCounter;
+          else if (NewSize < Counter) {
+            NewSize = Counter;
           }
           
           // 执行数组扩容
-          RegistrationCounter = ResizeRegistrationArray(ArrayBasePointer, CalculatedNewSize);
+          Counter = ResizeRegistrationArray(BasePointer, NewSize);
           if (RegistrationCounter != 0) {
             return 0;
           }
