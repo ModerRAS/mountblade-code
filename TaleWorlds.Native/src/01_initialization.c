@@ -21,6 +21,12 @@
 #define SYSTEM_MUTEX_SECURITY_ADDRESS          0x180c91910
 #define SYSTEM_DATA_CHECK_ADDRESS             0x180d49150
 
+// SystemResourceManager结构体字段偏移量
+#define SYSTEM_RESOURCE_DATA_POINTER_OFFSET    1
+#define SYSTEM_RESOURCE_HASH_TABLE_OFFSET     2
+#define SYSTEM_RESOURCE_FLAGS_OFFSET          4
+#define SYSTEM_RESOURCE_MEMORY_POOL_OFFSET     5
+
 /**
  * @brief 处理系统内存页面
  * 
@@ -19962,7 +19968,7 @@ void InitializeSystemDataPointers(long long *SystemResourceManager)
   void* *SystemDataPointer;
   void** SystemDataTable;
   
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (HashEntryPointer = (void* *)*SystemResourceManager; HashEntryPointer != SystemDataPointer; HashEntryPointer = HashEntryPointer + 5) {
     *HashEntryPointer = &SystemGlobalDataReference;
     if (HashEntryPointer[1] != 0) {
@@ -20195,10 +20201,10 @@ void InitializeSystemDataBlock(void* *SystemResourceManager,void* SourceDataPoin
 {
   InitializeAndCleanupSystemMemoryAllocator(SystemResourceManager + 0x1a,SystemResourceManager[0x1c],MemoryBufferSize,AllocationFlags,0xfffffffffffffffe);
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -21132,7 +21138,7 @@ void InitializeSystemDataTable(long long *SystemResourceManager)
   void* *SystemDataPointer;
   void** SystemDataTable;
   
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (HashEntryPointer = (void* *)*SystemResourceManager; HashEntryPointer != SystemDataPointer; HashEntryPointer = HashEntryPointer + 5) {
     *HashEntryPointer = &SystemGlobalDataReference;
     if (HashEntryPointer[1] != 0) {
@@ -21299,12 +21305,12 @@ long long ManageSystemResources(long long SystemResourceManager,long long resour
       SystemNextNode = (void**)*SystemCurrentNode;
     }
     *SystemDataPointer = HashBucketNode;
-    SystemDataPointer = (void* *)punsignedSystemValue9[1];
+    SystemDataPointer = (void* *)systemHashBucketNode[1];
     while (HashBucketNode = SystemDataPointer, HashBucketNode != (void* *)0x0) {
-      punsignedSystemValue9 = HashBucketNode;
+      systemHashBucketNode = HashBucketNode;
       SystemDataPointer = (void* *)HashBucketNode[1];
     }
-    *(void* **)(SystemResourceManager + 0xd8) = punsignedSystemValue9;
+    *(void* **)(SystemResourceManager + 0xd8) = systemHashBucketNode;
     *(void* *)(SystemResourceManager + 0xf0) = *(void* *)(ConfigurationDataPointer + 0xf0);
   }
   return SystemResourceManager;
@@ -22214,7 +22220,7 @@ void* * SystemMemoryAllocatorInitializer(void* *SystemResourceManager,long long 
   void* *SystemDataPointer;
   
   *SystemResourceManager = &SystemMemoryAllocatorReference;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemResourceTemplatePrimary;
   SystemResourceManager[1] = SystemResourceManager + 3;
@@ -22476,10 +22482,10 @@ void ResetSystemMemoryAllocator(void* *SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 7) = 0;
   SystemResourceManager[4] = &SystemMemoryAllocatorReference;
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -22606,10 +22612,10 @@ void CleanupSystemMemoryAllocator(void* *SystemResourceManager)
 
 {
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -22762,7 +22768,7 @@ void DestroySystemMutex(void* *SystemResourceManager)
 {
   *SystemResourceManager = &SystemDataBufferTemplateC;
   _Mtx_destroy_in_situ();
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
   *SystemResourceManager = &SystemDataBufferTemplateD;
@@ -23198,16 +23204,16 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
   
   currentThreadId = 0xfffffffffffffffe;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemGlobalDataReference;
   SystemResourceManager[3] = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   ExecuteSystemCommand(SystemResourceManager,0,AdditionalParameter,ConfigurationFlag,0,0xfffffffffffffffe);
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   if ((uint8_t *)SystemResourceManager[1] != (uint8_t *)0x0) {
-    *(uint8_t *)SystemResourceManager[1] = 0;
+    *(uint8_t *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   }
   systemIndex = *(int *)(SystemResourceManager + 2);
   systemCounter = systemIndex + 6;
@@ -23379,7 +23385,7 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourceManager)
   unsignedValue60 = 0xfffffffffffffffe;
   unsignedValue18 = SystemEncryptionKeyTemplate ^ (ulong long)StackBuffer;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemMemoryTemplateE;
   SystemResourceManager[1] = SystemResourceManager + 3;
@@ -23427,11 +23433,11 @@ long long * InitializeGameController(long long *SystemResourceManager,void* Conf
 
 {
   *SystemResourceManager = (long long)&SystemMemoryAllocatorReference;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = (long long)&SystemGlobalDataReference;
   SystemResourceManager[3] = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   if (*(char *)(SystemDataManagerPointer + 0x22) != '\0') {
     ProcessDataManager(SystemResourceManager,SystemDataManagerPointer + 0x28);
@@ -24442,7 +24448,7 @@ void* * SystemResourceManagerInitializer(void* *SystemResourceManager)
 
 {
   *SystemResourceManager = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   SystemResourceManager[2] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 3;
   return SystemResourceManager;
@@ -25228,7 +25234,7 @@ void SystemResourceCleanupManager(long long *SystemResourceManager)
         SystemCleanupFunction(LocalSystemHandle);
     }
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   LocalSystemHandle = *SystemResourceManager;
   if (LocalSystemHandle != 0) {
     SystemResourceHandleCleanupFunction(LocalSystemHandle);
@@ -27189,7 +27195,7 @@ void* SystemResourceAllocator(void* SystemResourceManager,void* ConfigurationDat
   uint32_t UnsignedStackFlag78;
   void* processFlags70;
   void* *pEncryptionValue68;
-  void* *punsignedValue60;
+  void* *systemContextPointer;
   uint32_t processFlags58;
   void* unsignedValue50;
   
@@ -27604,7 +27610,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   void* SystemResourcePointer190;
   int intValue188;
   uint8_t SystemStackBufferE8 [16];
-  void* *punsignedValueD8;
+  void* *systemDataPointer;
   void* SystemResourcePointerD0;
   int IntegerStackC8;
   ulong long unsignedValue18;
@@ -27650,7 +27656,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   *(void*2 *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
   *(int *)(ConfigurationDataPointer + 0x10) = systemResult + 0xc;
   pSystemStackFlag = &SystemMemoryAllocatorReference;
-  SystemResourceTriplePointerA = &punsignedValueD8;
+  SystemResourceTriplePointerA = &systemDataPointer;
   punsignedValueD8 = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(unsignedValue18 ^ (ulong long)aStackValue1c8);
 }
@@ -28110,7 +28116,7 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
   ulong long unsignedSystemValue7;
   uint8_t SystemStackBuffer238 [32];
   uint32_t SystemOperationStatus218;
-  void* *punsignedValue208;
+  void* *systemMemoryPointer;
   long long SystemMemoryOffset200;
   uint SystemResourceCount1f8;
   void* SystemResourcePointer1f0;
@@ -29389,7 +29395,7 @@ void InitializeSystemMemoryResource(long long *SystemResourceManager)
   InitializeSystemHandle(ResourceDataOffset + 0x48,&SystemResourceManagerPointer);
   SystemResourceManager[1] = (long long)pbufferBaseAddress;
   memoryAllocationEnd = &SystemMemoryAllocatorReference;
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   stringProcessingPointer = *(code **)*SystemDataPointer;
   ppsystemMemoryOffset = &SystemResourceManagerPointer;
   SystemResourceManagerPointer = (long long *)*SystemResourceManager;
@@ -29593,8 +29599,8 @@ void ManageSystemResourceBuffer(void* SystemResourceManager,void* ConfigurationD
   long long nextDataIndex;
   char validationStatusFlag;
   uint8_t aunsignedValue30 [16];
-  void* *punsignedValue20;
-  void* *punsignedValue18;
+  void* *systemParameterPointer;
+  void* *systemResourcePointer;
   
   ExecuteSystemInitialization(SystemResourceManager,1,1,ConfigurationFlag,0xfffffffffffffffe);
   if (SystemCleanupHandler != (long long *)0x0) {
@@ -29652,8 +29658,8 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   void* SystemMemoryOffset;
   void* *SystemConfigurationDataPointer;
   void* **ppUnsignedStackFlag118;
-  void* *punsignedValue108;
-  uint8_t *punsignedValue100;
+  void* *systemHashPointer;
+  uint8_t *systemHashFlags;
   uint32_t unsignedValueF8;
   uint8_t auStack_f0 [128];
   uint32_t processFlags70;
@@ -29674,7 +29680,7 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   processFlags58 = CreateSystemObject(SystemOperationStatus,ConfigurationDataPointer);
   unsignedValue50 = AdditionalParameter;
   SystemOperationStatus = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x100,8,3);
-  pHashEntryPointer = (void* **)InitializeResourceContext(SystemOperationStatus,&punsignedValue108);
+  pHashEntryPointer = (void* **)InitializeResourceContext(SystemOperationStatus,&systemHashPointer);
   ppUnsignedStackFlag118 = pHashEntryPointer;
   if (pHashEntryPointer != (void* **)0x0) {
     (**(code **)(*pHashEntryPointer + 0x28))(pHashEntryPointer);
@@ -29689,7 +29695,7 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   if (pHashEntryPointer != (void* **)0x0) {
     (**(code **)(*pHashEntryPointer + 0x38))(pHashEntryPointer);
   }
-  SystemMemoryContextPointer = (void* ***)&punsignedValue108;
+  SystemMemoryContextPointer = (void* ***)&systemHashPointer;
   punsignedValue108 = &SystemMemoryAllocatorReference;
   *ConfigurationDataPointer = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[1] != 0) {
@@ -29717,7 +29723,7 @@ void* * InitializeSystemResourceManager(void* *SystemResourceManager)
 
 {
   *SystemResourceManager = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   SystemResourceManager[2] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 3;
   return SystemResourceManager;
@@ -29739,7 +29745,7 @@ void* * ResetSystemResourceManager(void* *SystemResourceManager)
 
 {
   *SystemResourceManager = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   SystemResourceManager[2] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 3;
   return SystemResourceManager;
@@ -29779,7 +29785,7 @@ void* * InitializeSystemResourceManager(void* *SystemResourceManager)
 
 {
   *SystemResourceManager = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   SystemResourceManager[2] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 10;
   return SystemResourceManager;
@@ -29803,7 +29809,7 @@ void* * InitializeSystemResourceManagerExtended(void* *SystemResourceManager)
   void* *SystemDataPointer;
   
   *SystemResourceManager = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   SystemResourceManager[4] = 0;
   *(uint32_t *)(SystemResourceManager + 5) = 0;
   SystemResourceManager[6] = 0;
@@ -30008,7 +30014,7 @@ SystemMemoryAllocatorConfigurator(void* *SystemResourceManager,long long Configu
   long long stringLength;
   
   *SystemResourceManager = &SystemMemoryAllocatorReference;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemResourceTemplateSecondary;
   SystemResourceManager[1] = SystemResourceManager + 3;
@@ -30080,7 +30086,7 @@ void ProcessSystemDataTable(long long *SystemResourceManager,void* Configuration
   void* allocationContext;
   
   allocationContext = 0xfffffffffffffffe;
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (HashEntryPointer = (void* *)*SystemResourceManager; HashEntryPointer != SystemDataPointer; HashEntryPointer = HashEntryPointer + 0xb) {
     (**(code **)*HashEntryPointer)(HashEntryPointer,0,AdditionalParameter,ConfigurationFlag,allocationContext);
   }
@@ -30769,7 +30775,7 @@ void ProcessResourceArrayCleanup(long long *SystemResourceManager,void* Configur
   void* allocationContext;
   
   allocationContext = 0xfffffffffffffffe;
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (HashEntryPointer = (void* *)*SystemResourceManager; HashEntryPointer != SystemDataPointer; HashEntryPointer = HashEntryPointer + 0x69) {
     (**(code **)*HashEntryPointer)(HashEntryPointer,0,AdditionalParameter,ConfigurationFlag,allocationContext);
   }
@@ -31383,10 +31389,10 @@ void CleanupSystemResourceHandler(void* *SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 7) = 0;
   SystemResourceManager[4] = &SystemMemoryAllocatorReference;
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
     SystemCleanupFunction(SystemResourceManager);
@@ -31457,7 +31463,7 @@ void ProcessSystemResourceData(long long *SystemResourceManager,void* Configurat
     SystemResourceManager[0x87] = (long long)&SystemMemoryAllocatorReference;
     SystemResourceManager[4] = (long long)&SystemMemoryAllocatorReference;
     allocationContext = 0xfffffffffffffffe;
-    SystemDataPointer = (void* *)SystemResourceManager[1];
+    SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
     for (HashEntryPointer = (void* *)*SystemResourceManager; HashEntryPointer != SystemDataPointer; HashEntryPointer = HashEntryPointer + 4) {
       (**(code **)*HashEntryPointer)(HashEntryPointer,0,AdditionalParameter,ConfigurationFlag,allocationContext);
     }
@@ -31558,7 +31564,7 @@ void FinalizeSystemResourceCleanup(long long *SystemResourceManager)
   nextDataIndex = *SystemResourceManager;
   *SystemResourceManager = 0;
   localSystemHandle = SystemResourceManager[1];
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   ResourceDataOffset = SystemResourceManager[2];
   SystemResourceManager[2] = 0;
   localSystemFlags = SystemResourceManager[3];
@@ -31715,7 +31721,7 @@ void InitializeSystemResourceManager(ulong long *SystemResourceManager)
   systemValue1 = *SystemResourceManager;
   *SystemResourceManager = 0;
   systemValue2 = SystemResourceManager[1];
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   systemValue3 = SystemResourceManager[2];
   SystemResourceManager[2] = 0;
   CalculationFlagss = SystemResourceManager[3];
@@ -32605,10 +32611,10 @@ void ResetSystemResourceManager(void* *SystemResourceManager)
 {
   ProcessSystemDataConfiguration(SystemResourceManager + 4);
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -32632,10 +32638,10 @@ void CleanupSystemResourceManager(void* *SystemResourceManager)
       SystemCleanupFunction();
   }
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -33617,10 +33623,10 @@ void InitializeSystemResourceManager(void* *SystemResourceManager)
     SystemCleanupFunction();
   }
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
     SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -33694,10 +33700,10 @@ void ConfigureSystemResourceMemoryRegions(void* *SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 7) = 0;
   SystemResourceManager[4] = &SystemMemoryAllocatorReference;
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
     SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -33721,10 +33727,10 @@ void InitializeSystemResources(void* *SystemResourceManager)
 {
   StartSystemInitialization();
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -33812,10 +33818,10 @@ void ResetSystemResources(void* *SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 7) = 0;
   SystemResourceManager[4] = &SystemMemoryAllocatorReference;
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -33926,7 +33932,7 @@ void ProcessSystemConfiguration(long long *SystemResourceManager,void* Configura
 SystemResourceConfiguration:
   ResourceDataOffset = CopySystemResourceDataExtended(bufferBaseAddress,ResourceDataOffset,localSystemHandle);
   CreateSystemObject(ResourceDataOffset,ConfigurationDataPointer);
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   SystemThreadContext = (void* *)*SystemResourceManager;
   if (SystemThreadContext != SystemDataPointer) {
     do {
@@ -35134,7 +35140,7 @@ void ProcessAndCleanupBatchSystemResources(void* *SystemResourceManager,void* Co
   if (SystemResourceManager[5] != 0) {
       SystemCleanupFunction();
   }
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
   return;
@@ -35368,7 +35374,7 @@ void CleanupSystemResource(void** systemResourcePointer, void* configurationData
   if (SystemResourceManager[5] != 0) {
       SystemCleanupFunction();
   }
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
   return;
@@ -35564,10 +35570,10 @@ void InitializeSystemResourceManager(void* *SystemResourceManager,void* Configur
   
   // 初始化主系统资源
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   
@@ -35645,7 +35651,7 @@ void* * InitializeSystemResourceManager(void* *SystemResourceManager)
 
 {
   *SystemResourceManager = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   SystemResourceManager[2] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0x24;
   return SystemResourceManager;
@@ -36239,11 +36245,11 @@ void* * ConfigureSystemResources(void* *SystemResourceManager,long long Configur
 
 {
   *SystemResourceManager = &SystemMemoryAllocatorReference;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemGlobalDataReference;
   SystemResourceManager[3] = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *(uint32_t *)(SystemResourceManager + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   SystemResourceManager[1] = *(void* *)(ConfigurationDataPointer + 8);
@@ -37303,7 +37309,7 @@ void CleanupSystemMemoryAllocation(long long *SystemResourceManager,void* Config
   void* allocationContext;
   
   allocationContext = 0xfffffffffffffffe;
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (HashEntryPointer = (void* *)*SystemResourceManager; HashEntryPointer != SystemDataPointer; HashEntryPointer = HashEntryPointer + 4) {
     (**(code **)*HashEntryPointer)(HashEntryPointer,0,AdditionalParameter,ConfigurationFlag,allocationContext);
   }
@@ -40621,7 +40627,7 @@ void ConfigureSystemResources(void* *SystemResourceManager,void* ConfigurationDa
     charStatus = ConfigureSystemResourceContext(SystemResourceManager,1,AdditionalParameter,ConfigurationFlag,ConfigurationMask);
   }
   if (SystemResourceManager[1] == 0) {
-    SystemResourceManager[1] = 0;
+    SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(SystemResourceManager + 0x2a);
     _Mtx_destroy_in_situ();
@@ -43157,8 +43163,8 @@ void ConfigureAndManageSystemResourceData(long long *SystemResourceManager,long 
   void* *SystemDataPointer4;
   uint8_t encryptionBuffer [32];
   long long hashNodeOffset;
-  void* *punsignedValue108;
-  uint8_t *punsignedValue100;
+  void* *systemHashPointer;
+  uint8_t *systemHashFlags;
   uint32_t unsignedValueF8;
   void* uStack_f0;
   uint32_t uStack_e8;
@@ -46154,7 +46160,7 @@ InitializeSystemResourceStringTemplate(void* *SystemResourceManager,long long Co
   void* *SystemDataPointer;
   
   *SystemResourceManager = &SystemMemoryAllocatorReference;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorTemplate;
   SystemResourceManager[1] = SystemResourceManager + 3;
@@ -46186,7 +46192,7 @@ void* * InitializeSystemMemoryAllocatorTemplate(void* *SystemResourceManager)
 
 {
   *SystemResourceManager = &SystemMemoryAllocatorReference;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorTemplate;
   SystemResourceManager[1] = SystemResourceManager + 3;
@@ -47597,7 +47603,7 @@ void InitializeSystemResourceConfiguration(long long *SystemResourceManager,void
   void* allocationContext;
   
   allocationContext = 0xfffffffffffffffe;
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (HashEntryPointer = (void* *)*SystemResourceManager; HashEntryPointer != SystemDataPointer; HashEntryPointer = HashEntryPointer + 0x13) {
     (**(code **)*HashEntryPointer)(HashEntryPointer,0,AdditionalParameter,ConfigurationFlag,allocationContext);
   }
@@ -47631,7 +47637,7 @@ void ProcessSystemResourceConfigurationData(long long *SystemResourceManager,voi
   void* allocationContext;
   
   allocationContext = 0xfffffffffffffffe;
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (HashEntryPointer = (void* *)*SystemResourceManager; HashEntryPointer != SystemDataPointer; HashEntryPointer = HashEntryPointer + 0x13) {
     (**(code **)*HashEntryPointer)(HashEntryPointer,0,AdditionalParameter,ConfigurationFlag,allocationContext);
   }
@@ -47715,14 +47721,14 @@ void DestroySystemResourceManager(void* *SystemResourceManager)
   void* *pUnsignedStackFlag88;
   void* *pUnsignedStackFlag80;
   void* EncryptionValue68;
-  void* *punsignedValue60;
+  void* *systemContextPointer;
   ulong long unsignedValue30;
   
   EncryptionValue68 = 0xfffffffffffffffe;
   unsignedValue30 = SystemEncryptionKeyTemplate ^ (ulong long)asystemDataBuffer;
   *SystemResourceManager = &SystemCriticalSectionTemplate;
   creationFlags = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   pUnsignedStackFlag80 = SystemResourceManager + 2;
   *pUnsignedStackFlag80 = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
@@ -50564,7 +50570,7 @@ InitializeSystemResourceManagerWithMutex(uint32_t *SystemResourceManager,void* C
   uint32_t *SystemDataPointer;
   
   *SystemResourceManager = 0;
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   SystemResourceManager[2] = 0;
   SystemResourceManager[3] = 0;
   SystemResourceManager[4] = 3;
@@ -51156,16 +51162,16 @@ ConfigureSystemResourceManager(void* *SystemResourceManager,void* ConfigurationD
 {
   if (SystemInitFlagPtr == '\0') {
     *SystemResourceManager = &SystemMemoryAllocatorReference;
-    SystemResourceManager[1] = 0;
+    SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
     *(uint32_t *)(SystemResourceManager + 2) = 0;
     *SystemResourceManager = &SystemGlobalDataReference;
     SystemResourceManager[3] = 0;
-    SystemResourceManager[1] = 0;
+    SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
     *(uint32_t *)(SystemResourceManager + 2) = 0;
     ExecuteSystemCommand(SystemResourceManager,0,AdditionalParameter,ConfigurationFlag,0,0xfffffffffffffffe);
     *(uint32_t *)(SystemResourceManager + 2) = 0;
     if ((uint8_t *)SystemResourceManager[1] != (uint8_t *)0x0) {
-      *(uint8_t *)SystemResourceManager[1] = 0;
+      *(uint8_t *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
     }
   }
   else {
@@ -51333,7 +51339,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
   bool isByteValid5;
   byte bStackX_20;
   void* *DataBufferPtrE0;
-  void* *punsignedValueD8;
+  void* *systemDataPointer;
   uint32_t uStack_d0;
   ulong long uStack_c8;
   void* *pUnsignedStackFlagC0;
@@ -51987,7 +51993,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   void* *punsignedValueF8;
   void* *puStack_f0;
   uint32_t uStack_e0;
-  void* *punsignedValueD8;
+  void* *systemDataPointer;
   long long lStack_d0;
   uint32_t UnsignedStackFlagC0;
   uint32_t secondarySystemDataBuffer;
@@ -53481,7 +53487,7 @@ bool SystemThreadInitializerAndResourceManager(void* SystemResourceManager,void*
   char cStackX_10;
   uint SystemOperationStatus5;
   void* *pUnsignedStackFlag110;
-  void* *punsignedValue108;
+  void* *systemHashPointer;
   int iStack_100;
   void* unsignedValueF8;
   void* *puStack_f0;
@@ -53502,7 +53508,7 @@ bool SystemThreadInitializerAndResourceManager(void* SystemResourceManager,void*
   ulong long UnsignedStackFlag78;
   void* *pprocessFlags70;
   void* *pEncryptionValue68;
-  void* *punsignedValue60;
+  void* *systemContextPointer;
   long long SystemStatusFlag48;
   void* unsignedValue40;
   
@@ -53967,10 +53973,10 @@ void ResetResourceManager(void* *SystemResourceManager)
   SystemResourceManager[9] = 0;
   FUN_180074a80();
   *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
@@ -56021,10 +56027,10 @@ void CleanupSystemResourceManager(long long* SystemResourceManager)
       SystemCleanupFunction();
   }
   *SystemResourceManager = 0;
-  if (SystemResourceManager[1] != 0) {
+  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[1] = 0;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   return;
 }
 
@@ -57907,7 +57913,7 @@ void ReleaseSystemResourceManager(long long *SystemResourceManager)
   void* *SystemDataPointer;
   void** SystemDataTable;
   
-  SystemDataPointer = (void* *)SystemResourceManager[1];
+  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (HashEntryPointer = (void* *)*SystemResourceManager; HashEntryPointer != SystemDataPointer; HashEntryPointer = HashEntryPointer + 6) {
     *HashEntryPointer = &SystemGlobalDataReference;
     if (HashEntryPointer[1] != 0) {
@@ -64288,7 +64294,7 @@ ulong long FUN_18007b240(long long SystemResourceManager,long long *Configuratio
   uint32_t UnsignedStackFlag88;
   long long *aplStack_78 [2];
   code *SystemFunctionPointer68;
-  void* *punsignedValue60;
+  void* *systemContextPointer;
   void* processFlags58;
   long long *plStack_50;
   long long *pSystemStatusFlag48;

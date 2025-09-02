@@ -65150,7 +65150,18 @@ void Unwind_ResourceHashCleanupHandler5(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_180908ac0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希验证处理器
+ * 
+ * 该函数负责处理资源哈希验证操作，管理资源索引和验证结果
+ * 用于系统资源管理的验证流程
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_180908ac0
+ */
+void ExecuteResourceHashValidationHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65186,7 +65197,18 @@ void Unwind_180908ac0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908ad0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希处理器
+ * 
+ * 该函数负责初始化资源哈希处理器，设置处理参数和状态
+ * 用于系统资源管理的初始化流程
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_180908ad0
+ */
+void InitializeResourceHashProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65222,7 +65244,7 @@ void Unwind_180908ad0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908ae0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x170);
@@ -65231,7 +65253,7 @@ void Unwind_180908ae0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908af0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceTableCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x170);
@@ -65240,7 +65262,7 @@ void Unwind_180908af0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908b00(uint8_t ObjectContext,int64_t ValidationContext)
+void FinalizeResourceTableOperation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -65258,7 +65280,7 @@ void Unwind_180908b00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908b10(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetResourceTableState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
