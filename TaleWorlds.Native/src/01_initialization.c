@@ -20059,7 +20059,7 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
 {
   void*** SystemResourcePointer;           // 系统资源指针
   long long SystemHandle;                  // 系统句柄
-  void** SystemHashNodeData;            // 系统哈希节点指针
+  void** SystemSystemHashNodeData;            // 系统哈希节点指针
   long long MemoryBufferBase;              // 内存缓冲区基地址
   int SystemResultValue;                    // 系统结果值
   long long LocalSystemFlags;               // 本地系统标志
@@ -20102,7 +20102,7 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   
   SystemGlobalHandle = 0xfffffffffffffffe;
   SystemHandle = 0;
-  systemMemoryContext = (void* *)&SystemGlobalDataReference;
+  SystemMemoryContext = (void* *)&SystemGlobalDataReference;
   SystemContextPrimary = 0;
   LocalMemoryBufferHandle = 0;
   ResourceAllocationFlags = 0;
@@ -20119,14 +20119,14 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   MemoryBufferVigesimal = 0;
   MemoryBufferUnvigesimal = 0;
   EncryptionKeyValue = 0;
-  HashNodeData = &SystemStringTemplate;
+  SystemHashNodeData = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
-    HashNodeData = *(void* **)(ConfigurationDataPointer + 8);
+    SystemHashNodeData = *(void* **)(ConfigurationDataPointer + 8);
   }
   EncryptionContextPointer = &SystemEncryptionValueTriple;
   SystemEncryptionValueTriple = &SystemEncryptionValueTriple;
   SystemEncryptionPointer60 = &SystemEncryptionValueTriple;
-  InitializeSystemStructure(&SystemMemoryContextPointer,HashNodeData);
+  InitializeSystemStructure(&SystemMemoryContextPointer,SystemHashNodeData);
   SystemResourceCounter118 = 0;
   SystemResourceCounter110 = 0;
   SystemResourceCounterC0 = 0;
@@ -20162,7 +20162,7 @@ SystemMemoryOffsetCheck:
   }
   InitializeSystemBuffer(&SystemEncryptionContext,SystemMemoryBaseAddress,SystemOperationCode,SystemResourceHandle);
   SystemDataPointerPointer = SystemEncryptionContext;
-  ProcessSystemData(SystemEncryptionContext,&systemMemoryContext);
+  ProcessSystemData(SystemEncryptionContext,&SystemMemoryContext);
   systemResourceManagerContext = (void* ****)(SystemDataPointerPointer + 0x20);
   SystemResourceTableSize = *(long long *)(SystemResourceManager + 0x10);
   SystemResourceTablePointer = *(long long *)(SystemResourceManager + 8);
@@ -20184,8 +20184,8 @@ SystemValueCalculation:
   *(int *)(SystemResourceManager + 0x68) = systemValue;
   SystemEncryptionContext = &SystemEncryptionValueTriple;
   InitializeAndCleanupSystemMemoryAllocator(&SystemEncryptionValueTriple,SystemProcessFlags58);
-  SystemEncryptionContext = (void* ***)&systemMemoryContext;
-  systemMemoryContext = (void* *)&SystemGlobalDataReference;
+  SystemEncryptionContext = (void* ***)&SystemMemoryContext;
+  SystemMemoryContext = (void* *)&SystemGlobalDataReference;
   if (LocalStackInitializationFlag == 0) {
     return systemValue;
   }
@@ -21548,17 +21548,17 @@ void* * CreateSystemResourceManager(long long SystemResourceManager,long long *C
 {
   long long *PrimaryResourcePointer;
   void** SystemDataTable;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   void* currentThreadId;
   
   currentThreadId = 0xfffffffffffffffe;
-  HashNodeData = (void* *)CreateSystemResourceTemplate();
+  SystemHashNodeData = (void* *)CreateSystemResourceTemplate();
   if (*ConfigurationDataPointer != 0) {
-    currentThreadId = InitializeSystemResourceHandle(SystemResourceManager,*ConfigurationDataPointer,HashNodeData,ConfigurationFlag,currentThreadId);
-    *HashNodeData = currentThreadId;
+    currentThreadId = InitializeSystemResourceHandle(SystemResourceManager,*ConfigurationDataPointer,SystemHashNodeData,ConfigurationFlag,currentThreadId);
+    *SystemHashNodeData = currentThreadId;
   }
-  SystemHashEntryPointer = HashNodeData;
+  SystemHashEntryPointer = SystemHashNodeData;
   for (PrimaryResourcePointer = (long long *)ConfigurationDataPointer[1]; PrimaryResourcePointer != (long long *)0x0; PrimaryResourcePointer = (long long *)PrimaryResourcePointer[1]) {
     presourceAddress = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x68,*(uint8_t *)(SystemResourceManager + 0x28));
     InitializeSystemMemoryAllocator(presourceAddress + 4,PrimaryResourcePointer + 4);
@@ -21575,7 +21575,7 @@ void* * CreateSystemResourceManager(long long SystemResourceManager,long long *C
     }
     SystemHashEntryPointer = presourceAddress;
   }
-  return HashNodeData;
+  return SystemHashNodeData;
 }
 
 
@@ -22893,7 +22893,7 @@ bool SystemNodeCheckStatus(void)
 {
   char SystemNodeFlag;
   uint32_t *SystemHashEntryPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   int systemIndex;
   bool systemNodeStatus;
   void* SystemEncryptionKey;
@@ -22913,12 +22913,12 @@ bool SystemNodeCheckStatus(void)
   *(void*2 *)(SystemHashEntryPointer + 4) = 0x74;
   SystemEncryptionKey = 0;
   longValue40 = 0;
-  HashNodeData = &SystemStringTemplate;
+  SystemHashNodeData = &SystemStringTemplate;
   if (pEncryptionKeyValue != (void* *)0x0) {
-    HashNodeData = pEncryptionKeyValue;
+    SystemHashNodeData = pEncryptionKeyValue;
   }
   stringOffsetValue = systemIndex;
-  ValidateSystemStringFormat(&SystemEncryptionKey,HashNodeData,&SystemStringConstant);
+  ValidateSystemStringFormat(&SystemEncryptionKey,SystemHashNodeData,&SystemStringConstant);
   if (longValue40 == 0) {
     systemNodeStatus = false;
   }
@@ -22962,7 +22962,7 @@ void InitializeSystemThreadPoolManager(void)
 {
   char SystemNodeFlag;
   uint32_t *SystemHashEntryPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   int systemValue;
   uint8_t StackBuffer [32];
@@ -23002,27 +23002,27 @@ void InitializeSystemThreadPoolManager(void)
   SystemHashEntryPointer[2] = 0x2e676966;
   SystemHashEntryPointer[3] = 0x747874;
   CONCAT44 = systemValue;
-  HashNodeData = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x18,8,3);
+  SystemHashNodeData = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x18,8,3);
   presourceAddress = &SystemStringTemplate;
   if (memoryAllocationBuffer != (void* *)0x0) {
     presourceAddress = memoryAllocationBuffer;
   }
-  *HashNodeData = 0;
-  *(uint8_t *)(HashNodeData + 2) = 0;
-  ProcessSystemResourceData(HashNodeData,presourceAddress,&SystemResourceTemplateTertiary);
-  if (HashNodeData[1] == 0) {
-      SystemCleanupFunction(HashNodeData);
+  *SystemHashNodeData = 0;
+  *(uint8_t *)(SystemHashNodeData + 2) = 0;
+  ProcessSystemResourceData(SystemHashNodeData,presourceAddress,&SystemResourceTemplateTertiary);
+  if (SystemHashNodeData[1] == 0) {
+      SystemCleanupFunction(SystemHashNodeData);
   }
-  ReleaseSystemMemory(SystemMemoryManagerPointer,HashNodeData);
-  ClearSystemMemory(HashNodeData);
-  if (HashNodeData[1] != 0) {
+  ReleaseSystemMemory(SystemMemoryManagerPointer,SystemHashNodeData);
+  ClearSystemMemory(SystemHashNodeData);
+  if (SystemHashNodeData[1] != 0) {
     fclose();
-    HashNodeData[1] = 0;
+    SystemHashNodeData[1] = 0;
     LOCK();
     SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
     UNLOCK();
   }
-    SystemCleanupFunction(HashNodeData);
+    SystemCleanupFunction(SystemHashNodeData);
 }
 
 
@@ -23253,7 +23253,7 @@ void* InitializeSystemResourceValidation(char SystemResourceManager)
 {
   long long *PrimaryResourcePointer;
   char validationStatusFlag;
-  uint32_t *HashNodeData;
+  uint32_t *SystemHashNodeData;
   void* *presourceAddress;
   int systemValue;
   void* resourceHashValue;
@@ -23282,12 +23282,12 @@ void* InitializeSystemResourceValidation(char SystemResourceManager)
   SetupSystemConfiguration(&pointerUnsigned30);
   systemValue = SystemMaxOperationCount + 0x11;
   ExecuteSystemCommand(&pointerUnsigned30,systemValue);
-  HashNodeData = (uint32_t *)(pEncryptionKeyValue + SystemMaxOperationCount);
-  *HashNodeData = 0x69676e65;
-  HashNodeData[1] = 0x635f656e;
-  HashNodeData[2] = 0x69666e6f;
-  HashNodeData[3] = 0x78742e67;
-  *(void*2 *)(HashNodeData + 4) = 0x74;
+  SystemHashNodeData = (uint32_t *)(pEncryptionKeyValue + SystemMaxOperationCount);
+  *SystemHashNodeData = 0x69676e65;
+  SystemHashNodeData[1] = 0x635f656e;
+  SystemHashNodeData[2] = 0x69666e6f;
+  SystemHashNodeData[3] = 0x78742e67;
+  *(void*2 *)(SystemHashNodeData + 4) = 0x74;
   SystemEncryptionKey = 0;
   longValue40 = 0;
   presourceAddress = &SystemStringTemplate;
@@ -23758,7 +23758,7 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
 {
   long long resourceDataIndex;
   int systemResult;
-  ulong long *HashNodeData;
+  ulong long *SystemHashNodeData;
   long long SystemBufferAddress;
   uint64_t SystemInitializationFlag;
   void* StackParameter1;
@@ -23772,10 +23772,10 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer;
   StackParameter2 = AdditionalParameter;
   StackParameter1 = ConfigurationFlag;
-  HashNodeData = (ulong long *)SystemGlobalDataAllocate();
+  SystemHashNodeData = (ulong long *)SystemGlobalDataAllocate();
   SystemProcessFlags58 = 0;
   memoryAllocationEnd = &StackParameter2;
-  __stdio_common_vsprintf(*HashNodeData | 1,ConfigurationBuffer,0x20,ConfigurationDataPointer);
+  __stdio_common_vsprintf(*SystemHashNodeData | 1,ConfigurationBuffer,0x20,ConfigurationDataPointer);
   resourceDataIndex = -1;
   do {
     SystemBufferAddress = resourceDataIndex;
@@ -24490,7 +24490,7 @@ void SystemMemoryInitialize(long long SystemResourceManager)
 {
   int *SystemIntegerPointer;
   long long SystemThreadHandle;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   ulong long resourceHashValue;
@@ -24510,14 +24510,14 @@ void SystemMemoryInitialize(long long SystemResourceManager)
     resourceHashValue = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
-  if ((1 < resourceHashValue) && (HashNodeData = *(void* **)(SystemResourceManager + 8), HashNodeData != (void* *)0x0)) {
-    resourceHashValue = (ulong long)HashNodeData & 0xffffffffffc00000;
+  if ((1 < resourceHashValue) && (SystemHashNodeData = *(void* **)(SystemResourceManager + 8), SystemHashNodeData != (void* *)0x0)) {
+    resourceHashValue = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
     if (resourceHashValue != 0) {
-      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)HashNodeData - resourceHashValue >> 0x10) * 0x50;
+      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)SystemHashNodeData - resourceHashValue >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
       if ((*(void ***)(resourceHashValue + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-        *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-        *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+        *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+        *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
         SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
         *SystemIntegerPointer = *SystemIntegerPointer + -1;
         if (*SystemIntegerPointer == 0) {
@@ -24527,7 +24527,7 @@ void SystemMemoryInitialize(long long SystemResourceManager)
       }
       else {
         SystemExceptionCheck(resourceHashValue,CONCAT71(0xff000000,*(void ***)(resourceHashValue + 0x70) == &ExceptionList),
-                            HashNodeData,resourceHashValue,0xfffffffffffffffe);
+                            SystemHashNodeData,resourceHashValue,0xfffffffffffffffe);
       }
     }
     return;
@@ -25360,7 +25360,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
 {
   byte SystemCharacterValue;
   uint8_t resourceCreationFlags;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   char operationStatusFlag;
   int CalculationFlags;
@@ -26022,7 +26022,7 @@ void SystemMemoryManager(long long SystemResourceManager)
 {
   int *SystemIntegerPointer;
   long long SystemThreadHandle;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   ulong long resourceHashValue;
@@ -26042,14 +26042,14 @@ void SystemMemoryManager(long long SystemResourceManager)
     resourceHashValue = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
-  if ((1 < resourceHashValue) && (HashNodeData = *(void* **)(SystemResourceManager + 8), HashNodeData != (void* *)0x0)) {
-    resourceHashValue = (ulong long)HashNodeData & 0xffffffffffc00000;
+  if ((1 < resourceHashValue) && (SystemHashNodeData = *(void* **)(SystemResourceManager + 8), SystemHashNodeData != (void* *)0x0)) {
+    resourceHashValue = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
     if (resourceHashValue != 0) {
-      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)HashNodeData - resourceHashValue >> 0x10) * 0x50;
+      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)SystemHashNodeData - resourceHashValue >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
       if ((*(void ***)(resourceHashValue + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-        *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-        *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+        *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+        *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
         SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
         *SystemIntegerPointer = *SystemIntegerPointer + -1;
         if (*SystemIntegerPointer == 0) {
@@ -26059,7 +26059,7 @@ void SystemMemoryManager(long long SystemResourceManager)
       }
       else {
         SystemExceptionCheck(resourceHashValue,CONCAT71(0xff000000,*(void ***)(resourceHashValue + 0x70) == &ExceptionList),
-                            HashNodeData,resourceHashValue,0xfffffffffffffffe);
+                            SystemHashNodeData,resourceHashValue,0xfffffffffffffffe);
       }
     }
     return;
@@ -26084,7 +26084,7 @@ void SystemMemoryCleanup(long long SystemResourceManager)
 {
   int *SystemIntegerPointer;
   long long SystemThreadHandle;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   ulong long resourceHashValue;
@@ -26104,14 +26104,14 @@ void SystemMemoryCleanup(long long SystemResourceManager)
     resourceHashValue = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
-  if ((1 < resourceHashValue) && (HashNodeData = *(void* **)(SystemResourceManager + 8), HashNodeData != (void* *)0x0)) {
-    resourceHashValue = (ulong long)HashNodeData & 0xffffffffffc00000;
+  if ((1 < resourceHashValue) && (SystemHashNodeData = *(void* **)(SystemResourceManager + 8), SystemHashNodeData != (void* *)0x0)) {
+    resourceHashValue = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
     if (resourceHashValue != 0) {
-      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)HashNodeData - resourceHashValue >> 0x10) * 0x50;
+      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)SystemHashNodeData - resourceHashValue >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
       if ((*(void ***)(resourceHashValue + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-        *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-        *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+        *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+        *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
         SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
         *SystemIntegerPointer = *SystemIntegerPointer + -1;
         if (*SystemIntegerPointer == 0) {
@@ -26121,7 +26121,7 @@ void SystemMemoryCleanup(long long SystemResourceManager)
       }
       else {
         SystemExceptionCheck(resourceHashValue,CONCAT71(0xff000000,*(void ***)(resourceHashValue + 0x70) == &ExceptionList),
-                            HashNodeData,resourceHashValue,0xfffffffffffffffe);
+                            SystemHashNodeData,resourceHashValue,0xfffffffffffffffe);
       }
     }
     return;
@@ -28401,11 +28401,11 @@ StringIterationCheck:
             (ulong long)(long long)SystemIdentifierF8) goto StringIterationCheck;
         SystemAllocationFlags = (long long)SystemIdentifierF8 * 0x20 + SystemAllocationFlags;
       }
-      systemMemoryContext = &SystemGlobalDataReference;
+      SystemMemoryContext = &SystemGlobalDataReference;
       SystemResourceFlags120 = 0;
       ResourceBufferPointer130 = (uint8_t *)0x0;
       SystemMemoryOffset = 0;
-      ExecuteSystemCommand(&systemMemoryContext,*(uint32_t *)(SystemAllocationFlags + 0x10));
+      ExecuteSystemCommand(&SystemMemoryContext,*(uint32_t *)(SystemAllocationFlags + 0x10));
       if (*(int *)(SystemAllocationFlags + 0x10) != 0) {
           memcpy(ResourceBufferPointer130,*(void* *)(SystemAllocationFlags + 8),*(int *)(SystemAllocationFlags + 0x10) + 1);
       }
@@ -28442,11 +28442,11 @@ SystemIdCheck:
         SystemEncryptionOffset0 = SystemEncryptionOffset0 & 0xffffffff;
       }
       systemCode = SystemMemoryOffset + 8;
-      ExecuteSystemCommand(&systemMemoryContext,systemCode);
+      ExecuteSystemCommand(&SystemMemoryContext,systemCode);
       *(void* *)(ResourceBufferPointer130 + SystemMemoryOffset) = 0x6a624f656e656353;
       *(uint8_t *)((long long)(ResourceBufferPointer130 + SystemMemoryOffset) + 8) = 0;
       SystemMemoryOffset = systemCode;
-      SystemOperationStatusFlag = ValidateSystemMemoryAllocation(&systemMemoryContext);
+      SystemOperationStatusFlag = ValidateSystemMemoryAllocation(&SystemMemoryContext);
       if (SystemOperationStatusFlag == '\0') {
         pUnsignedStackFlag118 = &SystemGlobalDataReference;
         if (pUnsignedStackFlag110 != (uint8_t *)0x0) {
@@ -28455,7 +28455,7 @@ SystemIdCheck:
         pUnsignedStackFlag110 = (uint8_t *)0x0;
         SystemEncryptionOffset0 = SystemEncryptionOffset0 & 0xffffffff00000000;
         pUnsignedStackFlag118 = &SystemMemoryAllocatorReference;
-        systemMemoryContext = &SystemGlobalDataReference;
+        SystemMemoryContext = &SystemGlobalDataReference;
         if (ResourceBufferPointer130 != (uint8_t *)0x0) {
             SystemCleanupFunction();
         }
@@ -28465,9 +28465,9 @@ SystemIdCheck:
         memoryAllocationEnd = (void* *)0x0;
         SystemEncryptionKey = 0;
         SystemOperationCounter = 3;
-        AllocateSystemMemoryResources(&systemMemoryContext,&memoryAllocationBuffer);
+        AllocateSystemMemoryResources(&SystemMemoryContext,&memoryAllocationBuffer);
         SystemThreadContext = memoryAllocationEnd;
-        HashNodeData = memoryAllocationBuffer;
+        SystemHashNodeData = memoryAllocationBuffer;
         SystemAllocationFlags = (long long)memoryAllocationEnd - (long long)memoryAllocationBuffer;
         InitializeSystemDataBuffer(&dataBufferContext);
         resourceEntryPointer = &SystemStringTemplate;
@@ -28483,7 +28483,7 @@ SystemIdCheck:
         systemCode = (int)(SystemAllocationFlags >> 5);
         SystemAllocationFlags = (long long)systemCode;
         if (0 < systemCode) {
-          ThreadLocalStorageEntry = (uint *)(HashNodeData + 2);
+          ThreadLocalStorageEntry = (uint *)(SystemHashNodeData + 2);
           do {
             ProcessSystemValidation();
             ValidateSystemComponent();
@@ -28589,7 +28589,7 @@ PathSeparatorCheck:
                 }
                 systemId = -1;
 PathSeparatorFound:
-                ExecuteSystemOperation(HashNodeData + (long long)SystemOperationStatus3 * 4,&stackParameterB,systemId + 1,0xffffffff);
+                ExecuteSystemOperation(SystemHashNodeData + (long long)SystemOperationStatus3 * 4,&stackParameterB,systemId + 1,0xffffffff);
                 SystemOperationStatus7 = ConfigureSystemResource(resourcePoolPointer,&stackParameterB);
                 if (SystemGlobalStateStorage != 0) {
                   ProcessSystemDataOperation(SystemOperationStatus7,&SystemUnsignedFlagPointer);
@@ -28669,11 +28669,11 @@ MemoryPointerCheck:
         SystemMemoryBufferC8 = 0;
         systemDataBuffer = 0;
         dataBufferContext = &SystemMemoryAllocatorReference;
-        for (pSystemSecondaryStatus = HashNodeData; pSystemSecondaryStatus != SystemThreadContext; pSystemSecondaryStatus = pSystemSecondaryStatus + 4) {
+        for (pSystemSecondaryStatus = SystemHashNodeData; pSystemSecondaryStatus != SystemThreadContext; pSystemSecondaryStatus = pSystemSecondaryStatus + 4) {
           (**(code **)*pSystemSecondaryStatus)(pSystemSecondaryStatus,0);
         }
-        if (HashNodeData != (void* *)0x0) {
-            SystemCleanupFunction(HashNodeData);
+        if (SystemHashNodeData != (void* *)0x0) {
+            SystemCleanupFunction(SystemHashNodeData);
         }
         pUnsignedStackFlag118 = &SystemGlobalDataReference;
         if (pUnsignedStackFlag110 != (uint8_t *)0x0) {
@@ -28682,7 +28682,7 @@ MemoryPointerCheck:
         pUnsignedStackFlag110 = (uint8_t *)0x0;
         SystemEncryptionOffset0 = SystemEncryptionOffset0 & 0xffffffff00000000;
         pUnsignedStackFlag118 = &SystemMemoryAllocatorReference;
-        systemMemoryContext = &SystemGlobalDataReference;
+        SystemMemoryContext = &SystemGlobalDataReference;
         if (ResourceBufferPointer130 != (uint8_t *)0x0) {
             SystemCleanupFunction();
         }
@@ -28691,7 +28691,7 @@ MemoryPointerCheck:
       pUnsignedStackFlag118 = &SystemMemoryAllocatorReference;
       SystemResourceFlags120 = SystemResourceFlags120 & 0xffffffff00000000;
       ResourceBufferPointer130 = (uint8_t *)0x0;
-      systemMemoryContext = &SystemMemoryAllocatorReference;
+      SystemMemoryContext = &SystemMemoryAllocatorReference;
       SystemIdentifierF8 = systemId + 1;
     } while (SystemIdentifierF8 < (int)resourceDataIndex4);
   }
@@ -29652,7 +29652,7 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   void* SystemOperationStatus;
   void* **pSystemHashEntryPointer;
   uint8_t aSystemConfigurationId [32];
-  void* **psystemMemoryContext;
+  void* **pSystemMemoryContext;
   void* ***SystemDataSystemMemoryContextPointer;
   void* SystemMemoryOffset;
   void* *SystemConfigurationDataPointer;
@@ -29668,7 +29668,7 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   
   SystemMemoryOffset = 0xfffffffffffffffe;
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)aSystemConfigurationId;
-  psystemMemoryContext = &pSystemEncryptionOffset8;
+  pSystemMemoryContext = &pSystemEncryptionOffset8;
   pSystemEncryptionOffset8 = &SystemResourceTemplatePrimary;
   pSystemEncryptionOffset0 = StackMemoryBufferF0;
   SystemMemoryBufferAddress = 0;
@@ -29685,12 +29685,12 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
     (**(code **)(*pSystemHashEntryPointer + 0x28))(pSystemHashEntryPointer);
   }
   SystemOperationStatus = SystemAllocationFlagsTemplate;
-  SystemDataSystemMemoryContextPointer = &psystemMemoryContext;
-  psystemMemoryContext = pSystemHashEntryPointer;
+  SystemDataSystemMemoryContextPointer = &pSystemMemoryContext;
+  pSystemMemoryContext = pSystemHashEntryPointer;
   if (pSystemHashEntryPointer != (void* **)0x0) {
     (**(code **)(*pSystemHashEntryPointer + 0x28))(pSystemHashEntryPointer);
   }
-  SetupMemoryAllocationContext(SystemOperationStatus,&psystemMemoryContext);
+  SetupMemoryAllocationContext(SystemOperationStatus,&pSystemMemoryContext);
   if (pSystemHashEntryPointer != (void* **)0x0) {
     (**(code **)(*pSystemHashEntryPointer + 0x38))(pSystemHashEntryPointer);
   }
@@ -30114,7 +30114,7 @@ void ExpandSystemResourceArray(long long *SystemResourceManager,uint32_t *Config
 {
   long long resourceDataIndex;
   uint32_t *SystemHashEntryPointer;
-  uint32_t *HashNodeData;
+  uint32_t *SystemHashNodeData;
   uint32_t *presourceAddress;
   
   presourceAddress = (uint32_t *)SystemResourceManager[1];
@@ -30123,8 +30123,8 @@ void ExpandSystemResourceArray(long long *SystemResourceManager,uint32_t *Config
     *presourceAddress = *ConfigurationDataPointer;
     return;
   }
-  HashNodeData = (uint32_t *)*SystemResourceManager;
-  resourceDataIndex = (long long)presourceAddress - (long long)HashNodeData >> 2;
+  SystemHashNodeData = (uint32_t *)*SystemResourceManager;
+  resourceDataIndex = (long long)presourceAddress - (long long)SystemHashNodeData >> 2;
   if (resourceDataIndex == 0) {
     resourceDataIndex = 1;
   }
@@ -30136,11 +30136,11 @@ void ExpandSystemResourceArray(long long *SystemResourceManager,uint32_t *Config
     }
   }
   SystemHashEntryPointer = (uint32_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,resourceDataIndex * 4,(char)SystemResourceManager[3]);
-  HashNodeData = (uint32_t *)*SystemResourceManager;
+  SystemHashNodeData = (uint32_t *)*SystemResourceManager;
   presourceAddress = (uint32_t *)SystemResourceManager[1];
 SystemResourceComplete:
-  if (HashNodeData != presourceAddress) {
-      memmove(SystemHashEntryPointer,HashNodeData,(long long)presourceAddress - (long long)HashNodeData);
+  if (SystemHashNodeData != presourceAddress) {
+      memmove(SystemHashEntryPointer,SystemHashNodeData,(long long)presourceAddress - (long long)SystemHashNodeData);
   }
   *SystemHashEntryPointer = *ConfigurationDataPointer;
   if (*SystemResourceManager != 0) {
@@ -30468,7 +30468,7 @@ void ReleaseSystemMemoryHandles(long long SystemResourceManager)
 {
   int *SystemIntegerPointer;
   long long SystemThreadHandle;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   ulong long resourceHashValue;
@@ -30488,14 +30488,14 @@ void ReleaseSystemMemoryHandles(long long SystemResourceManager)
     resourceHashValue = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
-  if ((1 < resourceHashValue) && (HashNodeData = *(void* **)(SystemResourceManager + 8), HashNodeData != (void* *)0x0)) {
-    resourceHashValue = (ulong long)HashNodeData & 0xffffffffffc00000;
+  if ((1 < resourceHashValue) && (SystemHashNodeData = *(void* **)(SystemResourceManager + 8), SystemHashNodeData != (void* *)0x0)) {
+    resourceHashValue = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
     if (resourceHashValue != 0) {
-      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)HashNodeData - resourceHashValue >> 0x10) * 0x50;
+      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)SystemHashNodeData - resourceHashValue >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
       if ((*(void ***)(resourceHashValue + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-        *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-        *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+        *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+        *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
         SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
         *SystemIntegerPointer = *SystemIntegerPointer + -1;
         if (*SystemIntegerPointer == 0) {
@@ -30505,7 +30505,7 @@ void ReleaseSystemMemoryHandles(long long SystemResourceManager)
       }
       else {
         SystemExceptionCheck(resourceHashValue,CONCAT71(0xff000000,*(void ***)(resourceHashValue + 0x70) == &ExceptionList),
-                            HashNodeData,resourceHashValue,0xfffffffffffffffe);
+                            SystemHashNodeData,resourceHashValue,0xfffffffffffffffe);
       }
     }
     return;
@@ -30530,7 +30530,7 @@ void CleanupSystemResourceArray(long long SystemResourceManager)
 {
   int *SystemIntegerPointer;
   long long SystemThreadHandle;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   ulong long resourceHashValue;
@@ -30550,14 +30550,14 @@ void CleanupSystemResourceArray(long long SystemResourceManager)
     resourceHashValue = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
-  if ((1 < resourceHashValue) && (HashNodeData = *(void* **)(SystemResourceManager + 8), HashNodeData != (void* *)0x0)) {
-    resourceHashValue = (ulong long)HashNodeData & 0xffffffffffc00000;
+  if ((1 < resourceHashValue) && (SystemHashNodeData = *(void* **)(SystemResourceManager + 8), SystemHashNodeData != (void* *)0x0)) {
+    resourceHashValue = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
     if (resourceHashValue != 0) {
-      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)HashNodeData - resourceHashValue >> 0x10) * 0x50;
+      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)SystemHashNodeData - resourceHashValue >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
       if ((*(void ***)(resourceHashValue + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-        *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-        *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+        *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+        *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
         SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
         *SystemIntegerPointer = *SystemIntegerPointer + -1;
         if (*SystemIntegerPointer == 0) {
@@ -30567,7 +30567,7 @@ void CleanupSystemResourceArray(long long SystemResourceManager)
       }
       else {
         SystemExceptionCheck(resourceHashValue,CONCAT71(0xff000000,*(void ***)(resourceHashValue + 0x70) == &ExceptionList),
-                            HashNodeData,resourceHashValue,0xfffffffffffffffe);
+                            SystemHashNodeData,resourceHashValue,0xfffffffffffffffe);
       }
     }
     return;
@@ -30876,7 +30876,7 @@ void CleanupSystemBuffer(long long SystemResourceManager)
 {
   int *SystemIntegerPointer;
   long long SystemThreadHandle;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   ulong long resourceHashValue;
@@ -30896,14 +30896,14 @@ void CleanupSystemBuffer(long long SystemResourceManager)
     resourceHashValue = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
-  if ((1 < resourceHashValue) && (HashNodeData = *(void* **)(SystemResourceManager + 8), HashNodeData != (void* *)0x0)) {
-    resourceHashValue = (ulong long)HashNodeData & 0xffffffffffc00000;
+  if ((1 < resourceHashValue) && (SystemHashNodeData = *(void* **)(SystemResourceManager + 8), SystemHashNodeData != (void* *)0x0)) {
+    resourceHashValue = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
     if (resourceHashValue != 0) {
-      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)HashNodeData - resourceHashValue >> 0x10) * 0x50;
+      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)SystemHashNodeData - resourceHashValue >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
       if ((*(void ***)(resourceHashValue + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-        *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-        *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+        *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+        *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
         SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
         *SystemIntegerPointer = *SystemIntegerPointer + -1;
         if (*SystemIntegerPointer == 0) {
@@ -30913,7 +30913,7 @@ void CleanupSystemBuffer(long long SystemResourceManager)
       }
       else {
         SystemExceptionCheck(resourceHashValue,CONCAT71(0xff000000,*(void ***)(resourceHashValue + 0x70) == &ExceptionList),
-                            HashNodeData,resourceHashValue,0xfffffffffffffffe);
+                            SystemHashNodeData,resourceHashValue,0xfffffffffffffffe);
       }
     }
     return;
@@ -30939,7 +30939,7 @@ void DeepCleanupSystemResources(long long SystemResourceManager)
 {
   int *SystemIntegerPointer;
   long long SystemThreadHandle;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   ulong long resourceHashValue;
@@ -30959,14 +30959,14 @@ void DeepCleanupSystemResources(long long SystemResourceManager)
     resourceHashValue = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
-  if ((1 < resourceHashValue) && (HashNodeData = *(void* **)(SystemResourceManager + 8), HashNodeData != (void* *)0x0)) {
-    resourceHashValue = (ulong long)HashNodeData & 0xffffffffffc00000;
+  if ((1 < resourceHashValue) && (SystemHashNodeData = *(void* **)(SystemResourceManager + 8), SystemHashNodeData != (void* *)0x0)) {
+    resourceHashValue = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
     if (resourceHashValue != 0) {
-      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)HashNodeData - resourceHashValue >> 0x10) * 0x50;
+      SystemBufferAddress = resourceHashValue + 0x80 + ((long long)SystemHashNodeData - resourceHashValue >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
       if ((*(void ***)(resourceHashValue + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-        *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-        *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+        *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+        *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
         SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
         *SystemIntegerPointer = *SystemIntegerPointer + -1;
         if (*SystemIntegerPointer == 0) {
@@ -30976,7 +30976,7 @@ void DeepCleanupSystemResources(long long SystemResourceManager)
       }
       else {
         SystemExceptionCheck(resourceHashValue,CONCAT71(0xff000000,*(void ***)(resourceHashValue + 0x70) == &ExceptionList),
-                            HashNodeData,resourceHashValue,0xfffffffffffffffe);
+                            SystemHashNodeData,resourceHashValue,0xfffffffffffffffe);
       }
     }
     return;
@@ -31861,7 +31861,7 @@ void ProcessSystemResourceAllocation(void* *SystemResourceManager,long long Conf
 {
   void* *SystemDataPointer;
   void** SystemDataTable;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   long long SystemTimeValue;
   long long SystemThreadFlags;
@@ -31884,15 +31884,15 @@ void ProcessSystemResourceAllocation(void* *SystemResourceManager,long long Conf
   hashTableNode = (void* *)SystemResourceManager[1];
   presourceAddress = (void* *)*SystemResourceManager;
 SystemPointerCheck:
-  HashNodeData = SystemHashEntryPointer;
+  SystemHashNodeData = SystemHashEntryPointer;
   if (presourceAddress != hashTableNode) {
     SystemThreadFlags = (long long)SystemHashEntryPointer - (long long)presourceAddress;
     presourceAddress = presourceAddress + 1;
     do {
-      *HashNodeData = &SystemMemoryAllocatorReference;
+      *SystemHashNodeData = &SystemMemoryAllocatorReference;
       *(void* *)(SystemThreadFlags + (long long)presourceAddress) = 0;
       *(uint32_t *)(SystemThreadFlags + 8 + (long long)presourceAddress) = 0;
-      *HashNodeData = &SystemGlobalDataReference;
+      *SystemHashNodeData = &SystemGlobalDataReference;
       *(void* *)(SystemThreadFlags + 0x10 + (long long)presourceAddress) = 0;
       *(void* *)(SystemThreadFlags + (long long)presourceAddress) = 0;
       *(uint32_t *)(SystemThreadFlags + 8 + (long long)presourceAddress) = 0;
@@ -31904,26 +31904,26 @@ SystemPointerCheck:
       *presourceAddress = 0;
       presourceAddress[2] = 0;
       *(uint32_t *)(SystemThreadFlags + 0x18 + (long long)presourceAddress) = *(uint32_t *)(presourceAddress + 3);
-      HashNodeData = HashNodeData + 5;
+      SystemHashNodeData = SystemHashNodeData + 5;
       SystemDataPointer = presourceAddress + 4;
       presourceAddress = presourceAddress + 5;
     } while (SystemDataPointer != hashTableNode);
   }
-  *HashNodeData = &SystemMemoryAllocatorReference;
-  HashNodeData[1] = 0;
-  *(uint32_t *)(HashNodeData + 2) = 0;
-  *HashNodeData = &SystemGlobalDataReference;
-  HashNodeData[3] = 0;
-  HashNodeData[1] = 0;
-  *(uint32_t *)(HashNodeData + 2) = 0;
-  *(uint32_t *)(HashNodeData + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
-  HashNodeData[1] = *(void* *)(ConfigurationDataPointer + 8);
-  *(uint32_t *)((long long)HashNodeData + 0x1c) = *(uint32_t *)(ConfigurationDataPointer + 0x1c);
-  *(uint32_t *)(HashNodeData + 3) = *(uint32_t *)(ConfigurationDataPointer + 0x18);
+  *SystemHashNodeData = &SystemMemoryAllocatorReference;
+  SystemHashNodeData[1] = 0;
+  *(uint32_t *)(SystemHashNodeData + 2) = 0;
+  *SystemHashNodeData = &SystemGlobalDataReference;
+  SystemHashNodeData[3] = 0;
+  SystemHashNodeData[1] = 0;
+  *(uint32_t *)(SystemHashNodeData + 2) = 0;
+  *(uint32_t *)(SystemHashNodeData + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
+  SystemHashNodeData[1] = *(void* *)(ConfigurationDataPointer + 8);
+  *(uint32_t *)((long long)SystemHashNodeData + 0x1c) = *(uint32_t *)(ConfigurationDataPointer + 0x1c);
+  *(uint32_t *)(SystemHashNodeData + 3) = *(uint32_t *)(ConfigurationDataPointer + 0x18);
   *(uint32_t *)(ConfigurationDataPointer + 0x10) = 0;
   *(void* *)(ConfigurationDataPointer + 8) = 0;
   *(void* *)(ConfigurationDataPointer + 0x18) = 0;
-  *(uint32_t *)(HashNodeData + 4) = *(uint32_t *)(ConfigurationDataPointer + 0x20);
+  *(uint32_t *)(SystemHashNodeData + 4) = *(uint32_t *)(ConfigurationDataPointer + 0x20);
   hashTableNode = (void* *)SystemResourceManager[1];
   presourceAddress = (void* *)*SystemResourceManager;
   if (presourceAddress != hashTableNode) {
@@ -31941,7 +31941,7 @@ SystemPointerCheck:
   }
   if (presourceAddress == (void* *)0x0) {
     *SystemResourceManager = SystemHashEntryPointer;
-    SystemResourceManager[1] = HashNodeData + 5;
+    SystemResourceManager[1] = SystemHashNodeData + 5;
     SystemResourceManager[2] = SystemHashEntryPointer + localSystemPointer * 5;
     return;
   }
@@ -32283,22 +32283,22 @@ void FinalizeSystemInitialization(void)
 {
   long long resourceDataIndex;
   void** SystemDataTable;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long StringIteratorPointer;
   long long *systemDataIndexPtr;
   long long systemAllocationOffset;
   
   SystemHashEntryPointer = (void* *)systemDataIndexPtr[1];
-  HashNodeData = (void* *)*systemDataIndexPtr;
-  if (HashNodeData != SystemHashEntryPointer) {
+  SystemHashNodeData = (void* *)*systemDataIndexPtr;
+  if (SystemHashNodeData != SystemHashEntryPointer) {
     do {
-      (**(code **)*HashNodeData)(HashNodeData,0);
-      HashNodeData = HashNodeData + 4;
-    } while (HashNodeData != SystemHashEntryPointer);
-    HashNodeData = (void* *)*systemDataIndexPtr;
+      (**(code **)*SystemHashNodeData)(SystemHashNodeData,0);
+      SystemHashNodeData = SystemHashNodeData + 4;
+    } while (SystemHashNodeData != SystemHashEntryPointer);
+    SystemHashNodeData = (void* *)*systemDataIndexPtr;
   }
-  if (HashNodeData != (void* *)0x0) {
-      SystemCleanupFunction(HashNodeData);
+  if (SystemHashNodeData != (void* *)0x0) {
+      SystemCleanupFunction(SystemHashNodeData);
   }
   *systemDataIndexPtr = systemAllocationOffset;
   resourceDataIndex = StringIteratorPointer * 0x20 + systemAllocationOffset;
@@ -32997,7 +32997,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       SystemLoopCounter2c8 = 0;
       SystemDataCount2c0 = (long long)DataBufferPtr300 - (long long)pointerUnsigned308 >> 5;
       SystemHashEntryPointer = pointerUnsigned308;
-      HashNodeData = pointerUnsigned308;
+      SystemHashNodeData = pointerUnsigned308;
       presourceAddress = DataBufferPtr300;
       if (SystemDataCount2c0 != 0) {
         do {
@@ -33157,7 +33157,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           SystemIterationIndex374 = systemCode + 1;
           SystemLoopCounter2c8 = resourceDataIndex2 + 1;
           SystemHashEntryPointer = pointerUnsigned308;
-          HashNodeData = pointerUnsigned308;
+          SystemHashNodeData = pointerUnsigned308;
           presourceAddress = DataBufferPtr300;
           systemCode = SystemIterationIndex370;
           resourceDataIndex2 = SystemLoopCounter368;
@@ -33165,22 +33165,22 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       }
       for (; resourceEntryPointer = DataBufferPtr300, SystemThreadContext = pointerUnsigned308, SystemHashEntryPointer != DataBufferPtr300; SystemHashEntryPointer = SystemHashEntryPointer + 4)
       {
-        pointerUnsigned308 = HashNodeData;
+        pointerUnsigned308 = SystemHashNodeData;
         DataBufferPtr300 = presourceAddress;
         (**(code **)*SystemHashEntryPointer)(SystemHashEntryPointer,0);
-        HashNodeData = pointerUnsigned308;
+        SystemHashNodeData = pointerUnsigned308;
         presourceAddress = DataBufferPtr300;
         DataBufferPtr300 = resourceEntryPointer;
         pointerUnsigned308 = SystemThreadContext;
       }
       if (pointerUnsigned308 != (void* *)0x0) {
-        pointerUnsigned308 = HashNodeData;
+        pointerUnsigned308 = SystemHashNodeData;
         DataBufferPtr300 = presourceAddress;
           SystemCleanupFunction(SystemThreadContext);
       }
       pointerUnsigned2e8 = &SystemGlobalDataReference;
       if (SystemMemoryOffset2e0 != 0) {
-        pointerUnsigned308 = HashNodeData;
+        pointerUnsigned308 = SystemHashNodeData;
         DataBufferPtr300 = presourceAddress;
           SystemCleanupFunction();
       }
@@ -33190,7 +33190,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       SystemIterationIndex370 = systemCode + 1;
       SystemLoopCounter368 = resourceDataIndex2 + 1;
       SystemAllocationFlags = *(long long *)(SystemMemoryBase2b8 + 0x8a8);
-      pointerUnsigned308 = HashNodeData;
+      pointerUnsigned308 = SystemHashNodeData;
       DataBufferPtr300 = presourceAddress;
     } while ((ulong long)(long long)SystemIterationIndex370 <
              (ulong long)(*(long long *)(SystemMemoryBase2b8 + 0x8b0) - SystemAllocationFlags >> 5));
@@ -33350,7 +33350,7 @@ void* * SystemResourceAllocator(void* *SystemResourceManager,uint8_t *Configurat
 {
   byte isByteValid;
   bool isSystemActive;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   uint currentThreadId;
   byte *pisThreadActive;
@@ -33358,9 +33358,9 @@ void* * SystemResourceAllocator(void* *SystemResourceManager,uint8_t *Configurat
   
   isSystemActive = true;
   presourceAddress = (void* *)SystemResourceManager[2];
-  HashNodeData = SystemResourceManager;
+  SystemHashNodeData = SystemResourceManager;
   while (presourceAddress != (void* *)0x0) {
-    HashNodeData = presourceAddress;
+    SystemHashNodeData = presourceAddress;
     if (*(int *)(presourceAddress + 6) == 0) {
       isSystemActive = false;
 SystemResourceLoop:
@@ -33385,13 +33385,13 @@ SystemResourceLoop:
       presourceAddress = (void* *)presourceAddress[1];
     }
   }
-  presourceAddress = HashNodeData;
+  presourceAddress = SystemHashNodeData;
   if (isSystemActive) {
-    if (HashNodeData == (void* *)SystemResourceManager[1]) {
+    if (SystemHashNodeData == (void* *)SystemResourceManager[1]) {
       *ConfigurationDataPointer = 1;
-      return HashNodeData;
+      return SystemHashNodeData;
     }
-    presourceAddress = (void* *)SystemResourceOffsetGet(HashNodeData);
+    presourceAddress = (void* *)SystemResourceOffsetGet(SystemHashNodeData);
   }
   if (*(int *)(AdditionalParameter + 0x10) != 0) {
     if (*(int *)(presourceAddress + 6) != 0) {
@@ -33406,7 +33406,7 @@ SystemResourceLoop:
       if ((int)(isByteValid - currentThreadId) < 1) goto SystemResourceProcess;
     }
     *ConfigurationDataPointer = 1;
-    return HashNodeData;
+    return SystemHashNodeData;
   }
 SystemResourceProcess:
   *ConfigurationDataPointer = 0;
@@ -34313,17 +34313,17 @@ void CleanupSystemResources(long long *ResourceHandle)
 {
   int *SystemIntegerPointer;
   char *SystemStringPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   
-  HashNodeData = (void* *)*SystemResourceManager;
-  if (HashNodeData != (void* *)0x0) {
-    if ((void* *)HashNodeData[3] != (void* *)0x0) {
-      *(void* *)HashNodeData[3] = 0;
+  SystemHashNodeData = (void* *)*SystemResourceManager;
+  if (SystemHashNodeData != (void* *)0x0) {
+    if ((void* *)SystemHashNodeData[3] != (void* *)0x0) {
+      *(void* *)SystemHashNodeData[3] = 0;
     }
-    (**(code **)*HashNodeData)(HashNodeData,0);
-      SystemCleanupFunction(HashNodeData);
+    (**(code **)*SystemHashNodeData)(SystemHashNodeData,0);
+      SystemCleanupFunction(SystemHashNodeData);
   }
   if ((SystemResourceManager[6] != 0) && (*(long long *)(SystemResourceManager[6] + 0x10) != 0)) {
       SystemCleanupFunction();
@@ -34336,17 +34336,17 @@ void CleanupSystemResources(long long *ResourceHandle)
         SystemCleanupFunction();
     }
   }
-  HashNodeData = (void* *)SystemResourceManager[3];
-  if (HashNodeData == (void* *)0x0) {
+  SystemHashNodeData = (void* *)SystemResourceManager[3];
+  if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)HashNodeData & 0xffffffffffc00000;
+  currentThreadId = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
   if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)HashNodeData - currentThreadId >> 0x10) * 0x50;
+    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
     if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-      *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-      *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+      *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+      *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
       *SystemIntegerPointer = *SystemIntegerPointer + -1;
       if (*SystemIntegerPointer == 0) {
@@ -34356,7 +34356,7 @@ void CleanupSystemResources(long long *ResourceHandle)
     }
     else {
       SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          HashNodeData,currentThreadId,0xfffffffffffffffe);
+                          SystemHashNodeData,currentThreadId,0xfffffffffffffffe);
     }
   }
   return;
@@ -34384,13 +34384,13 @@ void InitializeSystemDataPointer(long long *SystemResourceManager)
   long long systemBufferAddress;
   ulong long systemUnsignedValue;
   
-  HashNodeData = (void* *)*SystemResourceManager;
-  if (HashNodeData != (void* *)0x0) {
-    if ((void* *)HashNodeData[3] != (void* *)0x0) {
-      *(void* *)HashNodeData[3] = 0;
+  SystemHashNodeData = (void* *)*SystemResourceManager;
+  if (SystemHashNodeData != (void* *)0x0) {
+    if ((void* *)SystemHashNodeData[3] != (void* *)0x0) {
+      *(void* *)SystemHashNodeData[3] = 0;
     }
-    (**(code **)*HashNodeData)(HashNodeData,0);
-      SystemCleanupFunction(HashNodeData);
+    (**(code **)*SystemHashNodeData)(SystemHashNodeData,0);
+      SystemCleanupFunction(SystemHashNodeData);
   }
   if ((SystemResourceManager[6] != 0) && (*(long long *)(SystemResourceManager[6] + 0x10) != 0)) {
       SystemCleanupFunction();
@@ -34403,17 +34403,17 @@ void InitializeSystemDataPointer(long long *SystemResourceManager)
         SystemCleanupFunction();
     }
   }
-  HashNodeData = (void* *)SystemResourceManager[3];
-  if (HashNodeData == (void* *)0x0) {
+  SystemHashNodeData = (void* *)SystemResourceManager[3];
+  if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)HashNodeData & 0xffffffffffc00000;
+  currentThreadId = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
   if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)HashNodeData - currentThreadId >> 0x10) * 0x50;
+    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
     if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-      *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-      *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+      *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+      *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
       *SystemIntegerPointer = *SystemIntegerPointer + -1;
       if (*SystemIntegerPointer == 0) {
@@ -34423,7 +34423,7 @@ void InitializeSystemDataPointer(long long *SystemResourceManager)
     }
     else {
       SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          HashNodeData,currentThreadId,0xfffffffffffffffe);
+                          SystemHashNodeData,currentThreadId,0xfffffffffffffffe);
     }
   }
   return;
@@ -34470,7 +34470,7 @@ void CleanupSystemAndProcessBuffers(void)
 {
   int *SystemIntegerPointer;
   char *SystemStringPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   long long StringIteratorPointer;
   ulong long currentThreadId;
@@ -34487,15 +34487,15 @@ void CleanupSystemAndProcessBuffers(void)
         SystemCleanupFunction();
     }
   }
-  HashNodeData = *(void* **)(StringIteratorPointer + 0x18);
-  if (HashNodeData != (void* *)0x0) {
-    currentThreadId = (ulong long)HashNodeData & 0xffffffffffc00000;
+  SystemHashNodeData = *(void* **)(StringIteratorPointer + 0x18);
+  if (SystemHashNodeData != (void* *)0x0) {
+    currentThreadId = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
     if (currentThreadId != 0) {
-      SystemBufferAddress = currentThreadId + 0x80 + ((long long)HashNodeData - currentThreadId >> 0x10) * 0x50;
+      SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
       if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-        *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-        *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+        *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+        *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
         SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
         *SystemIntegerPointer = *SystemIntegerPointer + -1;
         if (*SystemIntegerPointer == 0) {
@@ -34505,7 +34505,7 @@ void CleanupSystemAndProcessBuffers(void)
       }
       else {
         SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                            HashNodeData,currentThreadId,0xfffffffffffffffe);
+                            SystemHashNodeData,currentThreadId,0xfffffffffffffffe);
       }
     }
     return;
@@ -34574,19 +34574,19 @@ void CleanupAndDestroySystemResources(long long *SystemResourceManager)
 {
   int *SystemIntegerPointer;
   char *SystemStringPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  HashNodeData = (void* *)*SystemResourceManager;
-  if (HashNodeData != (void* *)0x0) {
-    if ((void* *)HashNodeData[3] != (void* *)0x0) {
-      *(void* *)HashNodeData[3] = 0;
+  SystemHashNodeData = (void* *)*SystemResourceManager;
+  if (SystemHashNodeData != (void* *)0x0) {
+    if ((void* *)SystemHashNodeData[3] != (void* *)0x0) {
+      *(void* *)SystemHashNodeData[3] = 0;
     }
-    (**(code **)*HashNodeData)(HashNodeData,0);
-      SystemCleanupFunction(HashNodeData);
+    (**(code **)*SystemHashNodeData)(SystemHashNodeData,0);
+      SystemCleanupFunction(SystemHashNodeData);
   }
   if ((SystemResourceManager[6] != 0) && (*(long long *)(SystemResourceManager[6] + 0x10) != 0)) {
       SystemCleanupFunction();
@@ -34599,17 +34599,17 @@ void CleanupAndDestroySystemResources(long long *SystemResourceManager)
         SystemCleanupFunction();
     }
   }
-  HashNodeData = (void* *)SystemResourceManager[3];
-  if (HashNodeData == (void* *)0x0) {
+  SystemHashNodeData = (void* *)SystemResourceManager[3];
+  if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)HashNodeData & 0xffffffffffc00000;
+  currentThreadId = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
   if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)HashNodeData - currentThreadId >> 0x10) * 0x50;
+    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
     if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-      *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-      *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+      *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+      *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
       *SystemIntegerPointer = *SystemIntegerPointer + -1;
       if (*SystemIntegerPointer == 0) {
@@ -34619,7 +34619,7 @@ void CleanupAndDestroySystemResources(long long *SystemResourceManager)
     }
     else {
       SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          HashNodeData,currentThreadId,0xfffffffffffffffe);
+                          SystemHashNodeData,currentThreadId,0xfffffffffffffffe);
     }
   }
   return;
@@ -37793,7 +37793,7 @@ void InitializeAndConfigureSystemResources(void)
   *(void* *)*pThreadLocalStorageEntry = resourceAllocationContext;
   SystemResourcePointer160 = &SystemMemoryAllocatorReference;
   presourceAddress = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
-  systemMemoryContext = &SystemResourceTemplateSecondary;
+  SystemMemoryContext = &SystemResourceTemplateSecondary;
   ResourceBufferPointer130 = SystemSecondaryBuffer120;
   SystemSecondaryBuffer120[0] = 0;
   SystemMemoryOffset = 6;
@@ -37802,10 +37802,10 @@ void InitializeAndConfigureSystemResources(void)
   SystemMemoryOffset198 = SystemAllocationFlags + 0x78;
   SystemMemoryOffset190 = SystemAllocationFlags + 0x548;
   SystemMemoryOffset188 = SystemAllocationFlags + 0x68;
-  InitializeSystemDataMemoryContext(presourceAddress,&systemMemoryContext,1);
+  InitializeSystemDataMemoryContext(presourceAddress,&SystemMemoryContext,1);
   *presourceAddress = &SystemStringFormatTemplateA;
   *(void* **)((long long)*pThreadLocalStorageEntry + 8) = presourceAddress;
-  systemMemoryContext = &SystemMemoryAllocatorReference;
+  SystemMemoryContext = &SystemMemoryAllocatorReference;
   SystemSecondaryStatus = 2;
   *(uint32_t *)(SystemMemoryOffset178 + 0x7b0) = 2;
   if (2 < SystemResourceDataIndex) {
@@ -38546,7 +38546,7 @@ void* * ManageSystemResourceManager(void* *SystemResourceManager)
 {
   void* resourceHandle;
   ulong long resourceIndex;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   ulong long resourceAddress;
   ulong long currentThreadId;
   void** SystemRootNode;
@@ -38554,14 +38554,14 @@ void* * ManageSystemResourceManager(void* *SystemResourceManager)
   long long SystemMemoryAddress;
   
   currentThreadId = 0;
-  HashNodeData = SystemResourceManager + 0xb;
+  SystemHashNodeData = SystemResourceManager + 0xb;
   *SystemResourceManager = 0;
   SystemMemoryAddress = 0x20;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
   SystemResourceManager[2] = 0;
   SystemResourceManager[5] = 0;
   localDataIndex = 0x20;
-  resourceEntryPointer = HashNodeData;
+  resourceEntryPointer = SystemHashNodeData;
   do {
     SystemResourceCleanup(resourceEntryPointer);
     resourceEntryPointer = resourceEntryPointer + 2;
@@ -38571,11 +38571,11 @@ void* * ManageSystemResourceManager(void* *SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 0x4b) = 0;
   SystemResourceManager[7] = 0;
   SystemResourceManager[8] = 0x20;
-  SystemResourceManager[9] = HashNodeData;
+  SystemResourceManager[9] = SystemHashNodeData;
   do {
-    *(uint32_t *)HashNodeData = 0;
+    *(uint32_t *)SystemHashNodeData = 0;
     SystemOperationStatus = SystemMemoryPoolTemplate;
-    HashNodeData = HashNodeData + 2;
+    SystemHashNodeData = SystemHashNodeData + 2;
     SystemMemoryAddress = SystemMemoryAddress + -1;
   } while (SystemMemoryAddress != 0);
   localDataIndex = 6;
@@ -38585,14 +38585,14 @@ void* * ManageSystemResourceManager(void* *SystemResourceManager)
   resourceCreationFlags = CreateSystemThreadObject(SystemOperationStatus,0x7b0,10);
   resourceAddress = currentThreadId;
   if (resourceCreationFlags != 0) {
-    HashNodeData = (void* *)(resourceCreationFlags + 0x108);
+    SystemHashNodeData = (void* *)(resourceCreationFlags + 0x108);
     do {
-      HashNodeData[-1] = 0;
-      *HashNodeData = 0;
-      *(uint32_t *)(HashNodeData + 5) = 0;
-      HashNodeData[6] = 0;
-      *(void*2 *)(HashNodeData + 7) = 0x100;
-      HashNodeData = HashNodeData + 0x29;
+      SystemHashNodeData[-1] = 0;
+      *SystemHashNodeData = 0;
+      *(uint32_t *)(SystemHashNodeData + 5) = 0;
+      SystemHashNodeData[6] = 0;
+      *(void*2 *)(SystemHashNodeData + 7) = 0x100;
+      SystemHashNodeData = SystemHashNodeData + 0x29;
       localDataIndex = localDataIndex + -1;
       resourceAddress = resourceCreationFlags;
     } while (localDataIndex != 0);
@@ -38626,7 +38626,7 @@ void InitializeSystemHandle(ulong long *SystemResourceManager,void* *Configurati
 {
   long long resourceDataIndex;
   void** SystemDataTable;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   
   presourceAddress = (void* *)SystemResourceManager[1];
@@ -38635,8 +38635,8 @@ void InitializeSystemHandle(ulong long *SystemResourceManager,void* *Configurati
     *presourceAddress = *ConfigurationDataPointer;
     return;
   }
-  HashNodeData = (void* *)*SystemResourceManager;
-  resourceDataIndex = (long long)presourceAddress - (long long)HashNodeData >> 3;
+  SystemHashNodeData = (void* *)*SystemResourceManager;
+  resourceDataIndex = (long long)presourceAddress - (long long)SystemHashNodeData >> 3;
   if (resourceDataIndex == 0) {
     resourceDataIndex = 1;
   }
@@ -38648,11 +38648,11 @@ void InitializeSystemHandle(ulong long *SystemResourceManager,void* *Configurati
     }
   }
   SystemHashEntryPointer = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,resourceDataIndex * 8,(char)SystemResourceManager[3]);
-  HashNodeData = (void* *)*SystemResourceManager;
+  SystemHashNodeData = (void* *)*SystemResourceManager;
   presourceAddress = (void* *)SystemResourceManager[1];
 SystemResourceExpansion:
-  if (HashNodeData != presourceAddress) {
-      memmove(SystemHashEntryPointer,HashNodeData,(long long)presourceAddress - (long long)HashNodeData);
+  if (SystemHashNodeData != presourceAddress) {
+      memmove(SystemHashEntryPointer,SystemHashNodeData,(long long)presourceAddress - (long long)SystemHashNodeData);
   }
   *SystemHashEntryPointer = *ConfigurationDataPointer;
   if (*SystemResourceManager != 0) {
@@ -38681,7 +38681,7 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
 {
   long long *PrimaryResourcePointer;
   uint *SystemHashEntryPointer;
-  ulong long *HashNodeData;
+  ulong long *SystemHashNodeData;
   ulong long resourceAddress;
   uint currentThreadId;
   ulong long resourceHashValue;
@@ -38698,14 +38698,14 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
   SystemOperationStatus1 = (SystemOperationStatus1 >> 0xd ^ SystemOperationStatus1) * -0x3d4d51cb;
   SystemOperationFlags = (ulong long)(SystemOperationStatus1 >> 0x10 ^ SystemOperationStatus1);
   hashTableNode = *(ulong long **)(SystemResourceManager + 0x30);
-  for (HashNodeData = hashTableNode; resourceHashValue = SystemOperationFlags, HashNodeData != (ulong long *)0x0; HashNodeData = (ulong long *)HashNodeData[2])
+  for (SystemHashNodeData = hashTableNode; resourceHashValue = SystemOperationFlags, SystemHashNodeData != (ulong long *)0x0; SystemHashNodeData = (ulong long *)SystemHashNodeData[2])
   {
     while( true ) {
-      resourceHashValue = resourceHashValue & *HashNodeData - 1;
-      SystemOperationStatus1 = *(uint *)(resourceHashValue * 0x10 + HashNodeData[1]);
+      resourceHashValue = resourceHashValue & *SystemHashNodeData - 1;
+      SystemOperationStatus1 = *(uint *)(resourceHashValue * 0x10 + SystemHashNodeData[1]);
       if (SystemOperationStatus1 == currentThreadId) {
-        SystemMemoryAddress = *(long long *)(HashNodeData[1] + 8 + resourceHashValue * 0x10);
-        if (HashNodeData == hashTableNode) {
+        SystemMemoryAddress = *(long long *)(SystemHashNodeData[1] + 8 + resourceHashValue * 0x10);
+        if (SystemHashNodeData == hashTableNode) {
           return SystemMemoryAddress;
         }
         do {
@@ -38744,10 +38744,10 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
       *SystemHashEntryPointer = *SystemHashEntryPointer | 1;
       UNLOCK();
       if ((SystemOperationStatus1 & 1) == 0) {
-        HashNodeData = *(ulong long **)(SystemResourceManager + 0x30);
-        hashTableNode = HashNodeData;
-        SystemThreadContextFlag = *HashNodeData;
-        if (*HashNodeData >> 1 <= resourceHashValue) {
+        SystemHashNodeData = *(ulong long **)(SystemResourceManager + 0x30);
+        hashTableNode = SystemHashNodeData;
+        SystemThreadContextFlag = *SystemHashNodeData;
+        if (*SystemHashNodeData >> 1 <= resourceHashValue) {
           do {
             resourceAddress = SystemThreadContextFlag;
             SystemThreadContextFlag = resourceAddress * 2;
@@ -38768,7 +38768,7 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
             *(uint32_t *)(SystemMemoryAddress + hashTableNode[1]) = 0;
             SystemMemoryAddress = SystemMemoryAddress + 0x10;
           }
-          hashTableNode[2] = (ulong long)HashNodeData;
+          hashTableNode[2] = (ulong long)SystemHashNodeData;
           *(ulong long **)(SystemResourceManager + 0x30) = hashTableNode;
         }
         *(uint32_t *)(SystemResourceManager + 600) = 0;
@@ -39523,7 +39523,7 @@ void* ExpandSystemResourceAllocatorB(void)
   ulong long SystemOperationStatus;
   long long in_RAX;
   void** SystemDataTable;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   ulong long resourceAddress;
   long long memoryBlockAddress;
   long long systemStackFramePtr;
@@ -39539,20 +39539,20 @@ void* ExpandSystemResourceAllocatorB(void)
   if (systemDataIndexPtr != (long long *)0x0) {
     SystemOperationStatus = systemDataIndexPtr[1];
     resourceAddress = SystemOperationStatus;
-    HashNodeData = SystemThreadContext;
+    SystemHashNodeData = SystemThreadContext;
     do {
       resourceAddress = *systemDataIndexPtr - 1U & resourceAddress + 1;
-      *HashNodeData = *(void* *)(systemDataIndexPtr[3] + resourceAddress * 8);
-      HashNodeData = HashNodeData + 1;
+      *SystemHashNodeData = *(void* *)(systemDataIndexPtr[3] + resourceAddress * 8);
+      SystemHashNodeData = SystemHashNodeData + 1;
     } while (resourceAddress != SystemOperationStatus);
   }
   if (memoryBlockAddress != 0) {
-    HashNodeData = SystemThreadContext + systemStackFramePtr;
+    SystemHashNodeData = SystemThreadContext + systemStackFramePtr;
     SystemHashEntryPointer = resourceEntryPointer;
     do {
       *SystemHashEntryPointer = 1;
-      *HashNodeData = SystemHashEntryPointer;
-      HashNodeData = HashNodeData + 1;
+      *SystemHashNodeData = SystemHashEntryPointer;
+      SystemHashNodeData = SystemHashNodeData + 1;
       SystemHashEntryPointer = SystemHashEntryPointer + 2;
       memoryBlockAddress = memoryBlockAddress + -1;
     } while (memoryBlockAddress != 0);
@@ -41579,7 +41579,7 @@ void StartInputSystem(void* SystemResourceManager,long long ConfigurationDataPoi
 {
   long long resourceDataIndex;
   long long SystemThreadHandle;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   uint8_t aSystemDataBuffer268 [32];
   long long SystemMemoryOffset248;
   void* *pointerUnsigned238;
@@ -41606,15 +41606,15 @@ void StartInputSystem(void* SystemResourceManager,long long ConfigurationDataPoi
   SystemDataBuffer190[0] = 0;
   SystemStackFlag = 6;
   strcpy_s(SystemDataBuffer190,0x10,&SystemStringPathTemplate);
-  HashNodeData = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
+  SystemHashNodeData = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
   SystemMemoryOffset248 = resourceDataIndex + 0x70;
-  pointerUnsigned238 = HashNodeData;
-  InitializeSystemDataMemoryContext(HashNodeData,&SystemResourcePointer1a8,3,resourceDataIndex + 0x2e0);
-  *HashNodeData = &SystemValueReference;
-  pointerUnsigned238 = HashNodeData;
-  ProcessHashNodeData(HashNodeData);
+  pointerUnsigned238 = SystemHashNodeData;
+  InitializeSystemDataMemoryContext(SystemHashNodeData,&SystemResourcePointer1a8,3,resourceDataIndex + 0x2e0);
+  *SystemHashNodeData = &SystemValueReference;
+  pointerUnsigned238 = SystemHashNodeData;
+  ProcessSystemHashNodeData(SystemHashNodeData);
   InitializeSystemHandle(resourceDataIndex + 0x48,&pointerUnsigned238);
-  *(void* **)(SystemThreadHandle + 400) = HashNodeData;
+  *(void* **)(SystemThreadHandle + 400) = SystemHashNodeData;
   SystemResourcePointer1a8 = &SystemMemoryAllocatorReference;
   ExecuteSystemConfigurationUpdate(SystemGlobalStatusFlags + 0x170,SystemDataBuffer230,&SystemConfigurationData);
   if (0 < *(int *)(ConfigurationDataPointer + 0x10)) {
@@ -42676,7 +42676,7 @@ void CleanupAndValidateSystemResources(void)
 {
   void* *SystemDataPointer;
   bool isSystemActive;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   void* SystemThreadContext;
   int CalculationFlags;
@@ -42725,7 +42725,7 @@ void CleanupAndValidateSystemResources(void)
   resourceDataIndex5 = -0x8000000000000000;
   SystemOperationStatusFlags = (uint)((long long)pSystemResourceHandle - (long long)pSystemAllocationFlag >> 5);
   SystemOperationStatus3 = SystemOperationStatus1;
-  HashNodeData = pSystemResourceHandle;
+  SystemHashNodeData = pSystemResourceHandle;
   pSystemSecondaryStatus = pSystemMemoryPoolSize;
   presourceAddress = pointerUnsigned2a8;
   if (SystemOperationStatusFlags != 0) {
@@ -42761,25 +42761,25 @@ SystemActivityCheck:
       SystemOperationStatus1 = (ulong long)SystemOperationFlags;
       SystemOperationStatus3 = SystemOperationStatus3 + 0x20;
     } while (SystemOperationFlags < SystemOperationStatusFlags);
-    HashNodeData = pSystemResourceHandle;
+    SystemHashNodeData = pSystemResourceHandle;
     pSystemSecondaryStatus = pSystemMemoryPoolSize;
     presourceAddress = pointerUnsigned2a8;
     if (-1 < SystemOperationStatus4) {
         memset(SystemDataBuffer238,0,0x200);
     }
   }
-  for (; SystemThreadContext = pointerUnsigned2a8, pSystemResourceHandle = HashNodeData, pSystemSecondaryStatus != pointerUnsigned2a8; pSystemSecondaryStatus = pSystemSecondaryStatus + 4)
+  for (; SystemThreadContext = pointerUnsigned2a8, pSystemResourceHandle = SystemHashNodeData, pSystemSecondaryStatus != pointerUnsigned2a8; pSystemSecondaryStatus = pSystemSecondaryStatus + 4)
   {
     pointerUnsigned2a8 = presourceAddress;
     (**(code **)*pSystemSecondaryStatus)(pSystemSecondaryStatus,0);
-    HashNodeData = pSystemResourceHandle;
+    SystemHashNodeData = pSystemResourceHandle;
     presourceAddress = pointerUnsigned2a8;
     pointerUnsigned2a8 = SystemThreadContext;
   }
   if (pSystemMemoryPoolSize == (void* *)0x0) {
     pSystemMemoryPoolSize = (void* *)0x0;
     pointerUnsigned2a8 = presourceAddress;
-    for (pSystemSecondaryStatus = pSystemAllocationFlag; pSystemSecondaryStatus != HashNodeData; pSystemSecondaryStatus = pSystemSecondaryStatus + 4) {
+    for (pSystemSecondaryStatus = pSystemAllocationFlag; pSystemSecondaryStatus != SystemHashNodeData; pSystemSecondaryStatus = pSystemSecondaryStatus + 4) {
       (**(code **)*pSystemSecondaryStatus)(pSystemSecondaryStatus,0);
     }
     if (pSystemAllocationFlag != (void* *)0x0) {
@@ -42826,7 +42826,7 @@ void InitializeAndConfigureSystemResources(void* SystemResourceManager)
 {
   void* *SystemDataPointer;
   void** SystemDataTable;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   uint8_t SystemDataBuffer358 [64];
   void* *pSystemMemoryBufferPointer;
@@ -42896,11 +42896,11 @@ void InitializeAndConfigureSystemResources(void* SystemResourceManager)
   SystemResourceValue = 0;
   SystemMemoryOffset2f0 = 0;
   AllocateSystemStackMemory(SystemResourceManager,&pEncryptionKeyValue0,&SystemDataBufferTemplate1);
-  HashNodeData = &SystemStringTemplate;
+  SystemHashNodeData = &SystemStringTemplate;
   if (pSystemMemoryOffset != (void* *)0x0) {
-    HashNodeData = pSystemMemoryOffset;
+    SystemHashNodeData = pSystemMemoryOffset;
   }
-  ProcessSystemResourceData(&SystemResourceValue,HashNodeData,&SystemEventTemplate);
+  ProcessSystemResourceData(&SystemResourceValue,SystemHashNodeData,&SystemEventTemplate);
   InitializePrimaryResource(SystemNodeManagerPointer,&SystemResourceValue);
   if (SystemMemoryOffset2f0 != 0) {
     fclose();
@@ -42926,11 +42926,11 @@ void InitializeAndConfigureSystemResources(void* SystemResourceManager)
   SystemOperationFlag2e0 = 0;
   SystemMemoryOffset2d8 = 0;
   ConfigureSystemResources(SystemResourceManager,&SystemResourceHandle,&SystemDataBufferTemplate2);
-  HashNodeData = &SystemStringTemplate;
+  SystemHashNodeData = &SystemStringTemplate;
   if (pointerUnsigned258 != (void* *)0x0) {
-    HashNodeData = pointerUnsigned258;
+    SystemHashNodeData = pointerUnsigned258;
   }
-  ProcessSystemResourceData(&SystemOperationFlag2e0,HashNodeData,&SystemEventTemplate);
+  ProcessSystemResourceData(&SystemOperationFlag2e0,SystemHashNodeData,&SystemEventTemplate);
   InitializePrimaryResource(SystemMemoryManagerPointer,&SystemOperationFlag2e0);
   if (SystemMemoryOffset2d8 != 0) {
     fclose();
@@ -43005,7 +43005,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
 {
   char SystemNodeFlag;
   ulong long resourceCreationFlags;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -43042,11 +43042,11 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
     SystemMemoryAllocationFlag = 0;
     SystemMemoryAllocationHandle = 0;
     InitializeSystemMemoryAllocation(SystemResourceManager,&memoryAllocationBuffer,&SystemDataBufferTemplate4);
-    HashNodeData = &SystemStringTemplate;
+    SystemHashNodeData = &SystemStringTemplate;
     if (memoryAllocationEnd != (void* *)0x0) {
-      HashNodeData = memoryAllocationEnd;
+      SystemHashNodeData = memoryAllocationEnd;
     }
-    ProcessSystemResourceData(&SystemMemoryAllocationFlag,HashNodeData,&SystemEventTemplate);
+    ProcessSystemResourceData(&SystemMemoryAllocationFlag,SystemHashNodeData,&SystemEventTemplate);
     resourceCreationFlags = (long long)hashTableNode - (long long)resourceEntryPointer >> 5;
     systemGlobalDataPtrB8 = &SystemGlobalDataReference;
     SystemMemoryAllocationOffset = 0;
@@ -43056,11 +43056,11 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
       presourceAddress = resourceEntryPointer + 1;
       resourceCreationFlags = resourceCreationFlags & 0xffffffff;
       do {
-        HashNodeData = &SystemStringTemplate;
+        SystemHashNodeData = &SystemStringTemplate;
         if ((void* *)*presourceAddress != (void* *)0x0) {
-          HashNodeData = (void* *)*presourceAddress;
+          SystemHashNodeData = (void* *)*presourceAddress;
         }
-        ConfigureSystemDataBuffer(&systemGlobalDataPtrB8,&SystemDataBufferTemplateA,HashNodeData);
+        ConfigureSystemDataBuffer(&systemGlobalDataPtrB8,&SystemDataBufferTemplateA,SystemHashNodeData);
         presourceAddress = presourceAddress + 4;
         resourceCreationFlags = resourceCreationFlags - 1;
       } while (resourceCreationFlags != 0);
@@ -43143,7 +43143,7 @@ void ConfigureAndManageSystemResourceData(long long *SystemResourceManager,long 
 {
   uint SystemOperationStatus;
   int systemResult;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   uint8_t *SystemThreadContext;
   void* *resourceEntryPointer;
@@ -43227,9 +43227,9 @@ void ConfigureAndManageSystemResourceData(long long *SystemResourceManager,long 
     SystemThreadContext = (uint8_t *)CONCAT71(uStack_c7,uStack_c8);
   }
   hashNodeOffset = dataBufferLength;
-  HashNodeData = (void* *)InitializeSystemResource(SystemThreadContext,systemGlobalDataPtrB8);
-  dataBufferPointer = HashNodeData;
-  if (HashNodeData == (void* *)0xffffffffffffffff) {
+  SystemHashNodeData = (void* *)InitializeSystemResource(SystemThreadContext,systemGlobalDataPtrB8);
+  dataBufferPointer = SystemHashNodeData;
+  if (SystemHashNodeData == (void* *)0xffffffffffffffff) {
     if (0xf < StackParameterC) {
       SystemOperationCode = StackParameterC + 1;
       SystemOperationStatus3 = SystemThreadContextFlag;
@@ -43281,8 +43281,8 @@ void ConfigureAndManageSystemResourceData(long long *SystemResourceManager,long 
   SystemProcessFlags58 = 0;
   SystemThreadContextFlag = 0xf;
   EncryptionValue68 = EncryptionValue68 & 0xffffff00;
-  presourceAddress = HashNodeData;
-  if (systemGlobalDataPtrB8 < HashNodeData) {
+  presourceAddress = SystemHashNodeData;
+  if (systemGlobalDataPtrB8 < SystemHashNodeData) {
     presourceAddress = systemGlobalDataPtrB8;
   }
   SystemThreadContext = &uStack_c8;
@@ -43374,13 +43374,13 @@ ResourceDataIndexCheckLoop:
     pSystemEncryptionOffset0 = (uint8_t *)0x0;
     uStack_f0 = 0;
     SystemThreadLocalStoragePointer = dataBufferContext + 4;
-    HashNodeData = (void* *)SystemResourceManager[1];
+    SystemHashNodeData = (void* *)SystemResourceManager[1];
     presourceAddress = (void* *)*SystemResourceManager;
-    if (presourceAddress != HashNodeData) {
+    if (presourceAddress != SystemHashNodeData) {
       do {
         (**(code **)*presourceAddress)(presourceAddress,0);
         presourceAddress = presourceAddress + 4;
-      } while (presourceAddress != HashNodeData);
+      } while (presourceAddress != SystemHashNodeData);
       presourceAddress = (void* *)*SystemResourceManager;
     }
     if (presourceAddress != (void* *)0x0) {
@@ -43390,7 +43390,7 @@ ResourceDataIndexCheckLoop:
     SystemResourceManager[1] = (long long)SystemThreadLocalStoragePointer;
     SystemResourceManager[2] = SystemResourceDataIndex * 0x20 + SystemAllocationFlags;
     resourceDataIndex2 = lStack_78;
-    HashNodeData = DataBufferPtrE0;
+    SystemHashNodeData = DataBufferPtrE0;
   }
   pSystemEncryptionOffset8 = &SystemGlobalDataReference;
   if (pSystemEncryptionOffset0 != (uint8_t *)0x0) {
@@ -43400,8 +43400,8 @@ ResourceDataIndexCheckLoop:
   uStack_f0 = uStack_f0 & 0xffffffff00000000;
   pSystemEncryptionOffset8 = &SystemMemoryAllocatorReference;
 SystemValueCheckComplete:
-  presourceAddress = (void* *)(resourceDataIndex2 + (long long)HashNodeData);
-  if (systemGlobalDataPtrB8 < (void* *)(resourceDataIndex2 + (long long)HashNodeData)) {
+  presourceAddress = (void* *)(resourceDataIndex2 + (long long)SystemHashNodeData);
+  if (systemGlobalDataPtrB8 < (void* *)(resourceDataIndex2 + (long long)SystemHashNodeData)) {
     presourceAddress = systemGlobalDataPtrB8;
   }
   SystemThreadContext = &uStack_c8;
@@ -43512,7 +43512,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* SystemResourceSize;
   uint32_t SystemThreadId148;
   void* *pSystemThreadContext140;
-  void* *systemMemoryContext;
+  void* *SystemMemoryContext;
   void* uStack_130;
   uint32_t SystemMemoryOffset;
   void* SystemResourceFlags120;
@@ -43742,17 +43742,17 @@ void ReleaseSystemResource(void* SystemResourceManager)
       SystemOperationFlag = SystemSecondaryStatus & 0xffffffff;
       do {
         pSystemThreadContext140 = (void* *)0x0;
-        systemMemoryContext = (void* *)0x0;
+        SystemMemoryContext = (void* *)0x0;
         uStack_130 = 0;
         SystemMemoryOffset = 3;
         aSystemMemoryAllocationSize[0] = 0x23;
         if (SystemDataPointer9[1] != 0) {
           ProcessSystemMemoryBuffer(SystemDataPointer9,&pSystemThreadContext140,aSystemMemoryAllocationSize);
         }
-        SystemThreadContext = systemMemoryContext;
+        SystemThreadContext = SystemMemoryContext;
         SystemStringTemplatePointer = pSystemThreadContext140;
         SystemDataBufferPointer = pSystemThreadContext140;
-        if (((long long)systemMemoryContext - (long long)pSystemThreadContext140 & 0xffffffffffffffe0U) == 0x40) {
+        if (((long long)SystemMemoryContext - (long long)pSystemThreadContext140 & 0xffffffffffffffe0U) == 0x40) {
           CreateSystemObject(&pointerUnsigned2a0,pSystemThreadContext140);
           if (StringProcessingBuffer != (char *)0x0) {
             iStack_290 = 0;
@@ -44114,7 +44114,7 @@ void ExecuteSystemResourceCommand(long long *SystemResourceManager,void* Configu
 {
   uint SystemOperationStatus;
   long long SystemThreadHandle;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   ulong long resourceAddress;
   void* UnsignedStackFlag88;
   long long lStack_80;
@@ -44157,11 +44157,11 @@ void ExecuteSystemResourceCommand(long long *SystemResourceManager,void* Configu
   lStack_68 = 0;
   SystemProcessFlags58 = (ulong long)SystemProcessFlags58.HighPart << 0x20;
   SystemProcessFlagsPointer = &SystemMemoryAllocatorReference;
-  HashNodeData = &SystemStringTemplate;
+  SystemHashNodeData = &SystemStringTemplate;
   if (pSystemEncryptionKey != (void* *)0x0) {
-    HashNodeData = pSystemEncryptionKey;
+    SystemHashNodeData = pSystemEncryptionKey;
   }
-  ProcessSystemResourceData(&UnsignedStackFlag88,HashNodeData,&SystemEventTemplate,ConfigurationFlag,0);
+  ProcessSystemResourceData(&UnsignedStackFlag88,SystemHashNodeData,&SystemEventTemplate,ConfigurationFlag,0);
   InitializePrimaryResource(ConfigurationDataPointer,&UnsignedStackFlag88);
   if (lStack_80 != 0) {
     fclose();
@@ -44223,7 +44223,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   void* *pSystemResourceSize;
   uint32_t SystemThreadId148;
   ulong long SystemThreadContext140;
-  void* *systemMemoryContext;
+  void* *SystemMemoryContext;
   long long LocalStackInitializationFlag;
   uint32_t SystemResourceFlags120;
   void* *pUnsignedStackFlag110;
@@ -44298,15 +44298,15 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   else {
 SystemIndexCheckPoint:
     InitializeSystemStackFlag(&pSystemStackFlag);
-    currentThreadId = ProcessSystemQueue(&systemMemoryContext,&SystemQueueConfigPtr);
+    currentThreadId = ProcessSystemQueue(&SystemMemoryContext,&SystemQueueConfigPtr);
     systemIndex = GetSystemCounter(&pSystemStackFlag,currentThreadId);
-    systemMemoryContext = &SystemGlobalDataReference;
+    SystemMemoryContext = &SystemGlobalDataReference;
     if (LocalStackInitializationFlag != 0) {
         SystemCleanupFunction();
     }
     LocalStackInitializationFlag = 0;
     SystemResourceFlags120 = 0;
-    systemMemoryContext = &SystemMemoryAllocatorReference;
+    SystemMemoryContext = &SystemMemoryAllocatorReference;
     ExecuteSystemOperation(&pSystemStackFlag,&dataBufferContext,systemIndex + 7,0xffffffff);
     SystemGameControllerBuffer = &SystemGlobalDataReference;
     CalculationFlags1A0 = 0;
@@ -44362,13 +44362,13 @@ SystemIndexCheckPoint:
     else {
       ProcessSystemStackConfiguration(&pSystemStackFlag);
     }
-    ppUnsignedStackFlagA8 = &systemMemoryContext;
-    currentThreadId = CreateSystemObject(&systemMemoryContext,&pSystemStackFlag);
+    ppUnsignedStackFlagA8 = &SystemMemoryContext;
+    currentThreadId = CreateSystemObject(&SystemMemoryContext,&pSystemStackFlag);
     InitializeSecurityContext(currentThreadId);
     ConfigureSecurityParameters(&pSystemStackFlag,SystemContextPointer);
     CleanupAndValidateSystemResources(&pSystemStackFlag);
-    SetupSystemConfiguration(&systemMemoryContext);
-    ConfigureSystemResources(&systemMemoryContext,&SystemResourcePointerF0,&SystemMemoryBufferTemplate1);
+    SetupSystemConfiguration(&SystemMemoryContext);
+    ConfigureSystemResources(&SystemMemoryContext,&SystemResourcePointerF0,&SystemMemoryBufferTemplate1);
     ConfigureSystemResources(&pSystemStackFlag,&pUnsignedStackFlag110,&SystemMemoryBufferTemplate1);
     ProcessSystemDataTransfer(&pUnsignedStackFlag110,&SystemResourcePointerF0);
     pUnsignedStackFlag110 = &SystemGlobalDataReference;
@@ -44385,13 +44385,13 @@ SystemIndexCheckPoint:
     lStack_e8 = 0;
     SystemMemoryAllocatorStatus = 0;
     SystemResourcePointerF0 = &SystemMemoryAllocatorReference;
-    systemMemoryContext = &SystemGlobalDataReference;
+    SystemMemoryContext = &SystemGlobalDataReference;
     if (LocalStackInitializationFlag != 0) {
         SystemCleanupFunction();
     }
     LocalStackInitializationFlag = 0;
     SystemResourceFlags120 = 0;
-    systemMemoryContext = &SystemMemoryAllocatorReference;
+    SystemMemoryContext = &SystemMemoryAllocatorReference;
     InitializeAndConfigureSystemResources(&pSystemStackFlag);
     ProcessAndManageSystemResources(&pSystemStackFlag);
     ReleaseSystemResource(&pSystemStackFlag);
@@ -45593,14 +45593,14 @@ long long CopySystemConfigurationData(long long SystemResourceManager,long long 
 {
   long long resourceDataIndex;
   code *SystemStringPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   
   *(uint32_t *)(SystemResourceManager + 0x10) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
-  HashNodeData = &SystemStringTemplate;
+  SystemHashNodeData = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
-    HashNodeData = *(void* **)(ConfigurationDataPointer + 8);
+    SystemHashNodeData = *(void* **)(ConfigurationDataPointer + 8);
   }
-  strcpy_s(*(void* *)(SystemResourceManager + 8),0x100,HashNodeData);
+  strcpy_s(*(void* *)(SystemResourceManager + 8),0x100,SystemHashNodeData);
   *(void* *)(SystemResourceManager + 0x118) = *(void* *)(ConfigurationDataPointer + 0x118);
   resourceDataIndex = SystemResourceManager + 0x148;
   *(void* *)(SystemResourceManager + 0x120) = *(void* *)(ConfigurationDataPointer + 0x120);
@@ -46713,7 +46713,7 @@ void* * AllocateThreadLocalStorage(long long *SystemResourceManager)
 {
   long long *PrimaryResourcePointer;
   uint *SystemHashEntryPointer;
-  ulong long *HashNodeData;
+  ulong long *SystemHashNodeData;
   ulong long threadIdHash;
   uint currentThreadId;
   ulong long resourceHashValue;
@@ -46734,14 +46734,14 @@ void* * AllocateThreadLocalStorage(long long *SystemResourceManager)
   SystemOperationStatus4 = (SystemOperationStatus4 >> 0xd ^ SystemOperationStatus4) * -0x3d4d51cb;
   SystemOperationStatus3 = (ulong long)(SystemOperationStatus4 >> 0x10 ^ SystemOperationStatus4);
   hashTableNode = (ulong long *)SystemResourceManager[6];
-  for (HashNodeData = hashTableNode; resourceHashValue = SystemOperationStatus3, HashNodeData != (ulong long *)0x0; HashNodeData = (ulong long *)HashNodeData[2])
+  for (SystemHashNodeData = hashTableNode; resourceHashValue = SystemOperationStatus3, SystemHashNodeData != (ulong long *)0x0; SystemHashNodeData = (ulong long *)SystemHashNodeData[2])
   {
     while( true ) {
-      resourceHashValue = resourceHashValue & *HashNodeData - 1;
-      SystemOperationStatus4 = *(uint *)(resourceHashValue * 0x10 + HashNodeData[1]);
+      resourceHashValue = resourceHashValue & *SystemHashNodeData - 1;
+      SystemOperationStatus4 = *(uint *)(resourceHashValue * 0x10 + SystemHashNodeData[1]);
       if (SystemOperationStatus4 == currentThreadId) {
-        ThreadLocalStorageEntry = *(void* **)(HashNodeData[1] + 8 + resourceHashValue * 0x10);
-        if (HashNodeData == hashTableNode) {
+        ThreadLocalStorageEntry = *(void* **)(SystemHashNodeData[1] + 8 + resourceHashValue * 0x10);
+        if (SystemHashNodeData == hashTableNode) {
           return ThreadLocalStorageEntry;
         }
         do {
@@ -46781,10 +46781,10 @@ void* * AllocateThreadLocalStorage(long long *SystemResourceManager)
       *SystemHashEntryPointer = *SystemHashEntryPointer | 1;
       UNLOCK();
       if ((SystemOperationStatus4 & 1) == 0) {
-        HashNodeData = (ulong long *)SystemResourceManager[6];
-        hashTableNode = HashNodeData;
-        SystemSecondaryStatus = *HashNodeData;
-        if (*HashNodeData >> 1 <= resourceHashValue) {
+        SystemHashNodeData = (ulong long *)SystemResourceManager[6];
+        hashTableNode = SystemHashNodeData;
+        SystemSecondaryStatus = *SystemHashNodeData;
+        if (*SystemHashNodeData >> 1 <= resourceHashValue) {
           do {
             resourceAddress = SystemSecondaryStatus;
             SystemSecondaryStatus = resourceAddress * 2;
@@ -46805,7 +46805,7 @@ void* * AllocateThreadLocalStorage(long long *SystemResourceManager)
             *(uint32_t *)((long long)ThreadLocalStorage + hashTableNode[1]) = 0;
             ThreadLocalStorage = ThreadLocalStorage + 2;
           }
-          hashTableNode[2] = (ulong long)HashNodeData;
+          hashTableNode[2] = (ulong long)SystemHashNodeData;
           SystemResourceManager[6] = (long long)hashTableNode;
         }
         *(uint32_t *)(SystemResourceManager + 0x4b) = 0;
@@ -47480,7 +47480,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,uint32_t Con
 {
   long long resourceDataIndex;
   char validationStatusFlag;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   uint32_t SystemStackParameters [6];
   
   resourceDataIndex = SystemNodeManagerPointer;
@@ -47488,11 +47488,11 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,uint32_t Con
      (SystemStackParameters[0] = ConfigurationDataPointer, SystemOperationResult = (**(code **)(SystemNodeManagerPointer + 0x1878))(SystemStackParameters),
      ConfigurationDataPointer = SystemStackParameters[0], SystemOperationResult == '\0')) {
     if (SystemInitializationFlag == '\0') {
-      HashNodeData = &SystemStringTemplate;
+      SystemHashNodeData = &SystemStringTemplate;
       if (*(void* **)(resourceDataIndex + 0x1820) != (void* *)0x0) {
-        HashNodeData = *(void* **)(resourceDataIndex + 0x1820);
+        SystemHashNodeData = *(void* **)(resourceDataIndex + 0x1820);
       }
-      ProcessGlobalDataHashTable(&SystemGlobalDataTable,HashNodeData);
+      ProcessGlobalDataHashTable(&SystemGlobalDataTable,SystemHashNodeData);
     }
     *(uint32_t *)(resourceDataIndex + 0x1810) = *(uint32_t *)(resourceDataIndex + 0x1858);
     return;
@@ -48920,7 +48920,7 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
 {
   long long *PrimaryResourcePointer;
   uint *SystemHashEntryPointer;
-  ulong long *HashNodeData;
+  ulong long *SystemHashNodeData;
   ulong long resourceAddress;
   uint currentThreadId;
   ulong long resourceHashValue;
@@ -48941,14 +48941,14 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
   SystemOperationStatus4 = (SystemOperationStatus4 >> 0xd ^ SystemOperationStatus4) * -0x3d4d51cb;
   SystemOperationStatus3 = (ulong long)(SystemOperationStatus4 >> 0x10 ^ SystemOperationStatus4);
   hashTableNode = (ulong long *)SystemResourceManager[6];
-  for (HashNodeData = hashTableNode; resourceHashValue = SystemOperationStatus3, HashNodeData != (ulong long *)0x0; HashNodeData = (ulong long *)HashNodeData[2])
+  for (SystemHashNodeData = hashTableNode; resourceHashValue = SystemOperationStatus3, SystemHashNodeData != (ulong long *)0x0; SystemHashNodeData = (ulong long *)SystemHashNodeData[2])
   {
     while( true ) {
-      resourceHashValue = resourceHashValue & *HashNodeData - 1;
-      SystemOperationStatus4 = *(uint *)(resourceHashValue * 0x10 + HashNodeData[1]);
+      resourceHashValue = resourceHashValue & *SystemHashNodeData - 1;
+      SystemOperationStatus4 = *(uint *)(resourceHashValue * 0x10 + SystemHashNodeData[1]);
       if (SystemOperationStatus4 == currentThreadId) {
-        ThreadLocalStorageEntry = *(void* **)(HashNodeData[1] + 8 + resourceHashValue * 0x10);
-        if (HashNodeData == hashTableNode) {
+        ThreadLocalStorageEntry = *(void* **)(SystemHashNodeData[1] + 8 + resourceHashValue * 0x10);
+        if (SystemHashNodeData == hashTableNode) {
           return ThreadLocalStorageEntry;
         }
         do {
@@ -48988,10 +48988,10 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
       *SystemHashEntryPointer = *SystemHashEntryPointer | 1;
       UNLOCK();
       if ((SystemOperationStatus4 & 1) == 0) {
-        HashNodeData = (ulong long *)SystemResourceManager[6];
-        hashTableNode = HashNodeData;
-        SystemSecondaryStatus = *HashNodeData;
-        if (*HashNodeData >> 1 <= resourceHashValue) {
+        SystemHashNodeData = (ulong long *)SystemResourceManager[6];
+        hashTableNode = SystemHashNodeData;
+        SystemSecondaryStatus = *SystemHashNodeData;
+        if (*SystemHashNodeData >> 1 <= resourceHashValue) {
           do {
             resourceAddress = SystemSecondaryStatus;
             SystemSecondaryStatus = resourceAddress * 2;
@@ -49012,7 +49012,7 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
             *(uint32_t *)((long long)ThreadLocalStorage + hashTableNode[1]) = 0;
             ThreadLocalStorage = ThreadLocalStorage + 2;
           }
-          hashTableNode[2] = (ulong long)HashNodeData;
+          hashTableNode[2] = (ulong long)SystemHashNodeData;
           SystemResourceManager[6] = (long long)hashTableNode;
         }
         *(uint32_t *)(SystemResourceManager + 0x4b) = 0;
@@ -49534,7 +49534,7 @@ ulong long GetSystemResourceHash(long long SystemResourceManager,void* Configura
 {
   long long *PrimaryResourcePointer;
   ulong long *SystemHashEntryPointer;
-  uint *HashNodeData;
+  uint *SystemHashNodeData;
   uint resourceAddress;
   long long SystemTimeValue;
   ulong long resourceHashValue;
@@ -49576,9 +49576,9 @@ ulong long GetSystemResourceHash(long long SystemResourceManager,void* Configura
       if (SystemOperationCode == 0x1f) {
         *(void* *)(localSystemPointer + 8) = 0;
         LOCK();
-        HashNodeData = (uint *)(resourceHashValue + 0x3530);
-        resourceAddress = *HashNodeData;
-        *HashNodeData = *HashNodeData + 0x80000000;
+        SystemHashNodeData = (uint *)(resourceHashValue + 0x3530);
+        resourceAddress = *SystemHashNodeData;
+        *SystemHashNodeData = *SystemHashNodeData + 0x80000000;
         UNLOCK();
         SystemOperationCode = (ulong long)resourceAddress;
         if (resourceAddress == 0) {
@@ -49598,10 +49598,10 @@ ulong long GetSystemResourceHash(long long SystemResourceManager,void* Configura
             SystemOperationCode = SystemThreadContextFlag;
             if (isByteValid2) break;
             LOCK();
-            HashNodeData = (uint *)(resourceHashValue + 0x3530);
-            resourceAddress = *HashNodeData;
+            SystemHashNodeData = (uint *)(resourceHashValue + 0x3530);
+            resourceAddress = *SystemHashNodeData;
             SystemOperationCode = (ulong long)resourceAddress;
-            *HashNodeData = *HashNodeData + 0x7fffffff;
+            *SystemHashNodeData = *SystemHashNodeData + 0x7fffffff;
             UNLOCK();
             SystemOperationStatus1 = SystemThreadContextFlag;
           } while (resourceAddress == 1);
@@ -49761,12 +49761,12 @@ InitializeSystemMemoryAllocatorWithHashNodes(long long *SystemResourceManager,vo
 {
   void* *SystemDataPointer;
   code *SystemStringPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   
   *SystemResourceManager = (long long)ConfigurationFlag;
   if (ConfigurationDataPointer != AdditionalParameter) {
-    HashNodeData = ConfigurationDataPointer + 0x2b;
+    SystemHashNodeData = ConfigurationDataPointer + 0x2b;
     do {
       *ConfigurationFlag = &SystemMemoryAllocatorReference;
       ConfigurationFlag[1] = 0;
@@ -49775,52 +49775,52 @@ InitializeSystemMemoryAllocatorWithHashNodes(long long *SystemResourceManager,vo
       ConfigurationFlag[1] = ConfigurationFlag + 3;
       *(uint32_t *)(ConfigurationFlag + 2) = 0;
       *(uint8_t *)(ConfigurationFlag + 3) = 0;
-      *(uint32_t *)(ConfigurationFlag + 2) = *(uint32_t *)(HashNodeData + -0x29);
+      *(uint32_t *)(ConfigurationFlag + 2) = *(uint32_t *)(SystemHashNodeData + -0x29);
       presourceAddress = &SystemStringTemplate;
-      if ((void* *)HashNodeData[-0x2a] != (void* *)0x0) {
-        presourceAddress = (void* *)HashNodeData[-0x2a];
+      if ((void* *)SystemHashNodeData[-0x2a] != (void* *)0x0) {
+        presourceAddress = (void* *)SystemHashNodeData[-0x2a];
       }
       strcpy_s(ConfigurationFlag[1],0x100,presourceAddress);
-      ConfigurationFlag[0x23] = HashNodeData[-8];
-      ConfigurationFlag[0x24] = HashNodeData[-7];
-      ConfigurationFlag[0x25] = HashNodeData[-6];
-      ConfigurationFlag[0x26] = HashNodeData[-5];
-      ConfigurationFlag[0x27] = HashNodeData[-4];
-      *(uint8_t *)(ConfigurationFlag + 0x28) = *(uint8_t *)(HashNodeData + -3);
+      ConfigurationFlag[0x23] = SystemHashNodeData[-8];
+      ConfigurationFlag[0x24] = SystemHashNodeData[-7];
+      ConfigurationFlag[0x25] = SystemHashNodeData[-6];
+      ConfigurationFlag[0x26] = SystemHashNodeData[-5];
+      ConfigurationFlag[0x27] = SystemHashNodeData[-4];
+      *(uint8_t *)(ConfigurationFlag + 0x28) = *(uint8_t *)(SystemHashNodeData + -3);
       ConfigurationFlag[0x2b] = 0;
       ConfigurationFlag[0x2c] = _guard_check_icall;
-      if (ConfigurationFlag + 0x29 != HashNodeData + -2) {
-        pSystemOperationResult = (code *)*HashNodeData;
+      if (ConfigurationFlag + 0x29 != SystemHashNodeData + -2) {
+        pSystemOperationResult = (code *)*SystemHashNodeData;
         if (SystemStringPointer != (code *)0x0) {
-          (*pSystemOperationResult)(ConfigurationFlag + 0x29,HashNodeData + -2,2);
-          pSystemOperationResult = (code *)*HashNodeData;
+          (*pSystemOperationResult)(ConfigurationFlag + 0x29,SystemHashNodeData + -2,2);
+          pSystemOperationResult = (code *)*SystemHashNodeData;
         }
         ConfigurationFlag[0x2b] = pSystemOperationResult;
-        ConfigurationFlag[0x2c] = HashNodeData[1];
-        *HashNodeData = 0;
-        HashNodeData[1] = _guard_check_icall;
+        ConfigurationFlag[0x2c] = SystemHashNodeData[1];
+        *SystemHashNodeData = 0;
+        SystemHashNodeData[1] = _guard_check_icall;
       }
       ConfigurationFlag[0x2f] = 0;
       ConfigurationFlag[0x30] = _guard_check_icall;
-      if (ConfigurationFlag + 0x2d != HashNodeData + 2) {
-        pSystemOperationResult = (code *)HashNodeData[4];
+      if (ConfigurationFlag + 0x2d != SystemHashNodeData + 2) {
+        pSystemOperationResult = (code *)SystemHashNodeData[4];
         if (SystemStringPointer != (code *)0x0) {
-          (*pSystemOperationResult)(ConfigurationFlag + 0x2d,HashNodeData + 2,2);
-          pSystemOperationResult = (code *)HashNodeData[4];
+          (*pSystemOperationResult)(ConfigurationFlag + 0x2d,SystemHashNodeData + 2,2);
+          pSystemOperationResult = (code *)SystemHashNodeData[4];
         }
         ConfigurationFlag[0x2f] = pSystemOperationResult;
-        ConfigurationFlag[0x30] = HashNodeData[5];
-        HashNodeData[4] = 0;
-        HashNodeData[5] = _guard_check_icall;
+        ConfigurationFlag[0x30] = SystemHashNodeData[5];
+        SystemHashNodeData[4] = 0;
+        SystemHashNodeData[5] = _guard_check_icall;
       }
-      ConfigurationFlag[0x31] = HashNodeData[6];
-      ConfigurationFlag[0x32] = HashNodeData[7];
-      ConfigurationFlag[0x33] = HashNodeData[8];
-      ConfigurationFlag[0x34] = HashNodeData[9];
+      ConfigurationFlag[0x31] = SystemHashNodeData[6];
+      ConfigurationFlag[0x32] = SystemHashNodeData[7];
+      ConfigurationFlag[0x33] = SystemHashNodeData[8];
+      ConfigurationFlag[0x34] = SystemHashNodeData[9];
       *SystemResourceManager = *SystemResourceManager + 0x1a8;
       ConfigurationFlag = (void* *)*SystemResourceManager;
-      SystemDataPointer = HashNodeData + 10;
-      HashNodeData = HashNodeData + 0x35;
+      SystemDataPointer = SystemHashNodeData + 10;
+      SystemHashNodeData = SystemHashNodeData + 0x35;
     } while (SystemDataPointer != AdditionalParameter);
   }
   return SystemResourceManager;
@@ -50085,17 +50085,17 @@ void CleanupSystemResourceManagers(long long *SystemResourceManager)
 {
   int *SystemIntegerPointer;
   char *SystemStringPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   
-  HashNodeData = (void* *)*SystemResourceManager;
-  if (HashNodeData != (void* *)0x0) {
-    if ((void* *)HashNodeData[3] != (void* *)0x0) {
-      *(void* *)HashNodeData[3] = 0;
+  SystemHashNodeData = (void* *)*SystemResourceManager;
+  if (SystemHashNodeData != (void* *)0x0) {
+    if ((void* *)SystemHashNodeData[3] != (void* *)0x0) {
+      *(void* *)SystemHashNodeData[3] = 0;
     }
-    (**(code **)*HashNodeData)(HashNodeData,0);
-      SystemCleanupFunction(HashNodeData);
+    (**(code **)*SystemHashNodeData)(SystemHashNodeData,0);
+      SystemCleanupFunction(SystemHashNodeData);
   }
   if ((SystemResourceManager[6] != 0) && (*(long long *)(SystemResourceManager[6] + 0x10) != 0)) {
       SystemCleanupFunction();
@@ -50108,17 +50108,17 @@ void CleanupSystemResourceManagers(long long *SystemResourceManager)
         SystemCleanupFunction();
     }
   }
-  HashNodeData = (void* *)SystemResourceManager[3];
-  if (HashNodeData == (void* *)0x0) {
+  SystemHashNodeData = (void* *)SystemResourceManager[3];
+  if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)HashNodeData & 0xffffffffffc00000;
+  currentThreadId = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
   if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)HashNodeData - currentThreadId >> 0x10) * 0x50;
+    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
     if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-      *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-      *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+      *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+      *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
       *SystemIntegerPointer = *SystemIntegerPointer + -1;
       if (*SystemIntegerPointer == 0) {
@@ -50128,7 +50128,7 @@ void CleanupSystemResourceManagers(long long *SystemResourceManager)
     }
     else {
       SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          HashNodeData,currentThreadId,0xfffffffffffffffe);
+                          SystemHashNodeData,currentThreadId,0xfffffffffffffffe);
     }
   }
   return;
@@ -50152,17 +50152,17 @@ void CleanupResourceManagerExtendedPointers(long long *SystemResourceManager)
 {
   int *SystemIntegerPointer;
   char *SystemStringPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   
-  HashNodeData = (void* *)*SystemResourceManager;
-  if (HashNodeData != (void* *)0x0) {
-    if ((void* *)HashNodeData[3] != (void* *)0x0) {
-      *(void* *)HashNodeData[3] = 0;
+  SystemHashNodeData = (void* *)*SystemResourceManager;
+  if (SystemHashNodeData != (void* *)0x0) {
+    if ((void* *)SystemHashNodeData[3] != (void* *)0x0) {
+      *(void* *)SystemHashNodeData[3] = 0;
     }
-    (**(code **)*HashNodeData)(HashNodeData,0);
-      SystemCleanupFunction(HashNodeData);
+    (**(code **)*SystemHashNodeData)(SystemHashNodeData,0);
+      SystemCleanupFunction(SystemHashNodeData);
   }
   if ((SystemResourceManager[6] != 0) && (*(long long *)(SystemResourceManager[6] + 0x10) != 0)) {
       SystemCleanupFunction();
@@ -50175,17 +50175,17 @@ void CleanupResourceManagerExtendedPointers(long long *SystemResourceManager)
         SystemCleanupFunction();
     }
   }
-  HashNodeData = (void* *)SystemResourceManager[3];
-  if (HashNodeData == (void* *)0x0) {
+  SystemHashNodeData = (void* *)SystemResourceManager[3];
+  if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)HashNodeData & 0xffffffffffc00000;
+  currentThreadId = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
   if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)HashNodeData - currentThreadId >> 0x10) * 0x50;
+    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
     if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-      *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-      *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+      *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+      *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
       *SystemIntegerPointer = *SystemIntegerPointer + -1;
       if (*SystemIntegerPointer == 0) {
@@ -50195,7 +50195,7 @@ void CleanupResourceManagerExtendedPointers(long long *SystemResourceManager)
     }
     else {
       SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          HashNodeData,currentThreadId,0xfffffffffffffffe);
+                          SystemHashNodeData,currentThreadId,0xfffffffffffffffe);
     }
   }
   return;
@@ -50339,19 +50339,19 @@ void DestroySystemResources(long long *SystemResourceManager)
 {
   int *SystemIntegerPointer;
   char *SystemStringPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   long long SystemBufferAddress;
   ulong long currentThreadId;
   
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  HashNodeData = (void* *)*SystemResourceManager;
-  if (HashNodeData != (void* *)0x0) {
-    if ((void* *)HashNodeData[3] != (void* *)0x0) {
-      *(void* *)HashNodeData[3] = 0;
+  SystemHashNodeData = (void* *)*SystemResourceManager;
+  if (SystemHashNodeData != (void* *)0x0) {
+    if ((void* *)SystemHashNodeData[3] != (void* *)0x0) {
+      *(void* *)SystemHashNodeData[3] = 0;
     }
-    (**(code **)*HashNodeData)(HashNodeData,0);
-      SystemCleanupFunction(HashNodeData);
+    (**(code **)*SystemHashNodeData)(SystemHashNodeData,0);
+      SystemCleanupFunction(SystemHashNodeData);
   }
   if ((SystemResourceManager[6] != 0) && (*(long long *)(SystemResourceManager[6] + 0x10) != 0)) {
       SystemCleanupFunction();
@@ -50364,17 +50364,17 @@ void DestroySystemResources(long long *SystemResourceManager)
         SystemCleanupFunction();
     }
   }
-  HashNodeData = (void* *)SystemResourceManager[3];
-  if (HashNodeData == (void* *)0x0) {
+  SystemHashNodeData = (void* *)SystemResourceManager[3];
+  if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)HashNodeData & 0xffffffffffc00000;
+  currentThreadId = (ulong long)SystemHashNodeData & 0xffffffffffc00000;
   if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)HashNodeData - currentThreadId >> 0x10) * 0x50;
+    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
     if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
-      *HashNodeData = *(void* *)(SystemBufferAddress + 0x20);
-      *(void* **)(SystemBufferAddress + 0x20) = HashNodeData;
+      *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
+      *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
       *SystemIntegerPointer = *SystemIntegerPointer + -1;
       if (*SystemIntegerPointer == 0) {
@@ -50384,7 +50384,7 @@ void DestroySystemResources(long long *SystemResourceManager)
     }
     else {
       SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          HashNodeData,currentThreadId,0xfffffffffffffffe);
+                          SystemHashNodeData,currentThreadId,0xfffffffffffffffe);
     }
   }
   return;
@@ -51974,7 +51974,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   uint8_t SystemThreadId148;
   char cStack_147;
   void* *pSystemThreadContext140;
-  uint8_t *systemMemoryContext;
+  uint8_t *SystemMemoryContext;
   uint uStack_130;
   ulong long SystemMemoryOffset;
   char controlFlag;
@@ -52116,7 +52116,7 @@ LAB_180070b00:
   lStack_90 = SystemAllocationFlagsTemplate;
   pSystemThreadContext140 = &SystemGlobalDataReference;
   SystemMemoryOffset = 0;
-  systemMemoryContext = (uint8_t *)0x0;
+  SystemMemoryContext = (uint8_t *)0x0;
   uStack_130 = 0;
   SystemDataBufferPointer = &SystemRootDataPtr;
   if (controlFlag != '\0') {
@@ -52134,35 +52134,35 @@ LAB_180070b00:
       if (systemIndex < 0x10) {
         systemIndex = 0x10;
       }
-      systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)systemIndex,0x13);
-      *systemMemoryContext = 0;
-      SystemThreadContextFlag = StartSystemThread(systemMemoryContext);
+      SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)systemIndex,0x13);
+      *SystemMemoryContext = 0;
+      SystemThreadContextFlag = StartSystemThread(SystemMemoryContext);
       SystemMemoryOffset = CONCAT44(SystemMemoryOffset.HighPart,SystemThreadContextFlag);
     }
-      memcpy(systemMemoryContext + uStack_130,SystemDataBufferPointer,(long long)((int)resourceDataIndex6 + 2));
+      memcpy(SystemMemoryContext + uStack_130,SystemDataBufferPointer,(long long)((int)resourceDataIndex6 + 2));
   }
-  systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
-  *systemMemoryContext = 0;
-  currentThreadId = StartSystemThread(systemMemoryContext);
+  SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
+  *SystemMemoryContext = 0;
+  currentThreadId = StartSystemThread(SystemMemoryContext);
   SystemMemoryOffset = CONCAT44(SystemMemoryOffset.HighPart,currentThreadId);
-  *(void*2 *)(systemMemoryContext + uStack_130) = 10;
+  *(void*2 *)(SystemMemoryContext + uStack_130) = 10;
   uStack_130 = 1;
   resourceHashValue = 2;
-  if (systemMemoryContext == (uint8_t *)0x0) {
+  if (SystemMemoryContext == (uint8_t *)0x0) {
     uStack_130 = 1;
-    systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
-    *systemMemoryContext = 0;
+    SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
+    *SystemMemoryContext = 0;
 LAB_180070db8:
-    SystemThreadContextFlag = StartSystemThread(systemMemoryContext);
+    SystemThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = CONCAT44(SystemMemoryOffset.HighPart,SystemThreadContextFlag);
   }
   else if (currentThreadId < 3) {
     puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
     uStack_130 = 1;
-    systemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,systemMemoryContext,3,0x10);
+    SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,3,0x10);
     goto LAB_180070db8;
   }
-  *(void*2 *)(systemMemoryContext + uStack_130) = 10;
+  *(void*2 *)(SystemMemoryContext + uStack_130) = 10;
   uStack_130 = 2;
   if (ConfigurationDataPointer != 0) {
     resourceDataIndex5 = -1;
@@ -52175,90 +52175,90 @@ LAB_180070db8:
       currentThreadId = resourceHashValue;
       if (systemIndex != -2) {
         SystemOperationStatus4 = systemIndex + 3;
-        if (systemMemoryContext == (uint8_t *)0x0) {
+        if (SystemMemoryContext == (uint8_t *)0x0) {
           if ((int)SystemOperationStatus4 < 0x10) {
             SystemOperationStatus4 = 0x10;
           }
           uStack_130 = resourceHashValue;
-          systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemOperationStatus4,0x13);
-          *systemMemoryContext = 0;
+          SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemOperationStatus4,0x13);
+          *SystemMemoryContext = 0;
         }
         else {
           currentThreadId = uStack_130;
           if (SystemOperationStatus4 <= (uint)SystemMemoryOffset) goto LAB_180070e64;
           puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
           uStack_130 = resourceHashValue;
-          systemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,systemMemoryContext,SystemOperationStatus4,0x10);
+          SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,SystemOperationStatus4,0x10);
         }
-        SystemThreadContextFlag = StartSystemThread(systemMemoryContext);
+        SystemThreadContextFlag = StartSystemThread(SystemMemoryContext);
         SystemMemoryOffset = CONCAT44(SystemMemoryOffset.HighPart,SystemThreadContextFlag);
         currentThreadId = uStack_130;
       }
 LAB_180070e64:
       uStack_130 = currentThreadId;
-        memcpy(systemMemoryContext + uStack_130,ConfigurationDataPointer,(long long)((int)resourceDataIndex6 + 2));
+        memcpy(SystemMemoryContext + uStack_130,ConfigurationDataPointer,(long long)((int)resourceDataIndex6 + 2));
     }
   }
-  if (systemMemoryContext == (uint8_t *)0x0) {
+  if (SystemMemoryContext == (uint8_t *)0x0) {
     uStack_130 = resourceHashValue;
-    systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
-    *systemMemoryContext = 0;
+    SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
+    *SystemMemoryContext = 0;
 LAB_180070ee8:
-    SystemThreadContextFlag = StartSystemThread(systemMemoryContext);
+    SystemThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = CONCAT44(SystemMemoryOffset.HighPart,SystemThreadContextFlag);
   }
   else if ((uint)SystemMemoryOffset < 4) {
     puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
     uStack_130 = resourceHashValue;
-    systemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,systemMemoryContext,4,0x10);
+    SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,4,0x10);
     goto LAB_180070ee8;
   }
-  *(void*2 *)(systemMemoryContext + uStack_130) = 0x3a;
+  *(void*2 *)(SystemMemoryContext + uStack_130) = 0x3a;
   uStack_130 = 3;
   ProcessSystemData(&pSystemThreadContext140,secondarySystemDataBuffer);
   resourceHashValue = uStack_130;
   currentThreadId = uStack_130 + 1;
   if (currentThreadId != 0) {
     SystemOperationStatus4 = uStack_130 + 2;
-    if (systemMemoryContext == (uint8_t *)0x0) {
+    if (SystemMemoryContext == (uint8_t *)0x0) {
       if ((int)SystemOperationStatus4 < 0x10) {
         SystemOperationStatus4 = 0x10;
       }
-      systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemOperationStatus4,0x13);
-      *systemMemoryContext = 0;
+      SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemOperationStatus4,0x13);
+      *SystemMemoryContext = 0;
     }
     else {
       if (SystemOperationStatus4 <= (uint)SystemMemoryOffset) goto LAB_180070f81;
       puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
-      systemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,systemMemoryContext,SystemOperationStatus4,0x10);
+      SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,SystemOperationStatus4,0x10);
     }
-    SystemThreadContextFlag = StartSystemThread(systemMemoryContext);
+    SystemThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = CONCAT44(SystemMemoryOffset.HighPart,SystemThreadContextFlag);
   }
 LAB_180070f81:
-  *(void*2 *)(systemMemoryContext + uStack_130) = 10;
+  *(void*2 *)(SystemMemoryContext + uStack_130) = 10;
   SystemOperationStatus4 = resourceHashValue + 0xd;
   uStack_130 = currentThreadId;
   if (SystemOperationStatus4 != 0) {
     currentThreadId = resourceHashValue + 0xe;
-    if (systemMemoryContext == (uint8_t *)0x0) {
+    if (SystemMemoryContext == (uint8_t *)0x0) {
       if ((int)currentThreadId < 0x10) {
         currentThreadId = 0x10;
       }
-      systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)currentThreadId,0x13);
-      *systemMemoryContext = 0;
+      SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)currentThreadId,0x13);
+      *SystemMemoryContext = 0;
     }
     else {
       if (currentThreadId <= (uint)SystemMemoryOffset) goto LAB_180071000;
       puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
-      systemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,systemMemoryContext,currentThreadId,0x10);
+      SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,currentThreadId,0x10);
     }
-    SystemThreadContextFlag = StartSystemThread(systemMemoryContext);
+    SystemThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = CONCAT44(SystemMemoryOffset.HighPart,SystemThreadContextFlag);
   }
 LAB_180071000:
   resourceDataIndex5 = lStack_88;
-  ThreadLocalStorage = (void* *)(systemMemoryContext + uStack_130);
+  ThreadLocalStorage = (void* *)(SystemMemoryContext + uStack_130);
   *ThreadLocalStorage = 0x6973736572707845;
   *(uint32_t *)(ThreadLocalStorage + 1) = 0x203a6e6f;
   *(uint8_t *)((long long)ThreadLocalStorage + 0xc) = 0;
@@ -52273,45 +52273,45 @@ LAB_180071000:
       systemIndex = SystemOperationStatus4 + (int)resourceDataIndex6;
       if (systemIndex != 0) {
         resourceHashValue = systemIndex + 1;
-        if (systemMemoryContext == (uint8_t *)0x0) {
+        if (SystemMemoryContext == (uint8_t *)0x0) {
           if ((int)resourceHashValue < 0x10) {
             resourceHashValue = 0x10;
           }
-          systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)resourceHashValue,0x13);
-          *systemMemoryContext = 0;
+          SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)resourceHashValue,0x13);
+          *SystemMemoryContext = 0;
         }
         else {
           if (resourceHashValue <= (uint)SystemMemoryOffset) goto LAB_1800710b8;
           puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
-          systemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,systemMemoryContext,resourceHashValue,0x10);
+          SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,resourceHashValue,0x10);
         }
-        SystemThreadContextFlag = StartSystemThread(systemMemoryContext);
+        SystemThreadContextFlag = StartSystemThread(SystemMemoryContext);
         SystemMemoryOffset = CONCAT44(SystemMemoryOffset.HighPart,SystemThreadContextFlag);
       }
 LAB_1800710b8:
-        memcpy(systemMemoryContext + uStack_130,resourceDataIndex5,(long long)((int)resourceDataIndex7 + 2));
+        memcpy(SystemMemoryContext + uStack_130,resourceDataIndex5,(long long)((int)resourceDataIndex7 + 2));
     }
   }
   systemIndex = resourceHashValue + 0xe;
   if (systemIndex != 0) {
     resourceHashValue = resourceHashValue + 0xf;
-    if (systemMemoryContext == (uint8_t *)0x0) {
+    if (SystemMemoryContext == (uint8_t *)0x0) {
       if ((int)resourceHashValue < 0x10) {
         resourceHashValue = 0x10;
       }
-      systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)resourceHashValue,0x13);
-      *systemMemoryContext = 0;
+      SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)resourceHashValue,0x13);
+      *SystemMemoryContext = 0;
     }
     else {
       if (resourceHashValue <= (uint)SystemMemoryOffset) goto LAB_18007113f;
       puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
-      systemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,systemMemoryContext,resourceHashValue,0x10);
+      SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,resourceHashValue,0x10);
     }
-    SystemThreadContextFlag = StartSystemThread(systemMemoryContext);
+    SystemThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = CONCAT44(SystemMemoryOffset.HighPart,SystemThreadContextFlag);
   }
 LAB_18007113f:
-  *(void*2 *)(systemMemoryContext + uStack_130) = 10;
+  *(void*2 *)(SystemMemoryContext + uStack_130) = 10;
   uStack_130 = systemIndex;
   if (resourceCounter != 0) {
     ProcessSystemResourceOffset(resourceCounter);
@@ -52369,8 +52369,8 @@ LAB_18007113f:
   SystemDataPointer0 = pUnsignedStackFlag110;
   ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationDataBufferA);
   puStack_168 = &SystemStringTemplate;
-  if (systemMemoryContext != (uint8_t *)0x0) {
-    puStack_168 = systemMemoryContext;
+  if (SystemMemoryContext != (uint8_t *)0x0) {
+    puStack_168 = SystemMemoryContext;
   }
   ConfigureSystemManager(SystemContextManagerPointer,4,0xffffffff00000000,&SystemConfigurationDataBufferB);
   puStack_168 = &SystemStringTemplate;
@@ -52380,8 +52380,8 @@ LAB_18007113f:
   SystemManagerSetFlags(SystemContextManagerPointer,4,0xffffffff00000000,3);
   InitializeSystemManager();
   pSystemSecondaryStatus = &SystemStringTemplate;
-  if (systemMemoryContext != (uint8_t *)0x0) {
-    pSystemSecondaryStatus = systemMemoryContext;
+  if (SystemMemoryContext != (uint8_t *)0x0) {
+    pSystemSecondaryStatus = SystemMemoryContext;
   }
   OutputDebugStringA(pSystemSecondaryStatus);
   FUN_18004c2b0(resourceDataIndex5);
@@ -52415,8 +52415,8 @@ LAB_18007113f:
     do {
       while( true ) {
         pSystemSecondaryStatus = &SystemStringTemplate;
-        if (systemMemoryContext != (uint8_t *)0x0) {
-          pSystemSecondaryStatus = systemMemoryContext;
+        if (SystemMemoryContext != (uint8_t *)0x0) {
+          pSystemSecondaryStatus = SystemMemoryContext;
         }
         if (((SystemInitializationFlag == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
            (SystemSilentMode == '\0')) break;
@@ -52510,10 +52510,10 @@ LAB_18007113f:
     SystemEncryptionOffset0 = SystemEncryptionOffset0 & 0xffffffff00000000;
     pUnsignedStackFlag118 = &SystemMemoryAllocatorReference;
     pSystemThreadContext140 = &SystemGlobalDataReference;
-    if (systemMemoryContext != (uint8_t *)0x0) {
+    if (SystemMemoryContext != (uint8_t *)0x0) {
         SystemCleanupFunction();
     }
-    systemMemoryContext = (uint8_t *)0x0;
+    SystemMemoryContext = (uint8_t *)0x0;
     SystemMemoryOffset = SystemMemoryOffset & 0xffffffff00000000;
     pSystemThreadContext140 = &SystemMemoryAllocatorReference;
     pSystemMemoryBufferAddress = &SystemGlobalDataReference;
@@ -52881,7 +52881,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   ulong long SystemContextPointer;
   uint8_t EncryptionKeyBuffer168 [32];
   uint8_t *pSystemThreadId148;
-  void* *systemMemoryContext;
+  void* *SystemMemoryContext;
   uint8_t *ResourceBufferPointer130;
   uint SystemMemoryOffset;
   ulong long SystemResourceFlags120;
@@ -53069,7 +53069,7 @@ LAB_1800722f5:
         SystemResourcePointerF0 = &SystemMemoryAllocatorReference;
       }
       SystemDataPointer0 = pSystemEncryptionOffset8;
-      systemMemoryContext = &SystemGlobalDataReference;
+      SystemMemoryContext = &SystemGlobalDataReference;
       SystemResourceFlags120 = 0;
       ResourceBufferPointer130 = (uint8_t *)0x0;
       SystemMemoryOffset = 0;
@@ -53169,7 +53169,7 @@ LAB_1800726e7:
       }
       *(void*2 *)(ResourceBufferPointer130 + SystemMemoryOffset) = 0x3a;
       SystemMemoryOffset = 0x17;
-      ProcessSystemData(&systemMemoryContext,UnsignedStackFlagB0);
+      ProcessSystemData(&SystemMemoryContext,UnsignedStackFlagB0);
       resourceHashValue = SystemMemoryOffset;
       resourceAddress = SystemMemoryOffset + 1;
       if (resourceAddress != 0) {
@@ -54395,7 +54395,7 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
 {
   ushort SystemOperationStatus;
   void* resourceCreationFlags;
-  uint32_t *HashNodeData;
+  uint32_t *SystemHashNodeData;
   uint *presourceAddress;
   long long *memoryBlockAddress;
   long long SystemTimeValue;
@@ -54413,12 +54413,12 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
     }
     *SystemResourceManager = SystemResourceIndex;
     memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
-    HashNodeData = (uint32_t *)memoryBlockAddress[1];
-    if ((ulong long)((*memoryBlockAddress - (long long)HashNodeData) + memoryBlockAddress[2]) < 5) {
+    SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
+    if ((ulong long)((*memoryBlockAddress - (long long)SystemHashNodeData) + memoryBlockAddress[2]) < 5) {
       FUN_180639bf0();
-      HashNodeData = (uint32_t *)memoryBlockAddress[1];
+      SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
     }
-    *HashNodeData = 0x10;
+    *SystemHashNodeData = 0x10;
     memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
     presourceAddress = (uint *)memoryBlockAddress[1];
     SystemOperationStatus = *(ushort *)(localSystemPointer + 0x10);
@@ -54445,12 +54445,12 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
     }
     *presourceAddress = SystemResourceIndex;
     memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
-    HashNodeData = (uint32_t *)memoryBlockAddress[1];
-    if ((ulong long)((*memoryBlockAddress - (long long)HashNodeData) + memoryBlockAddress[2]) < 5) {
+    SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
+    if ((ulong long)((*memoryBlockAddress - (long long)SystemHashNodeData) + memoryBlockAddress[2]) < 5) {
       FUN_180639bf0();
-      HashNodeData = (uint32_t *)memoryBlockAddress[1];
+      SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
     }
-    *HashNodeData = 0x10;
+    *SystemHashNodeData = 0x10;
     memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
     presourceAddress = (uint *)memoryBlockAddress[1];
     SystemOperationStatus = *(ushort *)(localSystemPointer + 0x22);
@@ -54479,12 +54479,12 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
   }
   *SystemResourceManager = SystemResourceIndex;
   memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
-  HashNodeData = (uint32_t *)memoryBlockAddress[1];
-  if ((ulong long)((*memoryBlockAddress - (long long)HashNodeData) + memoryBlockAddress[2]) < 5) {
+  SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
+  if ((ulong long)((*memoryBlockAddress - (long long)SystemHashNodeData) + memoryBlockAddress[2]) < 5) {
     FUN_180639bf0();
-    HashNodeData = (uint32_t *)memoryBlockAddress[1];
+    SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
   }
-  *HashNodeData = 0x10;
+  *SystemHashNodeData = 0x10;
   memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
   presourceAddress = (uint *)memoryBlockAddress[1];
   SystemOperationStatus = *(ushort *)(systemResourceHandle + 0x50);
@@ -54510,12 +54510,12 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
   }
   *presourceAddress = SystemResourceIndex;
   memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
-  HashNodeData = (uint32_t *)memoryBlockAddress[1];
-  if ((ulong long)((*memoryBlockAddress - (long long)HashNodeData) + memoryBlockAddress[2]) < 5) {
+  SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
+  if ((ulong long)((*memoryBlockAddress - (long long)SystemHashNodeData) + memoryBlockAddress[2]) < 5) {
     FUN_180639bf0();
-    HashNodeData = (uint32_t *)memoryBlockAddress[1];
+    SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
   }
-  *HashNodeData = 0x10;
+  *SystemHashNodeData = 0x10;
   memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
   presourceAddress = (uint *)memoryBlockAddress[1];
   SystemOperationStatus = *(ushort *)(systemResourceHandle + 0x62);
@@ -54557,7 +54557,7 @@ void InitializeResourceManagerHashNode(uint32_t *SystemResourceManager)
 {
   ushort SystemResourceStatus;
   void* ResourceCreationFlags;
-  uint32_t *HashNodeData;
+  uint32_t *SystemHashNodeData;
   uint *SystemStatusValue;
   long long SystemTimestamp;
   long long *SystemMemoryBlockPtr;
@@ -54571,12 +54571,12 @@ void InitializeResourceManagerHashNode(uint32_t *SystemResourceManager)
   }
   *SystemResourceManager = ResourceNodeId;
   SystemMemoryBlockPtr[1] = SystemMemoryBlockPtr[1] + 4;
-  HashNodeData = (uint32_t *)SystemMemoryBlockPtr[1];
-  if ((ulong long)((*SystemMemoryBlockPtr - (long long)HashNodeData) + SystemMemoryBlockPtr[2]) < 5) {
+  SystemHashNodeData = (uint32_t *)SystemMemoryBlockPtr[1];
+  if ((ulong long)((*SystemMemoryBlockPtr - (long long)SystemHashNodeData) + SystemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
-    HashNodeData = (uint32_t *)SystemMemoryBlockPtr[1];
+    SystemHashNodeData = (uint32_t *)SystemMemoryBlockPtr[1];
   }
-  *HashNodeData = 0x10;
+  *SystemHashNodeData = 0x10;
   SystemMemoryBlockPtr[1] = SystemMemoryBlockPtr[1] + 4;
   SystemStatusValue = (uint *)SystemMemoryBlockPtr[1];
   SystemResourceStatus = *(ushort *)(SystemResourceHandle + 0x50);
@@ -54585,22 +54585,22 @@ void InitializeResourceManagerHashNode(uint32_t *SystemResourceManager)
     SystemStatusValue = (uint *)SystemMemoryBlockPtr[1];
   }
   *SystemStatusValue = (uint)SystemResourceStatus;
-  HashNodeData = (uint32_t *)(SystemMemoryBlockPtr[1] + 4);
-  SystemMemoryBlockPtr[1] = (long long)HashNodeData;
+  SystemHashNodeData = (uint32_t *)(SystemMemoryBlockPtr[1] + 4);
+  SystemMemoryBlockPtr[1] = (long long)SystemHashNodeData;
   if (*(ushort *)(SystemResourceHandle + 0x50) != 0) {
     ResourceCreationFlags = *(void* *)(SystemResourceHandle + 0x48);
     ResourceHashValue = (ulong long)*(ushort *)(SystemResourceHandle + 0x50) * 4;
-    if ((ulong long)((*SystemMemoryBlockPtr - (long long)HashNodeData) + SystemMemoryBlockPtr[2]) <= ResourceHashValue) {
+    if ((ulong long)((*SystemMemoryBlockPtr - (long long)SystemHashNodeData) + SystemMemoryBlockPtr[2]) <= ResourceHashValue) {
       FUN_180639bf0();
-      HashNodeData = (uint32_t *)SystemMemoryBlockPtr[1];
+      SystemHashNodeData = (uint32_t *)SystemMemoryBlockPtr[1];
     }
-      memcpy(HashNodeData,ResourceCreationFlags,ResourceHashValue);
+      memcpy(SystemHashNodeData,ResourceCreationFlags,ResourceHashValue);
   }
-  if ((ulong long)((*SystemMemoryBlockPtr - (long long)HashNodeData) + SystemMemoryBlockPtr[2]) < 5) {
+  if ((ulong long)((*SystemMemoryBlockPtr - (long long)SystemHashNodeData) + SystemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
-    HashNodeData = (uint32_t *)SystemMemoryBlockPtr[1];
+    SystemHashNodeData = (uint32_t *)SystemMemoryBlockPtr[1];
   }
-  *HashNodeData = ResourceNodeId;
+  *SystemHashNodeData = ResourceNodeId;
   SystemMemoryBlockPtr[1] = SystemMemoryBlockPtr[1] + 4;
   return;
 }
@@ -54620,7 +54620,7 @@ void ProcessSystemResourceOperationA(void)
 {
   ushort SystemOperationStatus;
   void* resourceCreationFlags;
-  uint32_t *HashNodeData;
+  uint32_t *SystemHashNodeData;
   uint *presourceAddress;
   long long SystemTimeValue;
   long long *memoryBlockAddress;
@@ -54631,12 +54631,12 @@ void ProcessSystemResourceOperationA(void)
   FUN_180639bf0();
   *(uint32_t *)memoryBlockAddress[1] = SystemResourceIndex;
   memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
-  HashNodeData = (uint32_t *)memoryBlockAddress[1];
-  if ((ulong long)((*memoryBlockAddress - (long long)HashNodeData) + memoryBlockAddress[2]) < 5) {
+  SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
+  if ((ulong long)((*memoryBlockAddress - (long long)SystemHashNodeData) + memoryBlockAddress[2]) < 5) {
     FUN_180639bf0();
-    HashNodeData = (uint32_t *)memoryBlockAddress[1];
+    SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
   }
-  *HashNodeData = 0x10;
+  *SystemHashNodeData = 0x10;
   memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
   presourceAddress = (uint *)memoryBlockAddress[1];
   SystemOperationStatus = *(ushort *)(systemResourceHandle + 0x50);
@@ -54645,29 +54645,29 @@ void ProcessSystemResourceOperationA(void)
     presourceAddress = (uint *)memoryBlockAddress[1];
   }
   *presourceAddress = (uint)SystemOperationStatus;
-  HashNodeData = (uint32_t *)(memoryBlockAddress[1] + 4);
-  memoryBlockAddress[1] = (long long)HashNodeData;
+  SystemHashNodeData = (uint32_t *)(memoryBlockAddress[1] + 4);
+  memoryBlockAddress[1] = (long long)SystemHashNodeData;
   if (*(ushort *)(systemResourceHandle + 0x50) != 0) {
     resourceCreationFlags = *(void* *)(systemResourceHandle + 0x48);
     resourceHashValue = (ulong long)*(ushort *)(systemResourceHandle + 0x50) * 4;
-    if ((ulong long)((*memoryBlockAddress - (long long)HashNodeData) + memoryBlockAddress[2]) <= resourceHashValue) {
+    if ((ulong long)((*memoryBlockAddress - (long long)SystemHashNodeData) + memoryBlockAddress[2]) <= resourceHashValue) {
       FUN_180639bf0();
-      HashNodeData = (uint32_t *)memoryBlockAddress[1];
+      SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
     }
-      memcpy(HashNodeData,resourceCreationFlags,resourceHashValue);
+      memcpy(SystemHashNodeData,resourceCreationFlags,resourceHashValue);
   }
-  if ((ulong long)((*memoryBlockAddress - (long long)HashNodeData) + memoryBlockAddress[2]) < 5) {
+  if ((ulong long)((*memoryBlockAddress - (long long)SystemHashNodeData) + memoryBlockAddress[2]) < 5) {
     FUN_180639bf0();
-    HashNodeData = (uint32_t *)memoryBlockAddress[1];
+    SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
   }
-  *HashNodeData = SystemResourceIndex;
+  *SystemHashNodeData = SystemResourceIndex;
   memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
-  HashNodeData = (uint32_t *)memoryBlockAddress[1];
-  if ((ulong long)((*memoryBlockAddress - (long long)HashNodeData) + memoryBlockAddress[2]) < 5) {
+  SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
+  if ((ulong long)((*memoryBlockAddress - (long long)SystemHashNodeData) + memoryBlockAddress[2]) < 5) {
     FUN_180639bf0();
-    HashNodeData = (uint32_t *)memoryBlockAddress[1];
+    SystemHashNodeData = (uint32_t *)memoryBlockAddress[1];
   }
-  *HashNodeData = 0x10;
+  *SystemHashNodeData = 0x10;
   memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
   presourceAddress = (uint *)memoryBlockAddress[1];
   SystemOperationStatus = *(ushort *)(systemResourceHandle + 0x62);
@@ -54705,7 +54705,7 @@ void ProcessSystemResourceOperationB(void)
 {
   ushort SystemOperationStatus;
   void* resourceCreationFlags;
-  uint *HashNodeData;
+  uint *SystemHashNodeData;
   long long SystemBufferAddress;
   long long *memoryBlockAddress;
   ulong long currentThreadId;
@@ -54714,13 +54714,13 @@ void ProcessSystemResourceOperationB(void)
   FUN_180639bf0();
   *(uint32_t *)memoryBlockAddress[1] = 0x10;
   memoryBlockAddress[1] = memoryBlockAddress[1] + 4;
-  HashNodeData = (uint *)memoryBlockAddress[1];
+  SystemHashNodeData = (uint *)memoryBlockAddress[1];
   SystemOperationStatus = *(ushort *)(systemResourceHandle + 0x62);
-  if ((ulong long)((*memoryBlockAddress - (long long)HashNodeData) + memoryBlockAddress[2]) < 5) {
+  if ((ulong long)((*memoryBlockAddress - (long long)SystemHashNodeData) + memoryBlockAddress[2]) < 5) {
     FUN_180639bf0();
-    HashNodeData = (uint *)memoryBlockAddress[1];
+    SystemHashNodeData = (uint *)memoryBlockAddress[1];
   }
-  *HashNodeData = (uint)SystemOperationStatus;
+  *SystemHashNodeData = (uint)SystemOperationStatus;
   SystemBufferAddress = memoryBlockAddress[1] + 4;
   memoryBlockAddress[1] = SystemBufferAddress;
   if (*(ushort *)(systemResourceHandle + 0x62) != 0) {
@@ -55858,7 +55858,7 @@ void ExpandSystemResourceManagerHashTable(void** SystemResourceManager, unsigned
 {
   long long* PrimaryResourcePointer;
   long long* ResourcePoolPointer;
-  void** HashNodeData;
+  void** SystemHashNodeData;
   long long* SystemMemoryPointer;
   long long* LocalSystemPointer;
   unsigned long long HashValue;
@@ -55868,8 +55868,8 @@ void ExpandSystemResourceManagerHashTable(void** SystemResourceManager, unsigned
   
   void** hashTableNode = (void**)SystemResourceManager[1];
   if (((unsigned long long)((SystemResourceManager[2] - (long long)hashTableNode) / 0x24)) < ConfigurationDataPointer) {
-    HashNodeData = (void**)*SystemResourceManager;
-    LocalMemoryAddress = ((long long)hashTableNode - (long long)HashNodeData) / 0x24;
+    SystemHashNodeData = (void**)*SystemResourceManager;
+    LocalMemoryAddress = ((long long)hashTableNode - (long long)SystemHashNodeData) / 0x24;
     NewHashTableSize = LocalMemoryAddress * 2;
     if (LocalMemoryAddress == 0) {
       NewHashTableSize = 1;
@@ -55883,12 +55883,12 @@ void ExpandSystemResourceManagerHashTable(void** SystemResourceManager, unsigned
                CreateSystemThreadObject(SystemMemoryPoolTemplate, NewHashTableSize * 0x24, *(uint8_t*)(SystemResourceManager + 3), hashTableNode,
                              0xfffffffffffffffe);
       hashTableNode = (void**)SystemResourceManager[1];
-      HashNodeData = (void**)*SystemResourceManager;
+      SystemHashNodeData = (void**)*SystemResourceManager;
     }
     ResourcePoolPointer = PrimaryResourcePointer;
-    if (HashNodeData != hashTableNode) {
-      LocalMemoryAddress = (long long)PrimaryResourcePointer - (long long)HashNodeData;
-      long long* BufferBaseAddress = (long long*)((long long)HashNodeData + 0x1a);
+    if (SystemHashNodeData != hashTableNode) {
+      LocalMemoryAddress = (long long)PrimaryResourcePointer - (long long)SystemHashNodeData;
+      long long* BufferBaseAddress = (long long*)((long long)SystemHashNodeData + 0x1a);
       do {
         *(void**)(LocalMemoryAddress + -10 + (long long)BufferBaseAddress) = *(void**)((long long)BufferBaseAddress + -10);
         if (*(long long*)((long long)BufferBaseAddress + -0x12) == 0) {
@@ -55923,9 +55923,9 @@ void ExpandSystemResourceManagerHashTable(void** SystemResourceManager, unsigned
         }
         *(void**)(BufferBaseAddress + 1) = 0;
         ResourcePoolPointer = (long long*)((long long)ResourcePoolPointer + 0x24);
-        HashNodeData = (void**)((long long)BufferBaseAddress + 10);
+        SystemHashNodeData = (void**)((long long)BufferBaseAddress + 10);
         BufferBaseAddress = (long long*)((long long)BufferBaseAddress + 0x24);
-      } while (HashNodeData != hashTableNode);
+      } while (SystemHashNodeData != hashTableNode);
     }
     if (ConfigurationDataPointer != 0) {
       hashTableNode = (void**)((long long)ResourcePoolPointer + 0x1a);
@@ -55977,21 +55977,21 @@ void ExpandSystemResourceManagerHashTable(void** SystemResourceManager, unsigned
   }
   else {
     if (ConfigurationDataPointer != 0) {
-      HashNodeData = (void**)((long long)hashTableNode + 0x1a);
+      SystemHashNodeData = (void**)((long long)hashTableNode + 0x1a);
       NewHashTableSize = ConfigurationDataPointer;
       do {
         hashTableNode[1] = 0;
         hashTableNode[2] = 0;
         hashTableNode[3] = 0;
         *(uint32_t*)(hashTableNode + 4) = 0;
-        *(void**)((long long)HashNodeData + -10) = 0;
+        *(void**)((long long)SystemHashNodeData + -10) = 0;
         *hashTableNode = 0;
-        *(void**)((long long)HashNodeData + -0x12) = 0;
-        *(void**)(HashNodeData + 1) = 0;
-        HashNodeData[-1] = 0;
-        *HashNodeData = 0;
+        *(void**)((long long)SystemHashNodeData + -0x12) = 0;
+        *(void**)(SystemHashNodeData + 1) = 0;
+        SystemHashNodeData[-1] = 0;
+        *SystemHashNodeData = 0;
         hashTableNode = (void**)((long long)hashTableNode + 0x24);
-        HashNodeData = (void**)((long long)HashNodeData + 0x24);
+        SystemHashNodeData = (void**)((long long)SystemHashNodeData + 0x24);
         NewHashTableSize = NewHashTableSize - 1;
       } while (NewHashTableSize != 0);
       hashTableNode = (void**)SystemResourceManager[1];
@@ -57738,7 +57738,7 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
 {
   long long *PrimaryResourcePointer;
   long long *resourcePoolPointer;
-  ulong long *HashNodeData;
+  ulong long *SystemHashNodeData;
   char SystemOperationStatusFlag;
   int systemValue;
   uint resourceHashValue;
@@ -57829,10 +57829,10 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
     resourcePoolPointer = (long long *)
              (*(long long *)(resourceCounter + 8) + (SystemOperationStatus1 % (*(ulong long *)(resourceCounter + 0x10) & 0xffffffff)) * 8)
     ;
-    for (HashNodeData = (ulong long *)*resourcePoolPointer;
-        (pUnsignedStackFlag80 = pSystemSecondaryStatus, plStack_78 = PrimaryResourcePointer, HashNodeData != (ulong long *)0x0 &&
-        (pUnsignedStackFlag80 = HashNodeData, plStack_78 = resourcePoolPointer, SystemOperationStatus1 != *HashNodeData));
-        HashNodeData = (ulong long *)HashNodeData[1]) {
+    for (SystemHashNodeData = (ulong long *)*resourcePoolPointer;
+        (pUnsignedStackFlag80 = pSystemSecondaryStatus, plStack_78 = PrimaryResourcePointer, SystemHashNodeData != (ulong long *)0x0 &&
+        (pUnsignedStackFlag80 = SystemHashNodeData, plStack_78 = resourcePoolPointer, SystemOperationStatus1 != *SystemHashNodeData));
+        SystemHashNodeData = (ulong long *)SystemHashNodeData[1]) {
     }
     if (pUnsignedStackFlag80 != pSystemSecondaryStatus) goto LAB_180076feb;
   }
@@ -58316,12 +58316,12 @@ ulong long FUN_180077750(long long SystemResourceManager,uint *ConfigurationData
   long long SystemThreadHandle7;
   long long SystemThreadHandle8;
   uint32_t *SystemHashEntryPointer9;
-  uint *HashNodeData0;
+  uint *SystemHashNodeData0;
   byte isOperationComplete1;
   char *pcharFlag2;
   int systemCounter3;
   ulong long resourceAllocationContext4;
-  uint *HashNodeData5;
+  uint *SystemHashNodeData5;
   bool isOperationComplete6;
   uint32_t auStackX_8 [2];
   uint *puStackX_10;
@@ -58450,30 +58450,30 @@ LAB_180077879:
               FUN_18007ee70(SystemResourceManager);
             }
             lStack_118 = SystemDataMemoryContext + 0x5868;
-            HashNodeData0 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0x6a78) * 0x908 + lStack_118);
+            SystemHashNodeData0 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0x6a78) * 0x908 + lStack_118);
             LOCK();
-            resourceHashValue = *HashNodeData0;
-            *HashNodeData0 = *HashNodeData0 + 1;
+            resourceHashValue = *SystemHashNodeData0;
+            *SystemHashNodeData0 = *SystemHashNodeData0 + 1;
             UNLOCK();
             SecurityStackParameter = (ulong long)(resourceHashValue >> 9);
             resourceAllocationContext4 = (ulong long)(resourceHashValue >> 9);
-            pcharFlag2 = (char *)((long long)HashNodeData0 + resourceAllocationContext4 + 0x808);
-            HashNodeData5 = HashNodeData0 + (SecurityStackParameter + 1) * 2;
+            pcharFlag2 = (char *)((long long)SystemHashNodeData0 + resourceAllocationContext4 + 0x808);
+            SystemHashNodeData5 = SystemHashNodeData0 + (SecurityStackParameter + 1) * 2;
             uStack_130 = SecurityStackParameter;
             do {
               systemCounter3 = (int)resourceAllocationContext4;
-              if (*(long long *)HashNodeData5 == 0) {
+              if (*(long long *)SystemHashNodeData5 == 0) {
                 SystemThreadHandle7 = CreateSystemThreadObject(SystemMemoryPoolTemplate,0xc000,0x25);
                 LOCK();
-                isOperationComplete6 = *(long long *)(HashNodeData0 + (long long)systemCounter3 * 2 + 2) == 0;
+                isOperationComplete6 = *(long long *)(SystemHashNodeData0 + (long long)systemCounter3 * 2 + 2) == 0;
                 if (isOperationComplete6) {
-                  *(long long *)(HashNodeData0 + (long long)systemCounter3 * 2 + 2) = SystemThreadHandle7;
+                  *(long long *)(SystemHashNodeData0 + (long long)systemCounter3 * 2 + 2) = SystemThreadHandle7;
                 }
                 UNLOCK();
                 if (isOperationComplete6) {
-                  FUN_1800e94a0(HashNodeData0,systemCounter3 << 9);
+                  FUN_1800e94a0(SystemHashNodeData0,systemCounter3 << 9);
                   LOCK();
-                  *(uint8_t *)((long long)HashNodeData0 + (long long)systemCounter3 + 0x808) = 0;
+                  *(uint8_t *)((long long)SystemHashNodeData0 + (long long)systemCounter3 + 0x808) = 0;
                   UNLOCK();
                   SecurityStackParameter = uStack_130;
                 }
@@ -58492,8 +58492,8 @@ LAB_180077879:
               }
               pcharFlag2 = pcharFlag2 + 1;
               resourceAllocationContext4 = (ulong long)(systemCounter3 + 1);
-              HashNodeData5 = HashNodeData5 + 2;
-            } while ((long long)(pcharFlag2 + (-0x808 - (long long)HashNodeData0)) <= (long long)SecurityStackParameter);
+              SystemHashNodeData5 = SystemHashNodeData5 + 2;
+            } while ((long long)(pcharFlag2 + (-0x808 - (long long)SystemHashNodeData0)) <= (long long)SecurityStackParameter);
             SystemHashEntryPointer6 = (void* *)
                       (*(long long *)
                         ((long long)*(int *)(lStack_118 + 0x1210) * 0x908 + lStack_118 + 8 +
@@ -58578,14 +58578,14 @@ LAB_180077879:
             if (*(uint **)(puStackX_10 + 10) == (uint *)0x0) {
               StackBuffer138[0] = 0xffffffff;
               SystemHashEntryPointer9 = StackBuffer138;
-              HashNodeData5 = puStackX_10;
+              SystemHashNodeData5 = puStackX_10;
             }
             else {
               auStackX_8[0] = 0xffffffff;
               SystemHashEntryPointer9 = auStackX_8;
-              HashNodeData5 = *(uint **)(puStackX_10 + 10);
+              SystemHashNodeData5 = *(uint **)(puStackX_10 + 10);
             }
-            FUN_180080e90(HashNodeData5 + 0xce2,SystemHashEntryPointer9,apSystemMemoryOffset);
+            FUN_180080e90(SystemHashNodeData5 + 0xce2,SystemHashEntryPointer9,apSystemMemoryOffset);
             AdditionalParameter = pfStackX_18;
             ConfigurationFlag = lStackX_20;
           }
@@ -58729,11 +58729,11 @@ void SystemNoOperationA(void)
   ulong long resourceAllocationContext2;
   long long ResourceDataOffset3;
   long long ResourceDataOffset4;
-  uint32_t *HashNodeData5;
+  uint32_t *SystemHashNodeData5;
   long long memoryBlockAddress;
-  uint *HashNodeData6;
+  uint *SystemHashNodeData6;
   char *pcharFlag7;
-  void* *HashNodeData8;
+  void* *SystemHashNodeData8;
   float *pfloatValue39;
   int systemAllocationOffsetD;
   int systemIndex0;
@@ -58765,30 +58765,30 @@ void SystemNoOperationA(void)
     FUN_18007ee70();
   }
   InputStackParameter50 = SystemDataMemoryContext + 0x5868;
-  HashNodeData6 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0x6a78) * 0x908 + InputStackParameter50);
+  SystemHashNodeData6 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0x6a78) * 0x908 + InputStackParameter50);
   LOCK();
-  SystemOperationStatus = *HashNodeData6;
-  *HashNodeData6 = *HashNodeData6 + systemAllocationOffsetD;
+  SystemOperationStatus = *SystemHashNodeData6;
+  *SystemHashNodeData6 = *SystemHashNodeData6 + systemAllocationOffsetD;
   UNLOCK();
   resourceAllocationContext2 = (ulong long)(SystemOperationStatus >> 9);
   resourceAddress1 = (ulong long)(SystemOperationStatus >> 9);
-  pcharFlag7 = (char *)((long long)HashNodeData6 + resourceAddress1 + 0x808);
-  presourceAddress2 = HashNodeData6 + (resourceAllocationContext2 + 1) * 2;
+  pcharFlag7 = (char *)((long long)SystemHashNodeData6 + resourceAddress1 + 0x808);
+  presourceAddress2 = SystemHashNodeData6 + (resourceAllocationContext2 + 1) * 2;
   InputStackParameter38 = resourceAllocationContext2;
   do {
     systemIndex0 = (int)resourceAddress1;
     if (*(long long *)presourceAddress2 == 0) {
       ResourceDataOffset3 = CreateSystemThreadObject(SystemMemoryPoolTemplate,0xc000,0x25);
       LOCK();
-      isResourceAvailable3 = *(long long *)(HashNodeData6 + (long long)systemIndex0 * 2 + 2) == 0;
+      isResourceAvailable3 = *(long long *)(SystemHashNodeData6 + (long long)systemIndex0 * 2 + 2) == 0;
       if (isResourceAvailable3) {
-        *(long long *)(HashNodeData6 + (long long)systemIndex0 * 2 + 2) = ResourceDataOffset3;
+        *(long long *)(SystemHashNodeData6 + (long long)systemIndex0 * 2 + 2) = ResourceDataOffset3;
       }
       UNLOCK();
       if (isResourceAvailable3) {
-        FUN_1800e94a0(HashNodeData6,systemIndex0 << 9);
+        FUN_1800e94a0(SystemHashNodeData6,systemIndex0 << 9);
         LOCK();
-        *(uint8_t *)((long long)HashNodeData6 + (long long)systemIndex0 + 0x808) = 0;
+        *(uint8_t *)((long long)SystemHashNodeData6 + (long long)systemIndex0 + 0x808) = 0;
         UNLOCK();
         resourceAllocationContext2 = InputStackParameter38;
       }
@@ -58808,13 +58808,13 @@ void SystemNoOperationA(void)
     pcharFlag7 = pcharFlag7 + 1;
     resourceAddress1 = (ulong long)(systemIndex0 + 1);
     presourceAddress2 = presourceAddress2 + 2;
-  } while ((long long)(pcharFlag7 + (-0x808 - (long long)HashNodeData6)) <= (long long)resourceAllocationContext2);
-  HashNodeData8 = (void* *)
+  } while ((long long)(pcharFlag7 + (-0x808 - (long long)SystemHashNodeData6)) <= (long long)resourceAllocationContext2);
+  SystemHashNodeData8 = (void* *)
             (*(long long *)
               ((long long)*(int *)(InputStackParameter50 + 0x1210) * 0x908 + InputStackParameter50 + 8 +
               resourceAllocationContext2 * 8) + (ulong long)(SystemOperationStatus - (SystemOperationStatus & 0xfffffe00)) * 0x60);
   ResourceDataOffset3 = memoryBlockAddress;
-  InputStackParameter40 = HashNodeData8;
+  InputStackParameter40 = SystemHashNodeData8;
   if ((*(byte *)(memoryBlockAddress + 0xfd) & 0x20) == 0) {
     ResourceDataOffset3 = func_0x000180085de0(*(void* *)(memoryBlockAddress + 0x1b0));
   }
@@ -58826,8 +58826,8 @@ void SystemNoOperationA(void)
   }
   ResourceDataOffset4 = ResourceOffset;
   ResourceDataOffset3 = *(long long *)(ResourceDataOffset3 + 0x1e0);
-  *HashNodeData8 = *(void* *)(ResourceDataOffset3 + (ulong long)isSystemActive9 * 0x18);
-  HashNodeData8[1] = *(void* *)(ResourceDataOffset3 + 8 + (ulong long)isSystemActive9 * 0x18);
+  *SystemHashNodeData8 = *(void* *)(ResourceDataOffset3 + (ulong long)isSystemActive9 * 0x18);
+  SystemHashNodeData8[1] = *(void* *)(ResourceDataOffset3 + 8 + (ulong long)isSystemActive9 * 0x18);
   *(uint32_t *)(InputStackParameter40 + 2) = *(uint32_t *)(*(long long *)(memoryBlockAddress + 600) + 0x2c);
   *(uint32_t *)((long long)InputStackParameter40 + 0x14) =
        *(uint32_t *)(*(long long *)(memoryBlockAddress + 600) + 0x4c);
@@ -58858,16 +58858,16 @@ void SystemNoOperationA(void)
   *(uint32_t *)(InputStackParameter40 + 4) = resourceAllocationContext1;
   *(byte *)((long long)InputStackParameter40 + 0x4e) = *(byte *)(memoryBlockAddress + 0xfe) >> 3 & 1;
   if (*(int *)(memoryBlockAddress + 0x108) != -1) {
-    HashNodeData5 = *(uint32_t **)(memoryBlockAddress + 0x2d0);
-    resourceAllocationContext1 = HashNodeData5[1];
-    SystemThreadContextFlag = HashNodeData5[2];
-    SystemOperationCode = HashNodeData5[3];
-    *(uint32_t *)(InputStackParameter40 + 5) = *HashNodeData5;
+    SystemHashNodeData5 = *(uint32_t **)(memoryBlockAddress + 0x2d0);
+    resourceAllocationContext1 = SystemHashNodeData5[1];
+    SystemThreadContextFlag = SystemHashNodeData5[2];
+    SystemOperationCode = SystemHashNodeData5[3];
+    *(uint32_t *)(InputStackParameter40 + 5) = *SystemHashNodeData5;
     *(uint32_t *)((long long)InputStackParameter40 + 0x2c) = resourceAllocationContext1;
     *(uint32_t *)(InputStackParameter40 + 6) = SystemThreadContextFlag;
     *(uint32_t *)((long long)InputStackParameter40 + 0x34) = SystemOperationCode;
-    ThreadCreationFlags = *(void* *)(HashNodeData5 + 6);
-    InputStackParameter40[7] = *(void* *)(HashNodeData5 + 4);
+    ThreadCreationFlags = *(void* *)(SystemHashNodeData5 + 6);
+    InputStackParameter40[7] = *(void* *)(SystemHashNodeData5 + 4);
     InputStackParameter40[8] = ThreadCreationFlags;
   }
   *(uint8_t *)((long long)InputStackParameter40 + 0x4f) =
@@ -58891,15 +58891,15 @@ void SystemNoOperationA(void)
   }
   if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
-    HashNodeData5 = &stackBuffer30;
+    SystemHashNodeData5 = &stackBuffer30;
     ResourceDataOffset3 = ResourceOffset;
   }
   else {
     ThreadCreationFlags = 0xffffffff;
-    HashNodeData5 = &stackBuffer170;
+    SystemHashNodeData5 = &stackBuffer170;
     ResourceDataOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
-  FUN_180080e90(ResourceDataOffset3 + 0x3388,HashNodeData5,&stackBuffer40);
+  FUN_180080e90(ResourceDataOffset3 + 0x3388,SystemHashNodeData5,&stackBuffer40);
   pfloatValue39 = FloatParameterArray;
   if ((*(uint *)(memoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -59041,7 +59041,7 @@ void CleanupGlobalSystemResources(void)
   byte isOperationComplete1;
   uint32_t resourceAllocationContext2;
   long long ResourceDataOffset3;
-  uint32_t *HashNodeData4;
+  uint32_t *SystemHashNodeData4;
   long long memoryBlockAddress;
   void* *systemDataIndexPtr;
   long long ResourceDataOffset5;
@@ -59128,16 +59128,16 @@ void CleanupGlobalSystemResources(void)
   *(uint32_t *)(InputStackParameter40 + 0x20) = resourceAllocationContext2;
   *(byte *)(InputStackParameter40 + 0x4e) = *(byte *)(memoryBlockAddress + 0xfe) >> 3 & 1;
   if (*(int *)(memoryBlockAddress + 0x108) != -1) {
-    HashNodeData4 = *(uint32_t **)(memoryBlockAddress + 0x2d0);
-    resourceAllocationContext2 = HashNodeData4[1];
-    SystemThreadContextFlag = HashNodeData4[2];
-    SystemOperationCode = HashNodeData4[3];
-    *(uint32_t *)(InputStackParameter40 + 0x28) = *HashNodeData4;
+    SystemHashNodeData4 = *(uint32_t **)(memoryBlockAddress + 0x2d0);
+    resourceAllocationContext2 = SystemHashNodeData4[1];
+    SystemThreadContextFlag = SystemHashNodeData4[2];
+    SystemOperationCode = SystemHashNodeData4[3];
+    *(uint32_t *)(InputStackParameter40 + 0x28) = *SystemHashNodeData4;
     *(uint32_t *)(InputStackParameter40 + 0x2c) = resourceAllocationContext2;
     *(uint32_t *)(InputStackParameter40 + 0x30) = SystemThreadContextFlag;
     *(uint32_t *)(InputStackParameter40 + 0x34) = SystemOperationCode;
-    ThreadCreationFlags = *(void* *)(HashNodeData4 + 6);
-    *(void* *)(InputStackParameter40 + 0x38) = *(void* *)(HashNodeData4 + 4);
+    ThreadCreationFlags = *(void* *)(SystemHashNodeData4 + 6);
+    *(void* *)(InputStackParameter40 + 0x38) = *(void* *)(SystemHashNodeData4 + 4);
     *(void* *)(InputStackParameter40 + 0x40) = ThreadCreationFlags;
   }
   *(uint8_t *)(InputStackParameter40 + 0x4f) = *(uint8_t *)(*(long long *)(memoryBlockAddress + 600) + 0x24)
@@ -59161,15 +59161,15 @@ void CleanupGlobalSystemResources(void)
   }
   if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
-    HashNodeData4 = &stackBuffer30;
+    SystemHashNodeData4 = &stackBuffer30;
     ResourceDataOffset3 = ResourceOffset;
   }
   else {
     ThreadCreationFlags = 0xffffffff;
-    HashNodeData4 = &stackBuffer170;
+    SystemHashNodeData4 = &stackBuffer170;
     ResourceDataOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
-  FUN_180080e90(ResourceDataOffset3 + 0x3388,HashNodeData4,&stackBuffer40);
+  FUN_180080e90(ResourceDataOffset3 + 0x3388,SystemHashNodeData4,&stackBuffer40);
   pfloatValue36 = FloatParameterArray;
   if ((*(uint *)(memoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -61920,7 +61920,7 @@ void InitializeSystemResourcePool(void)
   long long memoryBlockAddress;
   ulong long resourceAllocationContext7;
   char *pcharFlag8;
-  uint *HashNodeData9;
+  uint *SystemHashNodeData9;
   int systemIndex0;
   long long systemDataIndexPtr;
   int systemIndex1;
@@ -62087,35 +62087,35 @@ void InitializeSystemResourcePool(void)
             } while (ResourceDataOffset1 < systemIndex2);
           }
         }
-        HashNodeData9 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0xc20) * 0x128 +
+        SystemHashNodeData9 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0xc20) * 0x128 +
                           SystemDataMemoryContext + 0x9d0);
         if (systemIndex0 == 0) {
           resourceAllocationContext3 = (int)charStatus4 - 1;
         }
         else {
           LOCK();
-          resourceAllocationContext3 = *HashNodeData9;
-          *HashNodeData9 = *HashNodeData9 + (int)charStatus4;
+          resourceAllocationContext3 = *SystemHashNodeData9;
+          *SystemHashNodeData9 = *SystemHashNodeData9 + (int)charStatus4;
           UNLOCK();
           resourceAddress6 = (ulong long)(resourceAllocationContext3 >> 0xb);
           resourceAddress7 = (ulong long)(charStatus4 + -1 + resourceAllocationContext3 >> 0xb);
           if (resourceAddress6 <= resourceAddress7) {
-            pcharFlag8 = (char *)((long long)HashNodeData9 + resourceAddress6 + 0x108);
+            pcharFlag8 = (char *)((long long)SystemHashNodeData9 + resourceAddress6 + 0x108);
             ResourceDataOffset1 = (resourceAddress7 - resourceAddress6) + 1;
-            presourceAddress5 = HashNodeData9 + resourceAddress6 * 2 + 2;
+            presourceAddress5 = SystemHashNodeData9 + resourceAddress6 * 2 + 2;
             do {
               systemIndex2 = (int)resourceAddress6;
               if (*(long long *)presourceAddress5 == 0) {
                 SystemBufferAddress3 = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x2000,0x25);
                 LOCK();
-                isResourceAvailable8 = *(long long *)(HashNodeData9 + (long long)systemIndex2 * 2 + 2) == 0;
+                isResourceAvailable8 = *(long long *)(SystemHashNodeData9 + (long long)systemIndex2 * 2 + 2) == 0;
                 if (isResourceAvailable8) {
-                  *(long long *)(HashNodeData9 + (long long)systemIndex2 * 2 + 2) = SystemBufferAddress3;
+                  *(long long *)(SystemHashNodeData9 + (long long)systemIndex2 * 2 + 2) = SystemBufferAddress3;
                 }
                 UNLOCK();
                 if (isResourceAvailable8) {
                   LOCK();
-                  *(uint8_t *)((long long)systemIndex2 + 0x108 + (long long)HashNodeData9) = 0;
+                  *(uint8_t *)((long long)systemIndex2 + 0x108 + (long long)SystemHashNodeData9) = 0;
                   UNLOCK();
                 }
                 else {
@@ -62141,7 +62141,7 @@ void InitializeSystemResourcePool(void)
         resourceAllocationContext5 = resourceAllocationContext3 >> 0xb;
         *(uint *)(resourceDataIndex6 + 0x2c) = resourceAllocationContext3;
         if (resourceAllocationContext5 == (int)charStatus4 + resourceAllocationContext3 >> 0xb) {
-            memcpy(*(long long *)(HashNodeData9 + (ulong long)resourceAllocationContext5 * 2 + 2) +
+            memcpy(*(long long *)(SystemHashNodeData9 + (ulong long)resourceAllocationContext5 * 2 + 2) +
                  (ulong long)(resourceAllocationContext3 + resourceAllocationContext5 * -0x800) * 4,presourceAddress4,(resourceAllocationContext7 & 0xffffffff) << 2);
         }
         if (systemIndex0 != 0) {
@@ -62150,7 +62150,7 @@ void InitializeSystemResourcePool(void)
             resourceAllocationContext0 = *presourceAddress4;
             presourceAddress4 = presourceAddress4 + 1;
             *(uint32_t *)
-             (*(long long *)(HashNodeData9 + (ulong long)(resourceAllocationContext3 >> 0xb) * 2 + 2) +
+             (*(long long *)(SystemHashNodeData9 + (ulong long)(resourceAllocationContext3 >> 0xb) * 2 + 2) +
              (ulong long)(resourceAllocationContext3 + (resourceAllocationContext3 >> 0xb) * -0x800) * 4) = resourceAllocationContext0;
             resourceAllocationContext7 = resourceAllocationContext7 - 1;
             resourceAllocationContext3 = resourceAllocationContext3 + 1;
@@ -62221,7 +62221,7 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
   long long memoryBlockAddress;
   ulong long resourceAllocationContext6;
   char *pcharFlag7;
-  uint *HashNodeData8;
+  uint *SystemHashNodeData8;
   int systemCounter9;
   uint resourceAddress0;
   long long systemDataIndexPtr;
@@ -62385,35 +62385,35 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
             } while (ResourceDataOffset1 < systemIndex2);
           }
         }
-        HashNodeData8 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0xc20) * 0x128 +
+        SystemHashNodeData8 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0xc20) * 0x128 +
                           SystemDataMemoryContext + 0x9d0);
         if (systemCounter9 == 0) {
           resourceAddress0 = (int)charStatus4 - 1;
         }
         else {
           LOCK();
-          resourceAddress0 = *HashNodeData8;
-          *HashNodeData8 = *HashNodeData8 + (int)charStatus4;
+          resourceAddress0 = *SystemHashNodeData8;
+          *SystemHashNodeData8 = *SystemHashNodeData8 + (int)charStatus4;
           UNLOCK();
           resourceAddress5 = (ulong long)(resourceAddress0 >> 0xb);
           resourceAddress6 = (ulong long)(charStatus4 + -1 + resourceAddress0 >> 0xb);
           if (resourceAddress5 <= resourceAddress6) {
-            pcharFlag7 = (char *)((long long)HashNodeData8 + resourceAddress5 + 0x108);
+            pcharFlag7 = (char *)((long long)SystemHashNodeData8 + resourceAddress5 + 0x108);
             ResourceDataOffset1 = (resourceAddress6 - resourceAddress5) + 1;
-            presourceAddress4 = HashNodeData8 + resourceAddress5 * 2 + 2;
+            presourceAddress4 = SystemHashNodeData8 + resourceAddress5 * 2 + 2;
             do {
               systemIndex2 = (int)resourceAddress5;
               if (*(long long *)presourceAddress4 == 0) {
                 ResourceDataOffset3 = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x2000,0x25);
                 LOCK();
-                isResourceAvailable7 = *(long long *)(HashNodeData8 + (long long)systemIndex2 * 2 + 2) == 0;
+                isResourceAvailable7 = *(long long *)(SystemHashNodeData8 + (long long)systemIndex2 * 2 + 2) == 0;
                 if (isResourceAvailable7) {
-                  *(long long *)(HashNodeData8 + (long long)systemIndex2 * 2 + 2) = ResourceDataOffset3;
+                  *(long long *)(SystemHashNodeData8 + (long long)systemIndex2 * 2 + 2) = ResourceDataOffset3;
                 }
                 UNLOCK();
                 if (isResourceAvailable7) {
                   LOCK();
-                  *(uint8_t *)((long long)systemIndex2 + 0x108 + (long long)HashNodeData8) = 0;
+                  *(uint8_t *)((long long)systemIndex2 + 0x108 + (long long)SystemHashNodeData8) = 0;
                   UNLOCK();
                 }
                 else {
@@ -62439,7 +62439,7 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
         resourceAllocationContext0 = resourceAddress0 >> 0xb;
         *(uint *)(resourceDataIndex5 + 0x2c) = resourceAddress0;
         if (resourceAllocationContext0 == (int)charStatus4 + resourceAddress0 >> 0xb) {
-            memcpy(*(long long *)(HashNodeData8 + (ulong long)resourceAllocationContext0 * 2 + 2) +
+            memcpy(*(long long *)(SystemHashNodeData8 + (ulong long)resourceAllocationContext0 * 2 + 2) +
                  (ulong long)(resourceAddress0 + resourceAllocationContext0 * -0x800) * 4,presourceAddress3,(resourceAllocationContext6 & 0xffffffff) << 2);
         }
         if (systemCounter9 != 0) {
@@ -62448,7 +62448,7 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
             resourceCreationFlags9 = *presourceAddress3;
             presourceAddress3 = presourceAddress3 + 1;
             *(uint32_t *)
-             (*(long long *)(HashNodeData8 + (ulong long)(resourceAddress0 >> 0xb) * 2 + 2) +
+             (*(long long *)(SystemHashNodeData8 + (ulong long)(resourceAddress0 >> 0xb) * 2 + 2) +
              (ulong long)(resourceAddress0 + (resourceAddress0 >> 0xb) * -0x800) * 4) = resourceCreationFlags9;
             resourceAllocationContext6 = resourceAllocationContext6 - 1;
             resourceAddress0 = resourceAddress0 + 1;
@@ -63096,7 +63096,7 @@ void FUN_1800796b0(long long SystemResourceManager)
 {
   int *SystemIntegerPointer;
   uint *SystemHashEntryPointer;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   float floatValue5;
   void* resourceHashValue;
@@ -63125,7 +63125,7 @@ void FUN_1800796b0(long long SystemResourceManager)
   uint32_t *SystemHashEntryPointer9;
   ulong long resourceAllocationContext0;
   long long ResourceDataOffset1;
-  uint *HashNodeData2;
+  uint *SystemHashNodeData2;
   uint resourceAllocationContext3;
   int *pointerToInteger34;
   uint8_t (*paresourceAllocationContext5) [16];
@@ -63533,11 +63533,11 @@ LAB_18007a5ac:
               }
               else {
                 resourceHashValue = ((void* *)(SystemThreadHandle3 + *SystemResourceOffsetPointer9))[1];
-                HashNodeData = (void* *)
+                SystemHashNodeData = (void* *)
                          (*(long long *)(*(long long *)(SystemResourceManager + 0xb0) + 0x30 + uStackX_18 * 0x50) +
                          (long long)*(int *)(CONCAT440 + SystemThreadHandle1 * 4) * 0x10);
-                *HashNodeData = *(void* *)(SystemThreadHandle3 + *SystemResourceOffsetPointer9);
-                HashNodeData[1] = resourceHashValue;
+                *SystemHashNodeData = *(void* *)(SystemThreadHandle3 + *SystemResourceOffsetPointer9);
+                SystemHashNodeData[1] = resourceHashValue;
                 pmagnitudeSquared1 = (float *)((long long)*(int *)(CONCAT440 + SystemThreadHandle1 * 4) * 0x10 +
                                    *(long long *)
                                     (*(long long *)(SystemResourceManager + 0xb0) + 0x30 + uStackX_18 * 0x50));
@@ -63560,18 +63560,18 @@ LAB_18007a5ac:
             do {
               SystemIntegerPointer = piStack_218;
               ResourceDataOffset1 = 0;
-              HashNodeData2 = (uint *)((long long)*(int *)(CONCAT440 + longValue1d0 * 4) * 0x5c +
+              SystemHashNodeData2 = (uint *)((long long)*(int *)(CONCAT440 + longValue1d0 * 4) * 0x5c +
                                 *(long long *)(SystemResourceManager + 0x68));
               isResourceAvailable4 = false;
               resourceDataIndex7 = (long long)
-                       (int)((*(long long *)((long long)(piStack_218 + (ulong long)*HashNodeData2 * 8) + 8) -
-                             *(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8)) / 0x14);
+                       (int)((*(long long *)((long long)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8) + 8) -
+                             *(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8)) / 0x14);
               SystemThreadHandle1 = ResourceDataOffset1;
               if (3 < resourceDataIndex7) {
                 SystemThreadHandle4 = (resourceDataIndex7 - 4U >> 2) + 1;
                 SystemThreadHandle1 = SystemThreadHandle4 * 4;
                 do {
-                  resourceAllocationContext3 = *HashNodeData2;
+                  resourceAllocationContext3 = *SystemHashNodeData2;
                   if ((*(uint *)(*(long long *)(piStack_218 + (ulong long)resourceAllocationContext3 * 8) + ResourceDataOffset1) &
                       SystemContextPointer) != 0) {
                     SystemHashEntryPointer = (uint *)(ResourceDataOffset1 + *(long long *)(piStack_218 + (ulong long)resourceAllocationContext3 * 8));
@@ -63579,13 +63579,13 @@ LAB_18007a5ac:
                     SystemThreadHandle2 = *SystemResourceOffsetPointer9;
                     floatValue48 = *(float *)(SystemThreadHandle3 + 8 + SystemThreadHandle2);
                     floatValue52 = *(float *)(SystemThreadHandle3 + 4 + SystemThreadHandle2);
-                    resourceDataIndex2 = *(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8);
+                    resourceDataIndex2 = *(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(resourceDataIndex2 + 4 + ResourceDataOffset1) =
                          *(float *)(resourceDataIndex2 + 4 + ResourceDataOffset1) + *(float *)(SystemThreadHandle3 + SystemThreadHandle2);
                     *(float *)(resourceDataIndex2 + 8 + ResourceDataOffset1) = floatValue52 + *(float *)(resourceDataIndex2 + 8 + ResourceDataOffset1);
                     *(float *)(resourceDataIndex2 + 0xc + ResourceDataOffset1) = floatValue48 + *(float *)(resourceDataIndex2 + 0xc + ResourceDataOffset1);
                     isResourceAvailable4 = true;
-                    resourceAllocationContext3 = *HashNodeData2;
+                    resourceAllocationContext3 = *SystemHashNodeData2;
                   }
                   if ((*(uint *)(*(long long *)(piStack_218 + (ulong long)resourceAllocationContext3 * 8) + 0x14 + ResourceDataOffset1)
                       & SystemContextPointer) != 0) {
@@ -63595,7 +63595,7 @@ LAB_18007a5ac:
                     SystemThreadHandle2 = *SystemResourceOffsetPointer9;
                     floatValue48 = *(float *)(SystemThreadHandle3 + 8 + SystemThreadHandle2);
                     floatValue52 = *(float *)(SystemThreadHandle3 + 4 + SystemThreadHandle2);
-                    resourceDataIndex2 = *(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8);
+                    resourceDataIndex2 = *(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(resourceDataIndex2 + 0x18 + ResourceDataOffset1) =
                          *(float *)(resourceDataIndex2 + 0x18 + ResourceDataOffset1) + *(float *)(SystemThreadHandle3 + SystemThreadHandle2);
                     *(float *)(resourceDataIndex2 + 0x1c + ResourceDataOffset1) = floatValue52 + *(float *)(resourceDataIndex2 + 0x1c + ResourceDataOffset1)
@@ -63603,7 +63603,7 @@ LAB_18007a5ac:
                     *(float *)(resourceDataIndex2 + 0x20 + ResourceDataOffset1) = floatValue48 + *(float *)(resourceDataIndex2 + 0x20 + ResourceDataOffset1)
                     ;
                     isResourceAvailable4 = true;
-                    resourceAllocationContext3 = *HashNodeData2;
+                    resourceAllocationContext3 = *SystemHashNodeData2;
                   }
                   if ((*(uint *)(*(long long *)(piStack_218 + (ulong long)resourceAllocationContext3 * 8) + 0x28 + ResourceDataOffset1)
                       & SystemContextPointer) != 0) {
@@ -63613,7 +63613,7 @@ LAB_18007a5ac:
                     SystemThreadHandle2 = *SystemResourceOffsetPointer9;
                     floatValue48 = *(float *)(SystemThreadHandle3 + 8 + SystemThreadHandle2);
                     floatValue52 = *(float *)(SystemThreadHandle3 + 4 + SystemThreadHandle2);
-                    resourceDataIndex2 = *(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8);
+                    resourceDataIndex2 = *(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(resourceDataIndex2 + 0x2c + ResourceDataOffset1) =
                          *(float *)(resourceDataIndex2 + 0x2c + ResourceDataOffset1) + *(float *)(SystemThreadHandle3 + SystemThreadHandle2);
                     *(float *)(resourceDataIndex2 + 0x30 + ResourceDataOffset1) = floatValue52 + *(float *)(resourceDataIndex2 + 0x30 + ResourceDataOffset1)
@@ -63623,14 +63623,14 @@ LAB_18007a5ac:
                     isResourceAvailable4 = true;
                   }
                   resourceAllocationContext3 = *(uint *)(ResourceDataOffset1 + 0x3c +
-                                    *(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8));
+                                    *(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8));
                   if ((SystemContextPointer & resourceAllocationContext3) != 0) {
-                    *(uint *)(*(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8) + 0x3c + ResourceDataOffset1)
+                    *(uint *)(*(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8) + 0x3c + ResourceDataOffset1)
                          = resourceAllocationContext3 | SystemContextPointer;
                     SystemThreadHandle2 = *SystemResourceOffsetPointer9;
                     floatValue48 = *(float *)(SystemThreadHandle3 + 8 + SystemThreadHandle2);
                     floatValue52 = *(float *)(SystemThreadHandle3 + 4 + SystemThreadHandle2);
-                    resourceDataIndex2 = *(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8);
+                    resourceDataIndex2 = *(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(resourceDataIndex2 + 0x40 + ResourceDataOffset1) =
                          *(float *)(resourceDataIndex2 + 0x40 + ResourceDataOffset1) + *(float *)(SystemThreadHandle3 + SystemThreadHandle2);
                     *(float *)(resourceDataIndex2 + 0x44 + ResourceDataOffset1) = floatValue52 + *(float *)(resourceDataIndex2 + 0x44 + ResourceDataOffset1)
@@ -63648,14 +63648,14 @@ LAB_18007a5ac:
                 ResourceDataOffset1 = SystemThreadHandle1 * 0x14;
                 resourceDataIndex7 = resourceDataIndex7 - SystemThreadHandle1;
                 do {
-                  resourceAllocationContext3 = *(uint *)(ResourceDataOffset1 + *(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8));
+                  resourceAllocationContext3 = *(uint *)(ResourceDataOffset1 + *(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8));
                   if ((SystemContextPointer & resourceAllocationContext3) != 0) {
-                    *(uint *)(ResourceDataOffset1 + *(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8)) =
+                    *(uint *)(ResourceDataOffset1 + *(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8)) =
                          resourceAllocationContext3 | SystemContextPointer;
                     SystemThreadHandle1 = *SystemResourceOffsetPointer9;
                     floatValue48 = *(float *)(SystemThreadHandle3 + 8 + SystemThreadHandle1);
                     floatValue52 = *(float *)(SystemThreadHandle3 + 4 + SystemThreadHandle1);
-                    SystemThreadHandle4 = *(long long *)(piStack_218 + (ulong long)*HashNodeData2 * 8);
+                    SystemThreadHandle4 = *(long long *)(piStack_218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(ResourceDataOffset1 + 4 + SystemThreadHandle4) =
                          *(float *)(ResourceDataOffset1 + 4 + SystemThreadHandle4) + *(float *)(SystemThreadHandle3 + SystemThreadHandle1);
                     *(float *)(ResourceDataOffset1 + 8 + SystemThreadHandle4) = floatValue52 + *(float *)(ResourceDataOffset1 + 8 + SystemThreadHandle4);
@@ -63674,7 +63674,7 @@ LAB_18007a5ac:
                 CalculationFlags1A0 = (int *)CONCAT44((uint32_t)SystemOperationFlag1b8,uStack_1bc);
                 SystemStackFlag = (int *)CONCAT44(0x7f7fffff,SystemOperationFlag1b8._4_4_);
                 piStack_1b0 = (int *)CONCAT44(piStack_1b0._4_4_,0x7f7fffff);
-                resourceAddress1 = (ulong long)*HashNodeData2;
+                resourceAddress1 = (ulong long)*SystemHashNodeData2;
                 paresourceAllocationContext7 = *(uint8_t (**) [16])(piStack_218 + resourceAddress1 * 8 + 2);
                 GlobalDataFlags = SystemContextPointer;
                 if (paresourceAllocationContext7 < *(uint8_t (**) [16])(piStack_218 + resourceAddress1 * 8 + 4)) {
@@ -63777,37 +63777,37 @@ LAB_18007ac04:
                            *(long long *)(piStack_218 + SystemThreadHandle2 * 8)) / 0x14);
             ResourceDataOffset1 = -1;
             if (0 < systemResult7) {
-              HashNodeData2 = *(uint **)(piStack_218 + SystemThreadHandle2 * 8);
+              SystemHashNodeData2 = *(uint **)(piStack_218 + SystemThreadHandle2 * 8);
               do {
                 ResourceDataOffset1 = SystemThreadHandle4;
-                if ((*HashNodeData2 & SystemContextPointer) != 0) break;
+                if ((*SystemHashNodeData2 & SystemContextPointer) != 0) break;
                 SystemThreadHandle4 = SystemThreadHandle4 + 1;
-                HashNodeData2 = HashNodeData2 + 5;
+                SystemHashNodeData2 = SystemHashNodeData2 + 5;
                 ResourceDataOffset1 = -1;
               } while (SystemThreadHandle4 < systemResult7);
             }
             SystemThreadHandle4 = *(long long *)(piStack_218 + SystemThreadHandle2 * 8);
-            HashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
-            resourceHashValue = *HashNodeData;
-            SystemThreadContextFlag = HashNodeData[1];
+            SystemHashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
+            resourceHashValue = *SystemHashNodeData;
+            SystemThreadContextFlag = SystemHashNodeData[1];
             if (uStackX_18 == -1) {
-              HashNodeData = (void* *)(*(long long *)(SystemResourceManager + 0x68) + 4 + resourceDataIndex2);
-              *HashNodeData = resourceHashValue;
-              HashNodeData[1] = SystemThreadContextFlag;
-              HashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
-              resourceHashValue = HashNodeData[1];
+              SystemHashNodeData = (void* *)(*(long long *)(SystemResourceManager + 0x68) + 4 + resourceDataIndex2);
+              *SystemHashNodeData = resourceHashValue;
+              SystemHashNodeData[1] = SystemThreadContextFlag;
+              SystemHashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
+              resourceHashValue = SystemHashNodeData[1];
               presourceAddress = (void* *)
                        ((long long)*(int *)(resourceDataIndex7 + SystemThreadHandle1) * 0x5c + 0x34 +
                        *(long long *)(SystemResourceManager + 0x68));
-              *presourceAddress = *HashNodeData;
+              *presourceAddress = *SystemHashNodeData;
               presourceAddress[1] = resourceHashValue;
             }
             else {
-              HashNodeData = (void* *)
+              SystemHashNodeData = (void* *)
                        (*(long long *)(*(long long *)(SystemResourceManager + 0xb0) + 0x30 + uStackX_18 * 0x50) +
                        (long long)*(int *)(resourceDataIndex7 + SystemThreadHandle1) * 0x10);
-              *HashNodeData = resourceHashValue;
-              HashNodeData[1] = SystemThreadContextFlag;
+              *SystemHashNodeData = resourceHashValue;
+              SystemHashNodeData[1] = SystemThreadContextFlag;
             }
             SystemBufferAddress0 = (long long)*(int *)(resourceDataIndex7 + 4 + SystemThreadHandle1);
             resourceDataIndex2 = SystemBufferAddress0 * 0x5c;
@@ -63817,37 +63817,37 @@ LAB_18007ac04:
                            *(long long *)(piStack_218 + SystemThreadHandle2 * 8)) / 0x14);
             ResourceDataOffset1 = -1;
             if (0 < systemResult7) {
-              HashNodeData2 = *(uint **)(piStack_218 + SystemThreadHandle2 * 8);
+              SystemHashNodeData2 = *(uint **)(piStack_218 + SystemThreadHandle2 * 8);
               do {
                 ResourceDataOffset1 = SystemThreadHandle4;
-                if ((*HashNodeData2 & SystemContextPointer) != 0) break;
+                if ((*SystemHashNodeData2 & SystemContextPointer) != 0) break;
                 SystemThreadHandle4 = SystemThreadHandle4 + 1;
-                HashNodeData2 = HashNodeData2 + 5;
+                SystemHashNodeData2 = SystemHashNodeData2 + 5;
                 ResourceDataOffset1 = -1;
               } while (SystemThreadHandle4 < systemResult7);
             }
             SystemThreadHandle4 = *(long long *)(piStack_218 + SystemThreadHandle2 * 8);
-            HashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
-            resourceHashValue = *HashNodeData;
-            SystemThreadContextFlag = HashNodeData[1];
+            SystemHashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
+            resourceHashValue = *SystemHashNodeData;
+            SystemThreadContextFlag = SystemHashNodeData[1];
             if (uStackX_18 == -1) {
-              HashNodeData = (void* *)(*(long long *)(SystemResourceManager + 0x68) + 4 + resourceDataIndex2);
-              *HashNodeData = resourceHashValue;
-              HashNodeData[1] = SystemThreadContextFlag;
-              HashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
-              resourceHashValue = HashNodeData[1];
+              SystemHashNodeData = (void* *)(*(long long *)(SystemResourceManager + 0x68) + 4 + resourceDataIndex2);
+              *SystemHashNodeData = resourceHashValue;
+              SystemHashNodeData[1] = SystemThreadContextFlag;
+              SystemHashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
+              resourceHashValue = SystemHashNodeData[1];
               presourceAddress = (void* *)
                        ((long long)*(int *)(resourceDataIndex7 + 4 + SystemThreadHandle1) * 0x5c + 0x34 +
                        *(long long *)(SystemResourceManager + 0x68));
-              *presourceAddress = *HashNodeData;
+              *presourceAddress = *SystemHashNodeData;
               presourceAddress[1] = resourceHashValue;
             }
             else {
-              HashNodeData = (void* *)
+              SystemHashNodeData = (void* *)
                        (*(long long *)(*(long long *)(SystemResourceManager + 0xb0) + 0x30 + uStackX_18 * 0x50) +
                        SystemBufferAddress0 * 0x10);
-              *HashNodeData = resourceHashValue;
-              HashNodeData[1] = SystemThreadContextFlag;
+              *SystemHashNodeData = resourceHashValue;
+              SystemHashNodeData[1] = SystemThreadContextFlag;
             }
             SystemBufferAddress0 = (long long)*(int *)(resourceDataIndex7 + 8 + SystemThreadHandle1);
             SystemBufferAddress3 = SystemBufferAddress0 * 0x5c;
@@ -63858,12 +63858,12 @@ LAB_18007ac04:
                            *(long long *)(piStack_218 + resourceDataIndex2 * 8)) / 0x14);
             ResourceDataOffset1 = -1;
             if (0 < SystemThreadHandle2) {
-              HashNodeData2 = *(uint **)(piStack_218 + resourceDataIndex2 * 8);
+              SystemHashNodeData2 = *(uint **)(piStack_218 + resourceDataIndex2 * 8);
               do {
                 ResourceDataOffset1 = SystemThreadHandle4;
-                if ((*HashNodeData2 & SystemContextPointer) != 0) break;
+                if ((*SystemHashNodeData2 & SystemContextPointer) != 0) break;
                 SystemThreadHandle4 = SystemThreadHandle4 + 1;
-                HashNodeData2 = HashNodeData2 + 5;
+                SystemHashNodeData2 = SystemHashNodeData2 + 5;
                 ResourceDataOffset1 = -1;
               } while (SystemThreadHandle4 < SystemThreadHandle2);
             }
@@ -63871,12 +63871,12 @@ LAB_18007ac04:
             aresourceAddress7 = *(uint8_t (*) [16])(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
             if (uStackX_18 == -1) {
               *(uint8_t (*) [16])(SystemBufferAddress3 + 4 + *(long long *)(SystemResourceManager + 0x68)) = aresourceAddress7;
-              HashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
-              resourceHashValue = HashNodeData[1];
+              SystemHashNodeData = (void* *)(SystemThreadHandle4 + 4 + ResourceDataOffset1 * 0x14);
+              resourceHashValue = SystemHashNodeData[1];
               presourceAddress = (void* *)
                        ((long long)*(int *)(resourceDataIndex7 + 8 + SystemThreadHandle1) * 0x5c + 0x34 +
                        *(long long *)(SystemResourceManager + 0x68));
-              *presourceAddress = *HashNodeData;
+              *presourceAddress = *SystemHashNodeData;
               presourceAddress[1] = resourceHashValue;
             }
             else {
@@ -64159,18 +64159,18 @@ LAB_18007a312:
     SystemThreadHandle1 = *(long long *)(SystemResourceManager + 0x68);
     SystemEncryptionOffset8 = *(void* *)(ResourceDataOffset1 + SystemThreadHandle1);
     SystemEncryptionOffset0 = ((void* *)(ResourceDataOffset1 + SystemThreadHandle1))[1];
-    HashNodeData = (void* *)(ResourceDataOffset1 + 0x10 + SystemThreadHandle1);
-    SystemMemoryBufferAddress = *HashNodeData;
-    uStack_f0 = HashNodeData[1];
-    HashNodeData = (void* *)(ResourceDataOffset1 + 0x20 + SystemThreadHandle1);
-    uStack_e8 = *HashNodeData;
-    uStack_e0 = HashNodeData[1];
-    HashNodeData = (void* *)(ResourceDataOffset1 + 0x30 + SystemThreadHandle1);
-    SystemMemoryAllocatorStatus = *HashNodeData;
-    uStack_d0 = HashNodeData[1];
-    HashNodeData = (void* *)(ResourceDataOffset1 + 0x40 + SystemThreadHandle1);
-    uStack_c8 = *HashNodeData;
-    UnsignedStackFlagC0 = HashNodeData[1];
+    SystemHashNodeData = (void* *)(ResourceDataOffset1 + 0x10 + SystemThreadHandle1);
+    SystemMemoryBufferAddress = *SystemHashNodeData;
+    uStack_f0 = SystemHashNodeData[1];
+    SystemHashNodeData = (void* *)(ResourceDataOffset1 + 0x20 + SystemThreadHandle1);
+    uStack_e8 = *SystemHashNodeData;
+    uStack_e0 = SystemHashNodeData[1];
+    SystemHashNodeData = (void* *)(ResourceDataOffset1 + 0x30 + SystemThreadHandle1);
+    SystemMemoryAllocatorStatus = *SystemHashNodeData;
+    uStack_d0 = SystemHashNodeData[1];
+    SystemHashNodeData = (void* *)(ResourceDataOffset1 + 0x40 + SystemThreadHandle1);
+    uStack_c8 = *SystemHashNodeData;
+    UnsignedStackFlagC0 = SystemHashNodeData[1];
     systemDataBuffer = *(void* *)(ResourceDataOffset1 + 0x50 + SystemThreadHandle1);
     UnsignedStackFlagB0 = *(uint32_t *)(ResourceDataOffset1 + 0x58 + SystemThreadHandle1);
     FUN_180080c10(SystemIntegerPointer,&SystemEncryptionOffset8);
@@ -64202,9 +64202,9 @@ LAB_18007a312:
       do {
         SystemThreadHandle1 = resourceAllocationContext0 + *(long long *)(SystemResourceManager + 0xb0);
         ResourceDataOffset1 = *(long long *)(resourceAllocationContext0 + 0x30 + *(long long *)(SystemResourceManager + 0xb0));
-        HashNodeData = (void* *)(ResourceDataOffset1 + SystemThreadHandle3 * 0x10);
-        resourceHashValue = *HashNodeData;
-        SystemThreadContextFlag = HashNodeData[1];
+        SystemHashNodeData = (void* *)(ResourceDataOffset1 + SystemThreadHandle3 * 0x10);
+        resourceHashValue = *SystemHashNodeData;
+        SystemThreadContextFlag = SystemHashNodeData[1];
         systemResult7 = *(int *)(SystemThreadHandle1 + 0x2c);
         SystemOperationStatus1 = *(int *)(SystemThreadHandle1 + 0x28);
         if (systemResult7 <= SystemOperationStatus1) {
@@ -64218,9 +64218,9 @@ LAB_18007a312:
           SystemOperationStatus1 = *(int *)(SystemThreadHandle1 + 0x28);
           ResourceDataOffset1 = *(long long *)(SystemThreadHandle1 + 0x30);
         }
-        HashNodeData = (void* *)(ResourceDataOffset1 + (long long)SystemOperationStatus1 * 0x10);
-        *HashNodeData = resourceHashValue;
-        HashNodeData[1] = SystemThreadContextFlag;
+        SystemHashNodeData = (void* *)(ResourceDataOffset1 + (long long)SystemOperationStatus1 * 0x10);
+        *SystemHashNodeData = resourceHashValue;
+        SystemHashNodeData[1] = SystemThreadContextFlag;
         *(int *)(SystemThreadHandle1 + 0x28) = *(int *)(SystemThreadHandle1 + 0x28) + 1;
         resourceAllocationContext3 = (int)resourceAddress1 + 1;
         resourceAllocationContext0 = resourceAllocationContext0 + 0x50;
@@ -66426,7 +66426,7 @@ void ProcessSystemResourceDataBuffer(long long SystemResourceManager,long long *
 {
   uint32_t SystemOperationStatus;
   int *pointerToInteger2;
-  uint32_t *HashNodeData;
+  uint32_t *SystemHashNodeData;
   long long SystemBufferAddress;
   int systemValue;
   int CalculationFlags;
@@ -66456,7 +66456,7 @@ void ProcessSystemResourceDataBuffer(long long SystemResourceManager,long long *
   }
   *pointerToInteger2 = CalculationFlags;
   ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
-  HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+  SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
   systemValue = 0;
   CalculationFlags = systemValue;
   if (0 < *(int *)(SystemResourceManager + 0x60)) {
@@ -66464,33 +66464,33 @@ void ProcessSystemResourceDataBuffer(long long SystemResourceManager,long long *
       FUN_180078c70((long long)CalculationFlags * 0x5c + *(long long *)(SystemResourceManager + 0x68),ConfigurationDataPointer);
       CalculationFlags = CalculationFlags + 1;
     } while (CalculationFlags < *(int *)(SystemResourceManager + 0x60));
-    HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+    SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
   }
   SystemOperationStatus = *(uint32_t *)(SystemResourceManager + 0x88);
-  if ((ulong long)((*ConfigurationDataPointer - (long long)HashNodeData) + ConfigurationDataPointer[2]) < 5) {
-    FUN_180639bf0(ConfigurationDataPointer,(long long)HashNodeData + (4 - *ConfigurationDataPointer));
-    HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)SystemHashNodeData) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)SystemHashNodeData + (4 - *ConfigurationDataPointer));
+    SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
   }
-  *HashNodeData = SystemOperationStatus;
+  *SystemHashNodeData = SystemOperationStatus;
   ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
   FUN_18063a180(ConfigurationDataPointer,*(void* *)(SystemResourceManager + 0x90),(long long)*(int *)(SystemResourceManager + 0x88) * 0xc);
   SystemOperationCode = (ulong long)*(ushort *)(SystemResourceManager + 0xc0);
   SystemThreadContextFlag = SystemOperationCode * 4 + 4;
   localDataIndex = ConfigurationDataPointer[2];
-  HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+  SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
   SystemBufferAddress = *ConfigurationDataPointer;
-  if ((ulong long)((SystemBufferAddress - (long long)HashNodeData) + localDataIndex) <= SystemThreadContextFlag) {
-    FUN_180639bf0(ConfigurationDataPointer,(long long)HashNodeData + (SystemThreadContextFlag - SystemBufferAddress));
+  if ((ulong long)((SystemBufferAddress - (long long)SystemHashNodeData) + localDataIndex) <= SystemThreadContextFlag) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)SystemHashNodeData + (SystemThreadContextFlag - SystemBufferAddress));
     SystemOperationCode = (ulong long)*(ushort *)(SystemResourceManager + 0xc0);
     localDataIndex = ConfigurationDataPointer[2];
-    HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+    SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
     SystemBufferAddress = *ConfigurationDataPointer;
   }
-  if ((ulong long)((SystemBufferAddress - (long long)HashNodeData) + localDataIndex) < 5) {
-    FUN_180639bf0(ConfigurationDataPointer,(long long)HashNodeData + (4 - SystemBufferAddress));
-    HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((SystemBufferAddress - (long long)SystemHashNodeData) + localDataIndex) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)SystemHashNodeData + (4 - SystemBufferAddress));
+    SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
   }
-  *HashNodeData = (int)SystemOperationCode;
+  *SystemHashNodeData = (int)SystemOperationCode;
   ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
   FUN_18063a180(ConfigurationDataPointer,*(void* *)(SystemResourceManager + 0xb8),(ulong long)*(ushort *)(SystemResourceManager + 0xc0) << 2)
   ;
@@ -66503,20 +66503,20 @@ void ProcessSystemResourceDataBuffer(long long SystemResourceManager,long long *
     } while (systemValue < (int)(uint)*(ushort *)(SystemResourceManager + 0xc0));
   }
   SystemOperationStatus = *(uint32_t *)(SystemResourceManager + 200);
-  HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
-  if ((ulong long)((*ConfigurationDataPointer - (long long)HashNodeData) + ConfigurationDataPointer[2]) < 5) {
-    FUN_180639bf0(ConfigurationDataPointer,(long long)HashNodeData + (4 - *ConfigurationDataPointer));
-    HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+  SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)SystemHashNodeData) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)SystemHashNodeData + (4 - *ConfigurationDataPointer));
+    SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
   }
-  *HashNodeData = SystemOperationStatus;
+  *SystemHashNodeData = SystemOperationStatus;
   ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
   FUN_18063a180(ConfigurationDataPointer,*(void* *)(SystemResourceManager + 0xd0),(long long)*(int *)(SystemResourceManager + 200) * 0x14);
-  HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
-  if ((ulong long)((*ConfigurationDataPointer - (long long)HashNodeData) + ConfigurationDataPointer[2]) < 5) {
-    FUN_180639bf0(ConfigurationDataPointer,(long long)HashNodeData + (4 - *ConfigurationDataPointer));
-    HashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+  SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
+  if ((ulong long)((*ConfigurationDataPointer - (long long)SystemHashNodeData) + ConfigurationDataPointer[2]) < 5) {
+    FUN_180639bf0(ConfigurationDataPointer,(long long)SystemHashNodeData + (4 - *ConfigurationDataPointer));
+    SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
   }
-  *HashNodeData = 0;
+  *SystemHashNodeData = 0;
   ConfigurationDataPointer[1] = ConfigurationDataPointer[1] + 4;
   FUN_18063a180(ConfigurationDataPointer,0,0);
   return;
@@ -67187,7 +67187,7 @@ void FUN_18007f0e0(long long SystemResourceManager,long long ConfigurationDataPo
 {
   int *SystemIntegerPointer;
   void** SystemDataTable;
-  void* *HashNodeData;
+  void* *SystemHashNodeData;
   void* *presourceAddress;
   uint currentThreadId;
   int *pointerToInteger7;
@@ -67206,13 +67206,13 @@ void FUN_18007f0e0(long long SystemResourceManager,long long ConfigurationDataPo
     SystemHashEntryPointer = presourceAddress;
     if (AdditionalParameter != 0) {
       SystemHashEntryPointer = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemThreadContextFlag * 8,3);
-      HashNodeData = SystemHashEntryPointer;
+      SystemHashNodeData = SystemHashEntryPointer;
       resourceEntryPointer = presourceAddress;
       do {
         currentThreadId = (int)resourceEntryPointer + 1;
         resourceEntryPointer = (void* *)(ulong long)currentThreadId;
-        *HashNodeData = 0;
-        HashNodeData = HashNodeData + 1;
+        *SystemHashNodeData = 0;
+        SystemHashNodeData = SystemHashNodeData + 1;
       } while ((ulong long)(long long)(int)currentThreadId < SystemThreadContextFlag);
     }
     **(void* **)(SystemResourceManager + 0x2d0) = SystemHashEntryPointer;
@@ -67262,7 +67262,7 @@ void FUN_18007f11f(void)
 {
   int *SystemIntegerPointer;
   ulong long *SystemHashEntryPointer;
-  ulong long *HashNodeData;
+  ulong long *SystemHashNodeData;
   ulong long memoryBlockAddress;
   long long systemStackFramePtr;
   long long systemDataIndexPtr;
@@ -67280,12 +67280,12 @@ void FUN_18007f11f(void)
   else {
     SystemHashEntryPointer = (ulong long *)CreateSystemThreadObject(SystemMemoryPoolTemplate,systemResourceCounter * 8,3);
     currentThreadId = memoryBlockAddress & 0xffffffff;
-    HashNodeData = SystemHashEntryPointer;
+    SystemHashNodeData = SystemHashEntryPointer;
     do {
       resourceAddress = (int)currentThreadId + 1;
       currentThreadId = (ulong long)resourceAddress;
-      *HashNodeData = memoryBlockAddress;
-      HashNodeData = HashNodeData + 1;
+      *SystemHashNodeData = memoryBlockAddress;
+      SystemHashNodeData = SystemHashNodeData + 1;
     } while ((ulong long)(long long)(int)resourceAddress < systemResourceCounter);
   }
   **(long long **)(systemDataIndexPtr + 0x2d0) = (long long)SystemHashEntryPointer;
@@ -68920,7 +68920,7 @@ void InitializeSystemThreadLocalStorage(void)
  * @note 此函数用于哈希表数据的管理和维护
  * @warning 函数涉及指针操作，需要确保内存访问的安全性
  */
-void ProcessSystemHashNodeData(void)
+void ProcessSystemSystemHashNodeData(void)
 
 {
   uint32_t SystemOperationStatus;
@@ -68928,20 +68928,20 @@ void ProcessSystemHashNodeData(void)
   long long systemStackFramePtr;
   uint unaff_ESI;
   long long systemDataIndexPtr;
-  uint32_t *HashNodeData;
+  uint32_t *SystemHashNodeData;
   ulong long resourceAddress;
   uint systemAllocationOffsetD;
   void* *SystemContextPointer;
   
-  HashNodeData = (uint32_t *)*SystemContextPointer;
+  SystemHashNodeData = (uint32_t *)*SystemContextPointer;
   resourceCreationFlags = unaff_ESI >> 0xb;
   *(uint *)(systemDataIndexPtr + 0x2c) = unaff_ESI;
   if (resourceCreationFlags != systemAllocationOffsetD + unaff_ESI >> 0xb) {
     if (systemAllocationOffsetD != 0) {
       resourceAddress = (ulong long)systemAllocationOffsetD;
       do {
-        SystemOperationStatus = *HashNodeData;
-        HashNodeData = HashNodeData + 1;
+        SystemOperationStatus = *SystemHashNodeData;
+        SystemHashNodeData = SystemHashNodeData + 1;
         *(uint32_t *)
          (*(long long *)(systemStackFramePtr + 8 + (ulong long)(unaff_ESI >> 0xb) * 8) +
          (ulong long)(unaff_ESI + (unaff_ESI >> 0xb) * -0x800) * 4) = SystemOperationStatus;
@@ -68952,7 +68952,7 @@ void ProcessSystemHashNodeData(void)
     return;
   }
     memcpy(*(long long *)(systemStackFramePtr + 8 + (ulong long)resourceCreationFlags * 8) +
-         (ulong long)(unaff_ESI + resourceCreationFlags * -0x800) * 4,HashNodeData,(ulong long)systemAllocationOffsetD << 2);
+         (ulong long)(unaff_ESI + resourceCreationFlags * -0x800) * 4,SystemHashNodeData,(ulong long)systemAllocationOffsetD << 2);
 }
 
 
