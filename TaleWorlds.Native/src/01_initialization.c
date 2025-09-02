@@ -35128,22 +35128,22 @@ void InitializeAndCleanupSystemResource(void* *systemResourceManager)
 void* * CleanupAndReleaseMultipleSystemResources(void* *systemResourceManager,ulong long configurationDataPointer)
 
 {
-  *SystemResourceManager = &SystemMemoryData3;
-  ExecuteSystemResourceOperation(SystemResourceManager + 0xa4);
-  InitializeSystemResourceManager(SystemResourceManager + 0x8c);
-  ExecuteSystemResourceOperation(SystemResourceManager + 0x7e);
-  ExecuteSystemResourceOperation(SystemResourceManager + 0x70);
-  ExecuteSystemResourceOperation(SystemResourceManager + 0x62);
-  ExecuteSystemResourceOperation(SystemResourceManager + 0x54);
-  ExecuteSystemResourceOperation(SystemResourceManager + 0x46);
-  ExecuteSystemResourceOperation(SystemResourceManager + 0x38);
-  ExecuteSystemResourceOperation(SystemResourceManager + 0x2a);
-  ExecuteSystemResourceOperation(SystemResourceManager + 0x1c);
-  FinalizeSystemResourceCleanup(SystemResourceManager);
-  if ((ConfigurationDataPointer & 1) != 0) {
-    free(SystemResourceManager,0x590);
+  *systemResourceManager = &SystemMemoryData3;
+  ExecuteSystemResourceOperation(systemResourceManager + 0xa4);
+  InitializeSystemResourceManager(systemResourceManager + 0x8c);
+  ExecuteSystemResourceOperation(systemResourceManager + 0x7e);
+  ExecuteSystemResourceOperation(systemResourceManager + 0x70);
+  ExecuteSystemResourceOperation(systemResourceManager + 0x62);
+  ExecuteSystemResourceOperation(systemResourceManager + 0x54);
+  ExecuteSystemResourceOperation(systemResourceManager + 0x46);
+  ExecuteSystemResourceOperation(systemResourceManager + 0x38);
+  ExecuteSystemResourceOperation(systemResourceManager + 0x2a);
+  ExecuteSystemResourceOperation(systemResourceManager + 0x1c);
+  FinalizeSystemResourceCleanup(systemResourceManager);
+  if ((configurationDataPointer & 1) != 0) {
+    free(systemResourceManager,0x590);
   }
-  return SystemResourceManager;
+  return systemResourceManager;
 }
 
 
@@ -35162,15 +35162,15 @@ void* * CleanupAndReleaseMultipleSystemResources(void* *systemResourceManager,ul
  * @param ConfigurationFlag 配置标志，用于控制线程行为
  * @note 这是系统线程管理的重要组成部分，用于创建和初始化系统线程
  */
-void CreateAndInitializeSystemThread(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void CreateAndInitializeSystemThread(void* systemResourceManager,void* configurationDataPointer,void* additionalParameter,void* configurationFlag)
 
 {
-  uint32_t SystemOperationStatus;
-  void** SystemDataTable;
+  uint32_t systemOperationStatus;
+  void** systemDataTable;
   void* *memoryAllocationEnd;
-  void* *pSystemEncryptionKey;
-  uint32_t SystemOperationCounter;
-  void* SystemContextValue;
+  void* *systemEncryptionKey;
+  uint32_t systemOperationCounter;
+  void* systemContextValue;
   
   memoryAllocationEnd = &SystemGlobalDataReference;
   SystemContextValue = 0;
