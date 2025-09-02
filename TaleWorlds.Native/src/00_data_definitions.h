@@ -6728,12 +6728,12 @@ longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlo
       *pMemoryAllocationResult = &UNK_180a1b368;
       ValidateMemoryAllocationResult(pMemoryAllocationResult);
       _DAT_180d48df0 = pMemoryAllocationResult;
-      _DAT_180d48df8 = FUN_18033a090();
+      _DAT_180d48df8 = GetSystemMemoryStatus();
       pMemoryAllocationResult = (uint64_t *)AllocateSystemMemory(_DAT_180c8ed18,0xb0,8,3);
       ProcessMemoryAllocationResult(pMemoryAllocationResult);
       *pMemoryAllocationResult = &UNK_180a1b3f0;
       _DAT_180d48e00 = pMemoryAllocationResult;
-      _DAT_180d48e08 = FUN_180339db0();
+      _DAT_180d48e08 = GetSystemNetworkStatus();
       _DAT_180d48e10 = (*_DAT_180c918d8)(&DAT_180c918c0);
       _DAT_180d48e18 = 0;
       FUN_1808fcb30(&DAT_180d49990);
