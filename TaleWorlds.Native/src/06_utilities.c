@@ -955,18 +955,18 @@ void* SystemAnimationStateBuffer;            // 系统动画状态缓冲区
 void* SystemScriptExecutionContext;          // 系统脚本执行上下文
 void* SystemFileSystemCacheBuffer;           // 系统文件系统缓存缓冲区
 void* SystemDatabaseQueryBuffer;              // 系统数据库查询缓冲区
-void* SystemSecurityValidationBuffer;
-void* SystemLoggingOutputBuffer;
-void* SystemPerformanceMetricBuffer;
-void* SystemMemoryAllocationBuffer;
-void* SystemThreadSynchronizationBuffer;
-void* SystemEventDispatchBuffer;
-void* SystemTimerReferenceBuffer;
-void* ConfigurationDataBuffer;
-void* SystemResourceTrackingBuffer;
-void* SystemStateManagementBuffer;
-void* SystemNetworkPacketBuffer;
-void* SystemGraphicsRenderBuffer;
+void* SystemSecurityValidationBuffer;        // 系统安全验证缓冲区
+void* SystemLoggingOutputBuffer;              // 系统日志输出缓冲区
+void* SystemPerformanceMetricBuffer;          // 系统性能指标缓冲区
+void* SystemMemoryAllocationBuffer;           // 系统内存分配缓冲区
+void* SystemThreadSynchronizationBuffer;     // 系统线程同步缓冲区
+void* SystemEventDispatchBuffer;              // 系统事件分发缓冲区
+void* SystemTimerReferenceBuffer;             // 系统定时器引用缓冲区
+void* ConfigurationDataBuffer;                // 配置数据缓冲区
+void* SystemResourceTrackingBuffer;          // 系统资源跟踪缓冲区
+void* SystemStateManagementBuffer;           // 系统状态管理缓冲区
+void* SystemNetworkPacketBuffer;             // 系统网络数据包缓冲区
+void* SystemGraphicsRenderBuffer;             // 系统图形渲染缓冲区
 void* SystemAudioStreamBuffer;
 void* SystemInputCommandBuffer;
 void* SystemPhysicsSimulationBuffer;
