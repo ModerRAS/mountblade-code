@@ -301,12 +301,12 @@ void* GetSystemDataPointer(int dataIndex);
  * 
  * @param configContext 配置上下文指针
  * @param configFlags 配置标志
- * @param configParameter1 配置参数1
- * @param configParameter2 配置参数2
+ * @param primaryConfigParam 主要配置参数
+ * @param secondaryConfigParam 次要配置参数
  * 
  *FUN_1801299b0：InitializeSystemConfiguration
  */
-void InitializeSystemConfiguration(void* configContext, int configFlags, int configParameter1, int configParameter2);
+void InitializeSystemConfiguration(void* configContext, int configFlags, int primaryConfigParam, int secondaryConfigParam);
 
 /**
  * @brief 系统数据字段设置函数
@@ -12154,16 +12154,16 @@ void InitializeSystemStringProcessor(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemStackPointerA0;
-  uint8_t *SystemStackPointer98;
+  void* *SystemStackPointerPrimary;
+  uint8_t *SystemStackBufferPointer;
   uint32_t SystemConfigurationFlag;
-  uint8_t SystemStackBuffer88 [136];
+  uint8_t SystemStringProcessingBuffer [136];
   
-  SystemStackPointerA0 = &SystemGlobalDataTertiary;
-  SystemStackPointer98 = SystemStackBuffer88;
-  SystemStackBuffer88[0] = 0;
+  SystemStackPointerPrimary = &SystemGlobalDataTertiary;
+  SystemStackBufferPointer = SystemStringProcessingBuffer;
+  SystemStringProcessingBuffer[0] = 0;
   SystemConfigurationFlag = 0x16;
-  strcpy_s(SystemStackBuffer88,0x80,&SystemSecurityStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
+  strcpy_s(SystemStringProcessingBuffer,0x80,&SystemSecurityStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
   SystemMemoryAllocationTableEntry011 = SystemMemoryAllocationFunction(&SystemStackPointerA0);
   return;
 }
