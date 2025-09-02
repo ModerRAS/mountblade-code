@@ -100160,7 +100160,7 @@ void InitializeSystemDataCachePointer(void)
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAP(void)
+void InitializeSystemDataPointer016(void)
 
 {
   SystemDataBufferPointer = &SystemDataStructure;
@@ -100177,7 +100177,7 @@ void InitializeSystemDataStructureAP(void)
  * 该函数负责初始化系统的数据结构AE
  * 将全局变量 SystemDataPointer017 设置为指向 SystemDataStructure
  */
-void InitializeSystemDataStructureAE(void)
+void InitializeSystemDataPointer017(void)
 
 {
   SystemDataPointer017 = &SystemDataStructure;
@@ -100238,7 +100238,7 @@ void InitializeMemoryStatisticsTable(void)
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAQ(void)
+void InitializeSystemDataPointer018(void)
 
 {
   SystemDataPointer018 = &SystemDataStructure;
