@@ -15630,9 +15630,9 @@ uint32_t ValidateResourceHashIndex(uint8_t ObjectContext,uint64_t ValidationCont
     ResourceCount = (int)ExecutionContextPointer;
     if ((loopIncrement & 0xffffff) != 0xffffff) {
       ResourceDataOffset = (uint64_t)(loopIncrement & 0xffffff) + ResourceRegisterPointer[4];
-      OperationStatusCode = GetResourceOffset(LongValue8);
+      OperationStatusCode = GetResourceOffset(ResourceContextDataPointer);
       if (ResourceCount != 0) {
-        ValidationCounterPointer = (uint8_t *)((OperationResult + -1) + LongValue8);
+        ValidationCounterPointer = (uint8_t *)((OperationResult + -1) + ResourceContextDataPointer);
         ResourceIndex = OperationResult;
         while (0 < ResourceIndex) {
           ValidationStatusCode = ResourceIndex;
@@ -18049,9 +18049,9 @@ uint8_t ValidateResourceStatusFlags(int64_t ResourceContext, int64_t statusPoint
                 {
                   return LoopCondition;
                 }
-                ResourceDataOffset = LongValue8 + 1;
+                ResourceDataOffset = ResourceContextDataPointer + 1;
                 ArrayIndex = ArrayIndex + 0x118;
-              } while (LongValue8 < OperationResult);
+              } while (ResourceContextDataPointer < OperationResult);
             }
           }
           if ((((((ResourceContextOffset & 0x20) == 0) ||
@@ -51052,7 +51052,7 @@ void ProcessSystemResourceRollback(uint8_t ObjectContext, int64_t ValidationCont
     if (OperationStatusCode == 0) {
       ResourceDataOffset = *(int64_t *)(ResourceEntryPointer + 0x28);
       do {
-        *(int64_t *)(ResourceTablePointer + 0x3538) = LongValue8;
+        *(int64_t *)(ResourceTablePointer + 0x3538) = ResourceContextDataPointer;
         *(uint32_t *)(ResourceTablePointer + 0x3530) = 1;
         ResourceContext = (int64_t *)(ResourceEntryPointer + 0x28);
         LOCK();
@@ -51060,7 +51060,7 @@ void ProcessSystemResourceRollback(uint8_t ObjectContext, int64_t ValidationCont
         OperationCompleted = ResourceDataOffset == ArrayIndex;
         if (OperationCompleted) {
           *ResourceContext = ResourceTablePointer;
-          ArrayIndex = LongValue8;
+          ArrayIndex = ResourceContextDataPointer;
         }
         UNLOCK();
         if (OperationCompleted) {
