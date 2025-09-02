@@ -12651,11 +12651,11 @@ void ProcessComplexResourceOperation(uint8_t objectContext,int64_t validationCon
   uint32_t GraphicsOperationFlag13;
   uint32_t GraphicsOperationFlag14;
   uint32_t GraphicsOperationFlag15;
-  uint8_t *GraphicsDataPointer3;
+  uint8_t *GraphicsDataPointerTertiary;
   uint32_t GraphicsOperationFlag16;
   uint GraphicsOperationFlag17;
   uint32_t GraphicsOperationFlag18;
-  uint8_t GraphicsDataBuffer2 [520];
+  uint8_t GraphicsDataBufferSecondary [520];
   uint64_t ResourceSecurityFlag;
   
   ResourceSecurityFlag = SecurityEncryptionKey ^ (uint64_t)GraphicsDataBuffer;
