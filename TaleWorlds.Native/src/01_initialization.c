@@ -18568,7 +18568,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
       LogSystemError(&SystemStringConstantComputerNameErrorF);
     }
     else {
-      if (0xf < ((ulong long)MemoryBufferSize & 0xffffffff)) goto LAB_180044db8;
+      if (0xf < ((ulong long)MemoryBufferSize & 0xffffffff)) goto HandleMemoryBufferOverflow;
       *(uint8_t *)((long long)ComputerNameBufferPointer + ((ulong long)MemoryBufferSize & 0xffffffff)) = 0;
       (**(code **)(puStack_1d8 + 0x10))(&puStack_1d8,ComputerNameBufferPointer);
     }
@@ -18580,7 +18580,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
     else {
       if (0x100 < ((ulong long)MemoryBufferSize & 0xffffffff)) {
         ProcessSystemEvent();
-LAB_180044db8:
+HandleMemoryBufferOverflow:
         ProcessSystemEvent();
         ExceptionHandlerFunction = (code *)swi(3);
         (*ExceptionHandlerFunction)();
@@ -18702,7 +18702,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   libraryHandle[0xc] = 0;
   *(void*2 *)libraryHandle = 0;
   SystemLibraryHandleStorage = libraryHandle;
-  if ((char)*libraryHandle != '\0') goto LAB_180044faf;
+  if ((char)*libraryHandle != '\0') goto SkipLibraryHandleInitialization;
   mutexPointer = symbolTablePointer;
   initializationResult = LockMutex(symbolTablePointer);
   if (initializationResult != 0) {
@@ -18719,14 +18719,14 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   if (LibraryHandle == 0) {
     LibraryHandle = LoadLibraryA(&SystemStringConstantLibraryNameH);
     AllocatedMemoryPointer[0xb] = LibraryHandle;
-    if (LibraryHandle != 0) goto LAB_180044ee3;
+    if (LibraryHandle != 0) goto LibraryHandleLoadedSuccessfully;
     puStack_b8 = &SystemGlobalDataReference;
     if (puStack_b0 != (void* *)0x0) {
         SystemCleanupFunction();
     }
   }
   else {
-LAB_180044ee3:
+LibraryHandleLoadedSuccessfully:
     if (AllocatedMemoryPointer[0xc] == 0) {
       FunctionAddress = GetProcAddress(LibraryHandle,&SystemStringConstantFunctionNameI);
       AllocatedMemoryPointer[0xc] = FunctionAddress;
@@ -18735,7 +18735,7 @@ LAB_180044ee3:
         if (puStack_b0 != (void* *)0x0) {
             SystemCleanupFunction();
         }
-        goto LAB_180044f8f;
+        goto SymbolInitializationCleanup;
       }
     }
     SymbolSearchPath = &SystemStringTemplate;
@@ -18757,7 +18757,7 @@ LAB_180044ee3:
       }
     }
   }
-LAB_180044f8f:
+SymbolInitializationCleanup:
   uStack_a0 = 0;
   puStack_b0 = (void* *)0x0;
   puStack_b8 = &SystemMemoryAllocatorReference;
@@ -18765,7 +18765,7 @@ LAB_180044f8f:
   if (mutexUnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
-LAB_180044faf:
+SkipLibraryHandleInitialization:
   void* allocatedMemoryBlock1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,8,8,3);
   *allocatedMemoryBlock1 = 0;
   void* allocatedMemoryBlock2 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,8,8,3);
@@ -20048,7 +20048,7 @@ int InitializeSystemCoreComponents(long long SystemResourcePointer,long long Ini
     *(ulong long *)(SystemResourcePointer + 0x10) = unsignedSystemValue8 + 0x100;
     ProcessSystemData(unsignedSystemValue8,&systemMemoryContext);
     ppppunsignedSystemValue9 = *(void* *****)(SystemResourcePointer + 0x10);
-    goto LAB_180046a90;
+    goto MemoryAllocationComplete;
   }
   localBufferAddress = *(long long *)(SystemResourcePointer + 8);
   localDataPointer = (long long)(unsignedSystemValue8 - localBufferAddress) >> 8;
@@ -41401,8 +41401,22 @@ void ResetSystemResource(void* *SystemResourcePointer)
 
 
 
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统内存管理器，设置系统资源指针和内存数据。
+ * 主要用于系统内存管理的前期准备工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 系统资源指针
+ * 
+ * 原始函数名为FUN_180061300，现已重命名为InitializeSystemMemoryManager
+ */
 void* *
-FUN_180061300(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+InitializeSystemMemoryManager(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
@@ -42309,8 +42323,22 @@ int FormatSystemResourceStringExtended(void* SystemResourcePointer,void* Configu
 
 
 
+/**
+ * @brief 配置系统资源
+ * 
+ * 该函数负责配置系统资源，设置系统全局数据引用和内存分配器引用。
+ * 主要用于系统资源的配置和初始化。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 系统资源指针
+ * 
+ * 原始函数名为FUN_180063650，现已重命名为ConfigureSystemResources
+ */
 void* *
-FUN_180063650(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+ConfigureSystemResources(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   SystemResourcePointer[6] = &SystemGlobalDataReference;
