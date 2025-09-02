@@ -10022,8 +10022,10 @@ void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationC
  * 执行安全检查并确保资源可用性
  * 
  * @param resource_handle 资源句柄，用于标识要访问的资源
+ * @return int 返回操作结果代码
+ * @note 返回0表示成功，非0表示失败
  */
-ValidateResourceTableAccess(uint64_t resource_handle)
+int ValidateResourceTableAccess(uint64_t resource_handle)
 
 {
   int OperationResult;
