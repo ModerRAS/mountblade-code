@@ -21708,11 +21708,11 @@ ResourceValidationWait:
           MatrixElementX = *matrixDataPointer;
           MatrixElementY = matrixDataPointer[1];
           MatrixElementZ = matrixDataPointer[2];
-          matrixElementWComponent = matrixDataPointer[3];
-          *(float *)(SystemContextPointer7 + -0x14) = matrixElementXCoordinate;
-          *(float *)(SystemContextPointer7 + -0x10) = matrixElementY;
-          *(float *)(SystemContextPointer7 + -0xc) = matrixElementZ;
-          *(float *)(SystemContextPointer7 + -8) = matrixElementWComponent;
+          MatrixElementW = matrixDataPointer[3];
+          *(float *)(SystemContextPointer7 + -0x14) = MatrixElementX;
+          *(float *)(SystemContextPointer7 + -0x10) = MatrixElementY;
+          *(float *)(SystemContextPointer7 + -0xc) = MatrixElementZ;
+          *(float *)(SystemContextPointer7 + -8) = MatrixElementW;
           *(uint8_t *)(SystemContextPointer7 + -4) = 0;
           memoryAllocationSize = memoryAllocationSize + -1;
           SystemContextPointer7 = SystemContextPointer7 + 0x18;
@@ -21725,12 +21725,12 @@ ResourceValidationWait:
       memoryBlockSize = -memoryBlockSize;
     }
     if (memoryBlockSize != 0) {
-      matrixElementXCoordinate = (float)FreeMemoryBlock(ExecutionContextPointer + -0x29,0);
+      MatrixElementX = (float)FreeMemoryBlock(ExecutionContextPointer + -0x29,0);
     }
   }
   else {
     ResourceHashPointer = (uint8_t *)OptimizeMemoryUsage(ResourceHashValidationResultPrimary,SystemContext + 0x48);
-    matrixElementXCoordinate = FloatingPointResultThird;
+    MatrixElementX = FloatingPointResultThird;
     if ((int)ResourceHashPointer != 0) {
       return ResourceHashPointer;
     }
@@ -21740,17 +21740,17 @@ ResourceIndexProcessing:
       (*(uint64_t *)(SystemContext + 0x48) <= ResourceHash5 &&
       (ResourceHash5 < (int64_t)*(int *)(SystemContext + 0x50) * 0x1c + *(uint64_t *)(SystemContext + 0x48)));
       ResourceHash5 = ResourceHash5 + 0x1c) {
-    matrixElementXCoordinate = (float)DefragmentMemory(SystemContext + 0x58);
+    MatrixElementX = (float)DefragmentMemory(SystemContext + 0x58);
   }
 ResourceProcessingMain:
   if ((0x70 < *(uint *)(SystemRegisterContext + 8)) && (resourceOperationStatusCode = 0x1c, *(int *)(SystemRegisterContext[1] + 0x18) == 0)) {
     resourceOperationStatusCode = ReadResourceData(*SystemRegisterContext,SystemContext + 0x68,4);
-    matrixElementXCoordinate = FloatingPointResultSecond;
+    MatrixElementX = FloatingPointResultSecond;
   }
   if (resourceOperationResult != 0) {
     return (uint8_t *)(uint64_t)resourceOperationResult;
   }
-        CleanupResourceData(matrixElementXCoordinate,ExecutionContextPointer + -9);
+        CleanupResourceData(MatrixElementX,ExecutionContextPointer + -9);
 }
 
 
