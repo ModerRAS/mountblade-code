@@ -881,6 +881,27 @@ void* SystemDataComparisonTemplateL;  // 系统数据比较模板L
 void* SystemDataComparisonTemplateM;  // 系统数据比较模板M
 void* SystemDataComparisonTemplateN;  // 系统数据比较模板N
 void* SystemDataComparisonTemplateO;  // 系统数据比较模板O
+
+// 系统内存分配表条目 - 用于存储内存分配的结果
+void* SystemMemoryAllocationTableEntry001;
+void* SystemMemoryAllocationTableEntry002;
+void* SystemMemoryAllocationTableEntry003;
+void* SystemMemoryAllocationTableEntry004;
+void* SystemMemoryAllocationTableEntry005;
+void* SystemMemoryAllocationTableEntry006;
+void* SystemMemoryAllocationTableEntry007;
+void* SystemMemoryAllocationTableEntry008;
+void* SystemMemoryAllocationTableEntry009;
+void* SystemMemoryAllocationTableEntry010;
+void* SystemMemoryAllocationTableEntry011;
+void* SystemMemoryAllocationTableEntry012;
+void* SystemMemoryAllocationTableEntry013;
+void* SystemMemoryAllocationTableEntry014;
+void* SystemMemoryAllocationTableEntry015;
+void* SystemMemoryAllocationTableEntry016;
+void* SystemMemoryAllocationTableEntry017;
+void* SystemMemoryAllocationTableEntry018;
+
 void* SystemDataNodePrimaryRoot;       // 系统数据节点主根节点
 void* SystemDataNodeSecondaryRoot;     // 系统数据节点次根节点
 void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
