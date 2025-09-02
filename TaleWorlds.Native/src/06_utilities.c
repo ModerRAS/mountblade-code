@@ -49083,7 +49083,7 @@ void ExecuteResourceHashTableCleanup(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_180905780(uint8_t ObjectContext,uint *ValidationContext)
+void ReleaseSystemResourceHandleAndUnlock(uint8_t ObjectContext,uint *ValidationContext)
 
 {
   if ((*ValidationContext & 1) != 0) {
@@ -49096,72 +49096,72 @@ void Unwind_180905780(uint8_t ObjectContext,uint *ValidationContext)
 
 
 
-void Unwind_1809057b0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
-  int64_t *presourceTable;
-  int64_t *pResourceIndex;
-  int64_t *contextPointer;
-  uint8_t *bytePointer5;
-  int ProcessedIntegerValue6;
-  int *presourceCount;
-  int64_t *pResourceDataOffset;
+  int64_t *ProcessContextPointer;
+  int64_t *ResourceTablePointer;
+  int64_t *ResourceIndexPointer;
+  int64_t *ContextDataPointer;
+  uint8_t *ByteDataPointer;
+  int ProcessedIndexValue;
+  int *ResourceCountPointer;
+  int64_t *ResourceDataOffsetPointer;
   uint ValidationCounter;
-  uint64_t ResourceHash1;
-  uint64_t ResourceHash2;
-  int64_t *PointerStack10;
-  int64_t *PointerStack18;
-  int64_t *PointerStack20;
-  uint64_t ResourceHash0;
+  uint64_t ResourceHashCurrent;
+  uint64_t ResourceHashCalculated;
+  int64_t *ResourceBufferPointer;
+  int64_t *ResourceCleanupPointer;
+  int64_t *ResourceTableMutexPointer;
+  uint64_t ResourceHashInitial;
   
-  bytePointer5 = *(uint8_t **)(ValidationContext + 0x40);
-  *ResourceDataPointer6 = &ResourceHashTable003;
+  ByteDataPointer = *(uint8_t **)(ValidationContext + 0x40);
+  *ResourceDataPointer = &ResourceHashTable003;
   *(uint8_t *)((int64_t)ResourceDataPointer + 0x162) = 1;
-  presourceTable = ResourceDataPointer + 0x1a;
-  PointerStack20 = presourceTable;
-  integerValue6 = _Mtx_lock(presourceTable);
-  if (integerValue6 != 0) {
-    __Throw_C_error_std__YAXH_Z(integerValue6);
+  ResourceTablePointer = ResourceDataPointer + 0x1a;
+  ResourceTableMutexPointer = ResourceTablePointer;
+  LockResult = _Mtx_lock(ResourceTablePointer);
+  if (LockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(LockResult);
   }
-  ResourceHash0 = 0;
-  ResourceHash1 = ResourceHash0;
+  ResourceHashInitial = 0;
+  ResourceHashCurrent = ResourceHashInitial;
   if (ResourceDataPointer[9] != 0) {
     do {
-      ResourceHash2 = ResourceHash1 % (uint64_t)*(uint *)(ResourceDataPointer + 8);
-      integerValue6 = (int)ResourceHash0;
-      for (presourceCount = *(int **)(ResourceDataPointer[7] + ResourceHash2 * 8); presourceCount != (int *)0x0;
-          presourceCount = *(int **)(presourceCount + 4)) {
-        if (integerValue6 == *presourceCount) {
-          if (presourceCount != (int *)0x0) goto ResourceCleanupHandler;
+      ResourceHashCalculated = ResourceHashCurrent % (uint64_t)*(uint *)(ResourceDataPointer + 8);
+      ProcessedIndexValue = (int)ResourceHashInitial;
+      for (ResourceCountPointer = *(int **)(ResourceDataPointer[7] + ResourceHashCalculated * 8); ResourceCountPointer != (int *)0x0;
+          ResourceCountPointer = *(int **)(ResourceCountPointer + 4)) {
+        if (ProcessedIndexValue == *ResourceCountPointer) {
+          if (ResourceCountPointer != (int *)0x0) goto ResourceCleanupHandler;
           break;
         }
       }
-      InitializeResourceBuffer(ResourceDataPointer + 10,&PointerStack10,(uint64_t)*(uint *)(ResourceDataPointer + 8),
+      InitializeResourceBuffer(ResourceDataPointer + 10,&ResourceBufferPointer,(uint64_t)*(uint *)(ResourceDataPointer + 8),
                     *(uint32_t *)(ResourceDataPointer + 9),1);
-      presourceCount = (int *)AllocateResourceBuffer(ResourceBufferPool,0x18,*(uint8_t *)((int64_t)ResourceDataPointer + 0x5c));
-      *presourceCount = integerValue6;
-      presourceCount[2] = 0;
-      presourceCount[3] = 0;
-      presourceCount[4] = 0;
-      presourceCount[5] = 0;
-      if ((char)PointerStack10 != '\0') {
-        ResourceHash2 = ResourceHash1 % ((uint64_t)PointerStack10 >> 0x20);
+      ResourceCountPointer = (int *)AllocateResourceBuffer(ResourceBufferPool,0x18,*(uint8_t *)((int64_t)ResourceDataPointer + 0x5c));
+      *ResourceCountPointer = ProcessedIndexValue;
+      ResourceCountPointer[2] = 0;
+      ResourceCountPointer[3] = 0;
+      ResourceCountPointer[4] = 0;
+      ResourceCountPointer[5] = 0;
+      if ((char)ResourceBufferPointer != '\0') {
+        ResourceHashCalculated = ResourceHashCurrent % ((uint64_t)ResourceBufferPointer >> 0x20);
         CleanupResourceBuffer(ResourceDataPointer + 6);
       }
-      *(uint8_t *)(presourceCount + 4) = *(uint8_t *)(ResourceDataPointer[7] + ResourceHash2 * 8);
-      *(int **)(ResourceDataPointer[7] + ResourceHash2 * 8) = presourceCount;
+      *(uint8_t *)(ResourceCountPointer + 4) = *(uint8_t *)(ResourceDataPointer[7] + ResourceHashCalculated * 8);
+      *(int **)(ResourceDataPointer[7] + ResourceHashCalculated * 8) = ResourceCountPointer;
       ResourceDataPointer[9] = ResourceDataPointer[9] + 1;
 ResourceCleanupHandler:
-      PointerStack18 = *(int64_t **)(presourceCount + 2);
-      presourceCount[2] = 0;
-      presourceCount[3] = 0;
-      if (PointerStack18 != (int64_t *)0x0) {
-        (**(code **)(*PointerStack18 + 0x38))();
+      ResourceCleanupPointer = *(int64_t **)(ResourceCountPointer + 2);
+      ResourceCountPointer[2] = 0;
+      ResourceCountPointer[3] = 0;
+      if (ResourceCleanupPointer != (int64_t *)0x0) {
+        (**(code **)(*ResourceCleanupPointer + 0x38))();
       }
-      ValidationCounter = integerValue6 + 1;
-      ResourceHash0 = (uint64_t)ValidationCounter;
-      ResourceHash1 = (int64_t)(int)ValidationCounter;
+      ValidationCounter = ProcessedIndexValue + 1;
+      ResourceHashInitial = (uint64_t)ValidationCounter;
+      ResourceHashCurrent = (int64_t)(int)ValidationCounter;
     } while ((uint64_t)(int64_t)(int)ValidationCounter < (uint64_t)ResourceDataPointer[9]);
   }
   ResourceContext = ResourceDataPointer + 6;
