@@ -3295,13 +3295,13 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
               }
               pMemoryAddress1 = (uint8_t *)AllocateSystemMemory(SystemMemoryAllocator,(longlong)LoopCounterValue,0x13);
               *pMemoryAddress1 = 0;
-              puStack_2c0 = pMemoryAddress1;
+              StackMemoryPointer = pMemoryAddress1;
               allocationSize = GetMemoryAllocationSize(pMemoryAddress1);
               StackProcessingBuffer1 = CONCAT44(StackProcessingBuffer1._4_4_,allocationSize);
               memcpy(pMemoryAddress1,pMemoryAddress7,LoopCounter9);
             }
           }
-          uStack_2b8 = 0;
+          StackUnsignedValue = 0;
           strstr(&SystemConstantStringPrimary,&SystemStringConstantA);
           strstr(&SystemConstantStringPrimary,&SystemStringConstantB);
           strstr(&SystemConstantStringPrimary,&SystemStringConstantC);
@@ -3331,9 +3331,9 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
           else {
             *(uint16_t *)(SystemDataPointer + 0x24) = 0;
           }
-          puStack_2c0 = (uint8_t *)0x0;
+          StackMemoryPointer = (uint8_t *)0x0;
           StackProcessingBuffer1 = StackProcessingBuffer1 & 0xffffffff00000000;
-          puStack_2c8 = &SystemBufferTemplate;
+          StackBufferPointer = &SystemBufferTemplate;
         }
         else if (systemMode == 0xb) {
           LoopCounterValue = strcmp(pMemoryAddress1,&SystemConfigModeString);
@@ -3388,7 +3388,7 @@ LabelValidateSpaceCharacter:
               ProcessBufferData(&StackBufferPointer3,&StackBufferPointer4,UnsignedIndex,BufferSize1);
               LoopCounterValue = StringProcessingLoopCounter;
               LoopCounter9 = 0;
-              StringSearchResult = strchr(puStack_1b0,0x2e);
+              StringSearchResult = strchr(StringProcessingBuffer,0x2e);
               if (StringSearchResult != 0) {
                 do {
                   LoopCounter9 = LoopCounter9 + 1;
@@ -3396,18 +3396,18 @@ LabelValidateSpaceCharacter:
                 } while (StringSearchResult != 0);
                 if ((LoopCounter9 == 3) && (LoopCounterValue - 7U < 9)) {
                   pMemoryAddress8 = &SystemConstantStringPrimary;
-                  if (puStack_1b0 != (void *)0x0) {
-                    pMemoryAddress8 = puStack_1b0;
+                  if (StringProcessingBuffer != (void *)0x0) {
+                    pMemoryAddress8 = StringProcessingBuffer;
                   }
                   (ExecuteSystemFunction10)
                             ((longlong *)(SystemDataPointer + 400),pMemoryAddress8);
                 }
               }
               StackBufferPointer4 = &SystemNullPointer;
-              if (puStack_1b0 != (void *)0x0) {
+              if (StringProcessingPointer != (void *)0x0) {
                 CleanupSystemResources();
               }
-              puStack_1b0 = (void *)0x0;
+              StringProcessingPointer = (void *)0x0;
               SystemMemoryStatusFlagA0 = 0;
               StackBufferPointer4 = &SystemBufferTemplate;
             }
@@ -3498,17 +3498,17 @@ Label_SecondSpaceFound:
                 BooleanCondition = false;
               }
               if (BooleanCondition) {
-                InitializeSystemBuffer(&puStack_1f8,pMemoryAddress7);
-                UnsignedIndex = InitializeDataBuffer(&puStack_1f8,&SystemCompatibilityModeString);
+                InitializeSystemBuffer(&StackDataBuffer,pMemoryAddress7);
+                UnsignedIndex = InitializeDataBuffer(&StackDataBuffer,&SystemCompatibilityModeString);
                 BufferSize1 = (ulonglong)(int)systemMode;
-                if (UnsignedIndex < uStack_1e8) {
-                  StringPointer = (char *)(lStack_1f0 + BufferSize1);
+                if (UnsignedIndex < StackValidationLimit) {
+                  StringPointer = (char *)(StackStringData + BufferSize1);
                   do {
                     if (*StringPointer == ' ') goto Label_CompatibilitySpaceFound;
                     UnsignedIndex = (int)BufferSize1 + 1;
                     BufferSize1 = (ulonglong)UnsignedIndex;
                     StringPointer = StringPointer + 1;
-                  } while (UnsignedIndex < uStack_1e8);
+                  } while (UnsignedIndex < StackValidationLimit);
                 }
                 BufferSize1 = 0xffffffff;
 Label_CompatibilitySpaceFound:
