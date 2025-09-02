@@ -25683,27 +25683,27 @@ uint8_t ResourceValidationHandler(int64_t ObjectContext,uint8_t *ValidationConte
       return 0x1c;
     }
     ResourceHash = *ValidationContext;
-    ValidationResult = ReadResourceData(ResourceHash,ObjectContext + 0x4c,4);
-    if ((((int)ValidationResult == 0) && (ValidationResult = ReadResourceData(ResourceHash,ObjectContext + 0x50,2), (int)ValidationResult == 0)) &&
-       (ValidationResult = ReadResourceData(ResourceHash,ObjectContext + 0x52,2), (int)ValidationResult == 0)) {
-      ValidationResult = ReadResourceData(ResourceHash,ObjectContext + 0x54,8);
+    HashValidationResult = ReadResourceData(ResourceHash,ObjectContext + 0x4c,4);
+    if ((((int)HashValidationResult == 0) && (HashValidationResult = ReadResourceData(ResourceHash,ObjectContext + 0x50,2), (int)HashValidationResult == 0)) &&
+       (HashValidationResult = ReadResourceData(ResourceHash,ObjectContext + 0x52,2), (int)HashValidationResult == 0)) {
+      HashValidationResult = ReadResourceData(ResourceHash,ObjectContext + 0x54,8);
     }
-    if ((int)ValidationResult == 0) {
+    if ((int)HashValidationResult == 0) {
       if (*(int *)(ResourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      ValidationResult = CalculateResourceHash(*ResourceData,ResourceContext + 0x48);
-      if ((int)ValidationResult == 0) {
+      HashValidationResult = CalculateResourceHash(*ResourceData,ResourceContext + 0x48);
+      if ((int)HashValidationResult == 0) {
         if (*(uint *)(ResourceData + 8) < 0x3d) {
-          ValidationResult = 0;
+          HashValidationResult = 0;
         }
         else if (*(int *)(ResourceData[1] + 0x18) == 0) {
-          ValidationResult = ProcessResourceHash(*ValidationContext,ObjectContext + 0x40);
+          HashValidationResult = ProcessResourceHash(*ValidationContext,ObjectContext + 0x40);
         }
         else {
-          ValidationResult = 0x1c;
+          HashValidationResult = 0x1c;
         }
-        if ((int)ValidationResult == 0) {
+        if ((int)HashValidationResult == 0) {
                     // WARNING: Subroutine does not return
           CleanupResourceData(ValidationContext,ResourceValidationBuffer);
         }
@@ -59999,7 +59999,16 @@ void Unwind_1809082c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908300(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册系统资源处理器
+ * 
+ * 该函数负责注册系统资源处理器，用于处理资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x80) + 0x108,8,0x20,ProcessResourceOperation);
