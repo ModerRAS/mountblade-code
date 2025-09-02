@@ -46965,66 +46965,75 @@ void* * FUN_18006a090(void* *SystemResourcePointer,ulong long ConfigurationDataP
 
 
 
-// 函数: void FUN_18006a130(long long SystemResourcePointer)
-void FUN_18006a130(long long SystemResourcePointer)
+/**
+ * @brief 系统资源初始化函数
+ * 
+ * 该函数负责初始化系统资源，包括内存分配、系统表初始化、
+ * 状态标志设置和异常处理配置。这是系统启动过程的核心初始化函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于访问系统资源数据
+ * 
+ * 原始函数名为FUN_18006a130，现已重命名为InitializeSystemResources
+ */
+void InitializeSystemResources(long long SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
-  char cVar2;
-  void* unsignedSystemValue3;
-  void* *punsignedSystemValue4;
-  void* *punsignedSystemValue5;
-  uint8_t auStack_278 [40];
-  long long *plStack_250;
-  int iStack_248;
-  char cStack_1fc;
-  void* uStack_98;
+  char SystemStatusFlag;
+  void* MemoryAllocationResult;
+  void* *SystemTablePointer;
+  void* *StringTemplatePointer;
+  uint8_t SystemConfigurationBuffer [40];
+  long long *ResourceDataPointer;
+  int SystemLogLevel;
+  char GraphicsStatusFlag;
+  void* ErrorModeValue;
   
-  uStack_98 = 0xfffffffffffffffe;
+  ErrorModeValue = 0xfffffffffffffffe;
   SetErrorMode(1);
-  cVar2 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-  if (cVar2 == '\0') {
+  SystemStatusFlag = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
+  if (SystemStatusFlag == '\0') {
     SetUnhandledExceptionFilter(&UNK_18006a030);
   }
-  unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x170,8,3);
-  SystemInitializationFlag = FUN_18006e870(unsignedSystemValue3);
-  FUN_18004c330(auStack_278);
-  unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,1000,8,3);
-  SystemStatusFlagsPointer = FUN_18004c480(unsignedSystemValue3);
+  MemoryAllocationResult = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x170,8,3);
+  SystemInitializationFlag = FUN_18006e870(MemoryAllocationResult);
+  FUN_18004c330(SystemConfigurationBuffer);
+  MemoryAllocationResult = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,1000,8,3);
+  SystemStatusFlagsPointer = FUN_18004c480(MemoryAllocationResult);
   InitializeSystemTables();
   ProcessSystemResourceAllocation();
   if ((*(char *)(SystemDataManagerPointer + 0x20) == '\0') && (*(char *)(SystemDataManagerPointer + 0x21) == '\0')) {
-    unsignedSystemValue3 = FUN_1808fc418(0x428);
-    plStack_250 = (long long *)FUN_18049d530(unsignedSystemValue3);
+    MemoryAllocationResult = FUN_1808fc418(0x428);
+    ResourceDataPointer = (long long *)FUN_18049d530(MemoryAllocationResult);
   }
   else {
-    plStack_250 = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x28,8,3);
-    *plStack_250 = (long long)&UNK_180a0e170;
-    *plStack_250 = (long long)&UNK_180a0e368;
-    plStack_250[4] = 0;
-    *(uint8_t *)(plStack_250 + 1) = 0;
-    plStack_250[2] = 0;
-    *(uint8_t *)(plStack_250 + 3) = 0;
-    PrimaryResourcePointer = (long long *)plStack_250[4];
-    plStack_250[4] = 0;
+    ResourceDataPointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x28,8,3);
+    *ResourceDataPointer = (long long)&UNK_180a0e170;
+    *ResourceDataPointer = (long long)&UNK_180a0e368;
+    ResourceDataPointer[4] = 0;
+    *(uint8_t *)(ResourceDataPointer + 1) = 0;
+    ResourceDataPointer[2] = 0;
+    *(uint8_t *)(ResourceDataPointer + 3) = 0;
+    PrimaryResourcePointer = (long long *)ResourceDataPointer[4];
+    ResourceDataPointer[4] = 0;
     if (PrimaryResourcePointer != (long long *)0x0) {
       (**(code **)(*PrimaryResourcePointer + 0x38))();
     }
   }
-  punsignedSystemValue5 = &SystemStringTemplate;
+  StringTemplatePointer = &SystemStringTemplate;
   if (*(void* **)(SystemResourcePointer + 200) != (void* *)0x0) {
-    punsignedSystemValue5 = *(void* **)(SystemResourcePointer + 200);
+    StringTemplatePointer = *(void* **)(SystemResourcePointer + 200);
   }
-  (**(code **)(*plStack_250 + 0x50))(plStack_250,punsignedSystemValue5);
-  (**(code **)(*plStack_250 + 0x60))(plStack_250,auStack_278);
-  if (cStack_1fc == '\0') {
-    iStack_248 = 0;
+  (**(code **)(*ResourceDataPointer + 0x50))(ResourceDataPointer,StringTemplatePointer);
+  (**(code **)(*ResourceDataPointer + 0x60))(ResourceDataPointer,SystemConfigurationBuffer);
+  if (GraphicsStatusFlag == '\0') {
+    SystemLogLevel = 0;
   }
   else if (SystemGraphicsFlag == '\0') {
-    iStack_248 = (SystemLogLevelPtr != '\0') + 2;
+    SystemLogLevel = (SystemLogLevelPtr != '\0') + 2;
   }
   else {
-    iStack_248 = 1;
+    SystemLogLevel = 1;
   }
   SystemMemoryBlockTertiary = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x28,8,3);
   *(void* *)(SystemMemoryBlockTertiary + 8) = 0;
@@ -47032,32 +47041,41 @@ void FUN_18006a130(long long SystemResourcePointer)
   *(void* *)(SystemMemoryBlockTertiary + 0x18) = 0;
   *(uint32_t *)(SystemMemoryBlockTertiary + 0x20) = 3;
   FUN_180162600();
-  punsignedSystemValue4 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x478,8,3);
-  *punsignedSystemValue4 = 0;
-  punsignedSystemValue4[1] = 0;
-  punsignedSystemValue4[2] = 0;
-  *(uint32_t *)(punsignedSystemValue4 + 3) = 3;
-  punsignedSystemValue4[4] = 0;
-  punsignedSystemValue4[5] = 0;
-  punsignedSystemValue4[6] = 0;
-  *(uint32_t *)(punsignedSystemValue4 + 7) = 3;
-  punsignedSystemValue4[8] = 0;
-  punsignedSystemValue4[9] = 0;
-  punsignedSystemValue4[10] = 0;
-  *(uint32_t *)(punsignedSystemValue4 + 0xb) = 3;
-  *(uint8_t *)(punsignedSystemValue4 + 0xc) = 0;
-  *(void* *)((long long)punsignedSystemValue4 + 100) = 0xffffffffffffffff;
-  *(uint32_t *)((long long)punsignedSystemValue4 + 0x6c) = 0;
-  *(void*2 *)(punsignedSystemValue4 + 0xe) = 0;
-  *(uint8_t *)((long long)punsignedSystemValue4 + 0x72) = 0;
-    memset((long long)punsignedSystemValue4 + 0x74,0,0x400);
+  SystemTablePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x478,8,3);
+  *SystemTablePointer = 0;
+  SystemTablePointer[1] = 0;
+  SystemTablePointer[2] = 0;
+  *(uint32_t *)(SystemTablePointer + 3) = 3;
+  SystemTablePointer[4] = 0;
+  SystemTablePointer[5] = 0;
+  SystemTablePointer[6] = 0;
+  *(uint32_t *)(SystemTablePointer + 7) = 3;
+  SystemTablePointer[8] = 0;
+  SystemTablePointer[9] = 0;
+  SystemTablePointer[10] = 0;
+  *(uint32_t *)(SystemTablePointer + 0xb) = 3;
+  *(uint8_t *)(SystemTablePointer + 0xc) = 0;
+  *(void* *)((long long)SystemTablePointer + 100) = 0xffffffffffffffff;
+  *(uint32_t *)((long long)SystemTablePointer + 0x6c) = 0;
+  *(void*2 *)(SystemTablePointer + 0xe) = 0;
+  *(uint8_t *)((long long)SystemTablePointer + 0x72) = 0;
+    memset((long long)SystemTablePointer + 0x74,0,0x400);
 }
 
 
 
 
-// 函数: void FUN_18006b220(long long SystemResourcePointer)
-void FUN_18006b220(long long SystemResourcePointer)
+/**
+ * @brief 系统资源配置函数
+ * 
+ * 该函数负责配置系统资源，设置全局数据引用和系统参数。
+ * 用于系统资源的初始化配置和参数设置。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于访问系统资源数据
+ * 
+ * 原始函数名为FUN_18006b220，现已重命名为ConfigureSystemResources
+ */
+void ConfigureSystemResources(long long SystemResourcePointer)
 
 {
   *(void* *)(SystemResourcePointer + 0xa0) = &SystemGlobalDataReference;
@@ -47141,8 +47159,18 @@ long long FUN_18006b350(long long *SystemResourcePointer,long long *Configuratio
 
 
 
-// 函数: void FUN_18006b440(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
-void FUN_18006b440(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
+/**
+ * @brief 系统数据缓冲区初始化函数
+ * 
+ * 该函数负责初始化系统数据缓冲区，设置缓冲区参数和配置数据。
+ * 用于系统数据缓冲区的初始化和配置。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于访问系统资源数据
+ * @param ConfigurationDataPointer 配置数据指针，包含缓冲区配置参数
+ * 
+ * 原始函数名为FUN_18006b440，现已重命名为InitializeSystemDataBuffer
+ */
+void InitializeSystemDataBuffer(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
 
 {
   char SystemNodeFlag;
@@ -47169,8 +47197,18 @@ void FUN_18006b440(long long SystemResourcePointer,uint32_t ConfigurationDataPoi
 
 
 
-// 函数: void FUN_18006b4c0(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
-void FUN_18006b4c0(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
+/**
+ * @brief 系统状态标志设置函数
+ * 
+ * 该函数负责设置系统状态标志，更新系统运行时状态。
+ * 用于系统状态管理和监控。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于访问系统资源数据
+ * @param ConfigurationDataPointer 配置数据指针，包含状态标志配置参数
+ * 
+ * 原始函数名为FUN_18006b4c0，现已重命名为SetSystemStatusFlags
+ */
+void SetSystemStatusFlags(long long SystemResourcePointer,uint32_t ConfigurationDataPointer)
 
 {
   char SystemNodeFlag;

@@ -45272,6 +45272,19 @@ void InitializeSystemResourceHandlersAB(uint8_t objectContext,int64_t validation
 
 
 
+/**
+ * @brief 处理资源哈希清理和验证
+ * 
+ * 该函数负责清理和验证资源哈希表，确保系统资源的完整性
+ * 主要功能包括：
+ * - 重置资源哈希指针
+ * - 清理系统资源处理程序
+ * - 验证资源哈希表状态
+ * - 处理紧急退出情况
+ * 
+ * @param objectContext 对象上下文，用于标识当前操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据和状态
+ */
 void ProcessResourceHashCleanupAndValidation(uint8_t objectContext,int64_t validationContext)
 
 {
@@ -45301,6 +45314,19 @@ void ProcessResourceHashCleanupAndValidation(uint8_t objectContext,int64_t valid
 
 
 
+/**
+ * @brief 初始化资源哈希和系统处理程序
+ * 
+ * 该函数负责初始化资源哈希表和系统资源处理程序
+ * 主要功能包括：
+ * - 设置资源哈希指针初始状态
+ * - 配置系统资源处理程序模板
+ * - 验证系统资源状态
+ * - 处理初始化过程中的异常情况
+ * 
+ * @param objectContext 对象上下文，用于标识当前操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据和状态
+ */
 void InitializeResourceHashAndSystemHandler(uint8_t objectContext,int64_t validationContext)
 
 {
@@ -45495,6 +45521,21 @@ void ExecuteResourceHashValidationCallbacks(uint8_t objectContext,int64_t valida
 
 
 
+/**
+ * @brief 执行资源哈希验证循环
+ * 
+ * 该函数负责执行资源哈希表的验证循环操作
+ * 主要功能包括：
+ * - 遍历资源哈希验证结果
+ * - 执行资源清理操作
+ * - 验证系统资源状态
+ * - 处理验证过程中的异常情况
+ * 
+ * @param objectContext 对象上下文，用于标识当前操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据和状态
+ * @param CleanupOption 清理选项，指定清理操作的方式
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ */
 void ExecuteResourceHashValidationLoop(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -45516,6 +45557,20 @@ void ExecuteResourceHashValidationLoop(uint8_t objectContext,int64_t validationC
 
 
 
+/**
+ * @brief 验证资源索引和哈希
+ * 
+ * 该函数负责验证资源索引和哈希值的有效性
+ * 主要功能包括：
+ * - 检查资源索引的有效性
+ * - 验证资源哈希值
+ * - 处理资源引用计数
+ * - 执行内存访问验证
+ * - 处理系统清理操作
+ * 
+ * @param objectContext 对象上下文，用于标识当前操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据和状态
+ */
 void ValidateResourceIndexAndHash(uint8_t objectContext,int64_t validationContext)
 
 {
@@ -45552,6 +45607,19 @@ void ValidateResourceIndexAndHash(uint8_t objectContext,int64_t validationContex
 
 
 
+/**
+ * @brief 清理资源内存标志
+ * 
+ * 该函数负责清理资源数据的内存标志位
+ * 主要功能包括：
+ * - 检查资源数据的内存标志状态
+ * - 清除指定的内存标志位
+ * - 执行系统内存清理操作
+ * - 处理内存访问异常情况
+ * 
+ * @param objectContext 对象上下文，用于标识当前操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据和状态
+ */
 void CleanupResourceMemoryFlags(uint8_t objectContext,int64_t validationContext)
 
 {
@@ -45564,6 +45632,19 @@ void CleanupResourceMemoryFlags(uint8_t objectContext,int64_t validationContext)
 
 
 
+/**
+ * @brief 根据标志释放系统资源
+ * 
+ * 该函数负责根据指定的标志位释放系统资源
+ * 主要功能包括：
+ * - 检查资源数据的标志位状态
+ * - 清除资源标志位
+ * - 释放对应的系统资源
+ * - 处理资源释放异常情况
+ * 
+ * @param objectContext 对象上下文，用于标识当前操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据和状态
+ */
 void ReleaseSystemResourceByFlag(uint8_t objectContext,int64_t validationContext)
 
 {
@@ -45576,6 +45657,19 @@ void ReleaseSystemResourceByFlag(uint8_t objectContext,int64_t validationContext
 
 
 
+/**
+ * @brief 释放次要系统资源
+ * 
+ * 该函数负责释放次要系统资源
+ * 主要功能包括：
+ * - 检查次要资源的标志位状态
+ * - 清除次要资源标志位
+ * - 释放对应的次要系统资源
+ * - 处理资源释放异常情况
+ * 
+ * @param objectContext 对象上下文，用于标识当前操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据和状态
+ */
 void ReleaseSecondarySystemResource(uint8_t objectContext,int64_t validationContext)
 
 {
@@ -45588,7 +45682,22 @@ void ReleaseSecondarySystemResource(uint8_t objectContext,int64_t validationCont
 
 
 
-void Unwind_180904f10(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理和验证
+ * 
+ * 该函数负责执行系统资源的清理和验证操作
+ * 主要功能包括：
+ * - 验证资源哈希表状态
+ * - 执行资源清理操作
+ * - 处理资源释放逻辑
+ * - 管理清理选项和标志
+ * 
+ * @param objectContext 对象上下文，用于标识当前操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据和状态
+ * @param CleanupOption 清理选项，指定清理操作的方式
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ */
+void ExecuteResourceCleanupWithValidation(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -45609,7 +45718,22 @@ void Unwind_180904f10(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904f20(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源哈希和清理
+ * 
+ * 该函数负责处理资源哈希表和清理操作
+ * 主要功能包括：
+ * - 遍历资源哈希验证结果
+ * - 执行资源清理操作
+ * - 验证系统资源状态
+ * - 处理清理过程中的异常情况
+ * 
+ * @param objectContext 对象上下文，用于标识当前操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据和状态
+ * @param CleanupOption 清理选项，指定清理操作的方式
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ */
+void ProcessResourceHashAndCleanup(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
