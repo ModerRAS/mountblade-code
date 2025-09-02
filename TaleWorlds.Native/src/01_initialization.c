@@ -52201,7 +52201,7 @@ LAB_180070b00:
     }
   }
   AllocateSystemMemoryBuffer(&pUnsignedStackFlag118,&pMemoryBufferAddress,&SystemProcessFlags58);
-  uStack_94 = 0;
+  SystemControlFlag = 0;
   uStack_11c = 0;
   pUnsignedStackFlag118 = &SystemGlobalDataReference;
   if (SystemDataPointer0 != (uint8_t *)0x0) {
