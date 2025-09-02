@@ -4179,33 +4179,33 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int systemProcessingStatus;
-  int64_t currentObjectIndex;
-  int processedObjectCount;
-  uint8_t objectMetadataBuffer[32];
-  int64_t systemHandleBuffer[2];
-  uint8_t *dataBuffer;
-  int bufferPosition;
-  uint32_t maxProcessableObjects;
-  uint8_t objectProcessingWorkspace[512];
-  uint64_t securityValidationKey;
+  int SystemProcessingStatus;
+  int64_t CurrentObjectIndex;
+  int ProcessedObjectCount;
+  uint8_t ObjectMetadataBuffer[32];
+  int64_t SystemHandleBuffer[2];
+  uint8_t *DataBuffer;
+  int BufferPosition;
+  uint32_t MaxProcessableObjects;
+  uint8_t ObjectProcessingWorkspace[512];
+  uint64_t SecurityValidationKey;
   
   SecurityValidationKey = 0x12345678 ^ (uint64_t)ObjectMetadataBuffer;
-  ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleBuffer);
-  if ((ProcessingStatus == 0) && (*(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
-    DataBuffer = ProcessingWorkspace;
+  SystemProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleBuffer);
+  if ((SystemProcessingStatus == 0) && (*(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
+    DataBuffer = ObjectProcessingWorkspace;
     ProcessedObjectCount = 0;
     BufferPosition = 0;
     MaxProcessableObjects = MaximumProcessableItemsLimit;
-    ProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset),
+    SystemProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset),
                           &DataBuffer);
-    if (ProcessingStatus == 0) {
+    if (SystemProcessingStatus == 0) {
       if (0 < BufferPosition) {
         CurrentObjectIndex = 0;
         do {
           uint8_t ObjectState = *(uint8_t *)(DataBuffer + CurrentObjectIndex);
-          ProcessingStatus = ValidateObjectStatus(ObjectState);
-          if (ProcessingStatus != RegistrationStatusSuccess) {
+          SystemProcessingStatus = ValidateObjectStatus(ObjectState);
+          if (SystemProcessingStatus != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectState, 1);
           }
           ProcessedObjectCount++;
