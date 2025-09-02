@@ -38090,7 +38090,7 @@ void CleanupSystemResourceHandlerSeptenary(uint8_t ObjectContext,int64_t Validat
  * @return 无返回值
  * @note 此函数用于资源上下文验证
  */
-void ValidateResourceContextAC0(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateResourceContextExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
