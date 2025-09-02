@@ -60118,23 +60118,34 @@ void InitializeSystemResourceManagerEx(long long ResourceManagerPointer)
 
 
 // 函数: void FUN_180079270(long long ResourceManagerPointer,long long ConfigurationDataPointer)
-void FUN_180079270(long long ResourceManagerPointer,long long ConfigurationDataPointer)
+/**
+ * @brief 系统资源配置处理函数
+ * 
+ * 该函数负责处理系统资源的配置和初始化，包括资源分配、
+ * 状态设置和数据传输等功能。这是系统资源管理的重要组成部分。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为FUN_180079270，现已重命名为ProcessSystemResourceConfiguration
+ */
+void ProcessSystemResourceConfiguration(long long ResourceManagerPointer,long long ConfigurationDataPointer)
 
 {
-  long long *PrimaryResourcePointer;
-  int *pointerToInteger2;
-  long long *plocalResourceOffset;
-  byte *pbVar4;
-  void* *pcurrentThreadId;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
+  long long *primaryResourcePointer;
+  int *systemCounterPointer;
+  long long *resourceOffsetPointer;
+  byte *systemDataPointer;
+  void* *threadIdPointer;
+  float scaleFactor1;
+  float scaleFactor2;
+  float scaleFactor3;
+  float scaleFactor4;
+  float scaleFactor5;
+  float scaleFactor6;
+  float scaleFactor7;
+  float scaleFactor8;
+  float scaleFactor9;
   uint8_t systemStatus5;
   char cVar16;
   long long nextDataIndex7;
