@@ -2203,14 +2203,14 @@ uint8_t ThreadManager;                   // 系统线程管理器
 uint8_t SecurityManager;                 // 系统安全管理器
 uint8_t NetworkManager;                  // 系统网络管理器
 uint8_t ResourceReferenceCounter;               // 资源引用计数器
-uint8_t ConfigDataThirteenth;            // 第13配置项
+uint8_t SystemConfigurationThirteenth;   // 第13系统配置项
 // 系统配置和资源管理变量
-uint8_t ConfigDataFourteenth;         // 第14配置项
-uint8_t ConfigDataFifteenth;          // 第15配置项
-uint8_t ConfigDataSixteenth;          // 第16配置项
-uint8_t MemoryConfigAlternateTwo;     // 备用配置2
-uint8_t ResourceManager;              // 系统资源管理器
-uint8_t EventHandlerSlot;             // 系统事件处理槽位
+uint8_t SystemConfigurationFourteenth;  // 第14系统配置项
+uint8_t SystemConfigurationFifteenth;   // 第15系统配置项
+uint8_t SystemConfigurationSixteenth;   // 第16系统配置项
+uint8_t SystemMemoryConfigAlternate;   // 系统内存备用配置
+uint8_t SystemResourceManagerInstance; // 系统资源管理器实例
+uint8_t SystemEventHandlerSlot;        // 系统事件处理槽位
 
  /**
  * @brief 初始化系统日志
@@ -4956,7 +4956,7 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
   uint8_t ResourceHash;
   int64_t StackContextPointer;
   
-  ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&StackContextPointer);
+  ResourceHash = ValidateObjectContext(*(uint32_t *)(ResourceHandleIdentifier + 0x10),&StackContextPointer);
   if ((int)ResourceHash != 0) {
     return ResourceHash;
   }
@@ -4988,7 +4988,7 @@ uint32_t ProcessSystemResource(void)
 
 {
   int64_t inputParameterValue;
-  int64_t loopCounter;
+  int64_t iterationCounter;
   int64_t localContextData;
   
   inputParameterValue = InputParameter;
@@ -5060,7 +5060,7 @@ uint64_t HandleResourceOperation(int64_t resourceHandle)
   int64_t ResourceContextTable;
   int64_t StackValidationContext;
   
-  ResourceValidationHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&StackValidationContext);
+  ResourceValidationHash = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x10),&StackValidationContext);
   if ((int)ResourceValidationHash != 0) {
     return ResourceValidationHash;
   }
@@ -28384,9 +28384,16 @@ SystemResourceCleanup:
 
 
 
- EmptySystemOperation(void)
-EmptySystemOperation(void)
-
+ /**
+ * @brief 空系统操作
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作
+ * 用于占位或作为默认的操作处理器
+ * 
+ * @return 无返回值
+ * @note 此函数通常用作默认的操作处理器
+ */
+void EmptySystemOperation(void)
 {
   return;
 }
@@ -28394,9 +28401,16 @@ EmptySystemOperation(void)
 
 
 
- NullOperationHandler(void)
-NullOperationHandler(void)
-
+ /**
+ * @brief 空操作处理器
+ * 
+ * 该函数是一个空操作处理器，不执行任何实际操作
+ * 用于占位或作为默认的处理器
+ * 
+ * @return 无返回值
+ * @note 此函数通常用作默认的处理器
+ */
+void NullOperationHandler(void)
 {
   return;
 }

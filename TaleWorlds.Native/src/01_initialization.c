@@ -42985,7 +42985,7 @@ ulong long ProcessAndManageSystemResources(void* ResourceManagerPointer)
     creationFlags = fwrite(SystemMemoryAllocationSize,1,(long long)SystemMemoryAllocationCount,SystemMemoryAllocationHandle);
     if (localSystemPointer != 0) {
       fclose(localSystemPointer);
-      lStack_70 = 0;
+      SystemMemoryAllocationHandle = 0;
       LOCK();
       creationFlags = (ulong long)SystemReferenceCounterStorage;
       UNLOCK();
@@ -60092,9 +60092,9 @@ void FUN_180078c70(uint32_t *ResourceManagerPointer,long long *ConfigurationData
 void InitializeSystemResourceManagerEx(long long ResourceManagerPointer)
 
 {
-  long long nextDataIndex;
-  long long localSystemHandle;
-  byte bVar3;
+  long long systemDataIndex;
+  long long systemResourceHandle;
+  byte systemConfigurationFlag;
   
   localSystemHandle = *(long long *)(ResourceManagerPointer + 0x210);
   *(uint32_t *)(ResourceManagerPointer + 0x1f8) = *(uint32_t *)(localSystemHandle + 0x10);
