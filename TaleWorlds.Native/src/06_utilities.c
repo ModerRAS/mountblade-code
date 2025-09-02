@@ -24063,49 +24063,49 @@ void ProcessObjectContextValidation(int64_t objectContext, uint8_t validationCon
 uint64_t ValidateResourceFileIntegrity(int64_t objectContext,uint8_t *validationContext)
 
 {
-  uint ResourceHash;
+  uint32_t ResourceHash;
   uint64_t ResourceValidationResult;
   uint64_t ValidationResult;
-  uint8_t resourceValidationBuffer [32];
-  uint8_t dataChecksumBuffer [32];
+  uint8_t ResourceValidationBuffer [32];
+  uint8_t DataChecksumBuffer [32];
   
-  validationResult = ComputeDataChecksum(validationContext,dataChecksumBuffer,1,0x46464550);
-  if (((((int)validationResult != 0) ||
-       (validationResult = ComputeDataChecksum(validationContext,resourceValidationBuffer,0,0x42464550), (int)validationResult != 0)) ||
-      (validationResult = ValidateResourceHash(validationContext,objectContext + 0x10), (int)validationResult != 0)) ||
-     ((*(uint *)(resourceData + 8) < 0x5b &&
-      (validationResult = ValidateResourceData(validationContext,objectContext + 0x44), (int)validationResult != 0)))) {
+  ValidationResult = ComputeDataChecksum(validationContext, DataChecksumBuffer, 1, 0x46464550);
+  if (((((int)ValidationResult != 0) ||
+       (ValidationResult = ComputeDataChecksum(validationContext, ResourceValidationBuffer, 0, 0x42464550), (int)ValidationResult != 0)) ||
+      (ValidationResult = ValidateResourceHash(validationContext, objectContext + 0x10), (int)ValidationResult != 0)) ||
+     ((*(uint *)(ResourceData + 8) < 0x5b &&
+      (ValidationResult = ValidateResourceData(validationContext, objectContext + 0x44), (int)ValidationResult != 0)))) {
     return ResourceValidationResult;
   }
   if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
-  resourceHash = GetResourceHash(*validationContext,objectContext + 0x60);
-  validationResult = (uint64_t)resourceHash;
-  if (resourceHash == 0) {
-    validationResult = 0x1c;
-    if (*(uint *)(resourceData + 8) < 0x36) {
-      validationStatusCode = 0;
+  ResourceHash = GetResourceHash(*validationContext, objectContext + 0x60);
+  ValidationResult = (uint64_t)ResourceHash;
+  if (ResourceHash == 0) {
+    ValidationResult = 0x1c;
+    if (*(uint *)(ResourceData + 8) < 0x36) {
+      ValidationStatusCode = 0;
     }
     else {
-      validationStatusCode = ResourceValidationResult;
-      if (*(int *)(resourceData[1] + 0x18) == 0) {
-        validationStatusCode = GetResourceHash(*validationContext,dataContext + 0x70);
+      ValidationStatusCode = ResourceValidationResult;
+      if (*(int *)(ResourceData[1] + 0x18) == 0) {
+        ValidationStatusCode = GetResourceHash(*validationContext, DataContext + 0x70);
       }
     }
     if ((int)ValidationResult != 0) {
       return ValidationResult;
     }
-    if (*(uint *)(resourceData + 8) < 0x3d) {
-      validationResult = 0;
+    if (*(uint *)(ResourceData + 8) < 0x3d) {
+      ValidationResult = 0;
     }
-    else if (*(int *)(resourceData[1] + 0x18) == 0) {
-      resourceHash = ProcessResourceHash(*validationContext,objectContext + 0x40);
-      validationResult = (uint64_t)resourceHash;
+    else if (*(int *)(ResourceData[1] + 0x18) == 0) {
+      ResourceHash = ProcessResourceHash(*validationContext, objectContext + 0x40);
+      ValidationResult = (uint64_t)ResourceHash;
     }
-    if ((int)validationResult == 0) {
+    if ((int)ValidationResult == 0) {
                     // WARNING: Subroutine does not return
-      CleanupResourceData(validationContext,resourceValidationBuffer);
+      CleanupResourceData(validationContext, ResourceValidationBuffer);
     }
   }
   return ResourceValidationResult;
@@ -24121,10 +24121,10 @@ uint64_t ValidateResourceFileIntegrity(int64_t objectContext,uint8_t *validation
 uint64_t GetResourceHashAndValidate(void)
 
 {
-  uint ResourceHash;
+  uint32_t ResourceHash;
   int64_t InputParameterValue;
   uint64_t ResourceValidationResult;
-  uint8_t *resourceContext;
+  uint8_t *ResourceContext;
   int64_t SystemContext;
   uint64_t ValidationResult;
   
