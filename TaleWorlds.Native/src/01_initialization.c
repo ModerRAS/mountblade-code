@@ -23694,7 +23694,24 @@ void* * GetSystemDataBufferTemplateG(void* *ResourceManagerPointer,ulong long Co
 
 
 
-// 函数: void InitializeGameSettings(long long ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 初始化游戏设置
+ * 
+ * 该函数负责初始化游戏的各种设置参数，包括：
+ * - 配置资源管理器参数
+ * - 处理配置数据指针
+ * - 设置附加参数和配置标志
+ * - 生成加密密钥用于数据保护
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，指向系统资源管理器
+ * @param ConfigurationDataPointer 配置数据指针，包含游戏配置信息
+ * @param AdditionalParameter 附加参数，用于额外的初始化配置
+ * @param ConfigurationFlag 配置标志，控制初始化过程的行为
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数是游戏初始化过程中的重要环节，确保游戏设置正确配置
+ */
 void InitializeGameSettings(long long ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
@@ -23703,31 +23720,32 @@ void InitializeGameSettings(long long ResourceManagerPointer,void* Configuration
   ulong long *HashNodePointer;
   long long bufferBaseAddress;
   uint64_t SystemInitializationFlag;
-  void* uStackX_20;
-  uint8_t aUnsignedStackFlag78 [32];
+  void* StackParameter1;
+  uint8_t EncryptionBuffer [32];
   void* processFlags58;
   void* *memoryAllocationEnd;
-  char arrayChar48 [32];
+  char ConfigurationBuffer [32];
   ulong long EncryptionKeyValue;
+  void* StackParameter2;
   
-  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)aUnsignedStackFlag78;
-  uStackX_18 = AdditionalParameter;
-  uStackX_20 = ConfigurationFlag;
+  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer;
+  StackParameter2 = AdditionalParameter;
+  StackParameter1 = ConfigurationFlag;
   HashNodePointer = (ulong long *)SystemGlobalDataAllocate();
   processFlags58 = 0;
-  memoryAllocationEnd = &uStackX_18;
-  __stdio_common_vsprintf(*HashNodePointer | 1,arrayChar48,0x20,ConfigurationDataPointer);
+  memoryAllocationEnd = &StackParameter2;
+  __stdio_common_vsprintf(*HashNodePointer | 1,ConfigurationBuffer,0x20,ConfigurationDataPointer);
   nextDataIndex = -1;
   do {
     bufferBaseAddress = nextDataIndex;
     nextDataIndex = bufferBaseAddress + 1;
-  } while (arrayChar48[bufferBaseAddress + 1] != '\0');
+  } while (ConfigurationBuffer[bufferBaseAddress + 1] != '\0');
   systemResult = (int)(bufferBaseAddress + 1);
   if ((0 < systemResult) && (*(uint *)(ResourceManagerPointer + 0x10) + systemResult < 0x1f)) {
-      memcpy((ulong long)*(uint *)(ResourceManagerPointer + 0x10) + *(long long *)(ResourceManagerPointer + 8),arrayChar48,
+      memcpy((ulong long)*(uint *)(ResourceManagerPointer + 0x10) + *(long long *)(ResourceManagerPointer + 8),ConfigurationBuffer,
            (long long)((int)bufferBaseAddress + 2));
   }
-    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)aUnsignedStackFlag78);
+    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)EncryptionBuffer);
 }
 
 
@@ -24757,7 +24775,7 @@ void* * SystemResourceComplexInitializer(void* *ResourceManagerPointer)
   uint32_t *newThreadLocalStorage;
   uint32_t *punsignedSystemValue9;
   long long allocationFlags;
-  void* *apuStackX_10 [3];
+  void* *ParameterStackArray [3];
   
   *(uint8_t *)((long long)ResourceManagerPointer + 0x1c) = 0;
   ResourceManagerPointer[2] = 0;
@@ -24857,7 +24875,7 @@ void* * SystemResourceComplexInitializer(void* *ResourceManagerPointer)
   ResourceManagerPointer[0x6c] = 0;
   ResourceManagerPointer[0x6a] = 0;
   *(uint32_t *)(ResourceManagerPointer + 0x6b) = 0;
-  apuStackX_10[0] = ResourceManagerPointer + 0x6d;
+  ParameterStackArray[0] = ResourceManagerPointer + 0x6d;
   *apuStackX_10[0] = &SystemMemoryAllocatorReference;
   ResourceManagerPointer[0x6e] = 0;
   *(uint32_t *)(ResourceManagerPointer + 0x6f) = 0;
@@ -25733,7 +25751,7 @@ void SystemResourceInitializer(void* resourceManagerPointer,void* memoryAllocati
   localResourceOffset = SystemMemoryManagerPointer;
   pEncryptionValue68 = &SystemGlobalDataReference;
   unsignedValue50 = 0;
-  lStack_60 = 0;
+  LocalMemoryBuffer = 0;
   processFlags58 = 0;
   if (*(int *)(SystemNodeManagerPointer + 0x1ea0) == 0) {
     systemStatus = *(uint *)(SystemMemoryManagerPointer + 0xe40);
