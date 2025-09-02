@@ -21368,7 +21368,7 @@ MemoryListTraversal:
   }
   else {
 SystemDataValidation:
-    if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto LAB_180048e74;
+    if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto SystemDataBufferValidation;
     if ((int)plocalBufferAddress[6] != 0) {
       pbVar5 = *(byte **)(SystemDataStructurePointer + 8);
       localDataPointer = plocalBufferAddress[5] - (long long)pbVar5;
@@ -21378,12 +21378,12 @@ SystemDataValidation:
         if (bVar1 != unsignedSystemValue6) break;
         pbVar5 = pbVar5 + 1;
       } while (unsignedSystemValue6 != 0);
-      if ((int)(bVar1 - unsignedSystemValue6) < 1) goto LAB_180048e74;
+      if ((int)(bVar1 - unsignedSystemValue6) < 1) goto SystemDataBufferValidation;
     }
   }
   ExecuteSystemNodeProcessing(SystemResourcePointer,&plStackX_8,plocalResourceOffset,0,SystemDataStructurePointer);
   plocalBufferAddress = plStackX_8;
-LAB_180048e74:
+SystemDataBufferValidation:
   *ConfigurationDataPointer = plocalBufferAddress;
   return ConfigurationDataPointer;
 }
