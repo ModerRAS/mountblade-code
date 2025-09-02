@@ -10229,14 +10229,14 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *resource
   uint8_t SecurityDataBuffer [32];
   uint32_t resourceFlagHigh;
   uint32_t resourceFlagLow;
-  uint32_t resourceFlagPart1;
-  uint32_t resourceFlagPart2;
-  uint32_t resourceFlagPart3;
-  uint32_t resourceFlagPart4;
-  uint32_t resourceFlagPart5;
-  uint32_t resourceFlagPart6;
-  uint32_t resourceFlagPart7;
-  uint32_t resourceFlagPart8;
+  uint32_t resourceFlagValidation;
+  uint32_t resourceFlagAccess;
+  uint32_t resourceFlagSecurity;
+  uint32_t resourceFlagStatus;
+  uint32_t resourceFlagControl;
+  uint32_t resourceFlagPriority;
+  uint32_t resourceFlagOwnership;
+  uint32_t resourceFlagPermissions;
   uint32_t ResourceValidationFlag;
   uint32_t ResourceAccessFlag;
   uint32_t ResourceSecurityFlag;
@@ -12565,8 +12565,8 @@ int ProcessDataBlockOperationWithSimplifiedValidator(int64_t objectContext,int64
   uint32_t ResourceHashValidationResult;
   int ValidationStatusCode;
   int ResultRecordIndex;
-  int stringProcessingResult1;
-  int stringProcessingResult2;
+  int primaryStringProcessingResult;
+  int secondaryStringProcessingResult;
   int dataParsingResult;
   int dataHashValidationResult;
   
