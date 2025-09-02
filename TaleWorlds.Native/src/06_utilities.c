@@ -56771,7 +56771,18 @@ void ValidateResourceTableIntegrityB(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_180906f20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表中的主资源上下文
+ * 
+ * 该函数负责在异常处理时清理资源表中的主资源上下文
+ * 通过调用资源上下文的清理函数来释放资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源表信息
+ * @return 无返回值
+ * @note 此函数是异常处理的一部分，用于资源清理
+ */
+void CleanupPrimaryResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -56791,7 +56802,18 @@ void Unwind_180906f20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906f30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理辅助资源上下文
+ * 
+ * 该函数负责在异常处理时清理辅助资源上下文
+ * 通过调用资源上下文的清理函数来释放资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源表信息
+ * @return 无返回值
+ * @note 此函数是异常处理的一部分，用于资源清理
+ */
+void CleanupSecondaryResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
