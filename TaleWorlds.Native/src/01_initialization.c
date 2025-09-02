@@ -25374,7 +25374,7 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
   void* *pointerUnsigned238;
   long long longValue230;
   uint unsignedValue228;
-  uint32_t uStack_220;
+  uint32_t unsignedValue220;
   void* *SystemStringTemplatePtr;
   long long lStack_210;
   uint unsignedValue208;
@@ -41531,7 +41531,7 @@ void StartInputSystem(void* ResourceManagerPointer,long long ConfigurationDataPo
   void* *pointerUnsigned238;
   uint8_t auStack_230 [8];
   long long lStack_228;
-  uint uStack_220;
+  uint unsignedValue220;
   long long lStack_210;
   uint8_t aunsignedValue208 [80];
   void* uStack_1b8;
@@ -41564,8 +41564,8 @@ void StartInputSystem(void* ResourceManagerPointer,long long ConfigurationDataPo
   puStack_1a8 = &SystemMemoryAllocatorReference;
   ExecuteSystemConfigurationUpdate(SystemStatusFlagsPointer + 0x170,auStack_230,&SystemConfigurationData);
   if (0 < *(int *)(ConfigurationDataPointer + 0x10)) {
-    ExecuteSystemCommand(auStack_230,uStack_220 + *(int *)(ConfigurationDataPointer + 0x10));
-      memcpy((ulong long)uStack_220 + lStack_228,*(void* *)(ConfigurationDataPointer + 8),
+    ExecuteSystemCommand(auStack_230,unsignedValue220 + *(int *)(ConfigurationDataPointer + 0x10));
+      memcpy((ulong long)unsignedValue220 + lStack_228,*(void* *)(ConfigurationDataPointer + 8),
            (long long)(*(int *)(ConfigurationDataPointer + 0x10) + 1));
   }
   InitializeSystemMemoryPool(aunsignedValue208,auStack_230);
