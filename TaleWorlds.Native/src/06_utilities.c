@@ -57670,7 +57670,16 @@ void ExecuteSystemResourceManagementCallback(uint8_t ObjectContext,int64_t Valid
 
 
 
-void Unwind_1809071b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 提交资源事务
+ * 
+ * 该函数负责提交资源事务，确保资源的变更被正确应用
+ * 在验证上下文中执行事务提交操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CommitResourceTransactionHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   CommitResourceTransaction(ValidationContext + 0x38);
@@ -57765,7 +57774,16 @@ void Unwind_180907200(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907210(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查线程紧急退出条件三级扩展版本
+ * 
+ * 该函数负责检查线程的紧急退出条件三级扩展版本
+ * 在验证上下文中检查特定偏移量的紧急退出条件
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CheckThreadEmergencyExitConditionTertiaryExtended(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x90) != 0) {
@@ -57776,12 +57794,21 @@ void Unwind_180907210(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907230(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统资源句柄并检查紧急退出条件
+ * 
+ * 该函数负责释放系统资源句柄并检查紧急退出条件
+ * 在验证上下文中执行资源释放和紧急退出条件检查
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ReleaseSystemResourceHandleAndCheckEmergencyExit(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t ResourceContext;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x20);
+  ResourceContext = *(int64_t *)(ValidationContext + 0x20);
   ReleaseSystemResourceHandle(*(uint8_t *)(SystemContextPointer + 0xb0));
   *(uint8_t *)(SystemContextPointer + 0xb0) = 0;
   if (*(int64_t *)(SystemContextPointer + 0xb8) != 0) {
@@ -57873,7 +57900,16 @@ void CheckSystemQueueEmergencyExitCondition(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_1809072a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查系统堆栈紧急退出条件
+ * 
+ * 该函数负责检查系统堆栈状态是否需要执行紧急退出
+ * 验证系统堆栈上下文中的特定状态，必要时调用紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CheckSystemStackEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x90) != 0) {
@@ -57884,7 +57920,16 @@ void Unwind_1809072a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809072c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统资源句柄并检查紧急退出
+ * 
+ * 该函数负责释放系统资源句柄并检查是否需要执行紧急退出
+ * 首先释放资源句柄，然后验证系统状态，必要时调用紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ReleaseSystemResourceHandleAndCheckEmergencyExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -57901,7 +57946,16 @@ void Unwind_1809072c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809072e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查系统注册表紧急退出条件
+ * 
+ * 该函数负责检查系统注册表状态是否需要执行紧急退出
+ * 验证系统注册表上下文中的特定状态，必要时调用紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CheckSystemRegistryEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0xd0) != 0) {
@@ -57912,7 +57966,16 @@ void Unwind_1809072e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907300(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文回调函数
+ * 
+ * 该函数负责执行验证上下文中的回调函数
+ * 检查验证上下文中的函数指针并调用相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteValidationContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x20) != (int64_t *)0x0) {
@@ -57923,7 +57986,16 @@ void Unwind_180907300(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907310(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文系统数据结构指针
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构的指针
+ * 将系统数据结构的地址存储到验证上下文的指定位置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetValidationContextSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x130) = &SystemDataStructure;
@@ -57932,7 +58004,16 @@ void Unwind_180907310(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907320(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文系统数据结构指针扩展版本
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构的指针的扩展版本
+ * 将系统数据结构的地址存储到验证上下文的指定位置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetValidationContextSystemDataStructurePointerExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x130) = &SystemDataStructure;
@@ -57941,7 +58022,16 @@ void Unwind_180907320(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907330(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放SRW锁独占访问
+ * 
+ * 该函数负责释放SRW锁的独占访问权限
+ * 检查验证上下文中的锁状态，必要时释放锁资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ReleaseSRWLockExclusiveAccess(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 0x30) != '\0') {
