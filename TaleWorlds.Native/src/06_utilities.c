@@ -13452,7 +13452,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
                 StackVariable1b8 = 0;
                 StackPointer1c0 = &SystemResourceTemplateNetwork;
                 StackVariable1b0 = StackVariable1c8;
-                GetAndValidateResourceData(objectContext,&puStack_1c0);
+                GetAndValidateResourceData(objectContext,&StackPointer1c0);
               }
             }
           }
@@ -13477,7 +13477,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
 void BufferValidationErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(ResourceFlag9 ^ (uint64_t)auStack_1e8);
+  FinalizeSecurityOperation(ResourceFlag9 ^ (uint64_t)StackArray1e8);
 }
 
 
@@ -14237,7 +14237,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *objectContext,int64_t validati
   int tableEntry;
   int integerValue6;
   int ValidationStatus;
-  uint8_t auStack_2a8 [32];
+  uint8_t StackArray2a8 [32];
   uint32_t dataChecksumBuffer8 [2];
   uint8_t *puStack_280;
   uint32_t uStack_278;
