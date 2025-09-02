@@ -38046,9 +38046,9 @@ void ReleaseSystemResourceSemaphore(long long SystemResourcePointer,long long *C
   
   systemConfigurationFlag = 0xfffffffffffffffe;
   (**(code **)(*(long long *)*ConfigurationDataPointer + 0x78))();
-  systemHandle = FUN_18005eb80(SystemResourcePointer + 0x2e0);
+  systemHandle = CreateSystemResourceHandle(SystemResourcePointer + 0x2e0);
   if (systemHandle != 0) {
-    FUN_18005f220(systemHandle,ConfigurationDataPointer);
+    ConfigureSystemResourceHandle(systemHandle,ConfigurationDataPointer);
   }
   do {
     systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x70),1,0,ConfigurationFlag,systemConfigurationFlag);
@@ -38085,7 +38085,7 @@ void* * CreateSystemResourceHandle(long long SystemResourcePointer,void* Configu
   InitializeSystemMemoryContext(systemResourceHandle,ConfigurationDataPointer,3,SystemResourcePointer + 0x2e0,SystemResourcePointer + 0x70);
   *systemResourceHandle = &SystemValueReference;
   systemHandleRef = systemResourceHandle;
-  FUN_18020e840(systemResourceHandle);
+  ProcessSystemResourceHandle(systemResourceHandle);
   InitializeSystemHandle(SystemResourcePointer + 0x48,&systemHandleRef);
   return systemResourceHandle;
 }
