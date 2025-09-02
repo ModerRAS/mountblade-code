@@ -7,16 +7,16 @@
 #define RegistrationStatusOffset 0xe4
 #define RegistrationArrayOffset 0x4d8
 #define RegistrationSizeOffset 0x4e4
-#define REGISTRATION_CAPACITY_OFFSET 0x4e8
-#define REGISTRATION_COUNT_OFFSET 0x4e0
-#define REGISTRATION_VALIDATION_DATA_OFFSET 0x368
-#define INVALID_REGISTRATION_STATUS -1
-#define REGISTRATION_ARRAY_INITIAL_SIZE 8
-#define REGISTRATION_ARRAY_GROWTH_FACTOR 1.5
+#define RegistrationCapacityOffset 0x4e8
+#define RegistrationCountOffset 0x4e0
+#define RegistrationValidationDataOffset 0x368
+#define InvalidRegistrationStatus -1
+#define RegistrationArrayInitialSize 8
+#define RegistrationArrayGrowthFactor 1.5
 
 // 错误码定义
-#define ERROR_INVALID_OBJECT_HANDLE 0x1c
-#define ERROR_INVALID_REGISTRATION_DATA 0x1f
+#define ErrorInvalidObjectHandle 0x1c
+#define ErrorInvalidRegistrationData 0x1f
 
 /**
  * @brief 初始化模块依赖关系
@@ -3235,20 +3235,20 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   uint64_t securityKey;
   
   securityKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  operationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
-  if ((operationStatus == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
+  OperationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
+  if ((OperationStatus == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
     GameObjectDataList = ObjectProcessingWorkspace;
     TotalProcessedObjects = 0;
     listIndex = 0;
     maxItems = 0xffffffc0;
-    operationStatus = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
+    OperationStatus = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
                           &GameObjectDataList);
-    if (operationStatus == 0) {
+    if (OperationStatus == 0) {
       if (0 < listIndex) {
         currentObjectPtr = 0;
         do {
           objectStatus = *(uint8_t *)(GameObjectDataList + currentObjectPtr);
-          operationStatus = ValidateObjectStatus(objectStatus);
+          OperationStatus = ValidateObjectStatus(objectStatus);
           if (operationStatus != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidObject(objectStatus, 1);
@@ -5615,7 +5615,7 @@ void ProcessSystemDataPacketTransmission(int64_t packetHandle, int64_t transmiss
 void ProcessSystemObjectLifecycle(int64_t objectHandle, int64_t lifecycleConfig)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   
   validationStatus = ProcessResourceValidationCheck(*(uint8_t *)(lifecycleConfig + 0x78),*(uint32_t *)(objectHandle + 0x10));
   if (validationStatus == 0) {
@@ -5893,7 +5893,7 @@ void ValidateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedule
 void ValidateObjectStateAndDispatchB(int64_t ObjectContext, int64_t schedulerContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   uint8_t validationBuffer;
   
   if (*(int *)(ObjectContext + 0x2c) == 0) {
@@ -6091,7 +6091,7 @@ uint8_t ActivateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t sched
 void SetObjectContextByte29(int64_t ObjectContext, int64_t processContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int64_t contextBuffer;
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&contextBuffer);
@@ -6118,7 +6118,7 @@ void SetObjectContextByte29(int64_t ObjectContext, int64_t processContext)
 void SetObjectContextByte28(int64_t ObjectContext, int64_t processContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int64_t contextBuffer;
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&contextBuffer);
@@ -6209,7 +6209,7 @@ uint8_t ValidateAndClearObjectState(int64_t ObjectContext, int64_t SystemContext
 void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int newCapacity;
   int64_t newBufferPointer;
   int64_t bufferOffset;
@@ -6285,7 +6285,7 @@ ErrorHandler:
 void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int bufferSize;
   int64_t newBufferPointer;
   int64_t bufferOffset;
@@ -6590,7 +6590,7 @@ void ValidateObjectContextAndUpdateStatus(int64_t ObjectContext, int64_t SystemC
 void ValidateAndProcessSystemStatusData(void)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int64_t systemBasePointer;
   int64_t systemStatusPointer;
   uint8_t systemParameter;
@@ -6647,7 +6647,7 @@ void ProcessObjectContextRelease(int64_t ObjectHandle, int64_t SystemContext)
 void ProcessObjectContextRelease(int64_t ObjectHandle, int64_t SystemContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   uint8_t contextBuffer;
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandle + 0x10), &contextBuffer);
@@ -6676,7 +6676,7 @@ void ProcessObjectContextRelease(int64_t ObjectHandle, int64_t SystemContext)
 void ProcessObjectValidation(int64_t ObjectContext, int64_t SystemContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   uint8_t validationBuffer [8];
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), validationBuffer);
@@ -6867,7 +6867,7 @@ uint64_t ValidateSystemDataBufferContext(void)
 
 {
   int64_t bufferDataPointer;
-  int validationStatus;
+  int ValidationStatus;
   uint8_t operationResult;
   uint8_t *stringPointer;
   uint iterationCounter;
@@ -6944,7 +6944,7 @@ void ExecuteSystemSecondaryOperation(void)
 void ValidateBufferContextAndProcess(void)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int64_t SystemContext;
   
   validationStatus = ValidateBufferContext();
@@ -7036,7 +7036,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
 
 {
   int64_t objectDataPointer;
-  int validationStatus;
+  int ValidationStatus;
   int64_t allocatedMemory;
   int64_t *pointerReference;
   uint8_t securityBuffer [32];
@@ -7282,7 +7282,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
 void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, int64_t SystemContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int64_t objectPropertyPointer;
   uint8_t stackBuffer;
   
@@ -8122,7 +8122,7 @@ uint8_t GetObjectInvalidStatusConstant(void)
 void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t operationHandle)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int64_t objectSize;
   uint64_t allocationSize;
   bool isZeroSize;
@@ -8168,7 +8168,7 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t ope
 void UpdateSystemConfigurationAndExecute(int64_t configObject, int64_t SystemContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int64_t configOffset;
   uint8_t configBuffer;
   
@@ -8430,7 +8430,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t objectConte
 void ProcessObjectContextValidationAndIncrement(int64_t objectContext,int64_t validationContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int64_t contextPointer;
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&contextPointer);
@@ -8461,7 +8461,7 @@ void ProcessObjectContextValidationAndIncrement(int64_t objectContext,int64_t va
 void ProcessObjectContextValidationAndReset(int64_t objectContext,int64_t validationContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   int64_t contextPointer;
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&contextPointer);
@@ -8617,7 +8617,7 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t objectContext, int
 void ValidateAndProcessBufferContext(int64_t objectContext,int64_t validationContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   uint8_t bufferContext;
   
   ResourceIndex = ProcessSchedulerValidation(validationContext,objectContext + 0x10,&ValidationContext);
@@ -9066,7 +9066,7 @@ void ProcessObjectContextFloatRangeValidationAndClamping(void)
 {
   float inputValue;
   uint32_t validationRegister;
-  int validationStatus;
+  int ValidationStatus;
   uint32_t parameterRegister;
   int64_t contextPointer;
   int64_t systemPointer;
@@ -9343,7 +9343,7 @@ void ProcessFloatRangeClamping(void)
   float calculatedFloatResult;
   uint8_t *pResourceValidationResult;
   uint32_t InputRegisterLow;
-  int validationStatus;
+  int ValidationStatus;
   uint32_t InputRegisterHigh;
   int64_t resourceContext;
   int64_t SavedRegisterValue;
@@ -10261,7 +10261,7 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext,uint8_t C
 {
   int64_t *processPointer;
   uint ResourceValidationResult;
-  int validationStatus;
+  int ValidationStatus;
   int64_t *contextPointer;
   int EntryCounter;
   uint configurationFlags;
@@ -10870,7 +10870,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
 {
   int64_t loopCounter;
   char CharacterFlag;
-  int validationStatus;
+  int ValidationStatus;
   int ResultIndex;
   int64_t InputRegisterValue;
   int64_t MemoryRegion;
@@ -11567,7 +11567,7 @@ void PerformNoOperation(void)
 uint32_t ValidateAndGetBufferContext(uint8_t bufferContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   uint32_t contextBuffer [6];
   
   contextBuffer[0] = 0;
@@ -12304,7 +12304,7 @@ int ProcessDataBlockOperationWithBasicValidator(int64_t objectContext,int64_t va
 {
   uint32_t resourceHash;
   int OperationResult;
-  int validationStatus;
+  int ValidationStatus;
   
   resourceHash = *(uint32_t *)(objectContext + 0x14);
   operationStatusCode = ParseDataContent(validationContext,validationFlag,*(uint32_t *)(objectContext + 0x10));
@@ -12331,7 +12331,7 @@ int ProcessDataBlockOperationWithExtendedValidator(int64_t objectContext,int64_t
 {
   uint8_t resourceHash;
   int OperationResult;
-  int validationStatus;
+  int ValidationStatus;
   
   resourceHash = *(uint8_t *)(objectContext + 0x10);
   operationStatusCode = ProcessStringOperation(validationContext,validationFlag,&StringOperationTemplate);
@@ -12358,7 +12358,7 @@ int ProcessDataBlockOperationWithSimplifiedValidator(int64_t objectContext,int64
 {
   uint32_t resourceHash;
   uint32_t ResourceValidationResult;
-  int validationStatus;
+  int ValidationStatus;
   int ResultIndex;
   int stringProcessingResult1;
   int stringProcessingResult2;
@@ -12417,7 +12417,7 @@ void ProcessComplexResourceOperation(uint8_t objectContext,int64_t validationCon
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int validationStatus;
+  int ValidationStatus;
   int ResultIndex;
   int tableEntry;
   uint8_t **ppContextValidationResult;
@@ -14195,7 +14195,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *objectContext,int64_t validati
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int validationStatus;
+  int ValidationStatus;
   int ResultIndex;
   int tableEntry;
   int integerValue6;
@@ -14769,7 +14769,7 @@ ResourceProcessingComplete:
 {
   int OperationResult;
   int OperationResult;
-  int validationStatus;
+  int ValidationStatus;
   int ResultIndex;
   uint ResourceContextOffset;
   int integerValue6;
@@ -15006,7 +15006,7 @@ uint64_t BinarySearchInArray(int64_t ArrayData,uint *SearchKey,uint8_t SearchCon
 {
   uint ResourceHash;
   int64_t resourceTable;
-  int validationStatus;
+  int ValidationStatus;
   int ResultIndex;
   uint8_t ResourceContextOffset;
   uint *pContextValidationResult;
@@ -15343,7 +15343,7 @@ uint32_t ValidateResourceHashIndex(uint8_t objectContext,uint64_t validationCont
 {
   uint8_t resourceHash;
   int OperationResult;
-  int validationStatus;
+  int ValidationStatus;
   uint LoopIncrement;
   uint8_t *resourcePointer5;
   uint8_t *pContextValidationResult;
@@ -16711,7 +16711,7 @@ uint8_t ProcessResourceTableEntries(int64_t objectContext, int64_t *validationCo
 {
   uint8_t *presourceHash;
   int OperationResult;
-  int validationStatus;
+  int ValidationStatus;
   int64_t resourceContext;
   int64_t ExecutionContextPointer;
   uint LoopIncrement;
@@ -16868,7 +16868,7 @@ uint8_t ProcessResourceTableEntries(int64_t objectContext, int64_t *validationCo
 {
   uint ResourceHash;
   uint8_t *pResourceValidationResult;
-  int validationStatus;
+  int ValidationStatus;
   int ResultIndex;
   int64_t resourceContext;
   int64_t ExecutionContextPointer;
@@ -17088,7 +17088,7 @@ uint8_t ProcessResourceDataNormalization(int64_t resourceContext, int64_t dataPo
 {
   uint8_t resourceHash;
   float *ValidationFloatPointer;
-  int validationStatus;
+  int ValidationStatus;
   float SecondaryFloatValue;
   uint16_t ArrayUnionStackX8 [4];
   
@@ -17156,7 +17156,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
   float *ValidationFloatPointer;
   int64_t ExecutionContextPointer;
   int64_t systemContext;
-  int validationStatus;
+  int ValidationStatus;
   float SecondaryFloatValue;
   uint16_t StackVariable70;
   
@@ -17266,7 +17266,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
 {
   uint ResourceHash;
   int OperationResult;
-  int validationStatus;
+  int ValidationStatus;
   uint8_t loopCondition;
   uint8_t ValidationContext;
   
@@ -17774,7 +17774,7 @@ uint8_t ProcessResourceConfigurationData(int64_t configContext, uint32_t *config
 {
   int OperationResult;
   uint8_t validationResult;
-  int validationStatus;
+  int ValidationStatus;
   uint8_t ValidationContext;
   
   ValidationContext = CONCAT44(ValidationContext._4_4_,*validationContext);
@@ -17822,7 +17822,7 @@ uint8_t ProcessResourceOperation(uint8_t *resourceHandle, uint8_t operationParam
 {
   int OperationResult;
   uint8_t validationResult;
-  int validationStatus;
+  int ValidationStatus;
   int64_t systemContext;
   int iStack0000000000000030;
   
@@ -17952,7 +17952,7 @@ uint64_t ValidateResourceHash(int64_t resourceContext, uint8_t *resourceData)
 {
   uint64_t resourceHash;
   int64_t resourceTable;
-  int validationStatus;
+  int ValidationStatus;
   int ResultIndex;
   uint *resourcePointer5;
   int SystemCommandArray [2];
@@ -18033,7 +18033,7 @@ uint64_t ProcessResourceValidation(void)
 {
   uint64_t resourceHash;
   int64_t resourceTable;
-  int validationStatus;
+  int ValidationStatus;
   int RegisterValidationCounter;
   int64_t systemContext;
   uint *RegisterContext;
@@ -19060,7 +19060,7 @@ void PerformNoOperation(void)
 void ValidateAndProcessObjectContextData(int64_t objectContext, uint8_t validationContext)
 
 {
-  int validationStatus;
+  int ValidationStatus;
   uint8_t dataChecksumBuffer [32];
   
   validationStatus = ComputeDataChecksum(validationContext,dataChecksumBuffer,0,0x4f525443);
@@ -19435,7 +19435,7 @@ void ProcessLocalContextPointer(void)
 
 {
   int64_t *processPointer;
-  int validationStatus;
+  int ValidationStatus;
   int64_t *registerPointer;
   int64_t destinationPointer;
   char stackParameter;
@@ -20513,7 +20513,7 @@ ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int ProcessF
 {
   uint ResourceHash;
   int OperationResult;
-  int validationStatus;
+  int ValidationStatus;
   uint LoopIncrement;
   uint ResourceContextOffset;
   int64_t MemoryAddress;
@@ -26084,7 +26084,7 @@ uint64_t ProcessResourceValidationAndMemoryAllocation(void)
 {
   uint32_t resourceHash;
   uint ResourceValidationResult;
-  int validationStatus;
+  int ValidationStatus;
   uint64_t loopIncrement;
   int64_t MemoryRegion;
   uint32_t *pContextValidationResult;
@@ -50142,7 +50142,19 @@ void ConfigureSystemDataStructure(uint8_t objectContext,int64_t validationContex
 
 
 
-void Unwind_1809067a0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 设置资源哈希表003
+ * 
+ * 该函数负责设置资源哈希表003的指针配置
+ * 将验证上下文中的指定位置指向资源哈希表003
+ * 
+ * @param objectContext 对象上下文，标识当前操作的对象
+ * @param validationContext 验证上下文，包含资源管理的相关信息
+ * @return 无返回值
+ * @note 此函数用于初始化资源哈希表003的配置
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void SetupResourceHashTable003(uint8_t objectContext, int64_t validationContext)
 
 {
   **(uint8_t **)(validationContext + 0xa0) = &ResourceHashTable003;
@@ -91448,7 +91460,7 @@ void ReleaseResourceReferenceWithParameter(void)
 {
   int64_t *processPointer;
   int *pOperationResult;
-  int validationStatus;
+  int ValidationStatus;
   int64_t DataOffset;
   int64_t *resourceContext;
   
@@ -91508,7 +91520,7 @@ void InitializeSystemDataStructureCM(void)
 {
   int64_t *processPointer;
   int *pOperationResult;
-  int validationStatus;
+  int ValidationStatus;
   int64_t DataOffset;
   int64_t *pResourceTablePointer;
   
@@ -91551,7 +91563,7 @@ void InitializeSystemDataStructureCN(void)
 {
   int64_t *processPointer;
   int *pOperationResult;
-  int validationStatus;
+  int ValidationStatus;
   int64_t DataOffset;
   int64_t *resourceContext;
   
@@ -91605,7 +91617,7 @@ void ExecuteReferenceCountDecrementAndCleanup(void)
 {
   int64_t *processPointer;
   int *pOperationResult;
-  int validationStatus;
+  int ValidationStatus;
   int64_t DataOffset;
   int64_t *pResourceTablePointer;
   
@@ -91648,7 +91660,7 @@ void InitializeSystemDataStructureCP(void)
 {
   int64_t *processPointer;
   int *pOperationResult;
-  int validationStatus;
+  int ValidationStatus;
   int64_t DataOffset;
   int64_t *resourceContext;
   
