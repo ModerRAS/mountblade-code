@@ -10045,55 +10045,55 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
 
 
  void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationContext,int64_t *ResourceIndexOutput)
-void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationContext,int64_t *ResourceIndexOutput)
+void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationContext,int64_t *resourceIndexOutput)
 
 {
   int64_t *processPointer;
-  int ProcessingResult;
-  int64_t ResourceIndex;
-  uint8_t SecurityDataBuffer [32];
-  uint ResourceFlagByte1;
-  uint ResourceFlagByte2;
-  uint ResourceFlagByte3;
-  uint ResourceFlagByte4;
-  uint ResourceFlagByte5;
-  uint ResourceFlagByte6;
-  uint ResourceFlagByte7;
-  uint ResourceFlagByte8;
-  uint ResourceValidationFlag9;
-  uint ResourceFlagSecondary2;
+  int processingResult;
+  int64_t resourceIndex;
+  uint8_t securityDataBuffer [32];
+  uint resourceFlagByte1;
+  uint resourceFlagByte2;
+  uint resourceFlagByte3;
+  uint resourceFlagByte4;
+  uint resourceFlagByte5;
+  uint resourceFlagByte6;
+  uint resourceFlagByte7;
+  uint resourceFlagByte8;
+  uint resourceValidationFlag9;
+  uint resourceFlagSecondary2;
   uint32_t validationParameter;
   uint validationParameterSecondary;
   uint validationParameterTertiary;
   uint validationParameterQuaternary;
-  uint8_t EncryptedDataBuffer [40];
+  uint8_t encryptedDataBuffer [40];
   uint64_t operationParameter;
   
-  operationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
+  operationParameter = SecurityEncryptionKey ^ (uint64_t)securityDataBuffer;
   resourceContext = *(int64_t **)(objectContext + 800);
   if (resourceContext != (int64_t *)0x0) {
     validationParameter = *validationContext;
     validationParameterSecondary = validationContext[1];
     validationParameterTertiary = validationContext[2];
     validationParameterQuaternary = validationContext[3];
-    ResourceIndex = (**(code **)(*resourceContext + 0x288))(resourceContext,&validationParameter,1);
-    if (ResourceIndex == 0) {
-      ResourceMidByteFlag = validationParameterTertiary >> 0x18;
-      ResourceValidationByte2 = validationParameterQuaternary >> 0x18;
-      ResourceSecondaryFlag = validationParameterSecondary >> 0x10;
-      ResourceSecurityFlag = validationParameterQuaternary >> 0x10 & 0xff;
-      ResourceTopByteFlag = validationParameterQuaternary >> 8 & 0xff;
-      ResourceHighByteFlag = validationParameterQuaternary & 0xff;
-      ResourceLowByteFlag = validationParameterTertiary >> 0x10 & 0xff;
-      ResourceQuaternaryFlag = validationParameterTertiary >> 8 & 0xff;
-      ResourceTertiaryFlag = validationParameterTertiary & 0xff;
-      ResourcePrimaryFlag = validationParameterSecondary & 0xffff;
+    resourceIndex = (**(code **)(*resourceContext + 0x288))(resourceContext,&validationParameter,1);
+    if (resourceIndex == 0) {
+      resourceMidByteFlag = validationParameterTertiary >> 0x18;
+      resourceValidationByte2 = validationParameterQuaternary >> 0x18;
+      resourceSecondaryFlag = validationParameterSecondary >> 0x10;
+      resourceSecurityFlag = validationParameterQuaternary >> 0x10 & 0xff;
+      resourceTopByteFlag = validationParameterQuaternary >> 8 & 0xff;
+      resourceHighByteFlag = validationParameterQuaternary & 0xff;
+      resourceLowByteFlag = validationParameterTertiary >> 0x10 & 0xff;
+      resourceQuaternaryFlag = validationParameterTertiary >> 8 & 0xff;
+      resourceTertiaryFlag = validationParameterTertiary & 0xff;
+      resourcePrimaryFlag = validationParameterSecondary & 0xffff;
                     // WARNING: Subroutine does not return
       ExecuteSecurityOperation(aEncryptedValue,0x27,&SecurityOperationData,validationParameter);
     }
-    if ((**(int **)(ResourceIndex + 0xd0) != 0) ||
+    if ((**(int **)(resourceIndex + 0xd0) != 0) ||
        (operationStatusCode = CheckResourceAvailability(*(uint32_t *)(objectContext + 0x18)), operationStatusCode == 0)) {
-      *ResourceIndexOutput = ResourceIndex;
+      *resourceIndexOutput = resourceIndex;
     }
   }
                     // WARNING: Subroutine does not return
@@ -11624,7 +11624,7 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePool,
     }
     ValidationStatusCodePointer = (uint8_t *)
              ((int64_t)*(int *)(SystemRegisterContext + 0x18) * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
-    *ValidationStatusCodePointer = CONCAT44(0xffffffff,validationContext);
+    *ValidationStatusCodePointer = CombineHighLow32Bits(0xffffffff,validationContext);
     HashValidationResultPointer[1] = StackValidationByte;
     *(int *)(SystemRegisterContext + 0x18) = *(int *)(SystemRegisterContext + 0x18) + 1;
   }
@@ -12317,7 +12317,7 @@ ResourceValidationComplete:
     if ((*(uint *)(objectContext + 0x6c) >> 0x18 & 1) == 0) {
       if ((*(int *)(objectContext + 0xb0) == -1) || (*(int *)(objectContext + 0xac) <= *(int *)(objectContext + 0xb0))
          ) {
-        SystemCommandArray[0] = CONCAT31(SystemCommandArray[0]._1_3_,1);
+        SystemCommandArray[0] = Combine31BitsAndFlag(SystemCommandArray[0]._1_3_,1);
         SystemCommandParams[0] = 0;
         do {
           ContextvalidationStatusCode = ExecuteSystemCommand(objectContext,SystemCommandArray,SystemCommandParams);
@@ -15026,38 +15026,38 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *objectContext,char validatio
 
 {
   int64_t loopCounter;
-  uint8_t HashValidationResult;
-  uint64_t HashValidationResult;
+  uint8_t hashValidationResult8;
+  uint64_t hashValidationResult64;
   uint64_t loopIncrement;
-  uint8_t ValidationContext;
-  int64_t ValidationStackBuffer [2];
-  uint8_t *NetworkDataPointer;
-  uint32_t NetworkPort;
-  uint64_t PrimaryOperationParameter;
+  uint8_t validationContext8;
+  int64_t validationStackBuffer [2];
+  uint8_t *networkDataPointer;
+  uint32_t networkPort;
+  uint64_t primaryOperationParameter;
   
   *(uint8_t *)(objectContext + 4) = 1;
-  validationResult = InitializeResourceContext(*(uint8_t *)(objectContext[1] + 0x78),&ValidationContext);
-  if ((((int)validationResult == 0) && (validationResult = SetupResourceEnvironment(ValidationContext,ValidationStackBuffer,0), (int)validationResult == 0)) &&
+  validationResult = InitializeResourceContext(*(uint8_t *)(objectContext[1] + 0x78),&validationContext8);
+  if ((((int)validationResult == 0) && (validationResult = SetupResourceEnvironment(validationContext8,validationStackBuffer,0), (int)validationResult == 0)) &&
      (validationResult = (**(code **)(*objectContext + 0x10))(objectContext), (int)validationResult == 0)) {
-    validationStatusCode = (uint64_t)(ValidationStackBuffer[0] * 48000) / (uint64_t)*(uint *)((int64_t)objectContext + 0x1c);
-    LocalContextData = objectContext[2];
-    loopIncrement = HashValidationResult - LocalContextData;
-    if (((validationContext != '\0') || (LocalContextData == 0)) || (47999 < loopIncrement)) {
-      objectContext[2] = HashValidationResult;
-      StackVariable20 = 0;
-      PrimaryOperationParameter = 0;
+    validationStatusCode = (uint64_t)(validationStackBuffer[0] * 48000) / (uint64_t)*(uint *)((int64_t)objectContext + 0x1c);
+    localContextData = objectContext[2];
+    loopIncrement = hashValidationResult64 - localContextData;
+    if (((validationContext != '\0') || (localContextData == 0)) || (47999 < loopIncrement)) {
+      objectContext[2] = hashValidationResult64;
+      stackVariable20 = 0;
+      primaryOperationParameter = 0;
       if (loopCounter != 0) {
-        PrimaryOperationParameter = loopIncrement;
+        primaryOperationParameter = loopIncrement;
       }
-      StackPointer28 = &SystemMemoryConfigTemplateSecondary;
-      validationResult = GetAndValidateResourceData(objectContext,&StackPointer28);
-      if ((int)HashValidationResult != 0) {
-        return ResourceHashValidationResult;
+      stackPointer28 = &SystemMemoryConfigTemplateSecondary;
+      validationResult = GetAndValidateResourceData(objectContext,&stackPointer28);
+      if ((int)hashValidationResult64 != 0) {
+        return resourceHashValidationResult;
       }
     }
     validationResult = 0;
   }
-  return ResourceHashValidationResult;
+  return resourceHashValidationResult;
 }
 
 
@@ -15076,25 +15076,25 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *objectContext,char validatio
 uint8_t FindResourceHashTableEntry(int64_t *objectContext,char *validationContext,uint8_t *hashTableEntry)
 
 {
-  char *CharPointer;
-  uint8_t *pResourceHashValidationResult;
-  byte ResourceFlag;
+  char *charPointer;
+  uint8_t *resourceHashValidationResult;
+  byte resourceFlag;
   uint8_t loopCondition;
-  char ResourceCheckResult;
-  char ResourceDataResult;
-  int ValidationStatusCode;
-  uint ResourceCounter;
-  char *ResourceDataPointer;
-  int ResourceIndex0;
-  uint *ResourceHashPointer;
+  char resourceCheckResult;
+  char resourceDataResult;
+  int validationStatusCode;
+  uint resourceCounter;
+  char *resourceDataPointer;
+  int resourceIndex0;
+  uint *resourceHashPointer;
   
-  ResourceHashPointer = (uint *)*objectContext;
-  if (((ResourceHashPointer != (uint *)0x0) && (objectContext[4] != 0)) && (objectContext[2] != 0)) {
-    ResourceIndex0 = 0;
-    ResourceCheckResult = *validationContext;
-    while (ResourceCheckResult != '\0') {
-      ResourceFlag = *(byte *)((int64_t)ResourceHashPointer + 7);
-      if (ResourceFlag == 0) {
+  resourceHashPointer = (uint *)*objectContext;
+  if (((resourceHashPointer != (uint *)0x0) && (objectContext[4] != 0)) && (objectContext[2] != 0)) {
+    resourceIndex0 = 0;
+    resourceCheckResult = *validationContext;
+    while (resourceCheckResult != '\0') {
+      resourceFlag = *(byte *)((int64_t)resourceHashPointer + 7);
+      if (resourceFlag == 0) {
         return 0x4a;
       }
       ResourceCheckResult = ProcessResourceData(ResourceCheckResult);
