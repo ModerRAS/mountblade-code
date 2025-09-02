@@ -4587,18 +4587,18 @@ uint8_t InitializeObjectHandleAdvanced(int64_t ObjectContext)
     ProcessedFloatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
     for (ResourcePointer = *(uint8_t **)(contextHandle + 0x48);
         (*(uint8_t **)(contextHandle + 0x48) <= ResourcePointer &&
-        (ResourcePointer < *(uint8_t **)(contextHandle + 0x48) + *(int *)(contextHandle + 0x50))); ResourcePointer = ResourcePointer + 1) {
+        (ResourcePointer < *(uint8_t **)(contextHandle + ContextHandleResourceArrayOffset) + *(int *)(contextHandle + ContextHandleResourceCountOffset))); ResourcePointer = ResourcePointer + 1) {
       ResourceHash = ProcessResourceOperation(*ResourcePointer, ProcessedFloatValue, 0);
       if ((int)ResourceHash != 0) {
         return ResourceHash;
       }
     }
-    if ((*(char *)(contextHandle + 0x34) == '\0') ||
-       ((*(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      uint SystemConfigurationFlags = *(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34);
-      ValidationStatus = SystemConfigurationFlags >> 4;
+    if ((*(char *)(contextHandle + ContextHandleSystemFlagsOffset) == '\0') ||
+       ((*(uint *)(*(int64_t *)(contextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset) >> 1 & 1) == 0)) {
+      uint SystemConfigurationFlags = *(uint *)(*(int64_t *)(contextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset);
+      ValidationStatus = SystemConfigurationFlags >> SystemConfigurationValidationShift;
       if ((ValidationStatus & 1) == 0) {
-        if ((((SystemConfigurationFlags >> 3 & 1) != 0) && (FloatConversionResult = (int)ProcessedFloatValue, FloatConversionResult != -0x80000000)) &&
+        if ((((SystemConfigurationFlags >> SystemConfigurationFloatCheckShift & 1) != 0) && (FloatConversionResult = (int)ProcessedFloatValue, FloatConversionResult != Int32MinimumValue)) &&
            ((float)FloatConversionResult != ProcessedFloatValue)) {
           union {
             float ProcessedFloatParameter;
@@ -10338,8 +10338,8 @@ int ValidateResourceTableAccess(uint64_t ResourceHandle)
           ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,ResourceObjectContextPointer & 0xffffffff,
                   ResourceObjectContextPointer.Field42);
   }
-  if (**(int **)(ResourceTablePointer + 0xd0) == 0) {
-    int ResourceAvailabilityStatus = CheckResourceAvailability(*(uint32_t *)(SystemRegisterContext + 0x18));
+  if (**(int **)(ResourceTablePointer + ResourceTableValidationOffset) == 0) {
+    int ResourceAvailabilityStatus = CheckResourceAvailability(*(uint32_t *)(SystemRegisterContext + SystemRegisterContextIdentifierOffset));
     if (ResourceAvailabilityStatus != 0) goto ValidationSuccessLabel;
   }
   *ResourceSystemContextPointer = ResourceTablePointer;
@@ -11317,9 +11317,9 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   char ResourceStatusFlag = *(char *)(InputParameter + ResourceCleanupOffset + ResourceTablePointer * 4);
   *(int64_t *)(SystemExecutionPointer + -0x80) = ResourceTablePointer;
   if (ResourceStatusFlag == StatusByte) {
-    int OperationStatusCode = *(int *)(ObjectContext + 0xb0);
+    int OperationStatusCode = *(int *)(ObjectContext + ObjectContextOperationStatusOffset);
     if (ResourceIterationIndex < OperationResult) {
-      *(int *)(ObjectContext + 0xac) = ResourceIterationIndex + 1;
+      *(int *)(ObjectContext + ObjectContextResourceIterationOffset) = ResourceIterationIndex + 1;
       goto HANDLE_CONTEXT_ERROR;
     }
     float FifthFloatResult = *(float *)(ResourceContextDataPointer + 0x18);
@@ -11508,21 +11508,21 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext, int
         ResourceTablePointer = *(int64_t *)(dataContext + 0x80);
         do {
           ResourceIndex = (int64_t)TableEntryIndex;
-          if (*(uint *)(ResourceTablePointer + ResourceIndex * 0x10) == ResourceHashValue) {
-            uint HashValueParameter = (uint)((uint64_t)*(uint8_t *)(ResourceTablePointer + ResourceCleanupOffset + ResourceIndex * 0x10) >> 0x20);
+          if (*(uint *)(ResourceTablePointer + ResourceIndex * HashTableEntrySize) == ResourceHashValue) {
+            uint HashValueParameter = (uint)((uint64_t)*(uint8_t *)(ResourceTablePointer + HashTableCleanupOffset + ResourceIndex * HashTableEntrySize) >> HashTableShiftValue);
             if (HashValueParameter != 0) {
               *hashOutput = HashValueParameter;
               return 0;
             }
             goto HashValueHandler;
           }
-          TableEntryIndex = *(int *)(ResourceTablePointer + 4 + ResourceIndex * 0x10);
+          TableEntryIndex = *(int *)(ResourceTablePointer + HashTableEntryNextOffset + ResourceIndex * HashTableEntrySize);
         } while (TableEntryIndex != -1);
       }
       HashValueParameter = 0;
 HashValueHandler:
       uint8_t *CallbackPointer = (uint8_t *)
-               ((int64_t)*(int *)(*(int64_t *)(ObjectContext + ObjectContextValidationDataOffset) + (int64_t)ValidationContext * 0xc) +
+               ((int64_t)*(int *)(*(int64_t *)(ObjectContext + ObjectContextValidationDataOffset) + (int64_t)ValidationContext * ValidationContextEntrySize) +
                *(int64_t *)(ObjectContext + 8));
       if (CallbackPointer != (uint8_t *)0x0) {
         (**(code **)*CallbackPointer)();
@@ -11863,13 +11863,13 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
   uint32_t *RegisterR15;
   uint8_t StackValidationByte;
   
-  int ResourceCount = *(int *)(SystemSystemRegisterContext + 0x20);
+  int ResourceCount = *(int *)(SystemSystemRegisterContext + SystemRegisterContextCountOffsetSecondary);
   if (ResourceCount == -1) {
     StackValidationByte = *ResourceRegisterPointer;
-    ResourceCount = *(int *)(SystemSystemRegisterContext + 0x18);
+    ResourceCount = *(int *)(SystemSystemRegisterContext + SystemRegisterContextIdentifierOffsetSecondary);
     int CapacityIndex = ResourceCount + 1;
-    int ContextPackageValidationStatusCode = (int)*(uint *)(SystemSystemRegisterContext + 0x1c) >> 0x1f;
-    int ResourceIndex = (*(uint *)(SystemSystemRegisterContext + 0x1c) ^ ContextPackageValidationStatusCode) - ContextPackageValidationStatusCode;
+    int ContextPackageValidationStatusCode = (int)*(uint *)(SystemSystemRegisterContext + SystemRegisterContextValidationOffset) >> SystemRegisterContextValidationShift;
+    int ResourceIndex = (*(uint *)(SystemSystemRegisterContext + SystemRegisterContextValidationOffset) ^ ContextPackageValidationStatusCode) - ContextPackageValidationStatusCode;
     if (ResourceIndex < CapacityIndex) {
       int ExpandedCapacity = (int)((float)ResourceIndex * 1.5);
       ResourceIndex = CapacityIndex;
@@ -50007,16 +50007,16 @@ void DestroyMutexResource(void)
 void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t systemDataCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x40);
-  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
+  systemDataCounter = *(int64_t *)(ValidationContext + ValidationContextPrimaryDataOffset);
+  *(uint8_t *)(SystemContextPointer + SystemContextPrimaryDataOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + SystemContextSecondaryDataOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
-  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
-  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + SystemContextSecondaryDataOffset) = 0;
+  *(uint32_t *)(SystemContextPointer + SystemContextTertiaryDataOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + SystemContextPrimaryDataOffset) = &SystemDataStructure;
   return;
 }
 
@@ -50037,11 +50037,11 @@ void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
 void ExecuteResourceContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *ProcessPointer;
+  int64_t *resourceProcessPointer;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x58) + 8);
+  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryDataOffset) + 8);
   if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+    (**(code **)(*ResourceContext + ValidationContextCallbackOffset))();
   }
   return;
 }
@@ -99133,18 +99133,6 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 }
 
 // 额外的常量定义用于美化十六进制偏移量
-#define ResourceCounterOffset 0x4c
-#define ResourceArraySizeOffset 0x50
-#define ResourceSecondaryCounterOffset 0x54
-#define ResourceTertiaryCounterOffset 0x58
-#define SystemContextSecondaryOffset 0x90
-#define SystemContextSchedulerOffset 0x98
-#define SystemContextResourceManagerOffset 0x1a0
-#define SystemContextFlagsOffset 0x2d8
-#define SystemContextResourceTableOffset 0x240
-#define ResourceDataBaseOffset 0x20
-#define ResourceStatusOffset 0x30
-#define ResourceConfigurationOffset 0x34
 #define ResourceHandleTableOffset 0xf8
 #define ValidationCounterOffset 0x28
 #define ValidationStatusOffset 0x29
@@ -99158,6 +99146,57 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define BufferTertiaryOffset 0x88
 #define BufferHandleOffset 0xb8
 #define DataProcessingBufferOffset 0xd0
+
+// 系统上下文相关偏移量常量
+#define SystemContextPrimaryDataOffset 0x20
+#define SystemContextSecondaryDataOffset 0x28
+#define SystemContextTertiaryDataOffset 0x38
+#define SystemContextResourceDataOffset 0x40
+#define SystemContextCallbackDataOffset 0x58
+
+// 验证上下文相关偏移量常量
+#define ValidationContextPrimaryDataOffset 0x40
+#define ValidationContextSecondaryDataOffset 0x58
+#define ValidationContextCallbackOffset 0x38
+
+// 上下文句柄相关偏移量常量
+#define ContextHandleRegistrationDataOffset 0x18
+#define ContextHandleSystemFlagsOffset 0x34
+#define ContextHandleResourceArrayOffset 0x48
+#define ContextHandleResourceCountOffset 0x50
+
+// 系统配置相关偏移量常量
+#define SystemConfigurationFlagsOffset 0x34
+#define SystemConfigurationValidationShift 4
+#define SystemConfigurationFloatCheckShift 3
+
+// 系统寄存器相关偏移量常量
+#define SystemRegisterContextIdentifierOffset 0x18
+#define SystemRegisterContextCountOffset 0x20
+
+// 资源表相关偏移量常量
+#define ResourceTableValidationOffset 0xd0
+#define ResourceTableCleanupOffset 0x10
+#define ResourceTableItemSize 0x10
+
+// 对象上下文相关偏移量常量
+#define ObjectContextOperationStatusOffset 0xb0
+#define ObjectContextResourceIterationOffset 0xac
+
+// 哈希表相关偏移量常量
+#define HashTableEntrySize 0x10
+#define HashTableCleanupOffset 0x10
+#define HashTableEntryNextOffset 4
+#define HashTableShiftValue 0x20
+
+// 验证上下文相关偏移量常量
+#define ValidationContextEntrySize 0xc
+
+// 系统寄存器上下文相关偏移量常量
+#define SystemRegisterContextCountOffsetSecondary 0x20
+#define SystemRegisterContextIdentifierOffsetSecondary 0x18
+#define SystemRegisterContextValidationOffset 0x1c
+#define SystemRegisterContextValidationShift 0x1f
 
 
 
