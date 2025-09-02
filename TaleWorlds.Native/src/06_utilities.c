@@ -57833,7 +57833,16 @@ void CheckResourceManagementEmergencyExitCondition(uint8_t ObjectContext,int64_t
 
 
 
-void Unwind_180907280(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查系统缓冲区紧急退出条件
+ * 
+ * 该函数负责检查系统缓冲区状态是否需要执行紧急退出
+ * 验证系统缓冲区上下文中的特定状态，必要时调用紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CheckSystemBufferEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x40) != 0) {
@@ -57844,7 +57853,16 @@ void Unwind_180907280(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907290(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查系统队列紧急退出条件
+ * 
+ * 该函数负责检查系统队列状态是否需要执行紧急退出
+ * 验证系统队列上下文中的特定状态，必要时调用紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CheckSystemQueueEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x68) != 0) {
