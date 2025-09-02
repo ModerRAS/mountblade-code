@@ -6704,7 +6704,7 @@ LAB_18032bb25:
       return *(longlong *)(pStringProcessingResult + 2);
     }
   }
-  FUN_180320e20(0x180d497e0);
+  ProcessSystemDataResources(0x180d497e0);
   return 0x180d497e0;
 }
 longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlong moduleData)
@@ -6720,7 +6720,7 @@ longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlo
     ValidateSystemConfigurationTemplate(&DAT_180d49990);
     if (_DAT_180d49990 == -1) {
       NetworkRequestResult = AllocateSystemMemory(_DAT_180c8ed18,0x1c8,8,3);
-      _DAT_180d48de0 = FUN_180339110(NetworkRequestResult);
+      _DAT_180d48de0 = ProcessNetworkRequestResult(NetworkRequestResult);
       NetworkRequestResult = AllocateSystemMemory(_DAT_180c8ed18,0x200,8,3);
       _DAT_180d48de8 = FUN_180339920(NetworkRequestResult);
       pMemoryAllocationResult = (uint64_t *)AllocateSystemMemory(_DAT_180c8ed18,0xf8,8,3);

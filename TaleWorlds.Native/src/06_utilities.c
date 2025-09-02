@@ -14524,7 +14524,7 @@ uint8_t ValidateResourceRenderingState(void)
             ValidationFloatBuffer[0] = 0.0;
             integerValue6 = ValidateBufferContext(ResourceContextPointer0,ValidationFloatBuffer);
             if ((integerValue6 != 0) || (integerValue6 = EstablishNetworkLink(ObjectContextParameter,LocalContextData5,ValidationFloatBuffer[0],0), integerValue6 != 0)
-               ) goto LAB_18089866f;
+               ) goto ResourceProcessingComplete;
           }
           if (ResourceContextPointer3 == ResourceContextPointer4) break;
           ResourceContextPointer0 = (int64_t *)(*ResourceContextPointer3 + -8);
@@ -14544,7 +14544,7 @@ uint8_t ValidateResourceRenderingState(void)
         PointerStack340 = (int64_t *)&SystemMemoryConfigTemplate;
         AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0]._4_4_,integerValue6);
         ResourceCount = GetAndValidateResourceData(ObjectContextParameter,&PointerStack340);
-        if (ResourceCount != 0) goto LAB_18089866f;
+        if (ResourceCount != 0) goto ResourceProcessingComplete;
       }
       ResourceContextPointer4 = ResourceContextPointer6;
       ResourceContextPointer0 = ResourceContextPointer6;
@@ -14583,14 +14583,14 @@ uint8_t ValidateResourceRenderingState(void)
           fStack_2c8 = floatValue18;
           if (((char)LocalContextData5 == '\0') &&
              (integerValue6 = CheckSystemStatus(ObjectContextParameter,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), integerValue6 != 0
-             )) goto LAB_18089866f;
+             )) goto ResourceProcessingComplete;
           integerValue6 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
           ProcessDataBuffer(auStack_238 + integerValue6,0x200 - integerValue6,10);
           integerValue6 = (**(code **)(*ObjectContextParameter + 8))(ObjectContextParameter,auStack_238);
-          if (integerValue6 != 0) goto LAB_18089866f;
+          if (integerValue6 != 0) goto ResourceProcessingComplete;
           if ((char)LocalContextData5 == '\0') {
             integerValue6 = (**(code **)(*ObjectContextParameter + 0x18))(ObjectContextParameter);
-            if (integerValue6 != 0) goto LAB_18089866f;
+            if (integerValue6 != 0) goto ResourceProcessingComplete;
             *(uint8_t *)(ObjectContextParameter + 4) = 0;
           }
           ResourceContextPointer4 = (int64_t *)((int64_t)ResourceContextPointer4 + 1);
@@ -14628,7 +14628,7 @@ uint8_t ValidateResourceRenderingState(void)
               ResourceCount = InitializeResourceContext(*(uint8_t *)(ObjectContextParameter[1] + 0x78),aGraphicsOperationFlag1);
               if (((ResourceCount != 0) || (ResourceCount = SetupResourceEnvironment(aGraphicsOperationFlag1[0],&AudioSampleRate,0), ResourceCount != 0)
                   ) || (ResourceCount = (**(code **)(*ObjectContextParameter + 0x10))(ObjectContextParameter), ResourceCount != 0))
-              goto LAB_18089866f;
+              goto ResourceProcessingComplete;
               ValidationCounter = (uint64_t)(AudioSampleRate * 48000) /
                       (uint64_t)*(uint *)((int64_t)ObjectContextParameter + 0x1c);
               LoopOffset = ObjectContextParameter[2];
@@ -14640,15 +14640,15 @@ uint8_t ValidateResourceRenderingState(void)
                 AudioBufferPointer[0] = (int64_t *)(ValidationCounter - LoopOffset);
               }
               ResourceCount = GetAndValidateResourceData(ObjectContextParameter,&PointerStack340);
-              if (ResourceCount != 0) goto LAB_18089866f;
+              if (ResourceCount != 0) goto ResourceProcessingComplete;
             }
             ResourceCount = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
             ProcessDataBuffer(auStack_238 + ResourceCount,0x200 - ResourceCount,10);
             ResourceCount = (**(code **)(*ObjectContextParameter + 8))(ObjectContextParameter,auStack_238);
-            if (ResourceCount != 0) goto LAB_18089866f;
+            if (ResourceCount != 0) goto ResourceProcessingComplete;
             if ((char)LocalContextData1 == '\0') {
               ResourceCount = (**(code **)(*ObjectContextParameter + 0x18))(ObjectContextParameter);
-              if (ResourceCount != 0) goto LAB_18089866f;
+              if (ResourceCount != 0) goto ResourceProcessingComplete;
               *(uint8_t *)(ObjectContextParameter + 4) = 0;
             }
           }
@@ -14680,7 +14680,7 @@ uint8_t ValidateResourceRenderingState(void)
                 do {
                   LocalContextData5 = *(int64_t *)(ResourceContextPointer4[2] + 8 + (int64_t)integerValue6 * 0x10);
                   if (((*(int64_t *)(LocalContextData5 + 0x80) != 0) && (*(int64_t *)(LocalContextData5 + 0x350) == 0))
-                     && (MaxOperationCount = ResourceStatusChecker(ObjectContextParameter), MaxOperationCount != 0)) goto LAB_18089866f;
+                     && (MaxOperationCount = ResourceStatusChecker(ObjectContextParameter), MaxOperationCount != 0)) goto ResourceProcessingComplete;
                 } while ((integerValue6 != -1) &&
                         (integerValue6 = *(int *)(ResourceContextPointer4[2] + 4 + (int64_t)integerValue6 * 0x10), integerValue6 != -1));
                 integerValue6 = ResourceCount + 1;
@@ -14694,7 +14694,7 @@ uint8_t ValidateResourceRenderingState(void)
                   do {
                     if (*(int *)(*ResourceContextPointer4 + LocalContextData5 * 4) != -1) {
                       integerValue6 = *(int *)(*ResourceContextPointer4 + (int64_t)ResourceCount * 4);
-                      goto LAB_1808985be;
+                      goto ResourceSearchSuccess;
                     }
                     ResourceCount = ResourceCount + 1;
                     LocalContextData5 = LocalContextData5 + 1;
