@@ -11304,18 +11304,18 @@ void ValidateAndCleanupResourceEntry(int64_t ObjectContext, uint8_t ValidationCo
 uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t ConfigurationData, uint ValidationFlags, int64_t ResultBuffer)
 
 {
-  int64_t *ProcessingPointer;
-  uint ResourceHashValidationStatusCode;
-  int PackageValidationStatus;
-  int64_t *ValidationContextPointer;
-  int ResourceEntryCounter;
-  uint SystemConfigurationFlags;
-  uint8_t SystemStackSize;
-  uint8_t ChecksumBuffer[2];
-  int SystemInitializationResult;
-  int SystemProcessingStatus;
-  int64_t *ResourceLinkPointer;
-  int64_t *SystemResourceContext;
+  int64_t *SystemProcessingPointer;
+  uint ResourceHashValidationCode;
+  int PackageValidationState;
+  int64_t *ValidationContextData;
+  int ResourceEntryCount;
+  uint SystemConfigFlags;
+  uint8_t SystemCallStackSize;
+  uint8_t ChecksumValidationBuffer[2];
+  int SystemInitializationStatusCode;
+  int SystemProcessingStatusCode;
+  int64_t *ResourceLinkNode;
+  int64_t *SystemResourceManagerContext;
   
   if (ResultBuffer == 0) {
     return ErrorResourceValidationFailed;
@@ -11387,9 +11387,9 @@ uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
     *(uint32_t *)((int64_t)DataContainerPointer + 0xc) = 0;
   }
   int ResourcePoolIndex = (int)DataContainerPointer[1];
-  if (SystemResourceIndex < 0) {
-    if (SystemResourceIndex < 0) {
-            memset(*DataContainerPointer + (int64_t)SystemResourceIndex * 0xc,0,(uint64_t)(uint)-SystemResourceIndex * 0xc);
+  if (ResourcePoolIndex < 0) {
+    if (ResourcePoolIndex < 0) {
+            memset(*DataContainerPointer + (int64_t)ResourcePoolIndex * 0xc,0,(uint64_t)(uint)-ResourcePoolIndex * 0xc);
     }
   }
   *(uint32_t *)(DataContainerPointer + 1) = 0;

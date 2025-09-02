@@ -10247,7 +10247,7 @@ void InitializeSystemStringProcessorB(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0xe;
   strcpy_s(SystemProcessingBuffer,0x80,&SystemThreadStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
-  SystemMemoryAllocationTableEntry008 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntryOctonary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
