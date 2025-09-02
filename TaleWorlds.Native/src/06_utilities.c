@@ -810,6 +810,13 @@ uint32_t SystemModuleDependencyIntegrityChecksum;  // 系统模块依赖完整�
 void* SystemModuleDependencySignature;             // 系统模块依赖签名
 void* SystemModuleDependencyHandle;                // 系统模块依赖句柄
 
+// 系统运行时全局变量
+int64_t SystemInputParameterValue;                   // 系统输入参数值
+int32_t SystemOperationStatus;                      // 系统操作状态
+void* SystemRegisterContextData;                    // 系统寄存器上下文数据
+void* SystemObjectContextBuffer;                     // 系统对象上下文缓冲区
+uint8_t SystemResourceAllocationTemplate;           // 系统资源分配模板
+
 /**
  * @brief 初始化核心引擎模块
  * 
@@ -9793,12 +9800,12 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t ObjectContext, uint8_t 
   int64_t SecurityContextData;
   int64_t StackParameterContext;
   
-  if (InputParameterValue == 0) {
-    ResourceTable = CreateResourceTable(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),ValidationContext,0x20,&ResourceAllocationTemplate,0xdd);
+  if (SystemInputParameterValue == 0) {
+    ResourceTable = CreateResourceTable(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),ValidationContext,0x20,&SystemResourceAllocationTemplate,0xdd);
     if (ResourceTable != 0) {
-            memcpy(ResourceTable,*(uint8_t *)(SystemRegisterContext + 0x10),(int64_t)*(int *)(SystemRegisterContext + 0x18));
+            memcpy(ResourceTable,*(uint8_t *)(SystemRegisterContextData + 0x10),(int64_t)*(int *)(SystemRegisterContextData + 0x18));
     }
-    OperationStatus = SuccessStatusCode;
+    SystemOperationStatus = SuccessStatusCode;
   }
   else {
     OperationStatus = ProcessDataValidation();
@@ -13432,14 +13439,14 @@ uint8_t ValidateAndGetBufferContext(int64_t ObjectContext,uint8_t ValidationCont
   float GraphicsTransformMatrix [3];
   uint8_t *GraphicsDataPointer;
   int GraphicsDataIndex;
-  uint8_t GraphicsPrimaryOperationFlag;
-  uint64_t GraphicsSecondaryOperationFlag;
+  uint8_t GraphicsFirstOperationFlag;
+  uint64_t GraphicsSecondOperationFlag;
   int64_t GraphicsContextOffset;
-  uint8_t GraphicsTertiaryOperationFlag;
-  uint8_t GraphicsQuaternaryOperationFlag;
-  uint8_t GraphicsQuinaryOperationFlag;
-  uint8_t GraphicsSenaryOperationFlag;
-  uint32_t GraphicsSeptenaryOperationFlag;
+  uint8_t GraphicsThirdOperationFlag;
+  uint8_t GraphicsFourthOperationFlag;
+  uint8_t GraphicsFifthOperationFlag;
+  uint8_t GraphicsSixthOperationFlag;
+  uint32_t GraphicsSeventhOperationFlag;
   uint GraphicsEighthOperationFlag;
   uint8_t *GraphicsDataPointerSecondary;
   int GraphicsDataIndexSecondary;
@@ -25070,7 +25077,7 @@ FinalizeValidation:
  * @note 这是一个简化的空操作实现，用于调试目的
  * @warning 此函数在调试环境中使用，生产环境中应该禁用
  */
-void ExecuteSystemDebugOperation(void)
+void ExecuteSystemDebug(void)
 
 {
   return;
@@ -73440,7 +73447,17 @@ void UnlockMutexAndHandleError(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_18090a670(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源状态标志位
+ * 
+ * 该函数负责清理资源数据中的状态标志位，当特定标志位被设置时，
+ * 会清除该标志位并执行相应的资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void CleanupResourceStatusFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -73452,7 +73469,17 @@ void Unwind_18090a670(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a6a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源备用状态标志位
+ * 
+ * 该函数负责清理资源数据中的备用状态标志位，当第二个标志位被设置时，
+ * 会清除该标志位并执行相应的资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void CleanupResourceSecondaryStatusFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 2) != 0) {
@@ -73465,7 +73492,15 @@ void Unwind_18090a6a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a6d0(void)
+/**
+ * @brief 初始化系统数据结构指针
+ * 
+ * 该函数负责初始化系统数据结构的指针，将其指向系统数据结构
+ * 主要用于系统初始化阶段的准备工作
+ * 
+ * @return 无返回值
+ */
+void InitializeSystemDataStructurePointer(void)
 
 {
   SystemDataUndenaryPointer = &SystemDataStructure;
@@ -73475,7 +73510,15 @@ void Unwind_18090a6d0(void)
 
 
 
-void Unwind_18090a6e0(void)
+/**
+ * @brief 重置全局数据缓冲区状态
+ * 
+ * 该函数负责重置全局数据缓冲区的状态标志，并执行相关的安全操作
+ * 包括进入临界区保护、重置状态标志、事件处理和安全函数调用
+ * 
+ * @return 无返回值
+ */
+void ResetGlobalDataBufferStatus(void)
 
 {
   byte encryptionShiftValue;
@@ -73496,7 +73539,17 @@ void Unwind_18090a6e0(void)
 
 
 
-void Unwind_18090a6f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源扩展状态标志位
+ * 
+ * 该函数负责清理资源数据中的扩展状态标志位，当特定标志位被设置时，
+ * 会清除该标志位并释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void CleanupResourceExtendedStatusFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -73520,7 +73573,7 @@ void Unwind_18090a6f0(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数会在异常处理过程中自动调用
  * @warning 调用此函数会修改资源数据的状态位
  */
-void Unwind_18090a720(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceTertiaryStatusFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 4) != 0) {
@@ -73544,7 +73597,7 @@ void Unwind_18090a720(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数会在异常处理过程中自动调用
  * @warning 调用此函数会修改资源数据的状态位
  */
-void Unwind_18090a750(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceQuaternaryStatusFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 8) != 0) {
@@ -73568,7 +73621,7 @@ void Unwind_18090a750(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数会在异常处理过程中自动调用
  * @warning 调用此函数可能会触发系统清理操作
  */
-void Unwind_18090a780(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
