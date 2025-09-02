@@ -4313,17 +4313,17 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   uint8_t StatusResult;
   int64_t *RegistrationEntryArray;
   int RegistrationArraySize;
-  uint64_t Iterator;
-  int NewSize;
-  uint64_t Index;
-  int64_t *BasePointer;
-  int64_t StackPointer;
+  uint64_t RegistrationIterator;
+  int NewRegistrationArraySize;
+  uint64_t CurrentRegistrationIndex;
+  int64_t *RegistrationBasePointer;
+  int64_t RegistrationStackPointer;
   char ObjectName[16];
-  int Counter;
-  int Size;
+  int RegistrationCounter;
+  int CalculatedRegistrationSize;
   
   // 获取注册上下文数据
-  ValidationResult = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &StackPointer);
+  ValidationResult = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationStackPointer);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
@@ -73150,7 +73150,16 @@ void ValidateAndCleanupResourceHashResultExtended(uint8_t ObjectContext, int64_t
 
 
 
-void Unwind_DestroyMutex10(void)
+/**
+ * @brief 销毁互斥锁10
+ * 
+ * 该函数负责销毁系统中的互斥锁资源
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会调用MutexDestroyInPlace进行实际的销毁操作
+ */
+void DestroyMutex10(void)
 
 {
   MutexDestroyInPlace();
@@ -73159,58 +73168,132 @@ void Unwind_DestroyMutex10(void)
 
 
 
-void Unwind_18090a5f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 管理资源表条目
+ * 
+ * 该函数负责管理系统资源表的条目
+ * 执行资源的注册、更新和清理操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数会调用ManageResourceTableEntry进行资源管理
+ */
+void ManageResourceTableEntryWrapper(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  ManageResourceTableEntry(*(int64_t *)(ValidationContext + 0x68),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x68) + 0x10),
-                CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  ManageResourceTableEntry(*(int64_t *)(ValidationContext + 0x68), *(uint8_t *)(*(int64_t *)(ValidationContext + 0x68) + 0x10),
+                CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a600(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 管理资源表条目扩展版本
+ * 
+ * 该函数是ManageResourceTableEntryWrapper的扩展版本
+ * 提供更完整的资源管理功能
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数提供更全面的资源管理功能
+ */
+void ManageResourceTableEntryWrapperExtended(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  ManageResourceTableEntry(*(int64_t *)(ValidationContext + 0x68),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x68) + 0x10),
-                CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  ManageResourceTableEntry(*(int64_t *)(ValidationContext + 0x68), *(uint8_t *)(*(int64_t *)(ValidationContext + 0x68) + 0x10),
+                CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a610(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器
+ * 
+ * 该函数负责注册系统资源处理器
+ * 设置资源处理的参数和回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会调用RegisterResourceHandler进行资源处理器注册
+ */
+void RegisterResourceHandlerWrapper(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x68),8,10,ProcessResourceOperation);
+  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x68), 8, 10, ProcessResourceOperation);
   return;
 }
 
 
 
-void Unwind_18090a640(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理回调函数
+ * 
+ * 该函数负责执行资源清理的回调函数
+ * 通过函数指针调用具体的清理操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数会调用注册的回调函数进行资源清理
+ */
+void ExecuteResourceCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x38) != (code *)0x0) {
-    (**(code **)(ValidationContext + 0x38))(ValidationContext + 0x28,0,0,CleanupFlag,0xfffffffffffffffe);
+    (**(code **)(ValidationContext + 0x38))(ValidationContext + 0x28, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090a650(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理回调函数扩展版本
+ * 
+ * 该函数是ExecuteResourceCleanupCallback的扩展版本
+ * 提供更完整的回调执行功能
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数提供更全面的回调执行功能
+ */
+void ExecuteResourceCleanupCallbackExtended(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x38) != (code *)0x0) {
-    (**(code **)(ValidationContext + 0x38))(ValidationContext + 0x28,0,0,CleanupFlag,0xfffffffffffffffe);
+    (**(code **)(ValidationContext + 0x38))(ValidationContext + 0x28, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090a660(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解锁互斥锁并处理错误
+ * 
+ * 该函数负责解锁互斥锁并处理可能出现的错误
+ * 如果解锁失败会抛出标准错误
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会调用MutexUnlock进行解锁操作
+ */
+void UnlockMutexAndHandleError(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
