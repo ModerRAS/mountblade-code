@@ -27806,8 +27806,8 @@ uint64_t ValidateResourceDataIntegrityInternal(void)
 
 
 
- f7fd(void)
-f7fd(void)
+ EmptyResourceHandler(void)
+EmptyResourceHandler(void)
 
 {
   return;
