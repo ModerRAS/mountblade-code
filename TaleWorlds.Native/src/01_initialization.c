@@ -25,136 +25,24 @@ void ProcessSystemMemoryPage(long long MemoryAddress);
 
 void ReleaseSystemResource(void);
 
-/**
- * @brief 系统内存缓冲区初始化函数
- * 
- * 该函数负责初始化系统内存缓冲区，设置内存模板和缓冲区参数。
- * 用于系统内存分配和管理的前期准备工作。
- * 
- * @param memoryTemplate 内存模板指针
- * @param bufferSize 缓冲区大小
- * @param sourceData 源数据指针（可选）
- * @note 这是内存管理系统的初始化函数
- */
 void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferSize, void* SourceData);
 
-/**
- * @brief 数据写入缓冲区函数
- * 
- * 该函数负责将数据写入指定的缓冲区，支持多种数据格式和写入模式。
- * 用于系统数据的存储和传输操作。
- * 
- * @param buffer 目标缓冲区指针
- * @param dataSize 数据大小
- * @param ... 可变参数，根据不同的写入模式传递不同的参数
- * @note 这是数据操作系统的核心函数
- */
 void WriteDataToBuffer(void* Buffer, long long DataSize, ...);
 
-/**
- * @brief 系统内存分配器初始化函数
- * 
- * 该函数负责初始化系统内存分配器，设置内存池和分配策略
- * 用于系统内存管理的前期准备工作
- * 
- * @param memoryHandle 内存句柄
- * @param bufferContext 缓冲区上下文
- * @return 初始化结果指针
- * 
- * 原始函数名为FUN_1801954d0，现已重命名为InitializeSystemMemoryAllocator
- */
 void* InitializeSystemMemoryAllocator(long long memoryHandle, void* bufferContext);
 
-/**
- * @brief 系统数据初始化函数
- * 
- * 该函数负责初始化系统数据，设置数据结构和初始化参数
- * 用于系统数据管理的前期准备工作
- * 
- * @param dataContext 数据上下文指针
- * @param templateContext 模板上下文指针
- * 
- * 原始函数名为FUN_18019e140，现已重命名为InitializeSystemData
- */
 void InitializeSystemData(void* dataContext, void* templateContext);
 
-/**
- * @brief 系统配置验证函数
- * 
- * 该函数负责验证系统配置的有效性和完整性
- * 用于系统配置的安全检查和验证
- * 
- * @param configFlags 配置标志
- * @param configContext 配置上下文指针
- * @return 验证结果状态码
- * 
- * 原始函数名为FUN_1801426a0，现已重命名为ValidateSystemConfiguration
- */
 int ValidateSystemConfiguration(long long configFlags, void* configContext);
 
-/**
- * @brief 获取系统状态标志函数
- * 
- * 该函数负责获取当前系统的状态标志和运行时信息
- * 用于系统状态监控和管理
- * 
- * @return 系统状态标志
- * 
- * 原始函数名为FUN_180628ca0，现已重命名为GetSystemStatusFlags
- */
 long long GetSystemStatusFlags(void);
 
-/**
- * @brief 系统数据配置函数
- * 
- * 该函数负责配置系统数据，设置数据参数和属性
- * 用于系统数据的配置和管理
- * 
- * @param bufferAddress 缓冲区地址
- * @param configData 配置数据
- * @param contextPointer 上下文指针
- * @param parameterArray 参数数组
- * 
- * 原始函数名为FUN_1801a6440，现已重命名为ConfigureSystemData
- */
 void ConfigureSystemData(void* bufferAddress, void* configData, void* contextPointer, void* parameterArray);
 
-/**
- * @brief 系统资源释放函数
- * 
- * 该函数负责释放系统资源，清理内存和句柄
- * 用于系统资源的清理和释放
- * 
- * @param resourcePointer 资源指针
- * 
- * 原始函数名为FUN_18019e260，现已重命名为ReleaseSystemResources
- */
 void ReleaseSystemResources(void* resourcePointer);
 
-/**
- * @brief 系统缓冲区初始化函数
- * 
- * 该函数负责初始化系统缓冲区，设置缓冲区参数
- * 用于系统缓冲区的初始化和配置
- * 
- * @param bufferAddress 缓冲区地址
- * @param initFlag 初始化标志
- * @param parameter 参数
- * 
- * 原始函数名为FUN_180199500，现已重命名为InitializeSystemBuffer
- */
 void InitializeSystemBuffer(void* bufferAddress, int initFlag, int parameter);
 
-/**
- * @brief 系统数据更新函数
- * 
- * 该函数负责更新系统数据，同步数据状态
- * 用于系统数据的实时更新和同步
- * 
- * @param dataPointer 数据指针
- * 
- * 原始函数名为FUN_1801a2ea0，现已重命名为UpdateSystemData
- */
 void UpdateSystemData(void* dataPointer);
 
 /**
@@ -19022,7 +18910,7 @@ uint32_t FinalSystemInitialization(void)
 void WotsMain(void* ResourceManagerPointer)
 
 {
-  void* auStackX_18 [2];
+  void* LocalStackBuffer [2];
   
                     // 0x45a00  27  WotsMain
 
@@ -45246,7 +45134,7 @@ void CleanupAndInitializeSystemResource(void* *ResourceManagerPointer)
   uStack_70 = 0xfffffffffffffffe;
   uStack_30 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_b8;
   pEncryptionValue68 = ResourceManagerPointer;
-  FUN_18006b940();
+  DestroyResourceManagerPointer();
   *ResourceManagerPointer = &SystemResourceEncryptionKeyTemplate;
   puStack_88 = ResourceManagerPointer + 0x6e;
     memset(puStack_88,0,0x200000);
@@ -45434,7 +45322,7 @@ void* AllocateSystemMemoryWithMutex(long long ResourceManagerPointer,long long C
       uRam00000000000001f0 = 0;
       uRam00000000000001e8 = 0;
       uRam00000000000001e0 = 0;
-      cVar2 = FUN_18006bda0(ResourceManagerPointer,0x20,0x1e0,0x1e8,0x1f0);
+      cVar2 = ConfigureResourceManager(ResourceManagerPointer,0x20,0x1e0,0x1e8,0x1f0);
       if (validationStatusFlag == '\0') {
         FUN_1800687d0(ResourceManagerPointer + 0x370,0);
         unsignedSystemValue4 = 0;
