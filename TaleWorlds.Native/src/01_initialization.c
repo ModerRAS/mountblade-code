@@ -48194,7 +48194,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   ulong long SystemHashValidationValue;
   void* **ppSystemDataBufferOffset;
   long long *plStack_240;
-  long long lStack_238;
+  long long SystemMemorySize;
   long long longValue230;
   uint8_t SystemMemoryAlignment;
   void* StackPointer218;
@@ -48269,10 +48269,10 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         SystemAllocationFlags = resourceDataIndex4 / 1000000000;
         StackInteger48 = (int)SystemAllocationFlags;
         StackInteger210 = (int)resourceDataIndex4 + StackInteger48 * -1000000000;
-        uStack_218._4_4_ = (uint32_t)((ulong long)SystemAllocationFlags >> 0x20);
-        uStack_44 = uStack_218._4_4_;
+        SystemAllocationFlags._4_4_ = (uint32_t)((ulong long)SystemAllocationFlags >> 0x20);
+        SystemFlagComponent = SystemAllocationFlags._4_4_;
         SystemFlag3c = SystemMaxOperationCountc;
-        uStack_218 = SystemAllocationFlags;
+        SystemAllocationFlags = SystemAllocationFlags;
         StackInteger40 = StackInteger210;
         SystemOperationStatus7 = _Mtx_current_owns(resourceDataIndex3);
         if (SystemOperationStatus7 == 0) {
@@ -48563,9 +48563,9 @@ StackCheckPoint6:
           resourceDataIndex4 = resourceDataIndex4 * 2;
           if (resourceDataIndex4 != 0) goto StackCheckPoint6;
         }
-        InitializeSystemMemoryAllocatorWithHashNodes(&lStack_238,SystemAllocationFlags,SystemContextPointer,resourceDataIndex3);
-        SystemMemoryAddress = lStack_238;
-        ProcessSystemResourceData(lStack_238,&SystemGlobalDataReferencePtr2);
+        InitializeSystemMemoryAllocatorWithHashNodes(&SystemMemorySize,SystemAllocationFlags,SystemContextPointer,resourceDataIndex3);
+        SystemMemoryAddress = SystemMemorySize;
+        ProcessSystemResourceData(SystemMemorySize,&SystemGlobalDataReferencePtr2);
         SystemAllocationFlags = *(long long *)(SystemResourceManager + 0x3d0);
         SystemThreadHandle1 = *PrimaryResourcePointer8;
         if (SystemThreadHandle1 != SystemAllocationFlags) {

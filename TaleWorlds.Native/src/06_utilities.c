@@ -4709,17 +4709,17 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ObjectContextHandles [4];
   
   ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
-  if ((int)validationStatusCode != 0) {
-    return validationStatusCode;
+  if ((int)ValidationStatusCode != 0) {
+    return ValidationStatusCode;
   }
-  if (objectContextHandles[0] != 0) {
-    objectContextHandles[0] = objectContextHandles[0] + -8;
+  if (ObjectContextHandles[0] != 0) {
+    ObjectContextHandles[0] = ObjectContextHandles[0] + -8;
   }
-  validatedObjectPointer = *(int64_t *)(objectContextHandles[0] + ObjectHandleMemoryOffset);
-  if (validatedObjectPointer != 0) {
-    *(int *)(validatedObjectPointer + ObjectReferenceCountOffset) = *(int *)(validatedObjectPointer + ObjectReferenceCountOffset) + 1;
-    if ((*(char *)(validatedObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (validationStatusCode = CheckSystemStatus(), (int)validationStatusCode != 0)) {
-      return validationStatusCode;
+  ValidatedObjectPointer = *(int64_t *)(ObjectContextHandles[0] + ObjectHandleMemoryOffset);
+  if (ValidatedObjectPointer != 0) {
+    *(int *)(ValidatedObjectPointer + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectPointer + ObjectReferenceCountOffset) + 1;
+    if ((*(char *)(ValidatedObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationStatusCode = CheckSystemStatus(), (int)ValidationStatusCode != 0)) {
+      return ValidationStatusCode;
     }
     return 0;
   }
@@ -4920,26 +4920,26 @@ void CleanupSystemResources(void)
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
  * 这是validateObjectHandle函数的另一个版本
  */
-uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleToValidate)
+uint8_t ValidateAndProcessObjectHandle(int64_t objectHandleToValidate)
 
 {
-  uint8_t ValidationStatusCode;
-  int64_t HandleMemoryBuffer;
+  uint8_t validationStatusCode;
+  int64_t handleMemoryBuffer;
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectContextValidationOffset), &HandleMemoryBuffer);
-  if ((int)ValidationStatusCode != 0) {
-    return ValidationStatusCode;
+  validationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandleToValidate + ObjectContextValidationOffset), &handleMemoryBuffer);
+  if ((int)validationStatusCode != 0) {
+    return validationStatusCode;
   }
-  if (HandleMemoryBuffer == 0) {
-    HandleMemoryBuffer = 0;
+  if (handleMemoryBuffer == 0) {
+    handleMemoryBuffer = 0;
   }
   else {
-    HandleMemoryBuffer = HandleMemoryBuffer + -8;
+    handleMemoryBuffer = handleMemoryBuffer + -8;
   }
-  if (*(int64_t *)(HandleMemoryBuffer + HandleMemoryBufferHeaderOffset) == 0) {
+  if (*(int64_t *)(handleMemoryBuffer + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + HandleMemoryBufferHeaderOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(handleMemoryBuffer + HandleMemoryBufferHeaderOffset), 1);
 }
 
 
