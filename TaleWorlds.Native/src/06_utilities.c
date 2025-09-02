@@ -4691,6 +4691,16 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的引用信息和状态数据
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数负责增加指定对象的引用计数，用于对象生命周期管理
+ * 当对象被引用时，调用此函数来增加引用计数，确保对象不会被意外释放
+ * 
+ * @param ObjectContext 对象上下文，包含对象的引用计数信息
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
+ * @note 如果对象句柄无效，返回ErrorInvalidObjectHandle
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryPointer;
   uint8_t ObjectValidationResult;
@@ -100056,7 +100066,12 @@ void InitializeSystemDataStructureF(void)
  * 该函数负责销毁互斥锁和条件变量的内部实现
  * 用于清理线程同步对象
  */
-void InitializeSystemDataStructureG(void)
+/**
+ * @brief 初始化系统数据结构G
+ * 
+ * 该函数负责销毁互斥锁和条件变量的内部实现
+ * 用于清理线程同步对象
+ */
 void InitializeSystemDataStructureG(void)
 
 {
