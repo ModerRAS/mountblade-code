@@ -353,7 +353,7 @@ void ConfigureResourceSettings(void);
  * @return 无返回值
  * @note 此函数会批量处理所有待处理的资源操作
  */
-void ResourceOperationsProcessor(void);
+void ProcessResourceOperations(void);
 
 /**
  * @brief 验证资源完整性
@@ -365,7 +365,7 @@ void ResourceOperationsProcessor(void);
  * @note 此函数会检查所有系统资源的完整性
  * @warning 如果发现资源损坏，系统可能会采取恢复措施
  */
-void ResourceIntegrityValidator(void);
+void ValidateResourceIntegrity(void);
 
 /**
  * @brief 执行资源清理
@@ -940,7 +940,6 @@ void* SystemPoolManagerTable;
 void* SystemQueueManagerTable;
 void* SystemStackManagerTable;
 void* SystemLinkedListTable;
-void* SystemHashTable;
 void* SystemDataBufferMemoryPool;
 void* SystemDataBufferDataCache;
 void* DataBufferQueueManager;
@@ -93979,7 +93978,7 @@ void ProcessSystemOperationD(uint8_t objectContext,uint8_t validationContext,uin
   uint8_t *ResourceHashValidationResultPointer;
   
   ProcessResourceData(&SystemResourceDataBufferPrimary,SystemResourceDataBufferSecondary,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-  resourceHashPointer = SystemresourceHashPointer004;
+  resourceHashPointer = SystemResourceHashQuaternaryPointer;
   for (pvalidationResult = SystemResourceValidationPointer001; pvalidationResult != resourceHashPointer; pvalidationResult = pResourceHashValidationResult + 7) {
     *pvalidationResult = &SystemResourceHandlerTemplate;
     if (pResourceHashValidationResult[1] != 0) {
