@@ -4251,8 +4251,8 @@ uint8_t InitializeObjectHandleB(int64_t ObjectContext)
     }
     if ((*(char *)(contextHandle + 0x34) == '\0') ||
        ((*(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      uint configurationFlags = *(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34);
-      validationStatus = configurationFlags >> 4;
+      uint SystemConfigurationFlags = *(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34);
+      validationStatus = SystemConfigurationFlags >> 4;
       if ((validationStatus & 1) == 0) {
         if ((((configurationFlags >> 3 & 1) != 0) && (floatConversionResult = (int)processedFloatValue, floatConversionResult != -0x80000000)) &&
            ((float)floatConversionResult != processedFloatValue)) {
