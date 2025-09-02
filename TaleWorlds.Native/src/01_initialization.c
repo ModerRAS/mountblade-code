@@ -1288,6 +1288,16 @@ void* GetSystemInitializationFunction;
  * @note 函数依赖GetSystemRootPointer和GetGameCoreSystemInitializationFunction等辅助函数
  * @note 函数会设置GAME_CORE_NODE_DATA相关配置
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括内存管理、数据表、节点树等
+ * 用于游戏系统启动时的核心组件初始化
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名为InitializeGameCoreSystem，现已重命名为InitializeGameCoreSystem
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsSystemNodeActive;
@@ -25602,22 +25612,22 @@ uint32_t GetSystemResourceStatus(void)
   if ((aSystemOperationStatus._12_4_ != 0) && (aSystemOperationStatus._8_4_ != 0)) {
     pointerUnsignedC8 = &SystemGlobalDataReference;
     UnsignedStackFlagB0 = 0;
-    lStack_c0 = 0;
+    systemOffsetCounter = 0;
     UnsignedStackFlagB8 = 0;
     ProcessSystemData(&pointerUnsignedC8,aSystemOperationStatus._0_4_);
     currentThreadId = UnsignedStackFlagB8 + 1;
     ExecuteSystemCommand(&pointerUnsignedC8,currentThreadId);
-    *(void*2 *)((ulong long)UnsignedStackFlagB8 + lStack_c0) = 0x2c;
+    *(void*2 *)((ulong long)UnsignedStackFlagB8 + systemOffsetCounter) = 0x2c;
     UnsignedStackFlagB8 = currentThreadId;
     ProcessSystemData(&pointerUnsignedC8,aSystemOperationStatus._0_8_ >> 0x20);
     currentThreadId = UnsignedStackFlagB8 + 1;
     ExecuteSystemCommand(&pointerUnsignedC8,currentThreadId);
-    *(void*2 *)((ulong long)UnsignedStackFlagB8 + lStack_c0) = 0x2c;
+    *(void*2 *)((ulong long)UnsignedStackFlagB8 + systemOffsetCounter) = 0x2c;
     UnsignedStackFlagB8 = currentThreadId;
     ProcessSystemData(&pointerUnsignedC8,aSystemOperationStatus._8_8_ & 0xffffffff);
     systemFlag = UnsignedStackFlagB8 + 1;
     ExecuteSystemCommand(&pointerUnsignedC8,systemFlag);
-    *(void*2 *)((ulong long)UnsignedStackFlagB8 + lStack_c0) = 0x2c;
+    *(void*2 *)((ulong long)UnsignedStackFlagB8 + systemOffsetCounter) = 0x2c;
     UnsignedStackFlagB8 = systemFlag;
     ProcessSystemData(&pointerUnsignedC8,aSystemOperationStatus._8_8_ >> 0x20);
     pSystemResourceAddress = (void* *)CreateSystemObject(aUnsignedStackFlag80,&pointerUnsignedC8);
@@ -25630,10 +25640,10 @@ uint32_t GetSystemResourceStatus(void)
     *(uint32_t *)(pSystemResourceAddress + 3) = 0;
     *pSystemResourceAddress = &SystemMemoryAllocatorReference;
     pointerUnsignedC8 = &SystemGlobalDataReference;
-    if (lStack_c0 != 0) {
+    if (systemOffsetCounter != 0) {
         SystemCleanupFunction();
     }
-    lStack_c0 = 0;
+    systemOffsetCounter = 0;
     UnsignedStackFlagB0 = UnsignedStackFlagB0 & 0xffffffff00000000;
     pointerUnsignedC8 = &SystemMemoryAllocatorReference;
   }
@@ -25642,22 +25652,22 @@ uint32_t GetSystemResourceStatus(void)
   if ((aSystemOperationStatus._12_4_ != 0) && (aSystemOperationStatus._8_4_ != 0)) {
     pUnsignedStackFlagA8 = &SystemGlobalDataReference;
     SystemConfigurationValue = 0;
-    lStack_a0 = 0;
+    secondarySystemOffsetCounter = 0;
     systemConfigurationValue = 0;
     ProcessSystemData(&pUnsignedStackFlagA8,aSystemOperationStatus._0_4_);
     currentThreadId = unsignedValue98 + 1;
     ExecuteSystemCommand(&pUnsignedStackFlagA8,currentThreadId);
-    *(void*2 *)((ulong long)unsignedValue98 + lStack_a0) = 0x2c;
+    *(void*2 *)((ulong long)unsignedValue98 + secondarySystemOffsetCounter) = 0x2c;
     unsignedValue98 = currentThreadId;
     ProcessSystemData(&pUnsignedStackFlagA8,aSystemOperationStatus._0_8_ >> 0x20);
     currentThreadId = unsignedValue98 + 1;
     ExecuteSystemCommand(&pUnsignedStackFlagA8,currentThreadId);
-    *(void*2 *)((ulong long)unsignedValue98 + lStack_a0) = 0x2c;
+    *(void*2 *)((ulong long)unsignedValue98 + secondarySystemOffsetCounter) = 0x2c;
     unsignedValue98 = currentThreadId;
     ProcessSystemData(&pUnsignedStackFlagA8,aSystemOperationStatus._8_8_ & 0xffffffff);
     systemFlag = unsignedValue98 + 1;
     ExecuteSystemCommand(&pUnsignedStackFlagA8,systemFlag);
-    *(void*2 *)((ulong long)unsignedValue98 + lStack_a0) = 0x2c;
+    *(void*2 *)((ulong long)unsignedValue98 + secondarySystemOffsetCounter) = 0x2c;
     unsignedValue98 = systemFlag;
     ProcessSystemData(&pUnsignedStackFlagA8,aSystemOperationStatus._8_8_ >> 0x20);
     pSystemResourceAddress = (void* *)CreateSystemObject(StackBuffer60,&pUnsignedStackFlagA8);
@@ -47940,7 +47950,7 @@ void AllocateAndConfigureSystemResource(long long SystemResourceManager,long lon
   }
   else if (nextDataIndex == 0) {
     if (*AdditionalParameter == 0) {
-      resourcePoolPointer = (long long *)FUN_18006e000(SystemResourceManager,ResourceDataOffset);
+      resourcePoolPointer = (long long *)CreateSystemResourcePool(SystemResourceManager,ResourceDataOffset);
       *(long long **)(ConfigurationDataPointer + 400) = resourcePoolPointer;
       if (resourcePoolPointer == (long long *)0x0) goto LAB_18006bf7f;
       ResourceDataOffset = *(long long *)(SystemResourceManager + 800) + *resourcePoolPointer;
@@ -47949,7 +47959,7 @@ void AllocateAndConfigureSystemResource(long long SystemResourceManager,long lon
     }
   }
   else {
-    resourcePoolPointer = (long long *)FUN_18006e000(SystemResourceManager,ResourceDataOffset);
+    resourcePoolPointer = (long long *)CreateSystemResourcePool(SystemResourceManager,ResourceDataOffset);
     *(long long **)(ConfigurationDataPointer + 0x188) = resourcePoolPointer;
     if (resourcePoolPointer == (long long *)0x0) {
 LAB_18006bf7f:
@@ -47961,7 +47971,7 @@ LAB_18006bf7f:
     *ConfigurationFlag = ResourceDataOffset;
     *OutputResult = ResourceDataOffset;
     if (*AdditionalParameter == 0) {
-      resourcePoolPointer = (long long *)FUN_18006e000(SystemResourceManager,*(void* *)(ConfigurationDataPointer + 0x138));
+      resourcePoolPointer = (long long *)CreateSystemResourcePool(SystemResourceManager,*(void* *)(ConfigurationDataPointer + 0x138));
       *(long long **)(ConfigurationDataPointer + 400) = resourcePoolPointer;
       if (resourcePoolPointer == (long long *)0x0) goto LAB_18006bf7f;
       *AdditionalParameter = *resourcePoolPointer + *(long long *)(SystemResourceManager + 800);
