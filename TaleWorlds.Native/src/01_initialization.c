@@ -44600,134 +44600,173 @@ void HandleLengthError(void)
 
 
 
-// 函数: void FUN_180067110(ulong long SystemResourcePointer)
-void FUN_180067110(ulong long SystemResourcePointer)
+/**
+ * @brief 系统内存分配器
+ * 
+ * 该函数负责分配系统内存，根据请求的大小进行内存分配。
+ * 对于小内存请求使用标准malloc，对于大内存请求使用系统级别的内存分配。
+ * 
+ * @param MemoryAllocationSize 内存分配大小
+ * @return 返回分配的内存地址
+ * 
+ * 原始函数名为FUN_180067110，现已重命名为AllocateSystemMemory
+ */
+void* AllocateSystemMemory(ulong long MemoryAllocationSize)
 
 {
-  code *pcVar1;
-  int systemResult;
-  long long localResourceOffset;
-  ulong long unsignedSystemValue4;
+  code *systemExceptionHandler;
+  int memoryAllocationResult;
+  long long allocatedMemoryAddress;
+  ulong long adjustedMemorySize;
   
-  if (0xfff < SystemResourcePointer) {
-    unsignedSystemValue4 = SystemResourcePointer + 0x27;
-    if (unsignedSystemValue4 <= SystemResourcePointer) {
-      unsignedSystemValue4 = 0xffffffffffffffff;
+  if (0xfff < MemoryAllocationSize) {
+    adjustedMemorySize = MemoryAllocationSize + 0x27;
+    if (adjustedMemorySize <= MemoryAllocationSize) {
+      adjustedMemorySize = 0xffffffffffffffff;
     }
-    localResourceOffset = FUN_1808fc418(unsignedSystemValue4);
-    if (localResourceOffset == 0) {
+    allocatedMemoryAddress = FUN_1808fc418(adjustedMemorySize);
+    if (allocatedMemoryAddress == 0) {
         _invalid_parameter_noinfo_noreturn();
     }
-    *(long long *)((localResourceOffset + 0x27U & 0xffffffffffffffe0) - 8) = localResourceOffset;
+    *(long long *)((allocatedMemoryAddress + 0x27U & 0xffffffffffffffe0) - 8) = allocatedMemoryAddress;
     return;
   }
-  if (SystemResourcePointer == 0) {
+  if (MemoryAllocationSize == 0) {
     return;
   }
   do {
-    localResourceOffset = malloc(SystemResourcePointer);
-    if (localResourceOffset != 0) {
+    allocatedMemoryAddress = malloc(MemoryAllocationSize);
+    if (allocatedMemoryAddress != 0) {
       return;
     }
-    systemResult = _callnewh(SystemResourcePointer);
-  } while (systemResult != 0);
-  if (SystemResourcePointer == 0xffffffffffffffff) {
+    memoryAllocationResult = _callnewh(MemoryAllocationSize);
+  } while (memoryAllocationResult != 0);
+  if (MemoryAllocationSize == 0xffffffffffffffff) {
     FUN_1808fd8b4();
-    pcVar1 = (code *)swi(3);
-    (*pcVar1)();
+    systemExceptionHandler = (code *)swi(3);
+    (*systemExceptionHandler)();
     return;
   }
   FUN_1808fd894();
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  systemExceptionHandler = (code *)swi(3);
+  (*systemExceptionHandler)();
   return;
 }
 
 
 
 
-// 函数: void FUN_180067170(long long SystemResourcePointer,ulong long ConfigurationDataPointer)
-void FUN_180067170(long long SystemResourcePointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 系统内存释放器
+ * 
+ * 该函数负责释放系统内存，根据内存地址和大小进行内存释放。
+ * 对于大内存块使用特殊的释放机制，对于小内存块使用标准free。
+ * 
+ * @param MemoryAddress 内存地址
+ * @param MemorySize 内存大小
+ * 
+ * 原始函数名为FUN_180067170，现已重命名为FreeSystemMemory
+ */
+void FreeSystemMemory(long long MemoryAddress,ulong long MemorySize)
 
 {
-  long long localMemoryPointer;
+  long long memoryBlockPointer;
   
-  localMemoryPointer = SystemResourcePointer;
-  if (0xfff < ConfigurationDataPointer) {
-    localMemoryPointer = *(long long *)(SystemResourcePointer + -8);
-    if (0x1f < (SystemResourcePointer - localMemoryPointer) - 8U) {
-        _invalid_parameter_noinfo_noreturn(SystemResourcePointer - localMemoryPointer,ConfigurationDataPointer + 0x27);
+  memoryBlockPointer = MemoryAddress;
+  if (0xfff < MemorySize) {
+    memoryBlockPointer = *(long long *)(MemoryAddress + -8);
+    if (0x1f < (MemoryAddress - memoryBlockPointer) - 8U) {
+        _invalid_parameter_noinfo_noreturn(MemoryAddress - memoryBlockPointer,MemorySize + 0x27);
     }
   }
-                    0001808ffc83. Too many branches
-                      free(localMemoryPointer);
+  free(memoryBlockPointer);
   return;
 }
 
 
 
 
-// 函数: void FUN_1800671b0(void* *SystemResourcePointer,void* ConfigurationDataPointer,ulong long AdditionalParameter)
-void FUN_1800671b0(void* *SystemResourcePointer,void* ConfigurationDataPointer,ulong long AdditionalParameter)
+/**
+ * @brief 系统数据缓冲区重新分配器
+ * 
+ * 该函数负责重新分配系统数据缓冲区，根据新的参数调整缓冲区大小。
+ * 主要用于系统数据缓冲区的动态调整和优化。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数，指定新的缓冲区大小
+ * 
+ * 原始函数名为FUN_1800671b0，现已重命名为ReallocateSystemDataBuffer
+ */
+void ReallocateSystemDataBuffer(void* *SystemResourcePointer,void* ConfigurationDataPointer,ulong long AdditionalParameter)
 
 {
-  ulong long unsignedSystemValue1;
-  code *pcVar2;
-  void* unsignedSystemValue3;
-  ulong long unsignedSystemValue4;
-  void* *punsignedSystemValue5;
-  ulong long unsignedSystemValue6;
+  ulong long currentBufferSize;
+  code *systemExceptionHandler;
+  void* allocatedMemoryBuffer;
+  ulong long adjustedBufferSize;
+  void* *bufferDataPointer;
+  ulong long maximumBufferSize;
   
-  unsignedSystemValue1 = SystemResourcePointer[3];
-  if (AdditionalParameter <= unsignedSystemValue1) {
-    punsignedSystemValue5 = SystemResourcePointer;
-    if (0xf < unsignedSystemValue1) {
-      punsignedSystemValue5 = (void* *)*SystemResourcePointer;
+  currentBufferSize = SystemResourcePointer[3];
+  if (AdditionalParameter <= currentBufferSize) {
+    bufferDataPointer = SystemResourcePointer;
+    if (0xf < currentBufferSize) {
+      bufferDataPointer = (void* *)*SystemResourcePointer;
     }
     SystemResourcePointer[2] = AdditionalParameter;
-      memmove(punsignedSystemValue5);
+      memmove(bufferDataPointer);
   }
   if (AdditionalParameter < 0x8000000000000000) {
-    unsignedSystemValue4 = AdditionalParameter | 0xf;
-    unsignedSystemValue6 = 0x7fffffffffffffff;
-    if (((unsignedSystemValue4 < 0x8000000000000000) && (unsignedSystemValue1 <= 0x7fffffffffffffff - (unsignedSystemValue1 >> 1))) &&
-       (unsignedSystemValue1 = (unsignedSystemValue1 >> 1) + unsignedSystemValue1, unsignedSystemValue6 = unsignedSystemValue4, unsignedSystemValue4 < unsignedSystemValue1)) {
-      unsignedSystemValue6 = unsignedSystemValue1;
+    adjustedBufferSize = AdditionalParameter | 0xf;
+    maximumBufferSize = 0x7fffffffffffffff;
+    if (((adjustedBufferSize < 0x8000000000000000) && (currentBufferSize <= 0x7fffffffffffffff - (currentBufferSize >> 1))) &&
+       (currentBufferSize = (currentBufferSize >> 1) + currentBufferSize, maximumBufferSize = adjustedBufferSize, adjustedBufferSize < currentBufferSize)) {
+      maximumBufferSize = currentBufferSize;
     }
-    unsignedSystemValue3 = FUN_180067110(unsignedSystemValue6 + 1);
+    allocatedMemoryBuffer = AllocateSystemMemory(maximumBufferSize + 1);
     SystemResourcePointer[2] = AdditionalParameter;
-    SystemResourcePointer[3] = unsignedSystemValue6;
-      memcpy(unsignedSystemValue3,ConfigurationDataPointer,AdditionalParameter);
+    SystemResourcePointer[3] = maximumBufferSize;
+      memcpy(allocatedMemoryBuffer,ConfigurationDataPointer,AdditionalParameter);
   }
   FUN_1800670f0();
-  pcVar2 = (code *)swi(3);
-  (*pcVar2)();
+  systemExceptionHandler = (code *)swi(3);
+  (*systemExceptionHandler)();
   return;
 }
 
 
 
 
-// 函数: void FUN_18006720b(ulong long SystemResourcePointer)
-void FUN_18006720b(ulong long SystemResourcePointer)
+/**
+ * @brief 系统字符串缓冲区分配器
+ * 
+ * 该函数负责分配系统字符串缓冲区，根据请求的大小进行内存分配和设置。
+ * 主要用于系统字符串处理的内存分配和初始化。
+ * 
+ * @param StringBufferSize 字符串缓冲区大小
+ * 
+ * 原始函数名为FUN_18006720b，现已重命名为AllocateStringBuffer
+ */
+void AllocateStringBuffer(ulong long StringBufferSize)
 
 {
-  ulong long unsignedSystemValue1;
-  void* unsignedSystemValue2;
-  long long systemMemoryBlockPtr;
-  ulong long systemStackFramePtr;
-  void* systemStringIteratorPtr;
-  ulong long systemDataIndexPtr;
+  ulong long calculatedBufferSize;
+  void* allocatedStringBuffer;
+  long long stringMemoryBlockPtr;
+  ulong long stringStackFrameSize;
+  void* stringIteratorPtr;
+  ulong long stringDataIndex;
   
-  SystemResourcePointer = SystemResourcePointer | 0xf;
-  if (((SystemResourcePointer <= systemDataIndexPtr) && (systemStackFramePtr <= systemDataIndexPtr - (systemStackFramePtr >> 1))) &&
-     (unsignedSystemValue1 = (systemStackFramePtr >> 1) + systemStackFramePtr, systemDataIndexPtr = SystemResourcePointer, SystemResourcePointer < unsignedSystemValue1)) {
-    systemDataIndexPtr = unsignedSystemValue1;
+  StringBufferSize = StringBufferSize | 0xf;
+  if (((StringBufferSize <= stringDataIndex) && (stringStackFrameSize <= stringDataIndex - (stringStackFrameSize >> 1))) &&
+     (calculatedBufferSize = (stringStackFrameSize >> 1) + stringStackFrameSize, stringDataIndex = StringBufferSize, StringBufferSize < calculatedBufferSize)) {
+    stringDataIndex = calculatedBufferSize;
   }
-  unsignedSystemValue2 = FUN_180067110(systemDataIndexPtr + 1);
-  *(void* *)(systemMemoryBlockPtr + 0x10) = systemStringIteratorPtr;
-  *(ulong long *)(systemMemoryBlockPtr + 0x18) = systemDataIndexPtr;
-    memcpy(unsignedSystemValue2);
+  allocatedStringBuffer = AllocateSystemMemory(stringDataIndex + 1);
+  *(void* *)(stringMemoryBlockPtr + 0x10) = stringIteratorPtr;
+  *(ulong long *)(stringMemoryBlockPtr + 0x18) = stringDataIndex;
+    memcpy(allocatedStringBuffer);
 }
 
 
@@ -44752,8 +44791,15 @@ void SystemNoOperationB(void)
 
 
 
-// 函数: void FUN_1800672b0(void)
-void FUN_1800672b0(void)
+/**
+ * @brief 系统参数错误处理器
+ * 
+ * 该函数负责处理系统参数错误，当参数无效时调用错误处理函数。
+ * 主要用于系统参数验证和错误处理。
+ * 
+ * 原始函数名为FUN_1800672b0，现已重命名为HandleSystemParameterError
+ */
+void HandleSystemParameterError(void)
 
 {
     _invalid_parameter_noinfo_noreturn();
