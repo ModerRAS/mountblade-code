@@ -61513,7 +61513,18 @@ void ExecuteResourceHashValidationCallbacks(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_180907d30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希并执行清理
+ * 
+ * 该函数验证资源哈希结果，并在特定条件下执行清理操作
+ * 检查资源索引和内存访问权限，确保资源管理的安全性
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据结构
+ * @return 无返回值
+ * @note 此函数主要用于资源管理的验证和清理
+ */
+void ValidateResourceHashAndExecuteCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -61549,7 +61560,18 @@ void Unwind_180907d30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907d40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到偏移量0x360
+ * 
+ * 该函数在验证上下文的偏移量0x360处设置系统数据结构的指针
+ * 用于初始化系统数据结构的引用
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，用于设置系统数据结构指针
+ * @return 无返回值
+ * @note 此函数主要用于系统初始化过程
+ */
+void SetSystemDataStructurePointerAtOffset360(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x360) = &SystemDataStructure;
@@ -61558,7 +61580,18 @@ void Unwind_180907d40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907d50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志位1
+ * 
+ * 该函数检查资源数据的标志位1，如果设置了则清除并执行内存清理
+ * 用于系统资源管理和清理
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含清理所需的数据
+ * @return 无返回值
+ * @note 此函数主要用于资源数据标志位的清理
+ */
+void CleanupResourceDataFlagBit1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -61570,7 +61603,18 @@ void Unwind_180907d50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907d80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志位2
+ * 
+ * 该函数检查资源数据的标志位2，如果设置了则清除并执行内存清理
+ * 用于系统资源管理和清理
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含清理所需的数据
+ * @return 无返回值
+ * @note 此函数主要用于资源数据标志位的清理
+ */
+void CleanupResourceDataFlagBit2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
@@ -61582,7 +61626,18 @@ void Unwind_180907d80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907db0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到偏移量0x218
+ * 
+ * 该函数在验证上下文的偏移量0x218处设置系统数据结构的指针
+ * 用于初始化系统数据结构的引用
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，用于设置系统数据结构指针
+ * @return 无返回值
+ * @note 此函数主要用于系统初始化过程
+ */
+void SetSystemDataStructurePointerAtOffset218(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x218) = &SystemDataStructure;
@@ -61591,7 +61646,18 @@ void Unwind_180907db0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907dc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到偏移量0x1c0
+ * 
+ * 该函数在验证上下文的偏移量0x1c0处设置系统数据结构的指针
+ * 用于初始化系统数据结构的引用
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，用于设置系统数据结构指针
+ * @return 无返回值
+ * @note 此函数主要用于系统初始化过程
+ */
+void SetSystemDataStructurePointerAtOffset1C0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1c0) = &SystemDataStructure;
@@ -61600,7 +61666,18 @@ void Unwind_180907dc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907dd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志位4
+ * 
+ * 该函数检查资源数据的标志位4，如果设置了则清除并释放系统资源
+ * 用于系统资源管理和清理
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含清理所需的数据
+ * @return 无返回值
+ * @note 此函数主要用于资源数据标志位的清理
+ */
+void CleanupResourceDataFlagBit4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 4) != 0) {
