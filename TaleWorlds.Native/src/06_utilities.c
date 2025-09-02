@@ -67562,7 +67562,13 @@ void ProcessSystemResourceCleanupPhase2(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_1809091f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段3
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_1809091f0
+ */
+void ProcessSystemResourceCleanupPhase3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67576,7 +67582,13 @@ void Unwind_1809091f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909210(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段4
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909210
+ */
+void ProcessSystemResourceCleanupPhase4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67590,7 +67602,13 @@ void Unwind_180909210(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909230(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段5
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909230
+ */
+void ProcessSystemResourceCleanupPhase5(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67604,7 +67622,13 @@ void Unwind_180909230(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909250(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段6
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909250
+ */
+void ProcessSystemResourceCleanupPhase6(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67618,7 +67642,13 @@ void Unwind_180909250(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909270(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段7
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909270
+ */
+void ProcessSystemResourceCleanupPhase7(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67632,7 +67662,13 @@ void Unwind_180909270(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909290(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段8
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909290
+ */
+void ProcessSystemResourceCleanupPhase8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -67675,7 +67711,13 @@ void Unwind_180909290(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809092b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段9
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_1809092b0
+ */
+void ProcessSystemResourceCleanupPhase9(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67689,7 +67731,13 @@ void Unwind_1809092b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809092d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段10
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_1809092d0
+ */
+void ProcessSystemResourceCleanupPhase10(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -67985,7 +68033,15 @@ void ReleaseResourceHandleByValidation(uint8_t ObjectContext,uint *ValidationCon
 
 
 
-void Unwind_180909390(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_180909390
+ */
+void ExecuteSystemResourceCleanupOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *charPointer;
@@ -67999,7 +68055,15 @@ void Unwind_180909390(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809093a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理操作扩展版
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_1809093a0
+ */
+void ExecuteSystemResourceCleanupOperationExtended(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *charPointer;
@@ -68013,7 +68077,13 @@ void Unwind_1809093a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809093b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源哈希验证清理
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_1809093b0
+ */
+void ProcessSystemResourceHashValidationCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -68090,7 +68160,15 @@ void Unwind_1809093b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809093c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理系统资源索引验证清理
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_1809093c0
+ */
+void ProcessSystemResourceIndexValidationCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t *processPointer;
