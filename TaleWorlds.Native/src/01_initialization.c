@@ -38766,17 +38766,30 @@ long long AllocateSystemResourceId(void)
 
 
 
-void* FUN_18005ecfc(void* SystemResourcePointer,void* ConfigurationDataPointer,long long *AdditionalParameter)
+/**
+ * @brief 系统资源分配和数据处理函数
+ * 
+ * 该函数负责处理系统资源的分配和数据处理，包括内存管理、
+ * 数据索引和资源分配池的管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数指针
+ * @return 分配的资源指针
+ * 
+ * 原始函数名为FUN_18005ecfc，现已重命名为AllocateSystemResourceAndProcessData
+ */
+void* AllocateSystemResourceAndProcessData(void* SystemResourcePointer,void* ConfigurationDataPointer,long long *AdditionalParameter)
 
 {
-  int *pointerToInteger1;
-  void* unsignedSystemValue2;
-  long long in_RAX;
-  ulong long systemStringIteratorPtr;
-  ulong long unsignedSystemValue3;
-  long long *systemDataIndexPtr;
-  int systemResourceHandleD;
-  bool bVar4;
+  int *resourceStatusPtr;
+  void* allocatedResource;
+  long long resourceOffset;
+  ulong long stringIterator;
+  ulong long hashIndex;
+  long long *dataIndexPtr;
+  int resourceHandle;
+  bool allocationSuccess;
   
   unsignedSystemValue2 = *(void* *)(AdditionalParameter[1] + 8 + in_RAX * 0x10);
   if (AdditionalParameter == systemDataIndexPtr) {
@@ -39032,7 +39045,21 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char ConfigurationDataPoi
 
 
 
-void* FUN_18005f040(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 执行系统资源配置操作
+ * 
+ * 该函数负责执行系统资源的配置操作，包括资源状态检查、
+ * 配置标志处理和资源分配操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 操作结果指针
+ * 
+ * 原始函数名为FUN_18005f040，现已重命名为ExecuteSystemResourceConfigurationOperation
+ */
+void* ExecuteSystemResourceConfigurationOperation(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   ulong long unsignedSystemValue1;
