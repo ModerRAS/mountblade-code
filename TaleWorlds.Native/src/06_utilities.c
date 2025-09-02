@@ -10961,14 +10961,14 @@ uint8_t ReturnResourcePoolErrorCode(void)
 void ProcessResourceCalculationAndValidation(int64_t objectContext, uint8_t *validationContext, int *calculationResult)
 {
   uint8_t encryptionShiftValue;
-  int64_t ResourceTable;
-  char StatusFlag;
-  int ResultRecordIndex;
-  uint8_t ResourceContextOffset;
-  int64_t MemoryAddress;
-  int64_t BufferPointer;
-  int OperationCounter;
-  int64_t ResourceHandle;
+  int64_t resourceTable;
+  char statusFlag;
+  int resultRecordIndex;
+  uint8_t resourceContextOffset;
+  int64_t memoryAddress;
+  int64_t bufferPointer;
+  int operationCounter;
+  int64_t resourceHandle;
   float calculatedFloatResult;
   float resultFloatValue;
   uint8_t SecurityValidationBuffer [68];
