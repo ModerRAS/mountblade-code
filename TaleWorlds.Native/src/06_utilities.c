@@ -12822,7 +12822,7 @@ ResourceProcessingHandler:
     SecondaryGraphicsDataPointer = &BufferTemplate4;
     ValidationFlags = 0;
     CleanupOperation = CleanupOption;
-    ValidationStatusCode = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer2);
+    ValidationStatusCode = GetAndValidateResourceData(ObjectContext,&GraphicsDataSecondaryPointer);
     if (HashValidationResult != 0) goto ResourceErrorHandler;
     ResourceCount = 0;
     ValidationStatusCode = *(int *)(*(int64_t *)(ValidationContext + 0x2e8) + 0x2c);
@@ -12850,13 +12850,13 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataPointer2 = &BufferTemplate6;
+        GraphicsDataSecondaryPointer = &BufferTemplate6;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
-        GraphicsDataIndex2 = ResourceCount;
+        GraphicsDataSecondaryIndex = ResourceCount;
         ResourceOperationType = CleanupOption;
         TableEntryBackup = TableEntryIndex;
-        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer2);
+        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataSecondaryPointer);
         if ((TableEntryIndex != 0) || (TableEntryIndex = FindResourceEntry(ResourceTable,GraphicsTransformMatrix), TableEntryIndex != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
@@ -12897,13 +12897,13 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataPointer2 = &BufferTemplate6;
+        GraphicsDataSecondaryPointer = &BufferTemplate6;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
-        GraphicsDataIndex2 = ResourceCount;
+        GraphicsDataSecondaryIndex = ResourceCount;
         ResourceOperationType = CleanupOption;
         TableEntryBackup = TableEntryIndex;
-        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer2);
+        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataSecondaryPointer);
         if ((TableEntryIndex != 0) || (TableEntryIndex = FindResourceEntry(ResourceTable,GraphicsTransformMatrix), TableEntryIndex != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
@@ -12944,13 +12944,13 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataPointer2 = &BufferTemplate6;
+        GraphicsDataSecondaryPointer = &BufferTemplate6;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
-        GraphicsDataIndex2 = ResourceCount;
+        GraphicsDataSecondaryIndex = ResourceCount;
         ResourceOperationType = CleanupOption;
         TableEntryBackup = TableEntryIndex;
-        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer2);
+        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataSecondaryPointer);
         if ((TableEntryIndex != 0) || (TableEntryIndex = FindResourceEntry(ResourceTable,GraphicsTransformMatrix), TableEntryIndex != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
@@ -12991,13 +12991,13 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataPointer2 = &BufferTemplate6;
+        GraphicsDataSecondaryPointer = &BufferTemplate6;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
-        GraphicsDataIndex2 = ResourceCount;
+        GraphicsDataSecondaryIndex = ResourceCount;
         ResourceOperationType = CleanupOption;
         TableEntryBackup = TableEntryIndex;
-        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer2);
+        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataSecondaryPointer);
         if ((TableEntryIndex != 0) || (TableEntryIndex = FindResourceEntry(ResourceTable,GraphicsTransformMatrix), TableEntryIndex != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
@@ -13041,13 +13041,13 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataPointer2 = &BufferTemplate7;
+        GraphicsDataSecondaryPointer = &BufferTemplate7;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
-        GraphicsDataIndex2 = ResourceCount;
+        GraphicsDataSecondaryIndex = ResourceCount;
         ResourceOperationType = CleanupOption;
         TableEntryBackup = TableEntryIndex;
-        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer2);
+        TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataSecondaryPointer);
         if ((TableEntryIndex != 0) || (ResourceCount = SearchResourceTable(ResourceTable,GraphicsTransformMatrix,0), ResourceCount != 0)) break;
         TableEntryIndex = OperationResult;
         if (GraphicsTransformMatrix[0] != 1.0) {
@@ -13570,10 +13570,10 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
   ContextDataBuffer = ValidationContext;
   ProcessStatus = ValidateBufferContext(ResourceContextDataPointer,&BufferContextSize);
   if (ProcessStatus == 0) {
-    ResourceHashPointer6 = (uint8_t *)(ValidationContext + 8);
+    ResourceHashStackPointer = (uint8_t *)(ValidationContext + 8);
     SecondaryBufferSize = 0;
-    ResourceHashStackPointer = ResourceHashPointer6;
-    ResourceDataOffset = (*(code *)**(uint8_t **)(ValidationContext + 8))(ResourceHashPointer6);
+    ResourceHashStackPointer = ResourceHashStackPointer;
+    ResourceDataOffset = (*(code *)**(uint8_t **)(ValidationContext + 8))(ResourceHashStackPointer);
     ProcessStatus = ValidateBufferContext(*(uint8_t *)(ResourceContextDataPointer + 0xd0),&SecondaryBufferSize);
     if (ProcessStatus == 0) {
       OperationStatusFlags = 0;
@@ -13590,7 +13590,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
             ResourceIndex = *(int64_t *)(LocalContextBuffer + 0x10 + SystemDataPointer);
             LoopOffset = *(int64_t *)(LocalContextBuffer + 8 + SystemDataPointer);
             ResourceCheckResult = CheckResourceIndex(ResourceIndex,1);
-            ResourceHashPointer6 = ResourceHashStackPointer;
+            ResourceHashStackPointer = ResourceHashStackPointer;
             if ((ResourceCheckResult == '\0') && (*(float *)(ResourceIndex + 0x4c) != *(float *)(LoopOffset + 0x28))) {
               PrimaryStackData = *(uint32_t *)(LocalContextBuffer + 4 + SystemDataPointer);
               ResourceOperationParameter = &SystemResourceTemplateDatabase;
@@ -13615,7 +13615,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
           } while (ResourceContextDataPointer < ResourceValidationBuffer);
         }
         PrimaryResourceHash = *(uint8_t *)(*(int64_t *)(ObjectContext + 8) + 800);
-        ResourceHashInitialValue = (**(code **)*ResourceHashPointer6)(ResourceHashPointer6);
+        ResourceHashInitialValue = (**(code **)*ResourceHashStackPointer)(ResourceHashStackPointer);
         ProcessStatus = CalculateDataHash(ResourceHashInitialValue,PrimaryResourceHash,ResourceHashBuffer);
         if (ProcessStatus == 0) {
           if (ResourceHashBuffer[0] != '\0') {
@@ -21666,18 +21666,18 @@ ResourceValidationWait:
         CalculatedFloatResult = FloatingPointResultFifth;
       }
       ResourceHashPointer3 = *(uint8_t **)(ExecutionContextPointer + -0x29);
-      for (ResourceHashPointer6 = ResourceHashPointer3; (ResourceHashPointer3 <= ResourceHashPointer6 && (ResourceHashPointer6 < ResourceHashPointer3 + (int64_t)ResourceProcessingIndex * 3));
-          ResourceHashPointer6 = ResourceHashPointer6 + 3) {
+      for (ResourceHashStackPointer = ResourceHashPointer3; (ResourceHashPointer3 <= ResourceHashStackPointer && (ResourceHashStackPointer < ResourceHashPointer3 + (int64_t)ResourceProcessingIndex * 3));
+          ResourceHashStackPointer = ResourceHashStackPointer + 3) {
         *(uint8_t *)(ExecutionContextPointer + 0x77) = 0;
         ValidationCounter = InitializeResourceBuffer(SystemContext + 0x48,ExecutionContextPointer + 0x77);
         ResourceHashPointer3 = (uint8_t *)(uint64_t)ValidationCounter;
         if (ValidationCounter != 0) goto ResourceValidationWait;
-        ResourceHash = ResourceHashPointer6[1];
+        ResourceHash = ResourceHashStackPointer[1];
         ResourceHashPointer3 = *(uint8_t **)(ExecutionContextPointer + 0x77);
-        *ResourceHashPointer3 = *ResourceHashPointer6;
+        *ResourceHashPointer3 = *ResourceHashStackPointer;
         ResourceHashPointer3[1] = ResourceHash;
-        *(uint32_t *)(ResourceHashPointer3 + 2) = *(uint32_t *)(ResourceHashPointer6 + 2);
-        CalculatedFloatResult = *(float *)((int64_t)ResourceHashPointer6 + 0x14) + *(float *)(ResourceHashPointer6 + 2);
+        *(uint32_t *)(ResourceHashPointer3 + 2) = *(uint32_t *)(ResourceHashStackPointer + 2);
+        CalculatedFloatResult = *(float *)((int64_t)ResourceHashStackPointer + 0x14) + *(float *)(ResourceHashStackPointer + 2);
         *(float *)((int64_t)ResourceHashPointer3 + 0x14) = CalculatedFloatResult;
         *(uint8_t *)(ResourceHashPointer3 + 3) = 1;
         ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
@@ -21917,18 +21917,18 @@ ResourceValidationWait:
         CalculatedFloatResult = FloatingPointResultFifth;
       }
       ResourceHashSecondaryPointer = *(uint8_t **)(ExecutionContextPointer + -0x29);
-      for (ResourceHashPointer6 = ResourceHashSecondaryPointer; (ResourceHashSecondaryPointer <= ResourceHashPointer6 && (ResourceHashPointer6 < ResourceHashSecondaryPointer + (int64_t)ResourceProcessingIndex * 3));
-          ResourceHashPointer6 = ResourceHashPointer6 + 3) {
+      for (ResourceHashStackPointer = ResourceHashSecondaryPointer; (ResourceHashSecondaryPointer <= ResourceHashStackPointer && (ResourceHashStackPointer < ResourceHashSecondaryPointer + (int64_t)ResourceProcessingIndex * 3));
+          ResourceHashStackPointer = ResourceHashStackPointer + 3) {
         *(uint8_t *)(ExecutionContextPointer + 0x77) = 0;
         ValidationCounter = InitializeResourceBuffer(SystemContext + 0x48,ExecutionContextPointer + 0x77);
         ResourceHashSecondaryPointer = (uint8_t *)(uint64_t)ValidationCounter;
         if (ValidationCounter != 0) goto ResourceValidationWait;
-        ResourceHash = ResourceHashPointer6[1];
+        ResourceHash = ResourceHashStackPointer[1];
         ResourceHashSecondaryPointer = *(uint8_t **)(ExecutionContextPointer + 0x77);
-        *ResourceHashSecondaryPointer = *ResourceHashPointer6;
+        *ResourceHashSecondaryPointer = *ResourceHashStackPointer;
         ResourceHashSecondaryPointer[1] = ResourceHash;
-        *(uint32_t *)(ResourceHashSecondaryPointer + 2) = *(uint32_t *)(ResourceHashPointer6 + 2);
-        CalculatedFloatResult = *(float *)((int64_t)ResourceHashPointer6 + 0x14) + *(float *)(ResourceHashPointer6 + 2);
+        *(uint32_t *)(ResourceHashSecondaryPointer + 2) = *(uint32_t *)(ResourceHashStackPointer + 2);
+        CalculatedFloatResult = *(float *)((int64_t)ResourceHashStackPointer + 0x14) + *(float *)(ResourceHashStackPointer + 2);
         *(float *)((int64_t)ResourceHashSecondaryPointer + 0x14) = CalculatedFloatResult;
         *(uint8_t *)(ResourceHashSecondaryPointer + 3) = 1;
         ResourceProcessingIndex = *(int *)(ExecutionContextPointer + -0x21);
