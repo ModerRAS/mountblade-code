@@ -48454,7 +48454,7 @@ LAB_18006c9ac:
         }
         InitializeSystemMemoryAllocatorWithHashNodes(&lStack_238,SystemAllocationFlags,SystemContextPointer,nextDataIndex3);
         localMemoryAddress = lStack_238;
-        FUN_18006cd80(lStack_238,&SystemGlobalDataReferencePtr2);
+        ProcessSystemResourceData(lStack_238,&SystemGlobalDataReferencePtr2);
         SystemAllocationFlags = *(long long *)(SystemResourceManager + 0x3d0);
         localSystemHandle1 = *PrimaryResourcePointer8;
         if (localSystemHandle1 != SystemAllocationFlags) {
@@ -48633,7 +48633,7 @@ ulong long AllocateSystemResourceNode(long long *SystemResourceManager,long long
   localSystemFlags = *SystemResourceManager;
 LAB_18006ccef:
   InitializeSystemMemoryAllocatorWithHashNodes(&uStackX_8,localSystemFlags,creationFlags,nextDataIndex);
-  FUN_18006cd80(uStackX_8,ConfigurationDataPointer);
+  ProcessSystemResourceData(uStackX_8,ConfigurationDataPointer);
   localSystemFlags = SystemResourceManager[1];
   ResourceDataOffset = *SystemResourceManager;
   if (ResourceDataOffset != localSystemFlags) {
@@ -48701,7 +48701,7 @@ void ConfigureSystemResourceNode(void* SystemResourceManager,void* Configuration
 LAB_18006ccef:
   InitializeSystemMemoryAllocatorWithHashNodes(&stackBuffer50,in_R10,AdditionalParameter,ResourceDataOffset);
   localSystemHandle = InputStackParameter50;
-  FUN_18006cd80(InputStackParameter50);
+  ProcessSystemResourceData(InputStackParameter50);
   nextDataIndex = systemDataIndexPtr[1];
   localSystemPointer = *systemDataIndexPtr;
   if (localSystemPointer != nextDataIndex) {

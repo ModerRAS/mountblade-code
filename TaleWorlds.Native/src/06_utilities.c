@@ -20091,64 +20091,68 @@ void InitializeInputSystem(void)
 
 
 /**
- * 验证资源哈希函数
- * 验证资源的TIVE和BIVE哈希值，确保资源完整性
- * @param ResourceContext 资源上下文指针
- * @param ResourceData 资源数据指针
- * @return 错误码：0x1c表示验证失败
+ * @brief 验证资源哈希
+ * 
+ * 该函数负责验证资源的TIVE和BIVE哈希值，确保资源完整性
+ * 通过多重校验机制来验证资源数据的完整性和有效性
+ * 
+ * @param ResourceContext 资源上下文指针，包含资源的上下文信息
+ * @param ResourceData 资源数据指针，指向要验证的资源数据
+ * @return uint8_t 验证结果：0表示成功，0x1c表示验证失败，其他值表示不同的错误状态
+ * @note 此函数使用多种哈希算法进行验证，包括TIVE和BIVE哈希
+ * @warning 验证失败时，资源可能已损坏或被篡改，不应继续使用
  */
-uint8_t ValidateResourceHash(int64_t ResourceContext,uint8_t *ResourceData)
+uint8_t ValidateResourceHash(int64_t ResourceContext, uint8_t *ResourceData)
 
 {
-  uint8_t ResourceHash;
-  int ProcessingStatusCode;
-  uint UnsignedValueThree;
-  uint LoopIncrement;
-  uint ResourceValidationBuffer [2];
-  uint StackContextBuffer [2];
-  uint8_t EncryptionBuffer [32];
-  uint8_t ResourceValidationBuffer [32];
+  uint8_t ResourceHashValue;
+  int DataProcessingStatusCode;
+  uint ValidationLoopCounter;
+  uint ResourceHashValidationBuffer [2];
+  uint ContextStackBuffer [2];
+  uint8_t DataEncryptionBuffer [32];
+  uint8_t ResourceIntegrityBuffer [32];
   
-  ResourceHash = ComputeDataChecksum(ValidationContext,ResourceValidationBuffer,1,0x54495645);
-  if (((((int)ResourceHash == 0) &&
-       (ResourceHash = ComputeDataChecksum(ValidationContext,EncryptionBuffer,0,0x42495645), (int)ResourceHash == 0)) &&
-      (ResourceHash = ValidateResourceHash(ValidationContext,ObjectContext + 0x10), (int)ResourceHash == 0)) &&
-     (ResourceHash = ValidateResourceHash(ValidationContext,ObjectContext + 0xd8), (int)ResourceHash == 0)) {
+  ResourceHashValue = ComputeDataChecksum(ValidationContext, ResourceHashValidationBuffer, 1, 0x54495645);
+  if (((((int)ResourceHashValue == 0) &&
+       (ResourceHashValue = ComputeDataChecksum(ValidationContext, DataEncryptionBuffer, 0, 0x42495645), (int)ResourceHashValue == 0)) &&
+      (ResourceHashValue = ValidateResourceHash(ValidationContext, ObjectContext + 0x10), (int)ResourceHashValue == 0)) &&
+     (ResourceHashValue = ValidateResourceHash(ValidationContext, ObjectContext + 0xd8), (int)ResourceHashValue == 0)) {
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + 0xf8);
-    if ((int)ResourceHash == 0) {
-      StackContextBuffer[0] = 0;
-      ResourceHash = LoadResourceData(*ValidationContext,StackContextBuffer);
-      if ((int)ResourceHash == 0) {
-        OperationStatusCode = 0;
-        ResourceValidationBuffer[0] = 0;
-        ValidationStatusCode = StackContextBuffer[0] & 1;
-        loopIncrement = StackContextBuffer[0] >> 1;
+    ResourceHashValue = CalculateResourceHash(*ResourceData, ResourceContext + 0xf8);
+    if ((int)ResourceHashValue == 0) {
+      ContextStackBuffer[0] = 0;
+      ResourceHashValue = LoadResourceData(*ValidationContext, ContextStackBuffer);
+      if ((int)ResourceHashValue == 0) {
+        DataProcessingStatusCode = 0;
+        ResourceIntegrityBuffer[0] = 0;
+        DataValidationStatusCode = ContextStackBuffer[0] & 1;
+        ValidationLoopCounter = ContextStackBuffer[0] >> 1;
         if (MemoryAddressIncrement != 0) {
           do {
-            ResourceHash = ExtractResourceInfo(ValidationContext,ResourceValidationBuffer[0]);
-            if ((int)ResourceHash != 0) {
-              return ResourceHash;
+            ResourceHashValue = ExtractResourceInfo(ValidationContext, ResourceIntegrityBuffer[0]);
+            if ((int)ResourceHashValue != 0) {
+              return ResourceHashValue;
             }
-            ResourceHash = ValidateResourceHash(ValidationContext,ObjectContext + 0xe8,OperationResult,ObjectContext);
-            if ((int)ResourceHash != 0) {
-              return ResourceHash;
+            ResourceHashValue = ValidateResourceHash(ValidationContext, ObjectContext + 0xe8, OperationResult, ObjectContext);
+            if ((int)ResourceHashValue != 0) {
+              return ResourceHashValue;
             }
-            ResourceHash = ParseResourceMetadata(ValidationContext,ResourceValidationBuffer);
-            if ((int)ResourceHash != 0) {
-              return ResourceHash;
+            ResourceHashValue = ParseResourceMetadata(ValidationContext, ResourceIntegrityBuffer);
+            if ((int)ResourceHashValue != 0) {
+              return ResourceHashValue;
             }
-            OperationStatusCode = OperationResult + 1;
-            ResourceValidationBuffer[0] = ResourceValidationBuffer[0] & -HashValidationResult;
+            DataProcessingStatusCode = OperationResult + 1;
+            ResourceIntegrityBuffer[0] = ResourceIntegrityBuffer[0] & -HashValidationResult;
           } while (OperationResult < (int)LoopCondition);
         }
-              CleanupResourceData(ValidationContext,EncryptionBuffer);
+        CleanupResourceData(ValidationContext, DataEncryptionBuffer);
       }
     }
   }
-  return ResourceHash;
+  return ResourceHashValue;
 }
 
 
@@ -20158,41 +20162,45 @@ uint8_t ValidateResourceHash(int64_t ResourceContext,uint8_t *ResourceData)
  * @brief 处理资源数据加载
  * 
  * 该函数负责处理资源数据的加载和验证
- * 检查资源状态并执行相应的处理操作
+ * 检查资源状态并执行相应的处理操作，确保资源数据的完整性和可用性
+ * 
+ * @return 无返回值
+ * @note 此函数会执行资源信息的提取、哈希验证和元数据解析
+ * @warning 如果在处理过程中出现错误，函数会提前返回
  */
 void ProcessResourceDataLoading(void)
 
 {
-  int ProcessingStatusCode;
-  int infoExtractionResult;
-  uint ResourceHash;
-  uint StackBuffer;
+  int DataProcessingStatusCode;
+  int ResourceInfoExtractionResult;
+  uint ResourceDataHash;
+  uint ProcessingStackBuffer;
   
-  StackBuffer = 0;
-  loadingStatus = LoadResourceData();
-  if (loadingStatus != 0) {
+  ProcessingStackBuffer = 0;
+  ResourceLoadingStatus = LoadResourceData();
+  if (ResourceLoadingStatus != 0) {
     return;
   }
-  loadingStatus = 0;
-  ResourceHash = StackBuffer >> 1;
-  if (ResourceHash != 0) {
+  ResourceLoadingStatus = 0;
+  ResourceDataHash = ProcessingStackBuffer >> 1;
+  if (ResourceDataHash != 0) {
     do {
-      infoExtractionResult = ExtractResourceInfo();
-      if (infoExtractionResult != 0) {
+      ResourceInfoExtractionResult = ExtractResourceInfo();
+      if (ResourceInfoExtractionResult != 0) {
         return;
       }
-      hashValidationStatusCode = ValidateResourceHash();
-      if (hashHashValidationResult != 0) {
+      HashValidationStatusCode = ValidateResourceHash();
+      if (HashValidationResult != 0) {
         return;
       }
-      metadataParsingResult = ParseResourceMetadata();
-      if (metadataParsingResult != 0) {
+      MetadataParsingResult = ParseResourceMetadata();
+      if (MetadataParsingResult != 0) {
         return;
       }
-      loadingStatus = loadingStatus + 1;
-    } while (loadingStatus < (int)ResourceHash);
+      ResourceLoadingStatus = ResourceLoadingStatus + 1;
+    } while (ResourceLoadingStatus < (int)ResourceDataHash);
   }
-        CleanupResourceData();
+  CleanupResourceData();
 }
 
 
