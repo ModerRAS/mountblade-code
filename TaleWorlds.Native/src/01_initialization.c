@@ -28230,20 +28230,20 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
     *(uint8_t *)(unsignedSystemValue7 + LongStackVariable200) = 0;
   }
   StackVariable1f0 = CONCAT44(*(uint *)(localSystemFlags + 0x1c),(uint32_t)StackVariable1f0);
-  if (0 < iStack_180) {
-    uStack_1f8 = SystemOperationStatus;
-    ExecuteSystemCommand(&punsignedValue208,iStack_180);
-      memcpy((ulong long)uStack_1f8 + lStack_200,lStack_188,(long long)(iStack_180 + 1));
+  if (0 < IntegerStack180) {
+    StackVariable1f8 = SystemOperationStatus;
+    ExecuteSystemCommand(&punsignedValue208,IntegerStack180);
+      memcpy((ulong long)StackVariable1f8 + LongStackVariable200,LongStackVariable188,(long long)(IntegerStack180 + 1));
   }
-  lStack_1d8 = lStack_200;
-  StackValue1c8._0_4_ = (uint32_t)uStack_1f0;
-  uStack_1f8 = 0;
+  LongStackVariable1d8 = LongStackVariable200;
+  StackValue1c8._0_4_ = (uint32_t)StackVariable1f0;
+  StackVariable1f8 = 0;
   SystemInitializationFlag = 0;
-  lStack_200 = 0;
-  uStack_1f0 = 0;
+  LongStackVariable200 = 0;
+  StackVariable1f0 = 0;
   punsignedValue208 = &SystemMemoryAllocatorReference;
-  uStack_218 = 0xffffffff;
-  uStack_1d0 = SystemOperationStatus;
+  StackVariable218 = 0xffffffff;
+  StackVariable1d0 = SystemOperationStatus;
   StackValue1c8._4_4_ = *(uint *)(localSystemFlags + 0x1c);
   ConfigureSystemData(pbufferBaseAddress,SystemConfigurationData,&pGlobalDataFlags2,&uStack_148);
   ReleaseSystemResources(pbufferBaseAddress);
