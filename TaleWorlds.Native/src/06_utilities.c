@@ -13036,7 +13036,7 @@ void ProcessComplexResourceWithRegisters(void)
       operationResult = operationResult + 1;
     } while( true );
   }
-LAB_1808974ec:
+ValidationErrorHandler:
                     // WARNING: Subroutine does not return
   FinalizeSecurityOperation(*(uint64_t *)(executionContext + 0x1d0) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
@@ -14114,7 +14114,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
       GetAndValidateResourceData(ContextValidationResult,&ObjectStackBufferResource28);
     }
   }
-LAB_180897af6:
+OperationResultHandler:
                     // WARNING: Subroutine does not return
   FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x90) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
