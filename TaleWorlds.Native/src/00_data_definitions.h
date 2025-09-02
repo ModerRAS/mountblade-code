@@ -9900,9 +9900,9 @@ Label_18060bbae:
   if (SystemMemoryConfigFlag2 == 0) {
     ProcessBufferSize(&SystemMemoryConfigBuffer2);
   }
-  _DAT_180bf72a8 = (longlong)_DAT_180bfbf78;
+  SystemMemoryConfigPointer2 = (longlong)SystemMemoryConfigBuffer2;
   CleanupSystemConfiguration();
-  if (DAT_180c8efc8 != '\0') {
+  if (SystemConfigFlag3 != '\0') {
     HandleSystemConfigurationData(&UNK_180a3d970);
   }
   return;
@@ -9911,12 +9911,12 @@ double SystemGetPerformanceTime(void)
 {
   int64_t ModuleInitializationResult;
   longlong alStackX_8 [4];
-  ModuleInitializationResult = _DAT_180c8ed58;
-  if (_DAT_180c8ed58 == 0) {
+  ModuleInitializationResult = SystemConfigDataPointer3;
+  if (SystemConfigDataPointer3 == 0) {
     QueryPerformanceCounter(alStackX_8);
     ModuleInitializationResult = alStackX_8[0];
   }
-  return (double)(ModuleInitializationResult - _DAT_180c8ed48) * PerformanceCounterFactor;
+  return (double)(ModuleInitializationResult - SystemConfigDataPointer4) * PerformanceCounterFactor;
 }
 bool SystemCompareStringData(longlong param_1,longlong param_2,char param_3)
 {
@@ -10076,7 +10076,7 @@ uint64_t * SystemDataProcess(longlong param_1,uint64_t *param_2,int param_3,int 
   }
   return param_2;
 }
-  DAT_180c95fea = 1;
+  SystemConfigFlag4 = 1;
   pStackCounter1 = &SystemNullPointer;
   StackParameter1 = 0;
   pStackCounter2 = (uint64_t *)0x0;
@@ -10134,7 +10134,7 @@ Label_18062e327:
   } while (acStack_40[LongAddress + 1] != '\0');
   IntegerStatus = (int)(LongAddress + 1);
   if (IntegerStatus < 1) {
-    if (DAT_180c8eced != '\0') {
+    if (SystemConfigFlag5 != '\0') {
       _Exit(5);
     }
     pStackCounter1 = &SystemNullPointer;
@@ -10352,7 +10352,7 @@ char * SystemStringProcessData(uint32_t param_1,uint64_t param_2,char *param_3,u
           pcVar9 = pNetworkRequestStatus4 + (longlong)pcVar9;
           pNetworkRequestStatus8 = pNetworkRequestStatus9;
           if (pcVar9 <= pNetworkRequestStatus4) break;
-          LongOffset = (longlong)&DAT_180a04ee4 - (longlong)pNetworkRequestStatus4;
+          LongOffset = (longlong)&SystemNetworkDataBuffer3 - (longlong)pNetworkRequestStatus4;
           while (*pNetworkRequestStatus4 == pNetworkRequestStatus4[LongOffset]) {
             pNetworkRequestStatus4 = pNetworkRequestStatus4 + 1;
             if (pcVar9 <= pNetworkRequestStatus4) goto Label_18062e835;
@@ -10579,7 +10579,7 @@ char * SystemStringProcessBuffer(uint64_t param_1,uint64_t param_2,uint64_t *par
       pcVar6 = pcVar6 + (longlong)pcVar9;
       pNetworkRequestStatus1 = StringPointer;
       if (pcVar6 <= pcVar9) break;
-      LongLoop = (longlong)&DAT_180a04ee4 - (longlong)pcVar9;
+      LongLoop = (longlong)&SystemNetworkDataBuffer3 - (longlong)pcVar9;
       while (*pcVar9 == pcVar9[LongLoop]) {
         pcVar9 = pcVar9 + 1;
         if (pcVar6 <= pcVar9) goto Label_18062ee56;
@@ -10608,7 +10608,7 @@ Label_18062ee56:
         pcVar6 = pcVar6 + (longlong)pcVar9;
         pNetworkRequestStatus1 = StringPointer;
         if (pcVar6 <= pcVar9) break;
-        LongLoop = (longlong)&DAT_180a12e00 - (longlong)pcVar9;
+        LongLoop = (longlong)&SystemNetworkDataBuffer4 - (longlong)pcVar9;
         while (*pcVar9 == pcVar9[LongLoop]) {
           pcVar9 = pcVar9 + 1;
           if (pcVar6 <= pcVar9) goto Label_18062eece;
@@ -10763,7 +10763,7 @@ longlong SystemMemoryAllocateBuffer(longlong param_1,longlong param_2,uint32_t p
       pcVar3 = pcVar3 + (longlong)pBooleanFlag;
       pcVar4 = pNetworkRequestStatus0;
       if (pcVar3 <= pBooleanFlag) break;
-      LongData = (longlong)&DAT_180a04ee4 - (longlong)pBooleanFlag;
+      LongData = (longlong)&SystemNetworkDataBuffer3 - (longlong)pBooleanFlag;
       while (*pBooleanFlag == pBooleanFlag[LongData]) {
         pBooleanFlag = pBooleanFlag + 1;
         if (pcVar3 <= pBooleanFlag) goto Label_18062f2b6;
@@ -10891,7 +10891,7 @@ Label_18062f4a5:
           ProcessSystemCall(&pStackParameter2,LongData);
           break;
         }
-        LongData = (longlong)&DAT_180a03a84 - (longlong)pNetworkRequestStatus0;
+        LongData = (longlong)&SystemNetworkDataBuffer5 - (longlong)pNetworkRequestStatus0;
         while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[LongData]) {
           pNetworkRequestStatus0 = pNetworkRequestStatus0 + 1;
           if (pcVar4 <= pNetworkRequestStatus0) goto Label_18062f4a5;
@@ -10941,13 +10941,13 @@ Label_18062f4a5:
   }
   goto Label_18062f340;
 }
-  DAT_180c95fea = 0;
+  SystemConfigFlag4 = 0;
   if (NetworkRequestStatus != '\0') {
     ProcessSystemStringAllocation(&UNK_180a3cc28,param_1);
   }
   if (LongIndex != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SystemConfigDataSize4 = SystemConfigDataSize4 + -1;
     UNLOCK();
     CloseHandle(alStack_3d0[0]);
     alStack_3d0[0] = -1;
@@ -11472,18 +11472,18 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   if (SystemMemoryConfigFlag2 == 0) {
     ProcessBufferSize(&SystemMemoryConfigBuffer2);
   }
-  _DAT_180bf72a8 = (longlong)_DAT_180bfbf78;
+  SystemMemoryConfigPointer2 = (longlong)SystemMemoryConfigBuffer2;
   CleanupSystemConfiguration();
-  if (DAT_180c8efc8 != '\0') {
+  if (SystemConfigFlag3 != '\0') {
     HandleSystemConfigurationData(&UNK_180a3d970);
   }
   return;
 }
-  DAT_180c8ecef = 1;
-  if (DAT_180d49130 == '\0') {
-    DAT_180d49130 = '\x01';
+  SystemConfigFlag6 = 1;
+  if (SystemConfigFlag7 == '\0') {
+    SystemConfigFlag7 = '\x01';
     BufferSize = FlsAlloc(&UNK_18064f970);
-    _DAT_180bf664c = BufferSize;
+    SystemConfigBufferSize1 = BufferSize;
     *(uint64_t *)
      (*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x10) =
          0x180bf4000;

@@ -55,17 +55,17 @@
 #define SecurityValidationFlag 0x10000000
 #define ResourcePoolEntrySize 4
 #define ResourcePoolSecondaryOffset 4
-#define ResourceContextOffset48 0x48
-#define ResourceContextOffset90 0x90
-#define ResourceContextOffsetB0 0xb0
-#define ResourceContextOffsetB4 0xb4
+#define ResourceContextOffsetStandard 0x48
+#define ResourceContextOffsetExtended 0x90
+#define ResourceContextOffsetSecondary 0xb0
+#define ResourceContextOffsetTertiary 0xb4
 #define ResourceContextOffset6c 0x6c
-#define ResourceContextOffsetF8 0xf8
-#define BufferOffset70 0x70
-#define BufferOffset80 0x80
-#define BufferOffset88 0x88
-#define BufferOffset94 0x94
-#define BufferOffsetB8 0xb8
+#define ResourceContextOffsetHandle 0xf8
+#define BufferOffsetPrimary 0x70
+#define BufferOffsetSecondary 0x80
+#define BufferOffsetTertiary 0x88
+#define BufferOffsetQuaternary 0x94
+#define BufferOffsetHandle 0xb8
 #define FlagBit3 3
 #define FlagBit3Mask (1 << FlagBit3)
 #define FlagBit25Mask 0xfdffffff
@@ -4180,7 +4180,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t objectHandle)
  * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
  * 这是validateObjectHandleFromRegister函数的另一个版本
  */
-uint32_t ValidateObjectHandleFromRegisterV2(void)
+uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 
 {
   int64_t RegisterValue;
@@ -5520,10 +5520,10 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t parameterObject)
   if ((int)ProcessResult != 0) {
     return ProcessResult;
   }
-  SystemData = *(int64_t *)(StackOffset + 8);
-  if (SystemData != 0) {
-    FloatValue = *(float *)(parameterObject + 0x14);
-    for (DataPointer = *(uint8_t **)(SystemData + 0x48);
+  SystemDataContext = *(int64_t *)(StackOffset + 8);
+  if (SystemDataContext != 0) {
+    ParameterFloatValue = *(float *)(parameterObject + 0x14);
+    for (DataElementPointer = *(uint8_t **)(SystemDataContext + 0x48);
         (*(uint8_t **)(SystemData + 0x48) <= DataPointer &&
         (DataPointer < *(uint8_t **)(SystemData + 0x48) + *(int *)(SystemData + 0x50))); DataPointer = DataPointer + 1) {
       ProcessResult = ProcessDataElement(*DataPointer, FloatValue, 0);
