@@ -43281,7 +43281,23 @@ void CleanupSynchronizationResources(uint8_t objectContext,int64_t validationCon
 
 
 
-void Unwind_180904760(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理回调函数包装器6
+ * 
+ * 该函数负责执行系统资源清理的回调操作，调用预定义的清理函数
+ * 处理资源清理过程中的回调逻辑，确保清理操作正确执行
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 清理失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904760，现已重命名为ExecuteSystemResourceCleanupCallbackWrapper6
+ */
+void ExecuteSystemResourceCleanupCallbackWrapper6(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharPointer;
@@ -43295,7 +43311,21 @@ void Unwind_180904760(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904770(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 执行系统资源销毁回调函数
+ * 
+ * 该函数负责执行系统资源销毁的回调操作，调用预定义的销毁函数
+ * 处理资源销毁过程中的回调逻辑，确保销毁操作正确执行
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源销毁过程中被调用
+ * @warning 销毁失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904770，现已重命名为ExecuteSystemResourceDestroyCallback
+ */
+void ExecuteSystemResourceDestroyCallback(uint8_t objectContext,int64_t validationContext)
 
 {
   if (*(int64_t **)(validationContext + 0x60) != (int64_t *)0x0) {
@@ -43397,7 +43427,19 @@ void Unwind_1809047d0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809047e0(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁系统中的互斥锁资源
+ * 释放互斥锁占用的系统资源，确保系统资源正确清理
+ * 
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 销毁失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_1809047e0，现已重命名为DestroyMutexResource
+ */
+void DestroyMutexResource(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -43406,7 +43448,21 @@ void Unwind_1809047e0(void)
 
 
 
-void Unwind_1809047f0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 销毁互斥锁资源扩展版本
+ * 
+ * 该函数负责销毁系统中的互斥锁资源扩展版本
+ * 释放互斥锁占用的系统资源，确保系统资源正确清理
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 销毁失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_1809047f0，现已重命名为DestroyMutexResourceExtended
+ */
+void DestroyMutexResourceExtended(uint8_t objectContext,int64_t validationContext)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(validationContext + 0x28));
