@@ -50525,30 +50525,30 @@ void UnwindResourceContextCleanupType2(uint8_t ObjectContext,int64_t ValidationC
 void UnwindResourceContextCleanupType3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t LoopCounter;
   uint8_t *ResourceHashValidationResultPointer;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   uint64_t ResourceContextOffset;
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x40);
-  loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
-      ValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
-      if (ValidationResultPointer != (uint8_t *)0x0) {
-        *ValidationResultPointer = &SystemDataStructure;
+      ResourceHashValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
+      if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
+        *ResourceHashValidationResultPointer = &SystemDataStructure;
               ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
-    } while (ResourceContextOffset < loopIncrement);
-    loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+    } while (ResourceContextOffset < MemoryAddressIncrement);
+    MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
-  if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
+  if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
           ExecuteSystemEmergencyExit();
   }
   return;
