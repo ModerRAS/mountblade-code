@@ -4848,9 +4848,13 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
 
 /**
  * @brief 从寄存器验证对象句柄
- * @return 返回验证结果，0表示成功，0x1c表示错误
  * 
- * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
+ * 该函数从系统寄存器获取对象指针，验证其有效性并执行相应操作。
+ * 主要用于系统级别的对象句柄验证，通常在底层操作中使用。
+ * 
+ * @return uint32_t 验证结果，0表示成功，ErrorInvalidObjectHandle表示错误
+ * @note 此函数直接从寄存器读取对象指针，需要确保寄存器状态正确
+ * @warning 验证失败时会触发系统退出操作
  */
 uint32_t ValidateObjectHandleFromRegister(void)
 

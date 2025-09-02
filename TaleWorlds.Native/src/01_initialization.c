@@ -27310,7 +27310,7 @@ void* SystemResourceAllocator(void* SystemResourceManager,void* ConfigurationDat
   int NodeIdentifierComparisonResult;
   void* *presourceAddress;
   void* *pUnsignedStackFlag88;
-  void* *pUnsignedStackFlag80;
+  void* *SystemStatusFlagPointer;
   uint32_t SystemUnsignedFlag78;
   void* SystemProcessFlags70;
   void* *pEncryptionValue68;
@@ -27340,11 +27340,11 @@ void* SystemResourceAllocator(void* SystemResourceManager,void* ConfigurationDat
   if (-1 < systemCounter) {
     pUnsignedStackFlag88 = &SystemGlobalDataReference;
     SystemProcessFlags70 = 0;
-    pUnsignedStackFlag80 = (void* *)0x0;
+    SystemStatusFlagPointer = (void* *)0x0;
     SystemUnsignedFlag78 = 0;
     presourceAddress = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
     *(uint8_t *)presourceAddress = 0;
-    pUnsignedStackFlag80 = presourceAddress;
+    SystemStatusFlagPointer = presourceAddress;
     resourceCreationFlags = StartSystemThread(presourceAddress);
     SystemProcessFlags70 = ConcatenatedValue44(SystemProcessFlags70.HighPart,resourceCreationFlags);
     *presourceAddress = 0x454c55444f4d5f2a;
@@ -47837,7 +47837,7 @@ void DestroySystemResourceManager(void* *SystemResourceManager)
   long long localDataIndex;
   uint8_t asystemDataBuffer [48];
   void* *pUnsignedStackFlag88;
-  void* *pUnsignedStackFlag80;
+  void* *SystemStatusFlagPointer;
   void* EncryptionValue68;
   void* *systemContextPointer;
   ulong long SystemResourceStatusFlag;
@@ -47847,8 +47847,8 @@ void DestroySystemResourceManager(void* *SystemResourceManager)
   *SystemResourceManager = &SystemCriticalSectionTemplate;
   resourceCreationFlags = 0;
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
-  pUnsignedStackFlag80 = SystemResourceManager + 2;
-  *pUnsignedStackFlag80 = 0;
+  SystemStatusFlagPointer = SystemResourceManager + 2;
+  *SystemStatusFlagPointer = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   SystemResourceManager[4] = 0;
   SystemResourceManager[7] = 0;
@@ -47898,7 +47898,7 @@ void DestroySystemResourceManager(void* *SystemResourceManager)
   _Mtx_init_in_situ(pUnsignedStackFlag88,2);
   *(uint32_t *)(SystemResourceManager + 0x65) = 0;
   *(uint32_t *)((long long)SystemResourceManager + 0x32c) = 0x80;
-  pUnsignedStackFlag80 = SystemResourceManager + 0x66;
+  SystemStatusFlagPointer = SystemResourceManager + 0x66;
   *(uint32_t *)(SystemResourceManager + 0x6a) = 0x3f800000;
   *(void* *)((long long)SystemResourceManager + 0x354) = 0x40000000;
   *(uint32_t *)((long long)SystemResourceManager + 0x35c) = 3;
@@ -51468,7 +51468,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
   void* *stackParameterB;
   uint32_t SystemConfigurationValue;
   ulong long UnsignedStackFlag88;
-  void* *pUnsignedStackFlag80;
+  void* *SystemStatusFlagPointer;
   long long StackInteger78;
   uint32_t EncryptionValue68;
   void* SystemOperationCounter;
@@ -51592,15 +51592,15 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
     systemOffset = GetSystemConfigurationValue(ConfigurationDataPointer);
     if (((!isOperationComplete) && (systemOffset == 0)) && (*(char *)(SystemGlobalStatusFlags + 0x2a) != '\0')) {
       SystemOperationStatus = *(uint8_t *)(SystemGlobalStatusFlags + 0x141);
-      SystemOperationStatus3 = CreateSystemObject(&pUnsignedStackFlag80,SystemGlobalStatusFlags + 0x148);
+      SystemOperationStatus3 = CreateSystemObject(&SystemStatusFlagPointer,SystemGlobalStatusFlags + 0x148);
       SystemOperationStatus3 = CreateSystemObject(&DataBufferPtrE0,SystemOperationStatus3);
-      pUnsignedStackFlag80 = &SystemGlobalDataReference;
+      SystemStatusFlagPointer = &SystemGlobalDataReference;
       if (StackInteger78 != 0) {
           SystemCleanupFunction();
       }
       StackInteger78 = 0;
       EncryptionValue68 = 0;
-      pUnsignedStackFlag80 = &SystemMemoryAllocatorReference;
+      SystemStatusFlagPointer = &SystemMemoryAllocatorReference;
       ThreadLocalStorage = &SystemStringTemplate;
       if (SystemThreadContext != (void* *)0x0) {
         ThreadLocalStorage = SystemThreadContext;
@@ -53030,7 +53030,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   void** SystemDataPointer;
   uint32_t SystemConfigurationValue;
   long long SystemConfigurationData;
-  void* *pUnsignedStackFlag80;
+  void* *SystemStatusFlagPointer;
   long long StackInteger78;
   uint32_t EncryptionValue68;
   void* ThreadContextFlag;
@@ -53482,7 +53482,7 @@ LAB_1800729bd:
           SystemOperationMode = 2;
         }
         else {
-          pThreadLocalStorage = (void* **)CreateSystemObject(&pUnsignedStackFlag80,SystemGlobalStatusFlags + 0x148);
+          pThreadLocalStorage = (void* **)CreateSystemObject(&SystemStatusFlagPointer,SystemGlobalStatusFlags + 0x148);
           ResourceHash = 1;
           SystemOperationMode = 1;
           SystemDataConfigurationPointer = pointerUnsignedC8;
@@ -53501,13 +53501,13 @@ LAB_1800729bd:
         }
         if ((ResourceHash & 1) != 0) {
           SystemOperationMode = ResourceHash & 0xfffffffe;
-          pUnsignedStackFlag80 = &SystemGlobalDataReference;
+          SystemStatusFlagPointer = &SystemGlobalDataReference;
           if (StackInteger78 != 0) {
               SystemCleanupFunction();
           }
           StackInteger78 = 0;
           EncryptionValue68 = 0;
-          pUnsignedStackFlag80 = &SystemMemoryAllocatorReference;
+          SystemStatusFlagPointer = &SystemMemoryAllocatorReference;
         }
         pSystemThreadId148 = &SystemStringTemplate;
         if (SystemDataPointer0 != (void* *)0x0) {
@@ -57882,8 +57882,8 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
   void** SystemStackPointer;
   uint InputStackParameterNegative38;
   void* SystemOperationStatusFlags;
-  ulong long *pUnsignedStackFlag80;
-  long long *plStack_78;
+  ulong long *SystemStatusFlagPointer;
+  long long *SystemPoolPointer;
   code *SystemFunctionPointer70;
   code *SystemFunctionPointer68;
   void* ThreadContextFlag;
@@ -57901,13 +57901,13 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
     SystemOperationStatusFlag = ValidateSystemResourceManagerStatus(SystemResourceManager);
     if (SystemOperationStatusFlag == '\0') {
       if ((char)ConfigurationDataPointer[2] != '\0') {
-        pUnsignedStackFlag80 = (ulong long *)0x0;
-        plStack_78 = (long long *)0x0;
+        SystemStatusFlagPointer = (ulong long *)0x0;
+        SystemPoolPointer = (long long *)0x0;
         SystemFunctionPointer70 = (code *)0x0;
         SystemFunctionPointer68 = _guard_check_icall;
-        ProcessSystemResourceValidation(extraout_XMM0_Da,SystemResourceManager,&pUnsignedStackFlag80);
+        ProcessSystemResourceValidation(extraout_XMM0_Da,SystemResourceManager,&SystemStatusFlagPointer);
         if (SystemFunctionPointer70 != (code *)0x0) {
-          (*SystemFunctionPointer70)(&pUnsignedStackFlag80,0,0);
+          (*SystemFunctionPointer70)(&SystemStatusFlagPointer,0,0);
         }
       }
       SystemOperationStatusFlag = ValidateSystemResourceManagerStatus(SystemResourceManager);
@@ -57955,11 +57955,11 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
              (*(long long *)(resourceCounter + 8) + (SystemOperationStatus1 % (*(ulong long *)(resourceCounter + 0x10) & MAX_UNSIGNED_32_BIT)) * 8)
     ;
     for (SystemHashNodeData = (ulong long *)*resourcePoolPointer;
-        (pUnsignedStackFlag80 = pSystemSecondaryStatus, plStack_78 = PrimaryResourcePointer, SystemHashNodeData != (ulong long *)0x0 &&
-        (pUnsignedStackFlag80 = SystemHashNodeData, plStack_78 = resourcePoolPointer, SystemOperationStatus1 != *SystemHashNodeData));
+        (SystemStatusFlagPointer = pSystemSecondaryStatus, SystemPoolPointer = PrimaryResourcePointer, SystemHashNodeData != (ulong long *)0x0 &&
+        (SystemStatusFlagPointer = SystemHashNodeData, SystemPoolPointer = resourcePoolPointer, SystemOperationStatus1 != *SystemHashNodeData));
         SystemHashNodeData = (ulong long *)SystemHashNodeData[1]) {
     }
-    if (pUnsignedStackFlag80 != pSystemSecondaryStatus) goto LAB_180076feb;
+    if (SystemStatusFlagPointer != pSystemSecondaryStatus) goto LAB_180076feb;
   }
   PrimaryResourcePointer = ConfigurationDataPointer + 5;
   resourceCounter = ConfigurationDataPointer[7] - *PrimaryResourcePointer;
@@ -64540,7 +64540,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   long long *plStack_98;
   long long SystemConfigurationFlags;
   uint32_t UnsignedStackFlag88;
-  long long *aplStack_78 [2];
+  long long *aSystemPoolPointer [2];
   code *SystemFunctionPointer68;
   void* *systemContextPointer;
   void* SystemProcessFlags58;
