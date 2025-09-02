@@ -19251,6 +19251,7 @@ void ResetSystemBuffer(uint8_t *bufferPointer)
   long long bufferOffset;
   
   *bufferPointer = 0;
+  bufferOffset = (long long)bufferPointer;
   *(uint32_t *)(bufferOffset + 0x10) = 0;
   return;
 }
@@ -21287,9 +21288,9 @@ long long ManageSystemResources(long long SystemResourceManager,long long resour
 
 {
   void* *resourcePointer;
-  uint32_t resourceStatusFlag1;
-  uint32_t resourceStatusFlag2;
-  uint32_t resourceStatusFlag3;
+  uint32_t ResourceStatusFlagPrimary;
+  uint32_t ResourceStatusFlagSecondary;
+  uint32_t ResourceStatusFlagTertiary;
   void* resourceHandle;
   void** SystemRootNode;
   void** SystemCurrentNode;
@@ -21310,13 +21311,13 @@ long long ManageSystemResources(long long SystemResourceManager,long long resour
   resourceHandle = *(void* *)(ConfigurationDataPointer + 0x58);
   *(void* *)(SystemResourceManager + 0x50) = *(void* *)(ConfigurationDataPointer + 0x50);
   *(void* *)(SystemResourceManager + 0x58) = resourceHandle;
-  resourceStatusFlag1 = *(uint32_t *)(ConfigurationDataPointer + 100);
-  resourceStatusFlag2 = *(uint32_t *)(ConfigurationDataPointer + 0x68);
-  resourceStatusFlag3 = *(uint32_t *)(ConfigurationDataPointer + 0x6c);
+  ResourceStatusFlagPrimary = *(uint32_t *)(ConfigurationDataPointer + 100);
+  ResourceStatusFlagSecondary = *(uint32_t *)(ConfigurationDataPointer + 0x68);
+  ResourceStatusFlagTertiary = *(uint32_t *)(ConfigurationDataPointer + 0x6c);
   *(uint32_t *)(SystemResourceManager + 0x60) = *(uint32_t *)(ConfigurationDataPointer + 0x60);
-  *(uint32_t *)(SystemResourceManager + 100) = resourceStatusFlag1;
-  *(uint32_t *)(SystemResourceManager + 0x68) = resourceStatusFlag2;
-  *(uint32_t *)(SystemResourceManager + 0x6c) = resourceStatusFlag3;
+  *(uint32_t *)(SystemResourceManager + 100) = ResourceStatusFlagPrimary;
+  *(uint32_t *)(SystemResourceManager + 0x68) = ResourceStatusFlagSecondary;
+  *(uint32_t *)(SystemResourceManager + 0x6c) = ResourceStatusFlagTertiary;
   *(void* *)(SystemResourceManager + 0x70) = *(void* *)(ConfigurationDataPointer + 0x70);
   *(void* *)(SystemResourceManager + 0x78) = *(void* *)(ConfigurationDataPointer + 0x78);
   *(void* *)(SystemResourceManager + 0x80) = *(void* *)(ConfigurationDataPointer + 0x80);
@@ -22220,19 +22221,19 @@ void SystemStringProcessor(long long SystemResourceManager,long long SourceStrin
   long long SystemThreadHandle;
   long long ResourceDataOffset;
   uint8_t EncryptionBuffer118 [32];
-  void* SystemValueF8;
-  void* *SystemPointerE8;
-  uint8_t *DataBufferPtrE0;
-  uint32_t SystemValueD8;
-  uint8_t DataBufferD0 [136];
+  void* SystemMemoryFlags;
+  void* *SystemResourcePointer;
+  uint8_t *DataBufferPointer;
+  uint32_t SystemDataValue;
+  uint8_t SystemDataBuffer [136];
   ulong long SystemEncryptionKey;
   
-  SystemValueF8 = 0xfffffffffffffffe;
+  SystemMemoryFlags = 0xfffffffffffffffe;
   SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer118;
-  SystemPointerE8 = &SystemResourceTemplatePrimary;
-  DataBufferPtrE0 = DataBufferD0;
-  SystemValueD8 = 0;
-  DataBufferD0[0] = 0;
+  SystemResourcePointer = &SystemResourceTemplatePrimary;
+  DataBufferPointer = SystemDataBuffer;
+  SystemDataValue = 0;
+  SystemDataBuffer[0] = 0;
   resourceDataIndex = strstr(*(void* *)(SystemResourceManager + 8));
   if (resourceDataIndex != 0) {
     SystemThreadHandle = -1;
@@ -22243,9 +22244,9 @@ void SystemStringProcessor(long long SystemResourceManager,long long SourceStrin
     do {
       SystemThreadHandle = SystemThreadHandle + 1;
     } while (*(char *)(SystemThreadHandle + AdditionalParameter) != '\0');
-      memcpy(DataBufferPtrE0,*(long long *)(SystemResourceManager + 8),resourceDataIndex - *(long long *)(SystemResourceManager + 8));
+      memcpy(DataBufferPointer,*(long long *)(SystemResourceManager + 8),resourceDataIndex - *(long long *)(SystemResourceManager + 8));
   }
-  pointerUnsignedE8 = &SystemMemoryAllocatorReference;
+  SystemResourcePointer = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)EncryptionBuffer118);
 }
 
@@ -45106,13 +45107,13 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
   long long lStackX_18;
   long long *pStackValue1;
   uint32_t SystemProcessFlags70;
-  uint32_t uStack_6c;
+  uint32_t ResourceAddressHigh32;
   uint32_t EncryptionValue68;
-  uint32_t uStack_64;
+  uint32_t ThreadHandleHigh32;
   uint32_t SystemThreadContext;
-  uint32_t uStack_5c;
+  uint32_t ResourceAddressHigh32Copy;
   uint32_t SystemProcessFlags58;
-  uint32_t uStack_54;
+  uint32_t ThreadHandleHigh32Copy;
   void* *memoryAllocationEnd;
   void* *pSystemEncryptionKey;
   
@@ -45141,13 +45142,13 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
         memoryAllocationEnd = &SystemMemoryAllocationEndMarker;
         pSystemEncryptionKey = &SystemMemoryAllocationStartMarker;
         SystemProcessFlags70 = (uint32_t)resourceAddress;
-        uStack_6c = (uint32_t)((ulong long)resourceAddress >> 0x20);
+        ResourceAddressHigh32 = (uint32_t)((ulong long)resourceAddress >> 0x20);
         EncryptionValue68 = (uint32_t)SystemThreadHandle;
-        uStack_64 = (uint32_t)((ulong long)SystemThreadHandle >> 0x20);
+        ThreadHandleHigh32 = (uint32_t)((ulong long)SystemThreadHandle >> 0x20);
         SystemThreadContext = SystemProcessFlags70;
-        uStack_5c = uStack_6c;
+        ResourceAddressHigh32Copy = ResourceAddressHigh32;
         SystemProcessFlags58 = EncryptionValue68;
-        uStack_54 = uStack_64;
+        ThreadHandleHigh32Copy = ThreadHandleHigh32;
         pSystemThreadFlags = (long long *)InitializeSystemResource(currentThreadId,&SystemThreadContext);
         if (pSystemThreadFlags != (long long *)0x0) {
           (**(code **)(*pSystemThreadFlags + 0x28))(pSystemThreadFlags);
@@ -45267,7 +45268,7 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
   long long lStack_c0;
   void* systemDataBuffer;
   void*2 UnsignedStackFlagB0;
-  uint8_t uStack_ae;
+  uint8_t SystemOperationType;
   uint8_t StackBuffer [64];
   void* SystemEncryptionKey;
   void* SystemOperationCounter;
