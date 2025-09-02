@@ -38290,8 +38290,19 @@ void InitializeSystemMemoryContext(void* SystemResourcePointer,long long *Config
 
 
 
-// 函数: void FUN_18005e770(void* SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter)
-void FUN_18005e770(void* SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter)
+/**
+ * @brief 处理系统资源分配和回调执行
+ * 
+ * 该函数负责处理系统资源的分配、回调函数的执行和资源管理。
+ * 根据不同的系统标志和配置数据，执行相应的资源分配和回调操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数，控制回调处理方式
+ * 
+ * 原始函数名为FUN_18005e770，现已重命名为ProcessSystemResourceAllocationAndCallback
+ */
+void ProcessSystemResourceAllocationAndCallback(void* SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter)
 
 {
   code *pcVar1;
@@ -40541,7 +40552,19 @@ LAB_1800607cc:
 
 
 
-void* FUN_1800607f0(long long SystemResourcePointer,char ConfigurationDataPointer)
+/**
+ * @brief 处理系统资源分配请求
+ * 
+ * 该函数负责处理系统资源的分配请求，根据配置数据决定资源的分配策略。
+ * 主要用于系统资源的动态分配和管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 分配的资源指针
+ * 
+ * 原始函数名为FUN_1800607f0，现已重命名为ProcessSystemResourceAllocationRequest
+ */
+void* ProcessSystemResourceAllocationRequest(long long SystemResourcePointer,char ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
