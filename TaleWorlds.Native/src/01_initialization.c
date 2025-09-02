@@ -58920,32 +58920,32 @@ void SystemNoOperationA(void)
     floatValue4 = *(float *)(memoryBlockAddress + 0x128);
     BaseValue = *(float *)(memoryBlockAddress + 0x134);
     floatValue6 = *(float *)(memoryBlockAddress + 0x130);
-    fStack00000000000000a0 = floatValue2 * InterpolationFactorX + floatValue3 * FloatVectorFirstComponent + floatValue4 * InterpolationFactorW;
-    fStack00000000000000a4 = floatValue2 * InterpolationFactorY + floatValue3 * FloatVectorSecondComponent + floatValue4 * MagnitudeSquared;
-    fStack00000000000000a8 = floatValue2 * InterpolationParam3 + floatValue3 * FloatVectorThirdComponent + floatValue4 * FloatVectorNinthComponent;
-    fStack00000000000000ac = floatValue2 * InterpolationFactorW + floatValue3 * FloatVectorFourthComponent + floatValue4 * FloatVectorTenthComponent;
+    FloatTransformA0 = floatValue2 * InterpolationFactorX + floatValue3 * FloatVectorFirstComponent + floatValue4 * InterpolationFactorW;
+    FloatTransformA4 = floatValue2 * InterpolationFactorY + floatValue3 * FloatVectorSecondComponent + floatValue4 * MagnitudeSquared;
+    FloatTransformA8 = floatValue2 * InterpolationParam3 + floatValue3 * FloatVectorThirdComponent + floatValue4 * FloatVectorNinthComponent;
+    FloatTransformAC = floatValue2 * InterpolationFactorW + floatValue3 * FloatVectorFourthComponent + floatValue4 * FloatVectorTenthComponent;
     floatValue2 = *(float *)(memoryBlockAddress + 0x138);
     floatValue3 = *(float *)(memoryBlockAddress + 0x140);
     floatValue4 = *(float *)(memoryBlockAddress + 0x144);
-    fStack00000000000000b0 = BaseValue * InterpolationFactorX + floatValue6 * FloatVectorFirstComponent + floatValue2 * InterpolationFactorW;
-    fStack00000000000000b4 = BaseValue * InterpolationFactorY + floatValue6 * FloatVectorSecondComponent + floatValue2 * MagnitudeSquared;
-    fStack00000000000000b8 = BaseValue * InterpolationParam3 + floatValue6 * FloatVectorThirdComponent + floatValue2 * FloatVectorNinthComponent;
-    fStack00000000000000bc = BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent;
+    FloatTransformB0 = BaseValue * InterpolationFactorX + floatValue6 * FloatVectorFirstComponent + floatValue2 * InterpolationFactorW;
+    FloatTransformB4 = BaseValue * InterpolationFactorY + floatValue6 * FloatVectorSecondComponent + floatValue2 * MagnitudeSquared;
+    FloatTransformB8 = BaseValue * InterpolationParam3 + floatValue6 * FloatVectorThirdComponent + floatValue2 * FloatVectorNinthComponent;
+    FloatTransformBC = BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent;
     floatValue2 = *(float *)(memoryBlockAddress + 0x148);
     BaseValue = *(float *)(memoryBlockAddress + 0x154);
     floatValue6 = *(float *)(memoryBlockAddress + 0x150);
-    fStack00000000000000c0 = floatValue4 * InterpolationFactorX + floatValue3 * FloatVectorFirstComponent + floatValue2 * InterpolationFactorW;
-    fStack00000000000000c4 = floatValue4 * InterpolationFactorY + floatValue3 * FloatVectorSecondComponent + floatValue2 * MagnitudeSquared;
-    fStack00000000000000c8 = floatValue4 * InterpolationParam3 + floatValue3 * FloatVectorThirdComponent + floatValue2 * FloatVectorNinthComponent;
-    fStack00000000000000cc = floatValue4 * InterpolationFactorW + floatValue3 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent;
+    FloatTransformC0 = floatValue4 * InterpolationFactorX + floatValue3 * FloatVectorFirstComponent + floatValue2 * InterpolationFactorW;
+    FloatTransformC4 = floatValue4 * InterpolationFactorY + floatValue3 * FloatVectorSecondComponent + floatValue2 * MagnitudeSquared;
+    FloatTransformC8 = floatValue4 * InterpolationParam3 + floatValue3 * FloatVectorThirdComponent + floatValue2 * FloatVectorNinthComponent;
+    FloatTransformCC = floatValue4 * InterpolationFactorW + floatValue3 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent;
     floatValue2 = *(float *)(memoryBlockAddress + 0x158);
-    fStack00000000000000d0 =
+    FloatTransformD0 =
          BaseValue * InterpolationFactorX + floatValue6 * FloatVectorFirstComponent + floatValue2 * InterpolationFactorW + FloatParameterArray[0xc];
-    fStack00000000000000d4 =
+    FloatTransformD4 =
          BaseValue * InterpolationFactorY + floatValue6 * FloatVectorSecondComponent + floatValue2 * MagnitudeSquared + FloatParameterArray[0xd];
-    fStack00000000000000d8 =
+    FloatTransformD8 =
          BaseValue * InterpolationParam3 + floatValue6 * FloatVectorThirdComponent + floatValue2 * FloatVectorNinthComponent + FloatParameterArray[0xe];
-    fStack00000000000000dc =
+    FloatTransformDC =
          BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent + FloatParameterArray[0xf];
     pfloatValue39 = &stackBufferA0;
   }
@@ -59190,32 +59190,32 @@ void CleanupGlobalSystemResources(void)
     FloatTransformValue3 = *(float *)(memoryBlockAddress + 0x128);
     FloatTransformValue4 = *(float *)(memoryBlockAddress + 0x134);
     FloatTransformValue5 = *(float *)(memoryBlockAddress + 0x130);
-    fStack00000000000000a0 = FloatTransformValue1 * InterpolationFactorX + FloatTransformValue2 * FloatVectorFirstComponent + FloatTransformValue3 * InterpolationFactorW;
-    fStack00000000000000a4 = FloatTransformValue1 * InterpolationFactorY + FloatTransformValue2 * FloatVectorSecondComponent + FloatTransformValue3 * MagnitudeSquared;
-    fStack00000000000000a8 = FloatTransformValue1 * InterpolationParam3 + FloatTransformValue2 * FloatVectorThirdComponent + FloatTransformValue3 * FloatVectorNinthComponent;
-    fStack00000000000000ac = FloatTransformValue1 * InterpolationFactorW + FloatTransformValue2 * FloatVectorFourthComponent + FloatTransformValue3 * FloatVectorTenthComponent;
+    FloatTransformA0 = FloatTransformValue1 * InterpolationFactorX + FloatTransformValue2 * FloatVectorFirstComponent + FloatTransformValue3 * InterpolationFactorW;
+    FloatTransformA4 = FloatTransformValue1 * InterpolationFactorY + FloatTransformValue2 * FloatVectorSecondComponent + FloatTransformValue3 * MagnitudeSquared;
+    FloatTransformA8 = FloatTransformValue1 * InterpolationParam3 + FloatTransformValue2 * FloatVectorThirdComponent + FloatTransformValue3 * FloatVectorNinthComponent;
+    FloatTransformAC = FloatTransformValue1 * InterpolationFactorW + FloatTransformValue2 * FloatVectorFourthComponent + FloatTransformValue3 * FloatVectorTenthComponent;
     FloatTransformValue6 = *(float *)(memoryBlockAddress + 0x138);
     FloatTransformValue7 = *(float *)(memoryBlockAddress + 0x140);
     FloatTransformValue8 = *(float *)(memoryBlockAddress + 0x144);
-    fStack00000000000000b0 = FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorW;
-    fStack00000000000000b4 = FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue6 * MagnitudeSquared;
-    fStack00000000000000b8 = FloatTransformValue4 * InterpolationParam3 + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent;
-    fStack00000000000000bc = FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent;
+    FloatTransformB0 = FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorW;
+    FloatTransformB4 = FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue6 * MagnitudeSquared;
+    FloatTransformB8 = FloatTransformValue4 * InterpolationParam3 + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent;
+    FloatTransformBC = FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent;
     FloatTransformValue6 = *(float *)(memoryBlockAddress + 0x148);
     FloatTransformValue4 = *(float *)(memoryBlockAddress + 0x154);
     FloatTransformValue5 = *(float *)(memoryBlockAddress + 0x150);
-    fStack00000000000000c0 = FloatTransformValue8 * InterpolationFactorX + FloatTransformValue7 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorW;
-    fStack00000000000000c4 = FloatTransformValue8 * InterpolationFactorY + FloatTransformValue7 * FloatVectorSecondComponent + FloatTransformValue6 * MagnitudeSquared;
-    fStack00000000000000c8 = FloatTransformValue8 * InterpolationParam3 + FloatTransformValue7 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent;
-    fStack00000000000000cc = FloatTransformValue8 * InterpolationFactorW + FloatTransformValue7 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent;
+    FloatTransformC0 = FloatTransformValue8 * InterpolationFactorX + FloatTransformValue7 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorW;
+    FloatTransformC4 = FloatTransformValue8 * InterpolationFactorY + FloatTransformValue7 * FloatVectorSecondComponent + FloatTransformValue6 * MagnitudeSquared;
+    FloatTransformC8 = FloatTransformValue8 * InterpolationParam3 + FloatTransformValue7 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent;
+    FloatTransformCC = FloatTransformValue8 * InterpolationFactorW + FloatTransformValue7 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent;
     FloatTransformValue6 = *(float *)(memoryBlockAddress + 0x158);
-    fStack00000000000000d0 =
+    FloatTransformD0 =
          FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorW + FloatParameterArray[0xc];
-    fStack00000000000000d4 =
+    FloatTransformD4 =
          FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue6 * MagnitudeSquared + FloatParameterArray[0xd];
-    fStack00000000000000d8 =
+    FloatTransformD8 =
          FloatTransformValue4 * InterpolationParam3 + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent + FloatParameterArray[0xe];
-    fStack00000000000000dc =
+    FloatTransformDC =
          FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent + FloatParameterArray[0xf];
     pfloatValue36 = &stackBufferA0;
   }
@@ -59541,32 +59541,32 @@ void InitializeSystemVectorCalculations(void)
     FloatTransformValue3 = *(float *)(memoryBlockAddress + 0x128);
     FloatTransformValue4 = *(float *)(memoryBlockAddress + 0x134);
     FloatTransformValue5 = *(float *)(memoryBlockAddress + 0x130);
-    fStack00000000000000a0 = FloatTransformValue1 * FloatVectorFifthComponent + FloatTransformValue2 * FloatVectorFirstComponent + FloatTransformValue3 * InterpolationFactorZ;
-    fStack00000000000000a4 = FloatTransformValue1 * FloatVectorSixthComponent + FloatTransformValue2 * FloatVectorSecondComponent + FloatTransformValue3 * InterpolationFactorW;
-    fStack00000000000000a8 = FloatTransformValue1 * InterpolationFactorX + FloatTransformValue2 * FloatVectorThirdComponent + FloatTransformValue3 * InterpolationFactorV;
-    fStack00000000000000ac = FloatTransformValue1 * InterpolationFactorY + FloatTransformValue2 * FloatVectorFourthComponent + FloatTransformValue3 * MagnitudeSquared;
+    FloatTransformA0 = FloatTransformValue1 * FloatVectorFifthComponent + FloatTransformValue2 * FloatVectorFirstComponent + FloatTransformValue3 * InterpolationFactorZ;
+    FloatTransformA4 = FloatTransformValue1 * FloatVectorSixthComponent + FloatTransformValue2 * FloatVectorSecondComponent + FloatTransformValue3 * InterpolationFactorW;
+    FloatTransformA8 = FloatTransformValue1 * InterpolationFactorX + FloatTransformValue2 * FloatVectorThirdComponent + FloatTransformValue3 * InterpolationFactorV;
+    FloatTransformAC = FloatTransformValue1 * InterpolationFactorY + FloatTransformValue2 * FloatVectorFourthComponent + FloatTransformValue3 * MagnitudeSquared;
     FloatTransformValue6 = *(float *)(memoryBlockAddress + 0x138);
     FloatTransformValue7 = *(float *)(memoryBlockAddress + 0x140);
     FloatTransformValue8 = *(float *)(memoryBlockAddress + 0x144);
-    fStack00000000000000b0 = FloatTransformValue4 * FloatVectorFifthComponent + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorZ;
-    fStack00000000000000b4 = FloatTransformValue4 * FloatVectorSixthComponent + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue6 * InterpolationFactorW;
-    fStack00000000000000b8 = FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * InterpolationFactorV;
-    fStack00000000000000bc = FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * MagnitudeSquared;
+    FloatTransformB0 = FloatTransformValue4 * FloatVectorFifthComponent + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorZ;
+    FloatTransformB4 = FloatTransformValue4 * FloatVectorSixthComponent + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue6 * InterpolationFactorW;
+    FloatTransformB8 = FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * InterpolationFactorV;
+    FloatTransformBC = FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * MagnitudeSquared;
     FloatTransformValue9 = *(float *)(memoryBlockAddress + 0x148);
     FloatTransformValue4 = *(float *)(memoryBlockAddress + 0x154);
     FloatTransformValue5 = *(float *)(memoryBlockAddress + 0x150);
-    fStack00000000000000c0 = FloatTransformValue8 * FloatVectorFifthComponent + FloatTransformValue7 * FloatVectorFirstComponent + FloatTransformValue9 * InterpolationFactorZ;
-    fStack00000000000000c4 = FloatTransformValue8 * FloatVectorSixthComponent + FloatTransformValue7 * FloatVectorSecondComponent + FloatTransformValue9 * InterpolationFactorW;
-    fStack00000000000000c8 = FloatTransformValue8 * InterpolationFactorX + FloatTransformValue7 * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV;
-    fStack00000000000000cc = FloatTransformValue8 * InterpolationFactorY + FloatTransformValue7 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared;
+    FloatTransformC0 = FloatTransformValue8 * FloatVectorFifthComponent + FloatTransformValue7 * FloatVectorFirstComponent + FloatTransformValue9 * InterpolationFactorZ;
+    FloatTransformC4 = FloatTransformValue8 * FloatVectorSixthComponent + FloatTransformValue7 * FloatVectorSecondComponent + FloatTransformValue9 * InterpolationFactorW;
+    FloatTransformC8 = FloatTransformValue8 * InterpolationFactorX + FloatTransformValue7 * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV;
+    FloatTransformCC = FloatTransformValue8 * InterpolationFactorY + FloatTransformValue7 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared;
     FloatTransformValue9 = *(float *)(memoryBlockAddress + 0x158);
-    fStack00000000000000d0 =
+    FloatTransformD0 =
          FloatTransformValue4 * FloatVectorFifthComponent + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue9 * InterpolationFactorZ + FloatParameterArray[0xc];
-    fStack00000000000000d4 =
+    FloatTransformD4 =
          FloatTransformValue4 * FloatVectorSixthComponent + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue9 * InterpolationFactorW + FloatParameterArray[0xd];
-    fStack00000000000000d8 =
+    FloatTransformD8 =
          FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV + FloatParameterArray[0xe];
-    fStack00000000000000dc =
+    FloatTransformDC =
          FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared + FloatParameterArray[0xf];
     pfloatValue29 = &stackBufferA0;
   }
@@ -59856,7 +59856,7 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   float in_XMM4_Dc;
   float in_XMM5_Da;
   uint32_t StackParameter28;
-  float fStack0000000000000030;
+  float FloatTransform30;
   float FloatStack34;
   float FloatStack38;
   uint32_t SystemDataFlag0;
@@ -59883,7 +59883,7 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   ScaleValue = systemDataIndexPtr[10];
   floatValue1 = *(float *)(memoryBlockAddress + 0x124);
   floatValue2 = *(float *)(memoryBlockAddress + 0x130);
-  fStack0000000000000030 = floatValue1 * in_XMM4_Da + (float)SystemResourceManager * floatValue4 + (float)ConfigurationDataPointer * floatValue7;
+  FloatTransform30 = floatValue1 * in_XMM4_Da + (float)SystemResourceManager * floatValue4 + (float)ConfigurationDataPointer * floatValue7;
   FloatStack34 =
        floatValue1 * in_XMM4_Db + (float)((ulong long)SystemResourceManager >> 0x20) * BaseValue +
        (float)((ulong long)ConfigurationDataPointer >> 0x20) * floatValue8;
