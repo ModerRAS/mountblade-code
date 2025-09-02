@@ -63408,14 +63408,14 @@ void Unwind_18090a0c0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 void CleanupResourceHashUnwindA(void* objectContext, int64_t validationContext, void* CleanupOption, void* CleanupFlag)
 
 {
-  void** resourceHashPointer;
+  void* ResourceHashPointer;
   
-  presourceHash = *(uint8_t **)(*(int64_t *)(validationContext + 0x48) + 0x10);
-  if (presourceHash != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(validationContext + 0x48),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-    CleanupResourceHash(presourceHash);
+  ResourceHashPointer = *(uint8_t **)(*(int64_t *)(validationContext + 0x48) + 0x10);
+  if (ResourceHashPointer != (uint8_t *)0x0) {
+    ProcessResourceHashOperation(*(int64_t *)(validationContext + 0x48),*(uint8_t *)ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    CleanupResourceHash(ResourceHashPointer);
                     // WARNING: Subroutine does not return
-    ReleaseResourceHandle(presourceHash);
+    ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -63436,14 +63436,14 @@ void CleanupResourceHashUnwindA(void* objectContext, int64_t validationContext, 
 void CleanupResourceHashUnwindB(void* objectContext, int64_t validationContext, void* CleanupOption, void* CleanupFlag)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *ResourceHashPointer;
   
-  presourceHash = *(uint8_t **)(*(int64_t *)(validationContext + 0x48) + 0x10);
-  if (presourceHash != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(validationContext + 0x48),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-    CleanupResourceHash(presourceHash);
+  ResourceHashPointer = *(uint8_t **)(*(int64_t *)(validationContext + 0x48) + 0x10);
+  if (ResourceHashPointer != (uint8_t *)0x0) {
+    ProcessResourceHashOperation(*(int64_t *)(validationContext + 0x48),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    CleanupResourceHash(ResourceHashPointer);
                     // WARNING: Subroutine does not return
-    ReleaseResourceHandle(presourceHash);
+    ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
