@@ -26998,12 +26998,12 @@ void SystemDataProcessor(long long ResourceManagerPointer)
  * 该函数负责分配系统内存资源。
  * 这是内存分配系统的核心函数。
  * 
- * @param ResourceManagerPointer 系统资源指针
- * @param parameter2 分配参数2
- * @param parameter3 分配参数3
- * @param parameter4 分配参数4
+ * @param resourceManagerPointer 系统资源指针
+ * @param allocationSize 分配大小
+ * @param memoryPool 内存池
+ * @param allocationFlags 分配标志
  */
-void SystemMemoryAllocator(long long ResourceManagerPointer,long long parameter2,void* parameter3,void* parameter4)
+void SystemMemoryAllocator(long long resourceManagerPointer,long long allocationSize,void* memoryPool,void* allocationFlags)
 
 {
   long long *PrimaryResourcePointer;
