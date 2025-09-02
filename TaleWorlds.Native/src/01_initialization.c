@@ -24876,10 +24876,10 @@ void* * SystemResourceComplexInitializer(void* *ResourceManagerPointer)
   ResourceManagerPointer[0x6a] = 0;
   *(uint32_t *)(ResourceManagerPointer + 0x6b) = 0;
   ParameterStackArray[0] = ResourceManagerPointer + 0x6d;
-  *apuStackX_10[0] = &SystemMemoryAllocatorReference;
+  *ParameterStackArray[0] = &SystemMemoryAllocatorReference;
   ResourceManagerPointer[0x6e] = 0;
   *(uint32_t *)(ResourceManagerPointer + 0x6f) = 0;
-  *apuStackX_10[0] = &SystemGlobalDataReference;
+  *ParameterStackArray[0] = &SystemGlobalDataReference;
   ResourceManagerPointer[0x70] = 0;
   ResourceManagerPointer[0x6e] = 0;
   *(uint32_t *)(ResourceManagerPointer + 0x6f) = 0;
@@ -24956,8 +24956,8 @@ SystemBufferAllocationHandler:
       ResourceManagerPointer[0x41] = 0;
       resourceEntryPointer = SystemPerformancePreviousStorage;
       if (SystemPerformancePreviousStorage == (void* *)0x0) {
-        QueryPerformanceCounter(apuStackX_10);
-        resourceEntryPointer = apuStackX_10[0];
+        QueryPerformanceCounter(ParameterStackArray);
+        resourceEntryPointer = ParameterStackArray[0];
       }
       ResourceManagerPointer[0x42] = (double)((long long)resourceEntryPointer - SystemPerformanceCounterStorage) * SystemPerformanceFrequencyStorage;
       *(uint32_t *)(ResourceManagerPointer + 0x44) = 0;
@@ -65703,10 +65703,10 @@ void ProcessSystemTextureManagerConfiguration(long long ResourceManagerPointer,u
   int systemIndex;
   long long SystemTimeValue;
   int systemFlag;
-  long long lStack_70;
+  long long StackOffset1;
   uint32_t EncryptionValue68;
-  long long lStack_60;
-  long long lStack_58;
+  long long StackOffset2;
+  long long StackOffset3;
   uint32_t unsignedValue50;
   void* EncryptionValue48;
   

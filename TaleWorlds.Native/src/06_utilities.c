@@ -13622,12 +13622,12 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
             PrimaryResourceHash = GenerateResourceHash();
             ProcessStatus = memcmp(ResourceTable + 0x38,PrimaryResourceHash,0x30);
             if (ProcessStatus != 0) {
-              SecondaryOperationParameter0 = *(uint8_t *)(ResourceTable + 0x38);
+              PrimaryOperationParameter = *(uint8_t *)(ResourceTable + 0x38);
               ResourceTypeIdentifier = *(uint8_t *)(ResourceTable + 0x40);
-              resourceFlags1 = *(uint32_t *)(ResourceTable + 0x48);
-              resourceFlags2 = *(uint32_t *)(ResourceTable + 0x4c);
-              resourceFlags3 = *(uint32_t *)(ResourceTable + 0x50);
-              resourceFlags4 = *(uint32_t *)(ResourceTable + 0x54);
+              ResourcePrimaryFlags = *(uint32_t *)(ResourceTable + 0x48);
+              ResourceSecondaryFlags = *(uint32_t *)(ResourceTable + 0x4c);
+              ResourceTertiaryFlags = *(uint32_t *)(ResourceTable + 0x50);
+              ResourceQuaternaryFlags = *(uint32_t *)(ResourceTable + 0x54);
               ResourceTemplatePointer = &SystemResourceTemplateEvent;
               ResourceOperationState = 0;
               ResourceDataOffset = *(uint32_t *)(ResourceTable + 0x58);
