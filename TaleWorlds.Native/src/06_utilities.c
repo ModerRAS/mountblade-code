@@ -10006,7 +10006,7 @@ int ProcessDataWithQueue(int64_t *ObjectContext,int64_t ValidationContext,int da
 int ProcessDataWithStack(int64_t *DataContext, int64_t *BufferContext, int DataLength)
 
 {
-  int ProcessedBytes;
+  int TotalProcessedBytes;
   int StringOperationResult;
   int DataOperationResult;
   int RemainingDataLength;
@@ -10014,15 +10014,15 @@ int ProcessDataWithStack(int64_t *DataContext, int64_t *BufferContext, int DataL
   void* TemplateBuffer;
   
   RemainingDataLength = DataLength;
-  ProcessedBytes = ProcessStringOperation(BufferContext, RemainingDataLength, &StringBuffer);
-  StringOperationResult = ProcessStringOperation(BufferContext + ProcessedBytes, RemainingDataLength - ProcessedBytes, &TemplateBuffer);
-  ProcessedBytes = ProcessedBytes + StringOperationResult;
-  StringOperationResult = ParseDataContent(ProcessedBytes + BufferContext, RemainingDataLength - ProcessedBytes, ((int)DataContext[2] + 2) * 0xc);
-  ProcessedBytes = ProcessedBytes + StringOperationResult;
-  StringOperationResult = ProcessStringOperation(ProcessedBytes + BufferContext, RemainingDataLength - ProcessedBytes, &TemplateBuffer);
-  ProcessedBytes = ProcessedBytes + StringOperationResult;
-  StringOperationResult = (**(code **)(*DataContext + 8))(DataContext, ProcessedBytes + BufferContext, RemainingDataLength - ProcessedBytes);
-  return StringOperationResult + ProcessedBytes;
+  TotalProcessedBytes = ProcessStringOperation(BufferContext, RemainingDataLength, &StringBuffer);
+  StringOperationResult = ProcessStringOperation(BufferContext + TotalProcessedBytes, RemainingDataLength - TotalProcessedBytes, &TemplateBuffer);
+  TotalProcessedBytes = TotalProcessedBytes + StringOperationResult;
+  StringOperationResult = ParseDataContent(TotalProcessedBytes + BufferContext, RemainingDataLength - TotalProcessedBytes, ((int)DataContext[2] + 2) * 0xc);
+  TotalProcessedBytes = TotalProcessedBytes + StringOperationResult;
+  StringOperationResult = ProcessStringOperation(TotalProcessedBytes + BufferContext, RemainingDataLength - TotalProcessedBytes, &TemplateBuffer);
+  TotalProcessedBytes = TotalProcessedBytes + StringOperationResult;
+  StringOperationResult = (**(code **)(*DataContext + 8))(DataContext, TotalProcessedBytes + BufferContext, RemainingDataLength - TotalProcessedBytes);
+  return StringOperationResult + TotalProcessedBytes;
 }
 
 
@@ -49802,11 +49802,11 @@ void InitializeResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext
 void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  code *CallbackPointer;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0x50) + 0xd0);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0x50) + 0xc0,0,0,CleanupFlag,0xfffffffffffffffe);
+  CallbackPointer = *(code **)(*(int64_t *)(ValidationContext + 0x50) + 0xd0);
+  if (CallbackPointer != (code *)0x0) {
+    (*CallbackPointer)(*(int64_t *)(ValidationContext + 0x50) + 0xc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -49872,7 +49872,7 @@ void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
 void ExecuteResourceContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ProcessPointer;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x58) + 8);
   if (ResourceContext != (int64_t *)0x0) {
@@ -49896,47 +49896,47 @@ void CleanupExceptionUnwindResources(uint8_t ObjectContext, int64_t ValidationCo
 
 {
   int *ResourceCount;
-  char *resourceFlag;
-  uint8_t *resourcePointer;
-  int64_t resourceList;
-  int64_t resourceItem;
-  uint64_t resourceAddress;
+  char *ResourceFlag;
+  uint8_t *ResourcePointer;
+  int64_t ResourceList;
+  int64_t ResourceItem;
+  uint64_t ResourceAddress;
   
-  resourceItem = *(int64_t *)(ValidationContext + 0x58);
+  ResourceItem = *(int64_t *)(ValidationContext + 0x58);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  resourcePointer = *(uint8_t **)(resourceItem + 0x10);
-  if (resourcePointer != (uint8_t *)0x0) {
-    if ((uint8_t *)resourcePointer[3] != (uint8_t *)0x0) {
-      *(uint8_t *)resourcePointer[3] = 0;
+  ResourcePointer = *(uint8_t **)(ResourceItem + 0x10);
+  if (ResourcePointer != (uint8_t *)0x0) {
+    if ((uint8_t *)ResourcePointer[3] != (uint8_t *)0x0) {
+      *(uint8_t *)ResourcePointer[3] = 0;
     }
-    (**(code **)*resourcePointer)(resourcePointer,0);
-          ReleaseResourceHandle(resourcePointer);
+    (**(code **)*ResourcePointer)(ResourcePointer,0);
+          ReleaseResourceHandle(ResourcePointer);
   }
-  if ((*(int64_t *)(resourceItem + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(resourceItem + 0x40) + 0x10) != 0)
+  if ((*(int64_t *)(ResourceItem + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(ResourceItem + 0x40) + 0x10) != 0)
      ) {
           ExecuteSystemEmergencyExit();
   }
-  resourceList = *(int64_t *)(resourceItem + 0x38);
-  while (resourceList != 0) {
-    resourceFlag = (char *)(resourceList + 0x141);
-    resourceList = *(int64_t *)(resourceList + 0x138);
-    if (*resourceFlag != '\0') {
+  ResourceList = *(int64_t *)(ResourceItem + 0x38);
+  while (ResourceList != 0) {
+    ResourceFlag = (char *)(ResourceList + 0x141);
+    ResourceList = *(int64_t *)(ResourceList + 0x138);
+    if (*ResourceFlag != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
-  resourcePointer = *(uint8_t **)(resourceItem + 0x28);
-  if (resourcePointer == (uint8_t *)0x0) {
+  ResourcePointer = *(uint8_t **)(ResourceItem + 0x28);
+  if (ResourcePointer == (uint8_t *)0x0) {
     return;
   }
-  resourceAddress = (uint64_t)resourcePointer & 0xffffffffffc00000;
-  if (resourceAddress != 0) {
-    resourceItem = resourceAddress + 0x80 + ((int64_t)resourcePointer - resourceAddress >> 0x10) * 0x50;
-    resourceItem = resourceItem - (uint64_t)*(uint *)(resourceItem + 4);
-    if ((*(void ***)(resourceAddress + 0x70) == &ExceptionList) && (*(char *)(resourceItem + 0xe) == '\0')) {
-      *resourcePointer = *(uint8_t *)(resourceItem + 0x20);
-      *(uint8_t **)(resourceItem + 0x20) = resourcePointer;
-      ResourceCount = (int *)(resourceItem + 0x18);
+  ResourceAddress = (uint64_t)ResourcePointer & 0xffffffffffc00000;
+  if (ResourceAddress != 0) {
+    ResourceItem = ResourceAddress + 0x80 + ((int64_t)ResourcePointer - ResourceAddress >> 0x10) * 0x50;
+    ResourceItem = ResourceItem - (uint64_t)*(uint *)(ResourceItem + 4);
+    if ((*(void ***)(ResourceAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceItem + 0xe) == '\0')) {
+      *ResourcePointer = *(uint8_t *)(ResourceItem + 0x20);
+      *(uint8_t **)(ResourceItem + 0x20) = ResourcePointer;
+      ResourceCount = (int *)(ResourceItem + 0x18);
       *ResourceCount = *ResourceCount + -1;
       if (*ResourceCount == 0) {
         SystemCleanupHandler();
@@ -49944,8 +49944,8 @@ void CleanupExceptionUnwindResources(uint8_t ObjectContext, int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(resourceAddress,CONCAT71(0xff000000,*(void ***)(resourceAddress + 0x70) == &ExceptionList),
-                          resourcePointer,resourceAddress,0xfffffffffffffffe);
+      ValidateMemoryAccess(ResourceAddress,CONCAT71(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+                          ResourcePointer,ResourceAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -49965,30 +49965,30 @@ void CleanupExceptionUnwindResources(uint8_t ObjectContext, int64_t ValidationCo
 void ResetExceptionUnwindPointerTable(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t pointerArray;
-  uint8_t *pointerEntry;
-  int64_t unwindContext;
-  uint64_t pointerCount;
-  uint64_t pointerIndex;
+  int64_t PointerArray;
+  uint8_t *PointerEntry;
+  int64_t UnwindContext;
+  uint64_t PointerCount;
+  uint64_t PointerIndex;
   
-  unwindContext = *(int64_t *)(ValidationContext + 0x58);
-  pointerCount = *(uint64_t *)(unwindContext + 0x340);
-  pointerArray = *(int64_t *)(unwindContext + 0x338);
-  pointerIndex = 0;
-  if (pointerCount != 0) {
+  UnwindContext = *(int64_t *)(ValidationContext + 0x58);
+  PointerCount = *(uint64_t *)(UnwindContext + 0x340);
+  PointerArray = *(int64_t *)(UnwindContext + 0x338);
+  PointerIndex = 0;
+  if (PointerCount != 0) {
     do {
-      pointerEntry = *(uint8_t **)(pointerArray + pointerIndex * 8);
-      if (pointerEntry != (uint8_t *)0x0) {
-        *pointerEntry = &SystemDataStructure;
+      PointerEntry = *(uint8_t **)(PointerArray + PointerIndex * 8);
+      if (PointerEntry != (uint8_t *)0x0) {
+        *PointerEntry = &SystemDataStructure;
               ExecuteSystemEmergencyExit();
       }
-      *(uint8_t *)(pointerArray + pointerIndex * 8) = 0;
-      pointerIndex = pointerIndex + 1;
-    } while (pointerIndex < pointerCount);
-    pointerCount = *(uint64_t *)(unwindContext + 0x340);
+      *(uint8_t *)(PointerArray + PointerIndex * 8) = 0;
+      PointerIndex = PointerIndex + 1;
+    } while (PointerIndex < PointerCount);
+    PointerCount = *(uint64_t *)(UnwindContext + 0x340);
   }
-  *(uint8_t *)(unwindContext + 0x348) = 0;
-  if ((1 < pointerCount) && (*(int64_t *)(unwindContext + 0x338) != 0)) {
+  *(uint8_t *)(UnwindContext + 0x348) = 0;
+  if ((1 < PointerCount) && (*(int64_t *)(UnwindContext + 0x338) != 0)) {
           ExecuteSystemEmergencyExit();
   }
   return;
