@@ -66583,15 +66583,25 @@ void DestroyBasicStreamBuffer(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_180908eb0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 资源哈希处理器
+ * 
+ * 该函数负责处理资源的哈希计算和验证操作
+ * 通过验证上下文中的指针调用相应的哈希处理函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在资源验证和处理过程中调用
+ */
+void ProcessResourceHash(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  uint8_t *ResourceHashPointer;
+  uint8_t *HashDataPointer;
   
   if (*(int64_t **)(ValidationContext + 0x30) != (int64_t *)0x0) {
-    ResourceHashPointer = (uint8_t *)(**(code **)(**(int64_t **)(ValidationContext + 0x30) + 0x10))();
-    if (ResourceHashPointer != (uint8_t *)0x0) {
-                          (**(code **)*ResourceHashPointer)(ResourceHashPointer,1);
+    HashDataPointer = (uint8_t *)(**(CodeFunction **)(**(int64_t **)(ValidationContext + 0x30) + 0x10))();
+    if (HashDataPointer != (uint8_t *)0x0) {
+      (**(CodeFunction **)*HashDataPointer)(HashDataPointer, 1);
       return;
     }
   }
