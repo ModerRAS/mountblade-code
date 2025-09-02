@@ -27299,69 +27299,69 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   renderStatus4 = renderStatus3;
   renderStatusValue1 = renderStatus5;
   if (1.0 <= scaleResult1) {
-    fStackX_8 = 1.0;
-    fStackX_c = 1.0;
+    scaleResult1 = 1.0;
+    scaleResult2 = 1.0;
   }
   else {
-    while (0 < (int)unsignedSystemValue7) {
-      unsignedSystemValue9 = (int)systemStatus2 % (int)unsignedSystemValue7;
-      systemStatus2 = unsignedSystemValue7;
-      unsignedSystemValue7 = unsignedSystemValue9;
+    while (0 < (int)renderStatusValue1) {
+      renderStatusValue2 = (int)renderStatus4 % (int)renderStatusValue1;
+      renderStatus4 = renderStatusValue1;
+      renderStatusValue1 = renderStatusValue2;
     }
-    systemFlag = (int)systemStatus1 / (int)systemStatus2;
-    fStackX_8 = (float)(int)systemStatus1;
+    systemFlag = (int)renderStatus3 / (int)renderStatus4;
+    scaleResult1 = (float)(int)renderStatus3;
     do {
-      systemStatus1 = (uint)(fStackX_8 * fVar15);
+      renderStatus3 = (uint)(scaleResult1 * scaleResult1);
       if (1 < systemFlag) {
-        systemStatus1 = ((systemStatus1 - 1) - (int)(systemStatus1 - 1) % systemFlag) + systemFlag;
+        renderStatus3 = ((renderStatus3 - 1) - (int)(renderStatus3 - 1) % systemFlag) + systemFlag;
       }
-      systemStatus = (long long)(int)(((int)systemStatus3 / (int)systemStatus2) * systemStatus1) / (long long)systemFlag;
-      unsignedSystemValue7 = (uint)systemStatus;
-      if (((systemStatus1 & 1) == 0) && ((systemStatus & 1) == 0)) goto SystemFlagHandlerCheck;
+      systemStatus = (long long)(int)(((int)renderStatus5 / (int)renderStatus4) * renderStatus3) / (long long)systemFlag;
+      renderStatusValue1 = (uint)systemStatus;
+      if (((renderStatus3 & 1) == 0) && ((systemStatus & 1) == 0)) goto SystemFlagHandlerCheck;
       scaleResult1 = scaleResult1 + 0.01;
       *(float *)(ResourceManagerPointer + 0x234) = scaleResult1;
     } while (scaleResult1 <= 1.0);
     *(uint32_t *)(ResourceManagerPointer + 0x234) = 0x3f800000;
 SystemFlagHandlerCheck:
-    fStackX_8 = (float)(int)systemStatus1 / fStackX_8;
-    fStackX_c = (float)(int)unsignedSystemValue7 / (float)(int)systemStatus3;
-    systemStatus3 = unsignedSystemValue7;
+    scaleResult1 = (float)(int)renderStatus3 / scaleResult1;
+    scaleResult2 = (float)(int)renderStatusValue1 / (float)(int)renderStatus5;
+    renderStatus5 = renderStatusValue1;
   }
-  *(ulong long *)(ResourceManagerPointer + 0x254) = CONCAT44(fStackX_c,fStackX_8);
+  *(ulong long *)(ResourceManagerPointer + 0x254) = CONCAT44(scaleResult2,scaleResult1);
   scaleResult1 = *(float *)(ResourceManagerPointer + 0x238);
   if (1.0 <= scaleResult1) {
-    fStackX_8 = 1.0;
-    fStackX_c = 1.0;
+    scaleResult1 = 1.0;
+    scaleResult2 = 1.0;
   }
   else {
-    currentThreadId = (ulong long)systemStatus3;
-    systemStatus = (ulong long)systemStatus1;
-    systemStatus2 = systemStatus1;
-    unsignedSystemValue7 = systemStatus3;
-    while (unsignedSystemValue4 = currentThreadId, 0 < (int)unsignedSystemValue7) {
-      systemStatus2 = (uint)unsignedSystemValue4;
-      systemStatus = (long long)(int)systemStatus % (long long)(int)systemStatus2;
-      unsignedSystemValue7 = (uint)systemStatus;
+    currentThreadId = (ulong long)renderStatus5;
+    systemStatus = (ulong long)renderStatus3;
+    renderStatus4 = renderStatus3;
+    renderStatusValue1 = renderStatus5;
+    while (threadContextValue = currentThreadId, 0 < (int)renderStatusValue1) {
+      renderStatus4 = (uint)threadContextValue;
+      systemStatus = (long long)(int)systemStatus % (long long)(int)renderStatus4;
+      renderStatusValue1 = (uint)systemStatus;
       currentThreadId = systemStatus & 0xffffffff;
-      systemStatus = unsignedSystemValue4;
+      systemStatus = threadContextValue;
     }
-    systemFlag = (int)systemStatus1 / (int)systemStatus2;
+    systemFlag = (int)renderStatus3 / (int)renderStatus4;
     do {
-      unsignedSystemValue7 = (uint)(fVar15 * (float)(int)systemStatus1);
+      renderStatusValue1 = (uint)(scaleResult1 * (float)(int)renderStatus3);
       if (1 < systemFlag) {
-        unsignedSystemValue7 = ((unsignedSystemValue7 - 1) - (int)(unsignedSystemValue7 - 1) % systemFlag) + systemFlag;
+        renderStatusValue1 = ((renderStatusValue1 - 1) - (int)(renderStatusValue1 - 1) % systemFlag) + systemFlag;
       }
-      systemStatus = (long long)(int)(((int)systemStatus3 / (int)systemStatus2) * unsignedSystemValue7) / (long long)systemFlag;
-      if (((unsignedSystemValue7 & 1) == 0) && ((systemStatus & 1) == 0)) goto SystemFlagHandler;
+      systemStatus = (long long)(int)(((int)renderStatus5 / (int)renderStatus4) * renderStatusValue1) / (long long)systemFlag;
+      if (((renderStatusValue1 & 1) == 0) && ((systemStatus & 1) == 0)) goto SystemFlagHandler;
       scaleResult1 = scaleResult1 + 0.01;
       *(float *)(ResourceManagerPointer + 0x238) = scaleResult1;
     } while (scaleResult1 <= 1.0);
     *(uint32_t *)(ResourceManagerPointer + 0x238) = 0x3f800000;
 SystemFlagHandler:
-    fStackX_8 = (float)(int)unsignedSystemValue7 / (float)(int)systemStatus1;
-    fStackX_c = (float)(int)systemStatus / (float)(int)systemStatus3;
+    scaleResult1 = (float)(int)renderStatusValue1 / (float)(int)renderStatus3;
+    scaleResult2 = (float)(int)systemStatus / (float)(int)renderStatus5;
   }
-  *(ulong long *)(ResourceManagerPointer + 0x25c) = CONCAT44(fStackX_c,fStackX_8);
+  *(ulong long *)(ResourceManagerPointer + 0x25c) = CONCAT44(scaleResult2,scaleResult1);
   return;
 }
 
