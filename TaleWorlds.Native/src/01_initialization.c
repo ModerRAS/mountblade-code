@@ -55207,8 +55207,18 @@ void InitializeSystemBufferManager(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_1800742ea(long long SystemResourceManager)
-void FUN_1800742ea(long long SystemResourceManager)
+/**
+ * @brief 处理系统资源创建
+ * 
+ * 该函数负责处理系统资源的创建和初始化，包括线程对象的创建和内存分配
+ * 用于系统资源的创建和配置
+ * 
+ * @param SystemResourceManager 系统资源管理器，包含系统资源的相关信息
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_1800742ea，现已重命名为ProcessSystemResourceCreation
+ */
+void ProcessSystemResourceCreation(long long SystemResourceManager)
 
 {
   int SystemOperationStatus;
@@ -55482,8 +55492,18 @@ void* * CreateAndConfigureSystemDataTable(void* SystemResourceManager, long long
 
 
 
-// 函数: void FUN_1800746c0(long long SystemResourceManager)
-void FUN_1800746c0(long long SystemResourceManager)
+/**
+ * @brief 初始化系统资源缓冲区
+ * 
+ * 该函数负责初始化系统资源管理器的缓冲区，包括内存分配和数据结构设置
+ * 用于系统资源管理器的初始化和配置
+ * 
+ * @param SystemResourceManager 系统资源管理器，包含系统资源的相关信息
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_1800746c0，现已重命名为InitializeSystemResourceBuffer
+ */
+void InitializeSystemResourceBuffer(long long SystemResourceManager)
 
 {
   long long nextDataIndex;
@@ -55538,8 +55558,18 @@ void FUN_1800746c0(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_180074840(long long SystemResourceManager)
-void FUN_180074840(long long SystemResourceManager)
+/**
+ * @brief 释放系统资源缓冲区
+ * 
+ * 该函数负责释放系统资源管理器的缓冲区，清理内存和资源
+ * 用于系统资源的清理和回收
+ * 
+ * @param SystemResourceManager 系统资源管理器，包含系统资源的相关信息
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180074840，现已重命名为ReleaseSystemResourceBuffer
+ */
+void ReleaseSystemResourceBuffer(long long SystemResourceManager)
 
 {
   long long *plStackX_8;
@@ -55567,8 +55597,19 @@ void FUN_180074840(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_1800748d0(long long SystemResourceManager,long long *ConfigurationDataPointer)
-void FUN_1800748d0(long long SystemResourceManager,long long *ConfigurationDataPointer)
+/**
+ * @brief 配置系统资源数据
+ * 
+ * 该函数负责配置系统资源数据，设置数据参数和属性
+ * 用于系统资源的配置和管理
+ * 
+ * @param SystemResourceManager 系统资源管理器，包含系统资源的相关信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置的相关信息
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_1800748d0，现已重命名为ConfigureSystemResourceData
+ */
+void ConfigureSystemResourceData(long long SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
   uint8_t SystemOperationStatus;
@@ -55651,8 +55692,18 @@ void FUN_1800748d0(long long SystemResourceManager,long long *ConfigurationDataP
 
 
 
-// 函数: void FUN_180074a80(long long *SystemResourceManager)
-void FUN_180074a80(long long *SystemResourceManager)
+/**
+ * @brief 处理系统资源池
+ * 
+ * 该函数负责处理系统资源池，管理资源的分配和释放
+ * 用于系统资源池的管理和维护
+ * 
+ * @param SystemResourceManager 系统资源管理器，包含系统资源的相关信息
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180074a80，现已重命名为ProcessSystemResourcePool
+ */
+void ProcessSystemResourcePool(long long *SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -55689,8 +55740,19 @@ void FUN_180074a80(long long *SystemResourceManager)
 
 
 
-// 函数: void FUN_180074b30(long long *SystemResourceManager,ulong long ConfigurationDataPointer)
-void FUN_180074b30(long long *SystemResourceManager,ulong long ConfigurationDataPointer)
+/**
+ * @brief 分配系统资源内存
+ * 
+ * 该函数负责分配系统资源内存，管理内存的分配和配置
+ * 用于系统资源的内存分配和管理
+ * 
+ * @param SystemResourceManager 系统资源管理器，包含系统资源的相关信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置的相关信息
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180074b30，现已重命名为AllocateSystemResourceMemory
+ */
+void AllocateSystemResourceMemory(long long *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
