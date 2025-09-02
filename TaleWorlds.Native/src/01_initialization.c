@@ -235,7 +235,7 @@ void ConfigureSystemDataBuffer(void* bufferContext, void* configTemplate, void* 
  * 
  * @param memoryContext 内存上下文指针
  * 
- *FUN_180624910：ReleaseSystemMemoryAllocation
+ * 原始函数名：FUN_180624910
  */
 void ReleaseSystemMemoryAllocation(void* memoryContext);
 
@@ -248,7 +248,7 @@ void ReleaseSystemMemoryAllocation(void* memoryContext);
  * @param memoryContext 内存上下文指针
  * @return 检查结果状态码
  * 
- *FUN_180624af0：CheckSystemMemoryStatus
+ * 原始函数名：FUN_180624af0
  */
 char CheckSystemMemoryStatus(void* memoryContext);
 
@@ -263,7 +263,7 @@ char CheckSystemMemoryStatus(void* memoryContext);
  * @param operationId 操作ID
  * @param operationFlags 操作标志
  * 
- *FUN_180629a40：ExecuteSystemOperation
+ * 原始函数名：FUN_180629a40
  */
 void ExecuteSystemOperation(void* operationContext, void* parameterBuffer, int operationId, uint operationFlags);
 
@@ -276,7 +276,7 @@ void ExecuteSystemOperation(void* operationContext, void* parameterBuffer, int o
  * @param sourceContext 源上下文指针
  * @param targetContext 目标上下文指针
  * 
- *FUN_18062db60：ProcessSystemDataTransfer
+ * 原始函数名：FUN_18062db60
  */
 void ProcessSystemDataTransfer(void* sourceContext, void* targetContext);
 
@@ -289,7 +289,7 @@ void ProcessSystemDataTransfer(void* sourceContext, void* targetContext);
  * @param dataIndex 数据索引
  * @return 数据指针
  * 
- *FUN_18015c450：GetSystemDataPointer
+ * 原始函数名：FUN_18015c450
  */
 void* GetSystemDataPointer(int dataIndex);
 
@@ -304,7 +304,7 @@ void* GetSystemDataPointer(int dataIndex);
  * @param primaryConfigParam 主要配置参数
  * @param secondaryConfigParam 次要配置参数
  * 
- *FUN_1801299b0：InitializeSystemConfiguration
+ * 原始函数名：FUN_1801299b0
  */
 void InitializeSystemConfiguration(void* configContext, int configFlags, int primaryConfigParam, int secondaryConfigParam);
 
@@ -318,7 +318,7 @@ void InitializeSystemConfiguration(void* configContext, int configFlags, int pri
  * @param fieldValue 字段值
  * @param additionalParameter 额外参数
  * 
- *FUN_18010f010：SetupSystemDataField
+ * 原始函数名：FUN_18010f010
  */
 void SetupSystemDataField(void* dataFieldContext, uint fieldValue, uint additionalParameter);
 
@@ -328,7 +328,7 @@ void SetupSystemDataField(void* dataFieldContext, uint fieldValue, uint addition
  * 该函数负责完成系统初始化，执行最后的初始化操作
  * 用于系统初始化的收尾工作
  * 
- *FUN_18012cfe0：FinalizeSystemInitialization
+ * 原始函数名：FUN_18012cfe0
  */
 void FinalizeSystemInitialization(void);
 
@@ -21843,7 +21843,7 @@ void ProcessSystemTimestampHandler(void* SystemResourceManager,void* *Configurat
  * @param ConfigurationFlag 配置标志，指定配置的方式和选项
  * @return 系统状态，返回初始化处理的状态结果
  * 
- *FUN_180077a60：SystemInitializationProcessData
+ * 原始函数名：FUN_180077a60
  */
 uint8_t SystemInitializationProcessData(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -31608,7 +31608,7 @@ void ReleaseSystemMemoryAllocation(long long SystemResourceManager,void* Configu
  * @param additionalParameter 额外参数，包含查找条件和配置信息
  * @return 配置数据指针，指向找到的配置数据
  * 
- *FUN_180058080：FindSystemResourceNode
+ * 原始函数名：FUN_180058080
  */
 void* * FindSystemResourceNode(void* *resourcePointer,void* *configDataPointer,long long additionalParameter)
 
@@ -32736,7 +32736,7 @@ void ExecuteSystemResourceConfiguration(long long SystemResourceManager,void* Co
  * @param SystemResourceManager 系统资源指针
  * @param ConfigurationDataPointer 配置数据指针，指向要执行的回调函数
  * 
- *FUN_180058f00：ExecuteConfigurationDataCallback
+ * 原始函数名：FUN_180058f00
  */
 void ExecuteConfigurationDataCallback(void* SystemResourceManager,void* *ConfigurationDataPointer)
 
@@ -32828,7 +32828,7 @@ void ExecuteConfigurationDataCallback(void* SystemResourceManager,void* *Configu
  * 
  * @param resourcePointer 系统资源指针，指向需要初始化的资源结构
  * 
- *FUN_180059000：InitializeSystemResourceManager
+ * 原始函数名：FUN_180059000
  */
 void InitializeSystemResourceManager(long long *resourcePointer)
 
@@ -33493,7 +33493,7 @@ long long CopySystemResourceData(long long SystemResourceManager,long long Confi
  * @param AdditionalParameter 额外参数，用于控制处理行为
  * @return 返回处理后的额外参数指针
  * 
- *FUN_18005926c：ProcessSystemResourceDataInternal
+ * 原始函数名：FUN_18005926c
  */
 long long ProcessSystemResourceDataInternal(long long SystemResourceManager,void* ConfigurationDataPointer,long long AdditionalParameter)
 
@@ -33573,7 +33573,7 @@ long long CreateSystemObjectsBatch(long long SystemResourceManager,long long Con
  * @param ConfigurationDataPointer 配置数据指针（用作结束地址）
  * @param AdditionalParameter 目标参数指针
  * 
- *FUN_180059350：MoveSystemResourceData
+ * 原始函数名：FUN_180059350
  */
 void MoveSystemResourceData(long long SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter)
 
