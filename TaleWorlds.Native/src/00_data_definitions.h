@@ -6559,10 +6559,10 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
       __Throw_C_error_std__YAXH_Z(iVar3);
     }
     MemoryAllocationResult = AllocateSystemMemory(_DAT_180c8ed18,0x298,8,3);
-    MemoryPointerArray = (longlong *)FUN_1802f5f70(MemoryAllocationResult);
+    MemoryPointerArray = (longlong *)CreateMemoryPointerArray(MemoryAllocationResult);
     pplStack_68 = (longlong **)CONCAT44(pplStack_68._4_4_,auStackX_20[0]);
     plStack_60 = MemoryPointerArray;
-    FUN_18033b220(param_1 + 0x3a8,auStack_58,&pplStack_68);
+    ProcessSystemMemoryConfiguration(param_1 + 0x3a8,auStack_58,&pplStack_68);
     iVar3 = _Mtx_unlock(pModuleInitializationResult);
     if (iVar3 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar3);
@@ -6574,7 +6574,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     if (MemoryPointerArray != (longlong *)0x0) {
       (**(code **)(*MemoryPointerArray + 0x28))(MemoryPointerArray);
     }
-    FUN_1801a35b0(MemoryAllocationResult,&plStack_80);
+    InitializeMemoryAllocationContext(MemoryAllocationResult,&plStack_80);
     *(int *)(param_1 + 0xb0) = *(int *)(param_1 + 0xb0) + 1;
     MemoryAllocationResult = 1;
     if (plStackX_18 != (longlong *)0x0) {

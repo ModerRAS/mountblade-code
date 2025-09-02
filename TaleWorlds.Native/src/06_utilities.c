@@ -12809,7 +12809,7 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x58) = resourceData2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloatValue1), validationErrorCode != 0))
-        goto LAB_1808974ec;
+        goto ValidationErrorHandler;
         resultFloat = stackFloatValue1;
         if (stackFloatValue1 != 1.0) {
           stackResourceValue = stackFloatValue1;
@@ -12862,7 +12862,7 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x58) = resourceData2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloatValue1), validationErrorCode != 0))
-        goto LAB_1808974ec;
+        goto ValidationErrorHandler;
         resultFloat = stackFloatValue1;
         if (stackFloatValue1 != 1.0) {
           stackResourceValue = stackFloatValue1;
@@ -12915,7 +12915,7 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x58) = resourceData2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloatValue1), validationErrorCode != 0))
-        goto LAB_1808974ec;
+        goto ValidationErrorHandler;
         resultFloat = stackFloatValue1;
         if (stackFloatValue1 != 1.0) {
           stackResourceValue = stackFloatValue1;
@@ -12968,7 +12968,7 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x58) = resourceData2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloatValue1), validationErrorCode != 0))
-        goto LAB_1808974ec;
+        goto ValidationErrorHandler;
         resultFloat = stackFloatValue1;
         if (stackFloatValue1 != 1.0) {
           stackResourceValue = stackFloatValue1;
@@ -14025,7 +14025,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
     StackFloatResourceValue = ObjectContextParameter;
     OperationStatusCode = GetAndValidateResourceData(ObjectContextParameter,&ObjectStackBufferResource28);
     ObjectContextParameter = extraout_XMM0_Da;
-    if (OperationResult != 0) goto LAB_180897af6;
+    if (OperationResult != 0) goto OperationResultHandler;
   }
   OperationStatusCode = CheckResourceIntegrity(ObjectContextParameter,&ObjectStackBufferResource50,0);
   if (OperationStatusCode == 0) {
@@ -14035,7 +14035,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
       StackContextBufferPointer = StackContextBuffer;
       StackFloatRegisterValue = FloatRegisterValue;
       OperationStatusCode = GetAndValidateResourceData(StackFloatParameter,&ObjectStackBufferResource28);
-      if (OperationResult != 0) goto LAB_180897af6;
+      if (OperationResult != 0) goto OperationResultHandler;
     }
     pThirdFloatValue = (float *)(RegisterR15 + 0x94);
     SecondFloatValue = FloatRegisterValue;
@@ -14048,7 +14048,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
         StackFloatResourceValue = floatValue4;
         StackFloatSecondaryValue = floatValue1;
         OperationStatusCode = GetAndValidateResourceData(floatValue1,&ObjectStackBufferResource28);
-        if (OperationResult != 0) goto LAB_180897af6;
+        if (OperationResult != 0) goto OperationResultHandler;
       }
       SecondFloatValue = (float)((int)floatValue4 + 1);
       pThirdFloatValue = pfloatValue5 + 1;
@@ -14064,7 +14064,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
         StackFloatResourceValue = floatValue4;
         StackFloatSecondaryValue = floatValue1;
         OperationStatusCode = GetAndValidateResourceData(floatValue1,&ObjectStackBufferResource28);
-        if (OperationResult != 0) goto LAB_180897af6;
+        if (OperationResult != 0) goto OperationResultHandler;
       }
       SecondFloatValue = (float)((int)floatValue4 + 1);
       pThirdFloatValue = pfloatValue5 + 1;
@@ -14078,7 +14078,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
       StackFloatResourceValue = (float)(ValidationResult / 0x30);
       OperationStatusCode = GetAndValidateResourceData(extraout_XMM0_Da_00,&ObjectStackBufferResource28);
       ContextValidationStatusCode = extraout_XMM0_Da_01;
-      if (OperationResult != 0) goto LAB_180897af6;
+      if (OperationResult != 0) goto OperationResultHandler;
     }
     if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 1 & 1) != 0) {
       StackResourceTemplatePointer = &SystemResourceTemplateKernel;
@@ -14086,7 +14086,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
       StackFloatResourceValue = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       StackFloatRegisterValue = FloatRegisterValue;
       OperationStatusCode = GetAndValidateResourceData(ContextValidationResult,&ObjectStackBufferResource28);
-      if (OperationResult != 0) goto LAB_180897af6;
+      if (OperationResult != 0) goto OperationResultHandler;
     }
     OperationStatusCode = GetResourceType();
     if (OperationResult != 2) {
@@ -14094,7 +14094,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
       StackContextBufferPointer = StackContextBuffer;
       StackFloatRegisterValue = FloatRegisterValue;
       OperationStatusCode = GetAndValidateResourceData(extraout_XMM0_Da_02,&ObjectStackBufferResource28);
-      if (OperationResult != 0) goto LAB_180897af6;
+      if (OperationResult != 0) goto OperationResultHandler;
     }
     OperationStatusCode = GetResourceType();
     ContextValidationStatusCode = extraout_XMM0_Da_03;
@@ -14105,7 +14105,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
       StackFloatResourceValue = FloatRegisterValue;
       OperationStatusCode = GetAndValidateResourceData(extraout_XMM0_Da_03,&ObjectStackBufferResource28);
       ContextValidationStatusCode = extraout_XMM0_Da_04;
-      if (OperationResult != 0) goto LAB_180897af6;
+      if (OperationResult != 0) goto OperationResultHandler;
     }
     if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 3 & 1) != 0) {
       StackResourceTemplatePointer = &SystemResourceTemplateNetwork;
@@ -14205,7 +14205,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *ObjectContextParameter,int64_t
   int resultCounter = 0;
   int loopIndex = 0;
   do {
-    if ((loopIndex < 0) || (*(int *)(ValidationContextParameter + 0x1a8) <= loopIndex)) goto LAB_180897ce8;
+    if ((loopIndex < 0) || (*(int *)(ValidationContextParameter + 0x1a8) <= loopIndex)) goto LoopExit;
     loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x1a0) + (int64_t)loopIndex * 8);
     if (**(int **)(LocalContextData + 0xd0) != 0) {
       dataChecksumBuffer8[0] = 0;
@@ -14226,7 +14226,7 @@ LoopExit:
       uint32_t encryptionParam = encryptionFlag;
       int resultIndex = resultCounter;
       int resourceValidationStatusCode = GetAndValidateResourceData(ObjectContextParameter,&puStack_268);
-      if (resourceValidationResult != 0) goto LAB_180897ce8;
+      if (resourceValidationResult != 0) goto LoopExit;
       int processingCounter = 0;
       int tableEntryIndex = ValidateTableEntry(*(uint8_t *)(LocalContextData + 0xd0));
       int loopCounter2 = nextResultIndex;
@@ -14237,14 +14237,14 @@ LoopExit:
           uint8_t *memoryTemplatePointer = &SystemMemoryTemplateB;
           uint32_t checksumValue2 = dataChecksumBuffer8[0];
           if (((char)resourceTable == '\0') && (int systemStatusResult = CheckSystemStatus(ObjectContextParameter,1), systemStatusResult != 0))
-          goto LAB_180897ce8;
+          goto LoopExit;
           int memoryOperationStatusCode = (**(code **)(memoryTemplatePointer + 0x10))(&memoryTemplatePointer,auStack_238,0x200);
           ProcessDataBuffer((int64_t)auStack_238 + (int64_t)memoryOperationResult,0x200 - memoryOperationResult,10);
           int objectOperationStatusCode = (**(code **)(*ObjectContextParameter + 8))(ObjectContextParameter,auStack_238);
-          if (objectOperationResult != 0) goto LAB_180897ce8;
+          if (objectOperationResult != 0) goto LoopExit;
           if ((char)resourceTable == '\0') {
             int secondaryOperationStatusCode = (**(code **)(*ObjectContextParameter + 0x18))(ObjectContextParameter);
-            if (secondaryOperationResult != 0) goto LAB_180897ce8;
+            if (secondaryOperationResult != 0) goto LoopExit;
             *(uint8_t *)(ObjectContextParameter + 4) = 0;
           }
           processingCounter = processingCounter + 1;
