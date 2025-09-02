@@ -367,11 +367,11 @@ void* SystemExceptionHandler;
 void* SystemHashTable;
 
 // 系统网络配置数据
-void* SystemNetworkConfigData1;
-void* SystemNetworkConfigData2;
-void* SystemNetworkConfigData3;
-void* SystemNetworkConfigData4;
-void* SystemNetworkConfigData5;
+void* SystemNetworkConfigDataConnection;
+void* SystemNetworkConfigDataProtocol;
+void* SystemNetworkConfigDataSecurity;
+void* SystemNetworkConfigDataPerformance;
+void* SystemNetworkConfigDataLogging;
 
 // 更多网络请求字符串常量
 void* NetworkRequestStringSessionEnd;
