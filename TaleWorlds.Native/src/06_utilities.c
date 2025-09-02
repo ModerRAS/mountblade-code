@@ -3057,51 +3057,51 @@ uint8_t ThreadManagerStatus;
 uint8_t ProcessManagerStatus;
 uint8_t NetworkManagerStatus;
 uint8_t SecurityManagerStatus;
-uint8_t PerformanceManagerData;
-uint8_t DebugManagerData;
-uint8_t ResourceValidationData;
-uint8_t ResourceCacheManagerData;
-uint8_t ResourceMemoryManagerData;
-uint8_t ResourceThreadPoolData;
-uint8_t ResourceQueueManagerData;
-uint8_t ResourceLockManagerData;
-uint8_t ResourceStateManagerData;
-uint8_t ResourceEventHandlerData;
-uint8_t ResourceNotificationManagerData;
-uint8_t ResourceSchedulerData;
-uint8_t ResourceAllocatorData;
-uint8_t ResourceGarbageCollectorData;
-uint8_t ResourceReferenceCounterData;
-uint8_t ResourceMetadataManagerData;
-uint8_t ResourceCompressionManagerData;
-uint8_t ResourceEncryptionManagerData;
-uint8_t ResourceDecryptionManagerData;
-uint8_t ResourceSerializationManagerData;
-uint8_t ResourceDeserializationManagerData;
-uint8_t ResourceIndexManagerData;
-uint8_t ResourceCatalogManagerData;
-uint8_t ResourceBackupManagerData;
-uint8_t ResourceRestoreManagerData;
-uint8_t ResourceVersionManagerData;
-uint8_t ResourceHistoryManagerData;
-uint8_t ResourceSnapshotManagerData;
-uint8_t ResourceCheckpointManagerData;
-uint8_t ResourceTransactionManagerData;
-uint8_t ResourceRollbackManagerData;
-uint8_t ResourceSynchronizationManagerData;
-uint8_t ResourceReplicationManagerData;
-uint8_t ResourceSystemPrimaryData;
-uint8_t ResourceSystemSecondaryData;
-uint8_t ProcessManagerData;
-uint8_t SystemSecurityManagerData;
-// 网络管理器数据 - 存储网络管理器相关数据
-uint8_t NetworkManagerData;
-uint8_t SystemAudioManagerData;
+uint8_t PerformanceManagerStatus;
+uint8_t DebugManagerStatus;
+uint8_t ResourceValidationStatus;
+uint8_t ResourceCacheManagerStatus;
+uint8_t ResourceMemoryManagerStatus;
+uint8_t ResourceThreadPoolStatus;
+uint8_t ResourceQueueManagerStatus;
+uint8_t ResourceLockManagerStatus;
+uint8_t ResourceStateManagerStatus;
+uint8_t ResourceEventHandlerStatus;
+uint8_t ResourceNotificationManagerStatus;
+uint8_t ResourceSchedulerStatus;
+uint8_t ResourceAllocatorStatus;
+uint8_t ResourceGarbageCollectorStatus;
+uint8_t ResourceReferenceCounterStatus;
+uint8_t ResourceMetadataManagerStatus;
+uint8_t ResourceCompressionManagerStatus;
+uint8_t ResourceEncryptionManagerStatus;
+uint8_t ResourceDecryptionManagerStatus;
+uint8_t ResourceSerializationManagerStatus;
+uint8_t ResourceDeserializationManagerStatus;
+uint8_t ResourceIndexManagerStatus;
+uint8_t ResourceCatalogManagerStatus;
+uint8_t ResourceBackupManagerStatus;
+uint8_t ResourceRestoreManagerStatus;
+uint8_t ResourceVersionManagerStatus;
+uint8_t ResourceHistoryManagerStatus;
+uint8_t ResourceSnapshotManagerStatus;
+uint8_t ResourceCheckpointManagerStatus;
+uint8_t ResourceTransactionManagerStatus;
+uint8_t ResourceRollbackManagerStatus;
+uint8_t ResourceSynchronizationManagerStatus;
+uint8_t ResourceReplicationManagerStatus;
+uint8_t ResourceSystemPrimaryStatus;
+uint8_t ResourceSystemSecondaryStatus;
+uint8_t ProcessManagerStatus;
+uint8_t SystemSecurityManagerStatus;
+// 网络管理器状态 - 存储网络管理器相关状态信息
+uint8_t NetworkManagerStatus;
+uint8_t SystemAudioManagerStatus;
 uint8_t ResourceSystemState;
-uint8_t SystemInputManagerData;
-uint8_t SystemVideoManagerData;
+uint8_t SystemInputManagerStatus;
+uint8_t SystemVideoManagerStatus;
 uint8_t ResourceSystemConfig;
-uint8_t SystemDatabaseManagerData;
+uint8_t SystemDatabaseManagerStatus;
 
  /**
  * @brief 初始化内存管理器
@@ -74794,7 +74794,12 @@ void Unwind_ClearResourceDataFlagsAndRelease(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_18090a9e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理辅助资源数据中的标志位并释放系统资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void Unwind_ClearSecondaryResourceDataFlags(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x60) & 1) != 0) {
@@ -74806,7 +74811,12 @@ void Unwind_18090a9e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090aa10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void Unwind_ProcessTertiaryResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0xe0) = &SystemDataStructure;
@@ -74815,7 +74825,12 @@ void Unwind_18090aa10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090aa20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第四级资源释放操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void Unwind_ExecuteQuaternaryResourceRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
