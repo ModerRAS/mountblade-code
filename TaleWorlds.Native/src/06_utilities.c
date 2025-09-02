@@ -3677,6 +3677,16 @@ void CheckSystemFlags(void)
  * @note 此函数用于确保系统中的对象都经过正确的注册流程
  * @warning 如果对象注册无效，函数将返回相应的错误代码
  */
+/**
+ * @brief 验证对象注册状态
+ * 
+ * 该函数负责验证对象的注册状态，检查对象是否正确注册
+ * 函数会获取注册上下文数据，验证注册句柄的有效性
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的注册信息
+ * @return uint8_t 验证结果，0表示成功，非0表示错误码
+ * @note 此函数会检查对象的注册状态和句柄有效性
+ */
 uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
 {
   int64_t RegistrationData;
