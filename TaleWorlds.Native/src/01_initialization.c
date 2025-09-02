@@ -32449,7 +32449,7 @@ void DestroySystemResource(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058c80(void* *SystemResourcePointer)
+// 函数: void ReleaseSystemResourcePointer(void* *SystemResourcePointer)
 /**
  * @brief 释放系统资源指针
  * 
@@ -32495,7 +32495,7 @@ void ResetSystemResourcePointer(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058d20(void* *SystemResourcePointer)
+// 函数: void SetupSystemResourceNode(void* *SystemResourcePointer)
 /**
  * @brief 清理系统资源指针
  * 
@@ -32522,7 +32522,7 @@ void CleanupSystemResourcePointer(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058d90(long long *SystemResourcePointer)
+// 函数: void ProcessSystemResourceData(long long *SystemResourcePointer)
 /**
  * @brief 清理系统资源内存区域
  * 
@@ -32578,7 +32578,7 @@ void DestroySystemResourceMutex(long long SystemResourcePointer,void* Configurat
 
 
 
-// 函数: void FUN_180058e60(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ExecuteSystemConfiguration(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 处理系统资源初始化
  * 
@@ -32598,7 +32598,7 @@ void ProcessSystemResourceInitialization(long long SystemResourcePointer,void* C
 
 
 
-// 函数: void FUN_180058e90(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ConfigureSystemParameters(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 执行系统资源配置
  * 
@@ -33851,7 +33851,7 @@ void* *InitializeSystemMemoryAllocatorReference(void* *SystemResourcePointer,ulo
 
 
 
-// 函数: void FUN_180059940(long long SystemResourcePointer,long long ConfigurationDataPointer)
+// 函数: void ProcessSystemResourceString(long long SystemResourcePointer,long long ConfigurationDataPointer)
 /**
  * @brief 系统字符串处理和缓冲区初始化函数
  * 
@@ -33960,7 +33960,7 @@ void ClearSystemResourceFlags(uint8_t *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180059a20(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
+// 函数: void HandleSystemResourceEncryption(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 /**
  * @brief 系统资源处理和加密操作函数
  * 
@@ -34334,7 +34334,7 @@ void ReleaseSystemResourceReference(void)
 
 
 
-// 函数: void FUN_180059f4f(void)
+// 函数: void CleanupSystemBuffers(void)
 /**
  * @brief 系统清理和缓冲区处理函数
  * 
@@ -34394,7 +34394,7 @@ void CleanupSystemAndProcessBuffers(void)
 
 
 
-// 函数: void FUN_180059fb0(void* *SystemResourcePointer)
+// 函数: void ManageSystemResourceWithException(void* *SystemResourcePointer)
 /**
  * @brief 系统资源指针管理和异常处理函数
  * 
@@ -35745,7 +35745,7 @@ long long ReleaseSystemResourceConfiguration(long long SystemResourcePointer,uin
 
 
 
-// 函数: void FUN_18005c560(long long SystemResourcePointer)
+// 函数: void ProcessSystemResourceDataA(long long SystemResourcePointer)
 /**
  * @brief 系统资源锁定管理器函数
  * 
