@@ -3028,7 +3028,7 @@ uint8_t SystemResourceHeap;
 uint8_t SystemResourceTree;
 uint8_t SystemResourceGraph;
 uint8_t SystemResourceNetwork;
-uint8_t SystemResourceDatabase;
+uint8_t SystemResourceDatabasebase;
 uint8_t SystemResourceIndex;
 uint8_t SystemResourceTable;
 uint8_t SystemResourceMap;
@@ -3099,10 +3099,10 @@ uint8_t UndenaryConfigEntry;
 uint8_t DuodenaryConfigEntry;
 
 // 系统资源管理相关全局变量
-uint8_t SystemResourceDatabase[0x1000];        // 系统资源数据库
+uint8_t SystemResourceDatabasebase[0x1000];        // 系统资源数据库
 uint8_t* SystemResourceManagerHandle;     // 系统资源管理器句柄
-uint8_t ResourceCleanupMarker;             // 资源清理标记
-uint8_t ResourceResetMarker;                // 资源重置标记
+uint8_t ResourceCleanupStateMarker;             // 资源清理状态标记
+uint8_t ResourceResetStateMarker;                // 资源重置状态标记
 
 // 系统数据结构相关全局变量
 uint8_t SystemDataStructure[0x1000];       // 系统数据结构缓冲区
@@ -19604,7 +19604,7 @@ uint64_t GetResourceHashB(void)
  * 该函数负责清理系统资源数据，释放占用的内存
  * 这是一个不会返回的函数，用于处理系统级别的资源清理
  */
-void CleanupSystemResourceData(void)
+void CleanupSystemResourceDatabase(void)
 
 {
         CleanupResourceData();
@@ -30140,8 +30140,8 @@ void ResetSystemResourceHandlerPointer(uint8_t ObjectContext, int64_t Validation
 void ReleaseFlaggedResourceAndClearState(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  if ((*(uint *)(SystemResourceData + 0x30) & 0x40) != 0) {
-    *(uint *)(SystemResourceData + 0x30) = *(uint *)(SystemResourceData + 0x30) & 0xffffffbf;
+  if ((*(uint *)(SystemResourceDatabase + 0x30) & 0x40) != 0) {
+    *(uint *)(SystemResourceDatabase + 0x30) = *(uint *)(SystemResourceDatabase + 0x30) & 0xffffffbf;
     ReleaseSystemResource(SystemValidationContext + 0xb8);
   }
   return;
@@ -30246,7 +30246,7 @@ void ResetMainSystemResourceHandlerPointer(uint8_t ObjectContext, int64_t Valida
  * @return 无返回值
  * @note 此函数通常在异常处理的展开阶段调用
  */
-void ResetSystemResourceManagerPointer(uint8_t ObjectContext, int64_t ValidationContext)
+void ResetSystemResourceManagerHandle(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1a0) = &SystemDataStructure;
@@ -60811,7 +60811,7 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext, int64_t Val
  * @return 无返回值
  * @note 此函数会调用ProcessResourceData函数处理资源数据
  */
-void ExecuteSystemResourceDataProcessingCallbackA(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemResourceDatabaseProcessingCallbackA(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceData(ValidationContext + 0xe8,*(uint8_t *)(ValidationContext + 0xf8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
@@ -60824,16 +60824,16 @@ void ExecuteSystemResourceDataProcessingCallbackA(uint8_t ObjectContext, int64_t
  * @brief 执行系统资源数据处理回调B
  * 
  * 该函数负责执行系统资源数据的处理回调操作
- * 与ExecuteSystemResourceDataProcessingCallbackA功能相同，但用于不同的调用上下文
+ * 与ExecuteSystemResourceDatabaseProcessingCallbackA功能相同，但用于不同的调用上下文
  * 
  * @param ObjectContext 对象上下文，包含对象相关的状态信息
  * @param ValidationContext 验证上下文，包含验证所需的数据和参数
  * @param CleanupOption 清理选项，指定资源清理的方式
  * @param CleanupFlag 清理标志，控制清理过程的标志位
  * @return 无返回值
- * @note 此函数与ExecuteSystemResourceDataProcessingCallbackA功能相同
+ * @note 此函数与ExecuteSystemResourceDatabaseProcessingCallbackA功能相同
  */
-void ExecuteSystemResourceDataProcessingCallbackB(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemResourceDatabaseProcessingCallbackB(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceData(ValidationContext + 0xe8,*(uint8_t *)(ValidationContext + 0xf8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
@@ -99834,12 +99834,12 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 {
   uint8_t *ResourceHandle;
   
-  ResourceHandle = SystemResourceManagerPointer;
-  if (SystemResourceManagerPointer == (uint8_t *)0x0) {
+  ResourceHandle = SystemResourceManagerHandle;
+  if (SystemResourceManagerHandle == (uint8_t *)0x0) {
     return;
   }
-  ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, CleanupOptions, CleanupFlags, 0xfffffffffffffffe);
-  ResourceHandle[ResourceManagementStateOffset] = &ResourceCleanupMarker;
+  ReleaseSystemResources(&SystemResourceDatabase, *SystemResourceManagerHandle, CleanupOptions, CleanupFlags, 0xfffffffffffffffe);
+  ResourceHandle[ResourceManagementStateOffset] = &ResourceCleanupStateMarker;
   if (ResourceHandle[ResourceManagementCleanupOffset] != 0) {
     EmergencyResourceCleanup();
   }
