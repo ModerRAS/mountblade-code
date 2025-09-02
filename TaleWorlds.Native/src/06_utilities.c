@@ -8760,8 +8760,8 @@ uint8_t ProcessParameterizedFloatComparison(int64_t ObjectContext, int64_t Valid
   uint8_t HashValidationResult;
   uint32_t PrimaryOperationParameter;
   uint32_t SecondaryOperationParameter;
-  uint32_t operationParameter;
-  uint32_t contextFlag;
+  uint32_t OperationParameter;
+  uint32_t ContextFlag;
   
   PrimaryOperationParameter = *(uint32_t *)(ObjectContext + 0x10);
   SecondaryOperationParameter = *(uint32_t *)(ObjectContext + 0x14);
@@ -8797,8 +8797,8 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int
   uint8_t HashValidationResult;
   uint32_t PrimaryOperationParameter;
   uint32_t SecondaryOperationParameter;
-  uint32_t operationParameter;
-  uint32_t contextFlag;
+  uint32_t OperationParameter;
+  uint32_t ContextFlag;
   
   PrimaryOperationParameter = *(uint32_t *)(ObjectContext + 0x10);
   SecondaryOperationParameter = *(uint32_t *)(ObjectContext + 0x14);
@@ -8847,7 +8847,7 @@ void ValidateAndProcessBufferContext(int64_t ObjectContext,int64_t ValidationCon
 
 {
   int PackageValidationStatusCode;
-  uint8_t bufferContext;
+  uint8_t BufferContext;
   
   ResourceIndex = ProcessSchedulerValidation(ValidationContext,ObjectContext + 0x10,&ValidationContext);
   if (ResourceIndex == 0) {
@@ -11174,7 +11174,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       *(int *)(ObjectContext + 0xac) = ResourceIterationIndex + 1;
       goto HANDLE_CONTEXT_ERROR;
     }
-    float fifthFloatResult = *(float *)(LongValue8 + 0x18);
+    float FifthFloatResult = *(float *)(LongValue8 + 0x18);
     float CalculatedFloatResult = calculatedFloatValue;
     if (OperationResult != -1) {
       CalculatedFloatResult = *(float *)(ObjectContext + 0xb4);
@@ -25675,8 +25675,6 @@ uint8_t ResourceHandler(void)
  */
 void ResourceValidationHandler(void)
 
-ResourceValidationHandler(void)
-
 {
   return;
 }
@@ -28604,8 +28602,7 @@ uint64_t ProcessResourceCertificateRevocation(void)
 
 
 
- ResourceSignatureVerifier(void)
-ResourceSignatureVerifier(void)
+ void ResourceSignatureVerifier(void)
 
 {
   int ProcessingResult;
@@ -28620,8 +28617,7 @@ ResourceSignatureVerifier(void)
 
 
 
- SystemCleanupHandler(void)
-SystemCleanupHandler(void)
+ void SystemCleanupHandler(void)
 
 {
   return;
@@ -28630,8 +28626,7 @@ SystemCleanupHandler(void)
 
 
 
- ResourceDataValidator(int64_t ObjectContext,uint8_t ValidationContext)
-ResourceDataValidator(int64_t ObjectContext,uint8_t ValidationContext)
+ void ResourceDataValidator(int64_t ObjectContext,uint8_t ValidationContext)
 
 {
   int ProcessingResult;
