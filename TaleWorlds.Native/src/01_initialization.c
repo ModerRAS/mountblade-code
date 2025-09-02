@@ -60128,7 +60128,7 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   float in_XMM4_Da;
   float in_XMM4_Db;
   float in_XMM4_Dc;
-  float in_XMM5_Da;
+  float AudioInterpolationCoeff1;
   uint32_t StackParameter28;
   float FloatTransform30;
   float FloatStack34;
@@ -60164,9 +60164,9 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   FloatStack38 = floatValue1 * in_XMM4_Dc + in_XMM0_Dc * floatValue6 + in_XMM1_Dc * ScaleValue;
   floatValue1 = *(float *)(memoryBlockAddress + 0x138);
   floatValue3 = *(float *)(memoryBlockAddress + 0x140);
-  FloatStack40 = in_XMM5_Da * in_XMM4_Da + floatValue2 * floatValue4 + floatValue1 * floatValue7;
-  FloatStack44 = in_XMM5_Da * in_XMM4_Db + floatValue2 * BaseValue + floatValue1 * floatValue8;
-  FloatStack48 = in_XMM5_Da * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * ScaleValue;
+  FloatStack40 = AudioInterpolationCoeff1 * in_XMM4_Da + floatValue2 * floatValue4 + floatValue1 * floatValue7;
+  FloatStack44 = AudioInterpolationCoeff1 * in_XMM4_Db + floatValue2 * BaseValue + floatValue1 * floatValue8;
+  FloatStack48 = AudioInterpolationCoeff1 * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * ScaleValue;
   floatValue1 = *(float *)(memoryBlockAddress + 0x148);
   floatValue2 = *(float *)(memoryBlockAddress + 0x150);
   FloatStack50 = ConfigurationFlag * in_XMM4_Da + floatValue3 * floatValue4 + floatValue1 * floatValue7;
@@ -70027,11 +70027,11 @@ void* ProcessAudioSignal(void)
         audioThresholdFlag16 = -(uint)(0.0001 < audioSignal8);
         audioSignal30 = (float)((uint)((float)(audioStatusIndex2 + 4) * (float)AudioChannelCoefficient1 * 0.5 * audioSignal19 * audioSignal5 +
                                audioSignal30) & audioThresholdFlag13 | ~audioThresholdFlag13 & (uint)audioSignal30);
-        audioSignal32 = (float)((uint)((float)(audioStatusIndex2 + 5) * (float)unaff_XMM12_Db * 0.5 * audioSignal21 * audioSignal6 +
+        audioSignal32 = (float)((uint)((float)(audioStatusIndex2 + 5) * (float)AudioChannelCoefficient2 * 0.5 * audioSignal21 * audioSignal6 +
                                audioSignal32) & audioThresholdFlag14 | ~audioThresholdFlag14 & (uint)audioSignal32);
-        audioSignal33 = (float)((uint)((float)(audioStatusIndex2 + 6) * (float)unaff_XMM12_Dc * 0.5 * audioSignal22 * audioSignal7 +
+        audioSignal33 = (float)((uint)((float)(audioStatusIndex2 + 6) * (float)AudioChannelCoefficient3 * 0.5 * audioSignal22 * audioSignal7 +
                                audioSignal33) & audioThresholdFlag15 | ~audioThresholdFlag15 & (uint)audioSignal33);
-        audioSignal34 = (float)((uint)((float)(audioStatusIndex2 + 7) * (float)unaff_XMM12_Dd * 0.5 * audioSignal23 * audioSignal8 +
+        audioSignal34 = (float)((uint)((float)(audioStatusIndex2 + 7) * (float)AudioChannelCoefficient4 * 0.5 * audioSignal23 * audioSignal8 +
                                audioSignal34) & audioThresholdFlag16 | ~audioThresholdFlag16 & (uint)audioSignal34);
         audioSignal35 = (float)((uint)(audioSignal5 + audioSignal35) & audioThresholdFlag13 | ~audioThresholdFlag13 & (uint)audioSignal35);
         audioSignal36 = (float)((uint)(audioSignal6 + audioSignal36) & audioThresholdFlag14 | ~audioThresholdFlag14 & (uint)audioSignal36);
@@ -70172,10 +70172,10 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   if ((int)ThreadContextFlag < 0) {
     ThreadContextFlag = (ThreadContextFlag - 1 | 0xfffffff8) + 1;
   }
-  aSystemContextPointer._0_4_ = in_XMM5_Da + -1;
-  aSystemContextPointer._4_4_ = in_XMM5_Db + -1;
-  aSystemContextPointer._8_4_ = in_XMM5_Dc + -1;
-  aSystemContextPointer._12_4_ = in_XMM5_Dd + -1;
+  aSystemContextPointer._0_4_ = AudioInterpolationCoeff1 + -1;
+  aSystemContextPointer._4_4_ = AudioInterpolationCoeff2 + -1;
+  aSystemContextPointer._8_4_ = AudioInterpolationCoeff3 + -1;
+  aSystemContextPointer._12_4_ = AudioInterpolationCoeff4 + -1;
   aSystemOperationStatusFlags._0_4_ = (float)aSystemContextPointer._0_4_;
   aSystemOperationStatusFlags._4_4_ = (float)aSystemContextPointer._4_4_;
   aSystemOperationStatusFlags._8_4_ = (float)aSystemContextPointer._8_4_;
@@ -70238,13 +70238,13 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
     SystemOperationStatus3 = -(uint)(0.0001 < floatValue6);
     SystemOperationStatus4 = -(uint)(0.0001 < floatValue7);
     SystemOperationStatus5 = -(uint)(0.0001 < floatValue8);
-    floatValue29 = (float)((uint)((float)(SystemOperationStatus1 + 4) * (float)unaff_XMM12_Da * 0.5 * MagnitudeSquared * BaseValue +
+    floatValue29 = (float)((uint)((float)(SystemOperationStatus1 + 4) * (float)AudioChannelCoefficient1 * 0.5 * MagnitudeSquared * BaseValue +
                            floatValue29) & SystemSecondaryStatus | ~SystemSecondaryStatus & (uint)floatValue29);
-    floatValue31 = (float)((uint)((float)(SystemOperationStatus1 + 5) * (float)unaff_XMM12_Db * 0.5 * ResultValue2 * floatValue6 +
+    floatValue31 = (float)((uint)((float)(SystemOperationStatus1 + 5) * (float)AudioChannelCoefficient2 * 0.5 * ResultValue2 * floatValue6 +
                            floatValue31) & SystemOperationStatus3 | ~SystemOperationStatus3 & (uint)floatValue31);
-    floatValue32 = (float)((uint)((float)(SystemOperationStatus1 + 6) * (float)unaff_XMM12_Dc * 0.5 * floatValue21 * floatValue7 +
+    floatValue32 = (float)((uint)((float)(SystemOperationStatus1 + 6) * (float)AudioChannelCoefficient3 * 0.5 * floatValue21 * floatValue7 +
                            floatValue32) & SystemOperationStatus4 | ~SystemOperationStatus4 & (uint)floatValue32);
-    floatValue33 = (float)((uint)((float)(SystemOperationStatus1 + 7) * (float)unaff_XMM12_Dd * 0.5 * floatValue22 * floatValue8 +
+    floatValue33 = (float)((uint)((float)(SystemOperationStatus1 + 7) * (float)AudioChannelCoefficient4 * 0.5 * floatValue22 * floatValue8 +
                            floatValue33) & SystemOperationStatus5 | ~SystemOperationStatus5 & (uint)floatValue33);
     floatValue34 = (float)((uint)(BaseValue + floatValue34) & SystemSecondaryStatus | ~SystemSecondaryStatus & (uint)floatValue34);
     floatValue35 = (float)((uint)(floatValue6 + floatValue35) & SystemOperationStatus3 | ~SystemOperationStatus3 & (uint)floatValue35);
