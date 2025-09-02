@@ -18909,8 +18909,8 @@ uint64_t ProcessResourceDataReadAndValidate(int64_t ResourceHandle,uint8_t *Reso
   pvalidationResult = (uint32_t *)AllocateMemoryBlock();
   EncryptedValue = *pResourceValidationResult;
   UnsignedStackValue34 = pResourceValidationResult[1];
-  uStack_30 = pResourceValidationResult[2];
-  uStack_2c = pResourceValidationResult[3];
+  ResourceValidationLower32Bits = pResourceValidationResult[2];
+  ResourceValidationUpper32Bits = pResourceValidationResult[3];
   validationStatusCode = ComputeDataChecksum(validationContext,dataChecksumBuffer,0,0x4c525443);
   if ((((int)validationStatusCode == 0) && (validationStatusCode = ValidateResourceHash(validationContext,objectContext + 0x10), (int)validationStatusCode == 0)) &&
      (validationStatusCode = ValidateResourceHash(validationContext,objectContext + 0x20), (int)validationStatusCode == 0)) {

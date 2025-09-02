@@ -25391,12 +25391,12 @@ void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long Confi
         ProcessResourcePointerOperation(localResourcePointer + 0x20,&puStack_310);
         localAllocationFlags = SystemResourceAllocator(localSystemHandle0,&cStack_337,localResourcePointer + 0x20);
         if (cStack_337 != '\0') {
-          if (localAllocationFlags == localSystemHandle0) goto LAB_18004d1c1;
-          if (*(int *)(localAllocationFlags + 0x30) == 0) goto LAB_18004d1b9;
-          if (*(int *)(localResourcePointer + 0x30) == 0) goto LAB_18004d1c1;
+          if (localAllocationFlags == localSystemHandle0) goto LAB_ResourceAllocationCheck;
+          if (*(int *)(localAllocationFlags + 0x30) == 0) goto LAB_AllocationFlagCheck;
+          if (*(int *)(localResourcePointer + 0x30) == 0) goto LAB_ResourceAllocationCheck;
           pbVar15 = *(byte **)(localAllocationFlags + 0x28);
           localSystemHandle4 = *(long long *)(localResourcePointer + 0x28) - (long long)pbVar15;
-          goto LAB_18004d1a2;
+          goto LAB_AllocationHandler;
         }
         SystemUtilityHandler(extraout_XMM0_Da,localResourcePointer);
         if (unsignedSystemValue8 == 8) {
