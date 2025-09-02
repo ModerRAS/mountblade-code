@@ -7182,8 +7182,8 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   if (ValidationStatus != 0) {
     return;
   }
-  CapacitySignBit = (int)*(uint *)(BufferContext + 0x2c) >> ErrorResourceValidationFailed;
-  CurrentCapacity = (*(uint *)(BufferContext + 0x2c) ^ CapacitySignBit) - CapacitySignBit;
+  CapacitySignBit = (int)*(uint *)(BufferContext + BufferContextCapacityOffset) >> ErrorResourceValidationFailed;
+  CurrentCapacity = (*(uint *)(BufferContext + BufferContextCapacityOffset) ^ CapacitySignBit) - CapacitySignBit;
   ValidationStatus = *(int *)(BufferContext + BufferContextSizeOffset) + 1;
   if (CurrentCapacity < ValidationStatus) {
     CurrentCapacity = (int)((float)CurrentCapacity * 1.5);
@@ -103148,6 +103148,27 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SystemExecutionContextPrimaryOffset 0x20
 #define SystemExecutionContextSecondaryOffset 0x18
 #define SystemExecutionContextTertiaryOffset 0x1c
+
+// 资源安全处理相关常量
+#define ResourceSecurityHighByteShift 0x18
+#define ResourceStatusHighByteShift 0x18
+#define ResourceAccessWordShift 0x10
+#define ResourceStatusMidHighByteShift 0x10
+#define ResourceStatusMidByteShift 8
+#define ResourceSecurityMidHighByteShift 0x10
+#define ResourceSecurityMidByteShift 8
+#define ResourceAccessControlMask 0xffff
+#define ResourceStatusMidHighByteMask 0xff
+#define ResourceStatusMidByteMask 0xff
+#define ResourceStatusLowByteMask 0xff
+#define ResourceSecurityMidHighByteMask 0xff
+#define ResourceSecurityMidByteMask 0xff
+#define ResourceSecurityLowByteMask 0xff
+#define ResourceAccessControlWordMask 0xffff
+#define SecurityOperationTypeValidation 0x27
+#define ResourceAccessValidationOffset 0xc4
+#define ResourceHandleBackupOffset 0x68
+#define NullPointerValue 0x0
 
 
 
