@@ -46421,7 +46421,7 @@ void ProcessSystemResourceValidationWithFlags(uint8_t objectContext,int64_t vali
 
 
 
-void Unwind_180905050(uint8_t objectContext,int64_t validationContext)
+void CleanupResourceHashValidation(uint8_t objectContext,int64_t validationContext)
 
 {
   int *ResourceIndexPointer;
@@ -46484,7 +46484,7 @@ void ReleaseSystemComponentAtOffset0x90(uint8_t objectContext,int64_t validation
 
 
 
-void Unwind_180905090(uint8_t objectContext,int64_t validationContext)
+void ReleaseSystemComponentWithFlagCheck(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x50) & 1) != 0) {
@@ -46496,7 +46496,7 @@ void Unwind_180905090(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809050c0(uint8_t objectContext,int64_t validationContext)
+void ResetSystemResourceHandlerAtOffset0x1e8(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0x1e8) = &SystemResourceHandlerTemplate;
@@ -46514,7 +46514,7 @@ void Unwind_1809050c0(uint8_t objectContext,int64_t validationContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809050d0(uint8_t objectContext,int64_t validationContext)
+void CloseFileAndDecrementReferenceCounter(uint8_t objectContext,int64_t validationContext)
 
 {
   if (*(int64_t *)(validationContext + 0xf0) != 0) {
@@ -46529,7 +46529,7 @@ void Unwind_1809050d0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809050e0(uint8_t objectContext,int64_t validationContext)
+void ResetSystemResourceHandlerAtOffset0x168(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0x168) = &SystemResourceHandlerTemplate;
