@@ -24,7 +24,7 @@
 #define RegistrationCapacityOffset 0x4e8
 #define RegistrationCountOffset 0x4e0
 #define RegistrationValidationDataOffset 0x368
-#define ThreadLocalStorageDataOffset 0x18 // 线程本地存储数据偏移量
+#define ThreadLocalStorageDataOffset 0x18
 #define ThreadResourceStateOffset 0x20
 #define ThreadResourceCountOffset 0x30
 #define ResourceManagementStateOffset 0x4
@@ -7856,7 +7856,7 @@ uint64_t ValidateSystemDataBufferContext(void)
       }
       ValidationStatusCode = CompareStringWithContext(StringPointer);
       if (ValidationStatusCode == 0) {
-        OperationResult = ValidateBufferContext(ContextPointer,SecondarySystemContext + 0x18);
+        OperationResult = ValidateBufferContext(ContextPointer,SecondarySystemContext + SystemContextSecondaryDataOffset);
         if ((int)OperationResult != 0) {
           return OperationResult;
         }
@@ -9078,7 +9078,7 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t ope
   uint8_t SecurityHandle;
   uint64_t SecurityToken;
   
-  securityToken = SecurityEncryptionKey ^ (uint64_t)StackBuffer;
+  SecurityToken = SecurityEncryptionKey ^ (uint64_t)StackBuffer;
   SecurityHandle = operationHandle;
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), StackBuffer);
   if (ValidationStatus == 0) {
@@ -9088,12 +9088,12 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t ope
       StackBuffer[0] = 0;
     }
     ObjectSize = (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset);
-    allocationSize = ObjectSize * 4 + 0xf;
+    AllocationSize = ObjectSize * 4 + 0xf;
     ObjectPointer = ObjectContext + ObjectContextProcessingDataOffset + ObjectSize * 8;
-    if (allocationSize <= (uint64_t)(ObjectSize * 4)) {
-      allocationSize = MemoryAllocationOverflowMask;
+    if (AllocationSize <= (uint64_t)(ObjectSize * 4)) {
+      AllocationSize = MemoryAllocationOverflowMask;
     }
-          InitializeMemoryAllocation(ObjectSize, allocationSize & MemoryAllocationAlignmentMask);
+          InitializeMemoryAllocation(ObjectSize, AllocationSize & MemoryAllocationAlignmentMask);
   }
         FinalizeSecurityOperation(securityToken ^ (uint64_t)StackBuffer);
 }
@@ -18999,7 +18999,7 @@ uint8_t ProcessResourceOperation(uint8_t *resourceHandle, uint8_t operationParam
   int64_t SystemContext;
   int StackOperationCounter;
   
-  ResourceIndex = *(int *)(SystemContext + 0x18);
+  ResourceIndex = *(int *)(SystemContext + SystemContextSecondaryDataOffset);
   StackResourceIndex = ResourceIndex;
   ValidationStatusCode = (**(code **)*ObjectContext)(ObjectContext,ValidationContext,4);
   if ((int)ValidationStatusCode == 0) {
@@ -103326,6 +103326,16 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 // 对象验证上下文相关偏移量常量
 #define ObjectValidationContextFlagOffset 0x25
 #define SystemDataStructureSecondaryOffset 0x250
+
+// 系统上下文相关偏移量常量
+#define SystemContextSecondaryDataOffset 0x18
+#define SystemContextPrimaryDataOffset 0x20
+#define SystemContextResourceManagerOffset 0x50
+#define SystemContextCallbackPointerOffset 0x58
+#define SystemContextMethodPointerOffset 0x10
+#define SystemContextValidationDataSizeOffset 0x104
+#define SystemContextValidationFloatDataOffset 0x84
+#define SystemContextResourceIndexOffset 0x18
 
 // 哈希表相关偏移量常量
 #define HashTableEntrySize 0x10
