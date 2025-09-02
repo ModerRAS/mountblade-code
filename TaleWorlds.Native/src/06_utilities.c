@@ -11486,20 +11486,20 @@ uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
 uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ObjectContext)
 
 {
-  int ProcessingStatusCode;
-  uint8_t ResourceHashValidationStatusCode;
-  uint UnsignedValue;
+  int ResourcePoolStatusCode;
+  uint8_t ResourceHashValidationCode;
+  uint ResourcePoolValue;
   
-  ProcessingStatusCode = *(uint *)((int64_t)ObjectContext + 0xc);
-  if ((int)((ResourceHashValidationStatusCode ^ (int)ResourceHashValidationStatusCode >> ErrorResourceValidationFailed) - ((int)ResourceHashValidationStatusCode >> ErrorResourceValidationFailed)) < 0) {
+  ResourcePoolStatusCode = *(uint *)((int64_t)ObjectContext + 0xc);
+  if ((int)((ResourceHashValidationCode ^ (int)ResourceHashValidationCode >> ErrorResourceValidationFailed) - ((int)ResourceHashValidationCode >> ErrorResourceValidationFailed)) < 0) {
     if (0 < (int)ObjectContext[1]) {
       return ErrorInvalidObjectHandle;
     }
-    if ((0 < (int)ResourceHashValidationStatusCode) && (*ObjectContext != 0)) {
+    if ((0 < (int)ResourceHashValidationCode) && (*ObjectContext != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ObjectContext,&ResourceAllocationTemplate,0x100,1);
     }
     *ObjectContext = 0;
-    ProcessingStatusCode = 0;
+    ResourcePoolStatusCode = 0;
     *(uint32_t *)((int64_t)ObjectContext + 0xc) = 0;
   }
   int ResourceIndex = (int)ObjectContext[1];
@@ -11507,9 +11507,9 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ObjectContext)
           memset(*ObjectContext + (int64_t)ResourceIndex * 0xc,0,(int64_t)-ResourceIndex * 0xc);
   }
   *(uint32_t *)(ObjectContext + 1) = 0;
-  if ((0 < (int)((ResourceHashValidationStatusCode ^ (int)ResourceHashValidationStatusCode >> ErrorResourceValidationFailed) - ((int)ResourceHashValidationStatusCode >> ErrorResourceValidationFailed))) &&
+  if ((0 < (int)((ResourceHashValidationCode ^ (int)ResourceHashValidationCode >> ErrorResourceValidationFailed) - ((int)ResourceHashValidationCode >> ErrorResourceValidationFailed))) &&
      (ValidationStatusCode = InitializeSystemComponent(ObjectContext,0), (int)ValidationStatusCode != 0)) {
-    return ResourceHashValidationStatusCode;
+    return ResourceHashValidationCode;
   }
   return 0;
 }
