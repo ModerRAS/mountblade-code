@@ -4776,18 +4776,18 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  */
 uint8_t InitializeObjectHandleBasic(int64_t ObjectContext) {
   uint8_t ObjectValidationResult;
-  int64_t SystemContextPointer;
+  int64_t ValidatedSystemContext;
   
-  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &SystemContextPointer);
+  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &ValidatedSystemContext);
   if ((int)ObjectValidationResult == 0) {
-    if (SystemContextPointer == 0) {
-      SystemContextPointer = 0;
+    if (ValidatedSystemContext == 0) {
+      ValidatedSystemContext = 0;
     }
     else {
-      SystemContextPointer = SystemContextPointer - 8;
+      ValidatedSystemContext = ValidatedSystemContext - 8;
     }
-    if (*(int64_t *)(SystemContextPointer + ObjectHandleMemoryOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + ObjectHandleMemoryOffset), 1);
+    if (*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset) != 0) {
+            ExecuteSystemExitOperation(*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset), 1);
     }
     ObjectValidationResult = 0;
   }
@@ -5258,7 +5258,7 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
   int ResourceIdentifier;
   uint8_t OperationResultCode;
   uint32_t *ResourceIdentifierPointer;
-  uint64_t SystemContextPointer;
+  uint64_t ProcessedSystemContext;
   uint ConfigurationFlags;
   uint64_t IterationCounter;
   int64_t BaseAddressOffset;
@@ -5267,9 +5267,9 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
   OperationResultCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextHandle);
   if ((int)OperationResultCode == 0) {
     IterationCounter = 0;
-    SystemContextPointer = ValidatedContextHandle - 8;
+    ProcessedSystemContext = ValidatedContextHandle - 8;
     if (ValidatedContextHandle == 0) {
-      SystemContextPointer = IterationCounter;
+      ProcessedSystemContext = IterationCounter;
     }
     ResourceIdentifierPointer = (uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
     if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
