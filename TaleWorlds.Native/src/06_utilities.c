@@ -6930,28 +6930,28 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
     if (ResourceIndex < 8) {
       ResourceIndex = 8;
     }
-    if (ResourceIndex < *(int *)(StackParameterBuffer + 0x28)) goto ResourceErrorHandler;
+    if (ResourceIndex < *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset)) goto ResourceErrorHandler;
     if (ResourceIndex != 0) {
       if ((0x3ffffffe < ResourceIndex * 8 - 1U) ||
-         (ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex * 8,&ResourceAllocationTemplate,
+         (ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemManagerContextOffset),ResourceIndex * 8,&ResourceAllocationTemplate,
                                 0xf4,0), ResourceIndex == 0)) goto ResourceErrorHandler;
-      if (*(int *)(StackParameterBuffer + 0x28) != 0) {
-              memcpy(ResourceIndex,*(uint8_t *)(StackParameterBuffer + 0x20),
-               (int64_t)*(int *)(StackParameterBuffer + 0x28) << 3);
+      if (*(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) != 0) {
+              memcpy(ResourceIndex,*(uint8_t *)(StackParameterBuffer + StackParameterBufferDataOffset),
+               (int64_t)*(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) << 3);
       }
     }
-    if ((0 < *(int *)(StackParameterBuffer + 0x2c)) && (*(int64_t *)(StackParameterBuffer + 0x20) != 0))
+    if ((0 < *(int *)(StackParameterBuffer + StackParameterBufferCapacityOffset)) && (*(int64_t *)(StackParameterBuffer + StackParameterBufferDataOffset) != 0))
     {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(StackParameterBuffer + 0x20),
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemManagerContextOffset),*(int64_t *)(StackParameterBuffer + StackParameterBufferDataOffset),
                     &ResourceAllocationTemplate,0x100,1);
     }
-    *(int64_t *)(StackParameterBuffer + 0x20) = ResourceIndex;
-    *(int *)(StackParameterBuffer + 0x2c) = ResourceIndex;
+    *(int64_t *)(StackParameterBuffer + StackParameterBufferDataOffset) = ResourceIndex;
+    *(int *)(StackParameterBuffer + StackParameterBufferCapacityOffset) = ResourceIndex;
   }
   *(int64_t *)
-   (*(int64_t *)(StackParameterBuffer + 0x20) + (int64_t)*(int *)(StackParameterBuffer + 0x28) * 8) =
+   (*(int64_t *)(StackParameterBuffer + StackParameterBufferDataOffset) + (int64_t)*(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) * 8) =
        StackParameterContext;
-  *(int *)(StackParameterBuffer + 0x28) = *(int *)(StackParameterBuffer + 0x28) + 1;
+  *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) = *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) + 1;
 ResourceErrorHandler:
         ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
 }
