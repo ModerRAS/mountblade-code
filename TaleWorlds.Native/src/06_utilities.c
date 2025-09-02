@@ -10030,28 +10030,29 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
 
 
  
-void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationContext,int64_t *resourceIndexOutput)
+void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* ValidationContext, int64_t* ResourceIndexOutput)
 {
-  int64_t *processPointer;
+  int64_t* ProcessPointer;
   int OperationStatusCode;
   int64_t ResourceIndex;
-  uint8_t SecurityDataBuffer [32];
+  uint8_t SecurityDataBuffer[32];
   uint ResourceValidationFlagHigh;
   uint ResourceValidationFlagLow;
-  uint resourcePrimaryByte;
-  uint resourceSecondaryByte;
-  uint resourceTertiaryByte;
-  uint ResourceFlagByteFourth;
-  uint ResourceFlagByteFifth;
-  uint ResourceFlagByteSixth;
-  uint ResourceFlagByteSeventh;
-  uint ResourceFlagByteEighth;
+  uint ResourcePrimaryByte;
+  uint ResourceSecondaryByte;
+  uint ResourceTertiaryByte;
+  uint ResourceQuaternaryByte;
+  uint ResourceQuinaryByte;
+  uint ResourceSenaryByte;
+  uint ResourceSeptenaryByte;
+  uint ResourceOctonaryByte;
+  uint ResourceNonaryByte;
   uint32_t ResourceFlagPrimary;
   uint ResourceSecondaryByteFirst;
   uint ResourceFlagSecondarySecond;
   uint ResourceFlagSecondaryThird;
   int64_t ResourceHandleBackup;
-  uint8_t ResourceChecksumBuffer [40];
+  uint8_t ResourceChecksumBuffer[40];
   uint64_t PrimaryOperationParameter;
   int64_t* ResourceContext;
   uint32_t ResourceSecurityFlag;
@@ -10078,24 +10079,24 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationC
     ResourceValidationByteFirst = ValidationContext[1];
     ResourceValidationByteSecond = ValidationContext[2];
     ResourceValidationByteThird = ValidationContext[3];
-    ResourceIndex = (**(code **)(*ResourceContext + 0x150))(ResourceContext,&ResourceSecurityFlag,1);
+    ResourceIndex = (**(code **)(*ResourceContext + 0x150))(ResourceContext, &ResourceSecurityFlag, 1);
     if (ResourceIndex == 0) {
       ResourceQuaternaryFlag = ResourceValidationByteSecond >> 0x18;
       ResourceTopByteFlag = ResourceValidationByteThird >> 0x18;
-      resourceFlagLowBits = ResourceValidationByteFirst >> 0x10;
-      ResourceHighByteFlag = ResourceValidationByteThird >> 0x10 & 0xff;
-      ResourceMidByteFlag = ResourceValidationByteThird >> 8 & 0xff;
-      ResourceLowByteFlag = ResourceValidationByteThird & 0xff;
-      ResourceTertiaryFlag = ResourceValidationByteSecond >> 0x10 & 0xff;
-      ResourceSecondaryFlag = ResourceValidationByteSecond >> 8 & 0xff;
-      ResourcePrimaryFlag = ResourceValidationByteSecond & 0xff;
-      resourceFlagHighBits = ResourceValidationByteFirst & 0xffff;
-            ExecuteSecurityOperation(ResourceChecksumBuffer,0x27,&SecurityOperationData,ResourceSecurityFlag);
+      ResourceFlagLowBits = ResourceValidationByteFirst >> 0x10;
+      ResourceFlagHighByte = ResourceValidationByteThird >> 0x10 & 0xff;
+      ResourceFlagMidByte = ResourceValidationByteThird >> 8 & 0xff;
+      ResourceFlagLowByte = ResourceValidationByteThird & 0xff;
+      ResourceFlagTertiary = ResourceValidationByteSecond >> 0x10 & 0xff;
+      ResourceFlagSecondary = ResourceValidationByteSecond >> 8 & 0xff;
+      ResourceFlagPrimary = ResourceValidationByteSecond & 0xff;
+      ResourceFlagHighBits = ResourceValidationByteFirst & 0xffff;
+      ExecuteSecurityOperation(ResourceChecksumBuffer, 0x27, &SecurityOperationData, ResourceSecurityFlag);
     }
     if (((*(byte *)(ResourceIndex + 0xc4) & 1) != 0) &&
        ((ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x68), ResourceHandleBackup != 0 ||
-        (OperationStatusCode = ValidateResourceAccess(ObjectContext,ResourceIndex,&ResourceHandleBackup), OperationStatusCode == 0)))) {
-      *resourceIndexOutput = ResourceHandleBackup;
+        (OperationStatusCode = ValidateResourceAccess(ObjectContext, ResourceIndex, &ResourceHandleBackup), OperationStatusCode == 0)))) {
+      *ResourceIndexOutput = ResourceHandleBackup;
     }
   }
         FinalizeSecurityOperation(PrimaryOperationParameter ^ (uint64_t)SecurityDataBuffer);
@@ -10135,75 +10136,7 @@ void FinalizeSecurityOperationWrapper(void)
 
 
 
- /**
- * @brief 处理资源索引和安全验证
- * 
- * 该函数负责处理资源索引的获取和安全验证操作，包括：
- * - 资源上下文验证和安全参数处理
- * - 验证参数的提取和处理
- * - 资源索引的获取和验证
- * - 安全操作的执行和结果输出
- * 
- * @param ObjectContext 对象上下文指针，包含对象的上下文信息和资源管理数据
- * @param ValidationContext 验证上下文指针，包含验证所需的参数数据和状态信息
- * @param resourceIndexOutput 资源索引输出指针，用于返回处理后的资源索引结果
- * @return 无返回值
- * @note 此函数涉及安全操作，调用时需要确保上下文数据有效且完整
- * @warning 函数内部调用了不会返回的安全操作函数，请谨慎使用
- */
-void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationContext,int64_t *resourceIndexOutput)
-
-{
-  int64_t *ResourceProcessingPointer;
-  int ResourceProcessingResult;
-  int64_t ResourceIndex;
-  uint8_t SecurityDataBuffer [32];
-  uint ResourceValidationPrimaryByte;
-  uint ResourceValidationSecondaryByte;
-  uint ResourceValidationTertiaryByte;
-  uint ResourceValidationQuaternaryByte;
-  uint ResourceValidationQuinaryByte;
-  uint ResourceValidationSenaryByte;
-  uint ResourceValidationSeptenaryByte;
-  uint ResourceValidationOctonaryByte;
-  uint ResourceValidationNonaryByte;
-  uint ResourceValidationSecondaryFlag;
-  uint32_t ValidationParameterPrimary;
-  uint ValidationParameterSecondary;
-  uint ValidationParameterTertiary;
-  uint ValidationParameterQuaternary;
-  uint8_t EncryptedDataBuffer [40];
-  uint64_t SecurityOperationParameter;
-  
-  SecurityOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
-  ResourceContext = *(int64_t **)(ObjectContext + 800);
-  if (ResourceContext != (int64_t *)0x0) {
-    ValidationParameterPrimary = *ValidationContext;
-    ValidationParameterSecondary = ValidationContext[1];
-    ValidationParameterTertiary = ValidationContext[2];
-    ValidationParameterQuaternary = ValidationContext[3];
-    ResourceIndex = (**(code **)(*ResourceContext + 0x288))(ResourceContext,&ValidationParameterPrimary,1);
-    if (ResourceIndex == 0) {
-      ResourceMidByteFlag = ValidationParameterTertiary >> 0x18;
-      ResourceValidationSecondaryByte = ValidationParameterQuaternary >> 0x18;
-      ResourceSecondaryFlag = ValidationParameterSecondary >> 0x10;
-      ResourceSecurityFlag = ValidationParameterQuaternary >> 0x10 & 0xff;
-      ResourceTopByteFlag = ValidationParameterQuaternary >> 8 & 0xff;
-      ResourceHighByteFlag = ValidationParameterQuaternary & 0xff;
-      ResourceLowByteFlag = ValidationParameterTertiary >> 0x10 & 0xff;
-      ResourceQuaternaryFlag = ValidationParameterTertiary >> 8 & 0xff;
-      ResourceTertiaryFlag = ValidationParameterTertiary & 0xff;
-      ResourcePrimaryFlag = ValidationParameterSecondary & 0xffff;
-            ExecuteSecurityOperation(EncryptedDataBuffer,0x27,&SecurityOperationData,ValidationParameterPrimary);
-    }
-    if ((**(int **)(ResourceIndex + 0xd0) != 0) ||
-       (ResourceProcessingResult = CheckResourceAvailability(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset)), ResourceProcessingResult == 0)) {
-      *resourceIndexOutput = ResourceIndex;
-    }
-  }
-        FinalizeSecurityOperation(SecurityOperationParameter ^ (uint64_t)SecurityDataBuffer);
-}
-
+ 
 
 
 
@@ -10292,74 +10225,64 @@ void FinalizeSecurityOperationHandler(uint64_t SecurityContext)
  * @note 此函数会执行安全验证和资源锁定操作
  * @warning 调用此函数可能触发安全操作，不会在正常情况下返回
  */
-uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *ResourceDataPointer, int64_t *resourceIndexPointer)
+uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *ResourceDataPointer, int64_t *ResourceIndexPointer)
 
 {
   int64_t *ProcessContext;
   int32_t OperationStatus;
   int64_t ResourceIndex;
-  uint8_t SecurityDataBuffer [32];
-  uint32_t resourceFlagHigh;
-  uint32_t resourceFlagLow;
-  uint32_t resourceFlagValidation;
-  uint32_t resourceFlagAccess;
-  uint32_t resourceFlagSecurity;
-  uint32_t resourceFlagStatus;
-  uint32_t resourceFlagControl;
-  uint32_t resourceFlagPriority;
-  uint32_t resourceFlagOwnership;
-  uint32_t resourceFlagPermissions;
+  uint8_t SecurityDataBuffer[32];
+  uint32_t ResourceFlagHigh;
+  uint32_t ResourceFlagLow;
+  uint32_t ResourceFlagValidation;
+  uint32_t ResourceFlagAccess;
+  uint32_t ResourceFlagSecurity;
+  uint32_t ResourceFlagStatus;
+  uint32_t ResourceFlagControl;
+  uint32_t ResourceFlagPriority;
+  uint32_t ResourceFlagOwnership;
+  uint32_t ResourceFlagPermissions;
   uint32_t ResourceValidationFlag;
   uint32_t ResourceAccessFlag;
   uint32_t ResourceSecurityFlag;
   uint32_t ResourceStatusFlag;
   int64_t ResourceHandleBackup;
-  uint8_t ResourceChecksumBuffer [40];
+  uint8_t ResourceChecksumBuffer[40];
   uint64_t SecurityContextParameter;
   
-  SecurityContextToken = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
+  SecurityContextParameter = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
   ResourceContext = *(int64_t **)(ObjectContext + 800);
   if (ResourceContext != (int64_t *)0x0) {
-    ResourceValidationFlag = *ValidationContext;
-    ResourceAccessFlag = ValidationContext[1];
-    ResourceSecurityFlag = ValidationContext[2];
-    ResourceStatusFlag = ValidationContext[3];
-    ResourceIndex = (**(code **)(*ResourceContext + 0x2f8))(ResourceContext,&ResourceValidationFlag,1);
+    ResourceValidationFlag = *ResourceDataPointer;
+    ResourceAccessFlag = ResourceDataPointer[1];
+    ResourceSecurityFlag = ResourceDataPointer[2];
+    ResourceStatusFlag = ResourceDataPointer[3];
+    ResourceIndex = (**(code **)(*ResourceContext + 0x2f8))(ResourceContext, &ResourceValidationFlag, 1);
     if (ResourceIndex == 0) {
-      ResourceByte4 = ResourceSecurityFlag >> 0x18;
-      ResourceByte8 = ResourceStatusFlag >> 0x18;
+      ResourceQuaternaryByte = ResourceSecurityFlag >> 0x18;
+      ResourceOctonaryByte = ResourceStatusFlag >> 0x18;
       ResourceAccessWord = ResourceAccessFlag >> 0x10;
-      ResourceByte7 = ResourceStatusFlag >> 0x10 & 0xff;
-      ResourceByte6 = ResourceStatusFlag >> 8 & 0xff;
-      ResourceByte5 = ResourceStatusFlag & 0xff;
-      ResourceByte3 = ResourceSecurityFlag >> 0x10 & 0xff;
-      ResourceSecurityByte2 = ResourceSecurityFlag >> 8 & 0xff;
-      ResourceSecurityByte1 = ResourceSecurityFlag & 0xff;
+      ResourceSeptenaryByte = ResourceStatusFlag >> 0x10 & 0xff;
+      ResourceSenaryByte = ResourceStatusFlag >> 8 & 0xff;
+      ResourceQuinaryByte = ResourceStatusFlag & 0xff;
+      ResourceTertiaryByte = ResourceSecurityFlag >> 0x10 & 0xff;
+      ResourceSecondaryByte = ResourceSecurityFlag >> 8 & 0xff;
+      ResourcePrimaryByte = ResourceSecurityFlag & 0xff;
       ResourceControlWord = ResourceAccessFlag & 0xffff;
-            ExecuteSecurityOperation(ResourceChecksumBuffer,0x27,&SecurityOperationData,ResourceValidationFlag);
+      ExecuteSecurityOperation(ResourceChecksumBuffer, 0x27, &SecurityOperationData, ResourceValidationFlag);
     }
     ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x48);
-    if ((ResourceHandleBackup != 0) || (OperationStatusCode = AcquireResourceLock(ObjectContext,ResourceIndex,&ResourceHandleBackup), OperationStatusCode == 0)) {
-      *ResourceIndexOutput = ResourceHandleBackup;
+    if ((ResourceHandleBackup != 0) || (OperationStatus = AcquireResourceLock(ObjectContext, ResourceIndex, &ResourceHandleBackup), OperationStatus == 0)) {
+      *ResourceIndexPointer = ResourceHandleBackup;
     }
   }
-        FinalizeSecurityOperation(PrimaryOperationParameter ^ (uint64_t)SecurityDataBuffer);
+  FinalizeSecurityOperation(SecurityContextParameter ^ (uint64_t)SecurityDataBuffer);
 }
 
 
 
 
  /**
- * @brief 执行安全操作函数
- * 
- * 该函数负责执行系统的安全操作
- * 这是一个不会返回的函数，会直接调用安全操作
- * 
- * @return 无返回值
- * @note 此函数不会返回，会直接调用安全操作
- * @warning 调用此函数将触发安全操作，程序不会继续执行
- */
-/**
  * @brief 执行安全操作处理函数
  * 
  * 该函数负责执行系统安全操作的处理
@@ -10369,11 +10292,19 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *Resource
  * @note 此函数不会返回，会直接调用安全操作
  * @warning 调用此函数将导致程序执行安全操作并可能终止
  */
-void ExecuteSecurityOperationHandler(void)
-
+/**
+ * @brief 执行安全操作处理器
+ * 
+ * 该函数作为安全操作的处理器，用于调用核心安全操作功能
+ * 提供统一的安全操作接口，封装底层的安全处理逻辑
+ * 
+ * @return 无返回值
+ * @note 此函数是安全操作的入口点，调用后将执行相应的安全处理
+ * @warning 调用此函数前需要确保安全系统已正确初始化
+ */
 void ExecuteSecurityOperationHandler(void)
 {
-        ExecuteSecurityOperation();
+    ExecuteSecurityOperation();
 }
 
 
@@ -10409,16 +10340,27 @@ void FinalizeSecurityOperationHandler(void)
 
 
 
- void ValidateAndInitializeResource(int64_t ObjectContext,uint8_t ValidationContext)
-void ValidateAndInitializeResource(int64_t ObjectContext,uint8_t ValidationContext)
+ /**
+ * @brief 验证并初始化资源
+ * 
+ * 该函数负责验证资源的有效性并执行初始化操作
+ * 包括资源哈希计算和初始化状态检查
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的上下文信息
+ * @param ValidationContext 验证上下文，包含验证所需的参数
+ * @return 无返回值
+ * @note 此函数执行资源验证和初始化操作
+ * @warning 验证失败时可能触发安全操作
+ */
+void ValidateAndInitializeResource(int64_t ObjectContext, uint8_t ValidationContext)
 
 {
-  int ProcessingResult;
+  int ValidationResult;
   
-  HashCalculationResult = CalculateResourceHash(ValidationContext,ObjectContext + 0x10);
-  if (((HashCalculationResult == 0) && (HashCalculationResult = ValidateResourceHash(ValidationContext,ObjectContext + ObjectContextValidationDataOffset), HashCalculationResult == 0)) &&
-     (HashCalculationResult = ProcessResourceTableEntries(ValidationContext,ObjectContext + ObjectContextProcessingDataOffset,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset)), HashCalculationResult == 0)) {
-    InitializeResourceBuffer(ValidationContext,ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
+  ValidationResult = CalculateResourceHash(ValidationContext, ObjectContext + 0x10);
+  if (((ValidationResult == 0) && (ValidationResult = ValidateResourceHash(ValidationContext, ObjectContext + ObjectContextValidationDataOffset), ValidationResult == 0)) &&
+     (ValidationResult = ProcessResourceTableEntries(ValidationContext, ObjectContext + ObjectContextProcessingDataOffset, *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset)), ValidationResult == 0)) {
+    InitializeResourceBuffer(ValidationContext, ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
   }
   return;
 }
@@ -10426,16 +10368,25 @@ void ValidateAndInitializeResource(int64_t ObjectContext,uint8_t ValidationConte
 
 
 
- void ValidateResourceHashAndProcessEntries(void)
+ /**
+ * @brief 验证资源哈希并处理条目
+ * 
+ * 该函数负责验证资源的哈希值并处理相关的资源条目
+ * 包括哈希验证、条目处理和资源缓冲区初始化
+ * 
+ * @return 无返回值
+ * @note 此函数执行完整的资源验证和处理流程
+ * @warning 验证失败时可能触发安全操作
+ */
 void ValidateResourceHashAndProcessEntries(void)
 
 {
-  int ProcessingResult;
+  int ValidationResult;
   
-  HashValidationStatusCode = ValidateResourceHash();
-  if (HashValidationStatusCode == 0) {
-    HashValidationStatusCode = ProcessResourceTableEntries();
-    if (HashValidationStatusCode == 0) {
+  ValidationResult = ValidateResourceHash();
+  if (ValidationResult == 0) {
+    ValidationResult = ProcessResourceTableEntries();
+    if (ValidationResult == 0) {
       InitializeResourceBuffer();
     }
   }
@@ -10445,7 +10396,15 @@ void ValidateResourceHashAndProcessEntries(void)
 
 
 
- void EmptyResourceValidationFunction(void)
+ /**
+ * @brief 空资源验证函数
+ * 
+ * 该函数是一个空的资源验证函数，用于占位或默认处理
+ * 不执行任何实际操作，直接返回
+ * 
+ * @return 无返回值
+ * @note 此函数为空实现，用于特定场景下的占位
+ */
 void EmptyResourceValidationFunction(void)
 
 {
@@ -10455,18 +10414,29 @@ void EmptyResourceValidationFunction(void)
 
 
 
- void ProcessResourceValidationAndFinalization(int64_t ObjectContext,uint8_t ValidationContext)
-void ProcessResourceValidationAndFinalization(int64_t ObjectContext,uint8_t ValidationContext)
+ /**
+ * @brief 处理资源验证和终结
+ * 
+ * 该函数负责处理资源的验证和终结操作
+ * 包括哈希计算、资源验证、表验证和缓冲区初始化
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的上下文信息
+ * @param ValidationContext 验证上下文，包含验证所需的参数
+ * @return 无返回值
+ * @note 此函数执行完整的资源验证和终结流程
+ * @warning 验证失败时可能触发安全操作
+ */
+void ProcessResourceValidationAndFinalization(int64_t ObjectContext, uint8_t ValidationContext)
 
 {
-  int ProcessingResult;
+  int ValidationResult;
   
-  ResourceIndex = CalculateResourceHash(ValidationContext,ObjectContext + 0x10);
-  if ((((ResourceIndex == 0) && (ResourceIndex = ValidateResourceHash(ValidationContext,ObjectContext + ObjectContextValidationDataOffset), ResourceIndex == 0)) &&
-      (ResourceIndex = ValidateResourceTable(ValidationContext,ObjectContext + ObjectContextProcessingDataOffset,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset)), ResourceIndex == 0))
-     && (ResourceIndex = InitializeResourceBuffer(ValidationContext,ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 8),
-        ResourceIndex == 0)) {
-    FinalizeResourceProcessing(ValidationContext,ObjectContext + ObjectContextHandleDataOffset);
+  ValidationResult = CalculateResourceHash(ValidationContext, ObjectContext + 0x10);
+  if ((((ValidationResult == 0) && (ValidationResult = ValidateResourceHash(ValidationContext, ObjectContext + ObjectContextValidationDataOffset), ValidationResult == 0)) &&
+      (ValidationResult = ValidateResourceTable(ValidationContext, ObjectContext + ObjectContextProcessingDataOffset, *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset)), ValidationResult == 0))
+     && (ValidationResult = InitializeResourceBuffer(ValidationContext, ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 8),
+        ValidationResult == 0)) {
+    FinalizeResourceProcessing(ValidationContext, ObjectContext + ObjectContextHandleDataOffset);
   }
   return;
 }
@@ -10474,18 +10444,27 @@ void ProcessResourceValidationAndFinalization(int64_t ObjectContext,uint8_t Vali
 
 
 
- void ValidateResourceHashAndTable(void)
+ /**
+ * @brief 验证资源哈希和表
+ * 
+ * 该函数负责验证资源的哈希值和资源表
+ * 包括哈希验证、表验证、缓冲区初始化和资源处理终结
+ * 
+ * @return 无返回值
+ * @note 此函数执行完整的资源验证流程
+ * @warning 验证失败时可能触发安全操作
+ */
 void ValidateResourceHashAndTable(void)
 
 {
-  int ProcessingResult;
+  int ValidationResult;
   
-  ResourceIndex = ValidateResourceHash();
-  if (ResourceIndex == 0) {
-    ResourceIndex = ValidateResourceTable();
-    if (ResourceIndex == 0) {
-      ResourceIndex = InitializeResourceBuffer();
-      if (ResourceIndex == 0) {
+  ValidationResult = ValidateResourceHash();
+  if (ValidationResult == 0) {
+    ValidationResult = ValidateResourceTable();
+    if (ValidationResult == 0) {
+      ValidationResult = InitializeResourceBuffer();
+      if (ValidationResult == 0) {
         FinalizeResourceProcessing();
       }
     }
@@ -10496,7 +10475,15 @@ void ValidateResourceHashAndTable(void)
 
 
 
- void EmptyResourceProcessingFunction(void)
+ /**
+ * @brief 空资源处理函数
+ * 
+ * 该函数是一个空的资源处理函数，用于占位或默认处理
+ * 不执行任何实际操作，直接返回
+ * 
+ * @return 无返回值
+ * @note 此函数为空实现，用于特定场景下的占位
+ */
 void EmptyResourceProcessingFunction(void)
 
 {
@@ -10506,19 +10493,30 @@ void EmptyResourceProcessingFunction(void)
 
 
 
- void ValidateAndCleanupResourceEntry(int64_t ObjectContext,uint8_t ValidationContext)
-void ValidateAndCleanupResourceEntry(int64_t ObjectContext,uint8_t ValidationContext)
+ /**
+ * @brief 验证并清理资源条目
+ * 
+ * 该函数负责验证资源条目的有效性并执行清理操作
+ * 包括哈希验证、表验证、条目处理和数据清理
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的上下文信息
+ * @param ValidationContext 验证上下文，包含验证所需的参数
+ * @return 无返回值
+ * @note 此函数执行资源验证和清理流程
+ * @warning 验证失败时可能触发安全操作
+ */
+void ValidateAndCleanupResourceEntry(int64_t ObjectContext, uint8_t ValidationContext)
 
 {
-  int ProcessingResult;
+  int ValidationResult;
   
-  ResourceIndex = ValidateResourceHash(ValidationContext,ObjectContext + 0x10);
-  if (ResourceIndex == 0) {
-    ResourceIndex = ValidateResourceTable(ValidationContext,ObjectContext + ObjectContextValidationDataOffset,*(uint32_t *)(ObjectContext + 0x10));
-    if (ResourceIndex == 0) {
-      ResourceIndex = ProcessResourceEntryWithValidation(ValidationContext,ObjectContext + ObjectContextValidationDataOffset + (int64_t)*(int *)(ObjectContext + 0x10) * 8);
-      if (ResourceIndex == 0) {
-        CleanupResourceEntryData(ValidationContext,ObjectContext + 0x14);
+  ValidationResult = ValidateResourceHash(ValidationContext, ObjectContext + 0x10);
+  if (ValidationResult == 0) {
+    ValidationResult = ValidateResourceTable(ValidationContext, ObjectContext + ObjectContextValidationDataOffset, *(uint32_t *)(ObjectContext + 0x10));
+    if (ValidationResult == 0) {
+      ValidationResult = ProcessResourceEntryWithValidation(ValidationContext, ObjectContext + ObjectContextValidationDataOffset + (int64_t)*(int *)(ObjectContext + 0x10) * 8);
+      if (ValidationResult == 0) {
+        CleanupResourceEntryData(ValidationContext, ObjectContext + 0x14);
       }
     }
   }
@@ -10539,37 +10537,37 @@ void ValidateAndCleanupResourceEntry(int64_t ObjectContext,uint8_t ValidationCon
  * @param resultBuffer 结果缓冲区，用于存储验证结果
  * @return uint32_t 验证结果，成功返回0，失败返回错误码
  */
-uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext,uint8_t ConfigurationData,uint validationFlags,int64_t resultBuffer)
+uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t ConfigurationData, uint ValidationFlags, int64_t ResultBuffer)
 
 {
-  int64_t *processPointer;
+  int64_t *ProcessPointer;
   uint ResourceHashValidationResult;
   int PackageValidationStatusCode;
   int64_t *ContextPointer;
   int EntryCounter;
-  uint configurationFlags;
+  uint ConfigurationFlags;
   uint8_t StackBufferSize;
-  uint8_t DataChecksumBuffer [2];
+  uint8_t DataChecksumBuffer[2];
   int InitializationResult;
   int ProcessingResult;
   int64_t *LinkPointer;
   int64_t *ResourceContext;
   
-  if (resultBuffer == 0) {
+  if (ResultBuffer == 0) {
     return 0x1f;
   }
-  tableEntry = 0;
-  ValidationResult = *(uint *)(SystemContext + 0x20);
+  EntryCounter = 0;
+  ResourceHashValidationResult = *(uint *)(SystemContext + 0x20);
   DataChecksumBuffer[0] = 0;
-  InitializationResult = InitializeProcessingQueue(DataChecksumBuffer,SystemContext);
+  InitializationResult = InitializeProcessingQueue(DataChecksumBuffer, SystemContext);
   if (InitializationResult == 0) {
     StackBufferSize = 0;
-    ContextValidationStatusCode = validationFlags | 0x10000000;
+    PackageValidationStatusCode = ValidationFlags | 0x10000000;
     if ((ResourceHashValidationResult & 1) == 0) {
-      ContextValidationStatusCode = validationFlags;
+      PackageValidationStatusCode = ValidationFlags;
     }
-    ProcessingResult = ProcessConfigurationData(SystemContext,ConfigurationData,ContextHashValidationResult,&StackBufferSize);
-    if ((ProcessingResult == 0) && (ResourceContext = (int64_t *)(resultBuffer + 8), ResourceContext != (int64_t *)0x0)) {
+    ProcessingResult = ProcessConfigurationData(SystemContext, ConfigurationData, ResourceHashValidationResult, &StackBufferSize);
+    if ((ProcessingResult == 0) && (ResourceContext = (int64_t *)(ResultBuffer + 8), ResourceContext != (int64_t *)0x0)) {
       LinkPointer = (int64_t *)*ResourceContext;
       if (LinkPointer != ResourceContext) {
         do {
