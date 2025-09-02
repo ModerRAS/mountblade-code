@@ -3599,7 +3599,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
         do {
           ObjectValidationState = *(uint8_t *)(DataBuffer + CurrentObjectIndex);
           ProcessingStatusCode = ValidateObjectStatus(ObjectValidationState);
-          if (ProcessingResult != RegistrationStatusSuccess) {
+          if (ProcessingStatusCode != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectValidationState, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
@@ -3619,35 +3619,6 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 
 
  /**
- * @brief 验证系统对象集合
- * 
- * 该函数负责验证系统中的对象集合，确保所有对象都处于有效状态
- * 从系统上下文中获取对象集合，并对每个对象进行验证
- * 
- * @return 无返回值
- * @note 此函数会验证所有系统对象的状态，并执行相应的处理逻辑
- * @warning 如果对象验证失败，函数将不会返回
- */
-/**
- * @brief 验证系统对象集合
- * 
- * 该函数负责验证系统中的对象集合，检查每个对象的有效性
- * 如果对象无效，则调用处理函数进行处理
- * 
- * @return void 无返回值
- * @note 此函数会遍历所有系统对象并进行验证
- */
-/**
- * @brief 验证系统对象集合
- * 
- * 该函数负责验证系统中的对象集合，确保所有对象都处于有效状态
- * 包括对象标识符验证、数据完整性检查和安全验证
- * 
- * @return 无返回值
- * @note 此函数在系统维护和清理过程中调用
- * @warning 验证失败时可能会导致系统异常终止
- */
-/**
  * @brief 验证系统对象集合
  * 
  * 该函数负责验证系统中的对象集合，确保所有对象都处于有效状态
@@ -3704,16 +3675,6 @@ void ValidateSystemObjectCollection(void)
 
 
  /**
- * @brief 终止系统进程
- * 
- * 该函数负责终止系统进程，执行系统关闭操作
- * 使用安全令牌验证终止操作的合法性
- * 
- * @return 无返回值
- * @note 此函数会立即终止系统进程，不会返回
- * @warning 调用此函数将导致系统关闭，应谨慎使用
- */
-/**
  * @brief 终止系统进程
  * 
  * 该函数负责终止系统进程，执行系统关闭操作
@@ -41190,7 +41151,18 @@ void ExceptionHandler_SystemResourceCleanup_Batch2(uint8_t ObjectContext,int64_t
  * - 如果资源处理器处于活动状态，会触发系统紧急退出
  * - 确保所有资源处理器都被正确重置和释放
  */
-void Unwind_SystemResourceCleanup_Batch3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统资源清理处理器（批次3）
+ * 
+ * 该函数负责处理系统资源的批量清理操作
+ * 释放资源并清理相关数据结构
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源对象信息
+ * @param ValidationContext 验证上下文，用于验证资源清理操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式和策略
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ */
+void SystemResourceCleanupBatchHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41260,7 +41232,18 @@ void Unwind_SystemResourceCleanup_Batch3(uint8_t ObjectContext,int64_t Validatio
  * - 如果资源处理器处于活动状态，会触发系统紧急退出
  * - 确保所有资源处理器都被正确重置和释放
  */
-void Unwind_SystemResourceCleanup_Batch4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统资源清理处理器（批次4）
+ * 
+ * 该函数负责处理系统资源的批量清理操作
+ * 释放资源并清理相关数据结构
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源对象信息
+ * @param ValidationContext 验证上下文，用于验证资源清理操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式和策略
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ */
+void SystemResourceCleanupBatchSecondaryHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -58233,7 +58216,16 @@ void CleanupResourceHashValidationResult(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_180907360(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源哈希验证处理器
+ * 
+ * 该函数负责处理资源哈希验证操作
+ * 验证资源的完整性和哈希值正确性
+ * 
+ * @param ObjectContext 对象上下文，包含要验证的资源对象信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ */
+void ResourceHashValidationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -58281,7 +58273,16 @@ void Unwind_180907360(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数会在异常处理过程中自动调用
  * @warning 调用此函数可能会触发系统清理操作
  */
-void Unwind_180907370(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源完整性验证处理器
+ * 
+ * 该函数负责处理资源完整性验证操作
+ * 检查资源数据的完整性和一致性
+ * 
+ * @param ObjectContext 对象上下文，包含要验证的资源对象信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ */
+void ResourceIntegrityValidationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -58317,7 +58318,16 @@ void Unwind_180907370(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907380(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源上下文验证处理器
+ * 
+ * 该函数负责处理资源上下文验证操作
+ * 验证资源上下文的有效性和状态
+ * 
+ * @param ObjectContext 对象上下文，包含要验证的资源对象信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ */
+void ResourceContextValidationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -59282,7 +59292,18 @@ void ExecuteResourceCommandExtended(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_180907860(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 高级资源清理处理器
+ * 
+ * 该函数负责处理高级资源清理操作
+ * 执行复杂的资源清理和释放任务
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源对象信息
+ * @param ValidationContext 验证上下文，用于验证清理操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式和策略
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ */
+void AdvancedResourceCleanupHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -62869,7 +62890,15 @@ void Unwind_1809089b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809089c0(void)
+/**
+ * @brief 系统清理完成处理器
+ * 
+ * 该函数负责处理系统清理完成后的操作
+ * 执行清理完成后的状态检查和资源释放
+ * 
+ * @return 无返回值
+ */
+void SystemCleanupCompletionHandler(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -62878,7 +62907,15 @@ void Unwind_1809089c0(void)
 
 
 
-void Unwind_1809089d0(void)
+/**
+ * @brief 系统状态重置处理器
+ * 
+ * 该函数负责重置系统状态
+ * 清理系统状态并准备重新初始化
+ * 
+ * @return 无返回值
+ */
+void SystemStateResetHandler(void)
 
 {
   _Mtx_destroy_in_situ(0x180c91970);
@@ -63818,7 +63855,15 @@ void Unwind_180908d00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908d30(void)
+/**
+ * @brief 系统资源释放处理器
+ * 
+ * 该函数负责释放系统资源
+ * 清理系统占用的所有资源
+ * 
+ * @return 无返回值
+ */
+void SystemResourceReleaseHandler(void)
 
 {
   byte encryptionShiftValue;
