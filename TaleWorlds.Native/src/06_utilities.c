@@ -46292,7 +46292,19 @@ void ExecuteResourceValidation(uint8_t objectContext, int64_t validationContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180905000(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 验证资源完整性
+ * 
+ * 该函数负责验证资源的完整性
+ * 包括文件关闭、引用计数更新和同步锁操作
+ * 确保资源在验证过程中的完整性和一致性
+ * 
+ * @param objectContext 对象上下文，包含要操作的对象信息
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数通常在资源完整性验证过程中调用
+ */
+void ValidateResourceIntegrity(uint8_t objectContext, int64_t validationContext)
 
 {
   if (*(int64_t *)(validationContext + 0x80) != 0) {
