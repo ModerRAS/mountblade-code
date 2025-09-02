@@ -9169,7 +9169,7 @@ ValidationCompleteLabel:
   else {
     ResourceIndex = StackContextPointer + -8;
   }
-  *(uint32_t *)(ResourceIndex + 0xa4 + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4) =
+  *(uint32_t *)(ResourceIndex + ResourceIndexDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4) =
        *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
   ResourceIndex = *(int64_t *)(ValidationContext + 0x98);
   if ((*(int *)(ResourceIndex + SystemContextStatusFlag1Offset) != 0) || (*(int *)(ResourceIndex + SystemContextStatusFlag2Offset) != 0)) {
@@ -40641,7 +40641,7 @@ void CleanupPerformanceMonitoringContextAndManageSystemResources(uint8_t ObjectC
  * @note 此函数会清理系统资源处理器集合5中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet5(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerGroup5(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -40683,7 +40683,7 @@ void CleanupSystemResourceHandlerSet5(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数会清理系统资源处理器集合6中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet6(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerGroup6(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -40746,7 +40746,7 @@ void CleanupSystemResourceHandlerSet6(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数会清理系统资源处理器集合7中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet7(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerGroup7(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -40809,7 +40809,7 @@ void CleanupSystemResourceHandlerSet7(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数会清理系统资源处理器集合8中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet8(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerGroup8(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -40872,7 +40872,7 @@ void CleanupSystemResourceHandlerSet8(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数会清理系统资源处理器集合9中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet9(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerGroup9(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -40914,7 +40914,7 @@ void CleanupSystemResourceHandlerSet9(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数会清理系统资源处理器集合10中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerGroup10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42259,7 +42259,7 @@ void ConfigureResourceValidation(uint8_t ObjectContext,int64_t ValidationContext
  * @note 此函数通常在系统关闭或资源回收时调用
  * @warning 清理过程不可逆，调用后资源将无法恢复
  */
-void CleanupResourceBlock1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceBlockGroup1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -61238,7 +61238,7 @@ void UnwindSystemResourceHandler002(uint8_t ObjectContext,int64_t ValidationCont
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t **)(ResourceIndex + 0xd8) = &SystemDataStructure;
-  if (*(int64_t *)(ResourceIndex + 0xa8) != 0) {
+  if (*(int64_t *)(ResourceIndex + ResourceIndexHashOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
   UpdateResourceTimestamp(ResourceIndex + 0x78);
@@ -77501,7 +77501,7 @@ void Unwind_18090c380(uint8_t ObjectContext,int64_t ValidationContext)
   LoopProcessingPointer = (uint8_t *)(ResourceIndex + 0x18);
   *LoopProcessingPointer = &SystemDataPointer001;
   if ((*(int64_t *)(ResourceIndex + 0x98) != 0) && (**(int64_t **)(ResourceIndex + 0x30) == ResourceIndex + 0x88)) {
-    ResourceHash = *(uint8_t *)(ResourceIndex + 0xa8);
+    ResourceHash = *(uint8_t *)(ResourceIndex + ResourceIndexHashOffset);
     ResourceTable = *(int64_t *)(ResourceIndex + ResourceIndexTableOffset);
     **(int64_t **)(ResourceIndex + 0x30) = ResourceTable;
     **(int64_t **)(ResourceIndex + 0x50) = ResourceTable;
