@@ -68991,7 +68991,19 @@ void InitializePrimaryResourceProcessor(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_1809095a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置资源处理器模板指针
+ * 
+ * 该函数负责设置资源处理器模板指针并初始化系统数据结构
+ * 如果检测到现有资源句柄，则执行紧急退出程序
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会设置资源处理器模板指针，并确保系统数据结构正确初始化
+ * @warning 如果检测到现有资源句柄，系统将执行紧急退出程序
+ */
+void SetResourceProcessorTemplatePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x198) = &SystemResourceHandlerTemplate;
@@ -69006,7 +69018,19 @@ void Unwind_1809095a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809095b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置数据表指针
+ * 
+ * 该函数负责设置系统数据表指针到指定的验证上下文中
+ * 这是一个简单的指针设置操作，用于初始化数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数仅设置数据表指针，不执行其他操作
+ * @warning 调用此函数会修改验证上下文中的数据表指针
+ */
+void SetDataTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x6f0) = &SystemDataStructure;

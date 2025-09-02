@@ -49446,11 +49446,11 @@ long long CalculateAndFindSystemResourceManager(long long SystemResourceManager)
     }
   }
   localSystemFlags = *(long long *)(SystemResourceManager + 0x28);
-LAB_18006d957:
+ContextValidationCheck:
   do {
     resourceCounter = localSystemFlags;
     if (resourceCounter == 0) {
-LAB_18006d9f6:
+ThreadContextComplete:
       localSystemFlags = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x3548,10);
       if (localSystemFlags == 0) {
         return 0;
@@ -49465,9 +49465,9 @@ LAB_18006d9f6:
     HashEntryPointer = (uint *)(resourceCounter + 0x3530);
     currentThreadId = *HashEntryPointer;
     if ((currentThreadId & 0x7fffffff) == 0) {
-LAB_18006d9d7:
+ThreadIdValidationCheck:
       localSystemFlags = *(long long *)(SystemResourceManager + 0x28);
-      goto LAB_18006d957;
+      goto ContextValidationCheck;
     }
     LOCK();
     resourceAllocationContext = *HashEntryPointer;
@@ -49475,7 +49475,7 @@ LAB_18006d9d7:
       *HashEntryPointer = currentThreadId + 1;
     }
     UNLOCK();
-    if (currentThreadId != resourceAllocationContext) goto LAB_18006d9d7;
+    if (currentThreadId != resourceAllocationContext) goto ThreadIdValidationCheck;
     LOCK();
     localSystemFlags = *(long long *)(SystemResourceManager + 0x28);
     isByteValid0 = resourceCounter == localSystemFlags;
