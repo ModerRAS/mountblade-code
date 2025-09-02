@@ -8585,7 +8585,7 @@ Label_18060b76f:
                                                                                   &SystemConfigurationValidationBuffer66);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060b32d;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a04be8);
+                                                                                  &SystemConfigurationValidationBuffer67);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060b34b;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &SystemConfigurationValidationBuffer67);
@@ -8615,13 +8615,13 @@ Label_18060b76f:
                                                         goto Label_18060bbae;
                                                       }
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a910);
+                                                                                  &SystemConfigurationValidationBuffer71);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0x110;
                                                         goto Label_18060bbae;
                                                       }
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a900);
+                                                                                  &SystemConfigurationValidationBuffer72);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0x114;
                                                         goto Label_18060bbae;
