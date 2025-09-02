@@ -7958,7 +7958,7 @@ LAB_180608dad:
         goto LAB_180609070;
       }
 LAB_180608fee:
-      LoopCounter = strcmp(lVar3,&UNK_180a38ea0);
+      LoopCounter = strcmp(lVar3,&NetworkRequestStringLogin);
       if (LoopCounter == 0) {
         LoopCounter = 0x554;
         goto LAB_180609070;
@@ -7966,7 +7966,7 @@ LAB_180608fee:
       goto LAB_18060906e;
     }
     if (iStack_20 == 0x20) {
-      LoopCounter = strcmp(lStack_28,&UNK_180a389b0);
+      LoopCounter = strcmp(lStack_28,&SystemStringDisconnect);
       if (LoopCounter == 0) {
         LoopCounter = 0x30;
         goto LAB_180609070;
@@ -7974,7 +7974,7 @@ LAB_180608fee:
       goto LAB_18060906e;
     }
     if (iStack_20 == 0x24) {
-      LoopCounter = strcmp(lStack_28,&UNK_180a38988);
+      LoopCounter = strcmp(lStack_28,&SystemStringConnect);
       if (LoopCounter == 0) {
         LoopCounter = 0x12;
         goto LAB_180609070;
@@ -7983,13 +7983,13 @@ LAB_180608fee:
     }
     if (iStack_20 == 0x15) goto LAB_180608a24;
     if (iStack_20 == 0x1f) {
-      LoopCounter = strcmp(lStack_28,&UNK_180a38a88);
+      LoopCounter = strcmp(lStack_28,&NetworkRequestStringAuth);
       if (LoopCounter == 0) {
         LoopCounter = 0x48;
         goto LAB_180609070;
       }
 LAB_180608e4c:
-      LoopCounter = strcmp(lVar3,&UNK_180a38d38);
+      LoopCounter = strcmp(lVar3,&NetworkRequestStringVerify);
       if (LoopCounter == 0) {
         LoopCounter = 1;
         goto LAB_180609070;
@@ -7997,45 +7997,45 @@ LAB_180608e4c:
       goto LAB_18060906e;
     }
     if (iStack_20 == 10) {
-      LoopCounter = strcmp(lStack_28,&UNK_180a38ad8);
+      LoopCounter = strcmp(lStack_28,&NetworkRequestStringDisconnect);
       if (LoopCounter == 0) {
         LoopCounter = 8;
         goto LAB_180609070;
       }
 LAB_180608b18:
-      LoopCounter = strcmp(lVar3,&UNK_180a38a78);
+      LoopCounter = strcmp(lVar3,&NetworkRequestStringValidate);
       if (LoopCounter == 0) {
         LoopCounter = 4;
         goto LAB_180609070;
       }
 LAB_180608fdd:
-      pNetworkRequestResult = &UNK_180a38ec0;
+      pNetworkRequestResult = &NetworkRequestResultDisconnect;
       goto LAB_18060905e;
     }
     if (iStack_20 == 0x15) goto LAB_180608a96;
     if (iStack_20 == 0x16) {
-      LoopCounter = strcmp(lStack_28,&UNK_180a38a48);
+      LoopCounter = strcmp(lStack_28,&SystemValidationData);
       if (LoopCounter == 0) {
         LoopCounter = 0x14;
         goto LAB_180609070;
       }
 LAB_180608c78:
-      LoopCounter = strcmp(lVar3,&UNK_180a38b48);
+      LoopCounter = strcmp(lVar3,&SystemValidationSecondary);
       if (LoopCounter == 0) {
         LoopCounter = 0x568;
         goto LAB_180609070;
       }
-      LoopCounter = strcmp(lVar3,&UNK_180a38c40);
+      LoopCounter = strcmp(lVar3,&SystemValidationCore);
       if (LoopCounter == 0) {
         LoopCounter = 0x10;
         goto LAB_180609070;
       }
-      LoopCounter = strcmp(lVar3,&UNK_180a38ca8);
+      LoopCounter = strcmp(lVar3,&NetworkRequestResultSuccess);
       if (LoopCounter == 0) {
         LoopCounter = 0x28;
         goto LAB_180609070;
       }
-      LoopCounter = strcmp(lVar3,&UNK_180a38e38);
+      LoopCounter = strcmp(lVar3,&NetworkRequestResultLogin);
       if (LoopCounter == 0) {
         LoopCounter = 0x40;
         goto LAB_180609070;
@@ -8054,7 +8054,7 @@ LAB_180608c78:
     }
     if (iStack_20 == 10) goto LAB_180608b18;
     if (iStack_20 == 0x12) {
-      LoopCounter = strcmp(lStack_28,&UNK_180a38a60);
+      LoopCounter = strcmp(lStack_28,&NetworkRequestStringConnect);
       if (LoopCounter == 0) {
         LoopCounter = 0x58;
         goto LAB_180609070;
@@ -8063,13 +8063,13 @@ LAB_180608c78:
     }
     if (iStack_20 != 0x13) {
       if (iStack_20 == 0x17) {
-        LoopCounter = strcmp(lStack_28,&UNK_180a38bb8);
+        LoopCounter = strcmp(lStack_28,&SystemValidationTertiary);
         if (LoopCounter == 0) {
           LoopCounter = 1;
           goto LAB_180609070;
         }
 LAB_180608fb7:
-        pNetworkRequestResult = &UNK_180a38e78;
+        pNetworkRequestResult = &NetworkRequestResultValidate;
 LAB_180608fc1:
         LoopCounter = strcmp(lVar3,pNetworkRequestResult);
         if (LoopCounter == 0) {
@@ -8081,14 +8081,14 @@ LAB_180608fce:
       else {
         if (iStack_20 == 0x15) goto LAB_180608bee;
         if (iStack_20 == 0x26) {
-          LoopCounter = strcmp(lStack_28,&UNK_180a38b20);
+          LoopCounter = strcmp(lStack_28,&SystemValidationQuaternary);
           if (LoopCounter == 0) {
             LoopCounter = 0xa8;
             goto LAB_180609070;
           }
         }
         else if (iStack_20 == 0x34) {
-          LoopCounter = strcmp(lStack_28,&UNK_180a38ae8);
+          LoopCounter = strcmp(lStack_28,&SystemValidationQuinary);
           if (LoopCounter == 0) {
             LoopCounter = 0x14;
             goto LAB_180609070;
@@ -8098,12 +8098,12 @@ LAB_180608fce:
           if (iStack_20 != 0xf) {
             if (iStack_20 == 0x16) goto LAB_180608c78;
             if (iStack_20 == 0x18) {
-              LoopCounter = strcmp(lStack_28,&UNK_180a38c78);
-              if ((LoopCounter == 0) || (LoopCounter = strcmp(lVar3,&UNK_180a38c58), LoopCounter == 0))
+              LoopCounter = strcmp(lStack_28,&SystemValidationSenary);
+              if ((LoopCounter == 0) || (LoopCounter = strcmp(lVar3,&SystemValidationSeptenary), LoopCounter == 0))
               goto LAB_180608fce;
-              LoopCounter = strcmp(lVar3,&UNK_180a38be8);
+              LoopCounter = strcmp(lVar3,&SystemValidationOctonary);
               if (LoopCounter != 0) {
-                pNetworkRequestResult = &UNK_180a38d98;
+                pNetworkRequestResult = &NetworkRequestResultVerify;
                 goto LAB_18060905e;
               }
               goto LAB_180609067;
@@ -8112,25 +8112,25 @@ LAB_180608fce:
               lVar3 = 0;
               do {
                 lVar2 = lVar3;
-                if (*(char *)(lStack_28 + lVar2) != (&UNK_180a38be0)[lVar2]) goto LAB_18060906e;
+                if (*(char *)(lStack_28 + lVar2) != (&SystemValidationNonary)[lVar2]) goto LAB_18060906e;
                 lVar3 = lVar2 + 1;
               } while (lVar2 + 1 != 8);
               LoopCounter = (int)lVar2 + -6;
               goto LAB_180609070;
             }
             if (iStack_20 == 0xc) {
-              LoopCounter = strcmp(lStack_28,&UNK_180a38bd0);
+              LoopCounter = strcmp(lStack_28,&SystemValidationDenary);
               if (LoopCounter == 0) {
                 LoopCounter = 0x68;
                 goto LAB_180609070;
               }
 LAB_18060901e:
-              LoopCounter = strcmp(lVar3,&UNK_180a38e50);
+              LoopCounter = strcmp(lVar3,&NetworkRequestResultConnect);
               if (LoopCounter == 0) {
                 LoopCounter = 4;
                 goto LAB_180609070;
               }
-              LoopCounter = strcmp(lVar3,&UNK_180a38f30);
+              LoopCounter = strcmp(lVar3,&NetworkRequestResultDefault);
               if (LoopCounter == 0) {
                 LoopCounter = 8;
                 goto LAB_180609070;
@@ -8150,13 +8150,13 @@ LAB_18060901e:
             }
             if (iStack_20 == 0xf) goto LAB_180608e02;
             if (iStack_20 == 0x23) {
-              LoopCounter = strcmp(lStack_28,&UNK_180a38d58);
+              LoopCounter = strcmp(lStack_28,&SystemValidationUndenary);
               if (LoopCounter == 0) {
                 LoopCounter = 0x28;
                 goto LAB_180609070;
               }
 LAB_180608e99:
-              LoopCounter = strcmp(lVar3,&UNK_180a38cc0);
+              LoopCounter = strcmp(lVar3,&NetworkRequestResultAuth);
               if (LoopCounter == 0) {
                 LoopCounter = 0x18;
                 goto LAB_180609070;
@@ -8166,25 +8166,25 @@ LAB_180608e99:
             if (iStack_20 == 0x1f) goto LAB_180608e4c;
             if (iStack_20 == 0xd) goto LAB_180608e70;
             if (iStack_20 == 0x21) {
-              pNetworkRequestResult = &UNK_180a38ce8;
+              pNetworkRequestResult = &NetworkRequestResultSystem;
               goto LAB_180608fc1;
             }
             if (iStack_20 == 0x23) goto LAB_180608e99;
             if (iStack_20 == 0xf) goto LAB_180608ebd;
             if (iStack_20 == 0xb) {
-              LoopCounter = strcmp(lStack_28,&UNK_180a38dd8);
+              LoopCounter = strcmp(lStack_28,&SystemValidationDuodenary);
               if (LoopCounter == 0) {
                 LoopCounter = 0x248;
                 goto LAB_180609070;
               }
 LAB_180608f53:
-              LoopCounter = strcmp(lVar3,&UNK_180a38dc8);
+              LoopCounter = strcmp(lVar3,&NetworkRequestResultSecondary);
               if (LoopCounter == 0) {
                 LoopCounter = 4;
                 goto LAB_180609070;
               }
 LAB_180608f97:
-              LoopCounter = strcmp(lVar3,&UNK_180a38e90);
+              LoopCounter = strcmp(lVar3,&NetworkRequestResultTertiary);
               if (LoopCounter == 0) {
                 LoopCounter = 4;
                 goto LAB_180609070;
@@ -8192,14 +8192,14 @@ LAB_180608f97:
             }
             else {
               if (iStack_20 == 0x11) {
-                LoopCounter = strcmp(lStack_28,&UNK_180a38e10);
+                LoopCounter = strcmp(lStack_28,&SystemValidationTerdenary);
                 if (LoopCounter == 0) goto LAB_180609067;
-                LoopCounter = strcmp(lVar3,&UNK_180a38df8);
+                LoopCounter = strcmp(lVar3,&NetworkRequestResultQuaternary);
                 if (LoopCounter == 0) {
                   LoopCounter = 0xa0;
                   goto LAB_180609070;
                 }
-                pNetworkRequestResult = &UNK_180a38d80;
+                pNetworkRequestResult = &NetworkRequestResultAuth;
                 goto LAB_18060905e;
               }
               if (iStack_20 == 0xb) goto LAB_180608f53;
@@ -8211,32 +8211,32 @@ LAB_180608f97:
               if (iStack_20 != 0xb) {
                 if (iStack_20 == 0xc) goto LAB_18060901e;
                 if (iStack_20 != 0x19) goto LAB_18060906e;
-                pNetworkRequestResult = &UNK_180a38f10;
+                pNetworkRequestResult = &NetworkRequestResultConnect;
                 goto LAB_18060905e;
               }
             }
-            pNetworkRequestResult = &UNK_180a38e28;
+            pNetworkRequestResult = &NetworkRequestResultLogin;
             goto LAB_18060905e;
           }
-          LoopCounter = strcmp(lStack_28,&UNK_180a38b60);
+          LoopCounter = strcmp(lStack_28,&SystemValidationQuaternary);
           if (LoopCounter == 0) {
             LoopCounter = 0x214;
             goto LAB_180609070;
           }
 LAB_180608e02:
-          LoopCounter = strcmp(lVar3,&UNK_180a38d10);
+          LoopCounter = strcmp(lVar3,&SystemValidationQuinary);
           if (LoopCounter == 0) {
             LoopCounter = 0x2028;
             goto LAB_180609070;
           }
 LAB_180608ebd:
-          LoopCounter = strcmp(lVar3,&UNK_180a38de8);
+          LoopCounter = strcmp(lVar3,&NetworkRequestResultQuinary);
           if (LoopCounter == 0) {
             LoopCounter = 4;
             goto LAB_180609070;
           }
 LAB_180608f73:
-          LoopCounter = strcmp(lVar3,&UNK_180a38db8);
+          LoopCounter = strcmp(lVar3,&NetworkRequestResultSenary);
           if (LoopCounter == 0) {
             LoopCounter = 0x50;
             goto LAB_180609070;
@@ -8245,19 +8245,19 @@ LAB_180608f73:
       }
       goto LAB_18060906e;
     }
-    LoopCounter = strcmp(lStack_28,&UNK_180a38b88);
+    LoopCounter = strcmp(lStack_28,&SystemValidationQuinary);
     if (LoopCounter == 0) {
       LoopCounter = 1;
       goto LAB_180609070;
     }
-    LoopCounter = strcmp(lVar3,&UNK_180a38b70);
+    LoopCounter = strcmp(lVar3,&SystemValidationSenary);
     if (LoopCounter == 0) {
       LoopCounter = 3;
       goto LAB_180609070;
     }
-    LoopCounter = strcmp(lVar3,&UNK_180a38d20);
+    LoopCounter = strcmp(lVar3,&SystemValidationOctonary);
     if (LoopCounter != 0) {
-      pNetworkRequestResult = &UNK_180a38e60;
+      pNetworkRequestResult = &NetworkRequestResultDefault;
       goto LAB_18060905e;
     }
   }
@@ -9394,7 +9394,7 @@ LAB_18060a103:
                   }
                 }
                 else {
-                  cVar1 = FUN_180629850(auStack_50,&UNK_180a39920,1);
+                  cVar1 = ValidateSystemConfigurationData(auStack_50,&SystemConfigurationDataBuffer1,1);
                   if (cVar1 == '\0') {
                     cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39988);
                     if (cVar1 != '\0') {
@@ -9523,7 +9523,7 @@ LAB_18060b7e7:
                 }
               }
               else {
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a39888,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&SystemConfigurationDataBuffer2,1);
                 if (cVar1 == '\0') {
                   cVar1 = FUN_180629850(auStack_50,&UNK_180a397f8,1);
                   if (cVar1 != '\0') {
