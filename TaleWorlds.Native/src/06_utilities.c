@@ -94219,7 +94219,7 @@ void InitializeSystemDataStructureCN(void)
  * 该函数是一个空操作函数，不执行任何操作
  * 仅用于保持代码结构完整性或作为占位符
  */
-void PerformNoOperation(void)
+void ExecuteNullOperationFinal(void)
 
 {
   return;
