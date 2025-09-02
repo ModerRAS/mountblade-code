@@ -37349,83 +37349,96 @@ void* GetSystemResourceDataPointer(long long SystemResourcePointer)
 void* * FindSystemResourceStringMatch(long long SystemResourcePointer,char *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
-  char *pcVar1;
-  char cVar2;
-  void* *pointerToUnsigned3;
-  char *pcVar4;
-  long long SystemTimeValue;
+  char *stringEndPointer;
+  char currentChar;
+  void* *resourcePointer;
+  char *resourceString;
+  long long stringLength;
   
   if (ConfigurationDataPointer == (char *)0x0) {
     return *(void* **)(SystemResourcePointer + 0x30);
   }
   if (AdditionalParameter == 0) {
-    cVar2 = *ConfigurationDataPointer;
-    pcVar4 = ConfigurationDataPointer;
-    while (cVar2 != '\0') {
-      pcVar4 = pcVar4 + 1;
-      cVar2 = *pcVar4;
+    currentChar = *ConfigurationDataPointer;
+    resourceString = ConfigurationDataPointer;
+    while (currentChar != '\0') {
+      resourceString = resourceString + 1;
+      currentChar = *resourceString;
     }
-    AdditionalParameter = (long long)pcVar4 - (long long)ConfigurationDataPointer;
+    AdditionalParameter = (long long)resourceString - (long long)ConfigurationDataPointer;
   }
-  pointerToUnsigned3 = *(void* **)(SystemResourcePointer + 0x30);
+  resourcePointer = *(void* **)(SystemResourcePointer + 0x30);
   do {
-    if (pointerToUnsigned3 == (void* *)0x0) {
+    if (resourcePointer == (void* *)0x0) {
       return (void* *)0x0;
     }
-    pcVar4 = (char *)*pointerToUnsigned3;
-    if (pcVar4 == (char *)0x0) {
-      localSystemPointer = 0;
-      pcVar4 = (char *)0x180d48d24;
+    resourceString = (char *)*resourcePointer;
+    if (resourceString == (char *)0x0) {
+      stringLength = 0;
+      resourceString = (char *)0x180d48d24;
     }
     else {
-      localSystemPointer = pointerToUnsigned3[2];
+      stringLength = resourcePointer[2];
     }
-    if (localSystemPointer == AdditionalParameter) {
-      pcVar1 = pcVar4 + localSystemPointer;
-      if (pcVar1 <= pcVar4) {
-        return pointerToUnsigned3;
+    if (stringLength == AdditionalParameter) {
+      stringEndPointer = resourceString + stringLength;
+      if (stringEndPointer <= resourceString) {
+        return resourcePointer;
       }
-      localSystemPointer = (long long)ConfigurationDataPointer - (long long)pcVar4;
-      while (*pcVar4 == pcVar4[localSystemPointer]) {
-        pcVar4 = pcVar4 + 1;
-        if (pcVar1 <= pcVar4) {
-          return pointerToUnsigned3;
+      stringLength = (long long)ConfigurationDataPointer - (long long)resourceString;
+      while (*resourceString == resourceString[stringLength]) {
+        resourceString = resourceString + 1;
+        if (stringEndPointer <= resourceString) {
+          return resourcePointer;
         }
       }
     }
-    pointerToUnsigned3 = (void* *)pointerToUnsigned3[0xb];
+    resourcePointer = (void* *)resourcePointer[0xb];
   } while( true );
 }
 
 
 
-void* * FUN_18005d4e0(void* SystemResourcePointer,void* *ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 在配置数据中查找匹配的资源
+ * 
+ * 该函数在配置数据指针链表中查找与指定参数匹配的资源
+ * 支持字符串比较和资源匹配操作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数（用于匹配）
+ * @return 匹配的配置数据指针，未找到返回NULL
+ * 
+ * 原始函数名为FUN_18005d4e0，现已重命名为FindMatchingConfigurationResource
+ */
+void* * FindMatchingConfigurationResource(void* SystemResourcePointer,void* *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
-  char *pcVar1;
-  char *pcVar2;
-  long long localResourceOffset;
-  long long in_R11;
+  char *stringEndPointer;
+  char *configString;
+  long long configLength;
+  long long systemResourceValue;
   
   if (ConfigurationDataPointer != (void* *)0x0) {
     do {
-      pcVar2 = (char *)*ConfigurationDataPointer;
-      if (pcVar2 == (char *)0x0) {
-        localResourceOffset = 0;
-        pcVar2 = (char *)0x180d48d24;
+      configString = (char *)*ConfigurationDataPointer;
+      if (configString == (char *)0x0) {
+        configLength = 0;
+        configString = (char *)0x180d48d24;
       }
       else {
-        localResourceOffset = ConfigurationDataPointer[2];
+        configLength = ConfigurationDataPointer[2];
       }
-      if (localResourceOffset == AdditionalParameter) {
-        pcVar1 = pcVar2 + localResourceOffset;
-        if (pcVar1 <= pcVar2) {
+      if (configLength == AdditionalParameter) {
+        stringEndPointer = configString + configLength;
+        if (stringEndPointer <= configString) {
           return ConfigurationDataPointer;
         }
-        localResourceOffset = in_R11 - (long long)pcVar2;
-        while (*pcVar2 == pcVar2[localResourceOffset]) {
-          pcVar2 = pcVar2 + 1;
-          if (pcVar1 <= pcVar2) {
+        configLength = systemResourceValue - (long long)configString;
+        while (*configString == configString[configLength]) {
+          configString = configString + 1;
+          if (stringEndPointer <= configString) {
             return ConfigurationDataPointer;
           }
         }
