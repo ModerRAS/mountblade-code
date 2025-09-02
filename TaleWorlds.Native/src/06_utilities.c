@@ -43890,7 +43890,21 @@ void CloseSystemHandle(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904950(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 关闭系统句柄扩展版本
+ * 
+ * 该函数负责关闭系统句柄的扩展版本，释放系统资源
+ * 与CloseSystemHandle函数类似，但使用不同的偏移量
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 句柄关闭失败时可能会触发系统错误
+ * 
+ * 原始函数名为Unwind_180904950，现已重命名为CloseSystemHandleExtended
+ */
+void CloseSystemHandleExtended(uint8_t objectContext,int64_t validationContext)
 
 {
   CloseHandle(*(uint8_t *)(*(int64_t *)(validationContext + 0x40) + 0x70));
