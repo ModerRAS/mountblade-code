@@ -66416,35 +66416,40 @@ void SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_180908df0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 处理扩展资源哈希验证结果
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180908df0
+ */
+void ProcessExtendedResourceHashValidation(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int *ResourceIndexPointer;
-  uint8_t *ResourceHashValidationResultPointer;
-  int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  int *ResourceReferenceCount;
+  uint8_t *ResourceHashValidationPointer;
+  int64_t ResourceEntryAddress;
+  uint64_t MemoryPageBase;
   
-  ValidationResultPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xa0);
-  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
+  ResourceHashValidationPointer = (uint8_t *)**(uint64_t **)(ValidationContext + 0xa0);
+  if (ResourceHashValidationPointer == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (MemoryAddressIncrement != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
-    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
-      *ResourceIndexPointer = *ResourceIndexPointer + -1;
-      if (*ResourceIndexPointer == 0) {
+  MemoryPageBase = (uint64_t)ResourceHashValidationPointer & 0xffffffffffc00000;
+  if (MemoryPageBase != 0) {
+    ResourceEntryAddress = MemoryPageBase + 0x80 + ((int64_t)ResourceHashValidationPointer - MemoryPageBase >> 0x10) * 0x50;
+    ResourceEntryAddress = ResourceEntryAddress - (uint64_t)*(uint *)(ResourceEntryAddress + 4);
+    if ((*(void ***)(MemoryPageBase + 0x70) == &ExceptionList) && (*(char *)(ResourceEntryAddress + 0xe) == '\0')) {
+      *ResourceHashValidationPointer = *(uint8_t *)(ResourceEntryAddress + 0x20);
+      *(uint8_t **)(ResourceEntryAddress + 0x20) = ResourceHashValidationPointer;
+      ResourceReferenceCount = (int *)(ResourceEntryAddress + 0x18);
+      *ResourceReferenceCount = *ResourceReferenceCount + -1;
+      if (*ResourceReferenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryPageBase, CONCAT71(0xff000000, *(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
+                          ResourceHashValidationPointer, MemoryPageBase, 0xfffffffffffffffe);
     }
   }
   return;
