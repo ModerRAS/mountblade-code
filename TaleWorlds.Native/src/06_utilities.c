@@ -51454,7 +51454,17 @@ void Unwind_180905ef0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905f00(void)
+/**
+ * @brief 销毁条件变量
+ * 
+ * 该函数负责销毁条件变量，释放相关资源。
+ * 
+ * @return 无返回值
+ * @note 此函数会销毁条件变量
+ * @warning 销毁后条件变量将不再可用
+ * @remark 原始函数名：Unwind_180905f00
+ */
+void DestroyConditionVariable(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -51463,7 +51473,17 @@ void Unwind_180905f00(void)
 
 
 
-void Unwind_180905f20(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁互斥锁，释放相关资源。
+ * 
+ * @return 无返回值
+ * @note 此函数会销毁互斥锁
+ * @warning 销毁后互斥锁将不再可用
+ * @remark 原始函数名：Unwind_180905f20
+ */
+void DestroyMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -51472,7 +51492,17 @@ void Unwind_180905f20(void)
 
 
 
-void Unwind_180905f40(void)
+/**
+ * @brief 执行系统清理操作
+ * 
+ * 该函数负责执行系统清理操作，释放系统资源。
+ * 
+ * @return 无返回值
+ * @note 此函数会执行系统清理
+ * @warning 清理后相关资源将不再可用
+ * @remark 原始函数名：Unwind_180905f40
+ */
+void ExecuteSystemCleanupOperation(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -51481,7 +51511,20 @@ void Unwind_180905f40(void)
 
 
 
-void Unwind_180905f50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 销毁验证上下文中的互斥锁
+ * 
+ * 该函数负责销毁验证上下文中指定位置的互斥锁。
+ * 从验证上下文偏移0x68处获取互斥锁并销毁。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会销毁验证上下文中的互斥锁
+ * @warning 销毁后互斥锁将不再可用
+ * @remark 原始函数名：Unwind_180905f50
+ */
+void DestroyValidationContextMutex(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(ValidationContext + 0x68));
