@@ -130,6 +130,18 @@
 #define ContextFloatValueOffset 4
 #define SystemContextCleanupOffset 0x98
 
+// 附加偏移量常量
+#define ResourceCounterOffset 0x4c
+#define ResourceArraySizeOffset 0x50
+#define ResourceSecondaryCounterOffset 0x54
+#define ResourceTertiaryCounterOffset 0x58
+#define ObjectHandleSecondaryOffset 0x8
+#define ObjectValidationContextOffset 0x10
+#define ObjectDataPointerOffset 0x10
+#define ObjectContextHandleOffset 0x18
+#define SystemContextValidationOffset 0x10
+#define ObjectStatusFlagsOffset 0x204
+
 // 对象上下文偏移量常量
 #define ObjectContextDataArrayOffset 0x10
 #define ObjectContextValidationDataOffset 0x18
@@ -138,6 +150,22 @@
 #define ObjectContextHandleDataOffset 0x1c
 #define ObjectContextResourceCountOffset 0x10
 #define ObjectContextResourceArrayOffset 0x20
+
+// 矩阵和变换相关偏移量常量
+#define MatrixTranslationFlagsOffset 0x54
+#define MatrixRotationDataOffset 0x38
+
+// 系统资源相关偏移量常量
+#define BufferEntryValidationOffset 0x58
+#define ResourceDataValidationOffset 0x58
+#define AllocatedMemoryPointerOffset 0x58
+#define SystemContextResourceContextOffset 0x58
+#define ResultBufferObjectDataOffset 0x10
+#define ObjectSystemStatusOffset 0x58
+#define MatrixProjectionDataOffset 0x5c
+#define MatrixViewDataOffset 0x60
+#define MatrixWorldDataOffset 100
+#define SystemContextMatrixPointerOffset 0x98
 #define ObjectContextMatrixDataOffset 0x18
 #define ObjectContextMatrixFlagsOffset 0x2c
 #define ObjectContextMatrixScaleOffset 0x30
@@ -4024,9 +4052,9 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
   if ((int)AccessValidationCode != 0) {
     return AccessValidationCode;
   }
-  *(int *)(ValidationContext[0] + 0x4c) = *(int *)(ValidationContext[0] + 0x4c) + 1;
-  if (*(int *)(ValidationContext[0] + 0x58) + *(int *)(ValidationContext[0] + 0x54) +
-      *(int *)(ValidationContext[0] + 0x4c) == 1) {
+  *(int *)(ValidationContext[0] + ResourceCounterOffset) = *(int *)(ValidationContext[0] + ResourceCounterOffset) + 1;
+  if (*(int *)(ValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(ValidationContext[0] + ResourceSecondaryCounterOffset) +
+      *(int *)(ValidationContext[0] + ResourceCounterOffset) == 1) {
     ValidationContext[0] = 0;
     PackageValidationStatus = ValidateSystemObjectConfiguration(ValidationContext);
     if (PackageValidationStatus == 0) {
@@ -4114,12 +4142,12 @@ uint64_t DecrementSystemResourceCounter(int64_t SystemContext, uint64_t Resource
   if ((int)OperationResult != 0) {
     return OperationResult;
   }
-  if (*(int *)(ContextHandles[0] + 0x4c) < 1) {
+  if (*(int *)(ContextHandles[0] + ResourceCounterOffset) < 1) {
     return 0x1c;
   }
-  ResourceCounter = *(int *)(ContextHandles[0] + 0x4c) + -1;
-  *(int *)(ContextHandles[0] + 0x4c) = ResourceCounter;
-  if (*(int *)(ContextHandles[0] + 0x58) + *(int *)(ContextHandles[0] + 0x54) + ResourceCounter != 0) {
+  ResourceCounter = *(int *)(ContextHandles[0] + ResourceCounterOffset) + -1;
+  *(int *)(ContextHandles[0] + ResourceCounterOffset) = ResourceCounter;
+  if (*(int *)(ContextHandles[0] + ResourceTertiaryCounterOffset) + *(int *)(ContextHandles[0] + ResourceSecondaryCounterOffset) + ResourceCounter != 0) {
     return 0;
   }
   ContextHandles[0] = 0;
@@ -7594,15 +7622,15 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
     *(uint32_t *)(matrixContextPointer + 0x48) = *(uint32_t *)(ObjectContext + 0x28);
     *(uint32_t *)(matrixContextPointer + 0x4c) = matrixRotationFlags;
     *(uint32_t *)(matrixContextPointer + 0x50) = matrixScaleFlags;
-    *(uint32_t *)(matrixContextPointer + 0x54) = matrixTranslationFlags;
+    *(uint32_t *)(matrixContextPointer + MatrixTranslationFlagsOffset) = matrixTranslationFlags;
     uint32_t MatrixProjectionFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixWComponentOffset);
     uint32_t MatrixViewFlags = *(uint32_t *)(ObjectContext + ObjectContextSecurityContextOffset);
     uint32_t MatrixWorldFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
     *(uint32_t *)(matrixContextPointer + 0x58) = *(uint32_t *)(ObjectContext + 0x38);
-    *(uint32_t *)(matrixContextPointer + 0x5c) = matrixProjectionFlags;
-    *(uint32_t *)(matrixContextPointer + 0x60) = matrixViewFlags;
-    *(uint32_t *)(matrixContextPointer + 100) = MatrixWorldFlags;
-    matrixContextPointer = *(int64_t *)(SystemContext + 0x98);
+    *(uint32_t *)(matrixContextPointer + MatrixProjectionDataOffset) = matrixProjectionFlags;
+    *(uint32_t *)(matrixContextPointer + MatrixViewDataOffset) = matrixViewFlags;
+    *(uint32_t *)(matrixContextPointer + MatrixWorldDataOffset) = MatrixWorldFlags;
+    matrixContextPointer = *(int64_t *)(SystemContext + SystemContextMatrixPointerOffset);
     if ((*(int *)(matrixContextPointer + 0x180) != 0) || (*(int *)(matrixContextPointer + 0x184) != 0)) {
       ResourceValidationBuffer[0] = 0;
       InitializeSecurityContext(ResourceValidationBuffer);
@@ -57820,7 +57848,19 @@ void CheckThreadEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_1809071f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证系统资源完整性
+ * 
+ * 该函数负责验证系统资源的完整性，检查关键资源数据结构的状态
+ * 如果发现不一致或错误状态，会触发系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数用于系统资源完整性检查
+ * @warning 如果验证失败会触发系统紧急退出
+ */
+void ValidateSystemResourceIntegrity(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x40) != 0) {
@@ -57831,7 +57871,19 @@ void Unwind_1809071f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907200(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证系统内存完整性
+ * 
+ * 该函数负责验证系统内存的完整性，检查关键内存数据结构的状态
+ * 如果发现不一致或错误状态，会触发系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数用于系统内存完整性检查
+ * @warning 如果验证失败会触发系统紧急退出
+ */
+void ValidateSystemMemoryIntegrity(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x68) != 0) {
@@ -58110,7 +58162,19 @@ void ReleaseSRWLockExclusiveAccess(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_180907340(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放独占锁资源
+ * 
+ * 该函数负责释放独占锁资源，根据验证上下文中的状态标志
+ * 如果标志不为空，则释放对应的独占锁
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数用于释放独占锁资源
+ * @warning 锁的释放需要确保线程安全
+ */
+void ReleaseExclusiveLockResource(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 0x30) != '\0') {
@@ -58121,7 +58185,19 @@ void Unwind_180907340(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907350(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果
+ * 
+ * 该函数负责清理资源哈希验证结果，释放相关的资源索引
+ * 根据验证上下文中的信息，清理和释放资源哈希验证的相关数据
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数用于清理资源哈希验证结果
+ * @warning 清理过程需要确保内存访问的安全性
+ */
+void CleanupResourceHashValidationResult(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
