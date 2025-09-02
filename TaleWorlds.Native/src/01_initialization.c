@@ -70025,7 +70025,7 @@ void* ProcessAudioSignal(void)
         audioThresholdFlag14 = -(uint)(0.0001 < audioSignal6);
         audioThresholdFlag15 = -(uint)(0.0001 < audioSignal7);
         audioThresholdFlag16 = -(uint)(0.0001 < audioSignal8);
-        audioSignal30 = (float)((uint)((float)(audioStatusIndex2 + 4) * (float)unaff_XMM12_Da * 0.5 * audioSignal19 * audioSignal5 +
+        audioSignal30 = (float)((uint)((float)(audioStatusIndex2 + 4) * (float)AudioChannelCoefficient1 * 0.5 * audioSignal19 * audioSignal5 +
                                audioSignal30) & audioThresholdFlag13 | ~audioThresholdFlag13 & (uint)audioSignal30);
         audioSignal32 = (float)((uint)((float)(audioStatusIndex2 + 5) * (float)unaff_XMM12_Db * 0.5 * audioSignal21 * audioSignal6 +
                                audioSignal32) & audioThresholdFlag14 | ~audioThresholdFlag14 & (uint)audioSignal32);
