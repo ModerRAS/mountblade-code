@@ -21803,26 +21803,26 @@ void ProcessSystemTimestampHandler(void* SystemResourceManager,void* *Configurat
   uint creationFlags;
   long long ResourceDataOffset;
   uint8_t EncryptionBuffer58 [32];
-  long long longValue38;
-  int intValue30;
+  long long SystemValue38;
+  int SystemValue30;
   ulong long EncryptionKeyValue;
   
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer58;
   if (*AdditionalParameter < 1) {
-    longValue38 = 0;
-    intValue30 = 0;
+    SystemValue38 = 0;
+    SystemValue30 = 0;
   }
   else {
     ResourceDataOffset = _Xtime_get_ticks();
     ResourceDataOffset = (ResourceDataOffset + *AdditionalParameter * 10) * 100;
-    longValue38 = ResourceDataOffset / 1000000000;
-    intValue30 = (int)ResourceDataOffset + (int)longValue38 * -1000000000;
+    SystemValue38 = ResourceDataOffset / 1000000000;
+    SystemValue30 = (int)ResourceDataOffset + (int)SystemValue38 * -1000000000;
   }
   SystemOperationStatus = _Mtx_current_owns(*ConfigurationDataPointer);
   if (SystemOperationStatus == 0) {
     __Throw_Cpp_error_std__YAXH_Z(4);
   }
-  creationFlags = _Cnd_timedwait(SystemResourceManager,*ConfigurationDataPointer,&longValue38);
+  creationFlags = _Cnd_timedwait(SystemResourceManager,*ConfigurationDataPointer,&SystemValue38);
   if ((creationFlags & 0xfffffffd) != 0) {
     __Throw_C_error_std__YAXH_Z(creationFlags);
   }
@@ -58883,12 +58883,12 @@ void SystemNoOperationA(void)
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
     *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
     *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
+    *(void* )(MemoryBlockAddress + 0x188) = NetworkStackParameter;
+    *(void* )(MemoryBlockAddress + 400) = SecurityStackParameter;
+    *(void* )(MemoryBlockAddress + 0x198) = ThreadContextParameter;
   }
   FUN_18024a290(ResourceDataOffset4);
-  *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
+  *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe;
   *(int *)(systemMemoryBlockPtr + 0x1d0) = systemIndex0;
   if (isSystemActive9 != 0) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = creationFlags1;
@@ -59153,12 +59153,12 @@ void CleanupGlobalSystemResources(void)
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
     *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
     *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
+    *(void* )(MemoryBlockAddress + 0x188) = NetworkStackParameter;
+    *(void* )(MemoryBlockAddress + 400) = SecurityStackParameter;
+    *(void* )(MemoryBlockAddress + 0x198) = ThreadContextParameter;
   }
   FUN_18024a290(localSystemHandle9);
-  *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
+  *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe;
   *(int *)(systemMemoryBlockPtr + 0x1d0) = systemFlag;
   if (isOperationComplete0 != 0) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = creationFlags1;
@@ -59306,12 +59306,12 @@ void ProcessSystemMatrixOperations(void)
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
     *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
     *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
+    *(void* )(MemoryBlockAddress + 0x188) = NetworkStackParameter;
+    *(void* )(MemoryBlockAddress + 400) = SecurityStackParameter;
+    *(void* )(MemoryBlockAddress + 0x198) = ThreadContextParameter;
   }
-  FUN_18024a290();
-  *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
+  ProcessSystemCleanupOperations();
+  *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe;
   *(int *)(systemMemoryBlockPtr + 0x1d0) = systemFlag;
   if (isSystemActive8 != 0) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = SystemOperationStatus9;
@@ -59477,12 +59477,12 @@ void InitializeSystemVectorCalculations(void)
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
     *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
     *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
+    *(void* )(MemoryBlockAddress + 0x188) = NetworkStackParameter;
+    *(void* )(MemoryBlockAddress + 400) = SecurityStackParameter;
+    *(void* )(MemoryBlockAddress + 0x198) = ThreadContextParameter;
   }
-  FUN_18024a290();
-  *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
+  ProcessSystemCleanupOperations();
+  *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe;
   *(int *)(systemMemoryBlockPtr + 0x1d0) = systemFlag;
   if (isSystemActive8 != 0) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = SystemOperationStatus9;
@@ -59553,12 +59553,12 @@ void ExecuteSystemTransformOperations(void)
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
     *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
     *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
+    *(void* )(MemoryBlockAddress + 0x188) = NetworkStackParameter;
+    *(void* )(MemoryBlockAddress + 400) = SecurityStackParameter;
+    *(void* )(MemoryBlockAddress + 0x198) = ThreadContextParameter;
   }
-  FUN_18024a290();
-  *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
+  ProcessSystemCleanupOperations();
+  *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe;
   *(int *)(systemMemoryBlockPtr + 0x1d0) = SystemOperationStatus;
   if (isByteValid1 != 0) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = creationFlags;
