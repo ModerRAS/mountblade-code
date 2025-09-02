@@ -145,7 +145,7 @@
  * @param MemoryAddress 内存地址，指定要处理的内存页面位置
  * @return 无返回值
  */
-void ProcessSystemMemoryPage(long long memoryAddress);
+void ProcessSystemMemoryPage(long long MemoryAddress);
 
 /**
  * @brief 释放系统资源
@@ -168,7 +168,7 @@ void ReleaseSystemResource(void);
  * @param SourceData 源数据，用于初始化缓冲区的数据源
  * @return 无返回值
  */
-void InitializeSystemMemoryBuffer(void* memoryTemplate, long long bufferSize, void* sourceData);
+void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferSize, void* SourceData);
 
 /**
  * @brief 写入数据到缓冲区
@@ -181,7 +181,7 @@ void InitializeSystemMemoryBuffer(void* memoryTemplate, long long bufferSize, vo
  * @param ... 可变参数，表示要写入的数据
  * @return 无返回值
  */
-void WriteDataToBuffer(void* buffer, long long dataSize, ...);
+void WriteDataToBuffer(void* Buffer, long long DataSize, ...);
 
 /**
  * @brief 初始化系统内存分配器
@@ -193,7 +193,7 @@ void WriteDataToBuffer(void* buffer, long long dataSize, ...);
  * @param bufferContext 缓冲区上下文，包含缓冲区的相关信息
  * @return 分配器指针，返回初始化后的内存分配器指针
  */
-void* InitializeSystemMemoryAllocator(long long memoryHandle, void* bufferContext);
+void* InitializeSystemMemoryAllocator(long long MemoryHandle, void* BufferContext);
 
 /**
  * @brief 初始化系统数据
@@ -1183,51 +1183,51 @@ void* SystemDataBufferStandard11;
 void* SystemDataBufferStandard12;
 void* SystemDataBufferStandard13;
 void* SystemDataBufferStandard14;
-void* SystemDataBufferStandardQuindecenary;
-void* SystemDataBufferStandardSexdecenary;
-void* SystemDataBufferStandardSeptendecenary;
-void* SystemDataBufferStandardOctodecenary;
-void* SystemDataBufferStandardNovemdecenary;
-void* SystemDataBufferStandardVigesimal;
-void* SystemDataBufferStandardUnvigesimal;
-void* SystemDataBufferStandardDuovigesimal;
-void* SystemDataBufferStandardTrevigesimal;
-void* SystemDataBufferStandardQuattuorvigesimal;
-void* SystemDataBufferStandardQuinvigesimal;
-void* SystemDataBufferStandardSexvigesimal;
-void* SystemDataBufferStandardSeptenvigesimal;
-void* SystemDataBufferStandardOctovigesimal;
-void* SystemDataBufferStandardNovemvigesimal;
-void* SystemDataBufferStandardTrigesimal;
-void* SystemDataBufferExtendedOne;
-void* SystemDataBufferExtendedTwo;
-void* SystemDataBufferExtendedThree;
-void* SystemDataBufferExtendedFour;
-void* SystemDataBufferExtendedFive;
-void* SystemDataBufferExtendedSix;
-void* SystemDataBufferExtendedSeven;
-void* SystemDataBufferExtendedEight;
-void* SystemDataBufferExtendedNine;
-void* SystemDataBufferExtendedTen;
-void* SystemDataBufferExtendedEleven;
-void* SystemDataBufferExtendedTwelve;
-void* SystemDataBufferExtendedThirteen;
-void* SystemDataBufferExtendedFourteen;
-void* SystemDataBufferExtendedFifteen;
-void* SystemDataBufferExtendedSixteen;
-void* SystemDataBufferExtendedSeventeen;
-void* SystemDataBufferExtendedEighteen;
-void* SystemDataBufferExtendedNineteen;
-void* SystemDataBufferExtendedTwenty;
-void* SystemDataBufferExtendedTwentyOne;
-void* SystemDataBufferExtendedTwentyTwo;
-void* SystemDataBufferExtendedTwentyThree;
-void* SystemDataBufferExtendedTwentyFour;
-void* SystemDataBufferExtendedTwentyFive;
-void* SystemDataBufferExtendedTwentySix;
-void* SystemDataBufferExtendedTwentySeven;
-void* SystemDataBufferExtendedTwentyEight;
-void* SystemDataBufferExtendedTwentyNine;
+void* SystemDataBufferStandard15;
+void* SystemDataBufferStandard16;
+void* SystemDataBufferStandard17;
+void* SystemDataBufferStandard18;
+void* SystemDataBufferStandard19;
+void* SystemDataBufferStandard20;
+void* SystemDataBufferStandard21;
+void* SystemDataBufferStandard22;
+void* SystemDataBufferStandard23;
+void* SystemDataBufferStandard24;
+void* SystemDataBufferStandard25;
+void* SystemDataBufferStandard26;
+void* SystemDataBufferStandard27;
+void* SystemDataBufferStandard28;
+void* SystemDataBufferStandard29;
+void* SystemDataBufferStandard30;
+void* SystemDataBufferExtended01;
+void* SystemDataBufferExtended02;
+void* SystemDataBufferExtended03;
+void* SystemDataBufferExtended04;
+void* SystemDataBufferExtended05;
+void* SystemDataBufferExtended06;
+void* SystemDataBufferExtended07;
+void* SystemDataBufferExtended08;
+void* SystemDataBufferExtended09;
+void* SystemDataBufferExtended10;
+void* SystemDataBufferExtended11;
+void* SystemDataBufferExtended12;
+void* SystemDataBufferExtended13;
+void* SystemDataBufferExtended14;
+void* SystemDataBufferExtended15;
+void* SystemDataBufferExtended16;
+void* SystemDataBufferExtended17;
+void* SystemDataBufferExtended18;
+void* SystemDataBufferExtended19;
+void* SystemDataBufferExtended20;
+void* SystemDataBufferExtended21;
+void* SystemDataBufferExtended22;
+void* SystemDataBufferExtended23;
+void* SystemDataBufferExtended24;
+void* SystemDataBufferExtended25;
+void* SystemDataBufferExtended26;
+void* SystemDataBufferExtended27;
+void* SystemDataBufferExtended28;
+void* SystemDataBufferExtended29;
 void* SystemDataBufferExtendedThirty;
 void* SystemDataBufferExtendedThirtyOne;
 void* SystemDataBufferStandardExtraThirtyTwo;
