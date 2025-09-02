@@ -44114,7 +44114,19 @@ void ReleaseSystemResourceIndexExtended(uint8_t objectContext,int64_t validation
 
 
 
-void Unwind_180904990(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放验证上下文中的资源句柄
+ * 
+ * 该函数负责释放验证上下文中的资源句柄和相关资源
+ * 执行资源清理操作，确保系统资源正确释放
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @return 无返回值
+ * @note 此函数会释放指定上下文中的资源句柄
+ * @warning 调用此函数后，被释放的资源句柄将不再可用
+ */
+void ReleaseValidationContextResourceHandle(uint8_t objectContext,int64_t validationContext)
 
 {
   int *pResourceIndex;
@@ -44314,7 +44326,19 @@ void ProcessExtendedResourceIndexValidationAndCleanup(uint8_t objectContext,int6
 
 
 
-void Unwind_1809049f0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放验证上下文中0x48偏移位置的资源句柄
+ * 
+ * 该函数负责释放验证上下文中0x48偏移位置的资源句柄
+ * 执行资源清理操作，确保系统资源正确释放
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @return 无返回值
+ * @note 此函数会释放指定位置的资源句柄
+ * @warning 调用此函数后，被释放的资源句柄将不再可用
+ */
+void ReleaseResourceHandleAtContextOffset48(uint8_t objectContext,int64_t validationContext)
 
 {
   int *pResourceIndex;
@@ -44392,7 +44416,19 @@ void CloseHandleAtContextOffset70(uint8_t objectContext,int64_t validationContex
 
 
 
-void Unwind_180904a20(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放验证上下文中0x70偏移位置的资源句柄
+ * 
+ * 该函数负责释放验证上下文中0x70偏移位置的资源句柄和相关资源
+ * 执行资源清理操作，确保系统资源正确释放
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @return 无返回值
+ * @note 此函数会释放指定位置的资源句柄
+ * @warning 调用此函数后，被释放的资源句柄将不再可用
+ */
+void ReleaseResourceHandleAtContextOffset70(uint8_t objectContext,int64_t validationContext)
 
 {
   int *pResourceIndex;
@@ -44454,7 +44490,19 @@ void Unwind_180904a20(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904a30(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放验证上下文中0x2e0偏移位置的资源句柄
+ * 
+ * 该函数负责释放验证上下文中0x2e0偏移位置的资源句柄和相关资源
+ * 执行资源清理操作，确保系统资源正确释放
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @return 无返回值
+ * @note 此函数会释放指定位置的资源句柄
+ * @warning 调用此函数后，被释放的资源句柄将不再可用
+ */
+void ReleaseResourceHandleAtContextOffset2E0(uint8_t objectContext,int64_t validationContext)
 
 {
   int *pResourceIndex;
@@ -44516,7 +44564,19 @@ void Unwind_180904a30(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904a50(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放验证上下文中0x2f8偏移位置的资源句柄
+ * 
+ * 该函数负责释放验证上下文中0x2f8偏移位置的资源句柄和相关资源
+ * 执行资源清理操作，确保系统资源正确释放
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @return 无返回值
+ * @note 此函数会释放指定位置的资源句柄
+ * @warning 调用此函数后，被释放的资源句柄将不再可用
+ */
+void ReleaseResourceHandleAtContextOffset2F8(uint8_t objectContext,int64_t validationContext)
 
 {
   int *pResourceIndex;
@@ -46828,7 +46888,19 @@ void ValidateSystemStatusAndEmergencyExitB(uint8_t objectContext, int64_t valida
 
 
 
-void Unwind_1809054c0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 初始化系统资源处理器模板到0x90偏移位置
+ * 
+ * 该函数负责将系统资源处理器模板设置到验证上下文的0x90偏移位置
+ * 并重置相关状态标志
+ * 
+ * @param objectContext 对象上下文参数
+ * @param validationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数会初始化系统资源处理器模板
+ * @warning 如果系统状态异常，可能会触发紧急退出
+ */
+void InitializeSystemResourceHandlerTemplateAtOffset90(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0x90) = &SystemResourceHandlerTemplate;
