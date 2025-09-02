@@ -7129,53 +7129,53 @@ void InitializeSystemResourceInitializer(void)
 void InitializeSystemFloatingPointCalculator(void)
 
 {
-  ulong long LoopCounter;
-  float *FloatTablePointer;
+  ulong long TableIterationCounter;
+  float *FloatTableEntryPointer;
   int NodeIdentifierCompareResult;
-  ulong long OuterLoopCounter;
-  uint InnerLoopCounter;
-  ulong long BaseCounter;
-  int RangeOffset;
-  float *CurrentFloatTable;
-  float CalculatedValue;
+  ulong long OuterIterationCounter;
+  uint InnerIterationCounter;
+  ulong long BaseValueCounter;
+  int OffsetRange;
+  float *CurrentFloatTableAddress;
+  float ComputedFloatValue;
   
-  CurrentFloatTable = (float *)SYSTEM_FLOAT_TABLE_START_ADDRESS;
-  BaseCounter = 0;
-  RangeOffset = -3;
-  OuterLoopCounter = BaseCounter;
+  CurrentFloatTableAddress = (float *)SYSTEM_FLOAT_TABLE_START_ADDRESS;
+  BaseValueCounter = 0;
+  OffsetRange = -3;
+  OuterIterationCounter = BaseValueCounter;
   do {
-    if (0 < (long long)OuterLoopCounter) {
-      int InnerOffset = -3;
-      LoopCounter = BaseCounter;
-      FloatTablePointer = CurrentFloatTable;
+    if (0 < (long long)OuterIterationCounter) {
+      int InnerOffsetValue = -3;
+      TableIterationCounter = BaseValueCounter;
+      FloatTableEntryPointer = CurrentFloatTableAddress;
       do {
-        CalculatedValue = 0.0;
-        if (-1 < (long long)LoopCounter) {
-          if ((long long)LoopCounter < 3) {
-            CalculatedValue = 0.75;
+        ComputedFloatValue = 0.0;
+        if (-1 < (long long)TableIterationCounter) {
+          if ((long long)TableIterationCounter < 3) {
+            ComputedFloatValue = 0.75;
           }
           else {
-            CalculatedValue = 1.0 - (float)InnerOffset / (float)RangeOffset;
-            CalculatedValue = SQRT(CalculatedValue) * CalculatedValue;
+            ComputedFloatValue = 1.0 - (float)InnerOffsetValue / (float)OffsetRange;
+            ComputedFloatValue = SQRT(ComputedFloatValue) * ComputedFloatValue;
           }
         }
-        *FloatTablePointer = CalculatedValue;
-        InnerOffset = InnerOffset + 1;
-        FloatTablePointer = FloatTablePointer + 1;
-        LoopCounter = LoopCounter + 1;
-      } while ((long long)LoopCounter < (long long)OuterLoopCounter);
+        *FloatTableEntryPointer = ComputedFloatValue;
+        InnerOffsetValue = InnerOffsetValue + 1;
+        FloatTableEntryPointer = FloatTableEntryPointer + 1;
+        TableIterationCounter = TableIterationCounter + 1;
+      } while ((long long)TableIterationCounter < (long long)OuterIterationCounter);
     }
-    RangeOffset = RangeOffset + 1;
-    OuterLoopCounter = OuterLoopCounter + 1;
-    CurrentFloatTable = CurrentFloatTable + 0x40;
-  } while ((long long)CurrentFloatTable < SYSTEM_FLOAT_TABLE_END_ADDRESS);
-  CurrentFloatTable = (float *)SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS;
+    OffsetRange = OffsetRange + 1;
+    OuterIterationCounter = OuterIterationCounter + 1;
+    CurrentFloatTableAddress = CurrentFloatTableAddress + 0x40;
+  } while ((long long)CurrentFloatTableAddress < SYSTEM_FLOAT_TABLE_END_ADDRESS);
+  CurrentFloatTableAddress = (float *)SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS;
   do {
-    InnerLoopCounter = (int)BaseCounter + 1;
-    *CurrentFloatTable = 1.0 / SQRT((float)BaseCounter) + 1.0 / SQRT((float)BaseCounter);
-    CurrentFloatTable = CurrentFloatTable + 1;
-    BaseCounter = (ulong long)InnerLoopCounter;
-  } while (InnerLoopCounter < 0x40);
+    InnerIterationCounter = (int)BaseValueCounter + 1;
+    *CurrentFloatTableAddress = 1.0 / SQRT((float)BaseValueCounter) + 1.0 / SQRT((float)BaseValueCounter);
+    CurrentFloatTableAddress = CurrentFloatTableAddress + 1;
+    BaseValueCounter = (ulong long)InnerIterationCounter;
+  } while (InnerIterationCounter < 0x40);
   return;
 }
 
@@ -57001,14 +57001,14 @@ long long CalculateSystemResourceManagerHandle(long long SystemResourceManager)
   isOperationComplete = *(byte *)(SystemResourceManager + 0xfd) & 0x20;
   resourceDataIndex = SystemResourceManager;
   if (isOperationComplete == 0) {
-    resourceDataIndex = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    resourceDataIndex = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   SystemThreadHandle = 2;
   if (0xffff < *(int *)(resourceDataIndex + 0x200)) {
     SystemThreadHandle = 4;
   }
   if (isOperationComplete == 0) {
-    SystemResourceManager = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    SystemResourceManager = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   return (*(int *)(SystemResourceManager + 0x1fc) * 3) * SystemThreadHandle;
 }
@@ -57066,7 +57066,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
   SystemContextValue = 0xfffffffffffffffe;
   pfloatValue6 = SystemResourceManager;
   if ((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x20) == 0) {
-    pfloatValue6 = (float *)func_0x000180085de0(*(void* *)(SystemResourceManager + 0x6c));
+    pfloatValue6 = (float *)GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x6c));
   }
   if ((*(long long *)(pfloatValue6 + 0x84) != 0) && (((uint)SystemResourceManager[0x40] & 0x80) == 0)) {
     primaryFloatPointer = SystemResourceManager + 0x9d;
@@ -57918,18 +57918,18 @@ void* SystemResourceStatusValidator(long long SystemResourceManager)
   isOperationComplete = *(byte *)(SystemResourceManager + 0xfd);
   SystemThreadHandle = SystemResourceManager;
   if ((isOperationComplete & 0x20) == 0) {
-    SystemThreadHandle = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    SystemThreadHandle = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   if (0 < *(int *)(SystemThreadHandle + 0x200)) {
     SystemThreadHandle = *(long long *)(SystemResourceManager + 0x1b8);
     isByteValid = *(byte *)(SystemThreadHandle + 0x38c);
     if (isByteValid == 9) {
-      isByteValid = func_0x00018022d300();
+      isByteValid = CheckSystemStatus();
       *(byte *)(SystemThreadHandle + 0x38c) = isByteValid;
       isOperationComplete = *(byte *)(SystemResourceManager + 0xfd);
     }
     if ((isOperationComplete & 0x20) == 0) {
-      SystemResourceManager = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+      SystemResourceManager = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
     }
     if ((*(long long *)(SystemResourceManager + 0x1e0) == 0) ||
        (*(byte *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + (ulong long)isByteValid * 0x18) < 2)) {
@@ -58254,7 +58254,7 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
       isThreadActive = *(byte *)((long long)SystemResourceManager + 0xfd) & 0x20;
       SystemCalculatedBufferAddress = SystemResourceManager;
       if (isThreadActive == 0) {
-        SystemCalculatedBufferAddress = (long long *)func_0x000180085de0(SystemResourceManager[0x36]);
+        SystemCalculatedBufferAddress = (long long *)GetSystemThreadHandle(SystemResourceManager[0x36]);
       }
       if (((*(uint *)(SystemCalculatedBufferAddress + 0x20) & 0x8000000) == 0) && (isThreadActive != 0)) {
         pEncryptionValue68 = (ulong long *)SystemResourceManager;
@@ -58276,7 +58276,7 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
     }
     SystemCalculatedBufferAddress = SystemResourceManager;
     if ((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x20) == 0) {
-      SystemCalculatedBufferAddress = (long long *)func_0x000180085de0(SystemResourceManager[0x36]);
+      SystemCalculatedBufferAddress = (long long *)GetSystemThreadHandle(SystemResourceManager[0x36]);
     }
     if ((*(uint *)(SystemCalculatedBufferAddress + 0x20) & 0x8000000) != 0) {
       pEncryptionValue68 = (ulong long *)SystemResourceManager;
@@ -58353,12 +58353,12 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
   
   resourceDataIndex3 = SystemResourceManager;
   if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0) {
-    resourceDataIndex3 = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    resourceDataIndex3 = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   resourceDataIndex2 = *(long long *)(SystemResourceManager + 0x1b8);
   isThreadActive = *(byte *)(resourceDataIndex2 + 0x38c);
   if (isThreadActive == 9) {
-    isThreadActive = func_0x00018022d300();
+    isThreadActive = CheckSystemStatus();
     *(byte *)(resourceDataIndex2 + 0x38c) = isThreadActive;
   }
   if ((*(long long *)(resourceDataIndex3 + 0x1e0) == 0) ||
@@ -58394,7 +58394,7 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
         do {
           resourceDataIndex2 = *(long long *)(resourceDataIndex3 + *(long long *)(SystemResourceManager + 0x1b8));
           if (((resourceDataIndex2 != 0) && (SystemResourceDataIndex = *(long long *)(resourceDataIndex2 + 0x370), SystemResourceDataIndex != 0)) &&
-             ((charBuffer = func_0x0001802434e0(), charBuffer != '\0' &&
+             ((charBuffer = GetSystemCharBuffer(), charBuffer != '\0' &&
               ((*(char *)(SystemResourceDataIndex + 0xde) != '\0' &&
                (isMemoryReady = true, (*(byte *)(ConfigurationDataPointer + 0x1bd8) & 0x20) != 0)))))) {
             pSystemOperationStatusFlag = *(code **)(**(long long **)(ConfigurationDataPointer + 0x3580) + 0xb8);
@@ -58626,7 +58626,7 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
   OperationCompleteFlag = *(byte *)(SystemResourceManager + 0xfd) & 0x20;
   ThreadHandle1 = SystemResourceManager;
   if (OperationCompleteFlag == 0) {
-    ThreadHandle1 = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    ThreadHandle1 = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   if (*(int *)(ThreadHandle1 + 0x200) == 0) {
 SystemResourceValidationPoint:
@@ -58634,7 +58634,7 @@ SystemResourceValidationPoint:
     ThreadHandle1 = *(long long *)(SystemResourceManager + 0x1b8);
     SecurityParameter = 0;
     if (*(char *)(ThreadHandle1 + 0x38c) == '\t') {
-      SecurityParameter = func_0x00018022d300();
+      SecurityParameter = CheckSystemStatus();
       *(char *)(ThreadHandle1 + 0x38c) = (char)SecurityParameter;
       if ((char)SecurityParameter == '\t') goto SystemResourceProcessingComplete;
     }
@@ -58644,11 +58644,11 @@ SystemSecurityValidationFailed:
   else {
     ThreadHandle1 = SystemResourceManager;
     if (OperationCompleteFlag == 0) {
-      ThreadHandle1 = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+      ThreadHandle1 = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
     }
     if (*(int *)(ThreadHandle1 + 0x1fc) * 3 == 0) goto SystemResourceValidationPoint;
 SystemResourceProcessingComplete:
-    SystemOperationResult1 = func_0x0001800854e0(SystemResourceManager);
+    SystemOperationResult1 = ReleaseSystemResource(SystemResourceManager);
     if ((SystemOperationResult1 == '\0') || (ConfigurationFlag == 0)) {
       ReleaseSystemResourceManager(SystemResourceManager,0);
       if ((*(byte *)(SystemResourceManager + 0xfe) & 4) == 0) {
@@ -58742,12 +58742,12 @@ SystemResourceProcessingComplete:
             ThreadHandle1 = SystemResourceManager;
             MemoryOffsetArray[0] = HashEntryPointer;
             if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0) {
-              ThreadHandle1 = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+              ThreadHandle1 = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
             }
             ThreadHandle2 = *(long long *)(SystemResourceManager + 0x1b8);
             OperationCompleteFlag = *(byte *)(ThreadHandle2 + 0x38c);
             if (OperationCompleteFlag == 9) {
-              OperationCompleteFlag = func_0x00018022d300();
+              OperationCompleteFlag = CheckSystemStatus();
               *(byte *)(ThreadHandle2 + 0x38c) = OperationCompleteFlag;
             }
             ConfigurationDataPointer = StackPointer1;
@@ -59057,12 +59057,12 @@ void SystemNoOperationA(void)
   ResourceDataOffset3 = memoryBlockAddress;
   InputStackParameter40 = SystemHashNodeData8;
   if ((*(byte *)(memoryBlockAddress + 0xfd) & 0x20) == 0) {
-    ResourceDataOffset3 = func_0x000180085de0(*(void* *)(memoryBlockAddress + 0x1b0));
+    ResourceDataOffset3 = GetSystemThreadHandle(*(void* *)(memoryBlockAddress + 0x1b0));
   }
   ResourceDataOffset4 = *(long long *)(memoryBlockAddress + 0x1b8);
   isSystemActive9 = *(byte *)(ResourceDataOffset4 + 0x38c);
   if (isSystemActive9 == 9) {
-    isSystemActive9 = func_0x00018022d300();
+    isSystemActive9 = CheckSystemStatus();
     *(byte *)(ResourceDataOffset4 + 0x38c) = isSystemActive9;
   }
   ResourceDataOffset4 = ResourceOffset;
@@ -59331,7 +59331,7 @@ void CleanupGlobalSystemResources(void)
   isOperationComplete0 = *(byte *)(ResourceDataOffset3 + 0x38c);
   ResourceDataOffset5 = memoryBlockAddress;
   if (isOperationComplete0 == 9) {
-    isOperationComplete0 = func_0x00018022d300();
+    isOperationComplete0 = CheckSystemStatus();
     *(byte *)(ResourceDataOffset3 + 0x38c) = isOperationComplete0;
   }
   SystemThreadHandle9 = StackParameter178;
@@ -59999,12 +59999,12 @@ ulong long ProcessSystemResourceInitialization(long long SystemResourceManager,v
     isSystemActive3 = *(byte *)(SystemResourceManager + 0xfd) & 0x20;
     SystemThreadIndex = SystemResourceManager;
     if (isSystemActive3 == 0) {
-      SystemThreadIndex = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+      SystemThreadIndex = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
     }
     if (*(int *)(SystemThreadIndex + 0x200) != 0) {
       SystemThreadIndex = SystemResourceManager;
       if (isSystemActive3 == 0) {
-        SystemThreadIndex = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+        SystemThreadIndex = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
       }
       if (*(int *)(SystemThreadIndex + 0x1fc) * 3 != 0) goto LAB_180077fcf;
     }
@@ -60013,7 +60013,7 @@ LAB_180077fcf:
       SystemThreadHandle2 = *(long long *)(SystemResourceManager + 0x1b8);
       charStatus9 = *(char *)(SystemThreadHandle2 + 0x38c);
       if (charStatus9 == '\t') {
-        charStatus9 = func_0x00018022d300();
+        charStatus9 = CheckSystemStatus();
         *(char *)(SystemThreadHandle2 + 0x38c) = charStatus9;
       }
       charStatus9 = ValidateSystemResourceStatus(SystemResourceManager,SystemResourceManager + 0x1e8,charStatus9,1);
@@ -60075,7 +60075,7 @@ LAB_180077fcf:
     }
     in_RAX = 0;
     if (*(char *)(SystemThreadHandle2 + 0x38c) == '\t') {
-      in_RAX = func_0x00018022d300(SystemThreadHandle2);
+      in_RAX = CheckSystemStatus(SystemThreadHandle2);
       *(char *)(SystemThreadHandle2 + 0x38c) = (char)in_RAX;
       if ((char)in_RAX == '\t') goto LAB_180077fcf;
     }
@@ -60246,7 +60246,7 @@ void ProcessSystemResourceManagerStatus(long long SystemResourceManager)
      (resourceDataIndex = *(long long *)(*(long long *)(SystemResourceManager + 0x1c8) + 0x28), resourceDataIndex != 0)) {
     OffsetValue = (*(float *)(resourceDataIndex + 0x74) * *(float *)(resourceDataIndex + 0x88) -
              *(float *)(resourceDataIndex + 0x78) * *(float *)(resourceDataIndex + 0x84)) * *(float *)(resourceDataIndex + 0x90);
-    func_0x0001800773c0(OffsetValue,(*(float *)(resourceDataIndex + 0x78) * *(float *)(resourceDataIndex + 0x80) -
+    CalculateSystemValue(OffsetValue,(*(float *)(resourceDataIndex + 0x78) * *(float *)(resourceDataIndex + 0x80) -
                                *(float *)(resourceDataIndex + 0x70) * *(float *)(resourceDataIndex + 0x88)) *
                                *(float *)(resourceDataIndex + 0x94) + OffsetValue +
                                (*(float *)(resourceDataIndex + 0x70) * *(float *)(resourceDataIndex + 0x84) -
@@ -60357,7 +60357,7 @@ void ValidateSystemResourceManagerStatus(long long SystemResourceManager)
   if ((in_RAX != 0) && (resourceDataIndex = *(long long *)(in_RAX + 0x28), resourceDataIndex != 0)) {
     ScalingFactor = (*(float *)(resourceDataIndex + 0x74) * *(float *)(resourceDataIndex + 0x88) -
              *(float *)(resourceDataIndex + 0x78) * *(float *)(resourceDataIndex + 0x84)) * *(float *)(resourceDataIndex + 0x90);
-    func_0x0001800773c0(ScalingFactor,(*(float *)(resourceDataIndex + 0x78) * *(float *)(resourceDataIndex + 0x80) -
+    CalculateSystemValue(ScalingFactor,(*(float *)(resourceDataIndex + 0x78) * *(float *)(resourceDataIndex + 0x80) -
                                *(float *)(resourceDataIndex + 0x70) * *(float *)(resourceDataIndex + 0x88)) *
                                *(float *)(resourceDataIndex + 0x94) + ScalingFactor +
                                (*(float *)(resourceDataIndex + 0x70) * *(float *)(resourceDataIndex + 0x84) -
@@ -60473,7 +60473,7 @@ void ProcessSystemFloatTransformation(float SystemResourceManager, float Configu
   float systemFloatValue;
   
   ScalingFactor = (*(float *)(in_RAX + 0x74) * ConfigurationDataPointer - AdditionalParameter * ConfigurationFlag) * *(float *)(in_RAX + 0x90);
-  func_0x0001800773c0(ScalingFactor,(AdditionalParameter * in_XMM4_Da - SystemResourceManager * ConfigurationDataPointer) * *(float *)(in_RAX + 0x94)
+  CalculateSystemValue(ScalingFactor,(AdditionalParameter * in_XMM4_Da - SystemResourceManager * ConfigurationDataPointer) * *(float *)(in_RAX + 0x94)
                              + ScalingFactor +
                              (in_XMM5_Da * ConfigurationFlag - *(float *)(in_RAX + 0x74) * in_XMM4_Da) *
                              *(float *)(in_RAX + 0x98) < systemFloatValue);
@@ -60905,14 +60905,14 @@ void InitializeSystemResourceData(void* *SystemResourceManager,long long Configu
   }
   SystemResourceManager[0x26] = dataIndex;
   if ((*(char *)(ConfigurationDataPointer + 0x248) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    configurationFlags = func_0x0001801fc730();
+    configurationFlags = GetConfigurationFlagA();
   }
   else {
     configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x240);
   }
   *(uint32_t *)((long long)SystemResourceManager + 0x114) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x254) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    configurationFlags = func_0x0001801fc760();
+    configurationFlags = GetConfigurationFlagB();
   }
   else {
     configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x24c);
@@ -60936,42 +60936,42 @@ void InitializeSystemResourceData(void* *SystemResourceManager,long long Configu
   *(uint32_t *)(SystemResourceManager + 0x21) = operationStatusSecondary;
   *(uint32_t *)((long long)SystemResourceManager + 0x10c) = operationStatusTertiary;
   if ((*(char *)(ConfigurationDataPointer + 0x2fc) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    configurationFlags = func_0x0001801fca90();
+    configurationFlags = GetConfigurationFlagC();
   }
   else {
     configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2f4);
   }
   *(uint32_t *)(SystemResourceManager + 0x22) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x260) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    configurationFlags = func_0x0001801fcac0();
+    configurationFlags = GetConfigurationFlagD();
   }
   else {
     configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 600);
   }
   *(uint32_t *)((long long)SystemResourceManager + 0x11c) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x26c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    configurationFlags = func_0x0001801fcb00();
+    configurationFlags = GetConfigurationFlagE();
   }
   else {
     configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x264);
   }
   *(uint32_t *)(SystemResourceManager + 0x24) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x278) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    configurationFlags = func_0x0001801fcb40();
+    configurationFlags = GetConfigurationFlagF();
   }
   else {
     configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x270);
   }
   *(uint32_t *)((long long)SystemResourceManager + 0x124) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x284) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    configurationFlags = func_0x0001801fcb80();
+    configurationFlags = GetConfigurationFlagG();
   }
   else {
     configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x27c);
   }
   *(uint32_t *)(SystemResourceManager + 0x25) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x290) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    configurationFlags = func_0x0001801fc7a0();
+    configurationFlags = GetConfigurationFlagH();
   }
   else {
     configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x288);
@@ -61577,7 +61577,7 @@ void ProcessSystemResourceConfiguration(long long SystemResourceManager,long lon
   resourceDataIndex7 = SystemDataMemoryContext;
   ResourceDataOffset3 = SystemResourceManager;
   if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0) {
-    ResourceDataOffset3 = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    ResourceDataOffset3 = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   LOCK();
   pointerToInteger2 = (int *)(resourceDataIndex7 + 0xed8);
@@ -61893,7 +61893,7 @@ void ProcessSystemResourceValidation(long long SystemResourceManager)
   resourceDataIndex7 = SystemDataMemoryContext;
   ResourceDataOffset3 = SystemResourceManager;
   if (in_ZF) {
-    ResourceDataOffset3 = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    ResourceDataOffset3 = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   LOCK();
   pointerToInteger2 = (int *)(resourceDataIndex7 + 0xed8);
@@ -63174,7 +63174,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
   SystemContextValue = 0xfffffffffffffffe;
   pfloatValue7 = SystemResourceManager;
   if ((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x20) == 0) {
-    pfloatValue7 = (float *)func_0x000180085de0(*(void* *)(SystemResourceManager + 0x6c));
+    pfloatValue7 = (float *)GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x6c));
   }
   if ((*(long long *)(pfloatValue7 + 0x84) != 0) && (((uint)SystemResourceManager[0x40] & 0x80) == 0)) {
     primaryFloatPointer = SystemResourceManager + 0x9d;
@@ -64590,7 +64590,7 @@ uint8_t ValidateSystemResourceAccess(long long SystemResourceManager)
   SystemThreadHandle = *(long long *)(SystemResourceManager + 0x1b8);
   charStatus = *(char *)(SystemThreadHandle + 0x38c);
   if (charStatus == '\t') {
-    charStatus = func_0x00018022d300();
+    charStatus = CheckSystemStatus();
     *(char *)(SystemThreadHandle + 0x38c) = charStatus;
   }
   charStatus = ProcessCharacterStatus(SystemResourceManager,SystemResourceManager + 0x1e8,charStatus);
@@ -64649,7 +64649,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   
   SystemProcessFlags58 = 0xfffffffffffffffe;
   while ((SystemThreadFlags = SystemResourceManager, (*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0 &&
-         (SystemThreadFlags = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0)), SystemThreadFlags != SystemResourceManager))) {
+         (SystemThreadFlags = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0)), SystemThreadFlags != SystemResourceManager))) {
     if ((ConfigurationFlag != '\0') ||
        (pisByteValid = (byte *)(SystemResourceManager + 0x100), SystemResourceManager = SystemThreadFlags, (*pisByteValid & 8) != 0)) {
       ConfigurationFlag = '\x01';
@@ -64685,7 +64685,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   if (!isByteValid5) goto LAB_18007b8fd;
   SystemThreadFlags = SystemResourceManager;
   if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0) {
-    SystemThreadFlags = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    SystemThreadFlags = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   if (*(int *)(SystemThreadFlags + 0x200) < 1) {
     LOCK();
@@ -64750,7 +64750,7 @@ LAB_18007b454:
   }
   SystemThreadFlags = SystemResourceManager;
   if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0) {
-    SystemThreadFlags = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    SystemThreadFlags = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   *(uint32_t *)(PrimaryResourcePointer0 + 2) = *(uint32_t *)(SystemThreadFlags + 0x200);
   *(byte *)(PrimaryResourcePointer0 + 0x13) =
@@ -64774,12 +64774,12 @@ LAB_18007b454:
   isMemoryReady = *(byte *)(SystemResourceManager + 0xfd) & 0x20;
   SystemThreadFlags = SystemResourceManager;
   if (isMemoryReady == 0) {
-    SystemThreadFlags = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    SystemThreadFlags = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   systemCounter = *(int *)(SystemThreadFlags + 0x200);
   SystemThreadFlags = SystemResourceManager;
   if (isMemoryReady == 0) {
-    SystemThreadFlags = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    SystemThreadFlags = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   systemIndex = *(int *)(SystemThreadFlags + 0x1fc);
   SystemOperationStatus3 = 2;
@@ -65653,13 +65653,13 @@ void ProcessSystemThreadStatusAndConfiguration(long long SystemResourceManager,u
   
   SystemThreadHandle = SystemResourceManager;
   if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0) {
-    SystemThreadHandle = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+    SystemThreadHandle = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   if (0 < *(int *)(SystemThreadHandle + 0x200)) {
     SystemThreadHandle = *(long long *)(SystemResourceManager + 0x1b8);
     charStatus = *(char *)(SystemThreadHandle + 0x38c);
     if (charStatus == '\t') {
-      charStatus = func_0x00018022d300();
+      charStatus = CheckSystemStatus();
       *(char *)(SystemThreadHandle + 0x38c) = charStatus;
     }
     charStatus = ProcessCharacterStatus(SystemResourceManager,SystemResourceManager + 0x1e8,charStatus,ConfigurationDataPointer);
@@ -65875,7 +65875,7 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
   
   SystemThreadHandle1 = 0;
   if (SystemResourceManager < 0xe) {
-    systemCode = func_0x000180204ae0(SystemResourceManager,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0,InvalidHandleValue);
+    systemCode = ExecuteSystemCode(SystemResourceManager,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0,InvalidHandleValue);
   }
   else {
     systemCode = -1;
@@ -66380,19 +66380,19 @@ code_r0x00018007db1b:
       if (*(int *)(ConfigurationDataPointer + 0x38) < 1) {
         SystemThreadHandle5 = 0x18;
       }
-      ResourceHash = func_0x0001800840d0(0x3f800000);
+      ResourceHash = GetSystemThreadContext(0x3f800000);
       NetworkConnectionFlags = (ulong long)ResourceHash;
       do {
         SystemThreadHandle2 = *(long long *)(ConfigurationDataPointer + 0x68);
-        ThreadContextFlag = func_0x0001800840d0(*(uint32_t *)
+        ThreadContextFlag = GetSystemThreadContext(*(uint32_t *)
                                      (*(long long *)(SystemThreadHandle5 + ConfigurationDataPointer) +
                                      (long long)*(int *)(SystemThreadHandle1 + SystemThreadHandle2) * 0x10));
         *(void*2 *)pResultValue2 = ThreadContextFlag;
-        ThreadContextFlag = func_0x0001800840d0(*(uint32_t *)
+        ThreadContextFlag = GetSystemThreadContext(*(uint32_t *)
                                      (*(long long *)(SystemThreadHandle5 + ConfigurationDataPointer) + 4 +
                                      (long long)*(int *)(SystemThreadHandle1 + SystemThreadHandle2) * 0x10));
         *(void*2 *)((long long)pResultValue2 + 2) = ThreadContextFlag;
-        ThreadContextFlag = func_0x0001800840d0(*(uint32_t *)
+        ThreadContextFlag = GetSystemThreadContext(*(uint32_t *)
                                      (*(long long *)(SystemThreadHandle5 + ConfigurationDataPointer) + 8 +
                                      (long long)*(int *)(SystemThreadHandle1 + SystemThreadHandle2) * 0x10));
         *(void*2 *)(pResultValue2 + 1) = ThreadContextFlag;
@@ -66705,7 +66705,7 @@ void ProcessSystemTextureManagerConfiguration(long long SystemResourceManager,ul
         }
       }
       if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0) {
-        SystemResourceManager = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+        SystemResourceManager = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
       }
       ProcessMemoryOffset(systemMemoryOffset,*ConfigurationFlag + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,0xffff < *(int *)(SystemResourceManager + 0x200));
     }
@@ -67067,7 +67067,7 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
     SystemThreadHandle = *(long long *)(SystemResourceManager + 0x1b8);
     isByteValid = *(byte *)(SystemThreadHandle + 0x38c);
     if (isByteValid == 9) {
-      isByteValid = func_0x00018022d300();
+      isByteValid = CheckSystemStatus();
       *(byte *)(SystemThreadHandle + 0x38c) = isByteValid;
     }
     SystemResourceOffsetPointer = pLocalMemoryAddress;
@@ -67119,7 +67119,7 @@ code * ConfigureSystemResources(long long SystemResourceManager,char Configurati
   ResourcePointer = (code *)(SystemResourceManager + 0x210);
   if (*(long long *)ResourcePointer == 0) {
     if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0) {
-      LocalContext = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
+      LocalContext = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
       if (LocalContext != SystemResourceManager) {
         ConfigurationFlags = 0;
         InitializeSystemContext(&LocalContext);
