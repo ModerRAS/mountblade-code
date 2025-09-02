@@ -6831,7 +6831,7 @@ uint8_t SystemModuleInitializeSecondary(void)
   return unaff_SIL;
 }
 uint64_t
-InitializeNetworkRequestSystem(uint64_t param_1,longlong *param_2,longlong *param_3,uint param_4,char param_5)
+InitializeNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRequestArrayPointer,longlong *MemoryDataPointer,uint NetworkRequestFlags,char ConfigurationOption)
 {
   int64_t ModuleInitializationResult;
   longlong LongCounter;
@@ -6844,9 +6844,9 @@ InitializeNetworkRequestSystem(uint64_t param_1,longlong *param_2,longlong *para
   longlong LongAddress;
   longlong ModuleInitializationResult0;
   UnsignedIndex = 0;
-  ModuleInitializationResult = param_3[1];
-  LongCounter = *param_3;
-  NetworkRequestResult = param_2[1] - *param_2 >> 3;
+  ModuleInitializationResult = MemoryDataPointer[1];
+  LongCounter = *MemoryDataPointer;
+  NetworkRequestResult = NetworkRequestArrayPointer[1] - *NetworkRequestArrayPointer >> 3;
   if ((int)NetworkRequestResult != 0) {
     LongData = 0;
     NetworkRequestResult = NetworkRequestResult & 0xffffffff;
@@ -6855,22 +6855,22 @@ InitializeNetworkRequestSystem(uint64_t param_1,longlong *param_2,longlong *para
       UnsignedValue = (uint)(ModuleInitializationResult - LongCounter >> 3);
       if (UnsignedValue != 0) {
         do {
-          if (*(int *)(*(longlong *)(*param_2 + LongData) + 8) ==
-              *(int *)(*(longlong *)(*param_3 + MemoryAllocationResult * 8) + 8)) goto Label_18032bf87;
+          if (*(int *)(*(longlong *)(*NetworkRequestArrayPointer + LongData) + 8) ==
+              *(int *)(*(longlong *)(*MemoryDataPointer + MemoryAllocationResult * 8) + 8)) goto Label_18032bf87;
           StringProcessingResult = (int)MemoryAllocationResult + 1;
           MemoryAllocationResult = (ulonglong)StringProcessingResult;
         } while (StringProcessingResult < UnsignedValue);
       }
-      LongAddress = *(longlong *)(LongData + *param_2);
-      *(uint *)(LongAddress + 0x10) = *(uint *)(LongAddress + 0x10) | param_4;
-      if (((param_5 != '\0') && (*(int *)(LongAddress + 0x8c) == 2)) &&
+      LongAddress = *(longlong )(LongData + *NetworkRequestArrayPointer);
+      *(uint *)(LongAddress + 0x10) = *(uint *)(LongAddress + 0x10) | NetworkRequestFlags;
+      if (((ConfigurationOption != '\0') && (*(int )(LongAddress + 0x8c) == 2)) &&
          (MemoryAllocationResult = *(longlong *)(LongAddress + 0xc0) - *(longlong *)(LongAddress + 0xb8) >> 3, (int)MemoryAllocationResult != 0))
       {
         ModuleInitializationResult0 = 0;
         MemoryAllocationResult = MemoryAllocationResult & 0xffffffff;
         do {
-          ConfigureNetworkRequestSettings(param_1,*(uint64_t *)(*(longlong *)(LongAddress + 0xb8) + ModuleInitializationResult0),param_4,
-                        param_5);
+          ConfigureNetworkRequestSettings(SystemContextPointer,*(uint64_t *)(*(longlong *)(LongAddress + 0xb8) + ModuleInitializationResult0),NetworkRequestFlags,
+                        ConfigurationOption);
           ModuleInitializationResult0 = ModuleInitializationResult0 + 8;
           MemoryAllocationResult = MemoryAllocationResult - 1;
         } while (MemoryAllocationResult != 0);
@@ -6935,8 +6935,8 @@ uint8_t SystemModuleInitializeTertiary(void)
   return in_R10B;
 }
 uint64_t
-ValidateNetworkRequestSystem(uint64_t param_1,longlong *param_2,uint64_t *param_3,uint32_t param_4,
-             uint param_5)
+ValidateNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRequestArrayPointer,uint64_t *MemoryDataPointer,uint32_t NetworkRequestFlags,
+             uint ConfigurationOption)
 {
   ulonglong MemoryAddress;
   longlong LongCounter;
@@ -6946,14 +6946,14 @@ ValidateNetworkRequestSystem(uint64_t param_1,longlong *param_2,uint64_t *param_
   uint64_t uVar6;
   uint *pUnsignedValue;
   uVar6 = 0;
-  MemoryAddress = param_2[1] - *param_2 >> 2;
+  MemoryAddress = NetworkRequestArrayPointer[1] - *NetworkRequestArrayPointer >> 2;
   if ((int)MemoryAddress != 0) {
     LongLoop = 0;
     MemoryAddress = MemoryAddress & 0xffffffff;
     do {
-      pUnsignedValue = (uint *)*param_3;
-      LongIndex = *param_2;
-      LongCounter = (longlong)param_3[1] - (longlong)pUnsignedValue >> 2;
+      pUnsignedValue = (uint *)*MemoryDataPointer;
+      LongIndex = *NetworkRequestArrayPointer;
+      LongCounter = (longlong)MemoryDataPointer[1] - (longlong)pUnsignedValue >> 2;
       if (0 < LongCounter) {
         do {
           LongValue = LongCounter >> 1;

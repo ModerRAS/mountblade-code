@@ -64915,7 +64915,20 @@ code_r0x00018007db1b:
 
 
 // 函数: void FUN_18007df50(long long SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag)
-void FUN_18007df50(long long SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 配置系统资源数据结构
+ * 
+ * 该函数负责配置系统资源的数据结构，包括数据复制和初始化。
+ * 根据不同的参数模式，执行不同的数据配置操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数（决定配置模式）
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18007df50，现已重命名为ConfigureSystemResourceDataStructure
+ */
+void ConfigureSystemResourceDataStructure(long long SystemResourcePointer,long long *ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long nextDataIndex;
@@ -64967,7 +64980,20 @@ void FUN_18007df50(long long SystemResourcePointer,long long *ConfigurationDataP
 
 
 // 函数: void FUN_18007e080(long long SystemResourcePointer,ulong long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag)
-void FUN_18007e080(long long SystemResourcePointer,ulong long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag)
+/**
+ * @brief 处理系统纹理管理器配置
+ * 
+ * 该函数负责处理系统纹理管理器的配置，包括纹理数据的初始化和配置。
+ * 根据不同的配置类型执行相应的配置操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数指针
+ * @param ConfigurationFlag 配置标志指针
+ * 
+ * 原始函数名为FUN_18007e080，现已重命名为ProcessSystemTextureManagerConfiguration
+ */
+void ProcessSystemTextureManagerConfiguration(long long SystemResourcePointer,ulong long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag)
 
 {
   long long nextDataIndex;
