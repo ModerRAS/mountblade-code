@@ -57531,7 +57531,16 @@ void ValidateObjectIntegrity(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907130(void)
+/**
+ * @brief 初始化验证系统
+ * 
+ * 该函数负责在异常处理时初始化验证系统
+ * 重置系统初始化标志并触发相关事件
+ * 
+ * @return 无返回值
+ * @note 此函数通常在异常处理的展开阶段调用
+ */
+void InitializeValidationSystem(void)
 
 {
   byte encryptionShiftValue;
@@ -57556,7 +57565,18 @@ void Unwind_180907130(void)
 
 
 
-void Unwind_180907140(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理对象验证
+ * 
+ * 该函数负责在异常处理时处理对象的验证操作
+ * 检查资源数据的状态标志，并执行相应的资源操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在异常处理的展开阶段调用
+ */
+void ProcessObjectValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
