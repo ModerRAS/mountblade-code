@@ -10,6 +10,12 @@
 #define RegistrationCapacityOffset 0x4e8
 #define RegistrationCountOffset 0x4e0
 #define RegistrationValidationDataOffset 0x368
+#define ThreadLocalStorageDataOffset 0x18
+#define ThreadResourceStateOffset 0x20
+#define ThreadResourceCountOffset 0x30
+#define ResourceManagementStateOffset 0x4
+#define ResourceManagementCleanupOffset 0x5
+#define ResourceManagementStatusOffset 0x7
 #define InvalidRegistrationStatus -1
 #define RegistrationArrayInitialSize 8
 #define RegistrationArrayGrowthFactor 1.5
@@ -92443,13 +92449,13 @@ void ResetThreadLocalStorage(void)
   int64_t ThreadContextData;
   
   ThreadContextData = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  *(uint8_t *)(ThreadContextData + 0x18) = &ThreadResourcePointer;
-  if (*(int64_t *)(ThreadContextData + 0x20) != 0) {
+  *(uint8_t *)(ThreadContextData + ThreadLocalStorageDataOffset) = &ThreadResourcePointer;
+  if (*(int64_t *)(ThreadContextData + ThreadResourceStateOffset) != 0) {
     CleanupThreadResources();
   }
-  *(uint8_t *)(ThreadContextData + 0x20) = 0;
-  *(uint32_t *)(ThreadContextData + 0x30) = 0;
-  *(uint8_t *)(ThreadContextData + 0x18) = &DefaultThreadResource;
+  *(uint8_t *)(ThreadContextData + ThreadResourceStateOffset) = 0;
+  *(uint32_t *)(ThreadContextData + ThreadResourceCountOffset) = 0;
+  *(uint8_t *)(ThreadContextData + ThreadLocalStorageDataOffset) = &DefaultThreadResource;
   return;
 }
 
