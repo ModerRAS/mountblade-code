@@ -37819,7 +37819,7 @@ void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
  * @return 无返回值
  * @note 此函数用于系统资源清理和释放
  */
-void CleanupSystemResourceHandler9f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPrimary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37860,7 +37860,7 @@ void CleanupSystemResourceHandler9f0(uint8_t ObjectContext,int64_t ValidationCon
  * @return 无返回值
  * @note 此函数用于系统资源清理和释放
  */
-void CleanupSystemResourceHandlerA10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSecondary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37901,7 +37901,7 @@ void CleanupSystemResourceHandlerA10(uint8_t ObjectContext,int64_t ValidationCon
  * @return 无返回值
  * @note 此函数用于系统资源清理和释放
  */
-void CleanupSystemResourceHandlerA30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerTertiary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -59872,8 +59872,15 @@ void ValidateResourceHashResult(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809078a0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 验证资源表版本1809078a0
+ * 
+ * 该函数负责验证资源表中的资源版本信息
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void ValidateResourceTableVersion(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t loopCounter;
   int64_t *ResourceTablePointer;
@@ -59892,8 +59899,21 @@ void Unwind_1809078a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809078b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 设置资源哈希指针到分配模板
+ * 
+ * 该函数负责将资源哈希指针设置到分配模板中
+ * 用于资源分配和管理过程中的指针设置操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数在资源分配过程中被调用
+ * @warning 处理失败时可能触发系统紧急退出
+ */
+void SetResourceHashPointerToAllocationTemplate(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   uint8_t *ResourceHashPointer;
   int64_t *ResourceTablePointer;
