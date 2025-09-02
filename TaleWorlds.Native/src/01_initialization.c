@@ -47155,7 +47155,7 @@ void InitializeSystemResources(long long ResourceManagerPointer)
     SetUnhandledExceptionFilter(&SystemExceptionHandler);
   }
   MemoryAllocationResult = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x170,8,3);
-  SystemInitializationFlag = FUN_18006e870(MemoryAllocationResult);
+  SystemInitializationFlag = InitializeSystemResourceManagerWithMutex(MemoryAllocationResult);
   FUN_18004c330(SystemConfigurationBuffer);
   MemoryAllocationResult = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1000,8,3);
   SystemStatusFlagsPointer = FUN_18004c480(MemoryAllocationResult);
@@ -48358,7 +48358,7 @@ LAB_18006c9ac:
           nextDataIndex4 = nextDataIndex4 * 2;
           if (nextDataIndex4 != 0) goto LAB_18006c9ac;
         }
-        FUN_18006de00(&lStack_238,allocationFlags,systemStatus9,nextDataIndex3);
+        InitializeSystemMemoryAllocatorWithHashNodes(&lStack_238,allocationFlags,systemStatus9,nextDataIndex3);
         localMemoryAddress = lStack_238;
         FUN_18006cd80(lStack_238,&SystemGlobalDataReferencePtr2);
         allocationFlags = *(long long *)(ResourceManagerPointer + 0x3d0);
@@ -48538,7 +48538,7 @@ ulong long AllocateSystemResourceNode(long long *ResourceManagerPointer,long lon
   creationFlags = ResourceManagerPointer[1];
   localSystemFlags = *ResourceManagerPointer;
 LAB_18006ccef:
-  FUN_18006de00(&uStackX_8,localSystemFlags,creationFlags,nextDataIndex);
+  InitializeSystemMemoryAllocatorWithHashNodes(&uStackX_8,localSystemFlags,creationFlags,nextDataIndex);
   FUN_18006cd80(uStackX_8,ConfigurationDataPointer);
   localSystemFlags = ResourceManagerPointer[1];
   localResourceOffset = *ResourceManagerPointer;
@@ -48605,7 +48605,7 @@ void ConfigureSystemResourceNode(void* ResourceManagerPointer,void* Configuratio
   AdditionalParameter = systemDataIndexPtr[1];
   in_R10 = *systemDataIndexPtr;
 LAB_18006ccef:
-  FUN_18006de00(&stack0x00000050,in_R10,AdditionalParameter,localResourceOffset);
+  InitializeSystemMemoryAllocatorWithHashNodes(&stack0x00000050,in_R10,AdditionalParameter,localResourceOffset);
   localSystemHandle = in_stack_00000050;
   FUN_18006cd80(in_stack_00000050);
   nextDataIndex = systemDataIndexPtr[1];
@@ -49611,8 +49611,22 @@ long long ConfigureResourceManagerData(long long ResourceManagerPointer,long lon
 
 
 
+/**
+ * @brief 使用哈希节点初始化系统内存分配器
+ * 
+ * 该函数负责使用哈希节点初始化系统内存分配器，包括内存分配、
+ * 哈希节点设置和字符串处理。主要用于系统内存管理的基础操作。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，用于管理系统资源
+ * @param ConfigurationDataPointer 配置数据指针，包含初始化所需的配置信息
+ * @param AdditionalParameter 额外参数，用于初始化过程中的附加配置
+ * @param ConfigurationFlag 配置标志，用于控制初始化行为
+ * @return 返回初始化后的资源管理器指针
+ * 
+ * 原始函数名为FUN_18006de00，现已重命名为InitializeSystemMemoryAllocatorWithHashNodes
+ */
 long long *
-FUN_18006de00(long long *ResourceManagerPointer,void* *ConfigurationDataPointer,void* *AdditionalParameter,void* *ConfigurationFlag)
+InitializeSystemMemoryAllocatorWithHashNodes(long long *ResourceManagerPointer,void* *ConfigurationDataPointer,void* *AdditionalParameter,void* *ConfigurationFlag)
 
 {
   void* *pointerToUnsigned1;
@@ -50359,8 +50373,22 @@ void* * FUN_18006e660(void* *ResourceManagerPointer,void* ConfigurationDataPoint
 
 
 
+/**
+ * @brief 使用互斥锁初始化系统资源管理器
+ * 
+ * 该函数负责使用互斥锁初始化系统资源管理器，包括互斥锁的初始化、
+ * 资源管理器的配置和内存分配。主要用于系统资源的同步管理。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，用于管理系统资源
+ * @param ConfigurationDataPointer 配置数据指针，包含初始化所需的配置信息
+ * @param AdditionalParameter 额外参数，用于初始化过程中的附加配置
+ * @param ConfigurationFlag 配置标志，用于控制初始化行为
+ * @return 返回初始化后的资源管理器指针
+ * 
+ * 原始函数名为FUN_18006e870，现已重命名为InitializeSystemResourceManagerWithMutex
+ */
 uint32_t *
-FUN_18006e870(uint32_t *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+InitializeSystemResourceManagerWithMutex(uint32_t *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint32_t *pointerToUnsigned1;

@@ -891,13 +891,13 @@ int InitializePhysicsEngineSync(uint64_t ThreadId, uint64_t SyncPtr, uint64_t Mu
  * @param mutexAttr 互斥锁属性，包含互斥锁的配置参数
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeConditionMutexC(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
+int InitializeConditionMutexC(uint64_t ThreadId,uint64_t SyncPtr,uint64_t MutexType,uint64_t MutexAttr)
 {
   int64_t CallbackRegistrationResult;
   uint64_t ConditionMutexCFlags;
   ConditionMutexCFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(ConditionMutexAddressA,2,mutexType,mutexAttr,ConditionMutexCFlags);
+  _Mtx_init_in_situ(ConditionMutexAddressA,2,MutexType,MutexAttr,ConditionMutexCFlags);
   GlobalConditionMutexCStatus = 0;
   CallbackRegistrationResult = RegisterSystemCallback(InitializeConditionMutexC_Callback);
   return (CallbackRegistrationResult != 0) - 1;
@@ -912,13 +912,13 @@ int InitializeConditionMutexC(uint64_t threadId,uint64_t syncPtr,uint64_t mutexT
  * @param mutexAttr 互斥锁属性，包含互斥锁的配置参数
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeConditionMutexD(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
+int InitializeConditionMutexD(uint64_t ThreadId,uint64_t SyncPtr,uint64_t MutexType,uint64_t MutexAttr)
 {
   int64_t CallbackRegistrationResult;
   uint64_t ConditionMutexDFlags;
   ConditionMutexDFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(ConditionMutexAddressB,2,mutexType,mutexAttr,ConditionMutexDFlags);
+  _Mtx_init_in_situ(ConditionMutexAddressB,2,MutexType,MutexAttr,ConditionMutexDFlags);
   GlobalConditionMutexDStatus = 0;
   CallbackRegistrationResult = RegisterSystemCallback(InitializeConditionMutexD_Callback);
   return (CallbackRegistrationResult != 0) - 1;
@@ -1112,10 +1112,10 @@ int InitializeStringProcessorI(void)
  * @param mutexAttr 互斥锁属性
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
+int InitializeConfigurationMutex(uint64_t ThreadId,uint64_t SyncPtr,uint64_t MutexType,uint64_t MutexAttr)
 {
   int64_t SystemModuleRegistrationResult;
-  _Mtx_init_in_situ(SystemMutexAddressA,0x102,mutexType,mutexAttr,SystemMutexFlags);
+  _Mtx_init_in_situ(SystemMutexAddressA,0x102,MutexType,MutexAttr,SystemMutexFlags);
   SystemModuleRegistrationResult = RegisterSystemModule(InitializeCoreGameEngine);
   return (SystemModuleRegistrationResult != 0) - 1;
 }
@@ -1924,6 +1924,12 @@ int InitializeStringProcessorS(void)
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleB);
   return (ModuleInitializationResult != 0) - 1;
 }
+/**
+ * 初始化字符串处理器T
+ * 设置字符串处理T所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
 int InitializeStringProcessorT(void)
 {
   int64_t ModuleInitializationResult;
@@ -1936,6 +1942,12 @@ int InitializeStringProcessorT(void)
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleC);
   return (ModuleInitializationResult != 0) - 1;
 }
+/**
+ * 初始化字符串处理器U
+ * 设置字符串处理U所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
 int InitializeStringProcessorU(void)
 {
   int64_t ModuleInitializationResult;
@@ -1948,6 +1960,12 @@ int InitializeStringProcessorU(void)
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleD);
   return (ModuleInitializationResult != 0) - 1;
 }
+/**
+ * 初始化字符串处理器V
+ * 设置字符串处理V所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
 int InitializeStringProcessorV(void)
 {
   int64_t ModuleInitializationResult;
@@ -1978,6 +1996,12 @@ int InitializeSystemModuleB(void)
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleB);
   return (ModuleInitializationResult != 0) - 1;
 }
+/**
+ * 初始化系统模块C
+ * 设置系统模块C所需的配置和数据结构
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
 int InitializeSystemModuleC(void)
 {
   int64_t ModuleInitializationResult;
@@ -2480,10 +2504,10 @@ int InitializeStringProcessingSystemAM(void)
  * @param eventFlags 事件标志，用于控制事件处理的选项
  * @return 处理成功返回0，失败返回-1
  */
-int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,uint64_t eventFlags)
+int ProcessSystemEvent(uint64_t SystemId,uint64_t EventType,uint64_t EventData,uint64_t EventFlags)
 {
   int64_t ModuleInitializationResult;
-  _Mtx_init_in_situ(EventMutexAddress,2,eventType,eventData,SystemMutexFlags);
+  _Mtx_init_in_situ(EventMutexAddress,2,EventType,EventData,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemEventHandler);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2644,7 +2668,7 @@ int InitializeSystemResourceManager(void)
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemRequestHandler);
   return (ModuleInitializationResult != 0) - 1;
 }
-int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t requestData,uint64_t requestFlags)
+int HandleSystemRequest(uint64_t RequestId,uint64_t RequestType,uint64_t RequestData,uint64_t RequestFlags)
 {
   int64_t ModuleInitializationResult;
   _Mtx_init_in_situ(RequestMutexAddress,2,MutexParameter3,MutexParameter4,SystemMutexFlags);
@@ -2765,7 +2789,7 @@ int InitializeSystemSecurityManager(void)
   FinalizeSystemSetup();
   return;
 }
-void InitializeNativeSDLL(uint64_t initFlags)
+void InitializeNativeSDLL(uint64_t InitFlags)
 {
   uint64_t SystemModuleHandleArray [2];
   SystemConfigurationStatus = 0;
@@ -2871,7 +2895,7 @@ LabelStringProcessingSpaceCheck2:
   FinalizeSystemSetup();
   return;
 }
-void InitializeNativeCore(uint64_t initFlags)
+void InitializeNativeCore(uint64_t InitFlags)
 {
   uint64_t SystemModuleHandleArray [2];
   SystemConfigurationStatus = 0;
@@ -2882,7 +2906,7 @@ void InitializeNativeCore(uint64_t initFlags)
   FinalizeSystemSetup();
   return;
 }
-void InitializeNativeCoreCLR(uint64_t initFlags)
+void InitializeNativeCoreCLR(uint64_t InitFlags)
 {
   uint64_t SystemModuleHandleArray [2];
   SystemConfigurationStatus = 0;
@@ -6711,7 +6735,7 @@ Label_18032bb25:
   ProcessSystemDataResources(0x180d497e0);
   return 0x180d497e0;
 }
-longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlong moduleData)
+longlong SystemModuleInitialize(uint64_t SystemId, longlong *ModuleArray, longlong ModuleData)
 {
   int64_t ModuleInitializationResult;
   uint BufferSize;
@@ -6759,8 +6783,8 @@ longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlo
   return *(longlong *)(&SystemModuleDataTable + (ulonglong)*(uint *)(moduleData + 0x8c) * 8);
 }
 uint64_t
-ProcessSystemModuleConfiguration(uint64_t systemId, longlong *dataBuffer, uint64_t *dataArray, uint32_t flagsParam4,
-             uint32_t flagsParam5, uint8_t byteParam6)
+ProcessSystemModuleConfiguration(uint64_t SystemId, longlong *DataBuffer, uint64_t *DataArray, uint32_t FlagsParam4,
+             uint32_t FlagsParam5, uint8_t ByteParam6)
 {
   int64_t ModuleInitializationResult;
   ulonglong BufferSize;
@@ -6893,7 +6917,7 @@ Label_18032bf87:
   }
   return UnsignedIndex;
 }
-uint8_t SystemModuleProcessRequest(uint64_t systemId, uint64_t requestType, longlong *requestData)
+uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, longlong *RequestData)
 {
   int64_t ModuleInitializationResult;
   uint BufferSize;
@@ -11018,7 +11042,7 @@ Label_18063182e:
     }
   } while( true );
 }
-int SystemBufferProcessData(uint64_t bufferId, uint64_t processData, uint64_t *resultData)
+int SystemBufferProcessData(uint64_t BufferId, uint64_t ProcessData, uint64_t *ResultData)
 {
   char *pNetworkRequestStatus;
   char BooleanCheck;
@@ -11068,7 +11092,7 @@ Label_18063182e:
     }
   } while( true );
 }
-int SystemBufferVerifyData(uint64_t bufferId, uint64_t verifyData, uint64_t *resultData)
+int SystemBufferVerifyData(uint64_t BufferId, uint64_t VerifyData, uint64_t *ResultData)
 {
   char *pNetworkRequestStatus;
   char BooleanCheck;
@@ -11557,7 +11581,7 @@ uint32_t SystemGetDeviceParameter(int deviceId)
   SystemConfigFlag10 = 0;
   return;
 }
-uint64_t SystemMemoryAllocate(uint64_t memorySize)
+uint64_t SystemMemoryAllocate(uint64_t MemorySize)
 {
   uint64_t MemoryAddress;
   longlong LongCounter;
@@ -11568,7 +11592,7 @@ uint64_t SystemMemoryAllocate(uint64_t memorySize)
   UNLOCK();
   return MemoryAddress;
 }
-uint64_t SystemMemoryResize(uint64_t memoryAddress, uint64_t newSize)
+uint64_t SystemMemoryResize(uint64_t MemoryAddress, uint64_t NewSize)
 {
   int64_t ModuleInitializationResult;
   uint64_t BufferSize;
@@ -12320,7 +12344,7 @@ Label_1807c2a43:
  * 
  * 原始函数名为FUN_1807c3d8b，现已重命名为SystemSecurityValidationFunction
  */
-void SystemSecurityValidationFunction(uint64_t securityContext)
+void SystemSecurityValidationFunction(uint64_t SecurityContext)
 {
   SystemSecurityCheck(*(ulonglong *)(unaff_RBP + 0x218) ^ (ulonglong)&stack0x00000000);
 }

@@ -50973,7 +50973,19 @@ void ProcessResourceIndexAndSetStatus(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Catch_180905e00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 异常处理函数：处理系统资源清理异常
+ * 
+ * 该函数在系统资源清理过程中发生异常时被调用
+ * 负责清理系统资源、重置系统内存并完成系统设置
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数会抛出C++异常
+ * @warning 调用此函数会中断正常执行流程
+ */
+void HandleSystemResourceCleanupException(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -50987,7 +50999,19 @@ void Catch_180905e00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905e40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统资源处理回滚函数
+ * 
+ * 该函数在系统资源处理过程中需要回滚时被调用
+ * 负责处理资源索引、锁定资源上下文并更新操作状态
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数涉及线程同步操作
+ * @warning 调用此函数时需要确保资源索引有效
+ */
+void ProcessSystemResourceRollback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -51047,7 +51071,21 @@ void Unwind_180905e40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905e50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统清理回调执行函数
+ * 
+ * 该函数在系统清理过程中执行注册的回调函数
+ * 负责调用清理回调并传递相应的清理参数
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指示清理的具体操作
+ * @return 无返回值
+ * @note 此函数会调用注册的清理回调函数
+ * @warning 调用此函数时需要确保回调函数指针有效
+ */
+void ExecuteSystemCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *charPointer;
@@ -51061,7 +51099,21 @@ void Unwind_180905e50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180905e70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统清理回调执行函数（第二组）
+ * 
+ * 该函数在系统清理过程中执行第二组注册的回调函数
+ * 负责调用清理回调并传递相应的清理参数
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指示清理的具体操作
+ * @return 无返回值
+ * @note 此函数会调用注册的清理回调函数
+ * @warning 调用此函数时需要确保回调函数指针有效
+ */
+void ExecuteSystemCleanupCallbackSecondary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *charPointer;
@@ -51075,7 +51127,21 @@ void Unwind_180905e70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180905e90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统清理回调执行函数（第三组）
+ * 
+ * 该函数在系统清理过程中执行第三组注册的回调函数
+ * 负责调用清理回调并传递相应的清理参数
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指示清理的具体操作
+ * @return 无返回值
+ * @note 此函数会调用注册的清理回调函数
+ * @warning 调用此函数时需要确保回调函数指针有效
+ */
+void ExecuteSystemCleanupCallbackTertiary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *charPointer;
