@@ -3372,14 +3372,14 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
   int64_t SystemHandleArray[2];
-  uint8_t *GameObjectDataBuffer;
+  uint8_t *ObjectDataBuffer;
   int BufferIndex;
   uint32_t MaximumProcessableItems;
-  uint8_t ObjectProcessingWorkspace[512];
+  uint8_t ProcessingWorkspace[512];
   uint64_t SecurityValidationKey;
   
   SecurityValidationKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  ProcessingResultCode = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
+  ProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
   if ((ProcessingResultCode == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
     GameObjectDataBuffer = ObjectProcessingWorkspace;
     ProcessedObjectCount = 0;
