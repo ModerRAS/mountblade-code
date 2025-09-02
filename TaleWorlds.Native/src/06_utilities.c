@@ -62123,7 +62123,18 @@ void SetSystemDataStructurePointerAtOffset90(uint8_t ObjectContext,int64_t Valid
 
 
 
-void Unwind_180907f20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统清理回调函数1
+ * 
+ * 该函数负责执行系统清理回调函数，从验证上下文中获取回调函数指针并执行
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，指示是否需要执行清理操作
+ * @return 无返回值
+ */
+void ExecuteSystemCleanupCallback1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x1e8) != (code *)0x0) {
@@ -62134,7 +62145,19 @@ void Unwind_180907f20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907f40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统清理回调函数2
+ * 
+ * 该函数负责执行系统清理回调函数，从验证上下文中获取回调函数指针并执行
+ * 与ExecuteSystemCleanupCallback1类似，但操作不同的偏移量
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，指示是否需要执行清理操作
+ * @return 无返回值
+ */
+void ExecuteSystemCleanupCallback2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x208) != (code *)0x0) {
@@ -62145,7 +62168,19 @@ void Unwind_180907f40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907f60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统清理回调函数3
+ * 
+ * 该函数负责执行系统清理回调函数，从验证上下文中获取回调函数指针并执行
+ * 与之前的清理回调函数类似，但操作不同的数据结构
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，指示是否需要执行清理操作
+ * @return 无返回值
+ */
+void ExecuteSystemCleanupCallback3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *charPointer;
@@ -62160,7 +62195,17 @@ void Unwind_180907f60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907f70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 关闭资源句柄并更新系统操作计数器
+ * 
+ * 该函数负责关闭资源句柄，并更新系统操作计数器
+ * 在关闭句柄前会进行加锁操作，确保线程安全
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ */
+void CloseResourceHandleAndUpdateOperationCounter(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -62178,7 +62223,17 @@ void Unwind_180907f70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907f80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源上下文并检查紧急退出条件
+ * 
+ * 该函数负责释放资源上下文，并在特定条件下触发系统紧急退出
+ * 首先检查资源上下文是否为空，然后检查是否需要执行紧急退出
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ */
+void ReleaseResourceContextAndCheckEmergencyExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -62250,7 +62305,17 @@ void ResetSystemResourceHandlerTemplateAlternate(uint8_t ObjectContext,int64_t V
 
 
 
-void Unwind_180907fb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志位1
+ * 
+ * 该函数负责清理资源数据的标志位，并在特定条件下销毁系统上下文
+ * 检查资源数据的第0位是否被设置，如果是则清除该位并销毁系统上下文
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ */
+void CleanupResourceDataFlagBit1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -62262,7 +62327,17 @@ void Unwind_180907fb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907fe0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到偏移量0x480
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的指定偏移量位置
+ * 与SetSystemDataStructurePointerAtOffset90类似，但操作不同的偏移量
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ */
+void SetSystemDataStructurePointerAtOffset480(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x480) = &SystemDataStructure;
@@ -62271,7 +62346,19 @@ void Unwind_180907fe0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907ff0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源命令并释放资源句柄
+ * 
+ * 该函数负责执行资源命令，并在执行完成后释放资源句柄
+ * 从验证上下文中获取资源哈希指针，然后执行相应的资源命令
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，指示是否需要执行清理操作
+ * @return 无返回值
+ */
+void ExecuteResourceCommandAndReleaseHandle(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -62286,7 +62373,17 @@ void Unwind_180907ff0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180908000(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希并清理引用计数（偏移量0x48）
+ * 
+ * 该函数负责验证资源哈希值，并在验证通过后清理资源的引用计数
+ * 与ValidateResourceHashAndCleanupReferenceCount类似，但操作不同的偏移量
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ */
+void ValidateResourceHashAndCleanupReferenceCountAtOffset48(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
