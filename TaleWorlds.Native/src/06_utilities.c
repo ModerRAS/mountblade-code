@@ -47176,7 +47176,7 @@ void Unwind_180905220(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905230(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_SystemCleanup_ResourceManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x278) = &SystemDataStructure;
@@ -47185,7 +47185,7 @@ void Unwind_180905230(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905240(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_SystemCleanup_MemoryManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x250) = &SystemDataStructure;
@@ -47194,7 +47194,7 @@ void Unwind_180905240(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905250(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_SystemCleanup_ThreadManager(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -47215,7 +47215,7 @@ void Unwind_180905250(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180905260(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_SystemCleanup_NetworkManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -95000,18 +95000,12 @@ void TerminateSystemProcess(void)
  * 检查系统状态并执行相应的清理任务
  */
 void ExecuteSystemCleanupOperation1(void)
-/**
- * @brief 执行系统清理操作1
- * 
- * 该函数负责执行系统清理操作1
- * 检查系统状态并执行相应的清理任务
- */
-void ExecuteSystemCleanupOperation1(void)
-
 {
   if (CleanupOperation1Flag != '\0') {
     SystemModuleConfigurator(ModuleConfigurator1Pointer);
     ModuleConfigurator1Pointer = 0;
+  }
+}
 
  /**
  * @brief 执行系统清理操作2
@@ -95020,18 +95014,12 @@ void ExecuteSystemCleanupOperation1(void)
  * 检查系统状态并执行相应的清理任务
  */
 void ExecuteSystemCleanupOperation2(void)
-/**
- * @brief 执行系统清理操作2
- * 
- * 该函数负责执行系统清理操作2
- * 检查系统状态并执行相应的清理任务
- */
-void ExecuteSystemCleanupOperation2(void)
-
 {
   if (CleanupOperation2Flag != '\0') {
     SystemModuleConfigurator(ModuleConfigurator2Pointer);
     ModuleConfigurator2Pointer = 0;
+  }
+}
 
  /**
  * @brief 执行系统清理操作3
