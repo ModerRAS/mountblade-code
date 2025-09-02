@@ -28277,7 +28277,7 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
   LongStackVariable1b8 = 0;
   StackVariable1a8 = StackVariable1a8 & 0xffffffff00000000;
   pGlobalDataFlags = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(EncryptionValue48 ^ (ulong long)auStack_238);
+    ValidateSystemChecksum(EncryptionValue48 ^ (ulong long)StackArray238);
 }
 
 

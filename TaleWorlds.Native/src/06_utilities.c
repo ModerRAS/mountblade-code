@@ -59356,12 +59356,24 @@ void ExecuteResourceCleanupCallbackOffset58(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_180907700(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器扩展1
+ * 
+ * 该函数负责初始化系统资源处理器的扩展功能
+ * 设置系统上下文指针并验证系统状态
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会设置系统资源处理器模板
+ * @warning 如果系统状态异常，会触发紧急退出
+ */
+void InitializeSystemResourceHandlerExtended1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t SystemInitializationCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x40);
+  SystemInitializationCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -59374,15 +59386,28 @@ void Unwind_180907700(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907710(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器扩展2
+ * 
+ * 该函数负责初始化系统资源处理器的扩展功能
+ * 设置资源哈希指针并验证资源状态
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会设置资源验证表和处理器模板
+ * @warning 如果资源状态异常，会触发紧急退出
+ */
+void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
   uint8_t *ResourceHashValidationResultPointer;
   int64_t ResourceIndex;
+  uint8_t *ResourceValidationResultPointer;
   
-  ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x50);
-  *ValidationResultPointer = &ResourceValidationTable001;
+  ResourceValidationResultPointer = *(uint8_t **)(ValidationContext + 0x50);
+  *ResourceValidationResultPointer = &ResourceValidationTable001;
   ResourceHashPointer = (uint8_t *)ResourceHashValidationResultPointer[0x11];
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ResourceIndex = __RTCastToVoid(ResourceHashPointer);
