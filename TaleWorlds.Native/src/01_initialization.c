@@ -41,6 +41,15 @@
 #define SYSTEM_DATA_TABLE_NODE_IDENTIFIER1     0x544e41445441424c
 #define SYSTEM_DATA_TABLE_NODE_IDENTIFIER2     0x4552455345525441
 #define SYSTEM_DATA_TABLE_NODE_FLAG           2
+#define SYSTEM_MEMORY_NODE_IDENTIFIER1         0x46ecbd4daf41613e
+#define SYSTEM_MEMORY_NODE_IDENTIFIER2         0xdc42c056bbde8482
+#define SYSTEM_MEMORY_NODE_FLAG               0
+#define SYSTEM_ALLOCATOR_NODE_IDENTIFIER1      0x4c868a42644030f6
+#define SYSTEM_ALLOCATOR_NODE_IDENTIFIER2      0xc29193aa9d9b35b9
+#define SYSTEM_ALLOCATOR_NODE_FLAG            0
+#define SYSTEM_CONFIGURATION_NODE_IDENTIFIER1  0x40ea3a798283cbbb
+#define SYSTEM_CONFIGURATION_NODE_IDENTIFIER2  0x7f74eb2c5a7fadae
+#define SYSTEM_CONFIGURATION_NODE_FLAG        3
 
 /**
  * @brief 处理系统内存页面
@@ -1288,6 +1297,15 @@ void* GetSystemInitializationFunction;
  * 
  * 游戏核心系统初始化器
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括系统节点的查找、内存分配和核心系统初始化。
+ * 主要用于游戏启动时的核心系统初始化工作。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsSystemNodeActive;
@@ -1455,10 +1473,10 @@ void InitializeSystemDataTableAllocator(void)
     PreviousSystemNode = AllocatedSystemNode;
   }
   
-  PreviousSystemNode[6] = 0x4666df49b97e0f10;
-  PreviousSystemNode[7] = 0x4e4b0d63a6ad1d8f;
+  PreviousSystemNode[6] = SYSTEM_DATA_TABLE_NODE_IDENTIFIER1;
+  PreviousSystemNode[7] = SYSTEM_DATA_TABLE_NODE_IDENTIFIER2;
   PreviousSystemNode[8] = &SystemNodeIdentifier;
-  PreviousSystemNode[9] = 0;
+  PreviousSystemNode[9] = SYSTEM_DATA_TABLE_NODE_FLAG;
   PreviousSystemNode[10] = ResourceInitializationCallback;
   return;
 }
@@ -1518,10 +1536,10 @@ void InitializeSystemCoreConfig(void)
     PreviousSystemNode = AllocatedSystemNode;
   }
   
-  PreviousSystemNode[6] = 0x46ecbd4daf41613e;
-  PreviousSystemNode[7] = 0xdc42c056bbde8482;
+  PreviousSystemNode[6] = SYSTEM_MEMORY_NODE_IDENTIFIER1;
+  PreviousSystemNode[7] = SYSTEM_MEMORY_NODE_IDENTIFIER2;
   PreviousSystemNode[8] = &SystemMemoryNodeId;
-  PreviousSystemNode[9] = 0;
+  PreviousSystemNode[9] = SYSTEM_MEMORY_NODE_FLAG;
   PreviousSystemNode[10] = ResourceInitializationCallback;
   return;
 }
@@ -1548,7 +1566,7 @@ void InitializeSystemMemoryPool(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitializationFlag;
   long long MemoryAllocationSize;
   void** SystemAllocatedNode;
@@ -1578,10 +1596,10 @@ void InitializeSystemMemoryPool(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x4c868a42644030f6;
-  hashTableNode[7] = 0xc29193aa9d9b35b9;
+  hashTableNode[6] = SYSTEM_ALLOCATOR_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_ALLOCATOR_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemAllocatorNodeId;
-  hashTableNode[9] = 0;
+  hashTableNode[9] = SYSTEM_ALLOCATOR_NODE_FLAG;
   hashTableNode[10] = ResourceInitializationCallback;
   return;
 }
@@ -1638,10 +1656,10 @@ void InitializeSystemThreadPool(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x40ea3a798283cbbb;
-  hashTableNode[7] = 0x7f74eb2c5a7fadae;
+  hashTableNode[6] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemConfigurationData;
-  hashTableNode[9] = 3;
+  hashTableNode[9] = SYSTEM_CONFIGURATION_NODE_FLAG;
   hashTableNode[10] = ResourceInitializationCallback;
   return;
 }
@@ -33624,8 +33642,7 @@ void InitializeSystemResourceManager(void* *SystemResourceManager)
  * @param AdditionalParameter 额外参数
  * @param ConfigurationFlag 配置标志
  * 
- *FUN_1800593f0，现已重名为InitializeSystemConfigurationDataRecursive
- */
+  */
 void InitializeSystemConfigurationDataRecursive(void* SystemResourceManager,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
@@ -33698,8 +33715,7 @@ void ConfigureSystemResourceMemoryRegions(void* *SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针，用于存储系统资源信息
  * 
- *FUN_1800595c0：InitializeSystemResources
- */
+  */
 void InitializeSystemResources(void* *SystemResourceManager)
 
 {
@@ -33725,8 +33741,7 @@ void InitializeSystemResources(void* *SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针
  * 
- *FUN_180059620：CleanupSystemResources
- */
+  */
 void CleanupSystemResources(long long *SystemResourceManager)
 
 {
