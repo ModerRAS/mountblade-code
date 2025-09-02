@@ -1888,18 +1888,18 @@ void ConfigureSystemParameters(void);
  * 设置内存分配和回收的机制
  */
 void InitializeSystemMemoryManager(void);
-uint8_t SystemMemoryManagerConfigTemplateAggressive;
-uint8_t SystemMemoryConfigDataTemplateSecure;
-uint8_t SystemMemoryManagerConfigTemplateBalanced;
-uint8_t SystemMemoryManagerConfigTemplateConservative;
-uint8_t SystemMemoryManagerConfigTemplateDynamic;
-uint8_t SystemMemoryManagerConfigTemplateEfficient;
-uint8_t SystemMemoryManagerConfigTemplateFast;
-uint8_t SystemMemoryManagerConfigTemplateGeneral;
-uint8_t SystemMemoryManagerConfigTemplateHighPerformance;
-uint8_t SystemMemoryManagerConfigTemplateIntelligent;
-uint8_t SystemMemoryManagerConfigTemplateJustInTime;
-uint8_t SystemMemoryManagerConfigTemplateKernelOptimized;
+uint8_t MemoryManagerConfigTemplateAggressive;
+uint8_t MemoryConfigDataTemplateSecure;
+uint8_t MemoryManagerConfigTemplateBalanced;
+uint8_t MemoryManagerConfigTemplateConservative;
+uint8_t MemoryManagerConfigTemplateDynamic;
+uint8_t MemoryManagerConfigTemplateEfficient;
+uint8_t MemoryManagerConfigTemplateFast;
+uint8_t MemoryManagerConfigTemplateGeneral;
+uint8_t MemoryManagerConfigTemplateHighPerformance;
+uint8_t MemoryManagerConfigTemplateIntelligent;
+uint8_t MemoryManagerConfigTemplateJustInTime;
+uint8_t MemoryManagerConfigTemplateKernelOptimized;
 
  void InitializeSystemThreadManager(void)
 /**
@@ -1909,10 +1909,10 @@ uint8_t SystemMemoryManagerConfigTemplateKernelOptimized;
  * 设置线程创建、调度和同步的机制
  */
 void InitializeSystemThreadManager(void);
-uint8_t SystemDataStructurePointer;
-uint8_t SystemDataTable;
-uint8_t SystemDataBuffer;
-uint8_t SystemDataCache;
+uint8_t DataStructurePointer;
+uint8_t DataTable;
+uint8_t DataBuffer;
+uint8_t DataCache;
 
  void CleanupMemoryBlock(void);
 /**
@@ -5017,8 +5017,8 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
   uint64_t ResourceValidationResult;
   int64_t StackOffset;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(AdvancedObjectHandle + 0x10), &StackOffset);
-  if ((int)ValidationResult != 0) {
+  ResourceValidationResult = ValidateObjectContext(*(uint32_t *)(advancedObjectHandle + 0x10), &StackOffset);
+  if ((int)ResourceValidationResult != 0) {
     return ResourceValidationResult;
   }
   if (StackOffset == 0) {
@@ -40441,7 +40441,15 @@ void CleanupSystemResourceHandlerSet19(uint8_t objectContext,int64_t validationC
 
 
 
-void Unwind_180904100(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 清理对象上下文
+ * 
+ * 该函数负责清理指定的对象上下文，释放相关资源
+ * 
+ * @param objectContext 对象上下文，指定要清理的对象
+ * @param validationContext 验证上下文，用于验证操作的有效性
+ */
+void CleanupObjectContext(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -40460,7 +40468,17 @@ void Unwind_180904100(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904110(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 带标志清理对象上下文
+ * 
+ * 该函数负责使用指定的清理选项和标志来清理对象上下文
+ * 
+ * @param objectContext 对象上下文，指定要清理的对象
+ * @param validationContext 验证上下文，用于验证操作的有效性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ */
+void CleanupObjectContextWithFlags(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharPointer;
@@ -40474,7 +40492,15 @@ void Unwind_180904110(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904120(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 验证对象上下文
+ * 
+ * 该函数负责验证对象上下文的有效性和完整性
+ * 
+ * @param objectContext 对象上下文，要验证的对象
+ * @param validationContext 验证上下文，用于验证操作
+ */
+void ValidateObjectContext(uint8_t objectContext,int64_t validationContext)
 
 {
   uint8_t *presourceHash;
@@ -40504,7 +40530,15 @@ void Unwind_180904120(uint8_t objectContext,int64_t validationContext)
  * @note 此函数会重置本地上下文数据并清理资源状态
  * @warning 如果系统状态异常，可能会触发紧急退出
  */
-void Unwind_180904130(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 重置对象上下文
+ * 
+ * 该函数负责重置对象上下文到初始状态
+ * 
+ * @param objectContext 对象上下文，要重置的对象
+ * @param validationContext 验证上下文，用于验证操作
+ */
+void ResetObjectContext(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -42429,7 +42463,15 @@ void Unwind_180904740(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904750(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 清理同步资源
+ * 
+ * 该函数负责清理线程同步相关的资源
+ * 
+ * @param objectContext 对象上下文，指定要清理的对象
+ * @param validationContext 验证上下文，用于验证操作的有效性
+ */
+void CleanupSynchronizationResources(uint8_t objectContext,int64_t validationContext)
 
 {
   _Mtx_destroy_in_situ();
@@ -42464,7 +42506,14 @@ void Unwind_180904770(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904780(void)
+/**
+ * @brief 销毁条件变量
+ * 
+ * 该函数负责销毁系统中的条件变量
+ * 
+ * @return 无返回值
+ */
+void DestroyConditionVariable(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -42473,7 +42522,14 @@ void Unwind_180904780(void)
 
 
 
-void Unwind_180904790(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁系统中的互斥锁
+ * 
+ * @return 无返回值
+ */
+void DestroyMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -43689,7 +43745,15 @@ void HandleExceptionAndResourceTable(uint8_t objectContext,int64_t validationCon
 
 
 
-void Catch_180904b50(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 处理异常
+ * 
+ * 该函数负责处理系统中发生的异常情况
+ * 
+ * @param objectContext 对象上下文，异常发生的对象环境
+ * @param validationContext 验证上下文，用于验证异常处理
+ */
+void HandleException(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -43704,7 +43768,15 @@ void Catch_180904b50(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Catch_180904b90(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 处理异常流程
+ * 
+ * 该函数负责处理异常流程中的资源清理和状态恢复
+ * 
+ * @param objectContext 对象上下文，异常发生的对象环境
+ * @param validationContext 验证上下文，用于验证异常处理
+ */
+void ProcessException(uint8_t objectContext,int64_t validationContext)
 
 {
   uint64_t resourceHash;
@@ -43756,7 +43828,15 @@ void Catch_180904b90(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Catch_180904c60(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 管理异常状态
+ * 
+ * 该函数负责管理系统中的异常状态和恢复流程
+ * 
+ * @param objectContext 对象上下文，异常发生的对象环境
+ * @param validationContext 验证上下文，用于验证异常处理
+ */
+void ManageException(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;

@@ -42358,8 +42358,23 @@ void ConfigureSecurityParameters(void* SystemResourcePointer,long long Configura
     fwrite(&SystemFileTemplateBuffer,0x30,1,fileHandle);
     fwrite(&SystemStringBuffer,stringLength,1,fileHandle);
 
-// 函数: void FUN_180063cf0(void)
-void FUN_180063cf0(void)
+/**
+ * @brief 系统资源清理和验证函数
+ * 
+ * 该函数负责清理系统资源，包括：
+ * 1. 遍历和清理系统资源表
+ * 2. 验证系统内存完整性
+ * 3. 执行系统清理回调函数
+ * 4. 释放系统资源并重置状态
+ * 
+ * 主要用于系统关闭或重置时的资源清理工作
+ * 
+ * @note 此函数包含复杂的资源管理逻辑和内存验证机制
+ * @warning 调用此函数会释放所有系统资源，可能导致系统状态重置
+ * 
+ * 原始函数名为FUN_180063cf0，现已重命名为CleanupAndValidateSystemResources
+ */
+void CleanupAndValidateSystemResources(void)
 
 {
   void* *pointerToUnsigned1;
@@ -42490,8 +42505,26 @@ LAB_180063de9:
 
 
 
-// 函数: void FUN_180064010(void* SystemResourcePointer)
-void FUN_180064010(void* SystemResourcePointer)
+/**
+ * @brief 系统资源初始化和配置函数
+ * 
+ * 该函数负责初始化和配置系统资源，包括：
+ * 1. 设置系统配置参数
+ * 2. 初始化系统数据表和缓冲区
+ * 3. 处理系统资源数据
+ * 4. 初始化主要资源组件
+ * 5. 管理文件句柄和引用计数
+ * 
+ * 主要用于系统资源的初始化和配置工作
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于标识和访问系统资源
+ * 
+ * @note 此函数包含复杂的资源初始化逻辑和文件句柄管理
+ * @warning 调用此函数会修改系统状态，需要在合适的上下文中调用
+ * 
+ * 原始函数名为FUN_180064010，现已重命名为InitializeAndConfigureSystemResources
+ */
+void InitializeAndConfigureSystemResources(void* SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
@@ -42629,8 +42662,18 @@ void FUN_180064010(void* SystemResourcePointer)
 
 
 
-// 函数: void FUN_180064400(void)
-void FUN_180064400(void)
+/**
+ * @brief 系统数据操作执行函数
+ * 
+ * 该函数负责执行系统数据操作，调用核心的数据处理功能
+ * 用于系统运行时的数据处理和管理
+ * 
+ * @note 这是一个简化的系统操作函数，主要用于触发数据操作
+ * @warning 调用此函数会执行系统数据操作，可能影响系统状态
+ * 
+ * 原始函数名为FUN_180064400，现已重命名为ExecuteSystemDataOperation
+ */
+void ExecuteSystemDataOperation(void)
 
 {
     SystemDataOperation();
@@ -42639,7 +42682,28 @@ void FUN_180064400(void)
 
 
 
-ulong long FUN_1800649d0(void* SystemResourcePointer)
+/**
+ * @brief 系统资源处理和数据管理函数
+ * 
+ * 该函数负责处理系统资源并管理相关数据，包括：
+ * 1. 执行系统数据操作
+ * 2. 初始化系统管理器
+ * 3. 处理内存分配和缓冲区
+ * 4. 配置系统数据缓冲区
+ * 5. 管理文件操作和引用计数
+ * 6. 清理系统资源
+ * 
+ * 主要用于系统资源的综合处理和管理
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于标识和访问系统资源
+ * @return 处理结果状态码，表示操作的成功或失败状态
+ * 
+ * @note 此函数包含复杂的资源管理和数据处理逻辑
+ * @warning 调用此函数会执行系统资源处理，可能影响系统状态
+ * 
+ * 原始函数名为FUN_1800649d0，现已重命名为ProcessAndManageSystemResources
+ */
+ulong long ProcessAndManageSystemResources(void* SystemResourcePointer)
 
 {
   char SystemNodeFlag;
@@ -42756,8 +42820,28 @@ ulong long FUN_1800649d0(void* SystemResourcePointer)
 
 
 
-// 函数: void FUN_180064c00(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
-void FUN_180064c00(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 系统资源数据配置和管理函数
+ * 
+ * 该函数负责配置和管理系统资源数据，包括：
+ * 1. 初始化配置数据
+ * 2. 处理字符串和缓冲区数据
+ * 3. 执行内存分配和管理
+ * 4. 配置系统资源指针
+ * 5. 管理数据缓冲区和线程对象
+ * 
+ * 主要用于系统资源数据的配置和管理工作
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，用于存储和管理系统资源
+ * @param ConfigurationDataPointer 配置数据指针，包含系统配置信息
+ * @param AdditionalParameter 额外参数，用于传递额外的配置信息
+ * 
+ * @note 此函数包含复杂的数据配置和内存管理逻辑
+ * @warning 调用此函数会修改系统资源配置，可能影响系统状态
+ * 
+ * 原始函数名为FUN_180064c00，现已重命名为ConfigureAndManageSystemResourceData
+ */
+void ConfigureAndManageSystemResourceData(long long *SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   uint unsignedSystemValue1;
