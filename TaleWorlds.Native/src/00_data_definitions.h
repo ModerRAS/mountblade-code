@@ -6586,14 +6586,14 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   }
   if ((param_4 >> 2 & 1) == 0) {
     if (((param_4 >> 1 & 1) == 0) && ((bVar2 & 1) != 0)) {
-      SystemStateValue = FUN_18033b3a0(param_1,*param_3);
+      SystemStateValue = GetSystemStateValue(param_1,*param_3);
       *param_2 = SystemStateValue;
       MemoryAllocationResult = 1;
     }
   }
   else {
     auStackX_20[0] = *param_3;
-    SystemStateValue = FUN_18033b3a0(param_1);
+    SystemStateValue = GetSystemStateValue(param_1);
     if (SystemStateValue == 0) {
       *param_2 = 0;
       MemoryAllocationResult = 1;
@@ -6605,7 +6605,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
       if (iVar3 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar3);
       }
-      FUN_18033bc80(param_1 + 0x3a8,auStackX_20);
+      ProcessSystemMemoryValidation(param_1 + 0x3a8,auStackX_20);
       iVar3 = _Mtx_unlock(pModuleInitializationResult);
       if (iVar3 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar3);
