@@ -11897,9 +11897,9 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       ArrayIterationIndex = SystemContextPointer - ((int64_t)CalculatedFloatResult + ArrayIterationIndex);
       *(int64_t *)(SystemRegisterContext + 0x98) = ArrayIterationIndex;
     }
-    StatusCharacter = (int64_t)calculatedFloatValue + ResourceTablePointer < SystemContextPointer - ArrayIterationIndex;
+    SystemOperationStatus = (int64_t)calculatedFloatValue + ResourceTablePointer < SystemContextPointer - ArrayIterationIndex;
     if ((*(byte *)(SystemRegisterContext + 0x6c) & 2) != 0) {
-      StatusCharacter = StatusByte;
+      SystemOperationStatus = StatusByte;
     }
     if (*(int64_t *)(SystemRegisterContext + 0xc0) != 0) {
       ContextValidationStatusCode = ProcessSystemParameters();
@@ -11909,7 +11909,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       calculationResult = StackParameterContextExtended;
       if (HashValidationResult != 0) goto HANDLE_CONTEXT_ERROR;
     }
-    if ((((StatusCharacter != '\0') && (ValidationStatusCode = *calculationResult, *calculationResult = HashValidationResult + 1, HashValidationResult < 10)) &&
+    if ((((SystemOperationStatus != '\0') && (ValidationStatusCode = *calculationResult, *calculationResult = HashValidationResult + 1, HashValidationResult < 10)) &&
         ((*(uint *)(SystemRegisterContext + 0x6c) >> 0x18 & 1) == 0)) &&
        (((*(uint *)(SystemRegisterContext + 0x6c) >> 0x19 & 1) != 0 && (OperationStatusCode == *(int *)(SystemRegisterContext + 0xb0)))))
     {

@@ -18474,6 +18474,7 @@ void InitializeMainSystemController(long long systemParameter)
   long long **SystemVirtualTablePointer;
   long long *SystemGlobalDataPointer;
   long long* InitializationCounter;
+  long long *SystemControllerPointer;
   void* MemoryAllocationFlags;
   
   MemoryAllocationFlags = (void*)0xfffffffffffffffe;
@@ -18490,13 +18491,13 @@ void InitializeMainSystemController(long long systemParameter)
     if (!IsActiveFlag) goto SkipControllerInitialization;
   }
   ControllerPointer = (long long )SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xc0,8,3,SystemAllocationFlags);
-  SystemDataBuffer20 = ControllerPointer;
+  SystemControllerPointer = ControllerPointer;
   InitializeSystemDataTableManager(ControllerPointer);
   ControllerPointer = (long long)&SystemVirtualTableTemplateB;
   ControllerPointer[3] = -4;
-  SystemDataBuffer10 = (long long )ControllerPointer;
+  SystemVirtualTablePointer = (long long )ControllerPointer;
   (**(code **)(ControllerPointer + 0x28))(ControllerPointer);
-  SystemDataBuffer10 = (long long )SystemGlobalControllerPointer;
+  SystemVirtualTablePointer = (long long )SystemGlobalControllerPointer;
   if (SystemGlobalControllerPointer != (long long )0x0) {
     SystemObject = SystemGlobalControllerPointer;
     SystemGlobalControllerPointer = ControllerPointer;
@@ -18513,7 +18514,7 @@ void InitializeMainSystemController(long long systemParameter)
     (**(code **)((void* )SystemGlobalControllerPointer + 0x60))();
   }
   ControllerPointer = SystemGlobalControllerPointer;
-  SystemDataBuffer18 = SystemGlobalControllerPointer;
+  SystemGlobalDataPointer = SystemGlobalControllerPointer;
   SystemGlobalControllerPointer = (long long )0x0;
   if (ControllerPointer != (long long )0x0) {
     (**(code **)(ControllerPointer + 0x38))();
@@ -18532,13 +18533,13 @@ SkipControllerInitialization:
     ControllerPointer[3] = -1;
     ControllerPointer = (long long)&SystemMemoryTemplateD;
     ControllerPointer[4] = 0x180c91060;
-    SystemDataBuffer20 = ControllerPointer;
+    SystemControllerPointer = ControllerPointer;
     (**(code **)(ControllerPointer + 0x28))(ControllerPointer);
     SystemAllocationFlags = SystemAllocationFlagsTemplate;
-    SystemDataBuffer10 = &SystemDataBuffer8;
-    SystemDataBuffer8 = ControllerPointer;
+    SystemVirtualTablePointer = &SystemMemoryBlock;
+    SystemMemoryBlock = ControllerPointer;
     (**(code **)(ControllerPointer + 0x28))(ControllerPointer);
-    SystemManagerInitialize(SystemAllocationFlags,&SystemDataBuffer8);
+    SystemManagerInitialize(SystemAllocationFlags,&SystemMemoryBlock);
     (**(code **)(ControllerPointer + 0x38))(ControllerPointer);
   }
   return;
@@ -41626,35 +41627,35 @@ void StartInputSystem(void* SystemResourceManager,long long ConfigurationDataPoi
   long long resourceDataIndex;
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
-  uint8_t aSystemDataBuffer268 [32];
+  uint8_t SystemEncryptionBuffer [32];
   long long SystemMemoryOffset248;
-  void* *pointerUnsigned238;
-  uint8_t SystemDataBuffer230 [8];
+  void* *SystemHashNodePointer;
+  uint8_t SystemConfigBuffer [8];
   long long SystemMemoryOffset228;
   uint SystemAllocationSize;
-  long long longValue210;
-  uint8_t SystemMaxOperationCount8Extended [80];
-  void* SystemOperationFlag1b8;
-  void* *SystemResourcePointer1a8;
-  uint8_t *pCalculationFlags1A0;
+  long long SystemTempValue;
+  uint8_t SystemOperationBuffer [80];
+  void* SystemOperationFlags;
+  void* *SystemResourcePointer;
+  uint8_t *SystemCalculationFlags;
   uint32_t SystemStackFlag;
-  uint8_t SystemDataBuffer190 [88];
-  uint8_t StackBuffer2 [256];
+  uint8_t SystemPathBuffer [88];
+  uint8_t SystemStackBuffer [256];
   ulong long SystemContextValue;
   
   SystemThreadHandle = SystemContextManagerPointer;
   resourceDataIndex = SystemAllocationFlagsTemplate;
   SystemOperationFlag1b8 = 0xfffffffffffffffe;
-  SystemContextValue = SystemEncryptionKeyTemplate ^ (ulong long)aSystemDataBuffer268;
-  longValue210 = SystemContextManagerPointer;
-  SystemResourcePointer1a8 = &SystemResourceTemplateSecondary;
-  pCalculationFlags1A0 = SystemDataBuffer190;
-  SystemDataBuffer190[0] = 0;
+  SystemContextValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemEncryptionBuffer;
+  SystemTempValue = SystemContextManagerPointer;
+  SystemResourcePointer = &SystemResourceTemplateSecondary;
+  SystemCalculationFlags = SystemPathBuffer;
+  SystemPathBuffer[0] = 0;
   SystemStackFlag = 6;
-  strcpy_s(SystemDataBuffer190,0x10,&SystemStringPathTemplate);
+  strcpy_s(SystemPathBuffer,0x10,&SystemStringPathTemplate);
   SystemHashNodeData = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
   SystemMemoryOffset248 = resourceDataIndex + 0x70;
-  pointerUnsigned238 = SystemHashNodeData;
+  SystemHashNodePointer = SystemHashNodeData;
   InitializeSystemDataMemoryContext(SystemHashNodeData,&SystemResourcePointer1a8,3,resourceDataIndex + 0x2e0);
   *SystemHashNodeData = &SystemValueReference;
   pointerUnsigned238 = SystemHashNodeData;
