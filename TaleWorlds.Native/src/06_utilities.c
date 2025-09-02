@@ -74,7 +74,6 @@
 #define SystemContextArraySizeOffset 0x17c
 #define SystemContextErrorDataOffset 0x1a0
 #define ValidationContextLoopCounterOffset 0x98
-// 系统安全上下文基地址常量
 #define SystemSecurityContextBaseAddress 0x180c4f450
 #define SystemOperationErrorCode 0x4a
 #define SystemStatusFlagMask 0xf
@@ -9095,7 +9094,7 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t ope
     }
           InitializeMemoryAllocation(ObjectSize, AllocationSize & MemoryAllocationAlignmentMask);
   }
-        FinalizeSecurityOperation(securityToken ^ (uint64_t)StackBuffer);
+        FinalizeSecurityOperation(SecurityToken ^ (uint64_t)StackBuffer);
 }
 
 
