@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import re
+import sys
+
+def beautify_99_unmatched_functions():
+    """美化99_unmatched_functions.c文件中的变量名"""
+    
+    # 读取文件内容
+    with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/99_unmatched_functions.c', 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # 定义变量替换规则
+    replacements = [
+        # 替换SUB_开头的变量
+        (r'undefined SUB_18013d940', 'undefined* SystemSubroutineHandler'),
+        
+        # 替换带后缀的变量名，移除数字后缀
+        (r'void\* SystemEdgeComputingProcessor_063b0', 'void* SystemEdgeComputingProcessor'),
+        (r'void\* SystemFogComputingEngine_063cc', 'void* SystemFogComputingEngine'),
+        (r'void\* SystemServerlessComputingUnit_063d0', 'void* SystemServerlessComputingUnit'),
+        (r'uint32_t SystemGlobalConfigurationConstant_8a9a8', 'uint32_t SystemGlobalConfigurationConstant'),
+        (r'void\* SystemMicroservicesArchitecture_11ae70', 'void* SystemMicroservicesArchitecture'),
+        (r'void\* SystemContainerOrchestrationEngine_11ae80', 'void* SystemContainerOrchestrationEngine'),
+        (r'void\* SystemDevOpsAutomationTool_063f8', 'void* SystemDevOpsAutomationTool'),
+        (r'void\* SystemContinuousIntegrationPipeline_0640c', 'void* SystemContinuousIntegrationPipeline'),
+        (r'void\* SystemContinuousDeploymentService_06410', 'void* SystemContinuousDeploymentService'),
+        (r'void\* SystemDataStorageManager_14f510', 'void* SystemDataStorageManager'),
+        (r'void\* SystemXmlProcessingEngine_08850', 'void* SystemXmlProcessingEngine'),
+    ]
+    
+    # 应用替换规则
+    for pattern, replacement in replacements:
+        content = re.sub(pattern, replacement, content)
+    
+    # 写回文件
+    with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/99_unmatched_functions.c', 'w', encoding='utf-8') as f:
+        f.write(content)
+    
+    print("变量美化完成")
+
+if __name__ == "__main__":
+    beautify_99_unmatched_functions()

@@ -1,53 +1,116 @@
 #!/bin/bash
 
-# 美化02_core_engine.c文件中的变量名
-# 作者: Claude Code
-# 日期: 2025-09-01
+# 美化02_core_engine.c中的变量名
+# 将单字母变量名改为有意义的名称
 
-# 定义文件路径
 FILE_PATH="/dev/shm/mountblade-code/TaleWorlds.Native/src/02_core_engine.c"
 
-# 创建临时脚本文件来执行替换
-cat > /tmp/beautify_core_engine_vars.py << 'EOF'
-import re
+# 备份原始文件
+cp "$FILE_PATH" "$FILE_PATH.backup"
 
-# 读取文件
-with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/02_core_engine.c', 'r', encoding='utf-8') as f:
-    content = f.read()
+# SystemMemoryDataTemplate 系列变量名美化
+sed -i 's/SystemMemoryDataTemplateA/SystemMemoryDataTemplateAudio/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateB/SystemMemoryDataTemplateVideo/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateC/SystemMemoryDataTemplateInput/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateD/SystemMemoryDataTemplateNetwork/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateE/SystemMemoryDataTemplatePhysics/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateF/SystemMemoryDataTemplateRendering/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateG/SystemMemoryDataTemplateAudioPrimary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateH/SystemMemoryDataTemplateVideoPrimary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateI/SystemMemoryDataTemplateInputPrimary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateJ/SystemMemoryDataTemplateNetworkPrimary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateK/SystemMemoryDataTemplatePhysicsPrimary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateL/SystemMemoryDataTemplateRenderingPrimary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateM/SystemMemoryDataTemplateAudioSecondary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateN/SystemMemoryDataTemplateVideoSecondary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateO/SystemMemoryDataTemplateInputSecondary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateP/SystemMemoryDataTemplateNetworkSecondary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateQ/SystemMemoryDataTemplatePhysicsSecondary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateR/SystemMemoryDataTemplateRenderingSecondary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateS/SystemMemoryDataTemplateAudioTertiary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateT/SystemMemoryDataTemplateVideoTertiary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateU/SystemMemoryDataTemplateInputTertiary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateV/SystemMemoryDataTemplateNetworkTertiary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateW/SystemMemoryDataTemplatePhysicsTertiary/g' "$FILE_PATH"
+sed -i 's/SystemMemoryDataTemplateX/SystemMemoryDataTemplateRenderingTertiary/g' "$FILE_PATH"
 
-# 变量替换映射
-variable_replacements = {
-    # 栈变量替换
-    r'puStack_a0': 'ConfigurationHandlerPointer',
-    r'puStack_98': 'BufferPointer',
-    r'uStack_90': 'ConfigurationType',
-    r'auStack_88': 'ConfigurationBuffer',
-    r'in_R9': 'RegisterR9Value',
-    
-    # 其他未定义变量
-    r'undefined8': 'uint64_t',
-    r'undefined4': 'uint32_t', 
-    r'undefined2': 'uint16_t',
-    r'undefined1': 'uint8_t',
-    r'undefined \*': 'void *',
-    r'undefined': 'void',
-}
+# SystemComparisonData 系列变量名美化
+sed -i 's/SystemComparisonDataPrimary/SystemComparisonDataMemoryPrimary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataSecondary/SystemComparisonDataMemorySecondary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataTertiary/SystemComparisonDataMemoryTertiary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataQuaternary/SystemComparisonDataConnectionPrimary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataQuinary/SystemComparisonDataConnectionSecondary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataSextenary/SystemComparisonDataQueuePrimary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataSeptenary/SystemComparisonDataEventPrimary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataOctonary/SystemComparisonDataSyncPrimary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataNonary/SystemComparisonDataAudioPrimary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataDenary/SystemComparisonDataInputPrimary/g' "$FILE_PATH"
+sed -i 's/SystemComparisonDataUndenary/SystemComparisonDataResourcePrimary/g' "$FILE_PATH"
 
-# 执行替换
-for pattern, replacement in variable_replacements.items():
-    content = re.sub(pattern, replacement, content)
+# SystemConnectionTemplate 系列变量名美化
+sed -i 's/SystemConnectionTemplateA/SystemConnectionTemplateAudio/g' "$FILE_PATH"
+sed -i 's/SystemConnectionTemplateB/SystemConnectionTemplateVideo/g' "$FILE_PATH"
+sed -i 's/SystemConnectionTemplateC/SystemConnectionTemplateInput/g' "$FILE_PATH"
+sed -i 's/SystemConnectionTemplateD/SystemConnectionTemplateNetwork/g' "$FILE_PATH"
+sed -i 's/SystemConnectionTemplateE/SystemConnectionTemplatePhysics/g' "$FILE_PATH"
+sed -i 's/SystemConnectionTemplateF/SystemConnectionTemplateRendering/g' "$FILE_PATH"
+sed -i 's/SystemConnectionTemplateG/SystemConnectionTemplateAudioPrimary/g' "$FILE_PATH"
 
-# 写回文件
-with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/02_core_engine.c', 'w', encoding='utf-8') as f:
-    f.write(content)
+# UNK_变量名美化
+sed -i 's/UNK_180a3cf50/SystemDataBufferPrimary/g' "$FILE_PATH"
+sed -i 's/UNK_1809fe6d8/SystemDataBufferSecondary/g' "$FILE_PATH"
+sed -i 's/UNK_1809fd9a0/NetworkConfigBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fd9b0/NetworkStatusBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fd9d0/NetworkParameterBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fd9f0/NetworkControlBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fda10/NetworkTransferBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fda30/NetworkSessionBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fda58/NetworkConnectionBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fda80/NetworkPacketBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fdaa8/NetworkStreamBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fdad0/NetworkSecurityBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fdaf8/NetworkEncryptionBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fdb20/NetworkCompressionBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fdb40/NetworkHeaderBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fdbd0/NetworkFooterBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fdc18/NetworkChecksumBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fe220/NetworkValidationBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_1809fe85c/NetworkErrorCodeBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_180a07805/SystemStringBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_180a0888c/SystemConfigBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_180a08db0/SystemMemoryBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_180a0b408/SystemTimerBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_180a0f0b8/SystemStatusBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_180a10500/SystemTableBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_180a10698/SystemCounterBuffer/g' "$FILE_PATH"
+sed -i 's/UNK_180a130b4/StringComparisonTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13100/StringOperationTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13108/StringFormatTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13158/StringValidationTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13160/StringConversionTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a1318c/StringEncodingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a1316c/StringCompressionTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13174/StringEncryptionTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131a0/StringHashingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131a8/StringChecksumTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13194/StringIndexingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a1319c/StringSearchingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131bc/StringSortingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131c0/StringFilteringTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131b0/StringGroupingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131b4/StringPartitioningTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131cc/StringAggregationTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131d4/StringTransformationTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131c4/StringNormalizationTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131c8/StringSanitizationTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a131ec/StringOptimizationTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13238/StringCachingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13230/StringBufferingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13264/StringStreamingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a1326c/StringBatchingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a1324c/StringQueuingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a132a4/StringSchedulingTable/g' "$FILE_PATH"
+sed -i 's/UNK_180a13274/StringPrioritizationTable/g' "$FILE_PATH"
+sed -i 's/UNK_18098bc74/SystemDebugBuffer/g' "$FILE_PATH"
 
-print("变量美化完成")
-EOF
-
-# 执行Python脚本
-python3 /tmp/beautify_core_engine_vars.py
-
-# 清理临时文件
-rm -f /tmp/beautify_core_engine_vars.py
-
-echo "核心引擎变量美化完成"
+echo "变量名美化完成"

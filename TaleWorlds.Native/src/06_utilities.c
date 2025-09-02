@@ -9488,7 +9488,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandlingNoParams(void)
   uint8_t *ploopIncrement;
   int64_t SavedRegisterValue;
   int64_t ResourceRegisterPointer;
-  uint32_t StackParameterBuffer50;
+  uint32_t ValidationParameterBuffer;
   
   resourceTable = LookupResourceIndex();
   if ((*(uint *)(resourceTable + 0x34) >> 4 & 1) != 0) {
@@ -9502,10 +9502,10 @@ uint8_t ProcessFloatRangeValidationAndDataHandlingNoParams(void)
       validationStatusCode = 0x1c;
     }
     else {
-      validationStatusCode = ValidateResourceParameters(ResourceRegisterPointer + 0x60,StackParameterBuffer50);
+      validationStatusCode = ValidateResourceParameters(ResourceRegisterPointer + 0x60,ValidationParameterBuffer);
       if ((int)validationStatusCode == 0) {
         ploopIncrement = (uint8_t *)
-                 GetResourcePointer(ResourceRegisterPointer + 0x60,&ObjectStackBufferResource40,StackParameterBuffer50);
+                 GetResourcePointer(ResourceRegisterPointer + 0x60,&ObjectStackBufferResource40,ValidationParameterBuffer);
         *(uint8_t *)(RegisterContext + 0x18) = *ploopIncrement;
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
@@ -9534,7 +9534,7 @@ uint64_t ProcessFloatDataValidation(void)
   int64_t resourceContext;
   int64_t SavedRegisterValue;
   int64_t ResourceRegisterPointer;
-  uint32_t StackParameterBuffer50;
+  uint32_t ValidationParameterBuffer;
   
   validationResult = ValidateObjectContextAndProcessData();
   if ((int)validationResult == 0) {
@@ -9544,10 +9544,10 @@ uint64_t ProcessFloatDataValidation(void)
       validationResult = 0x1c;
     }
     else {
-      validationResult = ValidateResourceParameters(ResourceRegisterPointer + 0x60,StackParameterBuffer50);
+      validationResult = ValidateResourceParameters(ResourceRegisterPointer + 0x60,ValidationParameterBuffer);
       if ((int)validationResult == 0) {
         pvalidationStatusCode = (uint8_t *)
-                 GetResourcePointer(ResourceRegisterPointer + 0x60,&ObjectStackBufferResource40,StackParameterBuffer50);
+                 GetResourcePointer(ResourceRegisterPointer + 0x60,&ObjectStackBufferResource40,ValidationParameterBuffer);
         *(uint8_t *)(RegisterContext + 0x18) = *pValidationResult;
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
@@ -9843,18 +9843,18 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
   uint8_t SecurityDataBuffer [32];
   uint ResourceValidationFlagHigh;
   uint ResourceValidationFlagLow;
-  uint ResourceValidationFlag1;
-  uint ResourceValidationFlag2;
-  uint ResourceValidationFlag3;
-  uint ResourceValidationFlag4;
-  uint ResourceValidationFlag5;
-  uint ResourceValidationFlag6;
-  uint ResourceValidationFlag7;
-  uint ResourceValidationFlag8;
-  uint32_t ResourceValidationFlag9;
-  uint ResourceValidationFlag10;
-  uint ResourceValidationFlag11;
-  uint ResourceValidationFlag12;
+  uint ResourceFlagByte1;
+  uint ResourceFlagByte2;
+  uint ResourceFlagByte3;
+  uint ResourceFlagByte4;
+  uint ResourceFlagByte5;
+  uint ResourceFlagByte6;
+  uint ResourceFlagByte7;
+  uint ResourceFlagByte8;
+  uint32_t ResourceFlagPrimary;
+  uint ResourceFlagSecondary1;
+  uint ResourceFlagSecondary2;
+  uint ResourceFlagSecondary3;
   int64_t ResourceHandleBackup;
   uint8_t ResourceDataBuffer [40];
   uint64_t PrimaryOperationParameter;
@@ -9906,10 +9906,10 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
  void FinalizeSecurityOperationWrapper(void)
 
 {
-  uint64_t StackParameterBufferB0;
+  uint64_t SecurityOperationParam;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(StackParameterBufferB0 ^ (uint64_t)&SystemSecurityValidationBuffer);
+  FinalizeSecurityOperation(SecurityOperationParam ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -9925,16 +9925,16 @@ void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationC
   int OperationResult;
   int64_t ResourceIndex;
   uint8_t SecurityDataBuffer [32];
-  uint ResourceValidationFlag1;
-  uint ResourceValidationFlag2;
-  uint ResourceValidationFlag3;
-  uint ResourceValidationFlag4;
-  uint ResourceValidationFlag5;
-  uint ResourceValidationFlag6;
-  uint ResourceValidationFlag7;
-  uint ResourceValidationFlag8;
+  uint ResourceFlagByte1;
+  uint ResourceFlagByte2;
+  uint ResourceFlagByte3;
+  uint ResourceFlagByte4;
+  uint ResourceFlagByte5;
+  uint ResourceFlagByte6;
+  uint ResourceFlagByte7;
+  uint ResourceFlagByte8;
   uint ResourceValidationFlag9;
-  uint ResourceValidationFlag11;
+  uint ResourceFlagSecondary2;
   uint32_t validationParameter;
   uint validationParameterSecondary;
   uint validationParameterTertiary;
@@ -13194,7 +13194,7 @@ void ExecuteSimplifiedContextValidation(void)
  * 
  * @return 无返回值
  */
-void SystemStatusProcessorA(void)
+void SystemStatusProcessorPrimary(void)
 
 {
   int OperationResult;
@@ -13491,7 +13491,7 @@ void BufferValidationErrorHandler(void)
  * 
  * @return 无返回值
  */
-void SystemInitializerA(void)
+void SystemInitializerPrimary(void)
 
 {
   float calculatedFloatResult;
@@ -20724,7 +20724,7 @@ ValidateResourceIntegrity(void)
   ResourceTablePointer = (int64_t)(int)StackRegisterStorage50;
   validationStatusCode = (int)*(uint *)(RegisterR15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(RegisterR15 + 0x2c) ^ ValidationResult) - ValidationResult) < (int)StackRegisterStorage50) &&
-     (operationStatusCode = CheckResourceTableStatus(RegisterR15 + 0x20,StackParameterBuffer50), OperationResult != 0)) {
+     (operationStatusCode = CheckResourceTableStatus(RegisterR15 + 0x20,ValidationParameterBuffer), OperationResult != 0)) {
     return;
   }
   operationStatusCode = *(int *)(RegisterR15 + 0x28);
