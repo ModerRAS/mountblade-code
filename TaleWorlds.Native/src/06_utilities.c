@@ -4662,8 +4662,7 @@ uint32_t ValidateRegisterPointer(void)
 
 
 
- void initiateSystemShutdown(void)
-/**
+ /**
  * @brief 触发系统关闭
  * 
  * 该函数负责触发系统的关闭过程
@@ -26005,7 +26004,7 @@ SecurityValidationLoop:
                                   0,0,1);
             if (ResourceEntryPointer == 0) {
               loopIncrement = 0x26;
-              goto LAB_18089e70b;
+              goto SecurityValidationLoop;
             }
             resourceHash = *resourcePointer5;
             *(int64_t *)ResourceEntryPointer = ResourceEntryPointer;
@@ -26015,7 +26014,7 @@ SecurityValidationLoop:
             *(uint32_t *)(ResourceEntryPointer + 0x20) = 0;
             validationStatusCode = VerifyResourceIntegrity(objectContext + 0x58,ResourceEntryPointer);
             loopIncrement = (uint64_t)ValidationResult;
-            if (ValidationResult != 0) goto LAB_18089e70b;
+            if (ValidationResult != 0) goto SecurityValidationLoop;
           }
         }
         ReleaseResourceBuffer(&pResourceTertiaryFlag);
@@ -26129,7 +26128,7 @@ SecurityValidationLoop:
           ;
           if (SystemDataPointer == 0) {
             ResourceCounter = 0x26;
-            goto LAB_18089e70b;
+            goto SecurityValidationLoop;
           }
           resourceHash1 = *presourceHash0;
           *(int64_t *)SystemDataPointer = SystemDataPointer;
@@ -26139,7 +26138,7 @@ SecurityValidationLoop:
           *(uint32_t *)(SystemDataPointer + 0x20) = 0;
           ResourceContextOffset = VerifyResourceIntegrity(RegisterR15 + 0x58,SystemDataPointer);
           ResourceCounter = (uint64_t)ResourceContextOffset;
-          if (ResourceContextOffset != 0) goto LAB_18089e70b;
+          if (ResourceContextOffset != 0) goto SecurityValidationLoop;
           integerValue6 = *(int *)(ExecutionContextPointer + -0x21);
           pSecurityHashValue = *(uint32_t **)(ExecutionContextPointer + -0x29);
         }
@@ -26210,7 +26209,7 @@ SecurityValidationLoop:
         ResourceTablePointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),0x28,&MemoryBlockTemplate,0xc1c);
         if (ResourceTablePointer == 0) {
           loopIncrement = 0x26;
-          goto LAB_18089e70b;
+          goto SecurityValidationLoop;
         }
         resourceHash = *pSecurityHashValue;
         *(int64_t *)ResourceTablePointer = ResourceTablePointer;
@@ -26220,7 +26219,7 @@ SecurityValidationLoop:
         *(int *)(ResourceTablePointer + 0x20) = (int)resourceContext;
         validationResult = VerifyResourceIntegrity(RegisterR15 + 0x58,ResourceTablePointer);
         loopIncrement = (uint64_t)ResourceValidationResult;
-        if (validationResult != 0) goto LAB_18089e70b;
+        if (validationResult != 0) goto SecurityValidationLoop;
         validationStatusCode = *(int *)(ExecutionContextPointer + -0x21);
         ContextValidationStatusCodePointer = *(uint32_t **)(ExecutionContextPointer + -0x29);
       }
@@ -26377,7 +26376,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
     return (uint64_t)ValidationResult;
   }
   validationStatusCode = *(uint *)(resourceData + 8);
-  if (0x7e < ValidationResult) goto LAB_18089ed1b;
+  if (0x7e < ValidationResult) goto SecurityValidationFailed;
   if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
@@ -26682,7 +26681,7 @@ uint64_t ProcessResourceTableValidationAndOperations(void)
     return (uint64_t)ValidationResult;
   }
   validationStatusCode = *(uint *)(SystemRegisterContext + 8);
-  if (0x7e < ValidationResult) goto LAB_18089ed1b;
+  if (0x7e < ValidationResult) goto SecurityValidationFailed;
   if (*(int *)(SystemRegisterContext[1] + 0x18) != 0) {
     return 0x1c;
   }
@@ -26936,7 +26935,7 @@ uint64_t ProcessResourceDataValidationAndAllocation(uint8_t ObjectContext,uint8_
   bool ValidationSuccess;
   
   ResourceContextOffset = 0x1c;
-  if (0x7e < InputParameterValue) goto LAB_18089ed1b;
+  if (0x7e < InputParameterValue) goto SecurityValidationFailed;
   if (*(int *)(SystemRegisterContext[1] + 0x18) != (int)CleanupOption) {
     return 0x1c;
   }
