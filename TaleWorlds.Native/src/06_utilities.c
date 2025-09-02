@@ -331,7 +331,7 @@ void* ThreadCleanupAuxiliaryStorage;
  * @return 无返回值
  * @note 此函数必须在系统启动时调用，以确保资源管理系统的正常运行
  */
-void ResourceManagerInitFlag(void);
+void InitializeResourceManager(void);
 
 /**
  * @brief 配置资源设置
@@ -342,7 +342,7 @@ void ResourceManagerInitFlag(void);
  * @return 无返回值
  * @note 此函数必须在ResourceManagerInitFlag之后调用
  */
-void ResourceSettingsConfigFlag(void);
+void ConfigureResourceSettings(void);
 
 /**
  * @brief 处理资源操作
@@ -495,7 +495,6 @@ void* NetworkEventDispatcher;
  * 设置图形设备、着色器和渲染队列等相关组件
  */
 void* InitializeRenderingSystem(void);
-void* RenderingEngineInstance;
 void* GraphicsDeviceHandle;
 void* ShaderManager;
 void* RenderQueueManager;
@@ -1901,11 +1900,11 @@ uint8_t SystemMemoryConfigDataTemplatePerformance;
  * 设置内存使用合规性检查和报告
  */
 void InitializeMemoryCompliance(void);
-uint8_t SystemMemoryConfigDataTemplateMedium;
-uint8_t SystemMemoryConfigDataTemplateNormal;
-uint8_t SystemMemoryConfigDataTemplateOptimized;
-uint8_t SystemMemoryConfigDataTemplatePerformance;
-uint8_t SystemMemoryConfigDataTemplateQuick;
+uint8_t SystemMemoryConfigTemplateMedium;
+uint8_t SystemMemoryConfigTemplateNormal;
+uint8_t SystemMemoryConfigTemplateOptimized;
+uint8_t SystemMemoryConfigTemplatePerformance;
+uint8_t SystemMemoryConfigTemplateQuick;
 
  /**
  * @brief 配置内存诊断
@@ -1914,8 +1913,8 @@ uint8_t SystemMemoryConfigDataTemplateQuick;
  * 设置内存故障诊断和排除工具
  */
 void ConfigureMemoryDiagnostics(void);
-uint8_t SystemMemoryConfigDataTemplateSecure;
-uint8_t SystemMemoryConfigDataTemplateReliable;
+uint8_t SystemMemoryConfigTemplateSecure;
+uint8_t SystemMemoryConfigTemplateReliable;
 
  /**
  * @brief 初始化系统配置
@@ -2158,11 +2157,8 @@ uint8_t ResourceCacheSize;
 uint8_t MemoryPoolBuffer;
 uint8_t MemoryAllocator;
 // 系统内存配置数据模板扩展变量
-uint8_t MemoryConfigQuaternary;     // 第四级配置项
-uint8_t MemoryConfigQuinary;      // 第五级配置项
 uint8_t MemoryConfigAdditional;      // 附加配置项
 uint8_t MemoryConfigExtra;    // 扩展配置项
-uint8_t MemoryConfigSupplementary;     // 补充配置项
 uint8_t MemoryConfigOptional;      // 可选配置项
 uint8_t ConfigurationTemplate;        // 系统配置模板
 uint8_t ConfigDataAdvanced;              // 高级配置项
@@ -2215,7 +2211,6 @@ uint8_t MemoryConfigTenth;             // 第10配置项
  */
 void ConfigureLogOutput(void);
 // 日志输出配置数据模板变量
-uint8_t MemoryConfigSecondary;           // 次要内存配置模板
 uint8_t LogOutputConfigPrimary;               // 主要日志输出配置
 uint8_t LogOutputConfigSecondary;             // 次要日志输出配置
 
@@ -94442,20 +94437,20 @@ void InitializeSystemDataStructureCR(void)
   int64_t loopCounter;
   int64_t ResourceTable;
   
-  if (0xf < SystemresourceCounter002) {
+  if (0xf < SystemResourceSecondaryCounter) {
     LocalContextPointer = CONCAT71(uRam0000000180bfc171,SystemDataTablePointer);
     resourceTable = LocalContextData;
-    if (0xfff < SystemresourceCounter002 + 1) {
+    if (0xfff < SystemResourceSecondaryCounter + 1) {
       resourceTable = *(int64_t *)(LocalContextData + -8);
       if (0x1f < (LocalContextData - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,SystemresourceCounter002 + 0x28);
+        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,SystemResourceSecondaryCounter + 0x28);
       }
     }
     free(resourceTable);
   }
-  SystemresourceFlag002 = 0;
-  SystemresourceCounter002 = 0xf;
+  SystemResourceSecondaryFlag = 0;
+  SystemResourceSecondaryCounter = 0xf;
 
  /**
  * @brief 释放资源哈希表
