@@ -17725,10 +17725,10 @@ uint8_t ProcessArrayUnionBuffer(int64_t objectContext, uint32_t *validationConte
   ArrayUnionBuffer[0] = *validationContext;
   ResourceIndex = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),ArrayUnionStackX8,4);
   if (ResourceIndex == 0) {
-    ArrayUnionBuffer[0]._0_2_ = *(uint16_t *)(validationContext + 1);
+    ArrayUnionBuffer[0].ShortValue = *(uint16_t *)(validationContext + 1);
     ResourceIndex = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),ArrayUnionStackX8,2);
     if (ResourceIndex == 0) {
-      ArrayUnionBuffer[0] = CONCAT22(ArrayUnionBuffer[0]._2_2_,*(uint16_t *)((int64_t)validationContext + 6));
+      ArrayUnionBuffer[0] = CONCAT22(ArrayUnionBuffer[0].ShortValue,*(uint16_t *)((int64_t)validationContext + 6));
       ResourceIndex = (**(code **)**(uint8_t **)(objectContext + 8))
                         (*(uint8_t **)(objectContext + 8),ArrayUnionStackX8,2);
       if (ResourceIndex == 0) {
@@ -17795,7 +17795,7 @@ uint8_t ProcessResourcePropertySet(int64_t objectContext, uint32_t *validationCo
     ValidationContext = *(uint8_t *)(validationContext + 2);
     operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),&ValidationContext,8);
     if (operationStatusCode == 0) {
-      ValidationContext = CONCAT71(ValidationContext._1_7_,*(uint8_t *)(validationContext + 0x68));
+      ValidationContext = CONCAT71(ValidationContext.ByteValue,*(uint8_t *)(validationContext + 0x68));
       operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                         (*(uint8_t **)(objectContext + 8),&ValidationContext,1);
       if (operationStatusCode == 0) {
@@ -18127,7 +18127,7 @@ uint8_t ValidateResourceStatusFlags(int64_t ResourceContext, int64_t statusPoint
     resourceCountArray[0] = *(int *)(validationContext + 0x20);
     loopIncrement = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),resourceCountArray,4);
     if ((int)loopCondition == 0) {
-      resourceCountArray[0] = CONCAT22(resourceCountArray[0]._2_2_,ResourceContextOffset);
+      resourceCountArray[0] = CONCAT22(resourceCountArray[0].ShortValue,ResourceContextOffset);
       loopIncrement = (**(code **)**(uint8_t **)(objectContext + 8))
                         (*(uint8_t **)(objectContext + 8),resourceCountArray,2);
       if (((int)loopCondition == 0) && (loopIncrement = VerifyResourceIntegrity(objectContext,validationContext + 0x24), (int)loopCondition == 0)) {
@@ -18162,7 +18162,7 @@ uint8_t ValidateResourceStatusFlags(int64_t ResourceContext, int64_t statusPoint
                 if ((int)loopCondition != 0) {
                   return loopCondition;
                 }
-                resourceCountArray[0] = CONCAT31(resourceCountArray[0]._1_3_,ResourceStatus != 0);
+                resourceCountArray[0] = CONCAT31(resourceCountArray[0].ByteValue,ResourceStatus != 0);
                 loopIncrement = (**(code **)**(uint8_t **)(objectContext + 8))
                                   (*(uint8_t **)(objectContext + 8),resourceCountArray,1);
                 if ((int)loopCondition != 0) {
@@ -18404,7 +18404,7 @@ void ProcessResourceHash(int64_t ResourceContext, uint *hashPointer)
   
   resourceHash = *hashPointer;
   if (resourceHash + 0x4000 < 0x8000) {
-    formattedHash = CONCAT22(formattedHash._2_2_,(short)resourceHash) & 0xffff7fff;
+    formattedHash = CONCAT22(formattedHash.ShortValue,(short)resourceHash) & 0xffff7fff;
     hashType = 2;
   }
   else {
@@ -18443,7 +18443,7 @@ uint8_t CalculateResourceDataHash(int64_t ResourceContext, uint8_t *resourceData
     dataLength = 0;
   }
   if (dataLength < 0x8000) {
-    lengthBuffer[0] = CONCAT22(lengthBuffer[0]._2_2_,(short)dataLength);
+    lengthBuffer[0] = CONCAT22(lengthBuffer[0].ShortValue,(short)dataLength);
     resourceHash = 2;
   }
   else {
@@ -26840,7 +26840,7 @@ EncryptedDataValidation:
   }
   MemorySizeCheck = *(uint *)(resourceData + 8) < 0x34;
   ValidationFlag = (char)loopIncrement;
-  ResourceValidationBuffer[0] = CONCAT31(ResourceValidationBuffer[0]._1_3_,ValidationFlag);
+  ResourceValidationBuffer[0] = CONCAT31(ResourceValidationBuffer[0].ByteValue,ValidationFlag);
   OperationCompleted = false;
   if (0x37 < *(uint *)(resourceData + 8)) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
@@ -26903,7 +26903,7 @@ MemoryBoundaryCheck1:
         }
       }
       if (validationStatusCode == 0) {
-        ResourceValidationBuffer[0] = CONCAT31(ResourceValidationBuffer[0]._1_3_,ResourceChecksumBuffer[0] != '\0');
+        ResourceValidationBuffer[0] = CONCAT31(ResourceValidationBuffer[0].ByteValue,ResourceChecksumBuffer[0] != '\0');
       }
       loopIncrement = (uint64_t)HashValidationResult;
       if (validationStatusCode == 0) {
@@ -28267,7 +28267,7 @@ SystemResourceValidationHandler(void)
       SavedBasePointer = 0;
     }
     else if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-      StackRegisterStorageB0 = CONCAT31(StackRegisterStorageB0._1_3_,*(uint8_t *)(SystemContext + 0x5c));
+      StackRegisterStorageB0 = CONCAT31(StackRegisterStorageB0.ByteValue,*(uint8_t *)(SystemContext + 0x5c));
       SavedBasePointer = (**(code **)**(uint8_t **)(*ResourceContext + 8))
                             (*(uint8_t **)(*ResourceContext + 8),&StackBufferB0,1);
     }
@@ -28475,7 +28475,7 @@ uint64_t ProcessResourceCertificateValidation(int64_t objectContext,int64_t *val
             ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
                               (*(uint8_t **)(LocalContextData + 8),ResourceValidationBuffer,2);
             if (ValidationResult == 0) {
-              StackContextBuffer[0] = ResourceValidationByte3._2_2_;
+              StackContextBuffer[0] = ResourceValidationByte3.ShortValue;
               ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
                                 (*(uint8_t **)(LocalContextData + 8),StackContextBuffer,2);
               if (ValidationResult == 0) {
@@ -28662,11 +28662,11 @@ uint64_t VerifyResourceCertificateIntegrity(void)
   LocalContextData = *SystemRegisterContext;
   ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))();
   if (ValidationResult == 0) {
-    StackVariableA0 = StackRegisterStorageOctal._4_2_;
+    StackVariableA0 = StackRegisterStorageOctal.ShortValue;
     ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
                       (*(uint8_t **)(LocalContextData + 8),&stack0x000000a0,2);
     if (ValidationResult == 0) {
-      StackVariableA8 = StackRegisterStorageOctal._6_2_;
+      StackVariableA8 = StackRegisterStorageOctal.ShortValue;
       ValidationResult = (**(code **)**(uint8_t **)(LocalContextData + 8))
                         (*(uint8_t **)(LocalContextData + 8),&stack0x000000a8,2);
       if (ValidationResult == 0) {
