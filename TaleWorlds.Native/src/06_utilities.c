@@ -2304,14 +2304,14 @@ double TimingData;
 double FrequencyData;
 int StatusFlags;
 double PerformanceMetrics;
-uint8_t MemoryAllocatorData;
-uint8_t MemoryManagerData;
-uint8_t ResourcePoolData;
-uint8_t ResourceManagerData;
-uint8_t ThreadManagerData;
-uint8_t TaskSchedulerData;
-uint8_t EventSystemData;
-uint8_t TimerManagerData;
+uint8_t MemoryAllocatorState;
+uint8_t MemoryManagerState;
+uint8_t ResourcePoolState;
+uint8_t ResourceManagerState;
+uint8_t ThreadManagerState;
+uint8_t TaskSchedulerState;
+uint8_t EventSystemState;
+uint8_t TimerManagerState;
 uint8_t LockManagerData;
 uint8_t SemaphoreManagerData;
 uint8_t MutexManagerData;
@@ -10890,20 +10890,20 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
 
 {
   int64_t loopCounter;
-  int InputRegisterResult;
-  uint8_t HashValidationResult;
+  int InputValidationResult;
+  uint8_t HashCheckResult;
   uint64_t HashValidationResult;
   int64_t DataOffset;
   uint ResourceContextOffset;
   int *ResourceDataPointer66;
   int64_t *resourceContext;
-  int RegisterEDI;
+  int DataIndexRegister;
   int ValidationStatusCode;
   uint64_t MemorySize;
   uint64_t AllocationSize;
   
-  if (RegisterEDI == InputParameterValue) {
-    resourceCount = RegisterEDI * 2;
+  if (DataIndexRegister == InputParameterValue) {
+    resourceCount = DataIndexRegister * 2;
     if (resourceCount < 4) {
       resourceCount = 4;
     }
@@ -11387,7 +11387,7 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
   int64_t ResourceTable;
   uint8_t *HashValidationResultPointer;
   int ResultRecordIndex;
-  int *SystemRegisterContext;
+  int *SystemContextRegister;
   int64_t RegisterValueR10;
   bool ZeroFlag;
   int StackVariableIndex;
@@ -11402,7 +11402,7 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
         StackVariableIndex = (int)((uint64_t)*(uint8_t *)(LocalContextData + 8 + resourceTable * 0x10) >> 0x20)
         ;
         if (StackVariableIndex != 0) {
-          *SystemRegisterContext = StackVariableIndex;
+          *SystemContextRegister = StackVariableIndex;
           return 0;
         }
         goto StackVariableHandler;
@@ -11418,7 +11418,7 @@ StackVariableHandler:
   if (HashValidationResultPointer != (uint8_t *)0x0) {
     (**(code **)*HashValidationResultPointer)();
   }
-  *SystemRegisterContext = StackVariableIndex;
+  *SystemContextRegister = StackVariableIndex;
   return 0;
 }
 
@@ -19166,24 +19166,24 @@ int SetSystemStatusFlagToActive(void)
 
 
 /**
- * @brief 获取状态标志值
+ * @brief 获取系统状态标志值
  * 
- * 该函数负责获取当前的状态标志值。
- * 它直接返回RegisterR15D的值。
+ * 该函数负责获取当前的系统状态标志值。
+ * 它直接返回SystemStatusRegister的值。
  * 
- * @return int 返回RegisterR15D的值
+ * @return int 返回SystemStatusRegister的值
  * @note 这是一个简化的状态获取函数
  */
-int GetStatusFlagValue(void)
+int GetSystemStatusFlagValue(void)
 
 {
   int64_t ExecutionContextPointer;
-  uint32_t RegisterESI;
-  int RegisterR15D;
+  uint32_t StatusIndexRegister;
+  int SystemStatusRegister;
   
-  *(uint32_t *)(ExecutionContextPointer + 0xd4) = RegisterESI;
-  if (RegisterR15D != 0) {
-    return RegisterR15D;
+  *(uint32_t *)(ExecutionContextPointer + 0xd4) = StatusIndexRegister;
+  if (SystemStatusRegister != 0) {
+    return SystemStatusRegister;
   }
                     // WARNING: Subroutine does not return
   CleanupResourceData();
