@@ -2574,22 +2574,28 @@ uint8_t ResourceValidator;
 // 资源检查器 - 用于检查系统资源状态
 uint8_t ResourceChecker;
 uint8_t ResourceTrackerTable;
-uint8_t SystemResourceMonitor;
+// 资源监控器 - 用于监控系统资源使用情况
+uint8_t ResourceMonitor;
 uint8_t ResourceMonitorTable;
 uint8_t ResourceAuditorTable;
-uint8_t SystemResourceAuditor;
-uint8_t SystemResourceInspector;
+// 资源审计器 - 用于审计系统资源使用情况
+uint8_t ResourceAuditor;
+// 资源检查器 - 用于检查系统资源详细信息
+uint8_t ResourceInspector;
 uint8_t ResourceCacheTable;
 uint8_t ResourceBufferTable;
 uint8_t ResourcePoolTable;
 uint8_t ResourceQueueTable;
 
- uint8_t ValidateResourceIntegrity;
+ // 资源完整性验证器 - 用于验证资源完整性
+uint8_t ResourceIntegrityValidator;
 uint8_t ResourceStackTable;
 uint8_t ResourceAnalyzerTable;
 uint8_t ResourceProfilerTable;
-uint8_t SystemResourceAnalyzer;
-uint8_t SystemResourceProfiler;
+// 资源分析器 - 用于分析系统资源使用情况
+uint8_t ResourceAnalyzer;
+// 资源性能分析器 - 用于分析系统资源性能
+uint8_t ResourceProfiler;
 uint8_t SystemResourceTracker;
 uint8_t SystemResourceLogger;
 void* ResourceNetworkManager;
@@ -2765,7 +2771,8 @@ uint8_t SystemResourceProcessor;
 uint8_t SystemResourceHandler;
 uint8_t SystemResourceBalancer;
 uint8_t SystemResourceOptimizer;
-uint8_t SystemResourceMonitor;
+// 资源监控器副本 - 用于监控系统资源使用情况
+uint8_t ResourceMonitor2;
 // 资源验证器副本 - 用于验证系统资源的有效性
 uint8_t ResourceValidator2;
 uint8_t SystemResourceCleaner;
