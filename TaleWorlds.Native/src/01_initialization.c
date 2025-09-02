@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 系统地址常量定义
 #define SYSTEM_EVENT_HANDLER_PRIMARY_ADDRESS    0x180c91700
 #define SYSTEM_EVENT_HANDLER_SECONDARY_ADDRESS  0x180c91800
 #define SYSTEM_FLOAT_TABLE_START_ADDRESS       0x180c8aa70
@@ -22,25 +21,8 @@
 #define SYSTEM_MUTEX_SECURITY_ADDRESS          0x180c91910
 #define SYSTEM_DATA_CHECK_ADDRESS             0x180d49150
 
-/**
- * @brief 系统内存页面处理函数
- * 
- * 该函数负责处理系统内存页面的操作，包括内存页面的初始化、
- * 清理和管理。这是内存管理系统的核心函数。
- * 
- * @param memoryAddress 内存地址参数
- * @note 这是底层内存操作函数，用于管理内存页面
- */
 void ProcessSystemMemoryPage(long long MemoryAddress);
 
-/**
- * @brief 系统资源释放函数
- * 
- * 该函数负责释放系统资源，包括内存、句柄和其他系统资源。
- * 当资源引用计数归零时调用此函数进行资源清理。
- * 
- * @note 这是资源管理系统的重要组成部分
- */
 void ReleaseSystemResource(void);
 
 /**
