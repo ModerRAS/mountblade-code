@@ -54168,7 +54168,7 @@ void SetSystemDataStructureHandler(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_180906960(uint8_t ObjectContext,int64_t ValidationContext)
+void BeginResourceTransactionWithHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -54180,7 +54180,7 @@ void Unwind_180906960(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906970(uint8_t ObjectContext,int64_t ValidationContext)
+void CommitResourceTransactionWithValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   CommitResourceTransaction(ValidationContext + 0x28);
@@ -54189,7 +54189,12 @@ void Unwind_180906970(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906980(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 回滚资源事务处理
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RollbackResourceTransactionWithValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x58) != (int64_t *)0x0) {
@@ -54200,7 +54205,12 @@ void Unwind_180906980(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906990(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 初始化资源锁管理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void InitializeResourceLockManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   CommitResourceTransaction(ValidationContext + 0x40);
@@ -95062,8 +95072,6 @@ void ReleaseResourceHashTable(void)
     ResourceHashIndex = 0;
   }
   SystemConfigurationHandler(&ConfigurationData);
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
   free(ConfigurationData,0x40);
   return;
 }
@@ -95072,13 +95080,6 @@ void ReleaseResourceHashTable(void)
 
 
  /**
- * @brief 释放验证结果表
- * 
- * 该函数负责释放验证结果表占用的内存
- * 并重置相关的全局变量，确保验证资源正确清理
- */
-void ReleaseHashValidationResultTable(void)
-/**
  * @brief 释放验证结果表
  * 
  * 该函数负责释放验证结果表占用的内存
@@ -95118,11 +95119,8 @@ void ReleaseHashValidationResultTable(void)
  * 确保资源正确清理，避免内存泄漏
  */
 void DestroyMutexResource(void)
-void DestroyMutexResource(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180942a58. Too many branches
-                    // WARNING: Treating indirect jump as call
   _Mtx_destroy_in_situ(0x180d49db0);
   return;
 }
