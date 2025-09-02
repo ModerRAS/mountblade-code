@@ -13895,7 +13895,7 @@ void SystemInitializerPrimary(void)
   uint8_t *StackParameter70;
   float StackParameter78;
   uint32_t StackParameterValidationCode;
-  uint32_t StackParameter1a8;
+  uint32_t StackParameterSecurityCode;
   
   ResourceHashValidationResultPointer2 = (uint8_t *)(ResourceRegisterPointer + 8);
   StackParameterContextExtended = FloatRegisterValue;
@@ -24268,9 +24268,24 @@ FinalizeValidation:
 
 
 /**
- * 执行资源数据完整性验证
- * 该函数负责执行资源数据的完整性验证，包括数据结构检查和哈希验证
- * @return 验证状态码：0表示成功，其他值表示错误
+ * @brief 执行资源数据完整性验证
+ * 
+ * 该函数负责执行资源数据的完整性验证，是资源管理系统的重要安全组件。
+ * 主要功能包括：
+ * 1. 验证系统输入参数的有效性
+ * 2. 检查资源上下文的完整性和访问权限
+ * 3. 执行资源数据的安全验证和哈希计算
+ * 4. 验证资源边界条件和数据完整性
+ * 5. 返回详细的验证状态码用于错误诊断
+ * 
+ * @return uint64_t 验证状态码：
+ *         - 0: 验证成功，资源数据完整有效
+ *         - 0x1c: 输入参数无效或资源上下文错误
+ *         - 0x11: 资源数据边界检查失败
+ *         - 其他值: 具体验证错误码
+ * 
+ * @note 此函数在资源加载、更新和验证过程中被调用
+ * @warning 验证失败时，系统会记录详细的错误信息用于调试
  */
 uint64_t ExecuteResourceDataIntegrityValidation(void)
 
