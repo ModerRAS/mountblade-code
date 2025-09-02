@@ -5465,10 +5465,10 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t AdvancedObjectHandle)
   else {
     ValidatedAdvancedPointer = ValidatedAdvancedPointer + -8;
   }
-  if (*(int64_t *)(ValidatedAdvancedPointer + 0x10) == 0) {
+  if (*(int64_t *)(ValidatedAdvancedPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ValidatedAdvancedPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedAdvancedPointer + ObjectContextValidationOffset), 1);
 }
 
 
@@ -5493,10 +5493,10 @@ uint32_t ValidateAndExecuteSystemExit(void)
   else {
     CalculatedOffset = SystemRegister + -8;
   }
-  if (*(int64_t *)(CalculatedOffset + 0x10) == 0) {
+  if (*(int64_t *)(CalculatedOffset + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(CalculatedOffset + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(CalculatedOffset + ObjectContextValidationOffset), 1);
 }
 
 
@@ -5566,10 +5566,10 @@ uint32_t ValidateStackLocationAndExecuteExit(void)
   if (StackLocation != 0) {
     StackLocation = StackLocation + -8;
   }
-  if (*(int64_t *)(StackLocation + 0x10) == 0) {
+  if (*(int64_t *)(StackLocation + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackLocation + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackLocation + ObjectContextValidationOffset), 1);
 }
 
 
@@ -5644,10 +5644,10 @@ uint32_t ValidateStackObject(void)
   if (StackPointer != 0) {
     StackPointer = StackPointer + -8;
   }
-  if (*(int64_t *)(StackPointer + 0x10) == 0) {
+  if (*(int64_t *)(StackPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackPointer + ObjectContextValidationOffset), 1);
 }
 
 
@@ -59782,7 +59782,7 @@ void ExecuteExtendedResourceProcessingCallback(uint8_t ObjectContext, int64_t Va
 void CompleteSystemCleanup(void)
 
 {
-  SystemResourcePointer1 = &SystemDataStructure;
+  SystemResourceCleanupPointer = &SystemDataStructure;
   return;
 }
 
