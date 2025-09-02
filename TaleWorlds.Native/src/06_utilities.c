@@ -233,6 +233,16 @@ void* NetworkSystemModuleHandle;
  * @note 此函数返回的状态标志可用于诊断系统状态
  * @warning 状态标志值的含义取决于具体的系统实现
  */
+/**
+ * @brief 获取核心引擎系统状态标志
+ * 
+ * 该函数负责获取核心引擎系统的状态标志
+ * 用于判断核心引擎是否已初始化并处于正常运行状态
+ * 
+ * @return uint32_t 返回核心引擎系统的状态标志值
+ * @note 此函数返回的状态标志可用于诊断核心系统状态
+ * @warning 状态标志值的含义取决于具体的核心引擎实现
+ */
 uint32_t GetCoreEngineSystemStatusFlag(void);
 bool CoreEngineSystemInitialized;
 
@@ -287,6 +297,17 @@ bool AudioSystemInitialized;
  * @return 无返回值
  * @note 此函数通常在系统关闭或线程终止时调用
  * @warning 调用此函数后，所有相关的同步对象将不再可用
+ */
+/**
+ * @brief 销毁线程同步对象
+ * 
+ * 该函数负责销毁系统中所有的线程同步对象
+ * 包括互斥锁、信号量、条件变量等同步机制
+ * 释放同步对象占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数应该在系统关闭时调用
+ * @warning 调用此函数后，所有线程同步对象将失效
  */
 void DestroyThreadSynchronizationObjects(void);
 void* ThreadSynchronizationObjectHandle;
