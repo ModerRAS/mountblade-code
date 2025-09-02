@@ -42311,6 +42311,20 @@ void ResetSystemResourceState(uint8_t objectContext,int64_t validationContext,ui
 
 
 
+/**
+ * @brief 初始化资源处理器
+ * 
+ * 该函数负责初始化系统资源处理器，设置资源处理的环境和参数
+ * 配置资源处理的初始状态，确保处理器可以正常工作
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在资源处理器启动时被调用
+ * @warning 初始化过程中如果检测到错误会触发系统紧急退出
+ */
 void InitializeResourceHandler(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {

@@ -32798,7 +32798,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   stackPointer21 = 0x180059023;
   allocatedMemory = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x270,8,3);
   stackPointer21 = 0x18005902b;
-  allocationFlags = FUN_180175aa0(allocatedMemory);
+  allocationFlags = InitializeMemoryAllocationFlags(allocatedMemory);
   systemStatusFlags = *(uint32_t *)(SystemNodeManagerPointer + 0x1dc0);
   SystemAllocationFlags = allocationFlags;
   *(uint32_t *)(allocationFlags + 0x1e0) = *(uint32_t *)(SystemNodeManagerPointer + 0x1d50);
@@ -32867,7 +32867,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       auStack_278[0] = 0;
       uStack_280 = 4;
       strcpy_s(auStack_278,0x10,&SystemResourceString1);
-      FUN_18062cb00(&puStack_2e8,&puStack_308,&puStack_290);
+      ProcessSystemResourceQueue(&puStack_2e8,&puStack_308,&puStack_290);
       puStack_290 = &SystemMemoryAllocatorReference;
       iStack_374 = 0;
       lStack_2c8 = 0;
