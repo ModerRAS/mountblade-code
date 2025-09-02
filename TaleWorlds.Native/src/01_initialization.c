@@ -53433,7 +53433,22 @@ void ProcessSystemResourceInitializationConfiguration(void* SystemResourceManage
 
 
 
-bool FUN_180072f00(void* SystemResourceManager,void* *ConfigurationDataPointer)
+/**
+ * @brief 系统线程初始化和资源管理器
+ * 
+ * 该函数负责初始化系统线程和资源管理器，包括：
+ * - 创建和配置系统线程对象
+ * - 管理线程本地存储和资源分配
+ * - 处理系统配置数据和缓冲区
+ * - 协调多个系统组件的初始化过程
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针的指针
+ * @return 初始化成功返回true，失败返回false
+ * 
+ * 原始函数名：FUN_180072f00
+ */
+bool SystemThreadInitializerAndResourceManager(void* SystemResourceManager,void* *ConfigurationDataPointer)
 
 {
   uint32_t SystemOperationStatus;
@@ -56319,7 +56334,24 @@ void* ReleaseSystemResourcesAndCleanupMemory(void* SystemResourceManager, unsign
 
 
 
-uint8_t FUN_1800755c0(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源处理和状态管理器
+ * 
+ * 该函数负责处理系统资源和管理操作状态，包括：
+ * - 设置系统内存和资源分配
+ * - 处理系统配置参数
+ * - 管理资源操作的执行状态
+ * - 清理临时资源和状态标志
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @return 操作状态码，成功返回0，失败返回非0值
+ * 
+ * 原始函数名：FUN_1800755c0
+ */
+uint8_t SystemResourceProcessorAndStatusManager(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint8_t SystemOperationStatus;

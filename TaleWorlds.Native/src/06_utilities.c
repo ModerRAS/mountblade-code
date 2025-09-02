@@ -7520,6 +7520,10 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   int MatrixRow2InfinityStatus;
   int MatrixRow3InfinityStatus;
   int MatrixOverallInfinityStatus;
+  int MatrixRow1InfinityCheck;
+  int MatrixRow2InfinityCheck;
+  int MatrixRow3InfinityCheck;
+  int MatrixInfinityStatusFlag;
   int64_t TransformContext;
   int64_t matrixBuffer [2];
   uint MatrixFlags;
@@ -64445,7 +64449,7 @@ void UnwindResourceOperationHandler1809088a0(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_1809088d0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindResourceHashInitializer1809088d0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -64563,7 +64567,7 @@ void UnwindMemoryManager180908920(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void Unwind_180908950(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemCleanupHandler180908950(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
@@ -64575,7 +64579,7 @@ void Unwind_180908950(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908980(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindResourceValidator180908980(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -64599,7 +64603,7 @@ void Unwind_180908980(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908990(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemValidator180908990(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x78) != (int64_t *)0x0) {
@@ -64610,7 +64614,7 @@ void Unwind_180908990(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809089a0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSecurityValidator1809089a0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -64622,7 +64626,7 @@ void Unwind_1809089a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809089b0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindTransactionHandler1809089b0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -64671,7 +64675,7 @@ void SystemStateResetHandler(void)
 
 
 
-void Unwind_1809089e0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindExceptionHandler1809089e0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -64885,7 +64889,7 @@ void CleanupSecondaryResourceHashValidationResult(uint8_t ObjectContext, int64_t
 
 
 
-void Unwind_180908a50(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindMemoryAccessValidator180908a50(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
