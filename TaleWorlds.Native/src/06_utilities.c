@@ -7969,7 +7969,7 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, in
       }
       
       // 处理对象上下文数据
-      ValidationStatusCode = ValidateObjectContextAndProcessData(ResourceDataAddress, ObjectContext + 0x25, ObjectContext + ObjectContextProcessingDataOffset);
+      ValidationStatusCode = ValidateObjectContextAndProcessData(ResourceDataAddress, ObjectContext + ObjectContextValidationDataOffset, ObjectContext + ObjectContextProcessingDataOffset);
       if (ValidationStatusCode == 0) {
         // 获取要比较的浮点数值
         FloatValueToCompare = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
@@ -8021,18 +8021,18 @@ uint8_t ProcessFloatComparisonOperation(void)
   }
   
   // 获取资源数据指针
-  ResourceDataAddress = *(int64_t *)(StackBuffer + 0x10);
+  ResourceDataAddress = *(int64_t *)(StackBuffer + StackBufferDataOffset);
   if (ResourceDataAddress == 0) {
     return 0x1e; // ErrorInvalidResourceData
   }
   
   // 检查资源状态标志
-  if ((*(byte *)(ResourceDataAddress + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(ResourceDataAddress + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
     return 0x1f; // ErrorResourceValidationFailed
   }
   
   // 处理对象上下文数据
-  OperationStatusCode = ValidateObjectContextAndProcessData(ResourceDataAddress, ObjectContext + 0x25, ObjectContext + ObjectContextProcessingDataOffset);
+  OperationStatusCode = ValidateObjectContextAndProcessData(ResourceDataAddress, ObjectContext + ObjectContextValidationDataOffset, ObjectContext + ObjectContextProcessingDataOffset);
   if (OperationStatusCode == 0) {
     // 获取要比较的浮点数值
     FloatValueToCompare = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
@@ -8089,7 +8089,7 @@ uint8_t ProcessBufferedFloatComparison(void)
   }
   
   // 处理对象上下文数据
-  OperationStatusCode = ValidateObjectContextAndProcessData(ResourceDataAddress, ObjectContext + 0x25, ObjectContext + ObjectContextProcessingDataOffset);
+  OperationStatusCode = ValidateObjectContextAndProcessData(ResourceDataAddress, ObjectContext + ObjectContextValidationDataOffset, ObjectContext + ObjectContextProcessingDataOffset);
   if (OperationStatusCode == 0) {
     // 获取要比较的浮点数值
     FloatValueToCompare = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
@@ -50141,8 +50141,8 @@ void DestroyMutexFromContext(uint8_t ObjectContext, int64_t ValidationContext)
 void ExecuteValidationContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  if (*(int64_t **)(ValidationContext + 0x250) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(ValidationContext + 0x250) + 0x38))();
+  if (*(int64_t **)(ValidationContext + ValidationContextCallbackPointerOffset) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(ValidationContext + ValidationContextCallbackPointerOffset) + ValidationContextCallbackFunctionOffset))();
   }
   return;
 }
