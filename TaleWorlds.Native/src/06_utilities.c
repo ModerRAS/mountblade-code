@@ -4319,10 +4319,10 @@ uint8_t InitializeObjectHandleB(int64_t ObjectContext)
   
   ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x1c), &ContextHandle);
   if ((int)ContextValidationResult != 0) {
-    return contextValidationResult;
+    return ContextValidationResult;
   }
-  ResourceCount = *(int64_t *)(contextHandle + 8);
-  if (resourceCount != 0) {
+  ResourceCount = *(int64_t *)(ContextHandle + 8);
+  if (ResourceCount != 0) {
     ProcessedFloatValue = *(float *)(ObjectContext + 0x20);
     for (resourcePointer = *(uint8_t **)(contextHandle + 0x48);
         (*(uint8_t **)(contextHandle + 0x48) <= resourcePointer &&
@@ -32286,7 +32286,7 @@ void UnwindResourceReleaseOperations(uint8_t objectContext, int64_t validationCo
   resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
-  if (resourceCount != 0) {
+  if (ResourceCount != 0) {
     do {
       resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
       if (resourceTable != 0) {
@@ -32337,7 +32337,7 @@ void UnwindResourceTableCleanup(uint8_t objectContext, int64_t validationContext
   resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
-  if (resourceCount != 0) {
+  if (ResourceCount != 0) {
     do {
       resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
       if (resourceTable != 0) {
@@ -32388,7 +32388,7 @@ void UnwindBatchResourceRelease(uint8_t objectContext, int64_t validationContext
   resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
-  if (resourceCount != 0) {
+  if (ResourceCount != 0) {
     do {
       resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
       if (resourceTable != 0) {
@@ -32628,7 +32628,7 @@ void UnwindBatchResourceReleaseHandler(uint8_t objectContext,int64_t validationC
   resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
-  if (resourceCount != 0) {
+  if (ResourceCount != 0) {
     do {
       resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
       if (resourceTable != 0) {
@@ -32678,7 +32678,7 @@ void UnwindResourceReleaseConfirmation(uint8_t objectContext,int64_t validationC
   resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
-  if (resourceCount != 0) {
+  if (ResourceCount != 0) {
     do {
       resourceTable = *(int64_t *)(LocalContextData + currentIndex * 8);
       if (resourceTable != 0) {
@@ -42484,7 +42484,21 @@ void ConfigureSystemResourceManager(uint8_t objectContext,int64_t validationCont
 
 
 
-void Unwind_1809044f0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 验证系统资源完整性
+ * 
+ * 该函数负责验证系统资源的完整性，检查资源状态是否正确
+ * 执行系统资源的完整性验证，确保资源数据完整性
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源完整性验证过程中被调用
+ * @warning 验证失败时可能会触发系统紧急退出
+ */
+void ValidateSystemResourceIntegrity(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42514,7 +42528,23 @@ void Unwind_1809044f0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904510(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 初始化系统资源处理器扩展版本2
+ * 
+ * 该函数负责初始化系统资源处理器的扩展版本，设置资源处理所需的数据结构
+ * 执行系统资源的初始化配置，确保资源状态正确
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源初始化过程中被调用
+ * @warning 初始化失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904510，现已重命名为InitializeSystemResourceHandlerExtended2
+ */
+void InitializeSystemResourceHandlerExtended2(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42544,7 +42574,23 @@ void Unwind_180904510(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904530(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 初始化系统资源处理器扩展版本3
+ * 
+ * 该函数负责初始化系统资源处理器的扩展版本，设置资源处理所需的数据结构
+ * 执行系统资源的初始化配置，确保资源状态正确
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源初始化过程中被调用
+ * @warning 初始化失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904530，现已重命名为InitializeSystemResourceHandlerExtended3
+ */
+void InitializeSystemResourceHandlerExtended3(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42574,7 +42620,21 @@ void Unwind_180904530(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904550(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理
+ * 
+ * 该函数负责执行系统资源的清理操作，释放不再使用的资源
+ * 重置资源状态并确保数据完整性，处理资源泄漏问题
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 清理失败时可能会触发系统紧急退出
+ */
+void ExecuteSystemResourceCleanup(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42604,18 +42664,32 @@ void Unwind_180904550(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904570(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理系统资源哈希表
+ * 
+ * 该函数负责处理系统资源的哈希表，遍历资源表并执行相应的处理操作
+ * 管理资源哈希表的生命周期，确保资源正确处理
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源哈希表处理过程中被调用
+ * @warning 处理失败时可能会触发系统紧急退出
+ */
+void ProcessSystemResourceHashTable(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   int64_t *presourceTable;
-  uint8_t *ValidationResultPointer;
+  uint8_t *validationResultPointer;
   uint8_t loopCondition;
   
   presourceTable = (int64_t *)(*(int64_t *)(validationContext + 0x80) + 0x1380);
   loopIncrement = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContext + 0x80) + 5000);
-  for (ValidationStatusCodePointer = (uint8_t *)*presourceTable; ValidationResultPointer != presourceHash; ValidationStatusCodePointer = ValidationResultPointer + 4) {
+  for (validationResultPointer = (uint8_t *)*presourceTable; validationResultPointer != presourceHash; validationResultPointer = validationResultPointer + 4) {
     (**(code **)*ValidationResultPointer)(ValidationResultPointer,0,CleanupOption,CleanupFlag,loopIncrement);
   }
   if (*presourceTable == 0) {
@@ -42627,7 +42701,21 @@ void Unwind_180904570(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904590(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 验证系统资源状态
+ * 
+ * 该函数负责验证系统资源的状态，确保资源状态正确
+ * 执行系统资源的状态验证，处理资源状态异常情况
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源状态验证过程中被调用
+ * @warning 验证失败时可能会触发系统紧急退出
+ */
+void ValidateSystemResourceStatus(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -43057,7 +43145,23 @@ void ExecuteSystemResourceCleanupCallback(uint8_t objectContext,int64_t validati
 
 
 
-void Unwind_180904700(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理回调函数
+ * 
+ * 该函数负责执行系统资源清理的回调操作，调用预定义的清理函数
+ * 处理资源清理过程中的回调逻辑，确保清理操作正确执行
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 清理失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904700，现已重命名为ExecuteSystemResourceCleanupCallback
+ */
+void ExecuteSystemResourceCleanupCallback(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharPointer;
@@ -43071,35 +43175,81 @@ void Unwind_180904700(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904710(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理回调函数包装器2
+ * 
+ * 该函数负责执行系统资源清理的回调操作，调用预定义的清理函数
+ * 处理资源清理过程中的回调逻辑，确保清理操作正确执行
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 清理失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904710，现已重命名为ExecuteSystemResourceCleanupCallbackWrapper2
+ */
+void ExecuteSystemResourceCleanupCallbackWrapper2(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *CharPointer;
+  code *callbackPointer;
   
-  CharPointer = *(code **)(*(int64_t *)(validationContext + 0x60) + 0xd0);
-  if (CharPointer != (code *)0x0) {
-    (*CharPointer)(*(int64_t *)(validationContext + 0x60) + 0xc0,0,0,CleanupFlag,0xfffffffffffffffe);
+  callbackPointer = *(code **)(*(int64_t *)(validationContext + 0x60) + 0xd0);
+  if (callbackPointer != (code *)0x0) {
+    (*callbackPointer)(*(int64_t *)(validationContext + 0x60) + 0xc0, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904730(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理回调函数包装器3
+ * 
+ * 该函数负责执行系统资源清理的回调操作，调用预定义的清理函数
+ * 处理资源清理过程中的回调逻辑，确保清理操作正确执行
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 清理失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904730，现已重命名为ExecuteSystemResourceCleanupCallbackWrapper3
+ */
+void ExecuteSystemResourceCleanupCallbackWrapper3(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *CharPointer;
+  code *callbackPointer;
   
-  CharPointer = *(code **)(*(int64_t *)(validationContext + 0x70) + 0x10);
-  if (CharPointer != (code *)0x0) {
-    (*CharPointer)(*(int64_t *)(validationContext + 0x70),0,0,CleanupFlag,0xfffffffffffffffe);
+  callbackPointer = *(code **)(*(int64_t *)(validationContext + 0x70) + 0x10);
+  if (callbackPointer != (code *)0x0) {
+    (*callbackPointer)(*(int64_t *)(validationContext + 0x70), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904740(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理回调函数包装器4
+ * 
+ * 该函数负责执行系统资源清理的回调操作，调用预定义的清理函数
+ * 处理资源清理过程中的回调逻辑，确保清理操作正确执行
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 清理失败时可能会触发系统紧急退出
+ */
+void ExecuteSystemResourceCleanupCallbackWrapper4(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharPointer;
