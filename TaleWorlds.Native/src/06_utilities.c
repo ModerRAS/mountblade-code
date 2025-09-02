@@ -10013,7 +10013,7 @@ int ProcessDataWithSimplifiedValidator(int64_t ObjectContext,int64_t ValidationC
   int OperationStatusCode;
   int OperationResultValue;
   int ProcessedDataLength;
-  void* StringProcessingTemplateObject;
+  void* StringProcessingTemplate;
   
   ProcessedDataLength = dataLength;
   ResourceIndex = ParseDataContent(ValidationContext,ProcessedDataLength,*(uint32_t *)(ObjectContext + 0x10));
@@ -29957,15 +29957,18 @@ void ReleaseSpecificSystemResourceAtContextOffset120(uint8_t ObjectContext, int6
 
 
 /**
- * @brief 在异常处理时恢复系统数据结构到0x78偏移位置
+ * @brief 在异常处理时恢复系统数据结构到异常上下文
  * 
- * 该函数负责在异常处理过程中将系统数据结构恢复到验证上下文的0x78偏移位置
- * 确保系统数据结构在异常处理后能正确恢复
+ * 该函数负责在异常处理过程中将系统数据结构恢复到验证上下文的异常处理区域
+ * 确保系统数据结构在异常处理后能正确恢复到预期状态
  * 
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和恢复操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于恢复系统数据结构指针
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
  */
-void RestoreSystemDataStructureToContextOffset120(uint8_t ObjectContext,int64_t ValidationContext)
+void RestoreSystemDataStructureToExceptionContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x78) = &SystemDataStructure;
@@ -29975,15 +29978,19 @@ void RestoreSystemDataStructureToContextOffset120(uint8_t ObjectContext,int64_t 
 
 
 /**
- * @brief 在异常处理时检查并释放特定标志位的系统资源
+ * @brief 在异常处理时检查并释放异常标志位的系统资源
  * 
- * 该函数负责检查资源数据的第2位标志(值为4)，如果该位被设置
- * 则清除该标志位并释放位于0x118偏移位置的系统资源
+ * 该函数负责检查资源数据的异常标志位(值为4)，如果该位被设置
+ * 则清除该标志位并释放位于验证上下文扩展位置的系统资源
+ * 用于异常处理过程中的资源清理
  * 
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和资源释放操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理异常标志位相关的资源
+ * @warning 调用此函数前必须确保ResourceData已正确初始化
  */
-void ReleaseSystemResourceWithValidationFlag4(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemResourceWithExceptionFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 4) != 0) {
@@ -30014,15 +30021,19 @@ void RestoreSystemDataStructureToContextOffset280(uint8_t ObjectContext,int64_t 
 
 
 /**
- * @brief 在异常处理时检查并释放特定标志位的系统资源
+ * @brief 在异常处理时检查并释放次要标志位的系统资源
  * 
- * 该函数负责检查资源数据的第3位标志(值为8)，如果该位被设置
- * 则清除该标志位并释放位于0xf8偏移位置的系统资源
+ * 该函数负责检查资源数据的次要标志位(值为8)，如果该位被设置
+ * 则清除该标志位并释放位于验证上下文次要位置的系统资源
+ * 用于异常处理过程中的次要资源清理
  * 
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和资源释放操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理次要标志位相关的资源
+ * @warning 调用此函数前必须确保ResourceData已正确初始化
  */
-void ReleaseSystemResourceWithValidationFlag8(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemResourceWithSecondaryFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 8) != 0) {
@@ -30053,15 +30064,19 @@ void RestoreSystemDataStructureToContextOffset248(uint8_t ObjectContext,int64_t 
 
 
 /**
- * @brief 在异常处理时检查并释放特定标志位的系统资源
+ * @brief 在异常处理时检查并释放主要标志位的系统资源
  * 
- * 该函数负责检查资源数据的第4位标志(值为0x10)，如果该位被设置
- * 则清除该标志位并释放位于0x58偏移位置的系统资源
+ * 该函数负责检查资源数据的主要标志位(值为0x10)，如果该位被设置
+ * 则清除该标志位并释放位于验证上下文主要位置的系统资源
+ * 用于异常处理过程中的主要资源清理
  * 
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和资源释放操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理主要标志位相关的资源
+ * @warning 调用此函数前必须确保ResourceData已正确初始化
  */
-void ReleaseSystemResourceWithFlag10(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemResourceWithPrimaryFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 0x10) != 0) {
@@ -30074,15 +30089,19 @@ void ReleaseSystemResourceWithFlag10(uint8_t ObjectContext,int64_t ValidationCon
 
 
 /**
- * @brief 在异常处理时检查并释放特定标志位的系统资源
+ * @brief 在异常处理时检查并释放扩展标志位的系统资源
  * 
- * 该函数负责检查资源数据的第5位标志(值为0x20)，如果该位被设置
- * 则清除该标志位并释放位于0xd8偏移位置的系统资源
+ * 该函数负责检查资源数据的扩展标志位(值为0x20)，如果该位被设置
+ * 则清除该标志位并释放位于验证上下文扩展位置的系统资源
+ * 用于异常处理过程中的扩展资源清理
  * 
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和资源释放操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理扩展标志位相关的资源
+ * @warning 调用此函数前必须确保ResourceData已正确初始化
  */
-void ReleaseSystemResourceWithFlag20(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemResourceWithExtendedFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 0x20) != 0) {
@@ -30398,13 +30417,18 @@ void InvokeCleanupFunctionInValidationContext(uint8_t ObjectContext, int64_t Val
 
 
 /**
- * @brief 在异常处理时重置验证上下文0x150位置的系统数据结构
- * 该函数将验证上下文中0x150偏移位置的指针重置为系统数据结构
+ * @brief 在异常处理时重置验证上下文扩展位置的系统数据结构
+ * 
+ * 该函数将验证上下文中扩展位置的指针重置为系统数据结构
  * 用于在异常处理过程中恢复系统数据结构的引用
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和重置操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于重置扩展位置的系统数据结构
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
  */
-void ResetSystemDataStructureAtContextOffset150(uint8_t ObjectContext, int64_t ValidationContext)
+void ResetSystemDataStructureAtExtendedContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + 0x150) = &SystemDataStructure;
   return;
@@ -30413,13 +30437,18 @@ void ResetSystemDataStructureAtContextOffset150(uint8_t ObjectContext, int64_t V
 
 
 /**
- * @brief 在异常处理时恢复验证上下文0xa8位置的系统资源处理器
- * 该函数将验证上下文中0xa8位置的系统资源处理器恢复为默认模板
+ * @brief 在异常处理时恢复验证上下文主要位置的系统资源处理器
+ * 
+ * 该函数将验证上下文中主要位置的系统资源处理器恢复为默认模板
  * 检查并重置相关状态标志，如果发现异常状态则执行紧急退出
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和恢复操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于恢复主要位置的资源处理器
+ * @warning 调用此函数可能导致系统紧急退出，必须确保调用时机正确
  */
-void RestoreSystemResourceHandlerAtContextOffsetA8(uint8_t ObjectContext, int64_t ValidationContext)
+void RestoreResourceHandlerAtPrimaryContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0xa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xb0) != 0) {
