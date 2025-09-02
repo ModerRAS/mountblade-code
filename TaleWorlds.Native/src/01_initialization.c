@@ -31636,7 +31636,7 @@ void ReleaseSystemMemoryAllocation(long long SystemResourceManager,void* Configu
  * 
  * 原始函数名：FUN_180058080
  */
-void* * FindSystemResourceNode(void* *resourcePointer,void* *configDataPointer,long long additionalParameter)
+void* * SearchSystemResourceNode(void* *resourcePointer,void* *configDataPointer,long long additionalParameter)
 
 {
   byte comparisonByte;
@@ -40355,7 +40355,7 @@ void CleanupSystemResources(void* *SystemResourceManager)
       nextDataIndex1 = *(long long *)(SystemResourceManager[0xf] + 8 + systemOperationFlags * 0x10);
     }
     resourceCounter = SystemResourceManager[8];
-LAB_1800602a0:
+ResourceProcessingLoop:
     resourceCounter = *(long long *)(resourceCounter + 0x100);
     currentThreadId = 0;
     do {
@@ -40370,13 +40370,13 @@ LAB_1800602a0:
         else {
           systemOperationFlags = (ulong long)((uint)SystemResourceManager[4] & 0x1f);
         }
-        goto LAB_1800602f0;
+        goto ThreadProcessingLoop;
       }
       currentThreadId = currentThreadId + 1;
     } while (currentThreadId < 0x20);
-    goto LAB_18006031a;
+    goto ResourceValidationCheck;
   }
-LAB_18006039b:
+ResourceCleanupHandler:
   if (SystemResourceManager[0x10] == 0) {
     *SystemResourceManager = &SystemResourceTableB;
     return;
@@ -40390,13 +40390,13 @@ LAB_18006039b:
       (**(code **)(*PrimaryResourcePointer + 0x38))();
     }
     if (currentThreadId == 0x20) break;
-LAB_1800602f0:
+ThreadProcessingLoop:
     if ((resourceCounter == SystemResourceManager[8]) && (currentThreadId == systemOperationFlags)) break;
   }
-LAB_18006031a:
+ResourceValidationCheck:
   localDataIndex = SystemResourceManager[8];
   if (resourceCounter == localDataIndex) goto code_r0x000180060327;
-  goto LAB_1800602a0;
+  goto ResourceProcessingLoop;
 code_r0x000180060327:
   if (localDataIndex != 0) {
     do {
@@ -40528,7 +40528,7 @@ void AllocateSystemResources(void* *SystemResourceManager)
           } while (systemResult == 1);
         }
       }
-LAB_1800604d1:
+ResourceAccessValidation:
       plocalSystemPointer = (long long *)SystemResourceManager[0xc];
       resourceCounter = *(long long *)
                (*(long long *)
@@ -53474,7 +53474,7 @@ void ProcessSystemResourceInitializationConfiguration(void* SystemResourceManage
  * 
  * 原始函数名：FUN_180072f00
  */
-bool SystemThreadInitializerAndResourceManager(void* SystemResourceManager,void* *ConfigurationDataPointer)
+bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* *ConfigurationDataPointer)
 
 {
   uint32_t SystemOperationStatus;
@@ -56377,7 +56377,7 @@ void* ReleaseSystemResourcesAndCleanupMemory(void* SystemResourceManager, unsign
  * 
  * 原始函数名：FUN_1800755c0
  */
-uint8_t SystemResourceProcessorAndStatusManager(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+uint8_t ProcessSystemResourceAndManageStatus(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint8_t SystemOperationStatus;
