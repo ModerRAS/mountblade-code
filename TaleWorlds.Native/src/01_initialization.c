@@ -22420,7 +22420,7 @@ void InitializeSystemMemoryCopyOperation(void)
 void ResetSystemByteFlag(uint8_t *byteFlagPointer)
 
 {
-  long long systemContextPointer;
+  long long systemContextPointer = 0;
   
   *byteFlagPointer = 0;
   *(uint32_t *)(systemContextPointer + 0x10) = 0;
@@ -70461,7 +70461,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
   float angleValue;
   float resultValue;
   float scaleValue;
-  uint stackParam;
+  uint stackParameter;
   
   ResourceHash = (ulong long)SystemResourceIndex;
   do {
@@ -70607,13 +70607,13 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
         }
         SystemOperationStatus1 = SystemOperationStatus1 + systemResourceCounterD * 2;
         SystemOperationStatus5 = SystemOperationStatus5 - 1;
-        AdditionalParameter = in_stack_000000a8;
+        AdditionalParameter = stackParameter;
       } while (SystemOperationStatus5 != 0);
     }
     AdditionalParameter = AdditionalParameter * 2;
     systemResourceCounterD = systemResourceCounterD >> 1;
     ResourceHash = ResourceHash - 1;
-    in_stack_000000a8 = AdditionalParameter;
+    stackParameter = AdditionalParameter;
   } while (ResourceHash != 0);
   return 0;
 }
