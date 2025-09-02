@@ -4361,7 +4361,7 @@ uint8_t InitializeObjectHandleOperationD(void)
   uint32_t *ResourceIdentifierPointer;
   uint64_t SystemContextHandle;
   int64_t SystemContext;
-  uint ConfigurationFlags;
+  uint SystemConfigurationFlags;
   uint64_t IterationCount;
   int64_t BaseAddressOffset;
   int64_t InputContext;
