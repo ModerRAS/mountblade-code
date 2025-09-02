@@ -3245,16 +3245,16 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
                           &GameObjectDataList);
     if (OperationStatus == 0) {
       if (0 < CurrentListIndex) {
-        CurrentObjectPtr = 0;
+        CurrentObjectPointer = 0;
         do {
-          ObjectStatus = *(uint8_t *)(GameObjectDataList + CurrentObjectPtr);
+          ObjectStatus = *(uint8_t *)(GameObjectDataList + CurrentObjectPointer);
           OperationStatus = ValidateObjectStatus(ObjectStatus);
           if (OperationStatus != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidObject(ObjectStatus, 1);
           }
           TotalProcessedObjects = TotalProcessedObjects + 1;
-          CurrentObjectPtr = CurrentObjectPtr + 8;
+          CurrentObjectPointer = CurrentObjectPointer + 8;
         } while (TotalProcessedObjects < CurrentListIndex);
       }
       FreeObjectListMemory(&GameObjectDataList);
