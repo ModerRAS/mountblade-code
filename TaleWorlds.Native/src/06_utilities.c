@@ -24678,8 +24678,8 @@ uint8_t ManageResourceTable(void)
   int64_t ResourceTable;
   uint8_t HashValidationResult;
   int64_t *resourceContext;
-  uint32_t StackVariable30;
-  int64_t StackRegisterStorage38;
+  uint32_t ResourceProcessingFlag;
+  int64_t ResourceTablePointer;
   int stackIntegerValue1;
   uint stackRegisterStorage;
   
@@ -24698,7 +24698,7 @@ ResourceProcessLoop:
   if ((int)HashValidationResult != 0) {
     return HashValidationResult;
   }
-  StackVariable30 = 0;
+  ResourceProcessingFlag = 0;
   if (*(int *)(resourceContext[1] + 0x18) != 0) {
     return 0x1c;
   }
@@ -46388,7 +46388,7 @@ void ValidateSystemResourceContext(uint8_t objectContext,int64_t validationConte
 
 
 
-void Unwind_180905040(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessSystemResourceValidationWithFlags(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
