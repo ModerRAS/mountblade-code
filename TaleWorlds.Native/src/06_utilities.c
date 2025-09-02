@@ -5503,26 +5503,26 @@ void ProcessObjectConfiguration(int64_t objectPointer, uint8_t configData)
  * @param parameterObject 参数对象，包含浮点数值和配置信息
  * @return 处理结果状态码，0表示成功，0x1c表示失败
  */
-uint64_t ProcessFloatParameterAndUpdateSystem(int64_t parameterObject)
+uint64_t ProcessFloatParameterAndUpdateSystem(int64_t ParameterObject)
 
 {
-  int64_t SystemData;
-  uint FirstStatusFlags;
-  uint SecondStatusFlags;
-  uint64_t ProcessingResult;
-  uint8_t *DataPointer;
-  int ProcessedIntegerValue;
-  float ProcessedFloatValue;
-  uint8_t VectorData [16];
+  int64_t SystemDataContext;
+  uint32_t SystemStatusFlags;
+  uint32_t StatusFlagHighBits;
+  uint64_t ProcessResult;
+  uint8_t *DataElementPointer;
+  int32_t IntegerConversionValue;
+  float ParameterFloatValue;
+  float VectorComponents[4];
   int64_t StackOffset;
   
-  ProcessResult = ValidateObjectContext(*(uint32_t *)(parameterObject + 0x10),&StackOffset);
+  ProcessResult = ValidateObjectContext(*(uint32_t *)(ParameterObject + 0x10),&StackOffset);
   if ((int)ProcessResult != 0) {
     return ProcessResult;
   }
   SystemDataContext = *(int64_t *)(StackOffset + 8);
   if (SystemDataContext != 0) {
-    ParameterFloatValue = *(float *)(parameterObject + 0x14);
+    ParameterFloatValue = *(float *)(ParameterObject + 0x14);
     for (DataElementPointer = *(uint8_t **)(SystemDataContext + 0x48);
         (*(uint8_t **)(SystemDataContext + 0x48) <= DataElementPointer &&
         (DataElementPointer < *(uint8_t **)(SystemDataContext + 0x48) + *(int *)(SystemDataContext + 0x50))); DataElementPointer = DataElementPointer + 1) {
@@ -5570,13 +5570,13 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t parameterObject)
  * @param managerHandle 管理器句柄，用于标识特定的系统管理器
  * @return 初始化成功返回0，失败返回非零值
  */
-int InitializeSystemManager(int64_t managerHandle)
+int InitializeSystemManager(int64_t ManagerHandle)
 
 {
   int SystemManagerProcessingResult;
   int64_t SystemResourceTablePointer;
-  uint8_t validationContextBuffer [8];
-  uint8_t objectContextDataBuffer [72];
+  uint8_t ValidationContextBuffer[8];
+  uint8_t ObjectContextDataBuffer[72];
   
   SystemResourceTablePointer = 0;
   if (0 < *(int *)(objectContext + 0x20)) {
