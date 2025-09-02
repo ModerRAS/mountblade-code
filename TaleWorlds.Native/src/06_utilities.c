@@ -6394,7 +6394,7 @@ void SetObjectContextPackageValidationStatusFlag(int64_t ObjectContext, int64_t 
 
 {
   int PackageValidationStatusCode;
-  int64_t contextBuffer;
+  int64_t ContextBuffer;
   
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&contextBuffer);
   if (ValidationStatus == 0) {
@@ -6451,7 +6451,7 @@ uint8_t ValidateAndClearObjectState(int64_t ObjectContext, int64_t SystemContext
 
 {
   uint8_t HashValidationResult;
-  int64_t contextBuffer;
+  int64_t ContextBuffer;
   
   HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&contextBuffer);
   if ((int)HashValidationResult != 0) {
@@ -6485,8 +6485,8 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   int64_t NewBufferPointer;
   int64_t BufferOffset;
   uint CapacitySignBit;
-  int64_t memoryContextBuffer;
-  int64_t bufferContext;
+  int64_t MemoryContextBuffer;
+  int64_t BufferContext;
   
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&bufferContext);
   if (((ValidationStatus != 0) || (ValidationStatus = InitializeTempBuffer(&memoryContextBuffer), ValidationStatus != 0)) ||
@@ -6557,7 +6557,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   int64_t NewBufferPointer;
   int64_t BufferOffset;
   uint CapacityCheck;
-  int64_t systemBasePointer;
+  int64_t SystemBasePointer;
   int64_t systemRegister;
   int64_t primaryContextPointer;
   int64_t secondaryContextPointer;
@@ -6847,7 +6847,7 @@ void ValidateAndProcessSystemStatusData(void)
 
 {
   int PackageValidationStatusCode;
-  int64_t systemBasePointer;
+  int64_t SystemBasePointer;
   int64_t systemStatusPointer;
   uint8_t systemParameter;
   
@@ -7058,7 +7058,7 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
   uint8_t *stringPointer;
   uint IterationCounter;
   uint64_t BufferIndex;
-  int64_t bufferContext;
+  int64_t BufferContext;
   uint64_t BufferArrayOffset;
   uint64_t bufferEntryOffset;
   int64_t StackBuffer;
@@ -7292,7 +7292,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
   int64_t allocatedMemory;
   int64_t *pointerReference;
   uint8_t securityBuffer [32];
-  int64_t contextBuffer;
+  int64_t ContextBuffer;
   uint8_t processingBuffer [40];
   uint64_t securityToken;
   
