@@ -20023,8 +20023,8 @@ uint64_t ProcessResourceDataA(int64_t ObjectContext,int64_t *ValidationContext)
 {
   int64_t *ProcessPointer;
   int64_t ResourceTable;
-  uint UnsignedValue3;
-  uint LoopIncrement;
+  uint UnsignedLoopControl;
+  uint ArrayIterationIndex;
   uint64_t ResourceContextOffset;
   uint64_t ContextHashValidationResult;
   uint SecurityHashValue;
@@ -21991,20 +21991,20 @@ uint64_t ResourceProcessingHandler(uint8_t ObjectContext)
   float *pinputFloatValue3;
   uint8_t *ResourceHashPointer4;
   uint8_t *ResourceHashPointer5;
-  int64_t SystemContextPointer6;
+  int64_t ResourceContextHandle;
   int64_t ExecutionContextPointer;
   int64_t SystemContext;
   uint8_t *SystemRegisterContext;
-  int64_t SystemContextPointer7;
-  int ResourceIndexOctal;
+  int64_t SecondarySystemContext;
+  int ResourceIndexValue;
   uint8_t *ResourceDataPointer;
-  uint CpuRegisterR15D;
-  bool encryptionShiftValue9;
-  float FloatingPointCalculationResult;
-  float FloatingPointResultFirst;
-  float FloatingPointResultSecond;
-  float FloatingPointResultThird;
-  float FloatingPointResultFourth;
+  uint RegisterValue;
+  uint8_t BooleanEncryptionFlag;
+  float CalculatedFloatResult;
+  float PrimaryFloatResult;
+  float SecondaryFloatResult;
+  float TertiaryFloatResult;
+  float QuaternaryFloatResult;
   float MemoryFloatValue;
   
   ResourceCounter = (uint)ResourceDataPointer;
@@ -53092,7 +53092,19 @@ void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809064f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统上下文状态标志
+ * 
+ * 该函数负责重置系统上下文中的状态标志，确保系统处于正确的初始状态
+ * 用于系统重置和状态恢复操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含系统状态信息
+ * @return 无返回值
+ * @note 此函数会检查系统状态并执行必要的重置操作
+ * @warning 如果系统状态异常，函数会触发紧急退出
+ */
+void ResetSystemContextStatusFlags(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -53451,7 +53463,16 @@ void ResetResourceIndexCounter(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809065b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希表指针
+ * 
+ * 该函数负责初始化资源哈希表指针，确保哈希表指向正确的内存位置
+ * 为后续的资源哈希操作做准备
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void InitializeResourceHashTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x40) = &ResourceHashTable005;
@@ -53469,7 +53490,7 @@ void Unwind_CleanupComplete(void)
 
 
 
-void Unwind_1809065d0(void)
+void DestroySystemMutex(void)
 
 {
   _Mtx_destroy_in_situ(0x180c91910);
@@ -53478,7 +53499,7 @@ void Unwind_1809065d0(void)
 
 
 
-void Unwind_1809065e0(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemDataStructureA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0xd0) = &SystemDataStructure;
@@ -53487,7 +53508,7 @@ void Unwind_1809065e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809065f0(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemDataStructureB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0xd0) = &SystemDataStructure;
@@ -53496,7 +53517,7 @@ void Unwind_1809065f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906600(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetResourceDataStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -53508,7 +53529,7 @@ void Unwind_180906600(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906630(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeResourceHashTemplates(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -53523,7 +53544,7 @@ void Unwind_180906630(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906640(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallbackA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -53537,7 +53558,7 @@ void Unwind_180906640(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906660(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallbackB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
