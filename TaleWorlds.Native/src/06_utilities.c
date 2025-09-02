@@ -95031,15 +95031,9 @@ void InitializeSystemDataStructureCR(void)
   }
   SystemResourceSecondaryFlag = 0;
   SystemResourceSecondaryCounter = 0xf;
+}
 
  /**
- * @brief 释放资源哈希表
- * 
- * 该函数负责释放资源哈希表占用的内存
- * 并重置相关的全局变量，确保资源正确清理
- */
-void ReleaseResourceHashTable(void)
-/**
  * @brief 释放资源哈希表
  * 
  * 该函数负责释放资源哈希表占用的内存
@@ -95246,10 +95240,10 @@ void TerminateSystemProcess(void)
 
 {
   if (SystemTerminationFlag != '\0') {
-    if (EmergencyExitHandler != 0) {
+    if (SystemEmergencyExitHandler != 0) {
             ExecuteSystemEmergencyExit();
     }
-    EmergencyExitHandler = 0;
+    SystemEmergencyExitHandler = 0;
   }
 }
 
@@ -95290,7 +95284,7 @@ void ExecuteSystemCleanupOperation2(void)
 void ExecuteSystemCleanupOperation3(void)
 
 {
-  if (CleanupOperation3Flag != '\0') {
+  if (SystemCleanupOperation3Flag != '\0') {
     SystemOperationHandler();
     if (SystemOperationHandlerPointer != (int64_t *)0x0) {
       (**(code **)(*SystemOperationHandlerPointer + 0x38))();
@@ -95311,9 +95305,9 @@ void ExecuteSystemCleanupOperation3(void)
 void InitializeSystemDataStructureCT(void)
 
 {
-  if (DataStructureCTFlag != '\0') {
-    SystemStateInitializer(StateInitializerPointer);
-    StateInitializerPointer = 0;
+  if (SystemDataStructureCTFlag != '\0') {
+    SystemStateInitializer(SystemStateInitializerPointer);
+    SystemStateInitializerPointer = 0;
   }
 }
 
@@ -95330,7 +95324,7 @@ void InitializeSystemDataStructureCT(void)
 void InitializeSystemDataStructureCU(void)
 
 {
-  if (DataStructureCUFlag != '\0') {
+  if (SystemDataStructureCUFlag != '\0') {
     SystemFinalizer();
     SystemShutdownHandler(&ShutdownHandlerPointer);
   }
@@ -95352,11 +95346,11 @@ void InitializeSystemDataStructureCV(void)
   int64_t loopCounter;
   
   SystemContextPointer = ResourceHandlerContextPointer;
-  if (DataStructureCVFlag != '\0') {
-    if (EmergencyExitHandler2 != 0) {
+  if (SystemDataStructureCVFlag != '\0') {
+    if (SystemSecondarySystemEmergencyExitHandler != 0) {
             ExecuteSystemEmergencyExit();
     }
-    EmergencyExitHandler2 = 0;
+    SystemSecondarySystemEmergencyExitHandler = 0;
     if (ResourceHandlerContextPointer != 0) {
       RegisterResourceHandler(ResourceHandlerContextPointer + 0x360,0xcc8,8,ResourceTypeHandlerCC8,0xfffffffffffffffe);
       _Mtx_destroy_in_situ();
@@ -95379,7 +95373,7 @@ void InitializeSystemDataStructureCW(void)
 void InitializeSystemDataStructureCW(void)
 
 {
-  if (DataStructureCWFlag != '\0') {
+  if (SystemDataStructureCWFlag != '\0') {
     SystemValidationHandler(&ValidationHandlerPointer);
     SystemVerificationHandler(&ValidationHandlerPointer);
 
