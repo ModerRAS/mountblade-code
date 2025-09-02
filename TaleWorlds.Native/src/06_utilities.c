@@ -6047,7 +6047,7 @@ void InitializeObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t Schedu
   if (PropertyInitializationStatus == 0) {
     *(uint32_t *)(ObjectContext + 0x18) = *(uint32_t *)(ObjectPropertyBuffer + 0x30);
     *(uint32_t *)(ObjectContext + 0x1c) = *(uint32_t *)(ObjectPropertyBuffer + 0x34);
-    CleanupSystemContextData(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+    CleanupSystemContextData(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
   }
   return;
 }
