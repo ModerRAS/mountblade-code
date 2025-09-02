@@ -42019,6 +42019,20 @@ void Unwind_1809043f0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
+/**
+ * @brief 验证系统资源上下文
+ * 
+ * 该函数负责验证系统资源的上下文完整性，确保资源状态正确
+ * 处理资源清理选项和清理标志，执行必要的验证操作
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数通常在资源管理过程中被调用
+ * @warning 验证失败时可能会触发系统紧急退出
+ */
 void ValidateSystemResourceContext(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -42049,6 +42063,20 @@ void ValidateSystemResourceContext(uint8_t objectContext,int64_t validationConte
 
 
 
+/**
+ * @brief 清理系统资源内存
+ * 
+ * 该函数负责清理系统资源占用的内存空间，释放不再使用的资源
+ * 重置内存状态并确保数据完整性，处理内存泄漏问题
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在资源释放和内存管理过程中被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出
+ */
 void CleanupSystemResourceMemory(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -42103,6 +42131,20 @@ void CleanupSystemResourceMemory(uint8_t objectContext,int64_t validationContext
 
 
 
+/**
+ * @brief 释放系统资源句柄
+ * 
+ * 该函数负责释放系统资源的句柄，回收资源占用的内存空间
+ * 确保资源正确释放，防止资源泄漏，维护系统稳定性
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在资源生命周期管理中被调用
+ * @warning 释放过程中如果检测到错误会触发系统紧急退出
+ */
 void ReleaseSystemResourceHandle(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -42157,6 +42199,20 @@ void ReleaseSystemResourceHandle(uint8_t objectContext,int64_t validationContext
 
 
 
+/**
+ * @brief 释放系统资源内存
+ * 
+ * 该函数负责释放系统资源占用的内存空间，彻底清理资源数据
+ * 重置内存状态，确保内存完全释放，防止内存碎片
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在资源完全释放时被调用
+ * @warning 释放过程中如果检测到错误会触发系统紧急退出
+ */
 void FreeSystemResourceMemory(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -42211,6 +42267,20 @@ void FreeSystemResourceMemory(uint8_t objectContext,int64_t validationContext,ui
 
 
 
+/**
+ * @brief 重置系统资源状态
+ * 
+ * 该函数负责重置系统资源的状态，恢复到初始状态
+ * 清理资源使用痕迹，确保资源可以被重新使用
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在资源重用或系统重置时被调用
+ * @warning 重置过程中如果检测到错误会触发系统紧急退出
+ */
 void ResetSystemResourceState(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
