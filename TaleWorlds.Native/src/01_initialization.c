@@ -1487,11 +1487,11 @@ void InitializeSystemDataTableAllocator(void)
   while (IsSystemNodeActive == '\0') {
     NodeIdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SystemDataTableIdentifier, SYSTEM_IDENTIFIER_SIZE);
     if (NodeIdentifierComparisonResult < 0) {
-      NextSystemNode = (void**)CurrentSystemNode[2];
+      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
       CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      NextSystemNode = (void**)*CurrentSystemNode;
+      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_HEAD_POINTER_OFFSET];
     }
     PreviousSystemNode = CurrentSystemNode;
     CurrentSystemNode = NextSystemNode;
@@ -1550,11 +1550,11 @@ void InitializeSystemCoreConfig(void)
   while (IsSystemNodeActive == '\0') {
     NodeIdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SystemMemoryIdentifier, SYSTEM_IDENTIFIER_SIZE);
     if (NodeIdentifierComparisonResult < 0) {
-      NextSystemNode = (void**)CurrentSystemNode[2];
+      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
       CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      NextSystemNode = (void**)*CurrentSystemNode;
+      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_HEAD_POINTER_OFFSET];
     }
     PreviousSystemNode = CurrentSystemNode;
     CurrentSystemNode = NextSystemNode;
@@ -44077,7 +44077,7 @@ SystemResultCheckLoop:
     LocalStackBuffer = &SystemGlobalDataReference;
     if (pCalculationFlags178 == (void* *)0x0) {
       pCalculationFlags178 = (void* *)0x0;
-      uStack_168 = 0;
+      SystemOperationStatus168 = 0;
       LocalStackBuffer = &SystemMemoryAllocatorReference;
         ValidateSystemChecksum(SystemContextValue ^ (ulong long)arrayUnsigned368);
     }
@@ -44260,9 +44260,9 @@ void ExecuteSystemResourceCommand(long long* SystemResourceManager,void* Configu
   void* *SystemHashNodeData;
   ulong long resourceAddress;
   void* UnsignedStackFlag88;
-  long long lStack_80;
+  long long SystemResourceCleanupFlag;
   void* *SystemProcessFlagsPointer;
-  long long lStack_68;
+  long long SystemMemoryAllocationFlag;
   uint SystemThreadContext;
   void* SystemProcessFlags58;
   void* *memoryAllocationEnd;
@@ -44306,9 +44306,9 @@ void ExecuteSystemResourceCommand(long long* SystemResourceManager,void* Configu
   }
   ProcessSystemResourceData(&UnsignedStackFlag88,SystemHashNodeData,&SystemEventTemplate,ConfigurationFlag,0);
   InitializePrimaryResource(ConfigurationDataPointer,&UnsignedStackFlag88);
-  if (lStack_80 != 0) {
+  if (SystemResourceCleanupFlag != 0) {
     fclose();
-    lStack_80 = 0;
+    SystemResourceCleanupFlag = 0;
     LOCK();
     SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
     UNLOCK();
@@ -44321,7 +44321,7 @@ void ExecuteSystemResourceCommand(long long* SystemResourceManager,void* Configu
   pSystemEncryptionKey = (void* *)0x0;
   SystemContextValue = 0;
   memoryAllocationEnd = &SystemMemoryAllocatorReference;
-  if (lStack_80 != 0) {
+  if (SystemResourceCleanupFlag != 0) {
     fclose();
     LOCK();
     SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
@@ -44369,8 +44369,10 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   void* *SystemMemoryContext;
   long long LocalStackInitializationFlag;
   uint32_t SystemResourceFlags120;
+  uint32_t SystemOperationStatus160;
+  uint32_t SystemOperationStatus168;
   void* *pUnsignedStackFlag110;
-  long long lStack_108;
+  long long SystemResourceDataOffset;
   uint32_t MemoryBufferAddress;
   void* *SystemResourcePointerF0;
   long long lStack_e8;
@@ -44460,9 +44462,9 @@ SystemIndexCheckPoint:
     pSystemResourceSize = (void* *)0x0;
     SystemThreadId148 = 0;
     pCalculationFlags178 = &SystemGlobalDataReference;
-    uStack_160 = 0;
+    SystemOperationStatus160 = 0;
     pSystemOperationFlag170 = (void* *)0x0;
-    uStack_168 = 0;
+    SystemOperationStatus168 = 0;
     ResourceHash = CalculateResourceHash();
     ConfigureSystemDataBuffer(&pSystemConfigurationId,&SystemDataBufferSizeTemplate,ResourceHash / 0x100000 & MAX_UNSIGNED_32_BIT);
     asecondarySystemDataBuffer[0] = 0x48;
@@ -70018,54 +70020,54 @@ void* ProcessAudioSignal(void)
 void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,uint ConfigurationFlag)
 
 {
-  float audioSignal1;
-  float audioSignal2;
-  float audioSignal3;
-  float audioSignal4;
-  float audioSignal5;
-  float audioSignal6;
-  float audioSignal7;
-  float audioSignal8;
-  uint audioProcessingFlag9;
-  float *audioDataPointer10;
-  int audioProcessingFactor;
-  float *audioDataIndexPtr;
-  int audioStatusIndex1;
-  float *audioOutputBuffer;
-  uint audioThresholdFlag12;
-  uint audioThresholdFlag13;
-  uint audioThresholdFlag14;
-  uint audioThresholdFlag15;
-  uint8_t audioCoefficientArray16 [16];
-  float audioSignal17;
-  int audioFilterCoeffA;
-  float audioSignal18;
-  int audioFilterCoeffB;
-  float audioSignal20;
-  int audioFilterCoeffC;
-  float audioSignal21;
-  int audioFilterCoeffD;
-  uint8_t audioCoefficientArray19 [16];
-  float audioSignal22;
-  float audioSignal23;
-  float audioSignal24;
-  float audioSignal25;
-  float audioSignal26;
-  float audioSignal27;
-  float audioSignal28;
-  float audioSignal29;
-  float audioSignal30;
-  float audioSignal31;
-  float audioSignal32;
-  float audioSignal33;
-  float floatValue34;
-  float floatValue35;
-  float floatValue36;
-  float floatValue37;
-  int InterpolationCoefficient1;
-  int InterpolationCoefficient2;
-  int InterpolationCoefficient3;
-  int InterpolationCoefficient4;
+  float AudioSignalChannel1;
+  float AudioSignalChannel2;
+  float AudioSignalChannel3;
+  float AudioSignalChannel4;
+  float AudioSignalChannel5;
+  float AudioSignalChannel6;
+  float AudioSignalChannel7;
+  float AudioSignalChannel8;
+  uint AudioProcessingStatusFlag;
+  float *AudioDataBufferPointer;
+  int AudioProcessingFactor;
+  float *AudioDataIndexPointer;
+  int AudioStatusIndex;
+  float *AudioOutputBuffer;
+  uint AudioThresholdFlag1;
+  uint AudioThresholdFlag2;
+  uint AudioThresholdFlag3;
+  uint AudioThresholdFlag4;
+  uint8_t AudioCoefficientArray1[16];
+  float AudioFilterInputSignal;
+  int AudioFilterCoefficientA;
+  float AudioFilterOutputSignal;
+  int AudioFilterCoefficientB;
+  float AudioFilterProcessedSignal;
+  int AudioFilterCoefficientC;
+  float AudioFilterFinalSignal;
+  int AudioFilterCoefficientD;
+  uint8_t AudioCoefficientArray2[16];
+  float AudioAmplifiedSignal;
+  float AudioSignalMixed1;
+  float AudioSignalMixed2;
+  float AudioSignalMixed3;
+  float AudioSignalMixed4;
+  float AudioSignalMixed5;
+  float AudioSignalMixed6;
+  float AudioSignalMixed7;
+  float AudioSignalMixed8;
+  float AudioSignalMixed9;
+  float AudioSignalMixed10;
+  float AudioSignalMixed11;
+  float VolumeControlValue1;
+  float VolumeControlValue2;
+  float VolumeControlValue3;
+  float VolumeControlValue4;
+  int AudioInterpolationCoeff1;
+  int AudioInterpolationCoeff2;
+  int AudioInterpolationCoeff3;
+  int AudioInterpolationCoeff4;
   
   ThreadContextFlag = ConfigurationFlag & 0x80000007;
   if ((int)ThreadContextFlag < 0) {
