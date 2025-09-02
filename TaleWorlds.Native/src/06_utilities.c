@@ -32614,7 +32614,7 @@ void UnwindSystemResourceProcessorSetupStandard(uint8_t objectContext,int64_t va
  * @note 此函数会清理系统资源处理器A的资源
  * @warning 调用此函数后，相关资源将被释放
  */
-void CleanupSystemResourceHandlerA(uint8_t objectContext,int64_t validationContext)
+void CleanupSystemResourceHandlerPrimary(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -34710,7 +34710,7 @@ void UnwindResourceProcessWithFlagsV2(uint8_t objectContext,int64_t validationCo
  * @param CleanupOption 清理选项
  * @param CleanupFlag 清理标志
  */
-void ProcessResourceOperationUnwindA(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ProcessResourceOperationUnwindPrimary(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContext + 0x40) + 0x90,
@@ -34791,7 +34791,7 @@ void DestroyMutexDuplicate(void)
  * @param CleanupOption 清理选项
  * @param CleanupFlag 清理标志
  */
-void ProcessResourceReleaseUnwindA(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ProcessResourceReleaseUnwindPrimary(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(validationContext + 0x48),*(uint8_t *)(*(int64_t *)(validationContext + 0x48) + 0x10),
@@ -34873,7 +34873,7 @@ void ProcessResourceReleaseUnwindD(uint8_t objectContext, int64_t validationCont
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void ProcessResourceValidationUnwindA(uint8_t objectContext, int64_t validationContext)
+void ProcessResourceValidationUnwindPrimary(uint8_t objectContext, int64_t validationContext)
 
 {
   int *ResourceIndexPointer;
@@ -42824,7 +42824,7 @@ void ReleaseSystemMutexLock(uint8_t objectContext,int64_t validationContext)
 
 
 
-void CleanupSystemResourceContextA(uint8_t objectContext,int64_t validationContext)
+void CleanupSystemResourceContextPrimary(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t ResourceIndex;
@@ -42862,7 +42862,7 @@ void CleanupSystemResourceContextB(uint8_t objectContext,int64_t validationConte
 
 
 
-void ProcessResourceCleanupA(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceCleanupPrimary(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContext + 0x40),*(uint8_t *)(*(int64_t *)(validationContext + 0x40) + 0x10),
