@@ -7126,8 +7126,9 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
   int64_t MatrixBuffer [2];
   uint MatrixFlags;
   float MatrixScaleFactor;
+  int64_t MatrixContextPointer;
   
-  LocalContextData0 = 0;
+  MatrixContextPointer = 0;
   FirstRowInfinityCheck = 0;
   SecondRowInfinityCheck = FirstRowInfinityCheck;
   if ((*(uint *)(ObjectContextParameter + 0x20) & 0x7f800000) == 0x7f800000) {
@@ -7202,11 +7203,11 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
       return validationContextResult;
     }
     if (ValidationContextBuffer[0] != 0) {
-      LocalContextData0 = ValidationContextBuffer[0] + -8;
+      MatrixContextPointer = ValidationContextBuffer[0] + -8;
     }
     uint8_t matrixTypeValue = *(uint8_t *)(ObjectContextParameter + 0x20);
-    *(uint8_t *)(LocalContextData0 + 0x38) = *(uint8_t *)(ObjectContextParameter + 0x18);
-    *(uint8_t *)(LocalContextData0 + 0x40) = matrixTypeValue;
+    *(uint8_t *)(MatrixContextPointer + 0x38) = *(uint8_t *)(ObjectContextParameter + 0x18);
+    *(uint8_t *)(MatrixContextPointer + 0x40) = matrixTypeValue;
     uint32_t matrixRotationFlags = *(uint32_t *)(ObjectContextParameter + 0x2c);
     uint32_t matrixScaleFlags = *(uint32_t *)(ObjectContextParameter + 0x30);
     uint32_t matrixTranslationFlags = *(uint32_t *)(ObjectContextParameter + 0x34);
@@ -7877,6 +7878,16 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
 
 
 
+/**
+ * @brief 验证对象上下文并处理浮点数范围
+ * 
+ * 该函数验证传入的对象上下文，并对浮点数数组进行范围验证和处理
+ * 确保所有浮点数值都在指定的有效范围内
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的相关信息
+ * @param validationParams 验证参数，用于控制验证过程
+ * @return 验证状态码，0表示成功，非0表示不同的错误类型
+ */
 uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t validationParams)
 {
   int ValidationStatus;
@@ -7909,39 +7920,39 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
     FloatPointer = FloatArrayPointer;
     ResourceHash = LoopCounter;
     do {
-      arrayIndex = *(int *)(((ObjectContextParameter + 0x20) - (int64_t)floatArrayPointer) + (int64_t)floatPointer);
-      if (arrayIndex != -1) {
-        currentValue = *floatPointer;
-        if (((uint)currentValue & 0x7f800000) == 0x7f800000) {
+      ArrayIndex = *(int *)(((ObjectContext + 0x20) - (int64_t)FloatArrayPointer) + (int64_t)FloatPointer);
+      if (ArrayIndex != -1) {
+        CurrentValue = *FloatPointer;
+        if (((uint)CurrentValue & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
-        if ((arrayIndex < 0) || (arrayIndex <= arrayIndex)) {
+        if ((ArrayIndex < 0) || (ArrayIndex <= ArrayIndex)) {
           return 0x1f;
         }
-        resourcePointer = *(int64_t *)(contextOffset + 0x20) + (int64_t)arrayIndex * 0x18;
-        if (resourcePointer == 0) {
+        ResourcePointer = *(int64_t *)(ContextOffset + 0x20) + (int64_t)ArrayIndex * 0x18;
+        if (ResourcePointer == 0) {
           return 0x1c;
         }
-        resourcePointer = *(int64_t *)(resourcePointer + 0x10);
-        if (resourcePointer == 0) {
+        ResourcePointer = *(int64_t *)(ResourcePointer + 0x10);
+        if (ResourcePointer == 0) {
           return 0x1e;
         }
-        if (*(int *)(resourcePointer + 0x30) != 0) {
+        if (*(int *)(ResourcePointer + 0x30) != 0) {
           return 0x1f;
         }
-        minValue = *(float *)(resourcePointer + 0x38);
-        if ((*(float *)(resourcePointer + 0x38) <= currentValue) &&
-           (minValue = *(float *)(resourcePointer + 0x3c), currentValue <= *(float *)(resourcePointer + 0x3c))) {
-          minValue = currentValue;
+        MinValue = *(float *)(ResourcePointer + 0x38);
+        if ((*(float *)(ResourcePointer + 0x38) <= CurrentValue) &&
+           (MinValue = *(float *)(ResourcePointer + 0x3c), CurrentValue <= *(float *)(ResourcePointer + 0x3c))) {
+          MinValue = CurrentValue;
         }
-        *floatPointer = minValue;
+        *FloatPointer = MinValue;
       }
-      ValidationCounter = (int)resourceHash0 + 1;
-      resourceHash0 = (uint64_t)ValidationCounter;
+      ValidationCounter = (int)ResourceHash0 + 1;
+      ResourceHash0 = (uint64_t)ValidationCounter;
       psecondFloatResult = pfloatValue4 + 1;
-    } while ((int)ValidationCounter < *(int *)(ObjectContextParameter + 0x18));
-    if (0 < *(int *)(ObjectContextParameter + 0x18)) {
-      ResourceTablePointer = (ObjectContextParameter + 0x20) - (int64_t)FloatParameterValue;
+    } while ((int)ValidationCounter < *(int *)(ObjectContext + 0x18));
+    if (0 < *(int *)(ObjectContext + 0x18)) {
+      ResourceTablePointer = (ObjectContext + 0x20) - (int64_t)FloatParameterValue;
       do {
         ResourceIndex = *(int *)((int64_t)FloatParameterValue + ResourceTablePointer);
         if (ResourceIndex != -1) {
