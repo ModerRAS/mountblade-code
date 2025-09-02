@@ -32480,11 +32480,11 @@ void UnwindResourceLockHandler(uint8_t ResourceContext,int64_t SystemValidationC
  * @note 此函数用于安全上下文清理处理
  * @warning 清理失败可能导致安全问题
  */
-void SecurityContextCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void SecurityContextCleanupHandler(uint8_t SecurityContext,int64_t ResourceValidationContext,uint8_t CleanupMode,uint8_t CleanupFlags)
 
 {
-  ProcessResourceValidation(*(int64_t *)(ValidationContext + 0x78),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x78) + 0x10),
-                CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  ProcessResourceValidation(*(int64_t *)(ResourceValidationContext + 0x78),*(uint8_t *)(*(int64_t *)(ResourceValidationContext + 0x78) + 0x10),
+                CleanupMode,CleanupFlags,0xfffffffffffffffe);
   return;
 }
 
