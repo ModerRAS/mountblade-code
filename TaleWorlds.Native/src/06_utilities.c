@@ -5342,10 +5342,10 @@ uint32_t ValidateAndProcessCurrentObjectHandle(void)
   else {
     ProcessedMemoryPointer = CurrentRegisterValue + -8;
   }
-  if (*(int64_t *)(ProcessedMemoryPointer + 0x10) == 0) {
+  if (*(int64_t *)(ProcessedMemoryPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ProcessedMemoryPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ProcessedMemoryPointer + ObjectContextOffset), 1);
 }
 
 
@@ -5407,10 +5407,10 @@ uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t ExtendedObjectHandle)
   else {
     StackOffset = StackOffset + -8;
   }
-  if (*(int64_t *)(StackOffset + 0x10) == 0) {
+  if (*(int64_t *)(StackOffset + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + ObjectContextOffset),1);
 }
 
 
@@ -5577,10 +5577,10 @@ uint64_t ValidateObjectPointerAndExecuteExit(int64_t ObjectPointer)
   if (StackOffset != 0) {
     StackOffset = StackOffset + -8;
   }
-  if (*(int64_t *)(StackOffset + 0x10) == 0) {
+  if (*(int64_t *)(StackOffset + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + ObjectContextOffset), 1);
 }
 
 
@@ -5656,10 +5656,10 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
   if (StackOffset != 0) {
     StackOffset = StackOffset + -8;
   }
-  if (*(int64_t *)(StackOffset + 0x10) == 0) {
+  if (*(int64_t *)(StackOffset + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + ObjectContextOffset), 1);
 }
 
 
@@ -6229,7 +6229,7 @@ uint8_t ValidateSystemConfiguration(int64_t ConfigHandle)
   
   HashValidationResult = ValidateObjectContext(*(uint32_t *)(configHandle + 0x10),ConfigBuffer);
   if ((int)HashValidationResult == 0) {
-    *(uint32_t *)(*(int64_t *)(ConfigBuffer[0] + 0x10) + 0x50) = *(uint32_t *)(configHandle + 0x18);
+    *(uint32_t *)(*(int64_t *)(ConfigBuffer[0] + 0x10) + 0x50) = *(uint32_t *)(configHandle + RegistrationHandleOffset);
     if ((*(int64_t *)(ConfigBuffer[0] + 8) != 0) && (HashValidationResult = ValidateSecurityContext(), (int)HashValidationResult != 0)) {
       return HashValidationResult;
     }
