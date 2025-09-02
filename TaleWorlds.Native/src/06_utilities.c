@@ -3795,7 +3795,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
  * 
  * @note 该函数是系统请求处理的核心入口点，确保所有请求都经过适当的验证和处理
  */
-uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
+uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
 
 {
   int64_t *processResultPointer;
@@ -3811,7 +3811,7 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
   int64_t MemoryContextHandle;
   int64_t ValidationContext;
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x18),&ValidationContext);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + 0x18),&ValidationContext);
   PackageValidationStatusCode = (int)OperationResult;
   if (PackageValidationStatusCode == 0) {
     NullDataPointer = (int64_t *)0x0;
@@ -29091,7 +29091,7 @@ void UnlockResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_
  * @param exceptionHandlerType 异常处理器类型
  * @param ExceptionContext 异常上下文指针
  */
-void CleanuHashValidationResultPointerResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
+void CleanupHashValidationResultPointerResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
   int *ResourceIndexPointer;
@@ -29136,10 +29136,10 @@ void CleanuHashValidationResultPointerResources(uint8_t exceptionHandlerType, in
  * @param exceptionHandlerType 异常处理器类型
  * @param ExceptionContext 异常上下文指针
  * 
- * @note 此函数与CleanuHashValidationResultPointerResources功能完全相同
+ * @note 此函数与CleanupHashValidationResultPointerResources功能完全相同
  * @note 可能是编译器生成的重复代码或用于不同的异常处理路径
  */
-void CleanuHashValidationResultPointerResourcesDuplicate(uint8_t exceptionHandlerType, int64_t ExceptionContext)
+void CleanupHashValidationResultPointerResourcesDuplicate(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
   int *referenceCount;
@@ -30477,7 +30477,7 @@ void RestoreSystemResourceHandlerAtContextOffset88(uint8_t ObjectContext, int64_
  * @note 此函数会遍历所有验证结果并执行清理操作
  * @warning 如果清理失败，可能会触发系统紧急退出
  */
-void CleanuResourceHashValidationResultPointers(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupResourceHashValidationResultPointers(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -48807,7 +48807,7 @@ void CleanupResourceHashHashValidationResults(uint8_t ObjectContext, int64_t Val
  * @note 此函数会处理资源验证结果的清理工作
  * @warning 如果验证结果无效，函数将直接返回
  */
-void CleanuResourceHashValidationResultPointers(uint8_t ObjectContext, int64_t ValidationContext)
+void CleanupResourceHashValidationResultPointers(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *resourceIndexPointer;
@@ -50178,7 +50178,7 @@ void UnwindAndDestroyMutexWithContext(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数通常在异常处理的unwind过程中调用
  * @warning 调用此函数会永久销毁相关资源
  */
-void UnwindAndCleanuResourceIndexPointer(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindAndCleanupResourceIndexPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -52299,7 +52299,7 @@ void Unwind_180906400(uint8_t ObjectContext,int64_t ValidationContext)
  * @param ObjectContext 对象上下文，用于标识特定的资源对象
  * @param ValidationContext 验证上下文，包含资源验证和状态信息
  */
-void CleanupresourceFlagAndRelease(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceFlagAndRelease(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
@@ -61003,7 +61003,7 @@ void UnwindMutexLockD(uint8_t ObjectContext,int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数通常在异常处理或资源清理时调用，会自动处理资源索引和系统清理
  */
-void CleanuResourceHashValidationResultPointer(uint8_t ObjectContext, int64_t ValidationContext)
+void CleanupResourceHashValidationResultPointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
