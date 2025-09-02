@@ -6560,7 +6560,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   int64_t SystemBasePointer;
   int64_t SystemRegister;
   int64_t PrimaryContextPointer;
-  int64_t secondaryContextPointer;
+  int64_t SecondaryContextPointer;
   
   ValidationStatus = ProcessSystemContext(SystemContext, bufferContext, *(uint8_t *)(secondaryContextPointer + 8));
   if (ValidationStatus != 0) {
@@ -6848,7 +6848,7 @@ void ValidateAndProcessSystemStatusData(void)
 {
   int PackageValidationStatusCode;
   int64_t SystemBasePointer;
-  int64_t systemStatusPointer;
+  int64_t SystemStatusPointer;
   uint8_t systemParameter;
   
   ValidationStatus = ValidateSystemParameter(systemParameter);
@@ -7052,7 +7052,7 @@ uint8_t ValidateObjectAndProcessBufferContext(int64_t ObjectContext, int64_t Sys
 uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t SystemContext)
 
 {
-  int64_t bufferEntryPointer;
+  int64_t BufferEntryPointer;
   int ComparisonResult;
   uint8_t ValidationStatus;
   uint8_t *stringPointer;
@@ -7060,7 +7060,7 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
   uint64_t BufferIndex;
   int64_t BufferContext;
   uint64_t BufferArrayOffset;
-  uint64_t bufferEntryOffset;
+  uint64_t BufferEntryOffset;
   int64_t StackBuffer;
   
   if (ObjectContext + ObjectContextHandleDataOffset == 0) {
@@ -7119,7 +7119,7 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
 uint64_t ValidateSystemDataBufferContext(void)
 
 {
-  int64_t bufferDataPointer;
+  int64_t BufferDataPointer;
   int PackageValidationStatusCode;
   uint8_t OperationResult;
   uint8_t *stringPointer;
