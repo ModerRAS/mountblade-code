@@ -8114,7 +8114,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   MatrixRow1InfinityCheck = 0;
   uint32_t SecurityValidationContext = *(uint *)(ObjectContext + ObjectContextSecurityContextOffset);
   float MatrixElementWComponent = *(float *)(ObjectContext + ObjectContextMatrixWComponentOffset);
-  ResourceValidationData[0] = CombineFloatAndInt(ResourceValidationData[0].VectorComponent,matrixElementXCoordinate);
+  ResourceValidationData[0] = CombineFloatAndInt(ResourceValidationData[0].VectorComponent,MatrixElementXCoordinate);
   MatrixRow2InfinityCheck = MatrixRow1InfinityCheck;
   if (((uint)matrixElementXCoordinate & FloatInfinityMask) == FloatInfinityMask) {
     MatrixRow2InfinityCheck = 0x1d;
