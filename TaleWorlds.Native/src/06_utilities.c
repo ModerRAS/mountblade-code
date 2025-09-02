@@ -7999,7 +7999,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
   int64_t ObjectDataPointer;
   int PackageValidationStatusCode;
   int64_t AllocatedMemory;
-  int64_t *pointerReference;
+  int64_t *PointerReference;
   uint8_t SystemSecurityBuffer [32];
   int64_t ContextBuffer;
   uint8_t SystemProcessingBuffer [40];
@@ -8043,7 +8043,7 @@ void ProcessPointerValidationAndSystemObjectHandling(int64_t *ObjectPointer, int
 
 {
   int64_t AllocatedMemory;
-  int64_t *pointerReference;
+  int64_t *PointerReference;
   int64_t SystemContext;
   uint64_t SecurityToken;
   
@@ -8051,8 +8051,8 @@ void ProcessPointerValidationAndSystemObjectHandling(int64_t *ObjectPointer, int
   if (AllocatedMemory == 0) {
           ProcessMemoryAllocationFailure(SystemContext + ThreadResourceCountOffset, &PrimaryObjectResourceBuffer);
   }
-  pointerReference = (int64_t *)(AllocatedMemory + ResourceTertiaryCounterOffset);
-  if (((int64_t *)*pointerReference == pointerReference) && (*(int64_t **)(AllocatedMemory + ValidationContextHashOffset) == pointerReference)) {
+  PointerReference = (int64_t *)(AllocatedMemory + ResourceTertiaryCounterOffset);
+  if (((int64_t *)*PointerReference == pointerReference) && (*(int64_t **)(AllocatedMemory + ValidationContextHashOffset) == pointerReference)) {
           CleanupSecurityToken(SecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
   }
         ProcessSystemObject(*(uint8_t *)(SystemContext + SystemContextCleanupOffset));
@@ -8091,7 +8091,7 @@ void CleanupSecurityTokenFunction(void)
  * @note 该函数执行严格的浮点数验证，确保所有矩阵元素都是有效的数值
  * @warning 如果矩阵包含无效的浮点数值，系统将拒绝使用该矩阵进行变换计算
  */
-uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t ContextPointer)
+uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer,int64_t ContextPointer)
 
 {
     uint8_t ValidationStatus;
