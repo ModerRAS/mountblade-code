@@ -57610,7 +57610,16 @@ void ExecuteValidationRoutine(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907180(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文回调函数
+ * 
+ * 该函数负责在指定的验证上下文中执行回调函数
+ * 检查上下文中的函数指针并调用相应的回调
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteValidationContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0xb8) != (int64_t *)0x0) {
@@ -57621,7 +57630,16 @@ void Unwind_180907180(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907190(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查系统紧急退出条件
+ * 
+ * 该函数负责检查是否需要执行系统紧急退出
+ * 验证上下文中的特定状态，必要时调用紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CheckSystemEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x30) != 0) {
@@ -57632,7 +57650,16 @@ void Unwind_180907190(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809071a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源管理回调
+ * 
+ * 该函数负责执行系统资源管理的回调函数
+ * 检查资源管理上下文中的函数指针并调用相应的回调
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteSystemResourceManagementCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x88) != (int64_t *)0x0) {
@@ -57652,7 +57679,18 @@ void Unwind_1809071b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809071c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统清理回调函数
+ * 
+ * 该函数负责执行系统清理相关的回调函数
+ * 在指定的上下文中调用清理函数，传递清理标志和选项
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteSystemCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x48) != (code *)0x0) {
