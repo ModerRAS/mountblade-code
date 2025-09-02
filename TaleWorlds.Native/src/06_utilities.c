@@ -28,6 +28,104 @@
 #define MaximumProcessableItemsLimit 0xffffffc0
 #define MaximumCapacityLimit 0xffffffc0
 
+// 浮点数相关常量
+#define FloatInfinityMask 0x7f800000
+#define FloatNegativeInfinity 0xbf800000
+#define FloatOneValue 0x3f800000
+#define Int32MinimumValue -0x80000000
+#define UInt32MaximumValue 0xffffffff
+#define UInt64MaximumValue 0xffffffffffffffff
+
+// 内存对齐常量
+#define MemoryAlignmentMask 0xfffffff0
+#define MemoryAlignment16Bytes 0xf
+
+// 资源管理常量
+#define ResourceTableIndexMultiplier 8
+#define ResourceEntrySizeMultiplier 12
+#define ResourceEntrySizeBytes 0xc
+#define ResourceSizeLimit 0x3fffffff
+#define ResourceHandleMask 0xffffffff
+#define ResourceHashMask 0xffff7fff
+#define ResourceHashShiftMask 0xffffc000
+#define ResourceHashReservedBit 0x4000
+#define ResourceHashValueMask 0x7fff
+
+// 验证和检查常量
+#define ValidationContextShift 3
+#define ValidationStatusBit 1
+#define ValidationArraySizeMultiplier 3
+#define ValidationSizeLimit 0x3fffffff
+
+// 系统状态常量
+#define SystemContextOffset 0x17c
+#define SystemDataBaseAddress 0x180c4f450
+#define SystemResourceOffset 0x180985054
+#define SystemFloatMaxValue 256.0
+#define SystemResourceSizeLimit 0x8e
+#define SystemMaxIntValue 0x7fffffff
+
+// 安全操作常量
+#define SecurityOperationType 0x27
+#define SecurityContextMask 0xffffffff
+#define SecurityValidationFlag 0x10000000
+
+// 资源池常量
+#define ResourcePoolEntrySize 4
+#define ResourcePoolSecondaryOffset 4
+#define ResourceContextOffset48 0x48
+#define ResourceContextOffset90 0x90
+#define ResourceContextOffsetB0 0xb0
+#define ResourceContextOffsetB4 0xb4
+#define ResourceContextOffset6c 0x6c
+#define ResourceContextOffsetF8 0xf8
+
+// 数据缓冲区常量
+#define BufferOffset70 0x70
+#define BufferOffset80 0x80
+#define BufferOffset88 0x88
+#define BufferOffset94 0x94
+#define BufferOffsetB8 0xb8
+
+// 标志位掩码
+#define FlagBit3 3
+#define FlagBit3Mask (1 << FlagBit3)
+#define FlagBit25Mask 0xfdffffff
+#define FlagBit26Mask 0xfbffffff
+#define ByteAlignmentMask 0xffffff00
+
+// 数据校验常量
+#define ChecksumSeedValueFEFB 0x46464542
+#define ChecksumSeedValueBEFB 0x42464542
+#define ChecksumSeedValueCTRL 0x4c525443
+#define ChecksumSeedValueORTC 0x4f525443
+#define ChecksumSeedValueVIVE 0x54495645
+#define ChecksumSeedValueBIVE 0x42495645
+#define ChecksumSeedValueSINI 0x54534e49
+#define ChecksumSeedValueMAP  0x2050414d
+#define ChecksumSeedValueLOMP 0x4f4c4d50
+#define ChecksumSeedValueBLOMP 0x424c4d50
+#define ChecksumSeedValueTIWS 0x54494157
+#define ChecksumSeedValueBIWS 0x42494157
+#define ChecksumSeedValueJORS 0x4a4f5250
+#define ChecksumSeedValueIKNB 0x494b4e42
+#define ChecksumSeedValueTIPS 0x54495053
+#define ChecksumSeedValueBTIPS 0x42495053
+#define ChecksumSeedValueFES 0x46464553
+#define ChecksumSeedValueBFES 0x42464553
+#define ChecksumSeedValueFCS 0x46464353
+#define ChecksumSeedValueEFCS 0x46454353
+#define ChecksumSeedValuePANS 0x50414e53
+#define ChecksumSeedValueBPANS 0x42414e53
+#define ChecksumSeedValueSPRP 0x53505250
+#define ChecksumSeedValuePORP 0x504f5250
+#define ChecksumSeedValueNLMT 0x4e4c4d54
+#define ChecksumSeedValueBNLMT 0x424e4c54
+#define ChecksumSeedValueNART 0x4e415254
+#define ChecksumSeedValueBNRT 0x424e5254
+#define ChecksumSeedValueTIW 0x54494157
+#define ChecksumSeedValueBTIW 0x42494157
+
 /**
  * @brief 初始化模块依赖关系
  * 
