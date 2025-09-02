@@ -42103,7 +42103,7 @@ void CleanupSystemResourceMemory(uint8_t objectContext,int64_t validationContext
 
 
 
-void Unwind_180904450(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ReleaseSystemResourceHandle(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42157,7 +42157,7 @@ void Unwind_180904450(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904470(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void FreeSystemResourceMemory(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42211,7 +42211,7 @@ void Unwind_180904470(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904490(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ResetSystemResourceState(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42241,7 +42241,7 @@ void Unwind_180904490(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809044b0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void InitializeResourceHandler(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
