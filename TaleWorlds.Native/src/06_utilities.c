@@ -41067,7 +41067,7 @@ void CleanupSystemResourceHandlerSetDuodecimal(uint8_t ObjectContext,int64_t Val
  * @note 此函数会清理系统资源处理器集合13中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet13(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSetTredecimal(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
