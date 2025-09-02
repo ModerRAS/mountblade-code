@@ -11437,7 +11437,7 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&UNK_180a3cbe0,param_3,param_3 + 4,MemoryAllocationResult);
+  ProcessMemoryAllocation(pcVar3,&SystemMemoryAllocationBufferPrimary,param_3,param_3 + 4,MemoryAllocationResult);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
