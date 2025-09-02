@@ -54,6 +54,21 @@
 #define SystemContextOffset 0x17c
 #define SystemDataBaseAddress 0x180c4f450
 #define SystemResourceOffset 0x180985054
+#define SystemMutexAddress SystemMutexAddress
+#define SystemCriticalSectionAddress SystemCriticalSectionAddress
+#define SystemSecurityFunctionAddress SystemSecurityFunctionAddress
+#define SystemMutexSecondaryAddress SystemMutexSecondaryAddress
+#define SystemDataStructureAddress SystemDataStructureAddress
+#define SystemSecondaryDataStructureAddress SystemSecondaryDataStructureAddress
+#define SystemMutexTertiaryAddress SystemMutexTertiaryAddress
+#define SystemMutexQuaternaryAddress SystemMutexQuaternaryAddress
+#define SystemMutexQuinaryAddress SystemMutexQuinaryAddress
+#define SystemMutexSenaryAddress SystemMutexSenaryAddress
+#define SystemMutexSeptenaryAddress SystemMutexSeptenaryAddress
+#define SystemMutexOctonaryAddress SystemMutexOctonaryAddress
+#define SystemMutexNonaryAddress SystemMutexNonaryAddress
+#define SystemMutexDenaryAddress SystemMutexDenaryAddress
+#define SystemMemoryCleanupAddress SystemMemoryCleanupAddress
 #define SystemContextStatusFlag1Offset 0x180
 #define SystemContextStatusFlag2Offset 0x184
 #define SystemFloatMaxValue 256.0
@@ -29453,7 +29468,7 @@ void UnlockResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_
   int UnlockResult;
   
   ResourceHandlePointer = *(uint8_t *)(ExceptionContext + 0x40);
-  UnlockResult = MutexUnlock(0x180c91970);
+  UnlockResult = MutexUnlock(SystemMutexAddress);
   if (UnlockResult != 0) {
     ThrowCStandardError(UnlockResult);
   }
@@ -29575,7 +29590,7 @@ void UnlockSecondaryResourceHandleAndHandleException(uint8_t exceptionHandlerTyp
   int UnlockResult;
   
   ResourceHandlePointer = *(uint8_t *)(ExceptionContext + 0x88);
-  UnlockResult = MutexUnlock(0x180c91970);
+  UnlockResult = MutexUnlock(SystemMutexAddress);
   if (UnlockResult != 0) {
     ThrowCStandardError(UnlockResult);
   }
@@ -29830,9 +29845,9 @@ void ReleaseCriticalSectionAndResetEvent(void)
 {
   byte encryptionShiftValue;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(SystemCriticalSectionAddress);
   CriticalSectionLock = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(SystemCriticalSectionAddress);
   if (SystemEventHandle != 0) {
     SetEvent();
                         ResetEvent(SystemEventHandle);
@@ -29840,7 +29855,7 @@ void ReleaseCriticalSectionAndResetEvent(void)
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                       (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(SystemSecurityFunctionAddress);
   return;
 }
 
@@ -29852,9 +29867,9 @@ void ResetSystemUnwindFlag(void)
 {
   byte EncryptionShiftValue;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(SystemCriticalSectionAddress);
   SystemUnwindFlag = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(SystemCriticalSectionAddress);
   if (SystemEventHandle != 0) {
     SetEvent();
                         ResetEvent(SystemEventHandle);
@@ -29862,7 +29877,7 @@ void ResetSystemUnwindFlag(void)
   }
   EncryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                       (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> EncryptionShiftValue |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - EncryptionShiftValue))(0x180c82238);
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - EncryptionShiftValue))(SystemSecurityFunctionAddress);
   return;
 }
 
@@ -54052,7 +54067,7 @@ void CompleteCleanupOperation(void)
 void DestroySystemMutex(void)
 
 {
-  MutexDestroyInPlace(0x180c91910);
+  MutexDestroyInPlace(SystemMutexSecondaryAddress);
   return;
 }
 
@@ -55645,9 +55660,9 @@ void ResetMemoryAllocationCounterAndProcessEvent(void)
 {
   byte encryptionShiftValue;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(SystemCriticalSectionAddress);
   MemoryAllocationCounter = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(SystemCriticalSectionAddress);
   if (SystemEventHandle != 0) {
     SetEvent();
                         ResetEvent(SystemEventHandle);
@@ -55655,7 +55670,7 @@ void ResetMemoryAllocationCounterAndProcessEvent(void)
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                       (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(SystemSecurityFunctionAddress);
   return;
 }
 
@@ -58027,9 +58042,9 @@ void InitializeValidationSystem(void)
 {
   byte encryptionShiftValue;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(SystemCriticalSectionAddress);
   SystemInitializationFlag = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(SystemCriticalSectionAddress);
   if (SystemEventHandle != 0) {
     SetEvent();
                         ResetEvent(SystemEventHandle);
@@ -58037,7 +58052,7 @@ void InitializeValidationSystem(void)
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                       (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(SystemSecurityFunctionAddress);
   return;
 }
 
@@ -63023,9 +63038,9 @@ void ResetMemoryOperationFlagAndExecuteEncryption(void)
 {
   byte encryptionShiftValue;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(SystemCriticalSectionAddress);
   MemoryOperationFlag = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(SystemCriticalSectionAddress);
   if (SystemEventHandle != 0) {
     SetEvent();
     ResetEvent(SystemEventHandle);
@@ -63033,7 +63048,7 @@ void ResetMemoryOperationFlagAndExecuteEncryption(void)
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
   (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(SystemSecurityFunctionAddress);
   return;
 }
 
@@ -65059,7 +65074,7 @@ void SystemCleanupCompletionHandler(void)
 void SystemStateResetHandler(void)
 
 {
-  MutexDestroyInPlace(0x180c91970);
+  MutexDestroyInPlace(SystemMutexAddress);
   return;
 }
 
@@ -65072,7 +65087,7 @@ void UnwindExceptionHandler1809089e0(uint8_t ObjectContext, int64_t ValidationCo
   int ProcessingStatusCode;
   
   GlobalUnwindContext = *(uint8_t *)(ValidationContext + 0x70);
-  ResourceIndex = MutexUnlock(0x180c91970);
+  ResourceIndex = MutexUnlock(SystemMutexAddress);
   if (ResourceIndex != 0) {
     ThrowCStandardError(ResourceIndex);
   }
@@ -66474,9 +66489,9 @@ void SystemResourceReleaseHandler(void)
 {
   byte encryptionShiftValue;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(SystemCriticalSectionAddress);
   SystemEventCleanupFlag = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(SystemCriticalSectionAddress);
   if (SystemEventHandle != 0) {
     SetEvent();
                         ResetEvent(SystemEventHandle);
@@ -66484,7 +66499,7 @@ void SystemResourceReleaseHandler(void)
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                       (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(SystemSecurityFunctionAddress);
   return;
 }
 
@@ -70020,7 +70035,21 @@ void DestroyMutexInPlaceFunction(void)
 
 
 
-void Unwind_SystemResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器
+ * 
+ * 该函数负责在系统异常处理过程中清理系统资源
+ * 释放资源句柄并执行相应的清理命令
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含验证所需的信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指示是否需要清理
+ * @return 无返回值
+ * @note 此函数通常在系统异常处理过程中调用
+ * @warning 调用此函数会释放系统资源，请确保资源不再需要
+ */
+void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashAddress;
@@ -72367,9 +72396,9 @@ void Unwind_18090a6e0(void)
 {
   byte encryptionShiftValue;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(SystemCriticalSectionAddress);
   GlobalDataBufferStatusFlag = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(SystemCriticalSectionAddress);
   if (SystemEventHandle != 0) {
     SetEvent();
                         ResetEvent(SystemEventHandle);
@@ -72377,7 +72406,7 @@ void Unwind_18090a6e0(void)
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                       (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(SystemSecurityFunctionAddress);
   return;
 }
 
@@ -79607,7 +79636,7 @@ void Unwind_18090cfd0(uint8_t ObjectContext,int64_t ValidationContext)
   int ProcessingStatusCode;
   
   GlobalUnwindContext = *(uint8_t *)(ValidationContext + 0x28);
-  ResourceIndex = MutexUnlock(0x180c91970);
+  ResourceIndex = MutexUnlock(SystemMutexAddress);
   if (ResourceIndex != 0) {
     ThrowCStandardError(ResourceIndex);
   }
@@ -79623,7 +79652,7 @@ void Unwind_18090cfe0(uint8_t ObjectContext,int64_t ValidationContext)
   int ProcessingStatusCode;
   
   GlobalUnwindContext = *(uint8_t *)(ValidationContext + 0x90);
-  ResourceIndex = MutexUnlock(0x180c91970);
+  ResourceIndex = MutexUnlock(SystemMutexAddress);
   if (ResourceIndex != 0) {
     ThrowCStandardError(ResourceIndex);
   }
@@ -79979,7 +80008,19 @@ void Unwind_18090d070(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d080(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希内存地址
+ * 
+ * 该函数负责验证资源哈希内存地址的有效性
+ * 检查内存地址的合法性并执行相应的验证操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源验证过程中调用
+ * @warning 如果内存地址无效，可能会引发系统异常
+ */
+void ValidateResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -80015,7 +80056,19 @@ void Unwind_18090d080(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d090(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证错误资源哈希内存地址
+ * 
+ * 该函数负责验证错误资源哈希内存地址的有效性
+ * 检查内存地址的合法性并执行相应的验证操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源验证过程中调用
+ * @warning 如果内存地址无效，可能会引发系统异常
+ */
+void ValidateErrorResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -80051,7 +80104,19 @@ void Unwind_18090d090(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d0a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证系统资源哈希内存地址
+ * 
+ * 该函数负责验证系统资源哈希内存地址的有效性
+ * 检查内存地址的合法性并执行相应的验证操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源验证过程中调用
+ * @warning 如果内存地址无效，可能会引发系统异常
+ */
+void ValidateSystemResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -80087,7 +80152,19 @@ void Unwind_18090d0a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d0b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证扩展资源哈希内存地址
+ * 
+ * 该函数负责验证扩展资源哈希内存地址的有效性
+ * 检查内存地址的合法性并执行相应的验证操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源验证过程中调用
+ * @warning 如果内存地址无效，可能会引发系统异常
+ */
+void ValidateExtendedResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -97872,9 +97949,9 @@ void Unwind_1809127d0(void)
 {
   byte encryptionShiftValue;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(SystemCriticalSectionAddress);
   SystemMemoryManager = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(SystemCriticalSectionAddress);
   if (SystemEventHandle != 0) {
     SetEvent();
                         ResetEvent(SystemEventHandle);
@@ -97882,7 +97959,7 @@ void Unwind_1809127d0(void)
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                       (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(SystemSecurityFunctionAddress);
   return;
 }
 
@@ -98503,7 +98580,7 @@ void InitializeSystemDataStructureH(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(0x180c91910);
+  MutexDestroyInPlace(SystemMutexSecondaryAddress);
   return;
 }
 
@@ -98757,7 +98834,7 @@ void DestroySpecificMutex(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(0x180c91970);
+  MutexDestroyInPlace(SystemMutexAddress);
   return;
 }
 
@@ -98970,7 +99047,7 @@ void ExecuteSystemStatusCheckAndCleanup(void)
     }
     MutexDestroyInPlace();
     _Cnd_destroy_in_situ();
-    SystemMemoryRegionCleanup(0x180c919f0);
+    SystemMemoryRegionCleanup(SystemMemoryCleanupAddress);
 
  /**
  * @brief 初始化系统数据结构AC
@@ -99045,7 +99122,7 @@ void InitializeSystemDataStructureAE(void)
 
  /**
  * 初始化系统数据结构AF
- * 销毁位于 0x180d49680 的互斥锁
+ * 销毁位于 SystemMutexTertiaryAddress 的互斥锁
  * 
  * 注意：此函数包含间接跳转，被编译器识别为调用
  * 主要功能是清理和销毁系统数据结构中的互斥锁
@@ -99056,7 +99133,7 @@ void InitializeSystemDataStructureAF(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180941db8. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(0x180d49680);
+  MutexDestroyInPlace(SystemMutexTertiaryAddress);
   return;
 }
 
@@ -99086,24 +99163,24 @@ void InitializeSystemDataStructureAG(void)
  * 初始化系统数据结构并进行完整性检查
  * 
  * 功能：
- * 1. 调用 SystemDataStructureInitializer 初始化位于 0x180d497e0 的数据结构
+ * 1. 调用 SystemDataStructureInitializer 初始化位于 SystemDataStructureAddress 的数据结构
  * 2. 检查 SystemValidationManager 是否为0，如果不为0则调用错误处理函数
  * 3. 检查 SystemInitializationStatusFlag 是否为0，如果不为0则调用错误处理函数
- * 4. 调用 SecondaryDataStructureInitializer 初始化位于 0x180d498a0 的数据结构
+ * 4. 调用 SecondaryDataStructureInitializer 初始化位于 SystemSecondaryDataStructureAddress 的数据结构
  * 5. 将 PrimarySystemDataPointer 设置为指向 SystemCoreDataStructure
  */
 void InitializeSystemDataStructureAH(void)
 void InitializeSystemDataStructureAH(void)
 
 {
-  SystemDataStructureInitializer(0x180d497e0);
+  SystemDataStructureInitializer(SystemDataStructureAddress);
   if (SystemValidationManager != 0) {
           ExecuteSystemEmergencyExit();
   }
   if (SystemInitializationStatusFlag != 0) {
           ExecuteSystemEmergencyExit();
   }
-  SecondaryDataStructureInitializer(0x180d498a0);
+  SecondaryDataStructureInitializer(SystemSecondaryDataStructureAddress);
   PrimarySystemDataPointer = &SystemDataStructure;
   return;
 }
@@ -100190,7 +100267,7 @@ void InitializeSystemDataStructureCA(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001809425f8. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(0x180c91f70);
+  MutexDestroyInPlace(SystemMutexQuaternaryAddress);
   return;
 }
 
@@ -100907,7 +100984,7 @@ void ReleaseHashValidationResultTable(void)
 void DestroyMutexResource(void)
 
 {
-  MutexDestroyInPlace(0x180d49db0);
+  MutexDestroyInPlace(SystemMutexQuinaryAddress);
   return;
 }
 
@@ -101267,7 +101344,7 @@ void ResourceOperationsProcessor(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943038. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(0x180d49e70);
+  MutexDestroyInPlace(SystemMutexSenaryAddress);
   return;
 }
 
@@ -101285,7 +101362,7 @@ void ResourceIntegrityValidator(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943058. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(0x180d49f10);
+  MutexDestroyInPlace(SystemMutexSeptenaryAddress);
   return;
 }
 
@@ -101303,7 +101380,7 @@ void DestroyMutexResource(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943088. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(0x180c96690);
+  MutexDestroyInPlace(SystemMutexOctonaryAddress);
   return;
 }
 
@@ -101408,7 +101485,7 @@ void ClearSystemCacheAndResetState(void)
  * - 清理相关的同步对象
  * 
  * @return 无返回值
- * @note 此函数会销毁固定地址(0x180c966f0)的互斥锁资源
+ * @note 此函数会销毁固定地址(SystemMutexNonaryAddress)的互斥锁资源
  * @warning 销毁后互斥锁将不再可用，如果仍有线程等待此互斥锁会导致未定义行为
  * @warning 调用此函数前确保没有线程持有此互斥锁
  * @see CleanupMutexResources
@@ -101417,7 +101494,7 @@ void ClearSystemCacheAndResetState(void)
 void DestroyMutexResource(void)
 
 {
-    MutexDestroyInPlace(0x180c966f0);
+    MutexDestroyInPlace(SystemMutexNonaryAddress);
   return;
 }
 
@@ -101436,7 +101513,7 @@ void DestroyMutexResource(void)
  * - 重置互斥锁状态为未初始化状态
  * 
  * @return 无返回值
- * @note 此函数会清理固定地址(0x180c96740)的互斥锁资源
+ * @note 此函数会清理固定地址(SystemMutexDenaryAddress)的互斥锁资源
  * @warning 清理后互斥锁将不再可用，如果仍有线程等待此互斥锁会导致系统状态不一致
  * @warning 调用此函数前确保没有线程持有此互斥锁
  * @see DestroyMutexResource
@@ -101445,7 +101522,7 @@ void DestroyMutexResource(void)
 void CleanupMutexResources(void)
 
 {
-      MutexDestroyInPlace(0x180c96740);
+      MutexDestroyInPlace(SystemMutexDenaryAddress);
   return;
 }
 
