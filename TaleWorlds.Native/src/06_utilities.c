@@ -72998,16 +72998,29 @@ void Unwind_ResourceTableAccessCleanupProcessorAlternate(uint8_t ObjectContext,i
 
 
 
-void Unwind_18090a5a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源哈希指针
+ * 
+ * 该函数负责清理资源哈希指针和相关资源
+ * 释放不再使用的资源哈希并清理相关句柄
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数会安全地释放资源哈希指针
+ */
+void CleanupResourceHashPointer(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x68) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x68),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-    CleanupResourceHash(ResourceHashAddress);
-          ReleaseResourceHandle(ResourceHashAddress);
+    ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x68), *ResourceHashPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    CleanupResourceHash(ResourceHashPointer);
+    ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
