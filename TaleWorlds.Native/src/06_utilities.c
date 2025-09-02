@@ -57326,7 +57326,19 @@ void ConfigureSystemHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809070c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源上下文处理器
+ * 
+ * 该函数负责清理资源上下文，释放相关资源并执行清理操作
+ * 主要用于系统资源管理和内存释放
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数通常在资源生命周期结束时调用
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void CleanupResourceContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -57340,7 +57352,21 @@ void Unwind_1809070c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809070d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行对象清理操作
+ * 
+ * 该函数负责执行对象的清理操作，根据清理选项和标志进行相应的处理
+ * 主要用于系统资源释放和内存管理
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ * @return 无返回值
+ * @note 此函数通常在对象生命周期结束时调用
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteObjectCleanupOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x108) != (code *)0x0) {
@@ -57351,7 +57377,19 @@ void Unwind_1809070d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809070e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源清理请求
+ * 
+ * 该函数负责处理资源清理请求，释放相关资源并执行清理操作
+ * 主要用于系统资源管理和内存释放
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数通常在资源生命周期结束时调用
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ProcessResourceCleanupRequest(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -57365,7 +57403,19 @@ void Unwind_1809070e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809070f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源释放操作
+ * 
+ * 该函数负责执行资源释放操作，释放相关资源并执行清理操作
+ * 主要用于系统资源管理和内存释放
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数通常在资源生命周期结束时调用
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteResourceReleaseOperation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -57379,7 +57429,19 @@ void Unwind_1809070f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907100(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源清理处理器
+ * 
+ * 该函数负责初始化资源清理处理器，设置清理操作所需的上下文和环境
+ * 主要用于系统资源管理和内存释放
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数通常在资源清理操作开始前调用
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void InitializeResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
