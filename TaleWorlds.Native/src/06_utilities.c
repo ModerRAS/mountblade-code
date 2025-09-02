@@ -4218,37 +4218,37 @@ uint8_t SystemMemoryFlagKernel;
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int ProcessingStatus;
-  int64_t CurrentIndex;
-  int ProcessedCount;
+  int64_t CurrentObjectIndex;
+  int ProcessedObjectCount;
   uint8_t MetaDataBuffer[32];
   int64_t HandleBuffer[2];
   uint8_t *BufferData;
-  int Position;
-  uint32_t MaxObjects;
+  int CurrentPosition;
+  uint32_t MaximumProcessableObjects;
   uint8_t ProcessingWorkspace[512];
-  uint64_t ValidationKey;
+  uint64_t SecurityValidationKey;
   
-  ValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)MetaDataBuffer;
+  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)MetaDataBuffer;
   ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), HandleBuffer);
   if ((ProcessingStatus == 0) && (*(int64_t *)(HandleBuffer[0] + RegistrationHandleOffset) != 0)) {
     BufferData = ProcessingWorkspace;
-    ProcessedCount = 0;
-    Position = 0;
-    MaxObjects = MaximumProcessableItemsLimit;
+    ProcessedObjectCount = 0;
+    CurrentPosition = 0;
+    MaximumProcessableObjects = MaximumProcessableItemsLimit;
     ProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(HandleBuffer[0] + RegistrationHandleOffset),
                           &BufferData);
     if (ProcessingStatus == 0) {
-      if (0 < Position) {
-        CurrentIndex = 0;
+      if (0 < CurrentPosition) {
+        CurrentObjectIndex = 0;
         do {
-          uint8_t ObjectState = *(uint8_t *)(BufferData + CurrentIndex);
+          uint8_t ObjectState = *(uint8_t *)(BufferData + CurrentObjectIndex);
           ProcessingStatus = ValidateObjectStatus(ObjectState);
           if (ProcessingStatus != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectState, 1);
           }
-          ProcessedCount++;
-          CurrentIndex += ResourceEntrySizeBytes;
-        } while (ProcessedCount < Position);
+          ProcessedObjectCount++;
+          CurrentObjectIndex += ResourceEntrySizeBytes;
+        } while (ProcessedObjectCount < CurrentPosition);
       }
       FreeObjectListMemory(&BufferData);
     }
@@ -4256,7 +4256,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
       FreeObjectListMemory(&BufferData);
     }
   }
-        PerformSecurityValidation(ValidationKey ^ (uint64_t)MetaDataBuffer);
+        PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)MetaDataBuffer);
 }
 
 
@@ -41007,7 +41007,7 @@ void CleanupPerformanceMonitoringContextAndManageSystemResources(uint8_t ObjectC
  * @note 此函数会清理系统资源处理器集合5中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerGroup5(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerGraphicsGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -41049,7 +41049,7 @@ void CleanupSystemResourceHandlerGroup5(uint8_t ObjectContext,int64_t Validation
  * @note 此函数会清理系统资源处理器集合6中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerGroup6(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerAudioGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -41112,7 +41112,7 @@ void CleanupSystemResourceHandlerGroup6(uint8_t ObjectContext,int64_t Validation
  * @note 此函数会清理系统资源处理器集合7中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerGroup7(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerNetworkGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -41175,7 +41175,7 @@ void CleanupSystemResourceHandlerGroup7(uint8_t ObjectContext,int64_t Validation
  * @note 此函数会清理系统资源处理器集合8中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerGroup8(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPhysicsGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -41238,7 +41238,7 @@ void CleanupSystemResourceHandlerGroup8(uint8_t ObjectContext,int64_t Validation
  * @note 此函数会清理系统资源处理器集合9中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerGroup9(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerInputGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -41280,7 +41280,7 @@ void CleanupSystemResourceHandlerGroup9(uint8_t ObjectContext,int64_t Validation
  * @note 此函数会清理系统资源处理器集合10中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerGroup10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerMemoryGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -41322,7 +41322,7 @@ void CleanupSystemResourceHandlerGroup10(uint8_t ObjectContext,int64_t Validatio
  * @note 此函数会清理系统资源处理器集合11中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerGroup11(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSecurityGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -41448,7 +41448,7 @@ void CleanupSystemResourceHandlerSetTredecimal(uint8_t ObjectContext,int64_t Val
  * @note 此函数会清理系统资源处理器集合14中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet14(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerThreadSet(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -41490,7 +41490,7 @@ void CleanupSystemResourceHandlerSet14(uint8_t ObjectContext,int64_t ValidationC
  * @note 此函数会清理系统资源处理器集合15中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet15(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerFileSet(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -41532,7 +41532,7 @@ void CleanupSystemResourceHandlerSet15(uint8_t ObjectContext,int64_t ValidationC
  * @note 此函数会清理系统资源处理器集合16中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet16(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerDatabaseSet(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
@@ -41568,7 +41568,7 @@ void CleanupSystemResourceHandlerSet16(uint8_t ObjectContext,int64_t ValidationC
  * @note 此函数会清理系统资源处理器集合17中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet17(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerCacheSet(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
@@ -41634,7 +41634,7 @@ void ResetSystemResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数会清理系统资源处理器集合18中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet18(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSocketSet(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharacterPointer;
@@ -41662,7 +41662,7 @@ void CleanupSystemResourceHandlerSet18(uint8_t ObjectContext,int64_t ValidationC
  * @note 此函数会清理系统资源处理器集合19中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet19(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerStreamSet(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharacterPointer;
@@ -42048,7 +42048,7 @@ void ResetMultiLayerSystemResourceHandler(uint8_t ObjectContext, int64_t Validat
  * - 函数会重置所有相关的状态标志和计数器
  * - 确保在异常情况下也能正确清理资源
  */
-void ExecuteSystemResourceCleanupBatch1(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupPrimaryBatch(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -42118,7 +42118,7 @@ void ExecuteSystemResourceCleanupBatch1(uint8_t ObjectContext, int64_t Validatio
  * - 如果资源处理器处于活动状态，会触发系统紧急退出
  * - 确保所有资源处理器都被正确重置和释放
  */
-void ExecuteSystemResourceCleanupBatch2(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupSecondaryBatch(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -42625,7 +42625,7 @@ void ConfigureResourceValidation(uint8_t ObjectContext,int64_t ValidationContext
  * @note 此函数通常在系统关闭或资源回收时调用
  * @warning 清理过程不可逆，调用后资源将无法恢复
  */
-void CleanupResourceBlockGroup1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceBlockGraphicsGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -42688,7 +42688,7 @@ void CleanupResourceBlockGroup1(uint8_t ObjectContext,int64_t ValidationContext,
  * @note 此函数通常在系统关闭或资源回收时调用
  * @warning 清理过程不可逆，调用后资源将无法恢复
  */
-void CleanupResourceBlockGroup2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceBlockAudioGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -42751,7 +42751,7 @@ void CleanupResourceBlockGroup2(uint8_t ObjectContext,int64_t ValidationContext,
  * @note 此函数通常在系统关闭或资源回收时调用
  * @warning 清理过程不可逆，调用后资源将无法恢复
  */
-void CleanupResourceBlock3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceBlockNetworkGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -42814,7 +42814,7 @@ void CleanupResourceBlock3(uint8_t ObjectContext,int64_t ValidationContext,uint8
  * @note 此函数通常在系统关闭或资源回收时调用
  * @warning 清理过程不可逆，调用后资源将无法恢复
  */
-void CleanupResourceBlock4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceBlockPhysicsGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -42877,7 +42877,7 @@ void CleanupResourceBlock4(uint8_t ObjectContext,int64_t ValidationContext,uint8
  * @note 此函数通常在系统关闭或资源回收时调用
  * @warning 清理过程不可逆，调用后资源将无法恢复
  */
-void CleanupResourceBlock5(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceBlockInputGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -42940,7 +42940,7 @@ void CleanupResourceBlock5(uint8_t ObjectContext,int64_t ValidationContext,uint8
  * @note 此函数通常在系统关闭或资源回收时调用
  * @warning 清理过程不可逆，调用后资源将无法恢复
  */
-void CleanupResourceBlock6(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceBlockMemoryGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -43003,7 +43003,7 @@ void CleanupResourceBlock6(uint8_t ObjectContext,int64_t ValidationContext,uint8
  * @note 此函数通常在系统关闭或资源回收时调用
  * @warning 清理过程不可逆，调用后资源将无法恢复
  */
-void CleanupResourceBlock7(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceBlockSecurityGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -43066,7 +43066,7 @@ void CleanupResourceBlock7(uint8_t ObjectContext,int64_t ValidationContext,uint8
  * @note 此函数通常在系统关闭或资源回收时调用
  * @warning 清理过程不可逆，调用后资源将无法恢复
  */
-void CleanupResourceBlock8(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceBlockThreadGroup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -98125,7 +98125,7 @@ void Unwind_180911fe0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void ExecuteSystemResourceCleanupBatch1(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupPrimaryBatch(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -98143,7 +98143,7 @@ void ExecuteSystemResourceCleanupBatch1(uint8_t ObjectContext, int64_t Validatio
 
 
 
-void ExecuteSystemResourceCleanupBatch2(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupSecondaryBatch(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
