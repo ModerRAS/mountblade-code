@@ -50019,7 +50019,19 @@ void* InitializeSystemThreadObject(void)
 
 
 
-void* * FUN_18006e460(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
+/**
+ * @brief 初始化系统资源模板
+ * 
+ * 该函数负责初始化系统资源模板，设置资源管理器的模板数据
+ * 用于系统资源的初始化和配置
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，用于初始化资源模板
+ * @param ConfigurationDataPointer 配置数据指针，包含模板的配置信息
+ * @return 系统资源管理器指针，返回初始化后的资源管理器
+ * 
+ * 原始函数名为FUN_18006e460，现已重命名为InitializeSystemResourceTemplate
+ */
+void* * InitializeSystemResourceTemplate(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourceManager = &SystemResourceTemplateB;
