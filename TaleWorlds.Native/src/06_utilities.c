@@ -3499,18 +3499,6 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数在游戏循环中定期调用
  * @warning 处理失败时会导致程序异常终止
  */
-/**
- * @brief 处理游戏对象集合
- * 
- * 该函数负责处理游戏中的对象集合，包括对象的验证、状态检查和处理
- * 遍历对象集合并对每个对象执行相应的操作
- * 
- * @param GameContext 游戏上下文，包含游戏运行的环境信息
- * @param SystemContext 系统上下文，包含系统运行的环境信息
- * @return 无返回值
- * @note 此函数会批量处理游戏对象集合中的所有对象
- * @warning 处理过程中可能会修改对象状态，请确保在适当的时机调用
- */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t ObjectValidationState;
@@ -7149,10 +7137,10 @@ uint64_t ValidateSystemDataBufferContext(void)
   if (StackParameter != 0) {
     contextOffset = StackParameter - 8;
   }
-  arrayIndex = systemStatus;
+  ArrayIndex = systemStatus;
   if (0 < *(int *)(contextOffset + 0x28)) {
     do {
-      ContextPointer = *(int64_t *)(contextOffset + 0x20) + arrayIndex;
+      ContextPointer = *(int64_t *)(contextOffset + 0x20) + ArrayIndex;
       bufferDataPointer = *(int64_t *)(ContextPointer + 0x10);
       if (bufferDataPointer == 0) {
         return 0x1e;
@@ -7174,7 +7162,7 @@ uint64_t ValidateSystemDataBufferContext(void)
       }
       IterationCounter = (int)systemStatus + 1;
       systemStatus = (uint64_t)IterationCounter;
-      arrayIndex = arrayIndex + 0x18;
+      ArrayIndex = ArrayIndex + 0x18;
     } while ((int)IterationCounter < *(int *)(contextOffset + 0x28));
   }
   return 0x4a;
@@ -7519,7 +7507,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
     if ((int)SystemOperationStatusCode == 0) {
       return 0;
     }
-    return systemOperationResult;
+    return SystemOperationResult;
   }
   return 0x1f;
 }
@@ -7957,25 +7945,25 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
 {
   float InputValue;
   int64_t ObjectData;
-  int64_t rangeData;
+  int64_t RangeData;
   uint8_t ValidationStatus;
   int64_t ContextPointer;
-  float clampedValue;
+  float ClampedValue;
   uint RangeIndex [2];
-  int64_t stackContext;
+  int64_t StackContext;
   
   RangeIndex[0] = *(uint *)(ObjectContext + ObjectContextValidationDataOffset);
   if ((RangeIndex[0] & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
   if (ObjectContext + 0x28 != 0) {
-    ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &stackContext);
+    ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &StackContext);
     if ((int)ValidationStatus != 0) {
       return ValidationStatus;
     }
-    ContextPointer = stackContext;
-    if (stackContext != 0) {
-      ContextPointer = stackContext + -8;
+    ContextPointer = StackContext;
+    if (StackContext != 0) {
+      ContextPointer = StackContext + -8;
     }
     objectData = *(int64_t *)(ContextPointer + 0x18);
     if (objectData == 0) {
@@ -7987,17 +7975,17 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
       return ValidationStatus;
     }
     ContextPointer = *(int64_t *)(ContextPointer + 0x20);
-    rangeData = *(int64_t *)(ContextPointer + 0x10 + (int64_t)(int)RangeIndex[0] * 0x18);
-    if ((*(byte *)(rangeData + 0x34) & 0x11) == 0) {
+    RangeData = *(int64_t *)(ContextPointer + 0x10 + (int64_t)(int)RangeIndex[0] * 0x18);
+    if ((*(byte *)(RangeData + 0x34) & 0x11) == 0) {
       inputValue = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
-      clampedValue = *(float *)(rangeData + 0x38);
-      if ((*(float *)(rangeData + 0x38) <= inputValue) &&
-         (clampedValue = *(float *)(rangeData + 0x3c), inputValue <= *(float *)(rangeData + 0x3c))) {
-        clampedValue = inputValue;
+      ClampedValue = *(float *)(RangeData + 0x38);
+      if ((*(float *)(RangeData + 0x38) <= inputValue) &&
+         (ClampedValue = *(float *)(RangeData + 0x3c), inputValue <= *(float *)(RangeData + 0x3c))) {
+        ClampedValue = inputValue;
       }
-      *(float *)(ObjectContext + ObjectContextValidationDataOffset) = clampedValue;
+      *(float *)(ObjectContext + ObjectContextValidationDataOffset) = ClampedValue;
       objectData = *(int64_t *)(objectData + 0x90);
-      *(float *)(ContextPointer + 4 + (int64_t)(int)RangeIndex[0] * 0x18) = clampedValue;
+      *(float *)(ContextPointer + 4 + (int64_t)(int)RangeIndex[0] * 0x18) = ClampedValue;
       *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(objectData + (int64_t)(int)RangeIndex[0] * 8);
             ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
     }
@@ -8021,10 +8009,10 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
 
 {
   float ProcessedFloatParameter;
-  int64_t arrayPointer;
-  int64_t elementPointer;
+  int64_t ArrayPointer;
+  int64_t ElementPointer;
   uint8_t ValidationStatus;
-  int64_t arrayIndex;
+  int64_t ArrayIndex;
   int64_t ContextPointer;
   int IndexBuffer [2];
   int64_t StackBuffer;
@@ -8038,8 +8026,8 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
     if (StackBuffer != 0) {
       ContextPointer = StackBuffer + -8;
     }
-    arrayPointer = *(int64_t *)(ContextPointer + 0x18);
-    if (arrayPointer == 0) {
+    ArrayPointer = *(int64_t *)(ContextPointer + 0x18);
+    if (ArrayPointer == 0) {
       return 0x1e;
     }
     IndexBuffer[0] = 0;
@@ -8047,20 +8035,20 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
     if ((int)ValidationStatus != 0) {
       return ValidationStatus;
     }
-    arrayIndex = (int64_t)IndexBuffer[0];
+    ArrayIndex = (int64_t)IndexBuffer[0];
     ContextPointer = *(int64_t *)(ContextPointer + 0x20);
-    elementPointer = *(int64_t *)(ContextPointer + 0x10 + arrayIndex * 0x18);
-    if ((*(byte *)(elementPointer + 0x34) & 0x11) == 0) {
-      ValidationStatus = ValidateObjectContextAndProcessData(elementPointer,ObjectContext + 0xa8,ObjectContext + ObjectContextValidationDataOffset);
+    ElementPointer = *(int64_t *)(ContextPointer + 0x10 + ArrayIndex * 0x18);
+    if ((*(byte *)(ElementPointer + 0x34) & 0x11) == 0) {
+      ValidationStatus = ValidateObjectContextAndProcessData(ElementPointer,ObjectContext + 0xa8,ObjectContext + ObjectContextValidationDataOffset);
       if ((int)ValidationStatus != 0) {
         return ValidationStatus;
       }
       FloatValueToValidate = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
-      if ((*(float *)(elementPointer + 0x38) <= FloatValueToValidate) &&
-         (FloatValueToValidate < *(float *)(elementPointer + 0x3c) || FloatValueToValidate == *(float *)(elementPointer + 0x3c))) {
-        arrayPointer = *(int64_t *)(arrayPointer + 0x90);
-        *(float *)(ContextPointer + 4 + arrayIndex * 0x18) = FloatValueToValidate;
-        *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(arrayPointer + (int64_t)IndexBuffer[0] * 8);
+      if ((*(float *)(ElementPointer + 0x38) <= FloatValueToValidate) &&
+         (FloatValueToValidate < *(float *)(ElementPointer + 0x3c) || FloatValueToValidate == *(float *)(ElementPointer + 0x3c))) {
+        ArrayPointer = *(int64_t *)(ArrayPointer + 0x90);
+        *(float *)(ContextPointer + 4 + ArrayIndex * 0x18) = FloatValueToValidate;
+        *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(ArrayPointer + (int64_t)IndexBuffer[0] * 8);
               ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
       }
       return 0x1c;
@@ -8088,7 +8076,7 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
 {
   float InputValue;
   int ArrayElementIndex;
-  int64_t elementPointer;
+  int64_t ElementPointer;
   uint8_t ValidationStatus;
   int64_t ContextPointer;
   uint8_t extraParameter;
@@ -8267,7 +8255,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
   uint LoopCounter;
   uint IterationIndex;
   int64_t SystemContext;
-  float clampedValue;
+  float ClampedValue;
   
   ValidationContext = ContextPointer - 8;
   if (ContextPointer == 0) {
@@ -8279,8 +8267,8 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
     floatArrayPointer = floatArrayStart;
     iterationIndex = loopCounter;
     do {
-      arrayIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)floatArrayStart) + (int64_t)floatArrayPointer);
-      if (arrayIndex != -1) {
+      ArrayIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)floatArrayStart) + (int64_t)floatArrayPointer);
+      if (ArrayIndex != -1) {
         inputValue = *floatArrayPointer;
         if (((uint)inputFloatValue & 0x7f800000) == 0x7f800000) {
           return 0x1d;
@@ -11471,13 +11459,13 @@ uint8_t ProcessResourceHashAndCallback(int64_t resourceArray, uint8_t contextCon
 
 {
   uint8_t ResourceHash;
-  int64_t arrayIndex;
+  int64_t ArrayIndex;
   uint8_t *callbackPointer;
   int *resultPointer;
   int64_t contextBase;
   uint8_t ResourceCallbackContext;
   
-  ResourceHash = *(uint8_t *)(resourceArray + 8 + arrayIndex * 8);
+  ResourceHash = *(uint8_t *)(resourceArray + 8 + ArrayIndex * 8);
   ResourceCallbackContext.Field44 = (int)((uint64_t)ResourceHash >> 0x20);
   if (ResourceCallbackContext.Field44 != 0) {
     *resultPointer = ResourceCallbackContext.Field44;
@@ -11882,11 +11870,11 @@ uint32_t ValidateAndGetBufferContext(uint8_t bufferContext)
  * 该函数负责分配新的数组内存空间，并将现有数据复制到新分配的空间中
  * 主要用于动态数组的管理和扩容操作
  * 
- * @param arrayPointer 数组指针，包含数组的基本信息和容量
+ * @param ArrayPointer 数组指针，包含数组的基本信息和容量
  * @param newSize 新的数组大小，用于确定分配的内存空间
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
+uint64_t AllocateAndCopyArrayData(int64_t *ArrayPointer,int newSize)
 
 {
   int oldSize;
@@ -11895,7 +11883,7 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
   int64_t IterationCounter;
   uint8_t *destinationPointer;
   
-  if (newSize < (int)arrayPointer[1]) {
+  if (newSize < (int)ArrayPointer[1]) {
     return 0x1c;
   }
   newArrayBuffer = (uint8_t *)0x0;
@@ -11905,9 +11893,9 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
                AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,
                              0xf4,0,0,1);
       if (newArrayBuffer != (uint8_t *)0x0) {
-        oldSize = (int)arrayPointer[1];
+        oldSize = (int)ArrayPointer[1];
         IterationCounter = (int64_t)oldSize;
-        if ((oldSize != 0) && (sourceDataPointer = *arrayPointer, 0 < oldSize)) {
+        if ((oldSize != 0) && (sourceDataPointer = *ArrayPointer, 0 < oldSize)) {
           destinationPointer = newArrayBuffer;
           do {
             *destinationPointer = *(uint8_t *)((sourceDataPointer - (int64_t)newArrayBuffer) + (int64_t)destinationPointer);
@@ -11923,11 +11911,11 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
     return 0x26;
   }
 MemoryAllocationComplete:
-  if ((0 < *(int *)((int64_t)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceAllocationTemplate,0x100,1);
+  if ((0 < *(int *)((int64_t)ArrayPointer + 0xc)) && (*ArrayPointer != 0)) {
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ArrayPointer,&ResourceAllocationTemplate,0x100,1);
   }
-  *arrayPointer = (int64_t)newArrayBuffer;
-  *(int *)((int64_t)arrayPointer + 0xc) = newSize;
+  *ArrayPointer = (int64_t)newArrayBuffer;
+  *(int *)((int64_t)ArrayPointer + 0xc) = newSize;
   return 0;
 }
 
@@ -12012,15 +12000,15 @@ uint8_t GetMemoryAllocationFailureCode(void)
  * 该函数用于调整动态数组的大小，分配新的内存空间并复制现有数据
  * 如果新大小小于当前大小，返回错误码
  * 
- * @param arrayPointer 数组指针的指针
+ * @param ArrayPointer 数组指针的指针
  * @param newSize 新的数组大小
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t ResizeArray(int64_t *arrayPointer, int newSize)
+uint64_t ResizeArray(int64_t *ArrayPointer, int newSize)
 {
   int64_t NewMemoryBlock;
   
-  if (newSize < (int)arrayPointer[1]) {
+  if (newSize < (int)ArrayPointer[1]) {
     return 0x1c;
   }
   NewMemoryBlock = 0;
@@ -12029,8 +12017,8 @@ uint64_t ResizeArray(int64_t *arrayPointer, int newSize)
       NewMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,
                             0xf4,0,0,1);
       if (NewMemoryBlock != 0) {
-        if ((int)arrayPointer[1] != 0) {
-                memcpy(NewMemoryBlock,*arrayPointer,(int64_t)(int)arrayPointer[1] * 0xc);
+        if ((int)ArrayPointer[1] != 0) {
+                memcpy(NewMemoryBlock,*ArrayPointer,(int64_t)(int)ArrayPointer[1] * 0xc);
         }
         goto cleanup_old_memory;
       }
@@ -12038,11 +12026,11 @@ uint64_t ResizeArray(int64_t *arrayPointer, int newSize)
     return 0x26;
   }
 cleanup_old_memory:
-  if ((0 < *(int *)((int64_t)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceAllocationTemplate,0x100,1);
+  if ((0 < *(int *)((int64_t)ArrayPointer + 0xc)) && (*ArrayPointer != 0)) {
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ArrayPointer,&ResourceAllocationTemplate,0x100,1);
   }
-  *arrayPointer = newMemoryBlock;
-  *(int *)((int64_t)arrayPointer + 0xc) = newSize;
+  *ArrayPointer = newMemoryBlock;
+  *(int *)((int64_t)ArrayPointer + 0xc) = newSize;
   return 0;
 }
 
@@ -12062,25 +12050,25 @@ cleanup_old_memory:
 uint64_t ExpandArray(uint8_t arrayHeader, int newSize)
 {
   int64_t newMemoryBlock;
-  int64_t *arrayPointer;
+  int64_t *ArrayPointer;
   int currentSize;
   
   newMemoryBlock = 0;
   if (currentSize == 0) {
 cleanup_old_memory:
-    if ((0 < *(int *)((int64_t)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceAllocationTemplate,0x100,1);
+    if ((0 < *(int *)((int64_t)ArrayPointer + 0xc)) && (*ArrayPointer != 0)) {
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ArrayPointer,&ResourceAllocationTemplate,0x100,1);
     }
-    *arrayPointer = newMemoryBlock;
-    *(int *)((int64_t)arrayPointer + 0xc) = currentSize;
+    *ArrayPointer = newMemoryBlock;
+    *(int *)((int64_t)ArrayPointer + 0xc) = currentSize;
     return 0;
   }
   if (newSize * 0xc - 1U < 0x3fffffff) {
     newMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,0xf4,
                           0);
     if (newMemoryBlock != 0) {
-      if ((int)arrayPointer[1] != 0) {
-              memcpy(newMemoryBlock,*arrayPointer,(int64_t)(int)arrayPointer[1] * 0xc);
+      if ((int)ArrayPointer[1] != 0) {
+              memcpy(newMemoryBlock,*ArrayPointer,(int64_t)(int)ArrayPointer[1] * 0xc);
       }
       goto cleanup_old_memory;
     }
@@ -13356,9 +13344,9 @@ ValidationErrorHandler:
 void ExecuteQuickSecurityOperationFinalization(void)
 
 {
-  int64_t stackContext;
+  int64_t StackContext;
   
-        FinalizeSecurityOperation(*(uint64_t *)(stackContext + 0x1d0) ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(*(uint64_t *)(StackContext + 0x1d0) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -52766,7 +52754,19 @@ void ExecuteResourceCleanupHandlers(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_180906470(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统资源在偏移量152处
+ * 
+ * 该函数负责处理系统资源在特定偏移量处的释放操作
+ * 包括资源索引的计算和验证
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数处理偏移量152处的资源释放
+ * @remark 原始函数名：Unwind_180906470
+ */
+void ReleaseSystemResourceAtOffset152(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
