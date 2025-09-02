@@ -4968,7 +4968,7 @@ uint32_t ProcessSystemResource(void)
 
 {
   int64_t inputParameterValue;
-  int64_t iterationCounter;
+  int64_t IterationCounter;
   int64_t localContextData;
   
   inputParameterValue = InputParameter;
@@ -7116,10 +7116,10 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
 
 {
   int64_t bufferEntryPointer;
-  int comparisonResult;
+  int ComparisonResult;
   uint8_t ValidationStatus;
   uint8_t *stringPointer;
-  uint iterationCounter;
+  uint IterationCounter;
   uint64_t bufferIndex;
   int64_t bufferContext;
   uint64_t bufferArrayOffset;
@@ -7150,8 +7150,8 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
         else {
           stringPointer = *(uint8_t **)(bufferEntryPointer + 0x50);
         }
-        comparisonResult = CompareStringWithContext(stringPointer,ObjectContext + ObjectContextHandleDataOffset);
-        if (comparisonResult == 0) {
+        ComparisonResult = CompareStringWithContext(stringPointer,ObjectContext + ObjectContextHandleDataOffset);
+        if (ComparisonResult == 0) {
           ValidationStatus = ValidateBufferContext(bufferContext,ObjectContext + ObjectContextValidationDataOffset);
           if ((int)ValidationStatus != 0) {
             return ValidationStatus;
@@ -7159,10 +7159,10 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
           ValidationStatus = CleanupSystemContextData(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
           return ValidationStatus;
         }
-        iterationCounter = (int)bufferIndex + 1;
-        bufferIndex = (uint64_t)iterationCounter;
+        IterationCounter = (int)bufferIndex + 1;
+        bufferIndex = (uint64_t)IterationCounter;
         bufferEntryOffset = bufferEntryOffset + 0x18;
-      } while ((int)iterationCounter < *(int *)(bufferArrayOffset + 0x28));
+      } while ((int)IterationCounter < *(int *)(bufferArrayOffset + 0x28));
     }
     ValidationStatus = 0x4a;
   }
@@ -7186,7 +7186,7 @@ uint64_t ValidateSystemDataBufferContext(void)
   int PackageValidationStatusCode;
   uint8_t OperationResult;
   uint8_t *stringPointer;
-  uint iterationCounter;
+  uint IterationCounter;
   uint64_t systemStatus;
   int64_t contextPointer;
   uint64_t ContextOffset;
@@ -7223,10 +7223,10 @@ uint64_t ValidateSystemDataBufferContext(void)
         operationResult = CleanupSystemContextData(*(uint8_t *)(PrimarySystemContext + 0x98));
         return operationResult;
       }
-      iterationCounter = (int)systemStatus + 1;
-      systemStatus = (uint64_t)iterationCounter;
+      IterationCounter = (int)systemStatus + 1;
+      systemStatus = (uint64_t)IterationCounter;
       arrayIndex = arrayIndex + 0x18;
-    } while ((int)iterationCounter < *(int *)(contextOffset + 0x28));
+    } while ((int)IterationCounter < *(int *)(contextOffset + 0x28));
   }
   return 0x4a;
 }
@@ -7462,7 +7462,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
   int InfinityStatusFlag;
   int64_t transformContext;
   int64_t matrixBuffer [2];
-  uint matrixFlags;
+  uint MatrixFlags;
   float matrixScaleFactor;
   int64_t matrixContextPointer;
   
@@ -8022,11 +8022,11 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
   uint8_t ValidationStatus;
   int64_t contextPointer;
   float clampedValue;
-  uint rangeIndex [2];
+  uint RangeIndex [2];
   int64_t stackContext;
   
-  rangeIndex[0] = *(uint *)(ObjectContext + ObjectContextValidationDataOffset);
-  if ((rangeIndex[0] & 0x7f800000) == 0x7f800000) {
+  RangeIndex[0] = *(uint *)(ObjectContext + ObjectContextValidationDataOffset);
+  if ((RangeIndex[0] & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
   if (ObjectContext + 0x28 != 0) {
@@ -8042,13 +8042,13 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
     if (objectData == 0) {
       return 0x1e;
     }
-    rangeIndex[0] = 0;
-    ValidationStatus = ProcessRangeValidation(SystemContext, contextPointer, ObjectContext + 0x28, rangeIndex);
+    RangeIndex[0] = 0;
+    ValidationStatus = ProcessRangeValidation(SystemContext, contextPointer, ObjectContext + 0x28, RangeIndex);
     if ((int)ValidationStatus != 0) {
       return ValidationStatus;
     }
     contextPointer = *(int64_t *)(contextPointer + 0x20);
-    rangeData = *(int64_t *)(contextPointer + 0x10 + (int64_t)(int)rangeIndex[0] * 0x18);
+    rangeData = *(int64_t *)(contextPointer + 0x10 + (int64_t)(int)RangeIndex[0] * 0x18);
     if ((*(byte *)(rangeData + 0x34) & 0x11) == 0) {
       inputValue = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
       clampedValue = *(float *)(rangeData + 0x38);
@@ -8058,8 +8058,8 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
       }
       *(float *)(ObjectContext + ObjectContextValidationDataOffset) = clampedValue;
       objectData = *(int64_t *)(objectData + 0x90);
-      *(float *)(contextPointer + 4 + (int64_t)(int)rangeIndex[0] * 0x18) = clampedValue;
-      *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(objectData + (int64_t)(int)rangeIndex[0] * 8);
+      *(float *)(contextPointer + 4 + (int64_t)(int)RangeIndex[0] * 0x18) = clampedValue;
+      *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(objectData + (int64_t)(int)RangeIndex[0] * 8);
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
     }
@@ -8088,7 +8088,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
   uint8_t ValidationStatus;
   int64_t arrayIndex;
   int64_t contextPointer;
-  int indexBuffer [2];
+  int IndexBuffer [2];
   int64_t StackBuffer;
   
   if (ObjectContext + 0x28 != 0) {
@@ -8104,12 +8104,12 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
     if (arrayPointer == 0) {
       return 0x1e;
     }
-    indexBuffer[0] = 0;
-    ValidationStatus = ProcessRangeValidation(SystemContext,contextPointer,ObjectContext + 0x28,indexBuffer);
+    IndexBuffer[0] = 0;
+    ValidationStatus = ProcessRangeValidation(SystemContext,contextPointer,ObjectContext + 0x28,IndexBuffer);
     if ((int)ValidationStatus != 0) {
       return ValidationStatus;
     }
-    arrayIndex = (int64_t)indexBuffer[0];
+    arrayIndex = (int64_t)IndexBuffer[0];
     contextPointer = *(int64_t *)(contextPointer + 0x20);
     elementPointer = *(int64_t *)(contextPointer + 0x10 + arrayIndex * 0x18);
     if ((*(byte *)(elementPointer + 0x34) & 0x11) == 0) {
@@ -8122,7 +8122,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
          (floatValue < *(float *)(elementPointer + 0x3c) || floatValue == *(float *)(elementPointer + 0x3c))) {
         arrayPointer = *(int64_t *)(arrayPointer + 0x90);
         *(float *)(contextPointer + 4 + arrayIndex * 0x18) = floatValue;
-        *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(arrayPointer + (int64_t)indexBuffer[0] * 8);
+        *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(arrayPointer + (int64_t)IndexBuffer[0] * 8);
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
       }
@@ -8320,7 +8320,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
 
 {
   float inputValue;
-  int validationRange;
+  int ValidationRange;
   int ArrayElementIndex;
   int64_t contextPointer;
   float *floatArrayPointer;
@@ -8337,7 +8337,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
   if (contextPointer == 0) {
     ValidationContext = (uint64_t)loopCounter;
   }
-  validationRange = *(int *)(ValidationContext + 0x28);
+  ValidationRange = *(int *)(ValidationContext + 0x28);
   floatArrayStart = (float *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
   if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
     floatArrayPointer = floatArrayStart;
@@ -12007,7 +12007,7 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
   int oldSize;
   int64_t sourceDataPointer;
   uint8_t *newArrayBuffer;
-  int64_t iterationCounter;
+  int64_t IterationCounter;
   uint8_t *destinationPointer;
   
   if (newSize < (int)arrayPointer[1]) {
@@ -12021,7 +12021,7 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
                              0xf4,0,0,1);
       if (newArrayBuffer != (uint8_t *)0x0) {
         oldSize = (int)arrayPointer[1];
-        iterationCounter = (int64_t)oldSize;
+        IterationCounter = (int64_t)oldSize;
         if ((oldSize != 0) && (sourceDataPointer = *arrayPointer, 0 < oldSize)) {
           destinationPointer = newArrayBuffer;
           do {
@@ -12029,8 +12029,8 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
             *(uint32_t *)(destinationPointer + 1) =
                  *(uint32_t *)((sourceDataPointer - (int64_t)newArrayBuffer) + 8 + (int64_t)destinationPointer);
             destinationPointer = (uint8_t *)((int64_t)destinationPointer + 0xc);
-            iterationCounter = iterationCounter + -1;
-          } while (iterationCounter != 0);
+            IterationCounter = IterationCounter + -1;
+          } while (IterationCounter != 0);
         }
         goto MemoryAllocationComplete;
       }
@@ -80006,7 +80006,19 @@ void Unwind_18090e8f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e900(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构到验证上下文偏移288
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的指定偏移量位置
+ * 用于异常处理时的数据恢复
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含需要设置的数据结构位置
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中调用
+ * @warning 此函数涉及内存指针操作，需要谨慎处理
+ */
+void SetSystemDataStructureToContextOffset288(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x288) = &SystemDataStructure;
@@ -80015,7 +80027,19 @@ void Unwind_18090e900(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e910(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文偏移60的清理操作
+ * 
+ * 该函数负责检查验证上下文偏移60位置是否存在有效的清理函数
+ * 如果存在，则调用该清理函数进行资源释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含清理函数指针
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中调用
+ * @warning 此函数涉及函数指针调用，需要确保指针有效性
+ */
+void ExecuteCleanupOperationAtContextOffset60(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x60) != (int64_t *)0x0) {
@@ -80026,7 +80050,19 @@ void Unwind_18090e910(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e920(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源描述符模板并执行紧急退出检查
+ * 
+ * 该函数负责重置资源描述符模板，检查是否需要执行紧急退出
+ * 如果需要，则调用系统紧急退出函数，然后清理相关状态
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源描述符和状态信息
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中调用
+ * @warning 此函数可能执行系统紧急退出，调用后不会返回
+ */
+void ResetResourceDescriptorTemplateAndCheckEmergencyExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x68) = &ResourceDescriptorTemplate;
@@ -80042,7 +80078,19 @@ void Unwind_18090e920(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e930(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文偏移98的清理操作
+ * 
+ * 该函数负责检查验证上下文偏移98位置是否存在有效的清理函数
+ * 如果存在，则调用该清理函数进行资源释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含清理函数指针
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中调用
+ * @warning 此函数涉及函数指针调用，需要确保指针有效性
+ */
+void ExecuteCleanupOperationAtContextOffset98(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x98) != (int64_t *)0x0) {
