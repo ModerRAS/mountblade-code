@@ -15999,8 +15999,7 @@ uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *dataBuffer)
 
 
 
- 9040(uint8_t objectContext,int64_t validationContext)
-9040(uint8_t objectContext,int64_t validationContext)
+ void ProcessResourceMemoryValidation(uint8_t objectContext,int64_t validationContext)
 
 {
   int ProcessingResult;
