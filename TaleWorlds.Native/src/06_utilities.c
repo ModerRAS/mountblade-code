@@ -596,7 +596,7 @@ void* SystemTreeStructureBuffer;
 void* SystemGraphDataBuffer;
 void* SystemCacheManagerBuffer;
 void* SystemNetworkConfigurationBuffer;
-void* SystemResourceDataTable;
+void* SystemResourceContentTable;
 void* SystemStatusDataTable;
 void* SystemConfigurationDataTable;
 void* SystemInstancePointerTable;
@@ -18292,7 +18292,7 @@ uint8_t ProcessResourceTableEntry(int64_t resourceContext, uint8_t *resourceData
 {
   uint8_t resourceHash;
   
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x50);
@@ -19209,14 +19209,14 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
       return ResourceValidationResult;
     }
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationResult = CalculateResourceHash(*resourceData,resourceContext + 0x58);
   if ((int)validationResult != 0) {
     return ResourceValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationResult = CalculateResourceHash(*resourceData,resourceContext + 0x5c);
@@ -19257,7 +19257,7 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
   if (*(uint *)(resourceData + 8) < 0x7d) {
     return 0;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationContext = (int64_t *)*validationContext;
@@ -19747,21 +19747,21 @@ uint64_t ProcessResourceDataA(int64_t objectContext,int64_t *validationContext)
   if ((int)ResourceContextOffset != 0) {
     return ResourceContextOffset;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = CalculateResourceHash(*resourceData,resourceContext + 0x90);
   if (ValidationResult != 0) {
     return (uint64_t)ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = CalculateResourceHash(*resourceData,resourceContext + 0xa4);
   if (ValidationResult != 0) {
     return (uint64_t)ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = ReadResourceData(*validationContext,objectContext + 0xb0,4);
@@ -20869,7 +20869,7 @@ uint64_t ProcessResourceDataReadAndValidate(int64_t objectContext,uint8_t *valid
   int64_t BufferPointer;
   int aiStackX_10 [2];
   
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   loopIncrement = ReadResourceData(*validationContext,objectContext,4);
@@ -20977,7 +20977,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
   if ((int)SecurityHashValue != 0) {
     return SecurityHashValue;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   SecurityHashValue = GetResourceHashValue(*validationContext,objectContext + 0x38);
@@ -22064,7 +22064,7 @@ ResourceProcessingComplete:
   if (ValidationCounter != 0) {
     return (uint64_t)ValidationCounter;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceContext = (int64_t *)*validationContext;
@@ -22129,42 +22129,42 @@ ResourceDataValidation:
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = GetResourceHash(*validationContext,objectContext + 0x50);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = CalculateResourceHash(*resourceData,resourceContext + 0x38);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = CalculateResourceHash(*resourceData,resourceContext + 0x3c);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = CalculateResourceHash(*resourceData,resourceContext + 0x4c);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = CalculateResourceHash(*resourceData,resourceContext + 0x40);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = CalculateResourceHash(*resourceData,resourceContext + 0x44);
@@ -23706,7 +23706,7 @@ uint64_t ValidateResourcePackageStructure(int64_t objectContext,int64_t *validat
   if ((int)ValidationStatus != 0) {
     return ValidationStatus;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceContext = (int64_t *)*validationContext;
@@ -23740,7 +23740,7 @@ ValidateHashResult:
   if ((int)ValidationStatus != 0) {
     return ValidationStatus;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceContext = (int64_t *)*validationContext;
@@ -24090,7 +24090,7 @@ uint64_t ValidateResourceFileIntegrity(int64_t objectContext,uint8_t *validation
       (validationResult = ValidateResourceData(validationContext,objectContext + 0x44), (int)validationResult != 0)))) {
     return ResourceValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceHash = GetResourceHash(*validationContext,objectContext + 0x60);
@@ -24303,7 +24303,7 @@ LAB_18089d455:
     return ValidationResult;
   }
   EncryptionBuffer[0] = 0;
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceContext = (int64_t *)*validationContext;
@@ -25480,7 +25480,7 @@ uint64_t ProcessResourceDataExtraction(int64_t objectContext,int64_t *validation
   if ((int)validationResult != 0) {
     return ResourceValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationResult = ReadResourceData(*validationContext,objectContext + 0x44,4);
@@ -25518,14 +25518,14 @@ uint64_t ProcessResourceDataExtraction(int64_t objectContext,int64_t *validation
       validationResult = (uint64_t)aSecurityValidationContext[0];
     } while ((int)loopCondition < (int)ContextValidationResult);
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = ProcessResourceHash(*validationContext,objectContext + 0x48);
   if (ValidationResult != 0) {
     return (uint64_t)ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   resourceContext = (int64_t *)*validationContext;
@@ -26322,7 +26322,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
   if ((int)loopCondition != 0) {
     return loopCondition;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   LocalContextData = *validationContext;
@@ -26347,14 +26347,14 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
   if ((int)loopCondition != 0) {
     return loopCondition;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = ReadResourceData(*validationContext,objectContext + 0x30,4);
   if (ValidationResult != 0) {
     return (uint64_t)ValidationResult;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = ReadResourceData(*validationContext,objectContext + 0x34);
@@ -26369,7 +26369,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
   if ((int)loopCondition != 0) {
     return loopCondition;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationStatusCode = CalculateResourceHash(*resourceData,resourceContext + 0x58);
@@ -26378,7 +26378,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
   }
   validationStatusCode = *(uint *)(resourceData + 8);
   if (0x7e < ValidationResult) goto LAB_18089ed1b;
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   presourceTable = (int64_t *)*validationContext;
@@ -27424,7 +27424,7 @@ uint8_t ResourceBatchProcessor(int64_t objectContext,int64_t *validationContext)
   uint8_t resourceHash;
   uint32_t SystemCommandParams [6];
   
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   SystemCommandParams[0] = *(uint32_t *)(objectContext + 0x50);
@@ -28488,7 +28488,7 @@ uint8_t ValidateResourceId(int64_t objectContext,int64_t *validationContext)
       return resourceHash;
     }
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   SystemCommandParams[0] = *(uint32_t *)(objectContext + 0x58);
@@ -28497,7 +28497,7 @@ uint8_t ValidateResourceId(int64_t objectContext,int64_t *validationContext)
   if ((int)resourceHash != 0) {
     return resourceHash;
   }
-  if (*(int *)(ResourceDataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
   SystemCommandParams[0] = *(uint32_t *)(objectContext + 0x5c);
