@@ -18902,8 +18902,8 @@ uint64_t ProcessResourceDataReadAndValidate(int64_t ResourceHandle,uint8_t *Reso
   uint LoopIncrement;
   uint32_t EncryptedValue;
   uint32_t UnsignedStackValue34;
-  uint32_t uStack_30;
-  uint32_t uStack_2c;
+  uint32_t ResourceValidationLower32Bits;
+  uint32_t ResourceValidationUpper32Bits;
   uint8_t dataChecksumBuffer [32];
   
   pvalidationResult = (uint32_t *)AllocateMemoryBlock();
