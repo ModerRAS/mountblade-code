@@ -3097,6 +3097,16 @@ uint8_t DenaryConfigEntry;
 uint8_t UndenaryConfigEntry;
 // 第十二级配置条目 - 用于存储第十二级系统配置信息
 uint8_t DuodenaryConfigEntry;
+
+// 系统资源管理相关全局变量
+uint8_t SystemResourceData[0x1000];        // 系统资源数据缓冲区
+uint8_t* SystemResourceManagerPointer;     // 系统资源管理器指针
+uint8_t ResourceCleanupMarker;             // 资源清理标记
+uint8_t ResourceResetMarker;                // 资源重置标记
+
+// 系统数据结构相关全局变量
+uint8_t SystemDataStructure[0x1000];       // 系统数据结构缓冲区
+
 byte SystemConfigurationStatusFlag;
 uint8_t SystemStatusIndicator;
 uint8_t SystemConfigurationDebugMode;
@@ -3677,6 +3687,16 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  * @return 无返回值
  * @note 此函数在系统维护和清理过程中调用
  * @warning 验证失败时可能会导致系统异常终止
+ */
+/**
+ * @brief 验证系统对象集合
+ * 
+ * 该函数负责验证系统中所有对象的集合完整性和有效性
+ * 通过遍历对象集合并对每个对象进行验证检查
+ * 
+ * @return 无返回值
+ * @note 此函数在系统维护期间调用
+ * @warning 验证失败时可能会标记对象为无效状态
  */
 void ValidateSystemObjectCollection(void)
 {
@@ -66610,8 +66630,18 @@ void ProcessResourceHash(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_180908ec0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 系统状态清理器
+ * 
+ * 该函数负责清理系统状态，释放相关资源
+ * 通过调用系统状态清理函数来重置系统状态
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在系统关闭或重置过程中调用
+ */
+void CleanupSystemStateHandler(uint8_t ObjectContext, int64_t ValidationContext)
 {
   CleanupSystemState(ValidationContext + 0x60);
   return;
@@ -66619,14 +66649,24 @@ void Unwind_180908ec0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908ed0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 系统数据表初始化器
+ * 
+ * 该函数负责初始化系统数据表，设置数据表指针并销毁异常对象
+ * 包括系统数据表001的设置和异常对象的清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在系统数据结构初始化过程中调用
+ */
+void InitializeSystemDataTable(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  uint8_t *ResourceHashPointer;
+  uint8_t *DataTablePointer;
   
-  ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x20);
-  *ResourceHashPointer = &SystemDataTable001;
-  __std_exception_destroy(ResourceHashPointer + 1);
+  DataTablePointer = *(uint8_t **)(ValidationContext + 0x20);
+  *DataTablePointer = &SystemDataTable001;
+  DestroyStdExceptionObject(DataTablePointer + 1);
   return;
 }
 
