@@ -888,9 +888,9 @@ void InitializeConfigurationContext(void);
  * 该函数负责释放指定的内存资源
  * 回收内存空间并更新资源管理状态
  * 
- * @param memoryPointer 内存指针，指向要释放的内存资源
+ * @param MemoryPointer 内存指针，指向要释放的内存资源
  */
-void FreeMemoryResource(void* memoryPointer);
+void FreeMemoryResource(void* MemoryPointer);
 
 /**
  * @brief 处理数据上下文操作
@@ -50339,7 +50339,25 @@ void UnwindResourceContextCleanupType3(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_180905c50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表和验证上下文
+ * 
+ * 该函数负责清理系统资源表，验证资源上下文，并处理资源释放
+ * 主要功能包括：
+ * - 销毁互斥锁和条件变量
+ * - 清理哈希验证结果
+ * - 验证资源表状态
+ * - 处理包验证状态码
+ * 
+ * @param ObjectContext 对象上下文，包含资源管理所需的状态信息
+ * @param ValidationContext 验证上下文，用于验证资源状态和完整性
+ * @return 无返回值
+ * @note 此函数通常在系统清理或资源释放时调用
+ * @warning 调用此函数前必须确保所有资源引用已正确处理
+ * 
+ * @remark 原始函数名：Unwind_180905c50
+ */
+void CleanupResourceTableAndValidationContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -50400,7 +50418,21 @@ void Unwind_180905c50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905c60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源上下文验证状态
+ * 
+ * 该函数负责重置资源上下文的验证状态，清理验证结果指针
+ * 并确保资源索引的正确性
+ * 
+ * @param ObjectContext 对象上下文，包含资源管理所需的状态信息
+ * @param ValidationContext 验证上下文，用于验证资源状态和完整性
+ * @return 无返回值
+ * @note 此函数通常在资源重置或状态清理时调用
+ * @warning 调用此函数前必须确保资源索引已正确初始化
+ * 
+ * @remark 原始函数名：Unwind_180905c60
+ */
+void ResetResourceContextValidationState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
