@@ -6522,12 +6522,12 @@ uint8_t ValidateAndClearObjectState(int64_t ObjectContext, int64_t SystemContext
 void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
 
 {
-  int PackageValidationStatusCode;
-  int newCapacity;
+  int validationStatus;
+  int currentCapacity;
   int64_t newBufferPointer;
   int64_t bufferOffset;
-  uint capacityCheck;
-  int64_t TemporaryStackBuffer;
+  uint capacitySignBit;
+  int64_t temporaryStackBuffer;
   int64_t bufferContext;
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&bufferContext);
@@ -94996,20 +94996,24 @@ void ValidateSystemConfiguration(void)
  * 释放网络连接占用的内存和句柄
  */
 void CleanupNetworkResources(void)
-void CleanupNetworkResources(void)
 
 {
   if (NetworkCleanupFlag != '\0') {
     SystemModuleInitializer(ModuleInitializerPointer);
     ModuleInitializerPointer = 0;
+  }
+}
 
- /**
+/**
  * @brief 终止系统进程
  * 
  * 该函数负责安全终止系统进程
  * 确保系统资源正确释放，避免资源泄漏
+ * 
+ * @return 无返回值
+ * @note 此函数会安全终止系统进程
+ * @warning 调用此函数后系统进程将终止
  */
-void TerminateSystemProcess(void)
 void TerminateSystemProcess(void)
 
 {
@@ -95019,6 +95023,8 @@ void TerminateSystemProcess(void)
       ExecuteSystemEmergencyExit();
     }
     EmergencyExitHandler = 0;
+  }
+}
 
  /**
  * @brief 执行系统清理操作1
@@ -95062,8 +95068,10 @@ void ExecuteSystemCleanupOperation3(void)
     if (OperationHandlerPointer != (int64_t *)0x0) {
       (**(code **)(*OperationHandlerPointer + 0x38))();
     }
+  }
+}
 
- /**
+/**
  * @brief 初始化系统数据结构CT
  * 
  * 该函数负责初始化系统数据结构CT
@@ -95098,13 +95106,14 @@ void InitializeSystemDataStructureCU(void)
     SystemShutdownHandler(&ShutdownHandlerPointer);
 
  /**
- * 初始化系统数据结构CV
+ * @brief 初始化系统数据结构CV
+ * 
+ * 该函数负责初始化系统数据结构CV
  * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureCV(void)
-/**
- * 初始化系统数据结构CV
- * 设置全局系统数据结构指针，用于系统初始化
+ * 
+ * @return 无返回值
+ * @note 此函数在系统初始化时调用
+ * @warning 调用此函数前必须确保系统已准备好初始化数据结构
  */
 void InitializeSystemDataStructureCV(void)
 
@@ -95306,12 +95315,15 @@ void DestroyMutexResource(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ExecuteResourceCleanup(void)
-/**
+ /**
  * @brief 执行资源清理
  * 
  * 该函数负责执行系统资源的清理操作
  * 释放不再使用的资源并回收内存
+ * 
+ * @return 无返回值
+ * @note 此函数会释放所有不再使用的系统资源
+ * @warning 调用此函数后，被释放的资源将不再可用
  */
 void ExecuteResourceCleanup(void)
 
