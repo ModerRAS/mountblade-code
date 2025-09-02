@@ -63004,7 +63004,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     SystemResourceManager[0xa8] = 3.4028235e+38;
     SystemConfigurationValue = 0;
     pfStack_98 = pfloatValue7;
-    FUN_18007f770(&pfStack_98);
+    InitializeSystemContext(&pfStack_98);
     if (*(int *)(lStack_88 + 0x10) != 0) {
       do {
         pfloatValue7 = (float *)((long long)(int)OperationCode * 0x10 + *(long long *)(lStack_88 + 0x18));
@@ -63299,7 +63299,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   SystemMemoryOffset = 0;
   SystemResourceFlags120 = 0;
   UnsignedStackFlag118 = 3;
-  FUN_180080ca0(&ResourceBufferPointer130,resourceCreationFlags8);
+  ConfigureResourceBuffer(&ResourceBufferPointer130,resourceCreationFlags8);
   resourceAddress1 = resourceCreationFlags8;
   HashEntryPointer2 = ResourceBufferPointer130;
   if (0 < SystemOperationStatus1) {
@@ -63317,7 +63317,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
     aSystemResourceSize = ZEXT816(0) << 0x40;
   }
   else {
-    FUN_180082290(aSystemResourceSize,SystemThreadHandle1);
+    ProcessThreadHandle(aSystemResourceSize,SystemThreadHandle1);
     SystemThreadHandle1 = aSystemResourceSize._0_8_;
   }
   paGlobalDataFlags2 = (uint8_t (*) [16])(ulong long)*(ushort *)(SystemResourceManager + 0xc0);
@@ -63447,7 +63447,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   pSystemMemoryOffset168 = (long long *)0x0;
   pSystemMemoryOffset160 = (long long *)0x0;
   SystemConfigurationId = 3;
-  FUN_180081010(&longValue170,(long long)systemResult7);
+  AllocateSystemBuffer(&longValue170,(long long)systemResult7);
   resourceAddress1 = resourceAllocationContext6;
   uStackX_20 = resourceCreationFlags8;
   if (0 < (long long)resourceCreationFlags8) {
@@ -63565,7 +63565,7 @@ LAB_180079d9b:
   SystemInitializationFlag = 0;
   if (*SystemIntegerPointer < 1) {
 LAB_18007a5ac:
-    FUN_180080fa0(&longValue170);
+    InitializeResourceBuffer(&longValue170);
     SystemThreadHandle1 = (long long)iStack_1e8;
     SystemTimeFlag1d8 = (ulong long)*(ushort *)(SystemResourceManager + 0xc0);
     uStackX_18 = -1;
@@ -63984,7 +63984,7 @@ LAB_18007ac04:
       FUN_1800810b0(&piStack_218);
       uStackX_18 = uStackX_18 + 1;
       if ((long long)SystemTimeFlag1d8 <= (long long)uStackX_18) {
-        FUN_180080fa0(aSystemResourceSize);
+        InitializeResourceBuffer(aSystemResourceSize);
         if (ResourceBufferPointer130 != (uint32_t *)0x0) {
             SystemCleanupFunction(ResourceBufferPointer130);
         }
@@ -64535,7 +64535,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   }
   UnsignedStackFlag88 = 1;
   lStack_90 = SystemResourceManager;
-  FUN_18007f770(&lStack_90);
+  InitializeSystemContext(&lStack_90);
   SystemThreadFlags = *(long long *)(SystemResourceManager + 0x210);
   if (SystemThreadFlags == 0) {
 LAB_18007b44a:
@@ -66466,7 +66466,7 @@ void ProcessSystemTextureManagerConfiguration(long long SystemResourceManager,ul
   if (0 < systemIndex) {
     EncryptionValue68 = 0;
     StackOffset1 = SystemResourceManager;
-    FUN_18007f770(&StackOffset1);
+    InitializeSystemContext(&StackOffset1);
     if (StackOffset2 != 0) {
       systemCounter = 0;
       CalculationFlags = -1;
@@ -66508,7 +66508,7 @@ void ProcessSystemTextureManagerConfiguration(long long SystemResourceManager,ul
             StackOffset3 = FUN_180085900();
           }
           CONCAT44 = 0;
-          FUN_18007f770(&StackOffset3);
+          InitializeSystemContext(&StackOffset3);
           FUN_18007cbb0(8,SystemEncryptionKey,*AdditionalParameter + 0x18 + (long long)CalculationFlags * 8);
           FUN_18007cbb0(9,SystemEncryptionKey,*AdditionalParameter + 0x18 + (long long)systemIndex * 8);
           ProcessSystemStatus(&StackOffset3);
@@ -66932,7 +66932,7 @@ code * ConfigureSystemResources(long long SystemResourceManager,char Configurati
       LocalContext = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
       if (LocalContext != SystemResourceManager) {
         ConfigurationFlags = 0;
-        FUN_18007f770(&LocalContext);
+        InitializeSystemContext(&LocalContext);
         AllocatedMemory = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xf0,8,3);
         AllocatedMemory = FUN_18007f2f0(AllocatedMemory);
         SystemResourceManagerLink(ResourcePointer,AllocatedMemory);
