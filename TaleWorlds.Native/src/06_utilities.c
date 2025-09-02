@@ -16545,43 +16545,49 @@ uint8_t ProcessResourceDataExtraction(int64_t *resourceContext,int64_t *outputDa
   int ProcessingResult;
   int SystemCommandArray [2];
   uint SystemCommandParams [2];
+  uint32_t OperationStatusCode;
+  int64_t *ObjectContext;
+  int64_t *ValidationContext;
+  uint32_t OperationResult;
   
-  operationStatusCode = 0;
+  OperationStatusCode = 0;
   SystemCommandArray[0] = 0;
-  if (*objectContext == 0) {
-    resourceHash = 0x1c;
+  ObjectContext = resourceContext;
+  ValidationContext = outputData;
+  if (*ObjectContext == 0) {
+    ResourceHash = 0x1c;
   }
   else {
-    if (objectContext[2] != 0) {
+    if (ObjectContext[2] != 0) {
       SystemCommandParams[0] = 0;
-      resourceHash = ValidateResourceAccess(*objectContext,SystemCommandParams);
-      if ((int)resourceHash != 0) {
+      ResourceHash = ValidateResourceAccess(*ObjectContext,SystemCommandParams);
+      if ((int)ResourceHash != 0) {
         return ResourceHash;
       }
-      if ((uint64_t)objectContext[2] < (uint64_t)SystemCommandParams[0] + 4) {
-        resourceHash = 0x11;
+      if ((uint64_t)ObjectContext[2] < (uint64_t)SystemCommandParams[0] + 4) {
+        ResourceHash = 0x11;
         goto ResourceCleanupHandler;
       }
     }
-    resourceHash = CalculateResourceHash(*objectContext,SystemCommandArray,1,4,0);
+    ResourceHash = CalculateResourceHash(*ObjectContext,SystemCommandArray,1,4,0);
   }
 SystemCommandValidationComplete:
   if ((int)ResourceHash == 0) {
     if (SystemCommandArray[0] < 0) {
       return 0xd;
     }
-    resourceHash = CalculateResourceHash(validationContext,SystemCommandArray[0]);
+    ResourceHash = CalculateResourceHash(ValidationContext,SystemCommandArray[0]);
     if ((int)ResourceHash == 0) {
       if (0 < SystemCommandArray[0]) {
         do {
-          resourceHash = ResourceDataFetcher(objectContext,*validationContext + (int64_t)OperationResult * 0x14);
-          if ((int)resourceHash != 0) {
+          ResourceHash = ResourceDataFetcher(ObjectContext,*ValidationContext + (int64_t)OperationResult * 0x14);
+          if ((int)ResourceHash != 0) {
             return ResourceHash;
           }
-          operationStatusCode = OperationResult + 1;
+          OperationStatusCode = OperationResult + 1;
         } while (OperationResult < SystemCommandArray[0]);
       }
-      resourceHash = 0;
+      ResourceHash = 0;
     }
   }
   return ResourceHash;
@@ -16604,8 +16610,8 @@ uint8_t CalculateResourceHash(uint8_t objectContext, uint32_t *validationContext
 {
   uint8_t ResourceHash;
   
-  resourceHash = ReadResourceData(objectContext,validationContext,4);
-  if (((int)resourceHash == 0) && (resourceHash = ReadResourceData(objectContext,validationContext + 1,4), (int)resourceHash == 0x11)) {
+  ResourceHash = ReadResourceData(objectContext,validationContext,4);
+  if (((int)ResourceHash == 0) && (ResourceHash = ReadResourceData(objectContext,validationContext + 1,4), (int)ResourceHash == 0x11)) {
     validationContext[1] = *validationContext;
     return 0;
   }
@@ -16626,13 +16632,13 @@ uint8_t ValidateResourceHash(void)
 
 {
   uint8_t ResourceHash;
-  uint32_t *resourceContext;
+  uint32_t *ResourceContext;
   
-  resourceHash = ReadResourceData();
-  if ((int)resourceHash != 0x11) {
+  ResourceHash = ReadResourceData();
+  if ((int)ResourceHash != 0x11) {
     return ResourceHash;
   }
-  resourceContext[1] = *resourceContext;
+  ResourceContext[1] = *ResourceContext;
   return 0;
 }
 
@@ -16688,6 +16694,7 @@ void ReadResourceDataBlock(uint8_t objectContext,int64_t validationContext)
 
 {
   int ProcessingResult;
+  uint8_t ResourceIndex;
   
   ResourceIndex = ReadResourceData(objectContext,validationContext,4);
   if (ResourceIndex == 0) {
