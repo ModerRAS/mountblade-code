@@ -3343,9 +3343,9 @@ uint8_t SystemConfigurationDebugMode;
 uint8_t SystemConfigurationLogLevel;
 uint8_t SystemConfigurationPerformanceMode;
 
- uint8_t ExecuteResourceCleanup;
-uint8_t MemoryPoolStatus;
-uint8_t OptimizeResourceUsage;
+ uint8_t ExecuteResourceCleanupFlag;
+uint8_t MemoryPoolStatusFlag;
+uint8_t OptimizeResourceUsageFlag;
 uint8_t SystemEventHandlerInput;
 uint8_t SystemEventHandlerRender;
 uint8_t SystemEventHandlerAudio;
@@ -4096,21 +4096,21 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
           
           // 执行数组扩容
           Counter = ResizeRegistrationArray(BasePointer, NewSize);
-          if (RegistrationCounter != 0) {
+          if (Counter != 0) {
             return 0;
           }
         }
         
         // 添加新的注册项
-        *(int64_t *)(*ArrayBasePointer + (int64_t)*(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) * 8) = RegistrationHandle;
+        *(int64_t *)(*BasePointer + (int64_t)*(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) * 8) = RegistrationHandle;
         *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) = *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) + 1;
         *(int *)(RegistrationData + REGISTRATION_COUNT_OFFSET) = *(int *)(RegistrationData + REGISTRATION_COUNT_OFFSET) + 1;
       }
       else {
         // 验证对象注册数据
-        uint8_t DataHashValidationResult = ValidateObjectRegistrationData(RegistrationData + REGISTRATION_VALIDATION_DATA_OFFSET, RegistrationHandle);
-        if ((int)DataHashValidationResult != 0) {
-          return DataHashValidationResult;
+        uint8_t DataValidationResult = ValidateObjectRegistrationData(RegistrationData + REGISTRATION_VALIDATION_DATA_OFFSET, RegistrationHandle);
+        if ((int)DataValidationResult != 0) {
+          return DataValidationResult;
         }
       }
     }
