@@ -21291,9 +21291,9 @@ long long ManageSystemResources(long long SystemResourceManager,long long resour
   if (*(long long *)(ConfigurationDataPointer + 0xe0) != 0) {
     systemHashBucketNode = (void* *)CreateSystemResourceManager(SystemDataPointer,*(long long *)(ConfigurationDataPointer + 0xe0),SystemDataPointer,ConfigurationFlag,systemOperationFlags)
     ;
-    *(void* **)(SystemResourceManager + 0xe0) = punsignedSystemValue9;
-    newThreadLocalStorage = (void* *)*punsignedSystemValue9;
-    HashBucketNode = punsignedSystemValue9;
+    *(void* **)(SystemResourceManager + 0xe0) = systemHashBucketNode;
+    newThreadLocalStorage = (void* *)*systemHashBucketNode;
+    HashBucketNode = systemHashBucketNode;
     while (resourceEntryPointer = newThreadLocalStorage, resourceEntryPointer != (void* *)0x0) {
       HashBucketNode = SystemCurrentNode;
       SystemNextNode = (void**)*SystemCurrentNode;
