@@ -22,106 +22,151 @@ def write_file(file_path, content):
 def beautify_variables(content):
     """美化变量名"""
     
-    # 变量名映射字典
+    # 变量名映射字典 - 针对06_utilities.c中发现的变量
     variable_mappings = {
-        # 基础变量
-        'var_1': 'FirstVariable',
-        'var_2': 'SecondVariable',
-        'var_3': 'ThirdVariable',
-        'var_4': 'FourthVariable',
-        'var_5': 'FifthVariable',
+        # 验证相关变量
+        'ContextHashValidationResult': 'ResourceHashValidationResult',
+        'SystemValidationCodeA': 'PrimaryValidationCode',
+        'SystemValidationCodeB': 'SecondaryValidationCode',
+        'HashValidationResultAddress': 'HashResultPointer',
+        'OperationResultPointer': 'OperationStatusPointer',
+        'PackageValidationStatusCodePointer': 'PackageStatusPointer',
+        'OperationStatusCodePointer': 'OperationCodePointer',
+        'LoopIncrement': 'IterationCounter',
+        'LoopCondition': 'LoopTerminationCondition',
+        'ContextValidationStatusCode': 'ValidationStatus',
+        'ObjectContextValidation': 'ObjectValidationContext',
+        'ResourceContextOffset': 'ResourceContextIndex',
+        'ContextHandle': 'ResourceContextHandle',
+        'ResourcePointer': 'ResourceDataPointer',
+        'FloatConversionResult': 'FloatCastResult',
+        'ProcessedFloatValue': 'ProcessedFloatParameter',
+        'FloatUnion': 'FloatConversionUnion',
+        'SystemConfigurationFlags': 'ConfigurationFlags',
+        'ValidationStatus': 'FlagValidationStatus',
+        'ResourceIdentifierPointer': 'ResourceIdPointer',
+        'NextIterationCount': 'NextLoopCounter',
+        'LoopStepIncrement': 'LoopStepCounter',
+        'SystemExecutionPointer': 'SystemContextPointer',
+        'RangeProcessingIndex': 'RangeIndexArray',
+        'ClampedValue': 'ValueAfterClamping',
         
-        # 临时变量
-        'temp': 'TemporaryValue',
-        'tmp': 'TemporaryValue',
-        'temp_var': 'TemporaryVariable',
-        'temp_val': 'TemporaryValue',
+        # 系统相关变量
+        'StackOffset': 'StackFrameOffset',
+        'DataElementPointer': 'DataItemPointer',
+        'SystemDataContext': 'SystemContextData',
+        'ParameterFloatValue': 'InputFloatParameter',
+        'IntegerConversionValue': 'ConvertedIntegerValue',
+        'StatusFlagHighBits': 'HighOrderStatusBits',
+        'VectorComponents': 'SimdVectorComponents',
+        'SystemResourceTableAddress': 'ResourceTableAddress',
+        'ValidationOperationResult': 'ValidationStatusResult',
+        'SystemResourceTableHandle': 'ResourceTableHandle',
+        'SystemResourceIndex': 'ResourceTableIndex',
+        'SystemResourceTable': 'ResourceDataTable',
+        'SystemManagerInitializationResult': 'ManagerInitStatus',
+        'ResourceValidationDataBuffer': 'ResourceValidationBuffer',
+        'ObjectContextInformationBuffer': 'ObjectContextBuffer',
+        'ValidationContext': 'ValidationData',
+        'MessageDataOffset': 'MessageBufferOffset',
+        'RegisterValue': 'RegisterContent',
+        'ValidatedContextPointer': 'ValidatedMemoryPointer',
+        'extendedObjectHandle': 'ExtendedHandleParameter',
+        'ObjectHandleMemoryOffset': 'HandleMemoryLocation',
+        'AccessRequestParameters': 'AccessRequestData',
+        'AccessValidationResult': 'AccessValidationStatus',
+        'SystemObjectHandle': 'SystemHandleObject',
+        'SystemValidationStatusCode': 'SystemValidationStatus',
+        'SecurityValidationContext': 'SecurityContextData',
+        'ObjectValidationResult': 'ObjectValidationStatus',
+        'SystemValidationContext': 'SystemValidationData',
+        'ResourceValidationContext': 'ResourceValidationData',
+        'ContextHashValidationResult': 'ContextHashStatus',
         
-        # 计数器
-        'i': 'Index',
-        'j': 'SecondaryIndex',
-        'k': 'TertiaryIndex',
-        'counter': 'Counter',
-        'count': 'Count',
-        'cnt': 'Count',
+        # 线程相关变量
+        'ThreadLocalStorageDataOffset': 'ThreadLocalStorageOffset',
+        'ThreadResourceStateOffset': 'ThreadResourceState',
+        'ThreadResourceCountOffset': 'ThreadResourceCount',
         
-        # 指针
-        'ptr': 'Pointer',
-        'p': 'Pointer',
-        'p1': 'FirstPointer',
-        'p2': 'SecondPointer',
+        # 资源管理相关变量
+        'ResourceManagementStateOffset': 'ResourceManagementState',
+        'ResourceManagementCleanupOffset': 'ResourceManagementCleanup',
+        'ResourceManagementStatusOffset': 'ResourceManagementStatus',
         
-        # 缓冲区
-        'buf': 'Buffer',
-        'buffer': 'Buffer',
-        'data': 'Data',
-        'str': 'String',
-        'str_buf': 'StringBuffer',
+        # 内存管理相关变量
+        'MemoryContextResourceTableOffset': 'MemoryResourceTableOffset',
+        'MemoryContextCleanupDataOffset': 'MemoryCleanupDataOffset',
+        'MemoryValidationContextData': 'MemoryValidationBuffer',
+        'MemoryValidationContext': 'MemoryValidationPointer',
         
-        # 长度
-        'len': 'Length',
-        'size': 'Size',
-        'sz': 'Size',
+        # 系统配置相关变量
+        'SystemConfigurationFlagsOffset': 'SystemConfigFlagsOffset',
+        'SystemConfigurationValidationShift': 'SystemConfigValidationShift',
+        'SystemConfigurationFloatCheckShift': 'SystemConfigFloatCheckShift',
+        'ContextConfigurationFlagsOffset': 'ContextConfigFlagsOffset',
+        'ExecutionContextSecondaryOffset': 'ExecutionSecondaryOffset',
+        'ContextFloatValueOffset': 'ContextFloatOffset',
+        'ContextUpdateFlagOffset': 'ContextUpdateFlag',
         
-        # 结果
-        'result': 'Result',
-        'res': 'Result',
-        'ret': 'ReturnValue',
-        'retval': 'ReturnValue',
+        # 上下文相关变量
+        'ContextHandleRegistrationDataOffset': 'ContextRegistrationDataOffset',
+        'ContextHandleSystemFlagsOffset': 'ContextSystemFlagsOffset',
+        'ContextHandleResourceArrayOffset': 'ContextResourceArrayOffset',
+        'ContextHandleResourceCountOffset': 'ContextResourceCountOffset',
         
-        # 标志
-        'flag': 'Flag',
-        'flags': 'Flags',
-        'b': 'Boolean',
-        'bFlag': 'BooleanFlag',
+        # 对象相关变量
+        'ObjectInstancePointer': 'ObjectInstance',
+        'ObjectContextPointer': 'ObjectContextData',
+        'SystemObjectPointer': 'SystemObjectInstance',
+        'ObjectHandleToValidate': 'TargetObjectHandle',
+        'HandleMemoryBuffer': 'HandleBufferMemory',
+        'MemoryPointer': 'MemoryAddressPointer',
+        'SystemContextHandles': 'SystemHandleArray',
+        'HandleBuffer': 'HandleDataBuffer',
+        'ValidationStackBuffer': 'StackValidationBuffer',
+        'ResourceValidationBuffer': 'ResourceValidateBuffer',
+        'ResultBuffer': 'OperationResultBuffer',
         
-        # 句柄
-        'handle': 'Handle',
-        'h': 'Handle',
-        'hndl': 'Handle',
+        # 执行相关变量
+        'SystemExecutionContextPrimaryOffset': 'SystemExecutionPrimaryOffset',
+        'SystemExecutionContextSecondaryOffset': 'SystemExecutionSecondaryOffset',
+        'SystemExecutionPointer': 'SystemExecutionContext',
         
-        # 上下文
-        'ctx': 'Context',
-        'context': 'Context',
-        
-        # 状态
-        'status': 'Status',
-        'state': 'State',
-        
-        # 错误
-        'err': 'Error',
-        'error': 'Error',
-        
-        # 循环变量
-        'loop_counter': 'LoopCounter',
-        'loop_index': 'LoopIndex',
-        'loop_var': 'LoopVariable',
-        
-        # 数组索引
-        'array_index': 'ArrayIndex',
-        'array_idx': 'ArrayIndex',
-        'idx': 'Index',
-        
-        # 偏移量
-        'offset': 'Offset',
-        'off': 'Offset',
-        
-        # 内存地址
-        'addr': 'Address',
-        'address': 'Address',
-        
-        # 数值
-        'val': 'Value',
-        'value': 'Value',
-        'num': 'Number',
-        
-        # 其他常见变量
-        'param': 'Parameter',
-        'param1': 'FirstParameter',
-        'param2': 'SecondParameter',
-        'arg': 'Argument',
-        'arg1': 'FirstArgument',
-        'arg2': 'SecondArgument',
+        # 其他变量
+        'ObjectValidationState': 'ObjectValidationStatus',
+        'ProcessingStatusCode': 'ProcessingStatus',
+        'CurrentObjectIndex': 'ObjectIndexCounter',
+        'ProcessedObjectCount': 'ProcessedObjectCounter',
+        'ObjectMetadataBuffer': 'ObjectMetadataData',
+        'SystemHandleArray': 'SystemHandleData',
+        'DataBuffer': 'DataMemoryBuffer',
+        'BufferPosition': 'BufferLocation',
+        'MaxProcessableObjects': 'MaxObjectsToProcess',
+        'ProcessingWorkspace': 'WorkSpaceBuffer',
+        'SecurityValidationKey': 'SecurityKeyData',
+        'SystemResourceTableHandle': 'ResourceTableSystemHandle',
+        'ValidationOperationResult': 'OperationValidationResult',
+        'SystemResourceTable': 'ResourceSystemTable',
+        'SystemResourceIndex': 'ResourceSystemIndex',
+        'SystemManagerContextOffset': 'ManagerContextLocation',
+        'SystemManagerMaxContextSize': 'ManagerMaxContextSize',
+        'SystemManagerAllocationSize': 'ManagerAllocationSize',
+        'SystemManagerValidationOffset': 'ManagerValidationLocation',
+        'ValidationContext': 'ContextValidationData',
+        'OperationResult': 'ProcessingOperationResult',
+        'MessageDataOffset': 'MessageDataLocation',
+        'ContextHandle': 'HandleContextData',
+        'ResourceCount': 'ResourceCounter',
+        'ResourceHash': 'ResourceHashValue',
+        'SystemConfigurationFlags': 'SystemConfigFlags',
+        'ValidationStatus': 'SystemValidationState',
+        'FloatConversionResult': 'FloatConversionStatus',
+        'ProcessedFloatValue': 'FloatProcessedValue',
+        'ResourceIdentifierPointer': 'ResourceIdLocation',
+        'NextIterationCount': 'NextIterationValue',
+        'LoopStepIncrement': 'LoopStepValue',
+        'RangeProcessingIndex': 'RangeProcessingArray',
+        'ClampedValue': 'ValueAfterRangeClamp'
     }
     
     # 按长度排序，优先处理长变量名
