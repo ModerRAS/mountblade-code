@@ -4695,15 +4695,6 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数增加前会验证对象上下文的有效性
  * @warning 如果对象句柄无效或系统状态检查失败，将返回相应的错误代码
  */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数用于增加系统对象的引用计数，确保对象在使用期间不会被意外释放
- * 包含对象验证和状态检查机制
- * 
- * @param ObjectContext 对象上下文参数，包含对象的上下文信息
- * @return 操作结果状态码，0表示成功，非0表示失败
- */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectPointer;
   uint8_t ValidationStatusCode;
