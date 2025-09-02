@@ -7304,13 +7304,13 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
     }
     if (*(int64_t *)(contextBuffer + 0x18) != 0) {
       objectDataPointer = *(int64_t *)(contextBuffer + 0x18) + 0x30;
-      allocatedMemory = (**(code **)(**(int64_t **)(SystemContext + 800) + 0x2f0))
+      AllocatedMemory = (**(code **)(**(int64_t **)(SystemContext + 800) + 0x2f0))
                         (*(int64_t **)(SystemContext + 800), objectDataPointer, 1);
-      if (allocatedMemory == 0) {
+      if (AllocatedMemory == 0) {
               ProcessMemoryAllocationFailure(objectDataPointer, processingBuffer);
       }
-      pointerReference = (int64_t *)(allocatedMemory + 0x58);
-      if (((int64_t *)*pointerReference != pointerReference) || (*(int64_t **)(allocatedMemory + 0x60) != pointerReference)) {
+      pointerReference = (int64_t *)(AllocatedMemory + 0x58);
+      if (((int64_t *)*pointerReference != pointerReference) || (*(int64_t **)(AllocatedMemory + 0x60) != pointerReference)) {
               ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
       }
     }
@@ -7333,17 +7333,17 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
 void ProcessPointerValidationAndSystemObjectHandling(int64_t *ObjectPointer, int64_t SystemContext)
 
 {
-  int64_t allocatedMemory;
+  int64_t AllocatedMemory;
   int64_t *pointerReference;
   int64_t SystemContext;
   uint64_t SecurityToken;
   
-  allocatedMemory = (**(code **)(*ObjectPointer + 0x2f0))(ObjectPointer, SystemContext + 0x30);
-  if (allocatedMemory == 0) {
+  AllocatedMemory = (**(code **)(*ObjectPointer + 0x2f0))(ObjectPointer, SystemContext + 0x30);
+  if (AllocatedMemory == 0) {
           ProcessMemoryAllocationFailure(SystemContext + 0x30, &PrimaryObjectStackBuffer);
   }
-  pointerReference = (int64_t *)(allocatedMemory + 0x58);
-  if (((int64_t *)*pointerReference == pointerReference) && (*(int64_t **)(allocatedMemory + 0x60) == pointerReference)) {
+  pointerReference = (int64_t *)(AllocatedMemory + 0x58);
+  if (((int64_t *)*pointerReference == pointerReference) && (*(int64_t **)(AllocatedMemory + 0x60) == pointerReference)) {
           CleanupSecurityToken(securityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
   }
         ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98));
@@ -15723,15 +15723,15 @@ uint32_t GetResourceTableStatus(void)
   int ResultRecordIndex;
   int64_t ExecutionContextPointer;
   uint8_t *SystemContext;
-  uint8_t *ResourceDataPointer6;
+  uint8_t *ResourceDataBufferPointer;
   uint32_t IntRegisterValue;
-  int CpuRegisterR15D;
+  int ResourceIterationCounter;
   int *OutputResultPointer;
   
   OperationStatusCode = (int)ExecutionContextPointer;
   if (OperationResult != 0) {
-    if (CpuRegisterR15D < OperationResult) {
-      ResourceDataPointer = SystemContext + CpuRegisterR15D;
+    if (ResourceIterationCounter < OperationResult) {
+      ResourceDataPointer = SystemContext + ResourceIterationCounter;
       ValidationResultPointer = ResourceDataPointer + -1;
       if (SystemContext < ResourceHashValidationResultPointer) {
         do {
@@ -15742,7 +15742,7 @@ uint32_t GetResourceTableStatus(void)
           ValidationResultPointer = ResourceHashValidationResultPointer + -1;
         } while (SystemContext < ResourceHashValidationResultPointer);
       }
-      *ResourceDataPointer6 = (char)FloatRegisterValue;
+      *ResourceDataBufferPointer = (char)FloatRegisterValue;
     }
     else {
       PackageValidationStatusCodePointer = SystemContext + ResourceIterationIndex;
@@ -15750,8 +15750,8 @@ uint32_t GetResourceTableStatus(void)
       ResourceDataPointer = SystemContext;
       if (SystemContext < ResourceHashValidationResultPointer) {
         do {
-          ResourceHash = *ResourceDataPointer6;
-          *ResourceDataPointer6 = *ResourceHashValidationResultPointer;
+          ResourceHash = *ResourceDataBufferPointer;
+          *ResourceDataBufferPointer = *ResourceHashValidationResultPointer;
           ResourceDataPointer = ResourceDataPointer + 1;
           *ValidationResultPointer = ResourceHash;
           ValidationResultPointer = ResourceHashValidationResultPointer + -1;
@@ -18216,10 +18216,10 @@ uint8_t ProcessResourceOperation(uint8_t *resourceHandle, uint8_t operationParam
   uint8_t HashValidationResult;
   int PackageValidationStatusCode;
   int64_t SystemContext;
-  int stackIntegerValue2;
+  int StackOperationCounter;
   
   ResourceIndex = *(int *)(SystemContext + 0x18);
-  iStack0000000000000030 = ResourceIndex;
+  StackResourceIndex = ResourceIndex;
   ValidationResult = (**(code **)*ObjectContext)(ObjectContext,ValidationContext,4);
   if ((int)ValidationResult == 0) {
     ValidationStatusCode = 0;
@@ -52621,6 +52621,18 @@ void ReleaseResourceFlag1(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 释放资源标志2
+ * 
+ * 该函数负责检查并释放资源数据中的第二个标志位
+ * 如果标志位被设置，则清除该位并释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文参数，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会修改资源数据的标志位状态
+ * @remark 原始函数名：Unwind_180906390
+ */
 void ReleaseResourceFlag2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -52633,6 +52645,18 @@ void ReleaseResourceFlag2(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 释放资源标志4
+ * 
+ * 该函数负责检查并释放资源数据中的第四个标志位
+ * 如果标志位被设置，则清除该位并释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文参数，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会修改资源数据的标志位状态
+ * @remark 原始函数名：Unwind_1809063c0
+ */
 void ReleaseResourceFlag4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
