@@ -2731,7 +2731,7 @@ uint32_t SystemResourceState;
 uint8_t SystemResourceHandler;
 uint8_t ScriptFunctionTable;
 uint8_t SystemResourcePrimaryManager;
-uint8_t ResourcePool;
+uint8_t ResourcePoolPrimary;
 uint8_t ScriptVariableTable;
 uint8_t ScriptClassTable;
 uint8_t ScriptMethodTable;

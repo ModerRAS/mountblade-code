@@ -56322,7 +56322,7 @@ void** InitializeSystemResourceManagerEx(void** SystemResourceManager, char Conf
  */
 void* ReleaseSystemResourcesAndCleanupMemory(void* SystemResourceManager, unsigned long long ConfigurationDataPointer)
 {
-  FUN_1800756e0();
+  InitializeSystemResourceManager();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager, 0x300);
   }
@@ -56556,7 +56556,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager, 
 
 
 
-// 函数: void FUN_1800756e0(void* *SystemResourceManager)
+// 函数: void InitializeSystemResourceManager(void* *SystemResourceManager)
 /**
  * @brief 系统资源管理器初始化函数
  * 
@@ -56625,7 +56625,7 @@ void InitializeSystemResourceManager(void* *SystemResourceManager)
     UNLOCK();
   }
   if (SystemResourceManager[0x3d] != 0) {
-    FUN_180080060();
+    ConfigureSystemMemoryRegion();
     SystemResourceManager[0x3d] = 0;
     if (SystemResourceManager[0x3e] != 0) {
       pisByteValid = (byte *)(SystemResourceManager[0x3e] + 0xfe);
@@ -56643,7 +56643,7 @@ void InitializeSystemResourceManager(void* *SystemResourceManager)
       SystemCleanupFunction(ResourceDataOffset);
   }
   SystemResourceManager[0x3c] = 0;
-  FUN_180080870(SystemResourceManager + 0x5e);
+  InitializeSystemResourceTable(SystemResourceManager + 0x5e);
   FUN_1800809a0(SystemResourceManager + 0x5c);
   if ((long long *)SystemResourceManager[0x4d] != (long long *)0x0) {
     (**(code **)(*(long long *)SystemResourceManager[0x4d] + 0x38))();
@@ -56653,7 +56653,7 @@ void InitializeSystemResourceManager(void* *SystemResourceManager)
     (**(code **)(*(long long *)SystemResourceManager[0x42] + 0x38))();
   }
   if (SystemResourceManager[0x3d] != 0) {
-    FUN_180080060();
+    ConfigureSystemMemoryRegion();
   }
   if ((long long *)SystemResourceManager[0x38] != (long long *)0x0) {
     (**(code **)(*(long long *)SystemResourceManager[0x38] + 0x38))();
@@ -57953,7 +57953,7 @@ ulong long FUN_180077040(long long SystemResourceManager)
   }
   resourceAddress = (ulong long)isSystemActive;
   if (*(long long *)(SystemResourceManager + 0x1e8) != 0) {
-    FUN_180080060();
+    ConfigureSystemMemoryRegion();
     resourceAddress = *(ulong long *)(SystemResourceManager + 0x1f0);
     *(void* *)(SystemResourceManager + 0x1e8) = 0;
     if (resourceAddress != 0) {
@@ -64350,7 +64350,7 @@ ulong long FUN_18007b240(long long SystemResourceManager,long long *Configuratio
   PrimaryResourcePointer4 = (long long *)(*(long long *)(SystemThreadFlags + 0x1e0) + (ulong long)AdditionalParameter * 0x18);
   if ((long long *)*ConfigurationDataPointer != PrimaryResourcePointer4) {
     if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
-      FUN_180080060();
+      ConfigureSystemMemoryRegion();
     }
     *ConfigurationDataPointer = (long long)PrimaryResourcePointer4;
     if (PrimaryResourcePointer4 != (long long *)0x0) {
