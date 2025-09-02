@@ -3811,12 +3811,12 @@ uint8_t CleanupObjectHandle(void)
   int64_t AdjustedObjectPointer;
   
   if (ObjectHandle == 0) {
-    AdjustedPointer = 0;
+    AdjustedObjectPointer = 0;
   }
   else {
-    AdjustedPointer = ObjectHandle + -8;
+    AdjustedObjectPointer = ObjectHandle + -8;
   }
-  if (*(int64_t *)(AdjustedPointer + 0x10) != 0) {
+  if (*(int64_t *)(AdjustedObjectPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemExitOperation(*(int64_t *)(AdjustedPointer + 0x10), 1);
   }
