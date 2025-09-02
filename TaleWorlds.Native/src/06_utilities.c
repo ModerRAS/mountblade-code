@@ -2000,11 +2000,11 @@ uint8_t DataCacheMemory;
  * 释放分配的内存，防止内存泄漏
  */
 void CleanupMemoryBlock(void);
-uint8_t SecurityContextDataBase;
+uint8_t SecurityContextDatabase;
 uint8_t SecurityContextStatusFlags;
 uint8_t SecurityContextIdentifier;
 uint8_t SecurityContextConfiguration;
-uint8_t SecurityValidationDataBase;
+uint8_t SecurityValidationDatabase;
 uint8_t SecurityValidationStatusFlags;
 uint8_t SecurityValidationIdentifier;
 
@@ -2016,9 +2016,9 @@ uint8_t SecurityValidationIdentifier;
  * 设置安全参数和访问控制
  */
 void InitializeSecurityContext(void);
-uint8_t SecurityTokenDataBuffer;
-uint8_t SecurityTokenDataLength;
-uint8_t SecurityTokenTypeIdentifier;
+uint8_t SecurityTokenBuffer;
+uint8_t SecurityTokenLength;
+uint8_t SecurityTokenType;
 uint8_t SecurityTokenAccessFlags;
 
  void ValidateSecurityToken(void);
