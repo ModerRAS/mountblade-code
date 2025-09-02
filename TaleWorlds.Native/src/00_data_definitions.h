@@ -4168,14 +4168,14 @@ LAB_18005122d:
   pModuleInitializationResult4 = SystemNetworkDataPointer;
   if ((char)SystemNetworkDataPointer[0x42] == '\0') {
     (**(code **)(*SystemNetworkDataPointer + 0xb0))(SystemNetworkDataPointer,*(uint32_t *)(SystemRuntimeConfigData + 0x1340));
-    (**(code **)(*pModuleInitializationResult4 + 0xb8))(pModuleInitializationResult4,*(uint32_t *)(_DAT_180c86920 + 0x1500));
-    (**(code **)(*pModuleInitializationResult4 + 0xc0))(pModuleInitializationResult4,*(uint32_t *)(_DAT_180c86920 + 0x13b0));
-    (**(code **)(*pModuleInitializationResult4 + 200))(pModuleInitializationResult4,*(uint32_t *)(_DAT_180c86920 + 0x1490));
+    (**(code **)(*pModuleInitializationResult4 + 0xb8))(pModuleInitializationResult4,*(uint32_t *)(SystemRuntimeConfigData + 0x1500));
+    (**(code **)(*pModuleInitializationResult4 + 0xc0))(pModuleInitializationResult4,*(uint32_t *)(SystemRuntimeConfigData + 0x13b0));
+    (**(code **)(*pModuleInitializationResult4 + 200))(pModuleInitializationResult4,*(uint32_t *)(SystemRuntimeConfigData + 0x1490));
     (**(code **)(*pModuleInitializationResult4 + 0x50))(pModuleInitializationResult4);
   }
-  puVar7 = _DAT_180c86880;
-  pModuleInitializationResult4 = *(longlong **)(_DAT_180c86950 + 0x17ec);
-  *_DAT_180c86880 = 0;
+  puVar7 = SystemNetworkConfigPointer;
+  pModuleInitializationResult4 = *(longlong **)(SystemStatusDataPointer + 0x17ec);
+  *SystemNetworkConfigPointer = 0;
   uStack_308._0_4_ = SUB84(pModuleInitializationResult4,0);
   *(uint32_t *)(puVar7 + 1) = (uint32_t)uStack_308;
   uStack_308._4_4_ = (uint32_t)((ulonglong)pModuleInitializationResult4 >> 0x20);
@@ -5817,7 +5817,7 @@ code_r0x0001802a1829:
     param_2[2] = 1.0;
     param_2[3] = 1.0;
   }
-FUN_1802a1af3:
+SystemSecurityValidationRoutine:
   SystemSecurityCheck(uStack_58 ^ (ulonglong)auStack_2e8);
 }
     DAT_180d48da8 = '\x01';
