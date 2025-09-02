@@ -7592,7 +7592,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   if (((uint)matrixElementWComponent & 0x7f800000) == 0x7f800000) {
     MatrixRow1InfinityCheck = 0x1d;
   }
-  if ((SecondRowInfinityCheck == 0 && ThirdRowInfinityCheck == 0) && FirstRowInfinityCheck == 0) {
+  if ((MatrixRow2InfinityCheck == 0 && MatrixRow3InfinityCheck == 0) && MatrixRow1InfinityCheck == 0) {
     if (((*(float *)(ObjectContext + ObjectContextMatrixScaleOffset) == 0.0) && (*(float *)(ObjectContext + ObjectContextMatrixTranslationOffset) == 0.0)) &&
        (*(float *)(ObjectContext + 0x38) == 0.0)) {
       return 0x1f;
@@ -28446,10 +28446,10 @@ uint64_t ProcessResourceCertificateValidation(int64_t ObjectContext,int64_t *Val
   uint8_t ResourceChecksumData [40];
   
   PackageValidationStatusCodePointer = (uint32_t *)AllocateMemoryBlock();
-  ResourceValidationByte2 = *HashValidationResultPointer;
-  ResourceValidationByte3 = HashValidationResultPointer[1];
-  ValidationParameter = HashValidationResultPointer[2];
-  ValidationParam2 = HashValidationResultPointer[3];
+  ResourceValidationLowerByte = *HashValidationResultPointer;
+  ResourceValidationUpperByte = HashValidationResultPointer[1];
+  ValidationParameterPrimary = HashValidationResultPointer[2];
+  ValidationParameterSecondary = HashValidationResultPointer[3];
   loopIncrement = CalculateDataChecksum(ValidationContext,ResourceChecksumData,0,0x4c525443,0);
   if ((int)LoopCondition != 0) {
     return LoopCondition;
@@ -28467,21 +28467,21 @@ uint64_t ProcessResourceCertificateValidation(int64_t ObjectContext,int64_t *Val
         loopIncrement = 0x1c;
         ValidationResult = 0;
         if ((*(uint *)(ResourceData + 8) < 0x5a) && (ValidationResult = 0x1c, *(int *)(ResourceData[1] + 0x18) == 0)) {
-          ResourceOperationBuffer[0] = ResourceValidationByte2;
+          ResourceOperationBuffer[0] = ResourceValidationLowerByte;
           SystemContextPointer = *ValidationContext;
           ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
                             (*(uint8_t **)(SystemContextPointer + 8),ResourceOperationBuffer,4);
           if (ValidationResult == 0) {
-            ResourceValidationBuffer[0] = (uint16_t)ResourceValidationByte3;
+            ResourceValidationBuffer[0] = (uint16_t)ResourceValidationUpperByte;
             ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
                               (*(uint8_t **)(SystemContextPointer + 8),ResourceValidationBuffer,2);
             if (ValidationResult == 0) {
-              StackContextBuffer[0] = ResourceValidationByte3.ShortValue;
+              StackContextBuffer[0] = ResourceValidationUpperByte.ShortValue;
               ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
                                 (*(uint8_t **)(SystemContextPointer + 8),StackContextBuffer,2);
               if (ValidationResult == 0) {
                 ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
-                                  (*(uint8_t **)(SystemContextPointer + 8),&ValidationParameter,8);
+                                  (*(uint8_t **)(SystemContextPointer + 8),&ValidationParameterPrimary,8);
               }
             }
           }
@@ -28524,7 +28524,7 @@ uint64_t ValidateResourceCertificateChain(void)
   uint16_t ResourceTertiaryBuffer;
   uint16_t ResourceQuaternaryBuffer;
   uint16_t ResourcePrimaryValue;
-  uint16_t StackVariableA8;
+  uint16_t StackResourceBuffer;
   
   if (*(uint *)(InputParameter + 0x18) != ResourceValidationIndex) {
     return 0x1c;
@@ -28551,7 +28551,7 @@ uint64_t ValidateResourceCertificateChain(void)
           ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
                             (*(uint8_t **)(SystemContextPointer + 8),&StackBufferPrimary,2);
           if (ValidationResult == 0) {
-            StackVariableA8 = ResourceQuaternaryBuffer;
+            StackResourceBuffer = ResourceQuaternaryBuffer;
             ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
                               (*(uint8_t **)(SystemContextPointer + 8),&StackBufferSecondary,2);
             if (ValidationResult == 0) {
@@ -28596,7 +28596,7 @@ uint64_t ProcessResourceCertificateSigning(void)
   uint16_t ResourceTertiaryBuffer;
   uint16_t ResourceQuaternaryBuffer;
   uint16_t ResourcePrimaryValue;
-  uint16_t StackVariableA8;
+  uint16_t StackResourceBuffer;
   
   ValidationResult = GetResourceEntry(*SystemRegisterContext,SystemExecutionPointer + 0x20);
   ValidationStatusCode = (uint64_t)ResourceHashValidationResult;
@@ -28614,7 +28614,7 @@ uint64_t ProcessResourceCertificateSigning(void)
         ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
                           (*(uint8_t **)(SystemContextPointer + 8),&StackBufferPrimary,2);
         if (ValidationResult == 0) {
-          StackVariableA8 = ResourceQuaternaryBuffer;
+          StackResourceBuffer = ResourceQuaternaryBuffer;
           ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
                             (*(uint8_t **)(SystemContextPointer + 8),&StackBufferSecondary,2);
           if (ValidationResult == 0) {
@@ -28655,7 +28655,7 @@ uint64_t VerifyResourceCertificateIntegrity(void)
   int64_t *SystemRegisterContext;
   uint8_t RegisterStorageOctal;
   uint16_t ResourcePrimaryValue;
-  uint16_t StackVariableA8;
+  uint16_t StackResourceBuffer;
   
   SystemContextPointer = *SystemRegisterContext;
   ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))();
@@ -28664,7 +28664,7 @@ uint64_t VerifyResourceCertificateIntegrity(void)
     ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
                       (*(uint8_t **)(SystemContextPointer + 8),&StackBufferPrimary,2);
     if (ValidationResult == 0) {
-      StackVariableA8 = RegisterStorageOctal.ShortValue;
+      StackResourceBuffer = RegisterStorageOctal.ShortValue;
       ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
                         (*(uint8_t **)(SystemContextPointer + 8),&StackBufferSecondary,2);
       if (ValidationResult == 0) {
