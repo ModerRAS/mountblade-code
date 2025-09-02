@@ -4015,12 +4015,6 @@ uint32_t ValidateObjectHandleFromRegisterV2(void)
 
 
 /**
- * @brief 触发系统异常处理（版本2）
- * 
- * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用
- * 这是triggerSystemException函数的另一个版本
- */
-/**
  * @brief 触发系统异常V2
  * 
  * 该函数负责触发系统级别的异常处理流程
@@ -4036,11 +4030,6 @@ void TriggerSystemExceptionV2(void)
 
 
 
-/**
- * @brief 重置系统状态
- * 
- * 该函数负责重置系统状态，将系统恢复到初始状态
- */
 /**
  * @brief 重置系统状态
  * 
@@ -4114,7 +4103,7 @@ uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
   int64_t ValidationContextBuffer [2];
   int64_t ValidationStackBuffer [2];
   
-  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),ValidationStackBuffer);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),ValidationStackBuffer);
   if ((int)resourceHash == 0) {
     if (ValidationStackBuffer[0] == 0) {
       ValidationStackBuffer[0] = 0;
@@ -4123,14 +4112,14 @@ uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
       ValidationStackBuffer[0] = ValidationStackBuffer[0] + -8;
     }
     ValidationContextBuffer[0] = 0;
-    resourceHash = ValidateResourceContext(ValidationStackBuffer[0],objectContext + 0x20,ValidationContextBuffer);
+    resourceHash = ValidateResourceContext(ValidationStackBuffer[0],ObjectContext + 0x20,ValidationContextBuffer);
     if ((int)resourceHash == 0) {
       if (ValidationContextBuffer[0] != 0) {
         if (*(int64_t *)(ValidationContextBuffer[0] + 8) == 0) {
           return 0x1c;
         }
-        resourceHash = ProcessResourceOperation(*(int64_t *)(ValidationContextBuffer[0] + 8),*(uint32_t *)(objectContext + 0x18),
-                              *(uint8_t *)(objectContext + 0x1c));
+        resourceHash = ProcessResourceOperation(*(int64_t *)(ValidationContextBuffer[0] + 8),*(uint32_t *)(ObjectContext + 0x18),
+                              *(uint8_t *)(ObjectContext + 0x1c));
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
@@ -4169,7 +4158,7 @@ uint8_t InitializeObjectHandleB(int64_t ObjectContext)
   uint8_t resourceMetadata[16];
   int64_t contextHandle;
   
-  contextvalidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x1c), &contextHandle);
+  contextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x1c), &contextHandle);
   if ((int)contextValidationResult != 0) {
     return contextValidationResult;
   }
@@ -46208,21 +46197,35 @@ void Unwind_180905860(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180905870(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源哈希表中的验证结果
+ * 
+ * 该函数负责清理资源哈希表中存储的验证结果，遍历验证结果数组
+ * 并对每个验证结果执行清理操作，释放相关资源
+ * 
+ * @param objectContext 对象上下文参数，包含对象的状态信息
+ * @param validationContext 验证上下文参数，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会遍历资源表并清理所有验证结果
+ * @warning 如果资源表无效，系统将执行紧急退出
+ */
+void CleanupResourceHashValidationResults(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  uint8_t *presourceHash;
-  int64_t *presourceTable;
-  uint8_t *pValidationResult;
-  uint8_t loopCondition;
+  uint8_t *resourceHashPointer;
+  int64_t *resourceTablePointer;
+  uint8_t *validationResultPointer;
+  uint8_t cleanupLoopCondition;
   
-  presourceTable = *(int64_t **)(validationContext + 0x2e8);
-  loopIncrement = 0xfffffffffffffffe;
-  presourceHash = (uint8_t *)presourceTable[1];
-  for (pvalidationStatusCode = (uint8_t *)*presourceTable; pValidationResult != presourceHash; pvalidationStatusCode = pValidationResult + 4) {
-    (**(code **)*pValidationResult)(pValidationResult,0,CleanupOption,CleanupFlag,loopIncrement);
+  resourceTablePointer = *(int64_t **)(validationContext + 0x2e8);
+  cleanupLoopIncrement = 0xfffffffffffffffe;
+  resourceHashPointer = (uint8_t *)resourceTablePointer[1];
+  for (validationResultPointer = (uint8_t *)*resourceTablePointer; validationResultPointer != resourceHashPointer; validationResultPointer = validationResultPointer + 4) {
+    (**(code **)*validationResultPointer)(validationResultPointer, 0, CleanupOption, CleanupFlag, cleanupLoopIncrement);
   }
-  if (*presourceTable == 0) {
+  if (*resourceTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -46231,13 +46234,25 @@ void Unwind_180905870(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180905880(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 清理资源验证结果
+ * 
+ * 该函数负责清理资源验证结果，处理资源索引和验证状态
+ * 管理资源清理过程中的内存访问和异常处理
+ * 
+ * @param objectContext 对象上下文参数，包含对象的状态信息
+ * @param validationContext 验证上下文参数，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数会处理资源验证结果的清理工作
+ * @warning 如果验证结果无效，函数将直接返回
+ */
+void CleanupResourceValidationResults(uint8_t objectContext, int64_t validationContext)
 
 {
-  int *pResourceIndex;
-  uint8_t *pResourceValidationResult;
-  int64_t ResourceIndex;
-  uint64_t loopIncrement;
+  int *resourceIndexPointer;
+  uint8_t *resourceValidationResultPointer;
+  int64_t resourceIndex;
+  uint64_t cleanupLoopIncrement;
   
   pvalidationResult = (uint8_t *)**(uint64_t **)(validationContext + 0x2e8);
   if (pvalidationResult == (uint8_t *)0x0) {
