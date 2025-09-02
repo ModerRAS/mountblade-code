@@ -1724,10 +1724,10 @@ void* MemoryDebuggerConfigurationData;
  * 配置内存地址对齐和边界检查
  */
 void SetupMemoryAlignment(void);
-uint32_t MemorySystemAlignmentPrimaryConfig;
-uint32_t MemorySystemAlignmentSecondaryConfig;
-uint32_t MemoryAlignmentTertiaryConfig;
-uint32_t MemoryAlignmentQuaternaryConfig;
+uint32_t MemorySystemPrimaryAlignmentConfig;
+uint32_t MemorySystemSecondaryAlignmentConfig;
+uint32_t MemorySystemTertiaryAlignmentConfig;
+uint32_t MemorySystemQuaternaryAlignmentConfig;
 void* MemoryAlignmentReservedMemory;
 /**
  * @brief 初始化内存压缩
@@ -1736,10 +1736,10 @@ void* MemoryAlignmentReservedMemory;
  * 设置内存压缩算法和参数
  */
 void InitializeMemoryCompression(void);
-uint32_t MemoryCompressionPrimaryConfig;
-uint32_t MemoryCompressionSecondaryConfig;
-uint32_t MemoryCompressionTertiaryConfig;
-uint32_t MemoryCompressionQuaternaryConfig;
+uint32_t MemorySystemPrimaryCompressionConfig;
+uint32_t MemorySystemSecondaryCompressionConfig;
+uint32_t MemorySystemTertiaryCompressionConfig;
+uint32_t MemorySystemQuaternaryCompressionConfig;
 void* MemoryCompressionReservedMemory;
 
  /**
@@ -1749,10 +1749,10 @@ void* MemoryCompressionReservedMemory;
  * 设置加密算法和密钥管理
  */
 void ConfigureMemoryEncryption(void);
-uint32_t MemoryEncryptionPrimaryConfig;
-uint32_t MemoryEncryptionSecondaryConfig;
-uint32_t MemoryEncryptionTertiaryConfig;
-uint32_t MemoryEncryptionQuaternaryConfig;
+uint32_t MemorySystemPrimaryEncryptionConfig;
+uint32_t MemorySystemSecondaryEncryptionConfig;
+uint32_t MemorySystemTertiaryEncryptionConfig;
+uint32_t MemorySystemQuaternaryEncryptionConfig;
 void* MemoryEncryptionReservedMemory;
 
  /**
@@ -1762,10 +1762,10 @@ void* MemoryEncryptionReservedMemory;
  * 设置虚拟内存映射和管理
  */
 void InitializeMemoryVirtualization(void);
-uint32_t MemoryVirtualizationPrimaryConfig;
-uint32_t MemoryVirtualizationSecondaryConfig;
-uint32_t MemoryVirtualizationTertiaryConfig;
-uint32_t MemoryVirtualizationQuaternaryConfig;
+uint32_t MemorySystemPrimaryVirtualizationConfig;
+uint32_t MemorySystemSecondaryVirtualizationConfig;
+uint32_t MemorySystemTertiaryVirtualizationConfig;
+uint32_t MemorySystemQuaternaryVirtualizationConfig;
 void* MemoryVirtualizationReservedMemory;
 
  /**
@@ -1775,10 +1775,10 @@ void* MemoryVirtualizationReservedMemory;
  * 配置数据预取和缓存策略
  */
 void SetupMemoryPrefetch(void);
-uint32_t MemoryPrefetchPrimaryConfig;
-uint32_t MemoryPrefetchSecondaryConfig;
-uint32_t MemoryPrefetchTertiaryConfig;
-uint32_t MemoryPrefetchQuaternaryConfig;
+uint32_t MemorySystemPrimaryPrefetchConfig;
+uint32_t MemorySystemSecondaryPrefetchConfig;
+uint32_t MemorySystemTertiaryPrefetchConfig;
+uint32_t MemorySystemQuaternaryPrefetchConfig;
 void* MemoryPrefetchReservedMemory;
 
  /**
@@ -29419,6 +29419,18 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
+/**
+ * @brief 异常处理函数：解卷处理器类型1
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
 void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext, int64_t ValidationContext) {
   if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
@@ -29432,9 +29444,14 @@ void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext, int64_t ValidationCont
  * @brief 异常处理函数：解卷处理器类型2
  * 
  * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理二级异常情况的资源清理工作
  * 
- * @param ObjectContext 异常上下文参数
- * @param ValidationContext 系统上下文指针
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext, int64_t ValidationContext) {
   if (*(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset) != (int64_t *)0x0) {
@@ -29449,6 +29466,14 @@ void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext, int64_t ValidationCont
  * @brief 异常处理函数：解卷处理器类型3
  * 
  * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理三级异常情况的资源清理工作
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
  * 
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
