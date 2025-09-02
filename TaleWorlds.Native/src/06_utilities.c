@@ -413,15 +413,15 @@ void OptimizeResourceUsage(void);
  */
 void MonitorResourcePerformance(void);
 
-void* SystemResourceManagerHandle;
-uint32_t SystemResourceManagementStatus;
+void* ResourceManagerHandle;
+uint32_t ResourceManagementStatus;
 void* ResourceConfigurationContext;
 void* ResourceStatusMonitor;
 void* SmallBufferPool;
 void* MediumBufferPool;
 void* LargeBufferPool;
-void* SystemResourceManager;
-void* SystemResourceDatabase;
+void* ResourceManager;
+void* ResourceDatabase;
 
  /**
  * @brief 初始化纹理管理器
@@ -437,7 +437,7 @@ void InitializeTextureManager(void);
 void* TextureManager;
 void* TextureExecutionContext;
 void* TextureCacheHandle;
-void* TextureLoaderSystemHandle;
+void* TextureLoaderHandle;
 void* TextureMemoryPool;
 void* TextureDescriptorTable;
 
@@ -452,7 +452,7 @@ void* TextureDescriptorTable;
  * @warning 调用此函数前必须确保音频硬件设备可用
  */
 void InitializeAudioSystem(void);
-void* AudioSystemInstance;
+void* AudioSystem;
 void* AudioDeviceHandle;
 void* AudioMixerHandle;
 void* AudioBufferPool;
@@ -465,11 +465,11 @@ void* AudioStreamManager;
  * 设置碰撞检测、重力模拟和物理计算的相关系统
  */
 void InitializePhysicsEngine(void);
-void* PhysicsEngineInstance;
+void* PhysicsEngine;
 void* PhysicsWorldHandle;
 void* CollisionSystemHandle;
 void* RigidBodyManager;
-void* PhysicsConstraintSolver;
+void* PhysicsSolver;
 
  /**
  * @brief 初始化输入管理器
@@ -478,7 +478,7 @@ void* PhysicsConstraintSolver;
  * 设置键盘、鼠标和手柄输入的处理机制
  */
 void InitializeInputManager(void);
-void* InputSystemInstance;
+void* InputSystem;
 void* InputDeviceManager;
 void* KeyboardHandler;
 void* MouseHandler;
@@ -492,7 +492,7 @@ void* InputEventQueue;
  * 设置网络连接、数据传输和通信协议
  */
 void InitializeNetworkManager(void);
-void* NetworkSystemInstance;
+void* NetworkSystem;
 void* NetworkConnectionManager;
 void* PacketHandler;
 void* NetworkProtocolManager;
@@ -11571,77 +11571,87 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *resou
  * @param SearchKey 要查找或插入的键值
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int SearchKey)
+/**
+ * @brief 在资源池中查找或插入资源条目
+ * 
+ * 该函数用于在资源池中查找指定的资源键，如果找到则更新其值，
+ * 如果未找到则在池中插入新的资源条目。当池容量不足时会自动扩容。
+ * 
+ * @param resourcePoolId 资源池标识符
+ * @param searchKey 要查找或插入的资源键
+ * @return uint64_t 操作结果状态码，0表示成功
+ */
+uint64_t FindOrInsertInResourcePool(uint8_t resourcePoolId, int searchKey)
 {
-  int64_t poolData;
-  int SearchIndex;
-  int CurrentEntry;
-  int NewCapacity;
-  uint8_t OperationResult;
-  uint8_t *EntryPointer;
-  int EntryCount;
-  int64_t EntryOffset;
-  uint32_t *EntryData;
-  uint PoolCapacity;
-  int ExpandedCapacity;
-  int *IndexPointer;
-  int64_t *PoolHeader;
-  uint8_t *ValuePointer;
-  uint32_t *KeyPointer;
-  uint8_t NewValue;
+  int64_t poolDataAddress;
+  int hashTableIndex;
+  int currentEntryIndex;
+  int newPoolCapacity;
+  uint8_t operationResult;
+  uint8_t *entryDataPointer;
+  int entryCount;
+  int64_t entryOffset;
+  uint32_t *entryDataArray;
+  uint currentPoolCapacity;
+  int expandedPoolCapacity;
+  int *hashTableSlotPointer;
+  int64_t *poolHeaderPointer;
+  uint8_t *valueDataPointer;
+  uint32_t *keyDataPointer;
+  uint8_t newValue;
   
-  IndexPointer = (int *)(*PoolHeader + (int64_t)SearchIndex * 4);
-  CurrentEntry = *(int *)(*PoolHeader + (int64_t)SearchIndex * 4);
-  if (CurrentEntry != -1) {
-    poolData = PoolHeader[2];
+  hashTableSlotPointer = (int *)(*poolHeaderPointer + (int64_t)hashTableIndex * 4);
+  currentEntryIndex = *(int *)(*poolHeaderPointer + (int64_t)hashTableIndex * 4);
+  if (currentEntryIndex != -1) {
+    poolDataAddress = poolHeaderPointer[2];
     do {
-      EntryOffset = (int64_t)CurrentEntry;
-      if (*(int *)(poolData + EntryOffset * 0x10) == SearchKey) {
-        *(uint8_t *)(poolData + 8 + EntryOffset * 0x10) = *ValuePointer;
+      entryOffset = (int64_t)currentEntryIndex;
+      if (*(int *)(poolDataAddress + entryOffset * 0x10) == searchKey) {
+        *(uint8_t *)(poolDataAddress + 8 + entryOffset * 0x10) = *valueDataPointer;
         return 0;
       }
-      CurrentEntry = *(int *)(poolData + 4 + EntryOffset * 0x10);
-      IndexPointer = (int *)(poolData + 4 + EntryOffset * 0x10);
-    } while (CurrentEntry != -1);
+      currentEntryIndex = *(int *)(poolDataAddress + 4 + entryOffset * 0x10);
+      hashTableSlotPointer = (int *)(poolDataAddress + 4 + entryOffset * 0x10);
+    } while (currentEntryIndex != -1);
   }
-  CurrentEntry = (int)PoolHeader[4];
-  if (CurrentEntry == -1) {
-    NewValue = *ValuePointer;
-    CurrentEntry = (int)PoolHeader[3];
-    EntryCount = CurrentEntry + 1;
-    PoolCapacity = (int)*(uint *)((int64_t)PoolHeader + 0x1c) >> 0x1f;
-    NewPoolCapacity = (*(uint *)((int64_t)PoolHeader + 0x1c) ^ PoolCapacity) - PoolCapacity;
-    if (NewPoolCapacity < EntryCount) {
-      ExpandedCapacity = (int)((float)NewPoolCapacity * 1.5);
-      NewPoolCapacity = EntryCount;
-      if (EntryCount <= ExpandedCapacity) {
-        NewPoolCapacity = ExpandedCapacity;
+  currentEntryIndex = (int)poolHeaderPointer[4];
+  if (currentEntryIndex == -1) {
+    newValue = *valueDataPointer;
+    currentEntryIndex = (int)poolHeaderPointer[3];
+    entryCount = currentEntryIndex + 1;
+    currentPoolCapacity = (int)*(uint *)((int64_t)poolHeaderPointer + 0x1c) >> 0x1f;
+    newPoolCapacity = (*(uint *)((int64_t)poolHeaderPointer + 0x1c) ^ currentPoolCapacity) - currentPoolCapacity;
+    if (newPoolCapacity < entryCount) {
+      expandedPoolCapacity = (int)((float)newPoolCapacity * 1.5);
+      newPoolCapacity = entryCount;
+      if (entryCount <= expandedPoolCapacity) {
+        newPoolCapacity = expandedPoolCapacity;
       }
-      if (NewPoolCapacity < 4) {
-        ExpandedCapacity = 4;
+      if (newPoolCapacity < 4) {
+        expandedPoolCapacity = 4;
       }
-      else if (ExpandedCapacity < EntryCount) {
-        ExpandedCapacity = EntryCount;
+      else if (expandedPoolCapacity < entryCount) {
+        expandedPoolCapacity = entryCount;
       }
-      OperationResult = ResourcePoolOperation(PoolHeader + 2, ExpandedCapacity);
-      if ((int)OperationResult != 0) {
-        return OperationResult;
+      operationResult = ResourcePoolOperation(poolHeaderPointer + 2, expandedPoolCapacity);
+      if ((int)operationResult != 0) {
+        return operationResult;
       }
     }
-    EntryPointer = (uint8_t *)((int64_t)(int)PoolHeader[3] * 0x10 + PoolHeader[2]);
-    *EntryPointer = CombineHighLow32Bits(0xffffffff, SearchKey);
-    EntryPointer[1] = NewValue;
-    *(int *)(PoolHeader + 3) = (int)PoolHeader[3] + 1;
+    entryDataPointer = (uint8_t *)((int64_t)(int)poolHeaderPointer[3] * 0x10 + poolHeaderPointer[2]);
+    *entryDataPointer = CombineHighLow32Bits(0xffffffff, searchKey);
+    entryDataPointer[1] = newValue;
+    *(int *)(poolHeaderPointer + 3) = (int)poolHeaderPointer[3] + 1;
   }
   else {
-    EntryData = (uint32_t *)((int64_t)CurrentEntry * 0x10 + PoolHeader[2]);
-    *(uint32_t *)(PoolHeader + 4) = EntryData[1];
-    EntryData[1] = 0xffffffff;
-    *EntryData = *KeyPointer;
-    *(uint8_t *)(EntryData + 2) = *ValuePointer;
+    entryDataArray = (uint32_t *)((int64_t)currentEntryIndex * 0x10 + poolHeaderPointer[2]);
+    *(uint32_t *)(poolHeaderPointer + 4) = entryDataArray[1];
+    entryDataArray[1] = 0xffffffff;
+    *entryDataArray = *keyDataPointer;
+    *(uint8_t *)(entryDataArray + 2) = *valueDataPointer;
   }
-  *IndexPointer = CurrentEntry;
-  *(int *)((int64_t)PoolHeader + 0x24) = *(int *)((int64_t)PoolHeader + 0x24) + 1;
+  *hashTableSlotPointer = currentEntryIndex;
+  *(int *)((int64_t)poolHeaderPointer + 0x24) = *(int *)((int64_t)poolHeaderPointer + 0x24) + 1;
   return 0;
 }
 
