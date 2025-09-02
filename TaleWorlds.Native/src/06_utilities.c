@@ -70028,13 +70028,13 @@ void ExecuteResourceIndexValidationAndMemoryManagement(uint8_t ObjectContext, in
   ExecuteResourceInitialization();
   if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
      (ValidationResultPointer = *(uint8_t **)(ResourceIndex + 8), ValidationResultPointer != (uint8_t *)0x0)) {
-    loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-    if (loopIncrement != 0) {
-      ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+    MemoryAddressBase = (uint64_t)ValidationResultPointer & 0xffffffffffc00000;
+    if (MemoryAddressBase != 0) {
+      ResourceIndex = MemoryAddressBase + 0x80 + ((int64_t)ValidationResultPointer - MemoryAddressBase >> 0x10) * 0x50;
       ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      if ((*(void ***)(MemoryAddressBase + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
         *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
-        *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
+        *(uint8_t **)(ResourceIndex + 0x20) = ValidationResultPointer;
         ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
         *ResourceIndexPointer = *ResourceIndexPointer + -1;
         if (*ResourceIndexPointer == 0) {
@@ -70043,8 +70043,8 @@ void ExecuteResourceIndexValidationAndMemoryManagement(uint8_t ObjectContext, in
         }
       }
       else {
-        ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                            ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryAddressBase,CONCAT71(0xff000000,*(void ***)(MemoryAddressBase + 0x70) == &ExceptionList),
+                            ValidationResultPointer,MemoryAddressBase,0xfffffffffffffffe);
       }
     }
     return;
