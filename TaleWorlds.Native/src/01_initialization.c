@@ -64150,7 +64150,7 @@ void ConfigureSystemInitializationParameters(long long *ResourceManagerPointer,b
       if ((void* *)ResourceManagerPointer[3] != (void* *)0x0) {
         HashBucketNode = (void* *)ResourceManagerPointer[3];
       }
-      FUN_180626f80(&UNK_1809ffbb0,HashBucketNode);
+      AllocateSystemMemory(&SystemHashBuffer,HashBucketNode);
       systemFunctionPointer = (char *)(ResourceManagerPointer[0x3c] + 0x15 + (ulong long)ConfigurationDataPointer * 0x18);
       LOCK();
       if (*systemFunctionPointer == '\x01') {
@@ -64189,7 +64189,7 @@ void FUN_18007c790(long long *ResourceManagerPointer)
   if (*(void* **)(*ResourceManagerPointer + 0x18) != (void* *)0x0) {
     HashEntryStatus = *(void* **)(*ResourceManagerPointer + 0x18);
   }
-  FUN_180626f80(&UNK_1809ffbb0,HashEntryStatus);
+  AllocateSystemMemory(&SystemHashBuffer,HashEntryStatus);
   systemFunctionPointer = (char *)(*(long long *)(*ResourceManagerPointer + 0x1e0) + 0x15 +
                    (ulong long)*(byte *)(ResourceManagerPointer + 1) * 0x18);
   LOCK();
