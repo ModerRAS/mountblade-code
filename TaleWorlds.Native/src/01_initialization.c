@@ -59822,8 +59822,17 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
 
 
 
-// 函数: void FUN_180078143(void)
-void FUN_180078143(void)
+/**
+ * @brief 初始化系统数据索引指针
+ * 
+ * 该函数负责初始化系统数据索引指针，设置系统资源计数器
+ * 和相关数据结构。用于系统数据管理的初始化工作。
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_180078143
+ */
+void InitializeSystemDataIndexPointer(void)
 
 {
   void* *systemDataIndexPtr;
@@ -59861,8 +59870,18 @@ void FUN_180078143(void)
 
 
 
-// 函数: void FUN_1800781e0(long long SystemResourceManager)
-void FUN_1800781e0(long long SystemResourceManager)
+/**
+ * @brief 处理系统资源管理器状态
+ * 
+ * 该函数负责处理系统资源管理器的状态，包括资源创建、配置
+ * 和状态管理。用于系统资源管理器的状态维护工作。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_1800781e0
+ */
+void ProcessSystemResourceManagerStatus(long long SystemResourceManager)
 
 {
   long long nextDataIndex;
@@ -59963,8 +59982,18 @@ LAB_1800782e0:
 
 
 
-// 函数: void FUN_1800781f4(long long SystemResourceManager)
-void FUN_1800781f4(long long SystemResourceManager)
+/**
+ * @brief 验证系统资源管理器状态
+ * 
+ * 该函数负责验证系统资源管理器的状态，包括资源可用性、
+ * 配置正确性和系统完整性检查。用于系统资源管理的验证工作。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_1800781f4
+ */
+void ValidateSystemResourceManagerStatus(long long SystemResourceManager)
 
 {
   long long nextDataIndex;
@@ -60064,8 +60093,21 @@ LAB_1800782e0:
 
 
 
-// 函数: void FUN_180078239(float SystemResourceManager,float ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
-void FUN_180078239(float SystemResourceManager,float ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
+/**
+ * @brief 处理系统浮点数变换和资源管理
+ * 
+ * 该函数负责处理系统浮点数变换计算，包括矩阵变换、插值计算
+ * 和系统资源管理。用于图形渲染和数学计算中的浮点数处理。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_180078239
+ */
+void ProcessSystemFloatTransformation(float SystemResourceManager, float ConfigurationDataPointer, float AdditionalParameter, float ConfigurationFlag)
 
 {
   long long nextDataIndex;
@@ -61680,8 +61722,17 @@ void FUN_180079284(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_1800792ea(void)
-void FUN_1800792ea(void)
+/**
+ * @brief 初始化系统资源池
+ * 
+ * 该函数负责初始化系统资源池，设置资源池的参数和状态。
+ * 用于系统资源的分配和管理工作。
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_1800792ea
+ */
+void InitializeSystemResourcePool(void)
 
 {
   long long *PrimaryResourcePointer;
@@ -61969,8 +62020,21 @@ void FUN_1800792ea(void)
 
 
 
-// 函数: void FUN_180079309(long long SystemResourceManager,uint ConfigurationDataPointer,void* AdditionalParameter,float *ConfigurationFlag)
-void FUN_180079309(long long SystemResourceManager,uint ConfigurationDataPointer,void* AdditionalParameter,float *ConfigurationFlag)
+/**
+ * @brief 配置系统资源参数
+ * 
+ * 该函数负责配置系统资源的参数，包括资源分配、配置设置
+ * 和参数验证。用于系统资源的配置工作。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志指针
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_180079309
+ */
+void ConfigureSystemResourceParameters(long long SystemResourceManager, uint ConfigurationDataPointer, void* AdditionalParameter, float *ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -62254,8 +62318,17 @@ void FUN_180079309(long long SystemResourceManager,uint ConfigurationDataPointer
 
 
 
-// 函数: void FUN_18007940e(void)
-void FUN_18007940e(void)
+/**
+ * @brief 重置系统资源计数器
+ * 
+ * 该函数负责重置系统资源计数器，清理资源统计信息。
+ * 用于系统资源管理的重置工作。
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_18007940e
+ */
+void ResetSystemResourceCounter(void)
 
 {
   long long *PrimaryResourcePointer;
