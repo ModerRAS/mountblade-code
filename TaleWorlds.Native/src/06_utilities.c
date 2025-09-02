@@ -5273,7 +5273,7 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
     }
     ResourceIdArrayPointer = (uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
     if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
-      BaseAddressOffset = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)ResourceIdArrayPointer;
+      ArrayBaseAddressOffset = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)ResourceIdArrayPointer;
       do {
         ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)ResourceIdArrayPointer);
         if (ResourceIdentifier != -1) {
