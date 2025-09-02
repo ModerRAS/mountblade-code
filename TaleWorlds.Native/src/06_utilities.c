@@ -13281,7 +13281,7 @@ void ProcessComplexResourceWithRegisters(void)
           temporaryValidationFlags = contextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
-          finalResultFloat = CalculatedFloatResult1;
+          finalResultFloat = calculatedPrimaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointer + 0x28) != '\0') {
@@ -13290,7 +13290,7 @@ void ProcessComplexResourceWithRegisters(void)
           temporaryValidationFlags = contextFlags;
           temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
-          finalResultFloat = CalculatedFloatResult2;
+          finalResultFloat = calculatedSecondaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointer + 0x29) != '\0') {
@@ -19095,6 +19095,7 @@ void ValidateAndProcessResourceData(int64_t ResourceContext, uint8_t ResourceDat
   int ResourceHashValidationResult;
   uint8_t checksumBufferPrimary [64];
   uint8_t checksumBufferSecondary [32];
+  int ValidationResult;
   
   ValidationResult = ComputeDataChecksum(ResourceData,checksumBufferSecondary,1,checksumParam1);
   if (((ValidationResult == 0) && (ValidationResult = ComputeDataChecksum(ResourceData,checksumBufferPrimary,0,checksumParam2), ValidationResult == 0)) &&
