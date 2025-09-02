@@ -40713,7 +40713,21 @@ LAB_180060993:
 
 
 
-bool FUN_1800609c0(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 初始化系统资源并执行同步操作
+ * 
+ * 该函数负责初始化系统资源，等待同步对象，并执行相关的回调函数。
+ * 主要用于系统资源的初始化和同步处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 初始化结果状态码，true表示成功，false表示失败
+ * 
+ * 原始函数名为FUN_1800609c0，现已重命名为InitializeSystemResourceAndSynchronize
+ */
+bool InitializeSystemResourceAndSynchronize(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -40736,7 +40750,18 @@ bool FUN_1800609c0(long long SystemResourcePointer,void* ConfigurationDataPointe
 
 
 
-ulong long FUN_180060a50(long long *SystemResourcePointer,uint *ConfigurationDataPointer)
+/**
+ * @brief 获取系统资源状态值
+ * 
+ * 该函数负责获取系统资源的状态值，用于资源管理和状态监控。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 系统资源状态值
+ * 
+ * 原始函数名为FUN_180060a50，现已重命名为GetSystemResourceStatusValue
+ */
+ulong long GetSystemResourceStatusValue(long long *SystemResourcePointer,uint *ConfigurationDataPointer)
 
 {
   uint unsignedSystemValue1;
@@ -40829,7 +40854,19 @@ ulong long FUN_180060a50(long long *SystemResourcePointer,uint *ConfigurationDat
 
 
 
-long long * FUN_180060b80(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
+/**
+ * @brief 处理系统资源数据交换
+ * 
+ * 该函数负责处理系统资源数据的交换操作，包括内存指针的重新分配
+ * 和资源的清理释放。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 处理后的系统资源指针
+ * 
+ * 原始函数名为FUN_180060b80，现已重命名为ProcessSystemResourceDataExchange
+ */
+long long * ProcessSystemResourceDataExchange(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -40847,7 +40884,18 @@ long long * FUN_180060b80(long long *SystemResourcePointer,long long *Configurat
 
 
 
-long long * FUN_180060bd0(long long *SystemResourcePointer)
+/**
+ * @brief 释放系统资源并返回指针
+ * 
+ * 该函数负责释放系统资源，并返回资源指针。
+ * 主要用于系统资源的清理和释放操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 系统资源指针
+ * 
+ * 原始函数名为FUN_180060bd0，现已重命名为ReleaseSystemResourceAndReturnPointer
+ */
+long long * ReleaseSystemResourceAndReturnPointer(long long *SystemResourcePointer)
 
 {
   if ((long long *)*SystemResourcePointer != (long long *)0x0) {
@@ -40858,7 +40906,19 @@ long long * FUN_180060bd0(long long *SystemResourcePointer)
 
 
 
-void* FUN_180060c60(long long SystemResourcePointer,void* ConfigurationDataPointer)
+/**
+ * @brief 分配系统资源内存
+ * 
+ * 该函数负责分配系统资源的内存，包括内存块的分配和管理。
+ * 主要用于系统资源的内存分配操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 分配的内存指针，失败时返回0
+ * 
+ * 原始函数名为FUN_180060c60，现已重命名为AllocateSystemResourceMemory
+ */
+void* AllocateSystemResourceMemory(long long SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -40995,7 +41055,17 @@ void* FUN_180060d76(void)
 
 
 
-uint8_t FUN_180060e22(void)
+/**
+ * @brief 更新系统字符串索引
+ * 
+ * 该函数负责更新系统字符串的索引，通过加法操作来维护字符串数据的索引状态。
+ * 主要用于系统字符串管理的数据同步。
+ * 
+ * @return 更新状态码，0表示成功
+ * 
+ * 原始函数名为FUN_180060e22，现已重命名为UpdateSystemStringIndex
+ */
+uint8_t UpdateSystemStringIndex(void)
 
 {
   long long systemStringIteratorPtr;
