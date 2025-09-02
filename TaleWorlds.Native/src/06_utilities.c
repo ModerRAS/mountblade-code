@@ -32455,11 +32455,11 @@ void MutexUnlockHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void UnwindResourceLockHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindResourceLockHandler(uint8_t ResourceContext,int64_t SystemValidationContext,uint8_t CleanupMode,uint8_t CleanupFlags)
 
 {
-  ProcessSpecialData(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x28,
-                *(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x38),CleanupOption,CleanupFlag,
+  ProcessSpecialData(*(int64_t *)(SystemValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x28,
+                *(uint8_t *)(*(int64_t *)(SystemValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x38),CleanupMode,CleanupFlags,
                 0xfffffffffffffffe);
   return;
 }
