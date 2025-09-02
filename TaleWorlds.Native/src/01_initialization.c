@@ -18513,8 +18513,12 @@ void SetDefaultSystemPointer(void* *systemPointer)
 
 
 /**
- * 初始化系统信息和用户环境
- * 初始化系统信息，获取计算机名和用户名，设置系统环境
+ * @brief 初始化系统信息和用户环境
+ * 
+ * 该函数负责初始化系统信息和用户环境，包括获取计算机名、用户名，
+ * 设置系统环境变量和配置参数。这是系统初始化的重要组成部分。
+ * 
+ * @note 该函数会在系统启动时调用，用于建立基本的系统环境
  */
 void InitializeSystemInfoAndUserEnvironment(void)
 
