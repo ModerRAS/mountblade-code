@@ -58127,11 +58127,11 @@ void SystemNoOperationA(void)
   void* *InputStackParameter40;
   long long InputStackParameter50;
   void* InputStackParameter60;
-  void* in_stack_00000068;
-  void* in_stack_00000070;
-  void* in_stack_00000078;
-  void* in_stack_00000080;
-  void* in_stack_00000088;
+  void* InputStackParameter68;
+  void* InputStackParameter70;
+  void* InputStackParameter78;
+  void* InputStackParameter80;
+  void* InputStackParameter88;
   void* in_stack_00000090;
   void* in_stack_00000098;
   float fStack00000000000000a0;
@@ -58354,11 +58354,11 @@ void SystemNoOperationA(void)
   FUN_180085190(&stack0x00000060,localResourceOffset4 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfVar39);
   creationFlags8 = in_stack_00000098;
   creationFlags7 = in_stack_00000090;
-  creationFlags6 = in_stack_00000088;
-  creationFlags5 = in_stack_00000080;
-  creationFlags4 = in_stack_00000078;
-  creationFlags3 = in_stack_00000070;
-  creationFlags2 = in_stack_00000068;
+  creationFlags6 = InputStackParameter88;
+  creationFlags5 = InputStackParameter80;
+  creationFlags4 = InputStackParameter78;
+  creationFlags3 = InputStackParameter70;
+  creationFlags2 = InputStackParameter68;
   creationFlags1 = InputStackParameter60;
   bVar29 = *(byte *)(localResourceOffset4 + 0x1bd8);
   systemIndex0 = *(int *)(SystemStatusFlagsPointer + 0x224);
@@ -58373,11 +58373,11 @@ void SystemNoOperationA(void)
   bVar29 = bVar29 & 0x20;
   if ((bVar29 != 0) && (bVar30 != 0)) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
-    *(void* *)(systemMemoryBlockPtr + 0x168) = in_stack_00000068;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = in_stack_00000070;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = in_stack_00000078;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = in_stack_00000080;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = in_stack_00000088;
+    *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
+    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
+    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
+    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
@@ -58446,11 +58446,11 @@ void FUN_180077ad8(void)
   uint32_t InputStackParameter30;
   long long InputStackParameter40;
   void* InputStackParameter60;
-  void* in_stack_00000068;
-  void* in_stack_00000070;
-  void* in_stack_00000078;
-  void* in_stack_00000080;
-  void* in_stack_00000088;
+  void* InputStackParameter68;
+  void* InputStackParameter70;
+  void* InputStackParameter78;
+  void* InputStackParameter80;
+  void* InputStackParameter88;
   void* in_stack_00000090;
   void* in_stack_00000098;
   float fStack00000000000000a0;
@@ -58618,11 +58618,11 @@ void FUN_180077ad8(void)
   FUN_180085190(&stack0x00000060,localSystemHandle9 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfVar36);
   creationFlags8 = in_stack_00000098;
   creationFlags7 = in_stack_00000090;
-  creationFlags6 = in_stack_00000088;
-  creationFlags5 = in_stack_00000080;
-  creationFlags4 = in_stack_00000078;
-  creationFlags3 = in_stack_00000070;
-  creationFlags2 = in_stack_00000068;
+  creationFlags6 = InputStackParameter88;
+  creationFlags5 = InputStackParameter80;
+  creationFlags4 = InputStackParameter78;
+  creationFlags3 = InputStackParameter70;
+  creationFlags2 = InputStackParameter68;
   creationFlags1 = InputStackParameter60;
   bVar30 = *(byte *)(localSystemHandle9 + 0x1bd8);
   systemFlag = *(int *)(SystemStatusFlagsPointer + 0x224);
@@ -58637,11 +58637,11 @@ void FUN_180077ad8(void)
   bVar30 = bVar30 & 0x20;
   if ((bVar30 != 0) && (bVar31 != 0)) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
-    *(void* *)(systemMemoryBlockPtr + 0x168) = in_stack_00000068;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = in_stack_00000070;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = in_stack_00000078;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = in_stack_00000080;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = in_stack_00000088;
+    *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
+    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
+    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
+    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
@@ -58702,11 +58702,11 @@ void FUN_180077c96(void)
   long long unaff_R13;
   bool in_ZF;
   void* InputStackParameter60;
-  void* in_stack_00000068;
-  void* in_stack_00000070;
-  void* in_stack_00000078;
-  void* in_stack_00000080;
-  void* in_stack_00000088;
+  void* InputStackParameter68;
+  void* InputStackParameter70;
+  void* InputStackParameter78;
+  void* InputStackParameter80;
+  void* InputStackParameter88;
   void* in_stack_00000090;
   void* in_stack_00000098;
   float fStack00000000000000a0;
@@ -58771,11 +58771,11 @@ void FUN_180077c96(void)
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7));
   creationFlags6 = in_stack_00000098;
   creationFlags5 = in_stack_00000090;
-  creationFlags4 = in_stack_00000088;
-  creationFlags3 = in_stack_00000080;
-  creationFlags2 = in_stack_00000078;
-  creationFlags1 = in_stack_00000070;
-  creationFlags0 = in_stack_00000068;
+  creationFlags4 = InputStackParameter88;
+  creationFlags3 = InputStackParameter80;
+  creationFlags2 = InputStackParameter78;
+  creationFlags1 = InputStackParameter70;
+  creationFlags0 = InputStackParameter68;
   systemStatus9 = InputStackParameter60;
   bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
   systemFlag = *(int *)(SystemStatusFlagsPointer + 0x224);
@@ -58790,11 +58790,11 @@ void FUN_180077c96(void)
   bVar28 = bVar28 & 0x20;
   if ((bVar28 != 0) && (bVar27 != 0)) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
-    *(void* *)(systemMemoryBlockPtr + 0x168) = in_stack_00000068;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = in_stack_00000070;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = in_stack_00000078;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = in_stack_00000080;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = in_stack_00000088;
+    *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
+    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
+    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
+    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
@@ -58855,11 +58855,11 @@ void FUN_180077dc6(void)
   long long unaff_R13;
   uint32_t uStack0000000000000030;
   void* InputStackParameter60;
-  void* in_stack_00000068;
-  void* in_stack_00000070;
-  void* in_stack_00000078;
-  void* in_stack_00000080;
-  void* in_stack_00000088;
+  void* InputStackParameter68;
+  void* InputStackParameter70;
+  void* InputStackParameter78;
+  void* InputStackParameter80;
+  void* InputStackParameter88;
   void* in_stack_00000090;
   void* in_stack_00000098;
   float fStack00000000000000a0;
@@ -58942,11 +58942,11 @@ void FUN_180077dc6(void)
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfVar29);
   creationFlags6 = in_stack_00000098;
   creationFlags5 = in_stack_00000090;
-  creationFlags4 = in_stack_00000088;
-  creationFlags3 = in_stack_00000080;
-  creationFlags2 = in_stack_00000078;
-  creationFlags1 = in_stack_00000070;
-  creationFlags0 = in_stack_00000068;
+  creationFlags4 = InputStackParameter88;
+  creationFlags3 = InputStackParameter80;
+  creationFlags2 = InputStackParameter78;
+  creationFlags1 = InputStackParameter70;
+  creationFlags0 = InputStackParameter68;
   systemStatus9 = InputStackParameter60;
   bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
   systemFlag = *(int *)(SystemStatusFlagsPointer + 0x224);
@@ -58961,11 +58961,11 @@ void FUN_180077dc6(void)
   bVar28 = bVar28 & 0x20;
   if ((bVar28 != 0) && (bVar27 != 0)) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
-    *(void* *)(systemMemoryBlockPtr + 0x168) = in_stack_00000068;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = in_stack_00000070;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = in_stack_00000078;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = in_stack_00000080;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = in_stack_00000088;
+    *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
+    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
+    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
+    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
@@ -59007,22 +59007,22 @@ void FUN_180077dec(void)
   byte bVar11;
   long long unaff_R13;
   void* InputStackParameter60;
-  void* in_stack_00000068;
-  void* in_stack_00000070;
-  void* in_stack_00000078;
-  void* in_stack_00000080;
-  void* in_stack_00000088;
+  void* InputStackParameter68;
+  void* InputStackParameter70;
+  void* InputStackParameter78;
+  void* InputStackParameter80;
+  void* InputStackParameter88;
   void* in_stack_00000090;
   void* in_stack_00000098;
   
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7));
   unsignedSystemValue9 = in_stack_00000098;
   unsignedSystemValue8 = in_stack_00000090;
-  unsignedSystemValue7 = in_stack_00000088;
-  hashValue = in_stack_00000080;
-  currentThreadId = in_stack_00000078;
-  unsignedSystemValue4 = in_stack_00000070;
-  allocationContext = in_stack_00000068;
+  unsignedSystemValue7 = InputStackParameter88;
+  hashValue = InputStackParameter80;
+  currentThreadId = InputStackParameter78;
+  unsignedSystemValue4 = InputStackParameter70;
+  allocationContext = InputStackParameter68;
   creationFlags = InputStackParameter60;
   bVar11 = *(byte *)(unaff_R13 + 0x1bd8);
   systemStatus = *(int *)(SystemStatusFlagsPointer + 0x224);
@@ -59037,11 +59037,11 @@ void FUN_180077dec(void)
   bVar11 = bVar11 & 0x20;
   if ((bVar11 != 0) && (bVar10 != 0)) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
-    *(void* *)(systemMemoryBlockPtr + 0x168) = in_stack_00000068;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = in_stack_00000070;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = in_stack_00000078;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = in_stack_00000080;
-    *(void* *)(systemMemoryBlockPtr + 0x188) = in_stack_00000088;
+    *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
+    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
+    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
+    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+    *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
