@@ -4188,14 +4188,14 @@ uint8_t InitializeObjectHandleB(int64_t objectContext)
           union {
             float floatValue;
             struct {
-              uint32_t low;
-              uint32_t high;
-            } parts;
-            uint64_t value;
-          } floatUnion;
-          floatUnion.floatValue = processedFloatValue;
-          floatUnion.parts.high = 0;
-          resourceHash = movmskps(validationStatus, floatUnion.value);
+              uint32_t LowPart;
+              uint32_t HighPart;
+            } Parts;
+            uint64_t FullValue;
+          } FloatUnion;
+          FloatUnion.floatValue = processedFloatValue;
+          FloatUnion.Parts.HighPart = 0;
+          resourceHash = movmskps(validationStatus, FloatUnion.FullValue);
           processedFloatValue = (float)(int)(floatConversionResult - (resourceHash & 1));
         }
         processedFloatValue = (float)CalculateFloatValue(*(int64_t *)(contextHandle + 0x18), processedFloatValue);
@@ -14949,7 +14949,7 @@ HANDLE_RESOURCE_DATA_END:
       ResourceHashPointer = (uint *)(*ObjectContextParameter + (uint64_t)(ResourceHashPointer[1] & 0xffffff) * 8);
       if (ResourceFlag != 0) {
         do {
-          if (*(char *)((int64_t)ResourceHashPointer + 3) == '\0') goto LAB_1808989f7;
+          if (*(char *)((int64_t)ResourceHashPointer + 3) == '\0') goto HashValidationComplete;
           ResourceIndex0 = ResourceIndex0 + 1;
           ResourceHashPointer = ResourceHashPointer + 2;
         } while (ResourceIndex0 < (int)(uint)ResourceFlag);
@@ -15582,7 +15582,7 @@ uint8_t ProcessResourceTableIndex(int64_t *ObjectContextParameter,int Validation
             LoopOffset = LoopOffset + -1;
           } while (LoopOffset != 0);
         }
-        goto LAB_180898e0b;
+        goto ResourceProcessingComplete;
       }
     }
     return 0x26;
@@ -15650,7 +15650,7 @@ LAB_180898e0b:
           LoopOffset = LoopOffset + -1;
         } while (LoopOffset != 0);
       }
-      goto LAB_180898e0b;
+      goto ResourceProcessingComplete;
     }
   }
   return 0x26;

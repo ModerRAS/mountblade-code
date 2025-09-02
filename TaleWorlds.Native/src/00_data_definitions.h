@@ -6724,13 +6724,13 @@ longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlo
       NetworkRequestResult = AllocateSystemMemory(_DAT_180c8ed18,0x200,8,3);
       _DAT_180d48de8 = ValidateNetworkRequestResult(NetworkRequestResult);
       pMemoryAllocationResult = (uint64_t *)AllocateSystemMemory(_DAT_180c8ed18,0xf8,8,3);
-      FUN_180320470(pMemoryAllocationResult);
+      ProcessMemoryAllocationResult(pMemoryAllocationResult);
       *pMemoryAllocationResult = &UNK_180a1b368;
-      FUN_180339cf0(pMemoryAllocationResult);
+      ValidateMemoryAllocationResult(pMemoryAllocationResult);
       _DAT_180d48df0 = pMemoryAllocationResult;
       _DAT_180d48df8 = FUN_18033a090();
       pMemoryAllocationResult = (uint64_t *)AllocateSystemMemory(_DAT_180c8ed18,0xb0,8,3);
-      FUN_180320470(pMemoryAllocationResult);
+      ProcessMemoryAllocationResult(pMemoryAllocationResult);
       *pMemoryAllocationResult = &UNK_180a1b3f0;
       _DAT_180d48e00 = pMemoryAllocationResult;
       _DAT_180d48e08 = FUN_180339db0();
