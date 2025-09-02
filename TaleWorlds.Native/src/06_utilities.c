@@ -60551,7 +60551,18 @@ void CleanupExtendedMultiLevelResourceHandlers(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_180907a50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源索引验证和内存访问
+ * 
+ * 该函数负责处理资源索引的验证和内存访问控制
+ * 检查资源索引的有效性，并在必要时执行系统清理
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会验证资源索引并控制内存访问
+ */
+void ProcessResourceIndexValidation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -60587,7 +60598,18 @@ void Unwind_180907a50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907a60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源索引并处理异常列表
+ * 
+ * 该函数负责验证资源索引，并处理与异常列表相关的操作
+ * 在检测到异常情况时执行相应的处理逻辑
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会验证资源索引并处理异常列表
+ */
+void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
