@@ -4535,7 +4535,7 @@ uint8_t InitializeObjectHandleOperationC(int64_t ObjectContext)
   int64_t ValidatedContextHandle;
   
   OperationResultCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ValidatedContextHandle);
-  if ((int)operationResultCode == 0) {
+  if ((int)OperationResultCode == 0) {
     IterationCount = 0;
     SystemContextHandle = ValidatedContextHandle - 8;
     if (ValidatedContextHandle == 0) {
@@ -4545,16 +4545,16 @@ uint8_t InitializeObjectHandleOperationC(int64_t ObjectContext)
     if (0 < *(int *)(ObjectContext + 0x18)) {
       BaseAddressOffset = (ObjectContext + 0x20) - (int64_t)resourceIdentifierPointer;
       do {
-        resourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)resourceIdentifierPointer);
-        if (resourceIdentifier != -1) {
-          ResourceDataOffset = *(int64_t *)(SystemContextHandle + 0x20) + (int64_t)resourceIdentifier * 0x18;
+        ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)resourceIdentifierPointer);
+        if (ResourceIdentifier != -1) {
+          ResourceDataOffset = *(int64_t *)(SystemContextHandle + 0x20) + (int64_t)ResourceIdentifier * 0x18;
           int64_t ResourceContextHandle = *(int64_t *)(ResourceDataOffset + 8);
           if ((ResourceContextHandle == 0)) {
             return 0x1c;
           }
-          operationResultCode = ProcessResourceOperation(ResourceContextHandle, *resourceIdentifierPointer, 0);
-          if ((int)operationResultCode != 0) {
-            return operationResultCode;
+          OperationResultCode = ProcessResourceOperation(ResourceContextHandle, *resourceIdentifierPointer, 0);
+          if ((int)OperationResultCode != 0) {
+            return OperationResultCode;
           }
         }
         uint32_t NextIterationCount = (uint32_t)IterationCount + 1;
@@ -4562,9 +4562,9 @@ uint8_t InitializeObjectHandleOperationC(int64_t ObjectContext)
         resourceIdentifierPointer = resourceIdentifierPointer + 1;
       } while ((int)NextIterationCount < *(int *)(ObjectContext + 0x18));
     }
-    operationResultCode = 0;
+    OperationResultCode = 0;
   }
-  return operationResultCode;
+  return OperationResultCode;
 }
 
 
@@ -4605,16 +4605,16 @@ uint8_t InitializeObjectHandleOperationD(void)
   if (0 < *(int *)(SystemContext + 0x18)) {
     BaseAddressOffset = (SystemContext + 0x20) - (int64_t)resourceIdentifierPointer;
     do {
-      resourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)resourceIdentifierPointer);
-      if (resourceIdentifier != -1) {
-        ResourceDataOffset = *(int64_t *)(SystemContextHandle + 0x20) + (int64_t)resourceIdentifier * 0x18;
+      ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)resourceIdentifierPointer);
+      if (ResourceIdentifier != -1) {
+        ResourceDataOffset = *(int64_t *)(SystemContextHandle + 0x20) + (int64_t)ResourceIdentifier * 0x18;
         int64_t ResourceContextHandle = *(int64_t *)(ResourceDataOffset + 8);
         if ((ResourceContextHandle == 0)) {
           return 0x1c;
         }
-        operationResultCode = ProcessResourceOperation(ResourceContextHandle, *resourceIdentifierPointer, 0);
-        if ((int)operationResultCode != 0) {
-          return operationResultCode;
+        OperationResultCode = ProcessResourceOperation(ResourceContextHandle, *resourceIdentifierPointer, 0);
+        if ((int)OperationResultCode != 0) {
+          return OperationResultCode;
         }
       }
       uint32_t NextIterationCount = (uint32_t)IterationCount + 1;
@@ -13894,7 +13894,7 @@ void SystemInitializerPrimary(void)
   int64_t StackParameter68;
   uint8_t *StackParameter70;
   float StackParameter78;
-  uint32_t StackParameter1a0;
+  uint32_t StackParameterValidationCode;
   uint32_t StackParameter1a8;
   
   ResourceHashValidationResultPointer2 = (uint8_t *)(ResourceRegisterPointer + 8);
@@ -24123,11 +24123,27 @@ void InitializeSystemInterface(void)
 
 
 /**
- * 验证资源包数据结构
- * 该函数负责验证资源包的数据结构完整性，包括校验和计算、数据边界检查和结构验证
- * @param objectContext 资源包上下文指针
- * @param validationContext 资源数据指针数组
- * @return 验证状态码：0表示成功，其他值表示错误
+ * @brief 验证资源包数据结构完整性
+ * 
+ * 该函数负责验证资源包的数据结构完整性，包括以下步骤：
+ * 1. 计算数据校验和验证数据完整性
+ * 2. 检查资源元数据表的配置状态
+ * 3. 验证资源上下文的有效性和访问权限
+ * 4. 计算资源哈希值并进行数据边界检查
+ * 5. 执行双重哈希验证以确保数据一致性
+ * 6. 初始化资源处理器并执行最终验证
+ * 
+ * @param objectContext 资源包对象上下文指针，用于存储验证结果和状态信息
+ * @param validationContext 资源数据验证上下文数组，包含待验证的资源数据指针
+ * @return uint64_t 验证状态码：
+ *         - 0: 验证成功
+ *         - 0x1c: 资源上下文无效或元数据配置错误
+ *         - 0x11: 资源数据边界检查失败
+ *         - 0xd: 资源哈希值验证失败
+ *         - 其他值: 具体验证错误码
+ * 
+ * @note 此函数是资源加载系统的核心验证组件，在资源包加载时自动调用
+ * @warning 验证失败时会自动清理资源数据，调用者不需要手动释放内存
  */
 uint64_t ValidateResourcePackageStructure(int64_t objectContext,int64_t *validationContext)
 
@@ -50098,6 +50114,19 @@ void UnwindResourceContextCleanupType1(uint8_t objectContext,int64_t validationC
 
 
 
+/**
+ * @brief 清理资源上下文异常处理函数类型2
+ * 
+ * 该函数负责在异常处理过程中清理资源上下文，包括释放资源索引和验证结果
+ * 与类型1不同的是，此函数处理0x40偏移位置的资源索引
+ * 确保在异常发生时系统能够正确清理所有相关资源
+ * 
+ * @param objectContext 对象上下文，包含资源的相关信息
+ * @param validationContext 验证上下文，用于定位资源索引
+ * @return 无返回值
+ * @note 此函数通常在异常处理的unwind过程中调用
+ * @warning 调用此函数会永久销毁相关资源
+ */
 void UnwindResourceContextCleanupType2(uint8_t objectContext,int64_t validationContext)
 
 {
@@ -50108,24 +50137,24 @@ void UnwindResourceContextCleanupType2(uint8_t objectContext,int64_t validationC
   uint64_t ResourceContextOffset;
   
   ResourceIndex = *(int64_t *)(validationContext + 0x40);
-  loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
-      pValidationResult = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
-      if (pValidationResult != (uint8_t *)0x0) {
-        *pValidationResult = &SystemDataStructure;
+      ResourceHashValidationResultPointer = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
+        *ResourceHashValidationResultPointer = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
-    } while (ResourceContextOffset < loopIncrement);
-    loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+    } while (ResourceContextOffset < MemoryAddressIncrement);
+    MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
-  if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
+  if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -89982,7 +90011,7 @@ void Unwind_180911fe0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ff0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_SystemResourceCleanup_Batch1(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -90002,7 +90031,7 @@ void Unwind_180911ff0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912000(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_SystemResourceCleanup_Batch2(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
