@@ -5088,20 +5088,20 @@ uint64_t ValidateObjectPointerAndExecuteExit(int64_t objectPointer)
 
 {
   uint64_t ResourceValidationResult;
-  int64_t stackOffset;
+  int64_t StackOffset;
   
-  validationResult = ValidateObjectContext(*(uint32_t *)(objectPointer + 0x10),&stackOffset);
-  if ((int)validationResult != 0) {
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectPointer + 0x10), &StackOffset);
+  if ((int)ValidationResult != 0) {
     return ResourceValidationResult;
   }
-  if (stackOffset != 0) {
-    stackOffset = stackOffset + -8;
+  if (StackOffset != 0) {
+    StackOffset = StackOffset + -8;
   }
-  if (*(int64_t *)(stackOffset + 0x10) == 0) {
+  if (*(int64_t *)(StackOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(stackOffset + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
 }
 
 
@@ -5117,16 +5117,16 @@ uint64_t ValidateObjectPointerAndExecuteExit(int64_t objectPointer)
 uint32_t ValidateStackLocationAndExecuteExit(void)
 
 {
-  int64_t stackLocation;
+  int64_t StackLocation;
   
-  if (stackLocation != 0) {
-    stackLocation = stackLocation + -8;
+  if (StackLocation != 0) {
+    StackLocation = StackLocation + -8;
   }
-  if (*(int64_t *)(stackLocation + 0x10) == 0) {
+  if (*(int64_t *)(StackLocation + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(stackLocation + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(StackLocation + 0x10), 1);
 }
 
 
@@ -5175,7 +5175,7 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
   uint8_t ValidationResult;
   int64_t StackOffset;
   
-  validationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectPointer + 0x10),&StackOffset);
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectPointer + 0x10), &StackOffset);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
@@ -5186,7 +5186,7 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
 }
 
 
@@ -92416,14 +92416,14 @@ void CleanupMutexResources(void)
 void InitializeSystemContext(uint8_t ContextPtr, uint8_t SetupParam, uint8_t ConfigParam, uint8_t FlagsParam)
 
 {
-  uint8_t *SystemHandler;
+  uint8_t *SystemContextHandlerPointer;
   
-  SystemHandler = SystemContextHandler;
+  SystemContextHandlerPointer = SystemContextHandler;
   if (SystemContextHandler != (uint8_t *)0x0) {
     InitializeContextData(&SystemContextData, *SystemContextHandler, ConfigParam, FlagsParam, 0xfffffffffffffffe);
-    SetupSystemHandler(SystemHandler + 5);
+    SetupSystemHandler(SystemContextHandlerPointer + ResourceManagementCleanupOffset);
                     // WARNING: Subroutine does not return
-    ExecuteSystemHandler(SystemHandler);
+    ExecuteSystemHandler(SystemContextHandlerPointer);
   }
   return;
 }
@@ -92488,13 +92488,13 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
     return;
   }
   ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, CleanupOptions, CleanupFlags, 0xfffffffffffffffe);
-  ResourceManagementHandle[4] = &ResourceCleanupMarker;
-  if (ResourceManagementHandle[5] != 0) {
+  ResourceManagementHandle[ResourceManagementStateOffset] = &ResourceCleanupMarker;
+  if (ResourceManagementHandle[ResourceManagementCleanupOffset] != 0) {
     EmergencyResourceCleanup();
   }
-  ResourceManagementHandle[5] = 0;
-  *(uint32_t *)(ResourceManagementHandle + 7) = 0;
-  ResourceManagementHandle[4] = &ResourceResetMarker;
+  ResourceManagementHandle[ResourceManagementCleanupOffset] = 0;
+  *(uint32_t *)(ResourceManagementHandle + ResourceManagementStatusOffset) = 0;
+  ResourceManagementHandle[ResourceManagementStateOffset] = &ResourceResetMarker;
   FinalizeResourceCleanup(ResourceManagementHandle);
 }
 
