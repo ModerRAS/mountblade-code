@@ -3985,40 +3985,40 @@ uint8_t MemoryPoolBufferEventHandler;
 uint8_t MemoryPoolBufferMessageHandler;
 uint8_t MemoryPoolBufferRequestHandler;
 uint8_t MemoryPoolBufferResponseHandler;
-uint8_t MemoryPoolBufferOneHundred;
-uint8_t MemoryPoolBufferOneHundredOne;
-uint8_t MemoryPoolBufferOneHundredTwo;
-uint8_t MemoryPoolBufferOneHundredThree;
-uint8_t MemoryPoolBufferOneHundredFour;
-uint8_t MemoryPoolBufferOneHundredFive;
-uint8_t MemoryPoolBufferOneHundredSix;
-uint8_t MemoryPoolBufferOneHundredSeven;
-uint8_t MemoryPoolBufferOneHundredEight;
-uint8_t MemoryPoolBufferOneHundredNine;
-uint8_t MemoryPoolBufferOneHundredTen;
-uint8_t MemoryPoolBufferOneHundredEleven;
-uint8_t MemoryPoolBufferOneHundredTwelve;
-uint8_t MemoryPoolBufferOneHundredThirteen;
-uint8_t MemoryPoolBufferOneHundredFourteen;
-uint8_t MemoryPoolBufferOneHundredFifteen;
-uint8_t MemoryPoolBufferOneHundredSixteen;
-uint8_t MemoryPoolBufferOneHundredSeventeen;
-uint8_t MemoryPoolBufferOneHundredEighteen;
-uint8_t MemoryPoolBufferOneHundredNineteen;
-uint8_t MemoryPoolBufferOneHundredTwenty;
-uint8_t MemoryPoolBufferOneHundredTwentyOne;
-uint8_t MemoryPoolBufferOneHundredTwentyTwo;
-uint8_t MemoryPoolBufferOneHundredTwentyThree;
-uint8_t MemoryPoolBufferOneHundredTwentyFour;
-uint8_t MemoryPoolBufferOneHundredTwentyFive;
-uint8_t MemoryPoolBufferOneHundredTwentySix;
-uint8_t MemoryPoolBufferOneHundredTwentySeven;
-uint8_t MemoryPoolBufferOneHundredTwentyEight;
-uint8_t MemoryPoolBufferOneHundredTwentyNine;
-uint8_t MemoryPoolBufferOneHundredThirty;
-uint8_t MemoryPoolBufferOneHundredThirtyOne;
-uint8_t MemoryPoolBufferOneHundredThirtyTwo;
-uint8_t MemoryPoolBufferOneHundredThirtyThree;
+uint8_t MemoryPoolBufferReserved;
+uint8_t MemoryPoolBufferReservedOne;
+uint8_t MemoryPoolBufferReservedTwo;
+uint8_t MemoryPoolBufferReservedThree;
+uint8_t MemoryPoolBufferReservedFour;
+uint8_t MemoryPoolBufferReservedFive;
+uint8_t MemoryPoolBufferReservedSix;
+uint8_t MemoryPoolBufferReservedSeven;
+uint8_t MemoryPoolBufferReservedEight;
+uint8_t MemoryPoolBufferReservedNine;
+uint8_t MemoryPoolBufferReservedTen;
+uint8_t MemoryPoolBufferReservedEleven;
+uint8_t MemoryPoolBufferReservedTwelve;
+uint8_t MemoryPoolBufferReservedThirteen;
+uint8_t MemoryPoolBufferReservedFourteen;
+uint8_t MemoryPoolBufferReservedFifteen;
+uint8_t MemoryPoolBufferReservedSixteen;
+uint8_t MemoryPoolBufferReservedSeventeen;
+uint8_t MemoryPoolBufferReservedEighteen;
+uint8_t MemoryPoolBufferReservedNineteen;
+uint8_t MemoryPoolBufferReservedTwenty;
+uint8_t MemoryPoolBufferReservedTwentyOne;
+uint8_t MemoryPoolBufferReservedTwentyTwo;
+uint8_t MemoryPoolBufferReservedTwentyThree;
+uint8_t MemoryPoolBufferReservedTwentyFour;
+uint8_t MemoryPoolBufferReservedTwentyFive;
+uint8_t MemoryPoolBufferReservedTwentySix;
+uint8_t MemoryPoolBufferReservedTwentySeven;
+uint8_t MemoryPoolBufferReservedTwentyEight;
+uint8_t MemoryPoolBufferReservedTwentyNine;
+uint8_t MemoryPoolBufferReservedThirty;
+uint8_t MemoryPoolBufferReservedThirtyOne;
+uint8_t MemoryPoolBufferReservedThirtyTwo;
+uint8_t MemoryPoolBufferReservedThirtyThree;
 uint8_t SystemDataBufferPrimary;
 uint8_t SystemConfigurationFlagActive;
 char SystemStatusCharacterBuffer;
@@ -6676,7 +6676,7 @@ uint8_t ValidateSystemConfiguration(int64_t ConfigHandle)
     }
     HashValidationResult = 0;
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -8215,64 +8215,64 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, int64_t Sys
  */
 uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t SystemContext)
 {
-  float InputFloatValue;
-  int64_t ResourceDataAddress;
-  uint8_t HashValidationResult;
-  float MinRangeValue;
-  float MaxRangeValue;
-  int64_t ResourceContextBuffer;
-  int64_t ContextBuffer[2];
+  float ProcessedFloatValue;
+  int64_t ResourceDataPointer;
+  uint8_t ValidationResult;
+  float MinimumRangeValue;
+  float MaximumRangeValue;
+  int64_t ResourceContext;
+  int64_t ValidationBuffer[2];
   
   // 检查浮点数是否为有效值（非NaN/Infinity）
-  InputFloatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
+  ProcessedFloatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
   if ((*(uint *)(ObjectContext + ObjectContextProcessingDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
     return ErrorFloatValidationFailure; // ErrorInvalidFloatValue
   }
   
   // 验证对象上下文
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), ContextBuffer);
-  if (ValidationStatusCode == 0) {
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), ValidationBuffer);
+  if (ValidationResult == 0) {
     // 调整上下文指针
-    if (ContextBuffer[0] == 0) {
-      ContextBuffer[0] = 0;
+    if (ValidationBuffer[0] == 0) {
+      ValidationBuffer[0] = 0;
     } else {
-      ContextBuffer[0] = ContextBuffer[0] - 8;
+      ValidationBuffer[0] = ValidationBuffer[0] - 8;
     }
     
     // 验证资源上下文
-    ResourceContextBuffer = 0;
-    ValidationStatusCode = ValidateResourceContext(ContextBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContextBuffer);
-    if (ValidationStatusCode == 0) {
-      if (ResourceContextBuffer == 0) {
+    ResourceContext = 0;
+    ValidationResult = ValidateResourceContext(ValidationBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContext);
+    if (ValidationResult == 0) {
+      if (ResourceContext == 0) {
         return 0x4a; // ErrorInvalidResourceContext
       }
       
       // 获取资源数据指针
-      ResourceDataAddress = *(int64_t *)(ResourceContextBuffer + 0x10);
-      if (ResourceDataAddress == 0) {
+      ResourceDataPointer = *(int64_t *)(ResourceContext + 0x10);
+      if (ResourceDataPointer == 0) {
         return ErrorInvalidResourceData; // ErrorInvalidResourceData
       }
       
       // 检查资源状态标志
-      if ((*(byte *)(ResourceDataAddress + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
+      if ((*(byte *)(ResourceDataPointer + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
         return ErrorResourceValidationFailed; // ErrorResourceValidationFailed
       }
       
       // 获取范围值并验证
-      MinRangeValue = *(float *)(ResourceDataAddress + ResourceMinRangeOffset);
-      MaxRangeValue = *(float *)(ResourceDataAddress + ResourceMaxRangeOffset);
+      MinimumRangeValue = *(float *)(ResourceDataPointer + ResourceMinRangeOffset);
+      MaximumRangeValue = *(float *)(ResourceDataPointer + ResourceMaxRangeOffset);
       
-      if ((MinRangeValue <= InputFloatValue) && (InputFloatValue <= MaxRangeValue)) {
+      if ((MinimumRangeValue <= ProcessedFloatValue) && (ProcessedFloatValue <= MaximumRangeValue)) {
         // 在范围内，更新数值
-        *(float *)(ObjectContext + ObjectContextProcessingDataOffset) = InputFloatValue;
-        *(float *)(ResourceContextBuffer + 4) = InputFloatValue;
+        *(float *)(ObjectContext + ObjectContextProcessingDataOffset) = ProcessedFloatValue;
+        *(float *)(ResourceContext + 4) = ProcessedFloatValue;
         
         // 释放系统上下文资源
         ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
       }
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -8289,67 +8289,67 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
  */
 uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, int64_t SystemContext)
 {
-  float FloatValueToCompare;
-  int64_t ResourceDataAddress;
-  uint8_t HashValidationResult;
-  int64_t ResourceContextBuffer;
-  int64_t ContextBuffer[2];
-  float MinRangeValue;
-  float MaxRangeValue;
+  float ComparisonValue;
+  int64_t ResourceDataPointer;
+  uint8_t ValidationResult;
+  int64_t ResourceContext;
+  int64_t ValidationBuffer[2];
+  float MinimumRangeValue;
+  float MaximumRangeValue;
   
   // 验证对象上下文
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), ContextBuffer);
-  if (ValidationStatusCode == 0) {
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), ValidationBuffer);
+  if (ValidationResult == 0) {
     // 调整上下文指针
-    if (ContextBuffer[0] == 0) {
-      ContextBuffer[0] = 0;
+    if (ValidationBuffer[0] == 0) {
+      ValidationBuffer[0] = 0;
     } else {
-      ContextBuffer[0] = ContextBuffer[0] - 8;
+      ValidationBuffer[0] = ValidationBuffer[0] - 8;
     }
     
     // 验证资源上下文
-    ResourceContextBuffer = 0;
-    ValidationStatusCode = ValidateResourceContext(ContextBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContextBuffer);
-    if (ValidationStatusCode == 0) {
-      if (ResourceContextBuffer == 0) {
+    ResourceContext = 0;
+    ValidationResult = ValidateResourceContext(ValidationBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContext);
+    if (ValidationResult == 0) {
+      if (ResourceContext == 0) {
         return 0x4a; // ErrorInvalidResourceContext
       }
       
       // 获取资源数据指针
-      ResourceDataAddress = *(int64_t *)(ResourceContextBuffer + 0x10);
-      if (ResourceDataAddress == 0) {
+      ResourceDataPointer = *(int64_t *)(ResourceContext + 0x10);
+      if (ResourceDataPointer == 0) {
         return ErrorInvalidResourceData; // ErrorInvalidResourceData
       }
       
       // 检查资源状态标志
-      if ((*(byte *)(ResourceDataAddress + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
+      if ((*(byte *)(ResourceDataPointer + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
         return ErrorResourceValidationFailed; // ErrorResourceValidationFailed
       }
       
       // 处理对象上下文数据
-      ValidationStatusCode = ValidateObjectContextAndProcessData(ResourceDataAddress, ObjectContext + ObjectContextValidationDataOffset, ObjectContext + ObjectContextProcessingDataOffset);
-      if (ValidationStatusCode == 0) {
+      ValidationResult = ValidateObjectContextAndProcessData(ResourceDataPointer, ObjectContext + ObjectContextValidationDataOffset, ObjectContext + ObjectContextProcessingDataOffset);
+      if (ValidationResult == 0) {
         // 获取要比较的浮点数值
-        FloatValueToCompare = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
+        ComparisonValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
         
         // 获取范围值
-        MinRangeValue = *(float *)(ResourceDataAddress + ResourceMinRangeOffset);
-        MaxRangeValue = *(float *)(ResourceDataAddress + ResourceMaxRangeOffset);
+        MinimumRangeValue = *(float *)(ResourceDataPointer + ResourceMinRangeOffset);
+        MaximumRangeValue = *(float *)(ResourceDataPointer + ResourceMaxRangeOffset);
         
         // 检查是否在范围内（包含边界值）
-        if ((MinRangeValue <= FloatValueToCompare) && (FloatValueToCompare <= MaxRangeValue)) {
+        if ((MinimumRangeValue <= ComparisonValue) && (ComparisonValue <= MaximumRangeValue)) {
           // 在范围内，更新状态并释放资源
-          ValidationStatusCode = *(uint8_t *)(SystemContext + SystemResourceManagerOffset);
-          *(float *)(ResourceContextBuffer + 4) = FloatValueToCompare;
+          ValidationResult = *(uint8_t *)(SystemContext + SystemResourceManagerOffset);
+          *(float *)(ResourceContext + 4) = ComparisonValue;
           
           // 释放系统上下文资源
-          ReleaseSystemContextResources(HashValidationResult, ObjectContext);
+          ReleaseSystemContextResources(ValidationResult, ObjectContext);
         }
-        ValidationStatusCode = ErrorInvalidObjectHandle; // ErrorValueOutOfRange
+        ValidationResult = ErrorInvalidObjectHandle; // ErrorValueOutOfRange
       }
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -8364,14 +8364,14 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, in
  */
 uint8_t ProcessFloatComparisonOperation(void)
 {
-  float FloatValueToCompare;
-  int64_t ResourceDataAddress;
-  uint8_t OperationStatusCode;
+  float ComparisonValue;
+  int64_t ResourceDataPointer;
+  uint8_t OperationResult;
   int64_t SystemContext;
   int64_t ObjectContext;
   int64_t StackBuffer;
-  float MinRangeValue;
-  float MaxRangeValue;
+  float MinimumRangeValue;
+  float MaximumRangeValue;
   
   // 检查堆栈缓冲区是否有效
   if (StackBuffer == 0) {
@@ -8379,38 +8379,38 @@ uint8_t ProcessFloatComparisonOperation(void)
   }
   
   // 获取资源数据指针
-  ResourceDataAddress = *(int64_t *)(StackBuffer + StackBufferDataOffset);
-  if (ResourceDataAddress == 0) {
+  ResourceDataPointer = *(int64_t *)(StackBuffer + StackBufferDataOffset);
+  if (ResourceDataPointer == 0) {
     return ErrorInvalidResourceData; // ErrorInvalidResourceData
   }
   
   // 检查资源状态标志
-  if ((*(byte *)(ResourceDataAddress + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
+  if ((*(byte *)(ResourceDataPointer + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
     return ErrorResourceValidationFailed; // ErrorResourceValidationFailed
   }
   
   // 处理对象上下文数据
-  OperationStatusCode = ValidateObjectContextAndProcessData(ResourceDataAddress, ObjectContext + ObjectContextValidationDataOffset, ObjectContext + ObjectContextProcessingDataOffset);
-  if (OperationStatusCode == 0) {
+  OperationResult = ValidateObjectContextAndProcessData(ResourceDataPointer, ObjectContext + ObjectContextValidationDataOffset, ObjectContext + ObjectContextProcessingDataOffset);
+  if (OperationResult == 0) {
     // 获取要比较的浮点数值
-    FloatValueToCompare = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
+    ComparisonValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
     
     // 获取范围值
-    MinRangeValue = *(float *)(ResourceDataAddress + ResourceMinRangeOffset);
-    MaxRangeValue = *(float *)(ResourceDataAddress + ResourceMaxRangeOffset);
+    MinimumRangeValue = *(float *)(ResourceDataPointer + ResourceMinRangeOffset);
+    MaximumRangeValue = *(float *)(ResourceDataPointer + ResourceMaxRangeOffset);
     
     // 检查是否在范围内（包含边界值）
-    if ((MinRangeValue <= FloatValueToCompare) && (FloatValueToCompare <= MaxRangeValue)) {
+    if ((MinimumRangeValue <= ComparisonValue) && (ComparisonValue <= MaximumRangeValue)) {
       // 在范围内，更新状态并释放资源
-      OperationStatusCode = *(uint8_t *)(SystemContext + SystemResourceManagerOffset);
-      *(float *)(StackBuffer + 4) = FloatValueToCompare;
+      OperationResult = *(uint8_t *)(SystemContext + SystemResourceManagerOffset);
+      *(float *)(StackBuffer + 4) = ComparisonValue;
       
       // 释放系统上下文资源
-      ReleaseSystemContextResources(OperationStatusCode);
+      ReleaseSystemContextResources(OperationResult);
     }
-    OperationStatusCode = 0x1c; // ErrorValueOutOfRange
+    OperationResult = 0x1c; // ErrorValueOutOfRange
   }
-  return OperationStatusCode;
+  return OperationResult;
 }
 
 
@@ -9858,7 +9858,7 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext, int64_t V
             ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -9908,7 +9908,7 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t ObjectContext, u
             ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset));
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -10007,32 +10007,32 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext,int64_t Va
 uint8_t ValidateFloatDataAndExecute(void)
 
 {
-  float CalculatedFloatResult;
-  int64_t ResourceTable;
-  uint8_t HashValidationResult;
-  int64_t PreservedRegisterValue;
-  int64_t ResourceContextHandle;
-  uint32_t ValidationParameterValue;
+  float ProcessedFloatValue;
+  int64_t ResourceTablePointer;
+  uint8_t ValidationResult;
+  int64_t RegisterBackupValue;
+  int64_t ResourceHandle;
+  uint32_t ParameterValue;
   
-  ResourceTable = LookupResourceIndexPointer();
-  if ((*(uint *)(ResourceTable + 0x34) >> 4 & 1) != 0) {
+  ResourceTablePointer = LookupResourceIndexPointer();
+  if ((*(uint *)(ResourceTablePointer + 0x34) >> 4 & 1) != 0) {
     return ErrorResourceValidationFailed;
   }
-  ValidationStatusCode = ValidateObjectContextAndProcessData(ResourceTable,SystemRegisterContext + 0x1d,SystemRegisterContext + 0x18);
-  if ((int)ValidationStatusCode == 0) {
-    FloatComparisonResult = *(float *)(SystemRegisterContext + 0x18);
-    if ((InputFloatValue < *(float *)(ResourceTable + 0x38)) ||
-       (*(float *)(ResourceTable + 0x3c) <= InputFloatValue && InputFloatValue != *(float *)(ResourceTable + 0x3c))) {
-      ValidationStatusCode = ErrorInvalidObjectHandle;
+  ValidationResult = ValidateObjectContextAndProcessData(ResourceTablePointer, SystemRegisterContext + 0x1d, SystemRegisterContext + 0x18);
+  if ((int)ValidationResult == 0) {
+    ProcessedFloatValue = *(float *)(SystemRegisterContext + 0x18);
+    if ((ProcessedFloatValue < *(float *)(ResourceTablePointer + 0x38)) ||
+       (*(float *)(ResourceTablePointer + 0x3c) <= ProcessedFloatValue && ProcessedFloatValue != *(float *)(ResourceTablePointer + 0x3c))) {
+      ValidationResult = ErrorInvalidObjectHandle;
     }
     else {
-      ValidationStatusCode = ValidateResourceParameters(ResourceContextHandle + ValidationContextHashOffset,ValidationParameterValue);
-      if ((int)ValidationStatusCode == 0) {
+      ValidationResult = ValidateResourceParameters(ResourceHandle + ValidationContextHashOffset, ParameterValue);
+      if ((int)ValidationResult == 0) {
               ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + 0x98));
       }
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -10048,28 +10048,28 @@ uint8_t ValidateFloatDataAndExecute(void)
 uint8_t ValidateFloatDataAndExecuteSimple(void)
 
 {
-  float CalculatedFloatResult;
-  uint8_t HashValidationResult;
-  int64_t ResourceContext;
-  int64_t PreservedRegisterValue;
+  float ProcessedFloatValue;
+  uint8_t ValidationResult;
+  int64_t ResourceContextPointer;
+  int64_t RegisterBackupValue;
   int64_t ResourceHandle;
-  uint32_t ValidationParameterValue;
+  uint32_t ParameterValue;
   
-  HashValidationResult = ValidateObjectContextAndProcessData();
+  ValidationResult = ValidateObjectContextAndProcessData();
   if ((int)ValidationResult == 0) {
-    FloatComparisonResult = *(float *)(SystemRegisterContext + 0x18);
-    if ((InputFloatValue < *(float *)(ResourceContext + 0x38)) ||
-       (*(float *)(ResourceContext + 0x3c) <= InputFloatValue && InputFloatValue != *(float *)(ResourceContext + 0x3c))) {
+    ProcessedFloatValue = *(float *)(SystemRegisterContext + 0x18);
+    if ((ProcessedFloatValue < *(float *)(ResourceContextPointer + 0x38)) ||
+       (*(float *)(ResourceContextPointer + 0x3c) <= ProcessedFloatValue && ProcessedFloatValue != *(float *)(ResourceContextPointer + 0x3c))) {
       ValidationResult = ErrorInvalidObjectHandle;
     }
     else {
-      ValidationResult = ValidateResourceParameters(ResourceHandle + ValidationContextHashOffset,ValidationParameterValue);
+      ValidationResult = ValidateResourceParameters(ResourceHandle + ValidationContextHashOffset, ParameterValue);
       if ((int)ValidationResult == 0) {
               ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + 0x98));
       }
     }
   }
-  return ResourceHashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -10183,7 +10183,7 @@ uint64_t GetSystemRuntimeStatus(void)
     *(uint8_t *)(ResourceContext + 0x18) = *LoopProcessingPointer;
           ReleaseSystemContextResources(*(uint8_t *)(SystemRegisterContext + 0x98));
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -10334,7 +10334,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandlingNoParams(void)
       }
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -16768,7 +16768,7 @@ uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *dataBuffer)
     ResourceValidationBuffer[0] = ValidationContext[1];
     ValidationStatusCode = (**(code **)*ResourceHashValidationResultAddress)(ResourceHashValidationResultAddress,ResourceValidationBuffer,4);
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -17050,7 +17050,7 @@ uint8_t ProcessResourceDataSerialization(int64_t *dataContext,uint32_t *dataBuff
     ValidationResultAddress = *(uint8_t **)(SystemContextPointer + 8);
     ValidationStatusCode = (**(code **)*ResourceHashValidationResultAddress)(ResourceHashValidationResultAddress,ResourceValidationBuffer,4);
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -17563,7 +17563,7 @@ uint8_t ProcessResourceTableEntries(int64_t ObjectContext, int64_t *ValidationCo
     }
     ValidationStatusCode = 0;
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -18835,7 +18835,7 @@ uint8_t InitializeResourceprocessingContext(void)
        (ValidationStatusCode = CheckResourceAvailability(), (int)ValidationStatusCode == 0)))))) {
     ValidationStatusCode = 0;
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -19965,7 +19965,7 @@ uint64_t ProcessResourceDataReadAndValidate(int64_t ResourceHandle,uint8_t *Reso
       return (uint64_t)LoopIncrement;
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -20370,7 +20370,7 @@ ResourceProcessingLoop:
   if ((int)ValidationStatusCode == 0) {
     *(bool *)(SystemRegisterContext + 0x7c) = StackValidationValue != (char)HashValidationResult;
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -20431,7 +20431,7 @@ ResourceProcessingLoop:
   if ((int)ValidationStatusCode == 0) {
     *(bool *)(SystemRegisterContext + 0x7c) = HashValidationResultFlag != (char)HashValidationResult;
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -23328,7 +23328,7 @@ ResourceOperationLoop:
       }
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -25219,7 +25219,7 @@ uint64_t GetResourceHashAndValidate(void)
             CleanupResourceData();
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -25265,7 +25265,7 @@ uint64_t ValidateResourceHashIntegrity(void)
             CleanupResourceData();
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -25412,7 +25412,7 @@ ResourceFinalize:
             CleanupResourceData(ValidationContext, ResourceOperationBuffer);
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -25514,7 +25514,7 @@ ResourceFinalize:
             CleanupResourceData();
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -25821,7 +25821,7 @@ uint64_t ProcessResourceValidationAndAllocation(int64_t ObjectContext,uint8_t *V
       ValidationStatusCode = ErrorInvalidObjectHandle;
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -25911,7 +25911,7 @@ uint64_t ValidateAndAllocateResourceData(void)
     }
     return HashValidationResult;
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -25995,7 +25995,7 @@ uint64_t ProcessResourceReadAndValidation(void)
   else {
     ValidationStatusCode = ErrorInvalidObjectHandle;
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -26075,7 +26075,7 @@ uint64_t ProcessResourceValidationAndAllocation(void)
   else {
     ValidationStatusCode = ErrorInvalidObjectHandle;
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -29172,7 +29172,7 @@ uint64_t ValidateResourceCertificateChain(void)
       }
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
@@ -29234,7 +29234,7 @@ uint64_t ProcessResourceCertificateSigning(void)
       }
     }
   }
-  return HashValidationResult;
+  return ValidationResult;
 }
 
 
