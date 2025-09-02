@@ -5009,8 +5009,7 @@ void ReturnNoOperation(void)
 
 
 
- uint64_t HandleResourceOperation(int64_t resourceHandle)
-/**
+ /**
  * @brief 处理资源操作
  * 
  * 该函数负责处理资源操作，根据资源状态执行相应操作
@@ -52907,7 +52906,19 @@ void CleanupResourceTableAndResetContext(uint8_t ObjectContext, int64_t Validati
 
 
 
-void Unwind_1809064a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置验证上下文标志位
+ * 
+ * 该函数负责重置验证上下文中的特定标志位，确保系统状态的一致性
+ * 检查并清理验证上下文中的状态标志
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含需要重置的标志位
+ * @return 无返回值
+ * @note 此函数会重置验证上下文中的两个特定标志位
+ * @warning 如果发现标志位处于无效状态，函数会触发紧急退出
+ */
+void ResetValidationContextFlags(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x70) != 0) {
@@ -52923,7 +52934,19 @@ void Unwind_1809064a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809064b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置验证上下文扩展标志位
+ * 
+ * 该函数负责重置验证上下文中的扩展标志位，确保系统状态的完整性
+ * 检查并清理验证上下文中的扩展状态标志
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含需要重置的扩展标志位
+ * @return 无返回值
+ * @note 此函数会重置验证上下文中的两个扩展标志位
+ * @warning 如果发现扩展标志位处于无效状态，函数会触发紧急退出
+ */
+void ResetValidationContextExtendedFlags(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x82) != 0) {
@@ -52939,7 +52962,19 @@ void Unwind_1809064b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809064c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表索引并验证完整性
+ * 
+ * 该函数负责清理验证上下文中的资源表索引和相关的资源数据
+ * 遍历资源表中的所有索引，清理相应的数据并验证完整性
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源表和索引信息
+ * @return 无返回值
+ * @note 此函数会遍历资源表索引并清理所有相关数据
+ * @warning 如果发现任何无效的资源状态，函数会触发紧急退出
+ */
+void CleanupResourceTableIndexAndValidate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
