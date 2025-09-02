@@ -4754,7 +4754,7 @@ uint8_t InitializeObjectHandleBasic(int64_t objectContext) {
     }
     objectValidationStatusCode = 0;
   }
-  return ObjectValidationStatusCode;
+  return objectValidationStatusCode;
 }
 
 
@@ -4832,18 +4832,18 @@ void InitializeSystemResources(void)
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  * @warning 验证失败时会触发系统退出操作
  */
-uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
+uint8_t ValidateObjectHandle(int64_t objectHandleToValidate)
 
 {
-  uint8_t ContextValidationStatusCode;
-  int64_t HandleMemoryBuffer;
+  uint8_t contextValidationStatusCode;
+  int64_t handleMemoryBuffer;
   
-  ContextValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &HandleMemoryBuffer);
-  if ((int)ContextValidationStatusCode != 0) {
-    return ContextValidationStatusCode;
+  contextValidationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandleToValidate + ObjectHandleMemoryOffset), &handleMemoryBuffer);
+  if ((int)contextValidationStatusCode != 0) {
+    return contextValidationStatusCode;
   }
-  if (HandleMemoryBuffer == 0) {
-    HandleMemoryBuffer = 0;
+  if (handleMemoryBuffer == 0) {
+    handleMemoryBuffer = 0;
   }
   else {
     HandleMemoryBuffer = HandleMemoryBuffer + -8;
