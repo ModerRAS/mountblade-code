@@ -5052,11 +5052,11 @@ uint64_t HandleResourceOperation(int64_t resourceHandle)
  */
 uint32_t ProcessResourceTask(void)
 {
-  int64_t TaskInputParameter;
-  int64_t TaskLoopCounter;
+  int64_t SystemTaskContext;
+  int64_t TaskIterationCounter;
   
-  SystemContextPointer = TaskInputParameter - 8;
-  if (TaskInputParameter == 0) {
+  SystemContextPointer = SystemTaskContext - 8;
+  if (SystemTaskContext == 0) {
     SystemContextPointer = 0;
   }
   if (*(int64_t *)(SystemContextPointer + 0x10) == 0) {
@@ -5068,12 +5068,14 @@ uint32_t ProcessResourceTask(void)
 
 
 
- void TriggerSystemTermination(void)
-/**
+ /**
  * @brief 触发系统终止
  * 
  * 该函数负责触发系统的终止过程，调用系统终止相关的函数
  * 确保系统能够安全地关闭和清理资源
+ * 
+ * @return void 无返回值
+ * @note 此函数会立即终止系统运行，调用前应确保所有重要数据已保存
  */
 void TriggerSystemTermination(void)
 
@@ -13525,19 +13527,19 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
     ResourceDataOffset = LocalContextBuffer;
   }
   ContextDataBuffer = ValidationContext;
-  ProcessStatus = ValidateBufferContext(LongValue8,&BufferContextSize);
+  ProcessStatus = ValidateBufferContext(ResourceContextDataPointer,&BufferContextSize);
   if (ProcessStatus == 0) {
     ResourceHashPointer6 = (uint8_t *)(ValidationContext + 8);
     SecondaryBufferSize = 0;
-    StackPointer190 = ResourceHashPointer6;
+    ResourceHashStackPointer = ResourceHashPointer6;
     ResourceDataOffset = (*(code *)**(uint8_t **)(ValidationContext + 8))(ResourceHashPointer6);
-    ProcessStatus = ValidateBufferContext(*(uint8_t *)(LongValue8 + 0xd0),&SecondaryBufferSize);
+    ProcessStatus = ValidateBufferContext(*(uint8_t *)(ResourceContextDataPointer + 0xd0),&SecondaryBufferSize);
     if (ProcessStatus == 0) {
       OperationStatusFlags = 0;
-      StackPointer178 = &SystemResourceTemplateCache;
+      SystemResourceCachePointer = &SystemResourceTemplateCache;
       PrimaryContextLength = BufferContextSize;
       SecondaryContextLength = SecondaryBufferSize;
-      ProcessStatus = GetAndValidateResourceData(ObjectContext,&StackPointer178);
+      ProcessStatus = GetAndValidateResourceData(ObjectContext,&SystemResourceCachePointer);
       if (ProcessStatus == 0) {
         ResourceValidationBuffer = (int64_t)*(int *)(ResourceTable + 0x28);
         ResourceDataOffset = LocalContextBuffer;
@@ -13550,7 +13552,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
             ResourceHashPointer6 = StackPointer190;
             if ((ResourceCheckResult == '\0') && (*(float *)(ResourceIndex + 0x4c) != *(float *)(LoopOffset + 0x28))) {
               StackVariablePrimary = *(uint32_t *)(LocalContextBuffer + 4 + SystemDataPointer);
-              poperationParameter8 = &SystemResourceTemplateDatabase;
+              ResourceOperationParameter = &SystemResourceTemplateDatabase;
               ResourceDataLength = BufferContextSize;
               ResourceHandlerParam = 0;
               SystemDataPointer = (**(code **)*StackPointer190)(StackPointer190);
