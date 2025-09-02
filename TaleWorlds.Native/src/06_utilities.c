@@ -68367,7 +68367,19 @@ void CleanupResourceHashValidationResultPointerOffset80(uint8_t ObjectContext,in
 
 
 
-void Unwind_180909460(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证上下文中的系统状态
+ * 
+ * 该函数负责清理验证上下文中的系统状态信息
+ * 包括紧急退出处理和状态重置
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含验证相关的状态信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理过程中调用
+ * @warning 如果验证上下文状态异常，可能触发系统紧急退出
+ */
+void CleanupValidationContextSystemState(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 0xb1) == '\0') {
@@ -68383,29 +68395,55 @@ void Unwind_180909460(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909470(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理回调函数
+ * 
+ * 该函数负责调用资源管理器的清理回调函数
+ * 用于在资源释放时执行必要的清理操作
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含验证相关的状态信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数通常在资源释放过程中调用
+ * @warning 清理回调函数可能执行系统级操作
+ */
+void ExecuteResourceCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  code *CleanupCallbackPointer;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x10);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset),0,0,CleanupFlag,0xfffffffffffffffe);
+  CleanupCallbackPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x10);
+  if (CleanupCallbackPointer != (code *)0x0) {
+    (*CleanupCallbackPointer)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180909480(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 更新验证上下文中的资源表
+ * 
+ * 该函数负责遍历并更新验证上下文中的资源表
+ * 确保所有资源表都处于正确的状态
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源表信息
+ * @return 无返回值
+ * @note 此函数通常在资源管理过程中调用
+ * @warning 如果资源表状态异常，可能触发系统紧急退出
+ */
+void UpdateValidationContextResourceTable(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
-  int64_t ResourceTable;
+  int64_t ResourceTableCount;
+  int64_t ResourceTablePointer;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x148);
-  for (ResourceTable = *(int64_t *)(ValidationContext + 0x140); ResourceTable != SystemContextPointer; ResourceTable = ResourceTable + 0x78) {
-    UpdateResourceTable(ResourceTable);
+  ResourceTableCount = *(int64_t *)(ValidationContext + 0x148);
+  for (ResourceTablePointer = *(int64_t *)(ValidationContext + 0x140); ResourceTablePointer != SystemContextPointer; ResourceTablePointer = ResourceTablePointer + 0x78) {
+    UpdateResourceTable(ResourceTablePointer);
   }
   if (*(int64_t *)(ValidationContext + 0x140) == 0) {
     return;
@@ -68415,7 +68453,19 @@ void Unwind_180909480(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909490(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的系统数据结构引用
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构的引用
+ * 确保系统能够正确访问全局数据结构
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，需要设置数据结构引用
+ * @return 无返回值
+ * @note 此函数通常在系统初始化过程中调用
+ * @warning 确保系统数据结构已正确初始化
+ */
+void SetValidationContextSystemDataStructure(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x6a0) = &SystemDataStructure;
@@ -68424,7 +68474,19 @@ void Unwind_180909490(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809094a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的备用系统数据结构引用
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构的引用
+ * 与490函数功能相同，可能在不同的上下文中使用
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，需要设置数据结构引用
+ * @return 无返回值
+ * @note 此函数通常在系统初始化过程中调用
+ * @warning 确保系统数据结构已正确初始化
+ */
+void SetValidationContextSystemDataStructureAlternate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x6a0) = &SystemDataStructure;
