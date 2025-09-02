@@ -50326,7 +50326,19 @@ void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_1809059c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统上下文指针
+ * 
+ * 该函数负责重置系统上下文指针，确保系统上下文被正确重置
+ * 包括指针验证和重置操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContext 验证上下文参数，包含资源验证信息
+ * @return 无返回值
+ * @note 此函数通常在系统上下文重置过程中调用
+ * @warning 此函数涉及系统资源操作，需要谨慎处理
+ */
+void ResetSystemContextPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (**(int64_t **)(ValidationContext + 0x40) != 0) {
