@@ -21017,8 +21017,8 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
         }
         validationStatusFlag = *charPointerA0;
         while (validationStatusFlag != '\0') {
-          localDataIndex = strchr(&SystemCharacterReplacementTable,(int)charPointerA0[localSystemFlags]);
-          if (localDataIndex != 0) {
+          SystemCharIndex = strchr(&SystemCharacterReplacementTable,(int)charPointerA0[localSystemFlags]);
+          if (SystemCharIndex != 0) {
             charPointerA0[localSystemFlags] = '_';
           }
           localSystemFlags = localSystemFlags + 1;
@@ -21062,8 +21062,8 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
       systemFunctionPointer4 = *(char **)(SystemInitializationStatusCode + 8 + nextDataIndex1);
       validationStatusFlag = *systemFunctionPointer4;
       while (validationStatusFlag != '\0') {
-        localDataIndex = strchr(&SystemCharacterReplacementTable,(int)systemFunctionPointer4[nextDataIndex3]);
-        if (localDataIndex != 0) {
+        SystemCharPosition = strchr(&SystemCharacterReplacementTable,(int)systemFunctionPointer4[nextDataIndex3]);
+        if (SystemCharPosition != 0) {
           *(uint8_t *)(nextDataIndex3 + *(long long *)(localSystemFlags + 8 + nextDataIndex1)) = 0x5f;
         }
         nextDataIndex3 = nextDataIndex3 + 1;
@@ -21108,12 +21108,12 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
 void ProcessSystemMemoryRegion(long long *SystemResourceManager)
 
 {
-  long long nextDataIndex;
-  long long localSystemHandle;
+  long long SystemResourceTableEnd;
+  long long SystemResourceTableIterator;
   
-  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
-  for (localSystemHandle = *SystemResourceManager; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x100) {
-    ProcessSystemMemoryPage(localSystemHandle);
+  SystemResourceTableEnd = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
+  for (SystemResourceTableIterator = *SystemResourceManager; SystemResourceTableIterator != SystemResourceTableEnd; SystemResourceTableIterator = SystemResourceTableIterator + 0x100) {
+    ProcessSystemMemoryPage(SystemResourceTableIterator);
   }
   if (*SystemResourceManager == 0) {
     return;

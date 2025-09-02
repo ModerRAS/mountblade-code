@@ -65843,7 +65843,19 @@ void ExecuteResourceContextCallback1(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_180908c00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数2
+ * 
+ * 该函数负责执行资源上下文中的回调函数，处理资源相关的异常情况
+ * 如果资源上下文中存在回调函数指针，则调用该回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在资源处理过程中被调用
+ * @warning 原始函数名：Unwind_180908c00
+ */
+void ExecuteResourceContextCallback2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xd8) != (int64_t *)0x0) {
@@ -65854,7 +65866,19 @@ void Unwind_180908c00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908c10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责设置系统数据结构指针，将验证上下文中的指针指向系统数据结构
+ * 确保系统数据结构的正确引用
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统初始化过程中被调用
+ * @warning 原始函数名：Unwind_180908c10
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x1b8) = &SystemDataStructure;
@@ -65863,7 +65887,19 @@ void Unwind_180908c10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908c20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调函数
+ * 
+ * 该函数负责执行资源清理的回调函数，处理资源相关的异常情况
+ * 如果资源上下文中存在回调函数指针，则调用该回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在资源清理过程中被调用
+ * @warning 原始函数名：Unwind_180908c20
+ */
+void ExecuteResourceCleanupCallback1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x40) != (int64_t *)0x0) {
