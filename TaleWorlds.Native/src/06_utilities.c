@@ -68241,7 +68241,13 @@ void ProcessSystemResourceIndexValidationCleanup(uint8_t ObjectContext,int64_t V
 
 
 
-void Unwind_1809093e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段11
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_1809093e0
+ */
+void ProcessSystemResourceCleanupPhase11(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
