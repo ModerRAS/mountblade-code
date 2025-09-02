@@ -18828,9 +18828,9 @@ LibraryHandleLoadedSuccessfully:
     }
   }
 SymbolInitializationCleanup:
-  UnsignedStackFlagA0 = 0;
-  alternateBufferPtrB0 = (void* *)0x0;
-  systemGlobalDataPtrB8 = &SystemMemoryAllocatorReference;
+  SystemDataProcessingCounter = 0;
+  SecondarySystemBuffer = (void* *)0x0;
+  SystemGlobalDataPointer = &SystemMemoryAllocatorReference;
   int mutexUnlockResult = _Mtx_unlock(threadMutexPointer);
   if (mutexUnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
@@ -20124,18 +20124,18 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   pppEncryptionValue68 = &pppEncryptionValue68;
   encryptionPointerTriple60 = &pppEncryptionValue68;
   InitializeSystemStructure(&MemoryContextPointer,HashNodeData);
-  UnsignedStackFlag118 = 0;
-  UnsignedStackFlag110 = 0;
-  UnsignedStackFlagC0 = 0;
-  systemDataBuffer = 0;
-  SystemStackFlagB0 = 0;
-  UnsignedStackFlagA8 = 0;
-  UnsignedStackFlagA0 = 0;
-  systemConfigurationValue = 0;
-  SystemConfigurationValue = 0;
-  UnsignedStackFlag88 = 0;
-  UnsignedStackFlag80 = 0;
-  UnsignedStackFlag78 = 0;
+  SystemResourceCounter118 = 0;
+  SystemResourceCounter110 = 0;
+  SystemResourceCounterC0 = 0;
+  SystemDataBufferPointer = 0;
+  SystemStackStatusFlagB0 = 0;
+  SystemResourceCounterA8 = 0;
+  SystemResourceCounterA0 = 0;
+  SystemConfigurationValue1 = 0;
+  SystemConfigurationValue2 = 0;
+  SystemResourceCounter88 = 0;
+  SystemResourceCounter80 = 0;
+  SystemResourceCounter78 = 0;
   processFlags70 = 0;
   SystemOperationCode = *(ulong long *)(SystemResourceManager + 0x10);
   if (SystemOperationCode < *(ulong long *)(SystemResourceManager + 0x18)) {
@@ -20144,38 +20144,38 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
     SystemResourceTablePointer = *(void* *****)(SystemResourceManager + 0x10);
     goto MemoryAllocationComplete;
   }
-  bufferBaseAddress = *(long long *)(SystemResourceManager + 8);
-  localDataIndex = (long long)(SystemOperationCode - bufferBaseAddress) >> 8;
-  if (localDataIndex == 0) {
-    localDataIndex = 1;
-LocalDataPointerCheck:
-    localSystemHandle = CreateSystemThreadObject(SystemMemoryPoolTemplate,localDataIndex << 8,*(uint8_t *)(SystemResourceManager + 0x20));
+  SystemMemoryBaseAddress = *(long long *)(SystemResourceManager + 8);
+  SystemMemoryOffset = (long long)(SystemOperationCode - SystemMemoryBaseAddress) >> 8;
+  if (SystemMemoryOffset == 0) {
+    SystemMemoryOffset = 1;
+SystemMemoryOffsetCheck:
+    SystemResourceHandle = CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemMemoryOffset << 8,*(uint8_t *)(SystemResourceManager + 0x20));
     SystemOperationCode = *(ulong long *)(SystemResourceManager + 0x10);
-    bufferBaseAddress = *(long long *)(SystemResourceManager + 8);
+    SystemMemoryBaseAddress = *(long long *)(SystemResourceManager + 8);
   }
   else {
-    localDataIndex = localDataIndex * 2;
-    if (localDataIndex != 0) goto SystemDataPointerCheck;
+    SystemMemoryOffset = SystemMemoryOffset * 2;
+    if (SystemMemoryOffset != 0) goto SystemMemoryOffsetCheck;
   }
-  InitializeSystemBuffer(&encryptionPointerTripleX,bufferBaseAddress,SystemOperationCode,localSystemHandle);
+  InitializeSystemBuffer(&encryptionPointerTripleX,SystemMemoryBaseAddress,SystemOperationCode,SystemResourceHandle);
   ppSystemDataPointer = encryptionPointerTripleX;
   ProcessSystemData(encryptionPointerTripleX,&systemMemoryContext);
   systemResourceManagerContext = (void* ****)(ppSystemDataPointer + 0x20);
-  bufferBaseAddress = *(long long *)(SystemResourceManager + 0x10);
-  localSystemFlags = *(long long *)(SystemResourceManager + 8);
-  if (localSystemFlags != bufferBaseAddress) {
+  SystemResourceTableSize = *(long long *)(SystemResourceManager + 0x10);
+  SystemResourceTablePointer = *(long long *)(SystemResourceManager + 8);
+  if (SystemResourceTablePointer != SystemResourceTableSize) {
     do {
-      ProcessSystemMemoryPage(localSystemFlags);
-      localSystemFlags = localSystemFlags + 0x100;
-    } while (localSystemFlags != bufferBaseAddress);
-    localSystemFlags = *(long long *)(SystemResourceManager + 8);
+      ProcessSystemMemoryPage(SystemResourceTablePointer);
+      SystemResourceTablePointer = SystemResourceTablePointer + 0x100;
+    } while (SystemResourceTablePointer != SystemResourceTableSize);
+    SystemResourceTablePointer = *(long long *)(SystemResourceManager + 8);
   }
-  if (localSystemFlags != 0) {
-      SystemCleanupFunction(localSystemFlags);
+  if (SystemResourceTablePointer != 0) {
+      SystemCleanupFunction(SystemResourceTablePointer);
   }
-  *(long long *)(SystemResourceManager + 8) = localSystemHandle;
+  *(long long *)(SystemResourceManager + 8) = SystemResourceHandle;
   *(void* *****)(SystemResourceManager + 0x10) = systemResourceManagerContext;
-  *(long long *)(SystemResourceManager + 0x18) = localDataIndex * 0x100 + localSystemHandle;
+  *(long long *)(SystemResourceManager + 0x18) = SystemMemoryOffset * 0x100 + SystemResourceHandle;
 SystemValueCalculation:
   systemValue = (int)((ulong long)((long long)systemResourceManagerContext - *(long long *)(SystemResourceManager + 8)) >> 8) + -1;
   *(int *)(SystemResourceManager + 0x68) = systemValue;
@@ -20501,17 +20501,17 @@ void InitializeSystemCoreEngine(void)
   currentThreadId = GetSystemInitializationStatus();
   if (0 < SystemConfigDataPointerD) {
     InitializeSystemConfiguration(&SystemConfigurationTemplate,&SystemConfigPathBuffer,0,SystemConfigDataPointerD + -1);
-    IntegerStackCounter = IntegerStackCounter + -1;
-    localSystemFlags = (long long)IntegerStackCounter;
+    SystemPathLengthCounter = SystemPathLengthCounter + -1;
+    SystemPathOffset = (long long)SystemPathLengthCounter;
     systemCounter = -1;
-    if (-1 < IntegerStackCounter) {
+    if (-1 < SystemPathLengthCounter) {
       do {
-        systemCounter = IntegerStackCounter;
-        if (*(char *)(LocalStackStringBuffer + localSystemFlags) == '/') break;
-        IntegerStackCounter = IntegerStackCounter + -1;
-        localSystemFlags = localSystemFlags + -1;
+        systemCounter = SystemPathLengthCounter;
+        if (*(char *)(LocalStackStringBuffer + SystemPathOffset) == '/') break;
+        SystemPathLengthCounter = SystemPathLengthCounter + -1;
+        SystemPathOffset = SystemPathOffset + -1;
         systemCounter = -1;
-      } while (-1 < localSystemFlags);
+      } while (-1 < SystemPathOffset);
     }
     InitializeSystemConfiguration(&SystemConfigPathBuffer,&SystemConfigNameBuffer,systemCounter + 1,0xffffffff);
     systemCounter = FindSystemResourceIndex(&SystemResourceTemplate,&SystemConfigNameBuffer);
@@ -60394,7 +60394,17 @@ LAB_1800782e0:
 
 
 // 函数: void FUN_1800783b0(void)
-void FUN_1800783b0(void)
+/**
+ * @brief 初始化系统数据索引
+ * 
+ * 该函数负责初始化系统数据索引结构，包括内存分配、数据指针设置和索引配置。
+ * 用于系统数据的索引管理和快速访问。
+ * 
+ * @return 无返回值
+ * 
+ *FUN_1800783b0：InitializeSystemDataIndex
+ */
+void InitializeSystemDataIndex(void)
 
 {
   void* *SystemDataPointer;
@@ -60442,7 +60452,21 @@ void* * FUN_1800784e0(void* *SystemResourceManager,ulong long ConfigurationDataP
 
 
 // 函数: void FUN_180078550(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_180078550(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 配置系统资源管理器
+ * 
+ * 该函数负责配置系统资源管理器，包括资源池设置、数据偏移量配置和线程ID管理。
+ * 用于系统资源的配置和初始化。
+ * 
+ * @param SystemResourceManager 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 无返回值
+ * 
+ *FUN_180078550：ConfigureSystemResourceManager
+ */
+void ConfigureSystemResourceManager(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -60523,7 +60547,19 @@ void FUN_180078550(void* *SystemResourceManager,void* ConfigurationDataPointer,v
 
 
 // 函数: void FUN_1800786e0(void* *SystemResourceManager,long long ConfigurationDataPointer)
-void FUN_1800786e0(void* *SystemResourceManager,long long ConfigurationDataPointer)
+/**
+ * @brief 初始化系统资源数据
+ * 
+ * 该函数负责初始化系统资源数据，包括数据索引设置和配置标志处理。
+ * 用于系统资源数据的初始化和配置。
+ * 
+ * @param SystemResourceManager 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 无返回值
+ * 
+ *FUN_1800786e0：InitializeSystemResourceData
+ */
+void InitializeSystemResourceData(void* *SystemResourceManager,long long ConfigurationDataPointer)
 
 {
   long long resourceDataIndex;
