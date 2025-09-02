@@ -468,14 +468,14 @@ void* SystemMemoryDataPointerUnvigesimal;
 void* SystemMemoryDataPointerDuovigesimal;
 void* SystemMemoryDataPointerTrevigesimal;
 
-// 其他系统相关数据指针
-void* SystemGlobalDataPointerA;
-void* SystemGlobalDataPointerB;
-void* SystemGlobalDataPointerC;
-void* SystemGlobalDataPointerD;
-void* SystemGlobalDataPointerE;
-void* SystemGlobalDataPointerF;
-void* SystemGlobalDataPointerG;
+// 系统全局数据指针 - 用于存储系统全局数据的不同类型
+void* SystemGlobalDataPointerConfiguration;
+void* SystemGlobalDataPointerRuntime;
+void* SystemGlobalDataPointerState;
+void* SystemGlobalDataPointerContext;
+void* SystemGlobalDataPointerManager;
+void* SystemGlobalDataPointerHandler;
+void* SystemGlobalDataPointerProcessor;
 
 // 字符串处理器数据基址 - 用于存储字符串处理器的数据结构
 void* StringProcessorDatabaseMain;
@@ -10696,7 +10696,7 @@ Label_18062eece:
       puStack_d0 = &SystemNullPointer;
       SystemBufferValidate(pUnsignedValue);
     }
-    NetworkRequestResult = ProcessNetworkResponse(pNetworkRequestStatus1,&UNK_180a12e10);
+    NetworkRequestResult = ProcessNetworkResponse(pNetworkRequestStatus1,&NetworkResponseProcessingBuffer1);
     pNetworkRequestStatus4 = (char *)(ulonglong)NetworkRequestResult;
   }
   *param_3 = &SystemNullPointer;
@@ -10792,7 +10792,7 @@ Label_18062f2b6:
     if (pcVar4 == pcVar8 + -0x180a0794b) {
       pcVar4 = pNetworkRequestStatus0 + (longlong)pcVar4;
       if (pcVar4 <= pNetworkRequestStatus0) break;
-      LongData = (longlong)&UNK_180a0794c - (longlong)pNetworkRequestStatus0;
+      LongData = (longlong)&NetworkResponseProcessingBuffer2 - (longlong)pNetworkRequestStatus0;
       while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[LongData]) {
         pNetworkRequestStatus0 = pNetworkRequestStatus0 + 1;
         if (pcVar4 <= pNetworkRequestStatus0) goto Label_18062f340;
@@ -10831,7 +10831,7 @@ Label_18062f3b3:
         ProcessSystemCall(&pStackParameter1,LongData,pcVar4,pUnsignedSize,MemoryAddress3,MemoryAddress4);
         break;
       }
-      LongData = (longlong)&UNK_180a0ee30 - (longlong)pNetworkRequestStatus0;
+      LongData = (longlong)&NetworkResponseProcessingBuffer3 - (longlong)pNetworkRequestStatus0;
       while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[LongData]) {
         pNetworkRequestStatus0 = pNetworkRequestStatus0 + 1;
         if (pcVar4 <= pNetworkRequestStatus0) goto Label_18062f3b3;
@@ -11294,7 +11294,7 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   void *pStackCounter4;
   char *pcStack_28;
   MemoryAllocationResult = SystemMutexFlags;
-  ModuleInitializationResult = ProcessSystemInitializationData(param_1,&UNK_180a16818);
+  ModuleInitializationResult = ProcessSystemInitializationData(param_1,&SystemInitializationBuffer1);
   if (ModuleInitializationResult == 0) {
     return 0;
   }
@@ -13460,6 +13460,74 @@ int RegisterSystemModuleD(void);
  * 其他系统变量：
  * - UNK_18076804b -> SystemExceptionHandler
  * - UNK_18098a100 -> SystemHashTable
+ * 
+ * 2025年新增重命名变量：
+ * 
+ * 系统配置验证缓冲区：
+ * - UNK_180a3ac00 -> SystemConfigurationValidationBuffer19
+ * - UNK_180a3acf8 -> SystemConfigurationValidationBuffer20
+ * - UNK_180a3acd8 -> SystemConfigurationValidationBuffer21
+ * - UNK_180a3ad30 -> SystemConfigurationValidationBuffer22
+ * - UNK_180a3ad18 -> SystemConfigurationValidationBuffer23
+ * - UNK_180a3ac90 -> SystemConfigurationValidationBuffer24
+ * - UNK_180a3ac80 -> SystemConfigurationValidationBuffer25
+ * - UNK_180a3acc8 -> SystemConfigurationValidationBuffer26
+ * - UNK_180a3aca8 -> SystemConfigurationValidationBuffer27
+ * - UNK_180a3ade8 -> SystemConfigurationValidationBuffer28
+ * - UNK_180a3add0 -> SystemConfigurationValidationBuffer29
+ * - UNK_180a3ae18 -> SystemConfigurationValidationBuffer30
+ * - UNK_180a3ae00 -> SystemConfigurationValidationBuffer31
+ * - UNK_180a3ad88 -> SystemConfigurationValidationBuffer32
+ * - UNK_180a29da8 -> SystemConfigurationValidationBuffer33
+ * - UNK_180a3ad60 -> SystemConfigurationValidationBuffer34
+ * - UNK_180a3adb8 -> SystemConfigurationValidationBuffer35
+ * - UNK_180a3ada0 -> SystemConfigurationValidationBuffer36
+ * - UNK_180a3abe0 -> SystemConfigurationValidationBuffer37
+ * - UNK_180a1029c -> SystemConfigurationValidationBuffer38
+ * - UNK_180a3ac48 -> SystemConfigurationValidationBuffer39
+ * - UNK_180a3a960 -> SystemConfigurationValidationBuffer40
+ * - UNK_180a3ab28 -> SystemConfigurationValidationBuffer41
+ * - UNK_180a39f78 -> SystemConfigurationValidationBuffer42
+ * - UNK_180a3ab18 -> SystemConfigurationValidationBuffer43
+ * - UNK_180a39fb0 -> SystemConfigurationValidationBuffer44
+ * - UNK_180a3ab50 -> SystemConfigurationValidationBuffer45
+ * - UNK_180a3ab38 -> SystemConfigurationValidationBuffer46
+ * 
+ * 网络请求验证缓冲区：
+ * - UNK_180a3a650 -> NetworkRequestValidationBuffer1
+ * - UNK_180a3a640 -> NetworkRequestValidationBuffer2
+ * - UNK_180a3a800 -> NetworkRequestDataBuffer1
+ * - UNK_180a3a7a8 -> NetworkRequestDataBuffer2
+ * - UNK_180a3a798 -> NetworkRequestDataBuffer3
+ * - UNK_180a3a7d0 -> NetworkRequestDataBuffer4
+ * 
+ * 系统缓冲区大小缓冲区：
+ * - UNK_180a3ac10 -> SystemBufferSizeBuffer1
+ * - UNK_180a3abe8 -> SystemBufferSizeBuffer2
+ * - UNK_180a3a5c0 -> SystemBufferSizeBuffer3
+ * 
+ * 系统配置数据缓冲区：
+ * - UNK_180a2e2bc -> SystemConfigurationDataBuffer1
+ * - UNK_180a2e9e0 -> SystemConfigurationDataBufferSize1
+ * 
+ * 系统内存管理缓冲区：
+ * - UNK_180a1a470 -> SystemMemoryManagementBuffer1
+ * 
+ * 系统安全验证缓冲区：
+ * - UNK_180a0696c -> SystemSecurityValidationBuffer1
+ * - UNK_180a0ae28 -> SystemSecurityValidationBuffer2
+ * 
+ * 系统数据处理缓冲区：
+ * - UNK_180a19c8c -> SystemDataProcessingBuffer1
+ * - UNK_180a0ee38 -> SystemDataProcessingBuffer2
+ * 
+ * 网络响应处理缓冲区：
+ * - UNK_180a12e10 -> NetworkResponseProcessingBuffer1
+ * - UNK_180a0794c -> NetworkResponseProcessingBuffer2
+ * - UNK_180a0ee30 -> NetworkResponseProcessingBuffer3
+ * 
+ * 系统初始化缓冲区：
+ * - UNK_180a16818 -> SystemInitializationBuffer1
  * 
  * 注意：仍有部分UNK_变量需要继续处理，建议后续工作中继续完善。
  */
