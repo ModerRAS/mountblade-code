@@ -734,8 +734,8 @@ char SystemStatusFlagSecure;
 void* SystemMemoryBlockVault;
 void* SystemMemoryBlockSafe;
 void* SystemMemoryBlockLockbox;
-void* SystemMemoryBlockArchiveAlpha;
-void* SystemMemoryBlockArchiveBeta;
+void* SystemMemoryBlockArchivePrimary;
+void* SystemMemoryBlockArchiveSecondary;
 void* SystemMemoryBlockArchiveGamma;
 void* SystemMemoryBlockArchiveDelta;
 char SystemStatusFlagProtected;
@@ -35173,21 +35173,21 @@ void CreateAndInitializeSystemThread(void* systemResourceManager,void* configura
   void* systemContextValue;
   
   memoryAllocationEnd = &SystemGlobalDataReference;
-  SystemContextValue = 0;
-  pSystemEncryptionKey = (void* *)0x0;
-  SystemOperationCounter = 0;
-  SystemHashEntryPointer = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13,ConfigurationFlag,0xfffffffffffffffe);
-  *(uint8_t *)SystemHashEntryPointer = 0;
-  pSystemEncryptionKey = SystemHashEntryPointer;
-  SystemOperationStatus = StartSystemThread(SystemHashEntryPointer);
-  SystemContextValue = ConcatenatedValue44(SystemContextValue._4_4_,SystemOperationStatus);
-  *SystemHashEntryPointer = 0x6320726f74696445;
-  *(uint32_t *)(SystemHashEntryPointer + 1) = 0x69666e6f;
-  *(void*2 *)((long long)SystemHashEntryPointer + 0xc) = 0x67;
-  SystemOperationCounter = 0xd;
-  ManageSystemResource(SystemResourceManager,&memoryAllocationEnd);
+  systemContextValue = 0;
+  systemEncryptionKey = (void* *)0x0;
+  systemOperationCounter = 0;
+  systemHashEntryPointer = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13,configurationFlag,0xfffffffffffffffe);
+  *(uint8_t *)systemHashEntryPointer = 0;
+  systemEncryptionKey = systemHashEntryPointer;
+  systemOperationStatus = StartSystemThread(systemHashEntryPointer);
+  systemContextValue = ConcatenatedValue44(systemContextValue._4_4_,systemOperationStatus);
+  *systemHashEntryPointer = 0x6320726f74696445;
+  *(uint32_t *)(systemHashEntryPointer + 1) = 0x69666e6f;
+  *(void*2 *)((long long)systemHashEntryPointer + 0xc) = 0x67;
+  systemOperationCounter = 0xd;
+  ManageSystemResource(systemResourceManager,&memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
-    SystemCleanupFunction(SystemHashEntryPointer);
+    SystemCleanupFunction(systemHashEntryPointer);
 }
 
 
@@ -35203,14 +35203,14 @@ void CreateAndInitializeSystemThread(void* systemResourceManager,void* configura
  * @return 返回处理后的系统资源指针
  * @note 这是系统资源管理的重要组成部分，用于处理和释放资源
  */
-void* ProcessAndReleaseSystemResource(void* SystemResourceManager,ulong long ConfigurationDataPointer)
+void* ProcessAndReleaseSystemResource(void* systemResourceManager,ulong long configurationDataPointer)
 
 {
   InitializeSystemResourceProcessor();
-  if ((ConfigurationDataPointer & 1) != 0) {
-    free(SystemResourceManager,0xa90);
+  if ((configurationDataPointer & 1) != 0) {
+    free(systemResourceManager,0xa90);
   }
-  return SystemResourceManager;
+  return systemResourceManager;
 }
 
 
