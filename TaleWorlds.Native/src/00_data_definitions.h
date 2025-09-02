@@ -100,9 +100,9 @@ char SystemConfigurationFlagMain;
 char* SystemConstantStringMain;
 
 // 网络配置验证参数 - 用于验证网络配置数据
-void* NetworkConfigValidationParameter1;
-void* NetworkConfigValidationParameter2;
-void* NetworkConfigValidationParameter3;
+void* NetworkConfigAuthenticationType;
+void* NetworkConfigEncryptionAlgorithm;
+void* NetworkConfigCompressionMethod;
 void* NetworkConfigValidationParameter4;
 void* NetworkConfigValidationParameter5;
 void* NetworkConfigValidationParameter6;

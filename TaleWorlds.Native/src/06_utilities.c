@@ -83,7 +83,7 @@
 #define SystemMutexSecondaryAddress SystemMutexSecondaryAddress
 #define SystemDataStructureAddress SystemDataStructureAddress
 #define SystemSecondaryDataStructureAddress SystemSecondaryDataStructureAddress
-#define SystemDataBaseAddressConstant SystemDataBaseAddressConstant
+#define SystemDataBaseAddressConstant SystemDataBaseAddress
 #define SystemMutexTertiaryAddress SystemMutexTertiaryAddress
 #define SystemMutexQuaternaryAddress SystemMutexQuaternaryAddress
 #define SystemMutexQuinaryAddress SystemMutexQuinaryAddress
@@ -136,7 +136,7 @@
 #define ChecksumSeedValueVIVE 0x54495645
 #define ChecksumSeedValueBIVE 0x42495645
 #define ChecksumSeedValueSINI 0x54534e49
-#define ChecksumSeedValueMAP  0x2050414d
+#define ChecksumSeedValueMAP 0x2050414d
 #define ChecksumSeedValueLOMP 0x4f4c4d50
 #define ChecksumSeedValueBLOMP 0x424c4d50
 #define ChecksumSeedValueTIWS 0x54494157
