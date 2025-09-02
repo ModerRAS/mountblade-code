@@ -12892,7 +12892,7 @@ uint64_t SystemAudioGetFormat(uint64_t AudioContextPointer,uint32_t *FormatParam
       uStack_158 = 0;
       uStack_150 = 0;
       uStack_14c = 0;
-      _guard_check_icall(_DAT_180c69fd8);
+      _guard_check_icall(SystemConfigurationValidationBuffer);
       IntegerCounter = (*pBooleanCheck)(&uStack_1d0,&uStack_198,0x27);
       if (IntegerCounter != 0x27) goto Label_1808fa963;
       for (pMemoryAddress1 = auStack_1c0; pBooleanCheck = SystemFunctionPointer1, MemoryAddress0 = *pMemoryAddress1, MemoryAddress0 != 0;
@@ -12923,7 +12923,7 @@ Label_1808fa963:
         }
       }
       SystemBooleanFlag2 = SystemBooleanFlag1 == '\0';
-      if (_DAT_180c6a140 == 0) {
+      if (FileSystemHandle == 0) {
         LongValue = _wfsopen(param_1,&SystemFileOpenMode,0x40);
         if (LongValue == 0) {
           ProcessSystemBuffer(&SystemBufferName1,0xc1,&SystemBufferName2,&SystemBufferName3,param_1);
@@ -12957,17 +12957,17 @@ Label_1808fbdeb:
               return false;
             }
             IntegerCounter = 1;
-            LongCounter = _DAT_180c6a140;
+            LongCounter = FileSystemHandle;
             do {
-              _DAT_180c6a140 = LongCounter;
+              FileSystemHandle = LongCounter;
               if (LongAddress == 0) {
                 ExecuteSystemCommand(LongValue,SystemStateValue,&SystemCommandName1,LongData,IntegerCounter);
               }
               else {
                 ExecuteSystemCommand(LongValue,SystemStateValue,&SystemCommandName2,LongData,IntegerCounter,LongAddress);
               }
-              _DAT_180c6a140 = _wfsopen(LongValue,pUnsignedIndex,0x20);
-              if (_DAT_180c6a140 != 0) {
+              FileSystemHandle = _wfsopen(LongValue,pUnsignedIndex,0x20);
+              if (FileSystemHandle != 0) {
                 pUnsignedIndex = &SystemIndexName1;
                 MemoryAllocationResult = 0xeb;
                 param_1 = LongValue;
@@ -12979,15 +12979,15 @@ Label_1808fbdeb:
             pUnsignedIndex = &SystemIndexName2;
             MemoryAllocationResult = 0xef;
 Label_1808fbebe:
-            ProcessSystemBuffer(&UNK_18098b490,MemoryAllocationResult,&UNK_18098b470,pUnsignedIndex,param_1);
+            ProcessSystemBuffer(&SystemBufferPointer,MemoryAllocationResult,&SystemBufferPointer,pUnsignedIndex,param_1);
             free(LongData);
             free(LongValue);
           }
-          CharValue0 = _DAT_180c6a140 != 0;
+          CharValue0 = FileSystemHandle != 0;
         }
       }
       else {
-        ProcessSystemBuffer(&UNK_18098b490,0xb4,&UNK_18098b470,&UNK_18098b4e8,param_1);
+        ProcessSystemBuffer(&SystemBufferPointer,0xb4,&SystemBufferPointer,&UNK_18098b4e8,param_1);
         CharValue0 = true;
       }
       return CharValue0;
@@ -13026,23 +13026,23 @@ bool SystemAudioIsInitialized(void)
       if (unaff_SIL != '\0') {
         pMemoryAddress1 = &UNK_18098b45c;
       }
-      _DAT_180c6a140 = _wfsopen();
-      if ((1 < _DAT_180c6a148) && ((uint)unaff_R12 < in_stack_00000090)) {
+      FileSystemHandle = _wfsopen();
+      if ((1 < FileSystemStatusCounter) && ((uint)unaff_R12 < in_stack_00000090)) {
         uVar6 = GetConsoleWindow();
         in_stack_00000098 = (uint)unaff_R12;
         GetWindowThreadProcessId(uVar6,&stack0x00000098);
         StringProcessingResult = GetCurrentProcessId();
         if (StringProcessingResult != in_stack_00000098) {
           IntegerResult = AllocConsole();
-          DAT_180c6a14c = IntegerResult == 1;
+          FileSystemOperationFlag = IntegerResult == 1;
           SetConsoleTitleA(&SystemConsoleTitle);
         }
       }
-      DAT_180c6a14d = DAT_180c6a14c == (char)unaff_R12;
-      if (_DAT_180c6a140 == unaff_R12) {
+      FileSystemValidationFlag = FileSystemOperationFlag == (char)unaff_R12;
+      if (FileSystemHandle == unaff_R12) {
         LongLoop = _wfsopen();
         if (LongLoop == 0) {
-          ProcessSystemBuffer(&UNK_18098b490,0xc1,&UNK_18098b470,&UNK_18098b520);
+          ProcessSystemBuffer(&SystemBufferPointer,0xc1,&SystemBufferPointer,&UNK_18098b520);
           CharValue2 = false;
         }
         else {
@@ -13073,17 +13073,17 @@ Label_1808fbdeb:
               return false;
             }
             IntegerResult = 1;
-            LongCounter = _DAT_180c6a140;
+            LongCounter = FileSystemHandle;
             do {
-              _DAT_180c6a140 = LongCounter;
+              FileSystemHandle = LongCounter;
               if (LongLoop == 0) {
                 ExecuteSystemCommand(LongOffset,LongAddress,&UNK_18098b5f8,SystemStateValue,IntegerResult);
               }
               else {
                 ExecuteSystemCommand(LongOffset,LongAddress,&UNK_18098b5d8,SystemStateValue,IntegerResult);
               }
-              _DAT_180c6a140 = _wfsopen(LongOffset,pMemoryAddress1,0x20);
-              if (_DAT_180c6a140 != 0) {
+              FileSystemHandle = _wfsopen(LongOffset,pMemoryAddress1,0x20);
+              if (FileSystemHandle != 0) {
                 pMemoryAddress1 = &UNK_18098b610;
                 uVar6 = 0xeb;
                 goto Label_1808fbebe;
@@ -13094,21 +13094,21 @@ Label_1808fbdeb:
             pMemoryAddress1 = &UNK_18098b640;
             uVar6 = 0xef;
 Label_1808fbebe:
-            ProcessSystemBuffer(&UNK_18098b490,uVar6,&UNK_18098b470,pMemoryAddress1);
+            ProcessSystemBuffer(&SystemBufferPointer,uVar6,&SystemBufferPointer,pMemoryAddress1);
             free(SystemStateValue);
             free(LongOffset);
           }
-          CharValue2 = _DAT_180c6a140 != unaff_R12;
+          CharValue2 = FileSystemHandle != unaff_R12;
         }
       }
       else {
-        ProcessSystemBuffer(&UNK_18098b490,0xb4,&UNK_18098b470,&UNK_18098b4e8);
+        ProcessSystemBuffer(&SystemBufferPointer,0xb4,&SystemBufferPointer,&UNK_18098b4e8);
         CharValue2 = true;
       }
       return CharValue2;
     }
   }
-  DAT_180c6a14d = DAT_180c6a14c == (char)unaff_R12;
+  FileSystemValidationFlag = FileSystemOperationFlag == (char)unaff_R12;
   return true;
 }
 bool SystemAudioIsPlaying(void)
@@ -13151,17 +13151,17 @@ Label_1808fbdeb:
       return false;
     }
     LoopCounterValue = 1;
-    LongCounter = _DAT_180c6a140;
+    LongCounter = FileSystemHandle;
     do {
-      _DAT_180c6a140 = LongCounter;
+      FileSystemHandle = LongCounter;
       if (LongAddress == 0) {
         ExecuteSystemCommand(LongValue,SystemStateValue,&SystemCommandName1,LongIndex,LoopCounterValue);
       }
       else {
         ExecuteSystemCommand(LongValue,SystemStateValue,&SystemCommandName2,LongIndex,LoopCounterValue);
       }
-      _DAT_180c6a140 = _wfsopen(LongValue);
-      if (_DAT_180c6a140 != 0) {
+      FileSystemHandle = _wfsopen(LongValue);
+      if (FileSystemHandle != 0) {
         pUnsignedIndex = &SystemIndexName1;
         MemoryAllocationResult = 0xeb;
         goto Label_1808fbebe;
@@ -13172,29 +13172,29 @@ Label_1808fbdeb:
     pUnsignedIndex = &SystemIndexName2;
     MemoryAllocationResult = 0xef;
 Label_1808fbebe:
-    ProcessSystemBuffer(&UNK_18098b490,MemoryAllocationResult,&UNK_18098b470,pUnsignedIndex);
+    ProcessSystemBuffer(&SystemBufferPointer,MemoryAllocationResult,&SystemBufferPointer,pUnsignedIndex);
     free(LongIndex);
     free(LongValue);
   }
-  return _DAT_180c6a140 != unaff_R12;
+  return FileSystemHandle != unaff_R12;
 }
-  DAT_180c6a14d = DAT_180c6a14c == unaff_R12B;
+  FileSystemValidationFlag = FileSystemOperationFlag == unaff_R12B;
   return 1;
 }
-    DAT_180bf0082 = '\x01';
+    SystemStringProcessingFlag = '\x01';
     wcscpy_s(aStackLoopLimit,0x104,param_1);
-    if ((DAT_180bf0082 != '\0') && (wcscat_s(aStackLoopLimit,0x104,param_2), DAT_180bf0082 != '\0')) {
+    if ((SystemStringProcessingFlag != '\0') && (wcscat_s(aStackLoopLimit,0x104,param_2), SystemStringProcessingFlag != '\0')) {
       FinalizeSystemOperation(aStackLoopLimit,0);
     }
     _set_invalid_parameter_handler(MemoryAddress);
   }
   SystemSecurityCheck(StackCounter5 ^ (ulonglong)aStackParameter8);
 }
-  DAT_180bf0082 = '\x01';
+  SystemStringProcessingFlag = '\x01';
   wcscpy_s(auStackX_20,0x104);
-  if (DAT_180bf0082 != '\0') {
+  if (SystemStringProcessingFlag != '\0') {
     wcscat_s(auStackX_20,0x104);
-    if (DAT_180bf0082 != '\0') {
+    if (SystemStringProcessingFlag != '\0') {
       FinalizeSystemOperation(auStackX_20,0);
     }
   }
@@ -13229,8 +13229,8 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
     }
     IntegerCounter = GetValidationStatus();
     if ((IntegerCounter == 0) || (param_1 != 0)) {
-      ValidationStatusByte = 0x40 - ((byte)_DAT_180bf00a8 & 0x3f) & 0x3f;
-      _DAT_180c821e0 = (0xffffffffffffffffU >> ValidationStatusByte | -1L << 0x40 - ValidationStatusByte) ^ _DAT_180bf00a8;
+      ValidationStatusByte = 0x40 - ((byte)SystemSecurityMask & 0x3f) & 0x3f;
+      _DAT_180c821e0 = (0xffffffffffffffffU >> ValidationStatusByte | -1L << 0x40 - ValidationStatusByte) ^ SystemSecurityMask;
       uRam0000000180c821e8 = _DAT_180c821e0;
       _DAT_180c821f0 = _DAT_180c821e0;
       _DAT_180c821f8 = _DAT_180c821e0;

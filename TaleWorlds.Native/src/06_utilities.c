@@ -2554,9 +2554,12 @@ uint8_t ScriptClassTable;
 uint8_t ScriptMethodTable;
 uint8_t ScriptObjectTable;
 
- uint8_t InitializeResourceManager;
-uint8_t ConfigureResourceSettings;
-uint8_t SystemMemoryConfigDataTemplateSecureSpecialB;
+ // 资源管理器初始化标志 - 表示资源管理器是否已初始化
+ uint8_t ResourceManagerInitFlag;
+// 资源设置配置标志 - 表示资源设置是否已配置
+uint8_t ResourceSettingsConfigFlag;
+// 安全内存配置模板 - 用于系统安全相关的内存配置数据
+uint8_t SecureMemoryConfig;
 uint8_t ResourceAllocationTable;
 uint8_t SystemResourceQueue;
 uint8_t SystemResourceStack;
@@ -2564,9 +2567,12 @@ uint8_t SystemResourceBuffer;
 uint8_t SystemResourceCache;
 uint8_t SystemResourcePoolManager;
 
- uint8_t ProcessResourceOperations;
-uint8_t SystemResourceValidator;
-uint8_t SystemResourceChecker;
+ // 资源操作处理器 - 用于处理资源相关操作
+ uint8_t ResourceOperationsProcessor;
+// 资源验证器 - 用于验证系统资源的有效性
+uint8_t ResourceValidator;
+// 资源检查器 - 用于检查系统资源状态
+uint8_t ResourceChecker;
 uint8_t ResourceTrackerTable;
 uint8_t SystemResourceMonitor;
 uint8_t ResourceMonitorTable;
@@ -2760,7 +2766,8 @@ uint8_t SystemResourceHandler;
 uint8_t SystemResourceBalancer;
 uint8_t SystemResourceOptimizer;
 uint8_t SystemResourceMonitor;
-uint8_t SystemResourceValidator;
+// 资源验证器副本 - 用于验证系统资源的有效性
+uint8_t ResourceValidator2;
 uint8_t SystemResourceCleaner;
 uint8_t SystemResourceCollector;
 uint8_t SystemResourceCompactor;
@@ -8387,37 +8394,37 @@ void UpdateSystemConfigurationAndExecute(int64_t configObject, int64_t SystemCon
 uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int64_t validationContext,uint8_t securityFlags,uint8_t operationMode)
 
 {
-  float floatValueToValidate;
+  float ValidationFloatValue;
   uint8_t HashValidationResult;
-  int64_t contextPointer;
+  int64_t ContextPointer;
   uint8_t ObjectContextData;
-  int64_t stackBuffer;
+  int64_t StackBuffer;
   
-  floatValueToValidate = *(float *)(objectContext + 0x18);
-  stackBuffer = CONCAT44(stackBuffer.VectorComponent,floatValueToValidate);
-  if (((uint)floatValueToValidate & 0x7f800000) == 0x7f800000) {
+  ValidationFloatValue = *(float *)(objectContext + 0x18);
+  StackBuffer = CONCAT44(StackBuffer.VectorComponent,ValidationFloatValue);
+  if (((uint)ValidationFloatValue & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  if ((floatValueToValidate < 0.0) || (3.4028235e+38 <= floatValueToValidate)) {
+  if ((ValidationFloatValue < 0.0) || (3.4028235e+38 <= ValidationFloatValue)) {
     return 0x1f;
   }
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&stackBuffer);
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&StackBuffer);
   if ((int)HashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
-  if (stackBuffer == 0) {
-    contextPointer = 0;
+  if (StackBuffer == 0) {
+    ContextPointer = 0;
   }
   else {
-    contextPointer = stackBuffer + -8;
+    ContextPointer = StackBuffer + -8;
   }
-  *(uint32_t *)(contextPointer + 0x90) = *(uint32_t *)(objectContext + 0x18);
-  contextPointer = *(int64_t *)(validationContext + 0x98);
-  if ((*(int *)(contextPointer + 0x180) != 0) || (*(int *)(contextPointer + 0x184) != 0)) {
-    stackBuffer = 0;
-    InitializeSecurityContext(&stackBuffer,objectContext,securityFlags,operationMode,SecurityContextParameter);
-    if (stackBuffer == *(int64_t *)((int64_t)*(int *)(contextPointer + 0x17c) * 8 + 0x180c4f450)) {
-      validationResult = ProcessResourceValidation(contextPointer,objectContext);
+  *(uint32_t *)(ContextPointer + 0x90) = *(uint32_t *)(objectContext + 0x18);
+  ContextPointer = *(int64_t *)(validationContext + 0x98);
+  if ((*(int *)(ContextPointer + 0x180) != 0) || (*(int *)(ContextPointer + 0x184) != 0)) {
+    StackBuffer = 0;
+    InitializeSecurityContext(&StackBuffer,objectContext,securityFlags,operationMode,SecurityContextParameter);
+    if (StackBuffer == *(int64_t *)((int64_t)*(int *)(ContextPointer + 0x17c) * 8 + 0x180c4f450)) {
+      validationResult = ProcessResourceValidation(ContextPointer,objectContext);
       if ((int)validationResult == 0) {
         return 0;
       }
@@ -8425,7 +8432,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int6
     }
   }
   *(uint *)(objectContext + 8) = *(int *)(objectContext + 8) + 0xfU & 0xfffffff0;
-  validationResult = ExecuteSystemOperation(*(uint8_t *)(contextPointer + 0x1e0));
+  validationResult = ExecuteSystemOperation(*(uint8_t *)(ContextPointer + 0x1e0));
   if ((int)validationResult == 0) {
     return 0;
   }
@@ -46629,7 +46636,7 @@ void SetSystemDataStructureAtOffset0x278(uint8_t objectContext,int64_t validatio
 
 
 
-void Unwind_180905140(uint8_t objectContext,int64_t validationContext)
+void SetSystemDataStructureAtOffset0x250(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x250) = &SystemDataStructure;
@@ -46638,7 +46645,7 @@ void Unwind_180905140(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905150(uint8_t objectContext,int64_t validationContext)
+void ResetSystemResourceHandlerAtOffset0x128(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0x128) = &SystemResourceHandlerTemplate;
