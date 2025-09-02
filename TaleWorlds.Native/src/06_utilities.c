@@ -9798,7 +9798,7 @@ void ProcessFloatRangeClamping(void)
   SecondaryFloatValue = *(float *)(CombineInputRegisters(InputRegisterHigh,InputRegisterLow) + 0x38);
   CalculatedFloatResult = *(float *)(ResourceContext + 0x10);
   if ((CalculatedFloatResult <= CalculatedFloatResult) &&
-     (SecondaryFloatValue = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x3c), CalculatedFloatResult <= CalculatedFloatResult)) {
+     (SecondaryFloatValue = *(float *)(CombineInputRegisters(InputRegisterHigh,InputRegisterLow) + 0x3c), CalculatedFloatResult <= CalculatedFloatResult)) {
     SecondaryFloatValue = CalculatedFloatResult;
   }
   *(float *)(ResourceContext + 0x10) = CalculatedFloatResult;
