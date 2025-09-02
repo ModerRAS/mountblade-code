@@ -299,6 +299,16 @@ uint32_t CheckSystemStatus(void* SystemContext, uint32_t CheckType);
 uint32_t ProcessSystemObjectState(uint32_t ObjectHandle);
 
 /**
+ * @brief 执行系统退出操作（无参数版本）
+ * 
+ * 该函数用于执行系统退出操作，无参数版本
+ * 用于紧急情况下的系统退出
+ * 
+ * @return 无返回值
+ */
+void ExecuteSystemExitOperation(void);
+
+/**
  * @brief 执行系统操作
  * 
  * 该函数用于执行各种系统级别的操作
@@ -4600,22 +4610,12 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数用于增加系统对象的引用计数，管理对象的生命周期
- * 主要用于内存管理和对象跟踪
- * 
- * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
- * @return uint8_t 操作状态码，0表示成功，0x1c表示错误
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数负责增加指定对象的引用计数
- * 用于对象生命周期管理，确保对象在引用期间不会被释放
- * 函数会验证对象上下文的有效性，然后安全地增加引用计数
+ * 该函数负责增加指定对象的引用计数，用于对象生命周期管理
+ * 确保对象在引用期间不会被释放，是内存管理的重要组成部分
  * 
  * @param ObjectContext 对象上下文指针，包含对象的管理信息
  * @return uint8_t 返回操作结果，0表示成功，非0表示错误代码
- * @note 此函数用于对象引用计数管理，是内存管理的重要组成部分
+ * @note 此函数用于对象引用计数管理
  * @warning 如果对象上下文无效，函数会返回错误代码
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
@@ -29605,27 +29605,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
 
 
 /**
- * @brief 异常处理函数：解卷处理器类型1
- * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
- * 
- * @param ObjectContext 异常上下文参数
- * @param ValidationContext 系统上下文指针
- */
-/**
- * @brief 异常处理函数：解卷处理器类型1
- * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @return 无返回值
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
- * @brief 异常处理函数：解卷处理器类型1
+ * @brief 异常处理函数：解卷主上下文异常处理器
  * 
  * 该函数负责处理异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
@@ -29633,8 +29613,8 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * 
  * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
  * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @return 无返回值
  * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void UnwindPrimaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) != (int64_t *)0x0) {
@@ -29646,7 +29626,7 @@ void UnwindPrimaryContextExceptionHandler(uint8_t ObjectContext, int64_t Validat
 
 
 /**
- * @brief 异常处理函数：解卷处理器类型2
+ * @brief 异常处理函数：解卷次级上下文异常处理器
  * 
  * 该函数负责处理异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
@@ -29654,7 +29634,6 @@ void UnwindPrimaryContextExceptionHandler(uint8_t ObjectContext, int64_t Validat
  * 
  * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
  * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @return 无返回值
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
@@ -29668,7 +29647,7 @@ void UnwindSecondaryContextExceptionHandler(uint8_t ObjectContext, int64_t Valid
 
 
 /**
- * @brief 异常处理函数：解卷处理器类型3
+ * @brief 异常处理函数：解卷三级上下文异常处理器
  * 
  * 该函数负责处理异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
@@ -29676,7 +29655,6 @@ void UnwindSecondaryContextExceptionHandler(uint8_t ObjectContext, int64_t Valid
  * 
  * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
  * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @return 无返回值
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
@@ -29690,12 +29668,16 @@ void UnwindTertiaryContextExceptionHandler(uint8_t ObjectContext, int64_t Valida
 
 
 /**
- * @brief 异常处理函数：解卷处理器类型4
+ * @brief 异常处理函数：解卷四级上下文异常处理器
  * 
  * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理四级异常情况的资源清理工作
  * 
- * @param ObjectContext 异常上下文参数
- * @param ValidationContext 系统上下文指针
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void UnwindQuaternaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   uint8_t *ResourceHashPointer;
@@ -29710,12 +29692,16 @@ void UnwindQuaternaryContextExceptionHandler(uint8_t ObjectContext, int64_t Vali
 
 
 /**
- * @brief 异常处理函数：解卷处理器类型5
+ * @brief 异常处理函数：解卷五级上下文异常处理器
  * 
  * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理五级异常情况的资源清理工作
  * 
- * @param ObjectContext 异常上下文参数
- * @param ValidationContext 系统上下文指针
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void UnwindQuinaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   uint8_t *ResourceHashPointer;
@@ -29729,12 +29715,16 @@ void UnwindQuinaryContextExceptionHandler(uint8_t ObjectContext, int64_t Validat
 
 
 /**
- * @brief 异常处理函数：解卷处理器类型6
+ * @brief 异常处理函数：解卷六级上下文异常处理器
  * 
  * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理六级异常情况的资源清理工作
  * 
- * @param ObjectContext 异常上下文参数
- * @param ValidationContext 系统上下文指针
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void UnwindSenaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   **(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
