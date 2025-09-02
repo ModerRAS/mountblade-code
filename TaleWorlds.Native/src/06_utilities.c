@@ -13517,7 +13517,7 @@ uint8_t ValidateAndGetBufferContext(int64_t ObjectContext,uint8_t ValidationCont
   if (CleanupOption != 0) {
     ValidationStatusCode = *(int *)(ValidationContext + 0x220);
     if (ValidationStatusCode == 0) {
-      BufferTemplatePointer = &BufferTemplate1;
+      SecurityContextBuffer = &SecurityValidationTemplate1;
       ResourceOperationCounter = 0;
       ResourceProcessingStatus = 0;
       ResourceCleanupMode = CleanupOption;
@@ -13529,7 +13529,7 @@ ResourceProcessingHandler:
     else {
       GraphicsDataIndex = 0;
       if (1 < ResourceHashValidationStatusCode - 1U) {
-        GraphicsDataPointer = &BufferTemplate2;
+        GraphicsDataBuffer = &GraphicsProcessingTemplate2;
         ContextPackageValidationStatusCodePointer = &GraphicsDataPointer;
         GraphicsSeptenaryOperationFlag = 0;
         GraphicsPrimaryOperationFlag = 0;
@@ -13542,7 +13542,7 @@ ResourceProcessingHandler:
         GraphicsOctonaryOperationFlag = CleanupOption;
         goto ResourceProcessingHandler;
       }
-      GraphicsDataPointer = &BufferTemplate3;
+      GraphicsDataBuffer = &GraphicsProcessingTemplate3;
       GraphicsContextOffset = (uint64_t)CleanupOption << 0x20;
       GraphicsPrimaryOperationFlag = *(uint8_t *)(ValidationContext + ValidationContextSecurityDataOffset);
       GraphicsSecondaryOperationFlag = (uint64_t)CONCAT14(ResourceHashValidationStatusCode != 1,*(uint32_t *)(ValidationContext + ValidationContextGraphicsDataOffset));
@@ -13554,7 +13554,7 @@ ResourceProcessingHandler:
     ResourceOffset = *(int *)(ValidationContext + 0x18);
     ResourceType = *(uint32_t *)(ValidationContext + 0x1c);
     SecondaryGraphicsDataIndex = 0;
-    SecondaryGraphicsDataPointer = &BufferTemplate4;
+    SecondaryGraphicsDataBuffer = &GraphicsProcessingTemplate4;
     ValidationFlags = 0;
     CleanupOperation = CleanupOption;
     ValidationStatusCode = GetAndValidateResourceData(ObjectContext,&GraphicsDataSecondaryPointer);
@@ -13564,7 +13564,7 @@ ResourceProcessingHandler:
     if (0 < ResourceHashValidationStatusCode) {
       do {
         GraphicsDataIndex = 0;
-        GraphicsDataPointer = &BufferTemplate5;
+        GraphicsDataBuffer = &GraphicsProcessingTemplate5;
         GraphicsPrimaryOperationFlag = CONCAT44(GraphicsPrimaryOperationFlag.High28Bits,CleanupOption);
         OperationStatusCode = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
         if (OperationResult != 0) goto ResourceErrorHandler;
@@ -13585,7 +13585,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryPointer = &BufferTemplate6;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate6;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
@@ -13632,7 +13632,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryPointer = &BufferTemplate6;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate6;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
@@ -13679,7 +13679,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryPointer = &BufferTemplate6;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate6;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
@@ -13726,7 +13726,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryPointer = &BufferTemplate6;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate6;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
@@ -13776,7 +13776,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryPointer = &BufferTemplate7;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate7;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
