@@ -20002,27 +20002,27 @@ ResourceProcessingLoop:
 void ProcessLocalContextPointer(void)
 
 {
-  int64_t *processPointer;
+  int64_t *ProcessPointer;
   int PackageValidationStatusCode;
-  int64_t *registerPointer;
-  int64_t destinationPointer;
-  char stackParameter;
-  uint8_t stackBuffer;
-  uint stackValue;
+  int64_t *RegisterPointer;
+  int64_t DestinationPointer;
+  char StackParameter;
+  uint8_t StackBuffer;
+  uint StackValue;
   
-  LocalContextData = (int64_t *)*registerPointer;
-  stackBuffer = _stackValue;
+  LocalContextData = (int64_t *)*RegisterPointer;
+  StackBuffer = _stackValue;
   if (*LocalContextData == 0) {
     validationStatus = 0x1c;
   }
   else {
     if (LocalContextData[2] != 0) {
-      stackValue = 0;
+      StackValue = 0;
       validationStatus = ValidateObjectContextData(*LocalContextData,&ObjectStackBufferSecondary);
       if (validationStatus != 0) {
         return;
       }
-      if ((uint64_t)LocalContextData[2] < (uint64_t)stackValue + 1) {
+      if ((uint64_t)LocalContextData[2] < (uint64_t)StackValue + 1) {
         validationStatus = 0x11;
         goto ResourceProcessingLoop;
       }
@@ -20031,7 +20031,7 @@ void ProcessLocalContextPointer(void)
   }
 ResourceProcessingLoop:
   if (validationStatus == 0) {
-    *(bool *)(destinationPointer + 0x7c) = stackParameter != '\0';
+    *(bool *)(DestinationPointer + 0x7c) = StackParameter != '\0';
   }
   return;
 }
