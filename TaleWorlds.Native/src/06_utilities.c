@@ -3393,12 +3393,12 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
         do {
           GameObjectValidationState = *(uint8_t *)(ObjectDataBuffer + CurrentObjectPointer);
           ProcessingResult = ValidateObjectStatus(GameObjectValidationState);
-          if (ProcessingResultCode != 2) {
+          if (ProcessingResult != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidObject(GameObjectValidationState, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
-          CurrentGameObjectPointer = CurrentGameObjectPointer + 8;
+          CurrentObjectPointer = CurrentObjectPointer + 8;
         } while (ProcessedObjectCount < BufferIndex);
       }
       FreeObjectListMemory(&GameObjectDataBuffer);
