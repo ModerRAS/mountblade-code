@@ -28253,18 +28253,18 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
   (**(code **)(*(long long *)SystemResourceManager[0x56] + 0x140))((long long *)SystemResourceManager[0x56],pbufferBaseAddress);
   Sleep(1000);
   pGlobalDataFlags2 = &SystemGlobalDataReference;
-  if (lStack_1d8 != 0) {
+  if (SystemMemoryPoolHandle != 0) {
       SystemCleanupFunction();
   }
-  lStack_1d8 = 0;
+  SystemMemoryPoolHandle = 0;
   StackValue1c8 = (ulong long)StackValue1c8._4_4_ << 0x20;
   pGlobalDataFlags2 = &SystemMemoryAllocatorReference;
   pointerUnsigned190 = &SystemGlobalDataReference;
-  if (lStack_188 != 0) {
+  if (SystemResourcePoolPointer != 0) {
       SystemCleanupFunction();
   }
-  lStack_188 = 0;
-  systemFlag178 = 0;
+  SystemResourcePoolPointer = 0;
+  SystemThreadFlag = 0;
   pointerUnsigned190 = &SystemMemoryAllocatorReference;
   if (pbufferBaseAddress != (long long *)0x0) {
     (**(code **)(*pbufferBaseAddress + 0x38))(pbufferBaseAddress);

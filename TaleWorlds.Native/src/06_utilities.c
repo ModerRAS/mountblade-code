@@ -47132,7 +47132,6 @@ void SetValidationContextDataStructure(uint8_t ObjectContext,int64_t ValidationC
  * @return 无返回值
  * @note 此函数会验证资源索引并执行清理操作
  * @warning 调用此函数前必须确保验证上下文已正确初始化
- * @remark 原始函数名：Unwind_180905380
  */
 void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
@@ -47368,7 +47367,6 @@ void CleanupHandleContextCallback(uint8_t ObjectContext, int64_t ValidationConte
  * @return 无返回值
  * @note 此函数会调用验证上下文中偏移0x100处的回调函数
  * @warning 调用此函数前必须确保验证上下文已正确初始化
- * @remark 原始函数名：Unwind_180905400
  */
 void ExecuteValidationContextCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
@@ -61374,7 +61372,19 @@ void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int
 
 
 
-void Unwind_180907ce0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的指定位置
+ * 用于初始化验证上下文的系统数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，包含要操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数通常在系统初始化时调用
+ * @remark 原始函数名：Unwind_180907ce0
+ */
+void SetSystemDataStructureToValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x240) = &SystemDataStructure;
@@ -61383,7 +61393,20 @@ void Unwind_180907ce0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907cf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器模板并设置数据结构
+ * 
+ * 该函数负责初始化系统资源处理器模板并设置相关的数据结构
+ * 包括验证系统状态、清理临时数据并设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文，包含要操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数通常在系统初始化时调用
+ * @warning 如果系统状态异常，会触发紧急退出
+ * @remark 原始函数名：Unwind_180907cf0
+ */
+void InitializeSystemResourceHandlerTemplateAndSetDataStructure(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x1c0) = &SystemResourceHandlerTemplate;
@@ -61398,7 +61421,18 @@ void Unwind_180907cf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907d00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置资源哈希指针并验证
+ * 
+ * 该函数设置资源哈希指针，并验证相关状态
+ * 如果验证失败，会执行系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源哈希指针相关数据
+ * @return 无返回值
+ * @note 此函数主要用于资源哈希指针的初始化和验证
+ */
+void SetResourceHashPointerAndValidate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
