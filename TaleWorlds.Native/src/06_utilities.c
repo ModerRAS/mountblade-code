@@ -71595,7 +71595,7 @@ void SystemResourceCleanupHandler3(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_180909fe0(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_RegisterResourceHandlerC08(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xc08,8,10,ProcessResourceOperation,0xfffffffffffffffe);
@@ -71604,7 +71604,7 @@ void Unwind_180909fe0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a000(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_ProcessResourceContextC58(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -71619,15 +71619,19 @@ void Unwind_18090a000(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 /**
- * @brief 系统资源处理回滚函数A
+ * @brief 注册系统资源清理处理器
  * 
- * 该函数负责在异常情况下回滚资源处理操作
- * 注册资源处理器以确保系统状态的一致性
+ * 该函数负责在系统异常情况下注册资源处理器，用于确保系统状态的一致性。
+ * 当系统发生异常时，该处理器会被调用以执行必要的资源清理操作。
  * 
- * @param ObjectContext 回滚上下文参数1
- * @param ValidationContext 回滚上下文参数2
+ * @param ObjectContext 对象上下文，用于标识需要清理的资源对象
+ * @param ValidationContext 验证上下文，包含资源处理器的注册信息和系统状态
+ * 
+ * @return void
+ * 
+ * @note 该函数是系统异常处理机制的一部分，用于确保资源在异常情况下能够正确释放
  */
-void Unwind_18090a020(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_RegisterResourceHandlerForSystemCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xc60,8,0x14,ProcessResourceOperation);
@@ -71636,7 +71640,20 @@ void Unwind_18090a020(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a060(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表清理操作
+ * 
+ * 该函数负责遍历资源表并执行所有已注册资源的清理操作。
+ * 在系统异常情况下，确保所有资源都能被正确释放和清理。
+ * 
+ * @param ObjectContext 对象上下文，用于标识需要清理的资源对象
+ * @param ValidationContext 验证上下文，包含资源表的指针和系统状态信息
+ * 
+ * @return void
+ * 
+ * @note 如果资源表为空，函数会直接返回；如果清理过程中出现错误，会触发系统紧急退出
+ */
+void Unwind_ExecuteResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -71658,7 +71675,7 @@ void Unwind_18090a060(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a080(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_RegisterResourceHandlerWithValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x48),8,10,ProcessResourceOperation);
@@ -71667,7 +71684,7 @@ void Unwind_18090a080(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a0b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_ProcessResourceValidationWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + 0x48),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x10),
@@ -71677,7 +71694,7 @@ void Unwind_18090a0b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090a0c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_ValidateResourceContextAndCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + 0x48),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x10),
@@ -72049,7 +72066,7 @@ void SetupSystemResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a270(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_ExecuteValidationContextResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -72071,7 +72088,7 @@ void Unwind_18090a270(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a290(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_ExecuteSecondaryResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -72093,7 +72110,7 @@ void Unwind_18090a290(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a2b0(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_ExecuteTertiaryResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -72115,7 +72132,7 @@ void Unwind_18090a2b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a2d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_HandleResourceTableAccessWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x740,
@@ -72144,7 +72161,7 @@ void CleanupSystemResourceMutex(void)
 
 
 
-void Unwind_18090a330(void)
+void Unwind_DestroyMutex1(void)
 
 {
   MutexDestroyInPlace();
@@ -72153,7 +72170,7 @@ void Unwind_18090a330(void)
 
 
 
-void Unwind_18090a350(void)
+void Unwind_DestroyMutex2(void)
 
 {
   MutexDestroyInPlace();
@@ -72162,7 +72179,7 @@ void Unwind_18090a350(void)
 
 
 
-void Unwind_18090a370(void)
+void Unwind_DestroyMutex3(void)
 
 {
   MutexDestroyInPlace();
@@ -72171,7 +72188,7 @@ void Unwind_18090a370(void)
 
 
 
-void Unwind_18090a390(void)
+void Unwind_DestroyMutex4(void)
 
 {
   MutexDestroyInPlace();
@@ -72180,7 +72197,7 @@ void Unwind_18090a390(void)
 
 
 
-void Unwind_18090a3b0(void)
+void Unwind_DestroyMutex5(void)
 
 {
   MutexDestroyInPlace();
@@ -72189,7 +72206,7 @@ void Unwind_18090a3b0(void)
 
 
 
-void Unwind_18090a3d0(void)
+void Unwind_DestroyMutex6(void)
 
 {
   MutexDestroyInPlace();
@@ -72198,7 +72215,7 @@ void Unwind_18090a3d0(void)
 
 
 
-void Unwind_18090a3f0(void)
+void Unwind_DestroyMutex7(void)
 
 {
   MutexDestroyInPlace();
@@ -72207,7 +72224,7 @@ void Unwind_18090a3f0(void)
 
 
 
-void Unwind_18090a410(void)
+void Unwind_DestroyMutex8(void)
 
 {
   MutexDestroyInPlace();
@@ -72216,7 +72233,22 @@ void Unwind_18090a410(void)
 
 
 
-void Unwind_18090a430(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源哈希清理操作
+ * 
+ * 该函数负责清理资源哈希表和相关数据结构，确保资源在异常情况下能够正确释放。
+ * 主要处理资源哈希地址的清理、哈希操作的执行和资源句柄的释放。
+ * 
+ * @param ObjectContext 对象上下文，用于标识需要清理的资源对象
+ * @param ValidationContext 验证上下文，包含资源哈希表的指针和系统状态信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，用于控制清理过程中的特定行为
+ * 
+ * @return void
+ * 
+ * @note 该函数会检查资源哈希地址的有效性，只有在地址有效时才执行清理操作
+ */
+void Unwind_ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashAddress;
