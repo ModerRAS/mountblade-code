@@ -24005,7 +24005,7 @@ uint64_t ProcessFloatParameterResourceHash(float ObjectContext)
   int ResourceIterationIndex;
   int64_t SystemContextBase;
   int32_t ResourceRegisterValue;
-  int ResourceAccessIndex;
+  int ResourceAccessCounter;
   bool CarryFlag;
   float FloatingPointCalculationResult;
   float primaryValidationResult;
@@ -24048,7 +24048,7 @@ ResourceStackProcessing:
       }
       if (LoopIncrement == 0) {
         ContextValidationStatusCode = SystemRegisterContext & 0xffffffff;
-        ResourceAccessIndex = (int)CONCAT71(HashValidationResult,*(char *)(SystemExecutionPointer + 0x77) != '\0');
+        ResourceAccessCounter = (int)CONCAT71(HashValidationResult,*(char *)(SystemExecutionPointer + 0x77) != '\0');
         ResourceIterationIndex = (int)CONCAT71(HashValidationResult,*(char *)(SystemExecutionPointer + 0x77) == '\0');
       }
       else {
@@ -24129,7 +24129,7 @@ ResourceContextValidation:
     if (LoopIncrement < 0x70) {
       *(uint *)(SystemContextBase + 0x34) =
            (((*(uint *)(SystemExecutionPointer + 0x7f) | *(uint *)(SystemContextBase + 0x34)) &
-             ~*(uint *)(SystemExecutionPointer + -0x29) | ResourceAccessIndex * 2) & ~(ResourceIterationIndex * 2) | ResourceCount * 4) &
+             ~*(uint *)(SystemExecutionPointer + -0x29) | ResourceAccessCounter * 2) & ~(ResourceIterationIndex * 2) | ResourceCount * 4) &
            ~(ResourceRegisterPointerD * 4);
       LoopIncrement = *(uint *)(ResourceContext + 8);
     }
@@ -27091,7 +27091,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t ObjectContext,i
   uint ResourceValidationBuffer [2];
   char ValidationFlag;
   char ResourceChecksumData [4];
-  uint ResourceAccessIndex;
+  uint ResourceAccessCounter;
   uint8_t ResourceChecksumData [40];
   uint8_t ResourceLowByteFlag [32];
   uint8_t ResourceOperationBuffer [32];
@@ -27206,11 +27206,11 @@ ContextValidationCheck:
           ValidationStatusCode = CalculateResourceHash(*ResourceTablePointer,ResourceChecksumData,1,1,0);
           goto ResourceAccessCheck;
         }
-        ResourceAccessIndex = 0;
+        ResourceAccessCounter = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointer,&ValidationStackA4);
         ValidationSuccess = ValidationStatusCode == 0;
         if (ValidationSuccess) {
-          if ((uint64_t)ResourceTablePointer[2] < (uint64_t)ResourceAccessIndex + 1) {
+          if ((uint64_t)ResourceTablePointer[2] < (uint64_t)ResourceAccessCounter + 1) {
             ValidationStatusCode = 0x11;
             goto ResourceAccessCheck;
           }
@@ -27241,10 +27241,10 @@ MemoryBoundaryCheckLoop1:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointer,ResourceChecksumData,1,1,0);
       }
       else {
-        ResourceAccessIndex = 0;
+        ResourceAccessCounter = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointer,&ValidationStackA4);
         if (ValidationStatusCode == 0) {
-          if ((uint64_t)ResourceAccessIndex + 1 <= (uint64_t)ResourceTablePointer[2]) goto MemoryBoundaryCheckLoop1;
+          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointer[2]) goto MemoryBoundaryCheckLoop1;
           ValidationStatusCode = 0x11;
         }
       }
@@ -27275,10 +27275,10 @@ MemoryBoundaryCheckLoop2:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointer,ResourceChecksumData,1,1,0);
       }
       else {
-        ResourceAccessIndex = 0;
+        ResourceAccessCounter = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointer,&ValidationStackA4);
         if (ValidationStatusCode == 0) {
-          if ((uint64_t)ResourceAccessIndex + 1 <= (uint64_t)ResourceTablePointer[2]) goto MemoryBoundaryCheckLoop2;
+          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointer[2]) goto MemoryBoundaryCheckLoop2;
           ValidationStatusCode = 0x11;
         }
       }
@@ -27309,10 +27309,10 @@ MemoryBoundaryCheckLoop3:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointer,ResourceChecksumData,1,1,0);
       }
       else {
-        ResourceAccessIndex = 0;
+        ResourceAccessCounter = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointer,&ValidationStackA4);
         if (ValidationStatusCode == 0) {
-          if ((uint64_t)ResourceAccessIndex + 1 <= (uint64_t)ResourceTablePointer[2]) goto MemoryBoundaryCheckLoop3;
+          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointer[2]) goto MemoryBoundaryCheckLoop3;
           ValidationStatusCode = 0x11;
         }
       }
@@ -27341,10 +27341,10 @@ MemoryBoundaryCheckLoop4:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointer,ResourceChecksumData,1,1,0);
       }
       else {
-        ResourceAccessIndex = 0;
+        ResourceAccessCounter = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointer,&ValidationStackA4);
         if (ValidationStatusCode == 0) {
-          if ((uint64_t)ResourceAccessIndex + 1 <= (uint64_t)ResourceTablePointer[2]) goto MemoryBoundaryCheckLoop4;
+          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointer[2]) goto MemoryBoundaryCheckLoop4;
           ValidationStatusCode = 0x11;
         }
       }
@@ -34605,6 +34605,18 @@ void UnwindExceptionHandlerSetup(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
+/**
+ * @brief 展开堆栈帧处理器
+ * 
+ * 该函数负责处理堆栈帧的展开操作，将系统数据结构指针
+ * 设置到验证上下文中，以便后续的处理操作使用
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于存储和验证系统状态
+ * @return 无返回值
+ * @note 此函数在堆栈展开过程中被调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
 void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -34942,6 +34954,17 @@ void UnwindResourceAllocationHandler(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
+/**
+ * @brief 带标志的清理资源处理程序
+ * 
+ * 该函数负责清理系统中的资源处理程序，支持不同的清理选项和标志。
+ * 根据提供的清理选项和标志执行不同的清理策略。
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
 void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -89899,6 +89922,15 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
+/**
+ * @brief 释放内存资源的处理程序
+ * 
+ * 该函数负责释放系统中的内存资源，遍历资源表并释放每个资源项。
+ * 确保内存资源在不再使用时能够正确释放，避免内存泄漏。
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ */
 void UnwindMemoryReleaseHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -89919,6 +89951,15 @@ void UnwindMemoryReleaseHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 重置系统状态的处理程序
+ * 
+ * 该函数负责重置系统状态，将系统资源表和相关状态重置为初始状态。
+ * 确保系统在异常情况下能够恢复正常状态。
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ */
 void UnwindSystemStateReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -89941,6 +89982,15 @@ void UnwindSystemStateReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 清理线程资源的处理程序
+ * 
+ * 该函数负责清理系统中的线程资源，包括线程相关的内存和同步对象。
+ * 确保线程在退出时能够正确释放所有相关资源。
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ */
 void UnwindThreadCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
