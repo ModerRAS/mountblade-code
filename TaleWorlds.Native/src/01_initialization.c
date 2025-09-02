@@ -41625,7 +41625,7 @@ void StartInputSystem(void* SystemResourceManager,long long ConfigurationDataPoi
   long long SystemMemoryOffset228;
   uint SystemAllocationSize;
   long long longValue210;
-  uint8_t aSystemMaxOperationCount8 [80];
+  uint8_t SystemMaxOperationCount8Extended [80];
   void* SystemOperationFlag1b8;
   void* *SystemResourcePointer1a8;
   uint8_t *pCalculationFlags1A0;
@@ -41995,7 +41995,7 @@ void InitializeSystemManager(long long *SystemResourceManager)
 void ConfigureInputSystem(void)
 
 {
-  uint8_t aSystemMaxOperationCount8 [48];
+  uint8_t SystemMaxOperationCount8Compact [48];
   uint32_t SystemTimeFlag1d8;
   void* SystemOperationFlag190;
   void* CONCAT448;
