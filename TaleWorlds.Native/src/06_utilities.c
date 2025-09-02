@@ -194,6 +194,163 @@
 #define CombineLoopControlWithException CONCAT71
 #define CombineMemoryAlignmentWithCheck CONCAT71
 
+/**
+ * @brief 合并验证上下文和参数
+ * 
+ * 该函数用于将验证上下文与参数合并为一个64位值
+ * 主要用于系统验证和资源管理操作
+ * 
+ * @param ValidationContext 验证上下文高57位
+ * @param Parameter 参数值低7位
+ * @return 合并后的64位值
+ */
+uint64_t CombineSystemContextWithValidation(uint64_t ValidationContext, uint8_t Parameter);
+
+/**
+ * @brief 计算数据校验和
+ * 
+ * 该函数用于计算数据的校验和，确保数据完整性
+ * 支持不同的校验算法和种子值
+ * 
+ * @param ValidationContext 验证上下文
+ * @param DataBuffer 数据缓冲区
+ * @param AlgorithmType 算法类型 (0=标准, 1=增强)
+ * @param SeedValue 种子值
+ * @return 计算得到的校验和值
+ */
+uint64_t ComputeDataChecksum(uint64_t ValidationContext, void* DataBuffer, int AlgorithmType, uint32_t SeedValue);
+
+/**
+ * @brief 计算数据校验和(扩展版)
+ * 
+ * 该函数是ComputeDataChecksum的扩展版本，支持更多参数
+ * 用于复杂的数据验证场景
+ * 
+ * @param ValidationContext 验证上下文
+ * @param DataBuffer 数据缓冲区
+ * @param AlgorithmType 算法类型 (0=标准, 1=增强)
+ * @param SeedValue 种子值
+ * @param AdditionalParam 额外参数
+ * @return 计算得到的校验和值
+ */
+uint64_t CalculateDataChecksum(uint64_t ValidationContext, void* DataBuffer, int AlgorithmType, uint32_t SeedValue, uint32_t AdditionalParam);
+
+/**
+ * @brief 验证内存访问
+ * 
+ * 该函数用于验证内存访问的安全性，防止非法内存访问
+ * 包含异常检查和内存边界验证
+ * 
+ * @param MemoryAddress 内存地址
+ * @param ValidationFlag 验证标志
+ * @return 验证结果
+ */
+uint32_t ValidateMemoryAccess(void* MemoryAddress, uint64_t ValidationFlag);
+
+/**
+ * @brief 终止系统进程
+ * 
+ * 该函数负责安全地终止系统进程
+ * 执行清理操作并确保系统正常关闭
+ * 
+ * @param SecurityToken 安全令牌，用于验证终止操作的合法性
+ * @return 无返回值，函数不会返回
+ */
+void TerminateSystem(uint64_t SecurityToken);
+
+/**
+ * @brief 检查系统状态
+ * 
+ * 该函数用于检查系统当前状态，验证系统是否正常运行
+ * 支持不同类型的系统状态检查
+ * 
+ * @param SystemContext 系统上下文
+ * @param CheckType 检查类型 (0=基本检查, 1=详细检查)
+ * @return 系统状态码，0表示正常，非0表示异常
+ */
+uint32_t CheckSystemStatus(void* SystemContext, uint32_t CheckType);
+
+/**
+ * @brief 处理系统对象状态
+ * 
+ * 该函数用于处理系统对象的状态变化
+ * 执行状态转换和相关操作
+ * 
+ * @param ObjectHandle 对象句柄
+ * @return 处理结果状态码
+ */
+uint32_t ProcessSystemObjectState(uint32_t ObjectHandle);
+
+/**
+ * @brief 执行系统操作
+ * 
+ * 该函数用于执行各种系统级别的操作
+ * 支持多种系统命令和操作类型
+ * 
+ * @param OperationHandle 操作句柄
+ * @param ContextBuffer 上下文缓冲区
+ * @return 操作结果状态码
+ */
+uint32_t ExecuteSystemOperation(uint32_t OperationHandle, void* ContextBuffer);
+
+/**
+ * @brief 处理网络请求
+ * 
+ * 该函数用于处理网络相关的请求操作
+ * 管理网络连接、数据传输和通信协议
+ * 
+ * @param NetworkContext 网络上下文
+ * @param RequestTemplate 请求模板
+ * @param RequestType 请求类型
+ * @param Priority 优先级
+ * @param Timeout 超时时间
+ * @return 处理结果状态码
+ */
+uint32_t ProcessNetworkRequest(void* NetworkContext, void* RequestTemplate, uint32_t RequestType, uint32_t Priority, uint32_t Timeout);
+
+/**
+ * @brief 检查系统状态（无参数版本）
+ * 
+ * 该函数用于检查系统当前状态，无参数版本
+ * 
+ * @return 系统状态码，0表示正常，非0表示异常
+ */
+uint32_t CheckSystemStatus(void);
+
+/**
+ * @brief 处理系统对象操作
+ * 
+ * 该函数用于处理系统对象的各类操作
+ * 支持不同类型的对象操作和状态管理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param OperationType 操作类型
+ * @return 操作结果状态码
+ */
+uint32_t ProcessSystemObjectOperation(void* ObjectContext, uint32_t OperationType);
+
+/**
+ * @brief 处理系统上下文验证
+ * 
+ * 该函数用于验证系统上下文的有效性
+ * 确保系统上下文数据的完整性和正确性
+ * 
+ * @param SystemContext 系统上下文
+ * @return 验证结果状态码
+ */
+uint32_t ProcessSystemContextValidation(void* SystemContext);
+
+/**
+ * @brief 释放验证资源
+ * 
+ * 该函数用于释放验证过程中使用的资源
+ * 清理临时分配的内存和对象
+ * 
+ * @param ResourceHandles 资源句柄数组
+ * @return 释放结果状态码
+ */
+uint32_t ReleaseValidationResources(void* ResourceHandles);
+
 // 新增的偏移量常量
 #define ObjectContextValidationDataOffset 0x14
 #define SystemObjectContextSize 0x1000
@@ -34675,12 +34832,28 @@ void ReleaseFileSystemLock(uint8_t ObjectContext, int64_t ValidationContext, uin
 
 
 
+/**
+ * @brief 处理文件句柄清理操作
+ * 
+ * 该函数负责清理文件句柄相关的资源，包括释放内存和重置状态
+ * 主要用于文件系统操作完成后的资源回收工作
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于系统状态验证
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的行为
+ * @return 无返回值
+ * @note 此函数在文件操作完成后调用，确保资源正确释放
+ * @warning 调用此函数前必须确保相关资源已正确初始化
+ */
 void ProcessFileHandleCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashAddress;
   int64_t *ResourceTablePointer;
   uint8_t *HashValidationResultAddress;
+  uint8_t *PackageValidationStatusCodePointer;
+  int64_t LoopIncrement;
   uint8_t LoopCondition;
   
   ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x888);
@@ -34697,12 +34870,28 @@ void ProcessFileHandleCleanup(uint8_t ObjectContext,int64_t ValidationContext,ui
 
 
 
+/**
+ * @brief 处理目录句柄清理操作
+ * 
+ * 该函数负责清理目录句柄相关的资源，包括释放内存和重置状态
+ * 主要用于目录操作完成后的资源回收工作
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于系统状态验证
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的行为
+ * @return 无返回值
+ * @note 此函数在目录操作完成后调用，确保资源正确释放
+ * @warning 调用此函数前必须确保相关资源已正确初始化
+ */
 void ProcessDirectoryHandleCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashAddress;
   int64_t *ResourceTablePointer;
   uint8_t *HashValidationResultAddress;
+  uint8_t *PackageValidationStatusCodePointer;
+  int64_t LoopIncrement;
   uint8_t LoopCondition;
   
   ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8a8);
@@ -102215,6 +102404,21 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define BufferTertiaryOffset 0x88
 #define BufferHandleOffset 0xb8
 #define DataProcessingBufferOffset 0xd0
+
+// 美化的常量定义
+#define MemoryAlignmentMask 0xfffffff0
+#define MemoryAlignmentPadding 0xf
+#define InvalidResourceHandle 0xffffffff
+#define MaxUInt32Value 0xffffffff
+#define SecurityValidationFlag 0x10000000
+#define FloatNegativeOne 0xbf800000
+#define FloatOne 0x3f800000
+#define MinInt64Value -0x8000000000000000
+#define ResourceCleanupFlag 0xfdffffff
+#define ResourceActiveFlag 0x4000000
+#define ResourceInactiveFlag 0xfbffffff
+#define ByteAlignmentMask 0xffffff00
+#define MaxUInt64Value 0xffffffffffffffff
 
 // 系统上下文相关偏移量常量
 #define SystemContextPrimaryDataOffset 0x20
