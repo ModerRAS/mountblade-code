@@ -13863,10 +13863,10 @@ void SystemInitializerPrimary(void)
   uint32_t ResourceHashValidationQuaternary;
   uint32_t FloatSecondaryRegister;
   uint32_t FloatTertiaryRegister;
-  uint32_t FloatRegisterQuaternaryValue;
-  float FloatRegisterFifthValue;
-  uint32_t FloatRegisterTransformX;
-  uint32_t FloatRegisterTransformY;
+  uint32_t FloatQuaternaryRegister;
+  float FloatFifthRegister;
+  uint32_t FloatTransformX;
+  uint32_t FloatTransformY;
   uint32_t FloatRegisterTransformZ;
   uint32_t FloatResourceRegisterValue;
   uint32_t FloatPrimaryRegister;
