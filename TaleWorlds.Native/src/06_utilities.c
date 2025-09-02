@@ -100025,11 +100025,15 @@ void InitializeSystemDataStructureAI(void)
 
 
  /**
- * 初始化系统数据结构AJ
- * 将全局变量 SecondarySystemDataPointer 设置为指向 SystemCoreDataStructure
- * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @brief 初始化系统数据结构AJ
+ * 
+ * 该函数负责初始化系统数据结构的辅助指针
+ * 将 SecondarySystemDataPointer 设置为指向 SystemCoreDataStructure
+ * 用于建立系统数据结构的引用关系
+ * 
+ * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAJ(void)
 void InitializeSystemDataStructureAJ(void)
 
 {
@@ -100042,12 +100046,16 @@ void InitializeSystemDataStructureAJ(void)
 
 
  /**
- * 初始化系统数据结构AK
- * 将全局变量 TertiarySystemDataPointer 设置为指向 SystemCoreDataStructure
- * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @brief 初始化系统数据结构AK
+ * 
+ * 该函数负责初始化系统数据结构的三级指针
+ * 将 TertiarySystemDataPointer 设置为指向 SystemCoreDataStructure
+ * 用于建立系统数据结构的三级引用关系
+ * 
+ * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAK(void)
-void InitializeSystemDataStructureAK(void)
+void InitializeTertiarySystemDataPointer(void)
 
 {
   TertiarySystemDataPointer = &SystemDataStructure;
@@ -100059,12 +100067,16 @@ void InitializeSystemDataStructureAK(void)
 
 
  /**
- * 初始化系统数据结构AL
- * 将全局变量 QuaternarySystemDataPointer 设置为指向 SystemCoreDataStructure
- * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @brief 初始化系统数据结构AL
+ * 
+ * 该函数负责初始化系统数据结构的四级指针
+ * 将 QuaternarySystemDataPointer 设置为指向 SystemCoreDataStructure
+ * 用于建立系统数据结构的四级引用关系
+ * 
+ * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAL(void)
-void InitializeSystemDataStructureAL(void)
+void InitializeQuaternarySystemDataPointer(void)
 
 {
   QuaternarySystemDataPointer = &SystemDataStructure;
@@ -100076,11 +100088,15 @@ void InitializeSystemDataStructureAL(void)
 
 
  /**
- * 初始化系统数据结构AM
- * 将全局变量 QuinarySystemDataPointer 设置为指向 SystemCoreDataStructure
- * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @brief 初始化系统数据结构AM
+ * 
+ * 该函数负责初始化系统数据结构的五级指针
+ * 将 QuinarySystemDataPointer 设置为指向 SystemCoreDataStructure
+ * 用于建立系统数据结构的五级引用关系
+ * 
+ * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAM(void)
 void InitializeSystemDataStructureAM(void)
 
 {
@@ -100093,11 +100109,15 @@ void InitializeSystemDataStructureAM(void)
 
 
  /**
- * 初始化系统数据结构AN
- * 将全局变量 SystemDataBufferPointer 设置为指向 SystemCoreDataStructure
- * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @brief 初始化系统数据结构AN
+ * 
+ * 该函数负责初始化系统数据结构的缓冲区指针
+ * 将 SystemDataBufferPointer 设置为指向 SystemCoreDataStructure
+ * 用于建立系统数据结构的缓冲区引用关系
+ * 
+ * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAN(void)
 void InitializeSystemDataStructureAN(void)
 
 {
@@ -100110,11 +100130,15 @@ void InitializeSystemDataStructureAN(void)
 
 
  /**
- * 初始化系统数据结构AO
- * 将全局变量 SystemDataCachePointer 设置为指向 SystemCoreDataStructure
- * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @brief 初始化系统数据结构AO
+ * 
+ * 该函数负责初始化系统数据结构的缓存指针
+ * 将 SystemDataCachePointer 设置为指向 SystemCoreDataStructure
+ * 用于建立系统数据结构的缓存引用关系
+ * 
+ * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAO(void)
 void InitializeSystemDataStructureAO(void)
 
 {
