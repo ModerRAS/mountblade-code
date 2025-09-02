@@ -26294,9 +26294,9 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
   bool OperationCompleted;
   uint aSecurityValidationContext [2];
   char cStackX_20;
-  char acStack_a8 [4];
-  uint uStack_a4;
-  uint8_t auStack_a0 [40];
+  char ResourceValidationBuffer [4];
+  uint ResourceAccessIndex;
+  uint8_t ResourceDataBuffer [40];
   uint8_t aResourceLowByteFlag [32];
   uint8_t ResourceOperationBuffer [32];
   
@@ -26374,7 +26374,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
   }
   else if (presourceTable[2] == 0) {
 EncryptedDataValidation:
-    loopIncrement = CalculateResourceHash(*presourceTable,auStack_a0,1,4,0);
+    loopIncrement = CalculateResourceHash(*presourceTable,ResourceDataBuffer,1,4,0);
   }
   else {
     aSecurityValidationContext[0] = 0;
@@ -26400,17 +26400,17 @@ EncryptedDataValidation:
 ResourceAccessCheck:
         ValidationSuccess = validationStatusCode == 0;
         if (ValidationSuccess) {
-          MemorySizeCheck = acStack_a8[0] != '\0';
+          MemorySizeCheck = ResourceValidationBuffer[0] != '\0';
           ValidationSuccess = true;
         }
       }
       else {
         if (presourceTable[2] == 0) {
 ContextValidationCheck:
-          validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
+          validationStatusCode = CalculateResourceHash(*presourceTable,ResourceValidationBuffer,1,1,0);
           goto ResourceAccessCheck;
         }
-        uStack_a4 = 0;
+        ResourceAccessIndex = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         ValidationSuccess = validationStatusCode == 0;
         if (ValidationSuccess) {
@@ -26442,10 +26442,10 @@ ContextValidationCheck:
       }
       else if (presourceTable[2] == 0) {
 MemoryBoundaryCheck1:
-        validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
+        validationStatusCode = CalculateResourceHash(*presourceTable,ResourceValidationBuffer,1,1,0);
       }
       else {
-        uStack_a4 = 0;
+        ResourceAccessIndex = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
           if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck1;
@@ -26476,10 +26476,10 @@ MemoryBoundaryCheck1:
       }
       else if (presourceTable[2] == 0) {
 MemoryBoundaryCheck2:
-        validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
+        validationStatusCode = CalculateResourceHash(*presourceTable,ResourceValidationBuffer,1,1,0);
       }
       else {
-        uStack_a4 = 0;
+        ResourceAccessIndex = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
           if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck2;
@@ -26510,10 +26510,10 @@ MemoryBoundaryCheck2:
       }
       else if (presourceTable[2] == 0) {
 MemoryBoundaryCheck3:
-        validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
+        validationStatusCode = CalculateResourceHash(*presourceTable,ResourceValidationBuffer,1,1,0);
       }
       else {
-        uStack_a4 = 0;
+        ResourceAccessIndex = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
           if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck3;
@@ -26542,10 +26542,10 @@ MemoryBoundaryCheck3:
       }
       else if (presourceTable[2] == 0) {
 MemoryBoundaryCheck4:
-        validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
+        validationStatusCode = CalculateResourceHash(*presourceTable,ResourceValidationBuffer,1,1,0);
       }
       else {
-        uStack_a4 = 0;
+        ResourceAccessIndex = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
           if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck4;
