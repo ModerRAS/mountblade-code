@@ -103,6 +103,22 @@
 #define ChecksumSeedValueTIW 0x54494157
 #define ChecksumSeedValueBTIW 0x42494157
 
+// 对象上下文偏移量常量
+#define ObjectContextDataArrayOffset 0x10
+#define ObjectContextValidationDataOffset 0x18
+#define ObjectContextProcessingDataOffset 0x20
+#define ObjectContextStatusDataOffset 0x24
+#define ObjectContextHandleDataOffset 0x1c
+#define ObjectContextResourceCountOffset 0x10
+#define ObjectContextResourceArrayOffset 0x20
+#define ObjectContextMatrixDataOffset 0x18
+#define ObjectContextMatrixFlagsOffset 0x2c
+#define ObjectContextMatrixScaleOffset 0x30
+#define ObjectContextMatrixTranslationOffset 0x34
+#define ObjectContextMatrixWComponentOffset 0x3c
+#define ObjectContextMatrixXCoordinateOffset 0x44
+#define ObjectContextSecurityContextOffset 0x40
+
 /**
  * @brief 初始化模块依赖关系
  * 
@@ -3974,7 +3990,7 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
   int64_t *ObjectIterator;
   int64_t ContextHandles[4];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), ContextHandles);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandles);
   if ((int)OperationResult == 0) {
     ObjectIterator = *(int64_t **)(ContextHandles[0] + 0x20);
     while ((*(int64_t **)(ContextHandles[0] + 0x20) <= ObjectIterator &&
@@ -4058,7 +4074,7 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext)
   uint8_t OperationResult;
   int64_t ContextHandles [4];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), ContextHandles);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandles);
   if ((int)OperationResult != 0) {
     return OperationResult;
   }
