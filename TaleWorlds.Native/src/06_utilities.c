@@ -2008,8 +2008,7 @@ uint8_t SecurityValidationDatabase;
 uint8_t SecurityValidationStatusFlags;
 uint8_t SecurityValidationIdentifier;
 
- void InitializeSecurityContext(void);
-/**
+ /**
  * @brief 初始化安全上下文
  * 
  * 该函数负责初始化系统的安全上下文
@@ -2021,8 +2020,7 @@ uint8_t SecurityTokenLength;
 uint8_t SecurityTokenType;
 uint8_t SecurityTokenAccessFlags;
 
- void ValidateSecurityToken(void);
-/**
+ /**
  * @brief 验证安全令牌
  * 
  * 该函数负责验证系统的安全令牌
