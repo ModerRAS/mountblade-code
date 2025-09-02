@@ -1404,7 +1404,7 @@ void InitializeSystemDataTableAllocator(void)
 {
   char IsSystemNodeActive;
   void** SystemDataTablePointer;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNodePointer;
@@ -1423,8 +1423,8 @@ void InitializeSystemDataTableAllocator(void)
   CurrentSystemNode = (void**)SystemRootNodePointer[1];
   
   while (IsSystemNodeActive == '\0') {
-    MemoryCompareResult = memcmp(CurrentSystemNode + 4, &SystemDataTableIdentifier, 0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentSystemNode + 4, &SystemDataTableIdentifier, 0x10);
+    if (MemoryComparisonResult < 0) {
       NextSystemNode = (void**)CurrentSystemNode[2];
       CurrentSystemNode = PreviousSystemNode;
     }
@@ -1437,7 +1437,7 @@ void InitializeSystemDataTableAllocator(void)
   }
   
   if ((PreviousSystemNode == SystemRootNodePointer) || 
-      (MemoryCompareResult = memcmp(&SystemDataTableIdentifier, PreviousSystemNode + 4, 0x10), MemoryCompareResult < 0)) {
+      (MemoryComparisonResult = memcmp(&SystemDataTableIdentifier, PreviousSystemNode + 4, 0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
     AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
     PreviousSystemNode = AllocatedSystemNode;
@@ -1467,7 +1467,7 @@ void InitializeSystemCoreConfig(void)
 {
   char IsSystemNodeActive;
   void** SystemDataTablePointer;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNodePointer;
@@ -1486,8 +1486,8 @@ void InitializeSystemCoreConfig(void)
   CurrentSystemNode = (void**)SystemRootNodePointer[1];
   
   while (IsSystemNodeActive == '\0') {
-    MemoryCompareResult = memcmp(CurrentSystemNode + 4, &SystemMemoryIdentifier, 0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentSystemNode + 4, &SystemMemoryIdentifier, 0x10);
+    if (MemoryComparisonResult < 0) {
       NextSystemNode = (void**)CurrentSystemNode[2];
       CurrentSystemNode = PreviousSystemNode;
     }
@@ -1500,7 +1500,7 @@ void InitializeSystemCoreConfig(void)
   }
   
   if ((PreviousSystemNode == SystemRootNodePointer) || 
-      (MemoryCompareResult = memcmp(&SystemMemoryIdentifier, PreviousSystemNode + 4, 0x10), MemoryCompareResult < 0)) {
+      (MemoryComparisonResult = memcmp(&SystemMemoryIdentifier, PreviousSystemNode + 4, 0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
     AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
     PreviousSystemNode = AllocatedSystemNode;
@@ -1530,7 +1530,7 @@ void InitializeSystemMemoryPool(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -1549,8 +1549,8 @@ void InitializeSystemMemoryPool(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -1561,7 +1561,7 @@ void InitializeSystemMemoryPool(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -1590,7 +1590,7 @@ void InitializeSystemThreadPool(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -1609,8 +1609,8 @@ void InitializeSystemThreadPool(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -1621,7 +1621,7 @@ void InitializeSystemThreadPool(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -1650,7 +1650,7 @@ void InitializeSystemEventManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -1669,8 +1669,8 @@ void InitializeSystemEventManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -1681,7 +1681,7 @@ void InitializeSystemEventManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -1711,7 +1711,7 @@ void InitializeSystemResourceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -1730,8 +1730,8 @@ void InitializeSystemResourceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -1742,7 +1742,7 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -1916,7 +1916,7 @@ void InitializeRenderingSystemConfig(void)
 {
   char SystemNodeFlag;
   void** SystemRootPointer;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long *SystemTablePointer;
   long long MemoryAllocationSize;
   void** SystemCurrentNode;
@@ -1932,8 +1932,8 @@ void InitializeRenderingSystemConfig(void)
   HashBucketNode = SystemRootPointer;
   SystemCurrentNode = (void* *)SystemRootPointer[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -1944,7 +1944,7 @@ void InitializeRenderingSystemConfig(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootPointer) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootPointer) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemTablePointer);
     AllocateSystemMemory(SystemTablePointer,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2026,7 +2026,7 @@ void InitializeSystemMemoryManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2042,8 +2042,8 @@ void InitializeSystemMemoryManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2054,7 +2054,7 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2081,7 +2081,7 @@ void InitializeSystemMemoryAllocator(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2097,8 +2097,8 @@ void InitializeSystemMemoryAllocator(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2109,7 +2109,7 @@ void InitializeSystemMemoryAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2189,7 +2189,7 @@ void InitializeSystemThreadManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2205,8 +2205,8 @@ void InitializeSystemThreadManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2217,7 +2217,7 @@ void InitializeSystemThreadManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2244,7 +2244,7 @@ void InitializeSystemEventManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2260,8 +2260,8 @@ void InitializeSystemEventManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2272,7 +2272,7 @@ void InitializeSystemEventManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2468,7 +2468,7 @@ void InitializeSystemDataTableStructureA(void)
 {
   char DataTypeFlag;
   void** DataTablePointer;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long *SystemRootPointer;
   long long currentThreadId;
   void** CurrentNode;
@@ -2484,8 +2484,8 @@ void InitializeSystemDataTableStructureA(void)
   PreviousNode = DataTablePointer;
   CurrentNode = (void* *)DataTablePointer[1];
   while (DataTypeFlag == '\0') {
-    MemoryCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void* *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -2496,7 +2496,7 @@ void InitializeSystemDataTableStructureA(void)
     CurrentNode = NextNode;
     DataTypeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((PreviousNode == DataTablePointer) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == DataTablePointer) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     currentThreadId = GetSystemMemorySize(SystemRootPointer);
     AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,currentThreadId + 0x20,currentThreadId);
     PreviousNode = NewNodePointer;
@@ -2524,7 +2524,7 @@ void InitializeSystemDataTableStructureB(void)
 {
   char DataTypeFlag;
   void** DataTablePointer;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemRootPointer;
   long long currentThreadId;
   void** CurrentNode;
@@ -2540,8 +2540,8 @@ void InitializeSystemDataTableStructureB(void)
   PreviousNode = DataTablePointer;
   CurrentNode = (void**)DataTablePointer[1];
   while (DataTypeFlag == '\0') {
-    MemoryCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void**)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -2552,7 +2552,7 @@ void InitializeSystemDataTableStructureB(void)
     CurrentNode = NextNode;
     DataTypeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((PreviousNode == DataTablePointer) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == DataTablePointer) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     currentThreadId = GetSystemMemorySize(SystemRootPointer);
     AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,currentThreadId + 0x20,currentThreadId);
     PreviousNode = NewNodePointer;
@@ -2580,7 +2580,7 @@ void InitializeSystemDataTableStructureC(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2596,8 +2596,8 @@ void InitializeSystemDataTableStructureC(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2608,7 +2608,7 @@ void InitializeSystemDataTableStructureC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateE,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2636,7 +2636,7 @@ void InitializeSystemDataTableStructureD(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2652,8 +2652,8 @@ void InitializeSystemDataTableStructureD(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2664,7 +2664,7 @@ void InitializeSystemDataTableStructureD(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2692,7 +2692,7 @@ void InitializeSystemDataTableStructureE(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2708,8 +2708,8 @@ void InitializeSystemDataTableStructureE(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2720,7 +2720,7 @@ void InitializeSystemDataTableStructureE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2748,7 +2748,7 @@ void InitializeSystemDataTableStructureF(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2764,8 +2764,8 @@ void InitializeSystemDataTableStructureF(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2776,7 +2776,7 @@ void InitializeSystemDataTableStructureF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2804,7 +2804,7 @@ void InitializeSystemDataTableStructureG(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2820,8 +2820,8 @@ void InitializeSystemDataTableStructureG(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2832,7 +2832,7 @@ void InitializeSystemDataTableStructureG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2860,7 +2860,7 @@ void InitializeSystemDataTableStructureH(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2876,8 +2876,8 @@ void InitializeSystemDataTableStructureH(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateO,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateO,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2888,7 +2888,7 @@ void InitializeSystemDataTableStructureH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateO,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateO,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -2916,7 +2916,7 @@ void InitializeSystemDataTableStructureI(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -2932,8 +2932,8 @@ void InitializeSystemDataTableStructureI(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -2944,7 +2944,7 @@ void InitializeSystemDataTableStructureI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemMemoryComparisonTemplate,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3022,7 +3022,7 @@ void InitializeSystemMemoryManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3038,8 +3038,8 @@ void InitializeSystemMemoryManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3050,7 +3050,7 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3130,7 +3130,7 @@ void InitializeSystemDataTable(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3146,8 +3146,8 @@ void InitializeSystemDataTable(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3158,7 +3158,7 @@ void InitializeSystemDataTable(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3181,7 +3181,7 @@ void InitializeSystemNodeTree(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3197,8 +3197,8 @@ void InitializeSystemNodeTree(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3209,7 +3209,7 @@ void InitializeSystemNodeTree(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3232,7 +3232,7 @@ void InitializeMemoryAllocator(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3248,8 +3248,8 @@ void InitializeMemoryAllocator(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3260,7 +3260,7 @@ void InitializeMemoryAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3283,7 +3283,7 @@ void InitializeResourcePool(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3299,8 +3299,8 @@ void InitializeResourcePool(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3311,7 +3311,7 @@ void InitializeResourcePool(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3334,7 +3334,7 @@ void InitializeConfigurationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3350,8 +3350,8 @@ void InitializeConfigurationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3362,7 +3362,7 @@ void InitializeConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3385,7 +3385,7 @@ void InitializeEventSystem(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3401,8 +3401,8 @@ void InitializeEventSystem(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3413,7 +3413,7 @@ void InitializeEventSystem(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3440,7 +3440,7 @@ void InitializeSystemMemoryManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3456,8 +3456,8 @@ void InitializeSystemMemoryManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3468,7 +3468,7 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3495,7 +3495,7 @@ void InitializeSystemThreadPoolManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3511,8 +3511,8 @@ void InitializeSystemThreadPoolManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3523,7 +3523,7 @@ void InitializeSystemThreadPoolManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3550,7 +3550,7 @@ void InitializeSystemResourceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3566,8 +3566,8 @@ void InitializeSystemResourceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3578,7 +3578,7 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3607,7 +3607,7 @@ void InitializeSystemNodeTree(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3623,8 +3623,8 @@ void InitializeSystemNodeTree(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3635,7 +3635,7 @@ void InitializeSystemNodeTree(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3664,7 +3664,7 @@ void InitializeSystemDataTable(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3680,8 +3680,8 @@ void InitializeSystemDataTable(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3692,7 +3692,7 @@ void InitializeSystemDataTable(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3719,7 +3719,7 @@ void InitializeSystemEventHandler(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3735,8 +3735,8 @@ void InitializeSystemEventHandler(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3747,7 +3747,7 @@ void InitializeSystemEventHandler(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3774,7 +3774,7 @@ void InitializeSystemNetworkManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3790,8 +3790,8 @@ void InitializeSystemNetworkManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3802,7 +3802,7 @@ void InitializeSystemNetworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3829,7 +3829,7 @@ void InitializeSystemSecurityManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3845,8 +3845,8 @@ void InitializeSystemSecurityManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3857,7 +3857,7 @@ void InitializeSystemSecurityManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3884,7 +3884,7 @@ void InitializeSystemPerformanceMonitor(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3900,8 +3900,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3912,7 +3912,7 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3939,7 +3939,7 @@ void InitializeSystemDebugManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -3955,8 +3955,8 @@ void InitializeSystemDebugManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -3967,7 +3967,7 @@ void InitializeSystemDebugManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -3996,7 +3996,7 @@ void InitializeSystemMemoryAllocator(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4012,8 +4012,8 @@ void InitializeSystemMemoryAllocator(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4024,7 +4024,7 @@ void InitializeSystemMemoryAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4053,7 +4053,7 @@ void InitializeSystemResourcePool(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4069,8 +4069,8 @@ void InitializeSystemResourcePool(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4081,7 +4081,7 @@ void InitializeSystemResourcePool(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4110,7 +4110,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4126,8 +4126,8 @@ void InitializeSystemConfigurationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4138,7 +4138,7 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4167,7 +4167,7 @@ void InitializeSystemResourceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4183,8 +4183,8 @@ void InitializeSystemResourceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4195,7 +4195,7 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4224,7 +4224,7 @@ void InitializeSystemPerformanceMonitor(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4240,8 +4240,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4252,7 +4252,7 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4281,7 +4281,7 @@ void InitializeSystemDebugManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4297,8 +4297,8 @@ void InitializeSystemDebugManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4309,7 +4309,7 @@ void InitializeSystemDebugManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4338,7 +4338,7 @@ void InitializeSystemEventHandler(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4354,8 +4354,8 @@ void InitializeSystemEventHandler(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4366,7 +4366,7 @@ void InitializeSystemEventHandler(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4395,7 +4395,7 @@ void InitializeSystemNetworkManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4411,8 +4411,8 @@ void InitializeSystemNetworkManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4423,7 +4423,7 @@ void InitializeSystemNetworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4452,7 +4452,7 @@ void InitializeSystemSecurityManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4468,8 +4468,8 @@ void InitializeSystemSecurityManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4480,7 +4480,7 @@ void InitializeSystemSecurityManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4509,7 +4509,7 @@ void InitializeSystemDataTableStructureA(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4525,8 +4525,8 @@ void InitializeSystemDataTableStructureA(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4537,7 +4537,7 @@ void InitializeSystemDataTableStructureA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -4566,7 +4566,7 @@ void InitializeSystemResourceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4582,8 +4582,8 @@ void InitializeSystemResourceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4594,7 +4594,7 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
@@ -4625,7 +4625,7 @@ void InitializeSystemPerformanceMonitor(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4641,8 +4641,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4653,7 +4653,7 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
@@ -4684,7 +4684,7 @@ void InitializeSystemDebugManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -4700,8 +4700,8 @@ void InitializeSystemDebugManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -4712,7 +4712,7 @@ void InitializeSystemDebugManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
@@ -4793,7 +4793,7 @@ void InitializeSystemEventManager(void)
 {
   char NodeFlag;
   void* *DataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long *MemoryPointer;
   long long TimeValue;
   void* *RootNode;
@@ -4809,8 +4809,8 @@ void InitializeSystemEventManager(void)
   PreviousNode = RootNode;
   CurrentNode = (void* *)RootNode[1];
   while (NodeFlag == '\0') {
-    MemoryCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void* *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -4821,7 +4821,7 @@ void InitializeSystemEventManager(void)
     CurrentNode = NextNode;
     NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(DataTable);
@@ -4852,7 +4852,7 @@ void InitializeSystemNetworkManager(void)
 {
   char NodeFlag;
   void* *dataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long *memoryPointer;
   long long timeValue;
   void* *rootNode;
@@ -4868,8 +4868,8 @@ void InitializeSystemNetworkManager(void)
   PreviousNode = rootNode;
   CurrentNode = (void* *)rootNode[1];
   while (NodeFlag == '\0') {
-    MemoryCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void* *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -4880,7 +4880,7 @@ void InitializeSystemNetworkManager(void)
     CurrentNode = NextNode;
     NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((PreviousNode == rootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == rootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateG,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize;
     void** AllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(dataTable);
@@ -4911,7 +4911,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char NodeFlag;
   void* *dataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long *memoryPointer;
   long long timeValue;
   void* *rootNode;
@@ -4927,8 +4927,8 @@ void InitializeSystemConfigurationManager(void)
   PreviousNode = rootNode;
   CurrentNode = (void* *)rootNode[1];
   while (NodeFlag == '\0') {
-    MemoryCompareResult = memcmp(CurrentNode + 4,&CONFIGURATION_MANAGER_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&CONFIGURATION_MANAGER_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void* *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -4939,7 +4939,7 @@ void InitializeSystemConfigurationManager(void)
     CurrentNode = NextNode;
     NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((PreviousNode == rootNode) || (MemoryCompareResult = memcmp(&CONFIGURATION_MANAGER_ID,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == rootNode) || (MemoryComparisonResult = memcmp(&CONFIGURATION_MANAGER_ID,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize;
     void** AllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(dataTable);
@@ -4970,7 +4970,7 @@ void InitializeSystemResourceManager(void)
 {
   char NodeFlag;
   void* *dataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long *memoryPointer;
   long long timeValue;
   void* *rootNode;
@@ -4986,8 +4986,8 @@ void InitializeSystemResourceManager(void)
   PreviousNode = rootNode;
   CurrentNode = (void* *)rootNode[1];
   while (NodeFlag == '\0') {
-    MemoryCompareResult = memcmp(CurrentNode + 4,&RESOURCE_MANAGER_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&RESOURCE_MANAGER_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void* *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -4998,7 +4998,7 @@ void InitializeSystemResourceManager(void)
     CurrentNode = NextNode;
     NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((PreviousNode == rootNode) || (MemoryCompareResult = memcmp(&RESOURCE_MANAGER_ID,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == rootNode) || (MemoryComparisonResult = memcmp(&RESOURCE_MANAGER_ID,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize;
     void** AllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(dataTable);
@@ -5029,7 +5029,7 @@ void InitializeSystemEventManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5045,8 +5045,8 @@ void InitializeSystemEventManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&EVENT_MANAGER_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&EVENT_MANAGER_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5057,7 +5057,7 @@ void InitializeSystemEventManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&EVENT_MANAGER_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&EVENT_MANAGER_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5086,7 +5086,7 @@ void InitializeSystemDataManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5102,8 +5102,8 @@ void InitializeSystemDataManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&DATA_MANAGER_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&DATA_MANAGER_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5114,7 +5114,7 @@ void InitializeSystemDataManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&DATA_MANAGER_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&DATA_MANAGER_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5143,7 +5143,7 @@ void InitializeSystemResourceNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5159,8 +5159,8 @@ void InitializeSystemResourceNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&RESOURCE_NODE_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&RESOURCE_NODE_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5171,7 +5171,7 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&RESOURCE_NODE_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&RESOURCE_NODE_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5201,7 +5201,7 @@ void InitializeSystemNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5217,8 +5217,8 @@ void InitializeSystemNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5229,7 +5229,7 @@ void InitializeSystemNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5259,7 +5259,7 @@ void InitializeSystemDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5275,8 +5275,8 @@ void InitializeSystemDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5287,7 +5287,7 @@ void InitializeSystemDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5317,7 +5317,7 @@ void InitializeSystemResourceNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5333,8 +5333,8 @@ void InitializeSystemResourceNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5345,7 +5345,7 @@ void InitializeSystemResourceNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5375,7 +5375,7 @@ void InitializeSystemMemoryNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5391,8 +5391,8 @@ void InitializeSystemMemoryNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5403,7 +5403,7 @@ void InitializeSystemMemoryNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5463,7 +5463,7 @@ void InitializeSystemConfigurationNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5479,8 +5479,8 @@ void InitializeSystemConfigurationNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5491,7 +5491,7 @@ void InitializeSystemConfigurationNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5520,7 +5520,7 @@ void InitializeSystemEventNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5536,8 +5536,8 @@ void InitializeSystemEventNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5548,7 +5548,7 @@ void InitializeSystemEventNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5576,7 +5576,7 @@ void InitializeSystemResourceNode(void)
 {
   char SystemNodeFlag;
   void* SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5592,8 +5592,8 @@ void InitializeSystemResourceNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp((void*)((long long)SystemCurrentNode + 4),&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp((void*)((long long)SystemCurrentNode + 4),&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5604,7 +5604,7 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemCurrentNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryCompareResult < 0)) {
+  if ((SystemCurrentNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void** SystemAllocatedNode;
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
@@ -5633,7 +5633,7 @@ void InitializeSystemEventNode(void)
 {
   char SystemNodeFlag;
   void *SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void *SystemRootNode;
@@ -5649,8 +5649,8 @@ void InitializeSystemEventNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp((void*)((long long)SystemCurrentNode + 4),&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp((void*)((long long)SystemCurrentNode + 4),&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5661,7 +5661,7 @@ void InitializeSystemEventNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemCurrentNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryCompareResult < 0)) {
+  if ((SystemCurrentNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void *SystemAllocatedNode;
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
@@ -5690,7 +5690,7 @@ void InitializeSystemMemoryNode(void)
 {
   char SystemNodeFlag;
   void *SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void *SystemRootNode;
@@ -5706,8 +5706,8 @@ void InitializeSystemMemoryNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp((void*)((long long)SystemCurrentNode + 4),&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp((void*)((long long)SystemCurrentNode + 4),&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5718,7 +5718,7 @@ void InitializeSystemMemoryNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemCurrentNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryCompareResult < 0)) {
+  if ((SystemCurrentNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void *SystemAllocatedNode;
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
@@ -5763,8 +5763,8 @@ void InitializeRenderingSystem(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5775,7 +5775,7 @@ void InitializeRenderingSystem(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -5804,7 +5804,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -5820,8 +5820,8 @@ void InitializeSystemConfigurationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -5832,7 +5832,7 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6176,7 +6176,7 @@ void InitializeSystemDataTableNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6192,8 +6192,8 @@ void InitializeSystemDataTableNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6204,7 +6204,7 @@ void InitializeSystemDataTableNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6234,7 +6234,7 @@ void InitializeSystemConfigurationNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6250,8 +6250,8 @@ void InitializeSystemConfigurationNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6262,7 +6262,7 @@ void InitializeSystemConfigurationNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6292,7 +6292,7 @@ void InitializeSystemEventNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6308,8 +6308,8 @@ void InitializeSystemEventNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6320,7 +6320,7 @@ void InitializeSystemEventNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6350,7 +6350,7 @@ void InitializeSystemNodeTreeProcessor(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6366,8 +6366,8 @@ void InitializeSystemNodeTreeProcessor(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6378,7 +6378,7 @@ void InitializeSystemNodeTreeProcessor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6408,7 +6408,7 @@ void InitializeSystemMemoryPoolManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6424,8 +6424,8 @@ void InitializeSystemMemoryPoolManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6436,7 +6436,7 @@ void InitializeSystemMemoryPoolManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6466,7 +6466,7 @@ void InitializeSystemServiceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6482,8 +6482,8 @@ void InitializeSystemServiceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6494,7 +6494,7 @@ void InitializeSystemServiceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6524,7 +6524,7 @@ void InitializeSystemResourceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6540,8 +6540,8 @@ void InitializeSystemResourceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6552,7 +6552,7 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6582,7 +6582,7 @@ void InitializeSystemEventHandler(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6598,8 +6598,8 @@ void InitializeSystemEventHandler(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6610,7 +6610,7 @@ void InitializeSystemEventHandler(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6640,7 +6640,7 @@ void InitializeSystemTaskManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6656,8 +6656,8 @@ void InitializeSystemTaskManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6668,7 +6668,7 @@ void InitializeSystemTaskManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6698,7 +6698,7 @@ void InitializeSystemDataProcessor(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6714,8 +6714,8 @@ void InitializeSystemDataProcessor(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6726,7 +6726,7 @@ void InitializeSystemDataProcessor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6756,7 +6756,7 @@ void InitializeSystemCommunicationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6772,8 +6772,8 @@ void InitializeSystemCommunicationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6784,7 +6784,7 @@ void InitializeSystemCommunicationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6814,7 +6814,7 @@ void InitializeSystemMemoryManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6830,8 +6830,8 @@ void InitializeSystemMemoryManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6842,7 +6842,7 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6872,7 +6872,7 @@ void InitializeSystemThreadManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6888,8 +6888,8 @@ void InitializeSystemThreadManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6900,7 +6900,7 @@ void InitializeSystemThreadManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -6929,7 +6929,7 @@ void InitializeSystemResourceInitializer(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -6945,8 +6945,8 @@ void InitializeSystemResourceInitializer(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -6957,7 +6957,7 @@ void InitializeSystemResourceInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void** SystemAllocatedNode;
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
@@ -6987,7 +6987,7 @@ void InitializeSystemFloatingPointCalculator(void)
 {
   ulong long loopCounter;
   float *floatTablePointer;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   ulong long outerLoopCounter;
   uint innerLoopCounter;
   ulong long baseCounter;
@@ -7051,7 +7051,7 @@ void InitializeSystemEventManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7067,8 +7067,8 @@ void InitializeSystemEventManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7079,7 +7079,7 @@ void InitializeSystemEventManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void** SystemAllocatedNode;
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
@@ -7110,7 +7110,7 @@ void InitializeSystemSearchManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7126,8 +7126,8 @@ void InitializeSystemSearchManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7138,7 +7138,7 @@ void InitializeSystemSearchManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateE,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7168,7 +7168,7 @@ void InitializeSystemIndexManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7184,8 +7184,8 @@ void InitializeSystemIndexManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7196,7 +7196,7 @@ void InitializeSystemIndexManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7226,7 +7226,7 @@ void InitializeSystemCacheManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7242,8 +7242,8 @@ void InitializeSystemCacheManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7254,7 +7254,7 @@ void InitializeSystemCacheManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7284,7 +7284,7 @@ void InitializeSystemLogManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7300,8 +7300,8 @@ void InitializeSystemLogManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7312,7 +7312,7 @@ void InitializeSystemLogManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7342,7 +7342,7 @@ void InitializeSystemPerformanceMonitor(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7358,8 +7358,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7370,7 +7370,7 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7400,7 +7400,7 @@ void InitializeSystemResourceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7416,8 +7416,8 @@ void InitializeSystemResourceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7428,7 +7428,7 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7458,7 +7458,7 @@ void InitializeSystemEventDispatcher(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7474,8 +7474,8 @@ void InitializeSystemEventDispatcher(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7486,7 +7486,7 @@ void InitializeSystemEventDispatcher(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7516,7 +7516,7 @@ void InitializeSystemSecurityManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7532,8 +7532,8 @@ void InitializeSystemSecurityManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7544,7 +7544,7 @@ void InitializeSystemSecurityManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7574,7 +7574,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7590,8 +7590,8 @@ void InitializeSystemConfigurationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7602,7 +7602,7 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7632,7 +7632,7 @@ void InitializeSystemNetworkManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7648,8 +7648,8 @@ void InitializeSystemNetworkManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7660,7 +7660,7 @@ void InitializeSystemNetworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7690,7 +7690,7 @@ void InitializeSystemStorageManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7706,8 +7706,8 @@ void InitializeSystemStorageManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateO,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateO,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7718,7 +7718,7 @@ void InitializeSystemStorageManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateO,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateO,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7748,7 +7748,7 @@ void InitializeSystemProcessManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7764,8 +7764,8 @@ void InitializeSystemProcessManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7776,7 +7776,7 @@ void InitializeSystemProcessManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemMemoryComparisonTemplate,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7806,7 +7806,7 @@ void InitializeSystemThreadManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7822,8 +7822,8 @@ void InitializeSystemThreadManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7834,7 +7834,7 @@ void InitializeSystemThreadManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7858,7 +7858,7 @@ void InitializeSystemEventProcessor(void)
 {
   char EventNodeFlag;
   void* *eventSystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long *eventMemoryPointer;
   long long eventSystemTimeValue;
   void* *eventRootNode;
@@ -7874,8 +7874,8 @@ void InitializeSystemEventProcessor(void)
   eventPreviousNode = eventRootNode;
   eventCurrentNode = (void* *)eventRootNode[1];
   while (EventNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       eventNextNode = (void* *)eventCurrentNode[2];
       eventCurrentNode = eventPreviousNode;
     }
@@ -7886,7 +7886,7 @@ void InitializeSystemEventProcessor(void)
     eventCurrentNode = eventNextNode;
     EventNodeFlag = *(char*)((long long)eventNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(eventSystemDataTable);
     AllocateSystemMemory(eventSystemDataTable,&eventAllocatedNode,eventPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     eventPreviousNode = eventAllocatedNode;
@@ -7909,7 +7909,7 @@ void InitializeSystemResourceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7925,8 +7925,8 @@ void InitializeSystemResourceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7937,7 +7937,7 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -7960,7 +7960,7 @@ void InitializeSystemMemoryManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -7976,8 +7976,8 @@ void InitializeSystemMemoryManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -7988,7 +7988,7 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8011,7 +8011,7 @@ void InitializeSystemLogManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8027,8 +8027,8 @@ void InitializeSystemLogManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8039,7 +8039,7 @@ void InitializeSystemLogManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8062,7 +8062,7 @@ void InitializeSystemPerformanceMonitor(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8078,8 +8078,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8090,7 +8090,7 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8113,7 +8113,7 @@ void InitializeSystemSecurityMonitor(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8129,8 +8129,8 @@ void InitializeSystemSecurityMonitor(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8141,7 +8141,7 @@ void InitializeSystemSecurityMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8164,7 +8164,7 @@ void InitializeSystemNetworkManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8180,8 +8180,8 @@ void InitializeSystemNetworkManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8192,7 +8192,7 @@ void InitializeSystemNetworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateE,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8215,7 +8215,7 @@ void InitializeSystemStorageManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8231,8 +8231,8 @@ void InitializeSystemStorageManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8243,7 +8243,7 @@ void InitializeSystemStorageManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8266,7 +8266,7 @@ void InitializeSystemMemoryManagerNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8282,8 +8282,8 @@ void InitializeSystemMemoryManagerNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateO,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateO,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8294,7 +8294,7 @@ void InitializeSystemMemoryManagerNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateO,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateO,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8317,7 +8317,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8333,8 +8333,8 @@ void InitializeSystemConfigurationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8345,7 +8345,7 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemMemoryComparisonTemplate,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8368,7 +8368,7 @@ void InitializeSystemThreadManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8384,8 +8384,8 @@ void InitializeSystemThreadManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8396,7 +8396,7 @@ void InitializeSystemThreadManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8419,7 +8419,7 @@ void InitializeSystemProcessManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8435,8 +8435,8 @@ void InitializeSystemProcessManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8447,7 +8447,7 @@ void InitializeSystemProcessManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8470,7 +8470,7 @@ void InitializeSystemDeviceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8486,8 +8486,8 @@ void InitializeSystemDeviceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8498,7 +8498,7 @@ void InitializeSystemDeviceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8521,7 +8521,7 @@ void InitializeSystemServiceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8537,8 +8537,8 @@ void InitializeSystemServiceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8549,7 +8549,7 @@ void InitializeSystemServiceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8572,7 +8572,7 @@ void InitializeSystemDriverManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8588,8 +8588,8 @@ void InitializeSystemDriverManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8600,7 +8600,7 @@ void InitializeSystemDriverManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8630,7 +8630,7 @@ void InitializeSystemModuleManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8646,8 +8646,8 @@ void InitializeSystemModuleManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8658,7 +8658,7 @@ void InitializeSystemModuleManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8681,7 +8681,7 @@ void InitializeSystemComponentManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8697,8 +8697,8 @@ void InitializeSystemComponentManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8709,7 +8709,7 @@ void InitializeSystemComponentManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8732,7 +8732,7 @@ void InitializeSystemPluginManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8748,8 +8748,8 @@ void InitializeSystemPluginManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8760,7 +8760,7 @@ void InitializeSystemPluginManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8878,7 +8878,7 @@ void InitializeSystemFrameworkManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -8894,8 +8894,8 @@ void InitializeSystemFrameworkManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -8906,7 +8906,7 @@ void InitializeSystemFrameworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -8932,7 +8932,7 @@ void InitializeSystemSearchManagerD(void)
 {
   char IsSystemNodeActive;
   void** SystemDataTablePointer;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNodePointer;
@@ -8951,8 +8951,8 @@ void InitializeSystemSearchManagerD(void)
   currentSystemNode = (void**)SystemRootNodePointer[1];
   
   while (IsSystemNodeActive == '\0') {
-    MemoryCompareResult = memcmp(currentSystemNode + 4, &SystemDataComparisonTemplateI, 0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(currentSystemNode + 4, &SystemDataComparisonTemplateI, 0x10);
+    if (MemoryComparisonResult < 0) {
       nextSystemNode = (void**)currentSystemNode[2];
       currentSystemNode = previousSystemNode;
     }
@@ -8965,7 +8965,7 @@ void InitializeSystemSearchManagerD(void)
   }
   
   if ((previousSystemNode == SystemRootNodePointer) || 
-      (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI, previousSystemNode + 4, 0x10), MemoryCompareResult < 0)) {
+      (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI, previousSystemNode + 4, 0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
     AllocateSystemMemory(SystemDataTablePointer, &allocatedSystemNode, previousSystemNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
     previousSystemNode = allocatedSystemNode;
@@ -8993,7 +8993,7 @@ void InitializeSystemResourceNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9009,8 +9009,8 @@ void InitializeSystemResourceNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9021,7 +9021,7 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9047,7 +9047,7 @@ void InitializeSystemMemoryNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9063,8 +9063,8 @@ void InitializeSystemMemoryNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9075,7 +9075,7 @@ void InitializeSystemMemoryNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9101,7 +9101,7 @@ void InitializeSystemDataTableNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9117,8 +9117,8 @@ void InitializeSystemDataTableNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9129,7 +9129,7 @@ void InitializeSystemDataTableNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9155,7 +9155,7 @@ void InitializeSystemConfigurationNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9171,8 +9171,8 @@ void InitializeSystemConfigurationNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9183,7 +9183,7 @@ void InitializeSystemConfigurationNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9205,7 +9205,7 @@ void InitializeSystemEventNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9221,8 +9221,8 @@ void InitializeSystemEventNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9233,7 +9233,7 @@ void InitializeSystemEventNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9255,7 +9255,7 @@ void InitializeSystemThreadNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9271,8 +9271,8 @@ void InitializeSystemThreadNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9283,7 +9283,7 @@ void InitializeSystemThreadNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9328,7 +9328,7 @@ void InitializeSystemSecurityNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9344,8 +9344,8 @@ void InitializeSystemSecurityNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9356,7 +9356,7 @@ void InitializeSystemSecurityNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9378,7 +9378,7 @@ void InitializeSystemNetworkNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9394,8 +9394,8 @@ void InitializeSystemNetworkNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9406,7 +9406,7 @@ void InitializeSystemNetworkNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9428,7 +9428,7 @@ void InitializeSystemAudioNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9444,8 +9444,8 @@ void InitializeSystemAudioNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9456,7 +9456,7 @@ void InitializeSystemAudioNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9478,7 +9478,7 @@ void InitializeSystemInputNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9494,8 +9494,8 @@ void InitializeSystemInputNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9506,7 +9506,7 @@ void InitializeSystemInputNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9528,7 +9528,7 @@ void InitializeSystemPhysicsNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9544,8 +9544,8 @@ void InitializeSystemPhysicsNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9556,7 +9556,7 @@ void InitializeSystemPhysicsNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9578,7 +9578,7 @@ void InitializeSystemFileSystemNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9594,8 +9594,8 @@ void InitializeSystemFileSystemNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9606,7 +9606,7 @@ void InitializeSystemFileSystemNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9628,7 +9628,7 @@ void InitializeSystemDatabaseNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9644,8 +9644,8 @@ void InitializeSystemDatabaseNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9656,7 +9656,7 @@ void InitializeSystemDatabaseNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9687,7 +9687,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9703,8 +9703,8 @@ void InitializeSystemConfigurationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9715,7 +9715,7 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9746,7 +9746,7 @@ void InitializeSystemEventConfigurationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9762,8 +9762,8 @@ void InitializeSystemEventConfigurationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9774,7 +9774,7 @@ void InitializeSystemEventConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9805,7 +9805,7 @@ void InitializeSystemNetworkConfigurationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9821,8 +9821,8 @@ void InitializeSystemNetworkConfigurationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9833,7 +9833,7 @@ void InitializeSystemNetworkConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -9864,7 +9864,7 @@ void InitializeSystemSearchConfigurationManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -9880,8 +9880,8 @@ void InitializeSystemSearchConfigurationManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -9892,7 +9892,7 @@ void InitializeSystemSearchConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10175,7 +10175,7 @@ void InitializeSystemStringProcessorE(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10191,8 +10191,8 @@ void InitializeSystemStringProcessorE(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10203,7 +10203,7 @@ void InitializeSystemStringProcessorE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10225,7 +10225,7 @@ void InitializeSystemStringProcessorF(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10241,8 +10241,8 @@ void InitializeSystemStringProcessorF(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10253,7 +10253,7 @@ void InitializeSystemStringProcessorF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10275,7 +10275,7 @@ void InitializeSystemStringProcessorG(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10291,8 +10291,8 @@ void InitializeSystemStringProcessorG(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10303,7 +10303,7 @@ void InitializeSystemStringProcessorG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10325,7 +10325,7 @@ void InitializeSystemStringProcessorH(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10341,8 +10341,8 @@ void InitializeSystemStringProcessorH(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10353,7 +10353,7 @@ void InitializeSystemStringProcessorH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10375,7 +10375,7 @@ void InitializeSystemStringProcessorI(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10391,8 +10391,8 @@ void InitializeSystemStringProcessorI(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10403,7 +10403,7 @@ void InitializeSystemStringProcessorI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10425,7 +10425,7 @@ void InitializeSystemStringProcessorJ(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10441,8 +10441,8 @@ void InitializeSystemStringProcessorJ(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10453,7 +10453,7 @@ void InitializeSystemStringProcessorJ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10475,7 +10475,7 @@ void InitializeSystemStringProcessorK(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10491,8 +10491,8 @@ void InitializeSystemStringProcessorK(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10503,7 +10503,7 @@ void InitializeSystemStringProcessorK(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10525,7 +10525,7 @@ void InitializeSystemStringProcessorL(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10541,8 +10541,8 @@ void InitializeSystemStringProcessorL(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10553,7 +10553,7 @@ void InitializeSystemStringProcessorL(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10575,7 +10575,7 @@ void InitializeSystemStringProcessorM(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10591,8 +10591,8 @@ void InitializeSystemStringProcessorM(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10603,7 +10603,7 @@ void InitializeSystemStringProcessorM(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10625,7 +10625,7 @@ void InitializeSystemStringProcessorN(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10641,8 +10641,8 @@ void InitializeSystemStringProcessorN(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10653,7 +10653,7 @@ void InitializeSystemStringProcessorN(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10675,7 +10675,7 @@ void InitializeSystemStringProcessorO(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10691,8 +10691,8 @@ void InitializeSystemStringProcessorO(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10703,7 +10703,7 @@ void InitializeSystemStringProcessorO(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10725,7 +10725,7 @@ void InitializeSystemStringProcessorP(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10741,8 +10741,8 @@ void InitializeSystemStringProcessorP(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10753,7 +10753,7 @@ void InitializeSystemStringProcessorP(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10775,7 +10775,7 @@ void InitializeSystemStringProcessorQ(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10791,8 +10791,8 @@ void InitializeSystemStringProcessorQ(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10803,7 +10803,7 @@ void InitializeSystemStringProcessorQ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10825,7 +10825,7 @@ void InitializeSystemStringProcessorR(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10841,8 +10841,8 @@ void InitializeSystemStringProcessorR(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10853,7 +10853,7 @@ void InitializeSystemStringProcessorR(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10875,7 +10875,7 @@ void InitializeSystemStringProcessorS(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10891,8 +10891,8 @@ void InitializeSystemStringProcessorS(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10903,7 +10903,7 @@ void InitializeSystemStringProcessorS(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10925,7 +10925,7 @@ void InitializeSystemStringProcessorT(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10941,8 +10941,8 @@ void InitializeSystemStringProcessorT(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -10953,7 +10953,7 @@ void InitializeSystemStringProcessorT(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -10975,7 +10975,7 @@ void InitializeSystemStringProcessorU(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -10991,8 +10991,8 @@ void InitializeSystemStringProcessorU(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11003,7 +11003,7 @@ void InitializeSystemStringProcessorU(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11025,7 +11025,7 @@ void InitializeSystemStringProcessorV(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11041,8 +11041,8 @@ void InitializeSystemStringProcessorV(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11053,7 +11053,7 @@ void InitializeSystemStringProcessorV(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11075,7 +11075,7 @@ void InitializeSystemStringProcessorW(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11091,8 +11091,8 @@ void InitializeSystemStringProcessorW(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11103,7 +11103,7 @@ void InitializeSystemStringProcessorW(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11125,7 +11125,7 @@ void InitializeSystemStringProcessorX(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11141,8 +11141,8 @@ void InitializeSystemStringProcessorX(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11153,7 +11153,7 @@ void InitializeSystemStringProcessorX(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11175,7 +11175,7 @@ void InitializeSystemStringProcessorY(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11191,8 +11191,8 @@ void InitializeSystemStringProcessorY(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11203,7 +11203,7 @@ void InitializeSystemStringProcessorY(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11225,7 +11225,7 @@ void InitializeSystemStringProcessorZ(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11241,8 +11241,8 @@ void InitializeSystemStringProcessorZ(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11253,7 +11253,7 @@ void InitializeSystemStringProcessorZ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11275,7 +11275,7 @@ void InitializeSystemMemoryManagerA(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11291,8 +11291,8 @@ void InitializeSystemMemoryManagerA(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11303,7 +11303,7 @@ void InitializeSystemMemoryManagerA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11325,7 +11325,7 @@ void InitializeSystemMemoryManagerB(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11341,8 +11341,8 @@ void InitializeSystemMemoryManagerB(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11353,7 +11353,7 @@ void InitializeSystemMemoryManagerB(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11375,7 +11375,7 @@ void InitializeSystemMemoryManagerC(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11391,8 +11391,8 @@ void InitializeSystemMemoryManagerC(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11403,7 +11403,7 @@ void InitializeSystemMemoryManagerC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11425,7 +11425,7 @@ void InitializeSystemMemoryManagerD(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11441,8 +11441,8 @@ void InitializeSystemMemoryManagerD(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11453,7 +11453,7 @@ void InitializeSystemMemoryManagerD(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11475,7 +11475,7 @@ void InitializeSystemMemoryManagerE(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11491,8 +11491,8 @@ void InitializeSystemMemoryManagerE(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11503,7 +11503,7 @@ void InitializeSystemMemoryManagerE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11525,7 +11525,7 @@ void InitializeSystemMemoryManagerF(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11541,8 +11541,8 @@ void InitializeSystemMemoryManagerF(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11553,7 +11553,7 @@ void InitializeSystemMemoryManagerF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11580,7 +11580,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11596,8 +11596,8 @@ void InitializeSystemMemoryAllocatorSetup(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11608,7 +11608,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11635,7 +11635,7 @@ void InitializeSystemDataTableConfigurator(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11651,8 +11651,8 @@ void InitializeSystemDataTableConfigurator(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11663,7 +11663,7 @@ void InitializeSystemDataTableConfigurator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11685,7 +11685,7 @@ void InitializeSystemMemoryManagerG(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11701,8 +11701,8 @@ void InitializeSystemMemoryManagerG(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11713,7 +11713,7 @@ void InitializeSystemMemoryManagerG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11735,7 +11735,7 @@ void InitializeSystemMemoryManagerH(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11751,8 +11751,8 @@ void InitializeSystemMemoryManagerH(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11763,7 +11763,7 @@ void InitializeSystemMemoryManagerH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11785,7 +11785,7 @@ void InitializeSystemMemoryManagerI(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11801,8 +11801,8 @@ void InitializeSystemMemoryManagerI(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11813,7 +11813,7 @@ void InitializeSystemMemoryManagerI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11843,7 +11843,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11859,8 +11859,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11871,7 +11871,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11901,7 +11901,7 @@ void InitializeSystemEventDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11917,8 +11917,8 @@ void InitializeSystemEventDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11929,7 +11929,7 @@ void InitializeSystemEventDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -11959,7 +11959,7 @@ void InitializeSystemResourceNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -11975,8 +11975,8 @@ void InitializeSystemResourceNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -11987,7 +11987,7 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12017,7 +12017,7 @@ void InitializeSystemMemoryNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12033,8 +12033,8 @@ void InitializeSystemMemoryNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12045,7 +12045,7 @@ void InitializeSystemMemoryNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12075,7 +12075,7 @@ void InitializeSystemDeviceNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12091,8 +12091,8 @@ void InitializeSystemDeviceNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12103,7 +12103,7 @@ void InitializeSystemDeviceNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12180,7 +12180,7 @@ void InitializeSystemMemoryNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12196,8 +12196,8 @@ void InitializeSystemMemoryNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12208,7 +12208,7 @@ void InitializeSystemMemoryNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12237,7 +12237,7 @@ void InitializeSystemDeviceNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12253,8 +12253,8 @@ void InitializeSystemDeviceNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12265,7 +12265,7 @@ void InitializeSystemDeviceNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12294,7 +12294,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12310,8 +12310,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12322,7 +12322,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12351,7 +12351,7 @@ void InitializeSystemEventDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12367,8 +12367,8 @@ void InitializeSystemEventDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12379,7 +12379,7 @@ void InitializeSystemEventDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12408,7 +12408,7 @@ void InitializeSystemMemoryAllocatorNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12424,8 +12424,8 @@ void InitializeSystemMemoryAllocatorNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12436,7 +12436,7 @@ void InitializeSystemMemoryAllocatorNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12465,7 +12465,7 @@ void InitializeSystemConfigurationNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12481,8 +12481,8 @@ void InitializeSystemConfigurationNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12493,7 +12493,7 @@ void InitializeSystemConfigurationNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12522,7 +12522,7 @@ void InitializeSystemEventNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12538,8 +12538,8 @@ void InitializeSystemEventNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12550,7 +12550,7 @@ void InitializeSystemEventNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12579,7 +12579,7 @@ void InitializeSystemResourceNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12595,8 +12595,8 @@ void InitializeSystemResourceNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12607,7 +12607,7 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12636,7 +12636,7 @@ void InitializeSystemDataNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12652,8 +12652,8 @@ void InitializeSystemDataNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12664,7 +12664,7 @@ void InitializeSystemDataNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12693,7 +12693,7 @@ void InitializeSystemStringProcessor(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12709,8 +12709,8 @@ void InitializeSystemStringProcessor(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12721,7 +12721,7 @@ void InitializeSystemStringProcessor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12808,7 +12808,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12824,8 +12824,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12836,7 +12836,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12865,7 +12865,7 @@ void InitializeSystemEventDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12881,8 +12881,8 @@ void InitializeSystemEventDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12893,7 +12893,7 @@ void InitializeSystemEventDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12922,7 +12922,7 @@ void InitializeSystemResourceDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12938,8 +12938,8 @@ void InitializeSystemResourceDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -12950,7 +12950,7 @@ void InitializeSystemResourceDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -12979,7 +12979,7 @@ void InitializeSystemDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -12995,8 +12995,8 @@ void InitializeSystemDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13007,7 +13007,7 @@ void InitializeSystemDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13036,7 +13036,7 @@ void InitializeSystemStringDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13052,8 +13052,8 @@ void InitializeSystemStringDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13064,7 +13064,7 @@ void InitializeSystemStringDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13093,7 +13093,7 @@ void InitializeSystemMemoryDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13109,8 +13109,8 @@ void InitializeSystemMemoryDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13121,7 +13121,7 @@ void InitializeSystemMemoryDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13150,7 +13150,7 @@ void InitializeSystemDeviceDataNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13166,8 +13166,8 @@ void InitializeSystemDeviceDataNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13178,7 +13178,7 @@ void InitializeSystemDeviceDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13225,7 +13225,7 @@ void InitializeSystemSearchNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13241,8 +13241,8 @@ void InitializeSystemSearchNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13253,7 +13253,7 @@ void InitializeSystemSearchNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13282,7 +13282,7 @@ void InitializeSystemDebugNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13298,8 +13298,8 @@ void InitializeSystemDebugNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13310,7 +13310,7 @@ void InitializeSystemDebugNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13339,7 +13339,7 @@ void InitializeSystemLoggingNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13355,8 +13355,8 @@ void InitializeSystemLoggingNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13367,7 +13367,7 @@ void InitializeSystemLoggingNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13396,7 +13396,7 @@ void InitializeSystemPerformanceNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13412,8 +13412,8 @@ void InitializeSystemPerformanceNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13424,7 +13424,7 @@ void InitializeSystemPerformanceNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13453,7 +13453,7 @@ void InitializeSystemSecurityNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13469,8 +13469,8 @@ void InitializeSystemSecurityNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13481,7 +13481,7 @@ void InitializeSystemSecurityNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13510,7 +13510,7 @@ void InitializeSystemNetworkNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13526,8 +13526,8 @@ void InitializeSystemNetworkNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13538,7 +13538,7 @@ void InitializeSystemNetworkNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13567,7 +13567,7 @@ void InitializeSystemThreadNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13583,8 +13583,8 @@ void InitializeSystemThreadNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13595,7 +13595,7 @@ void InitializeSystemThreadNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13624,7 +13624,7 @@ void InitializeSystemProcessNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13640,8 +13640,8 @@ void InitializeSystemProcessNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13652,7 +13652,7 @@ void InitializeSystemProcessNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13682,7 +13682,7 @@ void InitializeSystemEventManagerG(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13698,8 +13698,8 @@ void InitializeSystemEventManagerG(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13710,7 +13710,7 @@ void InitializeSystemEventManagerG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13740,7 +13740,7 @@ void InitializeSystemEventManagerH(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13756,8 +13756,8 @@ void InitializeSystemEventManagerH(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13768,7 +13768,7 @@ void InitializeSystemEventManagerH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13798,7 +13798,7 @@ void InitializeSystemEventManagerI(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13814,8 +13814,8 @@ void InitializeSystemEventManagerI(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13826,7 +13826,7 @@ void InitializeSystemEventManagerI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13850,7 +13850,7 @@ void InitializeSystemEventManagerJ(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13866,8 +13866,8 @@ void InitializeSystemEventManagerJ(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13878,7 +13878,7 @@ void InitializeSystemEventManagerJ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13902,7 +13902,7 @@ void InitializeSystemEventManagerK(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13918,8 +13918,8 @@ void InitializeSystemEventManagerK(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13930,7 +13930,7 @@ void InitializeSystemEventManagerK(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -13954,7 +13954,7 @@ void InitializeSystemEventManagerL(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -13970,8 +13970,8 @@ void InitializeSystemEventManagerL(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -13982,7 +13982,7 @@ void InitializeSystemEventManagerL(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14006,7 +14006,7 @@ void InitializeSystemEventManagerM(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14022,8 +14022,8 @@ void InitializeSystemEventManagerM(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14034,7 +14034,7 @@ void InitializeSystemEventManagerM(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14164,7 +14164,7 @@ void InitializeSystemResourceManagerA(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14180,8 +14180,8 @@ void InitializeSystemResourceManagerA(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14192,7 +14192,7 @@ void InitializeSystemResourceManagerA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14216,7 +14216,7 @@ void InitializeSystemResourceManagerB(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14232,8 +14232,8 @@ void InitializeSystemResourceManagerB(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14244,7 +14244,7 @@ void InitializeSystemResourceManagerB(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14268,7 +14268,7 @@ void InitializeSystemResourceManagerC(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14284,8 +14284,8 @@ void InitializeSystemResourceManagerC(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14296,7 +14296,7 @@ void InitializeSystemResourceManagerC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14320,7 +14320,7 @@ void InitializeSystemResourceManagerD(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14336,8 +14336,8 @@ void InitializeSystemResourceManagerD(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14348,7 +14348,7 @@ void InitializeSystemResourceManagerD(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14372,7 +14372,7 @@ void InitializeSystemResourceManagerE(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14388,8 +14388,8 @@ void InitializeSystemResourceManagerE(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14400,7 +14400,7 @@ void InitializeSystemResourceManagerE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14425,7 +14425,7 @@ void InitializeSystemResourceManagerF(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14441,8 +14441,8 @@ void InitializeSystemResourceManagerF(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14453,7 +14453,7 @@ void InitializeSystemResourceManagerF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14478,7 +14478,7 @@ void InitializeSystemResourceManagerG(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14494,8 +14494,8 @@ void InitializeSystemResourceManagerG(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14506,7 +14506,7 @@ void InitializeSystemResourceManagerG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14531,7 +14531,7 @@ void InitializeSystemResourceManagerH(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14547,8 +14547,8 @@ void InitializeSystemResourceManagerH(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14559,7 +14559,7 @@ void InitializeSystemResourceManagerH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14584,7 +14584,7 @@ void InitializeSystemResourceManagerI(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14600,8 +14600,8 @@ void InitializeSystemResourceManagerI(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14612,7 +14612,7 @@ void InitializeSystemResourceManagerI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14637,7 +14637,7 @@ void InitializeSystemResourceManagerJ(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14653,8 +14653,8 @@ void InitializeSystemResourceManagerJ(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14665,7 +14665,7 @@ void InitializeSystemResourceManagerJ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14803,7 +14803,7 @@ void InitializeSystemDebugManagerA(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14819,8 +14819,8 @@ void InitializeSystemDebugManagerA(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14831,7 +14831,7 @@ void InitializeSystemDebugManagerA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14856,7 +14856,7 @@ void InitializeSystemDebugManagerB(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14872,8 +14872,8 @@ void InitializeSystemDebugManagerB(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14884,7 +14884,7 @@ void InitializeSystemDebugManagerB(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14909,7 +14909,7 @@ void InitializeSystemDebugManagerC(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14925,8 +14925,8 @@ void InitializeSystemDebugManagerC(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14937,7 +14937,7 @@ void InitializeSystemDebugManagerC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -14967,7 +14967,7 @@ void InitializeSystemResourceAllocator(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -14983,8 +14983,8 @@ void InitializeSystemResourceAllocator(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -14995,7 +14995,7 @@ void InitializeSystemResourceAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15025,7 +15025,7 @@ void InitializeSystemDataTableAllocator(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15041,8 +15041,8 @@ void InitializeSystemDataTableAllocator(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15053,7 +15053,7 @@ void InitializeSystemDataTableAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15076,7 +15076,7 @@ void InitializeSystemResourceComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15092,8 +15092,8 @@ void InitializeSystemResourceComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15104,7 +15104,7 @@ void InitializeSystemResourceComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15127,7 +15127,7 @@ void InitializeSystemAllocatorComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15143,8 +15143,8 @@ void InitializeSystemAllocatorComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15155,7 +15155,7 @@ void InitializeSystemAllocatorComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15178,7 +15178,7 @@ void InitializeSystemConfigurationComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15194,8 +15194,8 @@ void InitializeSystemConfigurationComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15206,7 +15206,7 @@ void InitializeSystemConfigurationComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15229,7 +15229,7 @@ void InitializeSystemCoreComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15245,8 +15245,8 @@ void InitializeSystemCoreComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15257,7 +15257,7 @@ void InitializeSystemCoreComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15280,7 +15280,7 @@ void InitializeSystemMemoryComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15296,8 +15296,8 @@ void InitializeSystemMemoryComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15308,7 +15308,7 @@ void InitializeSystemMemoryComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15331,7 +15331,7 @@ void InitializeSystemThreadComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15347,8 +15347,8 @@ void InitializeSystemThreadComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15359,7 +15359,7 @@ void InitializeSystemThreadComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15382,7 +15382,7 @@ void InitializeSystemEventComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15398,8 +15398,8 @@ void InitializeSystemEventComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15410,7 +15410,7 @@ void InitializeSystemEventComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15433,7 +15433,7 @@ void InitializeSystemSecurityComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15449,8 +15449,8 @@ void InitializeSystemSecurityComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15461,7 +15461,7 @@ void InitializeSystemSecurityComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15484,7 +15484,7 @@ void InitializeSystemNetworkComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15500,8 +15500,8 @@ void InitializeSystemNetworkComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15512,7 +15512,7 @@ void InitializeSystemNetworkComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15535,7 +15535,7 @@ void InitializeSystemDatabaseComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15551,8 +15551,8 @@ void InitializeSystemDatabaseComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15563,7 +15563,7 @@ void InitializeSystemDatabaseComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateF,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15586,7 +15586,7 @@ void InitializeSystemLoggingComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15602,8 +15602,8 @@ void InitializeSystemLoggingComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15614,7 +15614,7 @@ void InitializeSystemLoggingComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateE,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15637,7 +15637,7 @@ void InitializeSystemPerformanceComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15653,8 +15653,8 @@ void InitializeSystemPerformanceComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15665,7 +15665,7 @@ void InitializeSystemPerformanceComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15688,7 +15688,7 @@ void InitializeSystemDiagnosticComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15704,8 +15704,8 @@ void InitializeSystemDiagnosticComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15716,7 +15716,7 @@ void InitializeSystemDiagnosticComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15739,7 +15739,7 @@ void InitializeSystemDebugComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15755,8 +15755,8 @@ void InitializeSystemDebugComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15767,7 +15767,7 @@ void InitializeSystemDebugComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15790,7 +15790,7 @@ void InitializeSystemPluginComponent(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15806,8 +15806,8 @@ void InitializeSystemPluginComponent(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15818,7 +15818,7 @@ void InitializeSystemPluginComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateI,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15842,7 +15842,7 @@ void InitializeSystemSubcomponentA(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15858,8 +15858,8 @@ void InitializeSystemSubcomponentA(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15870,7 +15870,7 @@ void InitializeSystemSubcomponentA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateJ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15894,7 +15894,7 @@ void InitializeSystemSubcomponentB(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15910,8 +15910,8 @@ void InitializeSystemSubcomponentB(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15922,7 +15922,7 @@ void InitializeSystemSubcomponentB(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateK,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15946,7 +15946,7 @@ void InitializeSystemSubcomponentC(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -15962,8 +15962,8 @@ void InitializeSystemSubcomponentC(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -15974,7 +15974,7 @@ void InitializeSystemSubcomponentC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateL,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -15998,7 +15998,7 @@ void InitializeSystemSubcomponentD(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16014,8 +16014,8 @@ void InitializeSystemSubcomponentD(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16026,7 +16026,7 @@ void InitializeSystemSubcomponentD(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16050,7 +16050,7 @@ void InitializeSystemSubcomponentE(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16066,8 +16066,8 @@ void InitializeSystemSubcomponentE(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16078,7 +16078,7 @@ void InitializeSystemSubcomponentE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16102,7 +16102,7 @@ void InitializeSystemSubcomponentF(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16118,8 +16118,8 @@ void InitializeSystemSubcomponentF(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16130,7 +16130,7 @@ void InitializeSystemSubcomponentF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateC,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16154,7 +16154,7 @@ void InitializeSystemSubcomponentG(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16170,8 +16170,8 @@ void InitializeSystemSubcomponentG(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16182,7 +16182,7 @@ void InitializeSystemSubcomponentG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16206,7 +16206,7 @@ void InitializeSystemSubcomponentH(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16222,8 +16222,8 @@ void InitializeSystemSubcomponentH(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16234,7 +16234,7 @@ void InitializeSystemSubcomponentH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16313,7 +16313,7 @@ void InitializeSystemSubcomponentI(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16329,8 +16329,8 @@ void InitializeSystemSubcomponentI(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16341,7 +16341,7 @@ void InitializeSystemSubcomponentI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16365,7 +16365,7 @@ void InitializeSystemSubcomponentJ(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16381,8 +16381,8 @@ void InitializeSystemSubcomponentJ(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16393,7 +16393,7 @@ void InitializeSystemSubcomponentJ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16417,7 +16417,7 @@ void InitializeSystemSubcomponentK(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16433,8 +16433,8 @@ void InitializeSystemSubcomponentK(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16445,7 +16445,7 @@ void InitializeSystemSubcomponentK(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16469,7 +16469,7 @@ void InitializeSystemSubcomponentL(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16485,8 +16485,8 @@ void InitializeSystemSubcomponentL(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16497,7 +16497,7 @@ void InitializeSystemSubcomponentL(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16570,7 +16570,7 @@ void InitializeSystemSubcomponentN(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16586,8 +16586,8 @@ void InitializeSystemSubcomponentN(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16598,7 +16598,7 @@ void InitializeSystemSubcomponentN(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateS,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16626,7 +16626,7 @@ void InitializeSystemNodeManagerPrimary(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16642,8 +16642,8 @@ void InitializeSystemNodeManagerPrimary(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16654,7 +16654,7 @@ void InitializeSystemNodeManagerPrimary(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateT,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16682,7 +16682,7 @@ void InitializeSystemSearchManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16698,8 +16698,8 @@ void InitializeSystemSearchManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16710,7 +16710,7 @@ void InitializeSystemSearchManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16739,7 +16739,7 @@ void InitializeSystemNodeManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16755,8 +16755,8 @@ void InitializeSystemNodeManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16767,7 +16767,7 @@ void InitializeSystemNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16798,7 +16798,7 @@ void InitializeSystemSearchManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16814,8 +16814,8 @@ void InitializeSystemSearchManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16826,7 +16826,7 @@ void InitializeSystemSearchManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateH,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16856,7 +16856,7 @@ void InitializeSystemEventManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16872,8 +16872,8 @@ void InitializeSystemEventManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventComparisonTemplate,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemEventComparisonTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16884,7 +16884,7 @@ void InitializeSystemEventManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventComparisonTemplate,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemEventComparisonTemplate,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16914,7 +16914,7 @@ void InitializeSystemResourceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16930,8 +16930,8 @@ void InitializeSystemResourceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceComparisonTemplate,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemResourceComparisonTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -16942,7 +16942,7 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceComparisonTemplate,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemResourceComparisonTemplate,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -16972,7 +16972,7 @@ void InitializeSystemDeviceManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -16988,8 +16988,8 @@ void InitializeSystemDeviceManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDeviceComparisonTemplate,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDeviceComparisonTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17000,7 +17000,7 @@ void InitializeSystemDeviceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDeviceComparisonTemplate,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDeviceComparisonTemplate,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17030,7 +17030,7 @@ void InitializeSystemMemoryManager(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17046,8 +17046,8 @@ void InitializeSystemMemoryManager(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17058,7 +17058,7 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemMemoryComparisonTemplate,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17086,7 +17086,7 @@ void SystemDataNodeInitializerM(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17102,8 +17102,8 @@ void SystemDataNodeInitializerM(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17114,7 +17114,7 @@ void SystemDataNodeInitializerM(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateM,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17142,7 +17142,7 @@ void InitializeSystemResourceInitializationNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17158,8 +17158,8 @@ void InitializeSystemResourceInitializationNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17170,7 +17170,7 @@ void InitializeSystemResourceInitializationNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17198,7 +17198,7 @@ void InitializeGameCoreSystemNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17214,8 +17214,8 @@ void InitializeGameCoreSystemNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17226,7 +17226,7 @@ void InitializeGameCoreSystemNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17254,7 +17254,7 @@ void InitializeBaseAllocatorNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17270,8 +17270,8 @@ void InitializeBaseAllocatorNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17282,7 +17282,7 @@ void InitializeBaseAllocatorNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&BASE_ALLOCATOR_ID,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17310,7 +17310,7 @@ void InitializeSystemDataTableNode(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17326,8 +17326,8 @@ void InitializeSystemDataTableNode(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17338,7 +17338,7 @@ void InitializeSystemDataTableNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateP,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17366,7 +17366,7 @@ void ResourceInitializationCallbackSetter(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17382,8 +17382,8 @@ void ResourceInitializationCallbackSetter(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17394,7 +17394,7 @@ void ResourceInitializationCallbackSetter(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateQ,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17422,7 +17422,7 @@ void SystemAllocatorNodeInitializer(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17438,8 +17438,8 @@ void SystemAllocatorNodeInitializer(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17450,7 +17450,7 @@ void SystemAllocatorNodeInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemAllocatorIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17478,7 +17478,7 @@ void SystemConfigurationNodeInitializer(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17494,8 +17494,8 @@ void SystemConfigurationNodeInitializer(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17506,7 +17506,7 @@ void SystemConfigurationNodeInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemConfigurationIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17534,7 +17534,7 @@ void SystemEventNodeInitializer(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17550,8 +17550,8 @@ void SystemEventNodeInitializer(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17562,7 +17562,7 @@ void SystemEventNodeInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemEventIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17590,7 +17590,7 @@ void SystemMemoryManagementNodeInitializer(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17606,8 +17606,8 @@ void SystemMemoryManagementNodeInitializer(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17618,7 +17618,7 @@ void SystemMemoryManagementNodeInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemResourceIdentifier,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17646,7 +17646,7 @@ void SystemThreadManagerInitializer(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17662,8 +17662,8 @@ void SystemThreadManagerInitializer(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17674,7 +17674,7 @@ void SystemThreadManagerInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateR,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -17702,7 +17702,7 @@ void SystemResourceTrackerInitializer(void)
 {
   char SystemNodeFlag;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   long long SystemTimeValue;
   void** SystemRootNode;
@@ -17718,8 +17718,8 @@ void SystemResourceTrackerInitializer(void)
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
-    if (MemoryCompareResult < 0) {
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
+    if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
     }
@@ -17730,7 +17730,7 @@ void SystemResourceTrackerInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateB,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
@@ -20297,7 +20297,7 @@ void InitializeSystemCoreEngine(void)
 {
   void* systemStatusFlag;
   char InitializationStatus;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long ***systemMemoryManager;
   ulong long SystemConfigValue;
   long long SystemTimeValue;
@@ -20638,7 +20638,7 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
 {
   byte FirstByteValue;
   bool IsMatchFound;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   void* *CurrentSearchNode;
   uint ComparisonValue;
   byte *StringComparePointer;
@@ -23126,7 +23126,7 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
 {
   uint32_t *pointerToUnsigned1;
   void** SystemDataTable;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   int systemIndex;
   void* currentThreadId;
   
@@ -25043,7 +25043,7 @@ void CalculateRenderQualitySettings(long long ResourceManagerPointer)
 {
   long long nextDataIndex;
   int systemResult;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   float renderQualityMultiplier;
   float baseRenderScale;
   float textureScaleFactor;
@@ -25460,7 +25460,7 @@ void UpdateSystemRenderManager(long long ResourceManagerPointer)
 {
   int *pointerToInteger1;
   uint32_t creationFlags;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   bool bVar4;
   void* currentThreadId;
   bool bVar6;
@@ -27008,7 +27008,7 @@ void SystemMemoryAllocator(long long ResourceManagerPointer,long long parameter2
 {
   long long *PrimaryResourcePointer;
   uint32_t creationFlags;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   void* *punsignedSystemValue4;
   ulong long currentThreadId;
   long long localSystemFlags;
@@ -27098,7 +27098,7 @@ void* SystemResourceAllocator(void* ResourceManagerPointer,void* ConfigurationDa
 {
   long long nextDataIndex;
   uint32_t creationFlags;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   void* *punsignedSystemValue4;
   void* *puStack_88;
   void* *puStack_80;
@@ -27512,7 +27512,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
 {
   uint32_t *pointerToUnsigned1;
   int systemResult;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   uint8_t aStackValue1c8 [32];
   void* **ppuStack_1a8;
   void* systemFlag1A0;
@@ -29015,7 +29015,7 @@ void ProcessSystemNodeResource(long long ResourceManagerPointer)
 {
   char SystemNodeFlag;
   char validationStatusFlag;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   void* *punsignedSystemValue4;
   ulong long currentThreadId;
   int systemFlag;
@@ -35918,7 +35918,7 @@ void ProcessSystemResourceData(long long *ResourceManagerPointer)
 {
   int systemStatus;
   long long localSystemHandle;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   void* unsignedSystemValue4;
   long long *plocalSystemPointer;
   code *configurationStringPointer;
@@ -36456,7 +36456,7 @@ int CheckSystemInputManagerStatus(void)
 {
   long long nextDataIndex;
   long long localSystemHandle;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   int systemIndex;
   int systemValue;
   int systemFlag;
@@ -37557,7 +37557,7 @@ void ResumeSystemThreads(long long ResourceManagerPointer)
 {
   long long nextDataIndex;
   long long localSystemHandle;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long bufferBaseAddress;
   
   localSystemHandle = GetCurrentThread();
@@ -40231,7 +40231,7 @@ void CleanupSystemResources(void* *ResourceManagerPointer)
 {
   long long *PrimaryResourcePointer;
   int *ResourceCounterPointer;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   uint ResourceIndex;
   ulong long ResourceHashValue;
   long long localSystemFlags;
@@ -40623,7 +40623,7 @@ void InitializeSystemResource(long long *ResourceManagerPointer)
 {
   long long *PrimaryResourcePointer;
   char validationStatusFlag;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   void* uStackX_8;
   long long *plStack_20;
   char cStack_18;
@@ -44359,7 +44359,7 @@ void ConfigureSystemDataProcessing(void* ResourceManagerPointer,void* Configurat
 {
   long long nextDataIndex;
   char validationStatusFlag;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   uint32_t unsignedSystemValue4;
   void* *pcurrentThreadId;
   int systemFlag;
@@ -44965,7 +44965,7 @@ void ProcessSystemResourceQueueAndCompletion(long long ResourceManagerPointer)
 {
   long long nextDataIndex;
   long long localSystemHandle;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   void* unsignedSystemValue4;
   void* currentThreadId;
   long long *plocalSystemFlags;
@@ -45426,7 +45426,7 @@ void* AllocateSystemMemoryWithMutex(long long ResourceManagerPointer,long long C
 {
   ulong long systemStatus;
   char validationStatusFlag;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   void* unsignedSystemValue4;
   ulong long currentThreadId;
   void** SystemRootNode;
@@ -49389,7 +49389,7 @@ void CleanupSystemResourceDataB(long long *ResourceManagerPointer)
 {
   long long *PrimaryResourcePointer;
   int *pointerToInteger2;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long bufferBaseAddress;
   long long SystemTimeValue;
   long long localSystemFlags;
@@ -50216,7 +50216,7 @@ void FUN_18006e990(void)
 {
   long long nextDataIndex;
   char validationStatusFlag;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long* SystemMemoryPointer;
   
   nextDataIndex = SystemInitializationFlag;
@@ -50276,7 +50276,7 @@ void FinalizeSystemMemorySetup(void* ResourceManagerPointer,void* ConfigurationD
 {
   long long *PrimaryResourcePointer;
   long long localSystemHandle;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   
   localSystemHandle = SystemInitializationFlag;
   FUN_18005e630(SystemAllocationFlagsTemplate,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
@@ -51255,7 +51255,7 @@ void FUN_180070680(void* ResourceManagerPointer,void* ConfigurationDataPointer)
 {
   bool bVar1;
   char validationStatusFlag;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   int systemIndex;
   long long SystemTimeValue;
   void* *resourceEntryPointer;
@@ -52238,7 +52238,7 @@ void FUN_180072000(void* ResourceManagerPointer,long long ConfigurationDataPoint
 {
   code *systemFunctionPointer;
   char validationStatusFlag;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   uint unsignedSystemValue4;
   int systemValue;
   uint hashValue;
@@ -52816,7 +52816,7 @@ bool FUN_180072f00(void* ResourceManagerPointer,void* *ConfigurationDataPointer)
 {
   uint32_t systemStatus;
   int systemResult;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   long long bufferBaseAddress;
   void* *pcurrentThreadId;
   void** SystemRootNode;
@@ -63123,7 +63123,7 @@ ulong long FUN_18007b240(long long ResourceManagerPointer,long long *Configurati
 {
   byte *pbVar1;
   char validationStatusFlag;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   int systemIndex;
   byte bVar5;
   long long localSystemFlags;
@@ -65082,7 +65082,7 @@ void ProcessSystemTextureManagerConfiguration(long long ResourceManagerPointer,u
 {
   long long nextDataIndex;
   int *pointerToInteger2;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   int systemIndex;
   long long SystemTimeValue;
   int systemFlag;
@@ -65770,7 +65770,7 @@ void FUN_18007eea1(long long ResourceManagerPointer,int ConfigurationDataPointer
 {
   uint systemStatus;
   void* creationFlags;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   uint unsignedSystemValue4;
   uint currentThreadId;
   int systemFlag;
@@ -66446,7 +66446,7 @@ void InitializeSystemThreadSynchronizer(long long *ResourceManagerPointer)
 {
   long long nextDataIndex;
   char validationStatusFlag;
-  int MemoryCompareResult;
+  int MemoryComparisonResult;
   bool bVar4;
   
   nextDataIndex = *ResourceManagerPointer;

@@ -65531,7 +65531,18 @@ void SetExtendedSystemDataStructureInValidationContext(uint8_t ObjectContext, in
 
 
 
-void Unwind_180909a30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解锁验证上下文中的互斥锁 (地址: 0x180909a30)
+ * 
+ * 该函数负责解锁验证上下文中偏移量0xd8处的互斥锁
+ * 如果解锁失败，会抛出C标准错误
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含要解锁的互斥锁
+ * @return 无返回值
+ * @note 此函数通常在异常处理或资源清理时调用，用于解锁互斥锁
+ */
+void UnlockValidationContextMutex(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingResult;
@@ -65545,7 +65556,18 @@ void Unwind_180909a30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909a40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理主资源哈希验证结果 (地址: 0x180909a40)
+ * 
+ * 该函数负责清理验证上下文中偏移量0x38处的主资源哈希验证结果
+ * 处理资源索引的递减，当资源索引为0时调用系统清理处理器
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含要清理的主资源哈希验证结果
+ * @return 无返回值
+ * @note 此函数通常在异常处理或资源清理时调用，会自动处理资源索引和系统清理
+ */
+void CleanupPrimaryResourceHashValidationResult(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
