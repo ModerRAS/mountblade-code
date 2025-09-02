@@ -3619,10 +3619,10 @@ void ValidateSystemObjectCollection(void)
  */
 void TerminateSystemProcess(void)
 {
-  uint64_t SystemTerminationToken;
+  uint64_t SystemShutdownToken;
   
                     // WARNING: Subroutine does not return
-  terminateSystem(SystemTerminationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+  terminateSystem(SystemShutdownToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -3642,7 +3642,7 @@ void CheckSystemFlags(void)
 
 {
   int64_t SystemContext;
-  uint64_t FlagValidationToken;
+  uint64_t FlagCheckValidationToken;
   
   if ((*(uint *)(SystemContext + 0x2d8) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
@@ -3650,7 +3650,7 @@ void CheckSystemFlags(void)
   }
   ReleaseFlagCheckResources(&ObjectStackBufferResource);
                     // WARNING: Subroutine does not return
-  ExecuteFlagCheckCleanup(FlagValidationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+  ExecuteFlagCheckCleanup(FlagCheckValidationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -15774,7 +15774,7 @@ uint32_t ValidateResourceHashIndex(uint8_t ObjectContext,uint64_t ValidationCont
   uint LoopIncrement;
   uint8_t *ResourceDataPointer6;
   uint8_t *ContextHashValidationResultPointer;
-  uint RegisterEBX;
+  uint ResourceIndex;
   int PackageValidationStatusCode;
   int64_t ExecutionContextPointer;
   uint8_t *SystemContext;
@@ -15797,8 +15797,8 @@ uint32_t ValidateResourceHashIndex(uint8_t ObjectContext,uint64_t ValidationCont
         ResourceIndex = OperationResult;
         while (0 < ResourceIndex) {
           ValidationStatusCode = ResourceIndex;
-          if ((int)(ResourceCount - RegisterEBX) <= ResourceIndex) {
-            ValidationStatusCode = ResourceCount - RegisterEBX;
+          if ((int)(ResourceCount - ResourceIndex) <= ResourceIndex) {
+            ValidationStatusCode = ResourceCount - ResourceIndex;
           }
           ResourceIndex = ResourceIndex - HashValidationResult;
           if (HashValidationResult != 0) {
@@ -15884,7 +15884,7 @@ uint32_t GetResourceTableStatus(void)
   uint8_t ResourceHash;
   uint8_t *ResourceHashValidationResultPointer;
   uint8_t *HashValidationResultPointer;
-  int RegisterEBX;
+  int ValidationCounter;
   int ResultRecordIndex;
   int64_t ExecutionContextPointer;
   uint8_t *SystemContext;
