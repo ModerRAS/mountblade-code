@@ -7212,9 +7212,9 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   SystemModuleConfigIndex3 = 0;
   SystemModuleConfigSize9 = 3;
   SystemModuleConfigFlag13 = 0;
-  _DAT_180c96080 = 0;
-  _DAT_180c96078 = 0;
-  _DAT_180c96070 = 0;
+  SystemRenderConfigFlag1 = 0;
+  SystemRenderConfigFlag2 = 0;
+  SystemRenderConfigFlag3 = 0;
   SystemEffectActive = 1;
   _DAT_180c96050 = 0;
   SystemTextureEnabled = 1;

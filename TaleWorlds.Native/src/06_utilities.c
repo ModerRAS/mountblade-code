@@ -3376,8 +3376,8 @@ uint8_t SystemMemoryFlagKernel;
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t GameObjectValidationState;
-  int ProcessingResult;
-  int64_t CurrentObjectPointer;
+  int OperationResult;
+  int64_t CurrentObjectOffset;
   int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
   int64_t SystemHandleArray[2];
@@ -3388,21 +3388,21 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   uint64_t SecurityValidationKey;
   
   SecurityValidationKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  ProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
-  if ((ProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
+  OperationResult = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
+  if ((OperationResult == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
     ObjectDataBuffer = ProcessingWorkspace;
     ProcessedObjectCount = 0;
     BufferIndex = 0;
     MaximumProcessableItems = MaximumProcessableItemsLimit;
-    ProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
+    OperationResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
                           &ObjectDataBuffer);
-    if (ProcessingResult == 0) {
+    if (OperationResult == 0) {
       if (0 < BufferIndex) {
-        CurrentObjectPointer = 0;
+        CurrentObjectOffset = 0;
         do {
-          GameObjectValidationState = *(uint8_t *)(ObjectDataBuffer + CurrentObjectPointer);
-          ProcessingResult = ValidateObjectStatus(GameObjectValidationState);
-          if (ProcessingResult != 2) {
+          GameObjectValidationState = *(uint8_t *)(ObjectDataBuffer + CurrentObjectOffset);
+          OperationResult = ValidateObjectStatus(GameObjectValidationState);
+          if (OperationResult != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidObject(GameObjectValidationState, 1);
           }
@@ -45927,7 +45927,20 @@ void ExecuteResourceCleanupAndValidateSystem(uint8_t objectContext,int64_t valid
 
 
 
-void Unwind_180904fa0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 批量执行资源清理操作并验证系统状态
+ * 
+ * 该函数负责批量遍历资源哈希验证结果指针，执行资源清理操作
+ * 并在检测到异常状态时执行紧急退出操作
+ * 
+ * @param objectContext 对象上下文，包含资源相关的上下文信息
+ * @param validationContext 验证上下文，用于验证操作的环境信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数主要用于批量资源清理操作的执行和系统状态验证
+ */
+void BatchExecuteResourceCleanupAndValidateSystem(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
