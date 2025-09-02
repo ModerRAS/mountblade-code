@@ -53572,7 +53572,18 @@ void ExecuteResourceCleanupCallbackB(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_180906680(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调函数C
+ * 
+ * 该函数负责执行特定资源的清理回调函数，处理资源的释放和清理工作
+ * 用于系统资源管理和清理操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源管理信息
+ * @return 无返回值
+ * @note 此函数会调用资源对象的清理回调函数
+ */
+void ExecuteResourceCleanupCallbackC(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -53586,7 +53597,18 @@ void Unwind_180906680(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809066a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调函数D
+ * 
+ * 该函数负责执行另一个特定资源的清理回调函数，处理资源的释放和清理工作
+ * 用于系统资源管理和清理操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源管理信息
+ * @return 无返回值
+ * @note 此函数会调用资源对象的清理回调函数
+ */
+void ExecuteResourceCleanupCallbackD(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
