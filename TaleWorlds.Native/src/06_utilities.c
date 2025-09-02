@@ -2859,8 +2859,8 @@ uint8_t SystemMemoryAllocator;               // 系统内存分配器
 uint8_t SystemMemoryConfigAdditional;      // 系统内存配置附加数据
 uint8_t SystemMemoryConfigExtra;           // 系统内存配置扩展数据
 uint8_t SystemMemoryConfigOptional;       // 系统内存配置可选数据
-uint8_t SystemConfigurationTemplate;        // 系统配置模板
-uint8_t SystemConfigDataAdvanced;              // 系统配置高级项
+uint8_t SystemConfigurationTemplate;      // 系统配置模板数据
+uint8_t SystemConfigDataAdvanced;          // 系统配置高级数据
 char SystemConfigStatusFlag;                // 系统配置状态标志
 uint8_t SystemConfigDataPremium;           // 系统配置优先项
 // 系统资源和管理器变量
