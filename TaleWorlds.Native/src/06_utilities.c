@@ -98115,7 +98115,15 @@ void InitializeGlobalModuleA(void)
 
 
 
- void InitializeGlobalModuleB(void)
+ /**
+ * @brief 初始化全局模块B
+ * 
+ * 该函数负责初始化系统的全局模块B
+ * 设置模块B的数据指针，指向系统的数据结构
+ * 
+ * @return 无返回值
+ * @note 此函数在系统启动时调用，确保模块B正常工作
+ */
 void InitializeGlobalModuleB(void)
 
 {

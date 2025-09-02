@@ -64255,8 +64255,16 @@ LAB_18007a58b:
 
 
 
-// 函数: void FUN_18007b1a0(long long *SystemResourceManager)
-void FUN_18007b1a0(long long *SystemResourceManager)
+/**
+ * @brief 配置系统资源表
+ * 
+ * 配置系统资源表的结构和参数，包括资源索引、数据指针和状态标志。
+ * 该函数负责设置资源表的基本配置，为资源管理提供基础支持。
+ * 
+ * @param SystemResourceManager 资源管理器指针，包含要配置的资源表
+ * @return 无返回值
+ */
+void ConfigureSystemResourceTable(long long *SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;

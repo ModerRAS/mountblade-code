@@ -10544,13 +10544,13 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   if (LongOffset != param_5[1]) {
     do {
       if (0xf < IntegerCounter) {
-        InitializeSystemMemory(&UNK_180a3ca70,0x10);
+        InitializeSystemMemory(&SystemMemoryInitializationBuffer,0x10);
       }
       pMemoryAddress3 = &SystemConstantStringPrimary;
       if (*(void **)(LongOffset + 8) != (void *)0x0) {
         pMemoryAddress3 = *(void **)(LongOffset + 8);
       }
-      AllocateSystemMemory(&UNK_180a3ca20,pMemoryAddress3);
+      AllocateSystemMemory(&SystemMemorySecondaryBuffer,pMemoryAddress3);
       IntegerCounter = *param_9;
       LongCounter1 = (longlong)IntegerCounter * 0x3088 + lStack_d0;
       pMemoryAddress3 = &SystemConstantStringPrimary;
