@@ -72073,15 +72073,15 @@ void SystemResourceCleanupHandler3(uint8_t ObjectContext,int64_t ValidationConte
 
 
 /**
- * @brief 注册资源处理器到系统上下文C08
+ * @brief 注册资源处理器到偏移量C08
  * 
- * 该函数负责在系统异常情况下注册资源处理器，用于确保系统状态的一致性。
- * 当系统发生异常时，该处理器会被调用以执行必要的资源清理操作。
+ * 该函数负责在系统资源表的指定偏移量(0xC08)处注册资源处理器
+ * 用于处理特定类型的资源操作和管理
  * 
- * @param ObjectContext 对象上下文，用于标识需要清理的资源对象
+ * @param ObjectContext 对象上下文，用于标识需要处理的资源对象
  * @param ValidationContext 验证上下文，包含系统资源和状态信息
  */
-void Unwind_RegisterResourceHandlerC08(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_RegisterResourceHandlerAtOffsetC08(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xc08,8,10,ProcessResourceOperation,0xfffffffffffffffe);
@@ -72090,7 +72090,16 @@ void Unwind_RegisterResourceHandlerC08(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_ProcessResourceContextC58(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理偏移量C58处的资源上下文
+ * 
+ * 该函数负责处理系统资源表中偏移量(0xC58)处的资源上下文
+ * 执行相关的资源操作和状态管理
+ * 
+ * @param ObjectContext 对象上下文，用于标识需要处理的资源对象
+ * @param ValidationContext 验证上下文，包含系统资源和状态信息
+ */
+void Unwind_ProcessResourceContextAtOffsetC58(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;

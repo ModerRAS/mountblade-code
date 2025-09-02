@@ -22229,40 +22229,51 @@ void* * InitializeMemoryAllocatorStructure(void* *memoryAllocator)
  * @param SourceStringPointer 源字符串指针，用于长度计算和处理
  * @param TargetStringPointer 目标字符串指针，用于长度计算和处理
  */
-void SystemStringProcessor(long long SystemResourceManager,long long SourceStringPointer,long long TargetStringPointer)
+
+/**
+ * @brief 系统字符串处理器
+ * 
+ * 该函数负责处理系统字符串操作，包括字符串复制、加密和格式化。
+ * 它会使用资源管理器来管理字符串数据，并支持加密处理。
+ * 
+ * @param resourceManager 资源管理器句柄，用于管理字符串资源
+ * @param sourceStringPointer 源字符串指针，用于长度计算和处理
+ * @param targetStringPointer 目标字符串指针，用于长度计算和处理
+ */
+void SystemStringProcessor(long long resourceManager, long long sourceStringPointer, long long targetStringPointer)
 
 {
   long long resourceDataIndex;
-  long long SystemThreadHandle;
-  long long ResourceDataOffset;
-  uint8_t EncryptionBuffer118 [32];
-  void* SystemMemoryFlags;
-  void* *SystemResourcePointer;
-  uint8_t *DataBufferPointer;
-  uint32_t SystemDataValue;
-  uint8_t SystemDataBuffer [136];
-  ulong long SystemEncryptionKey;
+  long long threadHandle;
+  long long resourceDataOffset;
+  uint8_t encryptionBuffer [32];
+  void* memoryFlags;
+  void* *resourcePointer;
+  uint8_t *dataBufferPointer;
+  uint32_t dataValue;
+  uint8_t dataBuffer [136];
+  unsigned long long encryptionKey;
   
-  SystemMemoryFlags = 0xfffffffffffffffe;
-  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer118;
-  SystemResourcePointer = &SystemResourceTemplatePrimary;
-  DataBufferPointer = SystemDataBuffer;
-  SystemDataValue = 0;
-  SystemDataBuffer[0] = 0;
-  resourceDataIndex = strstr(*(void* *)(SystemResourceManager + 8));
+  memoryFlags = 0xfffffffffffffffe;
+  encryptionKey = SystemEncryptionKeyTemplate ^ (unsigned long long)encryptionBuffer;
+  resourcePointer = &SystemResourceTemplatePrimary;
+  dataBufferPointer = dataBuffer;
+  dataValue = 0;
+  dataBuffer[0] = 0;
+  resourceDataIndex = strstr(*(void* *)(resourceManager + 8));
   if (resourceDataIndex != 0) {
-    SystemThreadHandle = -1;
-    ResourceDataOffset = -1;
+    threadHandle = -1;
+    resourceDataOffset = -1;
     do {
-      ResourceDataOffset = ResourceDataOffset + 1;
-    } while (*(char *)(ConfigurationDataPointer + ResourceDataOffset) != '\0');
+      resourceDataOffset = resourceDataOffset + 1;
+    } while (*(char *)(ConfigurationDataPointer + resourceDataOffset) != '\0');
     do {
-      SystemThreadHandle = SystemThreadHandle + 1;
-    } while (*(char *)(SystemThreadHandle + AdditionalParameter) != '\0');
-      memcpy(DataBufferPointer,*(long long *)(SystemResourceManager + 8),resourceDataIndex - *(long long *)(SystemResourceManager + 8));
+      threadHandle = threadHandle + 1;
+    } while (*(char *)(threadHandle + AdditionalParameter) != '\0');
+      memcpy(dataBufferPointer,*(long long *)(resourceManager + 8),resourceDataIndex - *(long long *)(resourceManager + 8));
   }
-  SystemResourcePointer = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)EncryptionBuffer118);
+  resourcePointer = &SystemMemoryAllocatorReference;
+    ValidateSystemChecksum(encryptionKey ^ (unsigned long long)encryptionBuffer);
 }
 
 
