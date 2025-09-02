@@ -44192,22 +44192,22 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext, int64_t ValidationContext
     return;
   }
   MemoryAlignmentValue = (uint64_t)ResourceValidationResultAddress & MemoryAlignmentMask;
-  if (MemoryAlignmentMask != 0) {
-    ResourceIndex = MemoryAlignmentMask + 0x80 + ((int64_t)ResourceHashValidationResultAddress - MemoryAlignmentMask >> 0x10) * 0x50;
+  if (MemoryAlignmentValue != 0) {
+    ResourceIndex = MemoryAlignmentValue + 0x80 + ((int64_t)ResourceValidationResultAddress - MemoryAlignmentValue >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashValidationResultAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultAddress;
-      pResourceReferenceCount = (int *)(ResourceIndex + 0x18);
-      *pResourceReferenceCount = *pResourceReferenceCount + -1;
-      if (*pResourceReferenceCount == 0) {
+    if ((*(void ***)(MemoryAlignmentValue + BufferOffsetTertiary) == &ExceptionList) && (*(char *)(ResourceIndex + ResourceContextOffsetHandle) == '\0')) {
+      *ResourceValidationResultAddress = *(uint8_t *)(ResourceIndex + BufferOffsetHandle);
+      *(uint8_t **)(ResourceIndex + BufferOffsetHandle) = ResourceValidationResultAddress;
+      ResourceReferenceCountPointer = (int *)(ResourceIndex + ResourceContextOffsetStandard);
+      *ResourceReferenceCountPointer = *ResourceReferenceCountPointer + -1;
+      if (*ResourceReferenceCountPointer == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAlignmentMask,CONCAT71(0xff000000,*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultAddress,MemoryAlignmentMask,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAlignmentValue, CombineSystemContextWithValidation(0xff000000, *(void ***)(MemoryAlignmentValue + BufferOffsetTertiary) == &ExceptionList),
+                          ResourceValidationResultAddress, MemoryAlignmentValue, 0xfffffffffffffffe);
     }
   }
   return;
