@@ -52764,7 +52764,7 @@ LAB_1800729bd:
         if (pointerToUnsigned10 != (void* *)0x0) {
           puStack_148 = pointerToUnsigned10;
         }
-        FUN_1800669c0(unsignedSystemValue7,&puStack_f0,systemStatus8,param_5);
+        FUN_1800669c0(unsignedSystemValue7,&puStack_f0,systemStatus8,systemConfigurationParameter);
         puStack_f0 = &SystemGlobalDataReference;
         if (lStack_e8 != 0) {
             SystemCleanupFunction();
@@ -57260,7 +57260,7 @@ void FUN_180077710(long long ResourceManagerPointer)
 
 
 ulong long FUN_180077750(long long ResourceManagerPointer,uint *ConfigurationDataPointer,float *AdditionalParameter,long long ConfigurationFlag,
-                       long long param_5)
+                       long long systemConfigurationParameter)
 
 {
   float fVar1;
@@ -57419,7 +57419,7 @@ LAB_180077879:
         AdditionalParameter = pfStackX_18;
         if (*(int *)(HashEntryStatus6 + 4) != systemCounter3) {
           *(int *)(HashEntryStatus6 + 4) = systemCounter3;
-          FUN_180079270(ResourceManagerPointer,param_5);
+          FUN_180079270(ResourceManagerPointer,systemConfigurationParameter);
           AdditionalParameter = pfStackX_18;
           if (((byte)(hashValue >> 0x19) & 1) != 0) {
             if ((*(uint *)(ResourceManagerPointer + 0x100) & 0x800) != 0) {
@@ -57547,7 +57547,7 @@ LAB_180077879:
             }
             *(bool *)((long long)apuStack_128[0] + 0x4c) = *(long long *)(localSystemHandle7 + 0x10) != 0;
             *(uint8_t *)((long long)apuStack_128[0] + 0x4d) = 1;
-            if ((*(char *)(param_5 + 0xc) != '\0') ||
+            if ((*(char *)(systemConfigurationParameter + 0xc) != '\0') ||
                (0 < *(int *)(*(long long *)(ResourceManagerPointer + 600) + 0x1c))) {
               *(uint8_t *)((long long)apuStack_128[0] + 0x4d) = 0;
             }
