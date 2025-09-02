@@ -7516,10 +7516,10 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
 
 {
     uint8_t MatrixValidationStatus;
-  int FirstRowInfinityStatus;
-  int SecondRowInfinityStatus;
-  int ThirdRowInfinityStatus;
-  int OverallInfinityStatus;
+  int MatrixRow1InfinityStatus;
+  int MatrixRow2InfinityStatus;
+  int MatrixRow3InfinityStatus;
+  int MatrixOverallInfinityStatus;
   int64_t TransformContext;
   int64_t matrixBuffer [2];
   uint MatrixFlags;
@@ -7527,20 +7527,20 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   int64_t MatrixContextPointer;
   
   matrixContextPointer = 0;
-  FirstRowInfinityStatus = 0;
-  SecondRowInfinityStatus = FirstRowInfinityStatus;
+  MatrixRow1InfinityStatus = 0;
+  MatrixRow2InfinityStatus = MatrixRow1InfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextProcessingDataOffset) & 0x7f800000) == 0x7f800000) {
-    SecondRowInfinityStatus = 0x1d;
+    MatrixRow2InfinityStatus = 0x1d;
   }
-  ThirdRowInfinityStatus = FirstRowInfinityStatus;
+  MatrixRow3InfinityStatus = MatrixRow1InfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextHandleDataOffset) & 0x7f800000) == 0x7f800000) {
-    ThirdRowInfinityStatus = 0x1d;
+    MatrixRow3InfinityStatus = 0x1d;
   }
-  OverallInfinityStatus = FirstRowInfinityStatus;
+  MatrixOverallInfinityStatus = MatrixRow1InfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextValidationDataOffset) & 0x7f800000) == 0x7f800000) {
-    OverallInfinityStatus = 0x1d;
+    MatrixOverallInfinityStatus = 0x1d;
   }
-  if ((SecondRowInfinityStatus != 0 || ThirdRowInfinityStatus != 0) || OverallInfinityStatus != 0) {
+  if ((MatrixRow2InfinityStatus != 0 || MatrixRow3InfinityStatus != 0) || MatrixOverallInfinityStatus != 0) {
     return 0x1f;
   }
   SecondRowInfinityStatus = 0;
@@ -10189,19 +10189,19 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* Validation
   uint8_t SecurityDataBuffer[32];
   uint ResourceValidationFlagHigh;
   uint ResourceValidationFlagLow;
-  uint ResourcePrimaryByte;
-  uint ResourceSecondaryByte;
-  uint ResourceTertiaryByte;
-  uint ResourceQuaternaryByte;
-  uint ResourceQuinaryByte;
-  uint ResourceSenaryByte;
-  uint ResourceSeptenaryByte;
-  uint ResourceOctonaryByte;
-  uint ResourceNonaryByte;
-  uint32_t ResourceFlagPrimary;
-  uint ResourceSecondaryByteFirst;
-  uint ResourceFlagSecondarySecond;
-  uint ResourceFlagSecondaryThird;
+  uint ResourceSecurityByteFirst;
+  uint ResourceSecurityByteSecond;
+  uint ResourceSecurityByteThird;
+  uint ResourceSecurityByteFourth;
+  uint ResourceStatusByteFirst;
+  uint ResourceStatusByteSecond;
+  uint ResourceStatusByteThird;
+  uint ResourceStatusByteFourth;
+  uint ResourceControlByteFirst;
+  uint32_t ResourceAccessControlWord;
+  uint ResourceAccessByteFirst;
+  uint ResourceAccessByteSecond;
+  uint ResourceAccessByteThird;
   int64_t ResourceHandleBackup;
   uint8_t ResourceChecksumData[40];
   uint64_t PrimaryOperationParameter;
@@ -10210,16 +10210,16 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* Validation
   uint32_t ResourceValidationByteFirst;
   uint32_t ResourceValidationByteSecond;
   uint32_t ResourceValidationByteThird;
-  uint32_t ResourceQuaternaryFlag;
-  uint32_t ResourceTopByteFlag;
-  uint32_t ResourceFlagLowBits;
-  uint32_t ResourceFlagHighByte;
-  uint32_t ResourceFlagMidByte;
-  uint32_t ResourceFlagLowByte;
-  uint32_t ResourceFlagTertiary;
-  uint32_t ResourceFlagSecondary;
-  uint32_t ResourceFlagPrimary;
-  uint32_t ResourceFlagHighBits;
+  uint32_t ResourceSecurityHighByte;
+  uint32_t ResourceStatusHighByte;
+  uint32_t ResourceAccessWord;
+  uint32_t ResourceStatusMidHighByte;
+  uint32_t ResourceStatusMidByte;
+  uint32_t ResourceStatusLowByte;
+  uint32_t ResourceSecurityMidHighByte;
+  uint32_t ResourceSecurityMidByte;
+  uint32_t ResourceSecurityLowByte;
+  uint32_t ResourceAccessControlWord;
   void* SecurityOperationData;
   uint64_t SecurityEncryptionKey;
   
@@ -10232,16 +10232,16 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* Validation
     ResourceValidationByteThird = ValidationContext[3];
     ResourceIndex = (**(code **)(*ResourceContext + 0x150))(ResourceContext, &ResourceSecurityFlag, 1);
     if (ResourceIndex == 0) {
-      ResourceQuaternaryFlag = ResourceValidationByteSecond >> 0x18;
-      ResourceTopByteFlag = ResourceValidationByteThird >> 0x18;
-      ResourceFlagLowBits = ResourceValidationByteFirst >> 0x10;
-      ResourceFlagHighByte = ResourceValidationByteThird >> 0x10 & 0xff;
-      ResourceFlagMidByte = ResourceValidationByteThird >> 8 & 0xff;
-      ResourceFlagLowByte = ResourceValidationByteThird & 0xff;
-      ResourceFlagTertiary = ResourceValidationByteSecond >> 0x10 & 0xff;
-      ResourceFlagSecondary = ResourceValidationByteSecond >> 8 & 0xff;
-      ResourceFlagPrimary = ResourceValidationByteSecond & 0xff;
-      ResourceFlagHighBits = ResourceValidationByteFirst & 0xffff;
+      ResourceSecurityHighByte = ResourceValidationByteSecond >> 0x18;
+      ResourceStatusHighByte = ResourceValidationByteThird >> 0x18;
+      ResourceAccessWord = ResourceValidationByteFirst >> 0x10;
+      ResourceStatusMidHighByte = ResourceValidationByteThird >> 0x10 & 0xff;
+      ResourceStatusMidByte = ResourceValidationByteThird >> 8 & 0xff;
+      ResourceStatusLowByte = ResourceValidationByteThird & 0xff;
+      ResourceSecurityMidHighByte = ResourceValidationByteSecond >> 0x10 & 0xff;
+      ResourceSecurityMidByte = ResourceValidationByteSecond >> 8 & 0xff;
+      ResourceSecurityLowByte = ResourceValidationByteSecond & 0xff;
+      ResourceAccessControlWord = ResourceValidationByteFirst & 0xffff;
       ExecuteSecurityOperation(ResourceChecksumData, 0x27, &SecurityOperationData, ResourceSecurityFlag);
     }
     if (((*(byte *)(ResourceIndex + 0xc4) & 1) != 0) &&
@@ -10404,6 +10404,15 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *Resource
   int64_t ResourceHandleBackup;
   uint8_t ResourceChecksumData[40];
   uint64_t SecurityToken;
+  uint32_t ResourceSecurityByteFirst;
+  uint32_t ResourceSecurityByteSecond;
+  uint32_t ResourceSecurityByteThird;
+  uint32_t ResourceSecurityByteFourth;
+  uint32_t ResourceStatusByteFirst;
+  uint32_t ResourceStatusByteSecond;
+  uint32_t ResourceStatusByteThird;
+  uint32_t ResourceStatusByteFourth;
+  uint32_t ResourceAccessControlWord;
   
   SecurityToken = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
   ResourceContext = *(int64_t **)(ObjectContext + 800);
@@ -10414,16 +10423,15 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *Resource
     ResourceStatusFlag = ResourceDataPointer[3];
     ResourceIndex = (**(code **)(*ResourceContext + 0x2f8))(ResourceContext, &ResourceValidationFlag, 1);
     if (ResourceIndex == 0) {
-      ResourceQuaternaryByte = ResourceSecurityFlag >> 0x18;
-      ResourceOctonaryByte = ResourceStatusFlag >> 0x18;
-      ResourceAccessWord = ResourceAccessFlag >> 0x10;
-      ResourceSeptenaryByte = ResourceStatusFlag >> 0x10 & 0xff;
-      ResourceSenaryByte = ResourceStatusFlag >> 8 & 0xff;
-      ResourceQuinaryByte = ResourceStatusFlag & 0xff;
-      ResourceTertiaryByte = ResourceSecurityFlag >> 0x10 & 0xff;
-      ResourceSecondaryByte = ResourceSecurityFlag >> 8 & 0xff;
-      ResourcePrimaryByte = ResourceSecurityFlag & 0xff;
-      ResourceControlWord = ResourceAccessFlag & 0xffff;
+      ResourceSecurityByteFourth = ResourceSecurityFlag >> 0x18;
+      ResourceStatusByteFourth = ResourceStatusFlag >> 0x18;
+      ResourceAccessControlWord = ResourceAccessFlag >> 0x10;
+      ResourceStatusByteThird = ResourceStatusFlag >> 0x10 & 0xff;
+      ResourceStatusByteSecond = ResourceStatusFlag >> 8 & 0xff;
+      ResourceStatusByteFirst = ResourceStatusFlag & 0xff;
+      ResourceSecurityByteThird = ResourceSecurityFlag >> 0x10 & 0xff;
+      ResourceSecurityByteSecond = ResourceSecurityFlag >> 8 & 0xff;
+      ResourceSecurityByteFirst = ResourceSecurityFlag & 0xff;
       ExecuteSecurityOperation(ResourceChecksumData, 0x27, &SecurityOperationData, ResourceValidationFlag);
     }
     ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x48);
@@ -64330,7 +64338,7 @@ void ProcessResourceValidationAtF0(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_180908850(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindExceptionHandler180908850(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xf8) != (int64_t *)0x0) {
@@ -64341,7 +64349,7 @@ void Unwind_180908850(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908860(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindResourceTableHandler180908860(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -64361,7 +64369,7 @@ void Unwind_180908860(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908870(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindMemoryAccessValidator180908870(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -64397,7 +64405,7 @@ void Unwind_180908870(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908880(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindMutexUnlockHandler180908880(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -64411,7 +64419,7 @@ void Unwind_180908880(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908890(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindMutexUnlockSecondary180908890(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -64425,7 +64433,7 @@ void Unwind_180908890(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809088a0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindResourceOperationHandler1809088a0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -64525,7 +64533,7 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_180908910(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindExceptionHandler180908910(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -64543,7 +64551,7 @@ void Unwind_180908910(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908920(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindMemoryManager180908920(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
