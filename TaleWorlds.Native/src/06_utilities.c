@@ -8827,7 +8827,7 @@ void ExecuteDataValidationAndProcessing(int64_t DataContext, int64_t OperationCo
   DataValidationStatusCode = validate_data_format(OperationContext, DataContext + 0x10);
   if (DataValidationStatusCode == 0) {
     DataValidationStatusCode = check_data_integrity(*(uint32_t *)(DataContext + 0x10), &TempDataBuffer);
-    if (DatavalidationStatusCode == 0) {
+    if (DataValidationStatusCode == 0) {
       if (*(int *)(TempDataBuffer + 0x30) == 1) {
         *(uint32_t *)(TempDataBuffer + 0x30) = 2;
       }
@@ -50218,7 +50218,19 @@ void ConfigureResourceHashTablesAndCache(uint8_t objectContext, int64_t validati
 
 
 
-void Unwind_1809067d0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 执行资源上下文验证和清理
+ * 
+ * 该函数负责执行资源上下文的验证和清理操作
+ * 检查资源上下文是否有效，并在有效时执行相应的清理操作
+ * 
+ * @param objectContext 对象上下文，标识当前操作的对象
+ * @param validationContext 验证上下文，包含资源管理的相关信息
+ * @return 无返回值
+ * @note 此函数用于资源验证和清理流程
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void ExecuteResourceContextValidationAndCleanup(uint8_t objectContext, int64_t validationContext)
 
 {
   int64_t *processPointer;
@@ -50232,7 +50244,19 @@ void Unwind_1809067d0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809067f0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 执行资源上下文最终清理
+ * 
+ * 该函数负责执行资源上下文的最终清理操作
+ * 检查资源上下文是否有效，并在有效时执行最终的清理操作
+ * 
+ * @param objectContext 对象上下文，标识当前操作的对象
+ * @param validationContext 验证上下文，包含资源管理的相关信息
+ * @return 无返回值
+ * @note 此函数用于资源清理的最终阶段
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void ExecuteResourceContextFinalCleanup(uint8_t objectContext, int64_t validationContext)
 
 {
   int64_t *processPointer;
