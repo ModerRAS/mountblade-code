@@ -11423,10 +11423,10 @@ uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
 uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
 
 {
-  int64_t *processPointer;
-  int ProcessingStatusCode;
-  uint8_t ResourceHashValidationStatusCode;
-  uint ArrayStepSize;
+  int64_t *ObjectLifecycleProcessor;
+  int LifecycleProcessingStatusCode;
+  uint8_t ResourceHashValidationCode;
+  uint ArrayIterationStepSize;
   
   InitializeConfigurationContext();
   FreeMemoryResource(ObjectContext + ObjectContextMemoryAllocationOffset);
