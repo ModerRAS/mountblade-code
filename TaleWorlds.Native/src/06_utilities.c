@@ -51248,7 +51248,19 @@ void Unwind_180905ec0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905ee0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统上下文初始化函数
+ * 
+ * 该函数负责初始化系统上下文环境
+ * 设置资源表指针和系统上下文指针
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数会初始化系统上下文环境
+ * @warning 调用此函数时需要确保验证上下文有效
+ */
+void InitializeSystemContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
