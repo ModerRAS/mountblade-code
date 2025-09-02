@@ -24309,9 +24309,12 @@ uint64_t ExecuteResourceDataIntegrityValidation(void)
   uint32_t ResourceDataSize;
   int64_t *SystemContext;
   int64_t ValidationContextPointer;
-  bool HasValidResource;
+  bool HasValidResourceData;
   char SecurityValidationBuffer;
   uint ResourceHashValue;
+  uint32_t ResourceValidationBuffer[2];
+  uint32_t ResourceHashBuffer[2];
+  uint64_t ResourceSize;
   
   if (*(int *)(InputParameter + 0x18) != 0) {
     return 0x1c;
@@ -24384,38 +24387,38 @@ ValidateSecondHash:
   if ((int)PackageValidationStatus != 0) {
     return PackageValidationStatus;
   }
-  if (2 < (int)SystemRegisterContext[8] - 0x65U) goto RegisterCheckFailed;
-  hasValidResource = false;
+  if (2 < (int)SystemRegisterContext[8] - 0x65U) goto FinalizeValidation;
+  HasValidResourceData = false;
   if (*(int *)(SystemRegisterContext[1] + 0x18) != 0) goto ReturnHashValidationResult;
   ResourceContext = (int64_t *)*SystemRegisterContext;
   if (*ResourceContext != 0) {
     if (ResourceContext[2] == 0) {
 CalculateResourceHash:
-      validationStatusCode = CalculateResourceHash(*ResourceContext, &SecurityValidationStack, 1, 1, 0);
+      ResourceSize = CalculateResourceHash(*ResourceContext, ResourceValidationBuffer, 1, 1, 0);
     }
     else {
-      HashValidationValue = 0;
-      validationStatusCode = ValidateResourceAccess(*ResourceContext, &HashValidationBuffer);
-      if (validationStatusCode == 0) {
-        if ((uint64_t)HashValidationValue + 1 <= (uint64_t)ResourceContext[2]) goto CalculateResourceHash;
-        validationStatusCode = 0x11;
+      ResourceHashBuffer[0] = 0;
+      ResourceSize = ValidateResourceAccess(*ResourceContext, ResourceHashBuffer);
+      if (ResourceSize == 0) {
+        if ((uint64_t)ResourceHashBuffer[0] + 1 <= (uint64_t)ResourceContext[2]) goto CalculateResourceHash;
+        ResourceSize = 0x11;
       }
     }
   }
-  if (validationStatusCode == 0) {
-    hasValidResource = SecurityValidationChar != '\0';
-    validationStatusCode = 0;
+  if (ResourceSize == 0) {
+    HasValidResourceData = (char)ResourceValidationBuffer[0] != '\0';
+    ResourceSize = 0;
   }
-  if (HashValidationResult != 0) {
+  if (ResourceSize != 0) {
 ReturnHashValidationResult:
-    return (uint64_t)HashValidationResult;
+    return (uint64_t)ResourceSize;
   }
-  if (hasValidResource) {
-    *(uint32_t *)(ResourceRegisterPointer + 0x10) = 3;
+  if (HasValidResourceData) {
+    *(uint32_t *)(ObjectContext + 0x10) = 3;
   }
-BOUNDARY_CHECKPOINT:
+FinalizeValidation:
                     // WARNING: Subroutine does not return
-  CleanupResourceData();
+  CleanupResourceData(ValidationContext, ResourceChecksumBuffer);
 }
 
 
@@ -24439,48 +24442,52 @@ BOUNDARY_CHECKPOINT:
 uint64_t ProcessResourceDataValidationFlow(void)
 
 {
-  int64_t *processPointer;
-  uint inputRegisterResult;
+  int64_t *ProcessPointer;
+  uint InputRegisterResult;
   uint ResourceHashValidationResult;
   uint64_t ResourceContext;
-  int64_t *registerContext;
-  int64_t resourceRegisterPointer;
-  uint64_t registerR15;
-  char securityValidationValue;
-  uint hashValidationValue;
+  int64_t *RegisterContext;
+  int64_t ResourceRegisterPointer;
+  uint64_t RegisterR15;
+  char SecurityValidationValue;
+  uint HashValidationValue;
+  uint64_t PackageValidationStatus;
+  uint32_t ResourceValidationBuffer[2];
+  uint32_t ResourceHashBuffer[2];
+  uint64_t ResourceSize;
   
-  ValidationResult = (uint)ResourceContext;
-  if (2 < InputParameterValue) goto RegisterCheckFailed;
-  if (*(uint *)(registerContext[1] + 0x18) != (uint)registerR15) goto ReturnHashValidationResult;
-  ResourceContext = (int64_t *)*registerContext;
+  PackageValidationStatus = (uint)ResourceContext;
+  if (2 < InputParameterValue) goto FinalizeValidation;
+  if (*(uint *)(RegisterContext[1] + 0x18) != (uint)RegisterR15) goto ReturnHashValidationResult;
+  ResourceContext = (int64_t *)*RegisterContext;
   if (*ResourceContext != 0) {
-    if (ResourceContext[2] == registerR15) {
+    if (ResourceContext[2] == RegisterR15) {
 CalculateResourceHash:
-      ValidationResult = CalculateResourceHash(*ResourceContext, &SecurityValidationStack, 1);
+      PackageValidationStatus = CalculateResourceHash(*ResourceContext, ResourceValidationBuffer, 1);
     }
     else {
-      hashValidationValue = (uint)registerR15;
-      ValidationResult = ValidateResourceAccess(*ResourceContext, &HashValidationBuffer);
-      if (ValidationResult == 0) {
-        if ((uint64_t)hashValidationValue + 1 <= (uint64_t)ResourceContext[2]) goto CalculateResourceHash;
-        ValidationResult = 0x11;
+      HashValidationValue = (uint)RegisterR15;
+      PackageValidationStatus = ValidateResourceAccess(*ResourceContext, ResourceHashBuffer);
+      if (PackageValidationStatus == 0) {
+        if ((uint64_t)HashValidationValue + 1 <= (uint64_t)ResourceContext[2]) goto CalculateResourceHash;
+        PackageValidationStatus = 0x11;
       }
     }
   }
-  ResourceContext = (uint64_t)ResourceHashValidationResult;
-  if (ValidationResult == 0) {
-    ResourceContext = registerR15 & 0xffffffff;
+  ResourceSize = (uint64_t)ResourceHashValidationResult;
+  if (PackageValidationStatus == 0) {
+    ResourceSize = RegisterR15 & 0xffffffff;
   }
-  if ((int)ResourceContext != 0) {
+  if ((int)ResourceSize != 0) {
 ReturnHashValidationResult:
-    return ResourceContext & 0xffffffff;
+    return ResourceSize & 0xffffffff;
   }
-  if (ValidationResult == 0 && securityValidationValue != (char)registerR15) {
-    *(uint32_t *)(resourceRegisterPointer + 0x10) = 3;
+  if (PackageValidationStatus == 0 && SecurityValidationValue != (char)RegisterR15) {
+    *(uint32_t *)(ResourceRegisterPointer + 0x10) = 3;
   }
-BOUNDARY_CHECKPOINT:
+FinalizeValidation:
                     // WARNING: Subroutine does not return
-  CleanupResourceData();
+  CleanupResourceData(RegisterContext, ResourceValidationBuffer);
 }
 
 
@@ -24537,10 +24544,10 @@ void ExecuteSystemValidationOperation(void)
 void ProcessObjectContextValidation(int64_t ObjectContext, uint8_t ValidationContext)
 
 {
-  int64_t processResult;
+  int64_t ProcessResult;
   
-  processResult = ProcessResourceTable(ObjectContext + 0xd8);
-  if (processResult == 0) {
+  ProcessResult = ProcessResourceTable(ObjectContext + 0xd8);
+  if (ProcessResult == 0) {
     ValidateResourceTable(ObjectContext, ValidationContext);
   }
   return;
@@ -24549,11 +24556,24 @@ void ProcessObjectContextValidation(int64_t ObjectContext, uint8_t ValidationCon
 
 
 /**
- * 验证资源文件完整性
- * 该函数负责验证资源文件的完整性，包括校验和计算、哈希验证和数据结构检查
- * @param ObjectContext 资源文件上下文指针
- * @param ValidationContext 资源数据指针数组
- * @return 验证状态码：0表示成功，其他值表示错误
+ * @brief 验证资源文件完整性
+ * 
+ * 该函数负责验证资源文件的完整性，包括以下步骤：
+ * 1. 计算资源数据的校验和进行双重验证
+ * 2. 验证资源哈希值的正确性
+ * 3. 检查资源数据的完整性和结构
+ * 4. 验证资源元数据的有效性
+ * 5. 获取并验证资源哈希值
+ * 
+ * @param ObjectContext 资源文件上下文指针，包含验证结果和状态信息
+ * @param ValidationContext 资源数据指针数组，包含待验证的资源数据
+ * @return uint64_t 验证状态码：
+ *         - 0: 验证成功，资源文件完整有效
+ *         - 0x1c: 资源上下文无效或元数据配置错误
+ *         - 其他值: 具体验证错误码
+ * 
+ * @note 此函数是资源加载系统的核心验证组件，在资源文件加载时自动调用
+ * @warning 验证失败时会返回具体的错误码用于调试和问题诊断
  */
 uint64_t ValidateResourceFileIntegrity(int64_t ObjectContext,uint8_t *ValidationContext)
 
@@ -50000,12 +50020,12 @@ void Unwind_180905980(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
-  int64_t *presourceTable;
+  int64_t *resourceTablePointer;
   uint8_t *HashValidationResultPointer;
   
-  presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x2e8) + 0x280);
+  resourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + 0x2e8) + 0x280);
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x2e8) + 0x288);
-  for (PackageValidationStatusCodePointer = (uint8_t *)*presourceTable; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 5) {
+  for (PackageValidationStatusCodePointer = (uint8_t *)*resourceTablePointer; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 5) {
     *PackageValidationStatusCodePointer = &SystemResourceHandlerTemplate;
     if (HashValidationResultPointer[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -50015,7 +50035,7 @@ void Unwind_180905980(uint8_t ObjectContext,int64_t ValidationContext)
     *(uint32_t *)(HashValidationResultPointer + 3) = 0;
     *PackageValidationStatusCodePointer = &SystemDataStructure;
   }
-  if (*presourceTable != 0) {
+  if (*resourceTablePointer != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
