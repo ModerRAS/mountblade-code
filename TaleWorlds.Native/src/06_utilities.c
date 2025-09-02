@@ -301,6 +301,38 @@
 #define SystemMemoryAllocationStatusCode 0x1e
 #define SystemDataValidationStatusCode 0x1f
 
+// 系统错误码常量
+#define SystemInvalidObjectStatusCode 0x1e
+#define SystemInvalidResourceStatusCode 0x1f
+#define SystemInvalidContextStatusCode 0x4a
+#define SystemInvalidDataStatusCode 0x4f
+#define SystemValidationFailureCode 0x1f
+#define SystemSecurityErrorCode 0x4a
+#define SystemMemoryErrorCode 0x1f
+#define SystemOperationFailureCode 0x1f
+
+// 位操作常量
+#define SignBitMask 0x1f
+#define HashReservedBitMask 0x4000
+#define HashValueMask 0x7fff
+#define HashShiftMask 0xffffc000
+#define ValidationBitPosition 4
+#define CompressionBitPosition 4
+#define SerializationBitPosition 1
+#define DeserializationBitPosition 3
+#define SystemFlagBit18 0x18
+#define SystemFlagBit19 0x19
+#define ResourceValidationBitShift 16
+#define ResourceSecurityBitShift 16
+
+// 资源表相关常量
+#define ResourceTableEntrySizeBytes 0x18
+#define ResourceDataArraySizeBytes 0x10
+#define ResourceContextSizeBytes 0xc
+#define ResourceEntryMultiplier 8
+#define ResourceTableHeaderSize 0xc
+#define ResourceValidationFlags 0x34
+
 /**
  * @brief 初始化模块依赖关系
  * 
@@ -6632,7 +6664,7 @@ uint8_t ValidateAndClearObjectState(int64_t ObjectContext, int64_t SystemContext
     return ResourceHashValidationResult;
   }
   if (*(char *)(contextBuffer + 0x2c) == '\0') {
-    return 0x4f;
+    return SystemInvalidDataStatusCode;
   }
   *(uint8_t *)(contextBuffer + 0x2c) = 0;
         ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
@@ -7339,7 +7371,7 @@ uint64_t ValidateSystemDataBufferContext(void)
       ArrayIndex = ArrayIndex + 0x18;
     } while ((int)IterationCounter < *(int *)(SystemContextOffset + 0x28));
   }
-  return 0x4a;
+  return SystemInvalidContextStatusCode;
 }
 
 
@@ -10614,6 +10646,16 @@ void ValidateResourceHashAndProcessEntries(void)
  * 
  * @return 无返回值
  * @note 此函数为空实现，用于特定场景下的占位
+ */
+/**
+ * @brief 空资源验证函数
+ * 
+ * 该函数是一个空实现，用于占位或未来的扩展功能
+ * 主要用于保持系统架构的完整性
+ * 
+ * @return 无返回值
+ * @note 此函数目前为空实现，不执行任何操作
+ * @warning 此函数可能在未来的版本中实现具体功能
  */
 void EmptyResourceValidationFunction(void)
 
