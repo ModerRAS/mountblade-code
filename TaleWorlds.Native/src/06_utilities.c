@@ -4484,7 +4484,17 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
  * 该函数负责触发系统级别的异常处理流程
  * 用于处理严重的系统错误或异常情况
  */
-void TriggerSystemExceptionAlternative(void)
+/**
+ * @brief 触发系统异常替代路径
+ * 
+ * 该函数负责触发系统异常处理的替代路径
+ * 当主异常处理路径不可用时，使用此替代路径
+ * 
+ * @return 无返回值
+ * @note 此函数会执行系统退出操作
+ * @warning 这是一个异常处理函数，调用后系统将退出
+ */
+void TriggerSystemExceptionAlternatePath(void)
 
 {
         ExecuteSystemExitOperation();
@@ -11975,15 +11985,18 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
 /**
  * @brief 更新资源池条目数据
  * 
- * 该函数用于更新资源池中的条目数据
- * 主要用于资源数据的维护和更新操作
+ * 该函数用于更新资源池中的条目数据，通过指定的对象上下文和清理选项
+ * 来更新特定资源条目的状态。这是一个简化的资源更新操作。
  * 
- * @param entryIndex 条目索引，指定要更新的条目
- * @param reservedParam 保留参数，供将来扩展使用
- * @param poolDataPointer 池数据指针，指向资源池数据
- * @return uint64_t 处理结果状态码
+ * @param EntryIndex 条目索引，指定要更新的资源条目位置
+ * @param ReservedParam 保留参数，供将来扩展使用，当前未使用
+ * @param PoolDataPointer 池数据指针，指向资源池的内存地址
+ * @return uint64_t 处理结果状态码，0表示成功更新
+ * 
+ * @note 此函数假设资源池和清理选项已正确初始化
+ * @warning 更新操作可能会影响资源池的状态一致性
  */
-uint64_t UpdateResourcePoolEntryData(int64_t entryIndex, uint8_t reservedParam, int64_t poolDataPointer)
+uint64_t UpdateResourcePoolEntryData(int64_t EntryIndex, uint8_t ReservedParam, int64_t PoolDataPointer)
 
 {
   uint8_t *ResourceRegisterPointer;
@@ -11997,8 +12010,10 @@ uint64_t UpdateResourcePoolEntryData(int64_t entryIndex, uint8_t reservedParam, 
 /**
  * @brief 参数验证和处理函数
  * 
- * 该函数用于验证和处理传入的参数，确保参数的有效性
- * 主要用于系统初始化和配置过程中的参数检查
+ * 该函数用于验证和处理传入的参数，确保参数的有效性。
+ * 首先检查最大值是否小于最小值，如果是则调整最大值。
+ * 然后执行资源池操作，根据操作结果进行相应的处理。
+ * 主要用于系统初始化和配置过程中的参数检查。
  * 
  * @param MinValue 最小值，用于参数验证的基准值
  * @param MaxValue 最大值，用于参数验证的比较值
@@ -12006,8 +12021,11 @@ uint64_t UpdateResourcePoolEntryData(int64_t entryIndex, uint8_t reservedParam, 
  * @param Options 处理选项或标志，控制处理行为
  * @param AdditionalData 附加数据或配置信息
  * @return uint64_t 处理结果，成功返回0，失败返回错误码
+ * 
+ * @note 此函数会自动调整无效的参数范围
+ * @warning 参数验证失败可能会导致系统配置异常
  */
-uint64_t ValidateAndProcessParameters(int MinValue,int MaxValue,uint8_t SystemContext,uint8_t Options,uint8_t AdditionalData)
+uint64_t ValidateAndProcessParameters(int MinValue, int MaxValue, uint8_t SystemContext, uint8_t Options, uint8_t AdditionalData)
 
 {
   uint8_t ResourceValidationHash;
@@ -12020,7 +12038,7 @@ uint64_t ValidateAndProcessParameters(int MinValue,int MaxValue,uint8_t SystemCo
   if (MaxValue < MinValue) {
     MaxValue = MinValue;
   }
-  ResourceValidationHash = ResourcePoolOperation(SystemRegisterContext + 0x10,MaxValue);
+  ResourceValidationHash = ResourcePoolOperation(SystemRegisterContext + 0x10, MaxValue);
   if ((int)ResourceValidationHash == 0) {
     ResourceHashValidationResultPointer = (uint8_t *)
              ((int64_t)*(int *)(SystemRegisterContext + 0x18) * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
