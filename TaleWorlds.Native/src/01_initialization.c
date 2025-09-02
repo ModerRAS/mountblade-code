@@ -49480,7 +49480,7 @@ ThreadIdValidationCheck:
 
 
 
-// 函数: void FUN_18006da50(long long *SystemResourceManager)
+// 函数: void ProcessSystemResourceDataC(long long *SystemResourceManager)
 /**
  * @brief 处理系统资源数据
  * 
@@ -49603,7 +49603,7 @@ ulong long GetSystemResourceHash(long long SystemResourceManager,void* Configura
 
 
 
-// 函数: void FUN_18006dc10(long long *SystemResourceManager)
+// 函数: void CleanupSystemResourceDataB(long long *SystemResourceManager)
 /**
  * @brief 清理系统资源数据
  * 
@@ -50377,7 +50377,7 @@ void DestroySystemResources(long long *SystemResourceManager)
 
 
 
-// 函数: void FUN_18006e5d0(long long *SystemResourceManager)
+// 函数: void CleanupSystemResourceArray(long long *SystemResourceManager)
 /**
  * @brief 系统资源清理函数
  * 
@@ -50407,7 +50407,7 @@ void CleanupSystemResourceArray(long long *SystemResourceManager)
 
 
 
-// 函数: void FUN_18006e640(long long *SystemResourceManager)
+// 函数: void ValidateSystemResourceArray(long long *SystemResourceManager)
 /**
  * @brief 系统资源批量清理函数
  * 
@@ -50700,7 +50700,7 @@ void FinalizeSystemMemorySetup(void* SystemResourceManager,void* ConfigurationDa
 
 
 
-// 函数: void FUN_18006edf0(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void InitializeSystemResourceManagerEx(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 初始化系统资源管理器
  * 
@@ -50820,7 +50820,7 @@ void ReleaseSystemResource(long long *SystemResourceManager)
 
 
 
-// 函数: void FUN_18006ef80(long long *SystemResourceManager)
+// 函数: void CleanupSystemResourceArrayEx(long long *SystemResourceManager)
 /**
  * @brief 清理系统资源管理器
  * 
@@ -50844,7 +50844,7 @@ void CleanupSystemResourceManager(long long *SystemResourceManager)
 
 
 
-// 函数: void FUN_18006efc0(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void InitializeSystemResourceManagerEx2(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 执行系统资源清理操作
  * 
@@ -52824,7 +52824,7 @@ LAB_180071eb0:
 0001800726c4)
 
 
-// 函数: void FUN_180072000(void* SystemResourceManager,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
+// 函数: void InitializeSystemResourceManagerEx3(void* SystemResourceManager,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
 /**
  * @brief 系统资源操作处理函数
  * 
@@ -53865,7 +53865,7 @@ void SetSystemManagerParameters(void* SystemResourceManager,uint32_t Configurati
 
 
 
-// 函数: void FUN_180073930(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessSystemResourceManagerConfiguration(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统回调函数管理器
  * 
@@ -54525,7 +54525,7 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
 
 
 
-// 函数: void FUN_180073e0b(uint32_t *SystemResourceManager)
+// 函数: void ValidateSystemResourceManagerSecurity(uint32_t *SystemResourceManager)
 /**
  * @brief 初始化资源管理器哈希节点
  * 
@@ -54897,7 +54897,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourceManager,long long 
 
 
 
-// 函数: void FUN_1800740a2(long long *SystemResourceManager)
+// 函数: void CleanupSystemResourceManagerFinal(long long *SystemResourceManager)
 /**
  * @brief 处理系统资源分配和数据初始化
  * 
@@ -57013,7 +57013,7 @@ LAB_180075f4f:
 
 
 
-// 函数: void FUN_180075ff0(long long *SystemResourceManager)
+// 函数: void InitializeSystemResourceManagerFinal(long long *SystemResourceManager)
 /**
  * @brief 系统资源管理器初始化函数（扩展版本）
  * 
@@ -57402,7 +57402,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemReso
 
 
 
-// 函数: void FUN_180076760(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessSystemResourceManagerFinal(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统资源管理器高级配置函数
  * 
@@ -57495,7 +57495,7 @@ void ConfigureSystemResourceManagerAdvanced(long long *SystemResourceManager,voi
 
 
 
-// 函数: void FUN_180076910(long long SystemResourceManager,long long *ConfigurationDataPointer)
+// 函数: void ValidateSystemResourceManagerFinal(long long SystemResourceManager,long long *ConfigurationDataPointer)
 /**
  * @brief 系统资源管理器线程配置函数
  * 
@@ -57591,7 +57591,7 @@ void IncrementSystemResourceReferenceCount(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_180076a80(long long SystemResourceManager)
+// 函数: void CleanupSystemResourceManagerThread(long long SystemResourceManager)
 /**
  * @brief 系统资源引用计数管理器
  * 
@@ -60384,7 +60384,7 @@ LAB_SystemStatusSet:
 
 
 
-// 函数: void FUN_1800783b0(void)
+// 函数: void InitializeSystemGlobalData(void)
 /**
  * @brief 初始化系统数据索引
  * 
@@ -65541,8 +65541,8 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
 
 
 
-// 函数: void FUN_18007cbb0(uint SystemResourceManager,long long ConfigurationDataPointer,long long *AdditionalParameter,void* ConfigurationFlag)
-void FUN_18007cbb0(uint SystemResourceManager,long long ConfigurationDataPointer,long long *AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDataPointer,long long *AdditionalParameter,void* ConfigurationFlag)
+void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDataPointer,long long *AdditionalParameter,void* ConfigurationFlag)
 
 {
   float FloatVariable1;
@@ -66285,7 +66285,7 @@ code_r0x00018007db1b:
 
 
 
-// 函数: void FUN_18007df50(long long SystemResourceManager,long long *ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ConfigureSystemResourceDataStructure(long long SystemResourceManager,long long *ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 配置系统资源数据结构
  * 
