@@ -7289,7 +7289,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
 {
   int64_t ObjectDataPointer;
   int PackageValidationStatusCode;
-  int64_t allocatedMemory;
+  int64_t AllocatedMemory;
   int64_t *pointerReference;
   uint8_t securityBuffer [32];
   int64_t ContextBuffer;
