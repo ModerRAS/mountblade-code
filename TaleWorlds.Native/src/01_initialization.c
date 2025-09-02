@@ -49694,7 +49694,7 @@ long long CleanupResourceManager(long long ResourceManagerPointer,ulong long Con
   FUN_18006e5d0();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  FUN_18006e4a0(ResourceManagerPointer + 200);
+  CleanupResourceManagerPointers(ResourceManagerPointer + 200);
   ReleaseSystemResources(ResourceManagerPointer);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(ResourceManagerPointer,0x408);
@@ -49915,8 +49915,17 @@ void CleanupResourceManagerPointers(long long *ResourceManagerPointer)
 
 
 
-// 函数: void FUN_18006e4a4(long long *ResourceManagerPointer)
-void FUN_18006e4a4(long long *ResourceManagerPointer)
+/**
+ * @brief 清理资源管理器扩展指针函数
+ * 
+ * 该函数负责清理资源管理器的扩展指针和数据结构，包括哈希节点、
+ * 字符串处理指针、缓冲区地址等。用于系统资源管理器的扩展内存清理。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * 
+ * 原始函数名为FUN_18006e4a4，现已重命名为CleanupResourceManagerExtendedPointers
+ */
+void CleanupResourceManagerExtendedPointers(long long *ResourceManagerPointer)
 
 {
   int *pointerToInteger1;
