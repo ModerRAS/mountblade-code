@@ -48193,7 +48193,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   uint8_t SystemMemoryOffsetBuffer [32];
   ulong long SystemHashValidationValue;
   void* **ppSystemDataBufferOffset;
-  long long *plStack_240;
+  long long *SystemResourcePointer;
   long long SystemMemorySize;
   long long longValue230;
   uint8_t SystemMemoryAlignment;
@@ -48349,16 +48349,16 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     }
     SystemHashEntryPointer0 = *(void* **)(SystemResourceManager + 0xc0);
     if ((void* *)*SystemHashEntryPointer0 == &SystemMemoryManagerTemplate) {
-      charOutput = FindSystemResourceManagerMapping(SystemHashEntryPointer0 + 2,&plStack_240);
+      charOutput = FindSystemResourceManagerMapping(SystemHashEntryPointer0 + 2,&SystemResourcePointer);
       while (charOutput != '\0') {
         resourcePoolPointer3 = (long long *)SystemHashEntryPointer0[99];
-        if (plStack_240 != (long long *)0x0) {
-          *(uint8_t *)(plStack_240 + 4) = 0;
-          *resourcePoolPointer3 = *resourcePoolPointer3 - plStack_240[1];
-          resourcePoolPointer3[2] = resourcePoolPointer3[2] + plStack_240[1];
-          PrimaryResourcePointer8 = (long long *)plStack_240[3];
+        if (SystemResourcePointer != (long long *)0x0) {
+          *(uint8_t *)(SystemResourcePointer + 4) = 0;
+          *resourcePoolPointer3 = *resourcePoolPointer3 - SystemResourcePointer[1];
+          resourcePoolPointer3[2] = resourcePoolPointer3[2] + SystemResourcePointer[1];
+          PrimaryResourcePointer8 = (long long *)SystemResourcePointer[3];
           PrimaryResourcePointer5 = (long long *)resourcePoolPointer3[3];
-          PrimaryResourcePointer1 = plStack_240;
+          PrimaryResourcePointer1 = SystemResourcePointer;
           if (PrimaryResourcePointer8 != PrimaryResourcePointer5) {
             do {
               if ((PrimaryResourcePointer8 == (long long *)0x0) || ((char)PrimaryResourcePointer8[4] != '\0')) break;
@@ -48391,7 +48391,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
             PrimaryResourcePointer8 = (long long *)PrimaryResourcePointer1[2];
           }
         }
-        charOutput = FindSystemResourceManagerMapping(SystemHashEntryPointer0 + 2,&plStack_240);
+        charOutput = FindSystemResourceManagerMapping(SystemHashEntryPointer0 + 2,&SystemResourcePointer);
       }
     }
     else {
@@ -48460,15 +48460,15 @@ StackCheckPoint3:
         *pointerToInteger2 = *pointerToInteger2 + 1;
         UNLOCK();
         SystemHashEntryPointer0 = *(void* **)(SystemResourceManager + 0xc0);
-        uStack_258 = SystemHashEntryPointer0[0x6c];
-        if (uStack_258 < SystemContextPointer) {
+        SystemHashEntryValue = SystemHashEntryPointer0[0x6c];
+        if (SystemHashEntryValue < SystemContextPointer) {
           pisByteValid2 = &SystemStringTemplate;
           if (pbStack_1f0 != (byte *)0x0) {
             pisByteValid2 = pbStack_1f0;
           }
             UpdateContextManagerSystem(SystemContextManagerPointer,&SystemSecurityUpdateData,SystemContextPointer,pisByteValid2);
         }
-        if (((uStack_258 < SystemAllocationFlags + SystemContextPointer) ||
+        if (((SystemHashEntryValue < SystemAllocationFlags + SystemContextPointer) ||
             ((ulong long)(long long)*(int *)(SystemResourceManager + 0x3fc) < (long long)SystemOperationStatus7 + 1U)) ||
            (charOutput = (**(code **)*SystemHashEntryPointer0)(SystemHashEntryPointer0,resourceDataIndex3,&SystemGlobalDataReferencePtr2), charOutput == '\0')) {
           LOCK();

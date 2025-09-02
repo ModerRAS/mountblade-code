@@ -4737,11 +4737,11 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文参数，包含对象的初始化信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandleBasic(int64_t objectContext) {
-  uint8_t objectValidationStatusCode;
-  int64_t validatedSystemContext;
+uint8_t InitializeObjectHandleBasic(int64_t ObjectContext) {
+  uint8_t ObjectValidationStatusCode;
+  int64_t ValidatedSystemContext;
   
-  objectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), &validatedSystemContext);
+  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &ValidatedSystemContext);
   if ((int)objectValidationStatusCode == 0) {
     if (validatedSystemContext == 0) {
       validatedSystemContext = 0;
@@ -4954,19 +4954,19 @@ uint8_t ValidateAndProcessObjectHandle(int64_t objectHandleToValidate)
 uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 
 {
-  int64_t RegisterContext;
-  int64_t MemoryPointer;
+  int64_t registerContext;
+  int64_t memoryPointer;
   
-  if (RegisterContext == 0) {
-    MemoryPointer = 0;
+  if (registerContext == 0) {
+    memoryPointer = 0;
   }
   else {
-    MemoryPointer = RegisterContext + -8;
+    memoryPointer = registerContext + -8;
   }
-  if (*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
+  if (*(int64_t *)(memoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(memoryPointer + HandleMemoryBufferHeaderOffset), 1);
 }
 
 
