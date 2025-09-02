@@ -2899,7 +2899,7 @@ uint8_t LogMessageHandlerData;
 uint8_t LogSystemTimestampData;
 uint8_t LogMemoryPoolData;
 uint8_t LogSystemThreadData;
-int64_t PerformanceCounterData;
+int64_t PerformanceCounterValue;
 uint ConfigurationVersion;
 double TimingData;
 double FrequencyData;
@@ -12364,7 +12364,7 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
   int OperationCounter;
   int64_t SavedRegisterValue;
   uint8_t *ResourceRegisterPointer;
-  uint32_t *GeneralPurposeRegisterR15;
+  uint32_t *SystemRegisterR15;
   uint8_t StackValidationByte;
   
   int ResourceCount = *(int *)(SystemSystemRegisterContext + SystemRegisterContextCountOffsetSecondary);
