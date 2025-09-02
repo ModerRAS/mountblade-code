@@ -32470,7 +32470,7 @@ void ReleaseSystemResourcePointer(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058cc0(void* *SystemResourcePointer)
+// 函数: void ResetSystemResourcePointer(void* *SystemResourcePointer)
 /**
  * @brief 重置系统资源指针
  * 
@@ -35793,7 +35793,7 @@ void ManageSystemResourceLock(long long SystemResourcePointer)
 
 
 
-// 函数: void* *FUN_18005c590(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void* *InitializeSystemDataTableManager(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 初始化系统数据表管理器函数
  * 
@@ -37418,7 +37418,7 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
 
 
 
-// 函数: void FUN_18005dab0(long long SystemResourcePointer)
+// 函数: void ProcessSystemResourceThreadManagement(long long SystemResourcePointer)
 /**
  * @brief 处理系统资源线程管理
  * 
@@ -37453,7 +37453,7 @@ void ProcessSystemResourceThreadManagement(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005dade(void)
+// 函数: void GlobalThreadManager(void)
 /**
  * @brief 全局线程管理器
  * 
@@ -37484,7 +37484,7 @@ void GlobalThreadManager(void)
 
 
 
-// 函数: void FUN_18005db19(void)
+// 函数: void SystemNoOperationC(void)
 /**
  * @brief 系统空操作函数C
  * 
@@ -37593,7 +37593,7 @@ void SystemNoOperationD(void)
 
 
 
-// 函数: void FUN_18005dbb0(void)
+// 函数: void InitializeAndConfigureSystemResources(void)
 /**
  * @brief 系统资源初始化和配置函数
  * 
@@ -40331,7 +40331,7 @@ void* InitializeSystemResourceContext(void* SystemResourcePointer,ulong long Con
 
 
 
-// 函数: void FUN_180060420(void* *SystemResourcePointer)
+// 函数: void AllocateSystemResources(void* *SystemResourcePointer)
 /**
  * @brief 系统资源分配器函数
  * 
@@ -40473,7 +40473,7 @@ void* * ConfigureSystemResourceData(void* *SystemResourcePointer,ulong long Conf
 
 
 
-// 函数: void FUN_180060610(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ConfigureSystemResources(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统资源配置器函数
  * 
@@ -40570,7 +40570,7 @@ int InitializeProcessSystem(void* SystemResourcePointer,void* ConfigurationDataP
 
 
 
-// 函数: void FUN_1800606e0(long long *SystemResourcePointer)
+// 函数: void InitializeSystemResource(long long *SystemResourcePointer)
 /**
  * @brief 系统资源初始化器函数
  * 
@@ -41195,7 +41195,7 @@ bool ExecuteSystemResourceOperation(long long SystemResourcePointer,void* Config
 
 
 
-// 函数: void FUN_180060fc0(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
+// 函数: void SynchronizeSystemResources(long long *SystemResourcePointer,long long *ConfigurationDataPointer)
 /**
  * @brief 系统资源同步器函数
  * 
@@ -41288,7 +41288,7 @@ void SynchronizeSystemResources(long long *SystemResourcePointer,long long *Conf
 
 
 
-// 函数: void FUN_1800611a0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ValidateSystemResourceEx(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统资源验证器函数
  * 
@@ -41343,7 +41343,7 @@ void ValidateSystemResourceEx(long long SystemResourcePointer,long long *Configu
 
 
 
-// 函数: void FUN_180061290(void* *SystemResourcePointer)
+// 函数: void ReleaseSystemResourceEx(void* *SystemResourcePointer)
 /**
  * @brief 系统资源释放器函数
  * 
@@ -41363,7 +41363,7 @@ void ReleaseSystemResourceEx(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800612b0(void* *SystemResourcePointer)
+// 函数: void ResetSystemResource(void* *SystemResourcePointer)
 /**
  * @brief 系统资源重置器函数
  * 
@@ -44576,7 +44576,7 @@ void HandleSystemOutOfRangeException(void)
 
 
 
-// 函数: void FUN_180067070(long long *SystemResourcePointer)
+// 函数: void FreeSystemResourceMemory(long long *SystemResourcePointer)
 /**
  * @brief 释放系统资源内存
  * 
@@ -44615,7 +44615,7 @@ void FreeSystemResourceMemory(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800670d0(void)
+// 函数: void ExecuteSystemResourceMemoryFree(void)
 /**
  * @brief 执行系统资源内存释放
  * 
@@ -45043,7 +45043,7 @@ void ExecuteSystemResourceOperation(long long SystemResourcePointer,void* Config
 
 
 
-// 函数: void FUN_180067840(long long *SystemResourcePointer)
+// 函数: void FreeSystemResourceMemoryEx(long long *SystemResourcePointer)
 /**
  * @brief 处理系统资源内存分配和缓冲区管理
  * 
@@ -45178,7 +45178,7 @@ void ProcessSystemResourceMemoryAllocation(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180067bc0(void* *SystemResourcePointer)
+// 函数: void CleanupAndInitializeSystemResource(void* *SystemResourcePointer)
 /**
  * @brief 系统资源清理和初始化函数
  * 
@@ -45210,8 +45210,15 @@ void CleanupAndInitializeSystemResource(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180067f00(void)
-void FUN_180067f00(void)
+// 函数: void DestroySystemMutex(void)
+/**
+ * @brief 系统互斥锁销毁函数
+ * 
+ * 该函数负责销毁系统互斥锁，清理线程同步资源
+ * 
+ * 原始函数名为FUN_180067f00，现已重命名为DestroySystemMutex
+ */
+void DestroySystemMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -45221,8 +45228,16 @@ void FUN_180067f00(void)
 
 
 
-// 函数: void FUN_180067f30(void)
-void FUN_180067f30(void)
+// 函数: void DestroySystemMutexB(void)
+/**
+ * @brief 系统互斥锁销毁函数B
+ * 
+ * 该函数负责销毁系统互斥锁，清理线程同步资源
+ * 这是DestroySystemMutex的另一个版本
+ * 
+ * 原始函数名为FUN_180067f30，现已重命名为DestroySystemMutexB
+ */
+void DestroySystemMutexB(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -45233,8 +45248,8 @@ void FUN_180067f30(void)
 
 
 
-// 函数: void FUN_180067f60(long long SystemResourcePointer,long long ConfigurationDataPointer)
-void FUN_180067f60(long long SystemResourcePointer,long long ConfigurationDataPointer)
+// 函数: void CreateSystemIoCompletionPort(long long SystemResourcePointer,long long ConfigurationDataPointer)
+void CreateSystemIoCompletionPort(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   int systemStatus;
@@ -45468,8 +45483,8 @@ long long CopySystemConfigurationData(long long SystemResourcePointer,long long 
 
 
 
-// 函数: void FUN_180068620(long long SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_180068620(long long SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ConfigureSystemResourceWithMutex(long long SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ConfigureSystemResourceWithMutex(long long SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
@@ -67035,8 +67050,8 @@ void FUN_18007fc6d(void)
 
 
 
-// 函数: void FUN_18007fc73(void)
-void FUN_18007fc73(void)
+// 函数: void InitializeSystemPreferences(void)
+void InitializeSystemPreferences(void)
 
 {
   uint32_t unsignedSystemValue1;
@@ -67064,8 +67079,8 @@ void FUN_18007fc73(void)
 
 
 
-// 函数: void FUN_18007fca8(void)
-void FUN_18007fca8(void)
+// 函数: void InitializePreferenceManager(void)
+void InitializePreferenceManager(void)
 
 {
   long long systemDataIndexPtr;
