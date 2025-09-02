@@ -20639,12 +20639,12 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
           IsMatchFound = 0 < systemCounter;
           if (systemCounter < 1) {
             punsignedSystemValue9 = (void* *)punsignedSystemValue8[1];
-            goto LAB_180047f2c;
+            goto SystemNodeTraversalContinue;
           }
         }
         punsignedSystemValue9 = (void* *)*punsignedSystemValue8;
       }
-LAB_180047f2c:
+SystemNodeTraversalContinue:
       if (IsMatchFound) {
         punsignedSystemValue8 = punsignedSystemValue4;
       }
@@ -20653,7 +20653,7 @@ LAB_180047f2c:
     } while (punsignedSystemValue9 != (void* *)0x0);
   }
   if (punsignedSystemValue4 != SystemPreviousNode) {
-    if (*(int *)(punsignedSystemValue4 + 6) == 0) goto LAB_180047f93;
+    if (*(int *)(punsignedSystemValue4 + 6) == 0) goto SystemNodeDataValidation;
     if (*(int *)(AdditionalParameter + 0x10) != 0) {
       stringComparePointer = (byte *)punsignedSystemValue4[5];
       stringLengthDifference = *(long long *)(AdditionalParameter + 8) - (long long)stringComparePointer;
@@ -20663,12 +20663,12 @@ LAB_180047f2c:
         if (currentCharValue != comparisonCharValue) break;
         stringComparePointer = stringComparePointer + 1;
       } while (comparisonCharValue != 0);
-      if ((int)(currentCharValue - comparisonCharValue) < 1) goto LAB_180047f93;
+      if ((int)(currentCharValue - comparisonCharValue) < 1) goto SystemNodeDataValidation;
     }
   }
   punsignedSystemValue4 = (void* *)GetSystemNodeDataPointer(SystemPreviousNode,&searchContextBackup);
   punsignedSystemValue4 = (void* *)*punsignedSystemValue4;
-LAB_180047f93:
+SystemNodeDataValidation:
   SetSystemNodeRuntimeData(punsignedSystemValue4 + 8,AdditionalParameter);
   punsignedSystemValue4[0xc] = ConfigurationFlag;
   return;
@@ -21321,10 +21321,10 @@ LABEL_TARGET_NODE_VALIDATION_CONTINUE:
           StringPointer = StringPointer + 1;
         } while (UIntValue != 0);
         if (0 < (int)(ByteValue - UIntValue)) {
-          if (*TargetNodePointer == 0) goto LAB_180048db7;
+          if (*TargetNodePointer == 0) goto TargetNodeValidationHandler;
           VoidPointer = 1;
           TargetNodePointer = MemoryListNode;
-          goto LAB_180048dba;
+          goto MemoryListNodeAssignment;
         }
       }
     }
@@ -21337,7 +21337,7 @@ ComparisonResultHandler:
     SystemMemoryPointer = MemoryListNode;
     if ((int)MemoryListNode[6] == 0) {
       ComparisonResult = false;
-LAB_180048e00:
+MemoryListTraversal:
       MemoryListNode = (long long *)*MemoryListNode;
     }
     else {
@@ -21355,7 +21355,7 @@ LAB_180048e00:
         } while (unsignedSystemValue6 != 0);
         bVar2 = 0 < (int)(bVar1 - unsignedSystemValue6);
       }
-      if (!bVar2) goto LAB_180048e00;
+      if (!bVar2) goto MemoryListTraversal;
       plocalBufferAddress = (long long *)plocalBufferAddress[1];
     }
   }
@@ -21363,11 +21363,11 @@ LAB_180048e00:
   if (bVar2) {
     if (plocalResourceOffset != (long long *)SystemResourcePointer[1]) {
       plocalBufferAddress = (long long *)SystemResourceOffsetGet(plocalResourceOffset);
-      goto LAB_180048e20;
+      goto SystemDataValidation;
     }
   }
   else {
-LAB_180048e20:
+SystemDataValidation:
     if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto LAB_180048e74;
     if ((int)plocalBufferAddress[6] != 0) {
       pbVar5 = *(byte **)(SystemDataStructurePointer + 8);
