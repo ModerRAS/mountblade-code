@@ -365,7 +365,7 @@ void ResourceOperationsProcessor(void);
  * @note 此函数会检查所有系统资源的完整性
  * @warning 如果发现资源损坏，系统可能会采取恢复措施
  */
-void ValidateResourceIntegrity(void);
+void ResourceIntegrityValidator(void);
 
 /**
  * @brief 执行资源清理
@@ -1833,9 +1833,9 @@ uint8_t SystemMemoryDataPoolPrimary;
 uint8_t SystemMemoryDataPoolSecondary;
 uint8_t SystemMemoryDataPoolTertiary;
 uint8_t SystemMemoryDataPoolQuaternary;
-uint8_t SystemMemoryConfigDataTemplateLarge;
-uint8_t SystemMemoryConfigDataTemplateMedium;
-uint8_t SystemMemoryConfigDataTemplateNormal;
+uint8_t SystemMemoryConfigTemplateLarge;
+uint8_t SystemMemoryConfigTemplateMedium;
+uint8_t SystemMemoryConfigTemplateNormal;
 
  /**
  * @brief 设置内存质量管理
@@ -2606,16 +2606,26 @@ void* ResourceNetworkManager;
 void* ResourceDatabaseManager;
 void* SystemConfigTable;
 void* SystemMemoryConfig;
-uint8_t SystemConfigurationEntryTertiary;
-uint8_t SystemConfigurationEntryQuaternary;
-uint8_t SystemConfigurationEntryQuinary;
-uint8_t SystemConfigurationEntrySenary;
-uint8_t SystemConfigurationEntrySeptenary;
-uint8_t SystemConfigurationEntryOctonary;
-uint8_t SystemConfigurationEntryNonary;
-uint8_t SystemConfigurationEntryDenary;
-uint8_t SystemConfigurationEntryUndenary;
-uint8_t SystemConfigurationEntryDuodenary;
+// 第三级配置条目 - 用于存储第三级系统配置信息
+uint8_t TertiaryConfigEntry;
+// 第四级配置条目 - 用于存储第四级系统配置信息
+uint8_t QuaternaryConfigEntry;
+// 第五级配置条目 - 用于存储第五级系统配置信息
+uint8_t QuinaryConfigEntry;
+// 第六级配置条目 - 用于存储第六级系统配置信息
+uint8_t SenaryConfigEntry;
+// 第七级配置条目 - 用于存储第七级系统配置信息
+uint8_t SeptenaryConfigEntry;
+// 第八级配置条目 - 用于存储第八级系统配置信息
+uint8_t OctonaryConfigEntry;
+// 第九级配置条目 - 用于存储第九级系统配置信息
+uint8_t NonaryConfigEntry;
+// 第十级配置条目 - 用于存储第十级系统配置信息
+uint8_t DenaryConfigEntry;
+// 第十一级配置条目 - 用于存储第十一级系统配置信息
+uint8_t UndenaryConfigEntry;
+// 第十二级配置条目 - 用于存储第十二级系统配置信息
+uint8_t DuodenaryConfigEntry;
 uint8_t ThreadConfigTable;
 uint8_t ThreadPriorityTable;
 uint8_t ThreadAffinityTable;
@@ -2629,13 +2639,17 @@ uint8_t SystemThreadMonitor;
 uint8_t ThreadMonitorTable;
 uint8_t SystemMemoryPoolBufferPrimary;
 uint8_t SystemMemoryPoolBufferSecondary;
-uint8_t SystemMemoryPoolBufferC;
+// 第三级内存池缓冲区 - 用于存储第三级系统内存池数据
+uint8_t TertiaryMemoryPoolBuffer;
 uint8_t ResourceAllocationTable;
 uint8_t SystemMemoryManager;
 uint8_t ThreadContextManager;
-uint8_t SystemDataBufferA;
-uint8_t SystemDataBufferB;
-uint8_t ProcessContextData;
+// 主数据缓冲区 - 用于存储主要的系统数据
+uint8_t PrimaryDataBuffer;
+// 次要数据缓冲区 - 用于存储次要的系统数据
+uint8_t SecondaryDataBuffer;
+// 进程上下文 - 用于存储进程相关的上下文信息
+uint8_t ProcessContext;
 uint8_t SystemHeapManager;
 uint8_t SystemStackManager;
 uint8_t ThreadLocalStorage;
@@ -2851,16 +2865,26 @@ uint8_t SystemResourceProducer;
 uint8_t SystemResourceGenerator;
 uint8_t SystemConfigurationEntryPrimary;
 uint8_t SystemConfigurationEntrySecondary;
-uint8_t SystemConfigurationEntryTertiary;
-uint8_t SystemConfigurationEntryQuaternary;
-uint8_t SystemConfigurationEntryQuinary;
-uint8_t SystemConfigurationEntrySenary;
-uint8_t SystemConfigurationEntrySeptenary;
-uint8_t SystemConfigurationEntryOctonary;
-uint8_t SystemConfigurationEntryNonary;
-uint8_t SystemConfigurationEntryDenary;
-uint8_t SystemConfigurationEntryUndenary;
-uint8_t SystemConfigurationEntryDuodenary;
+// 第三级配置条目 - 用于存储第三级系统配置信息
+uint8_t TertiaryConfigEntry;
+// 第四级配置条目 - 用于存储第四级系统配置信息
+uint8_t QuaternaryConfigEntry;
+// 第五级配置条目 - 用于存储第五级系统配置信息
+uint8_t QuinaryConfigEntry;
+// 第六级配置条目 - 用于存储第六级系统配置信息
+uint8_t SenaryConfigEntry;
+// 第七级配置条目 - 用于存储第七级系统配置信息
+uint8_t SeptenaryConfigEntry;
+// 第八级配置条目 - 用于存储第八级系统配置信息
+uint8_t OctonaryConfigEntry;
+// 第九级配置条目 - 用于存储第九级系统配置信息
+uint8_t NonaryConfigEntry;
+// 第十级配置条目 - 用于存储第十级系统配置信息
+uint8_t DenaryConfigEntry;
+// 第十一级配置条目 - 用于存储第十一级系统配置信息
+uint8_t UndenaryConfigEntry;
+// 第十二级配置条目 - 用于存储第十二级系统配置信息
+uint8_t DuodenaryConfigEntry;
 byte SystemConfigurationStatusFlag;
 uint8_t SystemStatusIndicator;
 uint8_t SystemConfigurationDebugMode;
@@ -6299,7 +6323,7 @@ void SetObjectContextProcessingStatusFlag(int64_t ObjectContext, int64_t Process
   if (ValidationStatus == 0) {
     *(uint8_t *)(ContextBuffer + 0x29) = *(uint8_t *)(ObjectContext + 0x18);
                     // WARNING: Subroutine does not return
-    ProcessContextData(*(uint8_t *)(ProcessContext + 0x98), ObjectContext);
+    ProcessContext(*(uint8_t *)(ProcessContext + 0x98), ObjectContext);
   }
   return;
 }
@@ -6326,7 +6350,7 @@ void SetObjectContextValidationStatusFlag(int64_t ObjectContext, int64_t process
   if (validationStatus == 0) {
     *(uint8_t *)(contextBuffer + 0x28) = *(uint8_t *)(ObjectContext + 0x18);
                     // WARNING: Subroutine does not return
-    ProcessContextData(*(uint8_t *)(processContext + 0x98),ObjectContext);
+    ProcessContext(*(uint8_t *)(processContext + 0x98),ObjectContext);
   }
   return;
 }
@@ -12157,7 +12181,7 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
               do {
                 SystemDataBufferFlags = *(uint32_t *)(resourceTablePointer + 0xc + LocalContextDataBuffer * 0x10);
                 SystemDataBufferOffset = 0;
-                SystemDataBufferPointer = &SystemDataBufferA;
+                SystemDataBufferPointer = &PrimaryDataBuffer;
                 ParseDataStructure(&SystemDataBufferPointer,*(uint8_t *)(objectContext + 0x58));
                 operationStatusCode = ValidateTableEntry(HashValidationResult);
               } while (0 < OperationResult);
@@ -14940,7 +14964,7 @@ void ProcessResourceDataValidation(int64_t *objectContext)
       UnsignedStackValue310 = 0xffffffffffffffff;
       TempFloatBuffer[0] = -NAN;
       PointerStack318 = (int64_t *)(*(int64_t *)(objectContext[1] + 0x90) + 0x38);
-      ConfigureResourceSettings(PointerStack318,&UnsignedStackValue310,TempFloatBuffer);
+      ResourceSettingsConfigFlag(PointerStack318,&UnsignedStackValue310,TempFloatBuffer);
       ValidationFloatBuffer[0] = TempFloatBuffer[0];
       if (TempFloatBuffer[0] != -NAN) {
         resourceContext6 = PointerStack318;
@@ -17330,7 +17354,7 @@ void ExecuteNullOperationSecondary(void)
  * @param validationContext 验证上下文指针，包含验证信息
  * @return 验证结果，0表示成功，非0表示错误代码
  */
-uint8_t ValidateResourceIntegrity(int64_t objectContext, uint32_t *validationContext)
+uint8_t ResourceIntegrityValidator(int64_t objectContext, uint32_t *validationContext)
 
 {
   int ProcessingResult;
@@ -18775,7 +18799,7 @@ uint8_t GetResourceTableStatus(void)
  * @return 无返回值
  * @note 如果验证失败，会调用资源清理函数
  */
-void ValidateResourceIntegrity(void)
+void ResourceIntegrityValidator(void)
 
 {
   int ResourceHashValidationResult;
@@ -21031,7 +21055,7 @@ ResourceOperationStatus:
  * @note 此函数会在资源访问时自动调用
  * @warning 如果资源完整性检查失败，系统可能会拒绝访问该资源
  */
-void ValidateResourceIntegrity(void)
+void ResourceIntegrityValidator(void)
 
 {
   uint InputRegisterResult;
@@ -46320,7 +46344,7 @@ void ExecuteResourceValidation(uint8_t objectContext, int64_t validationContext)
  * @return 无返回值
  * @note 此函数通常在资源完整性验证过程中调用
  */
-void ValidateResourceIntegrity(uint8_t objectContext, int64_t validationContext)
+void ResourceIntegrityValidator(uint8_t objectContext, int64_t validationContext)
 
 {
   if (*(int64_t *)(validationContext + 0x80) != 0) {
@@ -56615,7 +56639,7 @@ void Unwind_180907710(uint8_t objectContext,int64_t validationContext)
   pResourceHashValidationResult[0xe] = 0;
   *(uint32_t *)(pResourceHashValidationResult + 0x10) = 0;
   pResourceHashValidationResult[0xd] = &SystemDataStructure;
-  ValidateResourceIntegrity(pResourceHashValidationResult + 7,pResourceHashValidationResult[9]);
+  ResourceIntegrityValidator(pResourceHashValidationResult + 7,pResourceHashValidationResult[9]);
   *pvalidationResult = &ResourceValidationTable002;
   return;
 }
@@ -56667,7 +56691,7 @@ void Unwind_180907740(uint8_t objectContext,int64_t validationContext)
   pResourceHashValidationResult[0xe] = 0;
   *(uint32_t *)(pResourceHashValidationResult + 0x10) = 0;
   pResourceHashValidationResult[0xd] = &SystemDataStructure;
-  ValidateResourceIntegrity(pResourceHashValidationResult + 7,pResourceHashValidationResult[9]);
+  ResourceIntegrityValidator(pResourceHashValidationResult + 7,pResourceHashValidationResult[9]);
   *pvalidationResult = &ResourceValidationTable002;
   return;
 }
@@ -93847,10 +93871,10 @@ void InitializeSystemDataStructureCC(void)
   int64_t loopCounter;
   int64_t ResourceTable;
   
-  if (0xf < SystemresourceCounter001) {
+  if (0xf < SystemResourcePrimaryCounter) {
     LocalContextData = CONCAT71(SystemDataStructureHighPointer,SystemDataStructureLowPointer);
     resourceTable = LocalContextData;
-    if (0xfff < SystemresourceCounter001 + 1) {
+    if (0xfff < SystemResourcePrimaryCounter + 1) {
       resourceTable = *(int64_t *)(LocalContextData + -8);
       if (0x1f < (LocalContextData - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
@@ -93859,8 +93883,8 @@ void InitializeSystemDataStructureCC(void)
     }
     free(resourceTable);
   }
-  SystemresourceFlag001 = 0;
-  SystemresourceCounter001 = 0xf;
+  SystemResourcePrimaryFlag = 0;
+  SystemResourcePrimaryCounter = 0xf;
 
  /**
  * 初始化系统数据结构CD
@@ -94899,14 +94923,14 @@ void InitializeSystemDataStructureDB(void)
 
 
 
- void ProcessResourceOperations(void)
+ void ResourceOperationsProcessor(void)
 /**
  * @brief 处理资源操作
  * 
  * 该函数负责处理资源相关的操作任务
  * 包括资源的分配、释放和管理等操作
  */
-void ProcessResourceOperations(void)
+void ResourceOperationsProcessor(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943038. Too many branches
@@ -94918,14 +94942,14 @@ void ProcessResourceOperations(void)
 
 
 
- void ValidateResourceIntegrity(void)
+ void ResourceIntegrityValidator(void)
 /**
  * @brief 验证资源完整性
  * 
  * 该函数负责验证系统中的资源完整性
  * 确保资源数据没有被损坏或篡改
  */
-void ValidateResourceIntegrity(void)
+void ResourceIntegrityValidator(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943058. Too many branches
