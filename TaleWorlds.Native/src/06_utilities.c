@@ -8542,15 +8542,15 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int6
   if ((ValidationFloatValue < 0.0) || (3.4028235e+38 <= ValidationFloatValue)) {
     return 0x1f;
   }
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&StackBuffer);
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&ValidationContextBuffer);
   if ((int)HashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
-  if (StackBuffer == 0) {
+  if (ValidationContextBuffer == 0) {
     ContextPointer = 0;
   }
   else {
-    ContextPointer = StackBuffer + -8;
+    ContextPointer = ValidationContextBuffer + -8;
   }
   *(uint32_t *)(ContextPointer + 0x90) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
   ContextPointer = *(int64_t *)(ValidationContext + 0x98);

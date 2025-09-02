@@ -51802,9 +51802,9 @@ LAB_18007113f:
     }
   }
   if (SystemSilentMode == '\0') {
-    pointerToUnsigned18 = &UNK_1809ff6bc;
+    pointerToUnsigned18 = &SystemThreadDataPointer;
     if (cStack_120 != '\0') {
-      pointerToUnsigned18 = &UNK_1809ff6b0;
+      pointerToUnsigned18 = &SystemProcessDataPointer;
     }
     do {
       while( true ) {
@@ -51850,7 +51850,7 @@ LAB_18007113f:
         }
         if (((SystemInitializationFlag == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
            (SystemSilentMode == '\0')) {
-          MessageBoxA(0,psystemStatus2,&UNK_1809ff6c8,0x41010);
+          MessageBoxA(0,psystemStatus2,&SystemErrorMessageBuffer,0x41010);
         }
         else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
           puStack_160 = &UNK_1809ff6c8;
