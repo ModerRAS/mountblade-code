@@ -20914,47 +20914,47 @@ void InitializeSystemConfigurationData(void* ResourceManagerPointer,void* Config
       SetSystemConfigurationNumericValue(pcurrentThreadId,&SystemConfigurationTemplate,&SystemConfigurationDepthTemplate,
                     (double)(float)(scaleFactorValue * 9.5367431640625e-07));
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x50 + systemOperationFlags);
-      dVar1 = (double)nextDataIndex1;
+      formatValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        formatValue = formatValue + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(pcurrentThreadId,&SystemConfigurationTemplate,&SystemConfigurationFormatTemplate,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(formatValue * 9.5367431640625e-07));
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x58 + systemOperationFlags);
-      dVar1 = (double)nextDataIndex1;
+      formatValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        formatValue = formatValue + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(pcurrentThreadId,&SystemConfigurationTemplate,&SystemConfigurationTypeTemplate,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(formatValue * 9.5367431640625e-07));
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x60 + systemOperationFlags);
-      dVar1 = (double)nextDataIndex1;
+      formatValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        formatValue = formatValue + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(pcurrentThreadId,&SystemConfigurationTemplate,&SystemConfigurationModeTemplate,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(formatValue * 9.5367431640625e-07));
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x68 + systemOperationFlags);
-      dVar1 = (double)nextDataIndex1;
+      formatValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        formatValue = formatValue + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(pcurrentThreadId,&SystemConfigurationTemplate,&SystemConfigurationSpeedTemplate,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(formatValue * 9.5367431640625e-07));
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x70 + systemOperationFlags);
-      dVar1 = (double)nextDataIndex1;
+      qualityValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        qualityValue = qualityValue + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(pcurrentThreadId,&SystemConfigurationTemplate,&SystemConfigurationQualityTemplate,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
-      dVar1 = *(double *)(nextDataIndex3 + 0x78 + systemOperationFlags);
-      if (dVar1 != 0.0) {
-        SetSystemPropertyNumericValue(pcurrentThreadId,&SystemPropertyTemplate,&SystemPropertyAlphaTemplate,dVar1);
+                    (double)(float)(qualityValue * 9.5367431640625e-07));
+      alphaValue = *(double *)(nextDataIndex3 + 0x78 + systemOperationFlags);
+      if (alphaValue != 0.0) {
+        SetSystemPropertyNumericValue(pcurrentThreadId,&SystemPropertyTemplate,&SystemPropertyAlphaTemplate,alphaValue);
       }
-      dVar1 = *(double *)(nextDataIndex3 + 0x80 + systemOperationFlags);
-      if (dVar1 != 0.0) {
-        SetSystemPropertyNumericValue(pcurrentThreadId,&SystemPropertyTemplate,&SystemPropertyBetaTemplate,dVar1);
+      betaValue = *(double *)(nextDataIndex3 + 0x80 + systemOperationFlags);
+      if (betaValue != 0.0) {
+        SetSystemPropertyNumericValue(pcurrentThreadId,&SystemPropertyTemplate,&SystemPropertyBetaTemplate,betaValue);
       }
       nextDataIndex3 = systemOperationFlags + 0xd0 + nextDataIndex3;
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 8);
@@ -21403,19 +21403,19 @@ MemoryListTraversal:
         StringPointer = (byte *)MemoryListNode[5];
         LongValue = *(long long *)(SearchParameters + 8) - (long long)StringPointer;
         do {
-          bVar1 = *pbVar5;
-          hashValue = (uint)pbVar5[localDataIndex];
-          if (bVar1 != hashValue) break;
-          pbVar5 = pbVar5 + 1;
+          currentChar = *StringPointer;
+          hashValue = (uint)StringPointer[LongValue];
+          if (currentChar != hashValue) break;
+          StringPointer = StringPointer + 1;
         } while (hashValue != 0);
-        bVar2 = 0 < (int)(bVar1 - hashValue);
+        ComparisonResult = 0 < (int)(currentChar - hashValue);
       }
-      if (!bVar2) goto MemoryListTraversal;
+      if (!ComparisonResult) goto MemoryListTraversal;
       pbufferBaseAddress = (long long *)pbufferBaseAddress[1];
     }
   }
   pbufferBaseAddress = plocalResourceOffset;
-  if (bVar2) {
+  if (ComparisonResult) {
     if (plocalResourceOffset != (long long *)ResourceManagerPointer[1]) {
       pbufferBaseAddress = (long long *)SystemResourceOffsetGet(plocalResourceOffset);
       goto SystemDataValidation;
@@ -21425,15 +21425,15 @@ MemoryListTraversal:
 SystemDataValidation:
     if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto SystemDataBufferValidation;
     if ((int)pbufferBaseAddress[6] != 0) {
-      pbVar5 = *(byte **)(SystemDataStructurePointer + 8);
-      localDataIndex = pbufferBaseAddress[5] - (long long)pbVar5;
+      StringPointer = *(byte **)(SystemDataStructurePointer + 8);
+      localDataIndex = pbufferBaseAddress[5] - (long long)StringPointer;
       do {
-        bVar1 = *pbVar5;
-        hashValue = (uint)pbVar5[localDataIndex];
-        if (bVar1 != hashValue) break;
-        pbVar5 = pbVar5 + 1;
+        currentChar = *StringPointer;
+        hashValue = (uint)StringPointer[localDataIndex];
+        if (currentChar != hashValue) break;
+        StringPointer = StringPointer + 1;
       } while (hashValue != 0);
-      if ((int)(bVar1 - hashValue) < 1) goto SystemDataBufferValidation;
+      if ((int)(currentChar - hashValue) < 1) goto SystemDataBufferValidation;
     }
   }
   ExecuteSystemNodeProcessing(ResourceManagerPointer,&plStackX_8,plocalResourceOffset,0,SystemDataStructurePointer);
@@ -21456,9 +21456,9 @@ void ProcessSystemDataTransfer(long long ResourceManagerPointer,void* Configurat
                   long long SystemDataStructurePointer)
 
 {
-  byte bVar1;
-  byte *pbVar2;
-  uint allocationContext;
+  byte currentByte;
+  byte *stringPointer;
+  uint compareValue;
   void* *punsignedSystemValue4;
   long long SystemTimeValue;
   void* hashValue;
@@ -21469,15 +21469,15 @@ void ProcessSystemDataTransfer(long long ResourceManagerPointer,void* Configurat
   if (((char)ConfigurationFlag != '\0') || (AdditionalParameter == ResourceManagerPointer)) goto SystemThreadInitialization;
   if (*(int *)(AdditionalParameter + 0x30) != 0) {
     if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto SystemThreadCreation;
-    pbVar2 = *(byte **)(AdditionalParameter + 0x28);
-    localSystemPointer = *(long long *)(SystemDataStructurePointer + 8) - (long long)pbVar2;
+    stringPointer = *(byte **)(AdditionalParameter + 0x28);
+    localSystemPointer = *(long long *)(SystemDataStructurePointer + 8) - (long long)stringPointer;
     do {
-      bVar1 = *pbVar2;
-      allocationContext = (uint)pbVar2[localSystemPointer];
-      if (bVar1 != allocationContext) break;
-      pbVar2 = pbVar2 + 1;
-    } while (allocationContext != 0);
-    if (0 < (int)(bVar1 - allocationContext)) goto SystemThreadCreation;
+      currentByte = *stringPointer;
+      compareValue = (uint)stringPointer[localSystemPointer];
+      if (currentByte != compareValue) break;
+      stringPointer = stringPointer + 1;
+    } while (compareValue != 0);
+    if (0 < (int)(currentByte - compareValue)) goto SystemThreadCreation;
   }
   hashValue = 1;
 SystemThreadCreation:
@@ -50872,17 +50872,26 @@ void ExecuteSystemEntryPoint(void* *entryPointPtr)
 
 
 
-// 函数: void FUN_18006f4cd(void)
-void FUN_18006f4cd(void)
+/**
+ * @brief 系统内存数据索引处理器
+ * 
+ * 该函数负责处理系统内存数据索引，包括索引的获取和清理操作
+ * 用于系统内存数据的管理和维护
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18006f4cd，现已重命名为ProcessSystemMemoryDataIndex
+ */
+void ProcessSystemMemoryDataIndex(void)
 
 {
-  long long nextDataIndex;
-  void* *systemMemoryBlockPtr;
+  long long NextDataIndex;
+  void* *SystemMemoryBlockPointer;
   
-  nextDataIndex = __RTCastToVoid();
-  (**(code **)*systemMemoryBlockPtr)();
-  if (nextDataIndex != 0) {
-      SystemCleanupFunction(nextDataIndex);
+  NextDataIndex = __RTCastToVoid();
+  (**(code **)*SystemMemoryBlockPointer)();
+  if (NextDataIndex != 0) {
+      SystemCleanupFunction(NextDataIndex);
   }
   return;
 }
@@ -50890,8 +50899,17 @@ void FUN_18006f4cd(void)
 
 
 
-// 函数: void FUN_18006f4fc(void)
-void FUN_18006f4fc(void)
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于系统初始化过程中的占位操作
+ * 在某些系统流程中需要调用但不执行任何操作
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18006f4fc，现已重命名为SystemNullOperation
+ */
+void SystemNullOperation(void)
 
 {
   return;
@@ -50900,8 +50918,18 @@ void FUN_18006f4fc(void)
 
 
 
-// 函数: void FUN_18006f500(long long ResourceManagerPointer)
-void FUN_18006f500(long long ResourceManagerPointer)
+/**
+ * @brief 执行资源管理器操作
+ * 
+ * 该函数负责执行资源管理器的特定操作，通过调用资源管理器中的
+ * 预定义函数指针来执行相应的操作
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，包含要操作的资源管理器
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18006f500，现已重命名为ExecuteResourceManagerOperation
+ */
+void ExecuteResourceManagerOperation(long long ResourceManagerPointer)
 
 {
   if (*(long long **)(ResourceManagerPointer + 0x70) != (long long *)0x0) {
@@ -50913,8 +50941,18 @@ void FUN_18006f500(long long ResourceManagerPointer)
 
 
 
-// 函数: void FUN_18006f530(long long ResourceManagerPointer)
-void FUN_18006f530(long long ResourceManagerPointer)
+/**
+ * @brief 清理资源管理器状态
+ * 
+ * 该函数负责清理资源管理器的状态，包括系统清理函数的调用
+ * 和资源管理器中特定函数指针的执行
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，包含要清理的资源管理器
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18006f530，现已重命名为CleanupResourceManagerState
+ */
+void CleanupResourceManagerState(long long ResourceManagerPointer)
 
 {
   if (*(long long *)(ResourceManagerPointer + 0x1d8) != 0) {
@@ -50928,8 +50966,22 @@ void FUN_18006f530(long long ResourceManagerPointer)
 
 
 
+/**
+ * @brief 配置系统资源管理器
+ * 
+ * 该函数负责配置系统资源管理器，包括内存分配器的设置、
+ * 全局数据的初始化和系统命令的执行
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，包含要配置的资源管理器
+ * @param ConfigurationDataPointer 配置数据指针，包含配置信息
+ * @param AdditionalParameter 额外参数，包含额外的配置参数
+ * @param ConfigurationFlag 配置标志，指定配置的方式和选项
+ * @return 资源管理器指针，返回配置后的资源管理器指针
+ * 
+ * 原始函数名为FUN_18006f590，现已重命名为ConfigureSystemResourceManager
+ */
 void* *
-FUN_18006f590(void* *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+ConfigureSystemResourceManager(void* *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (SystemInitFlagPtr == '\0') {
