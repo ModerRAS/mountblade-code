@@ -28598,7 +28598,13 @@ uint64_t ProcessResourceCertificateRevocation(void)
 
 
 
- void ResourceSignatureVerifier(void)
+ /**
+ * @brief 资源签名验证器
+ * 
+ * 该函数负责验证系统资源的签名，确保资源的完整性和真实性
+ * 验证通过后执行资源清理操作
+ */
+void ResourceSignatureVerifier(void)
 
 {
   int ProcessingResult;
@@ -28622,7 +28628,16 @@ uint64_t ProcessResourceCertificateRevocation(void)
 
 
 
- void ResourceDataValidator(int64_t ObjectContext,uint8_t ValidationContext)
+ /**
+ * @brief 资源数据验证器
+ * 
+ * 该函数负责验证资源数据的有效性，计算数据校验和
+ * 验证通过后访问资源数据并执行清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ */
+void ResourceDataValidator(int64_t ObjectContext,uint8_t ValidationContext)
 
 {
   int ProcessingResult;
@@ -53936,7 +53951,7 @@ void ExecuteResourceContextFinalCleanup(uint8_t ObjectContext, int64_t Validatio
 
 
 
-void Unwind_180906810(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallbackF(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -53950,7 +53965,7 @@ void Unwind_180906810(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906830(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallbackG(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -54864,7 +54879,7 @@ void Unwind_180906bd0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906c00(void)
+void ResetMemoryAllocationCounterAndProcessEvent(void)
 
 {
   byte encryptionShiftValue;
@@ -54890,7 +54905,7 @@ void Unwind_180906c00(void)
 
 
 
-void Unwind_180906c10(void)
+void InitializeSystemDataTablePointer(void)
 
 {
   SystemDataTablePointer = &SystemDataStructure;
