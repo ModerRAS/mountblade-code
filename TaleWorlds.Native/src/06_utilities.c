@@ -28428,7 +28428,7 @@ uint64_t ValidateResourceDataIntegrity(int64_t ObjectContext,uint8_t *Validation
   uint8_t ResourceValidationHashBuffer [40];
   
   ValidationResult = CalculateDataChecksum(ValidationContext,ResourceValidationHashBuffer,1,0x5453494c,CleanupOption);
-  if (((int)ValidationResult == 0) && (ValidationResult = CalculateDataChecksum(ValidationContext,aResourceMidByteFlag,0,CleanupFlag,0), (int)ValidationResult == 0))
+  if (((int)ValidationResult == 0) && (ValidationResult = CalculateDataChecksum(ValidationContext,ResourceMidByteFlag,0,CleanupFlag,0), (int)ValidationResult == 0))
   {
     if (*(int *)(ResourceData[1] + 0x18) == 0) {
       ResourceHash = GetResourceEntry(*ValidationContext,ObjectContext + 0x10);
