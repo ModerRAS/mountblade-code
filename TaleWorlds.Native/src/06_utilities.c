@@ -79998,7 +79998,19 @@ void Unwind_18090eec0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eee0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统资源验证和清理函数
+ * 
+ * 该函数负责在系统unwind过程中验证和清理资源
+ * 处理资源索引、内存地址验证和异常处理
+ * 
+ * @param ObjectContext 对象上下文，标识当前处理的对象
+ * @param ValidationContext 验证上下文，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数在异常处理的unwind过程中调用
+ * @warning 调用此函数会修改系统资源状态
+ */
+void UnwindSystemResourceValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -80034,10 +80046,22 @@ void Unwind_18090eee0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ef00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源上下文清理函数
+ * 
+ * 该函数负责清理资源上下文，释放相关资源
+ * 确保在系统unwind过程中资源能够被正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识当前处理的对象
+ * @param ValidationContext 验证上下文，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数在异常处理的unwind过程中调用
+ * @warning 调用此函数会释放系统资源
+ */
+void UnwindResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ProcessPointer;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x48) + 0x1b8);
   if (ResourceContext != (int64_t *)0x0) {
