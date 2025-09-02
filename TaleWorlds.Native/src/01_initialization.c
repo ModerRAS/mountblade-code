@@ -37887,23 +37887,23 @@ void ProcessSystemResourceWithIntParameter(long long SystemResourcePointer,void*
   
   ThreadLocalStorageIndex = *(uint *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8)
                    + 0xc);
-  if (unsignedSystemValue1 == 0xffffffff) {
-    localResourceOffset = FUN_18005eb80(SystemResourcePointer + 0x78);
-    if (localResourceOffset != 0) {
-      FUN_18005fb30(localResourceOffset,ConfigurationDataPointer,(long long)AdditionalParameter);
+  if (ThreadLocalStorageIndex == 0xffffffff) {
+    ResourceOffset = GetResourceOffsetHandler(SystemResourcePointer + 0x78);
+    if (ResourceOffset != 0) {
+      ProcessResourceWithParameter(ResourceOffset,ConfigurationDataPointer,(long long)AdditionalParameter);
     }
   }
   else {
-    localResourceOffset = *(long long *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + (ulong long)unsignedSystemValue1 * 8) + 0x70);
-    localBufferAddress = localResourceOffset + -8;
-    if (localResourceOffset == 0) {
-      localBufferAddress = 0;
+    ResourceOffset = *(long long *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + (ulong long)ThreadLocalStorageIndex * 8) + 0x70);
+    BufferAddress = ResourceOffset + -8;
+    if (ResourceOffset == 0) {
+      BufferAddress = 0;
     }
-    FUN_18005f570(localBufferAddress,ConfigurationDataPointer,(long long)AdditionalParameter);
+    ConfigureBufferWithParameter(BufferAddress,ConfigurationDataPointer,(long long)AdditionalParameter);
   }
   do {
-    systemResult = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),AdditionalParameter,0);
-  } while (systemResult == 0);
+    SystemResult = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),AdditionalParameter,0);
+  } while (SystemResult == 0);
   return;
 }
 
@@ -41106,7 +41106,7 @@ void StartInputSystem(void* SystemResourcePointer,long long ConfigurationDataPoi
   InitializeSystemHandle(localMemoryPointer + 0x48,&puStack_238);
   *(void* **)(localSystemHandle + 400) = pointerToUnsigned3;
   puStack_1a8 = &SystemMemoryAllocatorReference;
-  FUN_180627e10(SystemStatusFlagsPointer + 0x170,auStack_230,&DAT_1809fc8c8);
+  ExecuteSystemConfigurationUpdate(SystemStatusFlagsPointer + 0x170,auStack_230,&SystemConfigurationData);
   if (0 < *(int *)(ConfigurationDataPointer + 0x10)) {
     ExecuteSystemCommand(auStack_230,uStack_220 + *(int *)(ConfigurationDataPointer + 0x10));
       memcpy((ulong long)uStack_220 + lStack_228,*(void* *)(ConfigurationDataPointer + 8),
