@@ -14,12 +14,12 @@
 
 // 模块函数声明区域
 // 以下为各个核心模块的函数声明占位符
-// extern void ModuleInitialization();
-// extern void CoreEngineFunctions();
-// extern void RenderingSystem();
-// extern void UserInterfaceSystem();
-// extern void NetworkSystem();
-// extern void UtilityFunctions();
-// extern void OtherFunctions();
+// extern void InitializeGameEngine();
+// extern void ExecuteCoreEngineOperations();
+// extern void ProcessRenderingPipeline();
+// extern void ManageUserInterface();
+// extern void HandleNetworkOperations();
+// extern void ExecuteUtilityFunctions();
+// extern void ProcessMiscellaneousOperations();
 
 #endif // TALEWORLDS_NATIVE_SPLIT_H
