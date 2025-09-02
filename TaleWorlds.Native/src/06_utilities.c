@@ -5288,7 +5288,7 @@ uint8_t InitializeObjectHandleExtended(int64_t ObjectContext)
 
 {
   uint8_t ResourceHash;
-  int *validationCodePointer;
+  int *ValidationCodePointer;
   uint32_t *ResourceDataAddress;
   uint LoopCounter;
   uint64_t ContextOffset;
@@ -11965,7 +11965,7 @@ void FinalizeSecurityOperationWithStack(void)
  * @note 此函数会修改hashOutput缓冲区的内容
  * @warning 调用此函数前必须确保对象上下文已正确初始化
  */
-void ProcessResourceHashAndIndex(int64_t ObjectContext, int ValidationContext, uint8_t *hashOutput)
+void ProcessResourceHashAndIndex(int64_t ObjectContext, int ValidationContext, uint8_t *HashOutput)
 {
   uint8_t ResourceHashValue;
   int *OperationStatusPointer;
@@ -11973,7 +11973,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContext, int ValidationContext, u
   int64_t DataOffset;
   int TableEntryValue;
   
-  *hashOutput = 0;
+  *HashOutput = 0;
   hashOutput[1] = 0;
   int *OperationStatusCodePointer = (int *)(**(code **)(*(int64_t *)
                                 ((int64_t)
@@ -11998,7 +11998,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContext, int ValidationContext, u
       }
     }
     ResourceHashValue = *(uint8_t *)(ResourceIndex + 0x18);
-    *hashOutput = *(uint8_t *)(ResourceIndex + 0x10);
+    *HashOutput = *(uint8_t *)(ResourceIndex + 0x10);
     hashOutput[1] = ResourceHashValue;
   }
   return;
@@ -12039,7 +12039,7 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext, int
           if (*(uint *)(ResourceTablePointer + ResourceIndex * HashTableEntrySize) == ResourceHashValue) {
             uint HashValueParameter = (uint)((uint64_t)*(uint8_t *)(ResourceTablePointer + HashTableCleanupOffset + ResourceIndex * HashTableEntrySize) >> HashTableShiftValue);
             if (HashValueParameter != 0) {
-              *hashOutput = HashValueParameter;
+              *HashOutput = HashValueParameter;
               return 0;
             }
             goto HashValueHandler;
@@ -12055,7 +12055,7 @@ HashValueHandler:
       if (CallbackPointer != (uint8_t *)0x0) {
         (**(code **)*CallbackPointer)();
       }
-      *hashOutput = HashValueParameter;
+      *HashOutput = HashValueParameter;
       return 0;
     }
   }
@@ -29647,6 +29647,18 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * 该函数负责处理异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
  * 专门处理一级异常情况的资源清理工作
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
+/**
+ * @brief 异常处理函数：解卷主上下文异常处理器
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理主级异常情况的资源清理工作
  * 
  * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
  * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
@@ -80015,7 +80027,7 @@ void Unwind_18090ce20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ce30(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupSystemContextResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextSecurityDataOffset) != (int64_t *)0x0) {
@@ -80036,7 +80048,7 @@ void Unwind_18090ce30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ce40(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemMemoryResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x288) != (int64_t *)0x0) {
@@ -80057,7 +80069,7 @@ void Unwind_18090ce40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ce50(uint8_t ObjectContext,int64_t ValidationContext)
+void DeallocateSystemResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x2e8) != (int64_t *)0x0) {
@@ -80078,7 +80090,7 @@ void Unwind_18090ce50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ce60(uint8_t ObjectContext,int64_t ValidationContext)
+void TerminateSystemProcesses(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 1000) != (int64_t *)0x0) {
@@ -80099,7 +80111,7 @@ void Unwind_18090ce60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ce70(uint8_t ObjectContext,int64_t ValidationContext)
+void FinalizeSystemOperations(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -80123,7 +80135,7 @@ void Unwind_18090ce70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ce80(uint8_t ObjectContext,int64_t ValidationContext)
+void ClearSystemDataCache(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x140) != (int64_t *)0x0) {
@@ -80134,7 +80146,7 @@ void Unwind_18090ce80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ce90(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetSystemSecurityState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x148) = &SystemResourceHandlerTemplate;
@@ -80149,7 +80161,7 @@ void Unwind_18090ce90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cea0(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateSystemIntegrity(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x178) != (int64_t *)0x0) {
@@ -80160,7 +80172,7 @@ void Unwind_18090cea0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ceb0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -80174,7 +80186,7 @@ void Unwind_18090ceb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cec0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemShutdown(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -80192,7 +80204,7 @@ void Unwind_18090cec0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ced0(uint8_t ObjectContext,int64_t ValidationContext)
+void HandleMemoryDeallocation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -80206,7 +80218,7 @@ void Unwind_18090ced0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cee0(uint8_t ObjectContext,int64_t ValidationContext)
+void VerifySystemComponents(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x350) != (int64_t *)0x0) {
@@ -80217,7 +80229,7 @@ void Unwind_18090cee0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cef0(uint8_t ObjectContext,int64_t ValidationContext)
+void CompleteSystemTeardown(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x358) = &SystemResourceHandlerTemplate;
@@ -80232,7 +80244,7 @@ void Unwind_18090cef0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cf00(uint8_t ObjectContext,int64_t ValidationContext)
+void FinalizeResourceManagement(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x388) != (int64_t *)0x0) {
@@ -80243,7 +80255,7 @@ void Unwind_18090cf00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cf10(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemHandles(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ErrorResourceValidationFailed0) != (int64_t *)0x0) {
@@ -80254,7 +80266,7 @@ void Unwind_18090cf10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cf20(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupSystemState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + ErrorResourceValidationFailed8) = &SystemResourceHandlerTemplate;
@@ -80269,7 +80281,7 @@ void Unwind_18090cf20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cf30(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateSecurityContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextSecurityDataOffset) != (int64_t *)0x0) {
@@ -80280,7 +80292,7 @@ void Unwind_18090cf30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cf40(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x250) != (int64_t *)0x0) {
@@ -80291,7 +80303,7 @@ void Unwind_18090cf40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cf50(uint8_t ObjectContext,int64_t ValidationContext)
+void FinalizeSystemCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 600) = &SystemResourceHandlerTemplate;
