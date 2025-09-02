@@ -4873,22 +4873,22 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
 
 {
   uint8_t ValidationStatusCode;
-  int64_t MemoryBuffer;
+  int64_t ValidationMemoryBuffer;
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &MemoryBuffer);
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &ValidationMemoryBuffer);
   if ((int)ValidationStatusCode != 0) {
     return ValidationStatusCode;
   }
-  if (MemoryBuffer == 0) {
-    MemoryBuffer = 0;
+  if (ValidationMemoryBuffer == 0) {
+    ValidationMemoryBuffer = 0;
   }
   else {
-    MemoryBuffer = MemoryBuffer + -8;
+    ValidationMemoryBuffer = ValidationMemoryBuffer + -8;
   }
-  if (*(int64_t *)(MemoryBuffer + ObjectHandleMemoryOffset) == 0) {
+  if (*(int64_t *)(ValidationMemoryBuffer + ObjectHandleMemoryOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(MemoryBuffer + ObjectHandleMemoryOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidationMemoryBuffer + ObjectHandleMemoryOffset), 1);
 }
 
 
