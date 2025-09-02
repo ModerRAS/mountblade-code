@@ -73027,23 +73027,47 @@ void CleanupResourceHashPointer(uint8_t ObjectContext, int64_t ValidationContext
 
 
 
-void Unwind_18090a5b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源哈希指针扩展版本
+ * 
+ * 该函数是CleanupResourceHashPointer的扩展版本
+ * 提供额外的资源清理功能
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数提供更完整的资源清理功能
+ */
+void CleanupResourceHashPointerExtended(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x68) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x68),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-    CleanupResourceHash(ResourceHashAddress);
-          ReleaseResourceHandle(ResourceHashAddress);
+    ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x68), *ResourceHashPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    CleanupResourceHash(ResourceHashPointer);
+    ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
 
 
 
-void Unwind_18090a5c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证并清理资源哈希结果
+ * 
+ * 该函数负责验证资源哈希的有效性并执行清理操作
+ * 通过内存地址计算和索引验证来确保资源完整性
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会执行复杂的资源验证和清理逻辑
+ */
+void ValidateAndCleanupResourceHashResult(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -73051,7 +73075,7 @@ void Unwind_18090a5c0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultAddress = (uint8_t *)**(uint64_t **)(ValidationContext + 0x68);
+  ResourceHashValidationResultAddress = (uint8_t *)**(uint64_t **)(ValidationContext + 0x68);
   if (ResourceHashValidationResultAddress == (uint8_t *)0x0) {
     return;
   }
@@ -73070,8 +73094,8 @@ void Unwind_18090a5c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultAddress,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultAddress, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
   return;
@@ -73079,7 +73103,18 @@ void Unwind_18090a5c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a5d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证并清理资源哈希结果扩展版本
+ * 
+ * 该函数是ValidateAndCleanupResourceHashResult的扩展版本
+ * 提供更完整的资源验证和清理功能
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数提供更复杂的资源验证逻辑
+ */
+void ValidateAndCleanupResourceHashResultExtended(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -73087,7 +73122,7 @@ void Unwind_18090a5d0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x68) + 0x20);
+  ResourceHashValidationResultAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x68) + 0x20);
   if (ResourceHashValidationResultAddress == (uint8_t *)0x0) {
     return;
   }
@@ -73106,8 +73141,8 @@ void Unwind_18090a5d0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultAddress,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultAddress, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
   return;

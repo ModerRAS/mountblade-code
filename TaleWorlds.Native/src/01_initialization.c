@@ -48138,7 +48138,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   long long lStack_238;
   long long longValue230;
   uint8_t SystemMemoryAlignment;
-  void* uStack_218;
+  void* StackPointer218;
   int stackVariable210;
   uint32_t SystemMaxOperationCountc;
   void* SystemMaxOperationCount8;
@@ -48146,7 +48146,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   byte *pbStack_1f0;
   int stackVariable1E8;
   byte abStack_1e0 [256];
-  void* uStack_e0;
+  void* StackPointerE0;
   ulong long SystemMemoryAllocatorStatus;
   long long lStack_d0;
   long long lStack_c8;
@@ -53973,8 +53973,8 @@ void SystemCallbackManager(void* SystemResourceManager,void* ConfigurationDataPo
   void* SystemEncryptionKey;
   void* SystemOperationCounter;
   void*2 SystemContextValue;
-  void* uStack_36;
-  void* uStack_2e;
+  void* StackPointer36;
+  void* StackPointer2E;
   void*2 uStack_26;
   void* ConcatenatedValue44;
   
@@ -57129,9 +57129,9 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
   void* EncryptionOffset2;
   void* MemoryBufferAddress;
   uint8_t uStack_f0;
-  void* uStack_e8;
+  void* StackPointerE8;
   void* SystemMemoryAllocatorStatus;
-  void* uStack_c8;
+  void* StackPointerC8;
   void* UnsignedStackFlagC0;
   uint8_t systemDataBuffer;
   void* UnsignedStackFlagB0;
@@ -58418,8 +58418,8 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
   void* EncryptionOffset2;
   void* MemoryBufferAddress;
   void* uStack_f0;
-  void* uStack_e8;
-  void* uStack_e0;
+  void* StackPointerE8;
+  void* StackPointerE0;
   void* SystemMemoryAllocatorStatus;
   void* uStack_d0;
   float fStack_c8;
@@ -63312,11 +63312,11 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   void* EncryptionOffset2;
   void* MemoryBufferAddress;
   void* uStack_f0;
-  void* uStack_e8;
-  void* uStack_e0;
+  void* StackPointerE8;
+  void* StackPointerE0;
   void* SystemMemoryAllocatorStatus;
   void* uStack_d0;
-  void* uStack_c8;
+  void* StackPointerC8;
   void* UnsignedStackFlagC0;
   void* systemDataBuffer;
   uint32_t UnsignedStackFlagB0;
