@@ -182,6 +182,8 @@
 #define SystemContextFlagCheckOffset 0x2d8
 #define MemoryContextResourceTableOffset 0x240
 #define ObjectStatusFlagsOffset 0x204
+#define ContextHandlesIteratorOffset 0x20
+#define ContextHandlesCapacityOffset 0x28
 
 /**
  * @brief 初始化模块依赖关系
@@ -3544,30 +3546,6 @@ uint8_t SystemMemoryFlagKernel;
  * @warning 调用此函数前必须确保游戏上下文和系统上下文已正确初始化
  */
 /**
- * @brief 处理游戏对象
- * 
- * 该函数负责处理游戏中的各种对象，包括验证、状态检查和安全验证
- * 函数会获取对象列表，验证每个对象的状态，并执行相应的处理逻辑
- * 
- * @param GameContext 游戏上下文，包含游戏相关的状态信息
- * @param SystemContext 系统上下文，包含系统相关的配置信息
- * @return 无返回值
- * @note 此函数会执行安全验证，确保处理过程的安全性
- * @warning 如果发现无效对象，会调用相应的处理函数
- */
-/**
- * @brief 处理游戏对象集合
- * 
- * 该函数负责处理系统中的游戏对象集合
- * 包括对象验证、状态检查和批量处理
- * 
- * @param GameContext 游戏上下文，包含游戏相关的状态信息
- * @param SystemContext 系统上下文，包含系统运行环境信息
- * @return 无返回值
- * @note 此函数在游戏循环中定期调用
- * @warning 处理失败时会导致程序异常终止
- */
-/**
  * @brief 处理游戏对象集合
  * 
  * 该函数负责处理系统中的游戏对象集合，包括对象验证、状态检查和批量处理
@@ -4074,14 +4052,14 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandles);
   if ((int)OperationResult == 0) {
-    ObjectIterator = *(int64_t **)(ContextHandles[0] + 0x20);
-    while ((*(int64_t **)(ContextHandles[0] + 0x20) <= ObjectIterator &&
-           (ObjectIterator < *(int64_t **)(ContextHandles[0] + 0x20) + *(int *)(ContextHandles[0] + 0x28)))) {
+    ObjectIterator = *(int64_t **)(ContextHandles[0] + ContextHandlesIteratorOffset);
+    while ((*(int64_t **)(ContextHandles[0] + ContextHandlesIteratorOffset) <= ObjectIterator &&
+           (ObjectIterator < *(int64_t **)(ContextHandles[0] + ContextHandlesIteratorOffset) + *(int *)(ContextHandles[0] + ContextHandlesCapacityOffset)))) {
       ObjectDataPointer = *ObjectIterator;
       ObjectIterator = ObjectIterator + 1;
-      if ((*(int64_t *)(ObjectDataPointer + 0x18) == *(int64_t *)(ContextHandles[0] + 8)) &&
-         (ObjectDataPointer = *(int64_t *)(ObjectDataPointer + 0x10), ObjectDataPointer != 0)) {
-        StatusFlagsPointer = (uint *)(ObjectDataPointer + 0x2d8);
+      if ((*(int64_t *)(ObjectDataPointer + ObjectContextValidationDataOffset) == *(int64_t *)(ContextHandles[0] + ObjectHandleSecondaryOffset)) &&
+         (ObjectDataPointer = *(int64_t *)(ObjectDataPointer + ObjectContextOffset), ObjectDataPointer != 0)) {
+        StatusFlagsPointer = (uint *)(ObjectDataPointer + SystemContextFlagCheckOffset);
         *StatusFlagsPointer = *StatusFlagsPointer | 4;
       }
     }
@@ -61933,7 +61911,13 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_180907ea0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希结果并处理引用计数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180907ea0
+ */
+void ValidateResourceHashAndHandleReferenceCount(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -61941,16 +61925,16 @@ void Unwind_180907ea0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x38);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  ResourceHashValidationResultPointer = *(uint8_t **)(ValidationContext + 0x38);
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -61960,8 +61944,8 @@ void Unwind_180907ea0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -61969,7 +61953,13 @@ void Unwind_180907ea0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907eb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希结果并处理引用计数（扩展版本）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180907eb0
+ */
+void ValidateResourceHashAndHandleReferenceCountExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -61977,16 +61967,16 @@ void Unwind_180907eb0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x60);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  ResourceHashValidationResultPointer = *(uint8_t **)(ValidationContext + 0x60);
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -61996,8 +61986,8 @@ void Unwind_180907eb0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -62005,7 +61995,13 @@ void Unwind_180907eb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907ec0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希结果并处理引用计数（二级版本）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180907ec0
+ */
+void ValidateResourceHashAndHandleReferenceCountSecondary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -62013,16 +62009,16 @@ void Unwind_180907ec0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x38);
-  if (ValidationResultPointer == (uint8_t *)0x0) {
+  ResourceHashValidationResultPointer = *(uint8_t **)(ValidationContext + 0x38);
+  if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAddressIncrement != 0) {
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceHashValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
@@ -62032,8 +62028,8 @@ void Unwind_180907ec0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
