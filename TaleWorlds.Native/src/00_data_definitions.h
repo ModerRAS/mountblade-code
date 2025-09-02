@@ -9464,15 +9464,15 @@ Label_18060b805:
                                 StringProcessingResult = 0x80;
                                 goto Label_18060bbae;
                               }
-                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a298);
+                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkConfigValidationParameter298);
                               if (NetworkRequestStatus != '\0') goto Label_18060b841;
-                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a2d8);
+                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkConfigValidationParameter2d8);
                               if (NetworkRequestStatus != '\0') goto Label_18060b85f;
-                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a2c0);
+                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkConfigValidationParameter2c0);
                               if (NetworkRequestStatus != '\0') goto Label_18060b87d;
-                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a250);
+                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkConfigValidationParameter250);
                               if (NetworkRequestStatus != '\0') goto Label_18060b8d7;
-                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a240);
+                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkConfigValidationParameter240);
                               if (NetworkRequestStatus != '\0') goto Label_18060b34b;
                               NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a278);
                               if (NetworkRequestStatus != '\0') goto Label_18060a7ec;
