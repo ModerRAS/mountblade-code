@@ -10879,7 +10879,6 @@ HandleSystemError:
  * @note 此函数在模块加载时被调用，确保模块正确初始化
  */
 void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int* StatusPointer)
-
 {
   int64_t loopCounter;
   char CharacterFlag;
@@ -10901,18 +10900,18 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   uint8_t StackParameterContextForty;
   int *StackParameterContext48;
   
-  ResourceTablePointer = CONCAT44(SavedRegisterValue1c,RegisterEBX) + CONCAT44(SavedRegisterValue1c,RegisterEBX) * 2;
+  int64_t ResourceTablePointer = CONCAT44(SavedRegisterValue1c,RegisterEBX) + CONCAT44(SavedRegisterValue1c,RegisterEBX) * 2;
   longValue8 = (int64_t)*(int *)(InputRAX + ResourceTablePointer * 4) + *(int64_t *)(ObjectContextParameter + 8);
-  StatusChar = *(char *)(InputRAX + 8 + ResourceTablePointer * 4);
+  char StatusChar = *(char *)(InputRAX + 8 + ResourceTablePointer * 4);
   *(int64_t *)(ExecutionContextPointer + -0x80) = ResourceTablePointer;
   if (StatusChar == in_R11B) {
-    OperationStatusCode = *(int *)(ObjectContextParameter + 0xb0);
+    int OperationStatusCode = *(int *)(ObjectContextParameter + 0xb0);
     if (RegisterEBX < OperationResult) {
       *(int *)(ObjectContextParameter + 0xac) = RegisterEBX + 1;
       goto HANDLE_CONTEXT_ERROR;
     }
-    FifthFloatValue = *(float *)(longValue8 + 0x18);
-    CalculatedFloatValue = floatValue9;
+    float FifthFloatValue = *(float *)(longValue8 + 0x18);
+    float CalculatedFloatValue = floatValue9;
     if (OperationResult != -1) {
       CalculatedFloatValue = *(float *)(ObjectContextParameter + 0xb4);
       OperationStatusCode = -1;
@@ -10926,7 +10925,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       ResourceTablePointer = -0x8000000000000000;
     }
     loopCounter = *(int64_t *)(ObjectContextParameter + 0xa0);
-    ArrayIndex = *(int64_t *)(ObjectContextParameter + 0x98);
+    int64_t ArrayIndex = *(int64_t *)(ObjectContextParameter + 0x98);
     if (ArrayIndex == 0) {
       CalculatedFloatValue = (float)*(uint *)(ObjectContextParameter + 0x68) * CalculatedFloatValue;
       ArrayIndex = 0;
@@ -10994,22 +10993,41 @@ HANDLE_CONTEXT_ERROR:
 
 
 
- void FinalizeSecurityOperationWithStack(void)
+ /**
+ * @brief 使用栈数据完成安全操作
+ * 
+ * 该函数负责使用栈中的数据完成安全操作的最终处理
+ * 包括数据验证、加密处理和资源清理
+ * 
+ * @return 无返回值
+ * @note 此函数通常在安全操作结束时被调用
+ * @warning 调用此函数后，相关的安全操作将不可逆转
+ */
 void FinalizeSecurityOperationWithStack(void)
-
 {
   int64_t ExecutionContextPointer;
   
-                    // WARNING: Subroutine does not return
+  // WARNING: Subroutine does not return
   FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x5f0) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
 
 
- void ProcessResourceHashAndIndex(int64_t ObjectContextParameter,int ValidationContextParameter,uint8_t *hashOutput)
-void ProcessResourceHashAndIndex(int64_t ObjectContextParameter,int ValidationContextParameter,uint8_t *hashOutput)
-
+ /**
+ * @brief 处理资源哈希和索引
+ * 
+ * 该函数负责处理系统资源的哈希值和索引信息
+ * 包括资源查找、哈希计算和数据验证
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的相关信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证资源信息
+ * @param hashOutput 哈希输出缓冲区，用于存储计算得到的哈希值
+ * @return 无返回值
+ * @note 此函数会修改hashOutput缓冲区的内容
+ * @warning 调用此函数前必须确保对象上下文已正确初始化
+ */
+void ProcessResourceHashAndIndex(int64_t ObjectContextParameter, int ValidationContextParameter, uint8_t *hashOutput)
 {
   uint8_t resourceHash;
   int *pOperationResult;
@@ -11019,7 +11037,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContextParameter,int ValidationCo
   
   *hashOutput = 0;
   hashOutput[1] = 0;
-  pOperationStatusCode = (int *)(**(code **)(*(int64_t *)
+  int *pOperationStatusCode = (int *)(**(code **)(*(int64_t *)
                                 ((int64_t)
                                  *(int *)(*(int64_t *)(ObjectContextParameter + 0x18) + (int64_t)ValidationContextParameter * 0xc) +
                                 *(int64_t *)(ObjectContextParameter + 8)) + 0x50))();
@@ -11030,7 +11048,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContextParameter,int ValidationCo
     tableEntry = *pOperationResult;
   }
   if (ValidationContextParameter + 1 < *(int *)(ObjectContextParameter + 0x20)) {
-    LoopOffset = (int64_t)(ValidationContextParameter + 1);
+    int64_t LoopOffset = (int64_t)(ValidationContextParameter + 1);
     pOperationStatusCode = (int *)(*(int64_t *)(ObjectContextParameter + 0x18) + LoopOffset * 0xc);
     while (((char)pOperationResult[2] != '\x02' ||
            (ResourceIndex = (int64_t)*pOperationResult + *(int64_t *)(ObjectContextParameter + 8), *(int *)(ResourceIndex + 0x20) != tableEntry)
