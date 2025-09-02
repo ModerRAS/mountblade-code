@@ -4949,18 +4949,18 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 
 {
   int64_t RegisterContext;
-  int64_t memoryPointer;
+  int64_t MemoryPointer;
   
   if (RegisterContext == 0) {
-    memoryPointer = 0;
+    MemoryPointer = 0;
   }
   else {
-    memoryPointer = RegisterContext + -8;
+    MemoryPointer = RegisterContext + -8;
   }
-  if (*(int64_t *)(memoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
+  if (*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(memoryPointer + HandleMemoryBufferHeaderOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset), 1);
 }
 
 
@@ -100197,12 +100197,12 @@ void InitializeSystemDataStructureIndexManager(void)
  * 该函数负责释放指定的内存资源
  * 处理内存指针的清理和释放操作
  * 
- * @param memoryPointer 内存指针
+ * @param MemoryPointer 内存指针
  * @param resourceHandle 资源句柄
  * @param cleanupFlag 清理标志
  * @param operationMode 操作模式
  */
-void ReleaseMemoryResources(uint8_t memoryPointer, uint8_t resourceHandle, uint8_t cleanupFlag, uint8_t operationMode)
+void ReleaseMemoryResources(uint8_t MemoryPointer, uint8_t resourceHandle, uint8_t cleanupFlag, uint8_t operationMode)
 
 {
   int64_t *MemoryPointer;

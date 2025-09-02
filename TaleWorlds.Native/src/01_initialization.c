@@ -58134,8 +58134,8 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
   ulong long SystemEncryptionKey;
   ulong long StackBuffer40 [2];
   void* SystemResourceStatusFlag;
-  char cStack_28;
-  char cStack_27;
+  char SystemCharacter1;
+  char SystemCharacter2;
   char cStack_26;
   ulong long SystemMaxOperationCount;
   
@@ -58196,10 +58196,10 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
           ProcessMemoryAllocation(memoryAllocationBuffer);
         }
         CleanupSystemResourceEncryption(&SystemEncryptionKey);
-        if (cStack_28 != '\0') {
+        if (SystemCharacter1 != '\0') {
           ExecuteSystemOperation(memoryAllocationBuffer);
         }
-        if (cStack_27 != '\0') {
+        if (SystemCharacter2 != '\0') {
           ExecuteSystemOperation(memoryAllocationBuffer);
         }
         SystemHashEntryPointer = memoryAllocationEnd;
