@@ -29971,7 +29971,7 @@ void RestoreSystemDataStructureToContextOffset280(uint8_t objectContext,int64_t 
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void ReleaseSystemResourceWithFlag8(uint8_t objectContext,int64_t validationContext)
+void ReleaseSystemResourceWithValidationFlag8(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 8) != 0) {
@@ -29992,7 +29992,7 @@ void ReleaseSystemResourceWithFlag8(uint8_t objectContext,int64_t validationCont
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContextF8(uint8_t objectContext,int64_t validationContext)
+void RestoreSystemDataStructureToContextOffset248(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0xf8) = &SystemDataStructure;
@@ -50050,7 +50050,19 @@ void UnwindAndCleanupResourceIndex(uint8_t objectContext,int64_t validationConte
 
 
 
-void UnwindResourceContextCleanup180905c20(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 清理资源上下文异常处理函数
+ * 
+ * 该函数负责在异常处理过程中清理资源上下文，包括释放资源索引和验证结果
+ * 确保在异常发生时系统能够正确清理所有相关资源
+ * 
+ * @param objectContext 对象上下文，包含资源的相关信息
+ * @param validationContext 验证上下文，用于定位资源索引
+ * @return 无返回值
+ * @note 此函数通常在异常处理的unwind过程中调用
+ * @warning 调用此函数会永久销毁相关资源
+ */
+void UnwindResourceContextCleanupType1(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -50060,24 +50072,24 @@ void UnwindResourceContextCleanup180905c20(uint8_t objectContext,int64_t validat
   uint64_t ResourceContextOffset;
   
   ResourceIndex = *(int64_t *)(validationContext + 0x38);
-  loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
-      pValidationResult = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
-      if (pValidationResult != (uint8_t *)0x0) {
-        *pValidationResult = &SystemDataStructure;
+      ResourceHashValidationResultPointer = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
+        *ResourceHashValidationResultPointer = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
-    } while (ResourceContextOffset < loopIncrement);
-    loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+    } while (ResourceContextOffset < MemoryAddressIncrement);
+    MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
-  if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
+  if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -50086,7 +50098,7 @@ void UnwindResourceContextCleanup180905c20(uint8_t objectContext,int64_t validat
 
 
 
-void UnwindResourceContextCleanup180905c30(uint8_t objectContext,int64_t validationContext)
+void UnwindResourceContextCleanupType2(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -50122,7 +50134,7 @@ void UnwindResourceContextCleanup180905c30(uint8_t objectContext,int64_t validat
 
 
 
-void UnwindResourceContextCleanup180905c40(uint8_t objectContext,int64_t validationContext)
+void UnwindResourceContextCleanupType3(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -56968,7 +56980,7 @@ void Unwind_1809077d0(void)
  * 
  * 该函数负责清理系统数据指针，释放相关资源
  */
-void CleanupSystemDataPointer1809077e0(void)
+void CleanupSystemDataPointerType1(void)
 
 {
   SystemDataPointer007 = &SystemDataStructure;
