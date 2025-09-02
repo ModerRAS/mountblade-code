@@ -35051,24 +35051,24 @@ void InitializeAndCleanupSystemResource(void* *systemResourceManager)
   long long systemMemoryAddress;
   
   resourceAllocationContext = 0;
-  *SystemResourceManager = 0;
-  *(uint32_t *)(SystemResourceManager + 1) = 0;
-  SystemResourceManager[2] = 0;
-  SystemResourceManager[5] = 0;
-  SystemThreadContext = SystemResourceManager + 0xb;
-  SystemMemoryAddress = 0x20;
-  SystemThreadFlags = 0x20;
-  hashTableNode = SystemThreadContext;
+  *systemResourceManager = 0;
+  *(uint32_t *)(systemResourceManager + 1) = 0;
+  systemResourceManager[2] = 0;
+  systemResourceManager[5] = 0;
+  systemThreadContext = systemResourceManager + 0xb;
+  systemMemoryAddress = 0x20;
+  systemThreadFlags = 0x20;
+  hashTableNode = systemThreadContext;
   do {
     SystemResourceCleanup(hashTableNode);
     hashTableNode = hashTableNode + 2;
-    SystemThreadFlags = SystemThreadFlags + -1;
-  } while (SystemThreadFlags != 0);
-  *(void* *)((long long)SystemResourceManager + 0x25c) = 0;
-  *(uint32_t *)(SystemResourceManager + 0x4b) = 0;
-  SystemResourceManager[7] = 0;
-  SystemResourceManager[8] = 0x20;
-  SystemResourceManager[9] = SystemThreadContext;
+    systemThreadFlags = systemThreadFlags + -1;
+  } while (systemThreadFlags != 0);
+  *(void* *)((long long)systemResourceManager + 0x25c) = 0;
+  *(uint32_t *)(systemResourceManager + 0x4b) = 0;
+  systemResourceManager[7] = 0;
+  systemResourceManager[8] = 0x20;
+  systemResourceManager[9] = systemThreadContext;
   do {
     *(uint32_t *)SystemThreadContext = 0;
     SystemThreadContext = SystemThreadContext + 2;

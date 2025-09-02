@@ -11369,9 +11369,9 @@ CleanupHandler:
 uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
 
 {
-  int ContainerStatus;
-  uint ResourceValidationHash;
-  uint SystemOperationResult;
+  int ContainerValidationStatus;
+  uint ResourceChecksumHash;
+  uint SystemOperationStatusCode;
   
   ContainerStatus = *(uint *)((int64_t)DataContainerPointer + 0xc);
   SystemOperationResult = ResourceValidationHash ^ (int)ResourceValidationHash >> ErrorResourceValidationFailed;
