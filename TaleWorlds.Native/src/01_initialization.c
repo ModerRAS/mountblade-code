@@ -67871,56 +67871,69 @@ void* NormalizeAudioData(void)
 
 
 
-void* FUN_1807794c5(void)
+/**
+ * @brief 音频信号处理函数
+ * 
+ * 该函数负责处理音频信号，包括：
+ * - 音频数据的读取和处理
+ * - 信号滤波和加权计算
+ * - 多通道音频数据的并行处理
+ * - 音频信号的统计分析和结果计算
+ * 
+ * @return void* 返回处理结果指针
+ * 
+ * @note 这是音频处理系统的重要函数，用于音频信号的深度处理
+ */
+void* ProcessAudioSignal(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  uint unsignedSystemValue9;
-  int systemStatus0;
-  float *pfVar11;
-  int unaff_EBX;
-  float *systemDataIndexPtr;
-  int systemStatus2;
-  uint in_R9D;
-  float *in_R11;
-  uint unsignedSystemValue13;
-  uint unsignedSystemValue14;
-  uint unsignedSystemValue15;
-  uint unsignedSystemValue16;
-  uint8_t aunsignedSystemValue17 [16];
-  float fVar18;
-  int in_XMM5_Da;
-  float fVar19;
-  int in_XMM5_Db;
-  float fVar21;
-  int in_XMM5_Dc;
-  float fVar22;
-  int in_XMM5_Dd;
-  uint8_t aunsignedSystemValue20 [16];
-  float fVar23;
-  float unaff_XMM6_Da;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
-  float fVar35;
-  float fVar36;
-  float fVar37;
-  float fVar38;
+  float audioSignal1;
+  float audioSignal2;
+  float audioSignal3;
+  float audioSignal4;
+  float audioSignal5;
+  float audioSignal6;
+  float audioSignal7;
+  float audioSignal8;
+  uint audioProcessingFlag9;
+  int audioStatusIndex0;
+  float *audioDataPointer11;
+  int audioProcessingFactor;
+  float *audioDataIndexPtr;
+  int audioStatusIndex2;
+  uint audioTotalChannels;
+  float *audioOutputBuffer;
+  uint audioThresholdFlag13;
+  uint audioThresholdFlag14;
+  uint audioThresholdFlag15;
+  uint audioThresholdFlag16;
+  uint8_t audioCoefficientArray17 [16];
+  float audioSignal18;
+  int audioFilterCoeffA;
+  float audioSignal19;
+  int audioFilterCoeffB;
+  float audioSignal21;
+  int audioFilterCoeffC;
+  float audioSignal22;
+  int audioFilterCoeffD;
+  uint8_t audioCoefficientArray20 [16];
+  float audioSignal23;
+  float audioTotalSum;
+  float audioSignal24;
+  float audioSignal25;
+  float audioSignal26;
+  float audioSignal27;
+  float audioSignal28;
+  float audioSignal29;
+  float audioSignal30;
+  float audioSignal31;
+  float audioSignal32;
+  float audioSignal33;
+  float audioSignal34;
+  float audioSignal35;
+  float audioSignal36;
+  float audioSignal37;
+  float audioSignal38;
   int unaff_XMM12_Da;
   int unaff_XMM12_Db;
   int unaff_XMM12_Dc;
