@@ -2028,54 +2028,54 @@ uint8_t SystemMemoryConfigAlternate;      // 备用配置
  * @warning 验证失败时可能触发系统安全机制
  */
 void VerifyDataIntegrity(void);
-uint8_t SystemEnvironmentConfigPrimary;
-uint8_t SystemEnvironmentConfigBackup;
+uint8_t SystemEnvironmentConfigActive;
+uint8_t SystemEnvironmentConfigStandby;
 uint8_t SystemConfigurationCache;
 uint8_t SystemConfigurationData;
 uint8_t SystemConfigurationExtra;
 uint8_t SystemCoreConfigData;
 uint8_t SystemEngineConfigData;
-uint8_t NetworkPrimaryDataStream;
+uint8_t NetworkMainDataStream;
 uint8_t NetworkSecondaryDataStream;
 uint8_t NetworkTertiaryDataStream;
 uint8_t NetworkQuaternaryDataStream;
-uint8_t NetworkQuinaryDataStream;
-uint8_t NetworkDataStreamConfigPrimary;
-uint8_t SystemNetworkConfigPrimary;
+uint8_t NetworkDataStreamPriority;
+uint8_t NetworkDataStreamConfigMain;
+uint8_t SystemNetworkConfigMain;
 uint8_t SystemTertiaryConfigData;
 uint8_t SystemQuaternaryConfigData;
 uint8_t SystemNetworkConfigSecondary;
 uint8_t SystemNetworkConfigTertiary;
 uint8_t SystemQuinaryConfigData;
-uint8_t SystemSixthConfigData;
+uint8_t SystemAdditionalConfigData;
 bool SystemCoreStatusFlag;
 bool SystemEngineStatusFlag;
 uint8_t SystemGraphicsStatusFlag;
 uint8_t SystemAudioStatusFlag;
 uint8_t ResourceBufferPoolSize;
-uint8_t ResourceBufferConfigPrimary;
+uint8_t ResourceBufferConfigMain;
 uint8_t ResourceBufferConfigSecondary;
 uint8_t ResourceBufferConfigTertiary;
-uint8_t SystemConfigDataEighth;
-uint8_t SystemConfigDataNinth;
+uint8_t SystemConfigDataExtended;
+uint8_t SystemConfigDataSupplementary;
 // 系统内存配置数据模板中级变量
-uint8_t SystemMemoryConfigSecondary;       // 第二配置项
-uint8_t SystemMemoryConfigTertiary;        // 第三配置项
-uint8_t SystemMemoryConfigQuaternary;   // 第四配置项
+uint8_t SystemMemoryConfigSecondary;       // 次要配置项
+uint8_t SystemMemoryConfigTertiary;        // 第三级配置项
+uint8_t SystemMemoryConfigQuaternary;   // 第四级配置项
 uint8_t SecurityEncryptionKey;             // 安全加密密钥
-uint8_t SystemMemoryConfigQuaternaryAlt; // 第四配置项备用
-uint8_t SystemMemoryConfigQuinary;       // 第五配置项
-uint8_t SystemMemoryConfigSecureSixth;  // 安全第6配置项
-uint8_t SystemMemoryConfigSecureSeventh; // 安全第7配置项
-uint8_t SystemMemoryConfigEighth;      // 第8配置项
-uint8_t SystemMemoryConfigNinth;       // 普通第9配置项
+uint8_t SystemMemoryConfigQuaternaryBackup; // 第四级配置项备用
+uint8_t SystemMemoryConfigQuinary;       // 第五级配置项
+uint8_t SystemMemoryConfigSecureAdditional;  // 安全附加配置项
+uint8_t SystemMemoryConfigSecureExtra; // 安全扩展配置项
+uint8_t SystemMemoryConfigExtended;      // 扩展配置项
+uint8_t SystemMemoryConfigSupplementary;       // 补充配置项
 // 系统内存配置数据模板高级变量
-uint8_t SystemMemoryConfigTenth;        // 第10配置项
-uint8_t SystemMemoryConfigNinthAlt;   // 第9配置项备用
-uint8_t SystemMemoryConfigTenthAlt;     // 第10配置项备用
-uint8_t SystemMemoryConfigEleventh;      // 第11配置项
-uint8_t SystemMemoryConfigEleventhAlt;   // 第11配置项备用
-uint8_t SystemMemoryConfigEleventhExtra; // 第11配置项扩展
+uint8_t SystemMemoryConfigAdvanced;        // 高级配置项
+uint8_t SystemMemoryConfigSupplementaryBackup;   // 补充配置项备用
+uint8_t SystemMemoryConfigAdvancedBackup;     // 高级配置项备用
+uint8_t SystemMemoryConfigPremium;      // 优先配置项
+uint8_t SystemMemoryConfigPremiumBackup;   // 优先配置项备用
+uint8_t SystemMemoryConfigPremiumExtended; // 优先配置项扩展
 uint8_t GlobalSystemMemoryPoolSize;         // 全局内存池大小
 uint8_t SystemResourceAllocator;           // 系统资源分配器
 char SystemMemoryConfigFlag;                // 内存配置标志
@@ -7975,15 +7975,15 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
       psecondFloatResult = pfloatValue4 + 1;
     } while ((int)ValidationCounter < *(int *)(ObjectContext + 0x18));
     if (0 < *(int *)(ObjectContext + 0x18)) {
-      ResourceTablePointer = (ObjectContext + 0x20) - (int64_t)FloatParameterValue;
+      ResourceTablePointer = (ObjectContext + 0x20) - (int64_t)floatParameterValue;
       do {
-        ResourceIndex = *(int *)((int64_t)FloatParameterValue + ResourceTablePointer);
+        ResourceIndex = *(int *)((int64_t)floatParameterValue + ResourceTablePointer);
         if (ResourceIndex != -1) {
-          *(float *)(*(int64_t *)(ContextValidationResult + 0x20) + 4 + (int64_t)ResourceIndex * 0x18) = *FloatParameterValue;
+          *(float *)(*(int64_t *)(ContextValidationResult + 0x20) + 4 + (int64_t)ResourceIndex * 0x18) = *floatParameterValue;
         }
         ValidationCounter = (int)ResourceCounter + 1;
         ResourceCounter = (uint64_t)ValidationCounter;
-        FloatParameterValue = FloatParameterValue + 1;
+        floatParameterValue = floatParameterValue + 1;
       } while ((int)ValidationCounter < *(int *)(objectContext + 0x18));
     }
   }
@@ -8059,14 +8059,14 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
       psecondFloatResult = pfloatValue4 + 1;
     } while ((int)ResourceCounter < *(int *)(resourceContext + 0x18));
     if (0 < *(int *)(resourceContext + 0x18)) {
-      ResourceTablePointer = (resourceContext + 0x20) - (int64_t)FloatParameterValue;
+      ResourceTablePointer = (resourceContext + 0x20) - (int64_t)floatParameterValue;
       do {
-        operationStatusCode = *(int *)((int64_t)FloatParameterValue + ResourceTablePointer);
+        operationStatusCode = *(int *)((int64_t)floatParameterValue + ResourceTablePointer);
         if (OperationResult != -1) {
-          *(float *)(*(int64_t *)(ContextValidationResult + 0x20) + 4 + (int64_t)OperationResult * 0x18) = *FloatParameterValue;
+          *(float *)(*(int64_t *)(ContextValidationResult + 0x20) + 4 + (int64_t)OperationResult * 0x18) = *floatParameterValue;
         }
         loopCounter = loopCounter + 1;
-        FloatParameterValue = FloatParameterValue + 1;
+        floatParameterValue = floatParameterValue + 1;
       } while ((int)loopCounter < *(int *)(resourceContext + 0x18));
     }
   }
@@ -8264,16 +8264,16 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t objectContext, int64_t
   uint8_t validationResult;
   int64_t ResourceIndex;
   int64_t StackContextPointer;
-  float FloatValueToValidate;
+  float floatValueToValidate;
   
-  FloatValueToValidate = *(float *)(objectContext + 0x1c);
-  StackContextPointer = CONCAT44(StackContextPointer._4_4_,FloatValueToValidate);
-  if (((uint)FloatValueToValidate & 0x7f800000) == 0x7f800000) {
+  floatValueToValidate = *(float *)(objectContext + 0x1c);
+  StackContextPointer = CONCAT44(StackContextPointer._4_4_,floatValueToValidate);
+  if (((uint)floatValueToValidate & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
   switch(*(uint32_t *)(objectContext + 0x18)) {
   case 0:
-    if ((0.0 <= FloatValueToValidate) && (FloatValueToValidate <= 256.0)) goto code_r0x00018089322c;
+    if ((0.0 <= floatValueToValidate) && (floatValueToValidate <= 256.0)) goto code_r0x00018089322c;
     goto joined_r0x00018089322a;
   case 1:
   case 2:
@@ -8285,9 +8285,9 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t objectContext, int64_t
   default:
     goto ValidationContinueLabel;
   }
-  if (FloatValueToValidate < 0.0) {
+  if (floatValueToValidate < 0.0) {
 ValidationNegativePath:
-    if (FloatValueToValidate != -1.0) {
+    if (floatValueToValidate != -1.0) {
 ValidationContinueLabel:
       return 0x1f;
     }
@@ -50026,7 +50026,7 @@ void Unwind_180906700(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 /**
- * 执行资源上下文清理操作
+ * @brief 执行资源上下文清理操作
  * 
  * 该函数负责在资源处理完成后执行清理操作，通过调用资源上下文中的
  * 清理函数指针来释放资源或执行其他必要的清理工作。
@@ -50034,10 +50034,11 @@ void Unwind_180906700(uint8_t objectContext,int64_t validationContext,uint8_t Cl
  * @param objectContext 对象上下文标识符
  * @param validationContext 验证上下文，包含资源上下文指针
  */
-void ExecuteResourceContextCleanup(uint8_t objectContext,int64_t validationContext)
+void ExecuteResourceContextCleanup(uint8_t objectContext, int64_t validationContext)
 
 {
   int64_t *processPointer;
+  int64_t *resourceContext;
   
   resourceContext = *(int64_t **)(*(int64_t *)(validationContext + 0xa0) + 0x268);
   if (resourceContext != (int64_t *)0x0) {
@@ -50049,7 +50050,7 @@ void ExecuteResourceContextCleanup(uint8_t objectContext,int64_t validationConte
 
 
 /**
- * 执行资源操作处理器
+ * @brief 执行资源操作处理器
  * 
  * 该函数调用具体的资源操作执行函数，处理资源的实际操作逻辑。
  * 从验证上下文中获取资源操作参数并执行相应的操作。
@@ -50057,17 +50058,20 @@ void ExecuteResourceContextCleanup(uint8_t objectContext,int64_t validationConte
  * @param objectContext 对象上下文标识符
  * @param validationContext 验证上下文，包含资源操作参数
  */
-void ExecuteResourceOperationHandler(uint8_t objectContext,int64_t validationContext)
+void ExecuteResourceOperationHandler(uint8_t objectContext, int64_t validationContext)
 
 {
-  ExecuteResourceOperation(*(int64_t *)(validationContext + 0xa0) + 0x2e0);
+  int64_t resourceOperationParameter;
+  
+  resourceOperationParameter = *(int64_t *)(validationContext + 0xa0) + 0x2e0;
+  ExecuteResourceOperation(resourceOperationParameter);
   return;
 }
 
 
 
 /**
- * 完成资源操作处理器
+ * @brief 完成资源操作处理器
  * 
  * 该函数负责完成资源操作的收尾工作，调用资源操作完成函数
  * 来执行操作后的清理和状态更新。
@@ -50075,17 +50079,20 @@ void ExecuteResourceOperationHandler(uint8_t objectContext,int64_t validationCon
  * @param objectContext 对象上下文标识符
  * @param validationContext 验证上下文，包含资源操作状态
  */
-void FinalizeResourceOperationHandler(uint8_t objectContext,int64_t validationContext)
+void FinalizeResourceOperationHandler(uint8_t objectContext, int64_t validationContext)
 
 {
-  FinalizeResourceOperation(*(int64_t *)(validationContext + 0xa0) + 0x2f0);
+  int64_t resourceFinalizationParameter;
+  
+  resourceFinalizationParameter = *(int64_t *)(validationContext + 0xa0) + 0x2f0;
+  FinalizeResourceOperation(resourceFinalizationParameter);
   return;
 }
 
 
 
 /**
- * 初始化资源哈希模板
+ * @brief 初始化资源哈希模板
  * 
  * 该函数设置资源哈希表和缓存模板的初始值，为后续的资源
  * 哈希操作配置必要的模板结构。
@@ -50093,14 +50100,14 @@ void FinalizeResourceOperationHandler(uint8_t objectContext,int64_t validationCo
  * @param objectContext 对象上下文标识符
  * @param validationContext 验证上下文，指向资源哈希指针
  */
-void InitializeResourceHashTemplates(uint8_t objectContext,int64_t validationContext)
+void InitializeResourceHashTemplates(uint8_t objectContext, int64_t validationContext)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *resourceHashPointer;
   
-  presourceHash = *(uint8_t **)(validationContext + 0xa0);
-  *presourceHash = &ResourceTableTemplate;
-  *presourceHash = &ResourceCacheTemplate;
+  resourceHashPointer = *(uint8_t **)(validationContext + 0xa0);
+  *resourceHashPointer = &ResourceTableTemplate;
+  *resourceHashPointer = &ResourceCacheTemplate;
   return;
 }
 
