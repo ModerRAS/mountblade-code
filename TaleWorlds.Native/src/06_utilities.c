@@ -4768,8 +4768,8 @@ uint8_t InitializeObjectHandleF(void)
           return ResourceHash;
         }
       }
-      loopIncrement = (int)loopCounter + 1;
-      LoopCounter = (uint64_t)loopIncrement;
+      LoopStepIncrement = (int)LoopCounter + 1;
+      LoopCounter = (uint64_t)LoopStepIncrement;
       PackageValidationStatusCodePointer = HashValidationResultPointer + 1;
       OperationStatusCodePointer = OperationResultPointer + 2;
     } while ((int)loopIncrement < *(int *)(ExecutionContextPointer + 0x18));
@@ -51155,7 +51155,19 @@ void ExecuteSystemCleanupCallbackTertiary(uint8_t ObjectContext, int64_t Validat
 
 
 
-void Unwind_180905ea0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源表状态验证函数
+ * 
+ * 该函数负责验证资源表的状态和完整性
+ * 检查资源索引、状态标志和哈希验证结果
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数涉及资源表的完整性检查
+ * @warning 调用此函数时需要确保资源表指针有效
+ */
+void ValidateResourceTableStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
