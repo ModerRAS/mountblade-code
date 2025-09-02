@@ -27392,7 +27392,7 @@ void ProcessSystemResourceAndRenderManagement(long long *ResourceManagerPointer,
   void* *localBuffer6;
   
   systemHandle = SystemStatusFlagsPointer;
-  StackParameter1 = ResourceManagerPointer;
+  SystemResourceHandle = ResourceManagerPointer;
   if (*(int *)(SystemNodeManagerPointer + 0xd94) != *(int *)(SystemNodeManagerPointer + 0xd90)) {
     ProcessSystemResourceOperation(SystemStatusFlagsPointer,ResourceData,RenderConfig,OperationFlags,0xfffffffffffffffe);
   }
@@ -27419,7 +27419,7 @@ void ProcessSystemResourceAndRenderManagement(long long *ResourceManagerPointer,
   if (((*(int *)(SystemNodeManagerPointer + 0x4d4) != *(int *)(SystemNodeManagerPointer + 0x4d0)) ||
       (*(int *)(SystemNodeManagerPointer + 0x314) != *(int *)(SystemNodeManagerPointer + 0x310))) ||
      (*(int *)(SystemNodeManagerPointer + 0x544) != *(int *)(SystemNodeManagerPointer + 0x540))) {
-    StackParameter1 = localBuffer1;
+    SystemResourceHandle = localBuffer1;
     localBuffer2 = &SystemBuffer1;
     localBuffer3 = &SystemBuffer2;
     ProcessSystemResourceData(localBuffer1);
@@ -27428,7 +27428,7 @@ void ProcessSystemResourceAndRenderManagement(long long *ResourceManagerPointer,
      ((*(int *)(SystemNodeManagerPointer + 900) != *(int *)(SystemNodeManagerPointer + 0x380) ||
       (*(int *)(SystemNodeManagerPointer + 0x3f4) != *(int *)(SystemNodeManagerPointer + 0x3f0))))) {
     memoryAllocationHandle = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x40,8,3);
-    StackParameter1 = localBuffer4;
+    SystemResourceHandle = localBuffer4;
     localBuffer5 = &SystemBuffer3;
     localBuffer6 = &SystemBuffer4;
     systemResourcePointer = (long long *)CreateMemoryAllocationHandle(memoryAllocationHandle,localBuffer4);
@@ -27437,8 +27437,8 @@ void ProcessSystemResourceAndRenderManagement(long long *ResourceManagerPointer,
       (**(code **)(*systemResourcePointer + 0x28))(systemResourcePointer);
     }
     memoryAllocationHandle = SystemAllocationFlagsTemplate;
-    StackParameter3 = &StackParameter1;
-    StackParameter1 = systemResourcePointer;
+    SystemOperationFlag = &SystemResourceHandle;
+    SystemResourceHandle = systemResourcePointer;
     if (systemResourcePointer != (long long *)0x0) {
       (**(code **)(*systemResourcePointer + 0x28))(systemResourcePointer);
     }
