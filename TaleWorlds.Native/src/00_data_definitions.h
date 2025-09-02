@@ -1045,8 +1045,8 @@ int InitializeModuleConfigurationA(void)
   STRING_PROCESSOR_CONFIG_A = 0;
   GlobalStringProcessorBufferSizeA = 5;
   strcpy_s(&STRING_PROCESSOR_CONFIG_A,16,&SystemStringDataConstantA,StringProcessorFlags,SystemMutexFlags);
-  longlong SystemModuleRegistrationResult = RegisterSystemModule(InitializeSystemModuleA);
-  return (SystemModuleRegistrationResult != 0) - 1;
+  int64_t systemModuleRegistrationResult = RegisterSystemModule(InitializeSystemModuleA);
+  return (systemModuleRegistrationResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器G
@@ -1277,8 +1277,8 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   SystemConfigStringBufferX = 0;
   SystemConfigDataSizeX = 0xf;
   strcpy_s(&SystemConfigStringBufferX,64,&SystemConfigStringTemplateX);
-  longlong CallbackResult = RegisterSystemModule(&SystemModuleEntryPointA);
-  return (CallbackResult != 0) - 1;
+  int64_t callbackResult = RegisterSystemModule(&SystemModuleEntryPointA);
+  return (callbackResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器J
@@ -1734,7 +1734,7 @@ int InitializeStringProcessorH(void)
  */
 int InitializeStringProcessorAA(void)
 {
-  longlong InitializationResult;
+  int64_t initializationResult;
   uint64_t StringProcessorFlags;
   StringProcessorAABase = &SystemStringDataConstantA;
   StringProcessorAABufferPtr = &StringProcessorAABuffer;
