@@ -19060,6 +19060,15 @@ uint32_t FinalSystemInitialization(void)
 
 
 
+/**
+ * @brief 系统主入口函数
+ * 
+ * 这是整个系统的主入口函数，负责初始化和管理整个系统的运行。
+ * 它接收系统资源管理器作为参数，并协调各个系统组件的初始化和运行。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，用于管理系统资源
+ * @note 这是系统启动时调用的第一个主要函数
+ */
 void WotsMain(void* SystemResourceManager)
 
 {
@@ -48076,10 +48085,10 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   uint8_t systemDataBuffer;
   uint8_t aUnsignedStackFlagB0 [16];
   code *charPointerA0;
-  code *pcStack_98;
+  code *SystemFunctionPointer98;
   uint8_t aStackParameterC [16];
   code *charPointer80;
-  code *pcStack_78;
+  code *SystemFunctionPointer78;
   void* processFlags70;
   void* EncryptionValue68;
   void* unsignedValue60;
@@ -48103,10 +48112,10 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     iStack_1e8 = 0;
     abStack_1e0[0] = 0;
     charPointerA0 = (code *)0x0;
-    pcStack_98 = _guard_check_icall;
+    SystemFunctionPointer98 = _guard_check_icall;
     ppunsignedValue248 = (void* **)aStackParameterC;
     charPointer80 = (code *)0x0;
-    pcStack_78 = _guard_check_icall;
+    SystemFunctionPointer78 = _guard_check_icall;
     lStack_c0 = -1;
     unsignedValueD8 = 0xffffffffffffffff;
     uStack_e0 = 0xffffffffffffffff;
@@ -48187,7 +48196,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
           (*pcharResult2)(aUnsignedStackFlagB0,(uint8_t *)(nextDataIndex3 + 0x148),1);
           pcharResult2 = *(code **)(nextDataIndex3 + 0x158);
         }
-        pcStack_98 = *(code **)(nextDataIndex3 + 0x160);
+        SystemFunctionPointer98 = *(code **)(nextDataIndex3 + 0x160);
         charPointerA0 = pcharResult2;
       }
       if (aStackParameterC != (uint8_t *)(nextDataIndex3 + 0x168)) {
@@ -48199,7 +48208,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
           (*pcharResult2)(aStackParameterC,(uint8_t *)(nextDataIndex3 + 0x168),1);
           pcharResult2 = *(code **)(nextDataIndex3 + 0x178);
         }
-        pcStack_78 = *(code **)(nextDataIndex3 + 0x180);
+        SystemFunctionPointer78 = *(code **)(nextDataIndex3 + 0x180);
         charPointer80 = pcharResult2;
       }
       processFlags70 = *(void* *)(nextDataIndex3 + 0x188);
@@ -48449,7 +48458,7 @@ LAB_18006c9ac:
       *(int *)(resourcePoolPointer3 + 0x65) = (int)resourcePoolPointer3[0x65] + 1;
       nextDataIndex3 = (**(code **)(*resourcePoolPointer3 + 8))(resourcePoolPointer3,&SystemGlobalDataReferencePtr2);
       if (nextDataIndex3 != 0) goto LAB_18006c852;
-      (*pcStack_78)(aStackParameterC);
+      (*SystemFunctionPointer78)(aStackParameterC);
       ppunsignedValue248 = (void* **)aStackParameterC;
       if (charPointer80 != (code *)0x0) {
         (*charPointer80)(aStackParameterC,0,0);
@@ -57746,8 +57755,8 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
   void* SystemOperationStatus6;
   ulong long *pUnsignedStackFlag80;
   long long *plStack_78;
-  code *pcStack_70;
-  code *pcStack_68;
+  code *SystemFunctionPointer70;
+  code *SystemFunctionPointer68;
   void* unsignedValue60;
   void* processFlags58;
   void* unsignedValue50;
@@ -57765,11 +57774,11 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
       if ((char)ConfigurationDataPointer[2] != '\0') {
         pUnsignedStackFlag80 = (ulong long *)0x0;
         plStack_78 = (long long *)0x0;
-        pcStack_70 = (code *)0x0;
-        pcStack_68 = _guard_check_icall;
+        SystemFunctionPointer70 = (code *)0x0;
+        SystemFunctionPointer68 = _guard_check_icall;
         FUN_1800b6f90(extraout_XMM0_Da,SystemResourceManager,&pUnsignedStackFlag80);
-        if (pcStack_70 != (code *)0x0) {
-          (*pcStack_70)(&pUnsignedStackFlag80,0,0);
+        if (SystemFunctionPointer70 != (code *)0x0) {
+          (*SystemFunctionPointer70)(&pUnsignedStackFlag80,0,0);
         }
       }
       SystemOperationStatusFlag = FUN_180076b90(SystemResourceManager);
@@ -64274,7 +64283,7 @@ ulong long FUN_18007b240(long long SystemResourceManager,long long *Configuratio
   long long lStack_90;
   uint32_t UnsignedStackFlag88;
   long long *aplStack_78 [2];
-  code *pcStack_68;
+  code *SystemFunctionPointer68;
   void* *punsignedValue60;
   void* processFlags58;
   long long *plStack_50;
@@ -64430,7 +64439,7 @@ LAB_18007b454:
       unsignedSystemValue9 = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xe0,8,3);
       (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
       (**(code **)(*PrimaryResourcePointer1 + 0x28))(PrimaryResourcePointer1);
-      pcStack_68 = FUN_180083390;
+      SystemFunctionPointer68 = FUN_180083390;
       punsignedValue60 = &SystemValueTableA;
       plStack_b8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
       *plStack_b8 = SystemResourceManager;
@@ -65327,8 +65336,8 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     psystemMemoryOffset = plStack_80;
     plStack_80 = (long long *)0x0;
     plStack_b8 = &lStack_78;
-    pcStack_48 = FUN_180082e70;
-    pcStack_40 = FUN_180082da0;
+    SystemThreadCallback48 = FUN_180082e70;
+    SystemThreadCallback40 = FUN_180082da0;
     plStack_a8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
     *plStack_a8 = lStack_78;
     *(byte *)(plStack_a8 + 1) = bStack_70;
