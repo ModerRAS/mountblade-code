@@ -45046,7 +45046,7 @@ void ProcessSystemResourceQueueAndCompletion(long long ResourceManagerPointer)
         uStack_5c = uStack_6c;
         processFlags58 = EncryptionValue68;
         uStack_54 = uStack_64;
-        plocalSystemFlags = (long long *)FUN_180069e10(currentThreadId,&unsignedValue60);
+        plocalSystemFlags = (long long *)InitializeSystemResource(currentThreadId,&unsignedValue60);
         if (plocalSystemFlags != (long long *)0x0) {
           (**(code **)(*plocalSystemFlags + 0x28))(plocalSystemFlags);
         }
@@ -45055,13 +45055,13 @@ void ProcessSystemResourceQueueAndCompletion(long long ResourceManagerPointer)
         if (*(char *)(nextDataIndex + 0x368) == '\0') {
           plocalSystemFlags[3] = -4;
           (**(code **)(*plocalSystemFlags + 0x28))(plocalSystemFlags);
-          FUN_18005e110(unsignedSystemValue4,&plStackX_20);
+          ProcessSystemResourceSemaphore(unsignedSystemValue4,&plStackX_20);
         }
         else {
           if (plocalSystemFlags != (long long *)0x0) {
             (**(code **)(*plocalSystemFlags + 0x28))(plocalSystemFlags);
           }
-          FUN_18005e450(unsignedSystemValue4,&plStackX_20);
+          ReleaseSystemResourceSemaphore(unsignedSystemValue4,&plStackX_20);
         }
         if (plocalSystemFlags != (long long *)0x0) {
           (**(code **)(*plocalSystemFlags + 0x38))(plocalSystemFlags);
@@ -54274,8 +54274,16 @@ void ProcessSystemResourceAllocation(long long ResourceManagerPointer)
 
 
 
-// 函数: void FUN_180073b64(uint *ResourceManagerPointer)
-void FUN_180073b64(uint *ResourceManagerPointer)
+/**
+ * @brief 验证系统资源状态
+ * 
+ * 该函数负责验证系统资源的状态，确保资源处于有效状态
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * 
+ * 原始函数名为FUN_180073b64，现已重命名为ValidateSystemResourceState
+ */
+void ValidateSystemResourceState(uint *ResourceManagerPointer)
 
 {
   ushort systemStatus;
