@@ -47140,7 +47140,16 @@ void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_180905220(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源上下文并处理哈希值
+ * 
+ * 原始函数名：Unwind_180905220
+ * 验证资源上下文的有效性并处理资源哈希值
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ValidateResourceContextAndProcessHash(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -47251,7 +47260,7 @@ void Unwind_SystemCleanup_NetworkManager(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_180905270(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_SystemCleanup_GraphicsManager(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -47272,7 +47281,7 @@ void Unwind_180905270(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180905280(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_SystemCleanup_AudioManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -47308,7 +47317,7 @@ void Unwind_180905280(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905290(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_SystemCleanup_InputManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1c8) = &SystemDataStructure;
@@ -47317,7 +47326,7 @@ void Unwind_180905290(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809052a0(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_SystemCleanup_FileManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x168) = &SystemDataStructure;
@@ -47326,7 +47335,7 @@ void Unwind_1809052a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809052b0(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_SystemCleanup_ScriptManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1e8) = &SystemDataStructure;
