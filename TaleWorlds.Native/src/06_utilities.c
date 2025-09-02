@@ -3382,18 +3382,18 @@ uint8_t SystemEventHandlerCustomNovemdecenaryFlag;
 uint8_t SystemEventHandlerCustomVigenaryFlag;
 uint8_t SystemEventHandlerCustomUnvigenaryFlag;
 uint8_t SystemEventHandlerCustomDuovigenaryFlag;
-uint8_t SystemEventHandlerCustomTwentyThree;
-uint8_t SystemEventHandlerCustomTwentyFour;
-uint8_t SystemEventHandlerCustomTwentyFive;
-uint8_t SystemEventHandlerCustomTwentySix;
-uint8_t SystemEventHandlerCustomTwentySeven;
-uint8_t SystemEventHandlerCustomTwentyEight;
-uint8_t SystemEventHandlerCustomTwentyNine;
-uint8_t SystemEventHandlerCustomThirty;
-uint8_t SystemEventHandlerCustomThirtyOne;
-uint8_t SystemEventHandlerCustomThirtyTwo;
-uint8_t SystemEventHandlerCustomThirtyThree;
-uint8_t SystemEventHandlerCustomThirtyFour;
+uint8_t SystemEventHandlerCustomTrevigenaryFlag;
+uint8_t SystemEventHandlerCustomQuattuorvigenaryFlag;
+uint8_t SystemEventHandlerCustomQuinvigenaryFlag;
+uint8_t SystemEventHandlerCustomSexvigenaryFlag;
+uint8_t SystemEventHandlerCustomSeptemvigenaryFlag;
+uint8_t SystemEventHandlerCustomOctovigenaryFlag;
+uint8_t SystemEventHandlerCustomNovemvigenaryFlag;
+uint8_t SystemEventHandlerCustomTrigenaryFlag;
+uint8_t SystemEventHandlerCustomUntrigenaryFlag;
+uint8_t SystemEventHandlerCustomDuotrigenaryFlag;
+uint8_t SystemEventHandlerCustomTrevigenaryFlagSecondary;
+uint8_t SystemEventHandlerCustomQuattuortrigenaryFlag;
 uint8_t SystemEventHandlerCustomThirtyFive;
 uint8_t SystemEventHandlerCustomThirtySix;
 uint8_t SystemEventHandlerCustomThirtySeven;
@@ -6376,7 +6376,7 @@ uint8_t ValidateSystemConfiguration(int64_t ConfigHandle)
   uint8_t HashValidationResult;
   int64_t ConfigBuffer [4];
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(configHandle + 0x10),ConfigBuffer);
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(configHandle + ObjectContextOffset),ConfigBuffer);
   if ((int)HashValidationResult == 0) {
     *(uint32_t *)(*(int64_t *)(ConfigBuffer[0] + 0x10) + 0x50) = *(uint32_t *)(configHandle + RegistrationHandleOffset);
     if ((*(int64_t *)(ConfigBuffer[0] + 8) != 0) && (HashValidationResult = ValidateSecurityContext(), (int)HashValidationResult != 0)) {
