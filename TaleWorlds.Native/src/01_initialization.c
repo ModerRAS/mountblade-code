@@ -66991,7 +66991,7 @@ void FUN_18007f4c0(uint8_t *SystemResourceManager,void* ConfigurationDataPointer
       if (*(void* **)(localDataIndex + 0x18) != (void* *)0x0) {
         newThreadLocalStorage = *(void* **)(localDataIndex + 0x18);
       }
-        UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ffc28,newThreadLocalStorage,ConfigurationFlag,systemOperationFlags);
+        UpdateContextManagerSystem(SystemContextManagerPointer,&SystemContextManagerTemplateA,newThreadLocalStorage,ConfigurationFlag,systemOperationFlags);
     }
   }
   localDataIndex = *(long long *)(SystemResourceManager + 8);
