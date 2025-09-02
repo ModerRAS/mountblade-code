@@ -3259,6 +3259,21 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数在游戏主循环中调用
  * @warning 处理大量对象时可能影响性能
  */
+/**
+ * @brief 处理游戏对象的更新和验证
+ * 
+ * 该函数负责处理游戏对象集合的更新操作，包括：
+ * - 验证游戏对象的状态
+ * - 更新对象的元数据
+ * - 处理对象的引用计数
+ * - 执行对象的生命周期管理
+ * 
+ * @param GameContext 游戏上下文指针，包含游戏对象的相关信息
+ * @param SystemContext 系统上下文指针，提供系统级别的支持功能
+ * @return 无返回值
+ * @note 此函数通常在游戏循环中定期调用
+ * @warning 调用时需要确保上下文指针有效
+ */
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t GameObjectValidationState;
@@ -3318,6 +3333,19 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
  * @return 无返回值
  * @note 此函数会验证所有系统对象的状态
  * @warning 如果发现无效对象，函数将进行相应的处理
+ */
+/**
+ * @brief 验证系统对象集合的完整性和有效性
+ * 
+ * 该函数负责验证系统对象集合中的所有对象，确保：
+ * - 每个系统对象都有有效的标识符
+ * - 对象的状态符合系统要求
+ * - 无效的对象会被正确处理
+ * - 系统对象集合的完整性得到维护
+ * 
+ * @return 无返回值
+ * @note 此函数在系统初始化和定期维护时调用
+ * @warning 发现无效对象时会调用处理函数，可能导致系统状态变化
  */
 void ValidateSystemObjectCollection(void)
 
@@ -3446,6 +3474,20 @@ void CheckSystemFlags(void)
  * @return uint8_t 验证结果状态码，0表示成功，非0表示失败
  * @note 此函数用于确保对象在系统中具有有效的注册状态
  * @warning 如果对象注册无效，函数将返回相应的错误代码
+ */
+/**
+ * @brief 验证对象注册状态的有效性
+ * 
+ * 该函数负责验证对象的注册状态，包括：
+ * - 验证对象上下文的有效性
+ * - 检查对象注册句柄的合法性
+ * - 确认对象注册数据的完整性
+ * - 验证对象注册状态的有效性
+ * 
+ * @param ObjectContext 对象上下文指针，包含需要验证的对象信息
+ * @return uint8_t 返回验证状态码，0表示成功，非零表示错误
+ * @note 此函数用于确保系统中的对象都经过正确的注册流程
+ * @warning 如果对象注册无效，可能需要重新注册或清理对象
  */
 uint8_t VerifyObjectRegistration(int64_t ObjectContext)
 
@@ -40985,7 +41027,28 @@ void Unwind_SystemResourceCleanup_Batch2(uint8_t objectContext,int64_t validatio
 
 
 
-void Unwind_180904230(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * 清理系统资源处理器 - 批量模式3
+ * 
+ * 功能描述：
+ * 清理第三组系统资源处理器，执行回调函数并重置系统状态。
+ * 该函数处理另一组内存偏移量的系统资源处理器，确保系统资源正确释放。
+ * 
+ * 参数说明：
+ * @param objectContext 对象上下文，标识要清理的对象
+ * @param validationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 处理不同内存偏移量的资源处理器
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ */
+void Unwind_SystemResourceCleanup_Batch3(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
