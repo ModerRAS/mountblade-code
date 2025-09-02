@@ -99,14 +99,56 @@ char SystemConfigurationFlagMain;
 // 系统常量字符串 - 用于存储系统常量字符串数据
 char* SystemConstantStringMain;
 
-// 网络配置验证参数 - 用于验证网络配置数据
+// 网络配置参数 - 用于存储网络配置的各种参数数据
+
+/**
+ * @brief 网络配置认证类型
+ * 
+ * 用于指定网络连接的认证方式和类型
+ */
 void* NetworkConfigAuthenticationType;
+
+/**
+ * @brief 网络配置加密算法
+ * 
+ * 用于指定网络数据传输的加密算法类型
+ */
 void* NetworkConfigEncryptionAlgorithm;
+
+/**
+ * @brief 网络配置压缩方法
+ * 
+ * 用于指定网络数据压缩的方法和算法
+ */
 void* NetworkConfigCompressionMethod;
-void* NetworkConfigValidationParameter4;
-void* NetworkConfigValidationParameter5;
-void* NetworkConfigValidationParameter6;
-void* NetworkConfigValidationParameter7;
+
+/**
+ * @brief 网络配置连接超时
+ * 
+ * 用于设置网络连接的超时时间
+ */
+void* NetworkConfigConnectionTimeout;
+
+/**
+ * @brief 网络配置最大重试次数
+ * 
+ * 用于设置网络连接失败后的最大重试次数
+ */
+void* NetworkConfigMaxRetries;
+
+/**
+ * @brief 网络配置缓冲区大小
+ * 
+ * 用于设置网络数据传输的缓冲区大小
+ */
+void* NetworkConfigBufferSize;
+
+/**
+ * @brief 网络配置数据包大小
+ * 
+ * 用于设置网络数据包的大小限制
+ */
+void* NetworkConfigPacketSize;
 void* NetworkConfigValidationParameter8;
 void* NetworkConfigValidationParameter9;
 void* NetworkConfigValidationParameter10;

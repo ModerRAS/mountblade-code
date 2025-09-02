@@ -29432,6 +29432,18 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
+/**
+ * @brief 异常处理函数：解卷处理器类型1
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理一级异常情况的资源清理工作
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被自动调用
+ */
 void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext, int64_t ValidationContext) {
   if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
