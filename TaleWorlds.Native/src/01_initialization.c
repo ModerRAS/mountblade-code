@@ -59207,10 +59207,10 @@ void ProcessSystemMatrixOperations(void)
   void* SystemConfigurationFlags;
   void* SecurityContextFlags;
   void* NetworkConnectionFlags;
-  byte isSystemActive7;
-  long long systemMemoryBlockPtr;
-  byte isSystemActive8;
-  float *systemStringIteratorPtr;
+  byte IsPhysicsSystemActive;
+  long long MemoryBlockAddress;
+  byte IsAudioSystemActive;
+  float *StringIteratorPointer;
   long long unaff_R13;
   bool in_ZF;
   void* InputStackParameter60;
