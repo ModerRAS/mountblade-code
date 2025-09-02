@@ -59,7 +59,7 @@
 #define ResourceContextOffsetExtended 0x90
 #define ResourceContextOffsetSecondary 0xb0
 #define ResourceContextOffsetTertiary 0xb4
-#define ResourceContextOffset6c 0x6c
+#define ResourceContextOffsetAlternate 0x6c
 #define ResourceContextOffsetHandle 0xf8
 #define BufferOffsetPrimary 0x70
 #define BufferOffsetSecondary 0x80
@@ -6061,9 +6061,9 @@ void ValidateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedule
   uint8_t PropertyBuffer;
   
   ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&PropertyBuffer);
-  if (ValidationStatus == 0) {
-    ValidationStatus = ValidatePropertyBuffer(PropertyBuffer,ObjectContext + 0x18);
-    if (ValidationStatus == 0) {
+  if (ValidationStatusCode == 0) {
+    ValidationStatusCode = ValidatePropertyBuffer(PropertyBuffer,ObjectContext + 0x18);
+    if (ValidationStatusCode == 0) {
       CleanupSystemContextData(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
     }
   }
@@ -6090,10 +6090,10 @@ void ValidateObjectStateAndDispatchB(int64_t ObjectContext, int64_t schedulerCon
   uint8_t validationBuffer;
   
   if (*(int *)(ObjectContext + 0x2c) == 0) {
-    validationStatus = ProcessSchedulerFinalization(schedulerContext,ObjectContext + 0x1c,&validationBuffer);
-    if (validationStatus == 0) {
-      validationStatus = ValidateBufferContext(validationBuffer,ObjectContext + 0x2c);
-      if (validationStatus == 0) goto ValidationCompleteLabel;
+    ValidationStatusCode = ProcessSchedulerFinalization(schedulerContext,ObjectContext + 0x1c,&validationBuffer);
+    if (ValidationStatusCode == 0) {
+      ValidationStatusCode = ValidateBufferContext(validationBuffer,ObjectContext + 0x2c);
+      if (ValidationStatusCode == 0) goto ValidationCompleteLabel;
     }
     return;
   }
