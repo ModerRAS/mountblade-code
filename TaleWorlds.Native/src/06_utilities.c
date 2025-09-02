@@ -2880,8 +2880,8 @@ uint8_t SystemConfigurationExtendedSecondary;  // 扩展次要系统配置数据
 uint8_t SystemConfigurationExtendedTertiary;  // 扩展第三系统配置数据
 uint8_t SystemConfigurationExtendedQuaternary; // 扩展第四系统配置数据
 uint8_t SystemMemoryConfigAlternate;   // 系统内存备用配置数据
-uint8_t SystemResourceManagerInstance; // 系统资源管理器实例
-uint8_t SystemEventHandlerSlot;        // 系统事件处理槽位
+uint8_t SystemResourceManagerInstance; // 系统资源管理器实例数据
+uint8_t SystemEventHandlerSlot;        // 系统事件处理槽位数据
 
  /**
  * @brief 初始化系统日志
