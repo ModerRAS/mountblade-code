@@ -1231,15 +1231,15 @@ void* SystemDataBufferExtended29;
 void* SystemDataBufferExtended30;
 void* SystemDataBufferExtended31;
 void* SystemDataBufferStandardExtra32;
-void* SystemDataBufferStandardExtraThirtyThree;
-void* SystemDataBufferStandardExtraThirtyFour;
-void* SystemDataBufferStandardExtraThirtyFive;
-void* SystemDataBufferStandardExtraThirtySix;
-void* SystemDataBufferStandardExtraThirtySeven;
-void* SystemDataBufferStandardExtraThirtyEight;
-void* SystemDataBufferStandardExtraThirtyNine;
-void* SystemDataBufferStandardExtraForty;
-void* SystemDataBufferStandardExtraFortyOne;
+void* SystemDataBufferStandardExtra33;
+void* SystemDataBufferStandardExtra34;
+void* SystemDataBufferStandardExtra35;
+void* SystemDataBufferStandardExtra36;
+void* SystemDataBufferStandardExtra37;
+void* SystemDataBufferStandardExtra38;
+void* SystemDataBufferStandardExtra39;
+void* SystemDataBufferStandardExtra40;
+void* SystemDataBufferStandardExtra41;
 
 // 系统初始化协调器
 void* SystemInitializationCoordinator;
