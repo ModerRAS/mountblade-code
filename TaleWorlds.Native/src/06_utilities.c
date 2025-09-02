@@ -3367,8 +3367,8 @@ uint8_t SystemMemoryFlagKernel;
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t GameObjectValidationState;
-  int ProcessingResultCode;
-  int64_t CurrentGameObjectPointer;
+  int ProcessingResult;
+  int64_t CurrentObjectPointer;
   int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
   int64_t SystemHandleArray[2];
