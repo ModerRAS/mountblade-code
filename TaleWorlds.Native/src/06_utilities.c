@@ -3470,8 +3470,8 @@ void ValidateSystemObjectCollection(void)
         ObjectDataPosition = 8;
         do {
           SystemObjectIdentifier = *(uint8_t *)(ObjectCollectionBuffer + ObjectDataPosition);
-          HashValidationResultCode = ValidateSystemObject(SystemObjectIdentifier);
-          if (HashValidationResultCode != 2) {
+          ValidationResultCode = ValidateSystemObject(SystemObjectIdentifier);
+          if (ValidationResultCode != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidSystemObject(SystemObjectIdentifier, 1);
           }
