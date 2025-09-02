@@ -527,11 +527,11 @@ void* GameDataTableManagerInitializer;
 /**
  * @brief 系统内存区域扩展A
  */
-void* SystemMemoryRegionExpansionA;
+void* SystemMemoryRegionExpansionAlpha;
 /**
  * @brief 系统内存区域扩展B
  */
-void* SystemMemoryRegionExpansionB;
+void* SystemMemoryRegionExpansionBeta;
 void* SystemDataTableEmergency;                  // 紧急系统数据表
 /**
  * @brief 系统内存区域扩展C
@@ -878,8 +878,8 @@ void* SystemDataNodeLinkageCache;                // 系统数据节点链接缓�
 void* SystemDataNodeLinkageBackup;                // 系统数据节点链接备份
 void* SystemDataNodeLinkagePrimary;               // 系统数据节点链接主表
 void* SystemDataNodeLinkageSecondary;             // 系统数据节点链接次表
-void* SystemDataComparisonTemplateA;  // 系统数据比较模板A
-void* SystemDataComparisonTemplateB;  // 系统数据比较模板B
+void* SystemDataComparisonTemplateAlpha;  // 系统数据比较模板Alpha
+void* SystemDataComparisonTemplateBeta;  // 系统数据比较模板Beta
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
 void* SystemDataNodeLinkageQuaternary;            // 系统数据节点链接第四表
 void* SystemDataNodeLinkageQuinary;               // 系统数据节点链接第五表
@@ -1098,16 +1098,16 @@ void* SystemDataBufferStandardSeptenvigesimal;
 void* SystemDataBufferStandardOctovigesimal;
 void* SystemDataBufferStandardNovemvigesimal;
 void* SystemDataBufferStandardTrigesimal;
-void* SystemDataBufferExtended1;
-void* SystemDataBufferExtended2;
-void* SystemDataBufferExtended3;
-void* SystemDataBufferExtended4;
-void* SystemDataBufferExtended5;
-void* SystemDataBufferExtended6;
-void* SystemDataBufferExtended7;
-void* SystemDataBufferExtended8;
-void* SystemDataBufferExtended9;
-void* SystemDataBufferExtended10;
+void* SystemDataBufferExtendedOne;
+void* SystemDataBufferExtendedTwo;
+void* SystemDataBufferExtendedThree;
+void* SystemDataBufferExtendedFour;
+void* SystemDataBufferExtendedFive;
+void* SystemDataBufferExtendedSix;
+void* SystemDataBufferExtendedSeven;
+void* SystemDataBufferExtendedEight;
+void* SystemDataBufferExtendedNine;
+void* SystemDataBufferExtendedTen;
 void* SystemDataBufferExtended11;
 void* SystemDataBufferExtended12;
 void* SystemDataBufferExtended13;
@@ -45032,7 +45032,7 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourcePointer)
     if (lStackX_10 == 0) break;
     FUN_180067480(*(void* *)(SystemResourcePointer + 0x20));
   }
-    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fec50,systemCounter);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&SystemContextUpdateData,systemCounter);
 }
 
 
@@ -45346,7 +45346,7 @@ void CreateSystemIoCompletionPort(long long SystemResourcePointer,long long Conf
     if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
       punsignedSystemValue4 = *(void* **)(ConfigurationDataPointer + 8);
     }
-      UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed10,punsignedSystemValue4);
+      UpdateContextManagerSystem(SystemContextManagerPointer,&SystemConfigurationUpdateData,punsignedSystemValue4);
   }
   localResourceOffset = SystemResourcePointer + 0x2133e0;
   lStack_2a8 = localResourceOffset;
@@ -45459,11 +45459,11 @@ void* AllocateSystemMemoryWithMutex(long long SystemResourcePointer,long long Co
         systemCounter = ReadFile(*(void* *)(ConfigurationDataPointer + 0x128),uRam00000000000001f0,unsignedSystemValue7 & 0xffffffff,0,
                          0);
         if (systemCounter != 0) {
-            UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed78);
+            UpdateContextManagerSystem(SystemContextManagerPointer,&SystemStateUpdateData);
         }
         systemCounter = GetLastError();
         if (systemCounter != 0x3e5) {
-            UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed40,systemCounter);
+            UpdateContextManagerSystem(SystemContextManagerPointer,&SystemStatusUpdateData,systemCounter);
         }
         unsignedSystemValue4 = 1;
       }
@@ -46044,7 +46044,7 @@ InitializeSystemResourceStringTemplate(void* *SystemResourcePointer,long long Co
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  *SystemResourcePointer = &UNK_1809feda8;
+  *SystemResourcePointer = &SystemMemoryAllocatorTemplate;
   SystemResourcePointer[1] = SystemResourcePointer + 3;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
   *(uint8_t *)(SystemResourcePointer + 3) = 0;
@@ -46076,7 +46076,7 @@ void* * InitializeSystemMemoryAllocatorTemplate(void* *SystemResourcePointer)
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  *SystemResourcePointer = &UNK_1809feda8;
+  *SystemResourcePointer = &SystemMemoryAllocatorTemplate;
   SystemResourcePointer[1] = SystemResourcePointer + 3;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
   *(uint8_t *)(SystemResourcePointer + 3) = 0;
@@ -46265,7 +46265,7 @@ void ConfigureSystemResourceAndProcessData(long long SystemResourcePointer,long 
   
   systemFlag178 = 0xfffffffffffffffe;
   EncryptionValue48 = SystemEncryptionKeyTemplate ^ (ulong long)aSystemStackFlag;
-  puStack_168 = &UNK_1809feda8;
+  puStack_168 = &SystemMemoryAllocatorTemplate;
   puStack_160 = auStack_150;
   uStack_158 = 0;
   auStack_150[0] = 0;
@@ -46497,7 +46497,7 @@ void UpdateSystemResourceStatus(void* *SystemResourcePointer)
   ulong long systemOperationFlags;
   bool bVar11;
   
-  *SystemResourcePointer = &UNK_1809feec8;
+  *SystemResourcePointer = &SystemStringTemplatePrimary;
   unsignedSystemValue3 = SystemResourcePointer[4];
   localResourcePointer = 0;
   unsignedSystemValue4 = SystemResourcePointer[5];
@@ -46580,7 +46580,7 @@ LAB_180069842:
   if (SystemResourcePointer[0xc] != 0) {
       SystemCleanupFunction();
   }
-  *SystemResourcePointer = &UNK_1809feeb8;
+  *SystemResourcePointer = &SystemStringTemplateSecondary;
   return;
 }
 
@@ -46718,7 +46718,7 @@ void* * FUN_180069920(long long *SystemResourcePointer)
     systemStringTemplatePtr[1] = 0;
     *(uint8_t *)(systemStringTemplatePtr + 2) = 0;
     systemStringTemplatePtr[3] = 0;
-    *systemStringTemplatePtr = &UNK_1809feeb8;
+    *systemStringTemplatePtr = &SystemStringTemplateSecondary;
     systemStringTemplatePtr[4] = 0;
     systemStringTemplatePtr[5] = 0;
     systemStringTemplatePtr[6] = 0;
@@ -46726,7 +46726,7 @@ void* * FUN_180069920(long long *SystemResourcePointer)
     systemStringTemplatePtr[8] = 0;
     *(uint8_t *)(systemStringTemplatePtr + 9) = 0;
     systemStringTemplatePtr[10] = SystemResourcePointer;
-    *systemStringTemplatePtr = &UNK_1809feec8;
+    *systemStringTemplatePtr = &SystemStringTemplatePrimary;
     systemStringTemplatePtr[0xb] = 0x20;
     systemStringTemplatePtr[0xc] = 0;
     FUN_18005f430(systemStringTemplatePtr);
@@ -46860,7 +46860,7 @@ FUN_180069e10(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void*
   *(uint8_t *)(SystemResourcePointer + 2) = 0;
   UNLOCK();
   SystemResourcePointer[3] = 0xffffffffffffffff;
-  *SystemResourcePointer = &UNK_1809feed8;
+  *SystemResourcePointer = &SystemMemoryPoolTemplate;
   SystemResourcePointer[6] = 0;
   SystemResourcePointer[7] = _guard_check_icall;
   if (SystemResourcePointer + 4 != ConfigurationDataPointer) {
@@ -46949,7 +46949,7 @@ void* FUN_18006a050(int SystemResourcePointer)
 void* * FUN_18006a090(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
-  *SystemResourcePointer = &UNK_1809ff040;
+  *SystemResourcePointer = &SystemThreadTemplate;
   SystemResourcePointer[0x18] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x19] != 0) {
       SystemCleanupFunction();
@@ -46996,7 +46996,7 @@ void InitializeSystemResources(long long SystemResourcePointer)
   SetErrorMode(1);
   SystemStatusFlag = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
   if (SystemStatusFlag == '\0') {
-    SetUnhandledExceptionFilter(&UNK_18006a030);
+    SetUnhandledExceptionFilter(&SystemExceptionHandler);
   }
   MemoryAllocationResult = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x170,8,3);
   SystemInitializationFlag = FUN_18006e870(MemoryAllocationResult);
@@ -47011,8 +47011,8 @@ void InitializeSystemResources(long long SystemResourcePointer)
   }
   else {
     ResourceDataPointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x28,8,3);
-    *ResourceDataPointer = (long long)&UNK_180a0e170;
-    *ResourceDataPointer = (long long)&UNK_180a0e368;
+    *ResourceDataPointer = (long long)&SystemResourceDataTablePrimary;
+    *ResourceDataPointer = (long long)&SystemResourceDataTableSecondary;
     ResourceDataPointer[4] = 0;
     *(uint8_t *)(ResourceDataPointer + 1) = 0;
     ResourceDataPointer[2] = 0;
@@ -47268,7 +47268,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourcePointer,uint32_t Con
       if (*(void* **)(nextDataIndex + 0x1820) != (void* *)0x0) {
         pointerToUnsigned3 = *(void* **)(nextDataIndex + 0x1820);
       }
-      FUN_180626f80(&UNK_18098bc00,pointerToUnsigned3);
+      FUN_180626f80(&SystemGlobalDataTable,pointerToUnsigned3);
     }
     *(uint32_t *)(nextDataIndex + 0x1810) = *(uint32_t *)(nextDataIndex + 0x1858);
     return;
@@ -47331,7 +47331,7 @@ InitializeSystemResourceManager(void* *SystemResourcePointer,void* *Configuratio
   
   unsignedSystemValue2 = 0xfffffffffffffffe;
   InitializeSystemDataTableManager();
-  *SystemResourcePointer = &UNK_1809fefb0;
+  *SystemResourcePointer = &SystemEventTemplate;
   SystemResourcePointer[0x1a] = 0;
   SystemResourcePointer[0x1b] = _guard_check_icall;
   if (SystemResourcePointer + 0x18 != ConfigurationDataPointer) {
@@ -47496,7 +47496,7 @@ void DestroySystemResourcePointer(void* *SystemResourcePointer)
   
   EncryptionValue68 = 0xfffffffffffffffe;
   uStack_30 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_b8;
-  *SystemResourcePointer = &UNK_1809ff498;
+  *SystemResourcePointer = &SystemCriticalSectionTemplate;
   unsignedSystemValue2 = 0;
   SystemResourcePointer[1] = 0;
   puStack_80 = SystemResourcePointer + 2;
@@ -47746,7 +47746,7 @@ LAB_18006bf7f:
 void ConfigureSystemBuffer(void* *SystemResourcePointer)
 
 {
-  *SystemResourcePointer = &UNK_1809ff498;
+  *SystemResourcePointer = &SystemCriticalSectionTemplate;
   FUN_18006cb90();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
@@ -47834,7 +47834,7 @@ void FUN_18006c070(long long SystemResourcePointer)
     if ((cVar9 == '\0') || (unsignedSystemValue19 = 0, *(char *)(SystemResourcePointer + 0x400) != '\0')) {
         ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_278);
     }
-    SystemGlobalDataReferencePtr2 = &UNK_1809feda8;
+    SystemGlobalDataReferencePtr2 = &SystemMemoryAllocatorTemplate;
     pbStack_1f0 = abStack_1e0;
     iStack_1e8 = 0;
     abStack_1e0[0] = 0;
@@ -47947,7 +47947,7 @@ void FUN_18006c070(long long SystemResourcePointer)
       bVar7 = true;
     }
     pointerToUnsigned20 = *(void* **)(SystemResourcePointer + 0xc0);
-    if ((void* *)*pointerToUnsigned20 == &UNK_1809fee70) {
+    if ((void* *)*pointerToUnsigned20 == &SystemMemoryManagerTemplate) {
       cVar9 = FUN_180068a90(pointerToUnsigned20 + 2,&plStack_240);
       while (cVar9 != '\0') {
         SecondaryResourcePointer3 = (long long *)pointerToUnsigned20[99];
@@ -48065,7 +48065,7 @@ LAB_18006c852:
           if (pbStack_1f0 != (byte *)0x0) {
             pbVar12 = pbStack_1f0;
           }
-            UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ff390,unsignedSystemValue19,pbVar12);
+            UpdateContextManagerSystem(SystemContextManagerPointer,&SystemSecurityUpdateData,unsignedSystemValue19,pbVar12);
         }
         if (((uStack_258 < localAllocationFlags + unsignedSystemValue19) ||
             ((ulong long)(long long)*(int *)(SystemResourcePointer + 0x3fc) < (long long)systemStatus7 + 1U)) ||
@@ -49319,7 +49319,7 @@ FUN_18006de00(long long *SystemResourcePointer,void* *ConfigurationDataPointer,v
       *ConfigurationFlag = &SystemMemoryAllocatorReference;
       ConfigurationFlag[1] = 0;
       *(uint32_t *)(ConfigurationFlag + 2) = 0;
-      *ConfigurationFlag = &UNK_1809feda8;
+      *ConfigurationFlag = &SystemMemoryAllocatorTemplate;
       ConfigurationFlag[1] = ConfigurationFlag + 3;
       *(uint32_t *)(ConfigurationFlag + 2) = 0;
       *(uint8_t *)(ConfigurationFlag + 3) = 0;
