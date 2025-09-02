@@ -11974,7 +11974,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContext, int ValidationContext, u
   int TableEntryValue;
   
   *HashOutput = 0;
-  hashOutput[1] = 0;
+  HashOutput[1] = 0;
   int *OperationStatusCodePointer = (int *)(**(code **)(*(int64_t *)
                                 ((int64_t)
                                  *(int *)(*(int64_t *)(ObjectContext + ObjectContextValidationDataOffset) + (int64_t)ValidationContext * 0xc) +
@@ -11999,7 +11999,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContext, int ValidationContext, u
     }
     ResourceHashValue = *(uint8_t *)(ResourceIndex + 0x18);
     *HashOutput = *(uint8_t *)(ResourceIndex + 0x10);
-    hashOutput[1] = ResourceHashValue;
+    HashOutput[1] = ResourceHashValue;
   }
   return;
 }
