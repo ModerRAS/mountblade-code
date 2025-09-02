@@ -19672,6 +19672,7 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
   uint8_t HashValidationResult;
   char SavedBasePointerLow;
   char SystemStackRegister;
+  uint8_t ResourceValidationBuffer18[32];
   
   if (*(uint *)(ResourceData + 8) < 0x55) {
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
@@ -19755,7 +19756,7 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
   }
   else {
     if (ValidationContext[2] != 0) {
-      ValidationResult = ValidateResourceAccess(*ValidationContext,&StackBuffer18);
+      ValidationResult = ValidateResourceAccess(*ValidationContext,&ResourceValidationBuffer18);
       if ((int)HashValidationResult != 0) {
         return ResourceHashValidationResult;
       }
@@ -25319,7 +25320,7 @@ uint64_t ValidateAndAllocateResourceData(void)
               ResourceHash = *ResourceContext;
               ValidationStatusCode = CalculateResourceHash(ResourceHash,&SecurityValidationStack);
               if ((int)ValidationStatusCode == 0) {
-                ValidationStatusCode = CalculateResourceHash(ResourceHash,&StackBuffer94);
+                ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationBuffer94);
               }
             }
           }
@@ -25406,7 +25407,7 @@ uint64_t ProcessResourceReadAndValidation(void)
             ResourceHash = *ResourceContext;
             ValidationStatusCode = CalculateResourceHash(ResourceHash,&SecurityValidationStack);
             if ((int)ValidationStatusCode == 0) {
-              ValidationStatusCode = CalculateResourceHash(ResourceHash,&StackBuffer94);
+              ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationBuffer94);
             }
           }
         }
@@ -25486,7 +25487,7 @@ uint64_t ProcessResourceValidationAndAllocation(void)
             ResourceHash = *ResourceContext;
             ValidationStatusCode = CalculateResourceHash(ResourceHash,&SecurityValidationStack);
             if ((int)ValidationStatusCode == 0) {
-              ValidationStatusCode = CalculateResourceHash(ResourceHash,&StackBuffer94);
+              ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationBuffer94);
             }
           }
         }
@@ -25551,7 +25552,7 @@ uint64_t ValidateResourceDataIntegrity(void)
   ResourceHash = *ResourceContext;
   ValidationResult = CalculateResourceHash(ResourceHash,&SecurityValidationStack);
   if ((int)ValidationResult == 0) {
-    ValidationResult = CalculateResourceHash(ResourceHash,&StackBuffer94);
+    ValidationResult = CalculateResourceHash(ResourceHash,&ResourceValidationBuffer94);
   }
   if ((int)ValidationResult == 0) {
     if (*(uint *)(ResourceContext + 8) < 0x39) {
@@ -99845,7 +99846,7 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
   }
   ResourceHandle[ResourceManagementCleanupOffset] = 0;
   *(uint32_t *)(ResourceHandle + ResourceManagementStatusOffset) = 0;
-  ResourceHandle[ResourceManagementStateOffset] = &ResourceResetMarker;
+  ResourceHandle[ResourceManagementStateOffset] = &ResourceResetStateMarker;
   FinalizeResourceCleanup(ResourceHandle);
 }
 
