@@ -29805,9 +29805,24 @@ void UnwindPrimaryContextExceptionHandler(uint8_t ObjectContext, int64_t Validat
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
+/**
+ * @brief 异常处理函数：解卷次级上下文异常处理器
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理次级异常情况的资源清理工作
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
 void UnwindSecondaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  if (*(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
+  int64_t** SecondaryExceptionHandlerPointer;
+  
+  SecondaryExceptionHandlerPointer = *(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset);
+  if (SecondaryExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(code **)(*SecondaryExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -29826,9 +29841,24 @@ void UnwindSecondaryContextExceptionHandler(uint8_t ObjectContext, int64_t Valid
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
+/**
+ * @brief 异常处理函数：解卷三级上下文异常处理器
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理三级异常情况的资源清理工作
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
 void UnwindTertiaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset) != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
+  int64_t* TertiaryExceptionHandlerPointer;
+  
+  TertiaryExceptionHandlerPointer = (int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset);
+  if (TertiaryExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)TertiaryExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }

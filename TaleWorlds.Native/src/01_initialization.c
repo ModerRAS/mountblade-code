@@ -44191,7 +44191,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   ExecuteSystemResourceCommand(&SystemEncryptionValue,SystemMemoryManagerPointer,&SystemMemoryManagerConfig);
   systemFunctionPointer = *(code **)(*SystemMemoryManagerPointer + 0x40);
   resourceAllocationContext = CreateSystemObject(&SystemEncryptionValue,SystemContextManagerPointer + 0x28);
-  (*systemFunctionPointer)(plStack_b0,resourceAllocationContext);
+  (*systemFunctionPointer)(SystemMemoryManagerPointer,resourceAllocationContext);
   SystemEncryptionValue = (void* **)&SystemGlobalDataReference;
   if (ppsystemMemoryOffset != (long long **)0x0) {
       SystemCleanupFunction();
@@ -44201,7 +44201,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   SystemEncryptionValue = (void* **)&SystemMemoryAllocatorReference;
   systemFunctionPointer = *(code **)(*SystemMemoryManagerPointer + 0x40);
   resourceAllocationContext = CreateSystemObject(&pUnsignedStackFlag88,SystemContextManagerPointer + 0xe0);
-  (*systemFunctionPointer)(plStack_b0,resourceAllocationContext);
+  (*systemFunctionPointer)(SystemMemoryManagerPointer,resourceAllocationContext);
   pUnsignedStackFlag88 = &SystemGlobalDataReference;
   if (SystemMemoryAllocationFlag80 != 0) {
       SystemCleanupFunction();
@@ -44211,7 +44211,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   pUnsignedStackFlag88 = &SystemMemoryAllocatorReference;
   if (sourceString == 0) {
     SystemBufferAddress = AllocateSystemMemory(SystemAllocationFlagsTemplate);
-    (**(code **)(*plStack_b0 + 8))(plStack_b0,SystemResourceManager,*(uint32_t *)(SystemBufferAddress + 0x38));
+    (**(code **)(*SystemMemoryManagerPointer + 8))(SystemMemoryManagerPointer,SystemResourceManager,*(uint32_t *)(SystemBufferAddress + 0x38));
   }
   else {
     systemFunctionPointer = *(code **)(*plStack_b0 + 0x10);
