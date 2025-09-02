@@ -68671,7 +68671,19 @@ void SetSystemResourceHandlerTemplate(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_180909500(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的系统资源处理器（第二版本）
+ * 
+ * 该函数负责在验证上下文中设置系统资源处理器
+ * 并初始化相关的资源状态信息，清理可能存在的异常状态
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，需要设置资源处理器
+ * @return 无返回值
+ * @note 此函数通常在系统初始化过程中调用
+ * @warning 如果资源状态异常，可能触发系统紧急退出
+ */
+void SetValidationContextSystemResourceHandlerSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x298) = &SystemResourceHandlerTemplate;
@@ -68686,7 +68698,19 @@ void Unwind_180909500(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909510(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的系统数据结构（第四版本）
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构的引用
+ * 使用不同的偏移量设置数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，需要设置数据结构引用
+ * @return 无返回值
+ * @note 此函数通常在系统初始化过程中调用
+ * @warning 确保系统数据结构已正确初始化
+ */
+void SetValidationContextSystemDataStructureQuaternary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x4b0) = &SystemDataStructure;
@@ -68695,7 +68719,19 @@ void Unwind_180909510(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909520(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的系统数据结构（第五版本）
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构的引用
+ * 使用不同的偏移量设置数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，需要设置数据结构引用
+ * @return 无返回值
+ * @note 此函数通常在系统初始化过程中调用
+ * @warning 确保系统数据结构已正确初始化
+ */
+void SetValidationContextSystemDataStructureQuinary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x278) = &SystemResourceHandlerTemplate;
