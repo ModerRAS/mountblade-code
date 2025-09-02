@@ -6137,14 +6137,14 @@ void ProcessMessageQueue(int64_t MessageQueueHandle, uint8_t SystemConfigData)
  * @param operationFlag 操作标志，指定要执行的操作类型
  * @return 处理结果，成功返回0，失败返回错误码
  */
-uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t OperationFlag)
+uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t SystemOperationFlag)
 
 {
   uint ResourceHash;
-  uint64_t ResourceHashValidationResult;
+  uint64_t ResourceHashResult;
   int64_t ResourceIndex;
   uint8_t ValidationContext;
-  uint32_t ResourceProcessingOperationBuffer [2];
+  uint32_t ResourceOperationBuffer [2];
   int64_t ResourceHandleValue;
   int ResourceCount;
   
@@ -6155,27 +6155,27 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
       ResourceIndex = 0;
       if (*(uint *)(ResourceHandle + ObjectStatusFlagsOffset) == 0) {
         ResourceHandleIdentifier = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
-        ResourceProcessingOperationBuffer[0] = 1;
+        ResourceOperationBuffer[0] = 1;
         ResourceIndex = ResourceHandleIdentifier;
       }
       else {
         ResourceHandleIdentifier = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
-        ResourceProcessingOperationBuffer[0] = 2;
+        ResourceOperationBuffer[0] = 2;
       }
-      ResourceHash = ProcessResourceOperationEx(OperationFlag,ResourceProcessingOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
-      ResourceHashValidationResult = (uint64_t)ResourceHash;
+      ResourceHash = ProcessResourceOperationEx(SystemOperationFlag,ResourceOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
+      ResourceHashResult = (uint64_t)ResourceHash;
       if (ResourceHash == 0) {
-        ResourceHashValidationResult = 0;
+        ResourceHashResult = 0;
       }
       else if (ResourceIndex != 0) {
         ProcessResourceRelease(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),ResourceIndex,&ResourceAllocationTemplate,ErrorInvalidRegistrationData);
-        return ResourceHashValidationResult;
+        return ResourceHashResult;
       }
-      return ResourceHashValidationResult;
+      return ResourceHashResult;
     }
-    ResourceHashValidationResult = ErrorInvalidRegistrationData;
+    ResourceHashResult = ErrorInvalidRegistrationData;
   }
-  return ResourceHashValidationResult;
+  return ResourceHashResult;
 }
 
 
@@ -6190,11 +6190,11 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
  * @param configParameter 配置参数，包含要验证的配置信息
  * @return 验证结果，0表示验证成功，非0表示验证失败
  */
-int ValidateSystemConfigurationParameter(uint32_t ConfigParameter)
+int ValidateSystemConfigurationParameter(uint32_t SystemConfigParameter)
 
 {
   int RegisterValidationResult;
-  int ConfigurationProcessingStatus;
+  int ConfigProcessingStatus;
   int64_t SystemResourceTable;
   int64_t PreservedRegisterValue;
   int64_t OriginalRegisterValue;
@@ -6203,7 +6203,7 @@ int ValidateSystemConfigurationParameter(uint32_t ConfigParameter)
   uint32_t StackValidationBuffer;
   
   SystemResourceTable = 0;
-  if (ConfigParameter == 0) {
+  if (SystemConfigParameter == 0) {
     StackMemoryOffset = *(int64_t *)(OriginalRegisterValue + ObjectContextValidationOffset);
     ValidationStatusCode = 1;
     SystemResourceTable = StackMemoryOffset;
@@ -6268,7 +6268,7 @@ uint8_t GetSystemVersionInfo(void)
  * @param PacketHandle 数据包句柄，包含要传输的数据包信息
  * @param TransmissionConfig 传输配置，包含传输参数和设置
  */
-void ProcessSystemPacketTransmission(int64_t PacketHandle, int64_t TransmissionConfig)
+void ProcessSystemPacketTransmission(int64_t SystemPacketHandle, int64_t SystemTransmissionConfig)
 
 {
   int SystemTransmissionStatusCode;
@@ -9356,7 +9356,7 @@ void ProcessBufferContextValidationAndSystemExit(int64_t ObjectContext,int64_t V
  * @param ValidationContext 系统上下文参数，用于系统级操作
  * @return 操作结果状态码
  */
-int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t ValidationContext)
+int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t SystemContext)
 
 {
   int ValidationProcessingResult;
@@ -9366,13 +9366,13 @@ int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t 
   if ((((*(int64_t *)(ObjectContext + ObjectContextRangeDataOffset) != 0) && (*(int64_t *)(ObjectContext + ObjectContextMatrixScaleOffset) != 0)) &&
       (*(int64_t *)(ObjectContext + ObjectContextFloatValueOffset) != 0)) && (*(int64_t *)(ObjectContext + ObjectContextSecurityContextOffset) != 0)) {
     if (*(int *)(ObjectContext + ObjectContextProcessingDataOffset) < 1) {
-      ResourceIndex = ProcessDataValidation(ValidationContext,ObjectContext + 0x4c);
+      ResourceIndex = ProcessDataValidation(SystemContext,ObjectContext + 0x4c);
       if ((ResourceIndex == 0) &&
          (ResourceIndex = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x4c),&ThreadStackContextPointer), ResourceIndex == 0)) {
         if (*(int *)(ThreadStackContextPointer + 0x30) == 1) {
           *(uint32_t *)(ThreadStackContextPointer + 0x30) = 2;
         }
-              ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
+              ReleaseSystemContextResources(*(uint8_t *)(SystemContext + ValidationContextSystemHandleOffset),ObjectContext);
       }
     }
     else if (*(int64_t *)(ObjectContext + ObjectContextValidationDataOffset) == 0) {
@@ -9405,7 +9405,7 @@ int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t 
  * @param ValidationContext 系统上下文参数，用于系统级操作
  * @return 操作结果状态码
  */
-int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t ObjectContext,uint8_t ValidationContext)
+int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t ObjectContext,uint8_t SystemValidationContext)
 
 {
   int ValidationProcessingResult;
@@ -9414,7 +9414,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t ObjectContext,ui
   int64_t SystemResourceContextHandle;
   int64_t FunctionParameterContext;
   
-  if ((int)ValidationContext < 1) {
+  if ((int)SystemValidationContext < 1) {
     ResourceIndex = ProcessDataValidation();
     if ((ResourceIndex == 0) &&
        (ResourceIndex = ValidateObjectContext(*(uint32_t *)(SecurityContext + 0x4c),&ObjectContextBuffer), ResourceIndex == 0)
@@ -9429,7 +9429,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t ObjectContext,ui
     ResourceIndex = ErrorResourceValidationFailed;
   }
   else {
-    ResourceTable = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext,&SystemMemoryAllocationTable,0x315,0);
+    ResourceTable = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),SystemValidationContext,&SystemMemoryAllocationTable,0x315,0);
     if (ResourceTable != 0) {
             memcpy(ResourceTable,*(uint8_t *)(SystemRegisterContext + 0x18),(int64_t)*(int *)(SystemRegisterContext + 0x20));
     }
