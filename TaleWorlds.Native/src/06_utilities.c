@@ -3239,23 +3239,23 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   if ((OperationStatus == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
     GameObjectDataList = ObjectProcessingWorkspace;
     TotalProcessedObjects = 0;
-    listIndex = 0;
-    maxItems = 0xffffffc0;
+    CurrentListIndex = 0;
+    MaxItems = 0xffffffc0;
     OperationStatus = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
                           &GameObjectDataList);
     if (OperationStatus == 0) {
-      if (0 < listIndex) {
-        currentObjectPtr = 0;
+      if (0 < CurrentListIndex) {
+        CurrentObjectPtr = 0;
         do {
-          objectStatus = *(uint8_t *)(GameObjectDataList + currentObjectPtr);
-          OperationStatus = ValidateObjectStatus(objectStatus);
-          if (operationStatus != 2) {
+          ObjectStatus = *(uint8_t *)(GameObjectDataList + CurrentObjectPtr);
+          OperationStatus = ValidateObjectStatus(ObjectStatus);
+          if (OperationStatus != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(objectStatus, 1);
+            HandleInvalidObject(ObjectStatus, 1);
           }
           TotalProcessedObjects = TotalProcessedObjects + 1;
-          currentObjectPtr = currentObjectPtr + 8;
-        } while (TotalProcessedObjects < listIndex);
+          CurrentObjectPtr = CurrentObjectPtr + 8;
+        } while (TotalProcessedObjects < CurrentListIndex);
       }
       FreeObjectListMemory(&GameObjectDataList);
     }
@@ -3264,7 +3264,7 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
     }
   }
                     // WARNING: Subroutine does not return
-  PerformSecurityValidation(securityKey ^ (uint64_t)ObjectMetadataBuffer);
+  PerformSecurityValidation(SecurityKey ^ (uint64_t)ObjectMetadataBuffer);
 }
 
 
@@ -3299,16 +3299,16 @@ void ValidateSystemObjectCollection(void)
     ProcessedObjectCount = 0;
     RetrievedObjectCount = 0;
     MaximumCapacity = 0xffffffc0;
-    validationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(SystemObjectContext + 8),
+    ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(SystemObjectContext + 8),
                           &RetrievedObjectDataBuffer);
-    if (validationStatusCode == 0) {
+    if (ValidationStatusCode == 0) {
       RetrievedObjectCount = *(int *)(RetrievedObjectDataBuffer + 4);
       if (0 < RetrievedObjectCount) {
         ObjectDataOffset = 8;
         do {
           SystemObjectHandle = *(uint8_t *)(ObjectCollectionArray + ObjectDataOffset);
-          validationStatusCode = ValidateSystemObject(SystemObjectHandle);
-          if (validationStatusCode != 2) {
+          ValidationStatusCode = ValidateSystemObject(SystemObjectHandle);
+          if (ValidationStatusCode != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidSystemObject(SystemObjectHandle, 1);
           }
