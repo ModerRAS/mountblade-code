@@ -317,24 +317,37 @@ void* SystemNetworkDataPointer16;
 void* SystemNetworkDataPointer17;
 void* SystemNetworkDataPointer18;
 void* SystemNetworkDataPointer19;
-void* UnknownDataPointer180a02fa0;
-void* UnknownDataPointer18045f210;
-void* UnknownDataPointer18045f200;
-void* UnknownDataPointer180a1a2f0;
-void* UnknownDataPointer180a2fc20;
-void* UnknownDataPointer1804ce1a0;
-void* UnknownDataPointer1804ce100;
-void* UnknownDataPointer180a353b8;
-void* UnknownDataPointer180a389f0;
-void* UnknownDataPointer180a38a08;
-void* UnknownDataPointer180a38c28;
-void* UnknownDataPointer180a389d8;
-void* UnknownDataPointer180a38aa8;
-void* UnknownDataPointer180a38ac0;
-void* UnknownDataPointer180a38ba0;
-void* UnknownDataPointer180a38a20;
-void* UnknownDataPointer180a38c98;
-void* UnknownDataPointer180a38958;
+
+// 系统字符串处理相关指针
+void* SystemStringFormatSecondary;
+
+// 系统缓冲区指针
+void* SystemBufferPointerPrimary;
+void* SystemBufferPointerSecondary;
+
+// 系统数据缓冲区
+void* SystemDataBufferPrimary;
+void* SystemDataBufferSecondary;
+
+// 系统数据处理器
+void* SystemDataProcessor;
+void* SystemGlobalDataPointer;
+
+// 系统配置相关
+void* SystemConfigMessagePath;
+
+// 网络请求字符串常量
+void* NetworkRequestStringLogin;
+void* NetworkRequestStringAuth;
+void* NetworkRequestResultSuccess;
+void* NetworkRequestStringConnect;
+void* NetworkRequestStringVerify;
+void* NetworkRequestStringValidate;
+void* NetworkRequestStringDisconnect;
+void* SystemValidationData;
+void* SystemValidationCore;
+void* SystemExceptionHandler;
+void* SystemHashTable;
 void* UnknownDataPointer180a38c08;
 void* UnknownDataPointer180a38ea0;
 void* UnknownDataPointer180a389b0;
