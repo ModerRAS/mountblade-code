@@ -602,7 +602,7 @@ void* DatabaseSemaphore;
 void* DatabaseCondition;
 void* DatabaseMemory;
 void* DatabaseHeap;
-void* DatabaseStack;
+void* DatabaseStackManager;
 void* DatabasePool;
 void* DatabaseConnectionPoolConfiguration;
 void* DatabaseConnectionPoolStatus;
@@ -637,11 +637,11 @@ void* SynchronizationConfigTable;
 void* LockManagementConfigTable;
 void* SemaphoreManagementConfigTable;
 void* MutexManagementConfigTable;
-void* ConditionVariableConfigTable;
+void* ConditionVariableConfigurationTable;
 void* ThreadBarrierConfigTable;
 void* MemoryPoolConfigTable;
 void* QueueManagementConfigTable;
-void* StackManagementConfigTable;
+void* StackManagementConfigurationTable;
 void* LinkedListConfigTable;
 void* HashTableConfigTable;
 void* TreeStructureConfigTable;
@@ -659,7 +659,7 @@ void* SystemDatabaseConfig;
 void* SystemSecurityConfig;
 void* SystemLoggingConfig;
 void* SystemPerformanceConfig;
-void* SystemLocalizationConfig;
+void* SystemLocalizationConfiguration;
 void* SystemModdingConfig;
 void* SystemDebugConfig;
 void* SystemConfigurationTable;
@@ -676,12 +676,12 @@ void* SystemLockManagementBuffer;
 void* SystemSemaphoreControlBuffer;
 void* SystemMutexHandleBuffer;
 // 条件变量缓冲区 - 缓存条件变量数据
-void* ConditionVariableBuffer;
+void* ConditionVariableDataBuffer;
 // 屏障管理器缓冲区 - 缓存屏障管理器数据
 void* BarrierManagerBuffer;
 void* MemoryPoolBuffer;
 void* TaskExecutionQueueBuffer;
-void* StackManagerBuffer;
+void* StackManagerDataBuffer;
 void* SystemLinkedListBuffer;
 void* SystemHashTableBuffer;
 void* SystemTreeStructureBuffer;
@@ -706,7 +706,7 @@ void* LockManagerTable;
 void* SystemSemaphoreControlTable;
 void* SystemMutexHandleTable;
 // 条件变量表 - 管理条件变量数据表
-void* ConditionVariableTable;
+void* ConditionVariableSystemTable;
 // 屏障管理器表 - 管理屏障管理器数据表
 void* BarrierManagerTable;
 void* MemoryPoolTable;
@@ -2096,7 +2096,7 @@ uint8_t SecureRandomGeneratorState;
  * 用于加密和安全相关操作
  */
 void GenerateSecureRandom(void);
-uint8_t ThreadLocalStorageIndex;
+uint8_t ThreadLocalStorageSlotIndex;
 void* ThreadLocalStoragePointer; // 线程本地存储数据指针
 // 系统内存配置数据模板基础变量
 uint8_t SystemMemoryConfigVersion;        // 版本信息
@@ -2256,8 +2256,8 @@ uint8_t LogMessageProcessorContextSecondary;   // 次要日志处理器上下文
 uint8_t LogMessageProcessorContextTertiary;    // 第三日志处理器上下文
 // 系统内存和本地化变量
 uint8_t MemoryController;                            // 系统内存控制器
-uint8_t* LocaleConversionTablePointer;                     // 本地化转换表指针
-uint8_t LocaleConversionDataPrimary;                 // 主要系统本地化数据
+uint8_t* LocaleConversionDataTablePointer;                     // 本地化转换表指针
+uint8_t LocaleConversionPrimaryData;                 // 主要系统本地化数据
 uint8_t ModuleDataTemplateQuaternary;                  // 第四系统模块模板
 uint8_t ModuleDataTemplatePrimary;                    // 主要系统模块模板
 // 系统模块数据模板变量
@@ -2282,7 +2282,7 @@ uint8_t ModuleDataTemplateDuodenary;                  // 第十二系统模块�
  */
 void FlushLogBuffer(void);
 uint8_t ResourceQueue;
-uint8_t ResourceStack;
+uint8_t ResourceStackManager;
 uint8_t ResourceHeap;
 uint8_t ResourceCacheManager;
 uint8_t MemoryScheduler;
@@ -2327,7 +2327,7 @@ uint8_t ConditionManagerData;
 uint8_t BarrierManagerData;
 uint8_t PoolManagerData;
 uint8_t QueueManagerData;
-uint8_t StackManagerData;
+uint8_t StackManagementData;
 uint8_t ListManagerData;
 uint8_t HashManagerData;
 uint8_t TreeManagerData;
@@ -2432,7 +2432,7 @@ uint8_t MemoryAllocationContext;
 uint8_t MemoryAllocationFlag;
 uint8_t MemoryAllocationMetadata;
 uint8_t MemoryAllocationDebugInfo;
-uint8_t MemoryAllocationStackTrace;
+uint8_t MemoryAllocationStackTraceData;
 uint8_t MemoryPoolAllocator;
 uint8_t MemoryBlockHeader;
 uint8_t MemoryAllocationTracker;
@@ -22258,7 +22258,7 @@ uint64_t ResourceDataManager(int64_t ObjectContext,int64_t *ValidationContext)
   uint ResourceValidationBuffer [2];
   uint StackContextBuffer [2];
   uint ResourceTertiaryFlag;
-  uint StackVariable84;
+  uint ResourceValidationBufferSize;
   uint8_t ResourceQuaternaryFlag [32];
   uint8_t ResourceTopByteFlag [40];
   uint64_t ContextHashValidationResult;
@@ -22353,13 +22353,13 @@ ResourceProcessingComplete:
         goto ResourceOperationSuccess;
       }
     }
-    ValidationStatusCode = CalculateResourceHash(*ResourceContext,&StackVariable84,1,4,0);
+    ValidationStatusCode = CalculateResourceHash(*ResourceContext,&ResourceValidationBufferSize,1,4,0);
   }
 ResourceOperationSuccess:
   if ((int)HashValidationResult != 0) {
     return HashValidationResult;
   }
-  switch(StackVariable84) {
+  switch(ResourceValidationBufferSize) {
   case 0:
     loopIncrement = 0;
     break;
@@ -22456,10 +22456,10 @@ ResourceStackProcessing:
       ValidationResult = CalculateResourceHash(*ResourceContext,ResourceValidationBuffer,1,1,0);
     }
     else {
-      StackVariable84 = 0;
-      ValidationResult = ValidateResourceAccess(*ResourceContext,&StackVariable84);
+      ResourceValidationBufferSize = 0;
+      ValidationResult = ValidateResourceAccess(*ResourceContext,&ResourceValidationBufferSize);
       if (ValidationResult == 0) {
-        if ((uint64_t)StackVariable84 + 1 <= (uint64_t)ResourceContext[2]) goto ResourceStackProcessing;
+        if ((uint64_t)ResourceValidationBufferSize + 1 <= (uint64_t)ResourceContext[2]) goto ResourceStackProcessing;
         ValidationResult = 0x11;
       }
     }
@@ -22512,10 +22512,10 @@ ResourceContextValidation:
         ValidationResult = CalculateResourceHash(*ResourceContext,ResourceValidationBuffer,1,1,0);
       }
       else {
-        StackVariable84 = 0;
-        ValidationResult = ValidateResourceAccess(*ResourceContext,&StackVariable84);
+        ResourceValidationBufferSize = 0;
+        ValidationResult = ValidateResourceAccess(*ResourceContext,&ResourceValidationBufferSize);
         if (ValidationResult == 0) {
-          if ((uint64_t)StackVariable84 + 1 <= (uint64_t)ResourceContext[2]) goto ResourceContextValidation;
+          if ((uint64_t)ResourceValidationBufferSize + 1 <= (uint64_t)ResourceContext[2]) goto ResourceContextValidation;
           ValidationResult = 0x11;
         }
       }

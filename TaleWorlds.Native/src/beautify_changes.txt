@@ -1,0 +1,77 @@
+# 06_utilities.c 美化更改记录
+
+## 需要重命名的Unwind_函数
+
+以下函数需要从Unwind_开头重命名为语义化的名称：
+
+1. `Unwind_180906960` → `BeginResourceTransactionWithHandler58`
+   - 功能：开始资源事务并在偏移量0x58处执行资源处理器
+   - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+2. `Unwind_180906970` → `CommitResourceTransactionAtOffset28`
+   - 功能：在验证上下文偏移量0x28处提交资源事务
+   - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+3. `Unwind_180906980` → `ExecuteResourceHandlerAtOffset58`
+   - 功能：在偏移量0x58处执行资源处理器
+   - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+4. `Unwind_180906990` → `CommitResourceTransactionAtOffset40`
+   - 功能：在验证上下文偏移量0x40处提交资源事务
+   - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+5. `Unwind_1809069a0` → `ExecuteResourceHandlerAtOffsetE0`
+   - 功能：在偏移量0xe0处执行资源处理器
+   - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+6. `Unwind_1809069b0` → `BeginResourceTransactionWithHandler48`
+   - 功能：开始资源事务并在偏移量0x48处执行资源处理器
+   - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+7. `Unwind_1809069c0` → `ExecuteResourceHandlerAtOffset178`
+   - 功能：在偏移量0x178处执行资源处理器
+   - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+8. `Unwind_180906a00` → `ProcessResourceTransactionWithRollback`
+   - 功能：处理资源事务并支持回滚操作
+   - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+9. `Unwind_180906a50` → `ExecuteResourceContextHandlerAtOffset180`
+   - 功能：在偏移量0x180处执行资源上下文处理器
+   - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+10. `Unwind_180906a60` → `ExecuteResourceHandlerAtOffsetA0`
+    - 功能：在偏移量0xa0处执行资源处理器
+    - 参数：ObjectContext (uint8_t), ValidationContext (int64_t)
+
+## 执行命令
+
+使用以下sed命令进行批量替换：
+
+```bash
+sed -i 's/void Unwind_180906960/void BeginResourceTransactionWithHandler58/g' 06_utilities.c
+sed -i 's/void Unwind_180906970/void CommitResourceTransactionAtOffset28/g' 06_utilities.c
+sed -i 's/void Unwind_180906980/void ExecuteResourceHandlerAtOffset58/g' 06_utilities.c
+sed -i 's/void Unwind_180906990/void CommitResourceTransactionAtOffset40/g' 06_utilities.c
+sed -i 's/void Unwind_1809069a0/void ExecuteResourceHandlerAtOffsetE0/g' 06_utilities.c
+sed -i 's/void Unwind_1809069b0/void BeginResourceTransactionWithHandler48/g' 06_utilities.c
+sed -i 's/void Unwind_1809069c0/void ExecuteResourceHandlerAtOffset178/g' 06_utilities.c
+sed -i 's/void Unwind_180906a00/void ProcessResourceTransactionWithRollback/g' 06_utilities.c
+sed -i 's/void Unwind_180906a50/void ExecuteResourceContextHandlerAtOffset180/g' 06_utilities.c
+sed -i 's/void Unwind_180906a60/void ExecuteResourceHandlerAtOffsetA0/g' 06_utilities.c
+```
+
+## 添加函数注释
+
+为每个重命名的函数添加详细的文档注释，包括：
+- 函数功能描述
+- 参数说明
+- 返回值说明
+- 注意事项
+- 原始函数名记录
+
+## 清理临时文件
+
+完成后删除以下临时文件：
+- beautify_06_utilities.sh
+- beautify_changes.txt
