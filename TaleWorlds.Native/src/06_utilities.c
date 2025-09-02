@@ -33701,7 +33701,7 @@ void ExceptionContextHandler(uint8_t objectContext,int64_t validationContext)
 
 
 
-void SystemResourceTracker(uint8_t objectContext,int64_t validationContext)
+void ResourceTracker(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t *processPointer;
@@ -92371,7 +92371,7 @@ void InitializeSystemDataStructureW(void)
     }
     else {
       ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          SystemResourceValidator,loopIncrement,0xfffffffffffffffe);
+                          ResourceValidator,loopIncrement,0xfffffffffffffffe);
     }
   }
   return;

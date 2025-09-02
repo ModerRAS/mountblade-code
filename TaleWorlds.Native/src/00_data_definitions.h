@@ -13201,7 +13201,7 @@ Label_1808fbebe:
   _set_invalid_parameter_handler(MemoryAddress);
   SystemSecurityCheck(in_stack_00000230 ^ (ulonglong)&stack0x00000000);
 }
-    DAT_180c821d8 = 1;
+    SystemInitializationFlag = 1;
   }
   CleanupSystemTask();
   NetworkRequestStatus = GetNetworkRequestStatus();
@@ -13220,7 +13220,7 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
   byte ValidationStatusByte;
   int IntegerCounter;
   uint64_t NetworkRequestResult;
-  if (DAT_180c821d9 == '\0') {
+  if (SystemInitializationCompleteFlag == '\0') {
     if (1 < param_1) {
       ProcessSystemCleanup(5);
       pNetworkRequestStatus = (code *)swi(3);
@@ -13230,20 +13230,20 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
     IntegerCounter = GetValidationStatus();
     if ((IntegerCounter == 0) || (param_1 != 0)) {
       ValidationStatusByte = 0x40 - ((byte)SystemSecurityMask & 0x3f) & 0x3f;
-      _DAT_180c821e0 = (0xffffffffffffffffU >> ValidationStatusByte | -1L << 0x40 - ValidationStatusByte) ^ SystemSecurityMask;
-      uRam0000000180c821e8 = _DAT_180c821e0;
-      _DAT_180c821f0 = _DAT_180c821e0;
-      _DAT_180c821f8 = _DAT_180c821e0;
-      uRam0000000180c82200 = _DAT_180c821e0;
-      _DAT_180c82208 = _DAT_180c821e0;
+      SystemInitializationBuffer = (0xffffffffffffffffU >> ValidationStatusByte | -1L << 0x40 - ValidationStatusByte) ^ SystemSecurityMask;
+      SystemInitializationBuffer = SystemInitializationBuffer;
+      SystemInitializationBuffer = SystemInitializationBuffer;
+      SystemInitializationBuffer = SystemInitializationBuffer;
+      SystemInitializationBuffer = SystemInitializationBuffer;
+      SystemInitializationBuffer = SystemInitializationBuffer;
     }
     else {
-      IntegerCounter = _initialize_onexit_table(&DAT_180c821e0);
+      IntegerCounter = _initialize_onexit_table(&SystemInitializationBuffer);
       if ((IntegerCounter != 0) || (IntegerCounter = _initialize_onexit_table(&DAT_180c821f8), IntegerCounter != 0)) {
         return 0;
       }
     }
-    DAT_180c821d9 = '\x01';
+    SystemInitializationCompleteFlag = '\x01';
   }
   return 1;
 }
