@@ -4254,7 +4254,7 @@ uint8_t InitializeObjectHandleB(int64_t ObjectContext)
       uint SystemConfigurationFlags = *(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34);
       validationStatus = SystemConfigurationFlags >> 4;
       if ((validationStatus & 1) == 0) {
-        if ((((configurationFlags >> 3 & 1) != 0) && (floatConversionResult = (int)processedFloatValue, floatConversionResult != -0x80000000)) &&
+        if ((((SystemConfigurationFlags >> 3 & 1) != 0) && (floatConversionResult = (int)processedFloatValue, floatConversionResult != -0x80000000)) &&
            ((float)floatConversionResult != processedFloatValue)) {
           union {
             float floatValue;
