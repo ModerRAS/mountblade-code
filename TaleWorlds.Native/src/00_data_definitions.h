@@ -9525,32 +9525,32 @@ LAB_18060b7e7:
               else {
                 cVar1 = ValidateSystemConfigurationData(auStack_50,&SystemConfigurationDataBuffer2,1);
                 if (cVar1 == '\0') {
-                  cVar1 = FUN_180629850(auStack_50,&UNK_180a397f8,1);
+                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397f8,1);
                   if (cVar1 != '\0') {
 LAB_18060a114:
                     StringProcessingResult = 0x10;
                     goto LAB_18060bbae;
                   }
-                  cVar1 = FUN_180629850(auStack_50,&UNK_180a397e8,1);
+                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397e8,1);
                   if (cVar1 != '\0') {
 LAB_18060b32d:
                     StringProcessingResult = 0x20;
                     goto LAB_18060bbae;
                   }
-                  cVar1 = FUN_180629850(auStack_50,&UNK_180a39850,1);
+                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39850,1);
                   if (cVar1 != '\0') goto LAB_1806091a3;
-                  cVar1 = FUN_180629850(auStack_50,&UNK_180a39820,1);
+                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39820,1);
                   if (cVar1 != '\0') {
 LAB_18060ae57:
                     StringProcessingResult = 0x30;
                     goto LAB_18060bbae;
                   }
-                  cVar1 = FUN_180629850(auStack_50,&UNK_180a39940,1);
+                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39940,1);
                   if (cVar1 != '\0') {
                     StringProcessingResult = 0x31;
                     goto LAB_18060bbae;
                   }
-                  cVar1 = FUN_180629850(auStack_50,&UNK_180a19c8c,1);
+                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a19c8c,1);
                   if (cVar1 != '\0') {
                     StringProcessingResult = 0x32;
                     goto LAB_18060bbae;
@@ -9559,168 +9559,168 @@ LAB_18060ae57:
               }
             }
             else {
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a397d8,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397d8,1);
               if (cVar1 == '\0') {
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a397c8,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397c8,1);
                 if (cVar1 != '\0') goto LAB_18060b9cb;
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a39740,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39740,1);
                 if (cVar1 != '\0') goto LAB_18060ad3e;
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a39728,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39728,1);
                 if (cVar1 != '\0') goto LAB_18060acd8;
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a39768,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39768,1);
                 if (cVar1 != '\0') goto LAB_18060a114;
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a39758,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39758,1);
                 if (cVar1 != '\0') goto LAB_18060a91e;
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a39870,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39870,1);
                 if (cVar1 != '\0') goto LAB_18060ba49;
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a19c8c,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a19c8c,1);
                 if (cVar1 != '\0') {
 LAB_18060b1d7:
                   StringProcessingResult = 0x19;
                   goto LAB_18060bbae;
                 }
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a39864,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39864,1);
                 if (cVar1 != '\0') {
                   StringProcessingResult = 0x35;
                   goto LAB_18060bbae;
                 }
-                cVar1 = FUN_180629850(auStack_50,&UNK_180a398a8,1);
+                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a398a8,1);
                 if (cVar1 != '\0') goto LAB_180609b20;
               }
             }
           }
           else {
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39568,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39568,1);
             if (cVar1 == '\0') {
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a39538,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39538,1);
               if (cVar1 != '\0') {
 LAB_180609cf8:
                 StringProcessingResult = 7;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a396c8,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a396c8,1);
               if (cVar1 != '\0') goto LAB_18060ad3e;
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a396b0,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a396b0,1);
               if (cVar1 != '\0') goto LAB_180609d2e;
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a39710,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39710,1);
               if (cVar1 != '\0') {
 LAB_180609d4c:
                 StringProcessingResult = 10;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a396f0,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a396f0,1);
               if (cVar1 != '\0') goto LAB_180609d6a;
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a39640,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39640,1);
               if (cVar1 != '\0') goto LAB_18060acd8;
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a39628,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39628,1);
               if (cVar1 != '\0') {
                 StringProcessingResult = 0xd;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a39688,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39688,1);
               if (cVar1 != '\0') {
                 StringProcessingResult = 0xe;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a39660,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39660,1);
               if (cVar1 != '\0') {
                 StringProcessingResult = 0xf;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a397a8,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397a8,1);
               if (cVar1 != '\0') goto LAB_18060a114;
-              cVar1 = FUN_180629850(auStack_50,&UNK_180a39788,1);
+              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39788,1);
               if (cVar1 != '\0') goto LAB_1806099ea;
             }
           }
         }
         else {
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39270,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39270,1);
           if (cVar1 == '\0') {
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a393a8,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a393a8,1);
             if (cVar1 != '\0') goto LAB_18060ad3e;
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39390,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39390,1);
             if (cVar1 != '\0') {
 LAB_180609d2e:
               StringProcessingResult = 9;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a393f0,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a393f0,1);
             if (cVar1 != '\0') goto LAB_18060a114;
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a393d0,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a393d0,1);
             if (cVar1 != '\0') goto LAB_1806099ea;
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39348,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39348,1);
             if (cVar1 != '\0') {
 LAB_18060965b:
               StringProcessingResult = 0x17;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39328,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39328,1);
             if (cVar1 != '\0') goto LAB_18060ba49;
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39378,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39378,1);
             if (cVar1 != '\0') goto LAB_18060b32d;
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39360,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39360,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x21;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a394a0,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a394a0,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x22;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39480,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39480,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x23;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a394e0,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a394e0,1);
             if (cVar1 != '\0') goto LAB_18060b0f9;
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a394b8,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a394b8,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x25;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39428,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39428,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x26;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39408,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39408,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x27;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39468,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39468,1);
             if (cVar1 != '\0') goto LAB_1806091a3;
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39450,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39450,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x29;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a395c0,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a395c0,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2a;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39598,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39598,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2b;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39600,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39600,1);
             if (cVar1 != '\0') goto LAB_18060ae39;
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a395e0,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a395e0,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2d;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39518,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39518,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2e;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&UNK_180a39500,1);
+            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39500,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2f;
               goto LAB_18060bbae;
@@ -9729,59 +9729,59 @@ LAB_18060965b:
         }
       }
       else {
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a391b8,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a391b8,1);
         if (cVar1 == '\0') {
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39188,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39188,1);
           if (cVar1 != '\0') {
 LAB_180609d6a:
             StringProcessingResult = 0xb;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39210,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39210,1);
           if (cVar1 != '\0') goto LAB_18060acd8;
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a391e8,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a391e8,1);
           if (cVar1 != '\0') goto LAB_18060a114;
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39128,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39128,1);
           if (cVar1 != '\0') {
 LAB_1806099ea:
             StringProcessingResult = 0x11;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39110,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39110,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x12;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39170,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39170,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x13;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39148,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39148,1);
           if (cVar1 != '\0') goto LAB_18060a91e;
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a392d0,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a392d0,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x15;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a392b8,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a392b8,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x16;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39308,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39308,1);
           if (cVar1 != '\0') goto LAB_18060965b;
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a392e8,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a392e8,1);
           if (cVar1 != '\0') goto LAB_18060ba49;
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39250,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39250,1);
           if (cVar1 != '\0') goto LAB_18060b1d7;
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39230,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39230,1);
           if (cVar1 != '\0') {
 LAB_18060b1f5:
             StringProcessingResult = 0x1a;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&UNK_180a39298,1);
+          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39298,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x1b;
             goto LAB_18060bbae;
@@ -9790,70 +9790,70 @@ LAB_18060b1f5:
       }
     }
     else {
-      cVar1 = FUN_180629850(auStack_50,&SystemConfigStringPrimary,1);
+      cVar1 = ValidateSystemConfigurationData(auStack_50,&SystemConfigStringPrimary,1);
       if (cVar1 == '\0') {
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a38fd8,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38fd8,1);
         if (cVar1 != '\0') goto LAB_18060b9cb;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a1029c,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a1029c,1);
         if (cVar1 != '\0') goto LAB_18060ad3e;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a38fc0,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38fc0,1);
         if (cVar1 != '\0') goto LAB_18060acd8;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a39008,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39008,1);
         if (cVar1 != '\0') goto LAB_18060a114;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a38ff0,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38ff0,1);
         if (cVar1 != '\0') goto LAB_18060a91e;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a38f78,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f78,1);
         if (cVar1 != '\0') goto LAB_18060ba49;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a38f60,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f60,1);
         if (cVar1 != '\0') goto LAB_18060ba67;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a38fa8,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38fa8,1);
         if (cVar1 != '\0') goto LAB_18060b32d;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a38f90,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f90,1);
         if (cVar1 != '\0') goto LAB_18060b0f9;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a390b8,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a390b8,1);
         if (cVar1 != '\0') goto LAB_1806091a3;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a39090,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39090,1);
         if (cVar1 != '\0') goto LAB_18060ae93;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a390f0,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a390f0,1);
         if (cVar1 != '\0') goto LAB_18060a68c;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a390d0,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a390d0,1);
         if (cVar1 != '\0') goto LAB_18060a6aa;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a39030,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39030,1);
         if (cVar1 != '\0') goto LAB_18060b6c7;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a34c20,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a34c20,1);
         if (cVar1 != '\0') {
           StringProcessingResult = 0x54;
           goto LAB_18060bbae;
         }
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a39020,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39020,1);
         if (cVar1 != '\0') goto LAB_18060b6e5;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a39078,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39078,1);
         if (cVar1 != '\0') goto LAB_18060b703;
-        cVar1 = FUN_180629850(auStack_50,&UNK_180a39058,1);
+        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39058,1);
         if (cVar1 != '\0') goto LAB_1806093cc;
       }
     }
   }
   else {
-    cVar1 = FUN_180629850(auStack_50,&UNK_180a0ee38,1);
+    cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a0ee38,1);
     if (cVar1 == '\0') {
-      cVar1 = FUN_180629850(auStack_50,&UNK_180a38f50,1);
+      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f50,1);
       if (cVar1 != '\0') {
 LAB_18060ad3e:
         StringProcessingResult = 8;
         goto LAB_18060bbae;
       }
-      cVar1 = FUN_180629850(auStack_50,&UNK_180a38f40,1);
+      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f40,1);
       if (cVar1 != '\0') goto LAB_18060a114;
-      cVar1 = FUN_180629850(auStack_50,&UNK_180a38ee0,1);
+      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38ee0,1);
       if (cVar1 != '\0') {
 LAB_18060ba49:
         StringProcessingResult = 0x18;
         goto LAB_18060bbae;
       }
-      cVar1 = FUN_180629850(auStack_50,&UNK_180a38ed0,1);
+      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38ed0,1);
       if (cVar1 != '\0') goto LAB_18060b32d;
-      cVar1 = FUN_180629850(auStack_50,&UNK_180a38f00,1);
+      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f00,1);
       if (cVar1 != '\0') {
 LAB_1806091a3:
         StringProcessingResult = 0x28;
