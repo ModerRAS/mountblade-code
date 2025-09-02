@@ -22220,17 +22220,6 @@ void* * InitializeMemoryAllocatorStructure(void* *memoryAllocator)
 
 // 函数: void InitializeSystemResource(long long SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter)
 /**
- * @brief 系统字符串处理和内存管理函数
- * 
- * 该函数处理系统字符串操作，包括字符串搜索、长度计算和内存复制。
- * 它还涉及到内存分配器的引用管理和堆栈操作。
- * 
- * @param SystemResourceManager 系统资源指针，包含字符串处理所需的系统资源
- * @param SourceStringPointer 源字符串指针，用于长度计算和处理
- * @param TargetStringPointer 目标字符串指针，用于长度计算和处理
- */
-
-/**
  * @brief 系统字符串处理器
  * 
  * 该函数负责处理系统字符串操作，包括字符串复制、加密和格式化。
@@ -22278,48 +22267,57 @@ void SystemStringProcessor(long long resourceManager, long long sourceStringPoin
 
 
 
-// 函数: void InitializeSystemManager(void* *SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统内存分配器初始化函数
  * 
  * 该函数初始化系统内存分配器，设置内存分配器引用和初始参数。
  * 
- * @param SystemResourceManager 指向内存分配器指针的指针
- * @param ConfigurationDataPointer 保留参数
- * @param AdditionalParameter 保留参数
- * @param ConfigurationFlag 保留参数
+ * @param resourceManager 指向内存分配器指针的指针
+ * @param configDataPointer 配置数据指针，包含初始化所需的配置信息
+ * @param additionalParam 额外参数，用于扩展初始化功能
+ * @param configFlag 配置标志，用于控制初始化行为
  * @return 返回初始化后的内存分配器指针
  */
-void* * SystemMemoryAllocatorInitializer(void* *SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void* * SystemMemoryAllocatorInitializer(void* *resourceManager, long long configDataPointer, void* additionalParam, void* configFlag)
 
 {
-  void** SystemDataPointer;
+  void** stringTemplatePointer;
   
-  *SystemResourceManager = &SystemMemoryAllocatorReference;
-  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
-  *(uint32_t *)(SystemResourceManager + 2) = 0;
-  *SystemResourceManager = &SystemResourceTemplatePrimary;
-  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = SystemResourceManager + 3;
-  *(uint32_t *)(SystemResourceManager + 2) = 0;
-  *(uint8_t *)(SystemResourceManager + 3) = 0;
-  *(uint32_t *)(SystemResourceManager + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
-  SystemDataPointer = &SystemStringTemplate;
-  if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
-    SystemDataPointer = *(void* **)(ConfigurationDataPointer + 8);
+  *resourceManager = &SystemMemoryAllocatorReference;
+  resourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
+  *(uint32_t *)(resourceManager + 2) = 0;
+  *resourceManager = &SystemResourceTemplatePrimary;
+  resourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = resourceManager + 3;
+  *(uint32_t *)(resourceManager + 2) = 0;
+  *(uint8_t *)(resourceManager + 3) = 0;
+  *(uint32_t *)(resourceManager + 2) = *(uint32_t *)(configDataPointer + 0x10);
+  stringTemplatePointer = &SystemStringTemplate;
+  if (*(void* **)(configDataPointer + 8) != (void* *)0x0) {
+    stringTemplatePointer = *(void* **)(configDataPointer + 8);
   }
-  strcpy_s(SystemResourceManager[1],0x80,SystemDataPointer,ConfigurationFlag,0xfffffffffffffffe);
-  return SystemResourceManager;
+  strcpy_s(resourceManager[1], 0x80, stringTemplatePointer, configFlag, 0xfffffffffffffffe);
+  return resourceManager;
 }
 
 
 
-void* *
-InitializeMemoryAllocatorReference(void* *memoryAllocatorRef,ulong long InitializationFlags,void* reservedParam3,void* reservedParam4)
+/**
+ * @brief 初始化内存分配器引用
+ * 
+ * 该函数初始化内存分配器引用，并根据标志进行内存清理。
+ * 
+ * @param memoryAllocatorRef 内存分配器引用指针
+ * @param initializationFlags 初始化标志，用于控制初始化行为
+ * @param reservedParam3 保留参数3
+ * @param reservedParam4 保留参数4
+ * @return 返回初始化后的内存分配器引用
+ */
+void* * InitializeMemoryAllocatorReference(void* *memoryAllocatorRef, unsigned long long initializationFlags, void* reservedParam3, void* reservedParam4)
 
 {
   *memoryAllocatorRef = &SystemMemoryAllocatorReference;
-  if ((InitializationFlags & 1) != 0) {
-    free(memoryAllocatorRef,0x58,reservedParam3,reservedParam4,0xfffffffffffffffe);
+  if ((initializationFlags & 1) != 0) {
+    free(memoryAllocatorRef, 0x58, reservedParam3, reservedParam4, 0xfffffffffffffffe);
   }
   return memoryAllocatorRef;
 }
@@ -22327,7 +22325,6 @@ InitializeMemoryAllocatorReference(void* *memoryAllocatorRef,ulong long Initiali
 
 
 
-// 函数: void ProcessSystemStringCopySmall(long long SystemResourceManager,long long ConfigurationDataPointer)
 /**
  * @brief 系统字符串复制处理器（小尺寸）
  * 
@@ -22339,27 +22336,26 @@ InitializeMemoryAllocatorReference(void* *memoryAllocatorRef,ulong long Initiali
  * 
  * @note 这是系统字符串处理的重要组成部分，专门处理小尺寸字符串的复制
  */
-void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
+void ProcessSystemStringCopySmall(long long targetBuffer, long long sourceString)
 
 {
-  long long resourceDataIndex;
+  long long stringLength;
   
   if (sourceString == 0) {
     *(uint32_t *)(targetBuffer + 0x10) = 0;
     **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
-  resourceDataIndex = -1;
+  stringLength = -1;
   do {
-    resourceDataIndex = resourceDataIndex + 1;
-  } while (*(char *)(ConfigurationDataPointer + resourceDataIndex) != '\0');
-  if ((int)resourceDataIndex < 0x40) {
-    *(int *)(SystemResourceManager + 0x10) = (int)resourceDataIndex;
-                    000180049c27. Too many branches
-                        strcpy_s(*(void* *)(SystemResourceManager + 8),0x40);
+    stringLength = stringLength + 1;
+  } while (*(char *)(ConfigurationDataPointer + stringLength) != '\0');
+  if ((int)stringLength < 0x40) {
+    *(int *)(targetBuffer + 0x10) = (int)stringLength;
+    strcpy_s(*(void* *)(targetBuffer + 8), 0x40);
     return;
   }
-  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x40,ConfigurationDataPointer);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG, 0x40, ConfigurationDataPointer);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -22368,7 +22364,6 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
 
 
 
-// 函数: void ProcessSystemMemoryCopySmall(long long SystemResourceManager,void* ConfigurationDataPointer,int AdditionalParameter)
 /**
  * @brief 系统内存复制处理器（小尺寸）
  * 
@@ -22381,11 +22376,11 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
  * 
  * @note 这是系统内存处理的重要组成部分，专门处理小尺寸内存的复制
  */
-void ProcessSystemMemoryCopySmall(long long targetBuffer,void* sourceData,int copyLength)
+void ProcessSystemMemoryCopySmall(long long targetBuffer, void* sourceData, int copyLength)
 
 {
-  if (AdditionalParameter + 1 < 0x40) {
-      memcpy(*(uint8_t **)(SystemResourceManager + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
+  if (copyLength + 1 < 0x40) {
+      memcpy(*(uint8_t **)(targetBuffer + 8), sourceData, (long long)copyLength);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -22406,6 +22401,7 @@ void ProcessSystemMemoryCopySmall(long long targetBuffer,void* sourceData,int co
 void InitializeSystemMemoryCopyOperation(void)
 
 {
+    // 内存复制操作初始化
     memcpy();
 }
 
