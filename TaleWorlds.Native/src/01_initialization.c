@@ -18997,6 +18997,8 @@ uint32_t FinalSystemInitialization(void)
   void* CalculationFlags;
   long long***** SystemSuperManager;
   long long**** TemporaryManager14;
+  long long SystemValue;
+  void* ResourceAddress;
   
   CalculationFlags = 0xfffffffffffffffe;
   if (SystemGlobalControllerPointer != (void* *)0x0) {
