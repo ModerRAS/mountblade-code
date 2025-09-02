@@ -4018,7 +4018,7 @@ uint32_t ValidateObjectHandleFromRegister(void)
  * 
  * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用
  */
-void raiseSystemException(void)
+void RaiseSystemException(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -41469,7 +41469,21 @@ void ConfigureResourceValidation(uint8_t objectContext,int64_t validationContext
 
 
 
-void Unwind_1809042f0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源块1
+ * 
+ * 该函数负责清理指定资源块的内存和数据结构
+ * 执行资源释放、内存清理和系统状态重置
+ * 
+ * @param objectContext 对象上下文，用于标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的详细行为
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ * @warning 清理过程不可逆，调用后资源将无法恢复
+ */
+void CleanupResourceBlock1(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41523,7 +41537,21 @@ void Unwind_1809042f0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904310(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源块2
+ * 
+ * 该函数负责清理指定资源块的内存和数据结构
+ * 执行资源释放、内存清理和系统状态重置
+ * 
+ * @param objectContext 对象上下文，用于标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的详细行为
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ * @warning 清理过程不可逆，调用后资源将无法恢复
+ */
+void CleanupResourceBlock2(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41577,7 +41605,21 @@ void Unwind_180904310(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904330(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源块3
+ * 
+ * 该函数负责清理指定资源块的内存和数据结构
+ * 执行资源释放、内存清理和系统状态重置
+ * 
+ * @param objectContext 对象上下文，用于标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的详细行为
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ * @warning 清理过程不可逆，调用后资源将无法恢复
+ */
+void CleanupResourceBlock3(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41631,7 +41673,21 @@ void Unwind_180904330(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904350(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源块4
+ * 
+ * 该函数负责清理指定资源块的内存和数据结构
+ * 执行资源释放、内存清理和系统状态重置
+ * 
+ * @param objectContext 对象上下文，用于标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的详细行为
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ * @warning 清理过程不可逆，调用后资源将无法恢复
+ */
+void CleanupResourceBlock4(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41685,7 +41741,21 @@ void Unwind_180904350(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904370(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源块5
+ * 
+ * 该函数负责清理指定资源块的内存和数据结构
+ * 执行资源释放、内存清理和系统状态重置
+ * 
+ * @param objectContext 对象上下文，用于标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的详细行为
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ * @warning 清理过程不可逆，调用后资源将无法恢复
+ */
+void CleanupResourceBlock5(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41739,7 +41809,21 @@ void Unwind_180904370(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904390(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源块6
+ * 
+ * 该函数负责清理指定资源块的内存和数据结构
+ * 执行资源释放、内存清理和系统状态重置
+ * 
+ * @param objectContext 对象上下文，用于标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的详细行为
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ * @warning 清理过程不可逆，调用后资源将无法恢复
+ */
+void CleanupResourceBlock6(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41793,7 +41877,21 @@ void Unwind_180904390(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809043b0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源块7
+ * 
+ * 该函数负责清理指定资源块的内存和数据结构
+ * 执行资源释放、内存清理和系统状态重置
+ * 
+ * @param objectContext 对象上下文，用于标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的详细行为
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ * @warning 清理过程不可逆，调用后资源将无法恢复
+ */
+void CleanupResourceBlock7(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41847,7 +41945,21 @@ void Unwind_1809043b0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809043d0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源块8
+ * 
+ * 该函数负责清理指定资源块的内存和数据结构
+ * 执行资源释放、内存清理和系统状态重置
+ * 
+ * @param objectContext 对象上下文，用于标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的详细行为
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ * @warning 清理过程不可逆，调用后资源将无法恢复
+ */
+void CleanupResourceBlock8(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -49590,7 +49702,17 @@ void ReleaseValidationContextResourcePointer(uint8_t objectContext, int64_t vali
 
 
 
-void Unwind_1809060e0(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁当前互斥锁，释放相关资源
+ * 用于线程同步对象的清理工作
+ * 
+ * @return 无返回值
+ * @note 此函数会直接销毁互斥锁对象
+ * @warning 调用此函数后，互斥锁将不再可用
+ */
+void DestroyMutexInPlace(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -49599,7 +49721,19 @@ void Unwind_1809060e0(void)
 
 
 
-void Unwind_1809060f0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 销毁上下文互斥锁
+ * 
+ * 该函数负责销毁指定上下文中的互斥锁
+ * 根据验证上下文中的地址信息销毁对应的互斥锁对象
+ * 
+ * @param objectContext 对象上下文，用于标识特定的对象实例
+ * @param validationContext 验证上下文，包含互斥锁的地址信息
+ * @return 无返回值
+ * @note 此函数会根据验证上下文中的地址销毁互斥锁
+ * @warning 调用此函数后，指定的互斥锁将不再可用
+ */
+void DestroyContextMutex(uint8_t objectContext,int64_t validationContext)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(validationContext + 0x70));
@@ -49608,7 +49742,7 @@ void Unwind_1809060f0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180906100(uint8_t objectContext,int64_t validationContext)
+void ReleaseResourceLock(uint8_t objectContext,int64_t validationContext)
 
 {
   int OperationResult;
