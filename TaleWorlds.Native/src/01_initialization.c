@@ -1939,51 +1939,59 @@ void InitializeCoreEngine(void)
 /**
  * @brief 初始化渲染系统配置
  * 
- * 设置渲染系统的基本配置参数和数据结构
+ * 该函数负责初始化渲染系统的配置节点，包括创建系统节点、分配内存空间
+ * 和设置渲染系统的基本参数。它会遍历系统节点树，找到合适的位置
+ * 来创建渲染系统配置节点，并设置相关的标识符和处理器。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保渲染系统能够正确配置
+ * 和运行。函数会创建新的系统节点或使用现有节点来存储渲染配置。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeRenderingSystemConfig(void)
 
 {
-  char SystemNodeFlag;
-  void** SystemRootPointer;
+  char IsSystemNodeActive;
+  void** SystemRootNodePointer;
   int MemoryComparisonResult;
-  long long *SystemTablePointer;
-  long long MemoryAllocationSize;
-  void** SystemCurrentNode;
-  void** hashTableNode;
-  void** SystemNextNode;
-  void** SystemAllocatedNode;
-  void* RenderingInitializationFlag;
+  long long *SystemDataTablePointer;
+  long long RequiredMemorySize;
+  void** CurrentSystemNode;
+  void** PreviousSystemNode;
+  void** NextSystemNode;
+  void** AllocatedSystemNode;
+  void* RenderingSystemHandler;
   
-  SystemTablePointer = (long long*)GetSystemRootPointer();
-  SystemRootPointer = (void* *)*SystemTablePointer;
-  SystemNodeFlag = *(char*)((long long)SystemRootPointer[1] + 0x19);
-  RenderingInitializationFlag = 0;
-  hashTableNode = SystemRootPointer;
-  SystemCurrentNode = (void* *)SystemRootPointer[1];
-  while (SystemNodeFlag == '\0') {
-    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void* *)*SystemDataTablePointer;
+  IsSystemNodeActive = *(char*)((long long)SystemRootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  RenderingSystemHandler = 0;
+  PreviousSystemNode = SystemRootNodePointer;
+  CurrentSystemNode = (void* *)SystemRootNodePointer[1];
+  while (!IsSystemNodeActive) {
+    MemoryComparisonResult = memcmp(CurrentSystemNode + 4, &RENDERING_CONFIG_TEMPLATE_ID, SYSTEM_IDENTIFIER_SIZE);
     if (MemoryComparisonResult < 0) {
-      SystemNextNode = (void**)SystemCurrentNode[2];
-      SystemCurrentNode = hashTableNode;
+      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
+      CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      SystemNextNode = (void**)*SystemCurrentNode;
+      NextSystemNode = (void**)*CurrentSystemNode;
     }
-    hashTableNode = SystemCurrentNode;
-    SystemCurrentNode = SystemNextNode;
-    SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
+    PreviousSystemNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    IsSystemNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((hashTableNode == SystemRootPointer) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateC,hashTableNode + 4,0x10), MemoryComparisonResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(SystemTablePointer);
-    AllocateSystemMemory(SystemTablePointer,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
-    hashTableNode = SystemAllocatedNode;
+  if ((PreviousSystemNode == SystemRootNodePointer) || (MemoryComparisonResult = memcmp(&RENDERING_CONFIG_TEMPLATE_ID, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), MemoryComparisonResult < 0)) {
+    RequiredMemorySize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, RequiredMemorySize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, RequiredMemorySize);
+    PreviousSystemNode = AllocatedSystemNode;
   }
-  hashTableNode[6] = 0x42bea5b911d9c4bf;
-  hashTableNode[7] = 0x1aa83fc0020dc1b6;
-  hashTableNode[8] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[9] = 0;
-  hashTableNode[10] = RenderingInitializationFlag;
+  PreviousSystemNode[6] = RENDERING_CONFIG_NODE_IDENTIFIER1;
+  PreviousSystemNode[7] = RENDERING_CONFIG_NODE_IDENTIFIER2;
+  PreviousSystemNode[8] = &SystemDataNodeSecondaryRoot;
+  PreviousSystemNode[9] = 0;
+  PreviousSystemNode[10] = RenderingSystemHandler;
   return;
 }
 
