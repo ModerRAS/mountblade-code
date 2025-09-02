@@ -59428,13 +59428,25 @@ void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t Vali
   *(uint32_t *)(ResourceHashValidationResultPointer + 0x10) = 0;
   ResourceHashValidationResultPointer[0xd] = &SystemDataStructure;
   ResourceIntegrityValidator(ResourceHashValidationResultPointer + 7,ResourceHashValidationResultPointer[9]);
-  *ValidationResultPointer = &ResourceValidationTable002;
+  *ResourceValidationResultPointer = &ResourceValidationTable002;
   return;
 }
 
 
 
-void Unwind_180907720(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调操作扩展1
+ * 
+ * 该函数负责执行资源上下文相关的回调操作
+ * 从验证上下文中获取资源上下文并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会执行资源上下文的回调函数
+ * @warning 回调函数的执行可能会导致系统状态的变化
+ */
+void ExecuteResourceContextCallbackExtended1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
