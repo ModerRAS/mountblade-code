@@ -52,7 +52,23 @@
 #define ValidationArraySizeMultiplier 3
 #define ValidationSizeLimit 0x3fffffff
 #define SystemContextOffset 0x17c
-#define SystemDataBaseAddress 0x180c4f450
+#define SystemContextBaseOffset 800
+#define SystemContextMethodOffset 600
+#define SystemContextResourceTableOffset 0x2e8
+#define SystemContextOperationFlagOffset 0x200
+#define SystemContextArraySizeOffset 0x17c
+#define SystemContextErrorDataOffset 0x1a0
+#define ValidationContextLoopCounterOffset 0x98
+#define SystemSecurityContextBaseAddress 0x180c4f450
+#define SystemOperationErrorCode 0x4a
+#define SystemStatusFlagMask 0xf
+#define SystemStatusFlagMaskClear 0xfffffff0
+#define ObjectContextStatusOffset 8
+#define RangeLowerBoundOffset 0x38
+#define RangeUpperBoundOffset 0x3c
+#define SystemExecutionStatusOffset 0x98
+#define ResourceDataOffset 4
+#define SystemStatusConstant 0x1c
 #define SystemResourceOffset 0x180985054
 #define SystemMutexAddress SystemMutexAddress
 #define SystemCriticalSectionAddress SystemCriticalSectionAddress
@@ -98,6 +114,9 @@
 #define MemoryAllocationOverflowMask 0xffffffffffffff0
 #define MemoryAllocationAlignmentMask 0xfffffffffffffff0
 #define SystemDataBaseAddress(context) (*(int64_t *)((int64_t)*(int *)(context + SystemContextOffset) * 8 + SystemDataBaseAddress))
+#define SystemCallbackTableOffset 0x18
+#define SystemCallbackBaseOffset 8
+#define SystemCallbackEntrySize 0xc
 #define ChecksumSeedValueFEFB 0x46464542
 #define ChecksumSeedValueBEFB 0x42464542
 #define ChecksumSeedValueCTRL 0x4c525443
@@ -11873,24 +11892,23 @@ StackIndexHandler:
  * @warning 回调函数执行前必须验证其有效性
  */
 uint8_t ProcessResourceHashAndExecuteCallback(int64_t ResourceArray, uint8_t ExecutionContext, int64_t CallbackIndex)
-
 {
   uint8_t ResourceHashValue;
-  int64_t ArrayIndex;
+  int64_t ResourceIndex;
   uint8_t *CallbackFunctionPointer;
   int *ResultPointer;
   int64_t ContextBaseAddress;
   uint8_t ResourceCallbackContext;
   
-  ResourceHashValue = *(uint8_t *)(ResourceArray + ResourceCleanupOffset + ArrayIndex * 8);
+  ResourceHashValue = *(uint8_t *)(ResourceArray + ResourceCleanupOffset + ResourceIndex * 8);
   ResourceCallbackContext.StatusField = (int)((uint64_t)ResourceHashValue >> 0x20);
   if (ResourceCallbackContext.StatusField != 0) {
     *ResultPointer = ResourceCallbackContext.StatusField;
     return 0;
   }
   CallbackFunctionPointer = (uint8_t *)
-           ((int64_t)*(int *)(*(int64_t *)(ContextBaseAddress + 0x18) + CallbackIndex * 0xc) +
-           *(int64_t *)(ContextBaseAddress + 8));
+           ((int64_t)*(int *)(*(int64_t *)(ContextBaseAddress + SystemCallbackTableOffset) + CallbackIndex * SystemCallbackEntrySize) +
+           *(int64_t *)(ContextBaseAddress + SystemCallbackBaseOffset));
   if (CallbackFunctionPointer != (uint8_t *)0x0) {
     ResourceCallbackContext = ResourceHashValue;
     (**(code **)*CallbackFunctionPointer)();
