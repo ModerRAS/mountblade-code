@@ -13896,7 +13896,7 @@ void SystemInitializerPrimary(void)
   uint32_t SecurityHashValue;
   uint32_t ResourceCounter;
   uint32_t ValidationCounter;
-  uint32_t ResourceHashValue0;
+  uint32_t PrimaryResourceHash;
   uint32_t PrimaryResourceHash;
   char ResourceHashValidationResult;
   int ResourceIndexTertiary;
@@ -13906,7 +13906,7 @@ void SystemInitializerPrimary(void)
   uint8_t ResourceHashValue6;
   uint8_t ResourceHashValue7;
   uint8_t *ResourceHashPointer8;
-  float inputFloatValue9;
+  float InputTransformParameterZ;
   uint64_t ResourceHashValidationResultPrimary;
   float *FloatPointer;
   uint8_t *ExecutionContextPointer;
@@ -13922,11 +13922,11 @@ void SystemInitializerPrimary(void)
   uint32_t FloatRegisterTertiaryValue;
   uint32_t FloatRegisterQuaternaryValue;
   float FloatRegisterFifthValue;
-  uint32_t FloatRegisterValue6;
-  uint32_t FloatRegisterValue7;
-  uint32_t FloatRegisterValue8;
+  uint32_t FloatRegisterTransformX;
+  uint32_t FloatRegisterTransformY;
+  uint32_t FloatRegisterTransformZ;
   uint32_t FloatResourceRegisterValue;
-  uint32_t FloatRegisterPrimaryValue0;
+  uint32_t FloatRegisterPrimaryValue;
   uint32_t Xmm6RegisterPrimary;
   uint32_t Xmm6RegisterSecondary;
   uint32_t StackContextBuffer;
@@ -14181,7 +14181,7 @@ void CalculateFloatValueAndValidateResources(void)
   uint32_t SecurityHashValue;
   uint32_t ResourceCounter;
   uint32_t ValidationCounter;
-  uint32_t ResourceHashValue0;
+  uint32_t PrimaryResourceHash;
   uint32_t PrimaryResourceHash;
   char ResourceHashValidationResult;
   int ResourceIndexTertiary;
@@ -14191,7 +14191,7 @@ void CalculateFloatValueAndValidateResources(void)
   uint8_t ResourceHashValue6;
   uint8_t ResourceHashValue7;
   uint8_t *ResourceHashPointer8;
-  float inputFloatValue9;
+  float InputTransformParameterZ;
   uint64_t ResourceHashValidationResultPrimary;
   float *FloatPointer;
   uint8_t *ExecutionContextPointer;
@@ -22838,7 +22838,7 @@ uint64_t ResourceHashValidationHandler(void)
   float FloatingPointResultSeventh;
   uint32_t FloatingPointResultEighth;
   uint32_t FloatingPointResultNinth;
-  uint32_t ResourceHashValue0;
+  uint32_t PrimaryResourceHash;
   float FloatCalculationResult;
   uint64_t SecurityHashValue;
   
