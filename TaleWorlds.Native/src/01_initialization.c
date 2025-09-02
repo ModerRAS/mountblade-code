@@ -56719,7 +56719,7 @@ void ConfigureSystemResourceManager(long long SystemResourceManager,long long *C
         FUN_180086090(PrimaryResourcePointer + 0xc,lStack_30 + 0x60);
         FUN_180085fb0(PrimaryResourcePointer + 0x11,lStack_30 + 0x88);
         FUN_180085ec0(PrimaryResourcePointer + 0x19,lStack_30 + 200);
-        FUN_18007f840(&SystemOperationCounter);
+        ReleaseSystemOperationCounter(&SystemOperationCounter);
       }
       CleanupSystemResourceEncryption(aEncryptionKeyValue);
       if (plStack_10 != (long long *)0x0) {
@@ -56989,7 +56989,7 @@ LAB_180075f4f:
       UNLOCK();
       if (systemStatusFlag == '\0') {
         if ((((ScalingFactor == 1.4013e-45) && (*(long long *)(pfStack_98 + 0x84) != 0)) &&
-            (pfloatValue6 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pfloatValue6 + 0x3f) == '\0')) &&
+            (pfloatValue6 = pfStack_98, ValidateSystemString(pfStack_98), *(char *)(pfloatValue6 + 0x3f) == '\0')) &&
            ((*(char *)(pfloatValue6 + 0x3d) == '\0' &&
             (((*(byte *)((long long)pfloatValue6 + 0xfd) & 0x20) == 0 ||
              ((*(byte *)((long long)pfloatValue6 + 0xfe) & 1) == 0)))))) {
@@ -57436,7 +57436,7 @@ void ConfigureSystemResourceManagerAdvanced(long long *SystemResourceManager,voi
     SystemResourceManager[0x3f] = 0;
     SystemResourceManager[0x40] = 0;
     *(uint32_t *)(SystemResourceManager + 0x41) = 0;
-    FUN_180079520();
+    ExecuteSystemOperation();
   }
   else {
     (**(code **)(*SystemResourceManager + 0x28))();
@@ -57467,10 +57467,10 @@ void ConfigureSystemResourceManagerAdvanced(long long *SystemResourceManager,voi
       }
       CleanupSystemResourceEncryption(aSystemResourceStatusFlag);
       if ((char)SystemEncryptionOffset != '\0') {
-        FUN_180079520(plongValue40);
+        ExecuteSystemOperation(plongValue40);
       }
       if (SystemEncryptionOffset._1_1_ != '\0') {
-        FUN_180079520(plongValue40);
+        ExecuteSystemOperation(plongValue40);
       }
       PrimaryResourcePointer = plongValue38;
       plongValue38 = (long long *)0x0;
@@ -57554,7 +57554,7 @@ void ConfigureSystemResourceManagerThread(long long SystemResourceManager,long l
         SystemThreadFlags = SystemThreadFlags + 1;
         plocalDataIndex = plocalDataIndex + 1;
       } while ((isResourceAvailable & 8) == 0);
-      FUN_1800781e0(SystemResourceManager);
+      ProcessSystemResourceManager(SystemResourceManager);
     }
   }
   return;
@@ -57631,7 +57631,7 @@ void ManageSystemResourceReferenceCount(long long SystemResourceManager)
       Sleep(0);
     }
     if ((((*(long long *)(SystemResourceManager + 0x210) != 0) &&
-         (FUN_1800791a0(SystemResourceManager), *ReferenceCountPointer == '\0')) &&
+         (ValidateSystemString(SystemResourceManager), *ReferenceCountPointer == '\0')) &&
         (*(char *)(SystemResourceManager + 0xf4) == '\0')) &&
        (((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0 || ((*(byte *)(SystemResourceManager + 0xfe) & 1) == 0)))) {
       resourcePoolPointer = *(long long **)(SystemResourceManager + 0x210);
@@ -58057,10 +58057,10 @@ void DestroySystemResourceManager(long long *SystemResourceManager)
         }
         CleanupSystemResourceEncryption(&SystemEncryptionKey);
         if (cStack_28 != '\0') {
-          FUN_180079520(memoryAllocationBuffer);
+          ExecuteSystemOperation(memoryAllocationBuffer);
         }
         if (cStack_27 != '\0') {
-          FUN_180079520(memoryAllocationBuffer);
+          ExecuteSystemOperation(memoryAllocationBuffer);
         }
         SystemHashEntryPointer = memoryAllocationEnd;
         pEncryptionValue68 = memoryAllocationEnd;
@@ -58413,7 +58413,7 @@ LAB_180077879:
     if ((SystemOperationResult1 == '\0') || (ConfigurationFlag == 0)) {
       FUN_18007b1e0(SystemResourceManager,0);
       if ((*(byte *)(SystemResourceManager + 0xfe) & 4) == 0) {
-        ConfigurationData = FUN_180077420(SystemResourceManager,ConfigurationDataPointer);
+        ConfigurationData = ConfigureSystemResourceManagerExtended(SystemResourceManager,ConfigurationDataPointer);
         OperationCompleteFlag = (char)ConfigurationData << 2;
         SystemActiveFlag = OperationCompleteFlag | *(byte *)(SystemResourceManager + 0xfe) & 0xfb;
         SecurityParameter = CONCAT71((int7)((ulong long)ConfigurationData >> 8),SystemActiveFlag);
@@ -58445,7 +58445,7 @@ LAB_180077879:
         AdditionalParameter = FloatPointer1;
         if (*(int *)(HashEntryPointer + 4) != SystemCounter) {
           *(int *)(HashEntryPointer + 4) = SystemCounter;
-          FUN_180079270(SystemResourceManager,systemConfigurationParameter);
+          ProcessSystemResourceConfiguration(SystemResourceManager,systemConfigurationParameter);
           AdditionalParameter = FloatPointer1;
           if (((byte)(ResourceHash >> 0x19) & 1) != 0) {
             if ((*(uint *)(SystemResourceManager + 0x100) & 0x800) != 0) {
@@ -59971,7 +59971,7 @@ void InitializeSystemDataIndexPointer(void)
  * @param SystemResourceManager 系统资源管理器指针
  * @return 无返回值
  * 
- * 原始函数名：FUN_1800781e0
+ * 原始函数名：ProcessSystemResourceManager
  */
 void ProcessSystemResourceManagerStatus(long long SystemResourceManager)
 
@@ -60049,7 +60049,7 @@ LAB_SystemStatusSet:
     *(uint32_t *)(SystemResourceManager + 0x2c4) = resourceAddress;
   }
   *(void*2 *)(SystemMemoryAddress + 0x3c0) = 0xffff;
-  FUN_180077150(SystemResourceManager);
+  ValidateSystemResourceManager(SystemResourceManager);
   if ((*(long long *)(SystemResourceManager + 600) == 0) &&
      ((*(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     hashTableNode = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,9);
@@ -60160,7 +60160,7 @@ LAB_SystemStatusSet:
     *(uint32_t *)(memoryBlockAddress + 0x2c4) = resourceAddress;
   }
   *(void*2 *)(resourceDataIndex + 0x3c0) = 0xffff;
-  FUN_180077150();
+  ValidateSystemResourceManager();
   if ((*(long long *)(memoryBlockAddress + 600) == 0) &&
      ((*(uint *)(*(long long *)(memoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     hashTableNode = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,9);
@@ -60275,7 +60275,7 @@ LAB_SystemStatusSet:
     *(uint32_t *)(memoryBlockAddress + 0x2c4) = resourceAddress;
   }
   *(void*2 *)(resourceDataIndex + 0x3c0) = 0xffff;
-  FUN_180077150();
+  ValidateSystemResourceManager();
   if ((*(long long *)(memoryBlockAddress + 600) == 0) &&
      ((*(uint *)(*(long long *)(memoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     hashTableNode = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,9);
@@ -60377,7 +60377,7 @@ LAB_SystemStatusSet:
     *(uint32_t *)(memoryBlockAddress + 0x2c4) = resourceAddress;
   }
   *(void*2 *)(resourceDataIndex + 0x3c0) = 0xffff;
-  FUN_180077150();
+  ValidateSystemResourceManager();
   if ((*(long long *)(memoryBlockAddress + 600) == 0) &&
      ((*(uint *)(*(long long *)(memoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     hashTableNode = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,9);
@@ -60448,7 +60448,7 @@ void* * InitializeSystemResourceManager(void* *SystemResourceManager,ulong long 
   
   SystemOperationStatus = 0xfffffffffffffffe;
   *SystemResourceManager = &SystemResourceDataTableE;
-  FUN_180078550();
+  ExecuteSystemResourceCleanup();
   ConfigureSystemMemoryRegion(SystemResourceManager + 1,8,7,InitializeMemoryManager,SystemOperationStatus);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,0x158);
@@ -60473,7 +60473,7 @@ void* * InitializeSystemResourceManager(void* *SystemResourceManager,ulong long 
  * @param ConfigurationFlag 配置标志
  * @return 无返回值
  * 
- *FUN_180078550：ConfigureSystemResourceManager
+ *ExecuteSystemResourceCleanup：ConfigureSystemResourceManager
  */
 void ConfigureSystemResourceManager(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -61225,7 +61225,7 @@ void SerializeSystemResourceManagerData(uint32_t *SystemResourceManager,long lon
  * 
  * @param SystemResourceManager 资源管理器指针，指向需要初始化的资源管理器
  * 
- *FUN_1800791a0：InitializeSystemResourceManagerEx
+ *ValidateSystemString：InitializeSystemResourceManagerEx
  */
 void InitializeSystemResourceManagerEx(long long SystemResourceManager)
 
@@ -61265,7 +61265,7 @@ void InitializeSystemResourceManagerEx(long long SystemResourceManager)
  * @param SystemResourceManager 资源管理器指针
  * @param ConfigurationDataPointer 配置数据指针
  * 
- *FUN_180079270：ProcessSystemResourceConfiguration
+ *ProcessSystemResourceConfiguration：ProcessSystemResourceConfiguration
  */
 void ProcessSystemResourceConfiguration(long long SystemResourceManager,long long ConfigurationDataPointer)
 
@@ -63080,7 +63080,7 @@ LAB_180075f4f:
       UNLOCK();
       if (systemStatusFlag == '\0') {
         if ((((floatValue6 == 1.4013e-45) && (*(long long *)(pfStack_98 + 0x84) != 0)) &&
-            (pfloatValue7 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pfloatValue7 + 0x3f) == '\0')) &&
+            (pfloatValue7 = pfStack_98, ValidateSystemString(pfStack_98), *(char *)(pfloatValue7 + 0x3f) == '\0')) &&
            ((*(char *)(pfloatValue7 + 0x3d) == '\0' &&
             (((*(byte *)((long long)pfloatValue7 + 0xfd) & 0x20) == 0 ||
              ((*(byte *)((long long)pfloatValue7 + 0xfe) & 1) == 0)))))) {
@@ -65103,7 +65103,7 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
       (**(code **)(*plStack_30 + 0x38))();
     }
   }
-  FUN_1800781e0(SystemResourceManager);
+  ProcessSystemResourceManager(SystemResourceManager);
   if ((*(long long *)(SystemResourceManager + 600) == 0) &&
      ((*(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     SystemOperationCounterPointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,0x1c);
@@ -66574,7 +66574,7 @@ void ProcessSystemResourceDataBuffer(long long SystemResourceManager,long long *
   CalculationFlags = systemValue;
   if (0 < *(int *)(SystemResourceManager + 0x60)) {
     do {
-      FUN_180078c70((long long)CalculationFlags * 0x5c + *(long long *)(SystemResourceManager + 0x68),ConfigurationDataPointer);
+      ProcessSystemResourceAllocation((long long)CalculationFlags * 0x5c + *(long long *)(SystemResourceManager + 0x68),ConfigurationDataPointer);
       CalculationFlags = CalculationFlags + 1;
     } while (CalculationFlags < *(int *)(SystemResourceManager + 0x60));
     SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
@@ -66948,7 +66948,7 @@ void CleanupSystemResources(long long SystemResourceManager,char ConfigurationDa
   long long *ResourceToRelease;
   
   if (*(long long *)(SystemResourceManager + 0x210) != 0) {
-    FUN_1800791a0();
+    ValidateSystemString();
     if (ConfigurationDataPointer != '\0') {
       *(byte *)(SystemResourceManager + 0xfd) = *(byte *)(SystemResourceManager + 0xfd) | 0x20;
       *(byte *)(SystemResourceManager + 0xfe) = *(byte *)(SystemResourceManager + 0xfe) | 1;
@@ -67755,8 +67755,8 @@ void CleanupSystemResourceEncryption(char *SystemResourceManager,void* Configura
     if (*SystemResourceManager != '\0') {
       SystemBufferAddress = resourceDataIndex;
       if ((SystemResourceManager[0x10] & 2U) == 0) {
-        FUN_180079520(resourceDataIndex);
-        FUN_180079520(*(void* *)(SystemResourceManager + 8));
+        ExecuteSystemOperation(resourceDataIndex);
+        ExecuteSystemOperation(*(void* *)(SystemResourceManager + 8));
         SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
       }
       FUN_18007edd0(SystemBufferAddress,1,AdditionalParameter,ConfigurationFlag,currentThreadId);
