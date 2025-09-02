@@ -52426,87 +52426,87 @@ LAB_1800715eb:
 000180071c73)
 
 
-// 函数: void FUN_180071940(void* ResourceManagerPointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag)
-void FUN_180071940(void* ResourceManagerPointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag)
+// 函数: void InitializeSystemResourceManager(void* ResourceManagerPointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag)
+void InitializeSystemResourceManager(void* ResourceManagerPointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag)
 
 {
   int systemStatus;
-  uint creationFlags;
-  uint32_t allocationContext;
-  long long bufferBaseAddress;
-  void* *pcurrentThreadId;
+  uint threadCreationFlags;
+  uint32_t memoryAllocationContext;
+  long long systemBufferAddress;
+  void* *threadIdPointer;
   uint32_t *resourceEntryPointer;
-  void** SystemCurrentNode;
-  uint8_t *newThreadLocalStorage;
-  void* *punsignedSystemValue9;
-  long long allocationFlags;
-  uint systemStatus1;
-  uint systemStatus2;
-  void* *pStackParameterC;
-  uint8_t *pUnsignedStackFlag88;
-  uint UnsignedStackFlag80;
-  ulong long UnsignedStackFlag78;
-  void* *puStack_70;
-  void* *pEncryptionValue68;
-  uint32_t uStack_60;
-  void* uStack_58;
-  void* *memoryAllocationEnd;
-  long long lStack_48;
-  uint32_t uStack_38;
+  void** systemCurrentNode;
+  uint8_t *threadLocalStorage;
+  void* *systemValuePointer;
+  long long memoryAllocationFlags;
+  uint systemOperationStatus1;
+  uint systemOperationStatus2;
+  void* *stackParameterPointer;
+  uint8_t *threadObjectPointer;
+  uint stackParameterOffset;
+  ulong long threadHandleValue;
+  void* *globalDataPointer;
+  void* *encryptionKeyPointer;
+  uint32_t bufferFlags;
+  void* bufferDataPointer;
+  void* *memoryAllocationEndPointer;
+  long long debugFlag;
+  uint32_t allocationSize;
   
   systemStatus = WaitForSingleObject(SystemSemaphoreHandle,0);
   if (systemStatus != 0) {
     return;
   }
-  punsignedSystemValue9 = (void* *)0x0;
-  puStack_70 = &SystemGlobalDataReference;
-  uStack_58 = 0;
-  pEncryptionValue68 = (void* *)0x0;
-  uStack_60 = 0;
+  systemValuePointer = (void* *)0x0;
+  globalDataPointer = &SystemGlobalDataReference;
+  bufferDataPointer = 0;
+  encryptionKeyPointer = (void* *)0x0;
+  bufferFlags = 0;
   systemStatus = IsDebuggerPresent();
   if (systemStatus == 0) {
-    bufferBaseAddress = FUN_1800f9ce0(&memoryAllocationEnd,0);
-    uStack_60 = *(uint32_t *)(bufferBaseAddress + 0x10);
-    punsignedSystemValue9 = *(void* **)(bufferBaseAddress + 8);
-    uStack_58 = *(void* *)(bufferBaseAddress + 0x18);
-    *(uint32_t *)(bufferBaseAddress + 0x10) = 0;
-    *(void* *)(bufferBaseAddress + 8) = 0;
-    *(void* *)(bufferBaseAddress + 0x18) = 0;
-    memoryAllocationEnd = &SystemGlobalDataReference;
-    pEncryptionValue68 = punsignedSystemValue9;
-    if (lStack_48 != 0) {
+    systemBufferAddress = GetSystemMemoryBuffer(&memoryAllocationEndPointer,0);
+    bufferFlags = *(uint32_t *)(systemBufferAddress + 0x10);
+    systemValuePointer = *(void* **)(systemBufferAddress + 8);
+    bufferDataPointer = *(void* *)(systemBufferAddress + 0x18);
+    *(uint32_t *)(systemBufferAddress + 0x10) = 0;
+    *(void* *)(systemBufferAddress + 8) = 0;
+    *(void* *)(systemBufferAddress + 0x18) = 0;
+    memoryAllocationEndPointer = &SystemGlobalDataReference;
+    encryptionKeyPointer = systemValuePointer;
+    if (debugFlag != 0) {
         SystemCleanupFunction();
     }
-    lStack_48 = 0;
-    uStack_38 = 0;
-    memoryAllocationEnd = &SystemMemoryAllocatorReference;
+    debugFlag = 0;
+    allocationSize = 0;
+    memoryAllocationEndPointer = &SystemMemoryAllocatorReference;
   }
   pSystemConfigurationValue = &SystemGlobalDataReference;
-  UnsignedStackFlag78 = 0;
-  pUnsignedStackFlag88 = (uint8_t *)0x0;
-  UnsignedStackFlag80 = 0;
-  pUnsignedStackFlag88 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x12,0x13);
-  *pUnsignedStackFlag88 = 0;
-  creationFlags = StartSystemThread(pUnsignedStackFlag88);
-  UnsignedStackFlag78 = CONCAT44(UnsignedStackFlag78._4_4_,creationFlags);
-  resourceEntryPointer = (uint32_t *)(pUnsignedStackFlag88 + UnsignedStackFlag80);
+  threadHandleValue = 0;
+  threadObjectPointer = (uint8_t *)0x0;
+  stackParameterOffset = 0;
+  threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x12,0x13);
+  *threadObjectPointer = 0;
+  threadCreationFlags = StartSystemThread(threadObjectPointer);
+  threadHandleValue = CONCAT44(threadHandleValue._4_4_,threadCreationFlags);
+  resourceEntryPointer = (uint32_t *)(threadObjectPointer + stackParameterOffset);
   *resourceEntryPointer = 0x65737341;
   resourceEntryPointer[1] = 0x6f697472;
   resourceEntryPointer[2] = 0x6146206e;
   resourceEntryPointer[3] = 0x64656c69;
-  *(void*2 *)(SystemCurrentNode + 4) = 0x21;
-  UnsignedStackFlag80 = 0x11;
-  if (pUnsignedStackFlag88 == (uint8_t *)0x0) {
-    UnsignedStackFlag80 = 0x11;
-    pUnsignedStackFlag88 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x13,0x13);
-    *pUnsignedStackFlag88 = 0;
+  *(void*2 *)(systemCurrentNode + 4) = 0x21;
+  stackParameterOffset = 0x11;
+  if (threadObjectPointer == (uint8_t *)0x0) {
+    stackParameterOffset = 0x11;
+    threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x13,0x13);
+    *threadObjectPointer = 0;
 LAB_180071af3:
-    allocationContext = StartSystemThread(pUnsignedStackFlag88);
-    UnsignedStackFlag78 = CONCAT44(UnsignedStackFlag78._4_4_,allocationContext);
+    memoryAllocationContext = StartSystemThread(threadObjectPointer);
+    threadHandleValue = CONCAT44(threadHandleValue._4_4_,memoryAllocationContext);
   }
-  else if (creationFlags < 0x13) {
-    UnsignedStackFlag80 = 0x11;
-    pUnsignedStackFlag88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,pUnsignedStackFlag88,0x13,0x10,0x13);
+  else if (threadCreationFlags < 0x13) {
+    stackParameterOffset = 0x11;
+    threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x13,0x10,0x13);
     goto LAB_180071af3;
   }
   *(void*2 *)(pUnsignedStackFlag88 + UnsignedStackFlag80) = 10;
