@@ -63889,7 +63889,15 @@ void SystemResourceReleaseHandler(void)
 
 
 
-void Unwind_180908d40(void)
+/**
+ * @brief 系统数据结构初始化处理器
+ * 
+ * 该函数负责初始化系统数据结构
+ * 设置系统数据结构的指针和初始状态
+ * 
+ * @return 无返回值
+ */
+void SystemDataStructureInitializationHandler(void)
 
 {
   SystemDataPointer011 = &SystemDataStructure;
