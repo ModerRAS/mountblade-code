@@ -68869,7 +68869,19 @@ void Unwind_180909550(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909560(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器并执行紧急退出检查
+ * 
+ * 该函数负责初始化系统资源处理器模板，并检查是否需要执行紧急退出
+ * 如果系统资源处理器已经初始化，则执行紧急退出程序
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会重置验证上下文中的资源处理器状态和计数器
+ * @warning 如果系统资源处理器已经初始化，会触发紧急退出程序
+ */
+void InitializeSystemResourceHandlerWithEmergencyExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x1f8) = &SystemResourceHandlerTemplate;
@@ -68885,7 +68897,19 @@ void Unwind_180909560(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909570(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 关闭二级资源管理器文件句柄并更新引用计数
+ * 
+ * 该函数负责关闭二级资源管理器的文件句柄并更新资源引用计数
+ * 确保文件资源被正确释放并且引用计数得到维护
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会检查二级资源管理器是否存在，如果存在则关闭文件并更新引用计数
+ * @warning 调用此函数会修改验证上下文中的文件句柄和全局资源引用计数
+ */
+void CloseSecondaryResourceManagerFileAndUpdateReference(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + SystemContextSecondaryResourceManagerOffset) != 0) {
@@ -69594,7 +69618,17 @@ void Unwind_1809097e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809097f0(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁互斥锁资源
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会调用MutexDestroyInPlace来销毁互斥锁
+ * @warning 调用此函数后，互斥锁将不再可用
+ */
+void DestroyMutexInPlaceFunction(void)
 
 {
   MutexDestroyInPlace();
