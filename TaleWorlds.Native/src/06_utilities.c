@@ -70400,7 +70400,7 @@ void UnlockValidationContextMutexAgain(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_180909b30(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -70414,7 +70414,7 @@ void Unwind_180909b30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909b40(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemOperationContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -70428,7 +70428,7 @@ void Unwind_180909b40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909b50(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetSystemValidationData(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x180) = &SystemDataStructure;
@@ -70437,7 +70437,7 @@ void Unwind_180909b50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909b60(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecutePrimaryResourceContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -70451,7 +70451,29 @@ void Unwind_180909b60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909b70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希模板
+ * 
+ * 该函数负责初始化系统中的资源哈希模板，设置主资源哈希表和资源相关模板
+ * 包括销毁现有的互斥锁，然后设置新的资源哈希模板、分配模板和缓存模板
+ * 
+ * @初始化过程包括：
+ * - 获取验证上下文中的资源哈希地址
+ * - 设置主资源哈希表
+ * - 销毁现有的互斥锁
+ * - 设置资源哈希模板
+ * - 设置资源分配模板
+ * - 设置资源缓存模板
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含初始化所需的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统初始化时调用，用于设置资源哈希模板
+ * @warning 调用此函数会销毁现有的互斥锁，确保在适当的时候调用
+ * @see InitializeResourceHashTable
+ * @see InitializeResourceTemplates
+ */
+void InitializeResourceHashTemplates(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashAddress;
@@ -70468,7 +70490,26 @@ void Unwind_180909b70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909b80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行次要资源上下文处理器
+ * 
+ * 该函数负责执行次要资源上下文中的处理器函数
+ * 从验证上下文中获取资源上下文，并调用相应的处理器函数
+ * 
+ * @执行过程包括：
+ * - 从验证上下文中获取次要资源上下文
+ * - 检查资源上下文是否有效
+ * - 如果有效，调用资源上下文中的处理器函数
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含执行所需的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在资源处理过程中调用，用于执行特定的资源操作
+ * @warning 如果资源上下文无效，函数将直接返回而不执行任何操作
+ * @see ExecuteResourceContextHandler
+ * @see ExecuteTertiaryResourceContextHandler
+ */
+void ExecuteSecondaryResourceContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -70482,7 +70523,7 @@ void Unwind_180909b80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909ba0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteTertiaryResourceContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
