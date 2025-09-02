@@ -10905,7 +10905,7 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t 
       PackageValidationStatusCode = ValidationFlags;
     }
     ProcessingStatusCode = ProcessConfigurationData(SystemContext, ConfigurationData, ResourceHashValidationResult, &StackBufferSize);
-    if ((ProcessingStatusCode == 0) && (ResourceContext = (int64_t *)(ResultBuffer + 8), ResourceContext != (int64_t *)0x0)) {
+    if ((ProcessingStatusCode == 0) && (ResourceContext = (int64_t *)(ResultBuffer + 8)) && (ResourceContext != (int64_t *)0x0)) {
       LinkPointer = (int64_t *)*ResourceContext;
       if (LinkPointer != ResourceContext) {
         do {
