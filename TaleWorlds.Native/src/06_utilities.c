@@ -38697,7 +38697,21 @@ void CleanupExtendedSystemResourceHandler(uint8_t ObjectContextParameter,int64_t
 
 
 
-void Unwind_180903d50(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 重置系统资源处理器
+ * 
+ * 该函数负责重置系统资源处理器的状态
+ * 清理和重置多个资源处理器的内存区域
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象相关信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作合法性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会重置多个系统资源处理器的状态
+ * @warning 如果资源处理器状态异常，会执行系统紧急退出
+ */
+void ResetSystemResourceHandlers(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
