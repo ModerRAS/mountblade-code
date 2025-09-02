@@ -26961,9 +26961,9 @@ SystemValidationCheck:
     } while (punsignedSystemValue9 != (void* *)0x0);
     if (SystemDataPointer0 != SystemDataPointer) {
       if (*(int *)(SystemDataPointer0 + 6) == 0) goto SystemValueValidation;
-      if (iStack_20 != 0) {
+      if (IntegerStack20 != 0) {
         stringPointer = (byte *)SystemDataPointer0[5];
-        localDataIndex = (long long)pbStack_28 - (long long)stringPointer;
+        localDataIndex = (long long)ByteStack28 - (long long)stringPointer;
         do {
           byteValue = *stringPointer;
           currentThreadId = (uint)stringPointer[localDataIndex];
