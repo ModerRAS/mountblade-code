@@ -2874,9 +2874,9 @@ uint8_t SystemThreadManager;                   // 系统线程管理器
 uint8_t SystemSecurityManager;                 // 系统安全管理器
 uint8_t SystemNetworkManager;                  // 系统网络管理器
 uint8_t SystemResourceReferenceCounter;       // 系统资源引用计数器
-uint8_t SystemConfigurationExtendedPrimary;  // 扩展主要系统配置项
+uint8_t SystemConfigurationExtendedPrimary;  // 扩展主要系统配置数据
 // 系统配置和资源管理变量
-uint8_t SystemConfigurationExtendedSecondary;  // 扩展次要系统配置项
+uint8_t SystemConfigurationExtendedSecondary;  // 扩展次要系统配置数据
 uint8_t SystemConfigurationExtendedTertiary;  // 扩展第三系统配置项
 uint8_t SystemConfigurationExtendedQuaternary; // 扩展第四系统配置项
 uint8_t SystemMemoryConfigAlternate;   // 系统内存备用配置
