@@ -883,9 +883,9 @@ void* SystemDataComparisonTemplateBeta;  // 系统数据比较模板Beta
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
 void* SystemDataNodeLinkageQuaternary;            // 系统数据节点链接第四表
 void* SystemDataNodeLinkageQuinary;               // 系统数据节点链接第五表
-void* SystemDataComparisonTemplateC;  // 系统数据比较模板C
-void* SystemConfigDataPointerG;        // 系统配置数据指针G
-void* SystemConfigDataPointerH;        // 系统配置数据指针H
+void* SystemDataComparisonTemplateGamma;  // 系统数据比较模板Gamma
+void* SystemConfigDataPointerGamma;        // 系统配置数据指针Gamma
+void* SystemConfigDataPointerEta;        // 系统配置数据指针Eta
 void* SystemResourceTemplate;        // 系统资源模板
 void* SystemDebugStatusFlag;  // 系统调试状态标志
 void* SystemStringBuffer;        // 系统字符串缓冲区
