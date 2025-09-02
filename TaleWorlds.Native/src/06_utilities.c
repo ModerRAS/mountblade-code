@@ -11950,7 +11950,6 @@ uint8_t GetSystemStatusCode(void)
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
 uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *ResourceHashAddress, uint8_t *ResourceDataAddress)
-
 {
   uint ResourceHashValue;
   int ExistingEntryIndex;
@@ -11979,12 +11978,12 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *Resou
       HashIndex = hashTablePointer[2];
       do {
         EntryIndex = (int64_t)ExistingEntryIndex;
-        if (*(uint *)(HashIndex + EntryIndex * 0x10) == ResourceHashValue) {
-          *(uint8_t *)(HashIndex + ResourceCleanupOffset + EntryIndex * 0x10) = *ResourceDataAddress;
+        if (*(uint *)(HashIndex + EntryIndex * HashTableEntrySize) == ResourceHashValue) {
+          *(uint8_t *)(HashIndex + ResourceCleanupOffset + EntryIndex * HashTableEntrySize) = *ResourceDataAddress;
           return 0;
         }
-        ExistingEntryIndex = *(int *)(HashIndex + 4 + EntryIndex * 0x10);
-        PreviousEntryPointer = (int *)(HashIndex + 4 + EntryIndex * 0x10);
+        ExistingEntryIndex = *(int *)(HashIndex + HashTableDataOffset + EntryIndex * HashTableEntrySize);
+        PreviousEntryPointer = (int *)(HashIndex + HashTableDataOffset + EntryIndex * HashTableEntrySize);
       } while (ExistingEntryIndex != -1);
     }
     ExistingEntryIndex = (int)hashTablePointer[4];
@@ -11992,10 +11991,10 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *Resou
       PackageValidationStatus = *ResourceDataAddress;
       ExistingEntryIndex = (int)hashTablePointer[3];
       NewCapacity = ExistingEntryIndex + 1;
-      CapacityMask = (int)*(uint *)((int64_t)hashTablePointer + 0x1c) >> ErrorResourceValidationFailed;
-      TableCapacity = (*(uint *)((int64_t)hashTablePointer + 0x1c) ^ CapacityMask) - CapacityMask;
+      CapacityMask = (int)*(uint *)((int64_t)hashTablePointer + HashTableCapacityOffset) >> ErrorResourceValidationFailed;
+      TableCapacity = (*(uint *)((int64_t)hashTablePointer + HashTableCapacityOffset) ^ CapacityMask) - CapacityMask;
       if (TableCapacity < NewCapacity) {
-        CalculatedCapacity = (int)((float)TableCapacity * 1.5);
+        CalculatedCapacity = (int)((float)TableCapacity * HashTableGrowthFactor);
         TableCapacity = NewCapacity;
         if (NewCapacity <= CalculatedCapacity) {
           TableCapacity = CalculatedCapacity;
@@ -12011,13 +12010,13 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *Resou
           return AllocationStatus;
         }
       }
-      NewEntryPointer = (uint8_t *)((int64_t)(int)hashTablePointer[3] * 0x10 + hashTablePointer[2]);
+      NewEntryPointer = (uint8_t *)((int64_t)(int)hashTablePointer[3] * HashTableEntrySize + hashTablePointer[2]);
       *NewEntryPointer = CombineHighLow32Bits(0xffffffff,ResourceHashValue);
       NewEntryPointer[1] = PackageValidationStatus;
       *(int *)(hashTablePointer + 3) = (int)hashTablePointer[3] + 1;
     }
     else {
-      FreeEntryPointer = (uint *)((int64_t)ExistingEntryIndex * 0x10 + hashTablePointer[2]);
+      FreeEntryPointer = (uint *)((int64_t)ExistingEntryIndex * HashTableEntrySize + hashTablePointer[2]);
       *(uint *)(hashTablePointer + 4) = FreeEntryPointer[1];
       FreeEntryPointer[1] = 0xffffffff;
       *FreeEntryPointer = *ResourceHashAddress;
