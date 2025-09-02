@@ -60001,7 +60001,7 @@ void CompleteSystemCleanup(void)
 void InitializeSystemDataPointer001(void)
 
 {
-  SystemDataPointer001 = &SystemDataStructure;
+  SystemDataPrimaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -60019,7 +60019,7 @@ void InitializeSystemDataPointer001(void)
 void InitializeSystemDataPointer002(void)
 
 {
-  SystemDataPointer002 = &SystemDataStructure;
+  SystemDataSecondaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -60037,7 +60037,7 @@ void InitializeSystemDataPointer002(void)
 void InitializeSystemDataPointer003(void)
 
 {
-  SystemDataPointer003 = &SystemDataStructure;
+  SystemDataTertiaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -60051,7 +60051,7 @@ void InitializeSystemDataPointer003(void)
  */
 void InitializeSystemDataPointer001(void)
 {
-  SystemDataPointer004 = &SystemDataStructure;
+  SystemDataQuaternaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -60065,7 +60065,7 @@ void InitializeSystemDataPointer001(void)
  */
 void InitializeSystemDataPointer002(void)
 {
-  SystemDataPointer005 = &SystemDataStructure;
+  SystemDataQuinaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -60079,7 +60079,7 @@ void InitializeSystemDataPointer002(void)
  */
 void InitializeSystemDataPointer003(void)
 {
-  SystemDataPointer006 = &SystemDataStructure;
+  SystemDataSenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -60094,7 +60094,7 @@ void InitializeSystemDataPointer003(void)
 void CleanupSystemDataPointerType1(void)
 
 {
-  SystemDataPointer007 = &SystemDataStructure;
+  SystemDataSeptenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -60109,7 +60109,7 @@ void CleanupSystemDataPointerType1(void)
 void CleanupSystemDataPointerType2(void)
 
 {
-  SystemDataPointer008 = &SystemDataStructure;
+  SystemDataOctonaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98633,7 +98633,7 @@ void InitializeSystemDataStructureJ(void)
 void InitializeSystemDataStructureK(void)
 
 {
-  SystemDataPointer001 = &SystemDataStructure;
+  SystemDataPrimaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98650,7 +98650,7 @@ void InitializeSystemDataStructureK(void)
 void InitializeSystemDataStructureL(void)
 
 {
-  SystemDataPointer002 = &SystemDataStructure;
+  SystemDataSecondaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98667,7 +98667,7 @@ void InitializeSystemDataStructureL(void)
 void InitializeSystemDataStructureM(void)
 
 {
-  SystemDataPointer003 = &SystemDataStructure;
+  SystemDataTertiaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98684,7 +98684,7 @@ void InitializeSystemDataStructureM(void)
 void InitializeSystemDataStructureN(void)
 
 {
-  SystemDataPointer004 = &SystemDataStructure;
+  SystemDataQuaternaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98701,7 +98701,7 @@ void InitializeSystemDataStructureN(void)
 void InitializeSystemDataStructureO(void)
 
 {
-  SystemDataPointer005 = &SystemDataStructure;
+  SystemDataQuinaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98718,7 +98718,7 @@ void InitializeSystemDataStructureO(void)
 void InitializeSystemDataStructureP(void)
 
 {
-  SystemDataPointer006 = &SystemDataStructure;
+  SystemDataSenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98735,7 +98735,7 @@ void InitializeSystemDataStructureP(void)
 void InitializeSystemDataStructureQ(void)
 
 {
-  SystemDataPointer007 = &SystemDataStructure;
+  SystemDataSeptenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98752,7 +98752,7 @@ void InitializeSystemDataStructureQ(void)
 void InitializeSystemDataStructureR(void)
 
 {
-  SystemDataPointer008 = &SystemDataStructure;
+  SystemDataOctonaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -99877,7 +99877,7 @@ void InitializeSystemDataStructureBN(void)
 void InitializeSystemDataStructureBN(void)
 
 {
-  SystemDataPointer006 = &SystemDataStructure;
+  SystemDataSenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -99897,7 +99897,7 @@ void InitializeSystemDataStructureBO(void)
 void InitializeSystemDataStructureBO(void)
 
 {
-  SystemDataPointer007 = &SystemDataStructure;
+  SystemDataSeptenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -99917,7 +99917,7 @@ void InitializeSystemDataStructureBP(void)
 void InitializeSystemDataStructureBP(void)
 
 {
-  SystemDataPointer008 = &SystemDataStructure;
+  SystemDataOctonaryPointer = &SystemDataStructure;
   return;
 }
 

@@ -51632,16 +51632,16 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   }
   InitializeSystemManager();
   SystemDataPointer = &SystemStringTemplate;
-  if (pUnsignedStackFlagA8 != (void* *)0x0) {
-    SystemDataPointer0 = pUnsignedStackFlagA8;
+  if (SystemDataBufferPointer != (void* *)0x0) {
+    SystemDataPointer = SystemDataBufferPointer;
   }
-  OutputDebugStringA(SystemDataPointer0);
+  OutputDebugStringA(SystemDataPointer);
   InitializeSystemConfiguration(ConfigurationDataPointer);
-  if ((SystemInitializationFlag != '\0') && (isByteValid5)) {
+  if ((SystemInitializationFlag != '\0') && (IsByteValidSecondary)) {
     if ((*(char *)(SystemGlobalStatusFlags + 0x25) == '\0') &&
        ((AdditionalParameter != '\0' && (*(int *)(SystemGlobalStatusFlags + 0x340) != 2)))) {
-      SystemOperationStatus1 = 1;
-      bStack_d8 = 1;
+      SystemOperationStatusPrimary = 1;
+      SystemStackByte = 1;
       goto LAB_180070230;
     }
     if (SystemDebugFlag == '\0') {
