@@ -46973,7 +46973,7 @@ void ResetSystemResourceHandlerAtOffset0xd0(uint8_t objectContext,int64_t valida
 
 
 
-void Unwind_1809051a0(uint8_t objectContext,int64_t validationContext)
+void Unwind_ValidationContextCleanup_1a0(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x58) & 4) != 0) {
@@ -46985,7 +46985,7 @@ void Unwind_1809051a0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809051d0(uint8_t objectContext,int64_t validationContext)
+void Unwind_ValidationContextCleanup_1d0(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x188) = &SystemDataStructure;
@@ -46994,7 +46994,7 @@ void Unwind_1809051d0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809051e0(uint8_t objectContext,int64_t validationContext)
+void Unwind_ValidationContextCleanup_1e0(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x1a8) = &SystemDataStructure;
@@ -47003,7 +47003,7 @@ void Unwind_1809051e0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809051f0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_ResourceHandleCleanup_1f0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
