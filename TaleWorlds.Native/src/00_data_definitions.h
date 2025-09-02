@@ -5802,14 +5802,14 @@ code_r0x0001802a16a1:
     break;
   case 0x2b:
     iStack_2c8 = param_4;
-    FUN_1802a2420(ModuleInitializationResult0,abStack_2b8,param_1,&uStackX_18);
+    ProcessModuleSystemData(ModuleInitializationResult0,abStack_2b8,param_1,&uStackX_18);
     param_2[1] = 0.0;
     param_2[2] = 0.0;
     param_2[3] = 0.0;
     *param_2 = (float)abStack_2b8[0];
     break;
   case 0x2c:
-    MemoryAllocationResult = FUN_1802a21d0(ModuleInitializationResult0,param_1,&uStackX_18);
+    MemoryAllocationResult = GetModuleMemoryAllocation(ModuleInitializationResult0,param_1,&uStackX_18);
     fVar16 = (float)MemoryAllocationResult;
 code_r0x0001802a1829:
     *param_2 = fVar16;
