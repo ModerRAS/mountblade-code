@@ -34807,18 +34807,6 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数在异常处理过程中被调用
  */
-/**
- * @brief 异常处理函数：解卷系统数据结构异常处理器
- * 
- * 该函数负责处理异常情况下的系统数据结构清理和状态恢复
- * 主要用于处理程序异常终止时的系统数据结构重置
- * 专门处理系统级数据结构的异常清理工作
- * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会重置系统数据结构并恢复系统状态
- */
 void UnwindSystemDataStructureExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x438) = &SystemDataStructure;
   return;
