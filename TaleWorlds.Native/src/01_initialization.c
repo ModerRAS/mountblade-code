@@ -65030,84 +65030,106 @@ LAB_18007eb55:
 
 
 
-code * FUN_18007eb80(long long SystemResourcePointer,char ConfigurationDataPointer)
+/**
+ * @brief 系统资源配置函数
+ * 
+ * 该函数负责配置系统资源，包括内存分配、资源链接和初始化设置
+ * 用于系统资源的动态配置和管理
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 配置结果代码指针
+ * 
+ * 原始函数名为FUN_18007eb80，现已重命名为ConfigureSystemResources
+ */
+code * ConfigureSystemResources(long long SystemResourcePointer,char ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
-  code *in_RAX;
-  void* unsignedSystemValue2;
-  code *pcVar3;
+  code *ResultCode;
+  void* AllocatedMemory;
+  code *ResourcePointer;
   long long* SystemMemoryPointer;
-  long long lStack_30;
-  uint32_t uStack_28;
-  code *pcStack_20;
-  code *pcStack_18;
+  long long LocalContext;
+  uint32_t ConfigurationFlags;
+  code *FunctionPointer1;
+  code *FunctionPointer2;
   
-  pcVar3 = (code *)(SystemResourcePointer + 0x210);
-  if (*(long long *)pcVar3 == 0) {
+  ResourcePointer = (code *)(SystemResourcePointer + 0x210);
+  if (*(long long *)ResourcePointer == 0) {
     if ((*(byte *)(SystemResourcePointer + 0xfd) & 0x20) == 0) {
-      lStack_30 = func_0x000180085de0(*(void* *)(SystemResourcePointer + 0x1b0));
-      if (lStack_30 != SystemResourcePointer) {
-        uStack_28 = 0;
-        FUN_18007f770(&lStack_30);
-        unsignedSystemValue2 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xf0,8,3);
-        unsignedSystemValue2 = FUN_18007f2f0(unsignedSystemValue2);
-        SystemResourceManagerLink(pcVar3,unsignedSystemValue2);
-        FUN_1800860f0(*(long long *)pcVar3 + 0x10,(long long)pcStack_20 + 0x10);
-        FUN_1800860f0(*(long long *)pcVar3 + 0x38,(long long)pcStack_20 + 0x38);
-        FUN_180086090(*(long long *)pcVar3 + 0x60,(long long)pcStack_20 + 0x60);
-        FUN_180085fb0(*(long long *)pcVar3 + 0x88,(long long)pcStack_20 + 0x88);
+      LocalContext = func_0x000180085de0(*(void* *)(SystemResourcePointer + 0x1b0));
+      if (LocalContext != SystemResourcePointer) {
+        ConfigurationFlags = 0;
+        FUN_18007f770(&LocalContext);
+        AllocatedMemory = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xf0,8,3);
+        AllocatedMemory = FUN_18007f2f0(AllocatedMemory);
+        SystemResourceManagerLink(ResourcePointer,AllocatedMemory);
+        FUN_1800860f0(*(long long *)ResourcePointer + 0x10,(long long)FunctionPointer1 + 0x10);
+        FUN_1800860f0(*(long long *)ResourcePointer + 0x38,(long long)FunctionPointer1 + 0x38);
+        FUN_180086090(*(long long *)ResourcePointer + 0x60,(long long)FunctionPointer1 + 0x60);
+        FUN_180085fb0(*(long long *)ResourcePointer + 0x88,(long long)FunctionPointer1 + 0x88);
         if (ConfigurationDataPointer != '\0') {
           *(byte *)(SystemResourcePointer + 0xfd) = *(byte *)(SystemResourcePointer + 0xfd) | 0x40;
-          FUN_180085ec0(*(long long *)pcVar3 + 200,(long long)pcStack_20 + 200);
-          FUN_180085680(*(long long *)pcVar3 + 0xb0,(long long)pcStack_20 + 0xb0);
+          FUN_180085ec0(*(long long *)ResourcePointer + 200,(long long)FunctionPointer1 + 200);
+          FUN_180085680(*(long long *)ResourcePointer + 0xb0,(long long)FunctionPointer1 + 0xb0);
         }
-        pcVar3 = (code *)FUN_18007f840(&lStack_30);
-        return pcVar3;
+        ResultCode = (code *)FUN_18007f840(&LocalContext);
+        return ResultCode;
       }
     }
     if (*(long long *)(SystemResourcePointer + 0xa8) == 0) {
       if ((*(byte *)(SystemResourcePointer + 0xfd) & 4) != 0) {
-        unsignedSystemValue2 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xf0,8,3);
-        plocalBufferAddress = (long long *)FUN_18007f2f0(unsignedSystemValue2);
-        pcStack_18 = (code *)0xfffffffffffffffe;
-        if (plocalBufferAddress != (long long *)0x0) {
-          (**(code **)(*plocalBufferAddress + 0x28))(plocalBufferAddress);
+        AllocatedMemory = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xf0,8,3);
+        PrimaryResourcePointer = (long long *)FUN_18007f2f0(AllocatedMemory);
+        FunctionPointer2 = (code *)0xfffffffffffffffe;
+        if (PrimaryResourcePointer != (long long *)0x0) {
+          (**(code **)(*PrimaryResourcePointer + 0x28))(PrimaryResourcePointer);
         }
-        PrimaryResourcePointer = *(long long **)pcVar3;
-        *(long long **)pcVar3 = plocalBufferAddress;
+        PrimaryResourcePointer = *(long long **)ResourcePointer;
+        *(long long **)ResourcePointer = PrimaryResourcePointer;
         if (PrimaryResourcePointer != (long long *)0x0) {
           (**(code **)(*PrimaryResourcePointer + 0x38))();
         }
-        return pcVar3;
+        return ResourcePointer;
       }
       FUN_1806272a0(&UNK_1809ffbe0);
-      in_RAX = (code *)FUN_180626f80(&UNK_1809ffab0);
+      ResultCode = (code *)FUN_180626f80(&UNK_1809ffab0);
     }
     else {
-      plocalBufferAddress = *(long long **)(*(long long *)(SystemResourcePointer + 0xa8) + 0x88);
-      pcStack_20 = (code *)&UNK_180083070;
-      pcStack_18 = FUN_180082fd0;
-      lStack_30 = SystemResourcePointer;
-      (**(code **)(*plocalBufferAddress + 0x60))(plocalBufferAddress,&GAME_CORE_SYSTEM_ID,SystemResourcePointer + 0xb8,0,&lStack_30);
-      in_RAX = pcStack_20;
-      if (pcStack_20 != (code *)0x0) {
-        pcVar3 = (code *)(*pcStack_20)(&lStack_30,0,0);
-        return pcVar3;
+      PrimaryResourcePointer = *(long long **)(*(long long *)(SystemResourcePointer + 0xa8) + 0x88);
+      FunctionPointer1 = (code *)&UNK_180083070;
+      FunctionPointer2 = FUN_180082fd0;
+      LocalContext = SystemResourcePointer;
+      (**(code **)(*PrimaryResourcePointer + 0x60))(PrimaryResourcePointer,&GAME_CORE_SYSTEM_ID,SystemResourcePointer + 0xb8,0,&LocalContext);
+      ResultCode = FunctionPointer1;
+      if (FunctionPointer1 != (code *)0x0) {
+        ResourcePointer = (code *)(*FunctionPointer1)(&LocalContext,0,0);
+        return ResourcePointer;
       }
     }
   }
-  return in_RAX;
+  return ResultCode;
 }
 
 
 
 
-// 函数: void FUN_18007edd0(long long SystemResourcePointer,char ConfigurationDataPointer)
-void FUN_18007edd0(long long SystemResourcePointer,char ConfigurationDataPointer)
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，包括内存释放和状态重置
+ * 用于系统资源的清理和释放操作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为FUN_18007edd0，现已重命名为CleanupSystemResources
+ */
+void CleanupSystemResources(long long SystemResourcePointer,char ConfigurationDataPointer)
 
 {
-  long long *PrimaryResourcePointer;
+  long long *ResourceToRelease;
   
   if (*(long long *)(SystemResourcePointer + 0x210) != 0) {
     FUN_1800791a0();

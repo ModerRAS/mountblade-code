@@ -20974,9 +20974,9 @@ uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
   pResourceCounter = (uint32_t *)AllocateMemoryBlock();
   SecurityHashValue = 0;
   ResourceLowByteFlag = *pResourceCounter;
-  uStack_74 = pResourceCounter[1];
+  ResourceCounterPrimary = pResourceCounter[1];
   ResourceMidByteFlag = pResourceCounter[2];
-  uStack_6c = pResourceCounter[3];
+  ResourceCounterSecondary = pResourceCounter[3];
   ResourceContextOffset = 0;
   if (*(uint *)(resourceData + 8) < 0x6d) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
@@ -20985,11 +20985,11 @@ uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
       if ((int)SecurityHashValue != 0) {
         return SecurityHashValue;
       }
-      SecurityHashValue = ReadResourceData(resourceHash,&uStack_74,2);
+      SecurityHashValue = ReadResourceData(resourceHash,&ResourceCounterPrimary,2);
       if ((int)SecurityHashValue != 0) {
         return SecurityHashValue;
       }
-      SecurityHashValue = ReadResourceData(resourceHash,(int64_t)&uStack_74 + 2,2);
+      SecurityHashValue = ReadResourceData(resourceHash,(int64_t)&ResourceCounterPrimary + 2,2);
       if ((int)SecurityHashValue != 0) {
         return SecurityHashValue;
       }
@@ -25958,11 +25958,11 @@ uint64_t ProcessComplexResourceOperations(int64_t objectContext,uint8_t *validat
         if ((int)loopCondition != 0) {
           return loopCondition;
         }
-        loopIncrement = ReadResourceData(ResourceValidationResult,&uStack_74,2);
+        loopIncrement = ReadResourceData(ResourceValidationResult,&ResourceCounterPrimary,2);
         if ((int)loopCondition != 0) {
           return loopCondition;
         }
-        loopIncrement = ReadResourceData(ResourceValidationResult,(int64_t)&uStack_74 + 2,2);
+        loopIncrement = ReadResourceData(ResourceValidationResult,(int64_t)&ResourceCounterPrimary + 2,2);
         if ((int)loopCondition != 0) {
           return loopCondition;
         }
@@ -26414,7 +26414,7 @@ ContextValidationCheck:
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         ValidationSuccess = validationStatusCode == 0;
         if (ValidationSuccess) {
-          if ((uint64_t)presourceTable[2] < (uint64_t)uStack_a4 + 1) {
+          if ((uint64_t)presourceTable[2] < (uint64_t)ResourceAccessIndex + 1) {
             validationStatusCode = 0x11;
             goto ResourceAccessCheck;
           }
@@ -26448,12 +26448,12 @@ MemoryBoundaryCheck1:
         ResourceAccessIndex = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck1;
+          if ((uint64_t)ResourceAccessIndex + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck1;
           validationStatusCode = 0x11;
         }
       }
       if (validationStatusCode == 0) {
-        aSecurityValidationContext[0] = CONCAT31(aSecurityValidationContext[0]._1_3_,acStack_a8[0] != '\0');
+        aSecurityValidationContext[0] = CONCAT31(aSecurityValidationContext[0]._1_3_,ResourceValidationBuffer[0] != '\0');
       }
       loopIncrement = (uint64_t)ValidationResult;
       if (validationStatusCode == 0) {
@@ -26482,12 +26482,12 @@ MemoryBoundaryCheck2:
         ResourceAccessIndex = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck2;
+          if ((uint64_t)ResourceAccessIndex + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck2;
           validationStatusCode = 0x11;
         }
       }
       if (validationStatusCode == 0) {
-        cStackX_20 = acStack_a8[0] != '\0';
+        cStackX_20 = ResourceValidationBuffer[0] != '\0';
       }
       loopIncrement = (uint64_t)ValidationResult;
       if (validationStatusCode == 0) {
@@ -26516,11 +26516,11 @@ MemoryBoundaryCheck3:
         ResourceAccessIndex = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck3;
+          if ((uint64_t)ResourceAccessIndex + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck3;
           validationStatusCode = 0x11;
         }
       }
-      OperationCompleted = validationStatusCode == 0 && acStack_a8[0] != '\0';
+      OperationCompleted = validationStatusCode == 0 && ResourceValidationBuffer[0] != '\0';
       loopIncrement = (uint64_t)ValidationResult;
       if (validationStatusCode == 0) {
         loopIncrement = 0;
@@ -26548,12 +26548,12 @@ MemoryBoundaryCheck4:
         ResourceAccessIndex = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck4;
+          if ((uint64_t)ResourceAccessIndex + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck4;
           validationStatusCode = 0x11;
         }
       }
       if (validationStatusCode == 0) {
-        OperationCompleted = acStack_a8[0] != '\0';
+        OperationCompleted = ResourceValidationBuffer[0] != '\0';
       }
       loopIncrement = (uint64_t)ValidationResult;
       if (validationStatusCode == 0) {
@@ -27865,9 +27865,9 @@ uint64_t ValidateResourceDataIntegrity(int64_t objectContext,uint8_t *validation
   uint ResourceHash;
   uint64_t ResourceValidationResult;
   uint8_t aResourceMidByteFlag [64];
-  uint8_t auStack_30 [40];
+  uint8_t ResourceValidationHashBuffer [40];
   
-  validationResult = CalculateDataChecksum(validationContext,auStack_30,1,0x5453494c,CleanupOption);
+  validationResult = CalculateDataChecksum(validationContext,ResourceValidationHashBuffer,1,0x5453494c,CleanupOption);
   if (((int)validationResult == 0) && (validationResult = CalculateDataChecksum(validationContext,aResourceMidByteFlag,0,CleanupFlag,0), (int)validationResult == 0))
   {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
