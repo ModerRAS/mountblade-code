@@ -5196,10 +5196,10 @@ uint64_t HandleResourceOperation(int64_t resourceHandle)
   if (ValidatedContextPointer == 0) {
     ResourceContextPointer = 0;
   }
-  if (*(int64_t *)(ResourceContextPointer + 0x10) == 0) {
+  if (*(int64_t *)(ResourceContextPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ResourceContextPointer + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ResourceContextPointer + ObjectContextOffset),1);
 }
 
 
@@ -5222,10 +5222,10 @@ uint32_t ProcessResourceTask(void)
   if (SystemTaskContext == 0) {
     SystemContextPointer = 0;
   }
-  if (*(int64_t *)(SystemContextPointer + 0x10) == 0) {
+  if (*(int64_t *)(SystemContextPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + ObjectContextOffset),1);
 }
 
 
@@ -67337,7 +67337,7 @@ void ExecuteResourceHashValidationAndIndexManagement(uint8_t ObjectContext, int6
 
 
 
-void Unwind_1809090a0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupPhase1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -67392,7 +67392,7 @@ void Unwind_1809090a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809090b0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupPhase2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -67428,7 +67428,7 @@ void Unwind_1809090b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809090d0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupPhase3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67442,7 +67442,7 @@ void Unwind_1809090d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809090f0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupPhase4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67456,7 +67456,7 @@ void Unwind_1809090f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909110(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupPhase5(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67470,7 +67470,7 @@ void Unwind_180909110(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909130(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupPhase6(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67484,7 +67484,7 @@ void Unwind_180909130(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909150(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupPhase7(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67498,7 +67498,7 @@ void Unwind_180909150(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909170(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupPhase8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67512,7 +67512,7 @@ void Unwind_180909170(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909190(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupPhase9(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67904,7 +67904,7 @@ void UnwindSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_180909330(void)
+void DestroyMutexInSitu(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -67913,7 +67913,7 @@ void Unwind_180909330(void)
 
 
 
-void Unwind_180909340(void)
+void DestroyMutexInSituExtended(void)
 
 {
   _Mtx_destroy_in_situ();

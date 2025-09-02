@@ -40536,7 +40536,7 @@ ResourceAccessValidation:
                  (((systemOperationFlags & 0xffffffffffffffe0) - **(long long **)(plocalSystemPointer[3] + plocalSystemPointer[1] * 8) >> 5)
                   + plocalSystemPointer[1] & *plocalSystemPointer - 1U) * 8) + 8);
     }
-    else if (resourceCounter == 0) goto LAB_1800604d1;
+    else if (resourceCounter == 0) goto ResourceAccessValidation;
     plocalSystemPointer = *(long long **)(resourceCounter + (ulong long)((uint)systemOperationFlags & 0x1f) * 8);
     if (plocalSystemPointer != (long long *)0x0) {
       (**(code **)(*plocalSystemPointer + 0x38))();
@@ -40745,14 +40745,14 @@ void InitializeSystemResource(long long *SystemResourceManager)
           uStackX_8 = 0x32;
           ProcessSystemTimestampHandler(SystemResourceManager + 0x2a,&SystemResourceManager20,&uStackX_8);
           *(uint8_t *)(SystemResourceManager + 0x3d) = 0;
-          if (SystemFlag18 == '\0') goto LAB_1800607cc;
+          if (SystemFlag18 == '\0') goto SystemFlagCheckComplete;
         }
         systemCounter = _Mtx_unlock(SystemResourceManager20);
         if (systemCounter != 0) {
           __Throw_C_error_std__YAXH_Z(systemCounter);
         }
       }
-LAB_1800607cc:
+SystemFlagCheckComplete:
     } while ((char)SystemResourceManager[0xb] != '\0');
   }
   return;
@@ -40833,7 +40833,7 @@ void* ProcessSystemResourceAllocationRequest(long long SystemResourceManager,cha
         *(int *)(SystemResourceManager + 0x140) = *(int *)(SystemResourceManager + 0x140) + -1;
         UNLOCK();
         SystemResourceAddress = 1;
-        goto LAB_180060993;
+        goto ResourceCleanupComplete;
       }
     }
   }
