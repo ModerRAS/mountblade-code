@@ -12973,6 +12973,7 @@ void ProcessComplexResourceWithRegisters(void)
   int validationErrorCode;
   uint32_t stackValidationFlags;
   float stackResourceValue;
+  int64_t SystemResourceContext;
   
   if (((systemFlag1 != '\0') || (*(int *)(*(int64_t *)(systemRegister3 + 0x2e8) + 0x34) == systemRegister2)) &&
      (operationResult = ProcessResourceOperation(), operationResult == 0)) {
@@ -45145,7 +45146,17 @@ void ManageException(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904db0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 设置验证上下文中0x50偏移位置的资源哈希表004
+ * 
+ * 该函数负责设置验证上下文中0x50偏移位置的指针指向资源哈希表004
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @return 无返回值
+ * @note 此函数会将指定位置的指针设置为资源哈希表004
+ */
+void SetResourceHashTable004AtOffset50(uint8_t objectContext,int64_t validationContext)
 
 {
   **(uint8_t **)(validationContext + 0x50) = &ResourceHashTable004;
@@ -45154,7 +45165,18 @@ void Unwind_180904db0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904dc0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 执行验证上下文中0x50偏移位置的函数回调
+ * 
+ * 该函数负责执行验证上下文中0x50偏移位置的函数回调
+ * 如果指针不为空，则调用相应的函数
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含函数指针的位置信息
+ * @return 无返回值
+ * @note 此函数会调用指定位置的函数回调
+ */
+void ExecuteFunctionCallbackAtOffset50(uint8_t objectContext,int64_t validationContext)
 
 {
   if (*(int64_t **)(validationContext + 0x50) != (int64_t *)0x0) {
@@ -45165,7 +45187,19 @@ void Unwind_180904dc0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904dd0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 初始化系统资源处理器A和B
+ * 
+ * 该函数负责初始化系统资源处理器A和B，设置资源处理器的配置
+ * 执行系统内存清理和资源处理器的初始化操作
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @return 无返回值
+ * @note 此函数会初始化系统资源处理器A和B
+ * @warning 调用此函数后，系统资源处理器将被初始化
+ */
+void InitializeSystemResourceHandlersAB(uint8_t objectContext,int64_t validationContext)
 
 {
   uint8_t *presourceHash;
