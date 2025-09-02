@@ -6037,16 +6037,16 @@ void ProcessObjectStateAndSchedule(int64_t ObjectContext, int64_t SchedulerConte
  * @param ObjectContext 对象上下文指针，包含对象的标识符和属性信息
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  */
-void InitializeObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedulerContext)
+void InitializeObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
-  int InitializationStatus;
-  int64_t PropertyBuffer;
+  int PropertyInitializationStatus;
+  int64_t ObjectPropertyBuffer;
   
-  InitializationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&PropertyBuffer);
-  if (InitializationStatus == 0) {
-    *(uint32_t *)(ObjectContext + 0x18) = *(uint32_t *)(PropertyBuffer + 0x30);
-    *(uint32_t *)(ObjectContext + 0x1c) = *(uint32_t *)(PropertyBuffer + 0x34);
+  PropertyInitializationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ObjectPropertyBuffer);
+  if (PropertyInitializationStatus == 0) {
+    *(uint32_t *)(ObjectContext + 0x18) = *(uint32_t *)(ObjectPropertyBuffer + 0x30);
+    *(uint32_t *)(ObjectContext + 0x1c) = *(uint32_t *)(ObjectPropertyBuffer + 0x34);
     CleanupSystemContextData(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
   }
   return;
