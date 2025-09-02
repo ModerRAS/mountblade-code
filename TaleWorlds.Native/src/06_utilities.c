@@ -47318,7 +47318,21 @@ void ResetMemoryManagerSystemDataPointer(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_SystemCleanup_ThreadManager(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理线程管理器的资源和验证结果
+ * 
+ * 该函数负责清理线程管理器中的资源句柄和相关的哈希验证结果
+ * 遍历验证结果数组，调用相应的线程清理函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @return 无返回值
+ * @note 此函数在线程管理器清理过程中调用
+ * @warning 调用此函数前必须确保所有线程已停止工作
+ */
+void CleanupThreadManagerResources(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -47339,7 +47353,19 @@ void Unwind_SystemCleanup_ThreadManager(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_SystemCleanup_NetworkManager(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理网络管理器的资源和连接
+ * 
+ * 该函数负责清理网络管理器中的资源句柄和网络连接
+ * 释放网络资源，确保网络连接正确关闭
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在网络管理器清理过程中调用
+ * @warning 调用此函数前必须确保所有网络连接已关闭
+ */
+void CleanupNetworkManagerResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
