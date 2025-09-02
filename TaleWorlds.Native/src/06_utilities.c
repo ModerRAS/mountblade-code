@@ -13274,7 +13274,7 @@ int ProcessDataBlockOperationWithExtendedValidator(int64_t DataContext, int64_t 
  * @param validationFlag 验证标志
  * @return 处理结果状态码
  */
-int ProcessDataBlockOperationWithSimplifiedValidator(int64_t ObjectContext,int64_t ValidationContext,int validationFlag)
+int ProcessDataBlockOperationWithSimplifiedValidator(int64_t DataContext, int64_t ValidationContext, int ValidationFlag)
 
 {
   uint32_t ResourceHash;
@@ -13287,16 +13287,16 @@ int ProcessDataBlockOperationWithSimplifiedValidator(int64_t ObjectContext,int64
   int TotalProcessingResult;
   int DataValidationResult;
   
-  ResourceHash = *(uint32_t *)(ObjectContext + ObjectContextValidationParamOffset);
-  DataSize = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-  FirstStringProcessingResult = ProcessStringOperation(ValidationContext,validationFlag,&StringProcessingTemplate);
-  SecondStringProcessingResult = ProcessStringOperation(FirstStringProcessingResult + ValidationContext,validationFlag - FirstStringProcessingResult,&StringProcessingTemplate);
+  ResourceHash = *(uint32_t *)(DataContext + ObjectContextValidationParamOffset);
+  DataSize = *(uint32_t *)(DataContext + ObjectContextValidationDataOffset);
+  FirstStringProcessingResult = ProcessStringOperation(ValidationContext, ValidationFlag, &StringProcessingTemplate);
+  SecondStringProcessingResult = ProcessStringOperation(FirstStringProcessingResult + ValidationContext, ValidationFlag - FirstStringProcessingResult, &StringProcessingTemplate);
   TotalProcessingResult = FirstStringProcessingResult + SecondStringProcessingResult;
-  DataParsingResult = ParseDataContent(TotalProcessingResult + ValidationContext,validationFlag - TotalProcessingResult,DataHashValidationResult);
+  DataParsingResult = ParseDataContent(TotalProcessingResult + ValidationContext, ValidationFlag - TotalProcessingResult, DataHashValidationResult);
   TotalProcessingResult = TotalProcessingResult + DataParsingResult;
-  ThirdStringProcessingResult = ProcessStringOperation(TotalProcessingResult + ValidationContext,validationFlag - TotalProcessingResult,&StringProcessingTemplate);
+  ThirdStringProcessingResult = ProcessStringOperation(TotalProcessingResult + ValidationContext, ValidationFlag - TotalProcessingResult, &StringProcessingTemplate);
   TotalProcessingResult = TotalProcessingResult + ThirdStringProcessingResult;
-  DataValidationResult = ValidateDataFormat(TotalProcessingResult + ValidationContext,validationFlag - TotalProcessingResult,ResourceHash);
+  DataValidationResult = ValidateDataFormat(TotalProcessingResult + ValidationContext, ValidationFlag - TotalProcessingResult, ResourceHash);
   return DataHashValidationResult + TotalProcessingResult;
 }
 
@@ -13332,17 +13332,15 @@ uint8_t ValidateAndGetBufferContext(int64_t ObjectContext,uint8_t ValidationCont
 
 
 
- void ProcessComplexResourceOperation(uint8_t ObjectContext,int64_t ValidationContext,uint operationFlags,char operationType)
-void ProcessComplexResourceOperation(uint8_t ObjectContext,int64_t ValidationContext,uint operationFlags,char operationType)
+ void ProcessComplexResourceOperation(uint8_t ResourceContext, int64_t ValidationContext, uint OperationFlags, char OperationType)
 
 {
-  int64_t loopCounter;
+  int64_t LoopCounter;
   int64_t ResourceTable;
   int PackageValidationStatusCode;
   int ResultRecordIndex;
   int TableEntryIndex;
   uint8_t **ContextHashValidationResultAddress;
-  int PackageValidationStatusCode;
   uint8_t GraphicsDataBuffer [32];
   uint32_t GraphicsDataFlag;
   float GraphicsTransformMatrix [3];
@@ -34980,9 +34978,9 @@ void ReleaseStreamResourceLock(uint8_t ObjectContext,int64_t ValidationContext,u
 void UnwindContextResetHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t iterationCount;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  iterationCount = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 0x918) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x920) != 0) {
           ExecuteSystemEmergencyExit();
@@ -34998,13 +34996,13 @@ void UnwindContextResetHandler(uint8_t ObjectContext,int64_t ValidationContext)
 void HandleFileStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  uint8_t *ResourceHashAddress;
+  uint8_t *ResourceHashPointer;
   
-  ResourceHashAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x948);
-  if (ResourceHashAddress != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x938,*ResourceHashAddress,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-    ResetSystemState(ResourceHashAddress);
-          ReleaseResourceHandle(ResourceHashAddress);
+  ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x948);
+  if (ResourceHashPointer != (uint8_t *)0x0) {
+    HandleResourceAllocation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x938,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ResetSystemState(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }

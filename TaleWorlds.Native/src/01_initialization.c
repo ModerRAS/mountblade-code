@@ -57810,7 +57810,7 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
       }
     }
     else if ((char)ConfigurationDataPointer[2] != '\0') {
-      FUN_18007b1e0(SystemResourceManager,0);
+      ReleaseSystemResourceManager(SystemResourceManager,0);
     }
   }
   if ((*(byte *)(ConfigurationDataPointer + 1) & 0x10) == 0) {
@@ -58441,7 +58441,7 @@ FUN_180077ef9:
 LAB_180077879:
     SystemOperationResult1 = func_0x0001800854e0(SystemResourceManager);
     if ((SystemOperationResult1 == '\0') || (ConfigurationFlag == 0)) {
-      FUN_18007b1e0(SystemResourceManager,0);
+      ReleaseSystemResourceManager(SystemResourceManager,0);
       if ((*(byte *)(SystemResourceManager + 0xfe) & 4) == 0) {
         ConfigurationData = ConfigureSystemResourceManagerExtended(SystemResourceManager,ConfigurationDataPointer);
         OperationCompleteFlag = (char)ConfigurationData << 2;
@@ -58479,7 +58479,7 @@ LAB_180077879:
           AdditionalParameter = FloatPointer1;
           if (((byte)(ResourceHash >> 0x19) & 1) != 0) {
             if ((*(uint *)(SystemResourceManager + 0x100) & 0x800) != 0) {
-              FUN_18007ee70(SystemResourceManager);
+              CleanupSystemResourceManagerData(SystemResourceManager);
             }
             StackValue3 = SystemDataMemoryContext + 0x5868;
             HashNodeData = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0x6a78) * 0x908 + StackValue3);
