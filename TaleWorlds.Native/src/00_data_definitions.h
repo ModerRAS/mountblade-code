@@ -4988,14 +4988,14 @@ Label_1800d37d8:
   *(uint *)(SystemConfigurationData + 0x1614) =
        (*(int *)(SystemConfigurationData + 0x1614) + 1U) % *(uint *)(SystemMemoryPoolConfig + 0x1d4c);
 Label_1800d3d65:
-  pplStack_220 = (longlong **)&StackBufferPointer6;
+  StackPointerArray = (longlong **)&StackBufferPointer6;
   StackBufferPointer6 = &SystemMemoryConfigTemplate;
   StackBufferPointer7 = aStackCounter50;
   StackCounter58 = 0;
   aStackCounter50[0] = 0;
   uStack_100 = 0x19;
   uStack_f8 = param_2;
-  pplStack_220 = (longlong **)AllocateSystemMemory(SystemMemoryAllocator,32,8,3);
+  StackPointerArray = (longlong **)AllocateSystemMemory(SystemMemoryAllocator,32,8,3);
   *pplStack_220 = (longlong *)&SystemBufferTemplate;
   pplStack_220[1] = (longlong *)0x0;
   *(uint32_t *)(pplStack_220 + 2) = 0;
