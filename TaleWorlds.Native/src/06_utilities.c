@@ -47651,11 +47651,25 @@ void ExecuteSystemCleanupCallback(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void Unwind_1809053e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理上下文备用处理器函数
+ * 
+ * 该函数负责清理上下文备用处理器，执行必要的清理操作。
+ * 主要用于系统资源清理和上下文备用处理器的管理。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用上下文中注册的备用处理器清理函数
+ * @warning 调用此函数前必须确保上下文备用处理器已正确初始化
+ */
+void CleanupContextAlternateHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  if (*(code **)(ValidationContext + 0x50) != (code *)0x0) {
-    (**(code **)(ValidationContext + 0x50))(ValidationContext + 0x40,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(CodeFunctionPointer **)(ValidationContext + 0x50) != (CodeFunctionPointer *)0x0) {
+    (**(CodeFunctionPointer **)(ValidationContext + 0x50))(ValidationContext + 0x40, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
