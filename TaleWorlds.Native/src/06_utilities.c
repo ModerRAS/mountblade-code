@@ -80000,6 +80000,15 @@ void Unwind_18090ef20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 清理资源上下文
+ * 
+ * 该函数在异常处理过程中被调用，用于清理资源上下文
+ * 确保资源被正确释放，避免内存泄漏
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
 void Unwind_ResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -80014,7 +80023,16 @@ void Unwind_ResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_18090ef50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希值
+ * 
+ * 该函数在异常处理过程中被调用，用于验证资源哈希值
+ * 确保资源的完整性和正确性
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void Unwind_ResourceHashValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
