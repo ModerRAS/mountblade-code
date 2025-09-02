@@ -3015,30 +3015,30 @@ uint8_t LogConfigurationManager;
  * 控制哪些级别的日志消息会被记录
  */
 void SetLogLevel(void);
-uint8_t LogLevelConfigurationData;
-uint8_t LogOutputConfigurationData;
-uint8_t LogMessageQueueData;
-uint8_t LogMessageBufferData;
-uint8_t LogMessageFilterData;
-uint8_t LogMessageFormatterData;
-uint8_t LogMessageHandlerData;
-uint8_t LogSystemTimestampData;
-uint8_t LogMemoryPoolData;
-uint8_t LogSystemThreadData;
-int64_t PerformanceCounterValue;
-uint ConfigurationVersion;
-double TimingData;
-double FrequencyData;
-int StatusFlags;
-double PerformanceMetrics;
-uint8_t MemoryAllocatorState;
-uint8_t MemoryManagerState;
-uint8_t ResourcePoolState;
-uint8_t ResourceManagerState;
-uint8_t ThreadManagerState;
-uint8_t TaskSchedulerState;
-uint8_t EventSystemState;
-uint8_t TimerManagerState;
+uint8_t LogLevelConfigurationManager;
+uint8_t LogOutputConfigurationManager;
+uint8_t LogMessageQueueManager;
+uint8_t LogMessageBufferManager;
+uint8_t LogMessageFilterManager;
+uint8_t LogMessageFormatterManager;
+uint8_t LogMessageHandlerManager;
+uint8_t LogSystemTimestampManager;
+uint8_t LogMemoryPoolManager;
+uint8_t LogSystemThreadManager;
+int64_t SystemPerformanceCounter;
+uint SystemConfigurationVersion;
+double SystemTimingData;
+double SystemFrequencyData;
+int SystemStatusFlags;
+double SystemPerformanceMetrics;
+uint8_t MemoryAllocatorStatus;
+uint8_t MemoryManagerStatus;
+uint8_t ResourcePoolStatus;
+uint8_t ResourceManagerStatus;
+uint8_t ThreadManagerStatus;
+uint8_t TaskSchedulerStatus;
+uint8_t EventSystemStatus;
+uint8_t TimerManagerStatus;
 uint8_t LockManagerData;
 uint8_t SemaphoreManagerData;
 uint8_t MutexManagerData;
@@ -46166,7 +46166,7 @@ void SetResourceHashTablePrimaryAtOffset50(uint8_t ObjectContext,int64_t Validat
  * @return 无返回值
  * @note 此函数会调用指定位置的函数回调
  */
-void ExecuteFunctionCallbackAtOffset50(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteFunctionCallbackPrimaryAtOffset50(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x50) != (int64_t *)0x0) {
