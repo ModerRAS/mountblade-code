@@ -35087,27 +35087,27 @@ void InitializeAndCleanupSystemResource(void* *systemResourceManager)
     systemOperationStatus = systemResourceManager[4];
   }
   resourceAddress = resourceAllocationContext;
-  if (SystemOperationStatus != 0) {
+  if (systemOperationStatus != 0) {
     do {
-      *(uint8_t *)(resourceAddress + 0x141 + SystemResourceManager[3]) = 0;
+      *(uint8_t *)(resourceAddress + 0x141 + systemResourceManager[3]) = 0;
       resourceAllocationContext = resourceAllocationContext + 1;
       resourceAddress = resourceAddress + 0x148;
-    } while (resourceAllocationContext < (ulong long)SystemResourceManager[4]);
+    } while (resourceAllocationContext < (ulong long)systemResourceManager[4]);
   }
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(SystemResourceManager + 0x56,2);
-  SystemResourceManager[0x60] = 0;
-  SystemResourceManager[0x61] = 0;
-  SystemResourceManager[0x62] = 0;
-  *(uint32_t *)(SystemResourceManager + 99) = 3;
-  SystemResourceManager[0x65] = 0;
-  *(uint32_t *)(SystemResourceManager + 0x6a) = 0x3f800000;
-  *(void* *)((long long)SystemResourceManager + 0x354) = 0x40000000;
-  *(uint32_t *)((long long)SystemResourceManager + 0x35c) = 3;
-  SystemResourceManager[0x68] = 1;
-  SystemResourceManager[0x67] = &SystemNullPointer;
-  SystemResourceManager[0x69] = 0;
-  *(uint32_t *)(SystemResourceManager + 0x6b) = 0;
+  _Mtx_init_in_situ(systemResourceManager + 0x56,2);
+  systemResourceManager[0x60] = 0;
+  systemResourceManager[0x61] = 0;
+  systemResourceManager[0x62] = 0;
+  *(uint32_t *)(systemResourceManager + 99) = 3;
+  systemResourceManager[0x65] = 0;
+  *(uint32_t *)(systemResourceManager + 0x6a) = 0x3f800000;
+  *(void* *)((long long)systemResourceManager + 0x354) = 0x40000000;
+  *(uint32_t *)((long long)systemResourceManager + 0x35c) = 3;
+  systemResourceManager[0x68] = 1;
+  systemResourceManager[0x67] = &SystemNullPointer;
+  systemResourceManager[0x69] = 0;
+  *(uint32_t *)(systemResourceManager + 0x6b) = 0;
   resourceCreationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xc0,8,4);
     memset(resourceCreationFlags,0,0xc0);
 }
