@@ -323,16 +323,6 @@ void* ThreadSynchronizationExecutionContext;
  * @note 此函数会释放所有系统句柄占用的资源
  * @warning 调用此函数后，所有系统句柄将失效
  */
-/**
- * @brief 关闭系统句柄
- * 
- * 该函数负责关闭系统运行过程中打开的各种句柄
- * 释放系统资源，清理相关状态
- * 
- * @return 无返回值
- * @note 此函数会关闭所有系统句柄
- * @warning 调用此函数后，系统句柄将无法再使用
- */
 void CloseSystemHandle(void);
 
  /**
