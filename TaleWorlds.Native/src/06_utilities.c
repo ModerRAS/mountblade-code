@@ -38407,7 +38407,7 @@ void ProcessSystemResourceCleanupTertiary(uint8_t ObjectContext,int64_t Validati
  * @param CleanupFlag 清理标志
  * @return 无返回值
  */
-void ProcessSystemResourceCleanup4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessSystemResourceCleanupPhaseFour(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38449,7 +38449,7 @@ void ProcessSystemResourceCleanup4(uint8_t ObjectContext,int64_t ValidationConte
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourcesPhase1(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourcesPhaseOne(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38491,7 +38491,7 @@ void CleanupSystemResourcesPhase1(uint8_t ObjectContext, int64_t ValidationConte
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourcesPhase2(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourcesPhaseTwo(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -65583,7 +65583,17 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_180908bb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源管理器清理处理器
+ * 
+ * 该函数负责执行系统资源管理器的清理操作，处理资源管理器相关的异常情况
+ * 
+ * @param ObjectContext 对象上下文，包含资源管理器处理的对象信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908bb0
+ */
+void ExecuteSystemResourceManagerCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x1b0) != (int64_t *)0x0) {
