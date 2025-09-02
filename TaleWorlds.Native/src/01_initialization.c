@@ -46988,7 +46988,7 @@ void* FUN_180069fe0(void* ResourceManagerPointer,ulong long ConfigurationDataPoi
   void* systemStatus;
   
   systemStatus = 0xfffffffffffffffe;
-  FUN_1801570c0();
+  InitializeSystemResourceHandler();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(ResourceManagerPointer,0x260,AdditionalParameter,ConfigurationFlag,systemStatus);
   }
@@ -47107,7 +47107,7 @@ void InitializeSystemResources(long long ResourceManagerPointer)
   *(void* *)(SystemMemoryBlockTertiary + 0x10) = 0;
   *(void* *)(SystemMemoryBlockTertiary + 0x18) = 0;
   *(uint32_t *)(SystemMemoryBlockTertiary + 0x20) = 3;
-  FUN_180162600();
+  ConfigureSystemMemoryAllocator();
   SystemTablePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x478,8,3);
   *SystemTablePointer = 0;
   SystemTablePointer[1] = 0;
