@@ -23015,7 +23015,7 @@ void InitializeSystemThreadPoolManager(void)
   void* *pointerUnsigned38;
   uint8_t *pointerUnsigned30;
   uint32_t EncryptionKeyValue;
-  uint8_t aSystemMaxOperationCount [16];
+  uint8_t SystemMaxOperationCount [16];
   ulong long SystemEncryptionOffset;
   
   SystemOperationCounter = 0xfffffffffffffffe;
@@ -23027,10 +23027,10 @@ void InitializeSystemThreadPoolManager(void)
     CheckSystemInitializationStatus();
   }
   pointerUnsigned38 = &SystemResourceTemplateSecondary;
-  pointerUnsigned30 = aSystemMaxOperationCount;
-  aSystemMaxOperationCount[0] = 0;
+  pointerUnsigned30 = SystemMaxOperationCount;
+  SystemMaxOperationCount[0] = 0;
   EncryptionKeyValue = 6;
-  strcpy_s(aSystemMaxOperationCount,0x10,&SystemStringConstantWindowTitleJ);
+  strcpy_s(SystemMaxOperationCount,0x10,&SystemStringConstantWindowTitleJ);
   EncryptionValue68 = 1;
   ProcessSystemWindowTitle(ThreadTitleBuffer,&pointerUnsigned38);
   EncryptionValue68 = 0;
@@ -25909,7 +25909,7 @@ void SystemCleanupHandler(void)
   float ScalingFactor;
   uint32_t SystemOperationStatus1;
   float RatioValue;
-  uint8_t aSystemMaxOperationCount8 [32];
+  uint8_t SystemMaxOperationCount8 [32];
   long long SystemMemoryPoolOffset;
   long long SystemMemoryPoolHandle;
   long long SystemResourcePoolPointer;
@@ -25924,7 +25924,7 @@ void SystemCleanupHandler(void)
   
   ResourceDataOffset = SystemGlobalStatusFlags;
   SystemThreadFlag = 0xfffffffffffffffe;
-  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)aSystemMaxOperationCount8;
+  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemMaxOperationCount8;
   if (*(void* **)*SystemMemoryBlockStorage == &SystemMemoryBlockTemplatePrimary) {
     systemAvailabilityFlag = *(int *)(SystemStatusFlags + 0xe0) != 0;
   }
