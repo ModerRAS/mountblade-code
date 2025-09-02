@@ -2787,13 +2787,13 @@ void InitializeNativeSDLL(uint64_t initFlags)
     pcVar12 = (char *)(lStack_90 + MemoryAddress4);
     do {
       StringIndex = (int)MemoryAddress4;
-      if (*pcVar12 == ' ') goto LAB_1800451a4;
+      if (*pcVar12 == ' ') goto LabelStringProcessingSpaceCheck1;
       MemoryAddress4 = (ulonglong)(StringIndex + 1U);
       pcVar12 = pcVar12 + 1;
     } while (StringIndex + 1U < uStack_88);
   }
   StringIndex = -1;
-LAB_1800451a4:
+LabelStringProcessingSpaceCheck1:
   StringProcessingResult = StringIndex + 1;
   MemoryAddress4 = (ulonglong)(int)StringProcessingResult;
   if (StringProcessingResult < uStack_88) {
@@ -3997,73 +3997,73 @@ LAB_18005122d:
   if (alStack_90[0] != 0) {
     CleanupSystemResources();
   }
-  SystemModuleContext = pModuleInitializationResult4;
-  iVar4 = _Mtx_unlock(SystemMutexAddressA);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  SystemModuleContext = moduleInitializationResult;
+  mutexUnlockResult = _Mtx_unlock(SystemMutexAddressA);
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
-  pModuleInitializationResult4 = (longlong *)*SystemModulePointer;
-  iVar4 = _Mtx_lock(SystemMutexAddressA);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  moduleContextPointer = (longlong *)*SystemModulePointer;
+  mutexLockResult = _Mtx_lock(SystemMutexAddressA);
+  if (mutexLockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexLockResult);
   }
-  pModuleInitializationResult = SystemModuleContext;
-  uStack_308 = SystemModuleContext;
-  SystemModuleContext = (longlong *)*pModuleInitializationResult4;
-  auStack_2a8[0] = 0;
-  plStack_2f8 = alStack_90;
-  alStack_90[0] = 0;
-  alStack_90[1] = 0;
-  alStack_90[2] = 0;
-  uStack_78 = 3;
-  InitializeGameSession(auStack_2a8);
-  FinalizeGameSession(auStack_2a8);
+  moduleInitializationContext = SystemModuleContext;
+  moduleContextBackup = SystemModuleContext;
+  SystemModuleContext = (longlong *)*moduleContextPointer;
+  gameSessionArray[0] = 0;
+  stackPointer = moduleFlagsArray;
+  moduleFlagsArray[0] = 0;
+  moduleFlagsArray[1] = 0;
+  moduleFlagsArray[2] = 0;
+  initializationFlags = 3;
+  InitializeGameSession(gameSessionArray);
+  FinalizeGameSession(gameSessionArray);
   *(float *)((longlong)SystemModuleContext + 0x18) = FrameRateMultiplier;
   SystemInitializePrimary();
-  lVar9 = (longlong)SystemModuleContext;
-  puVar7 = SystemModulePointer;
-  puVar6 = SystemModuleData;
-  if (*(char *)(SystemModulePointer + 7) != '\0') {
-    if ((((*(char *)(SystemModulePointer + 0xe) != '\0') ||
+  moduleContextAddress = (longlong)SystemModuleContext;
+  modulePointer = SystemModulePointer;
+  moduleData = SystemModuleData;
+  if (*(char *)(modulePointer + 7) != '\0') {
+    if ((((*(char *)(modulePointer + 0xe) != '\0') ||
          (*(char *)((longlong)SystemModuleContext + 0x38c) != '\0')) ||
         (*(char *)((longlong)SystemModuleContext + 0x38d) != '\0')) ||
        (*(char *)((longlong)SystemModuleContext + 0x38e) != '\0')) {
-      SystemModuleData[0x1518] = 1;
-      puVar6[0x1530] = 1;
-      puVar6[0x1590] = 1;
-      puVar6[0x15a8] = 1;
-      puVar6[0x1710] = 1;
+      moduleData[0x1518] = 1;
+      moduleData[0x1530] = 1;
+      moduleData[0x1590] = 1;
+      moduleData[0x15a8] = 1;
+      moduleData[0x1710] = 1;
     }
-    if (((*(char *)((longlong)puVar7 + 0x71) != '\0') || (*(char *)(lVar9 + 0x38d) != '\0')) ||
-       (*(char *)(lVar9 + 0x38e) != '\0')) {
+    if (((*(char *)((longlong)modulePointer + 0x71) != '\0') || (*(char *)(moduleContextAddress + 0x38d) != '\0')) ||
+       (*(char *)(moduleContextAddress + 0x38e) != '\0')) {
       do {
-        puVar6 = puVar6 + 0x18;
-        *puVar6 = 1;
-        ModuleInitializationResult2 = ModuleInitializationResult2 + -1;
-      } while (ModuleInitializationResult2 != 0);
+        moduleData = moduleData + 0x18;
+        *moduleData = 1;
+        moduleInitializationCounter = moduleInitializationCounter - 1;
+      } while (moduleInitializationCounter != 0);
     }
   }
-  plStack_2f8 = alStack_90;
-  if (alStack_90[0] != 0) {
+  stackPointer = moduleFlagsArray;
+  if (moduleFlagsArray[0] != 0) {
     CleanupSystemResources();
   }
-  SystemModuleContext = pModuleInitializationResult;
-  iVar4 = _Mtx_unlock(SystemMutexAddressA);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  SystemModuleContext = moduleInitializationContext;
+  finalMutexResult = _Mtx_unlock(SystemMutexAddressA);
+  if (finalMutexResult != 0) {
+    __Throw_C_error_std__YAXH_Z(finalMutexResult);
   }
   if (*(int *)(SystemConfigurationData + 0x161c) == 0x11) {
-    puVar7 = (uint64_t *)*SystemModulePointer;
-    iVar4 = _Mtx_lock(SystemMutexAddressA);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    configurationPointer = (uint64_t *)*SystemModulePointer;
+    configMutexResult = _Mtx_lock(SystemMutexAddressA);
+    if (configMutexResult != 0) {
+      __Throw_C_error_std__YAXH_Z(configMutexResult);
     }
-    pModuleInitializationResult4 = SystemModuleContext;
-    plStack_2c0 = SystemModuleContext;
-    SystemModuleContext = (longlong *)*puVar7;
+    moduleContextStorage = SystemModuleContext;
+    contextStackPointer = SystemModuleContext;
+    SystemModuleContext = (longlong *)*configurationPointer;
     SystemInitializeSecondary(&SystemInitializationBufferA,0,0);
     ConfigureSystemComponent(&SystemConstantDD);
-    uStack_2f0 = 0x40000000;
+    initializationFlag = 0x40000000;
     auStack_2c8[0] = 0x3f800000;
     uStack_318 = 0x20000;
     puStack_320 = &SystemRegistrationBuffer;
