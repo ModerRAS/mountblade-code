@@ -100097,7 +100097,7 @@ void InitializeQuaternarySystemDataPointer(void)
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAM(void)
+void InitializeQuinarySystemDataPointer(void)
 
 {
   QuinarySystemDataPointer = &SystemDataStructure;
@@ -100118,7 +100118,7 @@ void InitializeSystemDataStructureAM(void)
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAN(void)
+void InitializeSystemDataBufferPointer(void)
 
 {
   SystemDataBufferPointer = &SystemDataStructure;
@@ -100139,7 +100139,7 @@ void InitializeSystemDataStructureAN(void)
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAO(void)
+void InitializeSystemDataCachePointer(void)
 
 {
   SystemDataCachePointer = &SystemDataStructure;
@@ -100151,11 +100151,15 @@ void InitializeSystemDataStructureAO(void)
 
 
  /**
- * 初始化系统数据结构AP
- * 将全局变量 SystemDataPointer016 设置为指向 SystemDataStructure001
- * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @brief 初始化系统数据结构AP
+ * 
+ * 该函数负责初始化系统数据结构的第16号指针
+ * 将 SystemDataPointer016 设置为指向 SystemDataStructure
+ * 用于建立系统数据结构的第16级引用关系
+ * 
+ * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAP(void)
 void InitializeSystemDataStructureAP(void)
 
 {
@@ -100189,8 +100193,10 @@ void InitializeSystemDataStructureAE(void)
  * 
  * 该函数负责初始化垃圾收集器的数据表
  * 设置垃圾收集器的基础指针和数据结构
+ * 
+ * @note 此函数必须在系统启动时调用，以确保垃圾收集功能的正常运行
+ * @warning 初始化失败会导致内存管理功能异常
  */
-void InitializeGarbageCollectorTable(void)
 void InitializeGarbageCollectorTable(void)
 
 {
@@ -100207,8 +100213,10 @@ void InitializeGarbageCollectorTable(void)
  * 
  * 该函数负责初始化内存统计系统的数据表
  * 设置内存统计的基础指针和数据结构
+ * 
+ * @note 此函数必须在系统启动时调用，以确保内存统计功能的正常运行
+ * @warning 初始化失败会导致内存统计功能异常
  */
-void InitializeMemoryStatisticsTable(void)
 void InitializeMemoryStatisticsTable(void)
 
 {
@@ -100221,13 +100229,14 @@ void InitializeMemoryStatisticsTable(void)
 
 
  /**
- * 初始化系统数据结构AQ
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureAQ(void)
-/**
- * 初始化系统数据结构AQ
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构AQ
+ * 
+ * 该函数负责初始化系统数据结构的第18号指针
+ * 将 SystemDataPointer018 设置为指向 SystemDataStructure
+ * 用于建立系统数据结构的第18级引用关系
+ * 
+ * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
 void InitializeSystemDataStructureAQ(void)
 

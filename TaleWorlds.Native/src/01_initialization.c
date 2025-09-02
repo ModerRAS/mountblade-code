@@ -62,6 +62,25 @@
 #define SINE_TABLE_OFFSET_8132                 0x8132
 #define TRANSFORM_CONTEXT_OFFSET_218         0x218
 
+// 系统标识符常量
+#define SYSTEM_EVENT_NODE_IDENTIFIER1          0x45b8d074df27d12f
+#define SYSTEM_EVENT_NODE_IDENTIFIER2          0x8d98f4c06880eda4
+#define SYSTEM_RESOURCE_NODE_IDENTIFIER1       0x42d293584c8cf3e5
+#define SYSTEM_RESOURCE_NODE_IDENTIFIER2       0x355ffeb2d29e668a
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1   0x421c3cedd07d816d
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2   0xbec25de793b7afa6
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID1   0x4c22bb0c326587ce
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID2   0x5e3cf00ce2978287
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID1   0x4b2d79e470ee4e2c
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID2   0x9c552acd3ed5548d
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID1   0x49086ba08ab981a7
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID2   0xa9191d34ad910696
+
+// 系统参数常量
+#define MAX_SEMAPHORE_COUNT                    0x7fffffff
+#define STRING_BUFFER_SIZE                     0x80
+#define INVALID_HANDLE_VALUE                    0xfffffffffffffffe
+
 /**
  * @brief 处理系统内存页面
  * 
@@ -1727,8 +1746,8 @@ void InitializeSystemEventManager(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x45b8d074df27d12f;
-  hashTableNode[7] = 0x8d98f4c06880eda4;
+  hashTableNode[6] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemEventData;
   hashTableNode[9] = 3;
   hashTableNode[10] = ResourceInitializationCallback;
@@ -1788,8 +1807,8 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x42d293584c8cf3e5;
-  hashTableNode[7] = 0x355ffeb2d29e668a;
+  hashTableNode[6] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemRootNodePointer;
   hashTableNode[9] = 0;
   hashTableNode[10] = ResourceInitializationCallback;
@@ -9717,8 +9736,8 @@ void InitializeSystemDatabaseNode(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x45b8d074df27d12f;
-  hashTableNode[7] = 0x8d98f4c06880eda4;
+  hashTableNode[6] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemEventData;
   hashTableNode[9] = 3;
   hashTableNode[10] = resourceInitializationCallback;
@@ -9776,8 +9795,8 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x42d293584c8cf3e5;
-  hashTableNode[7] = 0x355ffeb2d29e668a;
+  hashTableNode[6] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemRootNodePointer;
   hashTableNode[9] = 0;
   hashTableNode[10] = resourceInitializationCallback;
@@ -11990,8 +12009,8 @@ void InitializeSystemEventDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x45b8d074df27d12f;
-  hashTableNode[7] = 0x8d98f4c06880eda4;
+  hashTableNode[6] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemEventData;
   hashTableNode[9] = 3;
   hashTableNode[10] = resourceInitializationCallback;
@@ -12048,8 +12067,8 @@ void InitializeSystemResourceNode(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x42d293584c8cf3e5;
-  hashTableNode[7] = 0x355ffeb2d29e668a;
+  hashTableNode[6] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemRootNodePointer;
   hashTableNode[9] = 0;
   hashTableNode[10] = resourceInitializationCallback;
@@ -12611,8 +12630,8 @@ void InitializeSystemEventNode(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x45b8d074df27d12f;
-  hashTableNode[7] = 0x8d98f4c06880eda4;
+  hashTableNode[6] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemEventData;
   hashTableNode[9] = 3;
   hashTableNode[10] = resourceInitializationCallback;
@@ -12668,8 +12687,8 @@ void InitializeSystemResourceNode(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x42d293584c8cf3e5;
-  hashTableNode[7] = 0x355ffeb2d29e668a;
+  hashTableNode[6] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemRootNodePointer;
   hashTableNode[9] = 0;
   hashTableNode[10] = resourceInitializationCallback;
@@ -14567,8 +14586,8 @@ void InitializeSystemResourceManagerG(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x45b8d074df27d12f;
-  hashTableNode[7] = 0x8d98f4c06880eda4;
+  hashTableNode[6] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemEventData;
   hashTableNode[9] = 3;
   hashTableNode[10] = resourceInitializationCallback;
@@ -14620,8 +14639,8 @@ void InitializeSystemResourceManagerH(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x42d293584c8cf3e5;
-  hashTableNode[7] = 0x355ffeb2d29e668a;
+  hashTableNode[6] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemRootNodePointer;
   hashTableNode[9] = 0;
   hashTableNode[10] = resourceInitializationCallback;
@@ -15318,8 +15337,8 @@ void InitializeSystemCoreComponent(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x45b8d074df27d12f;
-  hashTableNode[7] = 0x8d98f4c06880eda4;
+  hashTableNode[6] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemEventData;
   hashTableNode[9] = 3;
   hashTableNode[10] = resourceInitializationCallback;
@@ -15369,8 +15388,8 @@ void InitializeSystemMemoryComponent(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x42d293584c8cf3e5;
-  hashTableNode[7] = 0x355ffeb2d29e668a;
+  hashTableNode[6] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemRootNodePointer;
   hashTableNode[9] = 0;
   hashTableNode[10] = resourceInitializationCallback;
@@ -17623,8 +17642,8 @@ void SystemEventNodeInitializer(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x45b8d074df27d12f;
-  hashTableNode[7] = 0x8d98f4c06880eda4;
+  hashTableNode[6] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemEventData;
   hashTableNode[9] = 3;
   hashTableNode[10] = resourceInitializationCallback;
@@ -17679,8 +17698,8 @@ void SystemMemoryManagementNodeInitializer(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[6] = 0x42d293584c8cf3e5;
-  hashTableNode[7] = 0x355ffeb2d29e668a;
+  hashTableNode[6] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[7] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   hashTableNode[8] = &SystemRootNodePointer;
   hashTableNode[9] = 0;
   hashTableNode[10] = resourceInitializationCallback;
@@ -26665,7 +26684,7 @@ void InitializeSystemResourceManager(long long systemResourcePointer)
   long long ResourceDataOffset;
   ulong long SystemMemoryBaseAddress;
   
-  SystemHashEntryPointer = *(void* **)(systemResourcePointer + 0x218);
+  SystemHashEntryPointer = *(void* **)(systemResourcePointer + TRANSFORM_CONTEXT_OFFSET_218);
   if (SystemHashEntryPointer == (void* *)0x0) {
     return;
   }
@@ -38720,7 +38739,7 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
   
   currentThreadId = GetCurrentThreadId();
   SystemOperationStatus1 = (currentThreadId >> 0x10 ^ currentThreadId) * -0x7a143595;
-  SystemOperationStatus1 = (SystemOperationStatus1 >> 0xd ^ SystemOperationStatus1) * -0x3d4d51cb;
+  SystemOperationStatus1 = (SystemOperationStatus1 >> QUADRANT_SHIFT_BITS ^ SystemOperationStatus1) * -0x3d4d51cb;
   SystemOperationFlags = (ulong long)(SystemOperationStatus1 >> 0x10 ^ SystemOperationStatus1);
   hashTableNode = *(ulong long **)(SystemResourceManager + 0x30);
   for (SystemHashNodeData = hashTableNode; ResourceHash = SystemOperationFlags, SystemHashNodeData != (ulong long *)0x0; SystemHashNodeData = (ulong long *)SystemHashNodeData[2])
@@ -46756,7 +46775,7 @@ void* * AllocateThreadLocalStorage(long long *SystemResourceManager)
   
   currentThreadId = GetCurrentThreadId();
   SystemOperationStatus4 = (currentThreadId >> 0x10 ^ currentThreadId) * -0x7a143595;
-  SystemOperationStatus4 = (SystemOperationStatus4 >> 0xd ^ SystemOperationStatus4) * -0x3d4d51cb;
+  SystemOperationStatus4 = (SystemOperationStatus4 >> QUADRANT_SHIFT_BITS ^ SystemOperationStatus4) * -0x3d4d51cb;
   SystemOperationStatus3 = (ulong long)(SystemOperationStatus4 >> 0x10 ^ SystemOperationStatus4);
   hashTableNode = (ulong long *)SystemResourceManager[6];
   for (SystemHashNodeData = hashTableNode; ResourceHash = SystemOperationStatus3, SystemHashNodeData != (ulong long *)0x0; SystemHashNodeData = (ulong long *)SystemHashNodeData[2])
@@ -48963,7 +48982,7 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
   
   currentThreadId = GetCurrentThreadId();
   SystemOperationStatus4 = (currentThreadId >> 0x10 ^ currentThreadId) * -0x7a143595;
-  SystemOperationStatus4 = (SystemOperationStatus4 >> 0xd ^ SystemOperationStatus4) * -0x3d4d51cb;
+  SystemOperationStatus4 = (SystemOperationStatus4 >> QUADRANT_SHIFT_BITS ^ SystemOperationStatus4) * -0x3d4d51cb;
   SystemOperationStatus3 = (ulong long)(SystemOperationStatus4 >> 0x10 ^ SystemOperationStatus4);
   hashTableNode = (ulong long *)SystemResourceManager[6];
   for (SystemHashNodeData = hashTableNode; ResourceHash = SystemOperationStatus3, SystemHashNodeData != (ulong long *)0x0; SystemHashNodeData = (ulong long *)SystemHashNodeData[2])
@@ -56400,7 +56419,7 @@ uint8_t ProcessSystemResourceAndManageStatus(long long SystemResourceManager,voi
   
   CreationFlags = 0xfffffffffffffffe;
   SetupSystemMemory(&ResourcePointer);
-  SystemOperationStatus = SearchSystemResource(SystemResourceManager + 0x218,&ResourcePointer,AdditionalParameter,ConfigurationFlag,CreationFlags);
+  SystemOperationStatus = SearchSystemResource(SystemResourceManager + TRANSFORM_CONTEXT_OFFSET_218,&ResourcePointer,AdditionalParameter,ConfigurationFlag,CreationFlags);
   ResourcePointer = &SystemGlobalDataReference;
   if (LocalStackOffset != 0) {
       SystemCleanupFunction();
@@ -57350,8 +57369,8 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemReso
   *(int *)(ResourceDataOffset + 0x2c0) = (int)SystemResourceDataIndex;
   *(uint32_t *)(ResourceDataOffset + 0x2c4) = resourceAddress;
   *(int *)(*ConfigurationDataPointer + 0x108) = (int)SystemResourceManager[0x21];
-  if ((long long *)(*ConfigurationDataPointer + 0x218) != SystemResourceManager + 0x43) {
-    ProcessSystemConfigurationData((long long *)(*ConfigurationDataPointer + 0x218),SystemResourceManager[0x43],SystemResourceManager[0x44]);
+  if ((long long *)(*ConfigurationDataPointer + TRANSFORM_CONTEXT_OFFSET_218) != SystemResourceManager + 0x43) {
+    ProcessSystemConfigurationData((long long *)(*ConfigurationDataPointer + TRANSFORM_CONTEXT_OFFSET_218),SystemResourceManager[0x43],SystemResourceManager[0x44]);
   }
   SystemHashEntryPointer0 = &SystemStringTemplate;
   if ((void* *)SystemResourceManager[3] != (void* *)0x0) {
@@ -61384,7 +61403,7 @@ void ProcessSystemResourceConfiguration(long long SystemResourceManager,long lon
   if (charStatus6 != -1) {
     resourceAllocationContext8 = (int)*(char *)(ConfigurationDataPointer + 0xd) + *(int *)(ConfigurationDataPointer + 0x18);
     pMagnitudeSquared = (float *)**(long long **)(SystemResourceManager + 600);
-    resourceAllocationContext6 = resourceAllocationContext8 >> 0xd;
+    resourceAllocationContext6 = resourceAllocationContext8 >> QUADRANT_SHIFT_BITS;
     resourceDataIndex7 = *(long long *)
               ((long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc30 +
               (ulong long)resourceAllocationContext6 * 8);
@@ -61700,7 +61719,7 @@ void ProcessSystemResourceValidation(long long SystemResourceManager)
   if (charStatus6 != -1) {
     resourceAllocationContext8 = (int)*(char *)(systemDataIndexPtr + 0xd) + *(int *)(systemDataIndexPtr + 0x18);
     pMagnitudeSquared = (float *)**(long long **)(SystemResourceManager + 600);
-    resourceAllocationContext6 = resourceAllocationContext8 >> 0xd;
+    resourceAllocationContext6 = resourceAllocationContext8 >> QUADRANT_SHIFT_BITS;
     resourceDataIndex7 = *(long long *)
               ((long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc30 +
               (ulong long)resourceAllocationContext6 * 8);
@@ -62000,7 +62019,7 @@ void InitializeSystemResourcePool(void)
   resourceAllocationContext5 = (int)*(char *)(systemDataIndexPtr + 0xd) + *(int *)(systemDataIndexPtr + 0x18);
   pscaleResult1 = (float *)**(long long **)(memoryBlockAddress + 600);
   SystemBufferAddress3 = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
-  resourceAllocationContext3 = resourceAllocationContext5 >> 0xd;
+  resourceAllocationContext3 = resourceAllocationContext5 >> QUADRANT_SHIFT_BITS;
   resourceDataIndex6 = *(long long *)(SystemBufferAddress3 + 8 + (ulong long)resourceAllocationContext3 * 8);
   ResourceDataOffset1 = (ulong long)(resourceAllocationContext5 + resourceAllocationContext3 * -0x2000) * 0x40;
   resourceCreationFlags9 = ((void* *)(resourceDataIndex6 + ResourceDataOffset1))[1];
@@ -62299,8 +62318,8 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
   void* InputParameter58;
   
   SystemResourceManager = (long long)*(int *)(SystemResourceManager + 0x250) * 0x128 + SystemResourceManager;
-  resourceDataIndex5 = *(long long *)(SystemResourceManager + 8 + (ulong long)(ConfigurationDataPointer >> 0xd) * 8);
-  ResourceDataOffset1 = (ulong long)(ConfigurationDataPointer + (ConfigurationDataPointer >> 0xd) * -0x2000) * 0x40;
+  resourceDataIndex5 = *(long long *)(SystemResourceManager + 8 + (ulong long)(ConfigurationDataPointer >> QUADRANT_SHIFT_BITS) * 8);
+  ResourceDataOffset1 = (ulong long)(ConfigurationDataPointer + (ConfigurationDataPointer >> QUADRANT_SHIFT_BITS) * -0x2000) * 0x40;
   resourceCreationFlags8 = ((void* *)(resourceDataIndex5 + ResourceDataOffset1))[1];
   *(void* *)ConfigurationFlag = *(void* *)(resourceDataIndex5 + ResourceDataOffset1);
   *(void* *)(ConfigurationFlag + 2) = resourceCreationFlags8;
@@ -65163,8 +65182,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
     *(void* **)(SystemResourceManager + 600) = SystemOperationCounterPointer;
   }
   *(uint8_t *)(SystemResourceManager + 0xf6) = *(uint8_t *)(AdditionalParameter + 0xcc);
-  if ((void* *)(SystemResourceManager + 0x218) != (void* *)(AdditionalParameter + 0xd0)) {
-    FUN_1800588c0((void* *)(SystemResourceManager + 0x218),*(void* *)(AdditionalParameter + 0xd0),
+  if ((void* *)(SystemResourceManager + TRANSFORM_CONTEXT_OFFSET_218) != (void* *)(AdditionalParameter + 0xd0)) {
+    FUN_1800588c0((void* *)(SystemResourceManager + TRANSFORM_CONTEXT_OFFSET_218),*(void* *)(AdditionalParameter + 0xd0),
                   *(void* *)(AdditionalParameter + 0xd8));
   }
   *(uint32_t *)(*(long long *)(SystemResourceManager + 0x268) + 0x10) = *(uint32_t *)(AdditionalParameter + 0xf0);
@@ -69492,8 +69511,8 @@ void* NormalizeAudioData(void)
       } while (audioProcessingLoop != 0);
     }
     currentAudioSample = currentAudioSample + 1;
-    audioNormalizedValue = *(float *)(*(long long *)(audioProcessingContext + 0x218) + 4 + (long long)(int)processedAudioBit * 8);
-    audioWeightedSum2 = *(float *)(*(long long *)(audioProcessingContext + 0x218) + (long long)(int)processedAudioBit * 8);
+    audioNormalizedValue = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (long long)(int)processedAudioBit * 8);
+    audioWeightedSum2 = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + (long long)(int)processedAudioBit * 8);
     audioNormalizedValue = SQRT(audioWeightedSum2 * audioWeightedSum2 + audioNormalizedValue * audioNormalizedValue) * 2.5;
     if (audioMaxAmplitude <= audioNormalizedValue) {
       audioNormalizedValue = audioMaxAmplitude;
@@ -70226,9 +70245,9 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
           }
           lookupIndex = lookupIndex & SINE_LOOKUP_TABLE_SIZE;
           ulong long sineLookupIndex = (ulong long)lookupIndex;
-          uint quadrant = lookupIndex >> 0xd;
+          uint quadrant = lookupIndex >> QUADRANT_SHIFT_BITS;
           float sineValue;
-          if (lookupIndex >> 0xd == 0) {
+          if (lookupIndex >> QUADRANT_SHIFT_BITS == 0) {
             sineValue = *(float *)(transformContext + 0x4cc + sineLookupIndex * 4);
           }
           else if (quadrant == 1) {
@@ -70249,9 +70268,9 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
           }
           lookupIndex = lookupIndex & SINE_LOOKUP_TABLE_SIZE;
           sineLookupIndex = (ulong long)lookupIndex;
-          quadrant = lookupIndex >> 0xd;
+          quadrant = lookupIndex >> QUADRANT_SHIFT_BITS;
           float cosineValue;
-          if (lookupIndex >> 0xd == 0) {
+          if (lookupIndex >> QUADRANT_SHIFT_BITS == 0) {
             cosineValue = *(float *)(transformContext + 0x4cc + sineLookupIndex * 4);
           }
           else if (quadrant == 1) {
@@ -70276,7 +70295,7 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
               currentRow = rowIndex + ((int)(((endRow + -3) - startRow) - 1U >> 2) + 1) * 4;
               do {
                 ulong long row4 = (ulong long)targetRow;
-                long long matrixPointer = *(long long *)(transformContext + 0x218);
+                long long matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
                 ulong long row3 = (ulong long)(targetRow - 1);
                 ulong long row2 = (ulong long)(targetRow - 2);
                 uint row1 = targetRow - 3;
@@ -70287,11 +70306,11 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
                 float result1 = cosine4 * sineValue - sine4 * cosineValue;
                 float result2 = sine4 * sineValue + cosine4 * cosineValue;
                 *(float *)(matrixPointer + startRow * 8) = result1 + matrixVal1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 4 + startRow * 8) = result2 + matrixVal2;
-                *(float *)(*(long long *)(transformContext + 0x218) + (ulong long)row1 * 8) = matrixVal1 - result1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 4 + (ulong long)row1 * 8) =
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + startRow * 8) = result2 + matrixVal2;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + (ulong long)row1 * 8) = matrixVal1 - result1;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (ulong long)row1 * 8) =
                      matrixVal2 - result2;
-                matrixPointer = *(long long *)(transformContext + 0x218);
+                matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
                 result2 = *(float *)(matrixPointer + 4 + row2 * 8);
                 result1 = *(float *)(matrixPointer + row2 * 8);
                 matrixVal1 = *(float *)(matrixPointer + 8 + startRow * 8);
@@ -70299,10 +70318,10 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
                 float tempResult1 = result1 * sineValue - result2 * cosineValue;
                 result2 = result2 * sineValue + result1 * cosineValue;
                 *(float *)(matrixPointer + 8 + startRow * 8) = tempResult1 + matrixVal1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 0xc + startRow * 8) = result2 + matrixVal2;
-                *(float *)(*(long long *)(transformContext + 0x218) + row2 * 8) = matrixVal1 - tempResult1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 4 + row2 * 8) = matrixVal2 - result2;
-                matrixPointer = *(long long *)(transformContext + 0x218);
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 0xc + startRow * 8) = result2 + matrixVal2;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + row2 * 8) = matrixVal1 - tempResult1;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + row2 * 8) = matrixVal2 - result2;
+                matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
                 result2 = *(float *)(matrixPointer + row3 * 8);
                 result1 = *(float *)(matrixPointer + 4 + row3 * 8);
                 matrixVal1 = *(float *)(matrixPointer + 0x10 + startRow * 8);
@@ -70310,10 +70329,10 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
                 tempResult1 = result2 * sineValue - result1 * cosineValue;
                 result2 = result1 * sineValue + result2 * cosineValue;
                 *(float *)(matrixPointer + 0x10 + startRow * 8) = tempResult1 + matrixVal1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 0x14 + startRow * 8) = result2 + matrixVal2;
-                *(float *)(*(long long *)(transformContext + 0x218) + row3 * 8) = matrixVal1 - tempResult1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 4 + row3 * 8) = matrixVal2 - result2;
-                matrixPointer = *(long long *)(transformContext + 0x218);
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 0x14 + startRow * 8) = result2 + matrixVal2;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + row3 * 8) = matrixVal1 - tempResult1;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + row3 * 8) = matrixVal2 - result2;
+                matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
                 result2 = *(float *)(matrixPointer + row4 * 8);
                 result1 = *(float *)(matrixPointer + 4 + row4 * 8);
                 matrixVal1 = *(float *)(matrixPointer + 0x18 + startRow * 8);
@@ -70321,10 +70340,10 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
                 tempResult1 = result2 * sineValue - result1 * cosineValue;
                 result2 = result1 * sineValue + result2 * cosineValue;
                 *(float *)(matrixPointer + 0x18 + startRow * 8) = tempResult1 + matrixVal1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 0x1c + startRow * 8) = result2 + matrixVal2;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 0x1c + startRow * 8) = result2 + matrixVal2;
                 startRow = startRow + 4;
-                *(float *)(*(long long *)(transformContext + 0x218) + row4 * 8) = matrixVal1 - tempResult1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 4 + row4 * 8) = matrixVal2 - result2;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + row4 * 8) = matrixVal1 - tempResult1;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + row4 * 8) = matrixVal2 - result2;
                 targetRow = targetRow + 4;
               } while (startRow < endRow + -3);
             }
@@ -70332,7 +70351,7 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
               targetRow = currentRow + halfRange;
               do {
                 ulong long targetIndex = (ulong long)targetRow;
-                matrixPointer = *(long long *)(transformContext + 0x218);
+                matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
                 result2 = *(float *)(matrixPointer + targetIndex * 8);
                 result1 = *(float *)(matrixPointer + 4 + targetIndex * 8);
                 matrixVal1 = *(float *)(matrixPointer + startRow * 8);
@@ -70340,10 +70359,10 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
                 tempResult1 = result2 * sineValue - result1 * cosineValue;
                 result2 = result1 * sineValue + result2 * cosineValue;
                 *(float *)(matrixPointer + startRow * 8) = tempResult1 + matrixVal1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 4 + startRow * 8) = result2 + matrixVal2;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + startRow * 8) = result2 + matrixVal2;
                 startRow = startRow + 1;
-                *(float *)(*(long long *)(transformContext + 0x218) + targetIndex * 8) = matrixVal1 - tempResult1;
-                *(float *)(*(long long *)(transformContext + 0x218) + 4 + targetIndex * 8) = matrixVal2 - result2;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + targetIndex * 8) = matrixVal1 - tempResult1;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + targetIndex * 8) = matrixVal2 - result2;
                 targetRow = targetRow + 1;
               } while (startRow < endRow);
             }
@@ -70425,8 +70444,8 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
         }
         SystemSecondaryStatus = SystemSecondaryStatus & SINE_LOOKUP_TABLE_SIZE;
         currentThreadId = (ulong long)SystemSecondaryStatus;
-        OperationCode = SystemSecondaryStatus >> 0xd;
-        if (SystemSecondaryStatus >> 0xd == 0) {
+        OperationCode = SystemSecondaryStatus >> QUADRANT_SHIFT_BITS;
+        if (SystemSecondaryStatus >> QUADRANT_SHIFT_BITS == 0) {
           ResultValue2 = *(float *)(in_R11 + 0x4cc + currentThreadId * 4);
         }
         else if (OperationCode == 1) {
@@ -70447,8 +70466,8 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
         }
         SystemSecondaryStatus = SystemSecondaryStatus & SINE_LOOKUP_TABLE_SIZE;
         currentThreadId = (ulong long)SystemSecondaryStatus;
-        ThreadContextFlag = SystemSecondaryStatus >> 0xd;
-        if (SystemSecondaryStatus >> 0xd == 0) {
+        ThreadContextFlag = SystemSecondaryStatus >> QUADRANT_SHIFT_BITS;
+        if (SystemSecondaryStatus >> QUADRANT_SHIFT_BITS == 0) {
           ResultValue1 = *(float *)(in_R11 + 0x4cc + currentThreadId * 4);
         }
         else if (ThreadContextFlag == 1) {
@@ -70473,7 +70492,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
             SystemOperationStatus0 = SystemOperationStatus1 + ((int)(((resourceCounter + -3) - resourceDataIndex4) - 1U >> 2) + 1) * 4;
             do {
               SystemOperationStatusFlags = (ulong long)SystemSecondaryStatus;
-              SystemBufferAddress = *(long long *)(in_R11 + 0x218);
+              SystemBufferAddress = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               SystemOperationStatus3 = (ulong long)(SystemSecondaryStatus - 1);
               currentThreadId = (ulong long)(SystemSecondaryStatus - 2);
               ThreadContextFlag = SystemSecondaryStatus - 3;
@@ -70484,10 +70503,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationParam5 = floatValue1 * ResultValue2 - MagnitudeSquared * ResultValue1;
               MagnitudeSquared = MagnitudeSquared * ResultValue2 + floatValue1 * ResultValue1;
               *(float *)(SystemBufferAddress + resourceDataIndex4 * 8) = InterpolationParam5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
-              *(float *)(*(long long *)(in_R11 + 0x218) + (ulong long)ThreadContextFlag * 8) = floatValue2 - InterpolationParam5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + (ulong long)ThreadContextFlag * 8) = floatValue3 - MagnitudeSquared;
-              SystemBufferAddress = *(long long *)(in_R11 + 0x218);
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + (ulong long)ThreadContextFlag * 8) = floatValue2 - InterpolationParam5;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (ulong long)ThreadContextFlag * 8) = floatValue3 - MagnitudeSquared;
+              SystemBufferAddress = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               MagnitudeSquared = *(float *)(SystemBufferAddress + 4 + currentThreadId * 8);
               floatValue1 = *(float *)(SystemBufferAddress + currentThreadId * 8);
               floatValue2 = *(float *)(SystemBufferAddress + 8 + resourceDataIndex4 * 8);
@@ -70495,10 +70514,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationParam5 = floatValue1 * ResultValue2 - MagnitudeSquared * ResultValue1;
               MagnitudeSquared = MagnitudeSquared * ResultValue2 + floatValue1 * ResultValue1;
               *(float *)(SystemBufferAddress + 8 + resourceDataIndex4 * 8) = InterpolationParam5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 0xc + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
-              *(float *)(*(long long *)(in_R11 + 0x218) + currentThreadId * 8) = floatValue2 - InterpolationParam5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + currentThreadId * 8) = floatValue3 - MagnitudeSquared;
-              SystemBufferAddress = *(long long *)(in_R11 + 0x218);
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0xc + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + currentThreadId * 8) = floatValue2 - InterpolationParam5;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + currentThreadId * 8) = floatValue3 - MagnitudeSquared;
+              SystemBufferAddress = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               MagnitudeSquared = *(float *)(SystemBufferAddress + SystemOperationStatus3 * 8);
               floatValue1 = *(float *)(SystemBufferAddress + 4 + SystemOperationStatus3 * 8);
               floatValue2 = *(float *)(SystemBufferAddress + 0x10 + resourceDataIndex4 * 8);
@@ -70506,10 +70525,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationParam5 = MagnitudeSquared * ResultValue2 - floatValue1 * ResultValue1;
               MagnitudeSquared = floatValue1 * ResultValue2 + MagnitudeSquared * ResultValue1;
               *(float *)(SystemBufferAddress + 0x10 + resourceDataIndex4 * 8) = InterpolationParam5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 0x14 + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
-              *(float *)(*(long long *)(in_R11 + 0x218) + SystemOperationStatus3 * 8) = floatValue2 - InterpolationParam5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + SystemOperationStatus3 * 8) = floatValue3 - MagnitudeSquared;
-              SystemBufferAddress = *(long long *)(in_R11 + 0x218);
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0x14 + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + SystemOperationStatus3 * 8) = floatValue2 - InterpolationParam5;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + SystemOperationStatus3 * 8) = floatValue3 - MagnitudeSquared;
+              SystemBufferAddress = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               MagnitudeSquared = *(float *)(SystemBufferAddress + SystemOperationStatusFlags * 8);
               floatValue1 = *(float *)(SystemBufferAddress + 4 + SystemOperationStatusFlags * 8);
               floatValue2 = *(float *)(SystemBufferAddress + 0x18 + resourceDataIndex4 * 8);
@@ -70517,10 +70536,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationParam5 = MagnitudeSquared * ResultValue2 - floatValue1 * ResultValue1;
               MagnitudeSquared = floatValue1 * ResultValue2 + MagnitudeSquared * ResultValue1;
               *(float *)(SystemBufferAddress + 0x18 + resourceDataIndex4 * 8) = InterpolationParam5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 0x1c + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0x1c + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
               resourceDataIndex4 = resourceDataIndex4 + 4;
-              *(float *)(*(long long *)(in_R11 + 0x218) + SystemOperationStatusFlags * 8) = floatValue2 - InterpolationParam5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + SystemOperationStatusFlags * 8) = floatValue3 - MagnitudeSquared;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + SystemOperationStatusFlags * 8) = floatValue2 - InterpolationParam5;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + SystemOperationStatusFlags * 8) = floatValue3 - MagnitudeSquared;
               SystemSecondaryStatus = SystemSecondaryStatus + 4;
             } while (resourceDataIndex4 < resourceCounter + -3);
           }
@@ -70528,7 +70547,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
             SystemSecondaryStatus = SystemOperationStatus0 + systemResourceCounterD;
             do {
               currentThreadId = (ulong long)SystemSecondaryStatus;
-              SystemBufferAddress = *(long long *)(in_R11 + 0x218);
+              SystemBufferAddress = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               MagnitudeSquared = *(float *)(SystemBufferAddress + currentThreadId * 8);
               floatValue1 = *(float *)(SystemBufferAddress + 4 + currentThreadId * 8);
               floatValue2 = *(float *)(SystemBufferAddress + resourceDataIndex4 * 8);
@@ -70536,10 +70555,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationParam5 = MagnitudeSquared * ResultValue2 - floatValue1 * ResultValue1;
               MagnitudeSquared = floatValue1 * ResultValue2 + MagnitudeSquared * ResultValue1;
               *(float *)(SystemBufferAddress + resourceDataIndex4 * 8) = InterpolationParam5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
               resourceDataIndex4 = resourceDataIndex4 + 1;
-              *(float *)(*(long long *)(in_R11 + 0x218) + currentThreadId * 8) = floatValue2 - InterpolationParam5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + currentThreadId * 8) = floatValue3 - MagnitudeSquared;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + currentThreadId * 8) = floatValue2 - InterpolationParam5;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + currentThreadId * 8) = floatValue3 - MagnitudeSquared;
               SystemSecondaryStatus = SystemSecondaryStatus + 1;
             } while (resourceDataIndex4 < resourceCounter);
           }
