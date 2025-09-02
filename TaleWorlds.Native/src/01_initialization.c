@@ -53506,16 +53506,16 @@ bool FUN_180072f00(void* SystemResourceManager,void* *ConfigurationDataPointer)
       } while ((ulong long)(long long)(int)SystemOperationStatus1 <
                (ulong long)((long long)punsignedValue60 - (long long)pEncryptionValue68 >> 5));
     }
-    ConfigureSystemDataBuffer(&puStack_f0,&UNK_1809ff840,&UNK_1809ff800);
+    ConfigureSystemDataBuffer(&puStack_f0,&SystemConfigurationDataBufferF,&SystemConfigurationDataBufferG);
     FUN_18006f590(&pUnsignedStackFlag110);
     if (iStack_100 != 0) {
-      ConfigureSystemDataBuffer(&puStack_f0,&SystemDataBufferTemplateA,&UNK_1809ff848);
+      ConfigureSystemDataBuffer(&puStack_f0,&SystemDataBufferTemplateA,&SystemConfigurationDataBufferH);
       resourceEntryPointer = (void* *)&SystemStringTemplate;
       if (punsignedValue108 != (void* *)0x0) {
         resourceEntryPointer = punsignedValue108;
       }
-      ConfigureSystemDataBuffer(&puStack_f0,&UNK_1809ff888,resourceEntryPointer);
-      ConfigureSystemDataBuffer(&puStack_f0,&UNK_1809ff840,&UNK_1809ff800);
+      ConfigureSystemDataBuffer(&puStack_f0,&SystemConfigurationDataBufferI,resourceEntryPointer);
+      ConfigureSystemDataBuffer(&puStack_f0,&SystemConfigurationDataBufferF,&SystemConfigurationDataBufferG);
     }
     pUnsignedStackFlag110 = &SystemGlobalDataReference;
     if (punsignedValue108 != (void* *)0x0) {
@@ -53541,9 +53541,9 @@ bool FUN_180072f00(void* SystemResourceManager,void* *ConfigurationDataPointer)
   punsignedValue108 = (void* *)0x0;
   unsignedValueF8 = unsignedValueF8 & 0xffffffff00000000;
   pUnsignedStackFlag110 = &SystemMemoryAllocatorReference;
-  ConfigureSystemDataBuffer(&puStack_f0,&UNK_1809ff8a8,*(uint32_t *)*ConfigurationDataPointer,
+  ConfigureSystemDataBuffer(&puStack_f0,&SystemConfigurationDataBufferJ,*(uint32_t *)*ConfigurationDataPointer,
                 *(void* *)((uint32_t *)*ConfigurationDataPointer + 4));
-  ConfigureSystemDataBuffer(&puStack_f0,&SystemDataBufferTemplateA,&UNK_1809ff8d8);
+  ConfigureSystemDataBuffer(&puStack_f0,&SystemDataBufferTemplateA,&SystemConfigurationDataBufferK);
   SystemDataPointer4 = &SystemStringTemplate;
   if (SystemDataPointer3 != (void* *)0x0) {
     SystemDataPointer4 = SystemDataPointer3;
@@ -55497,7 +55497,7 @@ void FUN_1800746c0(long long SystemResourceManager)
     *pResourceDataOffset = (long long)&SystemMemoryTemplateA;
     *pResourceDataOffset = (long long)&SystemMemoryTemplateB;
     *(uint32_t *)(pResourceDataOffset + 1) = 0;
-    *pResourceDataOffset = (long long)&UNK_180a02e68;
+    *pResourceDataOffset = (long long)&SystemResourceDataTableA;
     pResourceDataOffset[2] = (long long)&SystemMemoryAllocatorReference;
     pResourceDataOffset[3] = 0;
     *(uint32_t *)(pResourceDataOffset + 4) = 0;
@@ -55509,7 +55509,7 @@ void FUN_1800746c0(long long SystemResourceManager)
     *(uint32_t *)(pResourceDataOffset + 1) = 0;
     *(void*2 *)(pResourceDataOffset + 0x16) = 0;
     pResourceDataOffset[0x15] = 0;
-    *pResourceDataOffset = (long long)&UNK_180a13a28;
+    *pResourceDataOffset = (long long)&SystemResourceDataTableB;
     pResourceDataOffset[0x15] = 0;
     *(uint8_t *)(pResourceDataOffset + 0x17) = 0;
     (**(code **)(*pResourceDataOffset + 0x28))(pResourceDataOffset);
@@ -55912,7 +55912,7 @@ void* *
 FUN_180074f20(void* *SystemResourceManager,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  *SystemResourceManager = &UNK_1809ffa18;
+  *SystemResourceManager = &SystemResourceManagerTemplateA;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,0x38,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   }
@@ -55924,7 +55924,7 @@ FUN_180074f20(void* *SystemResourceManager,ulong long ConfigurationDataPointer,v
 void* * FUN_180074f70(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
-  *SystemResourceManager = &UNK_1809ffa18;
+  *SystemResourceManager = &SystemResourceManagerTemplateA;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,8);
   }
@@ -55944,7 +55944,7 @@ FUN_180074fb0(void* SystemResourceManager,void* *ConfigurationDataPointer,void* 
   ConfigurationDataPointer[1] = ConfigurationDataPointer + 3;
   *(uint8_t *)(ConfigurationDataPointer + 3) = 0;
   *(uint32_t *)(ConfigurationDataPointer + 2) = 7;
-  strcpy_s(ConfigurationDataPointer[1],0x80,&UNK_1809ffa30,ConfigurationFlag,0,0xfffffffffffffffe);
+  strcpy_s(ConfigurationDataPointer[1],0x80,&SystemStringTemplateA,ConfigurationFlag,0,0xfffffffffffffffe);
   return ConfigurationDataPointer;
 }
 
@@ -55962,7 +55962,7 @@ void* * FUN_180075030(void* *SystemResourceManager,char ConfigurationDataPointer
   *SystemResourceManager = &SystemMemoryTemplateA;
   *SystemResourceManager = &SystemMemoryTemplateB;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
-  *SystemResourceManager = &UNK_180a02e68;
+  *SystemResourceManager = &SystemResourceDataTableA;
   SystemResourceManager[2] = &SystemMemoryAllocatorReference;
   SystemResourceManager[3] = 0;
   *(uint32_t *)(SystemResourceManager + 4) = 0;
@@ -55974,7 +55974,7 @@ void* * FUN_180075030(void* *SystemResourceManager,char ConfigurationDataPointer
   *(uint32_t *)(SystemResourceManager + 1) = 0;
   *(void*2 *)(SystemResourceManager + 0x16) = 0;
   SystemResourceManager[0x15] = 0;
-  *SystemResourceManager = &UNK_180a00270;
+  *SystemResourceManager = &SystemResourceDataTableC;
   InitializeResourceManager(SystemResourceManager + 0x19);
   *(uint32_t *)(SystemResourceManager + 0x1e) = 0;
   LOCK();
@@ -56112,7 +56112,7 @@ void* * FUN_180075030(void* *SystemResourceManager,char ConfigurationDataPointer
   *pResourceDataOffset = (long long)&SystemMemoryTemplateA;
   *pResourceDataOffset = (long long)&SystemMemoryTemplateB;
   *(uint32_t *)(pResourceDataOffset + 1) = 0;
-  *pResourceDataOffset = (long long)&UNK_180a00208;
+  *pResourceDataOffset = (long long)&SystemResourceDataTableD;
   pResourceDataOffset[4] = (long long)&SystemMemoryAllocatorReference;
   pResourceDataOffset[5] = 0;
   *(uint32_t *)(pResourceDataOffset + 6) = 0;
@@ -56244,7 +56244,7 @@ void FUN_180075630(long long SystemResourceManager,void* *ConfigurationDataPoint
   *(uint32_t *)(SystemResourceManager + 0x158) = currentThreadId;
   *(uint32_t *)(SystemResourceManager + 0x15c) = hashValue;
   if (resourcePoolPointer != (long long *)0x0) {
-    if (*(code **)(*resourcePoolPointer + 0x160) == (code *)&UNK_180277350) {
+    if (*(code **)(*resourcePoolPointer + 0x160) == (code *)&SystemCodeEntryPointA) {
       SystemDataPointer = (void* *)((long long)resourcePoolPointer + 0x214);
       *(uint32_t *)((long long)resourcePoolPointer + 0x244) = 0;
       if (resourcePoolPointer[8] - resourcePoolPointer[7] >> 4 == 0) {
@@ -56375,7 +56375,7 @@ void FUN_1800756e0(void* *SystemResourceManager)
   void* SystemResourceAddress;
   
   SystemResourceAddress = 0xfffffffffffffffe;
-  *SystemResourceManager = &UNK_180a00270;
+  *SystemResourceManager = &SystemResourceDataTableC;
   SystemResourceManager[0x39] = 0;
   if (SystemResourceManager[0x59] != 0) {
       SystemCleanupFunction();
@@ -56465,7 +56465,7 @@ void FUN_1800756e0(void* *SystemResourceManager)
   if ((long long *)SystemResourceManager[0x23] != (long long *)0x0) {
     (**(code **)(*(long long *)SystemResourceManager[0x23] + 0x38))();
   }
-  *SystemResourceManager = &UNK_180a02e68;
+  *SystemResourceManager = &SystemResourceDataTableA;
   SystemResourceManager[2] = &SystemMemoryAllocatorReference;
   *SystemResourceManager = &SystemMemoryTemplateB;
   *SystemResourceManager = &SystemMemoryTemplateA;
@@ -57664,7 +57664,7 @@ void FUN_180077150(long long *SystemResourceManager)
   memoryAllocationEnd = StackBuffer40;
   StackBuffer40[0] = StackBuffer40[0] & 0xffffffffffffff00;
   EncryptionValue48._0_4_ = 0x12;
-  strcpy_s(StackBuffer40,0x20,&UNK_1809ffa98);
+  strcpy_s(StackBuffer40,0x20,&SystemStringTemplateB);
   allocationContext = FUN_180240430(SystemOperationStatus,&memoryAllocationBuffer,0);
   memoryAllocationBuffer = &SystemMemoryAllocatorReference;
   if (allocationContext != 0) {
@@ -57809,7 +57809,7 @@ void* FUN_180077420(long long SystemResourceManager,long long ConfigurationDataP
       isMemoryReady = false;
       if ((*(byte *)(SystemResourceManager + 0xfd) & 8) != 0) {
         nextDataIndex3 = 0xb8;
-        systemFunctionPointer5 = (code *)&UNK_1802426a0;
+        systemFunctionPointer5 = (code *)&SystemFunctionEntryPointA;
         do {
           nextDataIndex2 = *(long long *)(nextDataIndex3 + *(long long *)(SystemResourceManager + 0x1b8));
           if (((nextDataIndex2 != 0) && (nextDataIndex1 = *(long long *)(nextDataIndex2 + 0x370), nextDataIndex1 != 0)) &&
@@ -57859,7 +57859,7 @@ void* FUN_180077420(long long SystemResourceManager,long long ConfigurationDataP
             *(long long *)
              (*(long long *)(nextDataIndex1 + 0x3f70 + SystemOperationStatus4 * 8) + (ulong long)(allocationContext + unsignedSystemValue9 * -0x400) * 8)
                  = nextDataIndex2;
-            systemFunctionPointer5 = (code *)&UNK_1802426a0;
+            systemFunctionPointer5 = (code *)&SystemFunctionEntryPointA;
           }
           nextDataIndex3 = nextDataIndex3 + 8;
         } while (nextDataIndex3 < 0x138);
@@ -59986,7 +59986,7 @@ void* * FUN_1800784e0(void* *SystemResourceManager,ulong long ConfigurationDataP
   void* SystemOperationStatus;
   
   SystemOperationStatus = 0xfffffffffffffffe;
-  *SystemResourceManager = &UNK_180a001e8;
+  *SystemResourceManager = &SystemResourceDataTableE;
   FUN_180078550();
   ConfigureSystemMemoryRegion(SystemResourceManager + 1,8,7,InitializeMemoryManager,SystemOperationStatus);
   if ((ConfigurationDataPointer & 1) != 0) {
@@ -60050,7 +60050,7 @@ void FUN_180078550(void* *SystemResourceManager,void* ConfigurationDataPointer,v
   *(uint32_t *)((long long)SystemResourceManager + 0x74) = 0;
   *(uint32_t *)(SystemResourceManager + 0xf) = 0;
   *(uint32_t *)((long long)SystemResourceManager + 0x7c) = 0x3f800000;
-  if ((void* *)*SystemResourceManager == &UNK_180a001e8) {
+  if ((void* *)*SystemResourceManager == &SystemResourceDataTableE) {
     SystemResourceManager[0x10] = SystemResourceManager[8];
     SystemResourceManager[0x11] = SystemResourceManager[9];
     SystemResourceManager[0x12] = SystemResourceManager[10];
@@ -60306,7 +60306,7 @@ void FUN_1800786e0(void* *SystemResourceManager,long long ConfigurationDataPoint
     unsignedValue50 = *(void* *)(ConfigurationDataPointer + 0x308);
   }
   FUN_180084c70(SystemResourceManager + 8,&processFlags58,&uStackX_20,auStackX_10,&plStackX_8);
-  if ((void* *)*SystemResourceManager == &UNK_180a001e8) {
+  if ((void* *)*SystemResourceManager == &SystemResourceDataTableE) {
     pfloatValue5 = (float *)(SystemResourceManager + 0x10);
     *(void* *)pfloatValue5 = SystemResourceManager[8];
     SystemResourceManager[0x11] = SystemResourceManager[9];
@@ -62362,7 +62362,7 @@ float * FUN_1800795b0(float *SystemResourceManager)
         pEncryptionValue48 = *(void* **)(SystemResourceManager + 6);
       }
       unsignedValue40 = CONCAT44(unsignedValue40._4_4_,*(uint32_t *)(*(long long *)(SystemResourceManager + 0x84) + 0x60));
-      memoryAllocationBuffer = &UNK_1809ffb30;
+      memoryAllocationBuffer = &SystemMemoryBufferTemplateA;
       UnsignedStackFlag80 = 0x18007967a;
       fStack_50 = floatValue6;
       SystemManagerSetFlags(SystemContextManagerPointer,0,0x80000000000,3);
@@ -63876,7 +63876,7 @@ ulong long FUN_18007b240(long long SystemResourceManager,long long *Configuratio
     *HashBucketNode = &SystemMemoryTemplateA;
     *HashBucketNode = &SystemMemoryTemplateB;
     *(uint32_t *)(HashBucketNode + 1) = 0;
-    *HashBucketNode = &UNK_180a00168;
+    *HashBucketNode = &SystemHashBucketTableA;
     LOCK();
     *(uint8_t *)(HashBucketNode + 2) = 0;
     UNLOCK();
@@ -63892,7 +63892,7 @@ ulong long FUN_18007b240(long long SystemResourceManager,long long *Configuratio
     *HashBucketNode = &SystemMemoryTemplateA;
     *HashBucketNode = &SystemMemoryTemplateB;
     *(uint32_t *)(HashBucketNode + 1) = 0;
-    *HashBucketNode = &UNK_180a00100;
+    *HashBucketNode = &SystemHashBucketTableB;
     LOCK();
     *(uint32_t *)(HashBucketNode + 2) = 0;
     UNLOCK();
@@ -63941,7 +63941,7 @@ LAB_18007b454:
   *PrimaryResourcePointer1 = (long long)&SystemMemoryTemplateA;
   *PrimaryResourcePointer1 = (long long)&SystemMemoryTemplateB;
   *(uint32_t *)(PrimaryResourcePointer1 + 1) = 0;
-  *PrimaryResourcePointer1 = (long long)&UNK_180a00030;
+  *PrimaryResourcePointer1 = (long long)&SystemResourceDataTableF;
   PrimaryResourcePointer1[4] = 0;
   PrimaryResourcePointer1[2] = 0;
   *(byte *)(PrimaryResourcePointer1 + 5) = *(byte *)(PrimaryResourcePointer1 + 5) | 1;
@@ -63973,7 +63973,7 @@ LAB_18007b454:
       (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
       (**(code **)(*PrimaryResourcePointer1 + 0x28))(PrimaryResourcePointer1);
       pcStack_68 = FUN_180083390;
-      punsignedValue60 = &UNK_180083380;
+      punsignedValue60 = &SystemValueTableA;
       plStack_b8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
       *plStack_b8 = SystemResourceManager;
       *(byte *)(plStack_b8 + 1) = AdditionalParameter;
@@ -64483,7 +64483,7 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
     if (*(void* **)(SystemResourceManager + 0x18) != (void* *)0x0) {
       pSystemSecondaryStatus = *(void* **)(SystemResourceManager + 0x18);
     }
-    FUN_180627020(&UNK_1809ffb88,pSystemSecondaryStatus);
+    FUN_180627020(&SystemStatusBufferTemplateA,pSystemSecondaryStatus);
     plocalMemoryAddress = (long long *)FUN_1800be9a0(SystemMemoryContextPointer,&plStack_30,0);
     localDataIndex = *plocalMemoryAddress;
     *plocalMemoryAddress = 0;
@@ -64614,7 +64614,7 @@ void ConfigureSystemInitializationParameters(long long *SystemResourceManager,by
   }
   SystemConfigurationFlag1 = CONCAT31(SystemConfigurationFlag1._1_3_,ConfigurationDataPointer);
   SystemResourceManager1 = SystemResourceManager;
-  if ((void* *)*SystemResourceManager == &UNK_180a00270) {
+  if ((void* *)*SystemResourceManager == &SystemResourceDataTableC) {
     LOCK();
     *(int *)(SystemResourceManager + 1) = (int)SystemResourceManager[1] + 1;
     UNLOCK();
@@ -64625,8 +64625,8 @@ void ConfigureSystemInitializationParameters(long long *SystemResourceManager,by
   if (InitializationFlag == '\0') {
     LocalBufferAddress = *(long long **)(SystemResourceManager[0x15] + 0x88);
     SystemCodePointer = *(code **)(*LocalBufferAddress + 0x70);
-    SystemFunctionPointer1 = (code *)&UNK_180083180;
-    SystemNodePointer = &UNK_180083170;
+    SystemFunctionPointer1 = (code *)&SystemCodeEntryPointC;
+    SystemNodePointer = &SystemNodeTableA;
     SystemStatusFlag1 = (uint32_t)SystemResourceManager1;
     SystemStatusFlag2 = SystemResourceManager1._4_4_;
     SystemStatusFlag3 = SystemConfigurationFlag1;
@@ -66886,7 +66886,7 @@ void* * FUN_18007f2f0(void* *SystemResourceManager)
   *SystemResourceManager = &SystemMemoryTemplateA;
   *SystemResourceManager = &SystemMemoryTemplateB;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
-  *SystemResourceManager = &UNK_1809fffc8;
+  *SystemResourceManager = &SystemResourceManagerTemplateB;
   SystemResourceManager[2] = 0;
   SystemResourceManager[3] = 0;
   *(uint8_t *)(SystemResourceManager + 6) = 3;
@@ -66918,7 +66918,7 @@ void* * FUN_18007f2f0(void* *SystemResourceManager)
 void* * FUN_18007f3b0(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
-  *SystemResourceManager = &UNK_1809fffc8;
+  *SystemResourceManager = &SystemResourceManagerTemplateB;
   if (SystemResourceManager[0x1a] != 0) {
       SystemCleanupFunction();
   }
