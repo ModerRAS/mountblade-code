@@ -18467,8 +18467,7 @@ CleanupMemoryManager(void* *memoryManager,ulong long cleanupFlags,void* reserved
 void TerminateSystem(void)
 
 {
-                    // WARNING: Subroutine does not return
-  SystemDataOperation();
+    SystemDataOperation();
 }
 
 
@@ -18616,32 +18615,28 @@ LAB_180044db8:
     puStack_188 = &SystemMemoryAllocatorReference;
     puStack_1f8 = &SystemGlobalDataReference;
     if (puStack_1f0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_1f0 = (void* *)0x0;
     uStack_1e0 = uStack_1e0 & 0xffffffff00000000;
     puStack_1f8 = &SystemMemoryAllocatorReference;
     puStack_1d8 = &SystemGlobalDataReference;
     if (puStack_1d0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_1d0 = (void* *)0x0;
     uStack_1c0 = uStack_1c0 & 0xffffffff00000000;
     puStack_1d8 = &SystemMemoryAllocatorReference;
     puStack_1b8 = &SystemGlobalDataReference;
     if (lStack_1b0 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_1b0 = 0;
     uStack_1a0 = 0;
     puStack_1b8 = &SystemMemoryAllocatorReference;
   }
   uStack_200 = 0;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_248);
+    ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_248);
 }
 
 
@@ -18727,8 +18722,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
     if (LibraryHandle != 0) goto LAB_180044ee3;
     puStack_b8 = &SystemGlobalDataReference;
     if (puStack_b0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   else {
@@ -18739,8 +18733,7 @@ LAB_180044ee3:
       if (FunctionAddress == 0) {
         puStack_b8 = &SystemGlobalDataReference;
         if (puStack_b0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         goto LAB_180044f8f;
       }
@@ -18753,16 +18746,14 @@ LAB_180044ee3:
     if (SymbolInitializationResult == 0) {
       puStack_b8 = &SystemGlobalDataReference;
       if (puStack_b0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
     }
     else {
       *(char *)AllocatedMemoryPointer = '\x01';
       puStack_b8 = &SystemGlobalDataReference;
       if (puStack_b0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
     }
   }
@@ -18837,8 +18828,7 @@ void InitializeThreadManager(void)
   currentThread = GetCurrentThread();
   InitializeSystemThreadContext(currentThread,&errorPtr);
   errorPtr = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(threadManager);
+    SystemCleanupFunction(threadManager);
 }
 
 
@@ -18964,8 +18954,7 @@ uint32_t FinalSystemInitialization(void)
     CloseHandle(SystemManagerTable[0x42686]);
     SystemResourcePointer = (long long ***)(SystemManagerTable + 0x42687);
     if ((long long ***)*ppplStackX_10 != (long long ***)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     ppplStackX_10 = (long long ***)(pppplocalMemoryAddress + 0x4267c);
     _Mtx_destroy_in_situ();
@@ -18973,8 +18962,7 @@ uint32_t FinalSystemInitialization(void)
     _Mtx_destroy_in_situ();
     ConfigureSystemBuffer(pppplocalMemoryAddress);
     if (localAllocationFlags != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(localAllocationFlags);
+        SystemCleanupFunction(localAllocationFlags);
     }
   }
   pppPrimaryResourcePointer4 = SystemInitializationFlag;
@@ -18982,8 +18970,7 @@ uint32_t FinalSystemInitialization(void)
   SystemManagerPointerStorage = (long long ****)0x0;
   if (SystemAllocationFlagsTemplate != 0) {
     InitializeSystemLogger(SystemAllocationFlagsTemplate);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localAllocationFlags);
+      SystemCleanupFunction(localAllocationFlags);
   }
   SystemAllocationFlagsTemplate = 0;
   *(uint32_t *)(SystemInitializationFlag + 0x2d) = 2;
@@ -19005,8 +18992,7 @@ uint32_t FinalSystemInitialization(void)
   ReleaseSystemResource(pppPrimaryResourcePointer4 + 0x1e);
   ReleaseSystemResource(pppPrimaryResourcePointer4 + 0xf);
   ReleaseSystemResource(pppPrimaryResourcePointer4);
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(pppPrimaryResourcePointer4);
+    SystemCleanupFunction(pppPrimaryResourcePointer4);
 }
 
 
@@ -19064,9 +19050,8 @@ void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
   } while (*(char *)(sourceString + stringLength) != '\0');
   if ((int)stringLength < 0x1000) {
     *(int *)(targetBuffer + 0x10) = (int)stringLength;
-                    // WARNING: Could not recover jumptable at 0x000180045b59. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(SystemResourcePointer + 8),0x1000);
+                    000180045b59. Too many branches
+                        strcpy_s(*(void* *)(SystemResourcePointer + 8),0x1000);
     return;
   }
   ProcessSystemStringAllocation(&SystemMemoryTemplateG,0x1000,ConfigurationDataPointer);
@@ -19093,8 +19078,7 @@ void ProcessSystemMemoryCopy(long long SystemResourcePointer,void* SourceDataPoi
 
 {
   if (BytesToCopy + 1 < 0x1000) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(SystemResourcePointer + 8),SourceDataPointer,(long long)BytesToCopy);
+      memcpy(*(uint8_t **)(SystemResourcePointer + 8),SourceDataPointer,(long long)BytesToCopy);
   }
   **(uint8_t **)(SystemResourcePointer + 8) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x10) = 0;
@@ -19114,8 +19098,7 @@ void ProcessSystemMemoryCopy(long long SystemResourcePointer,void* SourceDataPoi
 void ExecuteSystemMemoryCopyOperation(void)
 
 {
-                    // WARNING: Subroutine does not return
-  memcpy();
+    memcpy();
 }
 
 
@@ -19153,8 +19136,7 @@ void ResetSystemBuffer(uint8_t *bufferPointer)
 void FinalizeSystemInitialization(void)
 
 {
-                    // WARNING: Subroutine does not return
-  SystemDataOperation();
+    SystemDataOperation();
 }
 
 
@@ -19201,8 +19183,7 @@ void* CleanupSystemCompletionPortResources(void* systemResourcePointer, uint32_t
   PostQueuedCompletionStatus(systemResourcePointer[0x42686],0,0xffffffffffffffff,0,0xfffffffffffffffe);
   CloseHandle(systemResourcePointer[0x42686]);
   if (systemResourcePointer[0x42687] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemProcess();
+      TerminateSystemProcess();
   }
   _Mtx_destroy_in_situ();
   _Mtx_destroy_in_situ();
@@ -19288,9 +19269,8 @@ void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
   } while (*(char *)(sourceString + stringLength) != '\0');
   if ((int)stringLength < 0x400) {
     *(int *)(targetBuffer + 0x10) = (int)stringLength;
-                    // WARNING: Could not recover jumptable at 0x000180045f19. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(targetBuffer + 8),0x400);
+                    000180045f19. Too many branches
+                        strcpy_s(*(void* *)(targetBuffer + 8),0x400);
     return;
   }
   ProcessSystemStringAllocation(&SystemStringAllocationHandler,0x400,sourceString);
@@ -19317,8 +19297,7 @@ void ProcessSystemMemoryCopy(long long targetBuffer,void* sourceData,int copyLen
 
 {
   if (copyLength + 1 < 0x400) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(targetBuffer + 8),sourceData,(long long)copyLength);
+      memcpy(*(uint8_t **)(targetBuffer + 8),sourceData,(long long)copyLength);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -19337,8 +19316,7 @@ void ProcessSystemMemoryCopy(long long targetBuffer,void* sourceData,int copyLen
 void ExecuteSystemMemoryCopyOperation(void)
 
 {
-                    // WARNING: Subroutine does not return
-  memcpy();
+    memcpy();
 }
 
 
@@ -19410,12 +19388,10 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
     do {
       BufferLengthCounter = BufferLengthCounter + 1;
     } while (*(char *)(BufferLengthCounter + ConfigurationParameter) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(SystemBufferPointer,*(long long *)(MainParameter + 8),StringSearchResult - *(long long *)(MainParameter + 8));
+      memcpy(SystemBufferPointer,*(long long *)(MainParameter + 8),StringSearchResult - *(long long *)(MainParameter + 8));
   }
   SystemMemoryReference = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(SystemChecksumValue ^ (ulong long)StackSecurityBuffer);
+    ValidateSystemChecksum(SystemChecksumValue ^ (ulong long)StackSecurityBuffer);
 }
 
 
@@ -19653,9 +19629,8 @@ void ProcessSystemStringCopyWithLimit(long long targetBuffer,long long sourceStr
   } while (*(char *)(sourceString + stringLength) != '\0');
   if ((int)stringLength < 0x20) {
     *(int *)(targetBuffer + 0x10) = (int)stringLength;
-                    // WARNING: Could not recover jumptable at 0x0001800463b7. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(targetBuffer + 8),0x20);
+                    0001800463b7. Too many branches
+                        strcpy_s(*(void* *)(targetBuffer + 8),0x20);
     return;
   }
   InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x20,sourceString);
@@ -19681,8 +19656,7 @@ void ExecuteSystemMemoryCopyWithLimit(long long targetBuffer,void* sourceData,in
 
 {
   if (copyLength + 1 < 0x20) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(targetBuffer + 8),sourceData,(long long)copyLength);
+      memcpy(*(uint8_t **)(targetBuffer + 8),sourceData,(long long)copyLength);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -19702,8 +19676,7 @@ void ExecuteSystemMemoryCopyWithLimit(long long targetBuffer,void* sourceData,in
 void ExecuteSystemMemoryCopy(void)
 
 {
-                    // WARNING: Subroutine does not return
-  memcpy();
+    memcpy();
 }
 
 
@@ -19796,12 +19769,10 @@ void ProcessSystemThreeParameterData(long long param1,long long param2,long long
     do {
       SourceStringLength = SourceStringLength + 1;
     } while (*(char *)(SourceStringLength + param3) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(DataBuffer,*(long long *)(param1 + 8),StringSearchResult - *(long long *)(param1 + 8));
+      memcpy(DataBuffer,*(long long *)(param1 + 8),StringSearchResult - *(long long *)(param1 + 8));
   }
   MemoryReference = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(ChecksumValue ^ (ulong long)StackSecurityBuffer);
+    ValidateSystemChecksum(ChecksumValue ^ (ulong long)StackSecurityBuffer);
 }
 
 
@@ -19902,8 +19873,7 @@ void ProcessSystemMemoryRange(long long *MemoryRangePointer)
   if (*MemoryRangePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -19920,16 +19890,14 @@ void InitializeSystemDataPointers(long long *SystemResourcePointer)
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 5) {
     *pointerToUnsigned2 = &SystemGlobalDataReference;
     if (pointerToUnsigned2[1] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     pointerToUnsigned2[1] = 0;
     *(uint32_t *)(pointerToUnsigned2 + 3) = 0;
     *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
   }
   if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -20109,8 +20077,7 @@ LAB_1800469fd:
     localSystemFlags = *(long long *)(SystemResourcePointer + 8);
   }
   if (localSystemFlags != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localSystemFlags);
+      SystemCleanupFunction(localSystemFlags);
   }
   *(long long *)(SystemResourcePointer + 8) = localSystemHandle;
   *(void* *****)(SystemResourcePointer + 0x10) = ppppunsignedSystemValue9;
@@ -20125,8 +20092,7 @@ LAB_180046a90:
   if (lStack_130 == 0) {
     return systemValue;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -20139,8 +20105,7 @@ void InitializeSystemDataBlock(void* *SystemResourcePointer,void* SourceDataPoin
   InitializeAndCleanupSystemMemoryAllocator(SystemResourcePointer + 0x1a,SystemResourcePointer[0x1c],MemoryBufferSize,AllocationFlags,0xfffffffffffffffe);
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
@@ -20267,8 +20232,7 @@ void InitializeSystemController(long long *SystemResourcePointer,void* *SystemCo
   ConfigureSystemSettings(&SystemConfigurationTemplate,SystemConfigurationPointer);
   *SystemConfigurationPointer = &SystemGlobalDataReference;
   if (SystemConfigurationPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemConfigurationPointer[1] = 0;
   *(uint32_t *)(SystemConfigurationPointer + 3) = 0;
@@ -20278,7 +20242,6 @@ void InitializeSystemController(long long *SystemResourcePointer,void* *SystemCo
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001800472a0)
 
 
 /**
@@ -20367,8 +20330,7 @@ void InitializeSystemCoreEngine(void)
   uStack_68 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_698;
   uStack_5b8 = 0;
   if (*(int *)(SystemStatusFlagsPointer + 0x224) - SystemMemoryAllocationCounter < 0xfb) {
-                    // WARNING: Subroutine does not return
-    ValidateSystemChecksum(uStack_68 ^ (ulong long)auStack_698);
+      ValidateSystemChecksum(uStack_68 ^ (ulong long)auStack_698);
   }
   *(uint8_t *)(SystemResourceManagerPointer + 0x39) = 1;
   ppplocalBufferAddress = (long long ***)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,200,8,3);
@@ -20476,16 +20438,14 @@ void InitializeSystemCoreEngine(void)
     *(double *)(localSystemFlags + 0x20 + SystemInitializationDataStart) = (double)(unsignedSystemValue5 >> 0x14);
     puStack_538 = &SystemGlobalDataReference;
     if (lStack_530 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_530 = 0;
     uStack_520 = 0;
     puStack_538 = &SystemMemoryAllocatorReference;
     puStack_558 = &SystemGlobalDataReference;
     if (lStack_550 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_550 = 0;
     uStack_540 = 0;
@@ -20501,8 +20461,7 @@ void InitializeSystemCoreEngine(void)
   uStack_608 = 0;
   WriteDataToBuffer(&puStack_618,iStack_668);
   if (iStack_668 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_610,lStack_670,iStack_668 + 1);
+      memcpy(puStack_610,lStack_670,iStack_668 + 1);
   }
   if (lStack_670 != 0) {
     uStack_608 = 0;
@@ -20544,8 +20503,7 @@ void InitializeSystemCoreEngine(void)
       UNLOCK();
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(SystemPreviousNode);
+    SystemCleanupFunction(SystemPreviousNode);
 }
 
 
@@ -20785,8 +20743,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* Configu
     WriteDataToBuffer(&puStack_c8,unsignedSystemValue10,AdditionalParameter,ConfigurationFlag,1,0xfffffffffffffffe);
   }
   if (unsignedSystemValue16 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_c0,*(void* *)(localMemoryPointer1 + 0x178),unsignedSystemValue10);
+      memcpy(puStack_c0,*(void* *)(localMemoryPointer1 + 0x178),unsignedSystemValue10);
   }
   if (puStack_c0 != (void* *)0x0) {
     puStack_c0[unsignedSystemValue10] = 0;
@@ -20826,8 +20783,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* Configu
       InitializeSystemDataBuffer(&puStack_88,*(uint32_t *)(SystemInitializationDataStart + 0x10 + unsignedSystemValue10));
       systemStatus7 = *(int *)(localMemoryPointer3 + 0x10 + unsignedSystemValue10);
       if (systemStatus7 != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(pcStack_80,*(void* *)(localMemoryPointer3 + 8 + unsignedSystemValue10),systemStatus7 + 1);
+          memcpy(pcStack_80,*(void* *)(localMemoryPointer3 + 8 + unsignedSystemValue10),systemStatus7 + 1);
       }
       if (*(long long *)(localMemoryPointer3 + 8 + unsignedSystemValue10) != 0) {
         uStack_78 = 0;
@@ -20956,8 +20912,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* Configu
         uStack_98 = 0;
         InitializeSystemDataBuffer(&puStack_a8,*(uint32_t *)(localMemoryPointer1 + 0x50));
         if (*(int *)(localMemoryPointer1 + 0x50) != 0) {
-                    // WARNING: Subroutine does not return
-          memcpy(pcStack_a0,*(void* *)(localMemoryPointer1 + 0x48),*(int *)(localMemoryPointer1 + 0x50) + 1);
+            memcpy(pcStack_a0,*(void* *)(localMemoryPointer1 + 0x48),*(int *)(localMemoryPointer1 + 0x50) + 1);
         }
         if (*(long long *)(localMemoryPointer1 + 0x48) != 0) {
           uStack_98 = 0;
@@ -20982,8 +20937,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* Configu
         SetSystemPropertyPointerValue(punsignedSystemValue5,&SystemPropertyTemplate,pcVar14,*(void* *)(localMemoryPointer1 + 0x60));
         puStack_a8 = &SystemGlobalDataReference;
         if (pcStack_a0 != (char *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         pcStack_a0 = (char *)0x0;
         stackParameterC = stackParameterC & 0xffffffff00000000;
@@ -20994,8 +20948,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* Configu
       FinalizeSystemConfiguration(punsignedSystemValue5,&SystemConfigurationTerminator);
       puStack_88 = &SystemGlobalDataReference;
       if (pcStack_80 != (char *)0x0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       pcStack_80 = (char *)0x0;
       uStack_70 = uStack_70 & 0xffffffff00000000;
@@ -21047,8 +21000,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* Configu
       UNLOCK();
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(punsignedSystemValue5);
+    SystemCleanupFunction(punsignedSystemValue5);
 }
 
 
@@ -21072,8 +21024,7 @@ void ProcessSystemMemoryRegion(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -21094,16 +21045,14 @@ void InitializeSystemDataTable(long long *SystemResourcePointer)
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 5) {
     *pointerToUnsigned2 = &SystemGlobalDataReference;
     if (pointerToUnsigned2[1] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     pointerToUnsigned2[1] = 0;
     *(uint32_t *)(pointerToUnsigned2 + 3) = 0;
     *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
   }
   if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -21170,8 +21119,7 @@ void CleanupSystemResource(long long SystemResourcePointer)
       SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
       UNLOCK();
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(SystemResourcePointer);
+      SystemCleanupFunction(SystemResourcePointer);
   }
   return;
 }
@@ -21492,8 +21440,7 @@ LAB_180048f62:
   *(void* *)(localSystemPointer + 0x58) = 0;
   *(void* *)(localSystemPointer + 0x48) = 0;
   *(uint32_t *)(localSystemPointer + 0x50) = 0;
-                    // WARNING: Subroutine does not return
-  InitializeSystemThreadContext(localSystemPointer,AdditionalParameter,SystemResourcePointer,unsignedSystemValue6,unsignedSystemValue7,punsignedSystemValue4);
+    InitializeSystemThreadContext(localSystemPointer,AdditionalParameter,SystemResourcePointer,unsignedSystemValue6,unsignedSystemValue7,punsignedSystemValue4);
 }
 
 
@@ -21801,8 +21748,7 @@ void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *Configurat
   if ((unsignedSystemValue2 & 0xfffffffd) != 0) {
     __Throw_C_error_std__YAXH_Z(unsignedSystemValue2);
   }
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_58);
+    ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_58);
 }
 
 
@@ -22017,8 +21963,7 @@ void CopyStringData(long long targetAddress,void* sourceData,int dataLength)
 
 {
   if (dataLength + 1 < 0x80) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(targetAddress + 8),sourceData,(long long)dataLength);
+      memcpy(*(uint8_t **)(targetAddress + 8),sourceData,(long long)dataLength);
   }
   **(uint8_t **)(targetAddress + 8) = 0;
   *(uint32_t *)(targetAddress + 0x10) = 0;
@@ -22039,8 +21984,7 @@ void CopyStringData(long long targetAddress,void* sourceData,int dataLength)
 void ExecuteMemoryCopyOperation(void)
 
 {
-                    // WARNING: Subroutine does not return
-  memcpy();
+    memcpy();
 }
 
 
@@ -22139,12 +22083,10 @@ void SystemStringProcessor(long long SystemResourcePointer,long long SourceStrin
     do {
       localSystemHandle = localSystemHandle + 1;
     } while (*(char *)(localSystemHandle + AdditionalParameter) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_e0,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
+      memcpy(puStack_e0,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
   }
   puStack_e8 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_118);
+    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_118);
 }
 
 
@@ -22226,9 +22168,8 @@ void ProcessSystemStringCopySmall(long long targetBuffer,long long sourceString)
   } while (*(char *)(ConfigurationDataPointer + localMemoryPointer) != '\0');
   if ((int)localMemoryPointer < 0x40) {
     *(int *)(SystemResourcePointer + 0x10) = (int)localMemoryPointer;
-                    // WARNING: Could not recover jumptable at 0x000180049c27. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(SystemResourcePointer + 8),0x40);
+                    000180049c27. Too many branches
+                        strcpy_s(*(void* *)(SystemResourcePointer + 8),0x40);
     return;
   }
   InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x40,ConfigurationDataPointer);
@@ -22257,8 +22198,7 @@ void ProcessSystemMemoryCopySmall(long long targetBuffer,void* sourceData,int co
 
 {
   if (AdditionalParameter + 1 < 0x40) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
+      memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -22279,8 +22219,7 @@ void ProcessSystemMemoryCopySmall(long long targetBuffer,void* sourceData,int co
 void InitializeSystemMemoryCopyOperation(void)
 
 {
-                    // WARNING: Subroutine does not return
-  memcpy();
+    memcpy();
 }
 
 
@@ -22375,12 +22314,10 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourcePointer,long long
     do {
       localSystemHandle = localSystemHandle + 1;
     } while (*(char *)(localSystemHandle + AdditionalParameter) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(stackParameterA,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
+      memcpy(stackParameterA,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
   }
   puStack_a8 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_d8);
+    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_d8);
 }
 
 
@@ -22428,16 +22365,14 @@ void ResetSystemMemoryAllocator(void* *SystemResourcePointer)
 {
   SystemResourcePointer[4] = &SystemGlobalDataReference;
   if (SystemResourcePointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 7) = 0;
   SystemResourcePointer[4] = &SystemMemoryAllocatorReference;
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
@@ -22471,22 +22406,19 @@ void InitializeAndCleanupSystemMemoryAllocator(void* SystemResourcePointer,void*
   InitializeAndCleanupSystemMemoryAllocator(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   ConfigurationDataPointer[8] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[9] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 0xb) = 0;
   ConfigurationDataPointer[8] = &SystemMemoryAllocatorReference;
   ConfigurationDataPointer[4] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[5] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
   ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(ConfigurationDataPointer);
+    SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
@@ -22570,8 +22502,7 @@ void CleanupSystemMemoryAllocator(void* *SystemResourcePointer)
 {
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
@@ -22610,9 +22541,8 @@ void ProcessSystemStringCopyMedium(long long targetBuffer,long long sourceString
   } while (*(char *)(sourceString + localMemoryPointer) != '\0');
   if ((int)localMemoryPointer < 0x80) {
     *(int *)(targetBuffer + 0x10) = (int)localMemoryPointer;
-                    // WARNING: Could not recover jumptable at 0x00018004a1b9. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(targetBuffer + 8),0x80);
+                    00018004a1b9. Too many branches
+                        strcpy_s(*(void* *)(targetBuffer + 8),0x80);
     return;
   }
   InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x80,sourceString);
@@ -22692,13 +22622,11 @@ LAB_18004a2b9:
     punsignedSystemValue4 = (void* *)0x0;
   }
   if (punsignedSystemValue5 != punsignedSystemValue6) {
-                    // WARNING: Subroutine does not return
-    memmove(punsignedSystemValue4,punsignedSystemValue5,(long long)punsignedSystemValue6 - (long long)punsignedSystemValue5);
+      memmove(punsignedSystemValue4,punsignedSystemValue5,(long long)punsignedSystemValue6 - (long long)punsignedSystemValue5);
   }
   *punsignedSystemValue4 = unsignedSystemValue2;
   if (*(long long *)(SystemResourcePointer + 8) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* **)(SystemResourcePointer + 8) = punsignedSystemValue4;
   *(void* **)(SystemResourcePointer + 0x10) = punsignedSystemValue4 + 1;
@@ -22730,8 +22658,7 @@ void DestroySystemMutex(void* *SystemResourcePointer)
   *SystemResourcePointer = &SystemDataBufferTemplateC;
   _Mtx_destroy_in_situ();
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = &SystemDataBufferTemplateD;
   return;
@@ -22829,8 +22756,7 @@ void StartAndManageSystemThread(long long SystemResourcePointer,long long Config
   localMemoryPointer = StartSystemThread(ConfigurationDataPointer);
   *(long long *)(SystemResourcePointer + 8) = *(long long *)(SystemResourcePointer + 8) - localMemoryPointer;
   if (ConfigurationDataPointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(ConfigurationDataPointer);
+      SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -22906,8 +22832,7 @@ bool SystemNodeCheckStatus(void)
   }
   puStack_30 = &SystemGlobalDataReference;
   if (puStack_28 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return bVar5;
 }
@@ -22976,8 +22901,7 @@ void InitializeSystemThreadPoolManager(void)
   *(uint8_t *)(pointerToUnsigned3 + 2) = 0;
   ProcessSystemResourceData(pointerToUnsigned3,punsignedSystemValue4,&SystemResourceTemplateTertiary);
   if (pointerToUnsigned3[1] == 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned3);
+      SystemCleanupFunction(pointerToUnsigned3);
   }
   ReleaseSystemMemory(SystemMemoryManagerPointer,pointerToUnsigned3);
   ClearSystemMemory(pointerToUnsigned3);
@@ -22988,8 +22912,7 @@ void InitializeSystemThreadPoolManager(void)
     SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
     UNLOCK();
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(pointerToUnsigned3);
+    SystemCleanupFunction(pointerToUnsigned3);
 }
 
 
@@ -23014,8 +22937,7 @@ void InitializeSystemConfigurationData(void)
   systemConfigPointer = AllocateSystemMemory(SystemMemoryAllocationTemplate,0x138,8,3);
   SystemConfigParameterB = InitializeSystemParameterB(systemConfigPointer);
   systemConfigPointer = AllocateSystemMemory(SystemMemoryAllocationTemplate,0x50,8,3);
-                    // WARNING: Subroutine does not return
-  memset(systemConfigPointer,0,0x50);
+    memset(systemConfigPointer,0,0x50);
 }
 
 
@@ -23128,8 +23050,7 @@ void ExecuteSystemFinalCleanup(void)
     localResourceOffset = __RTCastToVoid(PrimaryResourcePointer);
     (**(code **)(*PrimaryResourcePointer + 0x10))(PrimaryResourcePointer,0,*(code **)(*PrimaryResourcePointer + 0x10),in_R9,unsignedSystemValue4);
     if (localResourceOffset != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(localResourceOffset);
+        SystemCleanupFunction(localResourceOffset);
     }
   }
   *(void* *)(localSystemHandle + 0x30) = 0;
@@ -23145,16 +23066,14 @@ void ExecuteSystemFinalCleanup(void)
     *(void* *)(localSystemHandle + 0x10) = &SystemDataBufferTemplateE;
     *(void* *)(localSystemHandle + 0x10) = &SystemDataBufferTemplateF;
     *(void* **)(localSystemHandle + 8) = &SystemDataBufferTemplateG;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localSystemHandle);
+      SystemCleanupFunction(localSystemHandle);
   }
   SystemGraphicsContextPointer = 0;
   timeEndPeriod(1);
   localSystemHandle = SystemInputManagerPointer;
   if (SystemInputManagerPointer != 0) {
     InitializeInputManager(SystemInputManagerPointer);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localSystemHandle);
+      SystemCleanupFunction(localSystemHandle);
   }
   SystemInputManagerPointer = 0;
   return;
@@ -23297,8 +23216,7 @@ void* InitializeSystemResourceValidation(char SystemResourcePointer)
   if (puStack_28 == (void* *)0x0) {
     return unsignedSystemValue6;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -23390,13 +23308,11 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourcePointer)
   } while (punsignedSystemValue5[localResourceOffset] != '\0');
   systemResult = (int)localResourceOffset;
   if ((0 < systemResult) && (*(uint *)(SystemResourcePointer + 2) + systemResult < 0x1f)) {
-                    // WARNING: Subroutine does not return
-    memcpy((ulong long)*(uint *)(SystemResourcePointer + 2) + SystemResourcePointer[1],punsignedSystemValue5,(long long)(systemResult + 1));
+      memcpy((ulong long)*(uint *)(SystemResourcePointer + 2) + SystemResourcePointer[1],punsignedSystemValue5,(long long)(systemResult + 1));
   }
   uStack_68 = 1;
   memoryAllocationEnd = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_18 ^ (ulong long)stackBuffer);
+    ValidateSystemChecksum(uStack_18 ^ (ulong long)stackBuffer);
 }
 
 
@@ -23543,8 +23459,7 @@ void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,voi
   entryPointPtr = *(void* **)(systemContext + 0x10);
   if (entryPointPtr != (void* *)0x0) {
     InitializeSystemContext(systemContext,*entryPointPtr,memoryPool,InitializationFlags,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(entryPointPtr);
+      SystemCleanupFunction(entryPointPtr);
   }
   return;
 }
@@ -23571,8 +23486,7 @@ void SystemResourceCleanerA(long long systemContext,void* resourceParameter,void
   resourcePointer = *(void* **)(systemContext + 0x10);
   if (resourcePointer != (void* *)0x0) {
     SystemResourceCleanupHandler(systemContext,*resourcePointer,cleanupFlag,cleanupContext,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(resourcePointer);
+      SystemCleanupFunction(resourcePointer);
   }
   return;
 }
@@ -23599,8 +23513,7 @@ void SystemResourceCleanerB(long long systemContext,void* resourceParameter,void
   resourcePointer = *(void* **)(systemContext + 0x10);
   if (resourcePointer != (void* *)0x0) {
     SystemResourceCleanupHandler(systemContext,*resourcePointer,cleanupFlag,cleanupContext,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(resourcePointer);
+      SystemCleanupFunction(resourcePointer);
   }
   return;
 }
@@ -23622,8 +23535,7 @@ void SystemResourceCleanupHandler(void* systemContext,void* *resourcePointer)
 {
   if (resourcePointer != (void* *)0x0) {
     SystemResourceCleanupHandler(systemContext,*resourcePointer);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(resourcePointer);
+      SystemCleanupFunction(resourcePointer);
   }
   return;
 }
@@ -23645,8 +23557,7 @@ void SystemResourceCleanupExecutor(void* systemContext)
   void* *resourcePointer;
   
   SystemResourceCleanupHandler(systemContext,*resourcePointer);
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -23744,12 +23655,10 @@ void InitializeGameSettings(long long SystemResourcePointer,void* ConfigurationD
   } while (acStack_48[localBufferAddress + 1] != '\0');
   systemResult = (int)(localBufferAddress + 1);
   if ((0 < systemResult) && (*(uint *)(SystemResourcePointer + 0x10) + systemResult < 0x1f)) {
-                    // WARNING: Subroutine does not return
-    memcpy((ulong long)*(uint *)(SystemResourcePointer + 0x10) + *(long long *)(SystemResourcePointer + 8),acStack_48,
+      memcpy((ulong long)*(uint *)(SystemResourcePointer + 0x10) + *(long long *)(SystemResourcePointer + 8),acStack_48,
            (long long)((int)localBufferAddress + 2));
   }
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_78);
+    ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_78);
 }
 
 
@@ -23992,8 +23901,7 @@ void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* clea
       if (memoryPointer != (void* *)0x0) {
         memoryPointer[4] = &SystemGlobalDataReference;
         if (memoryPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         memoryPointer[5] = 0;
         *(uint32_t *)(memoryPointer + 7) = 0;
@@ -24003,11 +23911,9 @@ void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* clea
           memoryPointer[1] = 0;
           *(uint32_t *)(memoryPointer + 3) = 0;
           *memoryPointer = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction(memoryPointer);
+            SystemCleanupFunction(memoryPointer);
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *(void* *)(*(long long *)(systemDataReference + 0x30) + blockIndex * 8) = 0;
       blockIndex = blockIndex + 1;
@@ -24156,8 +24062,7 @@ void SystemDataTableProcessorA(long long *DataTablePointer,void* systemContext,v
   if (*DataTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -24191,8 +24096,7 @@ void SystemDataTableProcessorB(long long *DataTablePointer,void* systemContext,v
   if (*DataTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -24227,8 +24131,7 @@ void SystemMutexMemoryCleaner(long long mutexPointer)
   if (*(long long *)(mutexPointer + 0x10) - memoryBase >> 3 != 0) {
     do {
       if (*(long long *)(memoryOffset + memoryBase) != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *(void* *)(memoryOffset + *(long long *)(mutexPointer + 8)) = 0;
       entryIndex = (int)entryCounter + 1;
@@ -24277,12 +24180,10 @@ void ProcessSystemQueueItem(long long *QueuePointer)
     return;
   }
   if (*(long long *)(QueueItemValue + 8) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   _Mtx_destroy_in_situ();
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(QueueItemValue);
+    SystemCleanupFunction(QueueItemValue);
 }
 
 
@@ -24316,8 +24217,7 @@ void CleanupSystemResources(long long ResourceHandle)
     do {
       ResourcePointer = *(long long *)(ArrayBase + ResourceIndex * 8);
       if (ResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(ResourcePointer);
+          SystemCleanupFunction(ResourcePointer);
       }
       *(void* *)(ArrayBase + ResourceIndex * 8) = 0;
       ResourceIndex = ResourceIndex + 1;
@@ -24378,8 +24278,7 @@ void CleanupSystemQueue(long long *QueueHeader)
   if (*QueueHeader == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -24401,8 +24300,7 @@ void SystemDataStructureProcess(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -24452,8 +24350,7 @@ void ProcessSystemInitializationQueue(long long *queueHeader)
   if (*queueHeader == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -24477,8 +24374,7 @@ void SystemMemoryInitialize(long long SystemResourcePointer)
     do {
       localSystemHandle = *(long long *)(localBufferAddress + unsignedSystemValue5 * 8);
       if (localSystemHandle != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localBufferAddress + unsignedSystemValue5 * 8) = 0;
       unsignedSystemValue5 = unsignedSystemValue5 + 1;
@@ -24616,8 +24512,7 @@ void ExecuteSystemCleanup(long long *SystemResourcePointer,void* ConfigurationDa
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -24669,8 +24564,7 @@ void CopySystemStringToDataArea(long long SystemResourcePointer)
   if (0x1fff < stringLength) {
     stringLength = 0x1fff;
   }
-                    // WARNING: Subroutine does not return
-  memcpy(&SystemStringBuffer,SystemResourcePointer,(long long)(int)stringLength);
+    memcpy(&SystemStringBuffer,SystemResourcePointer,(long long)(int)stringLength);
 }
 
 
@@ -24950,13 +24844,11 @@ LAB_18004c7ef:
         if (localBufferAddress != 0) goto LAB_18004c7ef;
       }
       if (punsignedSystemValue8 != punsignedSystemValue9) {
-                    // WARNING: Subroutine does not return
-        memmove(punsignedSystemValue5,punsignedSystemValue8,(long long)punsignedSystemValue9 - (long long)punsignedSystemValue8);
+          memmove(punsignedSystemValue5,punsignedSystemValue8,(long long)punsignedSystemValue9 - (long long)punsignedSystemValue8);
       }
       *punsignedSystemValue5 = 0;
       if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *PrimaryResourcePointer = (long long)punsignedSystemValue5;
       SystemResourcePointer[0x22] = punsignedSystemValue5 + 1;
@@ -25058,8 +24950,7 @@ SystemMemoryTemplateManager(void* *SystemResourcePointer,ulong long Configuratio
 
 {
   if (SystemResourcePointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = &SystemMemoryTemplateB;
   *SystemResourcePointer = &SystemMemoryTemplateA;
@@ -25084,8 +24975,7 @@ void SystemMemoryTemplateCleanup(void* *SystemResourcePointer)
 
 {
   if (SystemResourcePointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = &SystemMemoryTemplateB;
   *SystemResourcePointer = &SystemMemoryTemplateA;
@@ -25170,36 +25060,31 @@ void SystemResourceCleanupManager(long long *SystemResourcePointer)
   if (SystemResourceArray != (void* *)0x0) {
     SystemResourceArray[0x14] = &SystemGlobalDataReference;
     if (SystemResourceArray[0x15] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SystemResourceArray[0x15] = 0;
     *(uint32_t *)(SystemResourceArray + 0x17) = 0;
     SystemResourceArray[0x14] = &SystemMemoryAllocatorReference;
     SystemResourceArray[0x10] = &SystemGlobalDataReference;
     if (SystemResourceArray[0x11] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SystemResourceArray[0x11] = 0;
     *(uint32_t *)(SystemResourceArray + 0x13) = 0;
     SystemResourceArray[0x10] = &SystemMemoryAllocatorReference;
     if (SystemResourceArray[0xc] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SystemMemoryDeallocationFunction();
     SystemMemoryDeallocationFunction();
     *SystemResourceArray = &SystemGlobalDataReference;
     if (SystemResourceArray[1] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SystemResourceArray[1] = 0;
     *(uint32_t *)(SystemResourceArray + 3) = 0;
     *SystemResourceArray = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(SystemResourceArray);
+      SystemCleanupFunction(SystemResourceArray);
   }
   SystemResourcePointer[0x7c] = 0;
   SystemResourceArray = (void* *)SystemResourcePointer[1];
@@ -25210,52 +25095,45 @@ void SystemResourceCleanupManager(long long *SystemResourcePointer)
     SystemResourceArray[0x28] = 0;
     SystemResourceArray[0x29] = &SystemGlobalDataReference;
     if (SystemResourceArray[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SystemResourceArray[0x2a] = 0;
     *(uint32_t *)(SystemResourceArray + 0x2c) = 0;
     SystemResourceArray[0x29] = &SystemMemoryAllocatorReference;
     SystemResourceFinalizationFunction();
     if (LocalSystemHandle != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(LocalSystemHandle);
+        SystemCleanupFunction(LocalSystemHandle);
     }
   }
   SystemResourcePointer[1] = 0;
   LocalSystemHandle = *SystemResourcePointer;
   if (LocalSystemHandle != 0) {
     SystemResourceHandleCleanupFunction(LocalSystemHandle);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(LocalSystemHandle);
+      SystemCleanupFunction(LocalSystemHandle);
   }
   *SystemResourcePointer = 0;
   LocalSystemHandle = SystemAudioManagerPointer;
   if (SystemAudioManagerPointer != 0) {
     SystemAudioManagerCleanupFunction();
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(LocalSystemHandle);
+      SystemCleanupFunction(LocalSystemHandle);
   }
   SystemAudioManagerPointer = 0;
   SystemRenderManagerCleanupFunction();
   SystemRenderManagerPointer = 0;
   if (SystemResourcePointer[6] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[6] = 0;
   SystemResourcePointer[0x6d] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x6e] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x6e] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x70) = 0;
   SystemResourcePointer[0x6d] = (long long)&SystemMemoryAllocatorReference;
   SystemResourcePointer[0x69] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x6a] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x6a] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x6c) = 0;
@@ -25264,32 +25142,28 @@ void SystemResourceCleanupManager(long long *SystemResourcePointer)
   SystemDataBufferCleanupFunction(SystemResourcePointer + 0x5c,SystemResourcePointer[0x5e]);
   SystemResourcePointer[0x58] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x59] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x59] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x5b) = 0;
   SystemResourcePointer[0x58] = (long long)&SystemMemoryAllocatorReference;
   SystemResourcePointer[0x52] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x53] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x53] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x55) = 0;
   SystemResourcePointer[0x52] = (long long)&SystemMemoryAllocatorReference;
   SystemResourcePointer[0x4e] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x4f] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x4f] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x51) = 0;
   SystemResourcePointer[0x4e] = (long long)&SystemMemoryAllocatorReference;
   SystemResourcePointer[0x39] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x3a] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x3a] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x3c) = 0;
@@ -25297,36 +25171,31 @@ void SystemResourceCleanupManager(long long *SystemResourcePointer)
   SystemResourcePointer[0x32] = (long long)&SystemMemoryAllocatorReference;
   SystemResourcePointer[0x2e] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x2f] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x2f] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x31) = 0;
   SystemResourcePointer[0x2e] = (long long)&SystemMemoryAllocatorReference;
   SystemResourcePointer[0x29] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x2a] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x2c) = 0;
   SystemResourcePointer[0x29] = (long long)&SystemMemoryAllocatorReference;
   if (SystemResourcePointer[0x21] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemFinalCleanupFunction();
   SystemResourcePointer[0x17] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x18] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x18] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x1a) = 0;
   SystemResourcePointer[0x17] = (long long)&SystemMemoryAllocatorReference;
   if (SystemResourcePointer[0xf] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if ((long long *)SystemResourcePointer[9] != (long long *)0x0) {
     SystemResourceFinalizerCallback();
@@ -25336,17 +25205,17 @@ void SystemResourceCleanupManager(long long *SystemResourcePointer)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018004d2c7)
-// WARNING: Removing unreachable block (ram,0x00018004d2d0)
-// WARNING: Removing unreachable block (ram,0x00018004d2da)
-// WARNING: Removing unreachable block (ram,0x00018004d2df)
-// WARNING: Removing unreachable block (ram,0x00018004d2f2)
-// WARNING: Removing unreachable block (ram,0x00018004d30d)
-// WARNING: Removing unreachable block (ram,0x00018004d328)
-// WARNING: Removing unreachable block (ram,0x00018004d343)
-// WARNING: Removing unreachable block (ram,0x00018004d35e)
-// WARNING: Removing unreachable block (ram,0x00018004d379)
-// WARNING: Removing unreachable block (ram,0x00018004d4a0)
+00018004d2c7)
+00018004d2d0)
+00018004d2da)
+00018004d2df)
+00018004d2f2)
+00018004d30d)
+00018004d328)
+00018004d343)
+00018004d35e)
+00018004d379)
+00018004d4a0)
 
 
 /**
@@ -25603,8 +25472,7 @@ LAB_18004e721:
   if (!bVar4) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  UpdateContextManagerSystem(SystemContextManagerPointer,&SystemResourceTemplateUndenary,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&SystemResourceTemplateUndenary,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1);
 }
 
 
@@ -25669,16 +25537,14 @@ uint32_t GetSystemResourceStatus(void)
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xe30,punsignedSystemValue4);
     *punsignedSystemValue4 = &SystemGlobalDataReference;
     if (punsignedSystemValue4[1] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     punsignedSystemValue4[1] = 0;
     *(uint32_t *)(punsignedSystemValue4 + 3) = 0;
     *punsignedSystemValue4 = &SystemMemoryAllocatorReference;
     puStack_c8 = &SystemGlobalDataReference;
     if (lStack_c0 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_c0 = 0;
     uStack_b0 = uStack_b0 & 0xffffffff00000000;
@@ -25711,16 +25577,14 @@ uint32_t GetSystemResourceStatus(void)
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xef0,punsignedSystemValue4);
     *punsignedSystemValue4 = &SystemGlobalDataReference;
     if (punsignedSystemValue4[1] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     punsignedSystemValue4[1] = 0;
     *(uint32_t *)(punsignedSystemValue4 + 3) = 0;
     *punsignedSystemValue4 = &SystemMemoryAllocatorReference;
     puStack_a8 = &SystemGlobalDataReference;
     if (lStack_a0 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   return *(uint32_t *)(*(long long *)(localResourceOffset + 8) + 0x13c);
@@ -25728,48 +25592,48 @@ uint32_t GetSystemResourceStatus(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018004ed08)
-// WARNING: Removing unreachable block (ram,0x00018004ed22)
-// WARNING: Removing unreachable block (ram,0x00018004ed36)
-// WARNING: Removing unreachable block (ram,0x00018004ed44)
-// WARNING: Removing unreachable block (ram,0x00018004ed48)
-// WARNING: Removing unreachable block (ram,0x00018004ed5b)
-// WARNING: Removing unreachable block (ram,0x00018004ed5f)
-// WARNING: Removing unreachable block (ram,0x00018004ed72)
-// WARNING: Removing unreachable block (ram,0x00018004ed76)
-// WARNING: Removing unreachable block (ram,0x00018004ed89)
-// WARNING: Removing unreachable block (ram,0x00018004ed8d)
-// WARNING: Removing unreachable block (ram,0x00018004edbc)
-// WARNING: Removing unreachable block (ram,0x00018004edc0)
-// WARNING: Removing unreachable block (ram,0x00018004edd3)
-// WARNING: Removing unreachable block (ram,0x00018004ee38)
-// WARNING: Removing unreachable block (ram,0x00018004ee52)
-// WARNING: Removing unreachable block (ram,0x00018004ee66)
-// WARNING: Removing unreachable block (ram,0x00018004ee74)
-// WARNING: Removing unreachable block (ram,0x00018004ee78)
-// WARNING: Removing unreachable block (ram,0x00018004ee8b)
-// WARNING: Removing unreachable block (ram,0x00018004ee8f)
-// WARNING: Removing unreachable block (ram,0x00018004eea2)
-// WARNING: Removing unreachable block (ram,0x00018004eea6)
-// WARNING: Removing unreachable block (ram,0x00018004eeb6)
-// WARNING: Removing unreachable block (ram,0x00018004eeba)
-// WARNING: Removing unreachable block (ram,0x00018004eeec)
-// WARNING: Removing unreachable block (ram,0x00018004eef0)
-// WARNING: Removing unreachable block (ram,0x00018004ef03)
-// WARNING: Removing unreachable block (ram,0x00018004ebd5)
-// WARNING: Removing unreachable block (ram,0x00018004ebef)
-// WARNING: Removing unreachable block (ram,0x00018004ec03)
-// WARNING: Removing unreachable block (ram,0x00018004ec11)
-// WARNING: Removing unreachable block (ram,0x00018004ec15)
-// WARNING: Removing unreachable block (ram,0x00018004ec28)
-// WARNING: Removing unreachable block (ram,0x00018004ec2c)
-// WARNING: Removing unreachable block (ram,0x00018004ec3f)
-// WARNING: Removing unreachable block (ram,0x00018004ec43)
-// WARNING: Removing unreachable block (ram,0x00018004ec56)
-// WARNING: Removing unreachable block (ram,0x00018004ec5a)
-// WARNING: Removing unreachable block (ram,0x00018004ec88)
-// WARNING: Removing unreachable block (ram,0x00018004ec90)
-// WARNING: Removing unreachable block (ram,0x00018004eca3)
+00018004ed08)
+00018004ed22)
+00018004ed36)
+00018004ed44)
+00018004ed48)
+00018004ed5b)
+00018004ed5f)
+00018004ed72)
+00018004ed76)
+00018004ed89)
+00018004ed8d)
+00018004edbc)
+00018004edc0)
+00018004edd3)
+00018004ee38)
+00018004ee52)
+00018004ee66)
+00018004ee74)
+00018004ee78)
+00018004ee8b)
+00018004ee8f)
+00018004eea2)
+00018004eea6)
+00018004eeb6)
+00018004eeba)
+00018004eeec)
+00018004eef0)
+00018004ef03)
+00018004ebd5)
+00018004ebef)
+00018004ec03)
+00018004ec11)
+00018004ec15)
+00018004ec28)
+00018004ec2c)
+00018004ec3f)
+00018004ec43)
+00018004ec56)
+00018004ec5a)
+00018004ec88)
+00018004ec90)
+00018004eca3)
 
 
 // 函数: void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void* parameter3,void* parameter4)
@@ -25809,8 +25673,7 @@ void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void
       ExecuteSystemCommand(&puStack_68,unsignedSystemValue5,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     }
     if (unsignedSystemValue1 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(lStack_60,*(void* *)(localResourceOffset + 0xe38),unsignedSystemValue5);
+        memcpy(lStack_60,*(void* *)(localResourceOffset + 0xe38),unsignedSystemValue5);
     }
     if (lStack_60 != 0) {
       *(uint8_t *)(unsignedSystemValue5 + lStack_60) = 0;
@@ -25825,8 +25688,7 @@ void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void
     ExecuteSystemCommand(&puStack_68,unsignedSystemValue5);
   }
   if (unsignedSystemValue1 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(lStack_60,*(void* *)(localResourceOffset + 0xef8),unsignedSystemValue5);
+      memcpy(lStack_60,*(void* *)(localResourceOffset + 0xef8),unsignedSystemValue5);
   }
   if (lStack_60 != 0) {
     *(uint8_t *)(unsignedSystemValue5 + lStack_60) = 0;
@@ -25840,8 +25702,7 @@ void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void
     ExecuteSystemCommand(&puStack_68,unsignedSystemValue5);
   }
   if (unsignedSystemValue2 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(lStack_60,*(void* *)(localBufferAddress + 0xfb8),unsignedSystemValue5);
+      memcpy(lStack_60,*(void* *)(localBufferAddress + 0xfb8),unsignedSystemValue5);
   }
   if (lStack_60 != 0) {
     *(uint8_t *)(unsignedSystemValue5 + lStack_60) = 0;
@@ -25850,8 +25711,7 @@ void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void
   puStack_68 = &SystemGlobalDataReference;
   if (lStack_60 != 0) {
     uStack_58 = unsignedSystemValue2;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -26014,8 +25874,7 @@ void SystemCleanupHandler(void)
   SystemPreviousNode = (uint32_t *)CreateSystemNodePointer(localResourceOffset + 0xe0,&SystemCallbackDataTable3);
   *SystemPreviousNode = 1;
   lStack_1d0 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x3878,8,3);
-                    // WARNING: Subroutine does not return
-  memset(lStack_1d0,0,0x3878);
+    memset(lStack_1d0,0,0x3878);
 }
 
 
@@ -26047,8 +25906,7 @@ void SystemMemoryManager(long long SystemResourcePointer)
     do {
       localSystemHandle = *(long long *)(localBufferAddress + unsignedSystemValue5 * 8);
       if (localSystemHandle != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localBufferAddress + unsignedSystemValue5 * 8) = 0;
       unsignedSystemValue5 = unsignedSystemValue5 + 1;
@@ -26110,8 +25968,7 @@ void SystemMemoryCleanup(long long SystemResourcePointer)
     do {
       localSystemHandle = *(long long *)(localBufferAddress + unsignedSystemValue5 * 8);
       if (localSystemHandle != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localBufferAddress + unsignedSystemValue5 * 8) = 0;
       unsignedSystemValue5 = unsignedSystemValue5 + 1;
@@ -26223,8 +26080,7 @@ void SystemDataInitializer(void)
     *plocalResourcePointer = 0;
     plStack_88 = plocalResourcePointer + 1;
     CleanupSystemMemoryAllocation();
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(plocalResourcePointer);
+      SystemCleanupFunction(plocalResourcePointer);
   }
   SystemCleanupStatusFlag = (long long *)0x0;
   if (SystemGlobalControllerPointer != (long long *)0x0) {
@@ -26293,15 +26149,13 @@ void SystemDataInitializer(void)
   InitializeSystemStack(&puStack_78,&memoryAllocationEnd);
   puStack_78 = &SystemGlobalDataReference;
   if (puStack_70 != (uint32_t *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_70 = (uint32_t *)0x0;
   uStack_60 = (ulong long)uStack_60._4_4_ << 0x20;
   puStack_78 = &SystemMemoryAllocatorReference;
   memoryAllocationEnd = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  UpdateContextManagerSystem(SystemContextManagerPointer,&ContextManagerConfigurationData);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&ContextManagerConfigurationData);
 }
 
 
@@ -26738,12 +26592,10 @@ void* * SystemResourceCopier(void* *SystemResourcePointer,void* *ConfigurationDa
         localSystemFlags = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue9 * 4,*(uint8_t *)(SystemResourcePointer + 0x46));
       }
       if (localResourceOffset != localSystemHandle) {
-                    // WARNING: Subroutine does not return
-        memmove(localSystemFlags,localResourceOffset,localMemoryAddress);
+          memmove(localSystemFlags,localResourceOffset,localMemoryAddress);
       }
       if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       localSystemHandle = localSystemFlags + unsignedSystemValue9 * 4;
       *PrimaryResourcePointer = localSystemFlags;
@@ -26756,19 +26608,16 @@ void* * SystemResourceCopier(void* *SystemResourcePointer,void* *ConfigurationDa
       if (unsignedSystemValue5 < unsignedSystemValue9) {
         localMemoryAddress = unsignedSystemValue5 * 4 + localResourceOffset;
         if (localResourceOffset != localMemoryAddress) {
-                    // WARNING: Subroutine does not return
-          memmove(localSystemFlags,localResourceOffset);
+            memmove(localSystemFlags,localResourceOffset);
         }
         if (localMemoryAddress != localSystemHandle) {
-                    // WARNING: Subroutine does not return
-          memmove(localBufferAddress,localMemoryAddress,localSystemHandle - localMemoryAddress);
+            memmove(localBufferAddress,localMemoryAddress,localSystemHandle - localMemoryAddress);
         }
         SystemResourcePointer[0x44] = localBufferAddress;
       }
       else {
         if (localResourceOffset != localSystemHandle) {
-                    // WARNING: Subroutine does not return
-          memmove(localSystemFlags,localResourceOffset,localMemoryAddress);
+            memmove(localSystemFlags,localResourceOffset,localMemoryAddress);
         }
         SystemResourcePointer[0x44] = localSystemFlags;
       }
@@ -26815,12 +26664,10 @@ void SystemResourceManager(long long SystemResourcePointer)
       localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 * 4,(char)systemDataIndexPtr[3]);
     }
     if (localSystemHandle != localMemoryPointer) {
-                    // WARNING: Subroutine does not return
-      memmove(localResourceOffset,localSystemHandle,localSystemPointer);
+        memmove(localResourceOffset,localSystemHandle,localSystemPointer);
     }
     if (*systemDataIndexPtr != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     localMemoryPointer = localResourceOffset + unsignedSystemValue6 * 4;
     *systemDataIndexPtr = localResourceOffset;
@@ -26833,19 +26680,16 @@ void SystemResourceManager(long long SystemResourcePointer)
     if (unsignedSystemValue4 < unsignedSystemValue6) {
       localSystemPointer = unsignedSystemValue4 * 4 + localSystemHandle;
       if (localSystemHandle != localSystemPointer) {
-                    // WARNING: Subroutine does not return
-        memmove(SystemResourcePointer,localSystemHandle);
+          memmove(SystemResourcePointer,localSystemHandle);
       }
       if (localSystemPointer != localMemoryPointer) {
-                    // WARNING: Subroutine does not return
-        memmove(localResourceOffset,localSystemPointer,localMemoryPointer - localSystemPointer);
+          memmove(localResourceOffset,localSystemPointer,localMemoryPointer - localSystemPointer);
       }
       systemDataIndexPtr[1] = localResourceOffset;
     }
     else {
       if (localSystemHandle != localMemoryPointer) {
-                    // WARNING: Subroutine does not return
-        memmove(SystemResourcePointer,localSystemHandle,localSystemPointer);
+          memmove(SystemResourcePointer,localSystemHandle,localSystemPointer);
       }
       systemDataIndexPtr[1] = SystemResourcePointer;
     }
@@ -26878,12 +26722,10 @@ void SystemMemoryConfigurator(void)
     SystemHandle = CreateSystemThreadObject(SystemMemoryAllocationTemplate,AllocationSize * 4,(char)ResourceArrayPointer[3]);
   }
   if (MemorySizePointer != StackBasePointer) {
-                    // WARNING: Subroutine does not return
-    memmove(SystemHandle);
+      memmove(SystemHandle);
   }
   if (*ResourceArrayPointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   MemoryBufferPointer = SystemHandle + AllocationSize * 4;
   *ResourceArrayPointer = SystemHandle;
@@ -26920,19 +26762,16 @@ void SystemResourceHandler(long long SystemResourcePointer)
   if (unsignedSystemValue3 < systemResourceCounter) {
     localMemoryPointer = unsignedSystemValue3 * 4 + systemStringIteratorPtr;
     if (systemStringIteratorPtr != localMemoryPointer) {
-                    // WARNING: Subroutine does not return
-      memmove();
+        memmove();
     }
     if (localMemoryPointer != systemStackFramePtr) {
-                    // WARNING: Subroutine does not return
-      memmove(localSystemHandle,localMemoryPointer,systemStackFramePtr - localMemoryPointer);
+        memmove(localSystemHandle,localMemoryPointer,systemStackFramePtr - localMemoryPointer);
     }
     *(long long *)(systemDataIndexPtr + 8) = localSystemHandle;
   }
   else {
     if (systemStringIteratorPtr != systemStackFramePtr) {
-                    // WARNING: Subroutine does not return
-      memmove();
+        memmove();
     }
     *(long long *)(systemDataIndexPtr + 8) = SystemResourcePointer;
   }
@@ -27043,8 +26882,7 @@ LAB_180051fc9:
   if (pbStack_28 == (byte *)0x0) {
     return pointerToUnsigned10 != pointerToUnsigned1;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -27107,8 +26945,7 @@ void SystemDataProcessor(long long SystemResourcePointer)
   *pointerToUnsigned1 = 0x2f73656873617263;
   *(uint8_t *)(pointerToUnsigned1 + 1) = 0;
   *(int *)(SystemResourcePointer + 0x10) = systemResult;
-                    // WARNING: Subroutine does not return
-  memset(auStack_a8,0,0x80);
+    memset(auStack_a8,0,0x80);
 }
 
 
@@ -27198,12 +27035,10 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
     uStack_80 = 10;
     GetSystemCounter(SystemResourcePointer + 0x2c0,&pstackParameterC);
     pstackParameterC = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(punsignedSystemValue4);
+      SystemCleanupFunction(punsignedSystemValue4);
   }
   puStack_70 = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(punsignedSystemValue4);
+    SystemCleanupFunction(punsignedSystemValue4);
 }
 
 
@@ -27270,12 +27105,10 @@ void* SystemResourceAllocator(void* SystemResourcePointer,void* ConfigurationDat
     uStack_78 = 10;
     GetSystemCounter(localMemoryPointer + 0x2c0,&puStack_88);
     puStack_88 = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(punsignedSystemValue4);
+      SystemCleanupFunction(punsignedSystemValue4);
   }
   puStack_68 = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(punsignedSystemValue4);
+    SystemCleanupFunction(punsignedSystemValue4);
 }
 
 
@@ -27673,8 +27506,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   *(int *)(ConfigurationDataPointer + 0x10) = systemCounter;
   if (0 < iStack_c8) {
     ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + iStack_c8);
-                    // WARNING: Subroutine does not return
-    memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),uStack_d0,
+      memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),uStack_d0,
            (long long)(iStack_c8 + 1));
   }
   ExecuteSystemCommand(ConfigurationDataPointer,systemResult + 6);
@@ -27688,8 +27520,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   *(int *)(ConfigurationDataPointer + 0x10) = systemCounter;
   if (0 < iStack_188) {
     ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + iStack_188);
-                    // WARNING: Subroutine does not return
-    memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),uStack_190,
+      memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),uStack_190,
            (long long)(iStack_188 + 1));
   }
   ExecuteSystemCommand(ConfigurationDataPointer,systemResult + 0xc);
@@ -27698,156 +27529,155 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   puStack_198 = &SystemMemoryAllocatorReference;
   ppuStack_1a8 = &puStack_d8;
   puStack_d8 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_18 ^ (ulong long)auStack_1c8);
+    ValidateSystemChecksum(uStack_18 ^ (ulong long)auStack_1c8);
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180053668)
-// WARNING: Removing unreachable block (ram,0x0001800536a5)
-// WARNING: Removing unreachable block (ram,0x0001800536a9)
-// WARNING: Removing unreachable block (ram,0x0001800536b4)
-// WARNING: Removing unreachable block (ram,0x0001800536b7)
-// WARNING: Removing unreachable block (ram,0x0001800536e1)
-// WARNING: Removing unreachable block (ram,0x0001800536e5)
-// WARNING: Removing unreachable block (ram,0x0001800536f3)
-// WARNING: Removing unreachable block (ram,0x0001800536fb)
-// WARNING: Removing unreachable block (ram,0x000180053702)
-// WARNING: Removing unreachable block (ram,0x00018005370c)
-// WARNING: Removing unreachable block (ram,0x00018005373c)
-// WARNING: Removing unreachable block (ram,0x000180053744)
-// WARNING: Removing unreachable block (ram,0x000180053747)
-// WARNING: Removing unreachable block (ram,0x000180053714)
-// WARNING: Removing unreachable block (ram,0x000180053719)
-// WARNING: Removing unreachable block (ram,0x000180053760)
-// WARNING: Removing unreachable block (ram,0x00018005376e)
-// WARNING: Removing unreachable block (ram,0x0001800537b1)
-// WARNING: Removing unreachable block (ram,0x0001800537b5)
-// WARNING: Removing unreachable block (ram,0x0001800537c0)
-// WARNING: Removing unreachable block (ram,0x0001800537c3)
-// WARNING: Removing unreachable block (ram,0x0001800537ed)
-// WARNING: Removing unreachable block (ram,0x0001800537f1)
-// WARNING: Removing unreachable block (ram,0x0001800537ff)
-// WARNING: Removing unreachable block (ram,0x000180053807)
-// WARNING: Removing unreachable block (ram,0x00018005380c)
-// WARNING: Removing unreachable block (ram,0x00018005381c)
-// WARNING: Removing unreachable block (ram,0x00018005384b)
-// WARNING: Removing unreachable block (ram,0x000180053853)
-// WARNING: Removing unreachable block (ram,0x000180053856)
-// WARNING: Removing unreachable block (ram,0x000180053824)
-// WARNING: Removing unreachable block (ram,0x000180053828)
-// WARNING: Removing unreachable block (ram,0x00018005386f)
-// WARNING: Removing unreachable block (ram,0x00018005387d)
-// WARNING: Removing unreachable block (ram,0x0001800538c8)
-// WARNING: Removing unreachable block (ram,0x0001800538cc)
-// WARNING: Removing unreachable block (ram,0x0001800538d7)
-// WARNING: Removing unreachable block (ram,0x0001800538da)
-// WARNING: Removing unreachable block (ram,0x000180053906)
-// WARNING: Removing unreachable block (ram,0x00018005390a)
-// WARNING: Removing unreachable block (ram,0x000180053918)
-// WARNING: Removing unreachable block (ram,0x000180053921)
-// WARNING: Removing unreachable block (ram,0x000180053925)
-// WARNING: Removing unreachable block (ram,0x000180053931)
-// WARNING: Removing unreachable block (ram,0x000180053962)
-// WARNING: Removing unreachable block (ram,0x00018005396a)
-// WARNING: Removing unreachable block (ram,0x00018005396d)
-// WARNING: Removing unreachable block (ram,0x000180053939)
-// WARNING: Removing unreachable block (ram,0x00018005393e)
-// WARNING: Removing unreachable block (ram,0x000180053987)
-// WARNING: Removing unreachable block (ram,0x000180053996)
-// WARNING: Removing unreachable block (ram,0x0001800539f8)
-// WARNING: Removing unreachable block (ram,0x0001800539fc)
-// WARNING: Removing unreachable block (ram,0x000180053a07)
-// WARNING: Removing unreachable block (ram,0x000180053a0a)
-// WARNING: Removing unreachable block (ram,0x000180053a34)
-// WARNING: Removing unreachable block (ram,0x000180053a38)
-// WARNING: Removing unreachable block (ram,0x000180053a46)
-// WARNING: Removing unreachable block (ram,0x000180053a4e)
-// WARNING: Removing unreachable block (ram,0x000180053a53)
-// WARNING: Removing unreachable block (ram,0x000180053ad8)
-// WARNING: Removing unreachable block (ram,0x000180053a61)
-// WARNING: Removing unreachable block (ram,0x000180053aa2)
-// WARNING: Removing unreachable block (ram,0x000180053aab)
-// WARNING: Removing unreachable block (ram,0x000180053aaf)
-// WARNING: Removing unreachable block (ram,0x000180053a69)
-// WARNING: Removing unreachable block (ram,0x000180053a74)
-// WARNING: Removing unreachable block (ram,0x000180053ade)
-// WARNING: Removing unreachable block (ram,0x000180053b28)
-// WARNING: Removing unreachable block (ram,0x000180053b2c)
-// WARNING: Removing unreachable block (ram,0x000180053b32)
-// WARNING: Removing unreachable block (ram,0x000180053b36)
-// WARNING: Removing unreachable block (ram,0x000180053b60)
-// WARNING: Removing unreachable block (ram,0x000180053b64)
-// WARNING: Removing unreachable block (ram,0x000180053b72)
-// WARNING: Removing unreachable block (ram,0x000180053b7a)
-// WARNING: Removing unreachable block (ram,0x000180053b7e)
-// WARNING: Removing unreachable block (ram,0x000180053b8e)
-// WARNING: Removing unreachable block (ram,0x000180053bbe)
-// WARNING: Removing unreachable block (ram,0x000180053bc6)
-// WARNING: Removing unreachable block (ram,0x000180053bc9)
-// WARNING: Removing unreachable block (ram,0x000180053b97)
-// WARNING: Removing unreachable block (ram,0x000180053b9b)
-// WARNING: Removing unreachable block (ram,0x000180053be2)
-// WARNING: Removing unreachable block (ram,0x000180053bf0)
-// WARNING: Removing unreachable block (ram,0x000180053c4c)
-// WARNING: Removing unreachable block (ram,0x000180053c51)
-// WARNING: Removing unreachable block (ram,0x000180053c5d)
-// WARNING: Removing unreachable block (ram,0x000180053c60)
-// WARNING: Removing unreachable block (ram,0x000180053c8e)
-// WARNING: Removing unreachable block (ram,0x000180053c93)
-// WARNING: Removing unreachable block (ram,0x000180053ca1)
-// WARNING: Removing unreachable block (ram,0x000180053caa)
-// WARNING: Removing unreachable block (ram,0x000180053caf)
-// WARNING: Removing unreachable block (ram,0x000180053cbe)
-// WARNING: Removing unreachable block (ram,0x000180053cf1)
-// WARNING: Removing unreachable block (ram,0x000180053cf9)
-// WARNING: Removing unreachable block (ram,0x000180053cfc)
-// WARNING: Removing unreachable block (ram,0x000180053cc6)
-// WARNING: Removing unreachable block (ram,0x000180053cce)
-// WARNING: Removing unreachable block (ram,0x000180053d15)
-// WARNING: Removing unreachable block (ram,0x000180053d23)
-// WARNING: Removing unreachable block (ram,0x000180053d8b)
-// WARNING: Removing unreachable block (ram,0x000180053d8f)
-// WARNING: Removing unreachable block (ram,0x000180053d9a)
-// WARNING: Removing unreachable block (ram,0x000180053d9d)
-// WARNING: Removing unreachable block (ram,0x000180053dcd)
-// WARNING: Removing unreachable block (ram,0x000180053dd1)
-// WARNING: Removing unreachable block (ram,0x000180053ddf)
-// WARNING: Removing unreachable block (ram,0x000180053de8)
-// WARNING: Removing unreachable block (ram,0x000180053ded)
-// WARNING: Removing unreachable block (ram,0x000180053dfc)
-// WARNING: Removing unreachable block (ram,0x000180053e2f)
-// WARNING: Removing unreachable block (ram,0x000180053e37)
-// WARNING: Removing unreachable block (ram,0x000180053e3a)
-// WARNING: Removing unreachable block (ram,0x000180053e03)
-// WARNING: Removing unreachable block (ram,0x000180053e0b)
-// WARNING: Removing unreachable block (ram,0x000180053e54)
-// WARNING: Removing unreachable block (ram,0x000180053e63)
-// WARNING: Removing unreachable block (ram,0x000180053ead)
-// WARNING: Removing unreachable block (ram,0x000180053eb5)
-// WARNING: Removing unreachable block (ram,0x000180053ee6)
-// WARNING: Removing unreachable block (ram,0x000180053ef5)
-// WARNING: Removing unreachable block (ram,0x000180053f18)
-// WARNING: Removing unreachable block (ram,0x000180053f20)
-// WARNING: Removing unreachable block (ram,0x000180053f43)
-// WARNING: Removing unreachable block (ram,0x000180053f4b)
-// WARNING: Removing unreachable block (ram,0x000180053f74)
-// WARNING: Removing unreachable block (ram,0x000180053f79)
-// WARNING: Removing unreachable block (ram,0x000180053f98)
-// WARNING: Removing unreachable block (ram,0x000180053fa0)
-// WARNING: Removing unreachable block (ram,0x000180053fbc)
-// WARNING: Removing unreachable block (ram,0x000180053fc4)
-// WARNING: Removing unreachable block (ram,0x000180053fe5)
-// WARNING: Removing unreachable block (ram,0x000180053fea)
-// WARNING: Removing unreachable block (ram,0x000180054035)
-// WARNING: Removing unreachable block (ram,0x000180054062)
-// WARNING: Removing unreachable block (ram,0x000180054075)
-// WARNING: Removing unreachable block (ram,0x00018005407a)
-// WARNING: Removing unreachable block (ram,0x0001800540b2)
-// WARNING: Removing unreachable block (ram,0x0001800540b7)
-// WARNING: Removing unreachable block (ram,0x0001800540d9)
-// WARNING: Removing unreachable block (ram,0x0001800540e1)
+000180053668)
+0001800536a5)
+0001800536a9)
+0001800536b4)
+0001800536b7)
+0001800536e1)
+0001800536e5)
+0001800536f3)
+0001800536fb)
+000180053702)
+00018005370c)
+00018005373c)
+000180053744)
+000180053747)
+000180053714)
+000180053719)
+000180053760)
+00018005376e)
+0001800537b1)
+0001800537b5)
+0001800537c0)
+0001800537c3)
+0001800537ed)
+0001800537f1)
+0001800537ff)
+000180053807)
+00018005380c)
+00018005381c)
+00018005384b)
+000180053853)
+000180053856)
+000180053824)
+000180053828)
+00018005386f)
+00018005387d)
+0001800538c8)
+0001800538cc)
+0001800538d7)
+0001800538da)
+000180053906)
+00018005390a)
+000180053918)
+000180053921)
+000180053925)
+000180053931)
+000180053962)
+00018005396a)
+00018005396d)
+000180053939)
+00018005393e)
+000180053987)
+000180053996)
+0001800539f8)
+0001800539fc)
+000180053a07)
+000180053a0a)
+000180053a34)
+000180053a38)
+000180053a46)
+000180053a4e)
+000180053a53)
+000180053ad8)
+000180053a61)
+000180053aa2)
+000180053aab)
+000180053aaf)
+000180053a69)
+000180053a74)
+000180053ade)
+000180053b28)
+000180053b2c)
+000180053b32)
+000180053b36)
+000180053b60)
+000180053b64)
+000180053b72)
+000180053b7a)
+000180053b7e)
+000180053b8e)
+000180053bbe)
+000180053bc6)
+000180053bc9)
+000180053b97)
+000180053b9b)
+000180053be2)
+000180053bf0)
+000180053c4c)
+000180053c51)
+000180053c5d)
+000180053c60)
+000180053c8e)
+000180053c93)
+000180053ca1)
+000180053caa)
+000180053caf)
+000180053cbe)
+000180053cf1)
+000180053cf9)
+000180053cfc)
+000180053cc6)
+000180053cce)
+000180053d15)
+000180053d23)
+000180053d8b)
+000180053d8f)
+000180053d9a)
+000180053d9d)
+000180053dcd)
+000180053dd1)
+000180053ddf)
+000180053de8)
+000180053ded)
+000180053dfc)
+000180053e2f)
+000180053e37)
+000180053e3a)
+000180053e03)
+000180053e0b)
+000180053e54)
+000180053e63)
+000180053ead)
+000180053eb5)
+000180053ee6)
+000180053ef5)
+000180053f18)
+000180053f20)
+000180053f43)
+000180053f4b)
+000180053f74)
+000180053f79)
+000180053f98)
+000180053fa0)
+000180053fbc)
+000180053fc4)
+000180053fe5)
+000180053fea)
+000180054035)
+000180054062)
+000180054075)
+00018005407a)
+0001800540b2)
+0001800540b7)
+0001800540d9)
+0001800540e1)
 
 
 /**
@@ -27926,8 +27756,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourcePointer,void* ThreadC
   } while (processNameBuffer[allocationSize + 1] != '\0');
   if (0 < (int)(allocationSize + 1)) {
     ExecuteSystemCommand(&configPointer,(int)allocationSize + 7);
-                    // WARNING: Subroutine does not return
-    memcpy((ulong long)configFlags + configValue,processNameBuffer,(long long)((int)allocationSize + 2));
+      memcpy((ulong long)configFlags + configValue,processNameBuffer,(long long)((int)allocationSize + 2));
   }
   dataTemplatePointer = &SystemResourceTemplate;
   if (SystemGraphicsFlag != '\0') {
@@ -27951,8 +27780,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourcePointer,void* ThreadC
 LAB_1800535b0:
     threadFlags = threadId;
     if (dataLength != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(threadBuffer,*(void* *)(ThreadParams + 8),bufferOffset);
+        memcpy(threadBuffer,*(void* *)(ThreadParams + 8),bufferOffset);
     }
   }
   else if (dataLength != 0) {
@@ -27992,8 +27820,7 @@ LAB_1800535b0:
     threadHandle = CONCAT44(threadHandle._4_4_,processId);
   }
 LAB_18005364c:
-                    // WARNING: Subroutine does not return
-  memcpy(threadBuffer + bufferOffset,memoryBufferPointer,7);
+    memcpy(threadBuffer + bufferOffset,memoryBufferPointer,7);
 }
 
 
@@ -28060,8 +27887,7 @@ joined_r0x00018005430b:
       (**(code **)*ResourceNodePointer)(ResourceNodePointer,0);
     }
     if (ResourceStartPointer != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(ResourceStartPointer);
+        SystemCleanupFunction(ResourceStartPointer);
     }
     return OperationResult;
   }
@@ -28074,8 +27900,7 @@ LAB_18005419d:
   BufferSize = 0;
   ExecuteSystemCommand(&StackBufferPtr,*ParameterPointer);
   if (*ParameterPointer != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(StringBuffer,*(void* *)(ParameterPointer + -2),*ParameterPointer + 1);
+      memcpy(StringBuffer,*(void* *)(ParameterPointer + -2),*ParameterPointer + 1);
   }
   if (*(long long *)(ParameterPointer + -2) != 0) {
     BufferSize = 0;
@@ -28112,8 +27937,7 @@ LAB_18005419d:
     if (0x1809fde87 < (long long)ComparisonPointer) {
       StackBufferPtr = &SystemGlobalDataReference;
       if (StringBuffer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       StringBuffer = (uint8_t *)0x0;
       StackHandle = (ulong long)StackHandle._4_4_ << 0x20;
@@ -28124,8 +27948,7 @@ LAB_18005419d:
   } while( true );
   StackBufferPtr = &SystemGlobalDataReference;
   if (StringBuffer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   StringBuffer = (uint8_t *)0x0;
   StackHandle = (ulong long)StackHandle._4_4_ << 0x20;
@@ -28279,8 +28102,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
   systemResult = ValidateSystemConfiguration(localSystemFlags,&puStack_168);
   puStack_168 = &SystemGlobalDataReference;
   if (lStack_160 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_160 = 0;
   uStack_150 = 0;
@@ -28304,8 +28126,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
     ExecuteSystemCommand(&puStack_208,unsignedSystemValue7);
   }
   if (unsignedSystemValue1 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(lStack_200,*(void* *)(localSystemFlags + 8),unsignedSystemValue7);
+      memcpy(lStack_200,*(void* *)(localSystemFlags + 8),unsignedSystemValue7);
   }
   if (lStack_200 != 0) {
     *(uint8_t *)(unsignedSystemValue7 + lStack_200) = 0;
@@ -28314,8 +28135,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
   if (0 < iStack_180) {
     uStack_1f8 = unsignedSystemValue1;
     ExecuteSystemCommand(&puStack_208,iStack_180);
-                    // WARNING: Subroutine does not return
-    memcpy((ulong long)uStack_1f8 + lStack_200,lStack_188,(long long)(iStack_180 + 1));
+      memcpy((ulong long)uStack_1f8 + lStack_200,lStack_188,(long long)(iStack_180 + 1));
   }
   lStack_1d8 = lStack_200;
   uStack_1c8._0_4_ = (uint32_t)uStack_1f0;
@@ -28336,16 +28156,14 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
   Sleep(1000);
   puStack_1e0 = &SystemGlobalDataReference;
   if (lStack_1d8 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_1d8 = 0;
   uStack_1c8 = (ulong long)uStack_1c8._4_4_ << 0x20;
   puStack_1e0 = &SystemMemoryAllocatorReference;
   puStack_190 = &SystemGlobalDataReference;
   if (lStack_188 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_188 = 0;
   uStack_178 = 0;
@@ -28356,14 +28174,12 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
   ppuStack_170 = &puStack_1c0;
   puStack_1c0 = &SystemGlobalDataReference;
   if (lStack_1b8 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_1b8 = 0;
   uStack_1a8 = uStack_1a8 & 0xffffffff00000000;
   puStack_1c0 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_238);
+    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_238);
 }
 
 
@@ -28463,8 +28279,7 @@ LAB_18005485e:
       uStack_128 = 0;
       ExecuteSystemCommand(&systemMemoryContext,*(uint32_t *)(localAllocationFlags + 0x10));
       if (*(int *)(localAllocationFlags + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(puStack_130,*(void* *)(localAllocationFlags + 8),*(int *)(localAllocationFlags + 0x10) + 1);
+          memcpy(puStack_130,*(void* *)(localAllocationFlags + 8),*(int *)(localAllocationFlags + 0x10) + 1);
       }
       if (*(long long *)(localAllocationFlags + 8) != 0) {
         uStack_128 = 0;
@@ -28489,8 +28304,7 @@ LAB_180054912:
       uStack_108 = 0;
       ExecuteSystemCommand(&puStack_118,*(uint32_t *)(localAllocationFlags + 0x10));
       if (*(int *)(localAllocationFlags + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(puStack_110,*(void* *)(localAllocationFlags + 8),*(int *)(localAllocationFlags + 0x10) + 1);
+          memcpy(puStack_110,*(void* *)(localAllocationFlags + 8),*(int *)(localAllocationFlags + 0x10) + 1);
       }
       if (*(long long *)(localAllocationFlags + 8) != 0) {
         uStack_108 = 0;
@@ -28508,16 +28322,14 @@ LAB_180054912:
       if (cVar4 == '\0') {
         puStack_118 = &SystemGlobalDataReference;
         if (puStack_110 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         puStack_110 = (uint8_t *)0x0;
         uStack_100 = uStack_100 & 0xffffffff00000000;
         puStack_118 = &SystemMemoryAllocatorReference;
         systemMemoryContext = &SystemGlobalDataReference;
         if (puStack_130 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
       }
       else {
@@ -28554,8 +28366,7 @@ LAB_180054912:
             uStack_148 = 0;
             ExecuteSystemCommand(&puStack_158,*pointerToUnsigned15);
             if (*pointerToUnsigned15 != 0) {
-                    // WARNING: Subroutine does not return
-              memcpy(puStack_150,*(void* *)(pointerToUnsigned15 + -2),*pointerToUnsigned15 + 1);
+                memcpy(puStack_150,*(void* *)(pointerToUnsigned15 + -2),*pointerToUnsigned15 + 1);
             }
             if (*(long long *)(pointerToUnsigned15 + -2) != 0) {
               uStack_148 = 0;
@@ -28613,8 +28424,7 @@ LAB_180054912:
                   ExecuteSystemCommand(&puStack_158,unsignedSystemValue11);
                 }
                 if (unsignedSystemValue1 != 0) {
-                    // WARNING: Subroutine does not return
-                  memcpy(puStack_150,*(void* *)(pointerToUnsigned15 + -2),unsignedSystemValue11);
+                    memcpy(puStack_150,*(void* *)(pointerToUnsigned15 + -2),unsignedSystemValue11);
                 }
                 if (puStack_150 != (uint8_t *)0x0) {
                   puStack_150[unsignedSystemValue11] = 0;
@@ -28634,8 +28444,7 @@ LAB_180054912:
                 if (cVar4 != '\0') goto LAB_180054d28;
                 puStack_158 = &SystemGlobalDataReference;
                 if (puStack_150 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-                  SystemCleanupFunction();
+                    SystemCleanupFunction();
                 }
                 uStack_140 = (ulong long)uStack_140._4_4_ << 0x20;
               }
@@ -28662,8 +28471,7 @@ LAB_180054d57:
                   uStack_e0 = 0;
                   ExecuteSystemCommand(&puStack_f0,iStack_c0);
                   if (iStack_c0 != 0) {
-                    // WARNING: Subroutine does not return
-                    memcpy(puStack_e8,lStack_c8,iStack_c0 + 1);
+                      memcpy(puStack_e8,lStack_c8,iStack_c0 + 1);
                   }
                   if (lStack_c8 != 0) {
                     uStack_e0 = 0;
@@ -28681,16 +28489,14 @@ LAB_180054d57:
                   SystemGlobalStateStorage = 0;
                   puStack_f0 = &SystemGlobalDataReference;
                   if (puStack_e8 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   puStack_e8 = (uint8_t *)0x0;
                   uStack_d8 = uStack_d8 & 0xffffffff00000000;
                   puStack_f0 = &SystemMemoryAllocatorReference;
                   puStack_78 = &SystemGlobalDataReference;
                   if (lStack_70 != 0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   lStack_70 = 0;
                   uStack_60 = 0;
@@ -28698,16 +28504,14 @@ LAB_180054d57:
                 }
                 stackParameterB = &SystemGlobalDataReference;
                 if (pstackParameterC != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-                  SystemCleanupFunction();
+                    SystemCleanupFunction();
                 }
                 pstackParameterC = (void* *)0x0;
                 uStack_80 = 0;
                 stackParameterB = &SystemMemoryAllocatorReference;
                 puStack_158 = &SystemGlobalDataReference;
                 if (puStack_150 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-                  SystemCleanupFunction();
+                    SystemCleanupFunction();
                 }
                 uStack_140 = (ulong long)uStack_140._4_4_ << 0x20;
               }
@@ -28716,8 +28520,7 @@ LAB_180054d57:
 LAB_180054ec9:
               puStack_158 = &SystemGlobalDataReference;
               if (puStack_150 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-                SystemCleanupFunction();
+                  SystemCleanupFunction();
               }
               uStack_140 = (ulong long)uStack_140._4_4_ << 0x20;
             }
@@ -28733,8 +28536,7 @@ LAB_180054ec9:
         }
         dataBufferContext = &SystemGlobalDataReference;
         if (lStack_c8 != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         lStack_c8 = 0;
         uStack_b8 = 0;
@@ -28743,21 +28545,18 @@ LAB_180054ec9:
           (**(code **)*punsignedSystemValue12)(punsignedSystemValue12,0);
         }
         if (pointerToUnsigned3 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction(pointerToUnsigned3);
+            SystemCleanupFunction(pointerToUnsigned3);
         }
         puStack_118 = &SystemGlobalDataReference;
         if (puStack_110 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         puStack_110 = (uint8_t *)0x0;
         uStack_100 = uStack_100 & 0xffffffff00000000;
         puStack_118 = &SystemMemoryAllocatorReference;
         systemMemoryContext = &SystemGlobalDataReference;
         if (puStack_130 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
       }
       puStack_110 = (uint8_t *)0x0;
@@ -28768,8 +28567,7 @@ LAB_180054ec9:
       iStack_f8 = systemId + 1;
     } while (iStack_f8 < (int)localMemoryPointer4);
   }
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_30 ^ (ulong long)auStack_178);
+    ValidateSystemChecksum(uStack_30 ^ (ulong long)auStack_178);
 }
 
 
@@ -28848,8 +28646,7 @@ void SystemContextManagerInitializer(void)
   *(uint32_t *)(localBufferAddress + 0xe0) = 0;
   LocalBufferAddress = localBufferAddress;
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x70,8,3);
-                    // WARNING: Subroutine does not return
-  memset(unsignedSystemValue3,0,0x70);
+    memset(unsignedSystemValue3,0,0x70);
 }
 
 
@@ -28878,8 +28675,7 @@ void SystemResourceCleaner(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -28936,8 +28732,7 @@ void SystemResourceReleaser(long long SystemResourcePointer)
         if (*(long long **)(localSystemHandle + 0x10) != (long long *)0x0) {
           (**(code **)(**(long long **)(localSystemHandle + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localMemoryPointer + unsignedSystemValue4 * 8) = 0;
       unsignedSystemValue4 = unsignedSystemValue4 + 1;
@@ -28946,8 +28741,7 @@ void SystemResourceReleaser(long long SystemResourcePointer)
   }
   *(void* *)(SystemResourcePointer + 0x18) = 0;
   if ((1 < unsignedSystemValue3) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -28995,8 +28789,7 @@ void SystemResourceResetter(long long SystemResourcePointer)
 {
   *(void* *)(SystemResourcePointer + 8) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x10) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x20) = 0;
@@ -29058,8 +28851,7 @@ void SystemResourceCleaner(long long SystemResourcePointer)
         if (*(long long **)(localSystemHandle + 0x10) != (long long *)0x0) {
           (**(code **)(**(long long **)(localSystemHandle + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localMemoryPointer + unsignedSystemValue4 * 8) = 0;
       unsignedSystemValue4 = unsignedSystemValue4 + 1;
@@ -29068,8 +28860,7 @@ void SystemResourceCleaner(long long SystemResourcePointer)
   }
   *(void* *)(SystemResourcePointer + 0x18) = 0;
   if ((1 < unsignedSystemValue3) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -29279,8 +29070,7 @@ LAB_180056228:
         punsignedSystemValue4 = *(void* **)(*(long long *)(SystemResourcePointer + 0x48) + localMemoryPointer4 * 8);
         if (punsignedSystemValue4 != (void* *)0x0) {
           if (punsignedSystemValue4[9] != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           punsignedSystemValue4[4] = &SystemGlobalDataReference;
           if (punsignedSystemValue4[5] == 0) {
@@ -29292,22 +29082,18 @@ LAB_180056228:
               punsignedSystemValue4[1] = 0;
               *(uint32_t *)(punsignedSystemValue4 + 3) = 0;
               *punsignedSystemValue4 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-              SystemCleanupFunction(punsignedSystemValue4);
+                SystemCleanupFunction(punsignedSystemValue4);
             }
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(void* *)(*(long long *)(SystemResourcePointer + 0x48) + localMemoryPointer4 * 8) = 0;
         localResourcePointer = *(long long *)(SystemResourcePointer + 0x48) + localMemoryPointer4 * 8;
         unsignedSystemValue10 = localResourcePointer + 8;
         unsignedSystemValue5 = *(ulong long *)(SystemResourcePointer + 0x50);
         if (unsignedSystemValue10 < unsignedSystemValue5) {
-                    // WARNING: Subroutine does not return
-          memmove(localResourcePointer,unsignedSystemValue10,unsignedSystemValue5 - unsignedSystemValue10);
+            memmove(localResourcePointer,unsignedSystemValue10,unsignedSystemValue5 - unsignedSystemValue10);
         }
         localResourcePointer = unsignedSystemValue5 - 8;
         *(long long *)(SystemResourcePointer + 0x50) = localResourcePointer;
@@ -29368,8 +29154,7 @@ void ManageSystemResourceData(long long SystemResourcePointer,void* Configuratio
       pointerToUnsigned2 = *(void* **)(*pointerToUnsigned1 + unsignedSystemValue5);
       if (pointerToUnsigned2 != (void* *)0x0) {
         if (pointerToUnsigned2[9] != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         pointerToUnsigned2[4] = &SystemGlobalDataReference;
         if (pointerToUnsigned2[5] == 0) {
@@ -29381,14 +29166,11 @@ void ManageSystemResourceData(long long SystemResourcePointer,void* Configuratio
             pointerToUnsigned2[1] = 0;
             *(uint32_t *)(pointerToUnsigned2 + 3) = 0;
             *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction(pointerToUnsigned2);
+              SystemCleanupFunction(pointerToUnsigned2);
           }
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *(void* *)(*pointerToUnsigned1 + unsignedSystemValue5) = 0;
       unsignedSystemValue7 = (int)unsignedSystemValue8 + 1;
@@ -29417,11 +29199,9 @@ void ManageSystemResourceData(long long SystemResourcePointer,void* Configuratio
     if (unsignedSystemValue4 == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
-                    // WARNING: Subroutine does not return
-  memmove(unsignedSystemValue3,unsignedSystemValue5,localResourcePointer,ConfigurationFlag,unsignedSystemValue10,unsignedSystemValue3,localSystemFlags,localSystemFlags);
+    memmove(unsignedSystemValue3,unsignedSystemValue5,localResourcePointer,ConfigurationFlag,unsignedSystemValue10,unsignedSystemValue3,localSystemFlags,localSystemFlags);
 }
 
 
@@ -29494,8 +29274,7 @@ void InitializeSystemMemoryResource(long long *SystemResourcePointer)
     (**(code **)(*plStack_68 + 0x28))();
   }
   (*pcVar2)(pointerToUnsigned1,&plStack_68);
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_98);
+    ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_98);
 }
 
 
@@ -29580,8 +29359,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourcePointer)
   while( true ) {
     do {
       if (*(int *)(SystemResourcePointer + 0xcc) == 0) {
-                    // WARNING: Subroutine does not return
-        ValidateSystemChecksum(uStack_50 ^ (ulong long)auStack_c8);
+          ValidateSystemChecksum(uStack_50 ^ (ulong long)auStack_c8);
       }
       Sleep(10);
       localBufferAddress = SystemPerformancePreviousStorage;
@@ -29660,16 +29438,14 @@ void ProcessSystemConfigurationParameters(long long SystemResourcePointer)
     *(double *)(SystemResourcePointer + 0xc0) = dVar2;
     stackParameterB = &SystemGlobalDataReference;
     if (pstackParameterC != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     pstackParameterC = (void* *)0x0;
     uStack_80 = uStack_80 & 0xffffffff00000000;
     stackParameterB = &SystemMemoryAllocatorReference;
   }
   ExecuteSystemCommand(&stackParameterB,uStack_88 + systemOffset);
-                    // WARNING: Subroutine does not return
-  memcpy(pstackParameterC + uStack_88,acStack_60,(long long)((int)localMemoryAddress + 2));
+    memcpy(pstackParameterC + uStack_88,acStack_60,(long long)((int)localMemoryAddress + 2));
 }
 
 
@@ -29794,14 +29570,12 @@ void InitializeSystemResource(void* SystemResourcePointer,void* *ConfigurationDa
   puStack_108 = &SystemMemoryAllocatorReference;
   *ConfigurationDataPointer = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[1] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 3) = 0;
   *ConfigurationDataPointer = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_158);
+    ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_158);
 }
 
 
@@ -29986,9 +29760,8 @@ void ProcessSystemString(long long SystemResourcePointer,long long Configuration
   } while (pointerToUnsigned2[localMemoryPointer] != '\0');
   if ((int)localMemoryPointer < 0x400) {
     *(int *)(SystemResourcePointer + 0x10) = (int)localMemoryPointer;
-                    // WARNING: Could not recover jumptable at 0x000180056fc2. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(SystemResourcePointer + 8),0x400);
+                    000180056fc2. Too many branches
+                        strcpy_s(*(void* *)(SystemResourcePointer + 8),0x400);
     return;
   }
   InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x400);
@@ -30191,8 +29964,7 @@ void ProcessSystemDataTable(long long *SystemResourcePointer,void* Configuration
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -30240,13 +30012,11 @@ void ExpandSystemResourceArray(long long *SystemResourcePointer,uint32_t *Config
   punsignedSystemValue4 = (uint32_t *)SystemResourcePointer[1];
 LAB_18005726e:
   if (pointerToUnsigned3 != punsignedSystemValue4) {
-                    // WARNING: Subroutine does not return
-    memmove(pointerToUnsigned2,pointerToUnsigned3,(long long)punsignedSystemValue4 - (long long)pointerToUnsigned3);
+      memmove(pointerToUnsigned2,pointerToUnsigned3,(long long)punsignedSystemValue4 - (long long)pointerToUnsigned3);
   }
   *pointerToUnsigned2 = *ConfigurationDataPointer;
   if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = (long long)pointerToUnsigned2;
   SystemResourcePointer[1] = (long long)(pointerToUnsigned2 + 1);
@@ -30274,8 +30044,7 @@ void InitializeSystemContext(long long SystemResourcePointer)
   pointerToUnsigned1 = *(void* **)(SystemResourcePointer + 0x10);
   if (pointerToUnsigned1 != (void* *)0x0) {
     InitializeSystemContext(SystemResourcePointer,*pointerToUnsigned1);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned1);
+      SystemCleanupFunction(pointerToUnsigned1);
   }
   *(long long *)SystemResourcePointer = SystemResourcePointer;
   *(void* *)(SystemResourcePointer + 0x10) = 0;
@@ -30301,8 +30070,7 @@ void SystemCleanupWrapper(void)
 
 {
   InitializeSystemContext();
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -30356,8 +30124,7 @@ void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long Configur
   unsignedSystemValue4 = ConfigurationDataPointer - unsignedSystemValue2;
   if (unsignedSystemValue4 <= (ulong long)(SystemResourcePointer[2] - localSystemPointer >> 3)) {
     if (unsignedSystemValue4 != 0) {
-                    // WARNING: Subroutine does not return
-      memset(localSystemPointer,0,unsignedSystemValue4 * 8);
+        memset(localSystemPointer,0,unsignedSystemValue4 * 8);
     }
     SystemResourcePointer[1] = localSystemPointer;
     return;
@@ -30378,16 +30145,13 @@ void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long Configur
     localSystemPointer = SystemResourcePointer[1];
   }
   if (localSystemFlags != localSystemPointer) {
-                    // WARNING: Subroutine does not return
-    memmove(localMemoryPointer,localSystemFlags,localSystemPointer - localSystemFlags);
+      memmove(localMemoryPointer,localSystemFlags,localSystemPointer - localSystemFlags);
   }
   if (unsignedSystemValue4 != 0) {
-                    // WARNING: Subroutine does not return
-    memset(localMemoryPointer,0,unsignedSystemValue4 * 8);
+      memset(localMemoryPointer,0,unsignedSystemValue4 * 8);
   }
   if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = localMemoryPointer;
   SystemResourcePointer[2] = localMemoryPointer + unsignedSystemValue3 * 8;
@@ -30414,8 +30178,7 @@ void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long Config
   unsignedSystemValue3 = ConfigurationDataPointer - SystemResourcePointer;
   if (unsignedSystemValue3 <= (ulong long)(in_RAX - systemDataIndexPtr >> 3)) {
     if (unsignedSystemValue3 != 0) {
-                    // WARNING: Subroutine does not return
-      memset();
+        memset();
     }
     systemMemoryBlockPtr[1] = systemDataIndexPtr;
     return;
@@ -30436,16 +30199,13 @@ void AllocateSystemMemoryBlock(long long SystemResourcePointer,ulong long Config
     systemDataIndexPtr = systemMemoryBlockPtr[1];
   }
   if (ConfigurationFlag != systemDataIndexPtr) {
-                    // WARNING: Subroutine does not return
-    memmove(localMemoryPointer,ConfigurationFlag,systemDataIndexPtr - ConfigurationFlag);
+      memmove(localMemoryPointer,ConfigurationFlag,systemDataIndexPtr - ConfigurationFlag);
   }
   if (unsignedSystemValue3 != 0) {
-                    // WARNING: Subroutine does not return
-    memset(localMemoryPointer,0,unsignedSystemValue3 * 8);
+      memset(localMemoryPointer,0,unsignedSystemValue3 * 8);
   }
   if (*systemMemoryBlockPtr != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *systemMemoryBlockPtr = localMemoryPointer;
   systemMemoryBlockPtr[2] = localMemoryPointer + unsignedSystemValue2 * 8;
@@ -30473,8 +30233,7 @@ void SystemMemoryZeroer(void)
   void* systemDataIndexPtr;
   
   if (systemStringIteratorPtr != 0) {
-                    // WARNING: Subroutine does not return
-    memset();
+      memset();
   }
   *(void* *)(systemMemoryBlockPtr + 8) = systemDataIndexPtr;
   return;
@@ -30524,8 +30283,7 @@ void CleanupSystemResources(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -30594,8 +30352,7 @@ void ReleaseSystemMemoryHandles(long long SystemResourcePointer)
     do {
       localSystemHandle = *(long long *)(localBufferAddress + unsignedSystemValue5 * 8);
       if (localSystemHandle != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localBufferAddress + unsignedSystemValue5 * 8) = 0;
       unsignedSystemValue5 = unsignedSystemValue5 + 1;
@@ -30657,8 +30414,7 @@ void CleanupSystemResourceArray(long long SystemResourcePointer)
     do {
       localSystemHandle = *(long long *)(localBufferAddress + unsignedSystemValue5 * 8);
       if (localSystemHandle != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localBufferAddress + unsignedSystemValue5 * 8) = 0;
       unsignedSystemValue5 = unsignedSystemValue5 + 1;
@@ -30717,8 +30473,7 @@ void SystemCleanupFunction(void)
   do {
     localResourceOffset = *(long long *)(systemResourceCounter + systemDataIndexPtr * 8);
     if (localResourceOffset != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(localResourceOffset);
+        SystemCleanupFunction(localResourceOffset);
     }
     *(void* *)(systemResourceCounter + systemDataIndexPtr * 8) = systemResourceHandle;
     systemDataIndexPtr = systemDataIndexPtr + 1;
@@ -30898,8 +30653,7 @@ void ProcessResourceArrayCleanup(long long *SystemResourcePointer,void* Configur
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -30933,8 +30687,7 @@ void CleanupSystemResourceHandles(long long SystemResourcePointer)
         if (*(long long **)(localSystemHandle + 0x10) != (long long *)0x0) {
           (**(code **)(**(long long **)(localSystemHandle + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localMemoryPointer + unsignedSystemValue4 * 8) = 0;
       unsignedSystemValue4 = unsignedSystemValue4 + 1;
@@ -30943,8 +30696,7 @@ void CleanupSystemResourceHandles(long long SystemResourcePointer)
   }
   *(void* *)(SystemResourcePointer + 0x18) = 0;
   if ((1 < unsignedSystemValue3) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -30975,8 +30727,7 @@ void ProcessSystemQueue(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -31009,8 +30760,7 @@ void CleanupSystemBuffer(long long SystemResourcePointer)
     do {
       localSystemHandle = *(long long *)(localBufferAddress + unsignedSystemValue5 * 8);
       if (localSystemHandle != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localBufferAddress + unsignedSystemValue5 * 8) = 0;
       unsignedSystemValue5 = unsignedSystemValue5 + 1;
@@ -31073,8 +30823,7 @@ void DeepCleanupSystemResources(long long SystemResourcePointer)
     do {
       localSystemHandle = *(long long *)(localBufferAddress + unsignedSystemValue5 * 8);
       if (localSystemHandle != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
       *(void* *)(localBufferAddress + unsignedSystemValue5 * 8) = 0;
       unsignedSystemValue5 = unsignedSystemValue5 + 1;
@@ -31135,8 +30884,7 @@ void SystemMemoryCleanup(void)
   do {
     memoryBlockAddress = *(long long *)(memoryBlockPointer + memoryBlockIndex * 8);
     if (memoryBlockAddress != 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseMemoryBlock(memoryBlockAddress);
+        ReleaseMemoryBlock(memoryBlockAddress);
     }
     *(void* *)(memoryBlockPointer + memoryBlockIndex * 8) = memoryBlockValue;
     memoryBlockIndex = memoryBlockIndex + 1;
@@ -31287,8 +31035,7 @@ void ReleaseSystemResources(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -31331,8 +31078,7 @@ void DestroyRenderingSystem(void)
   ExecuteDataOperation(pointerToUnsigned2 + 0x116);
   ProcessDataValidation(pointerToUnsigned2 + 6);
   if (pointerToUnsigned2[2] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   systemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
   if (systemValue4 != 0) {
@@ -31407,8 +31153,7 @@ void ProcessSystemStringData(long long SystemResourcePointer,long long Configura
         }
         memoryAllocationEnd = &SystemGlobalDataReference;
         if (lStack_48 != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         lStack_48 = 0;
         uStack_38 = uStack_38 & 0xffffffff00000000;
@@ -31432,8 +31177,7 @@ void ProcessSystemStringData(long long SystemResourcePointer,long long Configura
       }
       memoryAllocationEnd = &SystemGlobalDataReference;
       if (lStack_48 != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
     }
   }
@@ -31484,8 +31228,7 @@ LAB_180057b97:
   }
   unsignedSystemValue7 = 0;
 LAB_180057ba2:
-                    // WARNING: Subroutine does not return
-  ConfigureSystemResourceHandle(localResourceOffset,localBufferAddress,SystemResourcePointer,unsignedSystemValue7);
+    ConfigureSystemResourceHandle(localResourceOffset,localBufferAddress,SystemResourcePointer,unsignedSystemValue7);
 }
 
 
@@ -31507,27 +31250,23 @@ void CleanupSystemResourceHandler(void* *SystemResourcePointer)
     return;
   }
   if (SystemResourcePointer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[4] = &SystemGlobalDataReference;
   if (SystemResourcePointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 7) = 0;
   SystemResourcePointer[4] = &SystemMemoryAllocatorReference;
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(SystemResourcePointer);
+    SystemCleanupFunction(SystemResourcePointer);
 }
 
 
@@ -31554,8 +31293,7 @@ void* * InitializeSystemResourceHandler(void* *SystemResourcePointer,uint Config
   SystemResourcePointer[0x28] = 0;
   SystemResourcePointer[0x29] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x2a] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x2c) = 0;
@@ -31583,8 +31321,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer,void* Configurat
   ProcessSystemResourceInitialization();
   SystemResourcePointer[0x123] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x124] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x124] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x126) = 0;
@@ -31604,11 +31341,9 @@ void ProcessSystemResourceData(long long *SystemResourcePointer,void* Configurat
     if (*SystemResourcePointer == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -31647,8 +31382,7 @@ void ReleaseSystemResourcePointer(long long SystemResourcePointer,void* Configur
   if (pointerToUnsigned1 != (void* *)0x0) {
     ConfigureSystemResourceData(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     ValidateSystemResourceConfiguration(pointerToUnsigned1);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned1);
+      SystemCleanupFunction(pointerToUnsigned1);
   }
   return;
 }
@@ -31677,8 +31411,7 @@ void CleanupSystemResourceStream(long long SystemResourcePointer,void* Configura
   if (pointerToUnsigned1 != (void* *)0x0) {
     ConfigureSystemResourceData(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     ValidateSystemResourceConfiguration(pointerToUnsigned1);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned1);
+      SystemCleanupFunction(pointerToUnsigned1);
   }
   return;
 }
@@ -31717,8 +31450,7 @@ void FinalizeSystemResourceCleanup(long long *SystemResourcePointer)
     (**(code **)*SystemPreviousNode)(SystemPreviousNode,0);
   }
   if (punsignedSystemValue4 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(punsignedSystemValue4);
+      SystemCleanupFunction(punsignedSystemValue4);
   }
   return;
 }
@@ -31747,8 +31479,7 @@ void ReleaseSystemMemoryAllocation(long long SystemResourcePointer,void* Configu
   if (pointerToUnsigned1 != (void* *)0x0) {
     ConfigureSystemResourceData(SystemResourcePointer,*pointerToUnsigned1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     ValidateSystemResourceConfiguration(pointerToUnsigned1);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned1);
+      SystemCleanupFunction(pointerToUnsigned1);
   }
   return;
 }
@@ -31910,8 +31641,7 @@ void ProcessSystemResourceDataTransfer(void* SystemResourcePointer,void* *Config
       (**(code **)(*(long long *)ConfigurationDataPointer[0x17] + 0x38))();
     }
     ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(ConfigurationDataPointer);
+      SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -31942,14 +31672,12 @@ void ProcessSystemConfigurationData(void* SystemResourcePointer,void* *Configura
   ProcessSystemDataConfiguration(ConfigurationDataPointer + 8);
   ConfigurationDataPointer[4] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[5] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
   ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(ConfigurationDataPointer);
+    SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
@@ -31965,14 +31693,12 @@ void ProcessMemoryBlock(void* SystemResourcePointer,void* *ConfigurationDataPoin
   ProcessMemoryBlock(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   ConfigurationDataPointer[4] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[5] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
   ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(ConfigurationDataPointer);
+    SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
@@ -31987,19 +31713,16 @@ void ReleaseMemoryRegion(void* SystemResourcePointer,void* *ConfigurationDataPoi
   }
   ReleaseMemoryRegion(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (ConfigurationDataPointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[4] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[5] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
   ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(ConfigurationDataPointer);
+    SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
@@ -32081,8 +31804,7 @@ LAB_18005856a:
     do {
       *punsignedSystemValue4 = &SystemGlobalDataReference;
       if (punsignedSystemValue4[1] != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       punsignedSystemValue4[1] = 0;
       *(uint32_t *)(punsignedSystemValue4 + 3) = 0;
@@ -32097,8 +31819,7 @@ LAB_18005856a:
     SystemResourcePointer[2] = pointerToUnsigned2 + localSystemPointer * 5;
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(punsignedSystemValue4);
+    SystemCleanupFunction(punsignedSystemValue4);
 }
 
 
@@ -32146,19 +31867,16 @@ void ProcessSystemResourceExtension(void* SystemResourcePointer,void* *Configura
   }
   ProcessSystemResourceExtension(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (ConfigurationDataPointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[4] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[5] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
   ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(ConfigurationDataPointer);
+    SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
@@ -32181,8 +31899,7 @@ void CleanupSystemConfigurationData(void* SystemResourcePointer,void* *Configura
   if (ConfigurationDataPointer != (void* *)0x0) {
     CleanupSystemConfigurationData(SystemResourcePointer,*ConfigurationDataPointer);
     ValidateSystemResourceConfiguration(ConfigurationDataPointer);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(ConfigurationDataPointer);
+      SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -32207,8 +31924,7 @@ void FinalCleanupSystemResource(void* SystemResourcePointer)
   
   ConfigureSystemResourceData(SystemResourcePointer,*systemMemoryBlockPtr);
   ValidateSystemResourceConfiguration();
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -32242,20 +31958,17 @@ void SystemResourceInitializer(void* SystemResourcePointer,long long Configurati
 
 {
   if (*(long long *)(ConfigurationDataPointer + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(ConfigurationDataPointer + 0x20) = &SystemGlobalDataReference;
   if (*(long long *)(ConfigurationDataPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(ConfigurationDataPointer + 0x28) = 0;
   *(uint32_t *)(ConfigurationDataPointer + 0x38) = 0;
   *(void* *)(ConfigurationDataPointer + 0x20) = &SystemMemoryAllocatorReference;
   if (ConfigurationDataPointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(ConfigurationDataPointer);
+      SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -32310,8 +32023,7 @@ void SystemResourceArrayManager(long long *SystemResourcePointer,long long Confi
       resourcePointer4 = (void* *)*SystemResourcePointer;
     }
     if (resourcePointer4 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(resourcePointer4);
+        SystemCleanupFunction(resourcePointer4);
     }
     *SystemResourcePointer = localSystemHandle;
     localSystemHandle = requiredCapacity * 0x20 + localSystemHandle;
@@ -32391,8 +32103,7 @@ void SystemResourceArrayCreator(long long SystemResourcePointer)
     resourceArrayPointer[1] = localSystemHandle;
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(resourcePointer3);
+    SystemCleanupFunction(resourcePointer3);
 }
 
 
@@ -32427,8 +32138,7 @@ void InitializeSystemTables(void)
     pointerToUnsigned2 = (void* *)*systemDataIndexPtr;
   }
   if (pointerToUnsigned2 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned2);
+      SystemCleanupFunction(pointerToUnsigned2);
   }
   *systemDataIndexPtr = systemAllocationOffset;
   localResourceOffset = systemStringIteratorPtr * 0x20 + systemAllocationOffset;
@@ -32462,8 +32172,7 @@ void FinalizeSystemInitialization(void)
     pointerToUnsigned3 = (void* *)*systemDataIndexPtr;
   }
   if (pointerToUnsigned3 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned3);
+      SystemCleanupFunction(pointerToUnsigned3);
   }
   *systemDataIndexPtr = systemAllocationOffset;
   localMemoryPointer = systemStringIteratorPtr * 0x20 + systemAllocationOffset;
@@ -32563,33 +32272,26 @@ void ProcessSystemResourceRange(long long *SystemResourcePointer,long long Confi
       localResourceOffset = *SystemResourcePointer;
     }
     if (localResourceOffset != ConfigurationDataPointer) {
-                    // WARNING: Subroutine does not return
-      memmove(unsignedSystemValue1,localResourceOffset,ConfigurationDataPointer - localResourceOffset);
+        memmove(unsignedSystemValue1,localResourceOffset,ConfigurationDataPointer - localResourceOffset);
     }
-                    // WARNING: Subroutine does not return
-    memmove(unsignedSystemValue1,AdditionalParameter,ConfigurationFlag - AdditionalParameter);
+      memmove(unsignedSystemValue1,AdditionalParameter,ConfigurationFlag - AdditionalParameter);
   }
   unsignedSystemValue4 = localSystemHandle - ConfigurationDataPointer >> 3;
   if (unsignedSystemValue5 < unsignedSystemValue4) {
     localResourceOffset = localSystemHandle + unsignedSystemValue5 * -8;
     if (localResourceOffset != localSystemHandle) {
-                    // WARNING: Subroutine does not return
-      memmove(localSystemHandle,localResourceOffset,unsignedSystemValue5 * 8);
+        memmove(localSystemHandle,localResourceOffset,unsignedSystemValue5 * 8);
     }
-                    // WARNING: Subroutine does not return
-    memmove(localSystemHandle - ((localSystemHandle + unsignedSystemValue5 * -8) - ConfigurationDataPointer & 0xfffffffffffffff8),ConfigurationDataPointer);
+      memmove(localSystemHandle - ((localSystemHandle + unsignedSystemValue5 * -8) - ConfigurationDataPointer & 0xfffffffffffffff8),ConfigurationDataPointer);
   }
   localResourceOffset = AdditionalParameter + unsignedSystemValue4 * 8;
   if (localResourceOffset != ConfigurationFlag) {
-                    // WARNING: Subroutine does not return
-    memmove(localSystemHandle,localResourceOffset,ConfigurationFlag - localResourceOffset);
+      memmove(localSystemHandle,localResourceOffset,ConfigurationFlag - localResourceOffset);
   }
   if (ConfigurationDataPointer != localSystemHandle) {
-                    // WARNING: Subroutine does not return
-    memmove(localSystemHandle + (unsignedSystemValue5 - unsignedSystemValue4) * 8,ConfigurationDataPointer,localSystemHandle - ConfigurationDataPointer);
+      memmove(localSystemHandle + (unsignedSystemValue5 - unsignedSystemValue4) * 8,ConfigurationDataPointer,localSystemHandle - ConfigurationDataPointer);
   }
-                    // WARNING: Subroutine does not return
-  memmove(ConfigurationDataPointer + (unsignedSystemValue4 - (localResourceOffset - AdditionalParameter >> 3)) * 8,AdditionalParameter,localResourceOffset - AdditionalParameter);
+    memmove(ConfigurationDataPointer + (unsignedSystemValue4 - (localResourceOffset - AdditionalParameter >> 3)) * 8,AdditionalParameter,localResourceOffset - AdditionalParameter);
 }
 
 
@@ -32637,33 +32339,26 @@ void CopySystemResourceData(long long *SystemResourcePointer,long long Configura
       resourceEndAddress = *SystemResourcePointer;
     }
     if (resourceEndAddress != ConfigurationDataPointer) {
-                    // WARNING: Subroutine does not return
-      memmove(newMemoryBuffer,resourceEndAddress,ConfigurationDataPointer - resourceEndAddress);
+        memmove(newMemoryBuffer,resourceEndAddress,ConfigurationDataPointer - resourceEndAddress);
     }
-                    // WARNING: Subroutine does not return
-    memmove(newMemoryBuffer,AdditionalParameter,ConfigurationFlag - AdditionalParameter);
+      memmove(newMemoryBuffer,AdditionalParameter,ConfigurationFlag - AdditionalParameter);
   }
   sourceOffset = resourceStartAddress - ConfigurationDataPointer >> 3;
   if (targetOffset < sourceOffset) {
     resourceEndAddress = resourceStartAddress + targetOffset * -8;
     if (resourceEndAddress != resourceStartAddress) {
-                    // WARNING: Subroutine does not return
-      memmove(resourceStartAddress,resourceEndAddress,targetOffset * 8);
+        memmove(resourceStartAddress,resourceEndAddress,targetOffset * 8);
     }
-                    // WARNING: Subroutine does not return
-    memmove(resourceStartAddress - ((resourceStartAddress + targetOffset * -8) - ConfigurationDataPointer & 0xfffffffffffffff8),ConfigurationDataPointer);
+      memmove(resourceStartAddress - ((resourceStartAddress + targetOffset * -8) - ConfigurationDataPointer & 0xfffffffffffffff8),ConfigurationDataPointer);
   }
   resourceEndAddress = AdditionalParameter + sourceOffset * 8;
   if (resourceEndAddress != ConfigurationFlag) {
-                    // WARNING: Subroutine does not return
-    memmove(resourceStartAddress,resourceEndAddress,ConfigurationFlag - resourceEndAddress);
+      memmove(resourceStartAddress,resourceEndAddress,ConfigurationFlag - resourceEndAddress);
   }
   if (ConfigurationDataPointer != resourceStartAddress) {
-                    // WARNING: Subroutine does not return
-    memmove(resourceStartAddress + (targetOffset - sourceOffset) * 8,ConfigurationDataPointer,resourceStartAddress - ConfigurationDataPointer);
+      memmove(resourceStartAddress + (targetOffset - sourceOffset) * 8,ConfigurationDataPointer,resourceStartAddress - ConfigurationDataPointer);
   }
-                    // WARNING: Subroutine does not return
-  memmove(ConfigurationDataPointer + (sourceOffset - (resourceEndAddress - AdditionalParameter >> 3)) * 8,AdditionalParameter,resourceEndAddress - AdditionalParameter);
+    memmove(ConfigurationDataPointer + (sourceOffset - (resourceEndAddress - AdditionalParameter >> 3)) * 8,AdditionalParameter,resourceEndAddress - AdditionalParameter);
 }
 
 
@@ -32705,11 +32400,9 @@ void CalculateSystemResourceSize(long long SystemResourcePointer,long long Confi
     ConfigurationDataPointer = *resourceArray;
   }
   if (ConfigurationDataPointer != targetAddress) {
-                    // WARNING: Subroutine does not return
-    memmove(memoryBuffer,ConfigurationDataPointer,targetAddress - ConfigurationDataPointer);
+      memmove(memoryBuffer,ConfigurationDataPointer,targetAddress - ConfigurationDataPointer);
   }
-                    // WARNING: Subroutine does not return
-  memmove(memoryBuffer);
+    memmove(memoryBuffer);
 }
 
 
@@ -32745,8 +32438,7 @@ void DestroySystemResource(long long SystemResourcePointer)
   FreeSystemMemoryPool();
   *(void* *)(SystemResourcePointer + 8) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x10) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x20) = 0;
@@ -32792,8 +32484,7 @@ void ResetSystemResourcePointer(void* *SystemResourcePointer)
   ProcessSystemDataConfiguration(SystemResourcePointer + 4);
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
@@ -32816,13 +32507,11 @@ void ResetSystemResourcePointer(void* *SystemResourcePointer)
 void CleanupSystemResourcePointer(void* *SystemResourcePointer)
 {
   if (SystemResourcePointer[4] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
@@ -32853,8 +32542,7 @@ void CleanupSystemResourceMemoryRegion(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -32950,76 +32638,76 @@ void ExecuteConfigurationDataCallback(void* SystemResourcePointer,void* *Configu
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018017747d)
-// WARNING: Removing unreachable block (ram,0x000180177a18)
-// WARNING: Removing unreachable block (ram,0x000180177a22)
-// WARNING: Removing unreachable block (ram,0x000180177a2e)
-// WARNING: Removing unreachable block (ram,0x000180177a35)
-// WARNING: Removing unreachable block (ram,0x000180177581)
-// WARNING: Removing unreachable block (ram,0x000180177590)
-// WARNING: Removing unreachable block (ram,0x00018017759c)
-// WARNING: Removing unreachable block (ram,0x0001801775a3)
-// WARNING: Removing unreachable block (ram,0x0001801775b3)
-// WARNING: Removing unreachable block (ram,0x0001801775c0)
-// WARNING: Removing unreachable block (ram,0x0001801775cc)
-// WARNING: Removing unreachable block (ram,0x0001801775d3)
-// WARNING: Removing unreachable block (ram,0x000180177263)
-// WARNING: Removing unreachable block (ram,0x000180177296)
-// WARNING: Removing unreachable block (ram,0x00018017726a)
-// WARNING: Removing unreachable block (ram,0x000180177274)
-// WARNING: Removing unreachable block (ram,0x000180177280)
-// WARNING: Removing unreachable block (ram,0x000180177287)
-// WARNING: Removing unreachable block (ram,0x000180177290)
-// WARNING: Removing unreachable block (ram,0x000180177298)
-// WARNING: Removing unreachable block (ram,0x00018017753a)
-// WARNING: Removing unreachable block (ram,0x000180177540)
-// WARNING: Removing unreachable block (ram,0x000180177550)
-// WARNING: Removing unreachable block (ram,0x00018017755c)
-// WARNING: Removing unreachable block (ram,0x000180177563)
-// WARNING: Removing unreachable block (ram,0x0001801772c2)
-// WARNING: Removing unreachable block (ram,0x0001801772d0)
-// WARNING: Removing unreachable block (ram,0x0001801772dc)
-// WARNING: Removing unreachable block (ram,0x0001801772e3)
-// WARNING: Removing unreachable block (ram,0x00018017764c)
-// WARNING: Removing unreachable block (ram,0x00018017749a)
-// WARNING: Removing unreachable block (ram,0x0001801774a8)
-// WARNING: Removing unreachable block (ram,0x0001801774aa)
-// WARNING: Removing unreachable block (ram,0x000180176fc3)
-// WARNING: Removing unreachable block (ram,0x000180177722)
-// WARNING: Removing unreachable block (ram,0x00018017729d)
-// WARNING: Removing unreachable block (ram,0x00018017766b)
-// WARNING: Removing unreachable block (ram,0x000180177677)
-// WARNING: Removing unreachable block (ram,0x000180177679)
-// WARNING: Removing unreachable block (ram,0x00018017739f)
-// WARNING: Removing unreachable block (ram,0x0001801773a6)
-// WARNING: Removing unreachable block (ram,0x0001801773b0)
-// WARNING: Removing unreachable block (ram,0x0001801773bc)
-// WARNING: Removing unreachable block (ram,0x0001801773c3)
-// WARNING: Removing unreachable block (ram,0x00018017731b)
-// WARNING: Removing unreachable block (ram,0x000180177321)
-// WARNING: Removing unreachable block (ram,0x000180177330)
-// WARNING: Removing unreachable block (ram,0x00018017733c)
-// WARNING: Removing unreachable block (ram,0x000180177343)
-// WARNING: Removing unreachable block (ram,0x00018017734b)
-// WARNING: Removing unreachable block (ram,0x000180177356)
-// WARNING: Removing unreachable block (ram,0x000180177360)
-// WARNING: Removing unreachable block (ram,0x00018017736c)
-// WARNING: Removing unreachable block (ram,0x000180177373)
-// WARNING: Removing unreachable block (ram,0x00018017737b)
-// WARNING: Removing unreachable block (ram,0x000180177385)
-// WARNING: Removing unreachable block (ram,0x0001801773cb)
-// WARNING: Removing unreachable block (ram,0x000180177381)
-// WARNING: Removing unreachable block (ram,0x0001801773cd)
-// WARNING: Removing unreachable block (ram,0x0001801773d6)
-// WARNING: Removing unreachable block (ram,0x0001801773da)
-// WARNING: Removing unreachable block (ram,0x0001801773e4)
-// WARNING: Removing unreachable block (ram,0x0001801773eb)
-// WARNING: Removing unreachable block (ram,0x000180177400)
-// WARNING: Removing unreachable block (ram,0x00018017740c)
-// WARNING: Removing unreachable block (ram,0x000180177413)
-// WARNING: Removing unreachable block (ram,0x00018017741e)
-// WARNING: Removing unreachable block (ram,0x000180177417)
-// WARNING: Removing unreachable block (ram,0x000180177420)
+00018017747d)
+000180177a18)
+000180177a22)
+000180177a2e)
+000180177a35)
+000180177581)
+000180177590)
+00018017759c)
+0001801775a3)
+0001801775b3)
+0001801775c0)
+0001801775cc)
+0001801775d3)
+000180177263)
+000180177296)
+00018017726a)
+000180177274)
+000180177280)
+000180177287)
+000180177290)
+000180177298)
+00018017753a)
+000180177540)
+000180177550)
+00018017755c)
+000180177563)
+0001801772c2)
+0001801772d0)
+0001801772dc)
+0001801772e3)
+00018017764c)
+00018017749a)
+0001801774a8)
+0001801774aa)
+000180176fc3)
+000180177722)
+00018017729d)
+00018017766b)
+000180177677)
+000180177679)
+00018017739f)
+0001801773a6)
+0001801773b0)
+0001801773bc)
+0001801773c3)
+00018017731b)
+000180177321)
+000180177330)
+00018017733c)
+000180177343)
+00018017734b)
+000180177356)
+000180177360)
+00018017736c)
+000180177373)
+00018017737b)
+000180177385)
+0001801773cb)
+000180177381)
+0001801773cd)
+0001801773d6)
+0001801773da)
+0001801773e4)
+0001801773eb)
+000180177400)
+00018017740c)
+000180177413)
+00018017741e)
+000180177417)
+000180177420)
 
 
 /**
@@ -33162,8 +32850,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           puStack_390 = pointerToUnsigned11;
           unsignedSystemValue7 = StartSystemThread(pointerToUnsigned11);
           uStack_380 = CONCAT44(uStack_380._4_4_,unsignedSystemValue7);
-                    // WARNING: Subroutine does not return
-          memcpy(pointerToUnsigned11,pointerToUnsigned13,systemResult0);
+            memcpy(pointerToUnsigned11,pointerToUnsigned13,systemResult0);
         }
       }
       uStack_388 = 0;
@@ -33216,8 +32903,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
             pointerToUnsigned13 = pointerToUnsigned13 + *(int *)(pointerToUnsigned2 + localAllocationFlags * 4 + 2);
           }
           if ((long long)pointerToUnsigned13 - (long long)pointerToUnsigned17 != 0) {
-                    // WARNING: Subroutine does not return
-            memcpy(&uStack_268,pointerToUnsigned17,(long long)pointerToUnsigned13 - (long long)pointerToUnsigned17);
+              memcpy(&uStack_268,pointerToUnsigned17,(long long)pointerToUnsigned13 - (long long)pointerToUnsigned17);
           }
                     // WARNING: Ignoring partial resolution of indirect
           uStack_268._0_1_ = 0;
@@ -33267,8 +32953,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
               }
             }
             uStack_318 = CONCAT44(uStack_318._4_4_,unsignedSystemValue16);
-                    // WARNING: Subroutine does not return
-            memcpy(puStack_328,&uStack_268,systemResult0);
+              memcpy(puStack_328,&uStack_268,systemResult0);
           }
           uStack_320 = 0;
           pppppppointerToUnsigned14 = &ppppppuStack_360;
@@ -33322,8 +33007,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
                 *(void* *)(localAllocationFlags + 0x58) = 0;
                 *(void* *)(localAllocationFlags + 0x48) = 0;
                 *(uint32_t *)(localAllocationFlags + 0x50) = 0;
-                    // WARNING: Subroutine does not return
-                ConfigureSystemResourceHandle(localAllocationFlags,pppppppointerToUnsigned14,&ppppppuStack_360,unsignedSystemValue7);
+                  ConfigureSystemResourceHandle(localAllocationFlags,pppppppointerToUnsigned14,&ppppppuStack_360,unsignedSystemValue7);
               }
               pppppppointerToUnsigned14 = (void* *******)SystemResourceOffsetGet(pppppppointerToUnsigned14);
               localMemoryPointer2 = lStack_2c8;
@@ -33336,8 +33020,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
             ExecuteSystemCommand(pppppppointerToUnsigned14 + 8,unsignedSystemValue22);
           }
           if (unsignedSystemValue16 != 0) {
-                    // WARNING: Subroutine does not return
-            memcpy(pppppppointerToUnsigned14[9],pointerToUnsigned2[localAllocationFlags * 4 + 1],unsignedSystemValue22);
+              memcpy(pppppppointerToUnsigned14[9],pointerToUnsigned2[localAllocationFlags * 4 + 1],unsignedSystemValue22);
           }
           *(uint32_t *)(pppppppointerToUnsigned14 + 10) = 0;
           if (pppppppointerToUnsigned14[9] != (void* ******)0x0) {
@@ -33370,15 +33053,13 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       if (puStack_308 != (void* *)0x0) {
         puStack_308 = pointerToUnsigned3;
         puStack_300 = punsignedSystemValue4;
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(punsignedSystemValue5);
+          SystemCleanupFunction(punsignedSystemValue5);
       }
       puStack_2e8 = &SystemGlobalDataReference;
       if (lStack_2e0 != 0) {
         puStack_308 = pointerToUnsigned3;
         puStack_300 = punsignedSystemValue4;
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       lStack_2e0 = 0;
       uStack_2d0 = 0;
@@ -33451,8 +33132,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
               }
               uStack_380 = CONCAT44(uStack_380._4_4_,unsignedSystemValue16);
               if (*(int *)(localAllocationFlags + 0xb8) != 0) {
-                    // WARNING: Subroutine does not return
-                memcpy(puStack_390,*(void* *)(localAllocationFlags + 0xb0),*(int *)(localAllocationFlags + 0xb8) + 1);
+                  memcpy(puStack_390,*(void* *)(localAllocationFlags + 0xb0),*(int *)(localAllocationFlags + 0xb8) + 1);
               }
             }
             if (*(long long *)(localAllocationFlags + 0xb0) != 0) {
@@ -33465,8 +33145,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
             uStack_378 = uStack_378 & 0xfffffffd;
             puStack_398 = &SystemGlobalDataReference;
             if (puStack_390 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-              SystemCleanupFunction(puStack_390);
+                SystemCleanupFunction(puStack_390);
             }
             puStack_390 = (uint8_t *)0x0;
             uStack_380 = uStack_380 & 0xffffffff00000000;
@@ -33501,24 +33180,21 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           FUN_1801762b0(localMemoryPointer2,&puStack_2e8,&puStack_308,&uStack_48);
           puStack_2e8 = &SystemGlobalDataReference;
           if (lStack_2e0 != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           lStack_2e0 = 0;
           uStack_2d0 = 0;
           puStack_2e8 = &SystemMemoryAllocatorReference;
           puStack_308 = (void* *)&SystemGlobalDataReference;
           if (puStack_300 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           puStack_300 = (void* *)0x0;
           uStack_2f0 = 0;
           puStack_308 = (void* *)&SystemMemoryAllocatorReference;
           puStack_330 = &SystemGlobalDataReference;
           if (puStack_328 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           puStack_328 = (void* *)0x0;
           uStack_318 = uStack_318 & 0xffffffff00000000;
@@ -33529,8 +33205,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
     } while (pppppppointerToUnsigned14 != &ppppppuStack_360);
   }
   ProcessSystemResourceInitialization(&ppppppuStack_360);
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_3b8);
+    ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_3b8);
 }
 
 
@@ -33633,8 +33308,7 @@ void FreeSystemMemoryPool(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -33683,8 +33357,7 @@ long long CopySystemResourceData(long long SystemResourcePointer,long long Confi
         ExecuteSystemCommand(AdditionalParameter,unsignedSystemValue4);
       }
       if (unsignedSystemValue1 != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(*(void* *)(SystemResourcePointer + (long long)SecondaryResourcePointer),*SecondaryResourcePointer,unsignedSystemValue4);
+          memcpy(*(void* *)(SystemResourcePointer + (long long)SecondaryResourcePointer),*SecondaryResourcePointer,unsignedSystemValue4);
       }
       *(uint32_t *)(SystemResourcePointer + 8 + (long long)SecondaryResourcePointer) = 0;
       if (*(long long *)(SystemResourcePointer + (long long)SecondaryResourcePointer) != 0) {
@@ -33732,8 +33405,7 @@ long long ProcessSystemResourceDataInternal(long long SystemResourcePointer,void
       ExecuteSystemCommand(systemStringIteratorPtr,unsignedSystemValue3);
     }
     if (unsignedSystemValue1 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(*(void* *)(AdditionalParameter + (long long)SecondaryResourcePointer),*SecondaryResourcePointer,unsignedSystemValue3);
+        memcpy(*(void* *)(AdditionalParameter + (long long)SecondaryResourcePointer),*SecondaryResourcePointer,unsignedSystemValue3);
     }
     *(uint32_t *)(AdditionalParameter + 8 + (long long)SecondaryResourcePointer) = 0;
     if (*(long long *)(AdditionalParameter + (long long)SecondaryResourcePointer) != 0) {
@@ -33929,8 +33601,7 @@ void InitializeSystemResources(void* *SystemResourcePointer)
   StartSystemInitialization();
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
@@ -33964,8 +33635,7 @@ void CleanupSystemResources(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -33994,8 +33664,7 @@ void CleanupSystemResourcesIterator(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -34016,16 +33685,14 @@ void ResetSystemResources(void* *SystemResourcePointer)
 {
   SystemResourcePointer[4] = &SystemGlobalDataReference;
   if (SystemResourcePointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 7) = 0;
   SystemResourcePointer[4] = &SystemMemoryAllocatorReference;
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
@@ -34050,8 +33717,7 @@ void ValidateSystemResourceCleanup(long long SystemResourcePointer)
 
 {
   if (*(long long *)(SystemResourcePointer + 8) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   _Mtx_destroy_in_situ();
   return;
@@ -34154,8 +33820,7 @@ LAB_180059885:
     SystemResourcePointer[1] = localResourceOffset + 0x20;
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(punsignedSystemValue5);
+    SystemCleanupFunction(punsignedSystemValue5);
 }
 
 
@@ -34215,9 +33880,8 @@ void ProcessSystemStringAndInitializeBuffer(long long SystemResourcePointer,long
   } while (*(char *)(ConfigurationDataPointer + localMemoryPointer) != '\0');
   if ((int)localMemoryPointer < 0x10) {
     *(int *)(SystemResourcePointer + 0x10) = (int)localMemoryPointer;
-                    // WARNING: Could not recover jumptable at 0x000180059977. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(SystemResourcePointer + 8),0x10);
+                    000180059977. Too many branches
+                        strcpy_s(*(void* *)(SystemResourcePointer + 8),0x10);
     return;
   }
   InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x10,ConfigurationDataPointer);
@@ -34245,8 +33909,7 @@ void CopySystemBufferData(long long SystemResourcePointer,void* ConfigurationDat
 
 {
   if (AdditionalParameter + 1 < 0x10) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
+      memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -34268,8 +33931,7 @@ void CopySystemBufferData(long long SystemResourcePointer,void* ConfigurationDat
 void ClearSystemMemoryBuffer(void)
 
 {
-                    // WARNING: Subroutine does not return
-  memcpy();
+    memcpy();
 }
 
 
@@ -34342,12 +34004,10 @@ void ProcessSystemResourceWithEncryption(long long SystemResourcePointer,long lo
     do {
       localSystemHandle = localSystemHandle + 1;
     } while (*(char *)(localSystemHandle + AdditionalParameter) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_68,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
+      memcpy(puStack_68,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
   }
   puStack_70 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_98);
+    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_98);
 }
 
 
@@ -34542,20 +34202,17 @@ void CleanupSystemResources(long long *ResourceHandle)
       *(void* *)pointerToUnsigned3[3] = 0;
     }
     (**(code **)*pointerToUnsigned3)(pointerToUnsigned3,0);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned3);
+      SystemCleanupFunction(pointerToUnsigned3);
   }
   if ((SystemResourcePointer[6] != 0) && (*(long long *)(SystemResourcePointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   localBufferAddress = SystemResourcePointer[5];
   while (localBufferAddress != 0) {
     pcVar2 = (char *)(localBufferAddress + 0x141);
     localBufferAddress = *(long long *)(localBufferAddress + 0x138);
     if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   pointerToUnsigned3 = (void* *)SystemResourcePointer[3];
@@ -34612,20 +34269,17 @@ void InitializeSystemDataPointer(long long *SystemResourcePointer)
       *(void* *)pointerToUnsigned3[3] = 0;
     }
     (**(code **)*pointerToUnsigned3)(pointerToUnsigned3,0);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned3);
+      SystemCleanupFunction(pointerToUnsigned3);
   }
   if ((SystemResourcePointer[6] != 0) && (*(long long *)(SystemResourcePointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   localBufferAddress = SystemResourcePointer[5];
   while (localBufferAddress != 0) {
     pcVar2 = (char *)(localBufferAddress + 0x141);
     localBufferAddress = *(long long *)(localBufferAddress + 0x138);
     if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   pointerToUnsigned3 = (void* *)SystemResourcePointer[3];
@@ -34675,8 +34329,7 @@ void ReleaseSystemResourceReference(void)
     *(void* *)systemMemoryBlockPtr[3] = 0;
   }
   (**(code **)*systemMemoryBlockPtr)();
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -34703,16 +34356,14 @@ void CleanupSystemAndProcessBuffers(void)
   
   if ((*(long long *)(systemStringIteratorPtr + 0x30) != 0) &&
      (*(long long *)(*(long long *)(systemStringIteratorPtr + 0x30) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   localBufferAddress = *(long long *)(systemStringIteratorPtr + 0x28);
   while (localBufferAddress != 0) {
     pcVar2 = (char *)(localBufferAddress + 0x141);
     localBufferAddress = *(long long *)(localBufferAddress + 0x138);
     if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   pointerToUnsigned3 = *(void* **)(systemStringIteratorPtr + 0x18);
@@ -34814,20 +34465,17 @@ void CleanupAndDestroySystemResources(long long *SystemResourcePointer)
       *(void* *)pointerToUnsigned3[3] = 0;
     }
     (**(code **)*pointerToUnsigned3)(pointerToUnsigned3,0);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned3);
+      SystemCleanupFunction(pointerToUnsigned3);
   }
   if ((SystemResourcePointer[6] != 0) && (*(long long *)(SystemResourcePointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   localBufferAddress = SystemResourcePointer[5];
   while (localBufferAddress != 0) {
     pcVar2 = (char *)(localBufferAddress + 0x141);
     localBufferAddress = *(long long *)(localBufferAddress + 0x138);
     if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   pointerToUnsigned3 = (void* *)SystemResourcePointer[3];
@@ -34935,11 +34583,9 @@ void CleanupSystemResourceArray(long long SystemResourcePointer)
       localResourceOffset = *(long long *)(localSystemHandle + unsignedSystemValue4 * 8);
       if (localResourceOffset != 0) {
         if (*(long long *)(localResourceOffset + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localResourceOffset);
+          SystemCleanupFunction(localResourceOffset);
       }
       *(void* *)(localSystemHandle + unsignedSystemValue4 * 8) = 0;
       unsignedSystemValue4 = unsignedSystemValue4 + 1;
@@ -35204,8 +34850,7 @@ void InitializeAndCleanupSystemResource(void* *SystemResourcePointer)
   SystemResourcePointer[0x69] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x6b) = 0;
   unsignedSystemValue2 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xc0,8,4);
-                    // WARNING: Subroutine does not return
-  memset(unsignedSystemValue2,0,0xc0);
+    memset(unsignedSystemValue2,0,0xc0);
 }
 
 
@@ -35283,8 +34928,7 @@ void CreateAndInitializeSystemThread(void* SystemResourcePointer,void* Configura
   uStack_40 = 0xd;
   ManageSystemResource(SystemResourcePointer,&memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(pointerToUnsigned2);
+    SystemCleanupFunction(pointerToUnsigned2);
 }
 
 
@@ -35354,28 +34998,23 @@ void ProcessAndCleanupBatchSystemResources(void* *SystemResourcePointer,void* Co
   *SystemResourcePointer = &SystemMemoryPoolTemplateA;
   SystemResourcePointer[0x18] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x19] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x1b) = 0;
   SystemResourcePointer[0x18] = &SystemMemoryAllocatorReference;
   ProcessSystemResourceConfiguration(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (SystemResourcePointer[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (SystemResourcePointer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (SystemResourcePointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -35452,16 +35091,14 @@ void InitializeSystemResourceA(long long SystemResourcePointer,void* Configurati
   }
   *(void* *)(SystemResourcePointer + 0x30) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x38) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x48) = 0;
   *(void* *)(SystemResourcePointer + 0x30) = &SystemMemoryAllocatorReference;
   *(void* *)(SystemResourcePointer + 0x10) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x18) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x28) = 0;
@@ -35514,8 +35151,7 @@ void InitializeSystemResourceB(void* SystemResourcePointer,void* ConfigurationDa
   uStack_40 = 0x12;
   ManageSystemResource(SystemResourcePointer,&memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(pointerToUnsigned2);
+    SystemCleanupFunction(pointerToUnsigned2);
 }
 
 
@@ -35596,28 +35232,23 @@ void CleanupSystemResource(void** systemResourcePointer, void* configurationData
   *SystemResourcePointer = &SystemMemoryPoolTemplateA;
   SystemResourcePointer[0x18] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x19] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x1b) = 0;
   SystemResourcePointer[0x18] = &SystemMemoryAllocatorReference;
   ProcessSystemResourceConfiguration(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (SystemResourcePointer[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (SystemResourcePointer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (SystemResourcePointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -35679,16 +35310,14 @@ void ExecuteSystemResourceOperation(long long systemResourcePointer, void* confi
   }
   *(void* *)(SystemResourcePointer + 0x28) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x30) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x40) = 0;
   *(void* *)(SystemResourcePointer + 0x28) = &SystemMemoryAllocatorReference;
   *(void* *)(SystemResourcePointer + 8) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x10) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x20) = 0;
@@ -36045,8 +35674,7 @@ void InitializeSystemDataReference(long long SystemResourcePointer)
 {
   *(void* *)(SystemResourcePointer + 0x18) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x20) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x30) = 0;
@@ -36082,8 +35710,7 @@ void CleanupSystemResourcePointer(long long *SystemResourcePointer)
     do {
       *(void* *)(localSystemHandle + 0x18) = &SystemGlobalDataReference;
       if (*(long long *)(localSystemHandle + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *(void* *)(localSystemHandle + 0x20) = 0;
       *(uint32_t *)(localSystemHandle + 0x30) = 0;
@@ -36329,8 +35956,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer)
   if ((code *)SystemResourcePointer[2] != (code *)0x0) {
     (*(code *)SystemResourcePointer[2])(SystemResourcePointer,0,0);
   }
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_18 ^ (ulong long)auStack_128);
+    ValidateSystemChecksum(uStack_18 ^ (ulong long)auStack_128);
 }
 
 
@@ -36440,8 +36066,7 @@ void ManageSystemResourceStatus(void* *ResourcePointer,void* ConfigurationDataPo
     nextResourceNode = (void* *)SystemResourceOffsetGet(currentResourceNode);
   }
   if (*(int *)(threadObjectAddress + 0x20) <= *(int *)(nextResourceNode + 4)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(threadObjectAddress);
+      SystemCleanupFunction(threadObjectAddress);
   }
 LAB_18005c9be:
   if ((currentResourceNode == ResourcePointer) || (*(int *)(threadObjectAddress + 0x20) < *(int *)(currentResourceNode + 4))) {
@@ -36450,8 +36075,7 @@ LAB_18005c9be:
   else {
     insertionPosition = 1;
   }
-                    // WARNING: Subroutine does not return
-  ConfigureSystemResourceHandle(threadObjectAddress,currentResourceNode,ResourcePointer,insertionPosition);
+    ConfigureSystemResourceHandle(threadObjectAddress,currentResourceNode,ResourcePointer,insertionPosition);
 }
 
 
@@ -36546,16 +36170,14 @@ long long ResetSystemResourceDataStructure(long long SystemResourcePointer)
 {
   *(void* *)(SystemResourcePointer + 0x40) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x48) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x58) = 0;
   *(void* *)(SystemResourcePointer + 0x40) = &SystemMemoryAllocatorReference;
   *(void* *)(SystemResourcePointer + 0x20) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x28) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x38) = 0;
@@ -36618,8 +36240,7 @@ void ConfigureSystemResourceAllocation(void* **ResourcePointer,void* Configurati
   if (configurationFlagBuffer[0] == '\0') {
     ValidateSystemResourceConfiguration(dataManagerOffset);
     if (dataManagerOffset != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(dataManagerOffset);
+        SystemCleanupFunction(dataManagerOffset);
     }
     resourceReference = &additionalParameterObject;
     additionalParameterObject = &SystemGlobalDataReference;
@@ -36632,11 +36253,9 @@ void ConfigureSystemResourceAllocation(void* **ResourcePointer,void* Configurati
       if (stackOffset60 == 0) {
         return;
       }
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (allocatedResourcePointer == systemDataManagerPointer) goto LAB_18005ccff;
   if (*(int *)(allocatedResourcePointer + 6) != 0) {
@@ -36653,8 +36272,7 @@ void ConfigureSystemResourceAllocation(void* **ResourcePointer,void* Configurati
   }
   allocationResult = 1;
 LAB_18005ccff:
-                    // WARNING: Subroutine does not return
-  ConfigureSystemResourceHandle(dataManagerOffset,allocatedResourcePointer,systemDataManagerPointer,allocationResult,allocationFlags);
+    ConfigureSystemResourceHandle(dataManagerOffset,allocatedResourcePointer,systemDataManagerPointer,allocationResult,allocationFlags);
 }
 
 
@@ -36928,8 +36546,7 @@ void InitializeSystemResources(ulong long SystemResourcePointer,long long Config
     SystemErrorCode = (int)(LocalSystemFlags + 1);
     if (0 < SystemErrorCode) {
       ExecuteSystemCommand(ConfigurationDataPointer,*(int *)(ConfigurationDataPointer + 0x10) + SystemErrorCode);
-                    // WARNING: Subroutine does not return
-      memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),SystemMainBuffer,
+        memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),SystemMainBuffer,
              (long long)((int)LocalSystemFlags + 2));
     }
   }
@@ -36941,12 +36558,10 @@ void InitializeSystemResources(ulong long SystemResourcePointer,long long Config
     FormatSystemResourceOutput(localSystemPointer,(long long)systemCode,&SystemFormatString,&dStackX_18);
     SearchSystemResourceString(ConfigurationDataPointer,localSystemPointer);
     if (localSystemPointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(localSystemPointer);
+        SystemCleanupFunction(localSystemPointer);
     }
   }
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_478);
+    ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_478);
 }
 
 
@@ -36965,8 +36580,7 @@ long long TransferSystemResourceConfigurationData(long long SystemResourcePointe
 
 {
   if (*(long long *)(SystemResourcePointer + 8) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x18) = 0;
   *(void* *)(SystemResourcePointer + 8) = 0;
@@ -36999,15 +36613,13 @@ void ProcessExtraOutputResource(void* SystemResourcePointer,long long Configurat
 {
   *(void* *)(ConfigurationDataPointer + 0x20) = &SystemGlobalDataReference;
   if (*(long long *)(ConfigurationDataPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(ConfigurationDataPointer + 0x28) = 0;
   *(uint32_t *)(ConfigurationDataPointer + 0x38) = 0;
   *(void* *)(ConfigurationDataPointer + 0x20) = &SystemMemoryAllocatorReference;
   if (ConfigurationDataPointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(ConfigurationDataPointer);
+      SystemCleanupFunction(ConfigurationDataPointer);
   }
   return;
 }
@@ -37039,14 +36651,12 @@ void ProcessSystemResourceConfiguration(void* SystemResourcePointer,void* *Confi
   ProcessSystemResourceConfiguration(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   ConfigurationDataPointer[4] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   ConfigurationDataPointer[5] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 7) = 0;
   ConfigurationDataPointer[4] = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(ConfigurationDataPointer);
+    SystemCleanupFunction(ConfigurationDataPointer);
 }
 
 
@@ -37551,8 +37161,7 @@ void ExecuteSystemResourceIterator(long long *SystemResourcePointer,void* Config
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -37574,8 +37183,7 @@ void CleanupSystemMemoryAllocation(long long *SystemResourcePointer,void* Config
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -37738,8 +37346,7 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
         localSystemPointer = __RTCastToVoid(plocalBufferAddress);
         (**(code **)(*plocalBufferAddress + 0x28))(plocalBufferAddress,0);
         if (localSystemPointer != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction(localSystemPointer);
+            SystemCleanupFunction(localSystemPointer);
         }
       }
       *(void* *)(localDataPointer + *PrimaryResourcePointer) = 0;
@@ -37758,8 +37365,7 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
         localSystemPointer = __RTCastToVoid(plocalBufferAddress);
         (**(code **)(*plocalBufferAddress + 0x28))(plocalBufferAddress,0);
         if (localSystemPointer != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction(localSystemPointer);
+            SystemCleanupFunction(localSystemPointer);
         }
       }
       *(void* *)(localDataPointer + *SecondaryResourcePointer) = 0;
@@ -37778,8 +37384,7 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
         localSystemPointer = __RTCastToVoid(plocalBufferAddress);
         (**(code **)(*plocalBufferAddress + 0x28))(plocalBufferAddress,0);
         if (localSystemPointer != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction(localSystemPointer);
+            SystemCleanupFunction(localSystemPointer);
         }
       }
       *(void* *)(localDataPointer + *plocalResourceOffset) = 0;
@@ -37794,16 +37399,13 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
   CloseHandle(*(void* *)(SystemResourcePointer + 0x70));
   CloseHandle(*(void* *)(SystemResourcePointer + 0x68));
   if (*plocalResourceOffset != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (*SecondaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -38096,8 +37698,7 @@ void InitializeAndConfigureSystemResources(void)
       } while (*(char*)((long long)&uStack_58 + localDataPointer) != '\0');
       systemResult = (int)localSystemPointer;
       if ((0 < systemResult) && (uStack_150 + systemResult < 0xf)) {
-                    // WARNING: Subroutine does not return
-        memcpy(puStack_158 + uStack_150,&uStack_58,(long long)(systemResult + 1));
+          memcpy(puStack_158 + uStack_150,&uStack_58,(long long)(systemResult + 1));
       }
       unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
       lStack_188 = lStack_178 + 0x68;
@@ -38136,8 +37737,7 @@ void InitializeAndConfigureSystemResources(void)
       } while (acStack_48[localDataPointer + 1] != '\0');
       systemStatus2 = (int)(localDataPointer + 1);
       if ((0 < systemStatus2) && (uStack_150 + systemStatus2 < 0xf)) {
-                    // WARNING: Subroutine does not return
-        memcpy(puStack_158 + uStack_150,acStack_48,(long long)((int)localDataPointer + 2));
+          memcpy(puStack_158 + uStack_150,acStack_48,(long long)((int)localDataPointer + 2));
       }
       punsignedSystemValue4 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
       lStack_198 = localAllocationFlags + 0x70;
@@ -38174,8 +37774,7 @@ void InitializeAndConfigureSystemResources(void)
   }
   ppuStack_170 = apuStack_108;
   apuStack_108[0] = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_1b8);
+    ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_1b8);
 }
 
 
@@ -38441,8 +38040,7 @@ void ReleaseSystemResourceHandle(long long SystemResourcePointer,long long *Conf
         localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)systemValue * 8;
         unsignedSystemValue6 = localResourceOffset + 8;
         if (unsignedSystemValue6 < unsignedSystemValue2) {
-                    // WARNING: Subroutine does not return
-          memmove(localResourceOffset,unsignedSystemValue6,unsignedSystemValue2 - unsignedSystemValue6);
+            memmove(localResourceOffset,unsignedSystemValue6,unsignedSystemValue2 - unsignedSystemValue6);
         }
         *(ulong long *)(SystemResourcePointer + 0x50) = unsignedSystemValue2 - 8;
         break;
@@ -38455,8 +38053,7 @@ void ReleaseSystemResourceHandle(long long SystemResourcePointer,long long *Conf
     localResourceOffset = __RTCastToVoid(ConfigurationDataPointer);
     (**(code **)(*ConfigurationDataPointer + 0x28))(ConfigurationDataPointer,0);
     if (localResourceOffset != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(localResourceOffset);
+        SystemCleanupFunction(localResourceOffset);
     }
   }
   return;
@@ -38488,8 +38085,7 @@ void FUN_18005e57a(long long SystemResourcePointer,long long *ConfigurationDataP
         localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)systemValue * 8;
         unsignedSystemValue6 = localResourceOffset + 8;
         if (unsignedSystemValue6 < unsignedSystemValue2) {
-                    // WARNING: Subroutine does not return
-          memmove(localResourceOffset,unsignedSystemValue6,unsignedSystemValue2 - unsignedSystemValue6);
+            memmove(localResourceOffset,unsignedSystemValue6,unsignedSystemValue2 - unsignedSystemValue6);
         }
         *(ulong long *)(SystemResourcePointer + 0x50) = unsignedSystemValue2 - 8;
         break;
@@ -38502,8 +38098,7 @@ void FUN_18005e57a(long long SystemResourcePointer,long long *ConfigurationDataP
     localResourceOffset = __RTCastToVoid(ConfigurationDataPointer);
     (**(code **)(*ConfigurationDataPointer + 0x28))(ConfigurationDataPointer,0);
     if (localResourceOffset != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(localResourceOffset);
+        SystemCleanupFunction(localResourceOffset);
     }
   }
   return;
@@ -38522,8 +38117,7 @@ void FUN_18005e5ff(void)
   localMemoryPointer = __RTCastToVoid();
   (**(code **)(*systemDataIndexPtr + 0x28))();
   if (localMemoryPointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localMemoryPointer);
+      SystemCleanupFunction(localMemoryPointer);
   }
   return;
 }
@@ -38547,9 +38141,8 @@ void FUN_18005e630(long long SystemResourcePointer)
   }
   systemStatus = _Mtx_unlock(localSystemHandle);
   if (systemStatus != 0) {
-                    // WARNING: Could not recover jumptable at 0x00018005e68f. Too many branches
-                    // WARNING: Treating indirect jump as call
-    __Throw_C_error_std__YAXH_Z(systemStatus);
+                    00018005e68f. Too many branches
+                        __Throw_C_error_std__YAXH_Z(systemStatus);
     return;
   }
   return;
@@ -38805,13 +38398,11 @@ void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *Configurati
   punsignedSystemValue4 = (void* *)SystemResourcePointer[1];
 LAB_18005eb20:
   if (pointerToUnsigned3 != punsignedSystemValue4) {
-                    // WARNING: Subroutine does not return
-    memmove(pointerToUnsigned2,pointerToUnsigned3,(long long)punsignedSystemValue4 - (long long)pointerToUnsigned3);
+      memmove(pointerToUnsigned2,pointerToUnsigned3,(long long)punsignedSystemValue4 - (long long)pointerToUnsigned3);
   }
   *pointerToUnsigned2 = *ConfigurationDataPointer;
   if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = (ulong long)pointerToUnsigned2;
   SystemResourcePointer[1] = (ulong long)(pointerToUnsigned2 + 1);
@@ -40410,8 +40001,7 @@ LAB_18006039b:
     *SystemResourcePointer = &SystemResourceTableB;
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
   while( true ) {
     unsignedSystemValue4 = (uint)unsignedSystemValue5;
     unsignedSystemValue5 = unsignedSystemValue5 + 1;
@@ -40432,8 +40022,7 @@ code_r0x000180060327:
     do {
       localMemoryPointer1 = *(long long *)(localDataPointer + 0x100);
       if (*(char *)(localDataPointer + 0x141) != '\0') {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       localResourcePointer = SystemResourcePointer[10];
       LOCK();
@@ -40594,8 +40183,7 @@ LAB_1800604d1:
     }
   }
   if (SystemResourcePointer[0xc] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = &SystemResourceTableB;
   return;
@@ -40655,11 +40243,9 @@ void ConfigureSystemResources(void* *SystemResourcePointer,void* ConfigurationDa
     return;
   }
   if (*(int *)(SystemResourcePointer[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+    terminate();
 }
 
 
@@ -40789,8 +40375,7 @@ void* FUN_1800607f0(long long SystemResourcePointer,char ConfigurationDataPointe
             (**(code **)(*(long long *)*plocalResourceOffset + 0x38))();
           }
           if (*(long long *)(SystemResourcePointer + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           plocalResourceOffset = (long long *)(*(long long *)(SystemResourcePointer + 0xc0) + 8);
           *(long long **)(SystemResourcePointer + 0xc0) = plocalResourceOffset;
@@ -41266,8 +40851,7 @@ void SynchronizeSystemResources(long long *SystemResourcePointer,long long *Conf
         if (unsignedSystemValue5 < 2) {
           unsignedSystemValue5 = 1;
         }
-                    // WARNING: Subroutine does not return
-        memmove(localDataPointer + (unsignedSystemValue9 - unsignedSystemValue5) * 8,localSystemFlags,localSystemHandle);
+          memmove(localDataPointer + (unsignedSystemValue9 - unsignedSystemValue5) * 8,localSystemFlags,localSystemHandle);
       }
       localSystemFlags = localBufferAddress;
       if (localBufferAddress == 0) {
@@ -41277,8 +40861,7 @@ void SynchronizeSystemResources(long long *SystemResourcePointer,long long *Conf
       localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localSystemFlags * 8,(char)SystemResourcePointer[10],localDataPointer,unsignedSystemValue10);
       PrimaryResourcePointer = (long long *)(localDataPointer + (SystemResourcePointer[5] - *SystemResourcePointer >> 3) * 8);
       if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(PrimaryResourcePointer,SystemResourcePointer[5],localSystemHandle);
+          memcpy(PrimaryResourcePointer,SystemResourcePointer[5],localSystemHandle);
       }
       *SystemResourcePointer = localDataPointer;
       SystemResourcePointer[1] = localSystemFlags;
@@ -41412,16 +40995,14 @@ void ResetSystemResource(void* *SystemResourcePointer)
   *SystemResourcePointer = &UNK_180a30778;
   SystemResourcePointer[7] = &SystemGlobalDataReference;
   if (SystemResourcePointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[8] = 0;
   *(uint32_t *)(SystemResourcePointer + 10) = 0;
   SystemResourcePointer[7] = &SystemMemoryAllocatorReference;
   SystemResourcePointer[1] = &SystemGlobalDataReference;
   if (SystemResourcePointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[2] = 0;
   *(uint32_t *)(SystemResourcePointer + 4) = 0;
@@ -41500,14 +41081,12 @@ void StartInputSystem(void* SystemResourcePointer,long long ConfigurationDataPoi
   FUN_180627e10(SystemStatusFlagsPointer + 0x170,auStack_230,&DAT_1809fc8c8);
   if (0 < *(int *)(ConfigurationDataPointer + 0x10)) {
     ExecuteSystemCommand(auStack_230,uStack_220 + *(int *)(ConfigurationDataPointer + 0x10));
-                    // WARNING: Subroutine does not return
-    memcpy((ulong long)uStack_220 + lStack_228,*(void* *)(ConfigurationDataPointer + 8),
+      memcpy((ulong long)uStack_220 + lStack_228,*(void* *)(ConfigurationDataPointer + 8),
            (long long)(*(int *)(ConfigurationDataPointer + 0x10) + 1));
   }
   FUN_18062c100(auStack_208,auStack_230);
   FUN_18062c1e0(auStack_208,1);
-                    // WARNING: Subroutine does not return
-  memset(auStack_138,0,0x100);
+    memset(auStack_138,0,0x100);
 }
 
 
@@ -41684,8 +41263,7 @@ void InitializeSystemContextManager(long long *SystemResourcePointer)
 void FUN_180061f80(void)
 
 {
-                    // WARNING: Subroutine does not return
-  SystemDataOperation();
+    SystemDataOperation();
 }
 
 
@@ -41837,8 +41415,7 @@ void ConfigureInputSystem(void)
   uStack_180 = SystemContextManagerPointer;
   uStack_190 = _time64(0);
   uStack_188 = _localtime64(&uStack_190);
-                    // WARNING: Subroutine does not return
-  memset(auStack_138,0,0xff);
+    memset(auStack_138,0,0xff);
 }
 
 
@@ -41881,8 +41458,7 @@ void FUN_180062920(int *SystemResourcePointer)
   uStack_190 = 0;
   *SystemResourcePointer = *SystemResourcePointer + 1;
   if ((*(long long *)(SystemResourcePointer + 4) != 0) && (*(long long *)(SystemResourcePointer + 2) != 0)) {
-                    // WARNING: Subroutine does not return
-    ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_1f8);
+      ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_1f8);
   }
   lStack_168 = 0;
   lStack_160 = 0;
@@ -41897,8 +41473,7 @@ void FUN_180062920(int *SystemResourcePointer)
   uStack_190 = 0;
   puStack_188 = &SystemGlobalDataReference;
   if (lStack_180 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_180 = 0;
   uStack_170 = 0;
@@ -41939,8 +41514,7 @@ void FUN_180062920(int *SystemResourcePointer)
     } while ((ulong long)(long long)systemCode < unsignedSystemValue9);
   }
   puStack_1b0 = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(punsignedSystemValue5);
+    SystemCleanupFunction(punsignedSystemValue5);
 }
 
 
@@ -42067,8 +41641,7 @@ void FUN_180062fd0(long long SystemResourcePointer)
 code_r0x0001800630e9:
       FUN_1806288c0(SystemResourcePointer + 0x30,systemCode,&puStack_70);
       puStack_70 = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(punsignedSystemValue5);
+        SystemCleanupFunction(punsignedSystemValue5);
     case 2:
       plocalDataPointer = (long long *)(*(long long *)(SystemResourcePointer + 0x20) + 0xd8);
       (**(code **)(*plocalDataPointer + 0x70))(plocalDataPointer,&UNK_1809fe5f0);
@@ -42269,8 +41842,7 @@ FUN_180063650(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,v
 {
   SystemResourcePointer[6] = &SystemGlobalDataReference;
   if (SystemResourcePointer[7] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[7] = 0;
   *(uint32_t *)(SystemResourcePointer + 9) = 0;
@@ -42377,8 +41949,7 @@ void InitializeSecurityContext(void* SystemResourcePointer)
   securityKey = SystemEncryptionKeyTemplate ^ (ulong long)securityBuffer;
   contextValue = SystemResourcePointer;
   CreateSystemObject(configurationBuffer,SystemContextManagerPointer + 0x28);
-                    // WARNING: Subroutine does not return
-  memset(memoryBuffer,0,0x200);
+    memset(memoryBuffer,0,0x200);
 }
 
 
@@ -42531,8 +42102,7 @@ LAB_180063de9:
     punsignedSystemValue12 = puStack_2b0;
     punsignedSystemValue4 = puStack_2a8;
     if (-1 < systemStatus4) {
-                    // WARNING: Subroutine does not return
-      memset(auStack_238,0,0x200);
+        memset(auStack_238,0,0x200);
     }
   }
   for (; punsignedSystemValue5 = puStack_2a8, puStack_2d0 = pointerToUnsigned3, punsignedSystemValue12 != puStack_2a8; punsignedSystemValue12 = punsignedSystemValue12 + 4)
@@ -42550,23 +42120,19 @@ LAB_180063de9:
       (**(code **)*punsignedSystemValue12)(punsignedSystemValue12,0);
     }
     if (puStack_2d8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_290 = &SystemGlobalDataReference;
     if (lStack_288 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_288 = 0;
     uStack_278 = 0;
     puStack_290 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-    ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_2f8);
+      ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_2f8);
   }
   puStack_2a8 = punsignedSystemValue4;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -42623,29 +42189,25 @@ void FUN_180064010(void* SystemResourcePointer)
   pointerToUnsigned1 = puStack_310;
   punsignedSystemValue4 = puStack_2c0;
   if ((int)((long long)puStack_310 - (long long)puStack_318 >> 5) != 0) {
-                    // WARNING: Subroutine does not return
-    memset(auStack_238,0,0x200);
+      memset(auStack_238,0,0x200);
   }
   for (; puStack_310 = pointerToUnsigned1, punsignedSystemValue4 != pointerToUnsigned2; punsignedSystemValue4 = punsignedSystemValue4 + 4) {
     (**(code **)*punsignedSystemValue4)(punsignedSystemValue4,0);
     pointerToUnsigned1 = puStack_310;
   }
   if (puStack_2c0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_2c0 = (void* *)0x0;
   for (punsignedSystemValue4 = puStack_318; punsignedSystemValue4 != pointerToUnsigned1; punsignedSystemValue4 = punsignedSystemValue4 + 4) {
     (**(code **)*punsignedSystemValue4)(punsignedSystemValue4,0);
   }
   if (puStack_318 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_2a0 = &SystemGlobalDataReference;
   if (lStack_298 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_298 = 0;
   uStack_288 = 0;
@@ -42668,8 +42230,7 @@ void FUN_180064010(void* SystemResourcePointer)
   }
   puStack_280 = &SystemGlobalDataReference;
   if (puStack_278 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_278 = (void* *)0x0;
   uStack_268 = 0;
@@ -42699,8 +42260,7 @@ void FUN_180064010(void* SystemResourcePointer)
   }
   puStack_260 = &SystemGlobalDataReference;
   if (puStack_258 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_258 = (void* *)0x0;
   uStack_248 = 0;
@@ -42712,8 +42272,7 @@ void FUN_180064010(void* SystemResourcePointer)
     SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
     UNLOCK();
   }
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_358);
+    ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_358);
 }
 
 
@@ -42723,8 +42282,7 @@ void FUN_180064010(void* SystemResourcePointer)
 void FUN_180064400(void)
 
 {
-                    // WARNING: Subroutine does not return
-  SystemDataOperation();
+    SystemDataOperation();
 }
 
 
@@ -42810,16 +42368,14 @@ ulong long FUN_1800649d0(void* SystemResourcePointer)
     }
     puStack_b8 = &SystemGlobalDataReference;
     if (lStack_b0 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_b0 = 0;
     uStack_a0 = uStack_a0 & 0xffffffff00000000;
     puStack_b8 = &SystemMemoryAllocatorReference;
     memoryAllocationBuffer = &SystemGlobalDataReference;
     if (memoryAllocationEnd != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     memoryAllocationEnd = (void* *)0x0;
     uStack_40 = 0;
@@ -42840,8 +42396,7 @@ ulong long FUN_1800649d0(void* SystemResourcePointer)
     unsignedSystemValue2 = (**(code **)*punsignedSystemValue6)(punsignedSystemValue6,0);
   }
   if (punsignedSystemValue4 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(punsignedSystemValue4);
+      SystemCleanupFunction(punsignedSystemValue4);
   }
   return unsignedSystemValue2;
 }
@@ -42950,8 +42505,7 @@ void FUN_180064c00(long long *SystemResourcePointer,long long ConfigurationDataP
         unsignedSystemValue8 = stackParameterC + 0x28;
         unsignedSystemValue13 = *(ulong long *)(unsignedSystemValue9 - 8);
         if (0x1f < (unsignedSystemValue9 - unsignedSystemValue13) - 8) {
-                    // WARNING: Subroutine does not return
-          _invalid_parameter_noinfo_noreturn();
+            _invalid_parameter_noinfo_noreturn();
         }
       }
       free(unsignedSystemValue13,unsignedSystemValue8);
@@ -42966,8 +42520,7 @@ void FUN_180064c00(long long *SystemResourcePointer,long long ConfigurationDataP
         unsignedSystemValue9 = uStack_70 + 0x28;
         localMemoryPointer2 = *(long long *)(localAllocationFlags + -8);
         if (0x1f < (localAllocationFlags - localMemoryPointer2) - 8U) {
-                    // WARNING: Subroutine does not return
-          _invalid_parameter_noinfo_noreturn();
+            _invalid_parameter_noinfo_noreturn();
         }
       }
       free(localMemoryPointer2,unsignedSystemValue9);
@@ -42983,8 +42536,7 @@ void FUN_180064c00(long long *SystemResourcePointer,long long ConfigurationDataP
         unsignedSystemValue9 = uStack_b0 + 0x28;
         localAllocationFlags = *(long long *)(localMemoryPointer2 + -8);
         if (0x1f < (localMemoryPointer2 - localAllocationFlags) - 8U) {
-                    // WARNING: Subroutine does not return
-          _invalid_parameter_noinfo_noreturn();
+            _invalid_parameter_noinfo_noreturn();
         }
       }
       free(localAllocationFlags,unsignedSystemValue9);
@@ -42992,8 +42544,7 @@ void FUN_180064c00(long long *SystemResourcePointer,long long ConfigurationDataP
     puStack_b8 = (void* *)0x0;
     uStack_b0 = 0xf;
     uStack_c8 = 0;
-                    // WARNING: Subroutine does not return
-    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_138);
+      ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_138);
   }
   uStack_58 = 0;
   uStack_50 = 0xf;
@@ -43036,8 +42587,7 @@ void FUN_180064c00(long long *SystemResourcePointer,long long ConfigurationDataP
     if (0xf < stackParameterC) {
       SystemPreviousNode = (uint *)CONCAT44(uStack_64,unsignedSystemValue1);
     }
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_100,SystemPreviousNode,unsignedSystemValue9 & 0xffffffff);
+      memcpy(puStack_100,SystemPreviousNode,unsignedSystemValue9 & 0xffffffff);
   }
   uStack_f8 = 0;
   if (puStack_100 != (uint8_t *)0x0) {
@@ -43102,8 +42652,7 @@ LAB_180064eed:
       punsignedSystemValue4 = (void* *)*SystemResourcePointer;
     }
     if (punsignedSystemValue4 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(punsignedSystemValue4);
+        SystemCleanupFunction(punsignedSystemValue4);
     }
     *SystemResourcePointer = localAllocationFlags;
     SystemResourcePointer[1] = (long long)pointerToUnsigned14;
@@ -43113,8 +42662,7 @@ LAB_180064eed:
   }
   puStack_108 = &SystemGlobalDataReference;
   if (puStack_100 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_100 = (uint8_t *)0x0;
   uStack_f0 = uStack_f0 & 0xffffffff00000000;
@@ -43129,14 +42677,13 @@ LAB_180065009:
     punsignedSystemValue5 = (uint8_t *)CONCAT71(uStack_c7,uStack_c8);
   }
   puStack_b8 = (void* *)((long long)puStack_b8 - (long long)punsignedSystemValue4);
-                    // WARNING: Subroutine does not return
-  memmove(punsignedSystemValue5,punsignedSystemValue5 + (long long)punsignedSystemValue4,(long long)puStack_b8 + 1);
+    memmove(punsignedSystemValue5,punsignedSystemValue5 + (long long)punsignedSystemValue4,(long long)puStack_b8 + 1);
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001800654e7)
-// WARNING: Removing unreachable block (ram,0x0001800654f0)
+0001800654e7)
+0001800654f0)
 
 
 // 函数: void FUN_180065160(void* SystemResourcePointer)
@@ -43312,16 +42859,14 @@ void FUN_180065160(void* SystemResourcePointer)
   ConfigureSystemDataBuffer(&puStack_330,&UNK_1809fe940,&UNK_18098ba10,&UNK_18098ba60);
   puStack_1e0 = &SystemGlobalDataReference;
   if (puStack_1d8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_1d8 = (void* *)0x0;
   uStack_1c8 = 0;
   puStack_1e0 = &SystemMemoryAllocatorReference;
   puStack_1c0 = &SystemGlobalDataReference;
   if (puStack_1b8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_1b8 = (void* *)0x0;
   uStack_1a8 = 0;
@@ -43363,16 +42908,14 @@ void FUN_180065160(void* SystemResourcePointer)
   localResourcePointer = SystemStatusFlagsPointer;
   puStack_308 = &SystemGlobalDataReference;
   if (puStack_300 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_300 = (void* *)0x0;
   uStack_2f0 = uStack_2f0 & 0xffffffff00000000;
   puStack_308 = &SystemMemoryAllocatorReference;
   puStack_2e8 = &SystemGlobalDataReference;
   if (puStack_2e0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_2e0 = (void* *)0x0;
   uStack_2d0 = uStack_2d0 & 0xffffffff00000000;
@@ -43425,8 +42968,7 @@ void FUN_180065160(void* SystemResourcePointer)
     punsignedSystemValue4 = puStack_220;
   }
   if (pointerToUnsigned19 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned19);
+      SystemCleanupFunction(pointerToUnsigned19);
   }
   unsignedSystemValue10 = (long long)puStack_218 - (long long)punsignedSystemValue4 >> 5;
   if (unsignedSystemValue10 != 0) {
@@ -43526,8 +43068,7 @@ LAB_180065a3e:
           }
           puStack_2a0 = &SystemGlobalDataReference;
           if (pcStack_298 != (char *)0x0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           pcStack_298 = (char *)0x0;
           uStack_288 = 0;
@@ -43542,8 +43083,7 @@ LAB_180065a3e:
           }
         }
         if (pointerToUnsigned17 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction(pointerToUnsigned17);
+            SystemCleanupFunction(pointerToUnsigned17);
         }
         pointerToUnsigned19 = pointerToUnsigned19 + 4;
         uStack_2c8 = uStack_2c8 - 1;
@@ -43566,15 +43106,13 @@ LAB_180065a3e:
     if (puStack_260 != (void* *)0x0) {
       puStack_260 = pointerToUnsigned18;
       puStack_258 = pointerToUnsigned17;
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(punsignedSystemValue5);
+        SystemCleanupFunction(punsignedSystemValue5);
     }
     puStack_240 = &SystemGlobalDataReference;
     if (lStack_238 != 0) {
       puStack_260 = pointerToUnsigned18;
       puStack_258 = pointerToUnsigned17;
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_238 = 0;
     uStack_228 = 0;
@@ -43602,8 +43140,7 @@ LAB_180065a3e:
     ConfigureSystemDataBuffer(&puStack_330,&UNK_1809fe7f8,pointerToUnsigned16);
     puStack_1a0 = &SystemGlobalDataReference;
     if (puStack_198 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_198 = (void* *)0x0;
     uStack_188 = 0;
@@ -43632,14 +43169,12 @@ LAB_180065a3e:
   }
   if (pointerToUnsigned18 != (void* *)0x0) {
     puStack_218 = pointerToUnsigned19;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned18);
+      SystemCleanupFunction(pointerToUnsigned18);
   }
   puStack_200 = &SystemGlobalDataReference;
   if (puStack_1f8 != (void* *)0x0) {
     puStack_218 = pointerToUnsigned19;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_1f8 = (void* *)0x0;
   uStack_1e8 = 0;
@@ -43662,15 +43197,12 @@ LAB_180065a3e:
       puStack_178 = (void* *)0x0;
       uStack_168 = 0;
       puStack_180 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-      ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_368);
+        ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_368);
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_218 = pointerToUnsigned19;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -43717,8 +43249,7 @@ void InitializeSystemResourceAllocator(void)
   uStack_24c = 0x73696c62;
   uStack_248 = 0x72435c68;
   uStack_244 = 0x55687361;
-                    // WARNING: Subroutine does not return
-  memset(auStack_228,0,0x80);
+    memset(auStack_228,0,0x80);
 }
 
 
@@ -43766,8 +43297,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointe
   (*pcVar1)(plStack_b0,unsignedSystemValue3);
   ppuStack_68 = (void* **)&SystemGlobalDataReference;
   if (pplStack_60 != (long long **)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   pplStack_60 = (long long **)0x0;
   uStack_50 = 0;
@@ -43777,8 +43307,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointe
   (*pcVar1)(plStack_b0,unsignedSystemValue3);
   puStack_88 = &SystemGlobalDataReference;
   if (lStack_80 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_80 = 0;
   uStack_70 = 0;
@@ -43793,8 +43322,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointe
     (*pcVar1)(plStack_b0,SystemResourcePointer,unsignedSystemValue3);
     puStack_88 = &SystemGlobalDataReference;
     if (lStack_80 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_80 = 0;
     uStack_70 = 0;
@@ -43803,8 +43331,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointe
   FUN_18062c470(&puStack_a8);
   puStack_a8 = &SystemGlobalDataReference;
   if (lStack_a0 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -43844,8 +43371,7 @@ void FUN_180066140(long long *SystemResourcePointer,void* ConfigurationDataPoint
     ExecuteSystemCommand(&puStack_70,unsignedSystemValue4,AdditionalParameter,ConfigurationFlag,1,0xfffffffffffffffe);
   }
   if (unsignedSystemValue1 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(lStack_68,*(void* *)(localSystemHandle + 8),unsignedSystemValue4);
+      memcpy(lStack_68,*(void* *)(localSystemHandle + 8),unsignedSystemValue4);
   }
   if (lStack_68 != 0) {
     *(uint8_t *)(unsignedSystemValue4 + lStack_68) = 0;
@@ -43858,8 +43384,7 @@ void FUN_180066140(long long *SystemResourcePointer,void* ConfigurationDataPoint
   FUN_180627e10(&puStack_70,&memoryAllocationEnd,AdditionalParameter);
   puStack_70 = &SystemGlobalDataReference;
   if (lStack_68 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_68 = 0;
   uStack_58 = (ulong long)uStack_58._4_4_ << 0x20;
@@ -43880,8 +43405,7 @@ void FUN_180066140(long long *SystemResourcePointer,void* ConfigurationDataPoint
   (**(code **)(**(long long **)SystemResourcePointer[1] + 0x40))(*(long long **)SystemResourcePointer[1],&memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
   if (puStack_48 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_48 = (void* *)0x0;
   uStack_38 = 0;
@@ -43897,8 +43421,8 @@ void FUN_180066140(long long *SystemResourcePointer,void* ConfigurationDataPoint
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001800665ec)
-// WARNING: Removing unreachable block (ram,0x0001800665f5)
+0001800665ec)
+0001800665f5)
 
 
 // 函数: void ProcessSystemResourceConfiguration(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,char ConfigurationFlag,
@@ -43958,8 +43482,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourcePointer,void* Config
     FUN_180065f00(&puStack_1b8,0);
     puStack_1b8 = &SystemGlobalDataReference;
     if (lStack_1b0 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_1b0 = 0;
     uStack_1a0 = (ulong long)uStack_1a0._4_4_ << 0x20;
@@ -44011,8 +43534,7 @@ LAB_18006650a:
     systemIndex = GetSystemCounter(&puStack_198,unsignedSystemValue5);
     systemMemoryContext = &SystemGlobalDataReference;
     if (lStack_130 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_130 = 0;
     uStack_120 = 0;
@@ -44083,24 +43605,21 @@ LAB_18006650a:
     ProcessSystemDataTransfer(&puStack_110,&puStack_f0);
     puStack_110 = &SystemGlobalDataReference;
     if (lStack_108 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_108 = 0;
     uStack_f8 = 0;
     puStack_110 = &SystemMemoryAllocatorReference;
     puStack_f0 = &SystemGlobalDataReference;
     if (lStack_e8 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_e8 = 0;
     uStack_d8 = 0;
     puStack_f0 = &SystemMemoryAllocatorReference;
     systemMemoryContext = &SystemGlobalDataReference;
     if (lStack_130 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_130 = 0;
     uStack_120 = 0;
@@ -44111,16 +43630,14 @@ LAB_18006650a:
     FUN_180065d50(&puStack_198,ConfigurationDataPointer,AdditionalParameter,0);
     puStack_178 = &SystemGlobalDataReference;
     if (puStack_170 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_170 = (void* *)0x0;
     uStack_160 = uStack_160 & 0xffffffff00000000;
     puStack_178 = &SystemMemoryAllocatorReference;
     puStack_158 = &SystemGlobalDataReference;
     if (puStack_150 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_150 = (void* *)0x0;
     uStack_140 = uStack_140 & 0xffffffff00000000;
@@ -44130,24 +43647,21 @@ LAB_18006650a:
     puStack_1b8 = &SystemMemoryAllocatorReference;
     dataBufferContext = &SystemGlobalDataReference;
     if (puStack_c8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_c8 = (void* *)0x0;
     uStack_b8 = 0;
     dataBufferContext = &SystemMemoryAllocatorReference;
     puStack_198 = &SystemGlobalDataReference;
     if (lStack_190 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_190 = 0;
     uStack_180 = 0;
     puStack_198 = &SystemMemoryAllocatorReference;
   }
 LAB_180066971:
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_1f8);
+    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_1f8);
 }
 
 
@@ -44192,8 +43706,7 @@ LAB_180066bf4:
         stackParameterC = 7;
         GetSystemCounter(auStack_80,&stackParameterA);
         stackParameterA = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(punsignedSystemValue5);
+          SystemCleanupFunction(punsignedSystemValue5);
       }
       if (((SystemInitializationFlag == '\0') || (systemFlag = IsDebuggerPresent(), systemFlag != 0)) &&
          (SystemSilentMode == '\0')) {
@@ -44249,15 +43762,13 @@ LAB_180066bf4:
       *(uint8_t *)stackParameterB = 0;
       unsignedSystemValue4 = StartSystemThread(stackParameterB);
       uStack_88 = CONCAT44(uStack_88._4_4_,unsignedSystemValue4);
-                    // WARNING: Subroutine does not return
-      memcpy(stackParameterB,&SystemStringBuffer,systemFlag);
+        memcpy(stackParameterB,&SystemStringBuffer,systemFlag);
     }
     stackParameterC = 0;
     FUN_180065f00(&stackParameterA,SystemParameter);
     stackParameterA = &SystemGlobalDataReference;
     if (stackParameterB != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   return;
@@ -44351,8 +43862,7 @@ LAB_180066ec4:
     SystemResourcePointer[2] = localSystemFlags * 0x20 + localMemoryPointer;
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(punsignedSystemValue5);
+    SystemCleanupFunction(punsignedSystemValue5);
 }
 
 
@@ -44429,8 +43939,7 @@ void FUN_180067070(long long *SystemResourcePointer)
     if (0xfff < unsignedSystemValue1 + 1) {
       localResourceOffset = *(long long *)(localSystemHandle + -8);
       if (0x1f < (localSystemHandle - localResourceOffset) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localSystemHandle - localResourceOffset,unsignedSystemValue1 + 0x28);
+          _invalid_parameter_noinfo_noreturn(localSystemHandle - localResourceOffset,unsignedSystemValue1 + 0x28);
       }
     }
     free(localResourceOffset);
@@ -44493,8 +44002,7 @@ void FUN_180067110(ulong long SystemResourcePointer)
     }
     localResourceOffset = FUN_1808fc418(unsignedSystemValue4);
     if (localResourceOffset == 0) {
-                    // WARNING: Subroutine does not return
-      _invalid_parameter_noinfo_noreturn();
+        _invalid_parameter_noinfo_noreturn();
     }
     *(long long *)((localResourceOffset + 0x27U & 0xffffffffffffffe0) - 8) = localResourceOffset;
     return;
@@ -44534,13 +44042,11 @@ void FUN_180067170(long long SystemResourcePointer,ulong long ConfigurationDataP
   if (0xfff < ConfigurationDataPointer) {
     localMemoryPointer = *(long long *)(SystemResourcePointer + -8);
     if (0x1f < (SystemResourcePointer - localMemoryPointer) - 8U) {
-                    // WARNING: Subroutine does not return
-      _invalid_parameter_noinfo_noreturn(SystemResourcePointer - localMemoryPointer,ConfigurationDataPointer + 0x27);
+        _invalid_parameter_noinfo_noreturn(SystemResourcePointer - localMemoryPointer,ConfigurationDataPointer + 0x27);
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(localMemoryPointer);
+                    0001808ffc83. Too many branches
+                      free(localMemoryPointer);
   return;
 }
 
@@ -44565,8 +44071,7 @@ void FUN_1800671b0(void* *SystemResourcePointer,void* ConfigurationDataPointer,u
       punsignedSystemValue5 = (void* *)*SystemResourcePointer;
     }
     SystemResourcePointer[2] = AdditionalParameter;
-                    // WARNING: Subroutine does not return
-    memmove(punsignedSystemValue5);
+      memmove(punsignedSystemValue5);
   }
   if (AdditionalParameter < 0x8000000000000000) {
     unsignedSystemValue4 = AdditionalParameter | 0xf;
@@ -44578,8 +44083,7 @@ void FUN_1800671b0(void* *SystemResourcePointer,void* ConfigurationDataPointer,u
     unsignedSystemValue3 = FUN_180067110(unsignedSystemValue6 + 1);
     SystemResourcePointer[2] = AdditionalParameter;
     SystemResourcePointer[3] = unsignedSystemValue6;
-                    // WARNING: Subroutine does not return
-    memcpy(unsignedSystemValue3,ConfigurationDataPointer,AdditionalParameter);
+      memcpy(unsignedSystemValue3,ConfigurationDataPointer,AdditionalParameter);
   }
   FUN_1800670f0();
   pcVar2 = (code *)swi(3);
@@ -44609,8 +44113,7 @@ void FUN_18006720b(ulong long SystemResourcePointer)
   unsignedSystemValue2 = FUN_180067110(systemDataIndexPtr + 1);
   *(void* *)(systemMemoryBlockPtr + 0x10) = systemStringIteratorPtr;
   *(ulong long *)(systemMemoryBlockPtr + 0x18) = systemDataIndexPtr;
-                    // WARNING: Subroutine does not return
-  memcpy(unsignedSystemValue2);
+    memcpy(unsignedSystemValue2);
 }
 
 
@@ -44639,8 +44142,7 @@ void SystemNoOperationB(void)
 void FUN_1800672b0(void)
 
 {
-                    // WARNING: Subroutine does not return
-  _invalid_parameter_noinfo_noreturn();
+    _invalid_parameter_noinfo_noreturn();
 }
 
 
@@ -44748,8 +44250,7 @@ void FUN_1800672c0(long long SystemResourcePointer)
     if (lStackX_10 == 0) break;
     FUN_180067480(*(void* *)(SystemResourcePointer + 0x20));
   }
-                    // WARNING: Subroutine does not return
-  UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fec50,systemCounter);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fec50,systemCounter);
 }
 
 
@@ -44768,8 +44269,7 @@ void FUN_180067480(void* SystemResourcePointer,long long ConfigurationDataPointe
   if (pointerToUnsigned1 != (void* *)0x0) {
     pointerToUnsigned2 = pointerToUnsigned1;
   }
-                    // WARNING: Subroutine does not return
-  UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fec70,pointerToUnsigned2);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fec70,pointerToUnsigned2);
 }
 
 
@@ -44829,8 +44329,7 @@ void FUN_180067840(long long *SystemResourcePointer)
       *(bool *)(plocalMemoryAddress + 1) = localBufferAddress == 3;
     }
     (**(code **)(*plocalMemoryAddress + 0x18))(plocalMemoryAddress,stackBuffer,systemId + localResourceOffset,lStackX_8,unsignedSystemValue6,unsignedSystemValue5);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(plocalMemoryAddress);
+      SystemCleanupFunction(plocalMemoryAddress);
   }
   uStack_ae = 3;
   localResourceOffset = SystemResourcePointer[1];
@@ -44840,8 +44339,7 @@ void FUN_180067840(long long *SystemResourcePointer)
   lStack_c0 = lStack_c8;
   (**(code **)(localResourceOffset + 0x180))(&lStack_c8,*(long long *)(localResourceOffset + 0x1f8) + 8);
   if (((char)uStack_b0 == '\0') && (lStack_c8 != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   LOCK();
   pointerToInteger1 = (int *)(*(long long *)(SystemResourcePointer[1] + 0x1f8) + 0x120);
@@ -44863,12 +44361,10 @@ void FUN_180067840(long long *SystemResourcePointer)
   }
   localResourceOffset = *(long long *)(SystemResourcePointer[1] + 0x1c0);
   if (*(long long *)(SystemResourcePointer[1] + 0x1b8) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (localResourceOffset != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localResourceOffset);
+      SystemCleanupFunction(localResourceOffset);
   }
   localResourceOffset = SystemResourcePointer[1];
   if (*(long long *)(localResourceOffset + 0x150) == 0) {
@@ -44934,8 +44430,7 @@ void FUN_180067bc0(void* *SystemResourcePointer)
   FUN_18006b940();
   *SystemResourcePointer = &UNK_1809fee70;
   puStack_88 = SystemResourcePointer + 0x6e;
-                    // WARNING: Subroutine does not return
-  memset(puStack_88,0,0x200000);
+    memset(puStack_88,0,0x200000);
 }
 
 
@@ -45004,8 +44499,7 @@ void FUN_180067f60(long long SystemResourcePointer,long long ConfigurationDataPo
     if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
       punsignedSystemValue4 = *(void* **)(ConfigurationDataPointer + 8);
     }
-                    // WARNING: Subroutine does not return
-    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fecd8,punsignedSystemValue4);
+      UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fecd8,punsignedSystemValue4);
   }
   localResourceOffset = CreateIoCompletionPort(localSystemHandle,*(void* *)(SystemResourcePointer + 0x213430),0,0);
   if (localResourceOffset != *(long long *)(SystemResourcePointer + 0x213430)) {
@@ -45013,8 +44507,7 @@ void FUN_180067f60(long long SystemResourcePointer,long long ConfigurationDataPo
     if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
       punsignedSystemValue4 = *(void* **)(ConfigurationDataPointer + 8);
     }
-                    // WARNING: Subroutine does not return
-    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed10,punsignedSystemValue4);
+      UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed10,punsignedSystemValue4);
   }
   localResourceOffset = SystemResourcePointer + 0x2133e0;
   lStack_2a8 = localResourceOffset;
@@ -45049,8 +44542,7 @@ void FUN_180067f60(long long SystemResourcePointer,long long ConfigurationDataPo
       FUN_180068860(SystemResourcePointer + 0x330,alStack_288,unsignedSystemValue8,ConfigurationDataPointer);
       *(void* *)(alStack_288[0] + 0x118) = 0;
       puStack_268 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-      ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_2e8);
+        ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_2e8);
     }
     punsignedSystemValue5 = (void* *)(unsignedSystemValue8 * 0x130 + SystemResourcePointer + 0x2003d0);
     *(ulong long *)(SystemResourcePointer + 0x2133d0) = unsignedSystemValue8 + 1;
@@ -45058,8 +44550,7 @@ void FUN_180067f60(long long SystemResourcePointer,long long ConfigurationDataPo
   else {
     *(void* *)(SystemResourcePointer + 0x2133d8) = *punsignedSystemValue5;
   }
-                    // WARNING: Subroutine does not return
-  memset(punsignedSystemValue5 + 1,0,0x128);
+    memset(punsignedSystemValue5 + 1,0,0x128);
 }
 
 
@@ -45116,13 +44607,11 @@ void* FUN_180068250(long long SystemResourcePointer,long long ConfigurationDataP
         systemCounter = ReadFile(*(void* *)(ConfigurationDataPointer + 0x128),uRam00000000000001f0,unsignedSystemValue7 & 0xffffffff,0,
                          0);
         if (systemCounter != 0) {
-                    // WARNING: Subroutine does not return
-          UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed78);
+            UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed78);
         }
         systemCounter = GetLastError();
         if (systemCounter != 0x3e5) {
-                    // WARNING: Subroutine does not return
-          UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed40,systemCounter);
+            UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fed40,systemCounter);
         }
         unsignedSystemValue4 = 1;
       }
@@ -45135,8 +44624,7 @@ void* FUN_180068250(long long SystemResourcePointer,long long ConfigurationDataP
     *(void* *)(SystemResourcePointer + 0x200378) = *punsignedSystemValue6;
     *punsignedSystemValue6 = 0;
   }
-                    // WARNING: Subroutine does not return
-  memset(punsignedSystemValue6,0,0x200);
+    memset(punsignedSystemValue6,0,0x200);
 }
 
 
@@ -45342,8 +44830,7 @@ FUN_180068860(long long SystemResourcePointer,long long *ConfigurationDataPointe
     if ((char)ArraySize != '\0') {
       unsignedSystemValue4 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,(ulong long)ArraySize._4_4_ * 8 + 8,8,
                             *(uint8_t *)(SystemResourcePointer + 0x2c));
-                    // WARNING: Subroutine does not return
-      memset(unsignedSystemValue4,0,(ulong long)ArraySize._4_4_ * 8);
+        memset(unsignedSystemValue4,0,(ulong long)ArraySize._4_4_ * 8);
     }
     *(void* *)(localResourceOffset + 0x120) = *(void* *)(*(long long *)(SystemResourcePointer + 8) + unsignedSystemValue2 * 8);
     *(long long *)(*(long long *)(SystemResourcePointer + 8) + unsignedSystemValue2 * 8) = localResourceOffset;
@@ -45605,8 +45092,7 @@ long long FUN_180068ec0(long long *SystemResourcePointer,long long *Configuratio
         if (*(code **)(localSystemHandle + 0x10) != (code *)0x0) {
           (**(code **)(localSystemHandle + 0x10))(localSystemHandle,0,0,ConfigurationFlag,0xfffffffffffffffe);
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction(localSystemHandle);
+          SystemCleanupFunction(localSystemHandle);
       }
     }
     else {
@@ -45741,8 +45227,7 @@ void FUN_180069220(long long SystemResourcePointer,void* ConfigurationDataPointe
 
 {
   if (AdditionalParameter + 1 < 0x100) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
+      memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -45756,8 +45241,7 @@ void FUN_180069220(long long SystemResourcePointer,void* ConfigurationDataPointe
 void FUN_180069241(void)
 
 {
-                    // WARNING: Subroutine does not return
-  memcpy();
+    memcpy();
 }
 
 
@@ -45809,12 +45293,10 @@ void FUN_180069280(long long SystemResourcePointer,long long ConfigurationDataPo
     do {
       localSystemHandle = localSystemHandle + 1;
     } while (*(char *)(localSystemHandle + AdditionalParameter) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_160,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
+      memcpy(puStack_160,*(long long *)(SystemResourcePointer + 8),localMemoryPointer - *(long long *)(SystemResourcePointer + 8));
   }
   puStack_168 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_198);
+    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_198);
 }
 
 
@@ -45837,9 +45319,8 @@ void FUN_1800693f0(long long SystemResourcePointer,long long ConfigurationDataPo
   } while (*(char *)(ConfigurationDataPointer + localMemoryPointer) != '\0');
   if ((int)localMemoryPointer < 0x100) {
     *(int *)(SystemResourcePointer + 0x10) = (int)localMemoryPointer;
-                    // WARNING: Could not recover jumptable at 0x000180069429. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(SystemResourcePointer + 8),0x100);
+                    000180069429. Too many branches
+                        strcpy_s(*(void* *)(SystemResourcePointer + 8),0x100);
     return;
   }
   FUN_180626f80(&SystemMemoryTemplateG,0x100,ConfigurationDataPointer);
@@ -46027,8 +45508,7 @@ LAB_180069842:
     }
   }
   if (SystemResourcePointer[0xc] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = &UNK_1809feeb8;
   return;
@@ -46402,8 +45882,7 @@ void* * FUN_18006a090(void* *SystemResourcePointer,ulong long ConfigurationDataP
   *SystemResourcePointer = &UNK_1809ff040;
   SystemResourcePointer[0x18] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x19] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x1b) = 0;
@@ -46504,8 +45983,7 @@ void FUN_18006a130(long long SystemResourcePointer)
   *(uint32_t *)((long long)punsignedSystemValue4 + 0x6c) = 0;
   *(void*2 *)(punsignedSystemValue4 + 0xe) = 0;
   *(uint8_t *)((long long)punsignedSystemValue4 + 0x72) = 0;
-                    // WARNING: Subroutine does not return
-  memset((long long)punsignedSystemValue4 + 0x74,0,0x400);
+    memset((long long)punsignedSystemValue4 + 0x74,0,0x400);
 }
 
 
@@ -46517,40 +45995,35 @@ void FUN_18006b220(long long SystemResourcePointer)
 {
   *(void* *)(SystemResourcePointer + 0xa0) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0xa8) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0xa8) = 0;
   *(uint32_t *)(SystemResourcePointer + 0xb8) = 0;
   *(void* *)(SystemResourcePointer + 0xa0) = &SystemMemoryAllocatorReference;
   *(void* *)(SystemResourcePointer + 0x80) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x88) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x88) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x98) = 0;
   *(void* *)(SystemResourcePointer + 0x80) = &SystemMemoryAllocatorReference;
   *(void* *)(SystemResourcePointer + 0x58) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x60) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x70) = 0;
   *(void* *)(SystemResourcePointer + 0x58) = &SystemMemoryAllocatorReference;
   *(void* *)(SystemResourcePointer + 0x38) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x40) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x50) = 0;
   *(void* *)(SystemResourcePointer + 0x38) = &SystemMemoryAllocatorReference;
   *(void* *)(SystemResourcePointer + 8) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x10) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x20) = 0;
@@ -46575,8 +46048,7 @@ long long FUN_18006b350(long long *SystemResourcePointer,long long *Configuratio
   }
   if (AdditionalParameter == 0) {
     if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   else {
@@ -46777,8 +46249,7 @@ void FUN_18006b6f0(long long *SystemResourcePointer,void* ConfigurationDataPoint
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -46800,8 +46271,7 @@ void FUN_18006b760(long long *SystemResourcePointer,void* ConfigurationDataPoint
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -46826,8 +46296,7 @@ void FUN_18006b8f0(long long SystemResourcePointer)
 {
   *(void* *)(SystemResourcePointer + 0x20) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(SystemResourcePointer + 0x28) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x38) = 0;
@@ -46923,8 +46392,7 @@ void FUN_18006b940(void* *SystemResourcePointer)
   *(uint32_t *)(SystemResourcePointer + 0x6b) = 0;
   *(uint8_t *)(SystemResourcePointer + 0x6d) = 1;
   localSystemFlags = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x140038,8,3);
-                    // WARNING: Subroutine does not return
-  memset(localSystemFlags + 0x20,0,0x140000);
+    memset(localSystemFlags + 0x20,0,0x140000);
 }
 
 
@@ -46959,8 +46427,7 @@ void FUN_18006bd60(long long SystemResourcePointer)
       pointerToUnsigned2 = *(void* **)(localMemoryPointer + unsignedSystemValue4 * 8);
       if (pointerToUnsigned2 != (void* *)0x0) {
         *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *(void* *)(localMemoryPointer + unsignedSystemValue4 * 8) = 0;
       unsignedSystemValue4 = unsignedSystemValue4 + 1;
@@ -46969,8 +46436,7 @@ void FUN_18006bd60(long long SystemResourcePointer)
   }
   *(void* *)(SystemResourcePointer + 0x18) = 0;
   if ((1 < unsignedSystemValue3) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -46995,8 +46461,7 @@ void FUN_18006bd80(long long SystemResourcePointer)
       pointerToUnsigned2 = *(void* **)(localMemoryPointer + unsignedSystemValue4 * 8);
       if (pointerToUnsigned2 != (void* *)0x0) {
         *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *(void* *)(localMemoryPointer + unsignedSystemValue4 * 8) = 0;
       unsignedSystemValue4 = unsignedSystemValue4 + 1;
@@ -47005,8 +46470,7 @@ void FUN_18006bd80(long long SystemResourcePointer)
   }
   *(void* *)(SystemResourcePointer + 0x18) = 0;
   if ((1 < unsignedSystemValue3) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -47200,8 +46664,7 @@ void FUN_18006c070(long long SystemResourcePointer)
   cVar9 = *(char *)(*(long long *)(SystemResourcePointer + 1000) + 0x58);
   do {
     if ((cVar9 == '\0') || (unsignedSystemValue19 = 0, *(char *)(SystemResourcePointer + 0x400) != '\0')) {
-                    // WARNING: Subroutine does not return
-      ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_278);
+        ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_278);
     }
     puStack_1f8 = &UNK_1809feda8;
     pbStack_1f0 = abStack_1e0;
@@ -47434,8 +46897,7 @@ LAB_18006c852:
           if (pbStack_1f0 != (byte *)0x0) {
             pbVar12 = pbStack_1f0;
           }
-                    // WARNING: Subroutine does not return
-          UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ff390,unsignedSystemValue19,pbVar12);
+            UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ff390,unsignedSystemValue19,pbVar12);
         }
         if (((uStack_258 < localAllocationFlags + unsignedSystemValue19) ||
             ((ulong long)(long long)*(int *)(SystemResourcePointer + 0x3fc) < (long long)systemStatus7 + 1U)) ||
@@ -47499,8 +46961,7 @@ LAB_18006ca44:
               }
               *pointerToUnsigned20 = &SystemMemoryAllocatorReference;
               ppuStack_248 = (void* **)pointerToUnsigned20;
-                    // WARNING: Subroutine does not return
-              SystemCleanupFunction(pointerToUnsigned20);
+                SystemCleanupFunction(pointerToUnsigned20);
             }
             pointerToUnsigned20 = (void* *)pointerToUnsigned20[0x24];
             while (pointerToUnsigned20 == (void* *)0x0) {
@@ -47546,8 +47007,7 @@ LAB_18006c9ac:
           localSystemHandle1 = *PrimaryResourcePointer8;
         }
         if (localSystemHandle1 != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction(localSystemHandle1);
+            SystemCleanupFunction(localSystemHandle1);
         }
         *PrimaryResourcePointer8 = localMemoryPointer3;
         *(long long *)(SystemResourcePointer + 0x3d0) = localMemoryAddress + 0x1a8;
@@ -47608,8 +47068,7 @@ void FUN_18006cb90(long long SystemResourcePointer)
       pointerToUnsigned2 = *(void* **)(localMemoryPointer + unsignedSystemValue4 * 8);
       if (pointerToUnsigned2 != (void* *)0x0) {
         *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *(void* *)(localMemoryPointer + unsignedSystemValue4 * 8) = 0;
       unsignedSystemValue4 = unsignedSystemValue4 + 1;
@@ -47618,8 +47077,7 @@ void FUN_18006cb90(long long SystemResourcePointer)
   }
   *(void* *)(SystemResourcePointer + 0x18) = 0;
   if ((1 < unsignedSystemValue3) && (*(long long *)(SystemResourcePointer + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -47705,8 +47163,7 @@ LAB_18006ccef:
     localResourceOffset = *SystemResourcePointer;
   }
   if (localResourceOffset != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localResourceOffset);
+      SystemCleanupFunction(localResourceOffset);
   }
   unsignedSystemValue2 = localBufferAddress * 0x1a8 + localMemoryPointer;
   *SystemResourcePointer = localMemoryPointer;
@@ -47762,8 +47219,7 @@ LAB_18006ccef:
     localSystemPointer = *systemDataIndexPtr;
   }
   if (localSystemPointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localSystemPointer);
+      SystemCleanupFunction(localSystemPointer);
   }
   *systemDataIndexPtr = localResourceOffset;
   systemDataIndexPtr[1] = localSystemHandle + 0x1a8;
@@ -47778,8 +47234,7 @@ LAB_18006ccef:
 void FUN_18006cd43(void)
 
 {
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -47927,8 +47382,7 @@ LAB_18006cfb1:
     }
   }
   if (SystemResourcePointer[0xc] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = &UNK_1809ff488;
   return;
@@ -48957,20 +48411,17 @@ void FUN_18006e4a0(long long *SystemResourcePointer)
       *(void* *)pointerToUnsigned3[3] = 0;
     }
     (**(code **)*pointerToUnsigned3)(pointerToUnsigned3,0);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned3);
+      SystemCleanupFunction(pointerToUnsigned3);
   }
   if ((SystemResourcePointer[6] != 0) && (*(long long *)(SystemResourcePointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   localBufferAddress = SystemResourcePointer[5];
   while (localBufferAddress != 0) {
     pcVar2 = (char *)(localBufferAddress + 0x3541);
     localBufferAddress = *(long long *)(localBufferAddress + 0x3538);
     if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   pointerToUnsigned3 = (void* *)SystemResourcePointer[3];
@@ -49018,20 +48469,17 @@ void FUN_18006e4a4(long long *SystemResourcePointer)
       *(void* *)pointerToUnsigned3[3] = 0;
     }
     (**(code **)*pointerToUnsigned3)(pointerToUnsigned3,0);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned3);
+      SystemCleanupFunction(pointerToUnsigned3);
   }
   if ((SystemResourcePointer[6] != 0) && (*(long long *)(SystemResourcePointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   localBufferAddress = SystemResourcePointer[5];
   while (localBufferAddress != 0) {
     pcVar2 = (char *)(localBufferAddress + 0x3541);
     localBufferAddress = *(long long *)(localBufferAddress + 0x3538);
     if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   pointerToUnsigned3 = (void* *)SystemResourcePointer[3];
@@ -49073,8 +48521,7 @@ void FUN_18006e4b9(void)
     *(void* *)systemMemoryBlockPtr[3] = 0;
   }
   (**(code **)*systemMemoryBlockPtr)();
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -49093,16 +48540,14 @@ void FUN_18006e50f(void)
   
   if ((*(long long *)(systemStringIteratorPtr + 0x30) != 0) &&
      (*(long long *)(*(long long *)(systemStringIteratorPtr + 0x30) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   localBufferAddress = *(long long *)(systemStringIteratorPtr + 0x28);
   while (localBufferAddress != 0) {
     pcVar2 = (char *)(localBufferAddress + 0x3541);
     localBufferAddress = *(long long *)(localBufferAddress + 0x3538);
     if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   pointerToUnsigned3 = *(void* **)(systemStringIteratorPtr + 0x18);
@@ -49185,20 +48630,17 @@ void FUN_18006e580(long long *SystemResourcePointer)
       *(void* *)pointerToUnsigned3[3] = 0;
     }
     (**(code **)*pointerToUnsigned3)(pointerToUnsigned3,0);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned3);
+      SystemCleanupFunction(pointerToUnsigned3);
   }
   if ((SystemResourcePointer[6] != 0) && (*(long long *)(SystemResourcePointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   localBufferAddress = SystemResourcePointer[5];
   while (localBufferAddress != 0) {
     pcVar2 = (char *)(localBufferAddress + 0x3541);
     localBufferAddress = *(long long *)(localBufferAddress + 0x3538);
     if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   pointerToUnsigned3 = (void* *)SystemResourcePointer[3];
@@ -49244,8 +48686,7 @@ void FUN_18006e5d0(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -49265,8 +48706,7 @@ void FUN_18006e640(long long *SystemResourcePointer)
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -49412,8 +48852,7 @@ void FUN_18006e990(void)
     plocalBufferAddress = *(long long **)(*plocalBufferAddress + 8);
     *(long long *)(*plocalBufferAddress + 8) = plocalBufferAddress[1];
     *(long long *)plocalBufferAddress[1] = *plocalBufferAddress;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   systemCounter = _Mtx_unlock(localMemoryPointer + 0x98);
   if (systemCounter != 0) {
@@ -49440,8 +48879,7 @@ LAB_18006f48d:
         plocalBufferAddress = *(long long **)(*plocalBufferAddress + 8);
         *(long long *)(*plocalBufferAddress + 8) = plocalBufferAddress[1];
         *(long long *)plocalBufferAddress[1] = *plocalBufferAddress;
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       goto LAB_18006f48d;
     }
@@ -49472,8 +48910,7 @@ void FinalizeSystemMemorySetup(void* SystemResourcePointer,void* ConfigurationDa
     PrimaryResourcePointer = *(long long **)(**(long long **)(localSystemHandle + 0x78) + 8);
     *(long long *)(*PrimaryResourcePointer + 8) = PrimaryResourcePointer[1];
     *(long long *)PrimaryResourcePointer[1] = *PrimaryResourcePointer;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   systemCounter = _Mtx_unlock(localSystemHandle + 0x98);
   if (systemCounter != 0) {
@@ -49487,8 +48924,7 @@ void FinalizeSystemMemorySetup(void* SystemResourcePointer,void* ConfigurationDa
     PrimaryResourcePointer = *(long long **)(**(long long **)(localSystemHandle + 0xf0) + 8);
     *(long long *)(*PrimaryResourcePointer + 8) = PrimaryResourcePointer[1];
     *(long long *)PrimaryResourcePointer[1] = *PrimaryResourcePointer;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   systemCounter = _Mtx_unlock(localSystemHandle + 0x110);
   if (systemCounter != 0) {
@@ -49579,8 +49015,7 @@ void ReleaseSystemResource(long long *SystemResourcePointer)
 {
   _Mtx_destroy_in_situ();
   if ((long long *)*SystemResourcePointer != SystemResourcePointer) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction((long long *)*SystemResourcePointer);
+      SystemCleanupFunction((long long *)*SystemResourcePointer);
   }
   return;
 }
@@ -49593,8 +49028,7 @@ void FUN_18006ef80(long long *SystemResourcePointer)
 
 {
   if ((long long *)*SystemResourcePointer != SystemResourcePointer) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction((long long *)*SystemResourcePointer);
+      SystemCleanupFunction((long long *)*SystemResourcePointer);
   }
   return;
 }
@@ -49617,8 +49051,7 @@ void FUN_18006efc0(void* *SystemResourcePointer,void* ConfigurationDataPointer,v
     PrimaryResourcePointer = *(long long **)(*(long long *)*SystemResourcePointer + 8);
     *(long long *)(*PrimaryResourcePointer + 8) = PrimaryResourcePointer[1];
     *(long long *)PrimaryResourcePointer[1] = *PrimaryResourcePointer;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   systemResult = _Mtx_unlock(SystemResourcePointer + 4);
   if (systemResult != 0) {
@@ -49647,8 +49080,7 @@ void FUN_18006f160(long long *SystemResourcePointer,void* ConfigurationDataPoint
     PrimaryResourcePointer = *(long long **)(*PrimaryResourcePointer + 8);
     *(long long *)(*PrimaryResourcePointer + 8) = PrimaryResourcePointer[1];
     *(long long *)PrimaryResourcePointer[1] = *PrimaryResourcePointer;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   systemResult = _Mtx_unlock(SystemResourcePointer + 4);
   if (systemResult != 0) {
@@ -49665,8 +49097,7 @@ void FUN_18006f310(long long *SystemResourcePointer)
 
 {
   if ((long long *)*SystemResourcePointer != SystemResourcePointer) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction((long long *)*SystemResourcePointer);
+      SystemCleanupFunction((long long *)*SystemResourcePointer);
   }
   return;
 }
@@ -49712,8 +49143,7 @@ LAB_18006f48d:
         plocalResourceOffset = *(long long **)(*plocalResourceOffset + 8);
         *(long long *)(*plocalResourceOffset + 8) = plocalResourceOffset[1];
         *(long long *)plocalResourceOffset[1] = *plocalResourceOffset;
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       goto LAB_18006f48d;
     }
@@ -49742,8 +49172,7 @@ void ExecuteSystemEntryPoint(void* *entryPointPtr)
     runtimeCastResult = __RTCastToVoid();
     (**(code **)*entryPointPtr)(entryPointPtr,0);
     if (runtimeCastResult != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(runtimeCastResult);
+        SystemCleanupFunction(runtimeCastResult);
     }
   }
   return;
@@ -49762,8 +49191,7 @@ void FUN_18006f4cd(void)
   localMemoryPointer = __RTCastToVoid();
   (**(code **)*systemMemoryBlockPtr)();
   if (localMemoryPointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localMemoryPointer);
+      SystemCleanupFunction(localMemoryPointer);
   }
   return;
 }
@@ -49799,8 +49227,7 @@ void FUN_18006f530(long long SystemResourcePointer)
 
 {
   if (*(long long *)(SystemResourcePointer + 0x1d8) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (*(long long **)(SystemResourcePointer + 0x1b8) != (long long *)0x0) {
     (**(code **)(**(long long **)(SystemResourcePointer + 0x1b8) + 0x38))();
@@ -49942,10 +49369,10 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* ConfigurationDataPoin
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018006fc4b)
-// WARNING: Removing unreachable block (ram,0x00018006fc66)
-// WARNING: Removing unreachable block (ram,0x00018006fc6b)
-// WARNING: Removing unreachable block (ram,0x00018006fe26)
+00018006fc4b)
+00018006fc66)
+00018006fc6b)
+00018006fe26)
 
 ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter)
 
@@ -50022,8 +49449,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPoin
       *(void* *)(localAllocationFlags + 0x18) = 0;
       puStack_e0 = &SystemGlobalDataReference;
       if (puStack_d8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       puStack_d8 = (void* *)0x0;
       uStack_c8 = uStack_c8 & 0xffffffff00000000;
@@ -50096,8 +49522,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPoin
         SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&UNK_180a04f08,pointerToUnsigned14,ConfigurationDataPointer);
       }
       puStack_e0 = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(pointerToUnsigned14);
+        SystemCleanupFunction(pointerToUnsigned14);
     }
     if (SystemInitializationFlag == '\0') {
       FUN_1806272a0(&UNK_1809ff5d0,ConfigurationDataPointer);
@@ -50109,8 +49534,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPoin
       unsignedSystemValue13 = CreateSystemObject(&puStack_e0,unsignedSystemValue13);
       puStack_80 = &SystemGlobalDataReference;
       if (lStack_78 != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       lStack_78 = 0;
       uStack_68 = 0;
@@ -50122,8 +49546,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPoin
       FUN_180066320(unsignedSystemValue13,&puStack_e0,unsignedSystemValue1,0,pointerToUnsigned11);
       puStack_e0 = &SystemGlobalDataReference;
       if (puStack_d8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       puStack_d8 = (void* *)0x0;
       uStack_c8 = uStack_c8 & 0xffffffff00000000;
@@ -50161,16 +49584,14 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPoin
     } while (systemOffset == 0);
     stackParameterA = &SystemGlobalDataReference;
     if (stackParameterB != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     stackParameterB = (void* *)0x0;
     uStack_88 = uStack_88 & 0xffffffff00000000;
     stackParameterA = &SystemMemoryAllocatorReference;
     puStack_c0 = &SystemGlobalDataReference;
     if (punsignedSystemValue5 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(punsignedSystemValue5);
+        SystemCleanupFunction(punsignedSystemValue5);
     }
     unsignedSystemValue12 = (ulong long)bStackX_20;
   }
@@ -50250,8 +49671,7 @@ ulong long FUN_18006ff80(void* SystemResourcePointer,void* ConfigurationDataPoin
     *(void* *)(localDataPointer + 0x18) = 0;
     puStack_70 = &SystemGlobalDataReference;
     if (lStack_68 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_68 = 0;
     uStack_58 = 0;
@@ -50358,8 +49778,7 @@ LAB_180070230:
       if (bVar15) {
         pstackParameterC = &SystemGlobalDataReference;
         if (punsignedSystemValue9 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction(punsignedSystemValue9);
+            SystemCleanupFunction(punsignedSystemValue9);
         }
         puStack_88 = (void* *)0x0;
         uStack_78 = uStack_78 & 0xffffffff00000000;
@@ -50368,8 +49787,7 @@ LAB_180070230:
       if (!bVar15) {
         memoryAllocationEnd = &SystemGlobalDataReference;
         if (lStack_48 != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         lStack_48 = 0;
         uStack_38 = 0;
@@ -50382,8 +49800,7 @@ LAB_180070230:
       FUN_180066320(unsignedSystemValue16,&puStack_70,unsignedSystemValue13,0,pointerToUnsigned10);
       puStack_70 = &SystemGlobalDataReference;
       if (lStack_68 != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       lStack_68 = 0;
       uStack_58 = 0;
@@ -50421,15 +49838,13 @@ LAB_180070230:
     } while (systemIndex == 0);
     puStack_b0 = &SystemGlobalDataReference;
     if (puStack_a8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_a8 = (void* *)0x0;
     uStack_98 = uStack_98 & 0xffffffff00000000;
     puStack_b0 = &SystemMemoryAllocatorReference;
     if (punsignedSystemValue12 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(punsignedSystemValue12);
+        SystemCleanupFunction(punsignedSystemValue12);
     }
     unsignedSystemValue11 = (ulong long)bStack_d8;
   }
@@ -50439,15 +49854,13 @@ LAB_180070230:
     }
     puStack_b0 = &SystemGlobalDataReference;
     if (puStack_a8 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_a8 = (void* *)0x0;
     uStack_98 = uStack_98 & 0xffffffff00000000;
     puStack_b0 = &SystemMemoryAllocatorReference;
     if (punsignedSystemValue12 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(punsignedSystemValue12);
+        SystemCleanupFunction(punsignedSystemValue12);
     }
   }
   return unsignedSystemValue11;
@@ -50504,8 +49917,7 @@ void FUN_180070680(void* SystemResourcePointer,void* ConfigurationDataPointer)
     *(void* *)(localSystemPointer + 0x18) = 0;
     memoryAllocationEnd = &SystemGlobalDataReference;
     if (lStack_48 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_48 = 0;
     uStack_38 = 0;
@@ -50553,8 +49965,8 @@ void FUN_180070680(void* SystemResourcePointer,void* ConfigurationDataPointer)
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180070cdc)
-// WARNING: Removing unreachable block (ram,0x000180070ce2)
+000180070cdc)
+000180070ce2)
 
 
 // 函数: void FUN_180070930(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
@@ -50638,8 +50050,7 @@ void FUN_180070930(void* SystemResourcePointer,long long ConfigurationDataPointe
 LAB_180070a3f:
     unsignedSystemValue14 = unsignedSystemValue5;
     if (unsignedSystemValue6 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(pointerToUnsigned10,*(void* *)(localResourcePointer + 8),unsignedSystemValue19);
+        memcpy(pointerToUnsigned10,*(void* *)(localResourcePointer + 8),unsignedSystemValue19);
     }
   }
   else if (unsignedSystemValue6 != 0) {
@@ -50686,8 +50097,7 @@ LAB_180070a3f:
         uStack_100._0_4_ = StartSystemThread(pointerToUnsigned10);
       }
 LAB_180070b00:
-                    // WARNING: Subroutine does not return
-      memcpy(pointerToUnsigned10 + unsignedSystemValue19,ConfigurationDataPointer,(long long)((int)localMemoryPointer5 + 2));
+        memcpy(pointerToUnsigned10 + unsignedSystemValue19,ConfigurationDataPointer,(long long)((int)localMemoryPointer5 + 2));
     }
   }
   FUN_180627e10(&puStack_118,&puStack_f8,&uStack_58);
@@ -50695,16 +50105,14 @@ LAB_180070b00:
   uStack_11c = 0;
   puStack_118 = &SystemGlobalDataReference;
   if (pointerToUnsigned10 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned10);
+      SystemCleanupFunction(pointerToUnsigned10);
   }
   puStack_110 = (uint8_t *)0x0;
   uStack_100 = (ulong long)uStack_100._4_4_ << 0x20;
   puStack_118 = &SystemMemoryAllocatorReference;
   puStack_d8 = &SystemGlobalDataReference;
   if (lStack_d0 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_d0 = 0;
   uStack_c0 = 0;
@@ -50717,8 +50125,7 @@ LAB_180070b00:
   if (cVar3 != '\0') {
     puStack_f8 = &SystemGlobalDataReference;
     if (puStack_f0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     goto LAB_1800718e9;
   }
@@ -50727,8 +50134,7 @@ LAB_180070b00:
   if (systemIndex != 0) {
     puStack_f8 = &SystemGlobalDataReference;
     if (puStack_f0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     goto LAB_1800718e9;
   }
@@ -50758,8 +50164,7 @@ LAB_180070b00:
       unsignedSystemValue7 = StartSystemThread(systemMemoryContext);
       uStack_128 = CONCAT44(uStack_128._4_4_,unsignedSystemValue7);
     }
-                    // WARNING: Subroutine does not return
-    memcpy(systemMemoryContext + uStack_130,pointerToUnsigned18,(long long)((int)localMemoryPointer6 + 2));
+      memcpy(systemMemoryContext + uStack_130,pointerToUnsigned18,(long long)((int)localMemoryPointer6 + 2));
   }
   systemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13);
   *systemMemoryContext = 0;
@@ -50816,8 +50221,7 @@ LAB_180070db8:
       }
 LAB_180070e64:
       uStack_130 = unsignedSystemValue5;
-                    // WARNING: Subroutine does not return
-      memcpy(systemMemoryContext + uStack_130,ConfigurationDataPointer,(long long)((int)localMemoryPointer6 + 2));
+        memcpy(systemMemoryContext + uStack_130,ConfigurationDataPointer,(long long)((int)localMemoryPointer6 + 2));
     }
   }
   if (systemMemoryContext == (uint8_t *)0x0) {
@@ -50910,8 +50314,7 @@ LAB_180071000:
         uStack_128 = CONCAT44(uStack_128._4_4_,unsignedSystemValue7);
       }
 LAB_1800710b8:
-                    // WARNING: Subroutine does not return
-      memcpy(systemMemoryContext + uStack_130,localMemoryPointer5,(long long)((int)localMemoryPointer7 + 2));
+        memcpy(systemMemoryContext + uStack_130,localMemoryPointer5,(long long)((int)localMemoryPointer7 + 2));
     }
   }
   systemIndex = unsignedSystemValue6 + 0xe;
@@ -50982,8 +50385,7 @@ LAB_18007113f:
     *(void* *)(localResourcePointer + 0x18) = 0;
     puStack_d8 = &SystemGlobalDataReference;
     if (lStack_d0 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_d0 = 0;
     uStack_c0 = 0;
@@ -51127,31 +50529,27 @@ LAB_18007113f:
     } while (systemIndex == 0);
     puStack_118 = &SystemGlobalDataReference;
     if (pointerToUnsigned10 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(pointerToUnsigned10);
+        SystemCleanupFunction(pointerToUnsigned10);
     }
     puStack_110 = (uint8_t *)0x0;
     uStack_100 = uStack_100 & 0xffffffff00000000;
     puStack_118 = &SystemMemoryAllocatorReference;
     puStack_140 = &SystemGlobalDataReference;
     if (systemMemoryContext != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     systemMemoryContext = (uint8_t *)0x0;
     uStack_128 = uStack_128 & 0xffffffff00000000;
     puStack_140 = &SystemMemoryAllocatorReference;
     puStack_f8 = &SystemGlobalDataReference;
     if (puStack_f0 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
 LAB_1800718e9:
     uStack_e0 = 0;
     puStack_f0 = (void* *)0x0;
     puStack_f8 = &SystemMemoryAllocatorReference;
-                    // WARNING: Subroutine does not return
-    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_188);
+      ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_188);
   }
 LAB_1800715eb:
   pointerToUnsigned18 = &SystemStringTemplate;
@@ -51159,16 +50557,15 @@ LAB_1800715eb:
     pointerToUnsigned18 = puStack_f0;
   }
   unsignedSystemValue7 = FUN_1800f98e0(pointerToUnsigned18);
-                    // WARNING: Subroutine does not return
-  UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ff6e0,bVar13 ^ 1,unsignedSystemValue7);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ff6e0,bVar13 ^ 1,unsignedSystemValue7);
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180071b49)
-// WARNING: Removing unreachable block (ram,0x000180071ad3)
-// WARNING: Removing unreachable block (ram,0x000180071a52)
-// WARNING: Removing unreachable block (ram,0x000180071c73)
+000180071b49)
+000180071ad3)
+000180071a52)
+000180071c73)
 
 
 // 函数: void FUN_180071940(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag)
@@ -51220,8 +50617,7 @@ void FUN_180071940(void* SystemResourcePointer,long long ConfigurationDataPointe
     memoryAllocationEnd = &SystemGlobalDataReference;
     puStack_68 = punsignedSystemValue9;
     if (lStack_48 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     lStack_48 = 0;
     uStack_38 = 0;
@@ -51304,8 +50700,7 @@ LAB_180071b69:
       }
 LAB_180071c1a:
       uStack_80 = unsignedSystemValue11;
-                    // WARNING: Subroutine does not return
-      memcpy(puStack_88 + uStack_80,ConfigurationDataPointer,(long long)((int)localAllocationFlags + 2));
+        memcpy(puStack_88 + uStack_80,ConfigurationDataPointer,(long long)((int)localAllocationFlags + 2));
     }
   }
   if (puStack_88 == (uint8_t *)0x0) {
@@ -51393,8 +50788,7 @@ LAB_180071d94:
         uStack_78 = CONCAT44(uStack_78._4_4_,unsignedSystemValue3);
       }
 LAB_180071e34:
-                    // WARNING: Subroutine does not return
-      memcpy(puStack_88 + uStack_80,ConfigurationFlag,(long long)((int)localAllocationFlags + 2));
+        memcpy(puStack_88 + uStack_80,ConfigurationFlag,(long long)((int)localAllocationFlags + 2));
     }
   }
   if (unsignedSystemValue2 + 0xe != 0) {
@@ -51445,19 +50839,17 @@ LAB_180071eb0:
     if (punsignedSystemValue9 == (void* *)0x0) {
       return;
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(punsignedSystemValue9);
+      SystemCleanupFunction(punsignedSystemValue9);
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018007258a)
-// WARNING: Removing unreachable block (ram,0x0001800724fe)
-// WARNING: Removing unreachable block (ram,0x00018007246a)
-// WARNING: Removing unreachable block (ram,0x0001800726c4)
+00018007258a)
+0001800724fe)
+00018007246a)
+0001800726c4)
 
 
 // 函数: void FUN_180072000(void* SystemResourcePointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
@@ -51543,8 +50935,7 @@ void FUN_180072000(void* SystemResourcePointer,long long ConfigurationDataPointe
 LAB_180072120:
     unsignedSystemValue16 = unsignedSystemValue4;
     if (unsignedSystemValue6 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(pointerToUnsigned10,*(void* *)(localResourcePointer + 8),unsignedSystemValue19);
+        memcpy(pointerToUnsigned10,*(void* *)(localResourcePointer + 8),unsignedSystemValue19);
     }
   }
   else if (unsignedSystemValue6 != 0) {
@@ -51591,24 +50982,21 @@ LAB_180072120:
         uStack_f8._0_4_ = StartSystemThread(pointerToUnsigned10);
       }
 LAB_1800721e1:
-                    // WARNING: Subroutine does not return
-      memcpy(pointerToUnsigned10 + unsignedSystemValue19,ConfigurationDataPointer,(long long)((int)localMemoryPointer7 + 2));
+        memcpy(pointerToUnsigned10 + unsignedSystemValue19,ConfigurationDataPointer,(long long)((int)localMemoryPointer7 + 2));
     }
   }
   FUN_180627e10(&puStack_110,&puStack_a8,&uStack_58);
   uStack_114 = 0;
   puStack_110 = &SystemGlobalDataReference;
   if (pointerToUnsigned10 != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned10);
+      SystemCleanupFunction(pointerToUnsigned10);
   }
   puStack_108 = (uint8_t *)0x0;
   uStack_f8 = (ulong long)uStack_f8._4_4_ << 0x20;
   puStack_110 = &SystemMemoryAllocatorReference;
   puStack_f0 = &SystemGlobalDataReference;
   if (lStack_e8 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   lStack_e8 = 0;
   uStack_d8 = 0;
@@ -51671,8 +51059,7 @@ LAB_1800722f5:
         *(void* *)(localResourcePointer + 0x18) = 0;
         puStack_f0 = &SystemGlobalDataReference;
         if (lStack_e8 != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         lStack_e8 = 0;
         uStack_d8 = 0;
@@ -51760,8 +51147,7 @@ LAB_1800725ac:
           }
 LAB_180072662:
           uStack_128 = unsignedSystemValue4;
-                    // WARNING: Subroutine does not return
-          memcpy(puStack_130 + uStack_128,ConfigurationDataPointer,(long long)((int)localMemoryPointer7 + 2));
+            memcpy(puStack_130 + uStack_128,ConfigurationDataPointer,(long long)((int)localMemoryPointer7 + 2));
         }
       }
       if (puStack_130 == (uint8_t *)0x0) {
@@ -51853,8 +51239,7 @@ LAB_1800727ff:
             uStack_120 = CONCAT44(uStack_120._4_4_,unsignedSystemValue7);
           }
 LAB_1800728ad:
-                    // WARNING: Subroutine does not return
-          memcpy(puStack_130 + uStack_128,ConfigurationFlag,(long long)((int)localMemoryPointer7 + 2));
+            memcpy(puStack_130 + uStack_128,ConfigurationFlag,(long long)((int)localMemoryPointer7 + 2));
         }
       }
       unsignedSystemValue4 = unsignedSystemValue6 + 0xf;
@@ -51980,8 +51365,7 @@ LAB_1800729bd:
           dataBufferContext = &SystemGlobalDataReference;
           uStack_114 = unsignedSystemValue6;
           if (pointerToUnsigned13 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction(pointerToUnsigned13);
+              SystemCleanupFunction(pointerToUnsigned13);
           }
           puStack_c8 = (void* *)0x0;
           uStack_b8 = uStack_b8 & 0xffffffff00000000;
@@ -51991,8 +51375,7 @@ LAB_1800729bd:
           uStack_114 = unsignedSystemValue6 & 0xfffffffe;
           puStack_80 = &SystemGlobalDataReference;
           if (lStack_78 != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           lStack_78 = 0;
           uStack_68 = 0;
@@ -52005,8 +51388,7 @@ LAB_1800729bd:
         FUN_1800669c0(unsignedSystemValue7,&puStack_f0,unsignedSystemValue18,param_5);
         puStack_f0 = &SystemGlobalDataReference;
         if (lStack_e8 != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         lStack_e8 = 0;
         uStack_d8 = 0;
@@ -52041,8 +51423,7 @@ void FUN_180072e80(void* SystemResourcePointer,void* ConfigurationDataPointer,vo
     FUN_18005d190(ConfigurationDataPointer,unsignedSystemValue2);
     puStack_30 = &SystemGlobalDataReference;
     if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   return;
@@ -52150,8 +51531,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
     }
     puStack_110 = &SystemGlobalDataReference;
     if (puStack_108 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_108 = (void* *)0x0;
     uStack_f8 = (ulong long)uStack_f8._4_4_ << 0x20;
@@ -52168,8 +51548,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
   puStack_c8 = pointerToUnsigned13;
   puStack_70 = pointerToUnsigned13;
   if (puStack_108 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   puStack_108 = (void* *)0x0;
   uStack_f8 = uStack_f8 & 0xffffffff00000000;
@@ -52233,8 +51612,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
       unsignedSystemValue1 = StartSystemThread(punsignedSystemValue5);
       uStack_98 = CONCAT44(uStack_98._4_4_,unsignedSystemValue1);
       if (*(int *)(localBufferAddress + 0x158) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(punsignedSystemValue5,*(void* *)(localBufferAddress + 0x150),*(int *)(localBufferAddress + 0x158) + 1);
+          memcpy(punsignedSystemValue5,*(void* *)(localBufferAddress + 0x150),*(int *)(localBufferAddress + 0x158) + 1);
       }
     }
     if (*(long long *)(localBufferAddress + 0x150) != 0) {
@@ -52264,8 +51642,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
     puStack_88 = punsignedSystemValue8;
     unsignedSystemValue1 = StartSystemThread(punsignedSystemValue8);
     uStack_78 = CONCAT44(uStack_78._4_4_,unsignedSystemValue1);
-                    // WARNING: Subroutine does not return
-    memcpy(punsignedSystemValue8,*pSystemPreviousNode,unsignedSystemValue15);
+      memcpy(punsignedSystemValue8,*pSystemPreviousNode,unsignedSystemValue15);
   }
   uStack_78 = 0;
   uStack_80 = 0;
@@ -52273,8 +51650,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
     unsignedSystemValue15 = unsignedSystemValue11 & 0xfffffffd;
     puStack_110 = &SystemGlobalDataReference;
     if (punsignedSystemValue6 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(punsignedSystemValue6);
+        SystemCleanupFunction(punsignedSystemValue6);
     }
     puStack_108 = (void* *)0x0;
     uStack_f8 = uStack_f8 & 0xffffffff00000000;
@@ -52285,8 +51661,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
     unsignedSystemValue15 = unsignedSystemValue11 & 0xfffffffe;
     puStack_b0 = &SystemGlobalDataReference;
     if (punsignedSystemValue5 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(punsignedSystemValue5);
+        SystemCleanupFunction(punsignedSystemValue5);
     }
     puStack_a8 = (void* *)0x0;
     uStack_98 = uStack_98 & 0xffffffff00000000;
@@ -52316,13 +51691,11 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
       (**(code **)*punsignedSystemValue5)(punsignedSystemValue5,0);
     }
     if (puStack_68 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     dataBufferContext = &SystemGlobalDataReference;
     if (puStack_70 != (void* *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     puStack_c8 = (void* *)0x0;
     uStack_b8 = uStack_b8 & 0xffffffff00000000;
@@ -52331,11 +51704,9 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
     if (puStack_e8 == (void*2 *)0x0) {
       return cStackX_10 != '\0';
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -52369,8 +51740,7 @@ void FUN_180073630(void* SystemResourcePointer,void* ConfigurationDataPointer)
     }
     puStack_30 = &SystemGlobalDataReference;
     if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   return;
@@ -52407,8 +51777,7 @@ void FUN_180073730(void* SystemResourcePointer,void* ConfigurationDataPointer)
     }
     puStack_30 = &SystemGlobalDataReference;
     if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   return;
@@ -52445,8 +51814,7 @@ void FUN_180073830(void* SystemResourcePointer,uint32_t ConfigurationDataPointer
     }
     puStack_30 = &SystemGlobalDataReference;
     if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   return;
@@ -52515,30 +51883,25 @@ void FUN_1800739f0(void* *SystemResourcePointer)
 
 {
   if (*(long long *)((long long)SystemResourcePointer + 0x52) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)((long long)SystemResourcePointer + 0x52) = 0;
   if (*(long long *)((long long)SystemResourcePointer + 0x5a) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)((long long)SystemResourcePointer + 0x5a) = 0;
   if (SystemResourcePointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[8] = 0;
   if (SystemResourcePointer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[9] = 0;
   FUN_180074a80();
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
@@ -52572,32 +51935,27 @@ void SystemResourceCleanupHandler(long long *SystemResourcePointer)
   while( true ) {
     if (SecondaryResourcePointer == PrimaryResourcePointer) {
       if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       return;
     }
     if (*(long long *)((long long)SecondaryResourcePointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     *(void* *)((long long)SecondaryResourcePointer + 0x12) = 0;
     if (*(long long *)((long long)SecondaryResourcePointer + 0x1a) != 0) break;
     *(void* *)((long long)SecondaryResourcePointer + 0x1a) = 0;
     if (*SecondaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     *SecondaryResourcePointer = 0;
     if (SecondaryResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SecondaryResourcePointer[1] = 0;
     SecondaryResourcePointer = (long long *)((long long)SecondaryResourcePointer + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -52846,8 +52204,7 @@ void FUN_180073adc(long long SystemResourcePointer)
           FUN_180639bf0();
           punsignedSystemValue4 = (uint32_t *)systemMemoryBlockPtr[1];
         }
-                    // WARNING: Subroutine does not return
-        memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue9);
+          memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue9);
       }
       localDataPointer = *(long long *)(SystemResourcePointer + 0x20) + localAllocationFlags;
       if ((ulong long)((*systemMemoryBlockPtr - (long long)punsignedSystemValue4) + systemMemoryBlockPtr[2]) < 5) {
@@ -52879,8 +52236,7 @@ void FUN_180073adc(long long SystemResourcePointer)
           FUN_180639bf0();
           punsignedSystemValue4 = (uint32_t *)systemMemoryBlockPtr[1];
         }
-                    // WARNING: Subroutine does not return
-        memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue9);
+          memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue9);
       }
       localAllocationFlags = localAllocationFlags + 0x24;
       localSystemFlags = localSystemFlags + -1;
@@ -52915,8 +52271,7 @@ void FUN_180073adc(long long SystemResourcePointer)
       FUN_180639bf0();
       punsignedSystemValue4 = (uint32_t *)systemMemoryBlockPtr[1];
     }
-                    // WARNING: Subroutine does not return
-    memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue9);
+      memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue9);
   }
   if ((ulong long)((*systemMemoryBlockPtr - (long long)punsignedSystemValue4) + systemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
@@ -52949,8 +52304,7 @@ void FUN_180073adc(long long SystemResourcePointer)
     FUN_180639bf0();
     localSystemFlags = systemMemoryBlockPtr[1];
   }
-                    // WARNING: Subroutine does not return
-  memcpy(localSystemFlags,unsignedSystemValue2,unsignedSystemValue9);
+    memcpy(localSystemFlags,unsignedSystemValue2,unsignedSystemValue9);
 }
 
 
@@ -53003,8 +52357,7 @@ void FUN_180073b64(uint *SystemResourcePointer)
         FUN_180639bf0();
         punsignedSystemValue4 = (uint *)systemMemoryBlockPtr[1];
       }
-                    // WARNING: Subroutine does not return
-      memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue6);
+        memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue6);
     }
     localSystemPointer = *(long long *)(systemResourceHandle + 0x20) + unsignedSystemValue6;
     if ((ulong long)((*systemMemoryBlockPtr - (long long)punsignedSystemValue4) + systemMemoryBlockPtr[2]) < 5) {
@@ -53036,8 +52389,7 @@ void FUN_180073b64(uint *SystemResourcePointer)
         FUN_180639bf0();
         SystemResourcePointer = (uint *)systemMemoryBlockPtr[1];
       }
-                    // WARNING: Subroutine does not return
-      memcpy(SystemResourcePointer,unsignedSystemValue2,unsignedSystemValue6);
+        memcpy(SystemResourcePointer,unsignedSystemValue2,unsignedSystemValue6);
     }
     unsignedSystemValue6 = unsignedSystemValue6 + 0x24;
     systemAllocationOffset = systemAllocationOffset + -1;
@@ -53071,8 +52423,7 @@ void FUN_180073b64(uint *SystemResourcePointer)
       FUN_180639bf0();
       punsignedSystemValue4 = (uint *)systemMemoryBlockPtr[1];
     }
-                    // WARNING: Subroutine does not return
-    memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue6);
+      memcpy(punsignedSystemValue4,unsignedSystemValue2,unsignedSystemValue6);
   }
   if ((ulong long)((*systemMemoryBlockPtr - (long long)punsignedSystemValue4) + systemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
@@ -53103,8 +52454,7 @@ void FUN_180073b64(uint *SystemResourcePointer)
       FUN_180639bf0();
       localSystemPointer = systemMemoryBlockPtr[1];
     }
-                    // WARNING: Subroutine does not return
-    memcpy(localSystemPointer,unsignedSystemValue2,unsignedSystemValue6);
+      memcpy(localSystemPointer,unsignedSystemValue2,unsignedSystemValue6);
   }
   return;
 }
@@ -53155,8 +52505,7 @@ void FUN_180073e0b(uint32_t *SystemResourcePointer)
       FUN_180639bf0();
       pointerToUnsigned3 = (uint32_t *)systemMemoryBlockPtr[1];
     }
-                    // WARNING: Subroutine does not return
-    memcpy(pointerToUnsigned3,unsignedSystemValue2,unsignedSystemValue6);
+      memcpy(pointerToUnsigned3,unsignedSystemValue2,unsignedSystemValue6);
   }
   if ((ulong long)((*systemMemoryBlockPtr - (long long)pointerToUnsigned3) + systemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
@@ -53187,8 +52536,7 @@ void FUN_180073e0b(uint32_t *SystemResourcePointer)
       FUN_180639bf0();
       localSystemPointer = systemMemoryBlockPtr[1];
     }
-                    // WARNING: Subroutine does not return
-    memcpy(localSystemPointer,unsignedSystemValue2,unsignedSystemValue6);
+      memcpy(localSystemPointer,unsignedSystemValue2,unsignedSystemValue6);
   }
   return;
 }
@@ -53242,8 +52590,7 @@ void ProcessSystemResourceOperationA(void)
       FUN_180639bf0();
       pointerToUnsigned3 = (uint32_t *)systemMemoryBlockPtr[1];
     }
-                    // WARNING: Subroutine does not return
-    memcpy(pointerToUnsigned3,unsignedSystemValue2,unsignedSystemValue6);
+      memcpy(pointerToUnsigned3,unsignedSystemValue2,unsignedSystemValue6);
   }
   if ((ulong long)((*systemMemoryBlockPtr - (long long)pointerToUnsigned3) + systemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
@@ -53274,8 +52621,7 @@ void ProcessSystemResourceOperationA(void)
       FUN_180639bf0();
       localSystemPointer = systemMemoryBlockPtr[1];
     }
-                    // WARNING: Subroutine does not return
-    memcpy(localSystemPointer,unsignedSystemValue2,unsignedSystemValue6);
+      memcpy(localSystemPointer,unsignedSystemValue2,unsignedSystemValue6);
   }
   return;
 }
@@ -53320,8 +52666,7 @@ void ProcessSystemResourceOperationB(void)
       FUN_180639bf0();
       localBufferAddress = systemMemoryBlockPtr[1];
     }
-                    // WARNING: Subroutine does not return
-    memcpy(localBufferAddress,unsignedSystemValue2,unsignedSystemValue5);
+      memcpy(localBufferAddress,unsignedSystemValue2,unsignedSystemValue5);
   }
   return;
 }
@@ -53381,8 +52726,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
       if (0 < systemIndex) {
         *(short *)(PrimaryResourcePointer2 + 2) = (short)systemIndex;
         if (PrimaryResourcePointer2[1] != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         PrimaryResourcePointer2[1] = 0;
         if (*PrimaryResourcePointer2 == 0) {
@@ -53400,11 +52744,9 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
             localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 << 4,4);
           }
           *PrimaryResourcePointer2 = localDataPointer;
-                    // WARNING: Subroutine does not return
-          memcpy(PrimaryResourcePointer2[1],*(void* *)(ConfigurationDataPointer + 8),(long long)(systemIndex * 4));
+            memcpy(PrimaryResourcePointer2[1],*(void* *)(ConfigurationDataPointer + 8),(long long)(systemIndex * 4));
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       localAllocationFlags = *PrimaryResourcePointer;
       pointerToInteger2 = (int *)(localSystemPointer + 0x14);
@@ -53416,8 +52758,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
       if (0 < systemIndex) {
         *(short *)(localAllocationFlags + 0x22) = (short)systemIndex;
         if (*(long long *)(localAllocationFlags + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(void* *)(localAllocationFlags + 0x1a) = 0;
         if (*(long long *)(localAllocationFlags + 0x12) == 0) {
@@ -53435,11 +52776,9 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
             localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 << 4,4);
           }
           *(long long *)(localAllocationFlags + 0x12) = localDataPointer;
-                    // WARNING: Subroutine does not return
-          memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(ConfigurationDataPointer + 8),(long long)(systemIndex * 4));
+            memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(ConfigurationDataPointer + 8),(long long)(systemIndex * 4));
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       localMemoryAddress = localMemoryAddress + -1;
       localMemoryPointer1 = localMemoryPointer1 + 0x24;
@@ -53474,20 +52813,16 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
           localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 << 4,4);
         }
         *(long long *)((long long)SystemResourcePointer + 0x52) = localDataPointer;
-                    // WARNING: Subroutine does not return
-        memcpy(*(void* *)((long long)SystemResourcePointer + 0x5a),*(void* *)(ConfigurationDataPointer + 8),
+          memcpy(*(void* *)((long long)SystemResourcePointer + 0x5a),*(void* *)(ConfigurationDataPointer + 8),
                (long long)(systemIndex * 4));
       }
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(short *)(SystemResourcePointer + 10) = (short)systemIndex;
   if (SystemResourcePointer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[9] = 0;
   if (SystemResourcePointer[8] == 0) {
@@ -53505,11 +52840,9 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
       localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 << 4,4);
     }
     SystemResourcePointer[8] = localDataPointer;
-                    // WARNING: Subroutine does not return
-    memcpy(SystemResourcePointer[9],*(void* *)(ConfigurationDataPointer + 8),(long long)(systemIndex * 4));
+      memcpy(SystemResourcePointer[9],*(void* *)(ConfigurationDataPointer + 8),(long long)(systemIndex * 4));
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -53560,8 +52893,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
       if (0 < systemIndex) {
         *(short *)(PrimaryResourcePointer2 + 2) = (short)systemIndex;
         if (PrimaryResourcePointer2[1] != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         PrimaryResourcePointer2[1] = 0;
         if (*PrimaryResourcePointer2 == 0) {
@@ -53579,11 +52911,9 @@ void FUN_1800740a2(long long *SystemResourcePointer)
             localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 << 4,4);
           }
           *PrimaryResourcePointer2 = localDataPointer;
-                    // WARNING: Subroutine does not return
-          memcpy(PrimaryResourcePointer2[1],*(void* *)(systemDataIndexPtr + 8),(long long)(systemIndex * 4));
+            memcpy(PrimaryResourcePointer2[1],*(void* *)(systemDataIndexPtr + 8),(long long)(systemIndex * 4));
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       localAllocationFlags = *PrimaryResourcePointer;
       pointerToInteger2 = (int *)(localSystemPointer + 0x14);
@@ -53595,8 +52925,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
       if (0 < systemIndex) {
         *(short *)(localAllocationFlags + 0x22) = (short)systemIndex;
         if (*(long long *)(localAllocationFlags + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(void* *)(localAllocationFlags + 0x1a) = 0;
         if (*(long long *)(localAllocationFlags + 0x12) == 0) {
@@ -53614,12 +52943,10 @@ void FUN_1800740a2(long long *SystemResourcePointer)
             localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 << 4,4);
           }
           *(long long *)(localAllocationFlags + 0x12) = localDataPointer;
-                    // WARNING: Subroutine does not return
-          memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(systemDataIndexPtr + 8),(long long)(systemIndex * 4)
+            memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(systemDataIndexPtr + 8),(long long)(systemIndex * 4)
                 );
         }
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       localMemoryAddress = localMemoryAddress + -1;
       localMemoryPointer1 = localMemoryPointer1 + 0x24;
@@ -53654,20 +52981,16 @@ void FUN_1800740a2(long long *SystemResourcePointer)
           localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 << 4,4);
         }
         *(long long *)((long long)SystemResourcePointer + 0x52) = localDataPointer;
-                    // WARNING: Subroutine does not return
-        memcpy(*(void* *)((long long)SystemResourcePointer + 0x5a),*(void* *)(systemDataIndexPtr + 8),
+          memcpy(*(void* *)((long long)SystemResourcePointer + 0x5a),*(void* *)(systemDataIndexPtr + 8),
                (long long)(systemIndex * 4));
       }
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(short *)(SystemResourcePointer + 10) = (short)systemIndex;
   if (SystemResourcePointer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[9] = 0;
   if (SystemResourcePointer[8] == 0) {
@@ -53685,11 +53008,9 @@ void FUN_1800740a2(long long *SystemResourcePointer)
       localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 << 4,4);
     }
     SystemResourcePointer[8] = localDataPointer;
-                    // WARNING: Subroutine does not return
-    memcpy(SystemResourcePointer[9],*(void* *)(systemDataIndexPtr + 8),(long long)(systemIndex * 4));
+      memcpy(SystemResourcePointer[9],*(void* *)(systemDataIndexPtr + 8),(long long)(systemIndex * 4));
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -53732,8 +53053,7 @@ void InitializeSystemBufferManager(long long SystemResourcePointer)
     if (0 < systemStatus) {
       *(short *)(punsignedSystemValue6 + 2) = (short)systemStatus;
       if (punsignedSystemValue6[1] != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       punsignedSystemValue6[1] = systemStringIteratorPtr;
       if (*punsignedSystemValue6 == 0) {
@@ -53751,11 +53071,9 @@ void InitializeSystemBufferManager(long long SystemResourcePointer)
           systemStringIteratorPtr = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue5 << 4,4);
         }
         *punsignedSystemValue6 = systemStringIteratorPtr;
-                    // WARNING: Subroutine does not return
-        memcpy(punsignedSystemValue6[1],*(void* *)(systemDataIndexPtr + 8),(long long)(systemStatus * 4));
+          memcpy(punsignedSystemValue6[1],*(void* *)(systemDataIndexPtr + 8),(long long)(systemStatus * 4));
       }
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     localBufferAddress = *systemMemoryBlockPtr;
     *(int **)(systemDataIndexPtr + 8) = (int *)(localResourceOffset + 0x14);
@@ -53765,8 +53083,7 @@ void InitializeSystemBufferManager(long long SystemResourcePointer)
     if (0 < systemStatus) {
       *(short *)(localBufferAddress + 0x22) = (short)systemStatus;
       if (*(long long *)(localBufferAddress + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *(ulong long *)(localBufferAddress + 0x1a) = systemStringIteratorPtr;
       if (*(long long *)(localBufferAddress + 0x12) == 0) {
@@ -53784,11 +53101,9 @@ void InitializeSystemBufferManager(long long SystemResourcePointer)
           systemStringIteratorPtr = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue5 << 4,4);
         }
         *(ulong long *)(localBufferAddress + 0x12) = systemStringIteratorPtr;
-                    // WARNING: Subroutine does not return
-        memcpy(*(void* *)(localBufferAddress + 0x1a),*(void* *)(systemDataIndexPtr + 8),(long long)(systemStatus * 4));
+          memcpy(*(void* *)(localBufferAddress + 0x1a),*(void* *)(systemDataIndexPtr + 8),(long long)(systemStatus * 4));
       }
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     unsignedSystemValue5 = unsignedSystemValue5 + 0x24;
     unaff_R13 = unaff_R13 + -1;
@@ -53822,20 +53137,16 @@ void InitializeSystemBufferManager(long long SystemResourcePointer)
           systemStringIteratorPtr = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue5 << 4,4);
         }
         *(ulong long *)(systemResourceHandle + 0x52) = systemStringIteratorPtr;
-                    // WARNING: Subroutine does not return
-        memcpy(*(void* *)(systemResourceHandle + 0x5a),*(void* *)(systemDataIndexPtr + 8),
+          memcpy(*(void* *)(systemResourceHandle + 0x5a),*(void* *)(systemDataIndexPtr + 8),
                (long long)(systemStatus * 4));
       }
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(short *)(systemResourceHandle + 0x50) = (short)systemStatus;
   if (*(long long *)(systemResourceHandle + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(ulong long *)(systemResourceHandle + 0x48) = systemStringIteratorPtr;
   if (*(long long *)(systemResourceHandle + 0x40) == 0) {
@@ -53853,11 +53164,9 @@ void InitializeSystemBufferManager(long long SystemResourcePointer)
       systemStringIteratorPtr = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue5 << 4,4);
     }
     *(ulong long *)(systemResourceHandle + 0x40) = systemStringIteratorPtr;
-                    // WARNING: Subroutine does not return
-    memcpy(*(void* *)(systemResourceHandle + 0x48),*(void* *)(systemDataIndexPtr + 8),(long long)(systemStatus * 4));
+      memcpy(*(void* *)(systemResourceHandle + 0x48),*(void* *)(systemDataIndexPtr + 8),(long long)(systemStatus * 4));
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -53903,20 +53212,16 @@ void FUN_1800742ea(long long SystemResourcePointer)
           systemStringIteratorPtr = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue3 << 4,4);
         }
         *(void* *)(systemResourceHandle + 0x52) = systemStringIteratorPtr;
-                    // WARNING: Subroutine does not return
-        memcpy(*(void* *)(systemResourceHandle + 0x5a),*(void* *)(systemDataIndexPtr + 8),
+          memcpy(*(void* *)(systemResourceHandle + 0x5a),*(void* *)(systemDataIndexPtr + 8),
                (long long)(systemStatus * 4));
       }
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(short *)(systemResourceHandle + 0x50) = (short)systemStatus;
   if (*(long long *)(systemResourceHandle + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(systemResourceHandle + 0x48) = systemStringIteratorPtr;
   if (*(long long *)(systemResourceHandle + 0x40) == 0) {
@@ -53934,11 +53239,9 @@ void FUN_1800742ea(long long SystemResourcePointer)
       systemStringIteratorPtr = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue3 << 4,4);
     }
     *(void* *)(systemResourceHandle + 0x40) = systemStringIteratorPtr;
-                    // WARNING: Subroutine does not return
-    memcpy(*(void* *)(systemResourceHandle + 0x48),*(void* *)(systemDataIndexPtr + 8),(long long)(systemStatus * 4));
+      memcpy(*(void* *)(systemResourceHandle + 0x48),*(void* *)(systemDataIndexPtr + 8),(long long)(systemStatus * 4));
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -53971,8 +53274,7 @@ void InitializeSystemGlobalState(void)
   
   *(void*2 *)(systemResourceHandle + 0x50) = unaff_BP;
   if (*(long long *)(systemResourceHandle + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *(void* *)(systemResourceHandle + 0x48) = systemStringIteratorPtr;
   if (*(long long *)(systemResourceHandle + 0x40) == 0) {
@@ -53990,12 +53292,10 @@ void InitializeSystemGlobalState(void)
       systemStringIteratorPtr = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue2 << 4,4);
     }
     *(void* *)(systemResourceHandle + 0x40) = systemStringIteratorPtr;
-                    // WARNING: Subroutine does not return
-    memcpy(*(void* *)(systemResourceHandle + 0x48),*(void* *)(systemDataIndexPtr + 8),
+      memcpy(*(void* *)(systemResourceHandle + 0x48),*(void* *)(systemDataIndexPtr + 8),
            (long long)((int)CONCAT62(unaff_0000002a,unaff_BP) * 4));
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -54092,8 +53392,7 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
   *(uint32_t **)(ConfigurationDataPointer + 8) = pointerToUnsigned13;
   *(uint32_t *)(SystemResourcePointer + 0x34) = *pointerToUnsigned13;
   *(long long *)(ComparisonDataPointer + 8) = *(long long *)(ComparisonDataPointer + 8) + 4;
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_f8);
+    ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_f8);
 }
 
 
@@ -54223,9 +53522,8 @@ void FUN_180074840(long long SystemResourcePointer)
     pplStackX_10 = *(long long ***)(SystemResourcePointer + 0xb0);
     *(void* *)(SystemResourcePointer + 0xb0) = 0;
     if (pplStackX_10 != (long long **)0x0) {
-                    // WARNING: Could not recover jumptable at 0x0001800748c2. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(code **)((long long)*pplStackX_10 + 0x38))();
+                    0001800748c2. Too many branches
+                          (**(code **)((long long)*pplStackX_10 + 0x38))();
       return;
     }
   }
@@ -54331,32 +53629,27 @@ void FUN_180074a80(long long *SystemResourcePointer)
   while( true ) {
     if (SecondaryResourcePointer == PrimaryResourcePointer) {
       if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       return;
     }
     if (*(long long *)((long long)SecondaryResourcePointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     *(void* *)((long long)SecondaryResourcePointer + 0x12) = 0;
     if (*(long long *)((long long)SecondaryResourcePointer + 0x1a) != 0) break;
     *(void* *)((long long)SecondaryResourcePointer + 0x1a) = 0;
     if (*SecondaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     *SecondaryResourcePointer = 0;
     if (SecondaryResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SecondaryResourcePointer[1] = 0;
     SecondaryResourcePointer = (long long *)((long long)SecondaryResourcePointer + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -54384,23 +53677,19 @@ void FUN_180074b30(long long *SystemResourcePointer,ulong long ConfigurationData
     if (plocalResourceOffset != PrimaryResourcePointer) {
       do {
         if (*(long long *)((long long)plocalResourceOffset + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(void* *)((long long)plocalResourceOffset + 0x12) = 0;
         if (*(long long *)((long long)plocalResourceOffset + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(void* *)((long long)plocalResourceOffset + 0x1a) = 0;
         if (*plocalResourceOffset != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *plocalResourceOffset = 0;
         if (plocalResourceOffset[1] != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         plocalResourceOffset[1] = 0;
         plocalResourceOffset = (long long *)((long long)plocalResourceOffset + 0x24);
@@ -54513,23 +53802,19 @@ void FUN_180074c20(void* *SystemResourcePointer,ulong long ConfigurationDataPoin
     if (plocalSystemPointer != plocalBufferAddress) {
       do {
         if (*(long long *)((long long)plocalSystemPointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(void* *)((long long)plocalSystemPointer + 0x12) = 0;
         if (*(long long *)((long long)plocalSystemPointer + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(void* *)((long long)plocalSystemPointer + 0x1a) = 0;
         if (*plocalSystemPointer != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *plocalSystemPointer = 0;
         if (plocalSystemPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         plocalSystemPointer[1] = 0;
         plocalSystemPointer = (long long *)((long long)plocalSystemPointer + 0x24);
@@ -54537,8 +53822,7 @@ void FUN_180074c20(void* *SystemResourcePointer,ulong long ConfigurationDataPoin
       plocalSystemPointer = (long long *)*SystemResourcePointer;
     }
     if (plocalSystemPointer != (long long *)0x0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction(plocalSystemPointer);
+        SystemCleanupFunction(plocalSystemPointer);
     }
     *SystemResourcePointer = PrimaryResourcePointer;
     SystemResourcePointer[1] = (long long)SecondaryResourcePointer + ConfigurationDataPointer * 0x24;
@@ -54578,13 +53862,11 @@ void FUN_180074ed0(long long *SystemResourcePointer)
 
 {
   if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = 0;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   return;
@@ -54864,15 +54146,14 @@ uint8_t FUN_1800755c0(long long SystemResourcePointer,void* ConfigurationDataPoi
   unsignedSystemValue1 = FUN_180063510(SystemResourcePointer + 0x218,&puStack_30,AdditionalParameter,ConfigurationFlag,unsignedSystemValue2);
   puStack_30 = &SystemGlobalDataReference;
   if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return unsignedSystemValue1;
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180276fbd)
+000180276fbd)
 
 
 // 函数: void FUN_180075630(long long SystemResourcePointer,void* *ConfigurationDataPointer)
@@ -55063,8 +54344,7 @@ void FUN_1800756e0(void* *SystemResourcePointer)
   *SystemResourcePointer = &UNK_180a00270;
   SystemResourcePointer[0x39] = 0;
   if (SystemResourcePointer[0x59] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x59] = 0;
   SecondaryResourcePointer = (long long *)SystemResourcePointer[0x37];
@@ -55078,36 +54358,30 @@ void FUN_1800756e0(void* *SystemResourcePointer)
     (**(code **)(*SecondaryResourcePointer + 0x38))();
   }
   if (SystemResourcePointer[0x5a] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x5a] = 0;
   SecondaryResourcePointer = (long long *)SystemResourcePointer[0x4b];
   if (SecondaryResourcePointer != (long long *)0x0) {
     if (*SecondaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     *SecondaryResourcePointer = 0;
     if (SecondaryResourcePointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SecondaryResourcePointer[2] = 0;
     if (SecondaryResourcePointer[7] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SecondaryResourcePointer[2] = 0;
     SecondaryResourcePointer[7] = 0;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(SecondaryResourcePointer);
+      SystemCleanupFunction(SecondaryResourcePointer);
   }
   SystemResourcePointer[0x4b] = 0;
   if (*(char*)((long long)SystemResourcePointer + 0xf9) != '\0') {
     if (SystemResourcePointer[0x3b] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     SystemResourcePointer[0x3b] = 0;
     LOCK();
@@ -55130,8 +54404,7 @@ void FUN_1800756e0(void* *SystemResourcePointer)
   localResourceOffset = SystemResourcePointer[0x3c];
   if (localResourceOffset != 0) {
     ConfigureSystemMemoryRegion(localResourceOffset,0x18,0x10,FUN_18007bb70,unsignedSystemValue4,localResourceOffset);
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(localResourceOffset);
+      SystemCleanupFunction(localResourceOffset);
   }
   SystemResourcePointer[0x3c] = 0;
   FUN_180080870(SystemResourcePointer + 0x5e);
@@ -55870,8 +55143,7 @@ void FUN_180076760(long long *SystemResourcePointer,void* ConfigurationDataPoint
     *(uint32_t *)(plStack_38 + 0xc) = 0;
     *(void*2 *)(plStack_38 + 0x18) = 0;
     if (plStack_38[0x17] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     plStack_38[0x17] = 0;
     FUN_180085530(plStack_38[0x16]);
@@ -55927,8 +55199,7 @@ void FUN_180076910(long long SystemResourcePointer,long long *ConfigurationDataP
   
   if (*ConfigurationDataPointer != *(long long *)(SystemResourcePointer + 0x1b8)) {
     if (*(char *)(SystemResourcePointer + 0xb1) != '\0') {
-                    // WARNING: Subroutine does not return
-      SystemDataOperation();
+        SystemDataOperation();
     }
     FUN_180080810(SystemResourcePointer + 0x1b8);
     localSystemHandle = *(long long *)(SystemResourcePointer + 0x1b8);
@@ -56196,12 +55467,10 @@ int FUN_180076c50(long long SystemResourcePointer,long long *ConfigurationDataPo
     localDataPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x1800,(char)ConfigurationDataPointer[8]);
     localResourcePointer = *PrimaryResourcePointer;
     if (localResourcePointer != ConfigurationDataPointer[6]) {
-                    // WARNING: Subroutine does not return
-      memmove(localDataPointer,localResourcePointer,ConfigurationDataPointer[6] - localResourcePointer);
+        memmove(localDataPointer,localResourcePointer,ConfigurationDataPointer[6] - localResourcePointer);
     }
     if (localResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     *PrimaryResourcePointer = localDataPointer;
     ConfigurationDataPointer[6] = localDataPointer;
@@ -56259,16 +55528,14 @@ void FUN_180077020(long long *SystemResourcePointer)
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 6) {
     *pointerToUnsigned2 = &SystemGlobalDataReference;
     if (pointerToUnsigned2[1] != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     pointerToUnsigned2[1] = 0;
     *(uint32_t *)(pointerToUnsigned2 + 3) = 0;
     *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
   }
   if (*SystemResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   return;
 }
@@ -56309,8 +55576,7 @@ ulong long FUN_180077040(long long SystemResourcePointer)
   bVar2 = *(byte *)(SystemResourcePointer + 0xf9);
   if (bVar2 != 0) {
     if (*(long long *)(SystemResourcePointer + 0x1d8) != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     *(void* *)(SystemResourcePointer + 0x1d8) = 0;
     LOCK();
@@ -56431,8 +55697,7 @@ void FUN_180077150(long long *SystemResourcePointer)
     }
   }
 LAB_18007738d:
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_20 ^ (ulong long)stackBuffer);
+    ValidateSystemChecksum(uStack_20 ^ (ulong long)stackBuffer);
 }
 
 
@@ -56505,8 +55770,7 @@ void* FUN_180077420(long long SystemResourcePointer,long long ConfigurationDataP
     systemCode = FUN_18022d470(*(void* *)(SystemResourcePointer + 0x1b8),&uStack_78);
     if (systemCode < 1) {
       if (lStack_50 != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       bVar5 = false;
       if ((*(byte *)(SystemResourcePointer + 0xfd) & 8) != 0) {
@@ -56548,8 +55812,7 @@ void* FUN_180077420(long long SystemResourcePointer,long long ConfigurationDataP
               }
               else {
                 if (localAllocationFlags != 0) {
-                    // WARNING: Subroutine does not return
-                  SystemCleanupFunction();
+                    SystemCleanupFunction();
                 }
                 do {
                 } while (*(char *)(unsignedSystemValue14 + 0x48 + (long long)pointerToUnsigned1) != '\0');
@@ -56574,8 +55837,7 @@ void* FUN_180077420(long long SystemResourcePointer,long long ConfigurationDataP
       return 1;
     }
     if (lStack_50 != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   return 0;
@@ -56818,8 +56080,7 @@ LAB_180077879:
                 }
                 else {
                   if (localSystemHandle7 != 0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   do {
                     unsignedSystemValue25 = uStack_130;
@@ -57143,8 +56404,7 @@ void FUN_18007799c(void)
       }
       else {
         if (localResourceOffset3 != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         do {
           unsignedSystemValue32 = in_stack_00000038;
@@ -58869,8 +58129,7 @@ void FUN_1800786e0(void* *SystemResourcePointer,long long ConfigurationDataPoint
   }
   uStack_58 = &SystemGlobalDataReference;
   if (uStack_50 != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   uStack_50 = 0;
   uStack_40 = 0;
@@ -59611,8 +58870,7 @@ void FUN_180079270(long long SystemResourcePointer,long long ConfigurationDataPo
         else {
           *(int *)(localMemoryPointer7 + 0x40) = systemIndex3;
           if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           *PrimaryResourcePointer = 0;
           if (cVar16 == '\0') {
@@ -59714,8 +58972,7 @@ void FUN_180079270(long long SystemResourcePointer,long long ConfigurationDataPo
                 }
                 else {
                   if (localResourceOffset5 != 0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   do {
                   } while (*pcVar41 != '\0');
@@ -59736,8 +58993,7 @@ void FUN_180079270(long long SystemResourcePointer,long long ConfigurationDataPo
         unsignedSystemValue38 = unsignedSystemValue36 >> 0xb;
         *(uint *)(localMemoryPointer7 + 0x2c) = unsignedSystemValue36;
         if (unsignedSystemValue38 == (int)cVar16 + unsignedSystemValue36 >> 0xb) {
-                    // WARNING: Subroutine does not return
-          memcpy(*(long long *)(punsignedSystemValue42 + (ulong long)unsignedSystemValue38 * 2 + 2) +
+            memcpy(*(long long *)(punsignedSystemValue42 + (ulong long)unsignedSystemValue38 * 2 + 2) +
                  (ulong long)(unsignedSystemValue36 + unsignedSystemValue38 * -0x800) * 4,punsignedSystemValue46,(unsignedSystemValue40 & 0xffffffff) << 2);
         }
         if (systemIndex3 != 0) {
@@ -59922,8 +59178,7 @@ void FUN_180079284(long long SystemResourcePointer)
         else {
           *(int *)(localMemoryPointer7 + 0x40) = systemIndex3;
           if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           *PrimaryResourcePointer = 0;
           if (cVar16 == '\0') {
@@ -60025,8 +59280,7 @@ void FUN_180079284(long long SystemResourcePointer)
                 }
                 else {
                   if (localResourceOffset5 != 0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   do {
                   } while (*pcVar41 != '\0');
@@ -60047,8 +59301,7 @@ void FUN_180079284(long long SystemResourcePointer)
         unsignedSystemValue38 = unsignedSystemValue36 >> 0xb;
         *(uint *)(localMemoryPointer7 + 0x2c) = unsignedSystemValue36;
         if (unsignedSystemValue38 == (int)cVar16 + unsignedSystemValue36 >> 0xb) {
-                    // WARNING: Subroutine does not return
-          memcpy(*(long long *)(punsignedSystemValue42 + (ulong long)unsignedSystemValue38 * 2 + 2) +
+            memcpy(*(long long *)(punsignedSystemValue42 + (ulong long)unsignedSystemValue38 * 2 + 2) +
                  (ulong long)(unsignedSystemValue36 + unsignedSystemValue38 * -0x800) * 4,punsignedSystemValue46,(unsignedSystemValue40 & 0xffffffff) << 2);
         }
         if (systemIndex3 != 0) {
@@ -60214,8 +59467,7 @@ void FUN_1800792ea(void)
         else {
           *(int *)(localMemoryPointer6 + 0x40) = systemIndex0;
           if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           *PrimaryResourcePointer = 0;
           if (cVar14 == '\0') {
@@ -60317,8 +59569,7 @@ void FUN_1800792ea(void)
                 }
                 else {
                   if (localBufferAddress3 != 0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   do {
                   } while (*pcVar38 != '\0');
@@ -60339,8 +59590,7 @@ void FUN_1800792ea(void)
         unsignedSystemValue35 = unsignedSystemValue33 >> 0xb;
         *(uint *)(localMemoryPointer6 + 0x2c) = unsignedSystemValue33;
         if (unsignedSystemValue35 == (int)cVar14 + unsignedSystemValue33 >> 0xb) {
-                    // WARNING: Subroutine does not return
-          memcpy(*(long long *)(pointerToUnsigned39 + (ulong long)unsignedSystemValue35 * 2 + 2) +
+            memcpy(*(long long *)(pointerToUnsigned39 + (ulong long)unsignedSystemValue35 * 2 + 2) +
                  (ulong long)(unsignedSystemValue33 + unsignedSystemValue35 * -0x800) * 4,punsignedSystemValue44,(unsignedSystemValue37 & 0xffffffff) << 2);
         }
         if (systemIndex0 != 0) {
@@ -60502,8 +59752,7 @@ void FUN_180079309(long long SystemResourcePointer,uint ConfigurationDataPointer
         else {
           *(int *)(localMemoryPointer5 + 0x40) = systemCounter9;
           if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           *PrimaryResourcePointer = 0;
           if (cVar14 == '\0') {
@@ -60605,8 +59854,7 @@ void FUN_180079309(long long SystemResourcePointer,uint ConfigurationDataPointer
                 }
                 else {
                   if (localResourceOffset3 != 0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   do {
                   } while (*pcVar37 != '\0');
@@ -60627,8 +59875,7 @@ void FUN_180079309(long long SystemResourcePointer,uint ConfigurationDataPointer
         unsignedSystemValue30 = unsignedSystemValue40 >> 0xb;
         *(uint *)(localMemoryPointer5 + 0x2c) = unsignedSystemValue40;
         if (unsignedSystemValue30 == (int)cVar14 + unsignedSystemValue40 >> 0xb) {
-                    // WARNING: Subroutine does not return
-          memcpy(*(long long *)(pointerToUnsigned38 + (ulong long)unsignedSystemValue30 * 2 + 2) +
+            memcpy(*(long long *)(pointerToUnsigned38 + (ulong long)unsignedSystemValue30 * 2 + 2) +
                  (ulong long)(unsignedSystemValue40 + unsignedSystemValue30 * -0x800) * 4,punsignedSystemValue43,(unsignedSystemValue36 & 0xffffffff) << 2);
         }
         if (systemCounter9 != 0) {
@@ -60712,8 +59959,7 @@ void FUN_18007940e(void)
         else {
           *(int *)(localSystemPointer + 0x40) = systemStatus6;
           if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           *PrimaryResourcePointer = 0;
           if (cVar4 == '\0') {
@@ -60815,8 +60061,7 @@ void FUN_18007940e(void)
                 }
                 else {
                   if (localResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   do {
                   } while (*pcVar14 != '\0');
@@ -60837,8 +60082,7 @@ void FUN_18007940e(void)
         unsignedSystemValue7 = unsignedSystemValue17 >> 0xb;
         *(uint *)(localSystemPointer + 0x2c) = unsignedSystemValue17;
         if (unsignedSystemValue7 == (int)cVar4 + unsignedSystemValue17 >> 0xb) {
-                    // WARNING: Subroutine does not return
-          memcpy(*(long long *)(pointerToUnsigned15 + (ulong long)unsignedSystemValue7 * 2 + 2) +
+            memcpy(*(long long *)(pointerToUnsigned15 + (ulong long)unsignedSystemValue7 * 2 + 2) +
                  (ulong long)(unsignedSystemValue17 + unsignedSystemValue7 * -0x800) * 4,pointerToUnsigned20,(unsignedSystemValue13 & 0xffffffff) << 2);
         }
         if (systemStatus6 != 0) {
@@ -61013,7 +60257,7 @@ uint8_t GetSystemStatusFlag(void)
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180079699)
+000180079699)
 
 float * FUN_1800795b0(float *SystemResourcePointer)
 
@@ -61267,10 +60511,10 @@ LAB_180075f4f:
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001800797c0)
-// WARNING: Removing unreachable block (ram,0x0001800797c8)
-// WARNING: Removing unreachable block (ram,0x0001800797cd)
-// WARNING: Removing unreachable block (ram,0x0001800797dd)
+0001800797c0)
+0001800797c8)
+0001800797cd)
+0001800797dd)
 
 
 // 函数: void FUN_1800796b0(long long SystemResourcePointer)
@@ -61442,16 +60686,13 @@ void FUN_1800796b0(long long SystemResourcePointer)
           localSystemHandle4 = *(long long *)(localSystemHandle1 + localSystemHandle2);
         }
         if (localSystemHandle4 != localMemoryPointer7) {
-                    // WARNING: Subroutine does not return
-          memmove(localMemoryPointer2,localSystemHandle4,localMemoryPointer7 - localSystemHandle4);
+            memmove(localMemoryPointer2,localSystemHandle4,localMemoryPointer7 - localSystemHandle4);
         }
         if (unsignedSystemValue30 != 0) {
-                    // WARNING: Subroutine does not return
-          memset(localMemoryPointer2,0,unsignedSystemValue30 * 0x10);
+            memset(localMemoryPointer2,0,unsignedSystemValue30 * 0x10);
         }
         if (*(long long *)(localSystemHandle1 + localSystemHandle2) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(long long *)(localSystemHandle1 + localSystemHandle2) = localMemoryPointer2;
         *(long long *)(localSystemHandle1 + 8 + localSystemHandle2) = localMemoryPointer2;
@@ -61459,8 +60700,7 @@ void FUN_1800796b0(long long SystemResourcePointer)
       }
       else {
         if (unsignedSystemValue30 != 0) {
-                    // WARNING: Subroutine does not return
-          memset(localMemoryPointer7,0,unsignedSystemValue30 * 0x10);
+            memset(localMemoryPointer7,0,unsignedSystemValue30 * 0x10);
         }
         *(long long *)(localSystemHandle1 + 8 + localSystemHandle2) = localMemoryPointer7;
       }
@@ -61574,13 +60814,11 @@ LAB_180079c12:
           if (localMemoryPointer7 != 0) goto LAB_180079c12;
         }
         if (pointerToInteger15 != pointerToInteger20) {
-                    // WARNING: Subroutine does not return
-          memmove(pointerToInteger13,pointerToInteger15,(long long)pointerToInteger20 - (long long)pointerToInteger15);
+            memmove(pointerToInteger13,pointerToInteger15,(long long)pointerToInteger20 - (long long)pointerToInteger15);
         }
         *pointerToInteger13 = systemResult7;
         if (*(long long *)(localResourceOffset1 + localSystemHandle3) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(int **)(localResourceOffset1 + localSystemHandle3) = pointerToInteger13;
         *(int **)(localResourceOffset1 + 8 + localSystemHandle3) = pointerToInteger13 + 1;
@@ -61610,13 +60848,11 @@ LAB_180079cd7:
           if (localMemoryPointer7 != 0) goto LAB_180079cd7;
         }
         if (pointerToInteger15 != pointerToInteger20) {
-                    // WARNING: Subroutine does not return
-          memmove(pointerToInteger13,pointerToInteger15,(long long)pointerToInteger20 - (long long)pointerToInteger15);
+            memmove(pointerToInteger13,pointerToInteger15,(long long)pointerToInteger20 - (long long)pointerToInteger15);
         }
         *pointerToInteger13 = systemResult7;
         if (*(long long *)(localResourceOffset1 + localSystemHandle3) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(int **)(localResourceOffset1 + localSystemHandle3) = pointerToInteger13;
         *(int **)(localResourceOffset1 + 8 + localSystemHandle3) = pointerToInteger13 + 1;
@@ -61646,13 +60882,11 @@ LAB_180079d9b:
           pointerToInteger15 = (int *)0x0;
         }
         if (pointerToInteger13 != pointerToInteger20) {
-                    // WARNING: Subroutine does not return
-          memmove(pointerToInteger15,pointerToInteger13,(long long)pointerToInteger20 - (long long)pointerToInteger13);
+            memmove(pointerToInteger15,pointerToInteger13,(long long)pointerToInteger20 - (long long)pointerToInteger13);
         }
         *pointerToInteger15 = systemResult7;
         if (*(long long *)(localSystemHandle1 + localSystemHandle3) != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *(int **)(localSystemHandle1 + localSystemHandle3) = pointerToInteger15;
         *(int **)(localSystemHandle1 + 8 + localSystemHandle3) = pointerToInteger15 + 1;
@@ -61897,8 +61131,7 @@ LAB_18007ac04:
                   }
                   pauStack_1e0 = paunsignedSystemValue42;
                   if (paunsignedSystemValue35 != paunsignedSystemValue37) {
-                    // WARNING: Subroutine does not return
-                    memmove(paunsignedSystemValue42,paunsignedSystemValue35,(long long)paunsignedSystemValue37 - (long long)paunsignedSystemValue35);
+                      memmove(paunsignedSystemValue42,paunsignedSystemValue35,(long long)paunsignedSystemValue37 - (long long)paunsignedSystemValue35);
                   }
                   aunsignedSystemValue47._4_4_ = uStack_1bc;
                   aunsignedSystemValue47._0_4_ = uStack_1c0;
@@ -61907,8 +61140,7 @@ LAB_18007ac04:
                   *paunsignedSystemValue42 = aunsignedSystemValue47;
                   *(uint32_t *)paunsignedSystemValue42[1] = piStack_1b0._0_4_;
                   if (*(long long *)(pointerToInteger1 + unsignedSystemValue41 * 8) != 0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   *(uint8_t (**) [16])(pointerToInteger1 + unsignedSystemValue41 * 8) = paunsignedSystemValue42;
                   *(uint8_t **)(pointerToInteger1 + unsignedSystemValue41 * 8 + 2) = paunsignedSystemValue42[1] + 4;
@@ -62090,8 +61322,7 @@ LAB_18007ac04:
       if ((long long)uStack_1d8 <= (long long)uStackX_18) {
         FUN_180080fa0(auStack_150);
         if (puStack_130 != (uint32_t *)0x0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction(puStack_130);
+            SystemCleanupFunction(puStack_130);
         }
         return;
       }
@@ -62161,13 +61392,11 @@ LAB_180079fb3:
               if (piStack_1f0 != (int *)0x0) goto LAB_180079fb3;
             }
             if (pointerToInteger25 != pointerToInteger26) {
-                    // WARNING: Subroutine does not return
-              memmove(pointerToInteger16,pointerToInteger25,uStack_1d8);
+                memmove(pointerToInteger16,pointerToInteger25,uStack_1d8);
             }
             *pointerToInteger16 = *(int *)(uStackX_20 + (long long)piStack_1f8);
             if (pointerToInteger25 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
-              SystemCleanupFunction(pointerToInteger25);
+                SystemCleanupFunction(pointerToInteger25);
             }
             pointerToInteger13 = pointerToInteger16 + (long long)piStack_1f0;
             paunsignedSystemValue42 = pauStack_1e0;
@@ -62224,13 +61453,11 @@ LAB_18007a203:
                   if (localSystemHandle1 != 0) goto LAB_18007a203;
                 }
                 if (pointerToInteger25 != pointerToInteger26) {
-                    // WARNING: Subroutine does not return
-                  memmove(pointerToInteger16,pointerToInteger25,uStack_1d8);
+                    memmove(pointerToInteger16,pointerToInteger25,uStack_1d8);
                 }
                 *pointerToInteger16 = *piStack_1f0;
                 if (pointerToInteger25 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
-                  SystemCleanupFunction(pointerToInteger25);
+                    SystemCleanupFunction(pointerToInteger25);
                 }
                 uStack_1c0 = (uint)pointerToInteger16;
                 uStack_1bc = (uint32_t)((ulong long)pointerToInteger16 >> 0x20);
@@ -62265,14 +61492,12 @@ LAB_18007a142:
                   if (localSystemHandle1 != 0) goto LAB_18007a142;
                 }
                 if (pointerToInteger14 != pointerToInteger20) {
-                    // WARNING: Subroutine does not return
-                  memmove(pointerToInteger15,pointerToInteger14,uStack_1d8);
+                    memmove(pointerToInteger15,pointerToInteger14,uStack_1d8);
                 }
                 *pointerToInteger15 = *piStack_1f0;
                 pointerToInteger20 = pointerToInteger15 + 1;
                 if (pointerToInteger14 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
-                  SystemCleanupFunction(pointerToInteger14);
+                    SystemCleanupFunction(pointerToInteger14);
                 }
                 piStack_190 = pointerToInteger15 + localSystemHandle1;
                 pointerToInteger16 = pointerToInteger25;
@@ -62308,8 +61533,7 @@ LAB_18007a142:
         bVar44 = piStack_218 != (int *)0x0;
         piStack_218 = pointerToInteger16;
         if (bVar44) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
       } while( true );
     }
@@ -62318,8 +61542,7 @@ LAB_18007a142:
 LAB_18007a312:
   if (piStack_218 != (int *)0x0) {
     piStack_218 = pointerToInteger16;
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   pointerToInteger13 = *(int **)(*pauStack_1e0 + lStack_170);
   piStack_218 = pointerToInteger16;
@@ -62348,8 +61571,7 @@ LAB_18007a312:
       plocalResourceOffset9[1] = localSystemHandle1;
       plocalResourceOffset9[2] = localSystemHandle1 + ((long long)unsignedSystemValue41 >> 2) * 4;
       if (pointerToInteger16 != pointerToInteger26) {
-                    // WARNING: Subroutine does not return
-        memmove(*plocalResourceOffset9,pointerToInteger16,unsignedSystemValue41);
+          memmove(*plocalResourceOffset9,pointerToInteger16,unsignedSystemValue41);
       }
       plocalResourceOffset9[1] = *plocalResourceOffset9;
     }
@@ -62434,12 +61656,10 @@ LAB_18007a312:
     }
   }
   if (pointerToInteger16 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToInteger16);
+      SystemCleanupFunction(pointerToInteger16);
   }
   if (pointerToInteger14 != (int *)0x0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToInteger14);
+      SystemCleanupFunction(pointerToInteger14);
   }
 LAB_18007a58b:
   unsignedSystemValue19 = unsignedSystemValue19 + 1;
@@ -62460,15 +61680,13 @@ void FUN_18007b1a0(long long *SystemResourcePointer)
   
   for (PrimaryResourcePointer = (long long *)*SystemResourcePointer; PrimaryResourcePointer != (long long *)SystemResourcePointer[1]; PrimaryResourcePointer = PrimaryResourcePointer + 4) {
     if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -62482,15 +61700,13 @@ void FUN_18007b1c0(long long *SystemResourcePointer)
   
   for (PrimaryResourcePointer = (long long *)*SystemResourcePointer; PrimaryResourcePointer != (long long *)SystemResourcePointer[1]; PrimaryResourcePointer = PrimaryResourcePointer + 4) {
     if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
   }
   if (*SystemResourcePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction();
+    SystemCleanupFunction();
 }
 
 
@@ -62517,9 +61733,9 @@ uint8_t FUN_18007b1e0(long long SystemResourcePointer)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018007b857)
-// WARNING: Removing unreachable block (ram,0x00018007b868)
-// WARNING: Removing unreachable block (ram,0x00018007b879)
+00018007b857)
+00018007b868)
+00018007b879)
 
 ulong long FUN_18007b240(long long SystemResourcePointer,long long *ConfigurationDataPointer,byte AdditionalParameter,char ConfigurationFlag)
 
@@ -62874,8 +62090,7 @@ void FUN_18007baa0(long long SystemResourcePointer)
   
   if (*(long long *)(SystemResourcePointer + 0x1e0) == 0) {
     unsignedSystemValue1 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x180,8,0x1c);
-                    // WARNING: Subroutine does not return
-    memset(unsignedSystemValue1,0,0x180);
+      memset(unsignedSystemValue1,0,0x180);
   }
   return;
 }
@@ -62898,8 +62113,8 @@ void FUN_18007bb70(long long *SystemResourcePointer)
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018007c17d)
-// WARNING: Removing unreachable block (ram,0x00018007c188)
+00018007c17d)
+00018007c188)
 
 
 /**
@@ -63281,16 +62496,14 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
     ExecuteSystemCommand(localDataPointer + 0x20,unsignedSystemValue15);
   }
   if (unsignedSystemValue11 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(void* *)(localDataPointer + 0x28),*(void* *)(AdditionalParameter + 0x100),unsignedSystemValue15);
+      memcpy(*(void* *)(localDataPointer + 0x28),*(void* *)(AdditionalParameter + 0x100),unsignedSystemValue15);
   }
   *(uint32_t *)(localDataPointer + 0x30) = 0;
   if (*(long long *)(localDataPointer + 0x28) != 0) {
     *(uint8_t *)(unsignedSystemValue15 + *(long long *)(localDataPointer + 0x28)) = 0;
   }
   *(uint32_t *)(localDataPointer + 0x3c) = *(uint32_t *)(AdditionalParameter + 0x114);
-                    // WARNING: Subroutine does not return
-  ValidateSystemChecksum(uStack_20 ^ (ulong long)auStack_68);
+    ValidateSystemChecksum(uStack_20 ^ (ulong long)auStack_68);
 }
 
 
@@ -63462,9 +62675,8 @@ void FUN_18007c790(long long *SystemResourcePointer)
     *pcVar1 = '\x04';
   }
   UNLOCK();
-                    // WARNING: Could not recover jumptable at 0x00018007c7e6. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (**(code **)(*(long long *)*SystemResourcePointer + 0x38))();
+                    00018007c7e6. Too many branches
+                      (**(code **)(*(long long *)*SystemResourcePointer + 0x38))();
   return;
 }
 
@@ -63521,7 +62733,7 @@ void FUN_18007c860(long long SystemResourcePointer,uint8_t ConfigurationDataPoin
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018007cad0)
+00018007cad0)
 
 
 /**
@@ -64031,8 +63243,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long ConfigurationDataPointer
   case 8:
     if (*(int *)(ConfigurationDataPointer + 200) < 1) {
 code_r0x00018007db1b:
-                    // WARNING: Subroutine does not return
-      memset(pfVar20,0,(long long)(systemResult * 4));
+        memset(pfVar20,0,(long long)(systemResult * 4));
     }
     localSystemHandle5 = localSystemHandle1;
     if (3 < localSystemHandle7) {
@@ -64432,10 +63643,8 @@ void FUN_18007df50(long long SystemResourcePointer,long long *ConfigurationDataP
     }
     localSystemHandle = *(long long *)(*ConfigurationDataPointer + 0x10);
     if (AdditionalParameter != '\0') {
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
-      memcpy(localSystemHandle,*(void* *)(SystemResourcePointer + 0x90),(long long)*(int *)(SystemResourcePointer + 0x88) * 0xc);
+                    0001808ffc47. Too many branches
+                            memcpy(localSystemHandle,*(void* *)(SystemResourcePointer + 0x90),(long long)*(int *)(SystemResourcePointer + 0x88) * 0xc);
       return;
     }
     unsignedSystemValue5 = 0;
@@ -64581,8 +63790,7 @@ void FUN_18007e2b0(long long SystemResourcePointer,long long ConfigurationDataPo
     FUN_180086010(SystemResourcePointer + 0x60);
   }
   *(int *)(SystemResourcePointer + 0x60) = systemStatus;
-                    // WARNING: Subroutine does not return
-  memcpy(*(void* *)(SystemResourcePointer + 0x68),*(void* *)(ConfigurationDataPointer + 8),(long long)(systemStatus * 0x5c),
+    memcpy(*(void* *)(SystemResourcePointer + 0x68),*(void* *)(ConfigurationDataPointer + 8),(long long)(systemStatus * 0x5c),
          ConfigurationFlag,unsignedSystemValue3);
 }
 
@@ -64708,8 +63916,7 @@ void FUN_18007e880(long long SystemResourcePointer,char ConfigurationDataPointer
                         *(int *)(*(long long *)(SystemResourcePointer + 600) + 0x18));
   localMemoryPointer = *(long long *)(SystemResourcePointer + 600);
   if (*(long long *)(localMemoryPointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   unsignedSystemValue2 = 0;
   localResourceOffset = (long long)ConfigurationDataPointer;
@@ -64718,10 +63925,8 @@ void FUN_18007e880(long long SystemResourcePointer,char ConfigurationDataPointer
     unsignedSystemValue2 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,localResourceOffset,0x10,CONCAT71((int7)((ulong long)localMemoryPointer >> 8),3));
   }
   *(void* *)(*(long long *)(SystemResourcePointer + 600) + 0x10) = unsignedSystemValue2;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
-  memcpy(*(void* *)(*(long long *)(SystemResourcePointer + 600) + 0x10),AdditionalParameter,localResourceOffset);
+                    0001808ffc47. Too many branches
+                        memcpy(*(void* *)(*(long long *)(SystemResourcePointer + 600) + 0x10),AdditionalParameter,localResourceOffset);
   return;
 }
 
@@ -64738,8 +63943,7 @@ void FUN_18007e930(long long SystemResourcePointer)
   if (*(long long *)(SystemResourcePointer + 0x2c8) == 0) {
     *(uint *)(SystemResourcePointer + 0x100) = *(uint *)(SystemResourcePointer + 0x100) | 8;
     unsignedSystemValue1 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xd0,4,9);
-                    // WARNING: Subroutine does not return
-    memset(unsignedSystemValue1,0,0xd0);
+      memset(unsignedSystemValue1,0,0xd0);
   }
   return;
 }
@@ -64754,8 +63958,7 @@ void FUN_18007e95f(void)
   void* unsignedSystemValue1;
   
   unsignedSystemValue1 = SystemMemoryAllocationFunction();
-                    // WARNING: Subroutine does not return
-  memset(unsignedSystemValue1,0,0xd0);
+    memset(unsignedSystemValue1,0,0xd0);
 }
 
 
@@ -64782,8 +63985,7 @@ void FUN_18007e990(long long SystemResourcePointer,int ConfigurationDataPointer)
   PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 600);
   if ((int)PrimaryResourcePointer[1] != ConfigurationDataPointer) {
     if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     unsignedSystemValue2 = 0;
     *PrimaryResourcePointer = 0;
@@ -64949,9 +64151,8 @@ void FUN_18007edd0(long long SystemResourcePointer,char ConfigurationDataPointer
       PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 0x210);
       *(void* *)(SystemResourcePointer + 0x210) = 0;
       if (PrimaryResourcePointer != (long long *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018007ee5b. Too many branches
-                    // WARNING: Treating indirect jump as call
-        (**(code **)(*PrimaryResourcePointer + 0x38))();
+                    00018007ee5b. Too many branches
+                            (**(code **)(*PrimaryResourcePointer + 0x38))();
         return;
       }
     }
@@ -65006,8 +64207,7 @@ void FUN_18007ee70(long long SystemResourcePointer)
           if (unsignedSystemValue5 == unsignedSystemValue6 + systemOffset >> 0xb) {
             unsignedSystemValue8 = unsignedSystemValue2 >> 0xb;
             if (unsignedSystemValue8 == unsignedSystemValue2 + unsignedSystemValue6 >> 0xb) {
-                    // WARNING: Subroutine does not return
-              memcpy(*(long long *)(localResourcePointer + 8 + unsignedSystemValue13 * 8) + (ulong long)(systemOffset + unsignedSystemValue5 * -0x800) * 8
+                memcpy(*(long long *)(localResourcePointer + 8 + unsignedSystemValue13 * 8) + (ulong long)(systemOffset + unsignedSystemValue5 * -0x800) * 8
                      ,*(long long *)(localMemoryPointer5 + 8 + (ulong long)unsignedSystemValue8 * 8) +
                       (ulong long)(unsignedSystemValue2 + unsignedSystemValue8 * -0x800) * 8,(long long)(int)unsignedSystemValue6 << 3);
             }
@@ -65044,8 +64244,7 @@ void FUN_18007ee70(long long SystemResourcePointer)
       unsignedSystemValue14 = (ulong long)unsignedSystemValue6;
       punsignedSystemValue12 = (void* *)**(void* **)(SystemResourcePointer + 0x2d0);
       if (unsignedSystemValue2 == unsignedSystemValue6 + unsignedSystemValue5 >> 0xb) {
-                    // WARNING: Subroutine does not return
-        memcpy(*(long long *)(localAllocationFlags + 8 + (ulong long)unsignedSystemValue2 * 8) +
+          memcpy(*(long long *)(localAllocationFlags + 8 + (ulong long)unsignedSystemValue2 * 8) +
                (ulong long)(unsignedSystemValue5 + unsignedSystemValue2 * -0x800) * 8,punsignedSystemValue12,(ulong long)unsignedSystemValue6 << 3);
       }
       unsignedSystemValue2 = unsignedSystemValue5;
@@ -65113,8 +64312,7 @@ void FUN_18007eea1(long long SystemResourcePointer,int ConfigurationDataPointer,
         if (unsignedSystemValue4 == unsignedSystemValue5 + systemFlag >> 0xb) {
           unsignedSystemValue7 = unsignedSystemValue1 >> 0xb;
           if (unsignedSystemValue7 == unsignedSystemValue1 + unsignedSystemValue5 >> 0xb) {
-                    // WARNING: Subroutine does not return
-            memcpy(*(long long *)(localMemoryAddress + 8 + unsignedSystemValue11 * 8) + (ulong long)(systemFlag + unsignedSystemValue4 * -0x800) * 8,
+              memcpy(*(long long *)(localMemoryAddress + 8 + unsignedSystemValue11 * 8) + (ulong long)(systemFlag + unsignedSystemValue4 * -0x800) * 8,
                    *(long long *)(localMemoryPointer3 + 8 + (ulong long)unsignedSystemValue7 * 8) +
                    (ulong long)(unsignedSystemValue1 + unsignedSystemValue7 * -0x800) * 8,(long long)(int)unsignedSystemValue5 << 3);
           }
@@ -65151,8 +64349,7 @@ void FUN_18007eea1(long long SystemResourcePointer,int ConfigurationDataPointer,
     unsignedSystemValue12 = (ulong long)unsignedSystemValue5;
     pointerToUnsigned10 = (void* *)**(void* **)(systemMemoryBlockPtr + 0x2d0);
     if (unsignedSystemValue1 == unsignedSystemValue5 + unsignedSystemValue4 >> 0xb) {
-                    // WARNING: Subroutine does not return
-      memcpy(*(long long *)(localMemoryAddress + 8 + (ulong long)unsignedSystemValue1 * 8) +
+        memcpy(*(long long *)(localMemoryAddress + 8 + (ulong long)unsignedSystemValue1 * 8) +
              (ulong long)(unsignedSystemValue4 + unsignedSystemValue1 * -0x800) * 8,pointerToUnsigned10,(ulong long)unsignedSystemValue5 << 3);
     }
     unsignedSystemValue1 = unsignedSystemValue4;
@@ -65213,8 +64410,7 @@ void FUN_18007ef9a(long long SystemResourcePointer,long long ConfigurationDataPo
     if (unsignedSystemValue7 == unsignedSystemValue3 + systemIndex >> 0xb) {
       unsignedSystemValue6 = unsignedSystemValue1 >> 0xb;
       if (unsignedSystemValue6 == unsignedSystemValue1 + unsignedSystemValue3 >> 0xb) {
-                    // WARNING: Subroutine does not return
-        memcpy(*(long long *)(ConfigurationDataPointer + 8 + unsignedSystemValue9 * 8) + (ulong long)(systemIndex + unsignedSystemValue7 * -0x800) * 8,
+          memcpy(*(long long *)(ConfigurationDataPointer + 8 + unsignedSystemValue9 * 8) + (ulong long)(systemIndex + unsignedSystemValue7 * -0x800) * 8,
                *(long long *)(localAllocationFlags + 8 + (ulong long)unsignedSystemValue6 * 8) +
                (ulong long)(unsignedSystemValue1 + unsignedSystemValue6 * -0x800) * 8,(long long)(int)unsignedSystemValue3 << 3);
       }
@@ -65293,8 +64489,7 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long ConfigurationDataPo
   
   unsignedSystemValue9 = (ulong long)AdditionalParameter;
   if (**(long long **)(SystemResourcePointer + 0x2d0) != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   punsignedSystemValue4 = (void* *)0x0;
   **(long long **)(SystemResourcePointer + 0x2d0) = 0;
@@ -65543,31 +64738,25 @@ void* * FUN_18007f3b0(void* *SystemResourcePointer,ulong long ConfigurationDataP
 {
   *SystemResourcePointer = &UNK_1809fffc8;
   if (SystemResourcePointer[0x1a] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   FUN_180085530(SystemResourcePointer[0x16]);
   SystemResourcePointer[0x16] = 0;
   if (SystemResourcePointer[0x17] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x17] = 0;
   if (SystemResourcePointer[0x12] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (SystemResourcePointer[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (SystemResourcePointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   if (SystemResourcePointer[3] != 0) {
-                    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   *SystemResourcePointer = &SystemMemoryTemplateB;
   *SystemResourcePointer = &SystemMemoryTemplateA;
@@ -65620,8 +64809,7 @@ void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* ConfigurationDataPointer
       if (*(void* **)(localDataPointer + 0x18) != (void* *)0x0) {
         punsignedSystemValue8 = *(void* **)(localDataPointer + 0x18);
       }
-                    // WARNING: Subroutine does not return
-      UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ffc28,punsignedSystemValue8,ConfigurationFlag,unsignedSystemValue10);
+        UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ffc28,punsignedSystemValue8,ConfigurationFlag,unsignedSystemValue10);
     }
   }
   localDataPointer = *(long long *)(SystemResourcePointer + 8);
@@ -65998,8 +65186,7 @@ void FUN_18007f8f0(long long SystemResourcePointer)
         else {
           *(int *)(SystemResourcePointer + 0x40) = systemStatus5;
           if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           *PrimaryResourcePointer = 0;
           if (cVar4 == '\0') {
@@ -66101,8 +65288,7 @@ void FUN_18007f8f0(long long SystemResourcePointer)
                 }
                 else {
                   if (localMemoryAddress != 0) {
-                    // WARNING: Subroutine does not return
-                    SystemCleanupFunction();
+                      SystemCleanupFunction();
                   }
                   do {
                   } while (*pcVar13 != '\0');
@@ -66123,8 +65309,7 @@ void FUN_18007f8f0(long long SystemResourcePointer)
         unsignedSystemValue6 = unsignedSystemValue16 >> 0xb;
         *(uint *)(SystemResourcePointer + 0x2c) = unsignedSystemValue16;
         if (unsignedSystemValue6 == (int)cVar4 + unsignedSystemValue16 >> 0xb) {
-                    // WARNING: Subroutine does not return
-          memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue6 * 2 + 2) +
+            memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue6 * 2 + 2) +
                  (ulong long)(unsignedSystemValue16 + unsignedSystemValue6 * -0x800) * 4,pointerToUnsigned19,(unsignedSystemValue12 & 0xffffffff) << 2);
         }
         if (systemStatus5 != 0) {
@@ -66202,8 +65387,7 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
       else {
         *(int *)(systemDataIndexPtr + 0x40) = systemStatus5;
         if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-          SystemCleanupFunction();
+            SystemCleanupFunction();
         }
         *PrimaryResourcePointer = 0;
         if (cVar4 == '\0') {
@@ -66306,8 +65490,7 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
               }
               else {
                 if (localMemoryAddress != 0) {
-                    // WARNING: Subroutine does not return
-                  SystemCleanupFunction();
+                    SystemCleanupFunction();
                 }
                 do {
                 } while (*pcVar13 != '\0');
@@ -66328,8 +65511,7 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
       unsignedSystemValue6 = unsignedSystemValue16 >> 0xb;
       *(uint *)(systemDataIndexPtr + 0x2c) = unsignedSystemValue16;
       if (unsignedSystemValue6 == (int)cVar4 + unsignedSystemValue16 >> 0xb) {
-                    // WARNING: Subroutine does not return
-        memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue6 * 2 + 2) +
+          memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue6 * 2 + 2) +
                (ulong long)(unsignedSystemValue16 + unsignedSystemValue6 * -0x800) * 4,pointerToUnsigned19,(unsignedSystemValue12 & 0xffffffff) << 2);
       }
       if (systemStatus5 != 0) {
@@ -66404,8 +65586,7 @@ void FUN_18007f933(void* SystemResourcePointer,long long ConfigurationDataPointe
     else {
       *(int *)(systemDataIndexPtr + 0x40) = systemStatus9;
       if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-        SystemCleanupFunction();
+          SystemCleanupFunction();
       }
       *PrimaryResourcePointer = 0;
       if (cVar4 == '\0') {
@@ -66506,8 +65687,7 @@ void FUN_18007f933(void* SystemResourcePointer,long long ConfigurationDataPointe
             }
             else {
               if (localMemoryAddress != 0) {
-                    // WARNING: Subroutine does not return
-                SystemCleanupFunction();
+                  SystemCleanupFunction();
               }
               do {
               } while (*pcVar13 != '\0');
@@ -66528,8 +65708,7 @@ void FUN_18007f933(void* SystemResourcePointer,long long ConfigurationDataPointe
     unsignedSystemValue6 = unsignedSystemValue15 >> 0xb;
     *(uint *)(systemDataIndexPtr + 0x2c) = unsignedSystemValue15;
     if (unsignedSystemValue6 == (int)cVar4 + unsignedSystemValue15 >> 0xb) {
-                    // WARNING: Subroutine does not return
-      memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue6 * 2 + 2) +
+        memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue6 * 2 + 2) +
              (ulong long)(unsignedSystemValue15 + unsignedSystemValue6 * -0x800) * 4,pointerToUnsigned18,(unsignedSystemValue12 & 0xffffffff) << 2);
     }
     if (systemStatus9 != 0) {
@@ -66588,8 +65767,7 @@ void FUN_18007f976(void)
   else {
     *(uint *)(systemDataIndexPtr + 0x40) = unsignedSystemValue12;
     if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     *PrimaryResourcePointer = 0;
     if ((char)systemMemoryBlockPtr == '\0') {
@@ -66689,8 +65867,7 @@ void FUN_18007f976(void)
           }
           else {
             if (localMemoryAddress != 0) {
-                    // WARNING: Subroutine does not return
-              SystemCleanupFunction();
+                SystemCleanupFunction();
             }
             do {
             } while (*pcVar13 != '\0');
@@ -66711,8 +65888,7 @@ void FUN_18007f976(void)
   unsignedSystemValue5 = unsignedSystemValue6 >> 0xb;
   *(uint *)(systemDataIndexPtr + 0x2c) = unsignedSystemValue6;
   if (unsignedSystemValue5 == unsignedSystemValue12 + unsignedSystemValue6 >> 0xb) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue5 * 2 + 2) +
+      memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue5 * 2 + 2) +
            (ulong long)(unsignedSystemValue6 + unsignedSystemValue5 * -0x800) * 4,pointerToUnsigned17,(systemMemoryBlockPtr & 0xffffffff) << 2);
   }
   if (unsignedSystemValue12 != 0) {
@@ -66771,8 +65947,7 @@ void FUN_18007f983(void)
   else {
     *(uint *)(systemDataIndexPtr + 0x40) = unsignedSystemValue18;
     if (*PrimaryResourcePointer != 0) {
-                    // WARNING: Subroutine does not return
-      SystemCleanupFunction();
+        SystemCleanupFunction();
     }
     *PrimaryResourcePointer = 0;
     if ((char)unaff_EBX == '\0') {
@@ -66872,8 +66047,7 @@ void FUN_18007f983(void)
           }
           else {
             if (localMemoryAddress != 0) {
-                    // WARNING: Subroutine does not return
-              SystemCleanupFunction();
+                SystemCleanupFunction();
             }
             do {
             } while (*pcVar12 != '\0');
@@ -66894,8 +66068,7 @@ void FUN_18007f983(void)
   unsignedSystemValue5 = unsignedSystemValue6 >> 0xb;
   *(uint *)(systemDataIndexPtr + 0x2c) = unsignedSystemValue6;
   if (unsignedSystemValue5 == unsignedSystemValue18 + unsignedSystemValue6 >> 0xb) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(long long *)(pointerToUnsigned13 + (ulong long)unsignedSystemValue5 * 2 + 2) +
+      memcpy(*(long long *)(pointerToUnsigned13 + (ulong long)unsignedSystemValue5 * 2 + 2) +
            (ulong long)(unsignedSystemValue6 + unsignedSystemValue5 * -0x800) * 4,pointerToUnsigned16,(systemAllocationOffset & 0xffffffff) << 2);
   }
   if (unsignedSystemValue18 != 0) {
@@ -66965,8 +66138,7 @@ void FUN_18007fb5f(void)
         }
         else {
           if (localSystemHandle != 0) {
-                    // WARNING: Subroutine does not return
-            SystemCleanupFunction();
+              SystemCleanupFunction();
           }
           do {
           } while (*pcVar4 != '\0');
@@ -67001,8 +66173,7 @@ void FUN_18007fb5f(void)
     }
     return;
   }
-                    // WARNING: Subroutine does not return
-  memcpy(*(long long *)(systemStackFramePtr + (ulong long)unsignedSystemValue3 * 2 + 2) +
+    memcpy(*(long long *)(systemStackFramePtr + (ulong long)unsignedSystemValue3 * 2 + 2) +
          (ulong long)(unsignedSystemValue5 + unsignedSystemValue3 * -0x800) * 4,punsignedSystemValue6,(ulong long)systemAllocationOffsetD << 2);
 }
 
@@ -67041,8 +66212,7 @@ void FUN_18007fc19(void)
     }
     return;
   }
-                    // WARNING: Subroutine does not return
-  memcpy(*(long long *)(systemStackFramePtr + 8 + (ulong long)unsignedSystemValue2 * 8) +
+    memcpy(*(long long *)(systemStackFramePtr + 8 + (ulong long)unsignedSystemValue2 * 8) +
          (ulong long)(unaff_ESI + unsignedSystemValue2 * -0x800) * 4,pointerToUnsigned3,(ulong long)systemAllocationOffsetD << 2);
 }
 
@@ -67057,8 +66227,7 @@ void FUN_18007fc35(long long SystemResourcePointer,void* ConfigurationDataPointe
   int unaff_ESI;
   uint systemAllocationOffsetD;
   
-                    // WARNING: Subroutine does not return
-  memcpy(*(long long *)(systemStackFramePtr + 8 + SystemResourcePointer * 8) +
+    memcpy(*(long long *)(systemStackFramePtr + 8 + SystemResourcePointer * 8) +
          (ulong long)(uint)(unaff_ESI + (int)SystemResourcePointer * -0x800) * 4,ConfigurationFlag,(ulong long)systemAllocationOffsetD << 2
         );
 }
@@ -67208,8 +66377,7 @@ void ProcessSystemResourceDataWithEncryption(void* SystemResourcePointer,long lo
   if (ResourceArrayPointer[0] != (long long *)0x0) {
     (**(code **)(*ResourceArrayPointer[0] + 0x38))();
   }
-                    // WARNING: Subroutine does not return
-  memcpy(*(void* *)(*(long long *)(ConfigurationDataPointer + 0x20) + 0x10),*(void* *)(ConfigurationFlag + 8),
+    memcpy(*(void* *)(*(long long *)(ConfigurationDataPointer + 0x20) + 0x10),*(void* *)(ConfigurationFlag + 8),
          (long long)systemResult);
 }
 
