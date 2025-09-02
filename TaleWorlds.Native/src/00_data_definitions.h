@@ -219,11 +219,11 @@ void* SystemModuleDataPointerAudioCore;
 void* SystemModuleDataPointerGraphicsCore;
 void* SystemModuleDataPointerPhysicsCore;
 void* SystemModuleDataPointerNetworkCore;
-void* SystemModuleDataPointer05;
-void* SystemModuleDataPointer06;
-void* SystemModuleDataPointer07;
-void* SystemModuleDataPointer08;
-void* SystemModuleDataPointer09;
+void* SystemModuleDataPointerInputCore;
+void* SystemModuleDataPointerResourceCore;
+void* SystemModuleDataPointerAnimationCore;
+void* SystemModuleDataPointerParticleCore;
+void* SystemModuleDataPointerAudioEngine;
 void* SystemModuleDataPointer10;
 void* SystemModuleDataPointer11;
 void* SystemModuleDataPointer12;
@@ -8271,7 +8271,7 @@ LAB_180609070:
   CleanupSystemResources();
 }
 uint64_t
-FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4)
+ProcessSystemConfiguration(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4)
 {
   char cVar1;
   void *pBufferSize;
@@ -8286,15 +8286,15 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
     if (cVar1 == '\0') {
       cVar1 = ProcessNetworkRequest(auStack_30,&SystemNetworkConfigData4,1);
       if (cVar1 == '\0') {
-        cVar1 = FUN_180629850(auStack_30,&UNK_180a389b0,1);
+        cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigStringB,1);
         if (cVar1 == '\0') {
-          cVar1 = FUN_180629850(auStack_30,&UNK_180a38988,1);
+          cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigStringA,1);
           if (cVar1 == '\0') {
-            cVar1 = FUN_180629850(auStack_30,&NetworkRequestStringVerify,1);
+            cVar1 = ValidateNetworkRequest(auStack_30,&NetworkRequestStringVerify,1);
             if (cVar1 == '\0') {
-              cVar1 = FUN_180629850(auStack_30,&UNK_180a38a88,1);
+              cVar1 = ValidateNetworkRequest(auStack_30,&NetworkRequestConfigStringA,1);
               if (cVar1 == '\0') {
-                cVar1 = FUN_180629850(auStack_30,&NetworkRequestStringValidate,1);
+                cVar1 = ValidateNetworkRequest(auStack_30,&NetworkRequestConfigStringB,1);
                 if (cVar1 == '\0') {
                   cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38a48);
                   if (cVar1 == '\0') {
