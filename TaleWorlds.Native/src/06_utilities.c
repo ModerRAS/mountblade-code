@@ -4656,12 +4656,12 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t SystemObjectPointer;
-  uint8_t ValidationStatus;
+  uint8_t SystemValidationStatus;
   int64_t ObjectContextHandles [4];
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  SystemValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
+  if ((int)SystemValidationStatus != 0) {
+    return SystemValidationStatus;
   }
   if (ObjectContextHandles[0] != 0) {
     ObjectContextHandles[0] = ObjectContextHandles[0] + -8;
@@ -4669,8 +4669,8 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   SystemObjectPointer = *(int64_t *)(ObjectContextHandles[0] + ObjectHandleMemoryOffset);
   if (SystemObjectPointer != 0) {
     *(int *)(SystemObjectPointer + ObjectReferenceCountOffset) = *(int *)(SystemObjectPointer + ObjectReferenceCountOffset) + 1;
-    if ((*(char *)(SystemObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
-      return ValidationStatus;
+    if ((*(char *)(SystemObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (SystemValidationStatus = CheckSystemStatus(), (int)SystemValidationStatus != 0)) {
+      return SystemValidationStatus;
     }
     return 0;
   }

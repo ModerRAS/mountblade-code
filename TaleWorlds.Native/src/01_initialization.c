@@ -90,7 +90,7 @@
  * @param MemoryAddress 内存地址，指定要处理的内存页面位置
  * @return 无返回值
  */
-void ProcessSystemMemoryPage(long long MemoryAddress);
+void ProcessSystemMemoryPage(long long memoryAddress);
 
 /**
  * @brief 释放系统资源
@@ -113,7 +113,7 @@ void ReleaseSystemResource(void);
  * @param SourceData 源数据，用于初始化缓冲区的数据源
  * @return 无返回值
  */
-void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferSize, void* SourceData);
+void InitializeSystemMemoryBuffer(void* memoryTemplate, long long bufferSize, void* sourceData);
 
 /**
  * @brief 写入数据到缓冲区
@@ -126,7 +126,7 @@ void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferSize, vo
  * @param ... 可变参数，表示要写入的数据
  * @return 无返回值
  */
-void WriteDataToBuffer(void* Buffer, long long DataSize, ...);
+void WriteDataToBuffer(void* buffer, long long dataSize, ...);
 
 /**
  * @brief 初始化系统内存分配器
