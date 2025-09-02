@@ -3093,7 +3093,7 @@ uint8_t SystemResourceAuthor;
 uint8_t SystemResourceSecondaryCreator;
 uint8_t SystemResourceMaker;
 uint8_t SystemResourceProducer;
-uint8_t SystemResourceGenerator;
+uint8_t SystemResourceSecondaryGenerator;
 uint8_t PrimarySystemConfigurationEntry;
 uint8_t SecondarySystemConfigurationEntry;
 // 第三级配置条目 - 用于存储第三级系统配置信息

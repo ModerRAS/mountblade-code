@@ -9539,9 +9539,9 @@ Label_18060a6aa:
                       }
                     }
                     else {
-                      NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39d98);
+                      NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterD98);
                       if (NetworkRequestStatus == '\0') {
-                        NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39dc0);
+                        NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterDC0);
                         if (NetworkRequestStatus != '\0') {
 Label_18060b6e5:
                           StringProcessingResult = 0x58;
