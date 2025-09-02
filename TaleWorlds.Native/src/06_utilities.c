@@ -2966,137 +2966,134 @@ uint8_t SystemConfigurationParameterTen;
 uint8_t SystemConfigurationParameterEleven;
 uint8_t SystemConfigurationParameterTwelve;
 uint8_t SystemConfigurationParameterThirteen;
-uint8_t MemoryPoolBlockOne;
-uint8_t MemoryPoolBlockTwo;
-uint8_t MemoryPoolBlockThree;
-uint8_t MemoryPoolBlockFour;
-uint8_t MemoryPoolBlockFive;
-uint8_t MemoryPoolBlockSix;
-uint8_t MemoryPoolBlockSeven;
-uint8_t MemoryPoolBlockEight;
-uint8_t MemoryPoolBlockNine;
-uint8_t MemoryPoolBlockTen;
-uint8_t MemoryPoolBlockEleven;
-uint8_t MemoryPoolBlockTwelve;
-uint8_t MemoryPoolBlockThirteen;
-uint8_t MemoryPoolBlockFourteen;
-uint8_t MemoryPoolBlockFifteen;
-uint8_t MemoryPoolBlockSixteen;
-uint8_t MemoryPoolBlockCacheRegionA;
-uint8_t MemoryPoolBlockCacheRegionB;
-uint8_t MemoryPoolBlockNineteen;
-uint8_t MemoryPoolBlockTwenty;
-uint8_t MemoryPoolBlockTwentyOne;
-uint8_t MemoryPoolBlockTwentyTwo;
-uint8_t MemoryPoolBlockTwentyThree;
-uint8_t MemoryPoolBlockTwentyFour;
-uint8_t MemoryPoolBlockTwentyFive;
-uint8_t MemoryPoolBlockTwentySix;
-uint8_t MemoryPoolBlockTwentySeven;
-uint8_t MemoryPoolBlockTwentyEight;
-uint8_t MemoryPoolBlockTwentyNine;
-uint8_t MemoryPoolBlockThirty;
-uint8_t MemoryPoolBlockThirtyOne;
-uint8_t MemoryPoolBlockThirtyTwo;
-uint8_t MemoryPoolBlockThirtyThree;
-uint8_t MemoryPoolBlockThirtyFour;
-uint8_t MemoryPoolBlockThirtyFive;
-uint8_t MemoryPoolBlockThirtySix;
-uint8_t MemoryPoolBlockThirtySeven;
-uint8_t MemoryPoolBlockThirtyEight;
-uint8_t MemoryPoolBlockThirtyNine;
-uint8_t MemoryPoolBlockForty;
-uint8_t MemoryPoolBlockFortyOne;
-uint8_t MemoryPoolBlockFortyTwo;
-uint8_t SystemConfigDataBlockPrimary;
-uint8_t SystemConfigDataBlockSecondary;
-uint8_t SystemConfigDataBlockTertiary;
-uint8_t SystemConfigDataBlockQuaternary;
-uint8_t SystemConfigDataBlockQuinary;
-uint8_t SystemConfigDataBlockSenary;
-uint8_t SystemConfigDataBlockSeptenary;
-uint8_t SystemConfigDataBlockOctonary;
-uint8_t SystemConfigDataBlockNonary;
-uint8_t SystemConfigDataBlockDenary;
-uint8_t SystemConfigDataBlockUndenary;
-uint8_t SystemConfigDataBlockDuodenary;
-uint8_t SystemConfigDataBlockTerdenary;
-uint8_t SystemConfigDataBlockQuattuordenary;
-uint8_t SystemConfigDataBlockQuindenary;
-uint8_t SystemConfigDataBlockSexdenary;
-uint8_t SystemConfigDataBlockSeptendenary;
-uint8_t SystemConfigDataBlockOctodenary;
-uint8_t SystemConfigDataBlockNovendenary;
-uint8_t SystemConfigDataBlockVigesimal;
-uint8_t SystemConfigDataBlockUnvigesimal;
-uint8_t SystemConfigDataBlockDuovigesimal;
-uint8_t SystemConfigDataBlockTervigesimal;
-uint8_t SystemConfigDataBlockQuattuorvigesimal;
-uint8_t SystemConfigDataBlockQuinvigesimal;
-uint8_t SystemConfigDataBlockSexvigesimal;
-uint8_t SystemConfigDataBlockSeptenvigesimal;
-uint8_t SystemConfigDataBlockOctovigesimal;
-uint8_t SystemConfigDataBlockNovemvigesimal;
-uint8_t SystemConfigDataBlockTrigesimal;
-uint8_t SystemConfigDataBlockUntrigesimal;
-uint8_t SystemConfigDataBlockDuotrigesimal;
-uint8_t SystemConfigDataBlockTritrigesimal;
-uint8_t SystemConfigDataBlockQuattuortrigesimal;
-uint8_t SystemConfigDataBlockQuintrigesimal;
-uint8_t SystemConfigDataBlockSextrigesimal;
-uint8_t SystemConfigDataBlockSeptentrigesimal;
-uint8_t SystemConfigDataBlockOctotrigesimal;
-uint8_t SystemConfigDataBlockNovemtrigesimal;
-uint8_t SystemConfigDataBlockQuadragesimal;
-uint8_t MemoryPoolBufferPrimary;
-uint8_t MemoryPoolBufferSecondary;
-uint8_t MemoryPoolBufferTertiary;
-uint8_t MemoryPoolBufferQuaternary;
-uint8_t MemoryPoolBufferQuinary;
-uint8_t MemoryPoolBufferSenary;
-uint8_t MemoryPoolBufferSeptenary;
-uint8_t MemoryPoolBufferOctonary;
-uint8_t MemoryPoolBufferNonary;
-uint8_t MemoryPoolBufferDenary;
-uint8_t MemoryPoolBufferEleven;
-uint8_t MemoryPoolBufferTwelve;
-uint8_t MemoryPoolBufferThirteen;
-uint8_t MemoryPoolBufferFourteen;
-uint8_t MemoryPoolBufferFifteen;
-uint8_t MemoryPoolBufferSixteen;
-uint8_t MemoryPoolBufferSeventeen;
-uint8_t MemoryPoolBufferEighteen;
-uint8_t MemoryPoolBufferNineteen;
-uint8_t MemoryPoolBufferTwenty;
-uint8_t MemoryPoolBufferTwentyOne;
-uint8_t MemoryPoolBufferTwentyTwo;
-uint8_t MemoryPoolBufferTwentyThree;
-uint8_t MemoryPoolBufferTwentyFour;
-uint8_t MemoryPoolBufferTwentyFive;
-uint8_t MemoryPoolBufferTwentySix;
-uint8_t MemoryPoolBufferTwentySeven;
-uint8_t MemoryPoolBufferTwentyEight;
-uint8_t MemoryPoolBufferTwentyNine;
-uint8_t MemoryPoolBufferThirty;
-uint8_t MemoryPoolBufferThirtyOne;
-uint8_t MemoryPoolBufferThirtyTwo;
-uint8_t MemoryPoolBufferThirtyThree;
-uint8_t MemoryPoolBufferThirtyFour;
-uint8_t MemoryPoolBufferThirtyFive;
-uint8_t MemoryPoolBufferThirtySix;
-uint8_t MemoryPoolBufferThirtySeven;
-uint8_t MemoryPoolBufferThirtyEight;
-uint8_t MemoryPoolBufferThirtyNine;
-uint8_t MemoryPoolBufferForty;
-uint8_t MemoryPoolBufferFortyOne;
-uint8_t MemoryPoolBufferFortyTwo;
-uint8_t MemoryPoolBufferFortyThree;
-uint8_t MemoryPoolBufferFortyFour;
-uint8_t MemoryPoolBufferFortyFive;
-uint8_t MemoryPoolBufferFortySix;
-uint8_t MemoryPoolBufferFortySeven;
-uint8_t MemoryPoolBufferFortyEight;
-uint8_t MemoryPoolBufferFortyNine;
+// 内存池块变量 - 系统核心组件
+uint8_t MemoryPoolBlockSystemReserved;
+uint8_t MemoryPoolBlockApplicationData;
+uint8_t MemoryPoolBlockGraphicsResources;
+uint8_t MemoryPoolBlockAudioBuffers;
+uint8_t MemoryPoolBlockNetworkBuffers;
+uint8_t MemoryPoolBlockPhysicsData;
+uint8_t MemoryPoolBlockAnimationData;
+uint8_t MemoryPoolBlockUIElements;
+uint8_t MemoryPoolBlockScriptStorage;
+uint8_t MemoryPoolBlockGameWorldData;
+uint8_t MemoryPoolBlockEntityStorage;
+uint8_t MemoryPoolBlockTerrainData;
+uint8_t MemoryPoolBlockTextureCache;
+uint8_t MemoryPoolBlockShaderData;
+uint8_t MemoryPoolBlockModelData;
+// 内存池块变量 - 扩展系统组件
+uint8_t MemoryPoolBlockAudioEffects;
+uint8_t MemoryPoolBlockNetworkState;
+uint8_t MemoryPoolBlockCollisionData;
+uint8_t MemoryPoolBlockPathfindingData;
+uint8_t MemoryPoolBlockLightingData;
+uint8_t MemoryPoolBlockParticleData;
+uint8_t MemoryPoolBlockCameraData;
+uint8_t MemoryPoolBlockInputBuffer;
+uint8_t MemoryPoolBlockRenderQueue;
+uint8_t MemoryPoolBlockAssetLoader;
+uint8_t MemoryPoolBlockMemoryManager;
+uint8_t MemoryPoolBlockThreadLocal;
+uint8_t MemoryPoolBlockCriticalSection;
+uint8_t MemoryPoolBlockEventQueue;
+uint8_t MemoryPoolBlockMessageBuffer;
+uint8_t MemoryPoolBlockStreamingData;
+uint8_t MemoryPoolBlockCacheManager;
+uint8_t MemoryPoolBlockGarbageCollector;
+uint8_t MemoryPoolBlockDebugInfo;
+uint8_t MemoryPoolBlockProfilerData;
+uint8_t MemoryPoolBlockSaveGameData;
+uint8_t MemoryPoolBlockConfiguration;
+uint8_t MemoryPoolBlockLocalization;
+uint8_t MemoryPoolBlockModData;
+uint8_t MemoryPoolBlockSecurityData;
+uint8_t MemoryPoolBlockNetworkSession;
+// 系统配置数据块 - 核心配置
+uint8_t SystemConfigDataBlockSystemCore;
+uint8_t SystemConfigDataBlockGraphicsSettings;
+uint8_t SystemConfigDataBlockAudioSettings;
+uint8_t SystemConfigDataBlockNetworkSettings;
+uint8_t SystemConfigDataBlockInputSettings;
+uint8_t SystemConfigDataBlockDisplaySettings;
+uint8_t SystemConfigDataBlockPerformanceSettings;
+uint8_t SystemConfigDataBlockMemorySettings;
+uint8_t SystemConfigDataBlockStorageSettings;
+uint8_t SystemConfigDataBlockSecuritySettings;
+uint8_t SystemConfigDataBlockDebugSettings;
+uint8_t SystemConfigDataBlockLocaleSettings;
+uint8_t SystemConfigDataBlockAccessibilitySettings;
+uint8_t SystemConfigDataBlockUserProfileSettings;
+uint8_t SystemConfigDataBlockGameSettings;
+uint8_t SystemConfigDataBlockControlSettings;
+uint8_t SystemConfigDataBlockPhysicsSettings;
+uint8_t SystemConfigDataBlockAnimationSettings;
+uint8_t SystemConfigDataBlockAISettings;
+uint8_t SystemConfigDataBlockMultiplayerSettings;
+uint8_t SystemConfigDataBlockModSettings;
+uint8_t SystemConfigDataBlockDLCSettings;
+uint8_t SystemConfigDataBlockAchievementSettings;
+uint8_t SystemConfigDataBlockCloudSettings;
+uint8_t SystemConfigDataBlockSocialSettings;
+uint8_t SystemConfigDataBlockPrivacySettings;
+uint8_t SystemConfigDataBlockUpdateSettings;
+uint8_t SystemConfigDataBlockTelemetrySettings;
+uint8_t SystemConfigDataBlockCrashReportSettings;
+uint8_t SystemConfigDataBlockBackupSettings;
+uint8_t SystemConfigDataBlockRestoreSettings;
+uint8_t SystemConfigDataBlockMigrationSettings;
+uint8_t SystemConfigDataBlockCompatibilitySettings;
+uint8_t SystemConfigDataBlockOptimizationSettings;
+uint8_t SystemConfigDataBlockValidationSettings;
+uint8_t SystemConfigDataBlockSynchronizationSettings;
+// 内存池缓冲区 - 系统缓冲区
+uint8_t MemoryPoolBufferSystemCore;
+uint8_t MemoryPoolBufferGraphicsQueue;
+uint8_t MemoryPoolBufferAudioStream;
+uint8_t MemoryPoolBufferNetworkPacket;
+uint8_t MemoryPoolBufferInputEvent;
+uint8_t MemoryPoolBufferRenderCommand;
+uint8_t MemoryPoolBufferAssetData;
+uint8_t MemoryPoolBufferScriptContext;
+uint8_t MemoryPoolBufferGameState;
+uint8_t MemoryPoolBufferEntityUpdate;
+uint8_t MemoryPoolBufferPhysicsTick;
+uint8_t MemoryPoolBufferAnimationFrame;
+uint8_t MemoryPoolBufferUITransaction;
+uint8_t MemoryPoolBufferFileOperation;
+uint8_t MemoryPoolBufferMemoryAllocation;
+uint8_t MemoryPoolBufferThreadMessage;
+uint8_t MemoryPoolBufferDebugOutput;
+// 内存池缓冲区 - 扩展缓冲区
+uint8_t MemoryPoolBufferPerformanceCounter;
+uint8_t MemoryPoolBufferLogEntry;
+uint8_t MemoryPoolBufferNetworkSession;
+uint8_t MemoryPoolBufferVoiceChat;
+uint8_t MemoryPoolBufferVideoStream;
+uint8_t MemoryPoolBufferFileTransfer;
+uint8_t MemoryPoolBufferDatabaseQuery;
+uint8_t MemoryPoolBufferSearchResult;
+uint8_t MemoryPoolBufferCompressionData;
+uint8_t MemoryPoolBufferEncryptionData;
+uint8_t MemoryPoolBufferAuthentication;
+uint8_t MemoryPoolBufferAuthorization;
+uint8_t MemoryPoolBufferSerialization;
+uint8_t MemoryPoolBufferDeserialization;
+uint8_t MemoryPoolBufferChecksum;
+uint8_t MemoryPoolBufferHashCalculation;
+uint8_t MemoryPoolBufferRandomSeed;
+uint8_t MemoryPoolBufferTimeSync;
+uint8_t MemoryPoolBufferEventLog;
+uint8_t MemoryPoolBufferCrashDump;
+uint8_t MemoryPoolBufferMemoryDump;
+uint8_t MemoryPoolBufferStateSnapshot;
+uint8_t MemoryPoolBufferCheckpoint;
+uint8_t MemoryPoolBufferTransaction;
+uint8_t MemoryPoolBufferLock;
+uint8_t MemoryPoolBufferSemaphore;
+uint8_t MemoryPoolBufferCondition;
+uint8_t MemoryPoolBufferSignal;
+uint8_t MemoryPoolBufferQueue;
 uint8_t MemoryPoolBufferFifty;
 uint8_t MemoryPoolBufferFiftyOne;
 uint8_t MemoryPoolBufferFiftyTwo;
@@ -3964,23 +3961,23 @@ uint8_t ValidateObjectHandle(int64_t objectPointer)
 
 {
   uint8_t validationResult;
-  int64_t handleStorage;
+  int64_t HandleStorageBuffer;
   
-  validationResult = ValidateObjectContext(*(uint32_t *)(objectPointer + 0x10), &handleStorage);
+  validationResult = ValidateObjectContext(*(uint32_t *)(objectPointer + 0x10), &HandleStorageBuffer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  if (handleStorage == 0) {
-    handleStorage = 0;
+  if (HandleStorageBuffer == 0) {
+    HandleStorageBuffer = 0;
   }
   else {
-    handleStorage = handleStorage + -8;
+    HandleStorageBuffer = HandleStorageBuffer + -8;
   }
-  if (*(int64_t *)(handleStorage + 0x10) == 0) {
+  if (*(int64_t *)(HandleStorageBuffer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(handleStorage + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(HandleStorageBuffer + 0x10), 1);
 }
 
 
@@ -3994,20 +3991,20 @@ uint8_t ValidateObjectHandle(int64_t objectPointer)
 uint32_t ValidateObjectHandleFromRegister(void)
 
 {
-  int64_t registerValue;
-  int64_t adjustedPointer;
+  int64_t RegisterValue;
+  int64_t AdjustedPointer;
   
-  if (registerValue == 0) {
-    adjustedPointer = 0;
+  if (RegisterValue == 0) {
+    AdjustedPointer = 0;
   }
   else {
-    adjustedPointer = registerValue + -8;
+    AdjustedPointer = RegisterValue + -8;
   }
-  if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
+  if (*(int64_t *)(AdjustedPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(adjustedPointer + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(AdjustedPointer + 0x10), 1);
 }
 
 
