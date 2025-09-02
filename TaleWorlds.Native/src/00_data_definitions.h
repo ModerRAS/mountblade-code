@@ -2574,11 +2574,11 @@ int InitializeSystemMessageHandler(void)
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
   SystemMessageConfigTemplateA = &SystemMemoryConfigTemplate;
-  _DAT_180bfab18 = &SystemMemoryConfigBufferPrimary;
+  SystemConfigDataAddress1 = &SystemMemoryConfigBufferPrimary;
   SystemMemoryConfigBufferPrimary = 0;
-  _DAT_180bfab20 = 0x13;
+  SystemConfigDataSize1 = 0x13;
   strcpy_s(&SystemMemoryConfigBufferPrimary,0x80,&UnknownDataPointer180a24da8,StringProcessorFlags,SystemMutexFlags);
-  _DAT_180bfaba8 = &SystemMemoryConfigTemplate;
+  SystemConfigTemplateAddress1 = &SystemMemoryConfigTemplate;
   _DAT_180bfabb0 = &SystemMemoryConfigBufferSecondary;
   SystemMemoryConfigBufferSecondary = 0;
   _DAT_180bfabb8 = 0x13;
@@ -2944,7 +2944,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
           SystemOperationStatus = 1;
           SystemProcessStatus = 0;
           *(uint8_t *)(_DAT_180c86870 + 0x1f0) = 0;
-          puStack_2c8 = &SystemNullPointer;
+          StackBuffer2C8 = &SystemNullPointer;
           uStack_2b0 = 0;
           puStack_2c0 = (uint8_t *)0x0;
           uStack_2b8 = 0;
@@ -4301,7 +4301,7 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
   }
   puStack_30 = &SystemNullPointer;
   if (StackBuffer28 == (void *)0x0) {
-    puStack_28 = (void *)0x0;
+    StackBuffer28 = (void *)0x0;
     uStack_18 = 0;
     puStack_30 = &SystemBufferTemplate;
     if (lVar6 != 0) {
@@ -7053,9 +7053,9 @@ ProcessStringBufferDataOperation(uint64_t param_1,uint64_t param_2,uint64_t para
   void *StackBuffer28;
   longlong lStack_20;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
-  StringProcessingResult = FUN_1800ba4b0(&puStack_28,&SystemStringFormatPrimary,param_3,param_4,0,SystemMutexFlags);
+  StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatPrimary,param_3,param_4,0,SystemMutexFlags);
   BufferSize = (*pcVar1)(_DAT_180c8f008,StringProcessingResult,param_3,param_4,1);
-  puStack_28 = &SystemNullPointer;
+  StackBuffer28 = &SystemNullPointer;
   if (lStack_20 != 0) {
     CleanupSystemResources();
   }
@@ -7070,9 +7070,9 @@ ProcessStringBufferSecondaryOperation(uint64_t param_1,uint64_t param_2,uint64_t
   void *StackBuffer28;
   longlong lStack_20;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
-  StringProcessingResult = FUN_1800ba4b0(&puStack_28,&SystemStringFormatSecondary,param_3,param_4,0,SystemMutexFlags);
+  StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatSecondary,param_3,param_4,0,SystemMutexFlags);
   BufferSize = (*pcVar1)(_DAT_180c8f008,StringProcessingResult,param_3,param_4,1);
-  puStack_28 = &SystemNullPointer;
+  StackBuffer28 = &SystemNullPointer;
   if (lStack_20 != 0) {
     CleanupSystemResources();
   }
@@ -7089,7 +7089,7 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   longlong lStack_28;
   NetworkRequestResult = SystemMutexFlags;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
-  StringProcessingResult = FUN_18004b100(&puStack_30);
+  StringProcessingResult = ProcessSystemMemoryData(&puStack_30);
   BufferSize = (*pcVar1)(_DAT_180c8f008,StringProcessingResult,param_3,param_4,NetworkRequestResult);
   puStack_30 = &SystemNullPointer;
   if (lStack_28 != 0) {
@@ -7124,7 +7124,7 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   if (pModuleInitializationResult != (longlong *)0x0) {
     (**(code **)(*pModuleInitializationResult + 0x28))(pModuleInitializationResult);
   }
-  FUN_18005e300(StringProcessingResult,&plStackX_10);
+  ProcessSystemConfigurationData(StringProcessingResult,&plStackX_10);
   if (pModuleInitializationResult != (longlong *)0x0) {
     (**(code **)(*pModuleInitializationResult + 0x38))(pModuleInitializationResult);
   }
@@ -7486,7 +7486,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       if (_DAT_180c91d18 != (longlong *)0x0) {
         (**(code **)(*_DAT_180c91d18 + 0x28))();
       }
-      uVar7 = FUN_18005e1d0(StringProcessingResult,aplStackX_18);
+      uVar7 = ProcessSystemRuntimeData(StringProcessingResult,aplStackX_18);
     }
   }
   return uVar7;
@@ -7924,7 +7924,7 @@ LAB_180608a96:
         goto LAB_180609070;
       }
 LAB_180608bee:
-      pNetworkRequestResult = &UNK_180a38ba0;
+      pNetworkRequestResult = &SystemNetworkConfigData1;
       goto LAB_18060905e;
     }
     if (iStack_20 == 0x1b) {
@@ -10714,7 +10714,7 @@ longlong SystemMemoryAllocateBuffer(longlong param_1,longlong param_2,uint32_t p
   uint64_t uStack_38;
   MemoryAddress4 = SystemMutexFlags;
   pcVar11 = (char *)0x0;
-  FUN_180057110(param_4);
+  ProcessSystemModuleData(param_4);
   FUN_180632160(param_1,param_3);
   MemoryAddress3 = 1;
   pcVar10 = "base";
@@ -10943,7 +10943,7 @@ int SystemBufferValidateData(uint64_t param_1,char *param_2)
   longlong lVar5;
   char *pcVar6;
   int iVar7;
-  pStringProcessingResult = (uint64_t *)FUN_18005d4b0(param_1,param_2,0);
+  pStringProcessingResult = (uint64_t *)ProcessSystemNetworkData(param_1,param_2,0);
   iVar7 = 0;
   if (pStringProcessingResult == (uint64_t *)0x0) {
     return 0;
@@ -11106,7 +11106,7 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
   void *puStack_30;
   char *pcStack_28;
   MemoryAllocationResult = SystemMutexFlags;
-  ModuleInitializationResult = FUN_1800a02a0();
+  ModuleInitializationResult = ProcessSystemInitializationData();
   if (ModuleInitializationResult == 0) {
     return 0;
   }
@@ -11144,7 +11144,7 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
   longlong lVar4;
   void *puStack_30;
   char *pcStack_28;
-  ModuleInitializationResult = FUN_1800a02a0();
+  ModuleInitializationResult = ProcessSystemInitializationData();
   if (ModuleInitializationResult == 0) {
     return 0;
   }
@@ -11182,7 +11182,7 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   longlong lVar4;
   void *puStack_30;
   char *pcStack_28;
-  ModuleInitializationResult = FUN_1800a02a0(param_1,&UNK_180a0696c,param_3,param_4,SystemMutexFlags);
+  ModuleInitializationResult = ProcessSystemInitializationData(param_1,&UNK_180a0696c,param_3,param_4,SystemMutexFlags);
   if (ModuleInitializationResult == 0) {
     return 0;
   }
@@ -11223,7 +11223,7 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   void *puStack_30;
   char *pcStack_28;
   uVar6 = SystemMutexFlags;
-  lVar2 = FUN_1800a02a0();
+  lVar2 = ProcessSystemInitializationData();
   if (lVar2 == 0) {
     return 0;
   }
@@ -11267,7 +11267,7 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   void *puStack_30;
   char *pcStack_28;
   MemoryAllocationResult = SystemMutexFlags;
-  ModuleInitializationResult = FUN_1800a02a0(param_1,&UNK_180a16818);
+  ModuleInitializationResult = ProcessSystemInitializationData(param_1,&UNK_180a16818);
   if (ModuleInitializationResult == 0) {
     return 0;
   }
@@ -11306,7 +11306,7 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
   longlong lVar5;
   void *puStack_30;
   char *pcStack_28;
-  lVar2 = FUN_1800a02a0();
+  lVar2 = ProcessSystemInitializationData();
   if (lVar2 != 0) {
     pModuleInitializationResult = (longlong *)(lVar2 + 8);
     lVar2 = 0x180d48d24;
@@ -11348,7 +11348,7 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
   void *puStack_58;
   char *pcStack_50;
   uVar6 = SystemMutexFlags;
-  lVar2 = FUN_1800a02a0();
+  lVar2 = ProcessSystemInitializationData();
   if (lVar2 != 0) {
     pModuleInitializationResult = (longlong *)(lVar2 + 8);
     lVar2 = 0x180d48d24;
@@ -11388,7 +11388,7 @@ longlong SystemBufferOperate(uint64_t bufferId, uint64_t operateData, uint64_t *
   uint64_t *pStringProcessingResult;
   longlong lVar4;
   uint8_t auStack_18 [16];
-  lVar2 = FUN_1800a02a0();
+  lVar2 = ProcessSystemInitializationData();
   if (lVar2 != 0) {
     lVar4 = 0x180d48d24;
     if (*(longlong *)(lVar2 + 8) != 0) {

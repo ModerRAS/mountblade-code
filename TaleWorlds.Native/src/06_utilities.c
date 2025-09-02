@@ -17162,7 +17162,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
       else {
         secondFloatResult = 0.0;
       }
-      uStack0000000000000070 = (uint16_t)(int)(floatValue4 * 65535.0);
+      StackVariable70 = (uint16_t)(int)(floatValue4 * 65535.0);
       resourceHash = (**(code **)**(uint8_t **)(ExecutionContextPointer + 8))
                         (*(uint8_t **)(ExecutionContextPointer + 8),&stack0x00000070,2);
       if ((int)resourceHash != 0) {
@@ -17177,7 +17177,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
       else {
         secondFloatResult = 0.0;
       }
-      uStack0000000000000070 = (uint16_t)(int)(floatValue4 * 65535.0);
+      StackVariable70 = (uint16_t)(int)(floatValue4 * 65535.0);
       resourceHash = (**(code **)**(uint8_t **)(ExecutionContextPointer + 8))
                         (*(uint8_t **)(ExecutionContextPointer + 8),&stack0x00000070,2);
       if ((int)resourceHash != 0) {
@@ -18556,7 +18556,7 @@ uint64_t ValidateAndProcessResourceData(void)
   uint configurationFlags;
   uint SecurityHashValue;
   char ResourceValidationChar;
-  uint uStack0000000000000034;
+  uint StackVariable34;
   uint32_t StackValidationCode;
   
   ResourceContextOffset = 0;
@@ -18574,10 +18574,10 @@ LAB_18089af81:
         ValidationStatusCode = CalculateResourceHash(*ResourceContextPointer,&ObjectStackBufferResource,RegisterESI,RegisterESI,0);
       }
       else {
-        uStack0000000000000034 = 0;
+        StackVariable34 = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceContextPointer,(int64_t)&ObjectStackBufferResource + 4);
         if (ValidationStatusCode == 0) {
-          if ((uint64_t)uStack0000000000000034 + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089af81;
+          if ((uint64_t)StackVariable34 + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089af81;
           ValidationStatusCode = 0x11;
         }
       }
@@ -18677,10 +18677,10 @@ LAB_18089b1ab:
         RegisterEDI = CalculateResourceHash(*ResourceContextPointer,&StackBuffer38,RegisterESI,4,0);
       }
       else {
-        uStack0000000000000034 = 0;
+        StackVariable34 = 0;
         RegisterEDI = ValidateResourceAccess(*ResourceContextPointer,(int64_t)&ObjectStackBufferResource + 4);
         if (RegisterEDI == 0) {
-          if ((uint64_t)uStack0000000000000034 + 4 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089b1ab;
+          if ((uint64_t)StackVariable34 + 4 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089b1ab;
           RegisterEDI = 0x11;
         }
       }
