@@ -37770,7 +37770,7 @@ void InitializeAndConfigureSystemResources(void)
   unsignedSystemValue8 = unsignedSystemValue9;
   if (*(long long *)(localAllocationFlags + 0x30) - *PrimaryResourcePointer >> 3 != 0) {
     do {
-      FUN_18020e840(*(void* *)(*PrimaryResourcePointer + unsignedSystemValue9));
+      ProcessPrimarySystemResource(*(void* *)(*PrimaryResourcePointer + unsignedSystemValue9));
       unsignedSystemValue13 = (int)unsignedSystemValue8 + 1;
       unsignedSystemValue9 = unsignedSystemValue9 + 8;
       unsignedSystemValue8 = (ulong long)unsignedSystemValue13;
