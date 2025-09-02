@@ -56283,7 +56283,19 @@ void ProcessExtendedResourceHashValidationAndCleanup(uint8_t ObjectContext,int64
 
 
 
-void Unwind_180906de0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理完整资源哈希验证和清理
+ * 
+ * 该函数负责处理完整资源哈希验证和清理操作
+ * 验证完整资源哈希值并执行必要的清理工作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的完整哈希验证
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ProcessCompleteResourceHashValidationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -56303,7 +56315,19 @@ void Unwind_180906de0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906df0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证完整资源上下文完整性
+ * 
+ * 该函数负责验证完整资源上下文的完整性
+ * 检查完整资源上下文的数据结构是否有效
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的完整上下文验证
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ValidateCompleteResourceContextIntegrity(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   CommitResourceTransaction(ValidationContext + 0xd8);
