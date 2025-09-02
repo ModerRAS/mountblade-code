@@ -791,31 +791,32 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
  * @warning 调用此函数前必须确保系统已准备好处理模块依赖关系
  */
 void InitializeModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
-void* SystemModuleDependencyGlobalRegistry;        // 系统模块依赖全局注册表
-uint32_t SystemModuleDependencyEntryCount;         // 系统模块依赖条目计数
-uint32_t SystemModuleDependencyConfigurationFlags; // 系统模块依赖配置标志
-uint32_t SystemModuleDependencyInitializationStatus; // 系统模块依赖初始化状态
-void* SystemModuleDependencyAccessLock;            // 系统模块依赖访问锁
-void* SystemModuleDependencySyncMutex;             // 系统模块依赖同步互斥锁
-bool SystemModuleDependencyInitializationComplete; // 系统模块依赖初始化完成标志
-void* SystemModuleDependencyExecutionContext;      // 系统模块依赖执行上下文
-void* SystemModuleDependencySystemConfig;          // 系统模块依赖系统配置
-bool SystemModuleDependencySystemEnabled;          // 系统模块依赖系统启用标志
-void* SystemModuleDependencyPersistentStorage;     // 系统模块依赖持久化存储
-void* SystemModuleDependencyCacheStorage;          // 系统模块依赖缓存存储
-void* SystemModuleDependencyRuntimeBuffer;        // 系统模块依赖运行时缓冲区
-uint32_t SystemModuleDependencySystemVersion;      // 系统模块依赖系统版本
-uint32_t SystemModuleDependencyBuildNumber;        // 系统模块依赖构建编号
-uint32_t SystemModuleDependencyIntegrityChecksum;  // 系统模块依赖完整性校验和
-void* SystemModuleDependencySignature;             // 系统模块依赖签名
-void* SystemModuleDependencyHandle;                // 系统模块依赖句柄
+// 系统模块依赖全局变量
+void* GlobalModuleDependencyRegistry;                    // 系统模块依赖全局注册表
+uint32_t ModuleDependencyEntryCount;                     // 系统模块依赖条目计数
+uint32_t ModuleDependencyConfigurationFlags;             // 系统模块依赖配置标志
+uint32_t ModuleDependencyInitializationStatus;           // 系统模块依赖初始化状态
+void* ModuleDependencyAccessLock;                        // 系统模块依赖访问锁
+void* ModuleDependencySyncMutex;                         // 系统模块依赖同步互斥锁
+bool ModuleDependencyInitializationComplete;             // 系统模块依赖初始化完成标志
+void* ModuleDependencyExecutionContext;                  // 系统模块依赖执行上下文
+void* ModuleDependencySystemConfig;                      // 系统模块依赖系统配置
+bool ModuleDependencySystemEnabled;                      // 系统模块依赖系统启用标志
+void* ModuleDependencyPersistentStorage;                 // 系统模块依赖持久化存储
+void* ModuleDependencyCacheStorage;                      // 系统模块依赖缓存存储
+void* ModuleDependencyRuntimeBuffer;                    // 系统模块依赖运行时缓冲区
+uint32_t ModuleDependencySystemVersion;                  // 系统模块依赖系统版本
+uint32_t ModuleDependencyBuildNumber;                    // 系统模块依赖构建编号
+uint32_t ModuleDependencyIntegrityChecksum;              // 系统模块依赖完整性校验和
+void* ModuleDependencySignature;                         // 系统模块依赖签名
+void* ModuleDependencyHandle;                            // 系统模块依赖句柄
 
 // 系统运行时全局变量
-int64_t SystemInputParameterValue;                   // 系统输入参数值
-int32_t SystemOperationStatus;                      // 系统操作状态
-void* SystemRegisterContextData;                    // 系统寄存器上下文数据
-void* SystemObjectContextBuffer;                     // 系统对象上下文缓冲区
-uint8_t SystemResourceAllocationTemplate;           // 系统资源分配模板
+int64_t GlobalInputParameterValue;                        // 系统输入参数值
+int32_t SystemOperationStatusCode;                       // 系统操作状态
+void* RegisterContextData;                               // 系统寄存器上下文数据
+void* ObjectContextBuffer;                               // 系统对象上下文缓冲区
+uint8_t ResourceAllocationTemplate;                      // 系统资源分配模板
 
 /**
  * @brief 初始化核心引擎模块
@@ -829,10 +830,11 @@ uint8_t SystemResourceAllocationTemplate;           // 系统资源分配模板
  * @warning 调用此函数前必须确保系统资源已准备就绪
  */
 void InitializeCoreEngineModule(void);
-void* SystemCoreEngineInstance;                  // 系统核心引擎实例
-void* SystemCoreEngineConfiguration;             // 系统核心引擎配置
-uint32_t SystemCoreEngineInitializationStatus;    // 系统核心引擎初始化状态
-void* SystemCoreEngineHandle;                    // 系统核心引擎句柄
+// 核心引擎模块全局变量
+void* CoreEngineInstance;                                // 系统核心引擎实例
+void* CoreEngineConfiguration;                           // 系统核心引擎配置
+uint32_t CoreEngineInitializationStatus;                // 系统核心引擎初始化状态
+void* CoreEngineHandle;                                  // 系统核心引擎句柄
 
  /**
  * @brief 初始化渲染引擎模块
@@ -846,11 +848,12 @@ void* SystemCoreEngineHandle;                    // 系统核心引擎句柄
  * @warning 调用此函数前必须确保图形设备已初始化
  */
 void InitializeRenderingEngineModule(void);
-void* SystemRenderingEngineInstance;              // 系统渲染引擎实例
-void* SystemRenderingEngineConfiguration;         // 系统渲染引擎配置
-uint32_t SystemRenderingEngineInitializationStatus; // 系统渲染引擎初始化状态
-void* SystemRenderingEngineHandle;                // 系统渲染引擎句柄
-void* SystemRenderingEngineExecutionContext;      // 系统渲染引擎执行上下文
+// 渲染引擎模块全局变量
+void* RenderingEngineInstance;                          // 系统渲染引擎实例
+void* RenderingEngineConfiguration;                     // 系统渲染引擎配置
+uint32_t RenderingEngineInitializationStatus;           // 系统渲染引擎初始化状态
+void* RenderingEngineHandle;                             // 系统渲染引擎句柄
+void* RenderingEngineExecutionContext;                   // 系统渲染引擎执行上下文
 /**
  * @brief 初始化图形系统模块
  * 
@@ -863,11 +866,12 @@ void* SystemRenderingEngineExecutionContext;      // 系统渲染引擎执行上
  * @warning 调用此函数前必须确保渲染引擎已初始化
  */
 void InitializeGraphicsSystemModule(void);
-void* SystemGraphicsInstance;                    // 系统图形系统实例
-void* SystemGraphicsConfiguration;               // 系统图形系统配置
-uint32_t SystemGraphicsInitializationStatus;      // 系统图形系统初始化状态
-void* SystemGraphicsHandle;                      // 系统图形系统句柄
-void* SystemGraphicsExecutionContext;            // 系统图形系统执行上下文
+// 图形系统模块全局变量
+void* GraphicsSystemInstance;                            // 系统图形系统实例
+void* GraphicsSystemConfiguration;                       // 系统图形系统配置
+uint32_t GraphicsSystemInitializationStatus;             // 系统图形系统初始化状态
+void* GraphicsSystemHandle;                              // 系统图形系统句柄
+void* GraphicsSystemExecutionContext;                    // 系统图形系统执行上下文
 
 
 /**
@@ -882,10 +886,11 @@ void* SystemGraphicsExecutionContext;            // 系统图形系统执行上�
  * @warning 调用此函数前必须确保音频设备可用
  */
 void InitializeAudioSystemModule(void);
-void* SystemAudioInstance;                      // 系统音频系统实例
-void* SystemAudioConfiguration;                 // 系统音频系统配置
-uint32_t SystemAudioInitializationStatus;        // 系统音频系统初始化状态
-void* SystemAudioHandle;                        // 系统音频系统句柄
+// 音频系统模块全局变量
+void* AudioSystemInstance;                              // 系统音频系统实例
+void* AudioSystemConfiguration;                         // 系统音频系统配置
+uint32_t AudioSystemInitializationStatus;               // 系统音频系统初始化状态
+void* AudioSystemHandle;                                 // 系统音频系统句柄
 
 
 /**
@@ -900,10 +905,11 @@ void* SystemAudioHandle;                        // 系统音频系统句柄
  * @warning 调用此函数前必须确保网络设备可用
  */
 void InitializeNetworkSystemModule(void);
-void* SystemNetworkSystemInstance;              // 系统网络系统实例
-void* SystemNetworkSystemConfiguration;         // 系统网络系统配置
-uint32_t SystemNetworkSystemInitializationStatus; // 系统网络系统初始化状态
-void* SystemNetworkSystemHandle;                // 系统网络系统句柄
+// 网络系统模块全局变量
+void* NetworkSystemInstance;                            // 系统网络系统实例
+void* NetworkSystemConfiguration;                       // 系统网络系统配置
+uint32_t NetworkSystemInitializationStatus;             // 系统网络系统初始化状态
+void* NetworkSystemHandle;                               // 系统网络系统句柄
 
 
 /**
@@ -917,7 +923,8 @@ void* SystemNetworkSystemHandle;                // 系统网络系统句柄
  * @warning 状态标志值的含义取决于具体的系统实现
  */
 uint32_t GetCoreEngineSystemStatusFlag(void);
-bool SystemCoreEngineInitializationComplete;   // 系统核心引擎初始化完成标志
+// 核心引擎系统状态标志
+bool CoreEngineInitializationComplete;                // 系统核心引擎初始化完成标志
 
 
 /**
@@ -931,7 +938,8 @@ bool SystemCoreEngineInitializationComplete;   // 系统核心引擎初始化完
  * @warning 状态标志值的含义取决于具体的渲染引擎实现
  */
 uint32_t GetRenderingEngineSystemStatusFlag(void);
-bool SystemRenderingEngineInitializationComplete; // 系统渲染引擎初始化完成标志
+// 渲染引擎系统状态标志
+bool RenderingEngineInitializationComplete;             // 系统渲染引擎初始化完成标志
 
 
 /**
@@ -945,7 +953,8 @@ bool SystemRenderingEngineInitializationComplete; // 系统渲染引擎初始化
  * @warning 状态标志值的含义取决于具体的图形系统实现
  */
 uint32_t GetGraphicsSystemStatusFlag(void);
-bool SystemGraphicsSystemInitializationComplete; // 系统图形系统初始化完成标志
+// 图形系统状态标志
+bool GraphicsSystemInitializationComplete;               // 系统图形系统初始化完成标志
 
  /**
  * @brief 获取音频系统状态标志
@@ -958,7 +967,8 @@ bool SystemGraphicsSystemInitializationComplete; // 系统图形系统初始化�
  * @warning 状态标志值的含义取决于具体的音频系统实现
  */
 uint32_t GetAudioSystemStatusFlag(void);
-bool SystemAudioSystemInitializationComplete;   // 系统音频系统初始化完成标志
+// 音频系统状态标志
+bool AudioSystemInitializationComplete;                 // 系统音频系统初始化完成标志
 
 
 /**
@@ -973,8 +983,9 @@ bool SystemAudioSystemInitializationComplete;   // 系统音频系统初始化�
  * @warning 调用此函数后，所有线程同步对象将失效
  */
 void DestroyThreadSynchronizationObjects(void);
-void* SystemThreadSynchronizationObjectHandle;   // 系统线程同步对象句柄
-void* SystemThreadSynchronizationExecutionContext; // 系统线程同步执行上下文
+// 线程同步对象全局变量
+void* ThreadSynchronizationObjectHandle;              // 系统线程同步对象句柄
+void* ThreadSynchronizationExecutionContext;          // 系统线程同步执行上下文
 
  /**
  * @brief 关闭系统句柄
@@ -999,11 +1010,12 @@ void CloseSystemHandle(void);
  * @warning 调用此函数后，线程资源将被完全释放
  */
 void CleanupThreadResources(void);
-uint32_t SystemThreadCleanupStatus;                // 系统线程清理状态
-void* SystemThreadCleanupMainStorage;              // 系统线程清理主存储
-void* SystemThreadCleanupSecondaryStorage;         // 系统线程清理次级存储
-void* SystemThreadCleanupResourceHandle;           // 系统线程清理资源句柄
-void* SystemThreadCleanupAuxiliaryStorage;         // 系统线程清理辅助存储
+// 线程清理系统全局变量
+uint32_t ThreadCleanupStatus;                          // 系统线程清理状态
+void* ThreadCleanupMainStorage;                        // 系统线程清理主存储
+void* ThreadCleanupSecondaryStorage;                   // 系统线程清理次级存储
+void* ThreadCleanupResourceHandle;                     // 系统线程清理资源句柄
+void* ThreadCleanupAuxiliaryStorage;                   // 系统线程清理辅助存储
 
  /**
  * @brief 初始化资源管理器
@@ -1087,14 +1099,15 @@ void OptimizeResourceUsage(void);
 void MonitorResourcePerformance(void);
 
 void* ResourceManagerHandle;               // 资源管理器句柄
-uint32_t ResourceManagementStatus;           // 资源管理状态
-void* ResourceConfigurationContext;         // 资源配置上下文
-void* ResourceStatusMonitor;                 // 资源状态监控器
-void* SmallBufferPool;                       // 小型缓冲池
-void* MediumBufferPool;                      // 中型缓冲池
-void* LargeBufferPool;                       // 大型缓冲池
-void* ResourceManagerInstance;              // 资源管理器实例
-void* ResourceDatabaseConnection;            // 资源数据库连接
+// 资源管理器全局变量
+uint32_t ResourceManagementStatusCode;               // 资源管理状态
+void* ResourceConfigurationContext;                   // 资源配置上下文
+void* ResourceStatusMonitor;                         // 资源状态监控器
+void* SmallBufferPool;                               // 小型缓冲池
+void* MediumBufferPool;                              // 中型缓冲池
+void* LargeBufferPool;                               // 大型缓冲池
+void* ResourceManagerInstance;                        // 资源管理器实例
+void* ResourceDatabaseConnection;                    // 资源数据库连接
 
  /**
  * @brief 初始化纹理管理器

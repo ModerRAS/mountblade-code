@@ -43507,8 +43507,8 @@ ResourceDataIndexCheckLoop:
     *(uint32_t *)(dataBufferContext + 2) = 0;
     *(uint32_t *)(dataBufferContext + 2) = MemoryBufferAddress;
     dataBufferContext[1] = pEncryptionOffset2;
-    *(uint32_t *)((long long)dataBufferContext + 0x1c) = uStack_f0._4_4_;
-    *(uint32_t *)(dataBufferContext + 3) = (uint32_t)uStack_f0;
+    *(uint32_t *)((long long)dataBufferContext + 0x1c) = SystemResourceDataIndex._4_4_;
+    *(uint32_t *)(dataBufferContext + 3) = (uint32_t)SystemResourceDataIndex;
     MemoryBufferAddress = 0;
     pEncryptionOffset2 = (uint8_t *)0x0;
     StackPointerF0 = 0;
@@ -52235,13 +52235,13 @@ LAB_180070b00:
   UnsignedStackFlagC0 = 0;
   SystemMemoryAllocatorReferencePointer = &SystemMemoryAllocatorReference;
   SystemDataBufferPointer = &SystemStringTemplate;
-  if (puStack_f0 != (void* *)0x0) {
-    SystemDataBufferPointer = puStack_f0;
+  if (pSystemResourceDataIndex != (void* *)0x0) {
+    SystemDataBufferPointer = pSystemResourceDataIndex;
   }
   charFlag = GetConfigurationDataStatus(SystemDataBufferPointer);
   if (charFlag != '\0') {
     pMemoryBufferAddress = &SystemGlobalDataReference;
-    if (puStack_f0 != (void* *)0x0) {
+    if (pSystemResourceDataIndex != (void* *)0x0) {
         SystemCleanupFunction();
     }
     goto LAB_1800718e9;
@@ -52250,7 +52250,7 @@ LAB_180070b00:
   resourceCounter = SystemAllocationFlagsTemplate;
   if (systemIndex != 0) {
     pMemoryBufferAddress = &SystemGlobalDataReference;
-    if (puStack_f0 != (void* *)0x0) {
+    if (pSystemResourceDataIndex != (void* *)0x0) {
         SystemCleanupFunction();
     }
     goto LAB_1800718e9;
@@ -52659,7 +52659,7 @@ LAB_18007113f:
     SystemMemoryOffset = SystemMemoryOffset & MAX_UNSIGNED_32_BIT00000000;
     pSystemThreadContext140 = &SystemMemoryAllocatorReference;
     pMemoryBufferAddress = &SystemGlobalDataReference;
-    if (puStack_f0 != (void* *)0x0) {
+    if (pSystemResourceDataIndex != (void* *)0x0) {
         SystemCleanupFunction();
     }
 LAB_1800718e9:
@@ -52670,8 +52670,8 @@ LAB_1800718e9:
   }
 LAB_1800715eb:
   SystemDataBufferPointer = &SystemStringTemplate;
-  if (puStack_f0 != (void* *)0x0) {
-    SystemDataBufferPointer = puStack_f0;
+  if (pSystemResourceDataIndex != (void* *)0x0) {
+    SystemDataBufferPointer = pSystemResourceDataIndex;
   }
   ThreadContextFlag = GetSystemContextFlag(SystemDataBufferPointer);
     UpdateContextManagerSystem(SystemContextManagerPointer,&SystemConfigurationDataBufferE,isByteValid3 ^ 1,ThreadContextFlag);
@@ -57204,7 +57204,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
   long long lStack_108;
   void* EncryptionOffset2;
   void* MemoryBufferAddress;
-  uint8_t uStack_f0;
+  uint8_t SystemResourceDataIndex;
   void* StackPointerE8;
   void* SystemMemoryAllocatorStatus;
   void* StackPointerC8;
@@ -58810,7 +58810,7 @@ SystemResourceProcessingComplete:
       *(void* *)(SystemResourceManager + 0x160) = EncryptionOffset1;
       *(void* *)(SystemResourceManager + 0x168) = EncryptionOffset2;
       *(void* *)(SystemResourceManager + 0x170) = MemoryBufferAddress;
-      *(void* *)(SystemResourceManager + 0x178) = uStack_f0;
+      *(void* *)(SystemResourceManager + 0x178) = SystemResourceDataIndex;
       *(void* *)(SystemResourceManager + 0x180) = uStack_e8;
       *(void* *)(SystemResourceManager + 0x188) = uStack_e0;
       *(void* *)(SystemResourceManager + 400) = SystemMemoryAllocatorStatus;
@@ -58823,7 +58823,7 @@ SystemResourceProcessingComplete:
       *(void* *)(SystemResourceManager + 0x160) = EncryptionOffset1;
       *(void* *)(SystemResourceManager + 0x168) = EncryptionOffset2;
       *(void* *)(SystemResourceManager + 0x170) = MemoryBufferAddress;
-      *(void* *)(SystemResourceManager + 0x178) = uStack_f0;
+      *(void* *)(SystemResourceManager + 0x178) = SystemResourceDataIndex;
       *(void* *)(SystemResourceManager + 0x180) = uStack_e8;
       *(void* *)(SystemResourceManager + 0x188) = uStack_e0;
       *(void* *)(SystemResourceManager + 400) = SystemMemoryAllocatorStatus;
@@ -64360,7 +64360,7 @@ LAB_18007a312:
     EncryptionOffset2 = ((void* *)(ResourceDataOffset1 + SystemThreadHandle1))[1];
     SystemHashNodeData = (void* *)(ResourceDataOffset1 + 0x10 + SystemThreadHandle1);
     MemoryBufferAddress = *SystemHashNodeData;
-    uStack_f0 = SystemHashNodeData[1];
+    SystemResourceDataIndex = SystemHashNodeData[1];
     SystemHashNodeData = (void* *)(ResourceDataOffset1 + 0x20 + SystemThreadHandle1);
     uStack_e8 = *SystemHashNodeData;
     uStack_e0 = SystemHashNodeData[1];
