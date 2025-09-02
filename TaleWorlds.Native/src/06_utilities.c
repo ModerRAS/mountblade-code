@@ -2882,7 +2882,7 @@ uint8_t MemoryAllocationNetwork;
 
  uint8_t MemoryPoolManager;
 // 内存分配器 - 负责内存分配操作
-uint8_t MemoryAllocator;
+uint8_t MemoryAllocationManager;
 uint8_t SystemMemoryDescriptor;
 uint8_t MemoryPoolBuffer;
 uint8_t SystemMemoryCache;
@@ -3025,7 +3025,7 @@ uint8_t ResourceValidator;
 uint8_t ResourceChecker;
 uint8_t ResourceTrackerTable;
 // 资源监控器 - 用于监控系统资源使用情况
-uint8_t ResourceMonitor;
+uint8_t ResourceUsageMonitor;
 uint8_t ResourceMonitorTable;
 uint8_t ResourceAuditorTable;
 // 资源审计器 - 用于审计系统资源使用情况
@@ -3079,8 +3079,8 @@ uint8_t ThreadPriorityTable;
 uint8_t ThreadAffinityTable;
 uint8_t ThreadLocalStorageTable;
 uint8_t ThreadSynchronizationTable;
-// 线程管理器 - 管理系统线程生命周期
-uint8_t ThreadManager;
+// 线程生命周期管理器 - 管理系统线程生命周期
+uint8_t ThreadLifecycleManager;
 uint8_t SystemThreadScheduler;
 uint8_t SystemThreadPool;
 uint8_t SystemThreadQueue;
@@ -3090,7 +3090,7 @@ uint8_t MemoryPoolBufferPrimary;
 uint8_t MemoryPoolBufferSecondary;
 // 第三级内存池缓冲区 - 用于存储第三级系统内存池数据
 uint8_t TertiaryMemoryPoolBuffer;
-uint8_t ResourceAllocationTable;
+uint8_t ResourceAllocationManager;
 uint8_t SystemMemoryManager;
 uint8_t ThreadContextManager;
 // 主数据缓冲区 - 用于存储主要的系统数据
@@ -3116,12 +3116,12 @@ uint8_t CacheManager;
 uint8_t DataBufferPool;
 // 事件表 - 存储系统事件信息
 uint8_t EventTable;
-// 线程管理器 - 管理系统线程生命周期
-uint8_t ThreadManager;
+// 线程生命周期管理器 - 管理系统线程生命周期
+uint8_t ThreadLifecycleManager;
 // 进程管理器 - 管理系统进程操作
-uint8_t ProcessManager;
+uint8_t ProcessLifecycleManager;
 // 内存分配器 - 负责内存分配操作
-uint8_t MemoryAllocator;
+uint8_t MemoryAllocationManager;
 // 内存池 - 管理内存池资源
 uint8_t MemoryPool;
 // 任务调度器 - 负责任务调度执行
@@ -3136,7 +3136,7 @@ uint8_t IoManager;
 // 文件处理器 - 处理文件相关操作
 uint8_t FileHandler;
 // 网络管理器 - 管理网络连接和通信
-uint8_t NetworkManager;
+uint8_t NetworkConnectionManager;
 // 套接字管理器 - 管理套接字连接
 uint8_t SocketManager;
 // 连接池 - 管理网络连接池
@@ -3196,7 +3196,7 @@ uint8_t Analyzer;
 uint8_t SystemOptimizer;
 uint8_t MemoryPoolManager;
 // 内存分配器 - 负责内存分配操作
-uint8_t MemoryAllocator;
+uint8_t MemoryAllocationManager;
 uint8_t SystemMemoryTracker;
 uint8_t SystemMemoryCache;
 uint8_t MemoryPoolBuffer;
@@ -3223,8 +3223,8 @@ uint8_t SystemMemorySaver;
 uint8_t SystemMemoryArchiver;
 uint8_t SystemMemoryRestorer;
 uint8_t SystemMementoManager;
-// 线程管理器 - 管理系统线程生命周期
-uint8_t ThreadManager;
+// 线程生命周期管理器 - 管理系统线程生命周期
+uint8_t ThreadLifecycleManager;
 uint8_t SystemThreadScheduler;
 uint8_t SystemThreadDispatcher;
 uint8_t SystemThreadController;
@@ -3251,7 +3251,7 @@ uint8_t SystemThreadArchiver;
 uint8_t SystemThreadRestorer;
 uint8_t SystemThreadMementoManager;
 // 进程管理器 - 管理系统进程操作
-uint8_t ProcessManager;
+uint8_t ProcessLifecycleManager;
 uint8_t SystemProcessScheduler;
 uint8_t SystemProcessDispatcher;
 uint8_t SystemProcessController;
@@ -10167,14 +10167,7 @@ uint64_t ProcessFloatDataValidation(void)
 
 
 
- void ExecuteSystemTertiaryOperation(void)
-/**
- * @brief 空操作函数B
- * 
- * 这是一个空操作函数，不执行任何操作
- * 主要用于占位或作为默认的空实现
- */
-
+ 
 
  /**
  * @brief 处理系统上下文和数据操作
