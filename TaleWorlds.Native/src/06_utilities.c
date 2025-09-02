@@ -57701,7 +57701,18 @@ void ExecuteSystemCleanupCallback(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_1809071d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统清理回调函数扩展版本
+ * 
+ * 该函数负责执行系统清理相关的回调函数的扩展版本
+ * 在指定的上下文中调用清理函数，传递清理标志和选项
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteSystemCleanupCallbackExtended(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x48) != (code *)0x0) {
@@ -57712,7 +57723,16 @@ void Unwind_1809071d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809071e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查线程紧急退出条件
+ * 
+ * 该函数负责检查线程是否需要执行紧急退出
+ * 验证线程上下文中的特定状态，必要时调用紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CheckThreadEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x18) != 0) {
@@ -57773,7 +57793,16 @@ void Unwind_180907230(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907250(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查系统数据紧急退出条件
+ * 
+ * 该函数负责检查系统数据状态是否需要执行紧急退出
+ * 验证系统数据上下文中的特定状态，必要时调用紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CheckSystemDataEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xd0) != 0) {
@@ -57784,7 +57813,16 @@ void Unwind_180907250(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907270(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查资源管理紧急退出条件
+ * 
+ * 该函数负责检查资源管理状态是否需要执行紧急退出
+ * 验证资源管理上下文中的特定状态，必要时调用紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CheckResourceManagementEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x18) != 0) {
