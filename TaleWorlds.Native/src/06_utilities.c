@@ -42019,7 +42019,7 @@ void Unwind_1809043f0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904410(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ValidateSystemResourceContext(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -42049,7 +42049,7 @@ void Unwind_180904410(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904430(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceMemory(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -49756,6 +49756,18 @@ void ReleaseResourceLock(uint8_t objectContext,int64_t validationContext)
 
 
 
+/**
+ * @brief 清理资源上下文
+ * 
+ * 该函数负责清理资源上下文中的相关数据和状态
+ * 释放不再需要的资源并重置上下文状态
+ * 
+ * @param objectContext 对象上下文，用于标识特定的对象实例
+ * @param validationContext 验证上下文，包含资源上下文的信息
+ * @return 无返回值
+ * @note 此函数会清理资源上下文中的所有相关数据
+ * @warning 调用此函数后，资源上下文将被重置
+ */
 void CleanupResourceContext(uint8_t objectContext,int64_t validationContext)
 
 {
@@ -49771,7 +49783,7 @@ void CleanupResourceContext(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180906120(void)
+void DestroySystemMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -49780,7 +49792,7 @@ void Unwind_180906120(void)
 
 
 
-void Unwind_180906130(uint8_t objectContext,int64_t validationContext)
+void ReleaseResourceHandle(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t *processPointer;
