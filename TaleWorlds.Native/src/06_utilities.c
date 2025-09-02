@@ -4997,12 +4997,15 @@ uint32_t ProcessSystemResource(void)
 
 
 
- void TerminateSystem(void)
-/**
+ /**
  * @brief 执行系统终止
  * 
  * 该函数负责执行系统终止操作
  * 调用系统终止函数来结束程序运行
+ * 
+ * @return 无返回值
+ * @note 此函数不会返回，会直接终止程序
+ * @warning 调用此函数将立即终止系统运行
  */
 void TerminateSystem(void)
 
