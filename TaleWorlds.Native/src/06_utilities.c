@@ -8009,34 +8009,34 @@ uint8_t ProcessBufferedFloatComparison(void)
  * 该函数处理带参数的浮点数比较操作，验证数据有效性并进行范围检查
  * 根据传入的参数和上下文信息，检查浮点数是否在指定范围内
  * 
- * @param Parameter 操作参数，用于控制比较行为
+ * @param ComparisonParameter 比较参数，用于控制比较行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
-uint8_t ProcessParameterizedFloatComparison(uint32_t Parameter)
+uint8_t ProcessParameterizedFloatComparison(uint32_t ComparisonParameter)
 
 {
-  float ProcessedFloatParameter;
-  uint8_t OperationResult;
-  int64_t DataPointer;
-  int64_t SystemContext;
-  int64_t ObjectContext;
-  int64_t StackBuffer;
+  float ProcessedFloatValue;
+  uint8_t ComparisonResult;
+  int64_t ValidationDataPointer;
+  int64_t SystemValidationContext;
+  int64_t ObjectValidationContext;
+  int64_t ResultStackBuffer;
   
-  if ((*(byte *)(DataPointer + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(ValidationDataPointer + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  OperationResult = ValidateObjectContextAndProcessData(Parameter,ObjectContext + 0x25,ObjectContext + ObjectContextProcessingDataOffset);
-  if ((int)OperationResult == 0) {
-    FloatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
-    if ((*(float *)(DataPointer + 0x38) <= FloatValue) &&
-       (FloatValue < *(float *)(DataPointer + 0x3c) || FloatValue == *(float *)(DataPointer + 0x3c))) {
-      OperationResult = *(uint8_t *)(SystemContext + 0x98);
-      *(float *)(StackBuffer + 4) = FloatValue;
-            ReleaseSystemContextResources(OperationResult);
+  ComparisonResult = ValidateObjectContextAndProcessData(ComparisonParameter,ObjectValidationContext + 0x25,ObjectValidationContext + ObjectContextProcessingDataOffset);
+  if ((int)ComparisonResult == 0) {
+    FloatValue = *(float *)(ObjectValidationContext + ObjectContextProcessingDataOffset);
+    if ((*(float *)(ValidationDataPointer + 0x38) <= FloatValue) &&
+       (FloatValue < *(float *)(ValidationDataPointer + 0x3c) || FloatValue == *(float *)(ValidationDataPointer + 0x3c))) {
+      ComparisonResult = *(uint8_t *)(SystemValidationContext + 0x98);
+      *(float *)(ResultStackBuffer + 4) = FloatValue;
+            ReleaseSystemContextResources(ComparisonResult);
     }
-    OperationResult = 0x1c;
+    ComparisonResult = 0x1c;
   }
-  return OperationResult;
+  return ComparisonResult;
 }
 
 
@@ -8047,7 +8047,7 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t Parameter)
  * 该函数处理简化的参数化浮点数比较操作，直接进行范围检查
  * 根据传入的参数和上下文信息，检查浮点数是否在指定范围内
  * 
- * @param Parameter 操作参数，用于控制比较行为
+ * @param ComparisonParameter 比较参数，用于控制比较行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
 uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t Parameter)
