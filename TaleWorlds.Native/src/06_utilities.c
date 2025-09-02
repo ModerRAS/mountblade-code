@@ -33549,7 +33549,7 @@ void ResourceDeallocationHandler(uint8_t ObjectContext,int64_t ValidationContext
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x38);
-  *ResourceHashPointer = &ResourceHashTable001;
+  *ResourceHashPointer = &PrimaryResourceHashTable;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
@@ -47915,7 +47915,7 @@ void InitializeResourceHashAndSystemCleanup(uint8_t ObjectContext, int64_t Valid
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x50);
-  *ResourceHashPointer = &ResourceHashTable001;
+  *ResourceHashPointer = &PrimaryResourceHashTable;
   InitializeSystemCleanup();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
@@ -50031,7 +50031,19 @@ void InitializeSystemResourceHandlerAlt(uint8_t ObjectContext, int64_t Validatio
 
 
 
-void InitializeSystemResourceHandlerE0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化扩展系统资源处理器
+ * 
+ * 该函数负责初始化扩展路径的系统资源处理器
+ * 设置资源处理器的模板和数据结构，确保资源处理的正常运行
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含初始化所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会设置资源处理器模板和系统数据结构
+ * @warning 如果资源处理器已经初始化，系统将执行紧急退出
+ */
+void InitializeSystemResourceHandlerExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0xe0) = &SystemResourceHandlerTemplate;
@@ -50046,7 +50058,19 @@ void InitializeSystemResourceHandlerE0(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void InitializeSystemResourceHandler100(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化标准系统资源处理器
+ * 
+ * 该函数负责初始化标准路径的系统资源处理器
+ * 设置资源处理器的模板和数据结构，确保资源处理的正常运行
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含初始化所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会设置资源处理器模板和系统数据结构
+ * @warning 如果资源处理器已经初始化，系统将执行紧急退出
+ */
+void InitializeSystemResourceHandlerStandard(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x100) = &SystemResourceHandlerTemplate;
@@ -50070,13 +50094,25 @@ void SetSystemDataStructure(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 初始化资源哈希表
+ * 
+ * 该函数负责初始化资源哈希表系统
+ * 设置哈希表的模板和数据结构，确保资源哈希的正常运行
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含初始化所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会设置资源哈希表模板和相关数据结构
+ * @warning 如果哈希表初始化失败，系统将执行紧急退出
+ */
 void InitializeResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x50);
-  *ResourceHashPointer = &ResourceHashTable001;
+  *ResourceHashPointer = &PrimaryResourceHashTable;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
@@ -51869,7 +51905,7 @@ void InitializeResourceHashTableAndSyncObjects(uint8_t ObjectContext, int64_t Va
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x70);
-  *ResourceHashPointer = &ResourceHashTable001;
+  *ResourceHashPointer = &PrimaryResourceHashTable;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
@@ -68495,7 +68531,19 @@ void SetValidationContextSystemDataStructureAlternate(uint8_t ObjectContext, int
 
 
 
-void Unwind_1809094b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 更新验证上下文中的资源表（备用版本）
+ * 
+ * 该函数负责遍历并更新验证上下文中的资源表
+ * 与480函数功能相同，但使用不同的偏移量
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源表信息
+ * @return 无返回值
+ * @note 此函数通常在资源管理过程中调用
+ * @warning 如果资源表状态异常，可能触发系统紧急退出
+ */
+void UpdateValidationContextResourceTableSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -68513,17 +68561,29 @@ void Unwind_1809094b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809094c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 通过指针更新验证上下文中的资源表
+ * 
+ * 该函数负责通过指针遍历并更新验证上下文中的资源表
+ * 使用间接指针访问资源表数据
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源表信息
+ * @return 无返回值
+ * @note 此函数通常在资源管理过程中调用
+ * @warning 如果资源表状态异常，可能触发系统紧急退出
+ */
+void UpdateValidationContextResourceTableViaPointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t ResourceTableCount;
   int64_t *ResourceTablePointer;
-  int64_t ResourceIndex;
+  int64_t ResourceTableIterator;
   
   ResourceTablePointer = *(int64_t **)(ValidationContext + 0x40);
   SystemContextPointer = ResourceTablePointer[1];
-  for (ResourceIndex = *ResourceTablePointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x78) {
-    UpdateResourceTable(ResourceIndex);
+  for (ResourceTableIterator = *ResourceTablePointer; ResourceTableIterator != SystemContextPointer; ResourceTableIterator = ResourceTableIterator + 0x78) {
+    UpdateResourceTable(ResourceTableIterator);
   }
   if (*ResourceTablePointer == 0) {
     return;
@@ -68533,15 +68593,27 @@ void Unwind_1809094c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809094d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 更新验证上下文中的资源表（第三版本）
+ * 
+ * 该函数负责遍历并更新验证上下文中的资源表
+ * 使用不同的偏移量访问资源表数据
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源表信息
+ * @return 无返回值
+ * @note 此函数通常在资源管理过程中调用
+ * @warning 如果资源表状态异常，可能触发系统紧急退出
+ */
+void UpdateValidationContextResourceTableTertiary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
-  int64_t ResourceTable;
+  int64_t ResourceTableCount;
+  int64_t ResourceTablePointer;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x1c0);
-  for (ResourceTable = *(int64_t *)(ValidationContext + 0x1b8); ResourceTable != SystemContextPointer; ResourceTable = ResourceTable + 0x78) {
-    UpdateResourceTable(ResourceTable);
+  ResourceTableCount = *(int64_t *)(ValidationContext + 0x1c0);
+  for (ResourceTablePointer = *(int64_t *)(ValidationContext + 0x1b8); ResourceTablePointer != SystemContextPointer; ResourceTablePointer = ResourceTablePointer + 0x78) {
+    UpdateResourceTable(ResourceTablePointer);
   }
   if (*(int64_t *)(ValidationContext + 0x1b8) == 0) {
     return;
@@ -68551,7 +68623,19 @@ void Unwind_1809094d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809094e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的系统数据结构（第三版本）
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构的引用
+ * 使用不同的偏移量设置数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，需要设置数据结构引用
+ * @return 无返回值
+ * @note 此函数通常在系统初始化过程中调用
+ * @warning 确保系统数据结构已正确初始化
+ */
+void SetValidationContextSystemDataStructureTertiary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x6f0) = &SystemDataStructure;
@@ -68560,7 +68644,19 @@ void Unwind_1809094e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809094f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源处理器模板
+ * 
+ * 该函数负责在验证上下文中设置系统资源处理器模板
+ * 并初始化相关的资源状态信息
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，需要设置资源处理器
+ * @return 无返回值
+ * @note 此函数通常在系统初始化过程中调用
+ * @warning 如果资源状态异常，可能触发系统紧急退出
+ */
+void SetSystemResourceHandlerTemplate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x218) = &SystemResourceHandlerTemplate;
@@ -69980,7 +70076,7 @@ void Unwind_180909b70(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x28);
-  *ResourceHashPointer = &ResourceHashTable001;
+  *ResourceHashPointer = &PrimaryResourceHashTable;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
@@ -87608,7 +87704,7 @@ void Unwind_18090fa20(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x130);
-  *ResourceHashPointer = &ResourceHashTable001;
+  *ResourceHashPointer = &PrimaryResourceHashTable;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
