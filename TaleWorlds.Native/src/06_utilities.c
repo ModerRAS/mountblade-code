@@ -1127,7 +1127,11 @@ void* SystemDiagnosticsConfigTableSecondary;
  * @brief 初始化本地化系统
  * 
  * 该函数负责初始化游戏本地化系统
- * 设置多语言支持、文本翻译和文化适配
+ * 设置多语言支持、文本翻译和文化适配功能
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用，以确保本地化功能的正常运行
+ * @warning 调用此函数前必须确保基础系统组件已经初始化
  */
 void InitializeLocalizationSystem(void);
 void* LocalizationDatabaseInstance;
@@ -56899,7 +56903,19 @@ void ExecuteResourceTransactionCallback(uint8_t ObjectContext, int64_t Validatio
 
 
 
-void Unwind_180906f70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文回调
+ * 
+ * 该函数负责执行验证上下文中的回调函数
+ * 检查验证上下文中的回调函数指针并执行
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含回调函数的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在验证过程中被调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void ExecuteValidationContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x40) != (int64_t *)0x0) {
@@ -56910,7 +56926,19 @@ void Unwind_180906f70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906f80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调
+ * 
+ * 该函数负责执行资源上下文中的回调函数
+ * 从验证上下文中获取资源上下文，然后执行相应的回调操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含资源上下文的引用信息
+ * @return 无返回值
+ * @note 此函数通常在资源管理中被调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void ExecuteResourceContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -56924,7 +56952,19 @@ void Unwind_180906f80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906f90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源事件处理器
+ * 
+ * 该函数负责注册资源事件处理器，用于处理资源相关的事件
+ * 从验证上下文中获取资源类型信息并注册相应的事件处理器
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含资源类型的注册信息
+ * @return 无返回值
+ * @note 此函数通常在系统初始化时被调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void RegisterResourceEventHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x50),0x18,0x10,HandleResourceEvent);
@@ -56933,7 +56973,19 @@ void Unwind_180906f90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906fc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册备用资源事件处理器
+ * 
+ * 该函数负责注册备用资源事件处理器，用于处理资源相关的事件
+ * 从验证上下文中获取资源类型信息并注册相应的备用事件处理器
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含资源类型的注册信息
+ * @return 无返回值
+ * @note 此函数通常在系统初始化时被调用，作为备用处理器
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void RegisterAlternativeResourceEventHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x50),0x18,0x10,HandleResourceEvent);
