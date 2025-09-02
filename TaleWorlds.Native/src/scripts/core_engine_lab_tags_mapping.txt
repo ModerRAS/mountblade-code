@@ -1,0 +1,205 @@
+# LAB_标签重命名映射表
+# 格式: 原始标签 -> 新的语义化名称
+
+# 系统初始化和清理相关的标签
+LAB_180066971 -> SystemUtilityExecution
+LAB_180066bf4 -> SystemValidationStart
+LAB_180066ec4 -> MemoryBoundaryCheck
+LAB_1800718e9 -> SystemCleanupComplete
+LAB_1800715eb -> SystemInitializationDone
+LAB_180071af3 -> SystemContextProcessing
+LAB_180071b69 -> SystemContextComplete
+
+# 错误处理和异常管理相关的标签
+LAB_180068c87 -> SystemErrorRecovery
+LAB_180068c92 -> SystemExceptionHandling
+LAB_180068c94 -> SystemErrorCleanup
+LAB_180075f4f -> SystemErrorHandling
+
+# 状态管理和流程控制相关的标签
+LAB_180070a3f -> SystemStateProcessing
+LAB_180070b00 -> SystemStateComplete
+LAB_180071c1a -> StatusValidationStart
+LAB_180071c93 -> StatusProcessingStart
+LAB_180071d1f -> StatusValidationComplete
+LAB_180071d94 -> SecondaryStatusCheck
+LAB_180071e34 -> MemoryAllocationCheck
+LAB_180071eb0 -> SecondaryStatusComplete
+
+# 内存管理和资源分配相关的标签
+LAB_180069842 -> MemoryBlockProcessing
+LAB_180069c2b -> MemoryComparisonComplete
+LAB_180069dc3 -> MemoryAddressValidation
+LAB_180069dda -> MemoryAllocationProceed
+LAB_180070db8 -> BufferProcessingStart
+LAB_180070e64 -> BufferValidationComplete
+LAB_180070ee8 -> BufferMemoryProcessing
+LAB_180070f81 -> BufferMemoryComplete
+LAB_180071000 -> BufferDataProcessing
+LAB_1800710b8 -> BufferDataComplete
+LAB_18007113f -> BufferFinalProcessing
+
+# 线程和系统事件相关的标签
+LAB_180072d7b -> ThreadStatusCheck
+LAB_180072120 -> ThreadProcessingStart
+LAB_1800721e1 -> ThreadDataProcessing
+LAB_1800722f5 -> ThreadConditionCheck
+LAB_180072521 -> ThreadSynchronization
+LAB_1800725ac -> ThreadEventProcessing
+
+# 系统数据验证相关的标签
+LAB_180072662 -> SystemDataValidation
+LAB_1800726e7 -> SystemDataProcessing
+LAB_180072780 -> SystemDataCheck
+LAB_1800727ff -> SystemDataComplete
+LAB_1800728ad -> SystemBufferProcessing
+LAB_180072934 -> SystemMemoryCheck
+LAB_1800729bd -> SystemMemoryComplete
+
+# 渲染和图形相关的标签
+LAB_180076feb -> RenderStateProcessing
+LAB_18007738d -> RenderBufferComplete
+LAB_180077847 -> RenderContextStart
+LAB_180077879 -> RenderContextComplete
+LAB_180077fcf -> RenderValidationDone
+
+# 系统配置和设置相关的标签
+LAB_1800782d4 -> SystemConfigurationCheck
+LAB_1800782e0 -> SystemConfigurationComplete
+
+# 文件和路径处理相关的标签
+LAB_180079c12 -> FilePathProcessing
+LAB_180079cd7 -> FilePathValidation
+LAB_180079d9b -> FileBufferProcessing
+LAB_18007a5ac -> FileProcessingComplete
+LAB_18007ac04 -> FileContextHandling
+LAB_180079e40 -> FileErrorHandling
+LAB_180079fb3 -> FileCleanupProcessing
+LAB_18007a203 -> FileResourceManagement
+LAB_18007a142 -> FileAllocationProcessing
+LAB_18007a312 -> FileOperationComplete
+LAB_18007a58b -> FileFinalization
+
+# 网络和通信相关的标签
+LAB_1800802aa -> NetworkDataProcessing
+
+# 系统事件和回调相关的标签
+LAB_180082720 -> SystemEventComplete
+LAB_180086316 -> EventCallbackProcessing
+LAB_18008642b -> EventCallbackComplete
+
+# 数据结构和算法相关的标签
+LAB_180087337 -> DataStructureProcessing
+LAB_1800872f7 -> DataStructureValidation
+LAB_18008733a -> DataStructureComplete
+LAB_180087418 -> DataStructureHandling
+LAB_18008755d -> DataStructureCleanup
+LAB_18008758f -> DataStructureFinalize
+
+# 字符串和文本处理相关的标签
+LAB_1800878e0 -> StringProcessingStart
+LAB_18008807f -> StringProcessingComplete
+LAB_180088131 -> StringFinalization
+LAB_180087f81 -> StringValidation
+LAB_180087f16 -> StringContextHandling
+LAB_180088ac9 -> StringCleanup
+LAB_18008913b -> StringProcessingDone
+LAB_18008917c -> StringValidationComplete
+LAB_1800892ba -> StringBufferProcessing
+LAB_18008927d -> StringBufferComplete
+LAB_1800892bd -> StringMemoryHandling
+LAB_1800892fd -> StringMemoryComplete
+
+# 系统内存管理相关的标签
+LAB_18008984e -> MemorySystemProcessing
+LAB_1800897d5 -> MemorySystemComplete
+LAB_180089861 -> MemorySystemValidation
+LAB_180089891 -> MemorySystemFinalize
+LAB_18008a310 -> MemoryAllocationDone
+LAB_18008a327 -> MemoryAllocationComplete
+LAB_18008a32f -> MemoryAllocationFinalize
+LAB_18008a753 -> MemoryPathProcessing
+LAB_18008a841 -> MemoryPathComplete
+LAB_18008acc1 -> MemoryPathFinalize
+LAB_18008ae5a -> MemoryContextHandling
+
+# 游戏逻辑相关的标签
+LAB_18008b3e2 -> GameLogicProcessing
+LAB_18008b7ea -> GameLogicComplete
+LAB_18008c01e -> GameLogicFinalize
+
+# 系统API和接口相关的标签
+LAB_18008c531 -> SystemAPIProcessing
+LAB_18008cc42 -> SystemAPIComplete
+LAB_18008cd70 -> SystemAPIFinalize
+LAB_18008ce20 -> SystemAPICleanup
+LAB_18008ce85 -> SystemAPIValidation
+LAB_18008caf0 -> SystemAPIHandling
+LAB_18008cb7e -> SystemAPIDone
+LAB_18008cdfe -> SystemAPIErrorHandling
+
+# 数据验证和处理相关的标签
+LAB_18008d51d -> DataValidationStart
+LAB_18008d56b -> DataValidationComplete
+LAB_18008d7a0 -> DataProcessingStart
+LAB_18008d951 -> DataProcessingComplete
+LAB_18008d954 -> DataProcessingFinalize
+LAB_18008d9c4 -> DataProcessingDone
+LAB_18008d9f7 -> DataProcessingCleanup
+LAB_18008daa1 -> DataHandlingStart
+LAB_18008daa4 -> DataHandlingComplete
+LAB_18008dde0 -> DataHandlingFinalize
+LAB_18008e13f -> DataHandlingDone
+
+# 系统缓冲区管理相关的标签
+LAB_18008ebc0 -> BufferManagementStart
+LAB_18008eecc -> BufferManagementComplete
+LAB_18008ef40 -> BufferManagementFinalize
+LAB_18008efb7 -> BufferManagementDone
+LAB_18008ee00 -> BufferHandlingStart
+LAB_18008efcb -> BufferHandlingComplete
+LAB_18008eff7 -> BufferHandlingFinalize
+
+# 系统功能处理相关的标签
+LAB_18008f4f4 -> SystemFunctionProcessing
+LAB_18008f669 -> SystemFunctionComplete
+LAB_18008fb99 -> SystemFunctionFinalize
+
+# 系统检查和验证相关的标签
+LAB_1800911c4 -> SystemCheckProcessing
+LAB_180091164 -> SystemCheckComplete
+LAB_180091192 -> SystemCheckFinalize
+
+# 系统缓冲区状态相关的标签
+LAB_180092bbb -> BufferStateProcessing
+LAB_180092c16 -> BufferStateComplete
+LAB_180092e59 -> BufferStateValidation
+LAB_180093089 -> BufferStateHandling
+LAB_1800932b6 -> BufferStateFinalize
+LAB_1800934cd -> BufferStateDone
+
+# 系统内存操作相关的标签
+LAB_180093cb6 -> MemoryOperationStart
+LAB_180093e1b -> MemoryOperationComplete
+LAB_180095527 -> MemoryOperationFinalize
+LAB_18009556a -> MemoryOperationDone
+LAB_180095648 -> MemoryHandlingStart
+LAB_1800957c7 -> MemoryHandlingComplete
+LAB_18009580a -> MemoryHandlingFinalize
+LAB_1800958e8 -> MemoryHandlingDone
+LAB_1800960d8 -> MemoryAllocationStart
+LAB_18009611a -> MemoryAllocationFinalize
+LAB_180096990 -> MemoryManagementStart
+LAB_180096a34 -> MemoryManagementComplete
+LAB_18009662b -> MemoryManagementFinalize
+LAB_18009667a -> MemoryManagementDone
+LAB_180096691 -> MemoryManagementCleanup
+LAB_1800967cd -> MemoryManagementHandling
+
+# 系统配置验证相关的标签
+LAB_180096e94 -> ConfigurationValidationStart
+LAB_180097ca1 -> ConfigurationValidationComplete
+LAB_180098929 -> ConfigurationProcessingStart
+LAB_180098960 -> ConfigurationProcessingComplete
+LAB_18009a8d1 -> ConfigurationFinalization
+LAB_18009a8ab -> ConfigurationHandling

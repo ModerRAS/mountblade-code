@@ -1,0 +1,83 @@
+# func_0x 函数调用语义化替换映射表
+# 格式: 原始函数名 -> 语义化名称
+
+# 系统初始化和配置相关
+func_0x000180084e80 -> InitializeSystemEventTemplate
+func_0x000180086150 -> ValidateSystemConfiguration
+func_0x00018005c480 -> InitializeTimeManager
+func_0x0001800e7950 -> ConfigureSystemEvent
+func_0x000180074f10 -> InitializeSystemMemory
+func_0x000180112210 -> InitializeCoreEngine
+func_0x000180119790 -> InitializeSystemContext
+func_0x000180095340 -> InitializeStatusBuffer
+
+# 内存管理和资源分配相关
+func_0x000180639d60 -> GetSystemDataTablePointer
+func_0x00018024c420 -> AllocateMemoryBuffer
+func_0x000180220c90 -> GetMemoryAllocationIndex
+func_0x00018010cbb0 -> GetStatusBuffer
+func_0x0001800a1680 -> AllocateTargetDataStructure
+
+# 渲染系统和图形处理相关
+func_0x00018010bf60 -> InitializeRenderer
+func_0x00018010bf80 -> ConfigureRenderer
+func_0x00018010bfa0 -> SetupRenderer
+func_0x00018010bfc0 -> SetupRendererDepth
+func_0x00018010bfe0 -> SetupRendererStencil
+func_0x00018010c000 -> SetupRendererBlend
+func_0x00018010c020 -> SetupRendererTexture
+func_0x00018010c040 -> SetupRendererShader
+func_0x00018010c060 -> SetupRendererLighting
+func_0x00018010c080 -> SetupRendererMaterial
+func_0x00018010c0a0 -> SetupRendererGeometry
+func_0x00018010c0c0 -> SetupRendererViewport
+func_0x00018010c0e0 -> SetupRendererCamera
+func_0x00018010c100 -> SetupRendererTransform
+func_0x00018010c120 -> SetupRendererAnimation
+func_0x00018010c140 -> SetupRendererParticle
+func_0x00018010c160 -> SetupRendererPostProcess
+func_0x00018010c180 -> SetupRendererShadow
+func_0x00018010c1a0 -> SetupRendererReflection
+func_0x00018010c1c0 -> SetupRendererOcclusion
+func_0x00018010c1e0 -> SetupRendererTessellation
+func_0x00018010c200 -> SetupRendererCompute
+func_0x00018010c220 -> SetupRendererRaytracing
+func_0x00018010c240 -> SetupRendererVR
+func_0x00018010c260 -> SetupRendererMSAA
+func_0x00018010c280 -> SetupRendererHDR
+func_0x00018010c2a0 -> SetupRendererDLSS
+func_0x00018010c2c0 -> SetupRendererFSR
+func_0x00018010c2e0 -> SetupRendererUpscaling
+func_0x00018010bc90 -> SetRendererParameter
+
+# 网络通信和事件处理相关
+func_0x00018012e760 -> ProcessSystemEvent
+func_0x000180124080 -> ConfigureSystemEvent
+func_0x000180121e20 -> GetDataSize
+func_0x00018012d6a0 -> GetSystemData
+func_0x00018012d470 -> SetSystemData
+func_0x00018012d640 -> FlushSystemData
+func_0x00018010e7a0 -> GetMemoryBaseAddress
+func_0x000180112960 -> GetReturnValue
+func_0x000180113330 -> ProcessCharacterData
+func_0x000180113830 -> ProcessIntegerData
+func_0x000180114060 -> ProcessCharacterString
+func_0x000180114b50 -> CalculateDistance
+func_0x0001801153c0 -> ProcessTransformData
+func_0x000180115530 -> ProcessMatrixData
+func_0x00018010e570 -> AllocateRenderBuffer
+func_0x000180297170 -> InitializeRenderBuffer
+func_0x000180123d50 -> ProcessRenderData
+func_0x000180123e90 -> ProcessRenderTarget
+func_0x00018010e6d0 -> ConfigureRenderSettings
+func_0x00018010e700 -> ApplyRenderSettings
+func_0x0001801281d0 -> ValidateRenderConfig
+func_0x00018012dd90 -> SetRenderParameter
+func_0x00018012e030 -> GetRenderValue
+func_0x000180126de0 -> GetSystemContext
+func_0x00018011fc50 -> ProcessSystemBuffer
+func_0x00018022d2c0 -> ValidateTargetData
+func_0x00018008d310 -> CalculateSystemValue
+func_0x00018008d2b0 -> ProcessTargetData
+func_0x00018008d250 -> ProcessSourceData
+func_0x000180128180 -> CalculateFloatValue
