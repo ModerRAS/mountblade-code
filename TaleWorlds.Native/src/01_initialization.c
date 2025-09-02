@@ -36006,7 +36006,7 @@ void ProcessSystemResourceData(long long *SystemResourceManager)
   void* resourceAddress;
   long long *SystemLocalContextPointer;
   code *configurationStringPointer;
-  uint8_t aSystemMemoryOffset [32];
+  uint8_t SystemMemoryOffset [32];
   long long *SystemMemoryPointer108;
   long long **SystemMemoryManagerPointer100;
   long long SystemStackDataArray [2];
