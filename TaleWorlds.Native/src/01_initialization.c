@@ -21,28 +21,170 @@
 #define SYSTEM_MUTEX_SECURITY_ADDRESS          0x180c91910
 #define SYSTEM_DATA_CHECK_ADDRESS             0x180d49150
 
+/**
+ * @brief 处理系统内存页面
+ * 
+ * 该函数负责处理系统内存页面，包括页面分配、映射和管理
+ * 用于系统内存管理的基础操作
+ * 
+ * @param MemoryAddress 内存地址，指定要处理的内存页面位置
+ * @return 无返回值
+ * 
+ * 原始函数名为ProcessSystemMemoryPage，现已重命名为ProcessSystemMemoryPage
+ */
 void ProcessSystemMemoryPage(long long MemoryAddress);
 
+/**
+ * @brief 释放系统资源
+ * 
+ * 该函数负责释放系统资源，包括内存、句柄和对象
+ * 用于系统资源的清理和回收
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名为ReleaseSystemResource，现已重命名为ReleaseSystemResource
+ */
 void ReleaseSystemResource(void);
 
+/**
+ * @brief 初始化系统内存缓冲区
+ * 
+ * 该函数负责初始化系统内存缓冲区，设置缓冲区参数和属性
+ * 用于系统内存缓冲区的配置和准备工作
+ * 
+ * @param MemoryTemplate 内存模板，用于初始化缓冲区的模板数据
+ * @param BufferSize 缓冲区大小，指定缓冲区的大小
+ * @param SourceData 源数据，用于初始化缓冲区的数据源
+ * @return 无返回值
+ * 
+ * 原始函数名为InitializeSystemMemoryBuffer，现已重命名为InitializeSystemMemoryBuffer
+ */
 void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferSize, void* SourceData);
 
+/**
+ * @brief 写入数据到缓冲区
+ * 
+ * 该函数负责将数据写入到指定的缓冲区中，支持可变参数
+ * 用于系统数据的写入和存储操作
+ * 
+ * @param Buffer 缓冲区指针，指定要写入数据的缓冲区
+ * @param DataSize 数据大小，指定要写入的数据大小
+ * @param ... 可变参数，表示要写入的数据
+ * @return 无返回值
+ * 
+ * 原始函数名为WriteDataToBuffer，现已重命名为WriteDataToBuffer
+ */
 void WriteDataToBuffer(void* Buffer, long long DataSize, ...);
 
+/**
+ * @brief 初始化系统内存分配器
+ * 
+ * 该函数负责初始化系统内存分配器，设置分配策略和参数
+ * 用于系统内存分配的配置和准备工作
+ * 
+ * @param memoryHandle 内存句柄，指定要初始化的内存分配器句柄
+ * @param bufferContext 缓冲区上下文，包含缓冲区的相关信息
+ * @return 分配器指针，返回初始化后的内存分配器指针
+ * 
+ * 原始函数名为InitializeSystemMemoryAllocator，现已重命名为InitializeSystemMemoryAllocator
+ */
 void* InitializeSystemMemoryAllocator(long long memoryHandle, void* bufferContext);
 
+/**
+ * @brief 初始化系统数据
+ * 
+ * 该函数负责初始化系统数据，设置数据结构和属性
+ * 用于系统数据的配置和准备工作
+ * 
+ * @param dataContext 数据上下文，包含要初始化的数据相关信息
+ * @param templateContext 模板上下文，包含数据模板的相关信息
+ * @return 无返回值
+ * 
+ * 原始函数名为InitializeSystemData，现已重命名为InitializeSystemData
+ */
 void InitializeSystemData(void* dataContext, void* templateContext);
 
+/**
+ * @brief 验证系统配置
+ * 
+ * 该函数负责验证系统配置的有效性和完整性
+ * 用于系统配置的安全检查和验证
+ * 
+ * @param configFlags 配置标志，指定要验证的配置项
+ * @param configContext 配置上下文，包含配置的相关信息
+ * @return 验证结果，返回0表示成功，非0表示失败
+ * 
+ * 原始函数名为ValidateSystemConfiguration，现已重命名为ValidateSystemConfiguration
+ */
 int ValidateSystemConfiguration(long long configFlags, void* configContext);
 
+/**
+ * @brief 获取系统状态标志
+ * 
+ * 该函数负责获取系统的状态标志，用于监控系统运行状态
+ * 用于系统状态的管理和监控
+ * 
+ * @return 系统状态标志，返回当前系统的状态标志位
+ * 
+ * 原始函数名为GetSystemStatusFlags，现已重命名为GetSystemStatusFlags
+ */
 long long GetSystemStatusFlags(void);
 
+/**
+ * @brief 配置系统数据
+ * 
+ * 该函数负责配置系统数据，设置数据参数和属性
+ * 用于系统数据的配置和管理
+ * 
+ * @param bufferAddress 缓冲区地址，指定要配置的数据缓冲区
+ * @param configData 配置数据，包含配置的相关信息
+ * @param contextPointer 上下文指针，包含上下文相关信息
+ * @param parameterArray 参数数组，包含配置参数的相关信息
+ * @return 无返回值
+ * 
+ * 原始函数名为ConfigureSystemData，现已重命名为ConfigureSystemData
+ */
 void ConfigureSystemData(void* bufferAddress, void* configData, void* contextPointer, void* parameterArray);
 
+/**
+ * @brief 释放系统资源
+ * 
+ * 该函数负责释放系统资源，包括内存、句柄和对象
+ * 用于系统资源的清理和回收
+ * 
+ * @param resourcePointer 资源指针，指定要释放的系统资源
+ * @return 无返回值
+ * 
+ * 原始函数名为ReleaseSystemResources，现已重命名为ReleaseSystemResources
+ */
 void ReleaseSystemResources(void* resourcePointer);
 
+/**
+ * @brief 初始化系统缓冲区
+ * 
+ * 该函数负责初始化系统缓冲区，设置缓冲区参数和属性
+ * 用于系统缓冲区的配置和准备工作
+ * 
+ * @param bufferAddress 缓冲区地址，指定要初始化的缓冲区
+ * @param initFlag 初始化标志，指定初始化的方式和选项
+ * @param parameter 参数，包含初始化所需的参数信息
+ * @return 无返回值
+ * 
+ * 原始函数名为InitializeSystemBuffer，现已重命名为InitializeSystemBuffer
+ */
 void InitializeSystemBuffer(void* bufferAddress, int initFlag, int parameter);
 
+/**
+ * @brief 更新系统数据
+ * 
+ * 该函数负责更新系统数据，刷新数据内容和状态
+ * 用于系统数据的维护和更新
+ * 
+ * @param dataPointer 数据指针，指定要更新的系统数据
+ * @return 无返回值
+ * 
+ * 原始函数名为UpdateSystemData，现已重命名为UpdateSystemData
+ */
 void UpdateSystemData(void* dataPointer);
 
 /**
@@ -45546,8 +45688,23 @@ void ConfigureSystemResourceWithLock(long long ResourceManagerPointer,void* *Con
 
 
 
+/**
+ * @brief 系统资源配置和初始化函数
+ * 
+ * 该函数负责系统资源的配置、内存分配和初始化工作
+ * 根据资源管理器指针和数组大小来分配内存块，并设置相关配置
+ * 
+ * @param ResourceManagerPointer 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @param ArraySize 数组大小
+ * @return 配置数据指针
+ * 
+ * 原始函数名为FUN_180068860，现已重命名为ConfigureSystemResourceAllocation
+ */
 long long *
-FUN_180068860(long long ResourceManagerPointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag,
+ConfigureSystemResourceAllocation(long long ResourceManagerPointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag,
              ulong long ArraySize)
 
 {
@@ -46833,7 +46990,20 @@ CreateSystemObject(void* ResourceManagerPointer,void* ConfigurationDataPointer,v
 
 
 
-void* * FUN_180069f60(void* ResourceManagerPointer,void* *ConfigurationDataPointer)
+// Function: void** InitializeSystemResourcePointerArray(void* ResourceManagerPointer,void** ConfigurationDataPointer)
+/**
+ * @brief 初始化系统资源指针数组
+ * 
+ * 该函数负责初始化系统资源指针数组，将所有指针设置为初始状态。
+ * 它会清空指针数组的所有元素，并设置初始标志值。
+ * 
+ * @param ResourceManagerPointer 系统资源指针，指向资源管理器数据结构
+ * @param ConfigurationDataPointer 配置数据指针数组
+ * @return void** 返回初始化后的配置数据指针数组
+ * 
+ * 原始函数名为FUN_180069f60，现已重命名为InitializeSystemResourcePointerArray
+ */
+void** InitializeSystemResourcePointerArray(void* ResourceManagerPointer,void** ConfigurationDataPointer)
 
 {
   *ConfigurationDataPointer = 0;
@@ -46845,7 +47015,20 @@ void* * FUN_180069f60(void* ResourceManagerPointer,void* *ConfigurationDataPoint
 
 
 
-void* * FUN_180069fb0(void* ResourceManagerPointer,void* *ConfigurationDataPointer)
+// Function: void** ResetSystemResourcePointerArray(void* ResourceManagerPointer,void** ConfigurationDataPointer)
+/**
+ * @brief 重置系统资源指针数组
+ * 
+ * 该函数负责重置系统资源指针数组，将第一个指针设置为空值。
+ * 这是一个简单的重置操作，确保资源指针数组处于干净状态。
+ * 
+ * @param ResourceManagerPointer 系统资源指针，指向资源管理器数据结构
+ * @param ConfigurationDataPointer 配置数据指针数组
+ * @return void** 返回重置后的配置数据指针数组
+ * 
+ * 原始函数名为FUN_180069fb0，现已重命名为ResetSystemResourcePointerArray
+ */
+void** ResetSystemResourcePointerArray(void* ResourceManagerPointer,void** ConfigurationDataPointer)
 
 {
   *ConfigurationDataPointer = 0;

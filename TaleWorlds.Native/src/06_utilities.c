@@ -3501,49 +3501,49 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  uint8_t ObjectValidationStatus;
-  int ProcessingResult;
-  int64_t CurrentObjectOffset;
-  int ProcessedItemCount;
-  uint8_t MetadataBuffer[32];
+  uint8_t ObjectValidationState;
+  int ProcessingOutcome;
+  int64_t CurrentObjectIndex;
+  int ProcessedObjectCount;
+  uint8_t ObjectMetadataBuffer[32];
   int64_t SystemHandleArray[2];
-  uint8_t *DataBuffer;
-  int BufferIndex;
-  uint32_t MaxProcessableItems;
-  uint8_t Workspace[512];
-  uint64_t SecurityKey;
+  uint8_t *DataBufferPointer;
+  int BufferPosition;
+  uint32_t MaxProcessableObjects;
+  uint8_t ProcessingWorkspace[512];
+  uint64_t SecurityValidationKey;
   
-  SecurityKey = SecurityContextKey ^ (uint64_t)MetadataBuffer;
-  ProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
-  if ((ProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
-    DataBuffer = Workspace;
-    ProcessedItemCount = 0;
-    BufferIndex = 0;
-    MaxProcessableItems = MaximumProcessableItemsLimit;
-    ProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
-                          &DataBuffer);
-    if (ProcessingResult == 0) {
-      if (0 < BufferIndex) {
-        CurrentObjectOffset = 0;
+  SecurityValidationKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
+  ProcessingOutcome = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
+  if ((ProcessingOutcome == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
+    DataBufferPointer = ProcessingWorkspace;
+    ProcessedObjectCount = 0;
+    BufferPosition = 0;
+    MaxProcessableObjects = MaximumProcessableItemsLimit;
+    ProcessingOutcome = FetchObjectList(*(uint8_t *)(SystemExecutionContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
+                          &DataBufferPointer);
+    if (ProcessingOutcome == 0) {
+      if (0 < BufferPosition) {
+        CurrentObjectIndex = 0;
         do {
-          ObjectValidationStatus = *(uint8_t *)(DataBuffer + CurrentObjectOffset);
-          ProcessingResult = ValidateObjectStatus(ObjectValidationStatus);
-          if (ProcessingResult != RegistrationStatusSuccess) {
+          ObjectValidationState = *(uint8_t *)(DataBufferPointer + CurrentObjectIndex);
+          ProcessingOutcome = ValidateObjectStatus(ObjectValidationState);
+          if (ProcessingOutcome != RegistrationStatusSuccess) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(ObjectValidationStatus, 1);
+            HandleInvalidObject(ObjectValidationState, 1);
           }
-          ProcessedItemCount = ProcessedItemCount + 1;
-          CurrentObjectOffset = CurrentObjectOffset + ResourceEntrySizeBytes;
-        } while (ProcessedItemCount < BufferIndex);
+          ProcessedObjectCount = ProcessedObjectCount + 1;
+          CurrentObjectIndex = CurrentObjectIndex + ResourceEntrySizeBytes;
+        } while (ProcessedObjectCount < BufferPosition);
       }
-      FreeObjectListMemory(&DataBuffer);
+      FreeObjectListMemory(&DataBufferPointer);
     }
     else {
-      FreeObjectListMemory(&DataBuffer);
+      FreeObjectListMemory(&DataBufferPointer);
     }
   }
                     // WARNING: Subroutine does not return
-  PerformSecurityValidation(SecurityKey ^ (uint64_t)MetadataBuffer);
+  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetadataBuffer);
 }
 
 
@@ -12079,17 +12079,17 @@ uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t resourcePool, int cleanupFl
   int64_t DataOffset;
   uint8_t *ByteDataPointer;
   int64_t *ResourceContext;
-  int RegisterEDI;
+  int ValidationContextIndex;
   
   PackageValidationStatusCodePointer = (uint8_t *)0x0;
-  if (RegisterEDI == 0) {
+  if (ValidationContextIndex == 0) {
 ValidationComplete:
     if ((0 < *(int *)((int64_t)ResourceContext + 0xc)) && (*ResourceContext != 0)) {
                     // WARNING: Subroutine does not return
       ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
     }
     *ResourceContext = (int64_t)HashValidationResultPointer;
-    *(int *)((int64_t)ResourceContext + 0xc) = RegisterEDI;
+    *(int *)((int64_t)ResourceContext + 0xc) = ValidationContextIndex;
     return 0;
   }
   if (ValidationContext * 0xc - 1U < 0x3fffffff) {
