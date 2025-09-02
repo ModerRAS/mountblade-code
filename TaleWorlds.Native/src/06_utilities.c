@@ -7298,25 +7298,25 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
     if (ValidationStatus < 8) {
       ValidationStatus = 8;
     }
-    if (ValidationStatus < *(int *)(bufferContext + BufferContextSizeOffset)) goto ErrorHandler;
+    if (ValidationStatus < *(int *)(BufferContext + BufferContextSizeOffset)) goto ErrorHandler;
     if (ValidationStatus != 0) {
       if ((0x3ffffffe < ValidationStatus * 8 - 1U) ||
          (NewBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),ValidationStatus * 8,&ResourceAllocationTemplate,
                                 0xf4,0,0,1), NewBufferPointer == 0)) goto ErrorHandler;
-      if (*(int *)(bufferContext + BufferContextSizeOffset) != 0) {
-              memcpy(NewBufferPointer,*(uint8_t *)(bufferContext + BufferContextDataOffset),(int64_t)*(int *)(bufferContext + BufferContextSizeOffset) << 3);
+      if (*(int *)(BufferContext + BufferContextSizeOffset) != 0) {
+              memcpy(NewBufferPointer,*(uint8_t *)(BufferContext + BufferContextDataOffset),(int64_t)*(int *)(BufferContext + BufferContextSizeOffset) << 3);
       }
     }
-    if ((0 < *(int *)(bufferContext + BufferContextCapacityOffset)) && (*(int64_t *)(bufferContext + BufferContextDataOffset) != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*(int64_t *)(bufferContext + BufferContextDataOffset),
+    if ((0 < *(int *)(BufferContext + BufferContextCapacityOffset)) && (*(int64_t *)(BufferContext + BufferContextDataOffset) != 0)) {
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*(int64_t *)(BufferContext + BufferContextDataOffset),
                     &ResourceAllocationTemplate,0x100,1);
     }
-    *(int64_t *)(bufferContext + BufferContextDataOffset) = NewBufferPointer;
-    *(int *)(bufferContext + BufferContextCapacityOffset) = ValidationStatus;
+    *(int64_t *)(BufferContext + BufferContextDataOffset) = NewBufferPointer;
+    *(int *)(BufferContext + BufferContextCapacityOffset) = ValidationStatus;
   }
-  *(int64_t *)(*(int64_t *)(bufferContext + BufferContextDataOffset) + (int64_t)*(int *)(bufferContext + BufferContextSizeOffset) * 8) =
-       memoryContextBuffer;
-  *(int *)(bufferContext + BufferContextSizeOffset) = *(int *)(bufferContext + BufferContextSizeOffset) + 1;
+  *(int64_t *)(*(int64_t *)(BufferContext + BufferContextDataOffset) + (int64_t)*(int *)(BufferContext + BufferContextSizeOffset) * 8) =
+       MemoryContextBuffer;
+  *(int *)(BufferContext + BufferContextSizeOffset) = *(int *)(BufferContext + BufferContextSizeOffset) + 1;
 ErrorHandler:
         ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset),ObjectContext);
 }
@@ -44270,7 +44270,21 @@ void ExecuteSystemResourceCleanupCallbackTertiary(uint8_t ObjectContext, int64_t
  * @note 此函数在系统资源清理过程中被调用
  * @warning 清理失败时可能会触发系统紧急退出
  */
-void ExecuteSystemResourceCleanupCallbackWrapper4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理回调包装器（扩展参数版本）
+ * 
+ * 该函数负责包装系统资源清理回调函数，提供扩展参数支持
+ * 主要用于在资源清理过程中调用指定的回调函数
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含回调函数指针和验证信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会从验证上下文中提取回调函数指针并执行
+ * @warning 调用此函数前必须确保验证上下文中的回调函数指针有效
+ */
+void ExecuteSystemResourceCleanupCallbackWithExtendedParams(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharacterPointer;
@@ -46182,7 +46196,19 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数会将指定位置的指针设置为资源哈希表004
  */
-void SetResourceHashTablePrimaryAtOffset50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置资源哈希表到主偏移位置
+ * 
+ * 该函数负责将资源哈希表指针设置到验证上下文的主偏移位置
+ * 确保资源哈希表能够被正确访问和使用
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源哈希表指针的存储位置
+ * @return 无返回值
+ * @note 此函数会设置验证上下文中0x50偏移位置的哈希表指针
+ * @warning 调用此函数前必须确保ResourceHashTable004已正确初始化
+ */
+void SetResourceHashTableAtPrimaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x50) = &ResourceHashTable004;
@@ -46202,7 +46228,19 @@ void SetResourceHashTablePrimaryAtOffset50(uint8_t ObjectContext,int64_t Validat
  * @return 无返回值
  * @note 此函数会调用指定位置的函数回调
  */
-void ExecuteFunctionCallbackPrimaryAtOffset50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行主偏移位置的函数回调
+ * 
+ * 该函数负责执行验证上下文中主偏移位置的函数回调
+ * 如果指针不为空，则调用相应的函数
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含函数指针的位置信息
+ * @return 无返回值
+ * @note 此函数会调用验证上下文中0x50偏移位置的函数回调
+ * @warning 调用此函数前必须确保函数指针有效
+ */
+void ExecuteFunctionCallbackAtPrimaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x50) != (int64_t *)0x0) {
@@ -47572,7 +47610,21 @@ void ResetSystemResourceHandlerAtPrimaryOffset(uint8_t ObjectContext,int64_t Val
  * @note 此函数在系统关闭时调用
  * @warning 调用此函数前必须确保资源处理器已停止工作
  */
-void CleanupResourceHandlersAtOffset0x148(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理扩展偏移位置的资源处理器
+ * 
+ * 该函数负责清理位于扩展偏移位置的资源处理器
+ * 释放相关资源并重置状态
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指示清理的状态
+ * @return 无返回值
+ * @note 此函数会清理验证上下文中0x148偏移位置的资源处理器
+ * @warning 清理失败时可能会触发系统紧急退出
+ */
+void CleanupResourceHandlersAtExtendedOffset(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
@@ -47606,7 +47658,21 @@ void CleanupResourceHandlersAtOffset0x148(uint8_t ObjectContext,int64_t Validati
  * @note 此函数在系统关闭时调用
  * @warning 调用此函数前必须确保资源处理器已停止工作
  */
-void CleanupResourceHandlersAtOffset0x108(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理标准偏移位置的资源处理器
+ * 
+ * 该函数负责清理位于标准偏移位置的资源处理器
+ * 释放相关资源并重置状态
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指示清理的状态
+ * @return 无返回值
+ * @note 此函数会清理验证上下文中0x108偏移位置的资源处理器
+ * @warning 清理失败时可能会触发系统紧急退出
+ */
+void CleanupResourceHandlersAtStandardOffset(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
