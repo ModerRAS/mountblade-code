@@ -9011,15 +9011,15 @@ void ExecuteDataValidationAndProcessing(int64_t DataContext, int64_t OperationCo
   int DataHashValidationResult;
   int64_t TempDataBuffer;
   
-  DataValidationStatusCode = validate_data_format(OperationContext, DataContext + 0x10);
+  DataValidationStatusCode = ValidateDataFormat(OperationContext, DataContext + 0x10);
   if (DataValidationStatusCode == 0) {
-    DataValidationStatusCode = check_data_integrity(*(uint32_t *)(DataContext + 0x10), &TempDataBuffer);
+    DataValidationStatusCode = CheckDataIntegrity(*(uint32_t *)(DataContext + 0x10), &TempDataBuffer);
     if (DataValidationStatusCode == 0) {
       if (*(int *)(TempDataBuffer + 0x30) == 1) {
         *(uint32_t *)(TempDataBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      execute_data_operation(*(uint8_t *)(OperationContext + 0x98), DataContext);
+      ExecuteDataOperation(*(uint8_t *)(OperationContext + 0x98), DataContext);
     }
   }
   return;
@@ -9048,7 +9048,7 @@ int ProcessDataBlockOperation(int64_t DataContext, int64_t OperationContext)
   if ((((DataProcessingMode != 1) || ((*(byte *)(DataContext + 0x10) & 0x1f) == 0)) && (0 < *(int *)(DataContext + 0x18))
       ) && (DataProcessingMode < 2)) {
     if (DataProcessingMode == 0) {
-      MemoryBufferDataPtr = allocate_buffer_memory(*(uint8_t *)(SystemContext + 0x1a0), *(int *)(DataContext + 0x18), 0x20,
+      MemoryBufferDataPtr = AllocateBufferMemory(*(uint8_t *)(SystemContext + 0x1a0), *(int *)(DataContext + 0x18), 0x20,
                             &ResourceTableTemplate, 0xdd, 0, 0);
       if (MemoryBufferDataPtr != 0) {
                     // WARNING: Subroutine does not return
@@ -9057,14 +9057,14 @@ int ProcessDataBlockOperation(int64_t DataContext, int64_t OperationContext)
       OperationResult = 0x26;
     }
     else {
-      OperationResult = validate_data_format(OperationContext, DataContext + 0x24);
+      OperationResult = ValidateDataFormat(OperationContext, DataContext + 0x24);
       if ((OperationResult == 0) &&
-         (OperationResult = check_data_integrity(*(uint32_t *)(DataContext + 0x24), &TempStackBuffer), OperationResult == 0)) {
+         (OperationResult = CheckDataIntegrity(*(uint32_t *)(DataContext + 0x24), &TempStackBuffer), OperationResult == 0)) {
         if (*(int *)(TempStackBuffer + 0x30) == 1) {
           *(uint32_t *)(TempStackBuffer + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
-        execute_data_operation(*(uint8_t *)(OperationContext + 0x98), DataContext);
+        ExecuteDataOperation(*(uint8_t *)(OperationContext + 0x98), DataContext);
       }
     }
     return OperationResult;
