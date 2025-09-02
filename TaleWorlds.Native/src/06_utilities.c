@@ -8204,8 +8204,8 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
     return ResourceHashValidationResult;
   }
   LoopCounter = 0;
-  ContextOffset = CONCAT44(StackBuffer,CurrentValue) - 8;
-  if (CONCAT44(StackBuffer,CurrentValue) == 0) {
+  ContextOffset = CONCAT44(StackBufferData,CurrentValue) - 8;
+  if (CONCAT44(StackBufferData,CurrentValue) == 0) {
     ContextOffset = loopCounter;
   }
   ArrayIndex = *(int *)(ContextOffset + 0x28);

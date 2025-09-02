@@ -25726,7 +25726,7 @@ void SystemResourceInitializer(void* resourceManagerPointer,void* memoryAllocati
   long long bufferBaseAddress;
   ulong long currentThreadId;
   void* *pEncryptionValue68;
-  long long lStack_60;
+  long long LocalMemoryBuffer;
   uint processFlags58;
   void* unsignedValue50;
   
