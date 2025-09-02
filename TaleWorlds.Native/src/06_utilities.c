@@ -50466,7 +50466,21 @@ void ResetResourceContextValidationState(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_180905c80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希并清理上下文
+ * 
+ * 该函数负责验证资源哈希值，清理相关的上下文数据
+ * 确保资源状态的一致性和完整性
+ * 
+ * @param ObjectContext 对象上下文，包含资源管理所需的状态信息
+ * @param ValidationContext 验证上下文，用于验证资源状态和完整性
+ * @return 无返回值
+ * @note 此函数通常在资源验证或清理时调用
+ * @warning 调用此函数前必须确保资源索引已正确初始化
+ * 
+ * @remark 原始函数名：Unwind_180905c80
+ */
+void ValidateResourceHashAndCleanupContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -50500,7 +50514,21 @@ void Unwind_180905c80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905c90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源完整性检查和状态更新
+ * 
+ * 该函数负责执行资源的完整性检查，更新资源状态
+ * 确保所有资源条目都处于正确的状态
+ * 
+ * @param ObjectContext 对象上下文，包含资源管理所需的状态信息
+ * @param ValidationContext 验证上下文，用于验证资源状态和完整性
+ * @return 无返回值
+ * @note 此函数通常在资源状态检查时调用
+ * @warning 调用此函数前必须确保资源索引已正确初始化
+ * 
+ * @remark 原始函数名：Unwind_180905c90
+ */
+void ExecuteResourceIntegrityCheckAndUpdate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
