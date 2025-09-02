@@ -51560,7 +51560,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
           SystemCleanupFunction();
       }
       SystemMemoryAllocatorReferencePointer = (void* *)0x0;
-      uStack_c8 = uStack_c8 & MAX_UNSIGNED_32_BIT00000000;
+      SystemThreadIdentifier = SystemThreadIdentifier & MAX_UNSIGNED_32_BIT00000000;
       DataBufferPtrE0 = &SystemMemoryAllocatorReference;
     }
     SystemThreadContext = systemGlobalDataPtrB8;
