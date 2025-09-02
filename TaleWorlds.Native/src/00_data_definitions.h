@@ -4996,107 +4996,107 @@ Label_1800d3d65:
   uStack_100 = 0x19;
   uStack_f8 = param_2;
   StackPointerArray = (longlong **)AllocateSystemMemory(SystemMemoryAllocator,32,8,3);
-  *pplStack_220 = (longlong *)&SystemBufferTemplate;
-  pplStack_220[1] = (longlong *)0x0;
-  *(uint32_t *)(pplStack_220 + 2) = 0;
-  *pplStack_220 = (longlong *)&SystemNullPointer;
-  pplStack_220[3] = (longlong *)0x0;
-  pplStack_220[1] = (longlong *)0x0;
-  *(uint32_t *)(pplStack_220 + 2) = 0;
-  pModuleInitializationResult7 = SystemModuleDataAddress;
-  uStack_e0 = 0;
-  BufferSize4 = *(uint32_t *)(pplStack_220 + 3);
-  *(int *)(pplStack_220 + 3) = (int)SystemModuleDataAddress[10];
-  *(uint32_t *)(pModuleInitializationResult7 + 10) = BufferSize4;
-  ModuleInitializationResult6 = (longlong)pplStack_220[1];
-  pplStack_220[1] = (longlong *)pModuleInitializationResult7[8];
-  pModuleInitializationResult7[8] = ModuleInitializationResult6;
-  BufferSize4 = *(uint32_t *)(pplStack_220 + 2);
-  *(int *)(pplStack_220 + 2) = (int)pModuleInitializationResult7[9];
-  *(uint32_t *)(pModuleInitializationResult7 + 9) = BufferSize4;
-  BufferSize4 = *(uint32_t *)((longlong)pplStack_220 + 0x1c);
-  *(uint32_t *)((longlong)pplStack_220 + 0x1c) = *(uint32_t *)((longlong)pModuleInitializationResult7 + 0x54);
-  *(uint32_t *)((longlong)pModuleInitializationResult7 + 0x54) = BufferSize4;
-  puStack_f0 = pplStack_220;
-  if (*(code **)(*pModuleInitializationResult7 + 8) == (code *)&SystemNullFunctionPointer) {
-    *(uint32_t *)(pModuleInitializationResult7 + 9) = 0;
-    if ((uint8_t *)pModuleInitializationResult7[8] != (uint8_t *)0x0) {
-      *(uint8_t *)pModuleInitializationResult7[8] = 0;
+  *StackPointerArray = (longlong *)&SystemBufferTemplate;
+  StackPointerArray[1] = (longlong *)0x0;
+  *(uint32_t *)(StackPointerArray + 2) = 0;
+  *StackPointerArray = (longlong *)&SystemNullPointer;
+  StackPointerArray[3] = (longlong *)0x0;
+  StackPointerArray[1] = (longlong *)0x0;
+  *(uint32_t *)(StackPointerArray + 2) = 0;
+  ModuleInitializationResult = SystemModuleDataAddress;
+  StackVariable_e0 = 0;
+  BufferSize = *(uint32_t *)(StackPointerArray + 3);
+  *(int *)(StackPointerArray + 3) = (int)SystemModuleDataAddress[10];
+  *(uint32_t *)(ModuleInitializationResult + 10) = BufferSize;
+  ModuleDataPointer = (longlong)StackPointerArray[1];
+  StackPointerArray[1] = (longlong *)ModuleInitializationResult[8];
+  ModuleInitializationResult[8] = ModuleDataPointer;
+  BufferSize = *(uint32_t *)(StackPointerArray + 2);
+  *(int *)(StackPointerArray + 2) = (int)ModuleInitializationResult[9];
+  *(uint32_t *)(ModuleInitializationResult + 9) = BufferSize;
+  BufferSize = *(uint32_t *)((longlong)StackPointerArray + 0x1c);
+  *(uint32_t *)((longlong)StackPointerArray + 0x1c) = *(uint32_t *)((longlong)ModuleInitializationResult + 0x54);
+  *(uint32_t *)((longlong)ModuleInitializationResult + 0x54) = BufferSize;
+  StackPointer_f0 = StackPointerArray;
+  if (*(code **)(*ModuleInitializationResult + 8) == (code *)&SystemNullFunctionPointer) {
+    *(uint32_t *)(ModuleInitializationResult + 9) = 0;
+    if ((uint8_t *)ModuleInitializationResult[8] != (uint8_t *)0x0) {
+      *(uint8_t *)ModuleInitializationResult[8] = 0;
     }
-    *(uint32_t *)((longlong)pModuleInitializationResult7 + 0x54) = 0;
+    *(uint32_t *)((longlong)ModuleInitializationResult + 0x54) = 0;
   }
   else {
-    (**(code **)(*pModuleInitializationResult7 + 8))(pModuleInitializationResult7);
+    (**(code **)(*ModuleInitializationResult + 8))(ModuleInitializationResult);
   }
-  if (0x960 < *(int *)(puStack_f0 + 2)) {
-    *(uint32_t *)(puStack_f0 + 2) = 0x960;
-    *(uint8_t *)(puStack_f0[1] + 0x960) = 0;
+  if (0x960 < *(int *)(StackPointer_f0 + 2)) {
+    *(uint32_t *)(StackPointer_f0 + 2) = 0x960;
+    *(uint8_t *)(StackPointer_f0[1] + 0x960) = 0;
   }
-  uStack_e8 = 0;
-  lStack_200 = 0;
-  lStack_1f8 = 0;
-  uStack_1f0 = 0;
-  uStack_1e8 = 3;
-  ProcessGameDataStructure(GameEngineDataAddress,param_2,&lStack_200);
-  ModuleInitializationResult6 = lStack_200;
-  ModuleInitializationResult8 = lStack_1f8;
-  MemoryAddress9 = BufferSize0;
-  if (lStack_1f8 - lStack_200 >> 3 != 0) {
+  StackVariable_e8 = 0;
+  StackVariable_200 = 0;
+  StackVariable_1f8 = 0;
+  StackVariable_1f0 = 0;
+  StackVariable_1e8 = 3;
+  ProcessGameDataStructure(GameEngineDataAddress,param_2,&StackVariable_200);
+  ModuleDataPointer = StackVariable_200;
+  ModuleResult = StackVariable_1f8;
+  MemoryAddress = BufferSize0;
+  if (StackVariable_1f8 - StackVariable_200 >> 3 != 0) {
     do {
-      LongIndex = SystemModuleStatePointer;
-      if ((0 < *(int *)(*(longlong *)(MemoryAddress9 + ModuleInitializationResult6) + 0x124ec)) &&
-         ((*(uint *)(*(longlong *)(MemoryAddress9 + ModuleInitializationResult6) + 4) & 0x10000) != 0)) {
-        while (StringPointer = MemoryManagerDataAddress, ModuleInitializationResult6 = lStack_200, ModuleInitializationResult8 = lStack_1f8,
-              *(int *)(LongIndex + 0x30c) != 0) {
-          ModuleInitializationResult6 = SystemDataProcessor(MemoryManagerDataAddress);
-          if (ModuleInitializationResult6 != 0) {
-            pModuleInitializationResult7 = (longlong *)SystemDataProcessor(StringPointer);
-            (**(code **)(*pModuleInitializationResult7 + 0x20))(pModuleInitializationResult7,0);
+      SystemStatePointer = SystemModuleStatePointer;
+      if ((0 < *(int *)(*(longlong *)(MemoryAddress + ModuleDataPointer) + 0x124ec)) &&
+         ((*(uint *)(*(longlong *)(MemoryAddress + ModuleDataPointer) + 4) & 0x10000) != 0)) {
+        while (StringPointer = MemoryManagerDataAddress, ModuleDataPointer = StackVariable_200, ModuleResult = StackVariable_1f8,
+              *(int *)(SystemStatePointer + 0x30c) != 0) {
+          ModuleDataPointer = SystemDataProcessor(MemoryManagerDataAddress);
+          if (ModuleDataPointer != 0) {
+            ModuleInitializationResult = (longlong *)SystemDataProcessor(StringPointer);
+            (**(code **)(*ModuleInitializationResult + 0x20))(ModuleInitializationResult,0);
           }
         }
       }
       BufferSize1 = (int)BufferSize0 + 1;
       BufferSize0 = (ulonglong)BufferSize1;
-      MemoryAddress9 = MemoryAddress9 + 8;
-    } while ((ulonglong)(longlong)(int)BufferSize1 < (ulonglong)(ModuleInitializationResult8 - ModuleInitializationResult6 >> 3));
+      MemoryAddress = MemoryAddress + 8;
+    } while ((ulonglong)(longlong)(int)BufferSize1 < (ulonglong)(ModuleResult - ModuleDataPointer >> 3));
   }
-  MemoryAddress4 = AllocateSystemMemory(SystemMemoryAllocator,0x100,8,3);
-  pModuleInitializationResult7 = (longlong *)InitializeModuleWithMemory(MemoryAddress4,&StackBufferPointer6);
-  ppuStack_1b0 = (void **)pModuleInitializationResult7;
-  if (pModuleInitializationResult7 != (longlong *)0x0) {
-    (**(code **)(*pModuleInitializationResult7 + 0x28))(pModuleInitializationResult7);
+  MemoryBuffer = AllocateSystemMemory(SystemMemoryAllocator,0x100,8,3);
+  ModuleInitializationResult = (longlong *)InitializeModuleWithMemory(MemoryBuffer,&StackBufferPointer);
+  StackPointer_1b0 = (void **)ModuleInitializationResult;
+  if (ModuleInitializationResult != (longlong *)0x0) {
+    (**(code **)(*ModuleInitializationResult + 0x28))(ModuleInitializationResult);
   }
   StringPointer = MemoryManagerDataAddress;
-  pplStack_220 = &plStack_228;
-  plStack_228 = pModuleInitializationResult7;
-  if (pModuleInitializationResult7 != (longlong *)0x0) {
-    (**(code **)(*pModuleInitializationResult7 + 0x28))(pModuleInitializationResult7);
+  StackPointerArray = &StackPointer_228;
+  StackPointer_228 = ModuleInitializationResult;
+  if (ModuleInitializationResult != (longlong *)0x0) {
+    (**(code **)(*ModuleInitializationResult + 0x28))(ModuleInitializationResult);
   }
-  pplStack_1b8 = &plStack_228;
-  pMemoryAddress5 = *(uint64_t **)(*(longlong *)(StringPointer + 8) + 8);
-  pcVar6 = *(code **)*pMemoryAddress5;
-  pplStack_220 = &plStack_218;
-  plStack_218 = plStack_228;
-  if (plStack_228 != (longlong *)0x0) {
-    (**(code **)(*plStack_228 + 0x28))();
+  StackPointer_1b8 = &StackPointer_228;
+  MemoryPointer = *(uint64_t **)(*(longlong *)(StringPointer + 8) + 8);
+  FunctionPointer = *(code **)*MemoryPointer;
+  StackPointerArray = &StackPointer_218;
+  StackPointer_218 = StackPointer_228;
+  if (StackPointer_228 != (longlong *)0x0) {
+    (**(code **)(*StackPointer_228 + 0x28))();
   }
-  (*pcVar6)(pMemoryAddress5,&plStack_218);
-  if (plStack_228 != (longlong *)0x0) {
-    (**(code **)(*plStack_228 + 0x38))();
+  (*FunctionPointer)(MemoryPointer,&StackPointer_218);
+  if (StackPointer_228 != (longlong *)0x0) {
+    (**(code **)(*StackPointer_228 + 0x38))();
   }
-  if (pModuleInitializationResult7 != (longlong *)0x0) {
-    (**(code **)(*pModuleInitializationResult7 + 0x38))(pModuleInitializationResult7);
+  if (ModuleInitializationResult != (longlong *)0x0) {
+    (**(code **)(*ModuleInitializationResult + 0x38))(ModuleInitializationResult);
   }
-  if (lStack_200 == 0) {
-    ppuStack_1b0 = &StackBufferPointer6;
-    StackBufferPointer6 = &SystemBufferTemplate;
+  if (StackVariable_200 == 0) {
+    StackPointer_1b0 = &StackBufferPointer;
+    StackBufferPointer = &SystemBufferTemplate;
     SystemSecurityCheck(StackCounter3 ^ (ulonglong)aStackParameter8);
   }
   CleanupSystemResources();
 }
     SystemShutdownFlag = '\0';
   }
-  GlobalSystemDataPointer = pLongValue;
+  GlobalSystemDataPointer = LongValue;
   (**(code **)(SystemDataBasePointer + 0x18))(0);
   if (pLongValue != (longlong *)0x0) {
     (**(code **)(*pLongValue + 8))(pLongValue);

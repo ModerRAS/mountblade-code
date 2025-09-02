@@ -6009,13 +6009,13 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t ParameterObject)
   int32_t IntegerConversionValue;
   float ParameterFloatValue;
   float VectorComponents[4];
-  int64_t StackOffset;
+  int64_t ValidationContext;
   
-  ProcessResult = ValidateObjectContext(*(uint32_t *)(ParameterObject + ObjectContextOffset),&StackOffset);
+  ProcessResult = ValidateObjectContext(*(uint32_t *)(ParameterObject + ObjectContextOffset),&ValidationContext);
   if ((int)ProcessResult != 0) {
     return ProcessResult;
   }
-  SystemDataContext = *(int64_t *)(StackOffset + 8);
+  SystemDataContext = *(int64_t *)(ValidationContext + 8);
   if (SystemDataContext != 0) {
     ParameterFloatValue = *(float *)(ParameterObject + ObjectContextValidationDataOffset);
     for (DataElementPointer = *(uint8_t **)(SystemDataContext + RegistrationHandleOffset);
@@ -6328,25 +6328,25 @@ void HandleSystemObjectLifecycle(int64_t ObjectHandle, int64_t LifecycleConfig)
 uint8_t ValidateSystemDataIntegrity(int64_t DataBuffer, int64_t ValidationConfig)
 
 {
-  uint8_t SystemResourceHash;
-  int *SystemOperationResultPointer;
-  uint32_t *SystemHashValidationResultAddress;
-  int SystemValidationIndex;
+  uint8_t ResourceHash;
+  int *OperationResultPointer;
+  uint32_t *HashValidationResultAddress;
+  int ValidationIndex;
   
   ValidationIndex = 0;
-  PackageValidationStatusCodePointer = (uint32_t *)(ObjectContext + ObjectContextValidationDataOffset + (int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * 8);
-  OperationStatusCodePointer = (int *)(ObjectContext + ObjectContextValidationDataOffset);
-  if (0 < *(int *)(ObjectContext + SystemManagerContextOffset)) {
+  HashValidationResultAddress = (uint32_t *)(DataBuffer + ObjectContextValidationDataOffset + (int64_t)*(int *)(DataBuffer + SystemManagerContextOffset) * 8);
+  OperationResultPointer = (int *)(DataBuffer + ObjectContextValidationDataOffset);
+  if (0 < *(int *)(DataBuffer + SystemManagerContextOffset)) {
     do {
       if (((*OperationResultPointer != SystemValidationCodeA) || (OperationResultPointer[1] != SystemValidationCodeB)) &&
-         (ResourceHash = CalculateResourceHash(ValidationContext + ValidationContextHashOffset,(int *)(ObjectContext + ObjectContextValidationDataOffset) + (int64_t)ValidationIndex * 2,*HashValidationResultAddress
-                                ,*(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset)), (int)ResourceHash != 0)) {
+         (ResourceHash = CalculateResourceHash(ValidationConfig + ValidationContextHashOffset,(int *)(DataBuffer + ObjectContextValidationDataOffset) + (int64_t)ValidationIndex * 2,*HashValidationResultAddress
+                                ,*(uint8_t *)(DataBuffer + ObjectContextValidationDataOffset)), (int)ResourceHash != 0)) {
         return ResourceHash;
       }
       ValidationIndex = ValidationIndex + 1;
-      PackageValidationStatusCodePointer = HashValidationResultAddress + 1;
-      OperationStatusCodePointer = OperationResultPointer + 2;
-    } while (ValidationIndex < *(int *)(ObjectContext + SystemManagerContextOffset));
+      HashValidationResultAddress = HashValidationResultAddress + 1;
+      OperationResultPointer = OperationResultPointer + 2;
+    } while (ValidationIndex < *(int *)(DataBuffer + SystemManagerContextOffset));
   }
   return 0;
 }
@@ -7045,7 +7045,7 @@ void ProcessDynamicBufferReallocation(void)
 
 {
   int ProcessingStatusCode;
-  int ProcessingStatusCode;
+  int MemoryAllocationStatus;
   int64_t InputParameterValue;
   int64_t ResourceIndex;
   int64_t BufferPointer;
@@ -7536,7 +7536,7 @@ uint64_t ValidateSystemDataBufferContext(void)
 
 {
   int64_t BufferDataPointer;
-  int PackageValidationStatusCode;
+  int ValidationStatusCode;
   uint8_t OperationResult;
   uint8_t *StringPointer;
   uint IterationCounter;
@@ -7548,12 +7548,12 @@ uint64_t ValidateSystemDataBufferContext(void)
   int64_t SecondarySystemContext;
   int64_t StackParameter;
   
-  SystemInitializationStatus = 0;
-  SystemContextOffset = SystemInitializationStatus;
+  ArrayIndex = 0;
+  SystemContextOffset = ArrayIndex;
   if (StackParameter != 0) {
     SystemContextOffset = StackParameter - 8;
   }
-  ArrayIndex = SystemInitializationStatus;
+  ArrayIndex = 0;
   if (0 < *(int *)(SystemContextOffset + 0x28)) {
     do {
       ContextPointer = *(int64_t *)(SystemContextOffset + 0x20) + ArrayIndex;
@@ -7567,21 +7567,21 @@ uint64_t ValidateSystemDataBufferContext(void)
       else {
         StringPointer = *(uint8_t **)(ResourceDataAddress + 0x50);
       }
-      ValidationStatus = CompareStringWithContext(StringPointer);
-      if (ValidationStatus == 0) {
+      ValidationStatusCode = CompareStringWithContext(StringPointer);
+      if (ValidationStatusCode == 0) {
         OperationResult = ValidateBufferContext(ContextPointer,SecondarySystemContext + 0x18);
         if ((int)OperationResult != 0) {
-          return OperationStatusCode;
+          return OperationResult;
         }
         OperationResult = CleanupSystemContextData(*(uint8_t *)(PrimarySystemContext + SystemResourceManagerOffset));
-        return OperationStatusCode;
+        return OperationResult;
       }
-      IterationCounter = (int)SystemInitializationStatus + 1;
-      SystemInitializationStatus = (uint64_t)IterationCounter;
+      IterationCounter = (int)ArrayIndex + 1;
+      ArrayIndex = (uint64_t)IterationCounter;
       ArrayIndex = ArrayIndex + 0x18;
     } while ((int)IterationCounter < *(int *)(SystemContextOffset + 0x28));
   }
-  return SystemInvalidContextStatusCode;
+  return ErrorInvalidResourceData;
 }
 
 
