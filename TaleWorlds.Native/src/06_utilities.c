@@ -3530,6 +3530,18 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数在游戏循环中定期调用
  * @warning 处理失败时会导致程序异常终止
  */
+/**
+ * @brief 处理游戏对象集合
+ * 
+ * 该函数负责处理系统中的游戏对象集合，包括对象验证、状态检查和批量处理
+ * 函数会获取对象列表，验证每个对象的状态，并执行相应的处理逻辑
+ * 
+ * @param GameContext 游戏上下文，包含游戏相关的状态信息
+ * @param SystemContext 系统上下文，包含系统运行环境信息
+ * @return 无返回值
+ * @note 此函数在游戏循环中定期调用
+ * @warning 处理失败时会导致程序异常终止
+ */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t ObjectValidationState;
@@ -3607,6 +3619,16 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  * @note 此函数在系统维护和清理过程中调用
  * @warning 验证失败时可能会导致系统异常终止
  */
+/**
+ * @brief 验证系统对象集合
+ * 
+ * 该函数负责验证系统中的对象集合，确保所有对象都处于有效状态
+ * 包括对象标识符验证、数据完整性检查和安全验证
+ * 
+ * @return 无返回值
+ * @note 此函数在系统维护和清理过程中调用
+ * @warning 验证失败时可能会导致系统异常终止
+ */
 void ValidateSystemObjectCollection(void)
 {
   uint8_t ObjectIdentifier;
@@ -3663,6 +3685,16 @@ void ValidateSystemObjectCollection(void)
  * @note 此函数会立即终止系统进程，不会返回
  * @warning 调用此函数将导致系统关闭，应谨慎使用
  */
+/**
+ * @brief 终止系统进程
+ * 
+ * 该函数负责终止系统进程，执行系统关闭操作
+ * 使用安全令牌验证终止操作的合法性
+ * 
+ * @return 无返回值
+ * @note 此函数会立即终止系统进程，不会返回
+ * @warning 调用此函数将导致系统关闭，应谨慎使用
+ */
 void TerminateSystemProcess(void)
 {
   uint64_t SystemShutdownToken;
@@ -3683,8 +3715,17 @@ void TerminateSystemProcess(void)
  * @note 此函数会检查多个系统标志位，包括安全状态和运行状态
  * @warning 如果发现系统状态异常，可能触发相应的处理机制
  */
+/**
+ * @brief 检查系统标志
+ * 
+ * 该函数负责检查系统标志状态，根据不同的标志位执行相应的操作
+ * 函数会验证系统当前状态并确保系统在正确的状态下运行
+ * 
+ * @return 无返回值
+ * @note 此函数会检查多个系统标志位，包括安全状态和运行状态
+ * @warning 如果发现系统状态异常，可能触发相应的处理机制
+ */
 void CheckSystemFlags(void)
-
 {
   int64_t SystemContext;
   uint64_t FlagCheckValidationToken;
