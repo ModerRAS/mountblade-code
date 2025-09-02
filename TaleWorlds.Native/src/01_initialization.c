@@ -20179,7 +20179,7 @@ SystemResultZeroHandler:
           goto SystemResultHandler;
         }
       }
-      else if (systemResult == 0) goto LAB_180046c5e;
+      else if (systemResult == 0) goto SystemResultZeroHandler;
       indexCounter = (int)comparisonIndex + 1;
       comparisonIndex = (ulong long)indexCounter;
       loopCounter = loopCounter + 0x100;
@@ -21411,9 +21411,9 @@ void ProcessSystemDataTransfer(long long SystemResourcePointer,void* Configurati
   
   unsignedSystemValue7 = 0xfffffffffffffffe;
   unsignedSystemValue6 = 0;
-  if (((char)ConfigurationFlag != '\0') || (AdditionalParameter == SystemResourcePointer)) goto LAB_180048f62;
+  if (((char)ConfigurationFlag != '\0') || (AdditionalParameter == SystemResourcePointer)) goto SystemThreadInitialization;
   if (*(int *)(AdditionalParameter + 0x30) != 0) {
-    if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto LAB_180048f62;
+    if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto SystemThreadCreation;
     pbVar2 = *(byte **)(AdditionalParameter + 0x28);
     localSystemPointer = *(long long *)(SystemDataStructurePointer + 8) - (long long)pbVar2;
     do {
@@ -21422,10 +21422,10 @@ void ProcessSystemDataTransfer(long long SystemResourcePointer,void* Configurati
       if (bVar1 != unsignedSystemValue3) break;
       pbVar2 = pbVar2 + 1;
     } while (unsignedSystemValue3 != 0);
-    if (0 < (int)(bVar1 - unsignedSystemValue3)) goto LAB_180048f62;
+    if (0 < (int)(bVar1 - unsignedSystemValue3)) goto SystemThreadCreation;
   }
   unsignedSystemValue6 = 1;
-LAB_180048f62:
+SystemThreadCreation:
   localSystemPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28),ConfigurationFlag,
                         0xfffffffffffffffe);
   InitializeSystemMemoryAllocator(localSystemPointer + 0x20,SystemDataStructurePointer);
