@@ -6439,7 +6439,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
   auStack_38[0] = 0;
   uStack_40 = 0x12;
   strcpy_s(auStack_38,0x20,&UNK_180a1a918);
-  FUN_180225ee0();
+  FinalizeModuleInitialization();
   puStack_50 = &SystemBufferTemplate;
   SystemSecurityCheck(uStack_18 ^ (ulonglong)auStack_78);
 }
@@ -6458,7 +6458,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
         puVar7 = (uint *)(MemoryAddress2 + *(longlong *)(param_3 + 0x1a));
       }
       if ((*(int *)(ModuleInitializationResult0 + 0x48) < _DAT_180d48e24) &&
-         (FUN_1808fcb90(&DAT_180d48e24), _DAT_180d48e24 == -1)) {
+         (ValidateSystemConfigurationTemplate(&DAT_180d48e24), _DAT_180d48e24 == -1)) {
         _DAT_180d48e60 = &SystemMemoryPool;
         _DAT_180d48e68 = &DAT_180d48e78;
         _DAT_180d48e70 = 0;
@@ -6675,7 +6675,7 @@ longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint
   longlong lVar2;
   uint *pStringProcessingResult;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d497d0) && (FUN_1808fcb90(&DAT_180d497d0), _DAT_180d497d0 == -1)) {
+               0x48) < _DAT_180d497d0) && (ValidateSystemConfigurationTemplate(&DAT_180d497d0), _DAT_180d497d0 == -1)) {
     FUN_180320c80(0x180d497e0);
     FUN_1808fc820(FUN_180941e00);
     FUN_1808fcb30(&DAT_180d497d0);
@@ -6717,7 +6717,7 @@ longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlo
   uint uVar6;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d49990) {
-    FUN_1808fcb90(&DAT_180d49990);
+    ValidateSystemConfigurationTemplate(&DAT_180d49990);
     if (_DAT_180d49990 == -1) {
       NetworkRequestResult = AllocateSystemMemory(_DAT_180c8ed18,0x1c8,8,3);
       _DAT_180d48de0 = FUN_180339110(NetworkRequestResult);
@@ -7862,7 +7862,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
   }
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d49fd8) {
-    FUN_1808fcb90(&DAT_180d49fd8);
+    ValidateSystemConfigurationTemplate(&DAT_180d49fd8);
     if (_DAT_180d49fd8 == -1) {
       _DAT_180d49fe0 = &SystemMemoryPool;
       _DAT_180d49fe8 = &DAT_180d49ff8;

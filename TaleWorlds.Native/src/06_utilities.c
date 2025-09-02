@@ -28216,8 +28216,8 @@ SystemCleanupHandler(void)
 
 
 
- fb40(int64_t ObjectContextParameter,uint8_t ValidationContextParameter)
-fb40(int64_t ObjectContextParameter,uint8_t ValidationContextParameter)
+ ResourceDataValidator(int64_t ObjectContextParameter,uint8_t ValidationContextParameter)
+ResourceDataValidator(int64_t ObjectContextParameter,uint8_t ValidationContextParameter)
 
 {
   int operationResult;
