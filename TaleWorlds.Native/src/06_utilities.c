@@ -14893,16 +14893,16 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
   int PackageValidationStatusCode;
   int OperationCounter;
   uint64_t AllocationSize;
-  int64_t *ResourceContext0;
+  int64_t *ResourceContextPrimary;
   int64_t LocalContextHandle;
-  uint8_t *ResourceHashPointer2;
-  int64_t *ResourceContext3;
-  int64_t *ResourceContext4;
+  uint8_t *ResourceHashPointerTertiary;
+  int64_t *ResourceContextSecondary;
+  int64_t *ResourceContextTertiary;
   int64_t ResourceIndexOffset;
-  int64_t *ResourceContext6;
+  int64_t *ResourceContextQuaternary;
   uint ResourceHashValue7;
   float inputFloatValue8;
-  int64_t *ResourceContext9;
+  int64_t *ResourceContextFinal;
   bool ValidationFlag;
   uint8_t AudioHashBuffer[32];
   float ValidationFloatBuffer[2];
@@ -15643,14 +15643,14 @@ uint32_t ExtractResourceHashData(uint8_t ResourceTableHandle,int ResourceIndex,u
   uint SecurityHashValue;
   int OperationCounter;
   int ArrayIndex;
-  uint8_t *ResourceHashPointer0;
-  uint8_t *ResourceHashPointer;
+  uint8_t *ResourceHashPointerInitial;
+  uint8_t *ResourceHashPointerCurrent;
   uint ResourceHashValue2;
   int ResourceIndexTertiary;
   int64_t ExecutionContextPointer;
   uint8_t *SystemContext;
   int64_t LocalContextBuffer;
-  uint8_t *ResourceHashPointer5;
+  uint8_t *ResourceHashPointerFinal;
   int ResourceIndex6;
   uint32_t ResourceHashValue7;
   int64_t *ResourceRegisterPointer;
@@ -21667,13 +21667,13 @@ uint8_t * GetResourceDataPointerA(void)
   uint ValidationCounter;
   uint ResourceHashValue0;
   int64_t InputParameterValue;
-  uint8_t *ResourceHashPointer;
-  uint32_t *ResourceHashPointer2;
-  uint8_t *ResourceHashPointer3;
-  float *pinputFloatValue4;
-  uint64_t ResourceHash5;
-  uint8_t *ResourceHashPointer6;
-  int64_t SystemContextPointer7;
+  uint8_t *ResourceHashPointerMain;
+  uint32_t *ResourceHashPointerAlternate;
+  uint8_t *ResourceHashPointerBuffer;
+  float *InputFloatValuePointerPrimary;
+  uint64_t ResourceHashValue5;
+  uint8_t *ResourceHashPointerFinal;
+  int64_t SystemContextPointerFinal;
   int64_t ExecutionContextPointer;
   int64_t SystemContext;
   uint8_t *SystemRegisterContext;
@@ -21930,11 +21930,11 @@ uint8_t * GetResourceDataPointerB(void)
   uint ResourceHashValue0;
   uint32_t *ResourceHashPointer;
   uint8_t *ResourceHashPointer2;
-  uint8_t *ResourceHashPointer3;
-  float *pinputFloatValue4;
-  uint64_t ResourceHash5;
-  uint8_t *ResourceHashPointer6;
-  int64_t SystemContextPointer7;
+  uint8_t *ResourceHashPointerBuffer;
+  float *InputFloatValuePointerSecondary;
+  uint64_t ResourceHashValue5;
+  uint8_t *ResourceHashPointerFinal;
+  int64_t SystemContextPointerFinal;
   int64_t ExecutionContextPointer;
   int64_t SystemContext;
   uint8_t *SystemRegisterContext;
@@ -29849,7 +29849,7 @@ void ProcessResourceValidation(uint8_t ObjectContext, int64_t ValidationContext,
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContextOffset240(uint8_t ObjectContext, int64_t ValidationContext)
+void RestoreSystemDataStructureToContextOffsetSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0xf0) = &SystemDataStructure;
@@ -29864,7 +29864,7 @@ void RestoreSystemDataStructureToContextOffset240(uint8_t ObjectContext, int64_t
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContextOffset30(uint8_t ObjectContext, int64_t ValidationContext)
+void RestoreSystemDataStructureToContextOffsetPrimary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x30) = &SystemDataStructure;
@@ -29879,7 +29879,7 @@ void RestoreSystemDataStructureToContextOffset30(uint8_t ObjectContext, int64_t 
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContextOffsetF0Duplicate(uint8_t ObjectContext, int64_t ValidationContext)
+void RestoreSystemDataStructureToContextOffsetAlternate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0xf0) = &SystemDataStructure;
