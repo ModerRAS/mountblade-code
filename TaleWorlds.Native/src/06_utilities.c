@@ -60017,13 +60017,24 @@ void RegisterSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_180908340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理操作
+ * 
+ * 该函数负责执行系统资源清理操作，遍历资源表并调用清理函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
+void ExecuteSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
-  int64_t *presourceTable;
+  int64_t *ResourceTablePointer;
   uint8_t *HashValidationResultPointer;
-  uint8_t loopCondition;
+  uint8_t cleanupLoopCondition;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x80) + 0x388);
   loopIncrement = 0xfffffffffffffffe;

@@ -39244,7 +39244,7 @@ ResourceProcessingLoop:
   if (0x8000000000000000 < (*(long long *)(ResourceManagerPointer + 0x28) - systemStatus) - 0x20) {
     cVar2 = ConfigureSystemSettings(ResourceManagerPointer,&stackValue18,systemStatus,unsignedSystemValue4,0xfffffffffffffffe);
     if (validationStatusFlag != '\0') {
-      plocalResourceOffset = (long long *)FUN_18005ff50(*(void* *)(ResourceManagerPointer + 0x50));
+      plocalResourceOffset = (long long *)GetResourceOffsetPointer(*(void* *)(ResourceManagerPointer + 0x50));
       if (plocalResourceOffset != (long long *)0x0) {
         plocalResourceOffset[0x21] = 0;
         ConfigurationDataPointer = (long long *)*ConfigurationDataPointer;
@@ -40161,7 +40161,7 @@ ulong long ProcessSystemResourceMemory(long long ResourceManagerPointer,long lon
       primaryResourcePointer[1] = systemStatusValue;
       return CONCAT71((int7)((ulong long)systemDataPointer >> 8),1);
     }
-    systemResourceValue = FUN_18005f430();
+    systemResourceValue = GetSystemResourceStatus();
     if ((char)systemResourceValue != '\0') {
       primaryResourcePointer = *(long long **)(ResourceManagerPointer + 0x60);
       systemStatusValue = *primaryResourcePointer - 1U & primaryResourcePointer[1] + 1U;
@@ -40193,7 +40193,7 @@ ulong long ProcessSystemResourceMemory(long long ResourceManagerPointer,long lon
 void* InitializeSystemResourceContext(void* ResourceManagerPointer,ulong long ConfigurationDataPointer)
 
 {
-  FUN_180060200();
+  InitializeSystemResourceHandler();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(ResourceManagerPointer,0x88);
   }
@@ -40345,7 +40345,7 @@ code_r0x000180060327:
 void* InitializeSystemResourceContext(void* ResourceManagerPointer,ulong long ConfigurationDataPointer)
 
 {
-  FUN_180060420();
+  ValidateSystemResourceContext();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(ResourceManagerPointer,0x68);
   }
@@ -40518,16 +40518,16 @@ void ConfigureSystemResources(void* *ResourceManagerPointer,void* ConfigurationD
   
   ConfigurationMask = 0xfffffffffffffffe;
   *ResourceManagerPointer = &SystemResourcePrimaryTemplate;
-  cVar1 = FUN_18020eba0(ResourceManagerPointer,1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  cVar1 = ConfigureSystemResourceContext(ResourceManagerPointer,1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   while (cVar1 != '\0') {
-    cVar1 = FUN_18020eba0(ResourceManagerPointer,1,AdditionalParameter,ConfigurationFlag,ConfigurationMask);
+    cVar1 = ConfigureSystemResourceContext(ResourceManagerPointer,1,AdditionalParameter,ConfigurationFlag,ConfigurationMask);
   }
   if (ResourceManagerPointer[1] == 0) {
     ResourceManagerPointer[1] = 0;
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(ResourceManagerPointer + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    FinalizeSystemResourceConfiguration();
     if (ResourceManagerPointer[0xe] != 0) {
       *(void* *)(ResourceManagerPointer[0xe] + 0x10) = 0;
       *(uint8_t *)(ResourceManagerPointer[0xe] + 8) = 1;
@@ -40563,7 +40563,7 @@ void* ReleaseSystemResourceMemory(void* ResourceManagerPointer,ulong long Config
   void* systemStatus;
   
   systemStatus = 0xfffffffffffffffe;
-  FUN_18020e6c0();
+  CleanupSystemResourceHandler();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(ResourceManagerPointer,0x208,AdditionalParameter,ConfigurationFlag,systemStatus);
   }
@@ -40619,7 +40619,7 @@ void InitializeSystemResource(long long *ResourceManagerPointer)
     do {
       cVar2 = (**(code **)(*ResourceManagerPointer + 0x20))(ResourceManagerPointer,1);
       if (validationStatusFlag == '\0') {
-        FUN_18064e0d0(*(void* *)(*PrimaryResourcePointer + 0x10),0);
+        ReleaseSystemResourceHandle(*(void* *)(*PrimaryResourcePointer + 0x10),0);
         plStack_20 = ResourceManagerPointer + 0x33;
         cStack_18 = 0;
         systemCounter = _Mtx_lock();
@@ -40760,7 +40760,7 @@ bool InitializeSystemResourceAndSynchronize(long long ResourceManagerPointer,voi
   
   plStackX_8 = (long long *)0x0;
   WaitForSingleObject(**(void* **)(ResourceManagerPointer + 0x1f0),1,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
-  cVar2 = FUN_180060e40(*(void* *)(ResourceManagerPointer + 0x60),ResourceManagerPointer + 0x78,&plStackX_8);
+  cVar2 = ProcessSystemResourceData(*(void* *)(ResourceManagerPointer + 0x60),ResourceManagerPointer + 0x78,&plStackX_8);
   PrimaryResourcePointer = plStackX_8;
   if (validationStatusFlag != '\0') {
     (**(code **)(*plStackX_8 + 0x60))(plStackX_8);
@@ -40978,7 +40978,7 @@ void* AllocateSystemResourceMemory(long long ResourceManagerPointer,void* Config
                 PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 8);
       localSystemFlags = *(long long *)(localResourceOffset + 8);
       PrimaryResourcePointer = (long long *)(localSystemFlags + (ulong long)((uint)unsignedSystemValue4 & 0x1f) * 8);
-      FUN_180060b80(ConfigurationDataPointer,PrimaryResourcePointer);
+      ConfigureSystemDataBuffer(ConfigurationDataPointer,PrimaryResourcePointer);
       PrimaryResourcePointer = (long long *)*PrimaryResourcePointer;
       if (PrimaryResourcePointer != (long long *)0x0) {
         (**(code **)(*PrimaryResourcePointer + 0x38))();
@@ -41020,7 +41020,7 @@ void* AllocateSystemResourceMemory(long long ResourceManagerPointer,void* Config
                (((unsignedSystemValue4 & 0xffffffffffffffe0) - *(long long *)(PrimaryResourcePointer[2] + PrimaryResourcePointer[1] * 0x10) >> 5) +
                 PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 0x10);
       PrimaryResourcePointer = (long long *)(localResourceOffset + unsignedSystemValue7 * 8);
-      FUN_180060b80(ConfigurationDataPointer,PrimaryResourcePointer);
+      ConfigureSystemDataBuffer(ConfigurationDataPointer,PrimaryResourcePointer);
       PrimaryResourcePointer = (long long *)*PrimaryResourcePointer;
       if (PrimaryResourcePointer != (long long *)0x0) {
         (**(code **)(*PrimaryResourcePointer + 0x38))();
