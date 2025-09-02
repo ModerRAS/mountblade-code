@@ -19859,12 +19859,16 @@ void ReleaseMemoryBlockReference(ulong long *ResourceManagerPointer)
 
 
 /**
- * 系统初始化管理器 - 核心初始化函数
- * 负责初始化游戏引擎的核心系统和组件
+ * @brief 系统核心组件初始化函数
  * 
- * @param ResourceManagerPointer 系统配置参数
- * @param InitializationFlags 初始化选项标志
- * @return 初始化结果状态码
+ * 该函数负责初始化游戏系统的核心组件，包括内存管理、数据处理和系统配置。
+ * 函数会创建必要的系统对象，初始化内存池，并设置系统参数。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，用于管理系统资源
+ * @param InitializationFlags 初始化标志，控制初始化过程的不同阶段
+ * @return 初始化结果状态码，成功返回0，失败返回错误码
+ * 
+ * 原始函数名可能为类似FUN_xxxxx的形式，现已重命名为InitializeSystemCoreComponents
  */
 int InitializeSystemCoreComponents(long long ResourceManagerPointer,long long InitializationFlags)
 
