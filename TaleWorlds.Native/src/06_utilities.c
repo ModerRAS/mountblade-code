@@ -19341,16 +19341,16 @@ uint64_t ExecuteResourceDataValidation(void)
   uint UnsignedValueThree;
   bool CarryFlag;
   uint8_t StackContextBuffer [4];
-  uint8_t StackBuffer24 [2];
-  uint8_t StackBuffer26 [2];
+  uint8_t ResourceHashPart1Buffer [2];
+  uint8_t ResourceHashPart2Buffer [2];
   
   ValidationStatusCode = InputParameterValue + 0x1c;
   if (CarryFlag) {
     if (*(int *)(ResourceContext[1] + 0x18) == 0) {
       ResourceHash = *ResourceContext;
       ValidationResult = ReadResourceData(ResourceHash,StackContextBuffer,4);
-      if ((((int)ValidationResult == 0) && (ValidationResult = ReadResourceData(ResourceHash,StackBuffer24,2), (int)ValidationResult == 0)) &&
-         (ValidationResult = ReadResourceData(ResourceHash,StackBuffer26,2), (int)ValidationResult == 0)) {
+      if ((((int)ValidationResult == 0) && (ValidationResult = ReadResourceData(ResourceHash,ResourceHashPart1Buffer,2), (int)ValidationResult == 0)) &&
+         (ValidationResult = ReadResourceData(ResourceHash,ResourceHashPart2Buffer,2), (int)ValidationResult == 0)) {
         ValidationResult = ReadResourceData(ResourceHash,&PrimaryObjectResourceBuffer,8);
       }
     }
@@ -19397,13 +19397,13 @@ uint64_t GetResourceHashA(void)
   int64_t ExecutionContextPointer;
   uint64_t SavedRegisterValue;
   uint8_t StackContextBuffer [4];
-  uint8_t StackBuffer24 [2];
-  uint8_t StackBuffer26 [2];
+  uint8_t ResourceHashPart1BufferSecondary [2];
+  uint8_t ResourceHashPart2BufferSecondary [2];
   
   ResourceHash = *ResourceContext;
   ValidationStatusCode = ReadResourceData(ResourceHash,StackContextBuffer,4);
-  if ((((int)ValidationStatusCode == 0) && (ValidationStatusCode = ReadResourceData(ResourceHash,StackBuffer24,2), (int)ValidationStatusCode == 0)) &&
-     (ValidationStatusCode = ReadResourceData(ResourceHash,StackBuffer26,2), (int)ValidationStatusCode == 0)) {
+  if ((((int)ValidationStatusCode == 0) && (ValidationStatusCode = ReadResourceData(ResourceHash,ResourceHashPart1BufferSecondary,2), (int)ValidationStatusCode == 0)) &&
+     (ValidationStatusCode = ReadResourceData(ResourceHash,ResourceHashPart2BufferSecondary,2), (int)ValidationStatusCode == 0)) {
     ValidationStatusCode = ReadResourceData(ResourceHash,&PrimaryObjectResourceBuffer,8);
   }
   if ((int)HashValidationResult != 0) {
@@ -20756,7 +20756,7 @@ void ValidateAndProcessResourceData(int64_t ObjectContext, uint8_t *ValidationCo
   int ResourceTableEntry;
   uint configurationFlags;
   uint ResourceCount;
-  uint ResourceDataBuffer18 [2];
+  uint ResourceIdentifierBuffer [2];
   uint resourceResourceOperationBuffer [2];
   uint8_t ResourceValidationBuffer [32];
   
