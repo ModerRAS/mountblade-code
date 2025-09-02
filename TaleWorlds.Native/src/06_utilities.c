@@ -61212,7 +61212,19 @@ void UnwindResourceValidationAndCleanup(uint8_t ExceptionContext, int64_t System
 
 
 
-void Unwind_180907c80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源索引验证和内存访问
+ * 
+ * 该函数负责处理资源索引的验证和内存访问操作
+ * 主要用于系统资源管理和内存访问控制
+ * 
+ * @param ObjectContext 对象上下文，包含对象管理信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * 
+ * 原始函数名为Unwind_180907c80，现已重命名为ProcessResourceIndexValidation
+ */
+void ProcessResourceIndexValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -61689,7 +61701,19 @@ void CleanupResourceDataFlagBit4(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
-void Unwind_180907e00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统内存清理操作
+ * 
+ * 该函数负责执行系统内存的清理操作
+ * 主要用于系统资源管理和内存清理
+ * 
+ * @param ObjectContext 对象上下文，包含对象管理信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * 
+ * 原始函数名为Unwind_180907e00，现已重命名为ExecuteSystemMemoryCleanup
+ */
+void ExecuteSystemMemoryCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 8) != 0) {
@@ -61701,7 +61725,19 @@ void Unwind_180907e00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907e30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责设置系统数据结构的指针
+ * 主要用于系统数据结构的管理和配置
+ * 
+ * @param ObjectContext 对象上下文，包含对象管理信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * 
+ * 原始函数名为Unwind_180907e30，现已重命名为SetSystemDataStructurePointer
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x480) = &SystemDataStructure;
@@ -61710,7 +61746,19 @@ void Unwind_180907e30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907e40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置二级系统数据结构指针
+ * 
+ * 该函数负责设置二级系统数据结构的指针
+ * 主要用于系统数据结构的管理和配置
+ * 
+ * @param ObjectContext 对象上下文，包含对象管理信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * 
+ * 原始函数名为Unwind_180907e40，现已重命名为SetSecondarySystemDataStructurePointer
+ */
+void SetSecondarySystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x1e8) = &SystemDataStructure;
@@ -61719,7 +61767,21 @@ void Unwind_180907e40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907e50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理操作1
+ * 
+ * 该函数负责执行系统资源的清理操作
+ * 主要用于系统资源管理和清理
+ * 
+ * @param ObjectContext 对象上下文，包含对象管理信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指定清理的标志
+ * @return 无返回值
+ * 
+ * 原始函数名为Unwind_180907e50，现已重命名为ExecuteSystemResourceCleanupOperation1
+ */
+void ExecuteSystemResourceCleanupOperation1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x110) != (code *)0x0) {
@@ -61730,7 +61792,21 @@ void Unwind_180907e50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理操作2
+ * 
+ * 该函数负责执行系统资源的清理操作
+ * 主要用于系统资源管理和清理
+ * 
+ * @param ObjectContext 对象上下文，包含对象管理信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指定清理的标志
+ * @return 无返回值
+ * 
+ * 原始函数名为Unwind_180907e60，现已重命名为ExecuteSystemResourceCleanupOperation2
+ */
+void ExecuteSystemResourceCleanupOperation2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x130) != (code *)0x0) {
@@ -61741,7 +61817,21 @@ void Unwind_180907e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907e70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理操作3
+ * 
+ * 该函数负责执行系统资源的清理操作
+ * 主要用于系统资源管理和清理
+ * 
+ * @param ObjectContext 对象上下文，包含对象管理信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指定清理的标志
+ * @return 无返回值
+ * 
+ * 原始函数名为Unwind_180907e70，现已重命名为ExecuteSystemResourceCleanupOperation3
+ */
+void ExecuteSystemResourceCleanupOperation3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x150) != (code *)0x0) {
@@ -61752,7 +61842,21 @@ void Unwind_180907e70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理操作4
+ * 
+ * 该函数负责执行系统资源的清理操作
+ * 主要用于系统资源管理和清理
+ * 
+ * @param ObjectContext 对象上下文，包含对象管理信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指定清理的标志
+ * @return 无返回值
+ * 
+ * 原始函数名为Unwind_180907e80，现已重命名为ExecuteSystemResourceCleanupOperation4
+ */
+void ExecuteSystemResourceCleanupOperation4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -61772,7 +61876,19 @@ void Unwind_180907e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907e90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源索引并处理异常列表
+ * 
+ * 该函数负责验证资源索引并处理异常列表
+ * 主要用于系统资源管理和异常处理
+ * 
+ * @param ObjectContext 对象上下文，包含对象管理信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * 
+ * 原始函数名为Unwind_180907e90，现已重命名为ValidateResourceIndexAndHandleExceptions
+ */
+void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
