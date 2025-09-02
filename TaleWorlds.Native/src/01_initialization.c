@@ -56924,8 +56924,8 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       fStack_4c = SystemResourceManager[0x53];
       SystemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
       SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
-      FUN_180085c10(&SystemUnsignedFlag78);
-      FUN_18063a240(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
+      ProcessSystemUnsignedFlagInitialization(&SystemUnsignedFlag78);
+      ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
       pfloatValue6 = *(float **)(SystemResourceManager + 0x6e);
       if (((uint)pfloatValue6[0x4e] & 0x3000) == 0x2000) {
         SystemUnsignedFlag78 = *(void* *)(SystemResourceManager + 0x48);
@@ -56938,8 +56938,8 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         fStack_4c = SystemResourceManager[0x53];
         SystemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
-        FUN_180085ac0(&SystemUnsignedFlag78,0x3fc90fdb);
-        FUN_18063a240(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
+        ProcessSystemUnsignedFlagWithFloatingValue(&SystemUnsignedFlag78,0x3fc90fdb);
+        ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
         SystemUnsignedFlag78 = *(void* *)(SystemResourceManager + 0x48);
         SystemProcessFlags70 = *(void* *)(SystemResourceManager + 0x4a);
         EncryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
@@ -56950,8 +56950,8 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         fStack_4c = SystemResourceManager[0x53];
         SystemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
-        FUN_180085970(&SystemUnsignedFlag78);
-        pfloatValue6 = (float *)FUN_18063a240(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
+        ResetSystemUnsignedFlag(&SystemUnsignedFlag78);
+        pfloatValue6 = (float *)ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
       }
     }
     pfloatValue4 = pfStack_98;
@@ -57095,7 +57095,7 @@ void InitializeSystemResourceManagerExtended(long long *SystemResourceManager)
       resourcePoolPointer = SystemResourceManager;
       if ((((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x40) == 0) || (SystemResourceManager[0x42] == 0)) &&
          (SystemResourceManager[0x36] != 0)) {
-        resourcePoolPointer = (long long *)FUN_180085900();
+        resourcePoolPointer = (long long *)AllocateSystemResourcePool();
       }
       CalculationFlags = 0;
       if (resourcePoolPointer == SystemResourceManager) {
@@ -57149,10 +57149,10 @@ void InitializeSystemResourceManagerExtended(long long *SystemResourceManager)
           SystemMemoryAllocatorStatus = 0;
           SystemInitializationStatus = 0;
           StackPointerF0 = 0;
-          FUN_18022f2e0(&EncryptionOffset2,SystemResourceManager,0);
+          InitializeSystemEncryptionContext(&EncryptionOffset2,SystemResourceManager,0);
           (**(code **)(*SystemResourceManager + 0x38))(SystemResourceManager);
-          FUN_18022f9b0(&EncryptionOffset2,resourcePoolPointer,systemValue,CalculationFlags,floatValue8);
-          FUN_18022f410(&EncryptionOffset2);
+          ProcessSystemEncryptionCalculation(&EncryptionOffset2,resourcePoolPointer,systemValue,CalculationFlags,floatValue8);
+          FinalizeSystemEncryptionContext(&EncryptionOffset2);
         }
         CleanupSystemResourceEncryption(StackBuffer2);
         if (plStack_120 != (long long *)0x0) {
@@ -57162,7 +57162,7 @@ void InitializeSystemResourceManagerExtended(long long *SystemResourceManager)
       else {
         UnsignedStackFlag110 = 0;
         pStackValue3 = resourcePoolPointer;
-        FUN_18007f770(&pStackValue3);
+        InitializeSystemStackContext(&pStackValue3);
         localDataIndex = lStack_108 + 0xb0;
         SystemOperationStatus = *(ushort *)(lStack_108 + 0xc0);
         floatValue8 = *(float *)(*(long long *)(lStack_108 + 0xb8) + -4 + (ulong long)SystemOperationStatus * 4);
@@ -57214,7 +57214,7 @@ void InitializeSystemResourceManagerExtended(long long *SystemResourceManager)
           FUN_18022f9b0(&uStack_c8,localDataIndex,systemValue,CalculationFlags,floatValue8);
           FUN_18022f410(&uStack_c8);
         }
-        FUN_18007f840(&pStackValue3);
+        ProcessSystemStackContext(&pStackValue3);
       }
       *(uint32_t *)(SystemResourceManager + 0x5b) = *(uint32_t *)((long long)SystemResourceManager + 0x2dc);
     }
@@ -57272,7 +57272,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemReso
   
   plStackX_10 = ConfigurationDataPointer;
   SystemOperationStatus8 = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x300,0x10,9,0,0xfffffffffffffffe);
-  PrimaryResourcePointer9 = (long long *)FUN_180075030(SystemOperationStatus8,0,0);
+  PrimaryResourcePointer9 = (long long *)InitializeSystemResourceManagerEx(SystemOperationStatus8,0,0);
   *ConfigurationDataPointer = (long long)PrimaryResourcePointer9;
   if (PrimaryResourcePointer9 != (long long *)0x0) {
     (**(code **)(*PrimaryResourcePointer9 + 0x28))(PrimaryResourcePointer9);
@@ -57340,7 +57340,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemReso
   *(uint32_t *)(ResourceDataOffset + 0x2c4) = resourceAddress;
   *(int *)(*ConfigurationDataPointer + 0x108) = (int)SystemResourceManager[0x21];
   if ((long long *)(*ConfigurationDataPointer + 0x218) != SystemResourceManager + 0x43) {
-    FUN_1800588c0((long long *)(*ConfigurationDataPointer + 0x218),SystemResourceManager[0x43],SystemResourceManager[0x44]);
+    ProcessSystemConfigurationData((long long *)(*ConfigurationDataPointer + 0x218),SystemResourceManager[0x43],SystemResourceManager[0x44]);
   }
   SystemHashEntryPointer0 = &SystemStringTemplate;
   if ((void* *)SystemResourceManager[3] != (void* *)0x0) {
@@ -57426,7 +57426,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemReso
   if (plStackX_8 != (long long *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
   }
-  FUN_180076910(*ConfigurationDataPointer,SystemResourceManager + 0x37);
+  ConfigureSystemResourceManagerThread(*ConfigurationDataPointer,SystemResourceManager + 0x37);
   return ConfigurationDataPointer;
 }
 
@@ -57493,7 +57493,7 @@ void ConfigureSystemResourceManagerAdvanced(long long *SystemResourceManager,voi
     SystemEncryptionOffset = 0x101;
     if ((plongValue40 != (long long *)0x0) && (plongValue38 != (long long *)0x0)) {
       if (cStack_e != '\0') {
-        FUN_180075b70();
+        ProcessSystemResourceManagerFloat();
       }
       CleanupSystemResourceEncryption(aSystemResourceStatusFlag);
       if ((char)SystemEncryptionOffset != '\0') {
@@ -57554,7 +57554,7 @@ void ConfigureSystemResourceManagerThread(long long SystemResourceManager,long l
     if (*(char *)(SystemResourceManager + 0xb1) != '\0') {
         SystemDataOperation();
     }
-    FUN_180080810(SystemResourceManager + 0x1b8);
+    InitializeSystemThreadContext(SystemResourceManager + 0x1b8);
     SystemThreadHandle = *(long long *)(SystemResourceManager + 0x1b8);
     if (SystemThreadHandle != 0) {
       SystemThreadFlags = 0;
@@ -57785,7 +57785,7 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
   systemValue = 0;
   if (((*(long long *)(SystemResourceManager + 0x1b8) != 0) && (systemValue = 0, (*(byte *)(ConfigurationDataPointer + 1) & 4) == 0)) &&
      (*(char*)((long long)ConfigurationDataPointer + 0x12) == '\0')) {
-    systemValue = FUN_18022d470();
+    systemValue = GetSystemOperationValue();
   }
   if ((*(byte *)(ConfigurationDataPointer + 1) & 0x20) == 0) {
     SystemOperationStatusFlag = FUN_180076b90(SystemResourceManager);
@@ -63017,8 +63017,8 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       fStack_4c = SystemResourceManager[0x53];
       pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
       SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
-      FUN_180085c10(&SystemUnsignedFlag78);
-      FUN_18063a240(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
+      ProcessSystemUnsignedFlagInitialization(&SystemUnsignedFlag78);
+      ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
       pfloatValue7 = *(float **)(SystemResourceManager + 0x6e);
       if (((uint)pfloatValue7[0x4e] & 0x3000) == 0x2000) {
         SystemUnsignedFlag78 = *(void* *)(SystemResourceManager + 0x48);
@@ -63030,8 +63030,8 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         fStack_4c = SystemResourceManager[0x53];
         pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
-        FUN_180085ac0(&SystemUnsignedFlag78,0x3fc90fdb);
-        FUN_18063a240(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
+        ProcessSystemUnsignedFlagWithFloatingValue(&SystemUnsignedFlag78,0x3fc90fdb);
+        ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
         SystemUnsignedFlag78 = *(void* *)(SystemResourceManager + 0x48);
         SystemProcessFlags70 = *(void* *)(SystemResourceManager + 0x4a);
         EncryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
@@ -63041,8 +63041,8 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         fStack_4c = SystemResourceManager[0x53];
         pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
-        FUN_180085970(&SystemUnsignedFlag78);
-        pfloatValue7 = (float *)FUN_18063a240(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
+        ResetSystemUnsignedFlag(&SystemUnsignedFlag78);
+        pfloatValue7 = (float *)ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
       }
     }
     pfloatValue4 = pfStack_98;
