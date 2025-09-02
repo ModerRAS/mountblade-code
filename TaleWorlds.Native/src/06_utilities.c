@@ -69080,7 +69080,19 @@ void HandleResourceDataCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909600(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文中的系统数据结构
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构指针
+ * 这是一个简单的指针设置操作，用于初始化验证环境
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数仅设置系统数据结构指针，不执行其他操作
+ * @warning 调用此函数会修改验证上下文中的系统数据结构指针
+ */
+void SetSystemDataStructureInValidationContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x5d0) = &SystemDataStructure;
@@ -69089,7 +69101,19 @@ void Unwind_180909600(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909610(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文中的扩展系统数据结构
+ * 
+ * 该函数负责在验证上下文中设置扩展系统数据结构指针
+ * 如果检测到现有资源句柄，则执行紧急退出程序
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会设置扩展系统数据结构指针，并确保系统数据结构正确初始化
+ * @warning 如果检测到现有资源句柄，系统将执行紧急退出程序
+ */
+void SetExtendedSystemDataStructureInValidationContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x2f0) = &SystemResourceHandlerTemplate;
@@ -69104,7 +69128,19 @@ void Unwind_180909610(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909620(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解锁验证上下文中的互斥锁
+ * 
+ * 该函数负责解锁验证上下文中的互斥锁
+ * 这是一个简单的解锁操作，用于释放互斥锁资源
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数仅执行互斥锁解锁操作，不执行其他操作
+ * @warning 调用此函数会修改验证上下文中的互斥锁状态
+ */
+void UnlockValidationContextMutex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x2f0) = &SystemDataStructure;
