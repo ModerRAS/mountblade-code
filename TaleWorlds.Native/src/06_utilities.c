@@ -10266,38 +10266,55 @@ uint8_t ProcessDataValidationAndSystemOperation(int64_t ObjectContext,int64_t Va
 uint64_t GetSystemRuntimeStatus(void)
 
 {
-  float CalculatedFloatValue;
+  float SystemRuntimeCalculatedValue;
   int64_t ResourceTablePointerPointer;
   uint8_t ResourceHashStatus;
   uint8_t *LoopProcessingPointer;
   int64_t ResourceContext;
   int64_t SavedRegisterValue;
-  float UpperBoundFloatValue;
+  float SystemRuntimeUpperBoundValue;
   uint32_t ResourceContextSecondary;
-  float CalculatedFloatValue;
-  float LowerBoundFloatValue;
-  float InputFloatValue;
-  float ResultFloatValue;
+  float SystemRuntimeCalculatedValue2;
+  float SystemRuntimeLowerBoundValue;
+  float SystemRuntimeInputValue;
+  float SystemRuntimeResultValue;
   uint8_t ValidationStatusCode;
   int64_t ObjectResourceBuffer;
+  int64_t SystemRegisterContext;
+  
+  // 初始化变量
+  SystemRegisterContext = 0;
+  ResourceContext = 0;
+  ResourceContextSecondary = 0;
+  SystemRuntimeInputValue = 0.0f;
+  SystemRuntimeResultValue = 0.0f;
   
   ResourceTablePointerPointer = LookupResourceIndexPointer();
   if ((*(uint *)(ResourceTablePointerPointer + ResourceValidationFlagsOffset) >> 4 & 1) != 0) {
     return ErrorResourceValidationFailed;
   }
-  CalculatedFloatValue = *(float *)(ResourceContext + 0x10);
-  LowerBoundFloatValue = *(float *)(ResourceTablePointerPointer + ResourceFloatValue1Offset);
-  if ((*(float *)(ResourceTablePointerPointer + ResourceFloatValue1Offset) <= InputParameterValue) &&
-     (LowerBoundFloatValue = *(float *)(ResourceTablePointerPointer + ResourceFloatValue2Offset), InputParameterValue <= *(float *)(ResourceTablePointerPointer + ResourceFloatValue2Offset))) {
-    LowerBoundFloatValue = InputParameterValue;
+  
+  // 检查ResourceContext是否有效
+  if (ResourceContext != 0) {
+    SystemRuntimeCalculatedValue = *(float *)(ResourceContext + 0x10);
+    SystemRuntimeLowerBoundValue = *(float *)(ResourceTablePointerPointer + ResourceFloatValue1Offset);
+    if ((*(float *)(ResourceTablePointerPointer + ResourceFloatValue1Offset) <= SystemRuntimeInputValue) &&
+       (SystemRuntimeLowerBoundValue = *(float *)(ResourceTablePointerPointer + ResourceFloatValue2Offset), SystemRuntimeInputValue <= *(float *)(ResourceTablePointerPointer + ResourceFloatValue2Offset))) {
+      SystemRuntimeLowerBoundValue = SystemRuntimeInputValue;
+    }
+    *(float *)(ResourceContext + 0x10) = SystemRuntimeResultValue;
+    ValidationStatusCode = ValidateResourceParameters(SystemRegisterContext + ValidationContextHashOffset,ResourceContextSecondary,SystemRuntimeResultValue);
+    if ((int)ValidationStatusCode == 0) {
+      LoopProcessingPointer = (uint8_t *)GetResourcePointer(SystemRegisterContext + ValidationContextHashOffset,&ObjectResourceBuffer,ResourceContextSecondary);
+      if (ResourceContext != 0 && LoopProcessingPointer != NULL) {
+        *(uint8_t *)(ResourceContext + 0x18) = *LoopProcessingPointer;
+      }
+      ReleaseSystemContextResources(*(uint8_t *)(SystemRegisterContext + 0x98));
+    }
+  } else {
+    ValidationStatusCode = ErrorInvalidResourceData;
   }
-  *(float *)(ResourceContext + 0x10) = ResultFloatValue;
-  ValidationStatusCode = ValidateResourceParameters(SystemRegisterContext + ValidationContextHashOffset,ResourceContextSecondary,ResultFloatValue);
-  if ((int)ValidationStatusCode == 0) {
-    LoopProcessingPointer = (uint8_t *)GetResourcePointer(SystemRegisterContext + ValidationContextHashOffset,&ObjectResourceBuffer,ResourceContextSecondary);
-    *(uint8_t *)(ResourceContext + 0x18) = *LoopProcessingPointer;
-          ReleaseSystemContextResources(*(uint8_t *)(SystemRegisterContext + 0x98));
-  }
+  
   return ValidationStatusCode;
 }
 
@@ -14569,7 +14586,7 @@ void SystemInitializerPrimary(void)
   uint32_t ResourceCount;
   uint32_t ValidationCounter;
   uint32_t PrimaryResourceHash;
-  uint32_t PrimaryResourceHash;
+  uint32_t SecondaryResourceHash;
   char ResourceHashStatus;
   int ResourceIndexTertiary;
   uint ResourceHashValueQuaternary;
@@ -14853,7 +14870,7 @@ void CalculateFloatValueAndValidateResources(void)
   uint32_t ResourceCount;
   uint32_t ValidationCounter;
   uint32_t PrimaryResourceHash;
-  uint32_t PrimaryResourceHash;
+  uint32_t SecondaryResourceHash;
   char ResourceHashStatus;
   int ResourceIndexTertiary;
   uint ResourceHashValueQuaternary;
