@@ -2398,7 +2398,7 @@ uint8_t SystemDataProcessorBuffer;
 uint8_t MemoryAllocatorStateBuffer;
 uint8_t ConfigurationDataStructurePrimary;
 uint8_t ConfigurationDataStructureSecondary;
-uint8_t SystemResourceTableTemplate;
+uint8_t SystemResourceAllocationTemplate;
 uint8_t SystemMemoryMapTemplate;
 uint8_t SystemThreadContextTemplate;
 uint8_t SystemSecurityContextTemplate;
@@ -5762,7 +5762,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
         ResourceHashValidationResult = 0;
       }
       else if (ResourceIndex != 0) {
-        ProcessResourceRelease(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex,&ResourceTableTemplate,0xe9);
+        ProcessResourceRelease(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex,&ResourceAllocationTemplate,0xe9);
         return ResourceHashValidationResult;
       }
       return ResourceHashValidationResult;
@@ -5811,7 +5811,7 @@ int ValidateSystemConfigurationParameter(uint32_t ConfigParameter)
     ResourceIndex = 0;
   }
   else if (ResourceTable != 0) {
-    ProcessResourceRelease(*(uint8_t *)(SystemContext + 0x1a0),ResourceTable,&ResourceTableTemplate,0xe9,HashValidationResult);
+    ProcessResourceRelease(*(uint8_t *)(SystemContext + 0x1a0),ResourceTable,&ResourceAllocationTemplate,0xe9,HashValidationResult);
     return ResourceIndex;
   }
   return ResourceIndex;
@@ -6516,7 +6516,7 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
     if (ValidationStatus < *(int *)(bufferContext + 0x28)) goto ErrorHandler;
     if (ValidationStatus != 0) {
       if ((0x3ffffffe < ValidationStatus * 8 - 1U) ||
-         (newBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationStatus * 8,&ResourceTableTemplate,
+         (newBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationStatus * 8,&ResourceAllocationTemplate,
                                 0xf4,0,0,1), newBufferPointer == 0)) goto ErrorHandler;
       if (*(int *)(bufferContext + 0x28) != 0) {
               memcpy(newBufferPointer,*(uint8_t *)(bufferContext + 0x20),(int64_t)*(int *)(bufferContext + 0x28) << 3);
@@ -6524,7 +6524,7 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
     }
     if ((0 < *(int *)(bufferContext + 0x2c)) && (*(int64_t *)(bufferContext + 0x20) != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(bufferContext + 0x20),
-                    &ResourceTableTemplate,0x100,1);
+                    &ResourceAllocationTemplate,0x100,1);
     }
     *(int64_t *)(bufferContext + 0x20) = newBufferPointer;
     *(int *)(bufferContext + 0x2c) = ValidationStatus;
@@ -6589,7 +6589,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
     if (ResourceIndex < *(int *)(StackParameterBuffer + 0x28)) goto ResourceErrorHandler;
     if (ResourceIndex != 0) {
       if ((0x3ffffffe < ResourceIndex * 8 - 1U) ||
-         (ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,
+         (ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex * 8,&ResourceAllocationTemplate,
                                 0xf4,0), ResourceIndex == 0)) goto ResourceErrorHandler;
       if (*(int *)(StackParameterBuffer + 0x28) != 0) {
               memcpy(ResourceIndex,*(uint8_t *)(StackParameterBuffer + 0x20),
@@ -6599,7 +6599,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
     if ((0 < *(int *)(StackParameterBuffer + 0x2c)) && (*(int64_t *)(StackParameterBuffer + 0x20) != 0))
     {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(StackParameterBuffer + 0x20),
-                    &ResourceTableTemplate,0x100,1);
+                    &ResourceAllocationTemplate,0x100,1);
     }
     *(int64_t *)(StackParameterBuffer + 0x20) = ResourceIndex;
     *(int *)(StackParameterBuffer + 0x2c) = ResourceIndex;
@@ -6661,7 +6661,7 @@ void ProcessDynamicBufferReallocation(void)
     if (ResourceIndex < *(int *)(ResourceContext + 0x28)) goto MemoryErrorHandler;
     if (ResourceIndex != 0) {
       if (0x3ffffffe < ResourceIndex * 8 - 1U) goto MemoryErrorHandler;
-      ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,0xf4,0)
+      ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex * 8,&ResourceAllocationTemplate,0xf4,0)
       ;
       if (ResourceIndex == 0) goto MemoryErrorHandler;
       if (*(int *)(ResourceContext + 0x28) != 0) {
@@ -6670,7 +6670,7 @@ void ProcessDynamicBufferReallocation(void)
     }
     if ((0 < *(int *)(ResourceContext + 0x2c)) && (*(int64_t *)(ResourceContext + 0x20) != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ResourceContext + 0x20),
-                    &ResourceTableTemplate,0x100,1);
+                    &ResourceAllocationTemplate,0x100,1);
     }
     *(int64_t *)(ResourceContext + 0x20) = ResourceIndex;
     *(int *)(ResourceContext + 0x2c) = ResourceIndex;
@@ -6718,7 +6718,7 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
     if (OperationResult < ObjectContext) goto SystemErrorHandler;
     if (OperationResult != 0) {
       if (0x3ffffffe < OperationResult * 8 - 1U) goto SystemErrorHandler;
-      SystemContext = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),OperationResult * 8,&ResourceTableTemplate,
+      SystemContext = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),OperationResult * 8,&ResourceAllocationTemplate,
                                 0xf4);
       if (SystemContext == 0) goto SystemErrorHandler;
       if (*(int *)(ResourceContext + 0x28) != 0) {
@@ -6728,7 +6728,7 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
     }
     if ((0 < *(int *)(ResourceContext + 0x2c)) && (*(int64_t *)(ResourceContext + 0x20) != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ResourceContext + 0x20),
-                    &ResourceTableTemplate,0x100,1);
+                    &ResourceAllocationTemplate,0x100,1);
     }
     *(int64_t *)(ResourceContext + 0x20) = SystemContext;
     *(int *)(ResourceContext + 0x2c) = OperationResult;
@@ -8043,11 +8043,11 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
       if ((int)ValidationStatus != 0) {
         return ValidationStatus;
       }
-      floatValue = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
-      if ((*(float *)(elementPointer + 0x38) <= floatValue) &&
-         (floatValue < *(float *)(elementPointer + 0x3c) || floatValue == *(float *)(elementPointer + 0x3c))) {
+      FloatValueToValidate = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
+      if ((*(float *)(elementPointer + 0x38) <= FloatValueToValidate) &&
+         (FloatValueToValidate < *(float *)(elementPointer + 0x3c) || FloatValueToValidate == *(float *)(elementPointer + 0x3c))) {
         arrayPointer = *(int64_t *)(arrayPointer + 0x90);
-        *(float *)(contextPointer + 4 + arrayIndex * 0x18) = floatValue;
+        *(float *)(contextPointer + 4 + arrayIndex * 0x18) = FloatValueToValidate;
         *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(arrayPointer + (int64_t)IndexBuffer[0] * 8);
               ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
       }
@@ -9045,10 +9045,10 @@ void ExecuteDataValidationAndProcessing(int64_t DataContext, int64_t OperationCo
   int DataHashValidationResult;
   int64_t TempDataBuffer;
   
-  DataPackageValidationStatusCode = ValidateDataFormat(OperationContext, DataContext + 0x10);
-  if (DataPackageValidationStatusCode == 0) {
-    DataPackageValidationStatusCode = CheckDataIntegrity(*(uint32_t *)(DataContext + 0x10), &TempDataBuffer);
-    if (DataPackageValidationStatusCode == 0) {
+  DataValidationResult = ValidateDataFormat(OperationContext, DataContext + 0x10);
+  if (DataValidationResult == 0) {
+    DataValidationResult = CheckDataIntegrity(*(uint32_t *)(DataContext + 0x10), &TempDataBuffer);
+    if (DataValidationResult == 0) {
       if (*(int *)(TempDataBuffer + 0x30) == 1) {
         *(uint32_t *)(TempDataBuffer + 0x30) = 2;
       }
@@ -9081,7 +9081,7 @@ int ProcessDataBlockOperation(int64_t DataContext, int64_t OperationContext)
       ) && (DataProcessingMode < 2)) {
     if (DataProcessingMode == 0) {
       MemoryBufferDataPtr = AllocateBufferMemory(*(uint8_t *)(SystemContext + 0x1a0), *(int *)(DataContext + 0x18), 0x20,
-                            &ResourceTableTemplate, 0xdd, 0, 0);
+                            &ResourceAllocationTemplate, 0xdd, 0, 0);
       if (MemoryBufferDataPtr != 0) {
               memcpy(MemoryBufferDataPtr, *(uint8_t *)(DataContext + 0x10), (int64_t)*(int *)(DataContext + 0x18));
       }
@@ -9129,7 +9129,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t ObjectContext, uint8_t 
   int64_t StackParameterContext;
   
   if (InputParameterValue == 0) {
-    ResourceTable = CreateResourceTable(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext,0x20,&ResourceTableTemplate,0xdd);
+    ResourceTable = CreateResourceTable(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext,0x20,&ResourceAllocationTemplate,0xdd);
     if (ResourceTable != 0) {
             memcpy(ResourceTable,*(uint8_t *)(SystemRegisterContext + 0x10),(int64_t)*(int *)(SystemRegisterContext + 0x18));
     }
@@ -10622,7 +10622,7 @@ uint ValidateAndProcessDataContainer(int64_t *ObjectContext)
       return ResourceHashValidationResult;
     }
     if ((0 < (int)HashValidationResult) && (*ObjectContext != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceAllocationTemplate,0x100,1);
     }
     *ObjectContext = 0;
     ValidationStatusCode = 0;
@@ -10643,7 +10643,7 @@ uint ValidateAndProcessDataContainer(int64_t *ObjectContext)
     return 0x1c;
   }
   if ((0 < *(int *)((int64_t)ObjectContext + 0xc)) && (*ObjectContext != 0)) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceAllocationTemplate,0x100,1);
   }
   *ObjectContext = 0;
   *(uint32_t *)((int64_t)ObjectContext + 0xc) = 0;
@@ -10694,7 +10694,7 @@ uint64_t ProcessObjectLifecycleManagement(int64_t objectHandle)
       return 0x1c;
     }
     if ((0 < (int)loopCondition) && (*ResourceContext != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceAllocationTemplate,0x100,1);
     }
     *ResourceContext = 0;
     loopIncrement = 0;
@@ -10738,7 +10738,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ObjectContext)
       return 0x1c;
     }
     if ((0 < (int)HashValidationResult) && (*ObjectContext != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceAllocationTemplate,0x100,1);
     }
     *ObjectContext = 0;
     ValidationStatusCode = 0;
@@ -10783,7 +10783,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
       return 0x1c;
     }
     if ((0 < (int)ResourcePoolFlags) && (*ResourcePoolHandle != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourcePoolHandle,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourcePoolHandle,&ResourceAllocationTemplate,0x100,1);
     }
     *ResourcePoolHandle = 0;
     *(uint32_t *)((int64_t)ResourcePoolHandle + 0xc) = 0;
@@ -11892,7 +11892,7 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
   if (newSize != 0) {
     if (newSize * 0xc - 1U < 0x3fffffff) {
       newArrayBuffer = (uint8_t *)
-               AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceTableTemplate,
+               AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,
                              0xf4,0,0,1);
       if (newArrayBuffer != (uint8_t *)0x0) {
         oldSize = (int)arrayPointer[1];
@@ -11914,7 +11914,7 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
   }
 MemoryAllocationComplete:
   if ((0 < *(int *)((int64_t)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceTableTemplate,0x100,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceAllocationTemplate,0x100,1);
   }
   *arrayPointer = (int64_t)newArrayBuffer;
   *(int *)((int64_t)arrayPointer + 0xc) = newSize;
@@ -11949,7 +11949,7 @@ uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t resourcePool, int cleanupFl
   if (ValidationContextIndex == 0) {
 ValidationComplete:
     if ((0 < *(int *)((int64_t)ResourceContext + 0xc)) && (*ResourceContext != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceAllocationTemplate,0x100,1);
     }
     *ResourceContext = (int64_t)HashValidationResultPointer;
     *(int *)((int64_t)ResourceContext + 0xc) = ValidationContextIndex;
@@ -11957,7 +11957,7 @@ ValidationComplete:
   }
   if (ValidationContext * 0xc - 1U < 0x3fffffff) {
     PackageValidationStatusCodePointer = (uint8_t *)
-             AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext * 0xc,&ResourceTableTemplate,0xf4
+             AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext * 0xc,&ResourceAllocationTemplate,0xf4
                            ,0);
     if (HashValidationResultPointer != (uint8_t *)0x0) {
       ResourceIndex = (int)ResourceContext[1];
@@ -12016,7 +12016,7 @@ uint64_t ResizeArray(int64_t *arrayPointer, int newSize)
   newMemoryBlock = 0;
   if (newSize != 0) {
     if (newSize * 0xc - 1U < 0x3fffffff) {
-      newMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceTableTemplate,
+      newMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,
                             0xf4,0,0,1);
       if (newMemoryBlock != 0) {
         if ((int)arrayPointer[1] != 0) {
@@ -12029,7 +12029,7 @@ uint64_t ResizeArray(int64_t *arrayPointer, int newSize)
   }
 cleanup_old_memory:
   if ((0 < *(int *)((int64_t)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceTableTemplate,0x100,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceAllocationTemplate,0x100,1);
   }
   *arrayPointer = newMemoryBlock;
   *(int *)((int64_t)arrayPointer + 0xc) = newSize;
@@ -12059,14 +12059,14 @@ uint64_t ExpandArray(uint8_t arrayHeader, int newSize)
   if (currentSize == 0) {
 cleanup_old_memory:
     if ((0 < *(int *)((int64_t)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceAllocationTemplate,0x100,1);
     }
     *arrayPointer = newMemoryBlock;
     *(int *)((int64_t)arrayPointer + 0xc) = currentSize;
     return 0;
   }
   if (newSize * 0xc - 1U < 0x3fffffff) {
-    newMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceTableTemplate,0xf4,
+    newMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,0xf4,
                           0);
     if (newMemoryBlock != 0) {
       if ((int)arrayPointer[1] != 0) {
@@ -12288,7 +12288,7 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
                     return ContextHashValidationResult;
                   }
                   if ((0 < (int)ResourceHandlerFlag2.Field44) && (ResourceHandlerFlag1 != 0)) {
-                          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHandlerFlag1,&ResourceTableTemplate,
+                          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHandlerFlag1,&ResourceAllocationTemplate,
                                   0x100,1);
                   }
                   ResourceHandlerFlag1 = 0;
@@ -12369,7 +12369,7 @@ ResourceAllocationSuccess:
     if (ResourceIndex1 < 0) {
       if (0 < ResourceIndex6) goto ErrorHandler;
       if ((0 < OperationResult) && (ContextHashValidationResult != 0)) {
-              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ContextHashValidationResult,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ContextHashValidationResult,&ResourceAllocationTemplate,0x100,1);
       }
       ResourceHandlerFlag1 = 0;
       ResourceHandlerFlag2 = 0;
@@ -15017,7 +15017,7 @@ ResourceSearchSuccess:
 ResourceValidationComplete:
         } while (ValidationFloatBuffer[0] != -NAN);
       }
-      (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkResponseTemplate);
+      (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkDataTemplate);
       ProcessStatus = (**(code **)(*ObjectContext + ObjectContextValidationDataOffset))(ObjectContext);
       if (ProcessStatus == 0) {
         *(uint8_t *)(ObjectContext + 4) = 0;
@@ -15846,7 +15846,7 @@ uint8_t ProcessResourceTableIndex(int64_t *ObjectContext,int ValidationContext)
   if (ValidationContext != 0) {
     if (ValidationContext * 3 - 1U < 0x3fffffff) {
       PackageValidationStatusCodePointer = (uint16_t *)
-               AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext * 3,&ResourceTableTemplate,0xf4
+               AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext * 3,&ResourceAllocationTemplate,0xf4
                              ,0,0,1);
       if (HashValidationResultPointer != (uint16_t *)0x0) {
         ResourceIndex = (int)ObjectContext[1];
@@ -15868,7 +15868,7 @@ uint8_t ProcessResourceTableIndex(int64_t *ObjectContext,int ValidationContext)
   }
 ResourceProcessingEntryPoint:
   if ((0 < *(int *)((int64_t)ObjectContext + 0xc)) && (*ObjectContext != 0)) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceAllocationTemplate,0x100,1);
   }
   *ObjectContext = (int64_t)HashValidationResultPointer;
   *(int *)((int64_t)ObjectContext + 0xc) = ValidationContext;
@@ -15903,7 +15903,7 @@ uint8_t ValidateResourceParameters(uint8_t ObjectContext,int ValidationContext)
   if (ResourceOperationCode == 0) {
 ResourceProcessingEntryPoint:
     if ((0 < *(int *)((int64_t)ResourceContext + 0xc)) && (*ResourceContext != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceAllocationTemplate,0x100,1);
     }
     *ResourceContext = (int64_t)HashValidationResultPointer;
     *(int *)((int64_t)ResourceContext + 0xc) = ResourceOperationCode;
@@ -15911,7 +15911,7 @@ ResourceProcessingEntryPoint:
   }
   if (ValidationContext * 3 - 1U < 0x3fffffff) {
     PackageValidationStatusCodePointer = (uint16_t *)
-             AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext * 3,&ResourceTableTemplate,0xf4,0
+             AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext * 3,&ResourceAllocationTemplate,0xf4,0
                           );
     if (HashValidationResultPointer != (uint16_t *)0x0) {
       ResourceIndex = (int)ResourceContext[1];
@@ -16005,11 +16005,15 @@ uint8_t SearchResourceEntry(int64_t *ObjectContext,uint32_t *ValidationContext)
 /**
  * @brief 处理资源哈希验证
  * 
- * 该函数处理资源的哈希验证操作，根据给定的参数进行验证。
+ * 该函数负责处理系统资源的哈希验证操作，确保资源的完整性和安全性。
+ * 函数会检查资源句柄的有效性，计算资源哈希值，并进行验证。
+ * 如果资源无效或验证失败，返回相应的错误码。
  * 
- * @param resourceHandle 资源句柄指针
- * @param offset 验证偏移量
- * @return 验证结果，0x1c表示失败，其他值表示验证结果
+ * @param resourceHandle 资源句柄指针，指向要验证的资源数据结构
+ * @param offset 验证偏移量，用于指定验证操作的起始位置
+ * @return uint8_t 验证结果码，0x1c表示验证失败，其他值表示验证状态
+ * @note 此函数依赖于ObjectContext全局变量进行资源访问
+ * @warning 调用此函数前必须确保资源句柄已正确初始化
  */
 uint8_t ProcessResourceHashValidation(uint8_t *resourceHandle,int64_t offset)
 
@@ -17022,14 +17026,16 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
 
 
  /**
- * 处理资源注册器
+ * @brief 处理资源注册器
  * 
- * 该函数处理资源注册器，包括浮点计算结果和验证计数器。
- * 它遍历资源条目并执行相应的操作。
+ * 该函数负责处理系统资源注册器的复杂操作，包括浮点计算结果和验证计数器。
+ * 函数会遍历资源条目，执行安全验证，并处理资源数据的访问操作。
  * 
- * @param ObjectContext 对象上下文指针
- * @param ValidationContext 验证上下文
- * @return 处理结果，0表示成功，非0表示错误代码
+ * @param ObjectContext 对象上下文指针，包含对象的状态和配置信息
+ * @param ValidationContext 验证上下文，包含验证所需的参数和状态
+ * @return uint8_t 处理结果码，0表示成功，非0表示错误代码
+ * @note 此函数涉及复杂的浮点计算和资源数据访问操作
+ * @warning 函数执行过程中可能会修改资源注册器的状态
  */
 uint8_t ProcessResourceRegistry(uint8_t *ObjectContext, uint8_t ValidationContext)
 
@@ -21317,7 +21323,7 @@ ResourceValidationWait:
           return SecurityHashValue;
         }
         if ((0 < (int)ResourceQuaternaryFlag.FloatValue) && (pResourceTertiaryFlag != (uint8_t *)0x0)) {
-                ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceTableTemplate,0x100,1);
+                ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceAllocationTemplate,0x100,1);
         }
         pResourceTertiaryFlag = (uint8_t *)0x0;
         ResourceQuaternaryFlag = ResourceQuaternaryFlag & 0xffffffff;
@@ -21388,7 +21394,7 @@ ResourceValidationWait:
     if ((int)ContextHashValidationResult < 0) {
       if (0 < ResourceIndexTertiary) goto ResourceIndexProcessing;
       if ((0 < (int)ResourceQuaternaryFlag.FloatValue) && (pResourceTertiaryFlag != (uint8_t *)0x0)) {
-              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceAllocationTemplate,0x100,1);
       }
       pResourceTertiaryFlag = (uint8_t *)0x0;
       ResourceQuaternaryFlag = ResourceQuaternaryFlag & 0xffffffff;
@@ -21563,7 +21569,7 @@ ResourceValidationWait:
         }
         if ((0 < (int)ValidationCounter) && (*(int64_t *)(ExecutionContextPointer + -0x29) != 0)) {
                 ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
-                        &ResourceTableTemplate,0x100,1);
+                        &ResourceAllocationTemplate,0x100,1);
         }
         *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
         *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
@@ -21643,7 +21649,7 @@ ResourceValidationWait:
     if ((int)ResourceHashValue0 < 0) {
       if (0 < ResourceProcessingIndex) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (ResourceHashPointer3 != (uint8_t *)0x0)) {
-              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer3,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer3,&ResourceAllocationTemplate,0x100,1);
       }
       *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
       *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
@@ -21814,7 +21820,7 @@ ResourceValidationWait:
         }
         if ((0 < (int)ValidationCounter) && (*(int64_t *)(ExecutionContextPointer + -0x29) != 0)) {
                 ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
-                        &ResourceTableTemplate,0x100,1);
+                        &ResourceAllocationTemplate,0x100,1);
         }
         *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
         *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
@@ -21894,7 +21900,7 @@ ResourceValidationWait:
     if ((int)ResourceHashValue0 < 0) {
       if (0 < ResourceProcessingIndex) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (ResourceHashPointer2 != (uint8_t *)0x0)) {
-              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer2,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer2,&ResourceAllocationTemplate,0x100,1);
       }
       *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
       *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
@@ -22030,7 +22036,7 @@ ResourceValidationWait:
         }
         if ((0 < (int)ValidationCounter) && (*(int64_t *)(ExecutionContextPointer + -0x29) != 0)) {
                 ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
-                        &ResourceTableTemplate,0x100,1);
+                        &ResourceAllocationTemplate,0x100,1);
         }
         *(uint8_t **)(ExecutionContextPointer + -0x29) = ResourceDataPointer;
         *(uint *)(ExecutionContextPointer + -0x1d) = ResourceCounter;
@@ -22111,7 +22117,7 @@ ResourceValidationWait:
     if ((int)ResourceHashValue0 < 0) {
       if (0 < ResourceIndexOctal) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (ResourceHashPointer4 != (uint8_t *)0x0)) {
-              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer4,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer4,&ResourceAllocationTemplate,0x100,1);
       }
       *(uint8_t **)(ExecutionContextPointer + -0x29) = ResourceDataPointer;
       *(uint *)(ExecutionContextPointer + -0x1d) = ResourceCounter;
@@ -28981,7 +28987,7 @@ void UnwindExceptionHandlerTypeFour(uint8_t ObjectContext,int64_t ValidationCont
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x48);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -29002,7 +29008,7 @@ void UnwindExceptionHandlerTypeFive(uint8_t ObjectContext,int64_t ValidationCont
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x48);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -33335,7 +33341,7 @@ void ResourceDeallocationHandler(uint8_t ObjectContext,int64_t ValidationContext
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -42763,7 +42769,7 @@ void InitializeResourceTemplates(uint8_t ObjectContext, int64_t ValidationContex
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x50);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -42816,7 +42822,7 @@ void ResetResourceCacheTemplates(uint8_t ObjectContext, int64_t ValidationContex
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x50);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -43514,7 +43520,7 @@ void ResetResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x20);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -49792,7 +49798,7 @@ void InitializeResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -51360,7 +51366,7 @@ void Unwind_180905f90(uint8_t ObjectContext,int64_t ValidationContext)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -52682,7 +52688,7 @@ void Unwind_180906530(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x48);
   *ResourceHashPointer = &ResourceHashTable006;
   ResourceHashPointer[2] = &SystemDataStructure;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -52877,7 +52883,7 @@ void Unwind_180906630(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0xa0);
   *ResourceHashPointer = &ResourceHashTable006;
   ResourceHashPointer[2] = &SystemDataStructure;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -53080,7 +53086,7 @@ void InitializeResourceHashTemplates(uint8_t ObjectContext, int64_t ValidationCo
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0xa0);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -53173,7 +53179,7 @@ void ConfigureResourceHashTablesAndCache(uint8_t ObjectContext, int64_t Validati
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x50);
   *ResourceHashPointer = &ResourceHashTable006;
   ResourceHashPointer[2] = &SystemDataStructure;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -55196,7 +55202,7 @@ void ResetResourceHashPointers(uint8_t ObjectContext, int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x178);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -56604,7 +56610,7 @@ void Unwind_180907530(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x30);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -56617,7 +56623,7 @@ void Unwind_180907540(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x30);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -56678,7 +56684,7 @@ void Unwind_180907590(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x40);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -56859,7 +56865,7 @@ void Unwind_1809076a0(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x38);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -60665,7 +60671,7 @@ void Unwind_1809088d0(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x28);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -60689,7 +60695,7 @@ void InitializeResourceHashTableTemplates(uint8_t ObjectContext, int64_t Validat
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x28);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -64551,7 +64557,7 @@ void Unwind_180909990(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0xe0);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -64932,7 +64938,7 @@ void Unwind_180909b70(uint8_t ObjectContext,int64_t ValidationContext)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -79744,7 +79750,7 @@ void Unwind_18090edb0(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x150);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -79767,7 +79773,7 @@ void Unwind_18090edd0(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x88);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -79808,7 +79814,7 @@ void Unwind_18090ee00(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x88);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -79845,7 +79851,7 @@ void Unwind_18090ee30(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x98);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -79886,7 +79892,7 @@ void Unwind_18090ee60(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x98);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -82110,7 +82116,7 @@ void Unwind_18090fa20(uint8_t ObjectContext,int64_t ValidationContext)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(ResourceHashPointer + 4);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -82788,7 +82794,7 @@ void Unwind_18090ff00(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x100);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -83963,7 +83969,7 @@ void Unwind_180910400(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x60);
   *ResourceHashPointer = &ResourceHashTemplate;
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
@@ -83976,7 +83982,7 @@ void Unwind_180910410(uint8_t ObjectContext,int64_t ValidationContext)
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x60);
-  *ResourceHashPointer = &ResourceTableTemplate;
+  *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
