@@ -2693,25 +2693,44 @@ uint8_t DataBufferManager;
 uint8_t IoManager;
 // 文件处理器 - 处理文件相关操作
 uint8_t FileHandler;
-uint8_t SystemNetworkManager;
-uint8_t SystemSocketManager;
-uint8_t SystemConnectionPool;
-uint8_t SystemProtocolHandler;
-uint8_t SystemPacketBuffer;
-uint8_t SystemStreamManager;
-uint8_t SystemEventHandlerSlot;
-uint8_t SystemMessageQueue;
-uint8_t SystemSignalManager;
-uint8_t SystemLockManager;
-uint8_t SystemSemaphoreManager;
-uint8_t SystemMutexManager;
-uint8_t SystemCriticalSection;
-uint8_t SystemReadWriteLock;
-uint8_t SystemSpinLock;
-uint8_t SystemBarrierManager;
-uint8_t SystemConditionVariable;
-uint8_t SystemEventObject;
-uint8_t SystemTimerManager;
+// 网络管理器 - 管理网络连接和通信
+uint8_t NetworkManager;
+// 套接字管理器 - 管理套接字连接
+uint8_t SocketManager;
+// 连接池 - 管理网络连接池
+uint8_t ConnectionPool;
+// 协议处理器 - 处理网络协议
+uint8_t ProtocolHandler;
+// 数据包缓冲区 - 缓存网络数据包
+uint8_t PacketBuffer;
+// 流管理器 - 管理数据流
+uint8_t StreamManager;
+// 事件处理器槽 - 管理事件处理槽位
+uint8_t EventHandlerSlot;
+// 消息队列 - 管理消息队列
+uint8_t MessageQueue;
+// 信号管理器 - 管理系统信号
+uint8_t SignalManager;
+// 锁管理器 - 管理系统锁
+uint8_t LockManager;
+// 信号量管理器 - 管理信号量
+uint8_t SemaphoreManager;
+// 互斥量管理器 - 管理互斥量
+uint8_t MutexManager;
+// 临界区 - 管理临界区资源
+uint8_t CriticalSection;
+// 读写锁 - 管理读写锁
+uint8_t ReadWriteLock;
+// 自旋锁 - 管理自旋锁
+uint8_t SpinLock;
+// 屏障管理器 - 管理线程屏障
+uint8_t BarrierManager;
+// 条件变量 - 管理条件变量
+uint8_t ConditionVariable;
+// 事件对象 - 管理事件对象
+uint8_t EventObject;
+// 定时器管理器 - 管理定时器
+uint8_t TimerManager;
 uint8_t SystemClockManager;
 uint8_t SystemPerformanceCounter;
 uint8_t SystemProfiler;
@@ -3024,7 +3043,8 @@ uint8_t SystemEventHandlerSlotOneHundred;
 uint8_t SystemEventManagerInputSlot;
 uint8_t SystemEventManagerOutputSlot;
 uint8_t SystemEventManagerEventSlot;
-uint8_t SystemEventHandlerSlot;
+// 事件处理器槽 - 管理事件处理槽位
+uint8_t EventHandlerSlot;
 uint8_t SystemEventCallbackSlot;
 uint8_t SystemEventManagerSlotSix;
 uint8_t SystemEventManagerSlotSeven;
