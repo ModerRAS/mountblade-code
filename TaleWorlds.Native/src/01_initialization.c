@@ -25681,7 +25681,7 @@ uint32_t GetSystemResourceStatus(void)
     *(uint32_t *)(pSystemResourceAddress + 3) = 0;
     *pSystemResourceAddress = &SystemMemoryAllocatorReference;
     pUnsignedStackFlagA8 = &SystemGlobalDataReference;
-    if (lStack_a0 != 0) {
+    if (LongStackVariableA0 != 0) {
         SystemCleanupFunction();
     }
   }
@@ -26918,8 +26918,8 @@ bool SystemResourceValidator(long long SystemResourceManager)
   void* *SystemDataPointer0;
   void* *ThreadLocalStorage;
   void* *pointerUnsigned30;
-  byte *pbStack_28;
-  int iStack_20;
+  byte *ByteStack28;
+  int IntegerStack20;
   
   SystemDataPointer = (void* *)(SystemResourceManager + 0x2e0);
   SetupSystemMemory(&pointerUnsigned30);
@@ -26927,7 +26927,7 @@ bool SystemResourceValidator(long long SystemResourceManager)
   ThreadLocalStorage = SystemDataPointer;
   if (newThreadLocalStorage != (void* *)0x0) {
     do {
-      if (iStack_20 == 0) {
+      if (IntegerStack20 == 0) {
         isValidOperation = false;
         punsignedSystemValue9 = (void* *)newThreadLocalStorage[1];
       }
@@ -26936,9 +26936,9 @@ bool SystemResourceValidator(long long SystemResourceManager)
           isValidOperation = true;
         }
         else {
-          stringPointer = pbStack_28;
+          stringPointer = ByteStack28;
           do {
-            currentThreadId = (uint)stringPointer[newThreadLocalStorage[5] - (long long)pbStack_28];
+            currentThreadId = (uint)stringPointer[newThreadLocalStorage[5] - (long long)ByteStack28];
             systemFlag = *stringPointer - currentThreadId;
             if (*stringPointer != currentThreadId) break;
             stringPointer = stringPointer + 1;
