@@ -53055,7 +53055,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   MemoryBufferAddress = 0;
   pEncryptionOffset1 = (uint8_t *)0x0;
   EncryptionOffset2 = 0;
-  uStack_114 = 4;
+  SystemOperationMode = 4;
   ResourceHash = *(uint *)(resourceCounter + 0x10);
   SystemContextPointer = (ulong long)ResourceHash;
   resourceAddress = 0;
@@ -53114,7 +53114,7 @@ LAB_1800721e1:
     }
   }
   FinalizeSystemInitialization(&pUnsignedStackFlag110,&SystemDataBufferPointerA8,&SystemProcessFlags58);
-  uStack_114 = 0;
+  SystemOperationMode = 0;
   pUnsignedStackFlag110 = &SystemGlobalDataReference;
   if (SystemDataPointer0 != (uint8_t *)0x0) {
       SystemCleanupFunction(SystemDataPointer0);
@@ -53479,19 +53479,19 @@ LAB_1800729bd:
           UnsignedStackFlagC0 = 0x33;
           pThreadLocalStorage = &dataBufferContext;
           ResourceHash = 2;
-          uStack_114 = 2;
+          SystemOperationMode = 2;
         }
         else {
           pThreadLocalStorage = (void* **)CreateSystemObject(&pUnsignedStackFlag80,SystemGlobalStatusFlags + 0x148);
           ResourceHash = 1;
-          uStack_114 = 1;
+          SystemOperationMode = 1;
           SystemDataConfigurationPointer = pointerUnsignedC8;
         }
         ThreadContextFlag = CreateSystemObject(&SystemResourcePointerF0,pThreadLocalStorage);
         if ((ResourceHash & 2) != 0) {
           ResourceHash = ResourceHash & 0xfffffffd;
           dataBufferContext = &SystemGlobalDataReference;
-          uStack_114 = ResourceHash;
+          SystemOperationMode = ResourceHash;
           if (SystemDataConfigurationPointer != (void* *)0x0) {
               SystemCleanupFunction(SystemDataConfigurationPointer);
           }
@@ -53500,7 +53500,7 @@ LAB_1800729bd:
           dataBufferContext = &SystemMemoryAllocatorReference;
         }
         if ((ResourceHash & 1) != 0) {
-          uStack_114 = ResourceHash & 0xfffffffe;
+          SystemOperationMode = ResourceHash & 0xfffffffe;
           pUnsignedStackFlag80 = &SystemGlobalDataReference;
           if (StackInteger78 != 0) {
               SystemCleanupFunction();
