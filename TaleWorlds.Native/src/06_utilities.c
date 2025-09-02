@@ -10356,28 +10356,28 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationC
 int ValidateResourceTableAccess(uint64_t ResourceHandle)
 
 {
-  int PackageValidationStatus;
-  int64_t ObjectContextPointer;
+  int ResourcePackageValidationStatus;
+  int64_t ResourceObjectContextPointer;
   int64_t ResourceTablePointer;
-  int64_t *SystemContextPointer;
-  int64_t SavedRegisterValue;
-  uint64_t StackSecurityToken;
+  int64_t *ResourceSystemContextPointer;
+  int64_t ResourceSavedRegisterValue;
+  uint64_t ResourceStackSecurityToken;
   
-  ObjectContextPointer = ObjectContext;
+  ResourceObjectContextPointer = ObjectContext;
   ResourceTablePointer = (**(code **)(InputParameter + 0x288))();
   if (ResourceTablePointer == 0) {
                     // WARNING: Subroutine does not return
-    ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,ObjectContextPointer & 0xffffffff,
-                  ObjectContextPointer.Field42);
+    ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,ResourceObjectContextPointer & 0xffffffff,
+                  ResourceObjectContextPointer.Field42);
   }
   if (**(int **)(ResourceTablePointer + 0xd0) == 0) {
     int ResourceAvailabilityStatus = CheckResourceAvailability(*(uint32_t *)(SystemRegisterContext + 0x18));
     if (ResourceAvailabilityStatus != 0) goto ValidationSuccessLabel;
   }
-  *SystemContextPointer = ResourceTablePointer;
+  *ResourceSystemContextPointer = ResourceTablePointer;
 ValidationSuccessLabel:
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(StackSecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+  FinalizeSecurityOperation(ResourceStackSecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -15000,7 +15000,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
           LocalContextPointer = ObjectContext[1];
           GraphicsOperationFlagTertiary = 0;
           MemoryTemplatePointer = &SystemMemoryTemplateD;
-          inputFloatValue8 = SUB84(ResourceContext3,0);
+          InputFloatValue = SUB84(ResourceContext3,0);
           ResourceContext3 = (int64_t *)(LocalContextPointer + 0xe0 + (int64_t)ResourceContext0);
           LocalContextHandle = *ResourceContext3;
           ValidationCounter = ResourceContext3[1];
@@ -15024,7 +15024,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
           }
           LocalContextPointer = ObjectContext[4];
           GraphicsOperationStatus = LocalContextHandle == 0;
-          FloatProcessingResult2c8 = inputFloatValue8;
+          FloatProcessingResult = InputFloatValue;
           if (((char)LocalContextPointer == '\0') &&
              (ProcessStatus = CheckSystemStatus(ObjectContext,CONCAT71((uint7)(uint3)(ResourceDataSize >> 8),1)), ProcessStatus != 0
              )) goto ResourceProcessingComplete;
@@ -15039,7 +15039,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
           }
           ResourceContext4 = (int64_t *)((int64_t)ResourceContext4 + 1);
           ResourceContext0 = ResourceContext0 + 6;
-          ResourceContext3 = (int64_t *)(uint64_t)((int)inputFloatValue8 + 1);
+          ResourceContext3 = (int64_t *)(uint64_t)((int)InputFloatValue + 1);
           ResourceContext9 = (int64_t *)((int64_t)ResourceContext9 + 0xc);
         } while ((int64_t)ResourceContext4 < AudioProcessingBufferExtended[0]);
       }
@@ -15100,14 +15100,14 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
           ResourceContext4 = (int64_t *)(uint64_t)ResourceHashValue7;
         } while ((int)ResourceHashValue7 < ProcessStatus);
       }
-      UnsignedStackValue310 = 0xffffffffffffffff;
+      MaximumUnsignedValue = 0xffffffffffffffff;
       TempFloatBuffer[0] = -NAN;
       PointerStack318 = (int64_t *)(*(int64_t *)(ObjectContext[1] + 0x90) + 0x38);
-      ResourceSettingsConfigFlag(PointerStack318,&UnsignedStackValue310,TempFloatBuffer);
+      ResourceSettingsConfigFlag(PointerStack318,&MaximumUnsignedValue,TempFloatBuffer);
       ValidationFloatBuffer[0] = TempFloatBuffer[0];
       if (TempFloatBuffer[0] != -NAN) {
         ResourceContext6 = PointerStack318;
-        inputFloatValue8 = (float)UnsignedStackValue310;
+        inputFloatValue8 = (float)MaximumUnsignedValue;
         do {
           do {
             LocalContextPointer = (int64_t)(int)ValidationFloatBuffer[0] * 0x20;
