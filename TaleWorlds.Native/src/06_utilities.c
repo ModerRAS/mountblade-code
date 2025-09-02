@@ -14489,42 +14489,42 @@ LoopExit:
       }
       uint32_t DataBufferFirst = *(uint32_t *)(SystemResourceContext + 0x10);
       uint32_t DataBufferSecond = *(uint32_t *)(SystemResourceContext + 0x14);
-      uint32_t dataBuffer3 = *(uint32_t *)(SystemResourceContext + 0x18);
-      uint32_t dataBuffer4 = *(uint32_t *)(SystemResourceContext + 0x1c);
-      uint32_t operationFlag = 0;
-      int nextResultIndex = resultCounter + 1;
+      uint32_t DataBufferThird = *(uint32_t *)(SystemResourceContext + 0x18);
+      uint32_t DataBufferFourth = *(uint32_t *)(SystemResourceContext + 0x1c);
+      uint32_t OperationFlag = 0;
+      int NextResultIndex = ResultCounter + 1;
       StackPointer268 = &SystemMemoryTemplateA;
-      uint32_t checksumValue = DataChecksumBuffer8[0];
-      uint32_t encryptionParam = encryptionFlag;
-      int resultIndex = resultCounter;
-      int resourceValidationStatusCode = GetAndValidateResourceData(ObjectContext,&StackPointer268);
+      uint32_t ChecksumValue = DataChecksumBuffer8[0];
+      uint32_t EncryptionParam = encryptionFlag;
+      int ResultIndex = ResultCounter;
+      int ResourceValidationStatusCode = GetAndValidateResourceData(ObjectContext,&StackPointer268);
       if (ResourceHashValidationResult != 0) goto LoopExit;
-      int processingCounter = 0;
-      int tableEntryIndex = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + 0xd0));
-      int loopCounter2 = nextResultIndex;
-      if (0 < tableEntryIndex) {
+      int ProcessingCounter = 0;
+      int TableEntryIndex = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + 0xd0));
+      int LoopCounter2 = NextResultIndex;
+      if (0 < TableEntryIndex) {
         do {
-          uint32_t loopFlag = 0;
+          uint32_t LoopFlag = 0;
           ResourceTable = ObjectContext[4];
-          uint8_t *memoryTemplatePointer = &SystemMemoryTemplateB;
-          uint32_t checksumValue2 = DataChecksumBuffer8[0];
-          if (((char)ResourceTable == '\0') && (int systemStatusResult = CheckSystemStatus(ObjectContext,1), systemStatusResult != 0))
+          uint8_t *MemoryTemplatePointer = &SystemMemoryTemplateB;
+          uint32_t ChecksumValue2 = DataChecksumBuffer8[0];
+          if (((char)ResourceTable == '\0') && (int SystemStatusResult = CheckSystemStatus(ObjectContext,1), SystemStatusResult != 0))
           goto LoopExit;
-          int memoryOperationStatusCode = (**(code **)(memoryTemplatePointer + 0x10))(&memoryTemplatePointer,StackBuffer238,0x200);
+          int MemoryOperationStatusCode = (**(code **)(MemoryTemplatePointer + 0x10))(&MemoryTemplatePointer,StackBuffer238,0x200);
           ProcessDataBuffer((int64_t)StackBuffer238 + (int64_t)memoryOperationResult,0x200 - memoryOperationResult,10);
-          int objectOperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,StackBuffer238);
+          int ObjectOperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,StackBuffer238);
           if (objectOperationResult != 0) goto LoopExit;
           if ((char)ResourceTable == '\0') {
-            int secondaryOperationStatusCode = (**(code **)(*ObjectContext + ObjectContextValidationDataOffset))(ObjectContext);
+            int SecondaryOperationStatusCode = (**(code **)(*ObjectContext + ObjectContextValidationDataOffset))(ObjectContext);
             if (secondaryOperationResult != 0) goto LoopExit;
             *(uint8_t *)(ObjectContext + 4) = 0;
           }
-          processingCounter = processingCounter + 1;
-          int tableValidationStatusCode = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + 0xd0));
-        } while (processingCounter < tableHashValidationResult);
+          ProcessingCounter = ProcessingCounter + 1;
+          int TableValidationStatusCode = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + 0xd0));
+        } while (ProcessingCounter < tableHashValidationResult);
       }
     }
-    loopIndex = loopIndex + 1;
+    LoopIndex = LoopIndex + 1;
   } while( true );
 }
 

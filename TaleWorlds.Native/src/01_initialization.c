@@ -44229,7 +44229,7 @@ void ProcessSystemResourceConfiguration(void* ResourceManagerPointer,void* Confi
   }
   else {
 LAB_18006650a:
-    FUN_180052070(&pSystemStackFlag);
+    InitializeSystemStackFlag(&pSystemStackFlag);
     currentThreadId = ProcessSystemQueue(&systemMemoryContext,&SystemQueueConfigPtr);
     systemIndex = GetSystemCounter(&pSystemStackFlag,currentThreadId);
     systemMemoryContext = &SystemGlobalDataReference;
@@ -44252,7 +44252,7 @@ LAB_18006650a:
     uStack_160 = 0;
     puStack_170 = (void* *)0x0;
     uStack_168 = 0;
-    hashValue = FUN_180623ce0();
+    hashValue = CalculateSystemHashValue();
     ConfigureSystemDataBuffer(&puStack_158,&SystemDataBufferSizeTemplate,hashValue / 0x100000 & 0xffffffff);
     auStack_98[0] = 0x48;
     currentThreadId = GetCurrentProcess();
@@ -44272,33 +44272,33 @@ LAB_18006650a:
     if (puStack_170 != (void* *)0x0) {
       SystemGlobalDataReferencePtr = puStack_170;
     }
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam3);
+    ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemContextParam3);
     SystemGlobalDataReferencePtr = &SystemStringTemplate;
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam4);
+    ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemContextParam4);
     SystemGlobalDataReferencePtr = &SystemStringTemplate;
     if (puStack_c8 != (void* *)0x0) {
       SystemGlobalDataReferencePtr = puStack_c8;
     }
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam5);
+    ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemContextParam5);
     SystemGlobalDataReferencePtr = &SystemStackDataTemplate2;
     if (AdditionalParameter != '\0') {
       SystemGlobalDataReferencePtr = &SystemStackDataTemplate3;
     }
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam6);
+    ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemContextParam6);
     InitializeSystemManager();
     if (((ConfigurationFlag == '\0') || (SystemDebugFlagPtr != '\0')) || (*(int *)(SystemMemoryManagerPointer + 0x1150) != 0))
     {
-      FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam7);
+      ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemContextParam7);
       InitializeSystemManager();
     }
     else {
-      FUN_180625690(&pSystemStackFlag);
+      ProcessSystemStackConfiguration(&pSystemStackFlag);
     }
     ppuStack_a8 = &systemMemoryContext;
     currentThreadId = CreateSystemObject(&systemMemoryContext,&pSystemStackFlag);
     InitializeSecurityContext(currentThreadId);
     ConfigureSecurityParameters(&pSystemStackFlag,SystemContextPointer);
-    FUN_180063cf0(&pSystemStackFlag);
+    CleanupAndValidateSystemResources(&pSystemStackFlag);
     SetupSystemConfiguration(&systemMemoryContext);
     ConfigureSystemResources(&systemMemoryContext,&puStack_f0,&SystemMemoryBufferTemplate1);
     ConfigureSystemResources(&pSystemStackFlag,&puStack_110,&SystemMemoryBufferTemplate1);
@@ -44324,8 +44324,8 @@ LAB_18006650a:
     lStack_130 = 0;
     uStack_120 = 0;
     systemMemoryContext = &SystemMemoryAllocatorReference;
-    FUN_180064010(&pSystemStackFlag);
-    FUN_1800649d0(&pSystemStackFlag);
+    InitializeAndConfigureSystemResources(&pSystemStackFlag);
+    ProcessAndManageSystemResources(&pSystemStackFlag);
     FUN_180065160(&pSystemStackFlag);
     FUN_180065d50(&pSystemStackFlag,ConfigurationDataPointer,AdditionalParameter,0);
     psystemFlag178 = &SystemGlobalDataReference;
