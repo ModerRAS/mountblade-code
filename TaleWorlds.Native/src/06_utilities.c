@@ -5004,11 +5004,11 @@ uint64_t ValidateAndProcessObjectHandle(uint64_t objectHandle)
 uint32_t ValidateAndProcessCurrentObjectHandle(void)
 
 {
-  int64_t CurrentRegister;
-  int64_t ProcessedValue;
+  int64_t currentRegister;
+  int64_t processedValue;
   
   if (currentRegister == 0) {
-    ProcessedValue = 0;
+    processedValue = 0;
   }
   else {
     processedValue = currentRegister + -8;
@@ -5067,15 +5067,15 @@ void ReturnNoOperation(void)
 uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
 
 {
-  uint64_t ResourceHashValidationResult;
+  uint64_t hashValidationResult;
   int64_t stackOffset;
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(extendedObjectHandle + 0x10),&stackOffset);
-  if ((int)HashValidationResult != 0) {
-    return ResourceHashValidationResult;
+  hashValidationResult = ValidateObjectContext(*(uint32_t *)(extendedObjectHandle + 0x10),&stackOffset);
+  if ((int)hashValidationResult != 0) {
+    return hashValidationResult;
   }
   if (stackOffset == 0) {
-    StackOffset = 0;
+    stackOffset = 0;
   }
   else {
     stackOffset = stackOffset + -8;
@@ -5100,11 +5100,11 @@ uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
 uint32_t ValidateAndProcessCurrentObjectHandleExtended(void)
 
 {
-  int64_t CurrentRegister;
-  int64_t ProcessedValue;
+  int64_t currentRegister;
+  int64_t processedValue;
   
   if (currentRegister == 0) {
-    ProcessedValue = 0;
+    processedValue = 0;
   }
   else {
     processedValue = currentRegister + -8;
@@ -11465,7 +11465,7 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *resou
         }
       }
       newEntryPointer = (uint8_t *)((int64_t)(int)hashTablePointer[3] * 0x10 + hashTablePointer[2]);
-      *newEntryPointer = CONCAT44(0xffffffff,resourceHash);
+      *newEntryPointer = CombineHighLow32Bits(0xffffffff,resourceHash);
       newEntryPointer[1] = operationResult;
       *(int *)(hashTablePointer + 3) = (int)hashTablePointer[3] + 1;
     }
@@ -11553,7 +11553,7 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int SearchKey)
       }
     }
     EntryPointer = (uint8_t *)((int64_t)(int)PoolHeader[3] * 0x10 + PoolHeader[2]);
-    *EntryPointer = CONCAT44(0xffffffff, SearchKey);
+    *EntryPointer = CombineHighLow32Bits(0xffffffff, SearchKey);
     EntryPointer[1] = NewValue;
     *(int *)(PoolHeader + 3) = (int)PoolHeader[3] + 1;
   }
@@ -16020,8 +16020,7 @@ uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *dataBuffer)
 
 
 
- 9090(uint8_t objectContext,int64_t validationContext)
-9090(uint8_t objectContext,int64_t validationContext)
+ void ExecuteResourceMemoryCleanup(uint8_t objectContext,int64_t validationContext)
 
 {
   int ProcessingResult;
@@ -16042,8 +16041,7 @@ uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *dataBuffer)
 
 
 
- 9100(int64_t objectContext,uint32_t *validationContext)
-9100(int64_t objectContext,uint32_t *validationContext)
+ void ValidateResourceDataContext(int64_t objectContext,uint32_t *validationContext)
 
 {
   int ProcessingResult;

@@ -1096,9 +1096,9 @@ int InitializeStringProcessorI(void)
   int64_t SystemModuleRegistrationResult;
   uint64_t StringProcessorIFlags;
   GlobalStringProcessorDataPointerD = &SystemStringMemoryTemplate;
-  g_stringProcessorConfigPointerD = &STRING_PROCESSOR_CONFIG_D;
+  GlobalStringProcessorConfigPointerD = &STRING_PROCESSOR_CONFIG_D;
   STRING_PROCESSOR_CONFIG_D = 0;
-  g_stringProcessorBufferSizeD = 9;
+  GlobalStringProcessorBufferSizeD = 9;
   strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&SystemStringDataConstantE,StringProcessorIFlags,SystemMutexFlags);
   SystemModuleRegistrationResult = RegisterSystemModule(InitializeNetworkModule);
   return (SystemModuleRegistrationResult != 0) - 1;
@@ -1327,11 +1327,11 @@ int InitializeStringProcessorL(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorLFlags;
-  g_stringProcessorL_Base = &SystemGlobalDataTemplateA;
-  g_stringProcessorL_BufferPtr = &g_stringProcessorL_Buffer;
-  g_stringProcessorL_Buffer = 0;
-  g_stringProcessorL_Length = 9;
-  strcpy_s(&g_stringProcessorL_Buffer,0x40,&StringProcessorTemplateC,stringProcessorLFlags,SystemMutexFlags);
+  GlobalStringProcessorL_Base = &SystemGlobalDataTemplateA;
+  GlobalStringProcessorL_BufferPtr = &GlobalStringProcessorL_Buffer;
+  GlobalStringProcessorL_Buffer = 0;
+  GlobalStringProcessorL_Length = 9;
+  strcpy_s(&GlobalStringProcessorL_Buffer,0x40,&StringProcessorTemplateC,stringProcessorLFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorL_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1347,95 +1347,95 @@ int InitializeMultiStringProcessorSystem(void)
   uint64_t systemFlags;
   
   // 初始化字符串处理器N
-  g_stringProcessorN_Base = &StringProcessorDataBaseN;
-  g_stringProcessorN_BufferPtr = &g_stringProcessorN_Buffer;
-  g_stringProcessorN_Buffer = 0;
-  g_stringProcessorN_Length = 0xb;
-  strcpy_s(&g_stringProcessorN_Buffer,0x80,&StringProcessorDataTemplateN,systemFlags,SystemMutexFlags);
+  GlobalStringProcessorN_Base = &StringProcessorDataBaseN;
+  GlobalStringProcessorN_BufferPtr = &GlobalStringProcessorN_Buffer;
+  GlobalStringProcessorN_Buffer = 0;
+  GlobalStringProcessorN_Length = 0xb;
+  strcpy_s(&GlobalStringProcessorN_Buffer,0x80,&StringProcessorDataTemplateN,systemFlags,SystemMutexFlags);
   
   // 初始化字符串处理器O
-  g_stringProcessorO_Base = &StringProcessorDataBaseO;
-  g_stringProcessorO_BufferPtr = &g_stringProcessorO_Buffer;
-  g_stringProcessorO_Buffer = 0;
-  g_stringProcessorO_Length = 0x10;
-  strcpy_s(&g_stringProcessorO_Buffer,0x80,&StringProcessorDataTemplateO);
+  GlobalStringProcessorO_Base = &StringProcessorDataBaseO;
+  GlobalStringProcessorO_BufferPtr = &GlobalStringProcessorO_Buffer;
+  GlobalStringProcessorO_Buffer = 0;
+  GlobalStringProcessorO_Length = 0x10;
+  strcpy_s(&GlobalStringProcessorO_Buffer,0x80,&StringProcessorDataTemplateO);
   
   // 初始化字符串处理器P
-  g_stringProcessorP_Base = &StringProcessorDataBaseP;
-  g_stringProcessorP_BufferPtr = &g_stringProcessorP_Buffer;
-  g_stringProcessorP_Buffer = 0;
-  g_stringProcessorP_Length = 0xd;
-  strcpy_s(&g_stringProcessorP_Buffer,0x80,&StringProcessorDataTemplateP);
+  GlobalStringProcessorP_Base = &StringProcessorDataBaseP;
+  GlobalStringProcessorP_BufferPtr = &GlobalStringProcessorP_Buffer;
+  GlobalStringProcessorP_Buffer = 0;
+  GlobalStringProcessorP_Length = 0xd;
+  strcpy_s(&GlobalStringProcessorP_Buffer,0x80,&StringProcessorDataTemplateP);
   
   // 初始化字符串处理器Q
-  g_stringProcessorQ_Base = &StringProcessorDataBaseQ;
-  g_stringProcessorQ_BufferPtr = &g_stringProcessorQ_Buffer;
-  g_stringProcessorQ_Buffer = 0;
-  g_stringProcessorQ_Length = 0xd;
-  strcpy_s(&g_stringProcessorQ_Buffer,0x80,&StringProcessorDataTemplateQ);
+  GlobalStringProcessorQ_Base = &StringProcessorDataBaseQ;
+  GlobalStringProcessorQ_BufferPtr = &GlobalStringProcessorQ_Buffer;
+  GlobalStringProcessorQ_Buffer = 0;
+  GlobalStringProcessorQ_Length = 0xd;
+  strcpy_s(&GlobalStringProcessorQ_Buffer,0x80,&StringProcessorDataTemplateQ);
   
   // 初始化字符串处理器R
-  g_stringProcessorR_Base = &StringProcessorDataBaseR;
-  g_stringProcessorR_BufferPtr = &g_stringProcessorR_Buffer;
-  g_stringProcessorR_Buffer = 0;
-  g_stringProcessorR_Length = 0xc;
-  strcpy_s(&g_stringProcessorR_Buffer,0x80,&StringProcessorDataTemplateR);
+  GlobalStringProcessorR_Base = &StringProcessorDataBaseR;
+  GlobalStringProcessorR_BufferPtr = &GlobalStringProcessorR_Buffer;
+  GlobalStringProcessorR_Buffer = 0;
+  GlobalStringProcessorR_Length = 0xc;
+  strcpy_s(&GlobalStringProcessorR_Buffer,0x80,&StringProcessorDataTemplateR);
   
   // 初始化字符串处理器S
-  g_stringProcessorS_Base = &StringProcessorDataBaseS;
-  g_stringProcessorS_BufferPtr = &g_stringProcessorS_Buffer;
-  g_stringProcessorS_Buffer = 0;
-  g_stringProcessorS_Length = 0x13;
-  strcpy_s(&g_stringProcessorS_Buffer,0x80,&StringProcessorDataTemplateS);
+  GlobalStringProcessorS_Base = &StringProcessorDataBaseS;
+  GlobalStringProcessorS_BufferPtr = &GlobalStringProcessorS_Buffer;
+  GlobalStringProcessorS_Buffer = 0;
+  GlobalStringProcessorS_Length = 0x13;
+  strcpy_s(&GlobalStringProcessorS_Buffer,0x80,&StringProcessorDataTemplateS);
   
   // 初始化字符串处理器T
-  g_stringProcessorT_Base = &StringProcessorDataBaseT;
-  g_stringProcessorT_BufferPtr = &g_stringProcessorT_Buffer;
-  g_stringProcessorT_Buffer = 0;
-  g_stringProcessorT_Length = 10;
-  strcpy_s(&g_stringProcessorT_Buffer,0x80,&StringProcessorDataTemplateT);
+  GlobalStringProcessorT_Base = &StringProcessorDataBaseT;
+  GlobalStringProcessorT_BufferPtr = &GlobalStringProcessorT_Buffer;
+  GlobalStringProcessorT_Buffer = 0;
+  GlobalStringProcessorT_Length = 10;
+  strcpy_s(&GlobalStringProcessorT_Buffer,0x80,&StringProcessorDataTemplateT);
   
   // 初始化字符串处理器U
-  g_stringProcessorU_Base = &StringProcessorDataBaseU;
-  g_stringProcessorU_BufferPtr = &g_stringProcessorU_Buffer;
-  g_stringProcessorU_Buffer = 0;
-  g_stringProcessorU_Length = 0xc;
-  strcpy_s(&g_stringProcessorU_Buffer,0x80,&StringProcessorDataTemplateU);
+  GlobalStringProcessorU_Base = &StringProcessorDataBaseU;
+  GlobalStringProcessorU_BufferPtr = &GlobalStringProcessorU_Buffer;
+  GlobalStringProcessorU_Buffer = 0;
+  GlobalStringProcessorU_Length = 0xc;
+  strcpy_s(&GlobalStringProcessorU_Buffer,0x80,&StringProcessorDataTemplateU);
   
   // 初始化字符串处理器V
-  g_stringProcessorV_Base = &StringProcessorDataBaseV;
-  g_stringProcessorV_BufferPtr = &g_stringProcessorV_Buffer;
-  g_stringProcessorV_Buffer = 0;
-  g_stringProcessorV_Length = 0x11;
-  strcpy_s(&g_stringProcessorV_Buffer,0x80,&StringProcessorDataTemplateV);
+  GlobalStringProcessorV_Base = &StringProcessorDataBaseV;
+  GlobalStringProcessorV_BufferPtr = &GlobalStringProcessorV_Buffer;
+  GlobalStringProcessorV_Buffer = 0;
+  GlobalStringProcessorV_Length = 0x11;
+  strcpy_s(&GlobalStringProcessorV_Buffer,0x80,&StringProcessorDataTemplateV);
   
   // 初始化字符串处理器W
-  g_stringProcessorW_Base = &StringProcessorDataBaseW;
-  g_stringProcessorW_BufferPtr = &g_stringProcessorW_Buffer;
-  g_stringProcessorW_Buffer = 0;
-  g_stringProcessorW_Length = 0x11;
-  strcpy_s(&g_stringProcessorW_Buffer,0x80,&StringProcessorDataTemplateW);
+  GlobalStringProcessorW_Base = &StringProcessorDataBaseW;
+  GlobalStringProcessorW_BufferPtr = &GlobalStringProcessorW_Buffer;
+  GlobalStringProcessorW_Buffer = 0;
+  GlobalStringProcessorW_Length = 0x11;
+  strcpy_s(&GlobalStringProcessorW_Buffer,0x80,&StringProcessorDataTemplateW);
   
   // 初始化字符串处理器X
-  g_stringProcessorX_Base = &StringProcessorDataBaseX;
-  g_stringProcessorX_BufferPtr = &g_stringProcessorX_Buffer;
-  g_stringProcessorX_Buffer = 0;
-  g_stringProcessorX_Length = 0x19;
-  strcpy_s(&g_stringProcessorX_Buffer,0x80,&StringProcessorDataTemplateX);
+  GlobalStringProcessorX_Base = &StringProcessorDataBaseX;
+  GlobalStringProcessorX_BufferPtr = &GlobalStringProcessorX_Buffer;
+  GlobalStringProcessorX_Buffer = 0;
+  GlobalStringProcessorX_Length = 0x19;
+  strcpy_s(&GlobalStringProcessorX_Buffer,0x80,&StringProcessorDataTemplateX);
   
   // 初始化字符串处理器Y
-  g_stringProcessorY_Base = &StringProcessorDataBaseY;
-  g_stringProcessorY_BufferPtr = &g_stringProcessorY_Buffer;
-  g_stringProcessorY_Buffer = 0;
-  g_stringProcessorY_Length = 0x1a;
-  strcpy_s(&g_stringProcessorY_Buffer,0x80,&StringProcessorDataTemplateY);
+  GlobalStringProcessorY_Base = &StringProcessorDataBaseY;
+  GlobalStringProcessorY_BufferPtr = &GlobalStringProcessorY_Buffer;
+  GlobalStringProcessorY_Buffer = 0;
+  GlobalStringProcessorY_Length = 0x1a;
+  strcpy_s(&GlobalStringProcessorY_Buffer,0x80,&StringProcessorDataTemplateY);
   
   // 初始化字符串处理器Z
-  g_stringProcessorZ_Base = &StringProcessorDataBaseZ;
-  g_stringProcessorZ_BufferPtr = &g_stringProcessorZ_Buffer;
-  g_stringProcessorZ_Buffer = 0;
-  g_stringProcessorZ_Length = 0x1b;
-  strcpy_s(&g_stringProcessorZ_Buffer,0x80,&StringProcessorDataTemplateZ);
+  GlobalStringProcessorZ_Base = &StringProcessorDataBaseZ;
+  GlobalStringProcessorZ_BufferPtr = &GlobalStringProcessorZ_Buffer;
+  GlobalStringProcessorZ_Buffer = 0;
+  GlobalStringProcessorZ_Length = 0x1b;
+  strcpy_s(&GlobalStringProcessorZ_Buffer,0x80,&StringProcessorDataTemplateZ);
   
   // 初始化字符串处理器AA
   g_stringProcessorAA_Base = &StringProcessorDataBaseAA;
