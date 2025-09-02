@@ -49096,6 +49096,16 @@ void ReleaseSystemResourceHandleAndUnlock(uint8_t ObjectContext,uint *Validation
 
 
 
+/**
+ * @brief 处理资源哈希验证和清理操作
+ * 
+ * 该函数负责验证资源哈希表的完整性，并在需要时进行资源清理。
+ * 它会锁定资源表，遍历所有资源条目，验证哈希值，并在必要时
+ * 执行清理操作。最后释放资源表锁并完成清理工作。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态信息
+ */
 void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -49221,12 +49231,22 @@ ResourceCleanupHandler:
 
 
 
-void Unwind_1809057c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器模板
+ * 
+ * 该函数负责初始化系统资源处理器模板，检查系统状态，
+ * 并设置必要的系统数据结构。它会验证系统上下文，
+ * 重置系统状态标志，并配置资源处理器。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态信息
+ */
+void InitializeSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x40);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0xc0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 200) != 0) {
                     // WARNING: Subroutine does not return
@@ -49240,7 +49260,17 @@ void Unwind_1809057c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809057e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化多个系统资源处理器模板
+ * 
+ * 该函数负责在验证上下文的不同位置初始化多个系统资源处理器模板。
+ * 它会检查每个位置的系统状态，重置状态标志，并配置相应的资源处理器。
+ * 这是一个批量初始化操作，用于设置系统中的多个资源处理点。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含多个资源处理器的配置信息
+ */
+void InitializeMultipleSystemResourceHandlers(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x100) = &SystemResourceHandlerTemplate;
@@ -49288,21 +49318,43 @@ void Unwind_1809057e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809057f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理回调函数
+ * 
+ * 该函数负责调用注册的资源清理回调函数，执行清理操作。
+ * 它会从验证上下文中获取回调函数指针，并在存在回调函数时
+ * 调用该函数来执行资源清理。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含回调函数指针和清理参数
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ */
+void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  code *CleanupFunctionPointer;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0x2e8) + 0x10);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0x2e8),0,0,CleanupFlag,0xfffffffffffffffe);
+  CleanupFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x2e8) + 0x10);
+  if (CleanupFunctionPointer != (code *)0x0) {
+    (*CleanupFunctionPointer)(*(int64_t *)(ValidationContext + 0x2e8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905800(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源释放操作
+ * 
+ * 该函数负责调用系统资源的释放函数。它会检查验证上下文中
+ * 是否存在有效的资源指针，如果存在则调用相应的释放函数
+ * 来释放系统资源。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源指针和释放函数信息
+ */
+void ReleaseSystemResource(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x248) != (int64_t *)0x0) {
@@ -49313,7 +49365,17 @@ void Unwind_180905800(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905810(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源缓冲区清理操作
+ * 
+ * 该函数负责清理资源缓冲区中的数据。它会检查验证上下文中
+ * 是否存在有效的缓冲区指针，如果存在则调用相应的清理函数
+ * 来清理缓冲区数据。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含缓冲区指针和清理函数信息
+ */
+void CleanupResourceBuffer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x2e0) != (int64_t *)0x0) {
@@ -49344,10 +49406,20 @@ void InitializeSystemResourceBufferPrimary(uint8_t ObjectContext,int64_t Validat
 
 
 
-void Unwind_180905830(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理器清理操作
+ * 
+ * 该函数负责清理系统资源处理器。它会从验证上下文中获取
+ * 资源处理器指针，并在存在有效处理器时调用相应的清理函数
+ * 来释放资源处理器占用的资源。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理器指针和清理信息
+ */
+void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ProcessContextPointer;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x2e0) + 0x20);
   if (ResourceContext != (int64_t *)0x0) {
@@ -49358,7 +49430,16 @@ void Unwind_180905830(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905840(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统资源内存块
+ * 
+ * 该函数负责释放系统资源占用的内存块。它会从验证上下文中获取
+ * 内存块指针，并释放指定大小的内存空间。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含需要释放的内存块指针
+ */
+void FreeSystemResourceMemory(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   free(*(uint8_t *)(ValidationContext + 0x2e0),0x428);
