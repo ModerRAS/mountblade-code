@@ -6357,11 +6357,11 @@ int InitializeSystemManager(int64_t SystemManagerHandle)
   int SystemInitializationResult;
   int64_t SystemResourceTablePointerAddress;
   uint8_t ResourceValidationBuffer[8];
-  uint8_t ObjectContextInfoBuffer[72];
+  uint8_t ObjectContextDataBuffer[72];
   
   SystemResourceTablePointerAddress = 0;
   if (0 < *(int *)(ObjectContext + ObjectContextProcessingDataOffset)) {
-    SystemResourceTablePointerHandle = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
+    SystemResourceTablePointer = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
   }
   ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + SystemManagerValidationOffset),ResourceValidationBuffer);
   if (ValidationStatusCode == 0) {
@@ -6371,8 +6371,8 @@ int InitializeSystemManager(int64_t SystemManagerHandle)
     }
           memcpy(ObjectContextDataBuffer,ObjectContext + SystemManagerContextOffset,(int64_t)ValidationStatusCode);
   }
-  if (SystemResourceTablePointerHandle != 0) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),SystemResourceTablePointerHandle,&SystemResourceTablePointer,SystemManagerAllocationSize,1);
+  if (SystemResourceTablePointer != 0) {
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),SystemResourceTablePointer,&SystemResourceTablePointer,SystemManagerAllocationSize,1);
   }
   return SystemResourceIndex;
 }
@@ -6437,12 +6437,12 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t SystemO
     if ((0 < ResourceCount) && (*(uint *)(ResourceHandle + ObjectStatusFlagsOffset) < 2)) {
       ResourceIndex = 0;
       if (*(uint *)(ResourceHandle + ObjectStatusFlagsOffset) == 0) {
-        ResourceHandleIdentifier = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
+        ResourceHandleValue = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
         ResourceOperationBuffer[0] = 1;
-        ResourceIndex = ResourceHandleIdentifier;
+        ResourceIndex = ResourceHandleValue;
       }
       else {
-        ResourceHandleIdentifier = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
+        ResourceHandleValue = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
         ResourceOperationBuffer[0] = 2;
       }
       ResourceHash = ProcessResourceOperationEx(SystemOperationFlag,ResourceOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
@@ -6476,14 +6476,14 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t SystemO
 int ValidateSystemConfigurationParameter(uint32_t SystemConfigParameter)
 
 {
-  int RegisterValidationStatusCode;
-  int ConfigProcessingStatus;
+  int RegisterValidationStatus;
+  int ConfigurationProcessingStatus;
   int64_t SystemResourceTablePointer;
-  int64_t PreservedRegisterValue;
+  int64_t SavedRegisterValue;
   int64_t OriginalRegisterValue;
   uint32_t ValidationStatusCode;
   int64_t StackMemoryOffset;
-  uint32_t StackValidationBuffer;
+  uint32_t StackValidationData;
   
   SystemResourceTablePointer = 0;
   if (SystemConfigParameter == 0) {
@@ -6492,10 +6492,10 @@ int ValidateSystemConfigurationParameter(uint32_t SystemConfigParameter)
     SystemResourceTablePointer = StackMemoryOffset;
   }
   else {
-    int64_t *ObjectContextPointer = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
+    int64_t *ObjectContextDataPointer = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
     ValidationStatusCode = 2;
   }
-  int64_t *ConfigurationContextPointer = ObjectContext;
+  int64_t *ConfigurationDataPointer = ObjectContext;
   ResourceIndex = ProcessResourceOperationEx();
   if (ResourceIndex == 0) {
     ResourceIndex = 0;
