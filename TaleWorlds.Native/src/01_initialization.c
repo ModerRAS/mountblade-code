@@ -65083,7 +65083,20 @@ void ProcessSystemTextureManagerConfiguration(long long SystemResourcePointer,ul
 
 
 // 函数: void FUN_18007e2b0(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18007e2b0(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 初始化系统资源配置
+ * 
+ * 该函数负责初始化系统资源配置，设置资源状态和配置参数。
+ * 主要用于系统资源的前期准备工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18007e2b0，现已重命名为InitializeSystemResourceConfiguration
+ */
+void InitializeSystemResourceConfiguration(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
@@ -65121,7 +65134,18 @@ void FUN_18007e2b0(long long SystemResourcePointer,long long ConfigurationDataPo
 
 
 // 函数: void FUN_18007e5b0(long long SystemResourcePointer,long long *ConfigurationDataPointer)
-void FUN_18007e5b0(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+/**
+ * @brief 处理系统资源数据缓冲区
+ * 
+ * 该函数负责处理系统资源数据缓冲区，包括数据的读取、写入和验证。
+ * 主要用于系统资源数据的管理和操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为FUN_18007e5b0，现已重命名为ProcessSystemResourceDataBuffer
+ */
+void ProcessSystemResourceDataBuffer(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   uint32_t unsignedSystemValue1;
@@ -65227,7 +65251,19 @@ void FUN_18007e5b0(long long SystemResourcePointer,long long *ConfigurationDataP
 
 
 // 函数: void FUN_18007e880(long long SystemResourcePointer,char ConfigurationDataPointer,void* AdditionalParameter)
-void FUN_18007e880(long long SystemResourcePointer,char ConfigurationDataPointer,void* AdditionalParameter)
+/**
+ * @brief 配置系统资源数据指针
+ * 
+ * 该函数负责配置系统资源数据指针，包括内存分配和数据复制。
+ * 主要用于系统资源数据的动态管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * 
+ * 原始函数名为FUN_18007e880，现已重命名为ConfigureSystemResourceDataPointer
+ */
+void ConfigureSystemResourceDataPointer(long long SystemResourcePointer,char ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   long long nextDataIndex;
@@ -65258,7 +65294,17 @@ void FUN_18007e880(long long SystemResourcePointer,char ConfigurationDataPointer
 
 
 // 函数: void FUN_18007e930(long long SystemResourcePointer)
-void FUN_18007e930(long long SystemResourcePointer)
+/**
+ * @brief 初始化系统资源内存块
+ * 
+ * 该函数负责初始化系统资源内存块，分配内存并清零。
+ * 主要用于系统资源内存的前期准备工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_18007e930，现已重命名为InitializeSystemResourceMemoryBlock
+ */
+void InitializeSystemResourceMemoryBlock(long long SystemResourcePointer)
 
 {
   void* unsignedSystemValue1;
@@ -65275,7 +65321,15 @@ void FUN_18007e930(long long SystemResourcePointer)
 
 
 // 函数: void FUN_18007e95f(void)
-void FUN_18007e95f(void)
+/**
+ * @brief 分配系统内存块
+ * 
+ * 该函数负责分配系统内存块并初始化为零。
+ * 主要用于系统内存的动态分配。
+ * 
+ * 原始函数名为FUN_18007e95f，现已重命名为AllocateSystemMemoryBlock
+ */
+void AllocateSystemMemoryBlock(void)
 
 {
   void* unsignedSystemValue1;
