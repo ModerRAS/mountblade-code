@@ -10119,23 +10119,23 @@ int ProcessDataWithSimplifiedValidator(int64_t ObjectContext,int64_t ValidationC
 int ProcessDataWithBuffer(int64_t *ObjectContext,int64_t ValidationContext,int dataLength)
 
 {
-  int ResourceIndex;
-  int OperationStatusCode;
-  int OperationResultValue;
-  int ProcessedDataLength;
+  int DataProcessingOffset;
+  int StringProcessingStatusCode;
+  int StringProcessingResult;
+  int TotalDataLength;
   void* SystemStringBuffer;
   void* StringProcessingTemplate;
   
-  ProcessedDataLength = dataLength;
-  ResourceIndex = ProcessStringOperation(ValidationContext,ProcessedDataLength,&SystemStringBuffer);
-  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,(int)ObjectContext[3] * 8 + 0x20);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex);
-  return OperationResultValue + ResourceIndex;
+  TotalDataLength = dataLength;
+  DataProcessingOffset = ProcessStringOperation(ValidationContext,TotalDataLength,&SystemStringBuffer);
+  StringProcessingStatusCode = ProcessStringOperation(ValidationContext + DataProcessingOffset,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
+  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
+  StringProcessingStatusCode = ParseDataContent(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,(int)ObjectContext[3] * 8 + 0x20);
+  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
+  StringProcessingStatusCode = ProcessStringOperation(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
+  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
+  StringProcessingStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset);
+  return StringProcessingResult + DataProcessingOffset;
 }
 
 
@@ -66088,7 +66088,17 @@ void ExecuteResourceCleanupCallback3(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_180908c80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统数据结构
+ * 
+ * 该函数负责初始化系统数据结构
+ * 设置系统数据结构的指针到验证上下文中
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void InitializeSystemDataStructure(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x1a0) = &SystemDataStructure;
@@ -66097,7 +66107,17 @@ void Unwind_180908c80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908c90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册扩展资源处理器
+ * 
+ * 该函数负责注册扩展资源处理器
+ * 设置资源处理器的参数和回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterExtendedResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(ValidationContext + 0xc0,8,0x10,ProcessResourceOperation,0xfffffffffffffffe);
@@ -66106,7 +66126,17 @@ void Unwind_180908c90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908ca0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册标准资源处理器
+ * 
+ * 该函数负责注册标准资源处理器
+ * 设置资源处理器的参数和回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterStandardResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(ValidationContext + 0xc0,8,0x10,ProcessResourceOperation);
@@ -66115,7 +66145,17 @@ void Unwind_180908ca0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908cd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册上下文资源处理器
+ * 
+ * 该函数负责注册上下文资源处理器
+ * 设置资源处理器的参数和回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterContextResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(ValidationContext + 0xc0,8,0x10,ProcessResourceOperation);
@@ -66124,7 +66164,17 @@ void Unwind_180908cd0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908d00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册系统资源处理器
+ * 
+ * 该函数负责注册系统资源处理器
+ * 从系统上下文中获取资源处理器并注册
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40),8,0x10,ProcessResourceOperation);
@@ -66181,7 +66231,17 @@ void SystemDataStructureInitializationHandler(void)
 
 
 
-void Unwind_180908d50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统内存处理器
+ * 
+ * 该函数负责释放系统内存
+ * 清理验证上下文中的系统内存
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void ReleaseSystemMemoryHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0xc0);
@@ -66190,7 +66250,17 @@ void Unwind_180908d50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908d60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放上下文内存处理器
+ * 
+ * 该函数负责释放上下文内存
+ * 清理验证上下文中的上下文内存
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void ReleaseContextMemoryHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0xc0);
@@ -66199,7 +66269,17 @@ void Unwind_180908d60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908d70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证内存处理器
+ * 
+ * 该函数负责释放验证内存
+ * 清理验证上下文中的验证内存
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void ReleaseValidationMemoryHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0xc0);
