@@ -842,7 +842,7 @@ void* SystemKernelCallBuffer;
  * 检查资源条目的完整性并执行相应的处理逻辑
  * 
  * @param ResourceContext 资源上下文，包含资源的状态和管理信息
- * @param entryPointer 资源条目指针，指向要处理的资源条目
+ * @param EntryPointer 资源条目指针，指向要处理的资源条目
  * @return int 返回处理结果，0表示成功，非0表示错误代码
  */
 int ProcessResourceEntryWithValidation(void* ResourceContext, void* EntryPointer);
@@ -854,9 +854,9 @@ int ProcessResourceEntryWithValidation(void* ResourceContext, void* EntryPointer
  * 释放相关资源并重置条目状态
  * 
  * @param ResourceContext 资源上下文，包含资源的管理信息
- * @param entryData 资源条目数据，指向要清理的数据结构
+ * @param EntryData 资源条目数据，指向要清理的数据结构
  */
-void CleanupResourceEntryData(void* ResourceContext, void* entryData);
+void CleanupResourceEntryData(void* ResourceContext, void* EntryData);
 
 /**
  * @brief 处理数据块操作
@@ -864,11 +864,11 @@ void CleanupResourceEntryData(void* ResourceContext, void* entryData);
  * 该函数负责处理数据块的各种操作
  * 包括数据块的分配、复制、验证等操作
  * 
- * @param dataPointer 数据指针，指向要处理的数据块
- * @param operationType 操作类型，指定要执行的操作类型
+ * @param DataPointer 数据指针，指向要处理的数据块
+ * @param OperationType 操作类型，指定要执行的操作类型
  * @return int 返回操作结果，0表示成功，非0表示错误代码
  */
-int ProcessDataBlockOperation(void* dataPointer, uint32_t operationType);
+int ProcessDataBlockOperation(void* DataPointer, uint32_t OperationType);
 
 /**
  * @brief 初始化配置上下文
