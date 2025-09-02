@@ -5079,38 +5079,51 @@ uint8_t ProcessComplexObjectHandle(int64_t objectContext)
  * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
-
+/**
+ * @brief 验证对象状态并处理
+ * 
+ * 该函数负责验证系统对象的状态，并根据状态进行相应的处理，包括：
+ * - 验证对象上下文的有效性
+ * - 处理验证栈缓冲区
+ * - 验证资源上下文
+ * - 执行资源操作
+ * 
+ * 主要用于对象状态管理和错误处理，确保系统对象的正确性和可用性。
+ * 
+ * @param objectContext 对象上下文指针，包含对象管理所需的信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
+uint8_t ValidateAndProcessObjectStatus(int64_t objectContext)
 {
-  uint8_t ResourceValidationHash;
-  int64_t ResourceContextBuffer [2];
-  int64_t ValidationStackBuffer [2];
+  uint8_t validationHash;
+  int64_t resourceContextBuffer[2];
+  int64_t validationStackBuffer[2];
   
-  ResourceValidationHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset),ValidationStackBuffer);
-  if ((int)ResourceValidationHash == 0) {
-    if (ValidationStackBuffer[0] == 0) {
-      ValidationStackBuffer[0] = 0;
+  validationHash = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), validationStackBuffer);
+  if ((int)validationHash == 0) {
+    if (validationStackBuffer[0] == 0) {
+      validationStackBuffer[0] = 0;
     }
     else {
-      ValidationStackBuffer[0] = ValidationStackBuffer[0] + -8;
+      validationStackBuffer[0] = validationStackBuffer[0] - 8;
     }
-    ResourceContextBuffer[0] = 0;
-    ResourceValidationHash = ValidateResourceContext(ValidationStackBuffer[0],ObjectContext + ObjectContextProcessingDataOffset,ResourceContextBuffer);
-    if ((int)ResourceValidationHash == 0) {
-      if (ResourceContextBuffer[0] != 0) {
-        if (*(int64_t *)(ResourceContextBuffer[0] + 8) == 0) {
+    resourceContextBuffer[0] = 0;
+    validationHash = ValidateResourceContext(validationStackBuffer[0], objectContext + ObjectContextProcessingDataOffset, resourceContextBuffer);
+    if ((int)validationHash == 0) {
+      if (resourceContextBuffer[0] != 0) {
+        if (*(int64_t *)(resourceContextBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
-        ResourceValidationHash = ProcessResourceOperation(*(int64_t *)(ResourceContextBuffer[0] + 8),*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),
-                              *(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
-        if ((int)ResourceValidationHash != 0) {
-          return ResourceValidationHash;
+        validationHash = ProcessResourceOperation(*(int64_t *)(resourceContextBuffer[0] + 8), *(uint32_t *)(objectContext + ObjectContextValidationDataOffset),
+                              *(uint8_t *)(objectContext + ObjectContextHandleDataOffset));
+        if ((int)validationHash != 0) {
+          return validationHash;
         }
       }
-      ResourceValidationHash = 0;
+      validationHash = 0;
     }
   }
-  return ResourceValidationHash;
+  return validationHash;
 }
 
 
