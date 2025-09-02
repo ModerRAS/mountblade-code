@@ -1,16 +1,25 @@
+/**
+ * @file TaleWorlds.Native.Split.h
+ * @brief TaleWorlds Native模块分割头文件
+ * 
+ * 该头文件用于分割和管理TaleWorlds Native模块的各个组件，
+ * 提供统一的接口声明和包含管理。
+ */
+
 #ifndef TALEWORLDS_NATIVE_SPLIT_H
 #define TALEWORLDS_NATIVE_SPLIT_H
 
 #include "TaleWorlds.Native.dll.h"
 #include "00_data_definitions.h"
 
-// 函数声明文件
-// extern void 01_initialization_();
-// extern void 02_core_engine_();
-// extern void 03_rendering_();
-// extern void 04_ui_system_();
-// extern void 05_networking_();
-// extern void 06_utilities_();
-// extern void 07_other_functions_();
+// 模块函数声明区域
+// 以下为各个核心模块的函数声明占位符
+// extern void ModuleInitialization();
+// extern void CoreEngineFunctions();
+// extern void RenderingSystem();
+// extern void UserInterfaceSystem();
+// extern void NetworkSystem();
+// extern void UtilityFunctions();
+// extern void OtherFunctions();
 
 #endif // TALEWORLDS_NATIVE_SPLIT_H
