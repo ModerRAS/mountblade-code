@@ -44326,7 +44326,7 @@ LAB_18006650a:
     systemMemoryContext = &SystemMemoryAllocatorReference;
     InitializeAndConfigureSystemResources(&pSystemStackFlag);
     ProcessAndManageSystemResources(&pSystemStackFlag);
-    FUN_180065160(&pSystemStackFlag);
+    ReleaseSystemResource(&pSystemStackFlag);
     FUN_180065d50(&pSystemStackFlag,ConfigurationDataPointer,AdditionalParameter,0);
     psystemFlag178 = &SystemGlobalDataReference;
     if (puStack_170 != (void* *)0x0) {
