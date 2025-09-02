@@ -15,6 +15,16 @@ def write_file(file_path, content):
         f.write(content)
 
 def beautify_variables(content):
+    # 栈缓冲区变量重命名
+    content = re.sub(r'aUIntStackBuffer28', 'animationFrameBuffer', content)
+    content = re.sub(r'UIntStackBuffer20', 'configurationData', content)
+    content = re.sub(r'uiStackUint18', 'systemStatus', content)
+    content = re.sub(r'UIntStackBuffer10', 'configurationOptions', content)
+    content = re.sub(r'UIntStackBufferc', 'configurationStatus', content)
+    content = re.sub(r'UIntStackBuffer28', 'animationFrameData', content)
+    content = re.sub(r'UIntStackBuffer1c', 'bufferStatus', content)
+    content = re.sub(r'UIntStackBuffer98', 'extendedConfigData', content)
+    
     # 渲染数据表变量重命名
     content = re.sub(r'UISystemRenderDataTableEC', 'UISystemRenderDataTablePrimary', content)
     content = re.sub(r'UISystemRenderDataTableE8', 'UISystemRenderDataTableSecondary', content)
