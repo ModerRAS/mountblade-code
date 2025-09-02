@@ -37970,27 +37970,39 @@ void SetupMemoryAllocationContext(long long SystemResourcePointer,long long *Con
 
 
 
-// 函数: void FUN_18005e3e0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005e3e0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 初始化系统资源配置
+ * 
+ * 该函数负责初始化系统资源配置，设置系统参数和属性
+ * 用于系统资源管理的前期准备工作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18005e3e0，现已重命名为InitializeSystemResourceConfiguration
+ */
+void InitializeSystemResourceConfiguration(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *pointerToUnsigned1;
-  code *pcVar2;
-  long long *plStackX_8;
-  long long *plStackX_10;
-  long long **pplStackX_18;
-  void* unsignedSystemValue3;
+  void* *systemResourcePointer;
+  code *systemCodePointer;
+  long long *configurationDataPointer;
+  long long *configurationDataBackup;
+  long long **configurationDataRef;
+  void* systemConfigurationFlag;
   
-  unsignedSystemValue3 = 0xfffffffffffffffe;
-  pointerToUnsigned1 = *(void* **)(*(long long *)(SystemResourcePointer + 8) + 0x10);
-  pcVar2 = *(code **)*pointerToUnsigned1;
-  pplStackX_18 = &plStackX_8;
-  plStackX_8 = (long long *)*ConfigurationDataPointer;
-  plStackX_10 = ConfigurationDataPointer;
-  if (plStackX_8 != (long long *)0x0) {
-    (**(code **)(*plStackX_8 + 0x28))();
+  systemConfigurationFlag = 0xfffffffffffffffe;
+  systemResourcePointer = *(void* **)(*(long long *)(SystemResourcePointer + 8) + 0x10);
+  systemCodePointer = *(code **)*systemResourcePointer;
+  configurationDataRef = &configurationDataPointer;
+  configurationDataPointer = (long long *)*ConfigurationDataPointer;
+  configurationDataBackup = ConfigurationDataPointer;
+  if (configurationDataPointer != (long long *)0x0) {
+    (**(code **)(*configurationDataPointer + 0x28))();
   }
-  (*pcVar2)(pointerToUnsigned1,&plStackX_8,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
+  (*systemCodePointer)(systemResourcePointer,&configurationDataPointer,AdditionalParameter,ConfigurationFlag,systemConfigurationFlag);
   if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
     (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
@@ -38000,22 +38012,34 @@ void FUN_18005e3e0(long long SystemResourcePointer,long long *ConfigurationDataP
 
 
 
-// 函数: void FUN_18005e450(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005e450(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 释放系统资源信号量
+ * 
+ * 该函数负责释放系统资源信号量，清理系统资源和同步对象
+ * 用于系统资源管理的清理工作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18005e450，现已重命名为ReleaseSystemResourceSemaphore
+ */
+void ReleaseSystemResourceSemaphore(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
-  long long localSystemHandle;
-  void* unsignedSystemValue3;
+  long long systemHandle;
+  void* systemConfigurationFlag;
   
-  unsignedSystemValue3 = 0xfffffffffffffffe;
+  systemConfigurationFlag = 0xfffffffffffffffe;
   (**(code **)(*(long long *)*ConfigurationDataPointer + 0x78))();
-  localSystemHandle = FUN_18005eb80(SystemResourcePointer + 0x2e0);
-  if (localSystemHandle != 0) {
-    FUN_18005f220(localSystemHandle,ConfigurationDataPointer);
+  systemHandle = FUN_18005eb80(SystemResourcePointer + 0x2e0);
+  if (systemHandle != 0) {
+    FUN_18005f220(systemHandle,ConfigurationDataPointer);
   }
   do {
-    systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x70),1,0,ConfigurationFlag,unsignedSystemValue3);
+    systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x70),1,0,ConfigurationFlag,systemConfigurationFlag);
   } while (systemStatus == 0);
   if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
     (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
@@ -38026,20 +38050,32 @@ void FUN_18005e450(long long SystemResourcePointer,long long *ConfigurationDataP
 
 
 
-void* * FUN_18005e4d0(long long SystemResourcePointer,void* ConfigurationDataPointer)
+/**
+ * @brief 创建系统资源句柄
+ * 
+ * 该函数负责创建系统资源句柄，分配内存并初始化系统上下文
+ * 用于系统资源管理的前期准备工作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 系统资源句柄指针
+ * 
+ * 原始函数名为FUN_18005e4d0，现已重命名为CreateSystemResourceHandle
+ */
+void* * CreateSystemResourceHandle(long long SystemResourcePointer,void* ConfigurationDataPointer)
 
 {
-  void* *pointerToUnsigned1;
-  void* *puStackX_8;
+  void* *systemResourceHandle;
+  void* *systemHandleRef;
   
-  pointerToUnsigned1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
-  puStackX_8 = pointerToUnsigned1;
-  InitializeSystemMemoryContext(pointerToUnsigned1,ConfigurationDataPointer,3,SystemResourcePointer + 0x2e0,SystemResourcePointer + 0x70);
-  *pointerToUnsigned1 = &SystemValueReference;
-  puStackX_8 = pointerToUnsigned1;
-  FUN_18020e840(pointerToUnsigned1);
-  InitializeSystemHandle(SystemResourcePointer + 0x48,&puStackX_8);
-  return pointerToUnsigned1;
+  systemResourceHandle = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
+  systemHandleRef = systemResourceHandle;
+  InitializeSystemMemoryContext(systemResourceHandle,ConfigurationDataPointer,3,SystemResourcePointer + 0x2e0,SystemResourcePointer + 0x70);
+  *systemResourceHandle = &SystemValueReference;
+  systemHandleRef = systemResourceHandle;
+  FUN_18020e840(systemResourceHandle);
+  InitializeSystemHandle(SystemResourcePointer + 0x48,&systemHandleRef);
+  return systemResourceHandle;
 }
 
 

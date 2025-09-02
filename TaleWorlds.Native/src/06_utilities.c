@@ -3207,6 +3207,18 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数会遍历所有游戏对象并执行验证操作
  * @warning 如果发现无效对象，函数会调用处理程序并可能不返回
  */
+/**
+ * @brief 处理游戏对象的主要函数
+ * 
+ * 该函数负责处理游戏中的各种对象，包括验证、处理和安全管理
+ * 通过安全上下文和系统上下文来管理游戏对象的生命周期
+ * 
+ * @param GameContext 游戏上下文，包含游戏相关的状态信息
+ * @param SystemContext 系统上下文，包含系统相关的配置信息
+ * @return 无返回值
+ * @note 此函数会在处理完成后执行安全验证
+ * @warning 函数执行过程中不会返回，会调用PerformSecurityValidation
+ */
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 
 {
@@ -4486,8 +4498,7 @@ uint64_t GetSystemConstantValue(void)
 
 
 
- uint8_t ValidateResourceHandle(int64_t resourceHandle)
-/**
+ /**
  * @brief 验证资源句柄
  * 
  * 该函数负责验证传入的资源句柄是否有效
@@ -4504,7 +4515,7 @@ uint8_t ValidateResourceHandle(int64_t resourceHandle)
   
   ResourceValidationCode = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x10),&adjustedHandle);
   if ((int)ResourceValidationCode != 0) {
-    return ResourceValidationResult;
+    return ResourceValidationCode;
   }
   if (adjustedHandle == 0) {
     adjustedHandle = 0;
