@@ -59834,7 +59834,14 @@ void Unwind_1809086d0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809086f0(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁就地互斥锁，释放相关资源
+ * 
+ * @return 无返回值
+ */
+void DestroyMutexInSitu(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -92024,7 +92031,7 @@ void InitializeSystemDataStructureE(void)
 
 {
   SystemMutexDestroy();
-  SystemConditionVariableDestroy();
+  ConditionVariableDestroy();
   return;
 }
 
@@ -92041,7 +92048,7 @@ void InitializeSystemDataStructureF(void)
 
 {
   SystemMutexDestroy();
-  SystemConditionVariableDestroy();
+  ConditionVariableDestroy();
   return;
 }
 
