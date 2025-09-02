@@ -2630,7 +2630,7 @@ int InitializeSystemResourceManager(void)
   SystemResourceManagerPointer = &DAT_180bfaec0;
   SystemResourceManagerState = 0;
   SystemResourceManagerFlags = 0;
-  _DAT_180bfaee0 = 0;
+  SystemResourceManagerStatus = 0;
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemRequestHandler);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2638,9 +2638,9 @@ int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t request
 {
   int64_t ModuleInitializationResult;
   _Mtx_init_in_situ(RequestMutexAddress,2,param_3,param_4,SystemMutexFlags);
-  _DAT_180c92050 = &SystemMemoryPoolTemplate;
-  _DAT_180c92058 = &SystemMemoryPoolBufferPrimary;
-  _DAT_180c92060 = 0;
+  SystemRequestMemoryTemplate = &SystemMemoryPoolTemplate;
+  SystemRequestMemoryBuffer = &SystemMemoryPoolBufferPrimary;
+  SystemRequestMemorySize = 0;
   SystemMemoryPoolBufferPrimary = 0;
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemDebugManager);
   return (ModuleInitializationResult != 0) - 1;

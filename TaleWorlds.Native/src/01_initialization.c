@@ -40129,7 +40129,6 @@ void* InitializeSystemResourceContext(void* SystemResourcePointer,ulong long Con
 
 
 
-// 函数: void FUN_180060200(void* *SystemResourcePointer)
 /**
  * @brief 系统资源清理器函数
  * 
@@ -41663,8 +41662,17 @@ void ConfigureInputSystem(void)
 
 
 
-// 函数: void FUN_180062920(int *SystemResourcePointer)
-void FUN_180062920(int *SystemResourcePointer)
+/**
+ * @brief 处理系统资源计数器
+ * 
+ * 该函数负责处理系统资源的计数器操作，包括资源计数器的递增、
+ * 校验和验证以及系统对象的创建。用于系统资源的统计和管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于管理资源计数器
+ * 
+ * 原始函数名为FUN_180062920，现已重命名为ProcessSystemResourceCounter
+ */
+void ProcessSystemResourceCounter(int *SystemResourcePointer)
 
 {
   char SystemNodeFlag;
@@ -41822,8 +41830,17 @@ void* FUN_180062ee0(void* SystemResourcePointer,uint32_t ConfigurationDataPointe
 
 
 
-// 函数: void FUN_180062fd0(long long SystemResourcePointer)
-void FUN_180062fd0(long long SystemResourcePointer)
+/**
+ * @brief 分发系统资源和创建线程
+ * 
+ * 该函数负责分发系统资源，根据不同的系统状态创建相应的线程。
+ * 处理系统资源的分配、线程创建和初始化工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源状态和配置信息
+ * 
+ * 原始函数名为FUN_180062fd0，现已重命名为DispatchSystemResourcesAndCreateThreads
+ */
+void DispatchSystemResourcesAndCreateThreads(long long SystemResourcePointer)
 
 {
   uint unsignedSystemValue1;
