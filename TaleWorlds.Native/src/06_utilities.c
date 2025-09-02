@@ -27517,8 +27517,6 @@ ResourceDataCleaner(void)
  */
 void MemoryStatusChecker(void)
 
-MemoryStatusChecker(void)
-
 {
   return;
 }
@@ -27655,8 +27653,6 @@ ResourceValidationProcessor(void)
  */
 void EmergencyResourceCleaner(void)
 
-EmergencyResourceCleaner(void)
-
 {
   CleanupResourceData();
 }
@@ -27673,8 +27669,6 @@ EmergencyResourceCleaner(void)
  * @return 无返回值
  */
 void SystemInitializationChecker(void)
-
-SystemInitializationChecker(void)
 
 {
   return;
