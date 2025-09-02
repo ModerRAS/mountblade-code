@@ -8059,12 +8059,12 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   int MatrixRow3InfinityCheck;
   int MatrixInfinityStatusFlag;
   int64_t TransformContext;
-  int64_t matrixBuffer [2];
+  int64_t MatrixBuffer[2];
   uint MatrixFlags;
   float MatrixScaleFactor;
   int64_t MatrixContextPointer;
   
-  matrixContextPointer = 0;
+  MatrixContextPointer = 0;
   MatrixRow1InfinityStatus = 0;
   MatrixRow2InfinityStatus = MatrixRow1InfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextProcessingDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
