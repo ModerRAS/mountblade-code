@@ -8824,9 +8824,9 @@ void ExecuteDataValidationAndProcessing(int64_t DataContext, int64_t OperationCo
   int DataValidationResult;
   int64_t TempDataBuffer;
   
-  DatavalidationStatusCode = validate_data_format(OperationContext, DataContext + 0x10);
-  if (DatavalidationStatusCode == 0) {
-    DatavalidationStatusCode = check_data_integrity(*(uint32_t *)(DataContext + 0x10), &TempDataBuffer);
+  DataValidationStatusCode = validate_data_format(OperationContext, DataContext + 0x10);
+  if (DataValidationStatusCode == 0) {
+    DataValidationStatusCode = check_data_integrity(*(uint32_t *)(DataContext + 0x10), &TempDataBuffer);
     if (DatavalidationStatusCode == 0) {
       if (*(int *)(TempDataBuffer + 0x30) == 1) {
         *(uint32_t *)(TempDataBuffer + 0x30) = 2;
