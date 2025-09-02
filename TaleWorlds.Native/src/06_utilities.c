@@ -80025,7 +80025,7 @@ void Unwind_18090d120(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d130(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupExtendedResourceHashValidationResult(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
