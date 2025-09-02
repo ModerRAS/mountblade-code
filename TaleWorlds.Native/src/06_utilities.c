@@ -5041,8 +5041,7 @@ uint64_t HandleResourceOperation(int64_t resourceHandle)
 
 
 
- uint32_t ProcessResourceTask(void)
-/**
+ /**
  * @brief 处理资源任务
  * 
  * 该函数负责处理资源任务，根据任务状态执行相应操作
@@ -5419,8 +5418,7 @@ uint32_t ValidateStackLocationAndExecuteExit(void)
 
 
 
- void ExecuteSystemCriticalShutdown(void)
-/**
+ /**
  * @brief 执行系统关键关闭
  * 
  * 该函数负责执行系统的关键关闭操作，用于处理严重的系统错误
@@ -5435,8 +5433,7 @@ void ExecuteSystemCriticalShutdown(void)
 
 
 
- void ExecuteSystemForcedTermination(void)
-/**
+ /**
  * @brief 执行系统强制终止
  * 
  * 该函数负责执行系统的强制终止操作，用于处理无法恢复的系统错误
@@ -8015,6 +8012,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
   int64_t ContextPointer;
   int IndexBuffer [2];
   int64_t StackBuffer;
+  float FloatValueToValidate;
   
   if (ObjectContext + 0x28 != 0) {
     ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&StackBuffer);
@@ -9043,6 +9041,7 @@ void ExecuteDataValidationAndProcessing(int64_t DataContext, int64_t OperationCo
 {
   int DataHashValidationResult;
   int64_t TempDataBuffer;
+  int DataValidationResult;
   
   DataValidationResult = ValidateDataFormat(OperationContext, DataContext + 0x10);
   if (DataValidationResult == 0) {
@@ -9508,6 +9507,12 @@ uint64_t GetSystemRuntimeStatus(void)
   int64_t SavedRegisterValue;
   float TertiaryFloatValue;
   uint32_t ResourceContextSecondary;
+  float floatComparisonResult;
+  float thirdFloatResult;
+  float inputFloatValue;
+  float resultFloatValue;
+  uint8_t ValidationStatusCode;
+  int64_t ObjectStackBufferResource;
   
   ResourceTable = LookuResourceIndexPointer();
   if ((*(uint *)(ResourceTable + 0x34) >> 4 & 1) != 0) {
@@ -53012,7 +53017,16 @@ void CleanupResourceTableIndexAndValidate(uint8_t ObjectContext, int64_t Validat
 
 
 
-void Unwind_1809064d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表条目
+ * 
+ * 该函数负责清理资源表中的条目，遍历资源表并重置相关状态
+ * 确保所有资源都处于正确的清理状态
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupResourceTableEntries(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -53050,7 +53064,16 @@ void Unwind_1809064d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809064e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统上下文状态
+ * 
+ * 该函数负责重置系统上下文的状态，确保系统处于初始状态
+ * 防止系统状态异常导致的问题
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -53288,7 +53311,16 @@ void UnwindCleanupResourceContextData(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_180906560(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统计数器状态
+ * 
+ * 该函数负责重置系统计数器的状态，确保计数器处于正确的初始状态
+ * 防止计数器异常导致的系统问题
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ResetSystemCounterStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -53307,7 +53339,16 @@ void Unwind_180906560(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906570(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统缓冲区数据
+ * 
+ * 该函数负责清理系统缓冲区中的数据，确保缓冲区处于干净状态
+ * 防止缓冲区数据残留导致的系统问题
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupSystemBufferData(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -53326,7 +53367,16 @@ void Unwind_180906570(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906580(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统状态标志
+ * 
+ * 该函数负责重置系统状态标志，确保所有状态标志都处于正确的初始状态
+ * 防止状态标志异常导致的系统问题
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ResetSystemStatusFlags(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -53345,7 +53395,16 @@ void Unwind_180906580(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906590(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源索引数据
+ * 
+ * 该函数负责清理资源索引数据，确保资源索引处于正确的初始状态
+ * 防止资源索引异常导致的系统问题
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupResourceIndexData(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -53364,7 +53423,16 @@ void Unwind_180906590(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809065a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源索引计数器
+ * 
+ * 该函数负责重置资源索引计数器，确保计数器处于正确的初始状态
+ * 防止计数器异常导致的系统问题
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ResetResourceIndexCounter(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
