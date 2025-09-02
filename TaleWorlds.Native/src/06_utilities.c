@@ -95087,8 +95087,10 @@ void InitializeSystemDataStructureCT(void)
   if (DataStructureCTFlag != '\0') {
     SystemStateInitializer(StateInitializerPointer);
     StateInitializerPointer = 0;
+  }
+}
 
- /**
+/**
  * @brief 初始化系统数据结构CU
  * 
  * 该函数负责初始化系统数据结构CU
@@ -95104,8 +95106,10 @@ void InitializeSystemDataStructureCU(void)
   if (DataStructureCUFlag != '\0') {
     SystemFinalizer();
     SystemShutdownHandler(&ShutdownHandlerPointer);
+  }
+}
 
- /**
+/**
  * @brief 初始化系统数据结构CV
  * 
  * 该函数负责初始化系统数据结构CV
