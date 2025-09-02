@@ -3538,7 +3538,7 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
     }
     OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x10),&ValidationContext);
     ValidationStatusCode = (int)OperationResult;
-    if (validationStatusCode == 0) {
+    if (ValidationStatusCode == 0) {
       MemoryContextHandle = 0;
       ProcessResult = ProcessSystemObjectValidation(*(uint8_t *)(SystemContext + 0x90),*(int64_t *)(ValidationContext + 8) + 0x10,
                             &MemoryContextHandle);
