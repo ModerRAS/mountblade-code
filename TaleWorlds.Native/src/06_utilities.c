@@ -39069,7 +39069,22 @@ void Unwind_180903df0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903e10(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理线程池上下文资源并管理系统状态
+ * 
+ * 该函数负责清理线程池上下文相关的资源
+ * 管理系统状态并处理资源句柄的清理工作
+ * 包括系统资源处理器模板和数据结构的重置
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象相关信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作合法性
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的行为
+ * @return 无返回值
+ * @note 此函数会执行线程池资源清理和状态管理操作
+ * @warning 如果清理过程中出现错误，将触发系统紧急退出
+ */
+void CleanupThreadPoolContextAndManageSystemState(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
