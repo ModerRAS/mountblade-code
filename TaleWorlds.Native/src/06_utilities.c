@@ -11931,9 +11931,9 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
     SetupResourceHandlers(DataHandlerContextPointer,&ResourceHandlerParam,ResourceHandlerArray);
     SystemCommandArray[0] = ResourceHandlerArray[0];
     if (ResourceHandlerArray[0] != -1) {
-      resourceContext3 = DataHandlerContextPointer;
-      resourceHash0 = ContextValidationResult;
-      ResourceIndex1 = (int)ResourceHandlerParam;
+      TertiaryResourceContext = DataHandlerContextPointer;
+      ResourceHashValue = ContextValidationResult;
+      PrimaryResourceIndex = (int)ResourceHandlerParam;
       do {
         do {
           ResourceIndex6 = (int)resourceHash0;
