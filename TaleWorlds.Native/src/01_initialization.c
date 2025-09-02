@@ -45966,7 +45966,7 @@ void* * FUN_180069070(void* *SystemResourcePointer)
 
 
 // 函数: void ConfigureSystemResourceCallbacks(long long SystemResourcePointer,long long ConfigurationDataPointer)
-void FUN_180069130(long long SystemResourcePointer,long long ConfigurationDataPointer)
+void ConfigureSystemResourceCallbacks(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   code *pcVar1;
