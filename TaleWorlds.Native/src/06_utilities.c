@@ -1961,12 +1961,15 @@ uint8_t AuthenticationRequestConfig;
 uint8_t AuthenticationResponseData;
 uint8_t AuthenticationResponseConfig;
 
- void EncryptDataBuffer(void);
 /**
  * @brief 加密数据缓冲区
  * 
  * 该函数负责加密数据缓冲区中的内容
- * 保护敏感数据的安全性
+ * 保护敏感数据的安全性，防止未授权访问
+ * 
+ * @return 无返回值
+ * @note 此函数应在处理敏感数据前调用
+ * @warning 加密操作可能影响性能，应合理使用
  */
 void EncryptDataBuffer(void);
 
@@ -2014,7 +2017,17 @@ uint8_t SystemMemoryConfigTemplateYield;           // 性能调优
 uint8_t SystemMemoryConfigTemplateZone;            // 内存区域
 uint8_t SystemMemoryConfigTemplateAlternate;       // 备用配置
 
- void VerifyDataIntegrity(void);
+ /**
+ * @brief 验证数据完整性
+ * 
+ * 该函数负责验证系统中关键数据的完整性和一致性
+ * 通过校验和、哈希值或其他验证机制确保数据未被篡改
+ * 
+ * @return 无返回值
+ * @note 此函数应在关键数据操作后调用
+ * @warning 验证失败时可能触发系统安全机制
+ */
+void VerifyDataIntegrity(void);
 uint8_t SystemEnvironmentConfigTemplatePrimary;
 uint8_t SystemEnvironmentConfigTemplateBackup;
 uint8_t SystemConfigurationTemplateCache;
@@ -3010,31 +3023,31 @@ uint8_t SystemConfigDataBlockDuovigesimal;
 uint8_t SystemConfigDataBlockTervigesimal;
 uint8_t SystemConfigDataBlockQuattuorvigesimal;
 uint8_t SystemConfigDataBlockQuinvigesimal;
-uint8_t SystemConfigDataBlockTwentySix;
-uint8_t SystemConfigDataBlockTwentySeven;
-uint8_t SystemConfigDataBlockTwentyEight;
-uint8_t SystemConfigDataBlockTwentyNine;
-uint8_t SystemConfigDataBlockThirty;
-uint8_t SystemConfigDataBlockThirtyOne;
-uint8_t SystemConfigDataBlockThirtyTwo;
-uint8_t SystemConfigDataBlockThirtyThree;
-uint8_t SystemConfigDataBlockThirtyFour;
-uint8_t SystemConfigDataBlockThirtyFive;
-uint8_t SystemConfigDataBlockThirtySix;
-uint8_t SystemConfigDataBlockThirtySeven;
-uint8_t SystemConfigDataBlockThirtyEight;
-uint8_t SystemConfigDataBlockThirtyNine;
-uint8_t SystemConfigDataBlockForty;
-uint8_t MemoryPoolBufferOne;
-uint8_t MemoryPoolBufferTwo;
-uint8_t MemoryPoolBufferThree;
-uint8_t MemoryPoolBufferFour;
-uint8_t MemoryPoolBufferFive;
-uint8_t MemoryPoolBufferSix;
-uint8_t MemoryPoolBufferSeven;
-uint8_t MemoryPoolBufferEight;
-uint8_t MemoryPoolBufferNine;
-uint8_t MemoryPoolBufferTen;
+uint8_t SystemConfigDataBlockSexvigesimal;
+uint8_t SystemConfigDataBlockSeptenvigesimal;
+uint8_t SystemConfigDataBlockOctovigesimal;
+uint8_t SystemConfigDataBlockNovemvigesimal;
+uint8_t SystemConfigDataBlockTrigesimal;
+uint8_t SystemConfigDataBlockUntrigesimal;
+uint8_t SystemConfigDataBlockDuotrigesimal;
+uint8_t SystemConfigDataBlockTritrigesimal;
+uint8_t SystemConfigDataBlockQuattuortrigesimal;
+uint8_t SystemConfigDataBlockQuintrigesimal;
+uint8_t SystemConfigDataBlockSextrigesimal;
+uint8_t SystemConfigDataBlockSeptentrigesimal;
+uint8_t SystemConfigDataBlockOctotrigesimal;
+uint8_t SystemConfigDataBlockNovemtrigesimal;
+uint8_t SystemConfigDataBlockQuadragesimal;
+uint8_t MemoryPoolBufferPrimary;
+uint8_t MemoryPoolBufferSecondary;
+uint8_t MemoryPoolBufferTertiary;
+uint8_t MemoryPoolBufferQuaternary;
+uint8_t MemoryPoolBufferQuinary;
+uint8_t MemoryPoolBufferSenary;
+uint8_t MemoryPoolBufferSeptenary;
+uint8_t MemoryPoolBufferOctonary;
+uint8_t MemoryPoolBufferNonary;
+uint8_t MemoryPoolBufferDenary;
 uint8_t MemoryPoolBufferEleven;
 uint8_t MemoryPoolBufferTwelve;
 uint8_t MemoryPoolBufferThirteen;
@@ -11831,16 +11844,16 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContextParameter)
   int64_t *DataHandlerContextPointer;
   uint64_t ResourceHandlerParam;
   int ResourceHandlerArray [2];
-  uint8_t *puStack_f0;
-  uint32_t uStack_e8;
-  uint32_t uStack_e0;
-  uint8_t *puStack_d8;
-  uint32_t uStack_d0;
-  uint32_t uStack_c8;
-  uint32_t uStack_c0;
-  uint8_t *puStack_b8;
-  uint32_t uStack_b0;
-  uint32_t uStack_a8;
+  uint8_t *SystemDataBufferPointer;
+  uint32_t SystemDataBufferOffset;
+  uint32_t SystemDataBufferFlags;
+  uint8_t *CompressionContextPointer;
+  uint32_t CompressionContextOffset;
+  uint32_t CompressionContextFlags;
+  uint32_t CompressionContextMode;
+  uint8_t *EncodingContextPointer;
+  uint32_t EncodingContextOffset;
+  uint32_t EncodingContextFlags;
   uint resourceFlagLow;
   uint8_t *pResourceFlag1;
   uint32_t ResourceFlag2;
@@ -11881,10 +11894,10 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContextParameter)
             if ((OperationStatusCode == 0) &&
                (OperationStatusCode = ValidateTableEntry(SecurityValidationContext), ResourceContextPointer3 = DataHandlerContextPointer, 0 < OperationResult)) {
               do {
-                uStack_e0 = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
-                uStack_e8 = 0;
-                puStack_f0 = &SystemDataBufferA;
-                ParseDataStructure(&puStack_f0,*(uint8_t *)(ObjectContextParameter + 0x58));
+                SystemDataBufferFlags = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+                SystemDataBufferOffset = 0;
+                SystemDataBufferPointer = &SystemDataBufferA;
+                ParseDataStructure(&SystemDataBufferPointer,*(uint8_t *)(ObjectContextParameter + 0x58));
                 OperationStatusCode = ValidateTableEntry(ValidationResult);
               } while (0 < OperationResult);
               ContextValidationStatusCode = (uint64_t)SystemCommandParams[0];
@@ -11895,15 +11908,15 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContextParameter)
             OperationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10),aStackContextBuffer);
             ResourceContextPointer3 = DataHandlerContextPointer;
             if (OperationStatusCode == 0) {
-              puStack_d8 = &SerializationTemplate;
-              uStack_c8 = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
-              uStack_d0 = 0;
-              uStack_c0 = 1;
-              SerializeData(&puStack_d8,*(uint8_t *)(ObjectContextParameter + 0x58));
-              puStack_f0 = &DeserializationTemplate;
-              uStack_e0 = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
-              uStack_e8 = 0;
-              DeserializeData(&puStack_f0,*(uint8_t *)(ObjectContextParameter + 0x58));
+              SerializationContextPointer = &SerializationTemplate;
+              SerializationContextFlags = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              SerializationContextOffset = 0;
+              SerializationContextMode = 1;
+              SerializeData(&SerializationContextPointer,*(uint8_t *)(ObjectContextParameter + 0x58));
+              DeserializationContextPointer = &DeserializationTemplate;
+              DeserializationContextFlags = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              DeserializationContextOffset = 0;
+              DeserializeData(&DeserializationContextPointer,*(uint8_t *)(ObjectContextParameter + 0x58));
               ResourceContextPointer3 = DataHandlerContextPointer;
             }
           }
@@ -12435,7 +12448,7 @@ void ProcessComplexResourceOperation(uint8_t ObjectContextParameter,int64_t Vali
       uStack_268 = CleanupOption;
       CopySecurityData(auStack_260,*(uint8_t *)(ValidationContextParameter + 0x228),0x200);
       ppContextValidationStatusCode = &puStack_278;
-LAB_180896ce3:
+ResourceProcessingHandler:
       ValidationStatusCode = GetAndValidateResourceData(ObjectContextParameter,ppContextValidationResult);
     }
     else {
@@ -12452,7 +12465,7 @@ LAB_180896ce3:
         GraphicsOperationFlag5 = 0;
         GraphicsOperationFlag6 = 0;
         GraphicsOperationFlag8 = CleanupOption;
-        goto LAB_180896ce3;
+        goto ResourceProcessingHandler;
       }
       GraphicsDataPointer = &BufferTemplate3;
       GraphicsContextOffset = (uint64_t)CleanupOption << 0x20;
