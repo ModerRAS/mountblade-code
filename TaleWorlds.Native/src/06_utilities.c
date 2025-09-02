@@ -6524,7 +6524,7 @@ uint8_t ValidateObjectContextAndUpdateStatus(int64_t ObjectContext, int64_t Syst
 {
   uint8_t ResourceHash;
   uint ValidationContext;
-  uint32_t ValidationContextParam;
+  uint32_t ValidationParameter;
   
   ValidationContext = *(uint *)(ObjectContext + ObjectContextValidationDataOffset);
   if ((ValidationContext & 0x7f800000) == 0x7f800000) {
@@ -8185,7 +8185,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
   int64_t ContextPointer;
   uint8_t ExtraParameter;
   float RangeValue;
-  int64_t StackBufferData;
+  int64_t StackBufferPointer;
   
   StackContextData = CONCAT44(StackContextData.VectorComponent,*(uint *)(ObjectContext + ObjectContextProcessingDataOffset));
   if ((*(uint *)(ObjectContext + ObjectContextProcessingDataOffset) & 0x7f800000) == 0x7f800000) {
@@ -8268,7 +8268,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
   uint ArraySize;
   float MinValue;
   float MaxValue;
-  float CurrentValue;
+  float CurrentFloatValue;
   uint32_t StackBuffer;
   uint64_t ResourceHash;
   
@@ -8731,7 +8731,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
   uint8_t ResourceHash;
   int64_t ResourceTable;
   uint ValidationContext;
-  uint32_t ValidationContextParam;
+  uint32_t ValidationParameter;
   
   ValidationContext = *(uint *)(ObjectContext + ObjectContextValidationDataOffset);
   if ((ValidationContext & 0x7f800000) == 0x7f800000) {
@@ -8821,7 +8821,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t ObjectContex
   uint8_t HashValidationResult;
   float SecondaryFloatValue;
   uint ValidationContext;
-  uint32_t ValidationContextParam;
+  uint32_t ValidationParameter;
   
   ValidationContext = *(uint *)(ObjectContext + 0x14);
   if ((ValidationContext & 0x7f800000) == 0x7f800000) {
@@ -9887,7 +9887,7 @@ uint8_t ValidateObjectContextAndProcessFloatValidation(int64_t ObjectContext,int
 {
   uint8_t ResourceHash;
   uint ValidationContext;
-  uint32_t ValidationContextParam;
+  uint32_t ValidationParameter;
   
   ValidationContext = *(uint *)(ObjectContext + ObjectContextValidationDataOffset);
   if ((ValidationContext & 0x7f800000) == 0x7f800000) {
@@ -38248,7 +38248,7 @@ void CleanupDualResourceHandlers(uint8_t ObjectContext,int64_t ValidationContext
  * @param CleanupFlag 清理标志
  * @return 无返回值
  */
-void ProcessSystemResourceCleanup1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessSystemResourceCleanupPrimary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38288,7 +38288,7 @@ void ProcessSystemResourceCleanup1(uint8_t ObjectContext,int64_t ValidationConte
  * @param CleanupFlag 清理标志
  * @return 无返回值
  */
-void ProcessSystemResourceCleanup2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessSystemResourceCleanupSecondary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38328,7 +38328,7 @@ void ProcessSystemResourceCleanup2(uint8_t ObjectContext,int64_t ValidationConte
  * @param CleanupFlag 清理标志
  * @return 无返回值
  */
-void ProcessSystemResourceCleanup3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessSystemResourceCleanupTertiary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -60026,7 +60026,20 @@ void ExecuteQuaternaryResourceProcessingCallback(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_180907900(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源命令和句柄释放
+ * 
+ * 该函数负责执行资源命令并释放资源句柄
+ * 从验证上下文中获取资源哈希指针，执行相应的资源命令
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数会执行资源命令并释放资源句柄
+ */
+void ExecuteResourceCommandAndReleaseHandle(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -60041,7 +60054,20 @@ void Unwind_180907900(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907910(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源命令和句柄释放（扩展版本）
+ * 
+ * 该函数负责执行资源命令并释放资源句柄
+ * 与ExecuteResourceCommandAndReleaseHandle功能相同，但用于不同的调用上下文
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数与ExecuteResourceCommandAndReleaseHandle功能相同
+ */
+void ExecuteResourceCommandAndReleaseHandleExtended(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -60056,7 +60082,18 @@ void Unwind_180907910(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907920(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 检查资源版本并执行紧急退出
+ * 
+ * 该函数负责检查资源表中所有资源的版本
+ * 如果资源表不为空，则执行系统紧急退出程序
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会遍历资源表检查版本，并在必要时执行紧急退出
+ */
+void CheckResourceVersionAndExecuteEmergencyExit(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -60076,7 +60113,20 @@ void Unwind_180907920(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907930(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源验证回调函数A
+ * 
+ * 该函数负责执行资源验证的回调操作
+ * 从验证上下文中获取资源数据并执行验证
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数会执行资源验证回调
+ */
+void ExecuteResourceValidationCallbackA(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x10),
@@ -60086,7 +60136,20 @@ void Unwind_180907930(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907940(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源验证回调函数B
+ * 
+ * 该函数负责执行资源验证的回调操作
+ * 与ExecuteResourceValidationCallbackA功能相同，但用于不同的调用上下文
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数与ExecuteResourceValidationCallbackA功能相同
+ */
+void ExecuteResourceValidationCallbackB(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x10),
@@ -60096,7 +60159,19 @@ void Unwind_180907940(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907950(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源处理器模板
+ * 
+ * 该函数负责设置系统资源处理器模板
+ * 将系统资源处理器模板指针设置到指定的资源哈希位置
+ * 并在必要时执行紧急退出程序
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会设置系统资源处理器模板并初始化相关数据结构
+ */
+void SetSystemResourceHandlerTemplate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -60114,7 +60189,16 @@ void Unwind_180907950(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907960(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置资源哈希指针到分配模板
+ * 
+ * 该函数负责设置资源哈希指针到系统资源处理模板
+ * 并确保资源哈希指针的正确性和安全性
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetResourceHashPointerToAllocationTemplate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -60133,25 +60217,42 @@ void Unwind_180907960(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907970(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理和句柄关闭
+ * 
+ * 该函数负责执行资源清理操作，关闭句柄并更新系统计数器
+ * 确保资源正确释放和系统状态同步
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceCleanupAndHandleClose(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ResourceContextPointer;
   
-  ResourceContext = (int64_t *)(ValidationContext + 0x50);
-  if (*ResourceContext != -1) {
+  ResourceContextPointer = (int64_t *)(ValidationContext + 0x50);
+  if (*ResourceContextPointer != -1) {
     LOCK();
     SystemOperationCounter = SystemOperationCounter + -1;
     UNLOCK();
-    CloseHandle(*ResourceContext);
-    *ResourceContext = -1;
+    CloseHandle(*ResourceContextPointer);
+    *ResourceContextPointer = -1;
   }
   return;
 }
 
 
 
-void Unwind_180907980(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到0xb0偏移
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的0xb0偏移处
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToOffsetB0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0xb0) = &SystemDataStructure;
@@ -60160,7 +60261,15 @@ void Unwind_180907980(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907990(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到0xb8偏移
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的0xb8偏移处
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToOffsetB8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0xb8) = &SystemDataStructure;
@@ -60169,12 +60278,18 @@ void Unwind_180907990(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809079a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器和上下文
+ * 
+ * 该函数负责初始化系统资源处理器和上下文
+ * 设置系统资源处理模板并验证系统状态
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void InitializeSystemResourceHandlerAndContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
-  
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
           ExecuteSystemEmergencyExit();
