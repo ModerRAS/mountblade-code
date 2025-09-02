@@ -43813,8 +43813,21 @@ void InitializeSystemResourceAllocator(void)
 
 
 
-// 函数: void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 初始化系统资源对象
+ * 
+ * 该函数负责初始化系统资源对象，包括对象的创建、配置和初始化。
+ * 主要用于系统资源对象的初始化和管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180065f00，现已重命名为InitializeSystemResourceObject
+ */
+void InitializeSystemResourceObject(void* SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   code *pcVar1;
@@ -43897,8 +43910,21 @@ void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointe
 
 
 
-// 函数: void FUN_180066140(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_180066140(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 执行系统资源命令
+ * 
+ * 该函数负责执行系统资源的命令，包括命令的解析、执行和结果处理。
+ * 主要用于系统资源命令的执行和管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180066140，现已重命名为ExecuteSystemResourceCommand
+ */
+void ExecuteSystemResourceCommand(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint unsignedSystemValue1;
@@ -44334,8 +44360,17 @@ LAB_180066bf4:
 
 
 
-// 函数: void FUN_180066dd0(void)
-void FUN_180066dd0(void)
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，什么都不做，直接返回。
+ * 主要用于占位或作为默认的处理函数。
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180066dd0，现已重命名为EmptyOperation
+ */
+void EmptyOperation(void)
 
 {
   return;
@@ -44345,8 +44380,21 @@ void FUN_180066dd0(void)
 
 
 
-// 函数: void FUN_180066df0(long long *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_180066df0(long long *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，包括内存分配器、数据表和资源偏移的设置。
+ * 主要用于系统资源管理器的初始化和配置。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180066df0，现已重命名为InitializeSystemResourceManager
+ */
+void InitializeSystemResourceManager(long long *SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long localMemoryPointer;
@@ -44466,8 +44514,17 @@ long long SearchDataPatternInMemory(long long SystemResourcePointer,ulong long C
 
 
 
-// 函数: void FUN_180067050(void)
-void FUN_180067050(void)
+/**
+ * @brief 处理系统越界异常
+ * 
+ * 该函数负责处理系统越界异常，包括异常报告和异常处理。
+ * 主要用于系统异常的处理和恢复。
+ * 
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180067050，现已重命名为HandleSystemOutOfRangeException
+ */
+void HandleSystemOutOfRangeException(void)
 
 {
   code *pcVar1;
