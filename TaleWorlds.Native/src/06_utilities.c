@@ -71123,7 +71123,13 @@ void UnwindResourceHandlerRegistrar(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_180909ce0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数：系统资源模板处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909ce0
+ */
+void UnwindSystemResourceTemplateHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -71141,7 +71147,13 @@ void Unwind_180909ce0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909d00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数：系统上下文初始化器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909d00
+ */
+void UnwindSystemContextInitializer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -71163,7 +71175,13 @@ void Unwind_180909d00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909d20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数：扩展资源处理器注册器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909d20
+ */
+void UnwindResourceHandlerExtendedRegistrar(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x5a0,0x20,9,SystemResourceHandlerEx);

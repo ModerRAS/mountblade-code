@@ -68398,8 +68398,8 @@ void ProcessSystemResourceManagerExtended(uint32_t SystemResourceManager)
 
 
 
-// 函数: void FUN_18007f933(void* SystemResourceManager,long long ConfigurationDataPointer)
-void FUN_18007f933(void* SystemResourceManager,long long ConfigurationDataPointer)
+// 函数: void ConfigureSystemResourceManagerExtended(void* SystemResourceManager,long long ConfigurationDataPointer)
+void ConfigureSystemResourceManagerExtended(void* SystemResourceManager,long long ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -68594,8 +68594,8 @@ void FUN_18007f933(void* SystemResourceManager,long long ConfigurationDataPointe
 
 
 
-// 函数: void FUN_18007f976(void)
-void FUN_18007f976(void)
+// 函数: void FinalizeSystemResourceManager(void)
+void FinalizeSystemResourceManager(void)
 
 {
   long long *PrimaryResourcePointer;
@@ -68773,8 +68773,8 @@ void FUN_18007f976(void)
 
 
 
-// 函数: void FUN_18007f983(void)
-void FUN_18007f983(void)
+// 函数: void CleanupSystemResourceManagerFinal(void)
+void CleanupSystemResourceManagerFinal(void)
 
 {
   long long *PrimaryResourcePointer;
