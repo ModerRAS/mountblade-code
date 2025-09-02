@@ -13613,10 +13613,10 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
   uint32_t ResourceOperationCounter;
   uint32_t ResourceBufferSize;
   uint32_t ResourceDataOffset;
-  uint32_t StackVariable120;
-  uint32_t StackVariable11C;
+  uint32_t ResourceSizeLimit;
+  uint32_t ResourceOffsetLimit;
   uint32_t ResourceHandlerFlag1;
-  uint32_t StackVariable114;
+  uint32_t ResourceIndexLimit;
   uint8_t *OperationParameter8Pointer;
   uint32_t ResourceHandlerParam;
   uint32_t StackVariableF8;
