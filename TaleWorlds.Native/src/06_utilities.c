@@ -11880,7 +11880,7 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
   int ValidationStatus;
   uint ResourceCounter;
   uint ValidationCounter;
-  uint64_t resourceHash0;
+  uint64_t ResourceHashValue;
   int PrimaryResourceIndex;
   uint32_t *SecondaryResourceHashPointer;
   int64_t *TertiaryResourceContext;
@@ -11936,18 +11936,18 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
       PrimaryResourceIndex = (int)ResourceHandlerParam;
       do {
         do {
-          ResourceIndex6 = (int)resourceHash0;
-          ResourceTablePointer = resourceContext3[2];
-          LocalContextData5 = (int64_t)SystemCommandArray[0];
-          operationStatusCode = *(int *)(ResourceTablePointer + 8 + LocalContextData5 * 0x10);
+          ResourceProcessingIndex = (int)ResourceHashValue;
+          ResourceTablePointer = TertiaryResourceContext[2];
+          LocalContextDataBuffer = (int64_t)SystemCommandArray[0];
+          operationStatusCode = *(int *)(ResourceTablePointer + 8 + LocalContextDataBuffer * 0x10);
           if (operationStatusCode == 2) {
-            operationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10),&SecurityValidationContext);
+            operationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + LocalContextDataBuffer * 0x10),&SecurityValidationContext);
             validationStatusCode = SecurityValidationContext;
-            resourceContext3 = DataHandlerContextPointer;
+            TertiaryResourceContext = DataHandlerContextPointer;
             if ((operationStatusCode == 0) &&
-               (operationStatusCode = ValidateTableEntry(SecurityValidationContext), resourceContext3 = DataHandlerContextPointer, 0 < OperationResult)) {
+               (operationStatusCode = ValidateTableEntry(SecurityValidationContext), TertiaryResourceContext = DataHandlerContextPointer, 0 < OperationResult)) {
               do {
-                SystemDataBufferFlags = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+                SystemDataBufferFlags = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextDataBuffer * 0x10);
                 SystemDataBufferOffset = 0;
                 SystemDataBufferPointer = &SystemDataBufferA;
                 ParseDataStructure(&SystemDataBufferPointer,*(uint8_t *)(objectContext + 0x58));
@@ -12559,15 +12559,15 @@ ResourceProcessingHandler:
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
-        uStack_28c = *(uint32_t *)(LocalContextData + 0x10);
-        uStack_288 = *(uint *)(LocalContextData + 0x14);
-        uStack_284 = *(uint32_t *)(LocalContextData + 0x18);
-        uStack_280 = *(uint32_t *)(LocalContextData + 0x1c);
+        StackVariable28c = *(uint32_t *)(LocalContextData + 0x10);
+        StackVariable288 = *(uint *)(LocalContextData + 0x14);
+        StackVariable284 = *(uint32_t *)(LocalContextData + 0x18);
+        StackVariable280 = *(uint32_t *)(LocalContextData + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         operationStatusCode = tableEntry + 1;
-        uStack_27c = GraphicsDataFlag;
+        StackVariable27c = GraphicsDataFlag;
         GraphicsDataIndex2 = ResourceCount;
-        uStack_298 = CleanupOption;
+        StackVariable298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
@@ -12606,15 +12606,15 @@ ResourceProcessingHandler:
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
-        uStack_28c = *(uint32_t *)(LocalContextData + 0x10);
-        uStack_288 = *(uint *)(LocalContextData + 0x14);
-        uStack_284 = *(uint32_t *)(LocalContextData + 0x18);
-        uStack_280 = *(uint32_t *)(LocalContextData + 0x1c);
+        StackVariable28c = *(uint32_t *)(LocalContextData + 0x10);
+        StackVariable288 = *(uint *)(LocalContextData + 0x14);
+        StackVariable284 = *(uint32_t *)(LocalContextData + 0x18);
+        StackVariable280 = *(uint32_t *)(LocalContextData + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         operationStatusCode = tableEntry + 1;
-        uStack_27c = GraphicsDataFlag;
+        StackVariable27c = GraphicsDataFlag;
         GraphicsDataIndex2 = ResourceCount;
-        uStack_298 = CleanupOption;
+        StackVariable298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
@@ -12653,15 +12653,15 @@ ResourceProcessingHandler:
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
-        uStack_28c = *(uint32_t *)(LocalContextData + 0x10);
-        uStack_288 = *(uint *)(LocalContextData + 0x14);
-        uStack_284 = *(uint32_t *)(LocalContextData + 0x18);
-        uStack_280 = *(uint32_t *)(LocalContextData + 0x1c);
+        StackVariable28c = *(uint32_t *)(LocalContextData + 0x10);
+        StackVariable288 = *(uint *)(LocalContextData + 0x14);
+        StackVariable284 = *(uint32_t *)(LocalContextData + 0x18);
+        StackVariable280 = *(uint32_t *)(LocalContextData + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         operationStatusCode = tableEntry + 1;
-        uStack_27c = GraphicsDataFlag;
+        StackVariable27c = GraphicsDataFlag;
         GraphicsDataIndex2 = ResourceCount;
-        uStack_298 = CleanupOption;
+        StackVariable298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
@@ -12700,15 +12700,15 @@ ResourceProcessingHandler:
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
-        uStack_28c = *(uint32_t *)(LocalContextData + 0x10);
-        uStack_288 = *(uint *)(LocalContextData + 0x14);
-        uStack_284 = *(uint32_t *)(LocalContextData + 0x18);
-        uStack_280 = *(uint32_t *)(LocalContextData + 0x1c);
+        StackVariable28c = *(uint32_t *)(LocalContextData + 0x10);
+        StackVariable288 = *(uint *)(LocalContextData + 0x14);
+        StackVariable284 = *(uint32_t *)(LocalContextData + 0x18);
+        StackVariable280 = *(uint32_t *)(LocalContextData + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         operationStatusCode = tableEntry + 1;
-        uStack_27c = GraphicsDataFlag;
+        StackVariable27c = GraphicsDataFlag;
         GraphicsDataIndex2 = ResourceCount;
-        uStack_298 = CleanupOption;
+        StackVariable298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
@@ -12750,15 +12750,15 @@ ResourceProcessingHandler:
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) break;
-        uStack_28c = *(uint32_t *)(LocalContextData + 0x10);
-        uStack_288 = *(uint *)(LocalContextData + 0x14);
-        uStack_284 = *(uint32_t *)(LocalContextData + 0x18);
-        uStack_280 = *(uint32_t *)(LocalContextData + 0x1c);
+        StackVariable28c = *(uint32_t *)(LocalContextData + 0x10);
+        StackVariable288 = *(uint *)(LocalContextData + 0x14);
+        StackVariable284 = *(uint32_t *)(LocalContextData + 0x18);
+        StackVariable280 = *(uint32_t *)(LocalContextData + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate7;
         operationStatusCode = tableEntry + 1;
-        uStack_27c = GraphicsDataFlag;
+        StackVariable27c = GraphicsDataFlag;
         GraphicsDataIndex2 = ResourceCount;
-        uStack_298 = CleanupOption;
+        StackVariable298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (ResourceCount = SearchResourceTable(resourceTable,GraphicsTransformMatrix,0), ResourceCount != 0)) break;
@@ -13283,7 +13283,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
   uint8_t StackArray_e0 [136];
   uint64_t ResourceFlag9;
   
-  ResourceFlag9 = SecurityEncryptionKey ^ (uint64_t)auStack_1e8;
+  ResourceFlag9 = SecurityEncryptionKey ^ (uint64_t)StackArray1e8;
   resourceTable = *(int64_t *)(validationContext + 0x80);
   LocalContextData4 = 0;
   uStack_1c8 = 0;
@@ -40590,7 +40590,7 @@ void ResetObjectContext(uint8_t objectContext,int64_t validationContext)
  * @note 此函数会重置本地上下文数据并清理资源状态
  * @warning 如果系统状态异常，可能会触发紧急退出
  */
-void Unwind_180904140(uint8_t objectContext,int64_t validationContext)
+void UnwindSystemResourceHandler(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -40609,7 +40609,19 @@ void Unwind_180904140(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904150(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 系统次要资源处理器展开函数
+ * 
+ * 该函数负责处理系统次要资源处理器的展开操作
+ * 重置次要资源处理器模板和数据结构
+ * 用于异常处理和资源清理过程中的状态重置
+ * 
+ * @param objectContext 对象上下文参数
+ * @param validationContext 验证上下文参数
+ * @note 此函数会重置次要本地上下文数据并清理资源状态
+ * @warning 如果系统状态异常，可能会触发紧急退出
+ */
+void UnwindSystemResourceSecondaryHandler(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -40628,7 +40640,19 @@ void Unwind_180904150(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904160(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 系统第三级资源处理器展开函数
+ * 
+ * 该函数负责处理系统第三级资源处理器的展开操作
+ * 重置第三级资源处理器模板和数据结构
+ * 用于异常处理和资源清理过程中的状态重置
+ * 
+ * @param objectContext 对象上下文参数
+ * @param validationContext 验证上下文参数
+ * @note 此函数会重置第三级本地上下文数据并清理资源状态
+ * @warning 如果系统状态异常，可能会触发紧急退出
+ */
+void UnwindSystemResourceTertiaryHandler(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
