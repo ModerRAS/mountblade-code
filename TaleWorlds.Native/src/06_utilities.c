@@ -196,43 +196,43 @@
 #define SystemPropertyBufferStatusOffset 0x34
 #define SystemPropertyBufferActiveOffset 0x2c
 
-// 配置缓冲区相关常量
-#define ConfigBufferPrimaryOffset 0x50
-#define ConfigBufferSecondaryOffset 0x29
-#define ConfigBufferTertiaryOffset 0x28
+// 系统配置缓冲区相关常量
+#define SystemConfigBufferPrimaryOffset 0x50
+#define SystemConfigBufferSecondaryOffset 0x29
+#define SystemConfigBufferTertiaryOffset 0x28
 
-// 上下文缓冲区相关常量
-#define ContextBufferStatusOffset 0x29
-#define ContextBufferDataOffset 0x28
+// 系统上下文缓冲区相关常量
+#define SystemContextBufferStatusOffset 0x29
+#define SystemContextBufferDataOffset 0x28
 
-// 进程上下文相关常量
-#define ProcessContextObjectOffset 0x98
+// 系统进程上下文相关常量
+#define SystemProcessContextObjectOffset 0x98
 
-// CONCAT宏的语义化定义
-#define CombineValidationContextAndParam CONCAT44
-#define CombineParameterAndValidationRegisters CONCAT44
-#define CombineInputRegisters CONCAT44
-#define CombineSavedRegisterAndIndex CONCAT44
-#define CombineResourceValidationAndCommand CONCAT44
-#define CombineGraphicsOperationFlags CONCAT44
-#define CombineFloatWithHighBits CONCAT31
-#define CombineValidationContextWithResource CONCAT44
-#define CombineValidationContextWithHash CONCAT44
-#define CombineSystemArrayWithByte CONCAT11
-#define CombineSystemArrayWithShort CONCAT22
-#define CombineSystemArrayWithInt CONCAT31
-#define CombineSystemContextWithValidation CONCAT71
-#define CombineRegisterWithLoopCounter CONCAT44
-#define CombineValidationContextWithChar CONCAT62
-#define CombineResourceHashWithFormat CONCAT22
-#define CombineResourceCountWithOffset CONCAT22
-#define CombineHashWithStatus CONCAT31
-#define CombineRegisterStorageValues CONCAT44
-#define CombineHashWithCharacterCheck CONCAT71
-#define CombineResourceWithChecksum CONCAT31
-#define CombineMemoryWithExceptionCheck CONCAT71
-#define CombineLoopControlWithException CONCAT71
-#define CombineMemoryAlignmentWithCheck CONCAT71
+// 系统CONCAT宏的语义化定义
+#define SystemCombineValidationContextAndParam CONCAT44
+#define SystemCombineParameterAndValidationRegisters CONCAT44
+#define SystemCombineInputRegisters CONCAT44
+#define SystemCombineSavedRegisterAndIndex CONCAT44
+#define SystemCombineResourceValidationAndCommand CONCAT44
+#define SystemCombineGraphicsOperationFlags CONCAT44
+#define SystemCombineFloatWithHighBits CONCAT31
+#define SystemCombineValidationContextWithResource CONCAT44
+#define SystemCombineValidationContextWithHash CONCAT44
+#define SystemCombineSystemArrayWithByte CONCAT11
+#define SystemCombineSystemArrayWithShort CONCAT22
+#define SystemCombineSystemArrayWithInt CONCAT31
+#define SystemCombineSystemContextWithValidation CONCAT71
+#define SystemCombineRegisterWithLoopCounter CONCAT44
+#define SystemCombineValidationContextWithChar CONCAT62
+#define SystemCombineResourceHashWithFormat CONCAT22
+#define SystemCombineResourceCountWithOffset CONCAT22
+#define SystemCombineHashWithStatus CONCAT31
+#define SystemCombineRegisterStorageValues CONCAT44
+#define SystemCombineHashWithCharacterCheck CONCAT71
+#define SystemCombineResourceWithChecksum CONCAT31
+#define SystemCombineMemoryWithExceptionCheck CONCAT71
+#define SystemCombineLoopControlWithException CONCAT71
+#define SystemCombineMemoryAlignmentWithCheck CONCAT71
 
 /**
  * @brief 合并验证上下文和参数
