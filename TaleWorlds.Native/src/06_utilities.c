@@ -173,28 +173,28 @@
 #define SystemContextResourceBaseAddress 0x180985054
 #define SystemContextSecurityValidationAddress 0x180c4f450
 
-// 状态标志常量
-#define StatusFlagActive '\x01'
-#define StatusFlagInactive '\x02'
-#define StatusFlagProcessing '\x06'
+// 系统状态标志常量
+#define SystemStatusFlagActive '\x01'
+#define SystemStatusFlagInactive '\x02'
+#define SystemStatusFlagProcessing '\x06'
 
-// 安全验证相关常量
-#define SecurityValidationKeySeed 0x12345678
+// 系统安全验证相关常量
+#define SystemSecurityValidationKeySeed 0x12345678
 
-// 临时变量相关常量
-#define TemporaryVariableInitialValue -0x8000000000000000
-#define TemporarySecondaryVariableInitialValue -0x80000000
+// 系统临时变量初始化常量
+#define SystemTemporaryVariableInitialValue -0x8000000000000000
+#define SystemTemporarySecondaryVariableInitialValue -0x80000000
 
-// 调度器上下文相关常量
-#define SchedulerContextObjectOffset 0x98
-#define SchedulerContextProcessingOffset 0x50
+// 系统调度器上下文相关常量
+#define SystemSchedulerContextObjectOffset 0x98
+#define SystemSchedulerContextProcessingOffset 0x50
 
-// 属性缓冲区相关常量
-#define PropertyBufferCounterOffset 0x28
-#define PropertyBufferCapacityOffset 0x2c
-#define PropertyBufferSizeOffset 0x30
-#define PropertyBufferStatusOffset 0x34
-#define PropertyBufferActiveOffset 0x2c
+// 系统属性缓冲区相关常量
+#define SystemPropertyBufferCounterOffset 0x28
+#define SystemPropertyBufferCapacityOffset 0x2c
+#define SystemPropertyBufferSizeOffset 0x30
+#define SystemPropertyBufferStatusOffset 0x34
+#define SystemPropertyBufferActiveOffset 0x2c
 
 // 配置缓冲区相关常量
 #define ConfigBufferPrimaryOffset 0x50
@@ -4010,7 +4010,7 @@ uint8_t MemoryPoolBufferOneHundredThirtyTwo;
 uint8_t MemoryPoolBufferOneHundredThirtyThree;
 uint8_t SystemDataBufferPrimary;
 uint8_t SystemConfigurationFlagActive;
-char SystemStatusCharacterBuffer;
+char SystemStatusCharacteracterBuffer;
 uint8_t SystemDataBufferSecondary;
 
  uint8_t MonitorResourcePerformancePrimary;
@@ -4023,7 +4023,7 @@ uint8_t SystemSyncFlagFast;
 uint8_t SystemThreadFlagGlobal;
 uint8_t SystemResourceFlagHighPriority;
 uint8_t SystemProcessFlagInteractive;
-char SystemStatusCharacterJournal;
+char SystemStatusCharacteracterJournal;
 uint8_t SystemDataBufferTertiary;
 uint8_t SystemDataBufferQuaternary;
 uint8_t SystemDataBufferQuinary;
@@ -11717,8 +11717,8 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *Val
     ObjectContextOffset = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
     SecurityContextOffset = ArrayIterationIndex * 3;
     int64_t SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + ArrayIterationIndex * 0xc) + *(int64_t *)(ObjectContext + ObjectContextHandleDataOffset);
-    char SystemStatusCharacter = *(char *)(ObjectContextOffset + ResourceCleanupOffset + ArrayIterationIndex * 0xc);
-    if (SystemStatusCharacter == '\x01') {
+    char SystemStatusCharacteracter = *(char *)(ObjectContextOffset + ResourceCleanupOffset + ArrayIterationIndex * 0xc);
+    if (SystemStatusCharacteracter == '\x01') {
       int MaxOperationCount = *(int *)(ObjectContext + ObjectContextResourceCountOffset);
       if (OperationResult < MaxOperationCount) {
         *(int *)(ObjectContext + ObjectContextProcessingDataOffset) = OperationResult + 1;
@@ -11766,15 +11766,15 @@ VALIDATION_FAILURE_HANDLER:
       }
     }
     else {
-      if (SystemStatusCharacter == '\x06') {
-        SystemStatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-        if (SystemStatusCharacter == '\0') goto HANDLE_VALIDATION_FAILED;
+      if (SystemStatusCharacteracter == '\x06') {
+        SystemStatusCharacteracter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+        if (SystemStatusCharacteracter == '\0') goto HANDLE_VALIDATION_FAILED;
         *ValidationContext = 0;
         goto HandleSystemError;
       }
-      if (SystemStatusCharacter == '\a') {
-        SystemStatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-        if (SystemStatusCharacter == '\0') {
+      if (SystemStatusCharacteracter == '\a') {
+        SystemStatusCharacteracter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+        if (SystemStatusCharacteracter == '\0') {
           if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(ObjectContext + 0x58) + 0x90) + 0x790) +
                       0x1c8) != 0) {
             *ValidationContext = 0;
@@ -11784,7 +11784,7 @@ VALIDATION_FAILURE_HANDLER:
         }
       }
       else {
-        if ((SystemStatusCharacter != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
+        if ((SystemStatusCharacteracter != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
         SecurityValidationFlag = *(uint32_t *)(SystemDataPointer + 0x20);
         OperationStatusCode = ProcessDataWithContext(ObjectContext,OperationResult,&SecurityValidationFlag);
         if (OperationResult != 0) goto HandleSystemError;
@@ -11875,9 +11875,9 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       ArrayIterationIndex = SystemContextPointer - ((int64_t)CalculatedFloatResult + ArrayIterationIndex);
       *(int64_t *)(SystemRegisterContext + 0x98) = ArrayIterationIndex;
     }
-    StatusCharacter = (int64_t)calculatedFloatValue + ResourceTablePointer < SystemContextPointer - ArrayIterationIndex;
+    StatusCharacteracter = (int64_t)calculatedFloatValue + ResourceTablePointer < SystemContextPointer - ArrayIterationIndex;
     if ((*(byte *)(SystemRegisterContext + 0x6c) & 2) != 0) {
-      StatusCharacter = StatusByte;
+      StatusCharacteracter = StatusByte;
     }
     if (*(int64_t *)(SystemRegisterContext + 0xc0) != 0) {
       ContextValidationStatusCode = ProcessSystemParameters();
@@ -11887,7 +11887,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       calculationResult = StackParameterContextExtended;
       if (HashValidationResult != 0) goto HANDLE_CONTEXT_ERROR;
     }
-    if ((((StatusCharacter != '\0') && (ValidationStatusCode = *calculationResult, *calculationResult = HashValidationResult + 1, HashValidationResult < 10)) &&
+    if ((((StatusCharacteracter != '\0') && (ValidationStatusCode = *calculationResult, *calculationResult = HashValidationResult + 1, HashValidationResult < 10)) &&
         ((*(uint *)(SystemRegisterContext + 0x6c) >> 0x18 & 1) == 0)) &&
        (((*(uint *)(SystemRegisterContext + 0x6c) >> 0x19 & 1) != 0 && (OperationStatusCode == *(int *)(SystemRegisterContext + 0xb0)))))
     {
@@ -11896,15 +11896,15 @@ VALIDATION_FAILURE_HANDLER:
     }
   }
   else {
-    if (StatusCharacter == '\x06') {
-      StatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-      if (StatusCharacter == '\0') goto HANDLE_VALIDATION_FAILED;
+    if (StatusCharacteracter == '\x06') {
+      StatusCharacteracter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+      if (StatusCharacteracter == '\0') goto HANDLE_VALIDATION_FAILED;
       *SystemContext = 0;
       goto HANDLE_CONTEXT_ERROR;
     }
-    if (StatusCharacter == '\a') {
-      StatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-      if (StatusCharacter == '\0') {
+    if (StatusCharacteracter == '\a') {
+      StatusCharacteracter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+      if (StatusCharacteracter == '\0') {
         if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(SystemRegisterContext + 0x58) + 0x90) + 0x790) +
                     0x1c8) != 0) {
           *SystemContext = 0;
@@ -11914,7 +11914,7 @@ VALIDATION_FAILURE_HANDLER:
       }
     }
     else {
-      if ((StatusCharacter != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
+      if ((StatusCharacteracter != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
       ResourceContextSecondary.Field44 = *(uint32_t *)(ResourceContextDataPointer + 0x20);
       OperationStatusCode = ProcessDataWithContext(ObjectContext,ResourceIterationIndex,(int64_t)&ObjectSecondaryBuffer + 4);
       if (OperationResult != 0) goto HANDLE_CONTEXT_ERROR;
@@ -19251,21 +19251,21 @@ void ProcessObjectContextValidation(int64_t ObjectContext,int *ValidationContext
   uint32_t ResultCode;
   
   ContextValidationStatusCode = (uint32_t)((uint)InputParameterValue >> 8);
-  StatusCharacter = (char)InputParameterValue + -0x57 + OverflowFlag;
-  loopCounter = CONCAT31(HashValidationResult,StatusCharacter);
+  StatusCharacteracter = (char)InputParameterValue + -0x57 + OverflowFlag;
+  loopCounter = CONCAT31(HashValidationResult,StatusCharacteracter);
   *(uint32_t *)CONCAT44(RegisterParameter,loopCounter) = loopCounter;
   *(uint *)(ObjectContext + -0x565dff77) = *(uint *)(ObjectContext + -0x565dff77) & BasePointer;
   *(uint32_t *)CONCAT44(RegisterParameter,loopCounter) = loopCounter;
   StackContextPointer = ValidationContext;
   *(uint32_t *)CONCAT44(RegisterParameter,loopCounter) = loopCounter;
   *(char *)CONCAT44(RegisterParameter,loopCounter) =
-       *(char *)CONCAT44(RegisterParameter,loopCounter) + StatusCharacter;
+       *(char *)CONCAT44(RegisterParameter,loopCounter) + StatusCharacteracter;
   *(char *)CONCAT44(RegisterParameter,loopCounter) =
-       *(char *)CONCAT44(RegisterParameter,loopCounter) + StatusCharacter;
-  TableIndex = CONCAT31(HashValidationResult,StatusCharacter + '\x18');
+       *(char *)CONCAT44(RegisterParameter,loopCounter) + StatusCharacteracter;
+  TableIndex = CONCAT31(HashValidationResult,StatusCharacteracter + '\x18');
   *ValidationContext = *ValidationContext + ResourceTableIndex;
   ContextValidationPointer = (char *)((int64_t)&PointerStackValue8 + CONCAT44(InputParameterValue,ResourceTableIndex));
-  *ContextValidationPointer = *ContextValidationPointer + SystemStatusCharacter + '\x18';
+  *ContextValidationPointer = *ContextValidationPointer + SystemStatusCharacteracter + '\x18';
   SystemCallHandler = (code *)swi(3);
   (*SystemCallHandler)();
   return;
@@ -34100,7 +34100,7 @@ void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x38);
   ValidationStatusCode = 0xfffffffffffffffe;
   *ResourceHashPointer = &ResourceHashTable002;
-  StatusChar = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (operationStatus != '\0') {
     operationStatus = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,HashValidationResult);
   }
@@ -36309,7 +36309,7 @@ void ReleaseResourceHandlerReference(uint8_t ObjectContext,int64_t ValidationCon
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -36329,9 +36329,9 @@ void ReleaseResourceHandlerReference(uint8_t ObjectContext,int64_t ValidationCon
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
-    StatusChar = (char *)(ResourceTablePointer + 0x141);
+    StatusCharacter = (char *)(ResourceTablePointer + 0x141);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x138);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -36689,7 +36689,7 @@ void CleanupResourceHandlesAndReleaseMemory(uint8_t ObjectContext, int64_t Valid
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -36711,9 +36711,9 @@ void CleanupResourceHandlesAndReleaseMemory(uint8_t ObjectContext, int64_t Valid
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
-    StatusChar = (char *)(ResourceTablePointer + 0x141);
+    StatusCharacter = (char *)(ResourceTablePointer + 0x141);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x138);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -36885,7 +36885,7 @@ void ResetSystemContextAndHandlers(uint8_t ObjectContext, int64_t ValidationCont
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -36905,9 +36905,9 @@ void ResetSystemContextAndHandlers(uint8_t ObjectContext, int64_t ValidationCont
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
-    StatusChar = (char *)(ResourceTablePointer + 0x141);
+    StatusCharacter = (char *)(ResourceTablePointer + 0x141);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x138);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -44685,7 +44685,7 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *resourceIndexPointer;
-  char *StatusCharacterPointer;
+  char *StatusCharacteracterPointer;
   uint8_t *HashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -44706,9 +44706,9 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext,int64_t ValidationContext)
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0xa0);
   while (LoopOffset != 0) {
-    StatusCharacterPointer = (char *)(LoopOffset + 0x141);
+    StatusCharacteracterPointer = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
-    if (*StatusCharacterPointer != '\0') {
+    if (*StatusCharacteracterPointer != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -44830,7 +44830,7 @@ void ReleaseValidationContextResourceHandle(uint8_t ObjectContext,int64_t Valida
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -44851,9 +44851,9 @@ void ReleaseValidationContextResourceHandle(uint8_t ObjectContext,int64_t Valida
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x570);
   while (LoopOffset != 0) {
-    StatusChar = (char *)(LoopOffset + 0x141);
+    StatusCharacter = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -45129,7 +45129,7 @@ void ReleaseResourceHandleAtResourceManagerOffset(uint8_t ObjectContext,int64_t 
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -45150,9 +45150,9 @@ void ReleaseResourceHandleAtResourceManagerOffset(uint8_t ObjectContext,int64_t 
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0xa0);
   while (LoopOffset != 0) {
-    StatusChar = (char *)(LoopOffset + 0x141);
+    StatusCharacter = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -45200,7 +45200,7 @@ void ReleaseResourceHandleAtExtendedResourceManagerOffset(uint8_t ObjectContext,
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -45221,9 +45221,9 @@ void ReleaseResourceHandleAtExtendedResourceManagerOffset(uint8_t ObjectContext,
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x308);
   while (LoopOffset != 0) {
-    StatusChar = (char *)(LoopOffset + 0x141);
+    StatusCharacter = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -45271,7 +45271,7 @@ void ReleaseResourceHandleAtTertiaryResourceManagerOffset(uint8_t ObjectContext,
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -45292,9 +45292,9 @@ void ReleaseResourceHandleAtTertiaryResourceManagerOffset(uint8_t ObjectContext,
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x570);
   while (LoopOffset != 0) {
-    StatusChar = (char *)(LoopOffset + 0x141);
+    StatusCharacter = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -45488,7 +45488,7 @@ void CleanupResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext,ui
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x160);
   ValidationStatusCode = 0xfffffffffffffffe;
   *ResourceHashPointer = &ResourceHashTable002;
-  StatusChar = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (operationStatus != '\0') {
     operationStatus = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,HashValidationResult);
   }
@@ -45592,9 +45592,9 @@ void ProcessResourceHashOperations(uint8_t ObjectContext,int64_t ValidationConte
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x50);
   OperationStatusCode = 0xfffffffffffffffe;
   *ResourceHashPointer = &ResourceHashTable002;
-  StatusChar = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-  while (StatusChar != '\0') {
-    StatusChar = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,OperationResult);
+  StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  while (StatusCharacter != '\0') {
+    StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,OperationResult);
   }
   if (ResourceHashAddress[1] == 0) {
     ResourceHashAddress[1] = 0;
@@ -51058,7 +51058,7 @@ void UnwindSystemContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -51078,9 +51078,9 @@ void UnwindSystemContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
-    StatusChar = (char *)(ResourceTablePointer + 0x141);
+    StatusCharacter = (char *)(ResourceTablePointer + 0x141);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x138);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -51401,7 +51401,7 @@ void CleanupResourceTableAndValidationContext(uint8_t ObjectContext,int64_t Vali
 
 {
   int *ResourceIndexPointer;
-  char *ResourceStatusChar;
+  char *ResourceStatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -51424,9 +51424,9 @@ void CleanupResourceTableAndValidationContext(uint8_t ObjectContext,int64_t Vali
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x38);
   while (LoopOffset != 0) {
-    ResourceStatusChar = (char *)(LoopOffset + 0x141);
+    ResourceStatusCharacter = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
-    if (*ResourceStatusChar != '\0') {
+    if (*ResourceStatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -51617,7 +51617,7 @@ void ExecuteResourceIntegrityCheckAndUpdate(uint8_t ObjectContext,int64_t Valida
 void ExecuteSystemResourceCleanupAndValidation(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int *SystemResourceIndexPointer;
-  char *SystemStatusChar;
+  char *SystemStatusCharacter;
   uint8_t *SystemHashValidationResultAddress;
   int64_t *SystemContextPointer;
   int64_t SystemMemoryRegion;
@@ -51637,9 +51637,9 @@ void ExecuteSystemResourceCleanupAndValidation(uint8_t ObjectContext, int64_t Va
   }
   SystemResourceTablePointer = SystemContextLoopOffset[5];
   while (SystemResourceTablePointer != 0) {
-    SystemStatusChar = (char *)(SystemResourceTablePointer + 0x141);
+    SystemStatusCharacter = (char *)(SystemResourceTablePointer + 0x141);
     SystemResourceTablePointer = *(int64_t *)(SystemResourceTablePointer + 0x138);
-    if (*SystemStatusChar != '\0') {
+    if (*SystemStatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -52211,7 +52211,7 @@ void ValidateResourceTableStatus(uint8_t ObjectContext, int64_t ValidationContex
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -52234,9 +52234,9 @@ void ValidateResourceTableStatus(uint8_t ObjectContext, int64_t ValidationContex
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0xf0);
   while (LoopOffset != 0) {
-    StatusChar = (char *)(LoopOffset + 0x3541);
+    StatusCharacter = (char *)(LoopOffset + 0x3541);
     LoopOffset = *(int64_t *)(LoopOffset + 0x3538);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -52348,7 +52348,7 @@ void ReleaseResourceHandleAndValidateStatus(uint8_t ObjectContext, int64_t Valid
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -52368,9 +52368,9 @@ void ReleaseResourceHandleAndValidateStatus(uint8_t ObjectContext, int64_t Valid
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
-    StatusChar = (char *)(ResourceTablePointer + 0x3541);
+    StatusCharacter = (char *)(ResourceTablePointer + 0x3541);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x3538);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -52520,7 +52520,7 @@ void ValidateResourceContextAndCleanup(uint8_t ObjectContext, int64_t Validation
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -52540,9 +52540,9 @@ void ValidateResourceContextAndCleanup(uint8_t ObjectContext, int64_t Validation
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
-    StatusChar = (char *)(ResourceTablePointer + 0x3541);
+    StatusCharacter = (char *)(ResourceTablePointer + 0x3541);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x3538);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -52653,7 +52653,7 @@ void DestroyResourceTableSyncObjectsAndValidateStatus(uint8_t ObjectContext, int
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -52676,9 +52676,9 @@ void DestroyResourceTableSyncObjectsAndValidateStatus(uint8_t ObjectContext, int
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0xf0);
   while (LoopOffset != 0) {
-    StatusChar = (char *)(LoopOffset + 0x3541);
+    StatusCharacter = (char *)(LoopOffset + 0x3541);
     LoopOffset = *(int64_t *)(LoopOffset + 0x3538);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -52761,7 +52761,7 @@ void ValidateResourceTableOffsetStatus(uint8_t ObjectContext, int64_t Validation
 
 {
   int *ResourceIndexPointer;
-  char *StatusChar;
+  char *StatusCharacter;
   uint8_t *HashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -52781,9 +52781,9 @@ void ValidateResourceTableOffsetStatus(uint8_t ObjectContext, int64_t Validation
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
-    StatusChar = (char *)(ResourceTablePointer + 0x3541);
+    StatusCharacter = (char *)(ResourceTablePointer + 0x3541);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x3538);
-    if (*StatusChar != '\0') {
+    if (*StatusCharacter != '\0') {
             ExecuteSystemEmergencyExit();
     }
   }
@@ -67787,8 +67787,8 @@ void ProcessSystemExceptionStatusAndResourceCleanup(uint8_t ObjectContext, int64
   int64_t *processPointer;
   char CharacterFlag;
   
-  StatusChar = _uncaught_exception_std__YA_NXZ();
-  if (StatusChar == '\0') {
+  StatusCharacter = _uncaught_exception_std__YA_NXZ();
+  if (StatusCharacter == '\0') {
     __Osfx___basic_ostream_DU__char_traits_D_std___std__QEAAXXZ(*(int64_t *)(ValidationContext + 0x38));
   }
   ResourceContext = *(int64_t **)(ValidationContext + 0x38);
@@ -102515,20 +102515,20 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define BufferHandleOffset 0xb8
 #define DataProcessingBufferOffset 0xd0
 
-// 美化的常量定义
-#define MemoryAlignmentMask 0xfffffff0
-#define MemoryAlignmentPadding 0xf
-#define InvalidResourceHandle 0xffffffff
-#define MaxUInt32Value 0xffffffff
-#define SecurityValidationFlag 0x10000000
-#define FloatNegativeOne 0xbf800000
-#define FloatOne 0x3f800000
-#define MinInt64Value -0x8000000000000000
-#define ResourceCleanupFlag 0xfdffffff
-#define ResourceActiveFlag 0x4000000
-#define ResourceInactiveFlag 0xfbffffff
-#define ByteAlignmentMask 0xffffff00
-#define MaxUInt64Value 0xffffffffffffffff
+// 系统内存和数据对齐常量
+#define SystemMemoryAlignmentMask 0xfffffff0
+#define SystemMemoryAlignmentPadding 0xf
+#define SystemInvalidResourceHandle 0xffffffff
+#define SystemMaximumUInt32Value 0xffffffff
+#define SystemSecurityValidationFlag 0x10000000
+#define SystemFloatNegativeOneValue 0xbf800000
+#define SystemFloatOneValue 0x3f800000
+#define SystemMinimumInt64Value -0x8000000000000000
+#define SystemResourceCleanupFlag 0xfdffffff
+#define SystemResourceActiveFlag 0x4000000
+#define SystemResourceInactiveFlag 0xfbffffff
+#define SystemByteAlignmentMask 0xffffff00
+#define SystemMaximumUInt64Value 0xffffffffffffffff
 
 // 系统上下文相关偏移量常量
 #define SystemContextPrimaryDataOffset 0x20
