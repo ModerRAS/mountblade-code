@@ -37812,25 +37812,33 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
 
 
 // 函数: void FUN_18005dab0(long long SystemResourcePointer)
-void FUN_18005dab0(long long SystemResourcePointer)
+/**
+ * @brief 处理系统资源线程管理
+ * 
+ * 该函数负责处理系统资源的线程管理，包括线程计数、线程句柄管理
+ * 以及线程资源的分配和释放操作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
+void ProcessSystemResourceThreadManagement(long long SystemResourcePointer)
 
 {
-  long long localMemoryPointer;
-  long long localSystemHandle;
-  int MemoryCompareResult;
-  long long localBufferAddress;
+  long long ThreadHandlePointer;
+  long long CurrentThreadHandle;
+  int ThreadCount;
+  long long ThreadIndex;
   
-  localSystemHandle = GetCurrentThread();
-  systemCounter = (int)(*(long long *)(SystemResourcePointer + 0x10) - *(long long *)(SystemResourcePointer + 8) >> 3);
-  if (0 < systemCounter) {
-    localBufferAddress = 0;
+  CurrentThreadHandle = GetCurrentThread();
+  ThreadCount = (int)(*(long long *)(SystemResourcePointer + 0x10) - *(long long *)(SystemResourcePointer + 8) >> 3);
+  if (0 < ThreadCount) {
+    ThreadIndex = 0;
     do {
-      localMemoryPointer = *(long long *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + localBufferAddress * 8) + 0x40);
-      if ((localMemoryPointer != 0) && (localMemoryPointer != localSystemHandle)) {
+      ThreadHandlePointer = *(long long *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + ThreadIndex * 8) + 0x40);
+      if ((ThreadHandlePointer != 0) && (ThreadHandlePointer != CurrentThreadHandle)) {
         SuspendThread();
       }
-      localBufferAddress = localBufferAddress + 1;
-    } while (localBufferAddress < systemCounter);
+      ThreadIndex = ThreadIndex + 1;
+    } while (ThreadIndex < ThreadCount);
   }
   return;
 }

@@ -14211,7 +14211,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *ObjectContextParameter,int64_t
       dataChecksumBuffer8[0] = 0;
       int ResourceValidationCode = ValidateBufferContext(*(int **)(LocalContextData + 0xd0),dataChecksumBuffer8);
       if (ResourceValidationCode != 0) {
-LAB_180897ce8:
+LoopExit:
                     // WARNING: Subroutine does not return
         FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)auStack_2a8);
       }
@@ -14702,7 +14702,7 @@ uint8_t ValidateResourceRenderingState(void)
                 }
                 integerValue6 = -1;
                 ResourceCount = integerValue6;
-LAB_1808985be:
+ResourceSearchSuccess:
                 LocalContextData5 = AudioSampleRate;
                 ResourceContextPointer6 = PointerStack318;
               } while (integerValue6 != -1);
@@ -14729,7 +14729,7 @@ LAB_1808985be:
           }
           ValidationFloatBuffer[0] = -NAN;
           floatValue18 = ValidationFloatBuffer[0];
-LAB_180898629:
+ResourceValidationComplete:
         } while (ValidationFloatBuffer[0] != -NAN);
       }
       (**(code **)(*ObjectContextParameter + 8))(ObjectContextParameter,&NetworkResponseTemplate);
@@ -14739,7 +14739,7 @@ LAB_180898629:
       }
     }
   }
-LAB_18089866f:
+ResourceProcessingComplete:
                     // WARNING: Subroutine does not return
   CleanupProcessingQueue(alStack_300 + 1);
 }

@@ -4363,7 +4363,7 @@ ProcessMemoryAllocation(uint64_t *memoryPtr, ulonglong controlFlags, uint64_t me
 {
   uint64_t MemoryAddress;
   MemoryAddress = SystemMutexFlags;
-  *memoryPtr = &UNK_1809ff2f8;
+  *memoryPtr = &SystemMemoryAllocationTemplate;
   InitializeSystemMemory();
   if ((controlFlags & 1) != 0) {
     free(memoryPtr, 0xc0, memoryParam3, memoryParam4, MemoryAddress);
@@ -4805,8 +4805,8 @@ LAB_1800d3d65:
       DAT_180d493b0 = 0;
       _DAT_180d493a8 = 6;
       strcpy_s(&DAT_180d493b0,0x40,&DAT_180a069a0);
-      FUN_1808fc820(&UNK_180941ab0);
-      FUN_1808fcb30(&DAT_180d49288);
+      InitializeSystemConfigurationTemplate(&SystemConfigurationTemplate);
+      ValidateSystemConfigurationData(&SystemConfigurationDataTable);
     }
   }
   return &DAT_180d49290 + (longlong)param_1 * 0x58;
@@ -4947,7 +4947,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       uStack_60._4_4_ = uStack_70._4_4_;
       uStack_70 = in_RCX;
       uStack_58 = plStack_68;
-      ppplStack_b8 = (longlong ***)FUN_18006b640(uVar9,&uStack_60);
+      ppplStack_b8 = (longlong ***)CreateMemoryManagerContext(uVar9,&uStack_60);
       if (ppplStack_b8 != (longlong ***)0x0) {
         ppplStack_80 = ppplStack_b8;
         (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
@@ -4960,7 +4960,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
         if (ppplStack_b8 != (longlong ***)0x0) {
           (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
         }
-        FUN_18005e110(uVar9,&ppplStackX_8);
+        ProcessMemoryManagerCleanup(uVar9,&ppplStackX_8);
       }
       else {
         (*(code *)(*ppplStack_b8)[0xc])(ppplStack_b8);
@@ -4968,14 +4968,14 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
           LOCK();
           *(uint8_t *)(ppplStack_b8 + 2) = 1;
           UNLOCK();
-          FUN_1800466d0(ppplStack_b8 + 4);
+          ReleaseMemoryManagerResources(ppplStack_b8 + 4);
         }
         else {
           (*(code *)(*ppplStack_b8)[0xe])(ppplStack_b8);
         }
       }
     }
-    FUN_1801ab660(in_RCX,alStackX_10[0]);
+    ProcessSystemModuleShutdown(in_RCX,alStackX_10[0]);
     uVar9 = MemoryManagerDataAddress;
     if (((in_RCX[0x89] != (longlong ****)0x0) && (*(char *)(_DAT_180c86870 + 0xfa) != '\0')) &&
        ((*(longlong *)(alStackX_10[0] + 0x3580) != 0 &&
@@ -4989,7 +4989,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
     }
     if ((*(char *)((longlong)in_RCX + 0x563) != '\0') &&
        (0 < (int)(((longlong)in_RCX[0xb6] - (longlong)in_RCX[0xb5]) / 0xc))) {
-      FUN_180046190(in_RCX + 0x4cf);
+      CleanupSystemMemoryBuffers(in_RCX + 0x4cf);
       while( true ) {
         ppplVar3 = *in_RCX[0x4ce];
         if (ppplVar3 == (longlong ***)&UNK_180a0c2b8) {
@@ -5035,7 +5035,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       LOCK();
       *(uint32_t *)pppppModuleInitializationResult7 = 0;
       UNLOCK();
-      FUN_1801b9a40(pppppModuleInitializationResult7,MemoryAddress);
+      InitializeModuleConfiguration(pppppModuleInitializationResult7,MemoryAddress);
       if (*(int *)(in_RCX + 0xa3a) == 0) {
         iVar7 = 0;
       }
@@ -5060,8 +5060,8 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
   while (iVar7 = (int)MemoryAddress6, (ulonglong)(longlong)iVar7 < (ulonglong)*(uint *)(in_RCX + 0xb5b)) {
     ppppModuleInitializationResult3 = in_RCX[(MemoryAddress6 >> 10) + 0xb5c] +
                  (ulonglong)(uint)(iVar7 + (int)(MemoryAddress6 >> 10) * -0x400) * 0x18;
-    FUN_180075ff0(*ppppModuleInitializationResult3);
-    FUN_180077750(*ppppModuleInitializationResult3,ppppModuleInitializationResult3[1],ppppModuleInitializationResult3 + 2,0,ppppModuleInitializationResult3 + 10);
+    ValidateModuleInitialization(*ppppModuleInitializationResult3);
+    ConfigureModuleSystemSettings(*ppppModuleInitializationResult3,ppppModuleInitializationResult3[1],ppppModuleInitializationResult3 + 2,0,ppppModuleInitializationResult3 + 10);
     MemoryAddress6 = (ulonglong)(iVar7 + 1);
   }
   MemoryAddress2 = (ulonglong)*(uint *)(in_RCX + 0xb5b);
@@ -7113,7 +7113,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   plStackX_10 = alStack_30;
   puStack_20 = &UNK_18045f210;
   puStack_18 = &UNK_18045f200;
-  pModuleInitializationResult = (longlong *)FUN_18006b640(StringProcessingResult,alStack_30);
+  pModuleInitializationResult = (longlong *)CreateMemoryManagerContext(StringProcessingResult,alStack_30);
   plStackX_18 = pModuleInitializationResult;
   if (pModuleInitializationResult != (longlong *)0x0) {
     (**(code **)(*pModuleInitializationResult + 0x28))(pModuleInitializationResult);
