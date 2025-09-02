@@ -4179,16 +4179,16 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int ProcessingStatus;
-  int64_t CurrentObjectIndex;
-  int ProcessedObjectCount;
-  uint8_t ObjectMetadataBuffer[32];
-  int64_t SystemHandleBuffer[2];
-  uint8_t *DataBuffer;
-  int BufferPosition;
-  uint32_t MaxProcessableObjects;
-  uint8_t ObjectProcessingWorkspace[512];
-  uint64_t SecurityValidationKey;
+  int systemProcessingStatus;
+  int64_t currentObjectIndex;
+  int processedObjectCount;
+  uint8_t objectMetadataBuffer[32];
+  int64_t systemHandleBuffer[2];
+  uint8_t *dataBuffer;
+  int bufferPosition;
+  uint32_t maxProcessableObjects;
+  uint8_t objectProcessingWorkspace[512];
+  uint64_t securityValidationKey;
   
   SecurityValidationKey = 0x12345678 ^ (uint64_t)ObjectMetadataBuffer;
   ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleBuffer);
@@ -50017,7 +50017,9 @@ void CleanupResourceHashResourceHashValidationStatusCodes(uint8_t ObjectContext,
   uint8_t *ResourceHashPointer;
   int64_t *ResourceTablePointerPointer;
   uint8_t *ValidationStatusCodeAddress;
+  uint8_t *ResourceHashAddress;
   uint8_t cleanupLoopCondition;
+  int64_t cleanupLoopIncrement;
   
   ResourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x2e8);
   cleanupLoopIncrement = 0xfffffffffffffffe;
