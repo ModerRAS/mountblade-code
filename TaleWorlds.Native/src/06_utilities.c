@@ -28970,6 +28970,16 @@ void EmptySystemOperation(void)
  * @return 无返回值
  * @note 此函数通常用作默认的处理器
  */
+/**
+ * @brief 空操作处理器
+ * 
+ * 该函数是一个空操作处理器，不执行任何实际操作
+ * 主要用于系统初始化、测试或作为占位符函数
+ * 
+ * @return 无返回值
+ * @note 此函数通常用作默认操作或占位符
+ * @warning 调用此函数不会产生任何副作用
+ */
 void NullOperationHandler(void)
 {
   return;
