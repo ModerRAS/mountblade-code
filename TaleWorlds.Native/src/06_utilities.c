@@ -3465,16 +3465,6 @@ void ValidateSystemObjectCollection(void)
  /**
  * @brief 终止系统进程
  * 
- * 该函数负责安全终止系统进程，确保所有系统资源得到正确释放
- * 函数会生成终止令牌并执行系统终止操作
- * 
- * @return 无返回值
- * @note 此函数不会返回，调用后系统将终止
- * @warning 调用此函数将导致系统完全停止运行
- */
-/**
- * @brief 终止系统进程
- * 
  * 该函数负责终止系统进程，执行系统关闭操作
  * 使用安全令牌验证终止操作的合法性
  * 
@@ -11641,16 +11631,6 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePoolId, int searchKey)
  * @brief 处理扩展资源池数据验证和操作
  * 
  * 该函数用于处理扩展资源池中的数据验证和相关操作
- * 提供了更复杂的资源管理功能
- * 
- * @param extendedResourcePool 扩展资源池句柄
- * @param operationFlags 操作标志，控制处理流程
- * @return uint64_t 处理结果状态码
- */
-/**
- * @brief 处理扩展资源池数据验证和操作
- * 
- * 该函数用于处理扩展资源池中的数据验证和相关操作
  * 提供了更复杂的资源管理功能，包括哈希验证和容量扩展
  * 
  * @param extendedResourcePoolId 扩展资源池标识符
@@ -11680,35 +11660,35 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
     int capacityIndex = resourceCount + 1;
     int contextValidationStatusCode = (int)*(uint *)(SystemSystemRegisterContext + 0x1c) >> 0x1f;
     int resourceIndex = (*(uint *)(SystemSystemRegisterContext + 0x1c) ^ contextValidationStatusCode) - contextValidationStatusCode;
-    if (ResourceIndex < CapacityIndex) {
-      ExpandedCapacity = (int)((float)ResourceIndex * 1.5);
-      ResourceIndex = CapacityIndex;
-      if (CapacityIndex <= ExpandedCapacity) {
-        ResourceIndex = ExpandedCapacity;
+    if (resourceIndex < capacityIndex) {
+      int expandedCapacity = (int)((float)resourceIndex * 1.5);
+      resourceIndex = capacityIndex;
+      if (capacityIndex <= expandedCapacity) {
+        resourceIndex = expandedCapacity;
       }
-      if (ResourceIndex < 4) {
-        ExpandedCapacity = 4;
+      if (resourceIndex < 4) {
+        expandedCapacity = 4;
       }
-      else if (ExpandedCapacity < CapacityIndex) {
-        ExpandedCapacity = CapacityIndex;
+      else if (expandedCapacity < capacityIndex) {
+        expandedCapacity = capacityIndex;
       }
-      validationResult = ResourcePoolOperation(SystemSystemRegisterContext + 0x10,ExpandedCapacity);
-      if ((int)HashValidationResult != 0) {
-        return ResourceHashValidationResult;
+      hashValidationResult = ResourcePoolOperation(SystemSystemRegisterContext + 0x10, expandedCapacity);
+      if ((int)hashValidationResult != 0) {
+        return hashValidationResult;
       }
     }
-    ValidationStatusCodePointer = (uint8_t *)
+    uint8_t *validationStatusCodePointer = (uint8_t *)
              ((int64_t)*(int *)(SystemRegisterContext + 0x18) * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
-    *ValidationStatusCodePointer = CombineHighLow32Bits(0xffffffff,validationContext);
-    HashValidationResultPointer[1] = StackValidationByte;
+    *validationStatusCodePointer = CombineHighLow32Bits(0xffffffff, validationContext);
+    hashValidationResultPointer[1] = stackValidationByte;
     *(int *)(SystemRegisterContext + 0x18) = *(int *)(SystemRegisterContext + 0x18) + 1;
   }
   else {
-    ResourceDataPointer = (uint32_t *)((int64_t)resourceCount * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
-    *(uint32_t *)(SystemRegisterContext + 0x20) = ResourceDataPointer[1];
-    ResourceDataPointer[1] = 0xffffffff;
-    *ResourceDataPointer6 = *RegisterR15;
-    *(uint8_t *)(ResourceDataPointer + 2) = *ResourceRegisterPointer;
+    uint32_t *resourceDataPointer = (uint32_t *)((int64_t)resourceCount * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
+    *(uint32_t *)(SystemRegisterContext + 0x20) = resourceDataPointer[1];
+    resourceDataPointer[1] = 0xffffffff;
+    *resourceDataPointer = *registerR15;
+    *(uint8_t *)(resourceDataPointer + 2) = *resourceRegisterPointer;
   }
   *resourceContext = resourceCount;
   *(int *)(SystemRegisterContext + 0x24) = *(int *)(SystemRegisterContext + 0x24) + 1;
