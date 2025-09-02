@@ -16260,8 +16260,16 @@ ResourceValidationComplete:
 
 
 
- 92c4(void)
-92c4(void)
+ /**
+ * @brief 执行资源数据读取操作
+ * 
+ * 该函数执行资源数据的读取操作，调用底层数据读取功能
+ * 用于从系统资源中获取所需的数据内容
+ * 
+ * @return 无返回值
+ * @note 此函数是一个简单的包装函数，调用ReadResourceData函数
+ */
+void ExecuteResourceDataReadOperation(void)
 
 {
   ReadResourceData();
@@ -16438,8 +16446,18 @@ SystemCommandError:
 
 
 
- 95c0(int64_t *objectContext,uint32_t *validationContext)
-95c0(int64_t *objectContext,uint32_t *validationContext)
+ /**
+ * @brief 验证对象上下文并计算资源哈希
+ * 
+ * 该函数验证对象上下文的有效性，并计算资源的哈希值
+ * 用于资源访问控制和数据完整性验证
+ * 
+ * @param objectContext 对象上下文指针
+ * @param validationContext 验证上下文指针，用于返回验证结果
+ * @return 验证结果，0x1c表示失败，0x11表示资源分配错误，0表示成功
+ * @note 如果验证成功，哈希结果会存储在validationContext中
+ */
+uint32_t ValidateObjectContextAndCalculateResourceHash(int64_t *objectContext,uint32_t *validationContext)
 
 {
   int ProcessingResult;
