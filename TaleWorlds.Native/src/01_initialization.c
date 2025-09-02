@@ -48291,7 +48291,20 @@ void CleanupSystemResourceDataTable(long long SystemResourcePointer)
 
 
 
-ulong long FUN_18006cc50(long long *SystemResourcePointer,long long ConfigurationDataPointer)
+// 函数: ulong long FUN_18006cc50(long long *SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 分配系统资源节点
+ * 
+ * 该函数负责分配系统资源节点，包括内存分配和节点初始化。
+ * 主要用于系统资源的动态分配和管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 分配的资源节点地址
+ * 
+ * 原始函数名为FUN_18006cc50，现已重命名为AllocateSystemResourceNode
+ */
+ulong long AllocateSystemResourceNode(long long *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long nextDataIndex;
@@ -48383,7 +48396,19 @@ LAB_18006ccef:
 
 
 // 函数: void FUN_18006cc8d(void* SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter)
-void FUN_18006cc8d(void* SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 配置系统资源节点
+ * 
+ * 该函数负责配置系统资源节点，包括内存分配和节点初始化。
+ * 主要用于系统资源的动态配置和管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * 
+ * 原始函数名为FUN_18006cc8d，现已重命名为ConfigureSystemResourceNode
+ */
+void ConfigureSystemResourceNode(void* SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   long long nextDataIndex;
@@ -48437,7 +48462,15 @@ LAB_18006ccef:
 
 
 // 函数: void FUN_18006cd43(void)
-void FUN_18006cd43(void)
+/**
+ * @brief 系统清理函数
+ * 
+ * 该函数负责执行系统清理操作，释放资源和重置系统状态。
+ * 主要用于系统资源的统一清理。
+ * 
+ * 原始函数名为FUN_18006cd43，现已重命名为SystemCleanupFunctionB
+ */
+void SystemCleanupFunctionB(void)
 
 {
     SystemCleanupFunction();
@@ -48445,7 +48478,22 @@ void FUN_18006cd43(void)
 
 
 
-long long FUN_18006cd80(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: long long FUN_18006cd80(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 处理系统资源数据
+ * 
+ * 该函数负责处理系统资源数据，包括数据的配置和管理。
+ * 主要用于系统资源的动态处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 处理结果
+ * 
+ * 原始函数名为FUN_18006cd80，现已重命名为ProcessSystemResourceDataB
+ */
+long long ProcessSystemResourceDataB(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   code *pcVar1;
@@ -48492,7 +48540,17 @@ long long FUN_18006cd80(long long SystemResourcePointer,long long ConfigurationD
 
 
 // 函数: void FUN_18006cf00(void* *SystemResourcePointer)
-void FUN_18006cf00(void* *SystemResourcePointer)
+/**
+ * @brief 初始化系统资源指针
+ * 
+ * 该函数负责初始化系统资源指针，设置资源管理的基本参数。
+ * 主要用于系统资源的初始化配置。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_18006cf00，现已重命名为InitializeSystemResourcePointerB
+ */
+void InitializeSystemResourcePointerB(void* *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
@@ -49141,7 +49199,17 @@ LAB_18006d9d7:
 
 
 // 函数: void FUN_18006da50(long long *SystemResourcePointer)
-void FUN_18006da50(long long *SystemResourcePointer)
+/**
+ * @brief 处理系统资源数据
+ * 
+ * 该函数负责处理系统资源数据，包括数据的配置和管理。
+ * 主要用于系统资源的动态处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_18006da50，现已重命名为ProcessSystemResourceDataC
+ */
+void ProcessSystemResourceDataC(long long *SystemResourcePointer)
 
 {
   FUN_180069530((ulong long)(*(uint *)(SystemResourcePointer + 1) & 0x1f) * 0x1a8 + *SystemResourcePointer);
@@ -49242,7 +49310,17 @@ ulong long FUN_18006da90(long long SystemResourcePointer,void* ConfigurationData
 
 
 // 函数: void FUN_18006dc10(long long *SystemResourcePointer)
-void FUN_18006dc10(long long *SystemResourcePointer)
+/**
+ * @brief 清理系统资源数据
+ * 
+ * 该函数负责清理系统资源数据，释放资源并重置状态。
+ * 主要用于系统资源的清理和内存回收。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_18006dc10，现已重命名为CleanupSystemResourceDataB
+ */
+void CleanupSystemResourceDataB(long long *SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
