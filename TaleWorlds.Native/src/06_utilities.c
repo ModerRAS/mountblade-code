@@ -4373,10 +4373,17 @@ uint8_t InitializeObjectHandleOperationD(void)
   uint ConfigurationFlags;
   uint64_t IterationCount;
   int64_t BaseAddressOffset;
+  int64_t InputContext;
   
   IterationCount = 0;
-  SystemContextHandle = InputRAX - 8;
-  if (InputRAX == 0) {
+  InputContext = InputRAX;
+  if (InputContext == 0) {
+    SystemContextHandle = 0;
+  }
+  else {
+    SystemContextHandle = InputContext - 8;
+  }
+  if (InputContext == 0) {
   ResourceIdentifierPointer = (uint32_t *)(SystemContext + 0x20 + (int64_t)*(int *)(SystemContext + 0x18) * 4);
   if (0 < *(int *)(SystemContext + 0x18)) {
     BaseAddressOffset = (SystemContext + 0x20) - (int64_t)ResourceIdentifierPointer;
