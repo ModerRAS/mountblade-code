@@ -2891,15 +2891,15 @@ uint8_t SystemEventHandlerSlot;        // 系统事件处理槽位数据
  */
 void InitializeSystemLogging(void);
 // 系统日志配置数据变量
-uint8_t LogConfigPrimary;             // 主要日志配置
-uint8_t LogConfigSecondary;           // 次要日志配置
-uint8_t LogConfigTertiary;            // 第三日志配置
-uint8_t LogConfigQuaternary;          // 第四日志配置
+uint8_t LogConfigPrimary;             // 主要日志配置数据
+uint8_t LogConfigSecondary;           // 次要日志配置数据
+uint8_t LogConfigTertiary;            // 第三日志配置数据
+uint8_t LogConfigQuaternary;          // 第四日志配置数据
 // 系统内存配置数据模板特殊变量
-uint8_t SystemMemoryConfigSecureBackup;   // 系统内存安全备用配置项
-uint8_t SystemMemoryConfigPrimary;     // 系统内存主要配置
-uint8_t SystemMemoryConfigSecureExtended; // 系统内存安全扩展配置项
-uint8_t SystemMemoryConfigOptimized;    // 系统内存优化配置项
+uint8_t SystemMemoryConfigSecureBackup;   // 系统内存安全备用配置数据
+uint8_t SystemMemoryConfigPrimary;     // 系统内存主要配置数据
+uint8_t SystemMemoryConfigSecureExtended; // 系统内存安全扩展配置数据
+uint8_t SystemMemoryConfigOptimized;    // 系统内存优化配置数据
 uint8_t SystemMemoryConfigPerformance;  // 系统内存性能配置项
 uint8_t SystemMemoryConfigBalanced;    // 系统内存平衡配置项
 
