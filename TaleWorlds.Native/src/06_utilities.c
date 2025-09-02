@@ -13243,16 +13243,16 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
   int64_t LocalContextData4;
   float *PointerInputParameter5;
   uint8_t *ResourceHash6Pointer;
-  uint8_t StackArray_1e8 [32];
-  uint32_t StackValue_1c8;
-  char StackCharArray_1c4 [4];
-  uint8_t *StackPointer_1c0;
-  uint32_t StackValue_1b8;
-  uint32_t StackValue_1b0;
+  uint8_t StackHashBuffer[32];
+  uint32_t StackContextValue;
+  char StackValidationBuffer[4];
+  uint8_t *StackDataPointer;
+  uint32_t StackOperationId;
+  uint32_t StackResourceIndex;
   float FloatStackValue;
-  float StackFloat_1a4;
-  uint32_t StackValue_1a0;
-  float StackFloat_19c;
+  float StackCalculationResult;
+  uint32_t StackMemoryOffset;
+  float StackNormalizedValue;
   float StackFloatBuffer[2];
   uint8_t *StackPointer_190;
   int64_t StackBuffer188;
@@ -13537,7 +13537,7 @@ void SystemInitializerPrimary(void)
   uint32_t Xmm6RegisterDa;
   uint32_t Xmm6RegisterDc;
   uint32_t StackContextBuffer;
-  char acStackX_24 [4];
+  char ResourceValidationBuffer[4];
   uint8_t *StackParameter28;
   float StackParameter30;
   uint32_t StackParameter38;
@@ -13810,18 +13810,18 @@ void CalculateFloatValueAndValidateResources(void)
   int64_t RegisterR15;
   uint32_t ResourceValidationResult3;
   uint32_t extraout_XMM0_Da;
-  uint32_t extraout_XMM0_Da_00;
-  uint32_t extraout_XMM0_Da_01;
-  float extraout_XMM0_Da_02;
-  uint32_t extraout_XMM0_Da_03;
-  uint32_t extraout_XMM0_Da_04;
-  uint32_t extraout_XMM0_Da_05;
-  uint32_t extraout_XMM0_Da_06;
-  uint32_t extraout_XMM0_Da_07;
+  uint32_t ValidationStatusCode;
+  uint32_t OperationResultCode;
+  float CalculatedFloatValue;
+  uint32_t ResourceHandle;
+  uint32_t MemoryAddress;
+  uint32_t DataBufferPointer;
+  uint32_t SystemCallResult;
+  uint32_t ReturnValue;
   uint32_t Xmm6RegisterDa;
   uint32_t Xmm6RegisterDc;
   uint32_t StackContextBuffer;
-  char acStackX_24 [4];
+  char ResourceValidationBuffer[4];
   uint8_t *StackResourcePointer;
   float StackFloatValue;
   uint32_t StackValidationCode;
@@ -14239,19 +14239,19 @@ void ExecuteSecurityEncryptionValidation(int64_t *objectContext,int64_t validati
   int ValidationStatus;
   uint8_t StackArray2a8 [32];
   uint32_t dataChecksumBuffer8 [2];
-  uint8_t *puStack_280;
-  uint32_t uStack_278;
-  uint32_t uStack_270;
-  uint8_t *puStack_268;
-  uint32_t uStack_260;
-  uint32_t uStack_258;
+  uint8_t *StackPointer280;
+  uint32_t SecurityContextId;
+  uint32_t EncryptionKeyIndex;
+  uint8_t *SecurityDataPointer;
+  uint32_t ResourceHandle;
+  uint32_t MemoryBlockSize;
   int iStack_250;
-  uint32_t uStack_24c;
-  uint32_t uStack_248;
-  uint32_t uStack_244;
-  uint32_t uStack_240;
-  uint32_t uStack_23c;
-  uint8_t auStack_238 [64];
+  uint32_t ProcessId;
+  uint32_t ThreadId;
+  uint32_t SessionId;
+  uint32_t UserId;
+  uint32_t GroupId;
+  uint8_t SecurityDataBuffer[64];
   uint64_t EncryptedValue;
   
   EncryptedValue = SecurityEncryptionKey ^ (uint64_t)auStack_2a8;
@@ -14365,8 +14365,8 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *objectContext)
   uint32_t ContextValidationResult;
   uint32_t SecurityHashValue;
   uint32_t ResourceCounter;
-  uint8_t *puStack_28;
-  uint32_t uStack_20;
+  uint8_t *NetworkDataPointer;
+  uint32_t NetworkPort;
   uint32_t PrimaryOperationParameter;
   uint32_t SecondaryOperationParameter;
   
@@ -14517,35 +14517,35 @@ uint8_t ValidateResourceRenderingState(void)
   float inputFloatValue8;
   int64_t *resourceContext9;
   bool ValidationFlag;
-  uint8_t auStack_368 [32];
+  uint8_t AudioHashBuffer[32];
   float ValidationFloatBuffer[2];
-  int64_t *PointerStack340;
-  uint64_t uStack_338;
+  int64_t *AudioDevicePointer;
+  uint64_t AudioStreamId;
   int64_t *AudioBufferPointer [2];
   int64_t AudioSampleRate;
-  int64_t *PointerStack318;
-  uint8_t uStack_310;
+  int64_t *AudioContextPointer;
+  uint8_t AudioStatusFlag;
   float TempFloatBuffer[2];
-  int64_t alStack_300 [2];
-  uint8_t auStack_2f0 [8];
+  int64_t AudioQueueBuffer[2];
+  uint8_t AudioFormatBuffer[8];
   uint8_t aGraphicsOperationFlag1 [2];
-  uint8_t *puStack_2d8;
+  uint8_t *GraphicsDataPointer;
   uint32_t GraphicsOperationFlag3;
-  float fStack_2c8;
-  uint uStack_2c4;
+  float GraphicsFloatValue;
+  uint GraphicsControlFlags;
   uint32_t GraphicsOperationFlag5;
   uint32_t GraphicsOperationFlag;
   uint32_t GraphicsOperationFlag6;
-  uint8_t uStack_2b4;
+  uint8_t GraphicsRenderMode;
   uint8_t GraphicsOperationFlag8;
-  uint32_t uStack_2a4;
-  uint32_t uStack_2a0;
-  uint32_t uStack_29c;
-  uint32_t uStack_298;
-  int64_t StackBuffer294;
-  uint uStack_28c;
-  uint8_t uStack_288;
-  uint8_t auStack_238 [512];
+  uint32_t GraphicsResourceHandle;
+  uint32_t GraphicsTextureId;
+  uint32_t GraphicsShaderId;
+  uint32_t GraphicsBufferId;
+  int64_t GraphicsContextBuffer;
+  uint GraphicsStreamCounter;
+  uint GraphicsSyncFlag;
+  uint8_t GraphicsDataBuffer[512];
   uint64_t EncryptedValue;
   
   EncryptedValue = SecurityEncryptionKey ^ (uint64_t)auStack_368;
@@ -14899,8 +14899,8 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *objectContext,char validatio
   uint64_t loopIncrement;
   uint8_t ValidationContext;
   int64_t ValidationStackBuffer [2];
-  uint8_t *puStack_28;
-  uint32_t uStack_20;
+  uint8_t *NetworkDataPointer;
+  uint32_t NetworkPort;
   uint64_t PrimaryOperationParameter;
   
   *(uint8_t *)(objectContext + 4) = 1;
@@ -40671,7 +40671,21 @@ void UnwindSystemResourceTertiaryHandler(uint8_t objectContext,int64_t validatio
 
 
 
-void Unwind_180904180(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行字符指针清理操作
+ * 
+ * 该函数负责清理字符指针相关的资源，根据清理标志执行相应的清理操作
+ * 释放字符指针占用的内存和相关资源
+ * 
+ * @param objectContext 对象上下文，包含清理操作所需的上下文信息
+ * @param validationContext 验证上下文，用于验证清理操作的有效性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会清理字符指针相关的资源
+ * @warning 调用此函数后，字符指针将被清理且不再可用
+ */
+void CleanupCharacterPointer(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *CharPointer;
@@ -40685,7 +40699,19 @@ void Unwind_180904180(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809041a0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 重置系统资源处理器
+ * 
+ * 该函数负责重置系统资源处理器到初始状态
+ * 清理资源处理器占用的内存和相关资源
+ * 
+ * @param objectContext 对象上下文，包含重置操作所需的上下文信息
+ * @param validationContext 验证上下文，用于验证重置操作的有效性
+ * @return 无返回值
+ * @note 此函数会重置系统资源处理器
+ * @warning 调用此函数后，系统资源处理器将被重置到初始状态
+ */
+void ResetSystemResourceHandler(uint8_t objectContext, int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -40704,7 +40730,21 @@ void Unwind_1809041a0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809041b0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文字符指针清理
+ * 
+ * 该函数负责清理验证上下文中的字符指针资源
+ * 根据清理标志执行相应的清理操作
+ * 
+ * @param objectContext 对象上下文，包含清理操作所需的上下文信息
+ * @param validationContext 验证上下文，用于验证清理操作的有效性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会清理验证上下文中的字符指针资源
+ * @warning 调用此函数后，字符指针将被清理且不再可用
+ */
+void CleanupValidationContextCharacterPointer(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *CharPointer;
@@ -40718,7 +40758,21 @@ void Unwind_1809041b0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809041d0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行多层系统资源处理器重置
+ * 
+ * 该函数负责重置多层系统资源处理器到初始状态
+ * 清理多个层次的资源处理器占用的内存和相关资源
+ * 
+ * @param objectContext 对象上下文，包含重置操作所需的上下文信息
+ * @param validationContext 验证上下文，用于验证重置操作的有效性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会重置多层系统资源处理器
+ * @warning 调用此函数后，多层系统资源处理器将被重置到初始状态
+ */
+void ResetMultiLayerSystemResourceHandler(uint8_t objectContext, int64_t validationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
