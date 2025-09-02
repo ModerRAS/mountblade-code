@@ -61450,7 +61450,20 @@ void SetResourceHashPointerAndValidate(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_180907d10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行多个位置的验证回调函数
+ * 
+ * 该函数执行验证上下文中多个位置的回调函数
+ * 包括0x150、0x130和0x110位置的回调函数
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含回调函数指针
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数为系统清理流程的一部分
+ */
+void ExecuteMultipleValidationCallbacks(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x150) != (code *)0x0) {
@@ -61467,7 +61480,20 @@ void Unwind_180907d10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源哈希验证结果回调
+ * 
+ * 该函数执行资源哈希验证结果的回调函数
+ * 用于系统级别的资源清理操作
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源哈希指针
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 如果验证上下文为空，会执行系统紧急退出
+ */
+void ExecuteResourceHashValidationCallbacks(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
