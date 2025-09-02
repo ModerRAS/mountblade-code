@@ -50065,20 +50065,20 @@ void CleanupResourceHashValidationStatus(uint8_t ObjectContext, int64_t Validati
   int64_t secondaryResourceIndex;
   int *resourceIndexPointer;
   
-  ResourceHashValidationStatusCodeAddress = (uint8_t *)**(uint64_t **)(ValidationContext + 0x2e8);
-  if (ResourceHashValidationStatusCodeAddress == (uint8_t *)0x0) {
+  resourceHashValidationStatusCodeAddress = (uint8_t *)**(uint64_t **)(ValidationContext + 0x2e8);
+  if (resourceHashValidationStatusCodeAddress == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashValidationStatusCodeAddress & 0xffffffffffc00000;
-  if (MemoryAddressIncrement != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationStatusCodeAddress - MemoryAddressIncrement >> 0x10) * 0x50;
-    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashValidationStatusCodeAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationStatusCodeAddress;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
-      *ResourceIndexPointer = *ResourceIndexPointer + -1;
-      if (*ResourceIndexPointer == 0) {
+  memoryAddressIncrement = (uint64_t)resourceHashValidationStatusCodeAddress & 0xffffffffffc00000;
+  if (memoryAddressIncrement != 0) {
+    primaryResourceIndex = memoryAddressIncrement + 0x80 + ((int64_t)resourceHashValidationStatusCodeAddress - memoryAddressIncrement >> 0x10) * 0x50;
+    primaryResourceIndex = primaryResourceIndex - (uint64_t)*(uint *)(primaryResourceIndex + 4);
+    if ((*(void ***)(memoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(primaryResourceIndex + 0xe) == '\0')) {
+      *resourceHashValidationStatusCodeAddress = *(uint8_t *)(primaryResourceIndex + 0x20);
+      *(uint8_t **)(primaryResourceIndex + 0x20) = resourceHashValidationStatusCodeAddress;
+      resourceIndexPointer = (int *)(primaryResourceIndex + 0x18);
+      *resourceIndexPointer = *resourceIndexPointer + -1;
+      if (*resourceIndexPointer == 0) {
         SystemCleanupHandler();
         return;
       }
