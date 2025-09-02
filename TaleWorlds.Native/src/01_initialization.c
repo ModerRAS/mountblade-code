@@ -31607,41 +31607,40 @@ SystemResourceNodeValidation:
 void InitializeSystemResourceManager(ulong long *SystemResourcePointer)
 
 {
-  int *pointerToInteger1;
-  ulong long unsignedSystemValue2;
-  ulong long unsignedSystemValue3;
-  void* *punsignedSystemValue4;
-  ulong long unsignedSystemValue5;
-  long long localSystemFlags;
-  ulong long unsignedSystemValue7;
+  int *resourceCounter;
+  ulong long systemValue1;
+  ulong long systemValue2;
+  void* *resourcePointer;
+  ulong long systemValue3;
+  long long systemFlags;
   
   SystemResourcePointer[1] = *SystemResourcePointer;
-  unsignedSystemValue7 = *SystemResourcePointer;
+  systemValue1 = *SystemResourcePointer;
   *SystemResourcePointer = 0;
-  unsignedSystemValue2 = SystemResourcePointer[1];
+  systemValue2 = SystemResourcePointer[1];
   SystemResourcePointer[1] = 0;
-  unsignedSystemValue3 = SystemResourcePointer[2];
+  systemValue3 = SystemResourcePointer[2];
   SystemResourcePointer[2] = 0;
-  unsignedSystemValue5 = SystemResourcePointer[3];
+  systemFlags = SystemResourcePointer[3];
   *(int *)(SystemResourcePointer + 3) = (int)SystemResourcePointer[3];
-  punsignedSystemValue4 = (void* *)*SystemResourcePointer;
-  *SystemResourcePointer = unsignedSystemValue7;
-  SystemResourcePointer[1] = unsignedSystemValue2;
-  SystemResourcePointer[2] = unsignedSystemValue3;
-  *(int *)(SystemResourcePointer + 3) = (int)unsignedSystemValue5;
-  if (punsignedSystemValue4 == (void* *)0x0) {
+  resourcePointer = (void* *)*SystemResourcePointer;
+  *SystemResourcePointer = systemValue1;
+  SystemResourcePointer[1] = systemValue2;
+  SystemResourcePointer[2] = systemValue3;
+  *(int *)(SystemResourcePointer + 3) = (int)systemFlags;
+  if (resourcePointer == (void* *)0x0) {
     return;
   }
-  unsignedSystemValue7 = (ulong long)punsignedSystemValue4 & 0xffffffffffc00000;
-  if (unsignedSystemValue7 != 0) {
-    localSystemFlags = unsignedSystemValue7 + 0x80 + ((long long)punsignedSystemValue4 - unsignedSystemValue7 >> 0x10) * 0x50;
-    localSystemFlags = localSystemFlags - (ulong long)*(uint *)(localSystemFlags + 4);
-    if ((*(void ***)(unsignedSystemValue7 + 0x70) == &ExceptionList) && (*(char *)(localSystemFlags + 0xe) == '\0')) {
-      *punsignedSystemValue4 = *(void* *)(localSystemFlags + 0x20);
-      *(void* **)(localSystemFlags + 0x20) = punsignedSystemValue4;
-      pointerToInteger1 = (int *)(localSystemFlags + 0x18);
-      *pointerToInteger1 = *pointerToInteger1 + -1;
-      if (*pointerToInteger1 == 0) {
+  systemValue1 = (ulong long)resourcePointer & 0xffffffffffc00000;
+  if (systemValue1 != 0) {
+    systemFlags = systemValue1 + 0x80 + ((long long)resourcePointer - systemValue1 >> 0x10) * 0x50;
+    systemFlags = systemFlags - (ulong long)*(uint *)(systemFlags + 4);
+    if ((*(void ***)(systemValue1 + 0x70) == &ExceptionList) && (*(char *)(systemFlags + 0xe) == '\0')) {
+      *resourcePointer = *(void* *)(systemFlags + 0x20);
+      *(void* **)(systemFlags + 0x20) = resourcePointer;
+      resourceCounter = (int *)(systemFlags + 0x18);
+      *resourceCounter = *resourceCounter + -1;
+      if (*resourceCounter == 0) {
         ReleaseSystemResource();
         return;
       }
