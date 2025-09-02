@@ -202,28 +202,24 @@ void ReleaseSystemResources(void* resourcePointer);
 /**
  * @brief 初始化系统缓冲区
  * 
- * 该函数负责初始化系统缓冲区，设置缓冲区参数和属性
- * 用于系统缓冲区的配置和准备工作
+ * 初始化系统缓冲区，设置缓冲区参数和属性。
+ * 用于系统缓冲区的配置和准备工作。
  * 
  * @param bufferAddress 缓冲区地址，指定要初始化的缓冲区
  * @param initFlag 初始化标志，指定初始化的方式和选项
  * @param parameter 参数，包含初始化所需的参数信息
  * @return 无返回值
- * 
- *InitializeSystemBuffer：InitializeSystemBuffer
  */
 void InitializeSystemBuffer(void* bufferAddress, int initFlag, int parameter);
 
 /**
  * @brief 更新系统数据
  * 
- * 该函数负责更新系统数据，刷新数据内容和状态
- * 用于系统数据的维护和更新
+ * 更新系统数据，刷新数据内容和状态。
+ * 用于系统数据的维护和更新。
  * 
  * @param dataPointer 数据指针，指定要更新的系统数据
  * @return 无返回值
- * 
- *UpdateSystemData：UpdateSystemData
  */
 void UpdateSystemData(void* dataPointer);
 

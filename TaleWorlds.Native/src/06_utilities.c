@@ -7869,14 +7869,14 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
   if (ValidationBuffer != 0) {
     ContextPointer = ValidationBuffer + -8;
   }
-  objectIndex = *(int *)(ObjectContext + ObjectContextValidationDataOffset);
-  if ((objectIndex < 0) || (*(int *)(ContextPointer + ObjectArrayCapacityOffset) <= objectIndex)) {
+  ObjectElementIndex = *(int *)(ObjectContext + ObjectContextValidationDataOffset);
+  if ((ObjectElementIndex < 0) || (*(int *)(ContextPointer + ObjectArrayCapacityOffset) <= ObjectElementIndex)) {
     return ErrorResourceValidationFailed;
   }
-  if (*(int64_t *)(*(int64_t *)(ContextPointer + ObjectArrayDataOffset) + ObjectEntryHeaderOffset + (int64_t)objectIndex * ObjectEntrySize) == 0) {
+  if (*(int64_t *)(*(int64_t *)(ContextPointer + ObjectArrayDataOffset) + ObjectEntryHeaderOffset + (int64_t)ObjectElementIndex * ObjectEntrySize) == 0) {
     return ErrorInvalidResourceData;
   }
-  ProcessingStatusCode = ValidateBufferContext(*(int64_t *)(ContextPointer + ObjectArrayDataOffset) + (int64_t)objectIndex * ObjectEntrySize, ObjectContext + ObjectContextHandleDataOffset);
+  ProcessingResult = ValidateBufferContext(*(int64_t *)(ContextPointer + ObjectArrayDataOffset) + (int64_t)ObjectElementIndex * ObjectEntrySize, ObjectContext + ObjectContextHandleDataOffset);
   if ((int)ProcessingResult != 0) {
     return ProcessingResult;
   }
