@@ -32854,7 +32854,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
         }
       }
       uStack_388 = 0;
-      FUN_180175f80(&SystemGlobalDataReference,&puStack_2e8,&puStack_398);
+      InitializeSystemGlobalData(&SystemGlobalDataReference,&puStack_2e8,&puStack_398);
       puStack_390 = (uint8_t *)0x0;
       uStack_380 = uStack_380 & 0xffffffff00000000;
       puStack_398 = &SystemMemoryAllocatorReference;
@@ -33163,7 +33163,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
                    (ulong long)(*(long long *)(lStack_310 + 200) - localMemoryPointer8 >> 3));
         }
         if (!bVar26) {
-          unsignedSystemValue9 = FUN_180624440(&uStack_268,pppppppointerToUnsigned14 + 8);
+          unsignedSystemValue9 = CalculateSystemMemorySize(&uStack_268,pppppppointerToUnsigned14 + 8);
           SetupSystemMemory(&puStack_330,unsignedSystemValue9);
           uStack_268 = &SystemMemoryAllocatorReference;
           ppppppointerToUnsigned19 = (void* ******)&SystemStringTemplate;
@@ -33176,7 +33176,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
             pointerToUnsigned17 = puStack_328;
           }
           ProcessSystemQueue(&puStack_2e8,pointerToUnsigned17);
-          FUN_1801762b0(localMemoryPointer2,&puStack_2e8,&puStack_308,&uStack_48);
+          InitializeSystemMemoryContext(localMemoryPointer2,&puStack_2e8,&puStack_308,&uStack_48);
           puStack_2e8 = &SystemGlobalDataReference;
           if (lStack_2e0 != 0) {
               SystemCleanupFunction();
@@ -33318,7 +33318,7 @@ void FreeSystemMemoryPool(long long *SystemResourcePointer)
 void ConfigureSystemResource(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  InitializeSystemConfigurationDataRecursive(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -34879,7 +34879,7 @@ void* * CleanupAndReleaseMultipleSystemResources(void* *SystemResourcePointer,ul
   ExecuteSystemResourceOperation(SystemResourcePointer + 0x38);
   ExecuteSystemResourceOperation(SystemResourcePointer + 0x2a);
   ExecuteSystemResourceOperation(SystemResourcePointer + 0x1c);
-  FUN_1800ae640(SystemResourcePointer);
+  FinalizeSystemResourceCleanup(SystemResourcePointer);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x590);
   }
@@ -61197,7 +61197,7 @@ LAB_18007ac04:
               fVar51 = *(float *)(localMemoryPointer2 + 0xc + localSystemHandle4);
               fVar45 = fVar52 * fVar52 + fVar48 * fVar48 + fVar51 * fVar51;
               if (SQRT(fVar45) == 0.0) {
-                *(uint8_t (*) [16])(localMemoryPointer2 + 4 + localSystemHandle4) = _DAT_180a001d0;
+                *(uint8_t (*) [16])(localMemoryPointer2 + 4 + localSystemHandle4) = SystemZeroVectorData;
               }
               else {
                 aunsignedSystemValue47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
@@ -62452,7 +62452,7 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
   if ((*plocalMemoryAddress == 0) && (*(long long *)(AdditionalParameter + 0x160) == 0)) {
     plocalMemoryAddress = (long long *)(AdditionalParameter + 0x34);
   }
-  localDataPointer = FUN_180255f80(*(void* *)(SystemResourcePointer + 0xa8),&DAT_180a002e0,plocalMemoryAddress);
+  localDataPointer = ProcessSystemDataRequest(*(void* *)(SystemResourcePointer + 0xa8),&SystemRequestTemplate,plocalMemoryAddress);
   if (localDataPointer != 0) {
     FUN_180080810(plocalSystemFlags,localDataPointer + 0xb0);
   }
@@ -62620,7 +62620,7 @@ void ConfigureSystemInitializationParameters(long long *SystemResourcePointer,by
       (**(code **)(*LocalResourceOffset + 0x28))(LocalResourceOffset);
     }
     FUN_180081120(SystemBuffer2,&SystemDataPointer4);
-    (*SystemCodePointer)(LocalBufferAddress,&DAT_1809fc768,SystemResourcePointer + 0x17,0,SystemBuffer2,&SystemStatusFlag1);
+    (*SystemCodePointer)(LocalBufferAddress,&SystemInitializationData,SystemResourcePointer + 0x17,0,SystemBuffer2,&SystemStatusFlag1);
     if (SystemFunctionPointer3 != (code *)0x0) {
       (*SystemFunctionPointer3)(SystemBuffer2,0,0);
     }
@@ -62643,7 +62643,7 @@ void ConfigureSystemInitializationParameters(long long *SystemResourcePointer,by
       (**(code **)(*LocalResourceOffset + 0x28))(LocalResourceOffset);
     }
     FUN_180081120(SystemBuffer1,&SystemDataPointer1);
-    SystemCharacterFlag = (*SystemCodePointer)(LocalBufferAddress,&DAT_1809fc768,SystemResourcePointer + 0x17,0,SystemBuffer1);
+    SystemCharacterFlag = (*SystemCodePointer)(LocalBufferAddress,&SystemInitializationData,SystemResourcePointer + 0x17,0,SystemBuffer1);
     if (SystemFunctionPointer2 != (code *)0x0) {
       (*SystemFunctionPointer2)(SystemBuffer1,0,0);
     }
