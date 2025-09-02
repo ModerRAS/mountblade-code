@@ -13564,14 +13564,14 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               else {
                 ResourceHashPointer2 = *(uint8_t **)(ResourceIndex + 0x50);
               }
-              CopySecurityData(StackArraye0,ResourceHashPointer2,0x80);
-              ProcessStatus = GetAndValidateResourceData(ObjectContext,&poperationParameter8);
+              CopySecurityData(ResourceHashStackArray,ResourceHashPointer2,0x80);
+              ProcessStatus = GetAndValidateResourceData(ObjectContext,&ResourceOperationParameter);
               if (ProcessStatus != 0) goto HandleMemoryCleanup;
             }
-            ResourceDataOffset = LongValue8 + 1;
+            ResourceDataOffset = ResourceContextDataPointer + 1;
             LocalContextBuffer = LocalContextBuffer + 0x18;
             ValidationContext = ContextDataBuffer;
-          } while (LongValue8 < ResourceValidationBuffer);
+          } while (ResourceContextDataPointer < ResourceValidationBuffer);
         }
         PrimaryResourceHash = *(uint8_t *)(*(int64_t *)(ObjectContext + 8) + 800);
         ResourceHashValue0 = (**(code **)*ResourceHashPointer6)(ResourceHashPointer6);
