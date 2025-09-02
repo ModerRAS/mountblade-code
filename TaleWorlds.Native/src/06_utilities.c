@@ -10061,14 +10061,18 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
  /**
  * @brief 处理资源索引和安全验证
  * 
- * 该函数负责处理资源索引的获取和安全验证操作
- * 包括资源上下文验证、安全参数处理和资源索引输出
+ * 该函数负责处理资源索引的获取和安全验证操作，包括：
+ * - 资源上下文验证和安全参数处理
+ * - 验证参数的提取和处理
+ * - 资源索引的获取和验证
+ * - 安全操作的执行和结果输出
  * 
- * @param objectContext 对象上下文指针，包含对象的上下文信息
- * @param validationContext 验证上下文指针，包含验证所需的数据
- * @param resourceIndexOutput 资源索引输出指针，用于返回处理结果
+ * @param objectContext 对象上下文指针，包含对象的上下文信息和资源管理数据
+ * @param validationContext 验证上下文指针，包含验证所需的参数数据和状态信息
+ * @param resourceIndexOutput 资源索引输出指针，用于返回处理后的资源索引结果
  * @return 无返回值
- * @note 此函数涉及安全操作，调用时需要确保上下文数据有效
+ * @note 此函数涉及安全操作，调用时需要确保上下文数据有效且完整
+ * @warning 函数内部调用了不会返回的安全操作函数，请谨慎使用
  */
 void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationContext,int64_t *resourceIndexOutput)
 
@@ -10101,28 +10105,28 @@ void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationC
     ValidationParameterSecondary = validationContext[1];
     ValidationParameterTertiary = validationContext[2];
     ValidationParameterQuaternary = validationContext[3];
-    resourceIndex = (**(code **)(*resourceContext + 0x288))(resourceContext,&validationParameter,1);
-    if (resourceIndex == 0) {
-      resourceMidByteFlag = validationParameterTertiary >> 0x18;
-      resourceValidationByte2 = validationParameterQuaternary >> 0x18;
-      resourceSecondaryFlag = validationParameterSecondary >> 0x10;
-      resourceSecurityFlag = validationParameterQuaternary >> 0x10 & 0xff;
-      resourceTopByteFlag = validationParameterQuaternary >> 8 & 0xff;
-      resourceHighByteFlag = validationParameterQuaternary & 0xff;
-      resourceLowByteFlag = validationParameterTertiary >> 0x10 & 0xff;
-      resourceQuaternaryFlag = validationParameterTertiary >> 8 & 0xff;
-      resourceTertiaryFlag = validationParameterTertiary & 0xff;
-      resourcePrimaryFlag = validationParameterSecondary & 0xffff;
+    ResourceIndex = (**(code **)(*ResourceContext + 0x288))(ResourceContext,&ValidationParameterPrimary,1);
+    if (ResourceIndex == 0) {
+      ResourceMidByteFlag = ValidationParameterTertiary >> 0x18;
+      ResourceValidationSecondaryByte = ValidationParameterQuaternary >> 0x18;
+      ResourceSecondaryFlag = ValidationParameterSecondary >> 0x10;
+      ResourceSecurityFlag = ValidationParameterQuaternary >> 0x10 & 0xff;
+      ResourceTopByteFlag = ValidationParameterQuaternary >> 8 & 0xff;
+      ResourceHighByteFlag = ValidationParameterQuaternary & 0xff;
+      ResourceLowByteFlag = ValidationParameterTertiary >> 0x10 & 0xff;
+      ResourceQuaternaryFlag = ValidationParameterTertiary >> 8 & 0xff;
+      ResourceTertiaryFlag = ValidationParameterTertiary & 0xff;
+      ResourcePrimaryFlag = ValidationParameterSecondary & 0xffff;
                     // WARNING: Subroutine does not return
-      ExecuteSecurityOperation(aEncryptedValue,0x27,&SecurityOperationData,validationParameter);
+      ExecuteSecurityOperation(EncryptedDataBuffer,0x27,&SecurityOperationData,ValidationParameterPrimary);
     }
-    if ((**(int **)(resourceIndex + 0xd0) != 0) ||
-       (operationStatusCode = CheckResourceAvailability(*(uint32_t *)(objectContext + 0x18)), operationStatusCode == 0)) {
-      *resourceIndexOutput = resourceIndex;
+    if ((**(int **)(ResourceIndex + 0xd0) != 0) ||
+       (ResourceProcessingResult = CheckResourceAvailability(*(uint32_t *)(objectContext + 0x18)), ResourceProcessingResult == 0)) {
+      *resourceIndexOutput = ResourceIndex;
     }
   }
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(operationParameter ^ (uint64_t)StackSecurityParam);
+  FinalizeSecurityOperation(SecurityOperationParameter ^ (uint64_t)SecurityDataBuffer);
 }
 
 
