@@ -2195,11 +2195,11 @@ uint8_t ThreadManager;                   // 系统线程管理器
 uint8_t SecurityManager;                 // 系统安全管理器
 uint8_t NetworkManager;                  // 系统网络管理器
 uint8_t ResourceReferenceCounter;               // 资源引用计数器
-uint8_t SystemConfigurationThirteenth;   // 第13系统配置项
+uint8_t SystemConfigurationExtendedPrimary;  // 扩展主要系统配置项
 // 系统配置和资源管理变量
-uint8_t SystemConfigurationFourteenth;  // 第14系统配置项
-uint8_t SystemConfigurationFifteenth;   // 第15系统配置项
-uint8_t SystemConfigurationSixteenth;   // 第16系统配置项
+uint8_t SystemConfigurationExtendedSecondary;  // 扩展次要系统配置项
+uint8_t SystemConfigurationExtendedTertiary;  // 扩展第三系统配置项
+uint8_t SystemConfigurationExtendedQuaternary; // 扩展第四系统配置项
 uint8_t SystemMemoryConfigAlternate;   // 系统内存备用配置
 uint8_t SystemResourceManagerInstance; // 系统资源管理器实例
 uint8_t SystemEventHandlerSlot;        // 系统事件处理槽位
@@ -2217,12 +2217,12 @@ uint8_t LogConfigSecondary;           // 次要日志配置
 uint8_t LogConfigTertiary;            // 第三日志配置
 uint8_t LogConfigQuaternary;          // 第四日志配置
 // 系统内存配置数据模板特殊变量
-uint8_t SystemMemoryConfigSecureSixth;   // 系统内存安全第6配置项
+uint8_t SystemMemoryConfigSecureBackup;   // 系统内存安全备用配置项
 uint8_t SystemMemoryConfigPrimary;     // 系统内存主要配置
-uint8_t SystemMemoryConfigSecureSeventh; // 系统内存安全第7配置项
-uint8_t SystemMemoryConfigEighth;      // 系统内存第8配置项
-uint8_t SystemMemoryConfigNinth;       // 系统内存第9配置项
-uint8_t SystemMemoryConfigTenth;       // 系统内存第10配置项
+uint8_t SystemMemoryConfigSecureExtended; // 系统内存安全扩展配置项
+uint8_t SystemMemoryConfigOptimized;    // 系统内存优化配置项
+uint8_t SystemMemoryConfigPerformance;  // 系统内存性能配置项
+uint8_t SystemMemoryConfigBalanced;    // 系统内存平衡配置项
 
  /**
  * @brief 配置日志输出
@@ -13738,12 +13738,12 @@ void SystemInitializerPrimary(void)
   uint32_t PrimaryResourceHash;
   char ResourceHashValidationResult;
   int ResourceIndexTertiary;
-  uint ResourceHashValue4;
+  uint ResourceHashValueQuaternary;
   uint8_t *InputParameter;
   int64_t ResourceIndexOffset;
-  uint8_t ResourceHashValue6;
-  uint8_t ResourceHashValue7;
-  uint8_t *ResourceHashPointer8;
+  uint8_t ResourceHashValueSecondary;
+  uint8_t ResourceHashValueTertiary;
+  uint8_t *ResourceHashPointerExtended;
   float InputTransformParameterZ;
   uint64_t ResourceHashValidationResultPrimary;
   float *FloatPointer;
@@ -66392,7 +66392,21 @@ void CleanupResourceHashUnwindE(void* ObjectContext, int64_t ValidationContext, 
 
 
 
-void Unwind_18090a120(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理验证上下文中的主资源处理器 (地址: 0x180906a10)
+ * 
+ * 该函数负责清理验证上下文中的主资源处理器
+ * 执行资源表的访问处理和清理操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于资源处理器的清理和释放
+ * @warning 清理后资源处理器将不再可用
+ */
+void CleanupPrimaryResourceHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(ValidationContext + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x10),
@@ -66402,7 +66416,21 @@ void Unwind_18090a120(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090a130(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理验证上下文中的辅助资源处理器 (地址: 0x180906a20)
+ * 
+ * 该函数负责清理验证上下文中的辅助资源处理器
+ * 处理资源哈希操作并释放相关资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于辅助资源处理器的清理和释放
+ * @warning 清理后资源哈希将不再可用
+ */
+void CleanupSecondaryResourceHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -66418,7 +66446,21 @@ void Unwind_18090a130(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090a140(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理验证上下文中的扩展资源处理器 (地址: 0x180906a30)
+ * 
+ * 该函数负责清理验证上下文中的扩展资源处理器
+ * 处理资源哈希操作并释放相关资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于扩展资源处理器的清理和释放
+ * @warning 清理后资源哈希将不再可用
+ */
+void CleanupExtendedResourceHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -66434,7 +66476,21 @@ void Unwind_18090a140(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090a150(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源数据清理操作 (地址: 0x180907a20)
+ * 
+ * 该函数负责处理资源数据的清理操作
+ * 管理资源表条目并执行清理任务
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于资源数据的清理和管理
+ * @warning 清理后资源数据将不再可用
+ */
+void ProcessResourceDataCleanup(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ManageResourceTableEntry(*(int64_t *)(ValidationContext + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x10),
@@ -66444,7 +66500,21 @@ void Unwind_18090a150(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090a160(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理多层级的资源处理器 (地址: 0x180907a30)
+ * 
+ * 该函数负责清理多层级的资源处理器
+ * 管理资源表条目并执行多层级的清理任务
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于多层级资源处理器的清理和管理
+ * @warning 清理后多层级资源将不再可用
+ */
+void CleanupMultiLevelResourceHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ManageResourceTableEntry(*(int64_t *)(ValidationContext + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x10),
@@ -66454,7 +66524,19 @@ void Unwind_18090a160(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090a170(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果 (地址: 0x180908a30)
+ * 
+ * 该函数负责清理资源哈希的验证结果
+ * 注册资源处理器并处理资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源哈希验证结果的清理
+ * @warning 清理后资源哈希验证结果将不再可用
+ */
+void CleanupResourceHashValidation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40),8,10,ProcessResourceOperation);
@@ -66463,7 +66545,19 @@ void Unwind_18090a170(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a1a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文中的系统数据结构 (地址: 0x180909a10)
+ * 
+ * 该函数负责设置验证上下文中的系统数据结构
+ * 注册特定类型的资源处理器
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于系统数据结构的设置和初始化
+ * @warning 设置后会影响验证上下文的行为
+ */
+void SetupSystemDataStructure(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x60) + 8,0x98,9,ResourceTypeHandler098b);
@@ -93326,7 +93420,7 @@ void InitializeSystemDataStructureAM(void)
 void InitializeSystemDataStructureAM(void)
 
 {
-  SystemDataStructurePointer005 = &SystemDataStructure;
+  QuinarySystemDataPointer = &SystemDataStructure;
   return;
 }
 
@@ -93336,14 +93430,14 @@ void InitializeSystemDataStructureAM(void)
 
  /**
  * 初始化系统数据结构AN
- * 将全局变量 SystemDataPointer016 设置为指向 SystemDataStructure001
+ * 将全局变量 SystemDataBufferPointer 设置为指向 SystemCoreDataStructure
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAN(void)
 void InitializeSystemDataStructureAN(void)
 
 {
-  SystemDataPointer016 = &SystemDataStructure;
+  SystemDataBufferPointer = &SystemDataStructure;
   return;
 }
 
@@ -93353,14 +93447,14 @@ void InitializeSystemDataStructureAN(void)
 
  /**
  * 初始化系统数据结构AO
- * 将全局变量 SystemDataPointer015 设置为指向 SystemDataStructure001
+ * 将全局变量 SystemDataCachePointer 设置为指向 SystemCoreDataStructure
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAO(void)
 void InitializeSystemDataStructureAO(void)
 
 {
-  SystemDataPointer015 = &SystemDataStructure;
+  SystemDataCachePointer = &SystemDataStructure;
   return;
 }
 
@@ -93377,7 +93471,7 @@ void InitializeSystemDataStructureAP(void)
 void InitializeSystemDataStructureAP(void)
 
 {
-  SystemDataPointer016 = &SystemDataStructure;
+  SystemDataBufferPointer = &SystemDataStructure;
   return;
 }
 
@@ -94090,7 +94184,7 @@ void InitializeSystemDataStructureBW(void)
 void InitializeSystemDataStructureBW(void)
 
 {
-  SystemDataPointer015 = &SystemDataStructure;
+  SystemDataCachePointer = &SystemDataStructure;
   return;
 }
 
@@ -94110,7 +94204,7 @@ void InitializeSystemDataStructureBX(void)
 void InitializeSystemDataStructureBX(void)
 
 {
-  SystemDataPointer016 = &SystemDataStructure;
+  SystemDataBufferPointer = &SystemDataStructure;
   return;
 }
 
@@ -95046,7 +95140,7 @@ void DestroyMutexResource(void)
  /**
  * @brief 初始化全局数据指针
  * 
- * 该函数负责初始化系统的全局数据指针，设置SystemDataStructurePointer006
+ * 该函数负责初始化系统的全局数据指针，设置GlobalSystemDataPointer
  * 指向预定义的系统数据结构，为系统运行提供基础数据支持
  * 
  * @note 此函数在系统初始化阶段调用，确保数据指针正确设置
@@ -95056,7 +95150,7 @@ void InitializeGlobalDataPointer(void)
 void InitializeGlobalDataPointer(void)
 
 {
-  SystemDataStructurePointer006 = &SystemDataStructure;
+  GlobalSystemDataPointer = &SystemDataStructure;
   return;
 }
 
