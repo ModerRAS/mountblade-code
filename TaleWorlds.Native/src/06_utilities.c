@@ -10520,7 +10520,7 @@ void FinalizeSecurityOperationHandler(void)
   int64_t ResourceValue;
   uint64_t StackParameter;
   
-  ResourceValue = *(int64_t *)(SecurityContext + 0x48);
+  ResourceValue = *(int64_t *)(SecurityContext + ResourceContextOffsetStandard);
   if ((ResourceValue != 0) || (OperationStatus = AcquireResourceLock(), OperationStatus == 0)) {
     *ResourcePointer = ResourceValue;
   }
@@ -13334,7 +13334,7 @@ void ProcessComplexResourceWithRegisters(void)
           temporaryValidationFlags = contextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
-          finalResultFloat = CalculatedFloatResult3;
+          finalResultFloat = calculatedTertiaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointer + 0x28) != '\0') {
@@ -13343,7 +13343,7 @@ void ProcessComplexResourceWithRegisters(void)
           temporaryValidationFlags = contextFlags;
           temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
-          finalResultFloat = CalculatedFloatResult4;
+          finalResultFloat = calculatedQuaternaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointer + 0x29) != '\0') {
@@ -13387,7 +13387,7 @@ void ProcessComplexResourceWithRegisters(void)
           temporaryValidationFlags = contextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
-          finalResultFloat = CalculatedFloatResult5;
+          finalResultFloat = calculatedQuinaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointer + 0x28) != '\0') {
@@ -66536,12 +66536,23 @@ void Unwind_SystemResourceCleanupHandler1(uint8_t ObjectContext,int64_t Validati
 
 
 
-void Unwind_180908e90(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 系统资源处理器初始化
+ * 
+ * 该函数负责初始化系统资源处理器，设置系统上下文指针和相关数据结构
+ * 包括系统资源处理器模板的设置和紧急状态检查
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在系统初始化过程中调用
+ * @warning 如果系统状态异常，会触发紧急退出程序
+ */
+void InitializeSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int64_t loopCounter;
+  int64_t ResourceCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  ResourceCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
           ExecuteSystemEmergencyExit();
@@ -66554,10 +66565,19 @@ void Unwind_180908e90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908ea0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 基础流缓冲区销毁器
+ * 
+ * 该函数负责销毁标准库的基础流缓冲区对象，释放相关资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在对象清理过程中调用
+ */
+void DestroyBasicStreamBuffer(uint8_t ObjectContext, int64_t ValidationContext)
 {
-                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(*(uint8_t *)(ValidationContext + 0x40));
+  DestroyStdBasicStreamBuffer(*(uint8_t *)(ValidationContext + 0x40));
   return;
 }
 
