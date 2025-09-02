@@ -42950,7 +42950,7 @@ ulong long ProcessAndManageSystemResources(void* ResourceManagerPointer)
   HashBucketNode = pStackParameterC;
   resourceEntryPointer = stackParameterB;
   if ((cVar1 == '\0') || (stackParameterB == pStackParameterC)) {
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemDataBufferTemplate3);
+    ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemDataBufferTemplate3);
     creationFlags = InitializeSystemManager();
     punsignedSystemValue4 = resourceEntryPointer;
   }
@@ -43119,7 +43119,7 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
   do {
     nextDataIndex2 = nextDataIndex2 + 1;
   } while (resourceEntryPointer[nextDataIndex2] != '\0');
-  FUN_1800671b0(&uStack_c8);
+  ReallocateSystemDataBuffer(&uStack_c8);
   resourceEntryPointer = &SystemStringTemplate;
   if (*(void* **)(AdditionalParameter + 8) != (void* *)0x0) {
     resourceEntryPointer = *(void* **)(AdditionalParameter + 8);
@@ -43130,7 +43130,7 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
   do {
     allocationFlags = allocationFlags + 1;
   } while (resourceEntryPointer[allocationFlags] != '\0');
-  FUN_1800671b0(&uStack_88,resourceEntryPointer,allocationFlags);
+  ReallocateSystemDataBuffer(&uStack_88,resourceEntryPointer,allocationFlags);
   nextDataIndex2 = lStack_78;
   systemStatus = uStack_a8;
   uStack_98 = 0;
@@ -43205,9 +43205,9 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
   if (0xf < uStack_b0) {
     pcurrentThreadId = (uint8_t *)CONCAT71(uStack_c7,uStack_c8);
   }
-  FUN_1800671b0(&EncryptionValue68,pcurrentThreadId,punsignedSystemValue4);
+  ReallocateSystemDataBuffer(&EncryptionValue68,pcurrentThreadId,punsignedSystemValue4);
   uStack_e8 = 1;
-  FUN_180067070(&uStack_a8);
+  FreeSystemResourceMemory(&uStack_a8);
   unsignedSystemValue9 = uStack_58;
   systemStatus = EncryptionValue68;
   uStack_a8 = EncryptionValue68;
@@ -44175,7 +44175,7 @@ void ProcessSystemResourceConfiguration(void* ResourceManagerPointer,void* Confi
   }
   if (((SystemDebugFlag != '\0') || (SystemVerboseFlag != '\0')) ||
      (*(int *)(SystemMemoryManagerPointer + 0x10e0) == 1)) {
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemConfigParam5);
+    ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemConfigParam5);
     InitializeSystemManager();
     goto LAB_180066971;
   }
@@ -44209,7 +44209,7 @@ void ProcessSystemResourceConfiguration(void* ResourceManagerPointer,void* Confi
       SystemGlobalDataReferencePtr = &SystemStackDataTemplate1;
       SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd);
     }
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam1);
+    ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemContextParam1);
   }
   else {
 LAB_18006650a:
@@ -44246,12 +44246,12 @@ LAB_18006650a:
       hashValue = uStack_60;
     }
     ConfigureSystemDataBuffer(&psystemFlag178,&SystemDataBufferSizeTemplate,hashValue / 0x100000 & 0xffffffff);
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemConfigurationTerminator);
+    ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemConfigurationTerminator);
     SystemGlobalDataReferencePtr = &SystemStringTemplate;
     if (puStack_150 != (void* *)0x0) {
       SystemGlobalDataReferencePtr = puStack_150;
     }
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam2);
+    ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemContextParam2);
     SystemGlobalDataReferencePtr = &SystemStringTemplate;
     if (puStack_170 != (void* *)0x0) {
       SystemGlobalDataReferencePtr = puStack_170;
@@ -44419,10 +44419,10 @@ LAB_180066bf4:
         SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&SystemStackDataTemplate1,&SystemMessageText,
                       &SystemMessageTitle);
       }
-      FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam1);
+      ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemContextParam1);
     }
     else {
-      FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemConfigParam5);
+      ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemConfigParam5);
       InitializeSystemManager();
     }
   }
