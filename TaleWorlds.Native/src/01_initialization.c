@@ -2072,17 +2072,19 @@ int InitializeInputSystemResourcePool(void)
 /**
  * @brief 初始化系统信号量
  * 
- * 创建系统级的信号量用于线程同步，返回初始化状态
+ * 创建系统级的信号量用于线程同步，初始化信号量系统配置。
+ * 该函数确保系统中的线程能够正确同步和协调工作。
+ * 
  * @return 初始化成功返回0，失败返回-1
  */
 int InitializeSystemSemaphore(void)
 
 {
-  long long semaphoreInitializationResult;
+  long long SemaphoreInitializationStatus;
   
-  SystemSemaphoreHandle = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
-  semaphoreInitializationResult = InitializeSemaphoreSystem(GetSemaphoreSystemConfiguration);
-  return (semaphoreInitializationResult != 0) - 1;
+  SystemSemaphoreHandle = CreateSemaphoreW(0, 1, 0x7fffffff, 0, 0xfffffffffffffffe);
+  SemaphoreInitializationStatus = InitializeSemaphoreSystem(GetSemaphoreSystemConfiguration);
+  return (SemaphoreInitializationStatus != 0) - 1;
 }
 
 
@@ -2092,51 +2094,57 @@ int InitializeSystemSemaphore(void)
  * @brief 初始化系统内存管理器
  * 
  * 该函数负责初始化系统内存管理器，设置内存分配策略
- * 和管理机制，确保系统内存资源的有效利用。
+ * 和管理机制，确保系统内存资源的有效利用。函数会遍历系统节点树，
+ * 查找或创建内存管理器节点，并配置相关的标识符和回调函数。
+ * 
+ * @note 该函数是系统初始化过程中的关键组件，负责建立内存管理的基础架构。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemMemoryManager(void)
 
 {
-  char SystemNodeFlag;
+  char IsNodeActive;
   void** SystemDataTable;
-  int NodeIdentifierComparisonResult;
+  int IdentifierComparisonResult;
   long long* SystemMemoryPointer;
-  long long SystemTimeValue;
-  void** SystemRootNode;
-  void** SystemCurrentNode;
-  void** SystemNextNode;
-  void** hashTableNode;
-  void* SystemCallbackPointer;
+  long long SystemTimestamp;
+  void** RootSystemNode;
+  void** CurrentSystemNode;
+  void** NextSystemNode;
+  void** HashTableNode;
+  void* EventCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
-  SystemRootNode = (void**)*SystemDataTable;
-  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  RootSystemNode = (void**)*SystemDataTable;
+  IsNodeActive = *(char*)((long long)RootSystemNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   SystemSearchFunctionPointer = GetSystemSearchFunction;
-  hashTableNode = SystemRootNode;
-  SystemCurrentNode = (void**)SystemRootNode[1];
-  while (SystemNodeFlag == '\0') {
-    NodeIdentifierComparisonResult = memcmp(SystemCurrentNode + 4, &SystemDataComparisonTemplateD, SYSTEM_IDENTIFIER_SIZE);
-    if (NodeIdentifierComparisonResult < 0) {
-      SystemNextNode = (void**)SystemCurrentNode[2];
-      SystemCurrentNode = hashTableNode;
+  HashTableNode = RootSystemNode;
+  CurrentSystemNode = (void**)RootSystemNode[1];
+  while (IsNodeActive == '\0') {
+    IdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SystemDataComparisonTemplateD, SYSTEM_IDENTIFIER_SIZE);
+    if (IdentifierComparisonResult < 0) {
+      NextSystemNode = (void**)CurrentSystemNode[2];
+      CurrentSystemNode = HashTableNode;
     }
     else {
-      SystemNextNode = (void**)*SystemCurrentNode;
+      NextSystemNode = (void**)*CurrentSystemNode;
     }
-    hashTableNode = SystemCurrentNode;
-    SystemCurrentNode = SystemNextNode;
-    SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    HashTableNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    IsNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((hashTableNode == SystemRootNode) || (NodeIdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateD, hashTableNode + 4, SYSTEM_IDENTIFIER_SIZE), NodeIdentifierComparisonResult < 0)) {
+  if ((HashTableNode == RootSystemNode) || (IdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateD, HashTableNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierComparisonResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &SystemAllocatedNode, hashTableNode, SystemMemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, SystemMemoryAllocationSize);
-    hashTableNode = SystemAllocatedNode;
+    AllocateSystemMemory(SystemDataTable, &SystemAllocatedNode, HashTableNode, SystemMemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, SystemMemoryAllocationSize);
+    HashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x406be72011d07d37;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x71876af946c867ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeTertiaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
-  hashTableNode[10] = EventCallbackPointer;
+  HashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x406be72011d07d37;
+  HashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x71876af946c867ab;
+  HashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeTertiaryRoot;
+  HashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  HashTableNode[10] = EventCallbackPointer;
   return;
 }
 
@@ -2159,26 +2167,26 @@ void InitializeSystemMemoryManager(void)
 void InitializeSystemMemoryAllocator(void)
 
 {
-  char IsSystemNodeActive;
-  void** SystemDataTablePointer;
-  int NodeIdentifierComparisonResult;
+  char IsNodeActive;
+  void** SystemDataTable;
+  int IdentifierComparisonResult;
   long long* SystemMemoryPointer;
-  long long SystemTimeValue;
-  void** SystemRootNodePointer;
+  long long SystemTimestamp;
+  void** RootSystemNode;
   void** CurrentSystemNode;
   void** NextSystemNode;
   void** PreviousSystemNode;
-  void* MemoryAllocatorCallbackPointer;
+  void* AllocatorCallbackPointer;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
-  SystemRootNodePointer = (void**)*SystemDataTablePointer;
-  IsSystemNodeActive = *(char*)((long long)SystemRootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  RootSystemNode = (void**)*SystemDataTable;
+  IsNodeActive = *(char*)((long long)RootSystemNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   SystemSearchFunctionPointerB = GetSystemSearchFunctionB;
-  PreviousSystemNode = SystemRootNodePointer;
-  CurrentSystemNode = (void**)SystemRootNodePointer[1];
-  while (!IsSystemNodeActive) {
-    NodeIdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &MEMORY_ALLOCATOR_TEMPLATE_ID, SYSTEM_IDENTIFIER_SIZE);
-    if (NodeIdentifierComparisonResult < 0) {
+  PreviousSystemNode = RootSystemNode;
+  CurrentSystemNode = (void**)RootSystemNode[1];
+  while (!IsNodeActive) {
+    IdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &MEMORY_ALLOCATOR_TEMPLATE_ID, SYSTEM_IDENTIFIER_SIZE);
+    if (IdentifierComparisonResult < 0) {
       NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
       CurrentSystemNode = PreviousSystemNode;
     }
@@ -2187,18 +2195,18 @@ void InitializeSystemMemoryAllocator(void)
     }
     PreviousSystemNode = CurrentSystemNode;
     CurrentSystemNode = NextSystemNode;
-    IsSystemNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    IsNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((PreviousSystemNode == SystemRootNodePointer) || (NodeIdentifierComparisonResult = memcmp(&MEMORY_ALLOCATOR_TEMPLATE_ID, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), NodeIdentifierComparisonResult < 0)) {
-    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &SystemAllocatedNode, PreviousSystemNode, SystemMemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, SystemMemoryAllocationSize);
+  if ((PreviousSystemNode == RootSystemNode) || (IdentifierComparisonResult = memcmp(&MEMORY_ALLOCATOR_TEMPLATE_ID, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierComparisonResult < 0)) {
+    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable, &SystemAllocatedNode, PreviousSystemNode, SystemMemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, SystemMemoryAllocationSize);
     PreviousSystemNode = SystemAllocatedNode;
   }
   PreviousSystemNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = MEMORY_ALLOCATOR_NODE_IDENTIFIER1;
   PreviousSystemNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = MEMORY_ALLOCATOR_NODE_IDENTIFIER2;
   PreviousSystemNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuaternaryRoot;
   PreviousSystemNode[SYSTEM_NODE_FLAG_INDEX] = 3;
-  PreviousSystemNode[SYSTEM_NODE_HANDLER_INDEX] = MemoryAllocatorCallbackPointer;
+  PreviousSystemNode[SYSTEM_NODE_HANDLER_INDEX] = AllocatorCallbackPointer;
   return;
 }
 
@@ -2208,23 +2216,24 @@ void InitializeSystemMemoryAllocator(void)
  * @brief 初始化系统线程同步机制
  * 
  * 该函数负责初始化系统的线程同步机制，包括互斥锁和信号量
- * 确保多线程环境下的数据安全和同步操作
+ * 确保多线程环境下的数据安全和同步操作。该函数是系统多线程
+ * 支持的基础组件，为后续的并发操作提供同步保障。
  * 
- * @param threadPool 线程池指针
- * @param syncConfig 同步配置参数
- * @param mutexSize 互斥锁大小
- * @param semaphoreConfig 信号量配置
+ * @param ThreadPool 线程池指针，用于管理线程资源
+ * @param SyncConfig 同步配置参数，包含同步机制的配置信息
+ * @param MutexSize 互斥锁大小，指定互斥锁的内存大小
+ * @param SemaphoreConfig 信号量配置，包含信号量的配置参数
  * @return 初始化成功返回0，失败返回-1
  */
 int InitializeSystemThreadSynchronization(void* ThreadPool, void* SyncConfig, size_t MutexSize, void* SemaphoreConfig)
 
 {
-  long long initializationResult;
+  long long SynchronizationInitializationStatus;
   
   // 初始化互斥锁和信号量
   InitializeMutexInSitu(SystemMutexPool, 2, MutexSize, SemaphoreConfig, MAX_THREAD_COUNT);
-  initializationResult = InitializeThreadPool(SystemThreadPoolInstance);
-  return (initializationResult != 0) - 1;
+  SynchronizationInitializationStatus = InitializeThreadPool(SystemThreadPoolInstance);
+  return (SynchronizationInitializationStatus != 0) - 1;
 }
 
 
@@ -2235,23 +2244,29 @@ int InitializeSystemThreadSynchronization(void* ThreadPool, void* SyncConfig, si
  * @brief 初始化系统字符串处理模块
  * 
  * 该函数负责初始化系统字符串处理模块，设置字符串缓冲区
- * 和处理机制，为系统提供字符串操作支持。
+ * 和处理机制，为系统提供字符串操作支持。该函数配置字符串
+ * 处理器回调函数，初始化字符串数据缓冲区，并建立字符串处理的基础架构。
+ * 
+ * @note 该函数是系统字符串处理的核心组件，为所有字符串操作提供支持。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemStringHandler(void)
 
 {
-  uint64_t SystemStringParameter;
-  void* StringProcessCallbackPointer;
-  uint8_t* StringDataBufferPointer;
+  uint64_t StringProcessorParameter;
+  void* StringProcessorCallbackPointer;
+  uint8_t* StringBufferPointer;
   uint32_t StringBufferSize;
-  uint8_t StringDataBuffer [136];
+  uint8_t StringBuffer [136];
   
-  StringProcessCallbackPointer = &SystemStringProcessorNode;
-  StringDataBufferPointer = StringDataBuffer;
-  StringDataBuffer[0] = 0;
+  StringProcessorCallbackPointer = &SystemStringProcessorNode;
+  StringBufferPointer = StringBuffer;
+  StringBuffer[0] = 0;
   StringBufferSize = 7;
-  strcpy_s(StringDataBuffer, 0x80, &SystemStringProcessorTemplate, SystemStringParameter, 0xfffffffffffffffe);
-  SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessCallbackPointer);
+  strcpy_s(StringBuffer, 0x80, &SystemStringProcessorTemplate, StringProcessorParameter, 0xfffffffffffffffe);
+  SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessorCallbackPointer);
   return;
 }
 
@@ -2262,51 +2277,57 @@ void InitializeSystemStringHandler(void)
  * @brief 初始化系统线程管理器
  * 
  * 该函数负责初始化系统线程管理器，设置线程创建和管理机制，
- * 为系统提供多线程支持。
+ * 为系统提供多线程支持。该函数会遍历系统节点树，查找或创建
+ * 线程管理器节点，并配置相关的标识符和回调函数。
+ * 
+ * @note 该函数是系统多线程管理的核心组件，负责建立线程管理的基础架构。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemThreadManager(void)
 
 {
-  char SystemNodeFlag;
+  char IsNodeActive;
   void** SystemDataTable;
-  int NodeIdentifierComparisonResult;
+  int IdentifierComparisonResult;
   long long* SystemMemoryPointer;
-  long long SystemTimeValue;
-  void** SystemRootNode;
-  void** SystemCurrentNode;
-  void** SystemNextNode;
-  void** hashTableNode;
-  void* SystemCallbackPointer;
+  long long SystemTimestamp;
+  void** RootSystemNode;
+  void** CurrentSystemNode;
+  void** NextSystemNode;
+  void** HashTableNode;
+  void* ThreadManagerCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
-  SystemRootNode = (void**)*SystemDataTable;
-  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  hashTableNode = SystemRootNode;
-  SystemCurrentNode = (void**)SystemRootNode[1];
-  while (SystemNodeFlag == '\0') {
-    NodeIdentifierComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
-    if (NodeIdentifierComparisonResult < 0) {
-      SystemNextNode = (void**)SystemCurrentNode[2];
-      SystemCurrentNode = hashTableNode;
+  RootSystemNode = (void**)*SystemDataTable;
+  IsNodeActive = *(char*)((long long)RootSystemNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  SystemSearchFunctionPointerC = GetSystemSearchFunctionC;
+  HashTableNode = RootSystemNode;
+  CurrentSystemNode = (void**)RootSystemNode[1];
+  while (IsNodeActive == '\0') {
+    IdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SystemDataComparisonTemplateH, 0x10);
+    if (IdentifierComparisonResult < 0) {
+      NextSystemNode = (void**)CurrentSystemNode[2];
+      CurrentSystemNode = HashTableNode;
     }
     else {
-      SystemNextNode = (void**)*SystemCurrentNode;
+      NextSystemNode = (void**)*CurrentSystemNode;
     }
-    hashTableNode = SystemCurrentNode;
-    SystemCurrentNode = SystemNextNode;
-    SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    HashTableNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    IsNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((hashTableNode == SystemRootNode) || (NodeIdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateH,hashTableNode + 4,0x10), NodeIdentifierComparisonResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    hashTableNode = SystemAllocatedNode;
+  if ((HashTableNode == RootSystemNode) || (IdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateH, HashTableNode + 4, 0x10), IdentifierComparisonResult < 0)) {
+    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable, &SystemAllocatedNode, HashTableNode, SystemMemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, SystemMemoryAllocationSize);
+    HashTableNode = SystemAllocatedNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x43330a43fcdb3653;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xdcfdc333a769ec93;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x43330a43fcdb3653;
+  HashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xdcfdc333a769ec93;
+  HashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
+  HashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  HashTableNode[10] = EventCallbackPointer;
   return;
 }
 
