@@ -3529,8 +3529,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
           ObjectValidationState = *(uint8_t *)(DataBufferPointer + CurrentObjectIndex);
           ProcessingOutcome = ValidateObjectStatus(ObjectValidationState);
           if (ProcessingOutcome != RegistrationStatusSuccess) {
-                    // WARNING: Subroutine does not return
-            HandleInvalidObject(ObjectValidationState, 1);
+                  HandleInvalidObject(ObjectValidationState, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
           CurrentObjectIndex = CurrentObjectIndex + ResourceEntrySizeBytes;
@@ -3542,8 +3541,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
       FreeObjectListMemory(&DataBufferPointer);
     }
   }
-                    // WARNING: Subroutine does not return
-  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetadataBuffer);
+        PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetadataBuffer);
 }
 
 
@@ -3587,8 +3585,7 @@ void ValidateSystemObjectCollection(void)
           ObjectIdentifier = *(uint8_t *)(CollectionBuffer + DataPosition);
           ValidationResult = ValidateSystemObject(ObjectIdentifier);
           if (ValidationResult != 2) {
-                    // WARNING: Subroutine does not return
-            HandleInvalidSystemObject(ObjectIdentifier, 1);
+                  HandleInvalidSystemObject(ObjectIdentifier, 1);
           }
           ProcessedCount = ProcessedCount + 1;
           DataPosition = DataPosition + 8;
@@ -3600,8 +3597,7 @@ void ValidateSystemObjectCollection(void)
       ReleaseSystemObjectCollection(&RetrievedObjectDataBuffer);
     }
   }
-                    // WARNING: Subroutine does not return
-  PerformSecurityValidation(SecurityHash ^ (uint64_t)&SystemSecurityValidationBuffer);
+        PerformSecurityValidation(SecurityHash ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -3621,8 +3617,7 @@ void TerminateSystemProcess(void)
 {
   uint64_t SystemShutdownToken;
   
-                    // WARNING: Subroutine does not return
-  terminateSystem(SystemShutdownToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+        terminateSystem(SystemShutdownToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -3645,12 +3640,10 @@ void CheckSystemFlags(void)
   uint64_t FlagCheckValidationToken;
   
   if ((*(uint *)(SystemContext + 0x2d8) >> 7 & 1) != 0) {
-                    // WARNING: Subroutine does not return
-    TriggerSystemFlagHandler();
+          TriggerSystemFlagHandler();
   }
   ReleaseFlagCheckResources(&ObjectStackBufferResource);
-                    // WARNING: Subroutine does not return
-  ExecuteFlagCheckCleanup(FlagCheckValidationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+        ExecuteFlagCheckCleanup(FlagCheckValidationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -3939,12 +3932,10 @@ uint8_t ValidateSystemAccess(int64_t accessRequestParameters,int64_t SystemConte
       PackageValidationStatus = ProcessSystemObjectValidation(ObjectHandle,*(uint8_t *)(ObjectHandle + 8),*(uint8_t *)(SystemContextParameters + 0x90),
                             *(uint8_t *)(SystemContextParameters + 800));
       if (PackageValidationStatus == 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseValidationResources(ValidationContext);
+              ReleaseValidationResources(ValidationContext);
       }
     }
-                    // WARNING: Subroutine does not return
-    ReleaseValidationResources(ValidationContext);
+          ReleaseValidationResources(ValidationContext);
   }
   return 0;
 }
@@ -4037,13 +4028,11 @@ uint64_t DecrementSystemResourceCounter(int64_t SystemContext, uint64_t Resource
     if (PackageValidationStatus == 0) {
       PackageValidationStatus = ProcessSystemContextValidation(SystemContext);
       if (PackageValidationStatus == 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseValidationResources(ContextHandles);
+              ReleaseValidationResources(ContextHandles);
       }
     }
   }
-                    // WARNING: Subroutine does not return
-  ReleaseValidationResources(ContextHandles);
+        ReleaseValidationResources(ContextHandles);
 }
 
 
@@ -4108,8 +4097,7 @@ uint8_t InitializeObjectHandleA(int64_t ObjectContext)
       ObjectValidationContext = ObjectValidationContext + -8;
     }
     if (*(int64_t *)(ObjectValidationContext + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemExitOperation(*(int64_t *)(ObjectValidationContext + 0x10),1);
+            ExecuteSystemExitOperation(*(int64_t *)(ObjectValidationContext + 0x10),1);
     }
     ResourceValidationHash = 0;
   }
@@ -4139,8 +4127,7 @@ uint8_t CleanupObjectHandle(void)
     AdjustedObjectMemoryPointer = ObjectHandleIdentifier + -8;
   }
   if (*(int64_t *)(AdjustedObjectMemoryPointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemExitOperation(*(int64_t *)(AdjustedObjectMemoryPointer + 0x10), 1);
+          ExecuteSystemExitOperation(*(int64_t *)(AdjustedObjectMemoryPointer + 0x10), 1);
   }
   return 0;
 }
@@ -4158,8 +4145,7 @@ uint8_t ValidateCharacterParameter(char CharacterToValidate)
 
 {
   if (CharacterToValidate != '\0') {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemExitOperation();
+          ExecuteSystemExitOperation();
   }
   return 0;
 }
@@ -4212,8 +4198,7 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
   if (*(int64_t *)(HandleMemoryBuffer + 0x10) == 0) {
     return ErrorInvalidObjectHandle;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + 0x10), 1);
 }
 
 
@@ -4239,8 +4224,7 @@ uint32_t ValidateObjectHandleFromRegister(void)
   if (*(int64_t *)(MemoryPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + 0x10), 1);
 }
 
 
@@ -4254,8 +4238,7 @@ uint32_t ValidateObjectHandleFromRegister(void)
 void RaiseSystemException(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -4303,8 +4286,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleToValidate)
   if (*(int64_t *)(HandleMemoryBuffer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + 0x10), 1);
 }
 
 
@@ -4331,8 +4313,7 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
   if (*(int64_t *)(MemoryPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + 0x10), 1);
 }
 
 
@@ -4347,8 +4328,7 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 void TriggerSystemExceptionAlternative(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -4911,8 +4891,7 @@ uint32_t ValidateRegisterPointer(void)
 void InitiateSystemShutdown(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -4959,8 +4938,7 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
   if (*(int64_t *)(ValidatedContextPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + 0x10),1);
 }
 
 
@@ -4991,8 +4969,7 @@ uint32_t ProcessSystemResource(void)
   if (*(int64_t *)(ContextPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(ContextPointer + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ContextPointer + 0x10),1);
 }
 
 
@@ -5011,8 +4988,7 @@ uint32_t ProcessSystemResource(void)
 void TerminateSystem(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -5061,8 +5037,7 @@ uint64_t HandleResourceOperation(int64_t resourceHandle)
   if (*(int64_t *)(ResourceContextPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(ResourceContextPointer + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ResourceContextPointer + 0x10),1);
 }
 
 
@@ -5077,20 +5052,18 @@ uint64_t HandleResourceOperation(int64_t resourceHandle)
  * @return 处理结果，0表示成功，非0表示错误码
  */
 uint32_t ProcessResourceTask(void)
-
 {
   int64_t TaskInputParameter;
   int64_t TaskLoopCounter;
   
-  SystemContextPointer = InputParameter - 8;
-  if (InputParameter == 0) {
+  SystemContextPointer = TaskInputParameter - 8;
+  if (TaskInputParameter == 0) {
     SystemContextPointer = 0;
   }
   if (*(int64_t *)(SystemContextPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + 0x10),1);
 }
 
 
@@ -5106,8 +5079,7 @@ uint32_t ProcessResourceTask(void)
 void TriggerSystemTermination(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -5155,8 +5127,7 @@ uint64_t ValidateAndProcessObjectHandle(uint64_t ObjectHandleIdentifier)
   if (*(int64_t *)(StackMemoryOffset + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(StackMemoryOffset + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackMemoryOffset + 0x10), 1);
 }
 
 
@@ -5184,8 +5155,7 @@ uint32_t ValidateAndProcessCurrentObjectHandle(void)
   if (*(int64_t *)(ProcessedMemoryPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(ProcessedMemoryPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ProcessedMemoryPointer + 0x10), 1);
 }
 
 
@@ -5201,8 +5171,7 @@ uint32_t ValidateAndProcessCurrentObjectHandle(void)
 void TerminateSystem(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -5251,8 +5220,7 @@ uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
   if (*(int64_t *)(stackOffset + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(stackOffset + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(stackOffset + 0x10),1);
 }
 
 
@@ -5269,19 +5237,18 @@ uint32_t ValidateAndProcessCurrentObjectHandleExtended(void)
 
 {
   int64_t registerValue;
-  int64_t contextPointer;
+  int64_t ValidatedContextPointer;
   
   if (registerValue == 0) {
-    contextPointer = 0;
+    ValidatedContextPointer = 0;
   }
   else {
-    contextPointer = registerValue + -8;
+    ValidatedContextPointer = registerValue + -8;
   }
-  if (*(int64_t *)(contextPointer + 0x10) == 0) {
+  if (*(int64_t *)(ValidatedContextPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(contextPointer + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + 0x10),1);
 }
 
 
@@ -5297,8 +5264,7 @@ uint32_t ValidateAndProcessCurrentObjectHandleExtended(void)
 void FatalErrorHandler(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -5332,23 +5298,22 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
 
 {
   uint64_t ResourceHashValidationResult;
-  int64_t StackOffset;
+  int64_t ValidatedContextPointer;
   
-  ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(advancedObjectHandle + 0x10), &StackOffset);
+  ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(advancedObjectHandle + 0x10), &ValidatedContextPointer);
   if ((int)ResourceHashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
-  if (StackOffset == 0) {
-    StackOffset = 0;
+  if (ValidatedContextPointer == 0) {
+    ValidatedContextPointer = 0;
   }
   else {
-    StackOffset = StackOffset + -8;
+    ValidatedContextPointer = ValidatedContextPointer + -8;
   }
-  if (*(int64_t *)(StackOffset + 0x10) == 0) {
+  if (*(int64_t *)(ValidatedContextPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + 0x10), 1);
 }
 
 
@@ -5376,8 +5341,7 @@ uint32_t ValidateAndExecuteSystemExit(void)
   if (*(int64_t *)(CalculatedOffset + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(CalculatedOffset + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(CalculatedOffset + 0x10), 1);
 }
 
 
@@ -5392,8 +5356,7 @@ uint32_t ValidateAndExecuteSystemExit(void)
 void ExecuteSystemEmergencyExit(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -5427,8 +5390,7 @@ uint64_t ValidateObjectPointerAndExecuteExit(int64_t objectPointer)
   if (*(int64_t *)(StackOffset + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
 }
 
 
@@ -5452,8 +5414,7 @@ uint32_t ValidateStackLocationAndExecuteExit(void)
   if (*(int64_t *)(StackLocation + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(StackLocation + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackLocation + 0x10), 1);
 }
 
 
@@ -5469,8 +5430,7 @@ uint32_t ValidateStackLocationAndExecuteExit(void)
 void ExecuteSystemCriticalShutdown(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -5486,8 +5446,7 @@ void ExecuteSystemCriticalShutdown(void)
 void ExecuteSystemForcedTermination(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -5512,8 +5471,7 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
   if (*(int64_t *)(StackOffset + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
 }
 
 
@@ -5536,8 +5494,7 @@ uint32_t ValidateStackObject(void)
   if (*(int64_t *)(StackPointer + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(StackPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackPointer + 0x10), 1);
 }
 
 
@@ -5551,8 +5508,7 @@ uint32_t ValidateStackObject(void)
 void InitializeSystemResources(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -5567,8 +5523,7 @@ void InitializeSystemResources(void)
 void ExecuteEmergencySystemExit(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation();
+        ExecuteSystemExitOperation();
 }
 
 
@@ -5725,12 +5680,10 @@ int InitializeSystemManager(int64_t ManagerHandle)
     if (0x38 < *(int *)(ObjectContext + 0x10)) {
       ValidationOperationResult = 0x38;
     }
-                    // WARNING: Subroutine does not return
-    memcpy(ObjectContextDataBuffer,ObjectContext + 0x10,(int64_t)ValidationOperationResult);
+          memcpy(ObjectContextDataBuffer,ObjectContext + 0x10,(int64_t)ValidationOperationResult);
   }
   if (SystemResourceTableHandle != 0) {
-                    // WARNING: Subroutine does not return
-    ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),SystemResourceTableHandle,&SystemResourceTable,0xb8,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),SystemResourceTableHandle,&SystemResourceTable,0xb8,1);
   }
   return SystemResourceIndex;
 }
@@ -6053,8 +6006,7 @@ void ProcessSystemObjectQueue(int64_t objectHandle, int64_t queueContext)
       QueueIterator = QueueHead;
     } while ((*QueueNode == 0) || (ProcessingStatus = ProcessQueueOperation(queueContext), ProcessingStatus == 0));
   }
-                    // WARNING: Subroutine does not return
-  CleanupProcessingQueue(StackBuffer);
+        CleanupProcessingQueue(StackBuffer);
 }
 
 
@@ -6113,8 +6065,7 @@ void ValidateObjectStateAndDispatch(int64_t ObjectContext, int64_t schedulerCont
     return;
   }
 ValidationFailureLabel:
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
 }
 
 
@@ -6235,8 +6186,7 @@ void ValidateObjectStateAndDispatchB(int64_t ObjectContext, int64_t schedulerCon
     return;
   }
 ValidationCompleteLabel:
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
 }
 
 
@@ -6267,8 +6217,7 @@ uint8_t CheckObjectPropertiesAndIncrementCounter(int64_t ObjectContext, int64_t 
     CounterValue = *(int *)(propertyBuffer + 0x28);
     *(int *)(propertyBuffer + 0x28) = CounterValue + 1;
     if (CounterValue == 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
     }
     operationResult = 0;
   }
@@ -6296,8 +6245,7 @@ void ResetObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedulerCo
   InitializationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&propertyBuffer);
   if (InitializationStatus == 0) {
     *(uint32_t *)(propertyBuffer + 0x30) = 0;
-                    // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+          ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
   }
   return;
 }
@@ -6337,8 +6285,7 @@ uint8_t CheckObjectPropertiesAndDecrementCounter(int64_t ObjectContext, int64_t 
     }
     *(int *)(PropertyBuffer + 0x28) = CounterValue + -1;
     if (CounterValue == 1) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
     }
     OperationResult = 0;
   }
@@ -6402,8 +6349,7 @@ uint8_t ActivateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t Sched
     return 0x4e;
   }
   *(uint8_t *)(PropertyBuffer + 0x2c) = 1;
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
 }
 
 
@@ -6427,8 +6373,7 @@ void SetObjectContextProcessingStatusFlag(int64_t ObjectContext, int64_t Process
   PackageValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ContextBuffer);
   if (PackageValidationStatus == 0) {
     *(uint8_t *)(ContextBuffer + 0x29) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
-                    // WARNING: Subroutine does not return
-    ProcessContext(*(uint8_t *)(ProcessContext + 0x98), ObjectContext);
+          ProcessContext(*(uint8_t *)(ProcessContext + 0x98), ObjectContext);
   }
   return;
 }
@@ -6454,8 +6399,7 @@ void SetObjectContextPackageValidationStatusFlag(int64_t ObjectContext, int64_t 
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&contextBuffer);
   if (ValidationStatus == 0) {
     *(uint8_t *)(contextBuffer + 0x28) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
-                    // WARNING: Subroutine does not return
-    ProcessContext(*(uint8_t *)(processContext + 0x98),ObjectContext);
+          ProcessContext(*(uint8_t *)(processContext + 0x98),ObjectContext);
   }
   return;
 }
@@ -6486,8 +6430,7 @@ uint8_t ValidateObjectContextAndUpdateStatus(int64_t ObjectContext, int64_t Syst
   ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&ValidationContext);
   if ((int)ResourceHash == 0) {
     *(uint32_t *)(CONCAT44(ValidationContextParam,ValidationContext) + 0x24) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-                    // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+          ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
   }
   return ResourceHash;
 }
@@ -6518,8 +6461,7 @@ uint8_t ValidateAndClearObjectState(int64_t ObjectContext, int64_t SystemContext
     return 0x4f;
   }
   *(uint8_t *)(contextBuffer + 0x2c) = 0;
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
 }
 
 
@@ -6577,13 +6519,11 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
          (newBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationStatus * 8,&ResourceTableTemplate,
                                 0xf4,0,0,1), newBufferPointer == 0)) goto ErrorHandler;
       if (*(int *)(bufferContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(newBufferPointer,*(uint8_t *)(bufferContext + 0x20),(int64_t)*(int *)(bufferContext + 0x28) << 3);
+              memcpy(newBufferPointer,*(uint8_t *)(bufferContext + 0x20),(int64_t)*(int *)(bufferContext + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(bufferContext + 0x2c)) && (*(int64_t *)(bufferContext + 0x20) != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(bufferContext + 0x20),
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(bufferContext + 0x20),
                     &ResourceTableTemplate,0x100,1);
     }
     *(int64_t *)(bufferContext + 0x20) = newBufferPointer;
@@ -6593,8 +6533,7 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
        memoryContextBuffer;
   *(int *)(bufferContext + 0x28) = *(int *)(bufferContext + 0x28) + 1;
 ErrorHandler:
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
 }
 
 
@@ -6653,15 +6592,13 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
          (ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,
                                 0xf4,0), ResourceIndex == 0)) goto ResourceErrorHandler;
       if (*(int *)(StackParameterBuffer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(ResourceIndex,*(uint8_t *)(StackParameterBuffer + 0x20),
+              memcpy(ResourceIndex,*(uint8_t *)(StackParameterBuffer + 0x20),
                (int64_t)*(int *)(StackParameterBuffer + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(StackParameterBuffer + 0x2c)) && (*(int64_t *)(StackParameterBuffer + 0x20) != 0))
     {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(StackParameterBuffer + 0x20),
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(StackParameterBuffer + 0x20),
                     &ResourceTableTemplate,0x100,1);
     }
     *(int64_t *)(StackParameterBuffer + 0x20) = ResourceIndex;
@@ -6672,8 +6609,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
        StackParameterContext;
   *(int *)(StackParameterBuffer + 0x28) = *(int *)(StackParameterBuffer + 0x28) + 1;
 ResourceErrorHandler:
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
 }
 
 
@@ -6729,13 +6665,11 @@ void ProcessDynamicBufferReallocation(void)
       ;
       if (ResourceIndex == 0) goto MemoryErrorHandler;
       if (*(int *)(ResourceContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(ResourceIndex,*(uint8_t *)(ResourceContext + 0x20),(int64_t)*(int *)(ResourceContext + 0x28) << 3);
+              memcpy(ResourceIndex,*(uint8_t *)(ResourceContext + 0x20),(int64_t)*(int *)(ResourceContext + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(ResourceContext + 0x2c)) && (*(int64_t *)(ResourceContext + 0x20) != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ResourceContext + 0x20),
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ResourceContext + 0x20),
                     &ResourceTableTemplate,0x100,1);
     }
     *(int64_t *)(ResourceContext + 0x20) = ResourceIndex;
@@ -6745,8 +6679,7 @@ void ProcessDynamicBufferReallocation(void)
        StackParameterContext;
   *(int *)(ResourceContext + 0x28) = *(int *)(ResourceContext + 0x28) + 1;
 MemoryErrorHandler:
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
 }
 
 
@@ -6789,14 +6722,12 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
                                 0xf4);
       if (SystemContext == 0) goto SystemErrorHandler;
       if (*(int *)(ResourceContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(SystemContext,*(uint8_t *)(ResourceContext + 0x20),(int64_t)*(int *)(ResourceContext + 0x28) << 3
+              memcpy(SystemContext,*(uint8_t *)(ResourceContext + 0x20),(int64_t)*(int *)(ResourceContext + 0x28) << 3
               );
       }
     }
     if ((0 < *(int *)(ResourceContext + 0x2c)) && (*(int64_t *)(ResourceContext + 0x20) != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ResourceContext + 0x20),
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ResourceContext + 0x20),
                     &ResourceTableTemplate,0x100,1);
     }
     *(int64_t *)(ResourceContext + 0x20) = SystemContext;
@@ -6806,8 +6737,7 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
        StackParameterContext;
   *(int *)(ResourceContext + 0x28) = *(int *)(ResourceContext + 0x28) + 1;
 SystemErrorHandler:
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
 }
 
 
@@ -6980,8 +6910,7 @@ void ProcessObjectContextRelease(int64_t ObjectHandle, int64_t SystemContext)
   if (ValidationStatus == 0) {
     ValidationStatus = ProcessSystemValidation(contextBuffer);
     if (ValidationStatus == 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98), ObjectHandle);
+            ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98), ObjectHandle);
     }
   }
   return;
@@ -7007,8 +6936,7 @@ void ProcessObjectValidation(int64_t ObjectContext, int64_t SystemContext)
   
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), validationBuffer);
   if (ValidationStatus == 0) {
-                    // WARNING: Subroutine does not return
-    ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
+          ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
   }
   return;
 }
@@ -7035,8 +6963,7 @@ void ExecuteDualValidationObjectProcessing(int64_t ObjectContext, int64_t System
   if (PrimaryPackageValidationStatus == 0) {
     PrimaryPackageValidationStatus = ProcessHashValidationResult(processingResult);
     if (PrimaryPackageValidationStatus == 0) {
-                    // WARNING: Subroutine does not return
-      ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
+            ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
     }
   }
   return;
@@ -7380,18 +7307,15 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
       allocatedMemory = (**(code **)(**(int64_t **)(SystemContext + 800) + 0x2f0))
                         (*(int64_t **)(SystemContext + 800), objectDataPointer, 1);
       if (allocatedMemory == 0) {
-                    // WARNING: Subroutine does not return
-        ProcessMemoryAllocationFailure(objectDataPointer, processingBuffer);
+              ProcessMemoryAllocationFailure(objectDataPointer, processingBuffer);
       }
       pointerReference = (int64_t *)(allocatedMemory + 0x58);
       if (((int64_t *)*pointerReference != pointerReference) || (*(int64_t **)(allocatedMemory + 0x60) != pointerReference)) {
-                    // WARNING: Subroutine does not return
-        ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
+              ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
       }
     }
   }
-                    // WARNING: Subroutine does not return
-  CleanupSecurityToken(securityToken ^ (uint64_t)securityBuffer);
+        CleanupSecurityToken(securityToken ^ (uint64_t)securityBuffer);
 }
 
 
@@ -7416,16 +7340,13 @@ void ProcessPointerValidationAndSystemObjectHandling(int64_t *ObjectPointer, int
   
   allocatedMemory = (**(code **)(*ObjectPointer + 0x2f0))(ObjectPointer, SystemContext + 0x30);
   if (allocatedMemory == 0) {
-                    // WARNING: Subroutine does not return
-    ProcessMemoryAllocationFailure(SystemContext + 0x30, &PrimaryObjectStackBuffer);
+          ProcessMemoryAllocationFailure(SystemContext + 0x30, &PrimaryObjectStackBuffer);
   }
   pointerReference = (int64_t *)(allocatedMemory + 0x58);
   if (((int64_t *)*pointerReference == pointerReference) && (*(int64_t **)(allocatedMemory + 0x60) == pointerReference)) {
-                    // WARNING: Subroutine does not return
-    CleanupSecurityToken(securityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+          CleanupSecurityToken(securityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
   }
-                    // WARNING: Subroutine does not return
-  ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98));
+        ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98));
 }
 
 
@@ -7442,8 +7363,7 @@ void CleanupSecurityTokenFunction(void)
 {
   uint64_t securityToken;
   
-                    // WARNING: Subroutine does not return
-  CleanupSecurityToken(securityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+        CleanupSecurityToken(securityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -7620,8 +7540,7 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, int64_t Sys
       objectPropertyPointer = stackBuffer + -8;
     }
     *(uint32_t *)(objectPropertyPointer + 0x88) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-                    // WARNING: Subroutine does not return
-    ProcessObjectOperation(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
+          ProcessObjectOperation(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
   }
   return;
 }
@@ -7936,8 +7855,7 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t parameter)
        (floatValue < *(float *)(dataPointer + 0x3c) || floatValue == *(float *)(dataPointer + 0x3c))) {
       operationResult = *(uint8_t *)(SystemContext + 0x98);
       *(float *)(stackBuffer + 4) = floatValue;
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(operationResult);
+            ReleaseSystemContextResources(operationResult);
     }
     operationResult = 0x1c;
   }
@@ -7972,8 +7890,7 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t parameter)
        (firstFloatValue < *(float *)(ResourceContext + 0x3c) || firstFloatValue == *(float *)(ResourceContext + 0x3c))) {
       ValidationResult = *(uint8_t *)(ExecutionContextPointer + 0x98);
       *(float *)(ResourceContextSecondary + 4) = firstFloatValue;
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(ValidationResult);
+            ReleaseSystemContextResources(ValidationResult);
     }
     ValidationResult = 0x1c;
   }
@@ -8070,8 +7987,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
       objectData = *(int64_t *)(objectData + 0x90);
       *(float *)(contextPointer + 4 + (int64_t)(int)RangeIndex[0] * 0x18) = clampedValue;
       *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(objectData + (int64_t)(int)RangeIndex[0] * 8);
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
     }
   }
   return 0x1f;
@@ -8133,8 +8049,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
         arrayPointer = *(int64_t *)(arrayPointer + 0x90);
         *(float *)(contextPointer + 4 + arrayIndex * 0x18) = floatValue;
         *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(arrayPointer + (int64_t)IndexBuffer[0] * 8);
-                    // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
+              ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98),ObjectContext);
       }
       return 0x1c;
     }
@@ -8312,8 +8227,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
       } while ((int)ValidationCounter < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
     }
   }
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
 }
 
 
@@ -8395,8 +8309,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
       } while ((int)loopCounter < *(int *)(ResourceContext + 0x18));
     }
   }
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
 }
 
 
@@ -8470,11 +8383,9 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t ope
     if (allocationSize <= (uint64_t)(objectSize * 4)) {
       allocationSize = 0xffffffffffffff0;
     }
-                    // WARNING: Subroutine does not return
-    InitializeMemoryAllocation(objectSize, allocationSize & 0xfffffffffffffff0);
+          InitializeMemoryAllocation(objectSize, allocationSize & 0xfffffffffffffff0);
   }
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(securityToken ^ (uint64_t)stackBuffer);
+        FinalizeSecurityOperation(securityToken ^ (uint64_t)stackBuffer);
 }
 
 
@@ -8505,8 +8416,7 @@ void UpdateSystemConfigurationAndExecute(int64_t configObject, int64_t SystemCon
       configOffset = configBuffer + -8;
     }
     *(uint8_t *)(configOffset + 0xbc) = *(uint8_t *)(configObject + 0x18);
-                    // WARNING: Subroutine does not return
-    ExecuteSystemOperation(*(uint8_t *)(SystemContext + 0x98), configObject);
+          ExecuteSystemOperation(*(uint8_t *)(SystemContext + 0x98), configObject);
   }
   return;
 }
@@ -8732,8 +8642,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
       ResourceTable = CONCAT44(ValidationContextParam,ValidationContext) + -8;
     }
     *(uint32_t *)(ResourceTable + 0x8c) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-                    // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+          ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
   }
   return ResourceHash;
 }
@@ -8763,8 +8672,7 @@ void ProcessObjectContextValidationAndIncrement(int64_t ObjectContext,int64_t Va
     }
     *(int *)(contextPointer + 0x84) = *(int *)(contextPointer + 0x84) + 1;
     *(uint8_t *)(contextPointer + 0xbd) = 1;
-                    // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+          ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
   }
   return;
 }
@@ -8794,8 +8702,7 @@ void ProcessObjectContextValidationAndReset(int64_t ObjectContext,int64_t Valida
     }
     *(int *)(contextPointer + 0x84) = *(int *)(contextPointer + 0x84) + 1;
     *(uint8_t *)(contextPointer + 0xbd) = 0;
-                    // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+          ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
   }
   return;
 }
@@ -8835,8 +8742,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t ObjectContex
   }
   *(float *)(ObjectContext + 0x14) = inputFloatValue;
   *(float *)(CONCAT44(ValidationContextParam,ValidationContext) + 4) = inputFloatValue;
-                    // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
 }
 
 
@@ -8947,8 +8853,7 @@ void ValidateAndProcessBufferContext(int64_t ObjectContext,int64_t ValidationCon
   if (ResourceIndex == 0) {
     ResourceIndex = ValidateBufferContext(ValidationContext,ObjectContext + ObjectContextProcessingDataOffset);
     if (ResourceIndex == 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
     }
   }
   return;
@@ -9005,8 +8910,7 @@ void ProcessBufferContextValidationAndSystemExit(int64_t ObjectContext,int64_t V
   if (ResourceIndex == 0) {
     ResourceIndex = ValidateBufferContext(ValidationContext,ObjectContext + ObjectContextProcessingDataOffset);
     if (ResourceIndex == 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
     }
   }
   return;
@@ -9042,8 +8946,7 @@ int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t 
         if (*(int *)(ThreadStackContextPointer + 0x30) == 1) {
           *(uint32_t *)(ThreadStackContextPointer + 0x30) = 2;
         }
-                    // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+              ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
       }
     }
     else if (*(int64_t *)(ObjectContext + ObjectContextValidationDataOffset) == 0) {
@@ -9053,8 +8956,7 @@ int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t 
       MemoryResourceTable = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),*(int *)(ObjectContext + ObjectContextProcessingDataOffset),
                             &SystemMemoryAllocationTable,0x315,0,0,1);
       if (MemoryResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(MemoryResourceTable,*(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset),(int64_t)*(int *)(ObjectContext + ObjectContextProcessingDataOffset));
+              memcpy(MemoryResourceTable,*(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset),(int64_t)*(int *)(ObjectContext + ObjectContextProcessingDataOffset));
       }
       ResourceIndex = 0x26;
     }
@@ -9094,8 +8996,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t ObjectContext,ui
       if (*(int *)(StackParameterContext + 0x30) == 1) {
         *(uint32_t *)(StackParameterContext + 0x30) = 2;
       }
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
+            ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
     }
   }
   else if (*(int64_t *)(ObjectContext + ObjectContextValidationDataOffset) == 0) {
@@ -9104,8 +9005,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t ObjectContext,ui
   else {
     ResourceTable = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext,&SystemMemoryAllocationTable,0x315,0);
     if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(ResourceTable,*(uint8_t *)(SystemRegisterContext + 0x18),(int64_t)*(int *)(SystemRegisterContext + 0x20));
+            memcpy(ResourceTable,*(uint8_t *)(SystemRegisterContext + 0x18),(int64_t)*(int *)(SystemRegisterContext + 0x20));
     }
     ResourceIndex = 0x26;
   }
@@ -9152,8 +9052,7 @@ void ExecuteDataValidationAndProcessing(int64_t DataContext, int64_t OperationCo
       if (*(int *)(TempDataBuffer + 0x30) == 1) {
         *(uint32_t *)(TempDataBuffer + 0x30) = 2;
       }
-                    // WARNING: Subroutine does not return
-      ExecuteDataOperation(*(uint8_t *)(OperationContext + 0x98), DataContext);
+            ExecuteDataOperation(*(uint8_t *)(OperationContext + 0x98), DataContext);
     }
   }
   return;
@@ -9184,8 +9083,7 @@ int ProcessDataBlockOperation(int64_t DataContext, int64_t OperationContext)
       MemoryBufferDataPtr = AllocateBufferMemory(*(uint8_t *)(SystemContext + 0x1a0), *(int *)(DataContext + 0x18), 0x20,
                             &ResourceTableTemplate, 0xdd, 0, 0);
       if (MemoryBufferDataPtr != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(MemoryBufferDataPtr, *(uint8_t *)(DataContext + 0x10), (int64_t)*(int *)(DataContext + 0x18));
+              memcpy(MemoryBufferDataPtr, *(uint8_t *)(DataContext + 0x10), (int64_t)*(int *)(DataContext + 0x18));
       }
       OperationResult = 0x26;
     }
@@ -9196,8 +9094,7 @@ int ProcessDataBlockOperation(int64_t DataContext, int64_t OperationContext)
         if (*(int *)(TempStackBuffer + 0x30) == 1) {
           *(uint32_t *)(TempStackBuffer + 0x30) = 2;
         }
-                    // WARNING: Subroutine does not return
-        ExecuteDataOperation(*(uint8_t *)(OperationContext + 0x98), DataContext);
+              ExecuteDataOperation(*(uint8_t *)(OperationContext + 0x98), DataContext);
       }
     }
     return OperationResult;
@@ -9234,8 +9131,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t ObjectContext, uint8_t 
   if (InputParameterValue == 0) {
     ResourceTable = CreateResourceTable(*(uint8_t *)(SystemContext + 0x1a0),ValidationContext,0x20,&ResourceTableTemplate,0xdd);
     if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(ResourceTable,*(uint8_t *)(SystemRegisterContext + 0x10),(int64_t)*(int *)(SystemRegisterContext + 0x18));
+            memcpy(ResourceTable,*(uint8_t *)(SystemRegisterContext + 0x10),(int64_t)*(int *)(SystemRegisterContext + 0x18));
     }
     OperationStatus = 0x26;
   }
@@ -9247,8 +9143,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t ObjectContext, uint8_t 
       if (*(int *)(StackParameterContext + 0x30) == 1) {
         *(uint32_t *)(StackParameterContext + 0x30) = 2;
       }
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
+            ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
     }
   }
   return OperationStatus;
@@ -9310,8 +9205,7 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext, int64_t V
     *(float *)(ObjectContext + ObjectContextValidationDataOffset) = ClampedFloatValue;
     ValidationStatusCode = ValidateResourceParameters(ValidationContext + 0x60,SecurityValidationBuffer[0],ClampedFloatValue);
     if ((int)ValidationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
     }
   }
   return HashValidationResult;
@@ -9361,8 +9255,7 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t ObjectContext, u
     *(float *)(ResourceContext + 0x18) = ClampedFloatValue;
     ValidationStatusCode = ValidateResourceParameters(SystemContext + 0x60,SecurityValidationBuffer,ClampedFloatValue);
     if ((int)ValidationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98));
+            ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98));
     }
   }
   return HashValidationResult;
@@ -9401,8 +9294,7 @@ void ProcessObjectContextFloatRangeValidationAndClamping(void)
   *(float *)(ContextPointer + 0x18) = RangeMinValue;
   PackageValidationStatusCode = ValidateResourceParameters(SystemPointer + 0x60,StackParameter,RangeMinValue);
   if (PackageValidationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(SystemPointer + 0x98));
+          ReleaseSystemContextResources(*(uint8_t *)(SystemPointer + 0x98));
   }
   return;
 }
@@ -9444,8 +9336,7 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext,int64_t Va
       else {
         ValidationResult = ValidateResourceParameters(ValidationContext + 0x60,SystemCommandParams[0]);
         if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-          ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+                ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
         }
       }
     }
@@ -9487,8 +9378,7 @@ uint8_t ValidateFloatDataAndExecute(void)
     else {
       ValidationStatusCode = ValidateResourceParameters(ResourceContextHandle + 0x60,ValidationParameter);
       if ((int)ValidationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
+              ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
       }
     }
   }
@@ -9525,8 +9415,7 @@ uint8_t ValidateFloatDataAndExecuteSimple(void)
     else {
       ValidationResult = ValidateResourceParameters(ResourceHandle + 0x60,ValidationParameter);
       if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
+              ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
       }
     }
   }
@@ -9593,8 +9482,7 @@ uint8_t ProcessDataValidationAndSystemOperation(int64_t ObjectContext,int64_t Va
     if ((int)ValidationResult == 0) {
       PloopIncrement = (uint8_t *)GetResourcePointer(ValidationContext + 0x60,ArrayUnionStackX8,ResourceValidationBuffer[0]);
       *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset) = *PloopIncrement;
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
     }
   }
   return ResourceHashValidationResult;
@@ -9637,8 +9525,7 @@ uint64_t GetSystemRuntimeStatus(void)
   if ((int)ValidationStatusCode == 0) {
     PloopIncrement = (uint8_t *)GetResourcePointer(SystemRegisterContext + 0x60,&ObjectStackBufferResource,ResourceContextSecondary);
     *(uint8_t *)(ResourceContext + 0x18) = *PloopIncrement;
-                    // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(SystemRegisterContext + 0x98));
+          ReleaseSystemContextResources(*(uint8_t *)(SystemRegisterContext + 0x98));
   }
   return HashValidationResult;
 }
@@ -9680,8 +9567,7 @@ void ProcessFloatRangeClamping(void)
   if (PackageValidationStatusCode == 0) {
     ResourceHashValidationResultPointer = (uint8_t *)GetResourcePointer(SystemRegisterContext + 0x60,&ObjectStackBufferResource,ResourceContextSecondary);
     *(uint8_t *)(ResourceContext + 0x18) = *ResourceHashValidationResultPointer;
-                    // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(SystemRegisterContext + 0x98));
+          ReleaseSystemContextResources(*(uint8_t *)(SystemRegisterContext + 0x98));
   }
   return;
 }
@@ -9742,8 +9628,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandling(int64_t ObjectContext,int64_t
         if ((int)ValidationResult == 0) {
           PloopIncrement = (uint8_t *)GetResourcePointer(ValidationContext + 0x60,ArrayUnionStackX8,ResourceValidationBuffer[0]);
           *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset) = *PloopIncrement;
-                    // WARNING: Subroutine does not return
-          ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+                ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
         }
       }
     }
@@ -9789,8 +9674,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandlingNoParams(void)
         PloopIncrement = (uint8_t *)
                  GetResourcePointer(ResourceRegisterPointer + 0x60,&ObjectStackBufferSecondary,ValidationParameterBuffer);
         *(uint8_t *)(SystemRegisterContext + 0x18) = *PloopIncrement;
-                    // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
+              ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
       }
     }
   }
@@ -9831,8 +9715,7 @@ uint64_t ProcessFloatDataValidation(void)
         PackageValidationStatusCodePointer = (uint8_t *)
                  GetResourcePointer(ResourceRegisterPointer + 0x60,&ObjectStackBufferSecondary,ValidationParameterBuffer);
         *(uint8_t *)(SystemRegisterContext + 0x18) = *HashValidationResultPointer;
-                    // WARNING: Subroutine does not return
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
+              ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
       }
     }
   }
@@ -9873,8 +9756,7 @@ void ProcessSystemContextAndDataOperation(int64_t ObjectContext,int64_t Validati
   ValidationContextOffset = ValidationContext + 0x60;
   ResourceHandleValue = ObjectContext + ObjectContextValidationDataOffset + (int64_t)*(int *)(ObjectContext + 0x10) * 8;
   ValidationContextPtr = ValidationContext;
-                    // WARNING: Subroutine does not return
-  InitializeMemoryAllocation();
+        InitializeMemoryAllocation();
 }
 
 
@@ -9903,8 +9785,7 @@ uint8_t ValidateObjectContextAndProcessFloatValidation(int64_t ObjectContext,int
   ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&ValidationContext);
   if ((int)ResourceHash == 0) {
     *(uint32_t *)(CONCAT44(ValidationContextParam,ValidationContext) + 0x18) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-                    // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
+          ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
   }
   return ResourceHash;
 }
@@ -10209,8 +10090,7 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationC
       ResourceSecondaryFlag = ResourceValidationByteSecond >> 8 & 0xff;
       ResourcePrimaryFlag = ResourceValidationByteSecond & 0xff;
       resourceFlagHighBits = ResourceValidationByteFirst & 0xffff;
-                    // WARNING: Subroutine does not return
-      ExecuteSecurityOperation(ResourceChecksumBuffer,0x27,&SecurityOperationData,ResourceSecurityFlag);
+            ExecuteSecurityOperation(ResourceChecksumBuffer,0x27,&SecurityOperationData,ResourceSecurityFlag);
     }
     if (((*(byte *)(ResourceIndex + 0xc4) & 1) != 0) &&
        ((ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x68), ResourceHandleBackup != 0 ||
@@ -10218,8 +10098,7 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationC
       *resourceIndexOutput = ResourceHandleBackup;
     }
   }
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(PrimaryOperationParameter ^ (uint64_t)SecurityDataBuffer);
+        FinalizeSecurityOperation(PrimaryOperationParameter ^ (uint64_t)SecurityDataBuffer);
 }
 
 
@@ -10228,8 +10107,7 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationC
  
 void ExecuteSecurityOperationHandler(void)
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityOperation();
+        ExecuteSecurityOperation();
 }
 
 
@@ -10250,8 +10128,7 @@ void FinalizeSecurityOperationWrapper(void)
 {
   uint64_t SecurityOperationParam;
   
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(SecurityOperationParam ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(SecurityOperationParam ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -10317,16 +10194,14 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationC
       ResourceQuaternaryFlag = ValidationParameterTertiary >> 8 & 0xff;
       ResourceTertiaryFlag = ValidationParameterTertiary & 0xff;
       ResourcePrimaryFlag = ValidationParameterSecondary & 0xffff;
-                    // WARNING: Subroutine does not return
-      ExecuteSecurityOperation(EncryptedDataBuffer,0x27,&SecurityOperationData,ValidationParameterPrimary);
+            ExecuteSecurityOperation(EncryptedDataBuffer,0x27,&SecurityOperationData,ValidationParameterPrimary);
     }
     if ((**(int **)(ResourceIndex + 0xd0) != 0) ||
        (ResourceProcessingResult = CheckResourceAvailability(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset)), ResourceProcessingResult == 0)) {
       *resourceIndexOutput = ResourceIndex;
     }
   }
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(SecurityOperationParameter ^ (uint64_t)SecurityDataBuffer);
+        FinalizeSecurityOperation(SecurityOperationParameter ^ (uint64_t)SecurityDataBuffer);
 }
 
 
@@ -10366,8 +10241,7 @@ int ValidateResourceTableAccess(uint64_t ResourceHandle)
   ResourceObjectContextPointer = ObjectContext;
   ResourceTablePointer = (**(code **)(InputParameter + 0x288))();
   if (ResourceTablePointer == 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,ResourceObjectContextPointer & 0xffffffff,
+          ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,ResourceObjectContextPointer & 0xffffffff,
                   ResourceObjectContextPointer.Field42);
   }
   if (**(int **)(ResourceTablePointer + 0xd0) == 0) {
@@ -10376,8 +10250,7 @@ int ValidateResourceTableAccess(uint64_t ResourceHandle)
   }
   *ResourceSystemContextPointer = ResourceTablePointer;
 ValidationSuccessLabel:
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(ResourceStackSecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(ResourceStackSecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -10399,8 +10272,7 @@ void FinalizeSecurityOperationHandler(uint64_t SecurityContext)
 {
   uint64_t SecurityContextParameter;
   
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(SecurityContextParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(SecurityContextParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -10464,16 +10336,14 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *Resource
       ResourceSecurityByte2 = ResourceSecurityFlag >> 8 & 0xff;
       ResourceSecurityByte1 = ResourceSecurityFlag & 0xff;
       ResourceControlWord = ResourceAccessFlag & 0xffff;
-                    // WARNING: Subroutine does not return
-      ExecuteSecurityOperation(ResourceChecksumBuffer,0x27,&SecurityOperationData,ResourceValidationFlag);
+            ExecuteSecurityOperation(ResourceChecksumBuffer,0x27,&SecurityOperationData,ResourceValidationFlag);
     }
     ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x48);
     if ((ResourceHandleBackup != 0) || (OperationStatusCode = AcquireResourceLock(ObjectContext,ResourceIndex,&ResourceHandleBackup), OperationStatusCode == 0)) {
       *ResourceIndexOutput = ResourceHandleBackup;
     }
   }
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(PrimaryOperationParameter ^ (uint64_t)SecurityDataBuffer);
+        FinalizeSecurityOperation(PrimaryOperationParameter ^ (uint64_t)SecurityDataBuffer);
 }
 
 
@@ -10503,8 +10373,7 @@ void ExecuteSecurityOperationHandler(void)
 
 void ExecuteSecurityOperationHandler(void)
 {
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityOperation();
+        ExecuteSecurityOperation();
 }
 
 
@@ -10534,8 +10403,7 @@ void FinalizeSecurityOperationHandler(void)
   if ((ResourceValue != 0) || (OperationStatus = AcquireResourceLock(), OperationStatus == 0)) {
     *ResourcePointer = ResourceValue;
   }
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(StackParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(StackParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -10719,8 +10587,7 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext,uint8_t C
     }
   }
 CleanupHandler:
-                    // WARNING: Subroutine does not return
-  CleanupProcessingQueue(DataChecksumBuffer);
+        CleanupProcessingQueue(DataChecksumBuffer);
 }
 
 
@@ -10755,8 +10622,7 @@ uint ValidateAndProcessDataContainer(int64_t *ObjectContext)
       return ResourceHashValidationResult;
     }
     if ((0 < (int)HashValidationResult) && (*ObjectContext != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
     }
     *ObjectContext = 0;
     ValidationStatusCode = 0;
@@ -10765,8 +10631,7 @@ uint ValidateAndProcessDataContainer(int64_t *ObjectContext)
   ResourceIndex = (int)ObjectContext[1];
   if (ResourceIndex < 0) {
     if (ResourceIndex < 0) {
-                    // WARNING: Subroutine does not return
-      memset(*ObjectContext + (int64_t)ResourceIndex * 0xc,0,(uint64_t)(uint)-ResourceIndex * 0xc);
+            memset(*ObjectContext + (int64_t)ResourceIndex * 0xc,0,(uint64_t)(uint)-ResourceIndex * 0xc);
     }
   }
   *(uint32_t *)(ObjectContext + 1) = 0;
@@ -10778,8 +10643,7 @@ uint ValidateAndProcessDataContainer(int64_t *ObjectContext)
     return 0x1c;
   }
   if ((0 < *(int *)((int64_t)ObjectContext + 0xc)) && (*ObjectContext != 0)) {
-                    // WARNING: Subroutine does not return
-    ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
   }
   *ObjectContext = 0;
   *(uint32_t *)((int64_t)ObjectContext + 0xc) = 0;
@@ -10830,8 +10694,7 @@ uint64_t ProcessObjectLifecycleManagement(int64_t objectHandle)
       return 0x1c;
     }
     if ((0 < (int)loopCondition) && (*ResourceContext != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
     }
     *ResourceContext = 0;
     loopIncrement = 0;
@@ -10839,8 +10702,7 @@ uint64_t ProcessObjectLifecycleManagement(int64_t objectHandle)
   }
   OperationStatusCode = *(int *)(ObjectContext + 0x10);
   if (OperationResult < 0) {
-                    // WARNING: Subroutine does not return
-    memset((int64_t)OperationResult + *ResourceContext,0,(int64_t)-OperationResult);
+          memset((int64_t)OperationResult + *ResourceContext,0,(int64_t)-OperationResult);
   }
   *(uint32_t *)(ObjectContext + 0x10) = 0;
   if ((0 < (int)((loopIncrement ^ (int)loopCondition >> 0x1f) - ((int)loopCondition >> 0x1f))) &&
@@ -10876,8 +10738,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ObjectContext)
       return 0x1c;
     }
     if ((0 < (int)HashValidationResult) && (*ObjectContext != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
     }
     *ObjectContext = 0;
     ValidationStatusCode = 0;
@@ -10885,8 +10746,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ObjectContext)
   }
   ResourceIndex = (int)ObjectContext[1];
   if (ResourceIndex < 0) {
-                    // WARNING: Subroutine does not return
-    memset(*ObjectContext + (int64_t)ResourceIndex * 0xc,0,(int64_t)-ResourceIndex * 0xc);
+          memset(*ObjectContext + (int64_t)ResourceIndex * 0xc,0,(int64_t)-ResourceIndex * 0xc);
   }
   *(uint32_t *)(ObjectContext + 1) = 0;
   if ((0 < (int)((HashValidationResult ^ (int)HashValidationResult >> 0x1f) - ((int)HashValidationResult >> 0x1f))) &&
@@ -10923,8 +10783,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
       return 0x1c;
     }
     if ((0 < (int)ResourcePoolFlags) && (*ResourcePoolHandle != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourcePoolHandle,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourcePoolHandle,&ResourceTableTemplate,0x100,1);
     }
     *ResourcePoolHandle = 0;
     *(uint32_t *)((int64_t)ResourcePoolHandle + 0xc) = 0;
@@ -11229,8 +11088,7 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *Val
           ((*(uint *)(ObjectContext + 0x6c) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(ObjectContext + 0x6c) >> 0x19 & 1) != 0 && (MaxOperationCount == *(int *)(ObjectContext + 0xb0))))) {
 VALIDATION_FAILURE_HANDLER:
-                    // WARNING: Subroutine does not return
-        memcpy(SecurityDataLargeBuffer,SystemDataPointer,(int64_t)*(int *)(SystemDataPointer + 8));
+              memcpy(SecurityDataLargeBuffer,SystemDataPointer,(int64_t)*(int *)(SystemDataPointer + 8));
       }
     }
     else {
@@ -11268,8 +11126,7 @@ VALIDATION_FAILURE_HANDLER:
     *ValidationContext = 0;
   }
 HandleSystemError:
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(ValidationParameter ^ (uint64_t)SecurityValidationBuffer);
+        FinalizeSecurityOperation(ValidationParameter ^ (uint64_t)SecurityValidationBuffer);
 }
 
 
@@ -11361,8 +11218,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
        (((*(uint *)(SystemRegisterContext + 0x6c) >> 0x19 & 1) != 0 && (OperationStatusCode == *(int *)(SystemRegisterContext + 0xb0)))))
     {
 VALIDATION_FAILURE_HANDLER:
-                    // WARNING: Subroutine does not return
-      memcpy(ExecutionContextPointer + -0x10,LongValue8,(int64_t)*(int *)(LongValue8 + 8));
+            memcpy(ExecutionContextPointer + -0x10,LongValue8,(int64_t)*(int *)(LongValue8 + 8));
     }
   }
   else {
@@ -11395,8 +11251,7 @@ VALIDATION_FAILURE_HANDLER:
   }
   *SystemContext = 0;
 CONTEXT_ERROR_HANDLER:
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x5f0) ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x5f0) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -12059,8 +11914,7 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
   }
 MemoryAllocationComplete:
   if ((0 < *(int *)((int64_t)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
-                    // WARNING: Subroutine does not return
-    ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceTableTemplate,0x100,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceTableTemplate,0x100,1);
   }
   *arrayPointer = (int64_t)newArrayBuffer;
   *(int *)((int64_t)arrayPointer + 0xc) = newSize;
@@ -12095,8 +11949,7 @@ uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t resourcePool, int cleanupFl
   if (ValidationContextIndex == 0) {
 ValidationComplete:
     if ((0 < *(int *)((int64_t)ResourceContext + 0xc)) && (*ResourceContext != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
     }
     *ResourceContext = (int64_t)HashValidationResultPointer;
     *(int *)((int64_t)ResourceContext + 0xc) = ValidationContextIndex;
@@ -12167,8 +12020,7 @@ uint64_t ResizeArray(int64_t *arrayPointer, int newSize)
                             0xf4,0,0,1);
       if (newMemoryBlock != 0) {
         if ((int)arrayPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-          memcpy(newMemoryBlock,*arrayPointer,(int64_t)(int)arrayPointer[1] * 0xc);
+                memcpy(newMemoryBlock,*arrayPointer,(int64_t)(int)arrayPointer[1] * 0xc);
         }
         goto cleanup_old_memory;
       }
@@ -12177,8 +12029,7 @@ uint64_t ResizeArray(int64_t *arrayPointer, int newSize)
   }
 cleanup_old_memory:
   if ((0 < *(int *)((int64_t)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
-                    // WARNING: Subroutine does not return
-    ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceTableTemplate,0x100,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceTableTemplate,0x100,1);
   }
   *arrayPointer = newMemoryBlock;
   *(int *)((int64_t)arrayPointer + 0xc) = newSize;
@@ -12208,8 +12059,7 @@ uint64_t ExpandArray(uint8_t arrayHeader, int newSize)
   if (currentSize == 0) {
 cleanup_old_memory:
     if ((0 < *(int *)((int64_t)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*arrayPointer,&ResourceTableTemplate,0x100,1);
     }
     *arrayPointer = newMemoryBlock;
     *(int *)((int64_t)arrayPointer + 0xc) = currentSize;
@@ -12220,8 +12070,7 @@ cleanup_old_memory:
                           0);
     if (newMemoryBlock != 0) {
       if ((int)arrayPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(newMemoryBlock,*arrayPointer,(int64_t)(int)arrayPointer[1] * 0xc);
+              memcpy(newMemoryBlock,*arrayPointer,(int64_t)(int)arrayPointer[1] * 0xc);
       }
       goto cleanup_old_memory;
     }
@@ -12439,8 +12288,7 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
                     return ContextHashValidationResult;
                   }
                   if ((0 < (int)ResourceHandlerFlag2.Field44) && (ResourceHandlerFlag1 != 0)) {
-                    // WARNING: Subroutine does not return
-                    ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHandlerFlag1,&ResourceTableTemplate,
+                          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHandlerFlag1,&ResourceTableTemplate,
                                   0x100,1);
                   }
                   ResourceHandlerFlag1 = 0;
@@ -12521,8 +12369,7 @@ ResourceAllocationSuccess:
     if (ResourceIndex1 < 0) {
       if (0 < ResourceIndex6) goto ErrorHandler;
       if ((0 < OperationResult) && (ContextHashValidationResult != 0)) {
-                    // WARNING: Subroutine does not return
-        ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ContextHashValidationResult,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ContextHashValidationResult,&ResourceTableTemplate,0x100,1);
       }
       ResourceHandlerFlag1 = 0;
       ResourceHandlerFlag2 = 0;
@@ -12705,8 +12552,7 @@ uint8_t ExpandResourceTableCapacity(int64_t ObjectContext)
     ResourceTable = *(int64_t *)(*(int64_t *)(ObjectContext + 8) + 0x90);
     loopIncrement = ProcessResourceValidation(*(uint8_t *)(ResourceTable + 0x4d0),*(uint32_t *)(ResourceTable + 0x774));
     *(uint8_t *)(HashValidationResultPointer + 4) = loopIncrement;
-                    // WARNING: Subroutine does not return
-    memcpy(HashValidationResultPointer + 6,SystemContextPointer,(int64_t)tableEntry);
+          memcpy(HashValidationResultPointer + 6,SystemContextPointer,(int64_t)tableEntry);
   }
   return 0;
 }
@@ -13177,8 +13023,7 @@ ResourceProcessingHandler:
  */
 void ModuleProcessErrorHandler(void)
 {
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(ResourceSecurityFlag ^ (uint64_t)GraphicsDataBuffer);
+        FinalizeSecurityOperation(ResourceSecurityFlag ^ (uint64_t)GraphicsDataBuffer);
 }
 
 
@@ -13485,8 +13330,7 @@ void ProcessComplexResourceWithRegisters(void)
     } while( true );
   }
 ValidationErrorHandler:
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(uint64_t *)(executionContext + 0x1d0) ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(*(uint64_t *)(executionContext + 0x1d0) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13504,8 +13348,7 @@ void ExecuteQuickSecurityOperationFinalization(void)
 {
   int64_t stackContext;
   
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(uint64_t *)(stackContext + 0x1d0) ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(*(uint64_t *)(stackContext + 0x1d0) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13542,8 +13385,7 @@ void ProcessContextDataValidation(int64_t *ObjectContext,int64_t *ValidationCont
       *(uint8_t *)(ObjectContext + 4) = 0;
     }
   }
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(securityParameter ^ (uint64_t)encryptionBuffer);
+        FinalizeSecurityOperation(securityParameter ^ (uint64_t)encryptionBuffer);
 }
 
 
@@ -13573,8 +13415,7 @@ void ExecuteSimplifiedContextValidation(void)
      (operationResult = (**(code **)(*resourcePointer + 0x18))(), operationResult == 0)) {
     *(uint8_t *)(resourcePointer + 4) = 0;
   }
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(stackParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(stackParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13599,8 +13440,7 @@ void SystemStatusProcessorPrimary(void)
   if ((SavedIndexLow == '\0') && (ResourceIndex = (**(code **)(*SystemRegisterContext + 0x18))(), ResourceIndex == 0)) {
     *(uint8_t *)(SystemRegisterContext + 4) = 0;
   }
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(StackParameter220 ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(StackParameter220 ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13869,8 +13709,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
  */
 void BufferValidationErrorHandler(void)
 {
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(ResourceSecurityFlag ^ (uint64_t)StackArray1e8);
+        FinalizeSecurityOperation(ResourceSecurityFlag ^ (uint64_t)StackArray1e8);
 }
 
 
@@ -14153,8 +13992,7 @@ void SystemInitializerPrimary(void)
  */
 void DataProcessingErrorHandler(void)
 {
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(ExecutionContextPointer[0x12] ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(ExecutionContextPointer[0x12] ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -14420,8 +14258,7 @@ void CalculateFloatValueAndValidateResources(void)
  */
 void FloatProcessingErrorHandler(void)
 {
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(ExecutionContextPointer[0x12] ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(ExecutionContextPointer[0x12] ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -14561,8 +14398,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
     }
   }
 OperationResultHandler:
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x90) ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x90) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -14573,8 +14409,7 @@ OperationResultHandler:
 {
   int64_t ExecutionContextPointer;
   
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x90) ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x90) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -14585,8 +14420,7 @@ OperationResultHandler:
 {
   int64_t ExecutionContextPointer;
   
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x90) ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x90) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -14597,8 +14431,7 @@ OperationResultHandler:
 {
   int64_t ExecutionContextPointer;
   
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x90) ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(*(uint64_t *)(ExecutionContextPointer + 0x90) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -14654,8 +14487,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *ObjectContext,int64_t Validati
       int ValidationResult = ValidateBufferContext(*(int **)(SystemContextPointer + 0xd0),DataChecksumBuffer8);
       if (ValidationResult != 0) {
 LoopExit:
-                    // WARNING: Subroutine does not return
-        FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)SecurityEncryptionBuffer);
+              FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)SecurityEncryptionBuffer);
       }
       uint32_t DataBufferFirst = *(uint32_t *)(SystemResourceContext + 0x10);
       uint32_t DataBufferSecond = *(uint32_t *)(SystemResourceContext + 0x14);
@@ -14726,8 +14558,7 @@ void ProcessResourceDataValidationOperation(int64_t *ObjectContext,uint8_t Valid
   validationFlags = validationFlagsParam;
   ProcessDataBuffer(dataBuffer,0x400,ValidationContext,&securityValidationContext);
   (**(code **)(*ObjectContext + 8))(ObjectContext,dataBuffer);
-                    // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(operationParam1 ^ (uint64_t)securityBuffer);
+        FinalizeSecurityOperation(operationParam1 ^ (uint64_t)securityBuffer);
 }
 
 
@@ -15194,8 +15025,7 @@ ResourceValidationComplete:
     }
   }
 ResourceProcessingComplete:
-                    // WARNING: Subroutine does not return
-  CleanupProcessingQueue(AudioProcessingBufferExtended + 1);
+        CleanupProcessingQueue(AudioProcessingBufferExtended + 1);
 }
 
 
@@ -15238,11 +15068,9 @@ ResourceProcessingComplete:
   ValidationStatusCode = *(int *)(ObjectContext + ObjectContextMatrixScaleOffset);
   if (ProcessStatus <= HashValidationResult) {
     *(int *)(ObjectContext + ObjectContextMatrixScaleOffset) = ProcessStatus;
-                    // WARNING: Subroutine does not return
-    memcpy((int64_t)ResourceIndex + *(int64_t *)(ObjectContext + 0x28),ValidationContext,(int64_t)OperationResult);
+          memcpy((int64_t)ResourceIndex + *(int64_t *)(ObjectContext + 0x28),ValidationContext,(int64_t)OperationResult);
   }
-                    // WARNING: Subroutine does not return
-  memset((int64_t)HashValidationResult + *(int64_t *)(ObjectContext + 0x28),0,(int64_t)(ProcessStatus - HashValidationResult));
+        memset((int64_t)HashValidationResult + *(int64_t *)(ObjectContext + 0x28),0,(int64_t)(ProcessStatus - HashValidationResult));
 }
 
 
@@ -15274,8 +15102,7 @@ uint8_t ProcessResourceDataExpansion(int64_t *ObjectContext,int ValidationContex
     *(int *)(ObjectContext + 1) = ValidationContext;
     return 0;
   }
-                    // WARNING: Subroutine does not return
-  memset((int64_t)ResourceIndex + *ObjectContext,0,(int64_t)(ValidationContext - ResourceIndex));
+        memset((int64_t)ResourceIndex + *ObjectContext,0,(int64_t)(ValidationContext - ResourceIndex));
 }
 
 
@@ -16041,8 +15868,7 @@ uint8_t ProcessResourceTableIndex(int64_t *ObjectContext,int ValidationContext)
   }
 ResourceProcessingEntryPoint:
   if ((0 < *(int *)((int64_t)ObjectContext + 0xc)) && (*ObjectContext != 0)) {
-                    // WARNING: Subroutine does not return
-    ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ObjectContext,&ResourceTableTemplate,0x100,1);
   }
   *ObjectContext = (int64_t)HashValidationResultPointer;
   *(int *)((int64_t)ObjectContext + 0xc) = ValidationContext;
@@ -16077,8 +15903,7 @@ uint8_t ValidateResourceParameters(uint8_t ObjectContext,int ValidationContext)
   if (ResourceOperationCode == 0) {
 ResourceProcessingEntryPoint:
     if ((0 < *(int *)((int64_t)ResourceContext + 0xc)) && (*ResourceContext != 0)) {
-                    // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ResourceContext,&ResourceTableTemplate,0x100,1);
     }
     *ResourceContext = (int64_t)HashValidationResultPointer;
     *(int *)((int64_t)ResourceContext + 0xc) = ResourceOperationCode;
@@ -16914,8 +16739,7 @@ uint8_t QueryResourceTable(uint8_t ObjectContext, int64_t *ValidationContext)
     }
     ResourceIndex = (int)ValidationContext[1];
     if (ResourceIndex < tableEntry) {
-                    // WARNING: Subroutine does not return
-      memset((int64_t)ResourceIndex + *ValidationContext,0,(int64_t)(tableEntry - ResourceIndex));
+            memset((int64_t)ResourceIndex + *ValidationContext,0,(int64_t)(tableEntry - ResourceIndex));
     }
     *(int *)(ValidationContext + 1) = tableEntry;
     ValidationResult = ReadResourceData(ObjectContext,*ValidationContext,LoopOffset);
@@ -16959,8 +16783,7 @@ uint8_t InitializeResourceBuffer(void)
     }
     ResourceIndex = (int)ResourceContext[1];
     if (ResourceIndex < OperationResult) {
-                    // WARNING: Subroutine does not return
-      memset((int64_t)ResourceIndex + *ResourceContext,0,(int64_t)(OperationResult - ResourceIndex));
+            memset((int64_t)ResourceIndex + *ResourceContext,0,(int64_t)(OperationResult - ResourceIndex));
     }
     *(int *)(ResourceContext + 1) = OperationResult;
     ValidationResult = ReadResourceData();
@@ -18881,8 +18704,7 @@ uint8_t ValidateResourceTableEntry(int64_t ResourceContext, uint8_t *ResourceDat
           ResourceHash = 0x1c;
         }
         if ((int)ResourceHash == 0) {
-                    // WARNING: Subroutine does not return
-          CleanupResourceData(ValidationContext,ResourceOperationBuffer);
+                CleanupResourceData(ValidationContext,ResourceOperationBuffer);
         }
       }
     }
@@ -18923,8 +18745,7 @@ uint8_t GetResourceTableStatus(void)
         ResourceHash = 0x1c;
       }
       if ((int)ResourceHash == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
     }
   }
@@ -18963,8 +18784,7 @@ void ResourceIntegrityValidator(void)
     ValidationResult = 0x1c;
   }
   if (ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupResourceData();
+          CleanupResourceData();
   }
   return;
 }
@@ -19003,8 +18823,7 @@ uint8_t InitializeResourceTableCache(void)
           floatComparisonResult = *(float *)(HashValidationResultPointer + 3);
           if (HashValidationResultPointer != (uint8_t *)0x0) {
             (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),HashValidationResultPointer,&MemoryAllocationTemplate,0x130,1);
+                  ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),HashValidationResultPointer,&MemoryAllocationTemplate,0x130,1);
           }
           PackageValidationStatusCodePointer = (uint8_t *)
                    AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),0x20,&MemoryAllocationTemplate,0x119);
@@ -19035,8 +18854,7 @@ uint8_t InitializeResourceTableCache(void)
     return ResourceHashValidationResult;
   }
 ResourceCleanupStart:
-                    // WARNING: Subroutine does not return
-  CleanupResourceData();
+        CleanupResourceData();
 }
 
 
@@ -19107,8 +18925,7 @@ void ValidateAndProcessResourceData(int64_t ResourceContext, uint8_t ResourceDat
     if ((authenticationFlag != '\0') && (ValidationResult = ResourceDataAuthenticator(ResourceContext + 0x48,ResourceData), ValidationResult != 0)) {
       return;
     }
-                    // WARNING: Subroutine does not return
-    CleanupResourceData(ResourceData,checksumBufferPrimary);
+          CleanupResourceData(ResourceData,checksumBufferPrimary);
   }
   return;
 }
@@ -19301,8 +19118,7 @@ ResourceValidationStart:
   }
 ResourceDataValidation:
   if (ContextValidationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupResourceData();
+          CleanupResourceData();
   }
 ResourceOperationExit:
   return (uint64_t)ContextHashValidationResult;
@@ -19329,8 +19145,7 @@ int SetSystemStatusFlagToActive(void)
   if (SystemStatusRegister != 0) {
     return SystemStatusRegister;
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData();
+        CleanupResourceData();
 }
 
 
@@ -19355,8 +19170,7 @@ int GetSystemStatusFlagValue(void)
   if (SystemStatusRegister != 0) {
     return SystemStatusRegister;
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData();
+        CleanupResourceData();
 }
 
 
@@ -19434,8 +19248,7 @@ uint64_t ProcessResourceDataReadAndValidate(int64_t ResourceHandle,uint8_t *Reso
         }
         if ((*(int *)(ResourceData[1] + 0x18) == 0) &&
            (loopIncrement = ReadResourceData(*ValidationContext,ObjectContext + ObjectContextSecurityContextOffset,4), loopIncrement == 0)) {
-                    // WARNING: Subroutine does not return
-          CleanupResourceData(ValidationContext,DataChecksumBuffer);
+                CleanupResourceData(ValidationContext,DataChecksumBuffer);
         }
       }
       return (uint64_t)loopIncrement;
@@ -19495,8 +19308,7 @@ uint64_t ExecuteResourceDataValidation(void)
     }
     if ((*(int *)(ResourceContext[1] + 0x18) == 0) &&
        (ValidationStatusCode = ReadResourceData(*ResourceContext,ExecutionContextPointer + 0x40,4), ValidationStatusCode == 0)) {
-                    // WARNING: Subroutine does not return
-      CleanupResourceData();
+            CleanupResourceData();
     }
   }
   return (uint64_t)HashValidationResult;
@@ -19543,8 +19355,7 @@ uint64_t GetResourceHashA(void)
       ValidationResult = ReadResourceData(*ResourceContext,ExecutionContextPointer + 0x40,4);
       SystemRegisterContext = (uint64_t)ResourceHashValidationResult;
       if (ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
     }
   }
@@ -19579,8 +19390,7 @@ uint64_t GetResourceHashB(void)
       ResourceHash = ReadResourceData(*ResourceContext,ExecutionContextPointer + 0x40,4);
       SystemRegisterContext = (uint64_t)ResourceHash;
       if (ResourceHash == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
     }
   }
@@ -19599,8 +19409,7 @@ uint64_t GetResourceHashB(void)
 void CleanupSystemResourceData(void)
 
 {
-                    // WARNING: Subroutine does not return
-  CleanupResourceData();
+        CleanupResourceData();
 }
 
 
@@ -19640,8 +19449,7 @@ void ValidateAndProcessObjectContextData(int64_t ObjectContext, uint8_t Validati
   if (ValidationStatus == 0) {
     ValidationStatus = ComputeDataChecksum(ValidationContext,ObjectContext + 8);
     if (ValidationStatus == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupResourceData(ValidationContext,DataChecksumBuffer);
+            CleanupResourceData(ValidationContext,DataChecksumBuffer);
     }
   }
   return;
@@ -20127,8 +19935,7 @@ uint8_t ValidateResourceHash(int64_t ResourceContext,uint8_t *ResourceData)
             ResourceValidationBuffer[0] = ResourceValidationBuffer[0] & -HashValidationResult;
           } while (OperationResult < (int)loopCondition);
         }
-                    // WARNING: Subroutine does not return
-        CleanupResourceData(ValidationContext,EncryptionBuffer);
+              CleanupResourceData(ValidationContext,EncryptionBuffer);
       }
     }
   }
@@ -20176,8 +19983,7 @@ void ProcessResourceDataLoading(void)
       loadingStatus = loadingStatus + 1;
     } while (loadingStatus < (int)ResourceHash);
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData();
+        CleanupResourceData();
 }
 
 
@@ -20357,8 +20163,7 @@ ResourceValidationLoop:
             if ((int)ContextValidationStatusCode == 0) {
               if (*(uint *)(ResourceData + 8) < 0x82) {
 ResourceStatusCheck:
-                    // WARNING: Subroutine does not return
-                CleanupResourceData(ValidationContext,ResourceValidationBuffer);
+                      CleanupResourceData(ValidationContext,ResourceValidationBuffer);
               }
               ContextValidationStatusCode = ResourceCounter;
               if (*(int *)(ResourceData[1] + 0x18) == 0) {
@@ -20529,8 +20334,7 @@ ResourceValidationLoop:
             if ((int)SecurityHashValue == 0) {
               if (*(uint *)(ResourceContext + 8) < 0x82) {
 ResourceStatusCheck:
-                    // WARNING: Subroutine does not return
-                CleanupResourceData();
+                      CleanupResourceData();
               }
               ResourceContextOffset = ResourceCounter;
               if (*(int *)(ResourceContext[1] + 0x18) == 0) {
@@ -20683,8 +20487,7 @@ ResourceValidationLoop:
             if ((int)SecurityHashValue == 0) {
               if (*(uint *)(ResourceContext + 8) < 0x82) {
 ResourceStatusCheck:
-                    // WARNING: Subroutine does not return
-                CleanupResourceData();
+                      CleanupResourceData();
               }
               ResourceContextOffset = ResourceCounter;
               if (*(int *)(ResourceContext[1] + 0x18) == 0) {
@@ -20833,8 +20636,7 @@ ResourceValidationLoop:
             if ((int)SecurityHashValue == 0) {
               if (*(uint *)(ResourceContext + 8) < 0x82) {
 ResourceStatusCheck:
-                    // WARNING: Subroutine does not return
-                CleanupResourceData();
+                      CleanupResourceData();
               }
               ResourceContextOffset = ResourceCounter;
               if (*(int *)(ResourceContext[1] + 0x18) == 0) {
@@ -20936,8 +20738,7 @@ void ValidateAndProcessResourceData(int64_t ObjectContext, uint8_t *ValidationCo
             resourceStackBuffer18[0] = resourceStackBuffer18[0] & -configurationFlags;
           } while (checksumHashValidationResult < (int)ResourceCount);
         }
-                    // WARNING: Subroutine does not return
-        CleanupResourceData(ValidationContext,ResourceValidationBuffer);
+              CleanupResourceData(ValidationContext,ResourceValidationBuffer);
       }
     }
   }
@@ -21004,8 +20805,7 @@ void ResourceDataValidationProcessor(void)
           processingResult = processingResult + 1;
         } while (processingResult < (int)configurationFlags);
       }
-                    // WARNING: Subroutine does not return
-      CleanupResourceData();
+            CleanupResourceData();
     }
   }
   return;
@@ -21111,8 +20911,7 @@ uint8_t ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int 
   }
   OperationStatusCode = *(int *)(ObjectContext + ObjectContextValidationDataOffset);
   if (OperationResult < (int)ResourceContextOffset) {
-                    // WARNING: Subroutine does not return
-    memset((int64_t)OperationResult * 0x10 + *(int64_t *)(ObjectContext + 0x10),0,
+          memset((int64_t)OperationResult * 0x10 + *(int64_t *)(ObjectContext + 0x10),0,
            (int64_t)(int)(ResourceContextOffset - OperationResult) << 4);
   }
   *(uint *)(ObjectContext + ObjectContextValidationDataOffset) = ResourceContextOffset;
@@ -21155,8 +20954,7 @@ uint8_t ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int 
   }
   OperationStatusCode = *(int *)(ObjectContext + 0x28);
   if (OperationResult < (int)ResourceHash) {
-                    // WARNING: Subroutine does not return
-    memset((int64_t)OperationResult + *(int64_t *)(ObjectContext + ObjectContextProcessingDataOffset),0,(int64_t)(int)(ResourceHash - OperationResult));
+          memset((int64_t)OperationResult + *(int64_t *)(ObjectContext + ObjectContextProcessingDataOffset),0,(int64_t)(int)(ResourceHash - OperationResult));
   }
   *(uint *)(ObjectContext + 0x28) = ResourceHash;
   if (ResourceHash != 0) {
@@ -21229,8 +21027,7 @@ void ResourceIntegrityValidator(void)
   }
   ResourceIndex = *(int *)(CpuRegisterR15 + 0x18);
   if (ResourceIndex < (int)loopCondition) {
-                    // WARNING: Subroutine does not return
-    memset((int64_t)ResourceIndex * 0x10 + *(int64_t *)(CpuRegisterR15 + 0x10),0,
+          memset((int64_t)ResourceIndex * 0x10 + *(int64_t *)(CpuRegisterR15 + 0x10),0,
            (int64_t)(int)(loopIncrement - ResourceIndex) << 4);
   }
   *(uint *)(CpuRegisterR15 + 0x18) = loopIncrement;
@@ -21273,8 +21070,7 @@ void ResourceIntegrityValidator(void)
   }
   OperationStatusCode = *(int *)(CpuRegisterR15 + 0x28);
   if (OperationResult < ResourceIndex) {
-                    // WARNING: Subroutine does not return
-    memset((int64_t)OperationResult + *(int64_t *)(CpuRegisterR15 + 0x20),0,(int64_t)(ResourceIndex - OperationResult));
+          memset((int64_t)OperationResult + *(int64_t *)(CpuRegisterR15 + 0x20),0,(int64_t)(ResourceIndex - OperationResult));
   }
   *(int *)(CpuRegisterR15 + 0x28) = ResourceIndex;
   if (ResourceIndex != 0) {
@@ -21521,8 +21317,7 @@ ResourceValidationWait:
           return SecurityHashValue;
         }
         if ((0 < (int)ResourceQuaternaryFlag.FloatValue) && (pResourceTertiaryFlag != (uint8_t *)0x0)) {
-                    // WARNING: Subroutine does not return
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceTableTemplate,0x100,1);
+                ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceTableTemplate,0x100,1);
         }
         pResourceTertiaryFlag = (uint8_t *)0x0;
         ResourceQuaternaryFlag = ResourceQuaternaryFlag & 0xffffffff;
@@ -21593,8 +21388,7 @@ ResourceValidationWait:
     if ((int)ContextHashValidationResult < 0) {
       if (0 < ResourceIndexTertiary) goto ResourceIndexProcessing;
       if ((0 < (int)ResourceQuaternaryFlag.FloatValue) && (pResourceTertiaryFlag != (uint8_t *)0x0)) {
-                    // WARNING: Subroutine does not return
-        ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceTableTemplate,0x100,1);
       }
       pResourceTertiaryFlag = (uint8_t *)0x0;
       ResourceQuaternaryFlag = ResourceQuaternaryFlag & 0xffffffff;
@@ -21648,8 +21442,7 @@ ResourceProcessingMain:
   if (ResourceContextOffset != 0) {
     return (uint64_t)ResourceContextOffset;
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(ValidationContext,EncryptionBuffer);
+        CleanupResourceData(ValidationContext,EncryptionBuffer);
 }
 
 
@@ -21769,8 +21562,7 @@ ResourceValidationWait:
           return ResourceHashPointer3;
         }
         if ((0 < (int)ValidationCounter) && (*(int64_t *)(ExecutionContextPointer + -0x29) != 0)) {
-                    // WARNING: Subroutine does not return
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
+                ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
                         &ResourceTableTemplate,0x100,1);
         }
         *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
@@ -21851,8 +21643,7 @@ ResourceValidationWait:
     if ((int)ResourceHashValue0 < 0) {
       if (0 < ResourceProcessingIndex) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (ResourceHashPointer3 != (uint8_t *)0x0)) {
-                    // WARNING: Subroutine does not return
-        ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer3,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer3,&ResourceTableTemplate,0x100,1);
       }
       *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
       *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
@@ -21910,8 +21701,7 @@ ResourceProcessingMain:
   if (resourceOperationResult != 0) {
     return (uint8_t *)(uint64_t)resourceOperationResult;
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(matrixElementXCoordinate,ExecutionContextPointer + -9);
+        CleanupResourceData(matrixElementXCoordinate,ExecutionContextPointer + -9);
 }
 
 
@@ -22023,8 +21813,7 @@ ResourceValidationWait:
           return ResourceHashPointer2;
         }
         if ((0 < (int)ValidationCounter) && (*(int64_t *)(ExecutionContextPointer + -0x29) != 0)) {
-                    // WARNING: Subroutine does not return
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
+                ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
                         &ResourceTableTemplate,0x100,1);
         }
         *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
@@ -22105,8 +21894,7 @@ ResourceValidationWait:
     if ((int)ResourceHashValue0 < 0) {
       if (0 < ResourceProcessingIndex) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (ResourceHashPointer2 != (uint8_t *)0x0)) {
-                    // WARNING: Subroutine does not return
-        ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer2,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer2,&ResourceTableTemplate,0x100,1);
       }
       *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
       *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
@@ -22164,8 +21952,7 @@ ResourceProcessingMain:
   if (ResourceCounter != 0) {
     return (uint8_t *)(uint64_t)ResourceCounter;
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(calculatedFloatResult,ExecutionContextPointer + -9);
+        CleanupResourceData(calculatedFloatResult,ExecutionContextPointer + -9);
 }
 
 
@@ -22242,8 +22029,7 @@ ResourceValidationWait:
           return PrimaryResourceHash;
         }
         if ((0 < (int)ValidationCounter) && (*(int64_t *)(ExecutionContextPointer + -0x29) != 0)) {
-                    // WARNING: Subroutine does not return
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
+                ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ExecutionContextPointer + -0x29),
                         &ResourceTableTemplate,0x100,1);
         }
         *(uint8_t **)(ExecutionContextPointer + -0x29) = ResourceDataPointer;
@@ -22325,8 +22111,7 @@ ResourceValidationWait:
     if ((int)ResourceHashValue0 < 0) {
       if (0 < ResourceIndexOctal) goto ResourceIndexProcessing;
       if ((0 < (int)ValidationCounter) && (ResourceHashPointer4 != (uint8_t *)0x0)) {
-                    // WARNING: Subroutine does not return
-        ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer4,&ResourceTableTemplate,0x100,1);
+              ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHashPointer4,&ResourceTableTemplate,0x100,1);
       }
       *(uint8_t **)(ExecutionContextPointer + -0x29) = ResourceDataPointer;
       *(uint *)(ExecutionContextPointer + -0x1d) = ResourceCounter;
@@ -22385,8 +22170,7 @@ ResourceProcessingMain:
   if (ResourceCounter != 0) {
     return (uint64_t)ResourceCounter;
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(MemoryFloatValue,ExecutionContextPointer + -9);
+        CleanupResourceData(MemoryFloatValue,ExecutionContextPointer + -9);
 }
 
 
@@ -22756,8 +22540,7 @@ ResourceContextValidation:
     }
     if (ResourceHashValidationResult < 0x8b) {
 ResourceOperationLoop:
-                    // WARNING: Subroutine does not return
-      CleanupResourceData(ValidationContext,ResourceQuaternaryFlag);
+            CleanupResourceData(ValidationContext,ResourceQuaternaryFlag);
     }
     StackContextBuffer[0] = 0;
     ValidationStatusCode = LoadResourceData(*ValidationContext,StackContextBuffer);
@@ -23169,8 +22952,7 @@ ResourceOperationEnd:
       } while ((int)ContextHashValidationResult < (int)(ResourceContextOffset >> 1));
     }
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(calculatedFloatValue,ExecutionContextPointer + -0x21);
+        CleanupResourceData(calculatedFloatValue,ExecutionContextPointer + -0x21);
 }
 
 
@@ -23426,8 +23208,7 @@ ResourceOperationEnd:
       } while ((int)ResourceCounter < (int)(loopIncrement >> 1));
     }
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(inputFloatValue2,ExecutionContextPointer + -0x21);
+        CleanupResourceData(inputFloatValue2,ExecutionContextPointer + -0x21);
 }
 
 
@@ -23684,8 +23465,7 @@ ResourceOperationEnd:
       } while ((int)ResourceCounter < (int)(loopIncrement >> 1));
     }
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(inputFloatValue2,ExecutionContextPointer + -0x21);
+        CleanupResourceData(inputFloatValue2,ExecutionContextPointer + -0x21);
 }
 
 
@@ -23853,8 +23633,7 @@ ResourceContextValidation:
     }
     if (loopIncrement < 0x8b) {
 ResourceOperationLoop:
-                    // WARNING: Subroutine does not return
-      CleanupResourceData(ObjectContext,ExecutionContextPointer + -0x21);
+            CleanupResourceData(ObjectContext,ExecutionContextPointer + -0x21);
     }
     ResourceTable = *ResourceContext;
     *(int *)(ExecutionContextPointer + 0x7f) = ArrayIndex;
@@ -24028,8 +23807,7 @@ OPERATION_CHECKPOINT:
     ValidationResult = ProcessResourceHash(*ValidationContext,ObjectContext + 0x5c);
   }
   if (ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupResourceData(ValidationContext,EncryptedDataBuffer);
+          CleanupResourceData(ValidationContext,EncryptedDataBuffer);
   }
   return (uint64_t)ResourceHashValidationResult;
 }
@@ -24110,8 +23888,7 @@ OPERATION_CHECKPOINT:
   if (ValidationResult != 0) {
     return (uint64_t)ResourceHashValidationResult;
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData();
+        CleanupResourceData();
 }
 
 
@@ -24301,8 +24078,7 @@ ReturnHashValidationResult:
     *(uint32_t *)(ObjectContext + 0x10) = 3;
   }
 FinalizeValidation:
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(ValidationContext,ResourceChecksumBuffer);
+        CleanupResourceData(ValidationContext,ResourceChecksumBuffer);
 }
 
 
@@ -24444,8 +24220,7 @@ ReturnHashValidationResult:
     *(uint32_t *)(ObjectContext + 0x10) = 3;
   }
 FinalizeValidation:
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(ValidationContext, ResourceChecksumBuffer);
+        CleanupResourceData(ValidationContext, ResourceChecksumBuffer);
 }
 
 
@@ -24513,8 +24288,7 @@ ReturnHashValidationResult:
     *(uint32_t *)(ResourceRegisterPointer + 0x10) = 3;
   }
 FinalizeValidation:
-                    // WARNING: Subroutine does not return
-  CleanupResourceData(RegisterContext, ResourceValidationBuffer);
+        CleanupResourceData(RegisterContext, ResourceValidationBuffer);
 }
 
 
@@ -24646,8 +24420,7 @@ uint64_t ValidateResourceFileIntegrity(int64_t ObjectContext,uint8_t *Validation
       HashValidationResult = (uint64_t)ResourceHash;
     }
     if ((int)HashValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupResourceData(ValidationContext, ResourceChecksumBuffer);
+            CleanupResourceData(ValidationContext, ResourceChecksumBuffer);
     }
   }
   return ResourceHashValidationResult;
@@ -24697,8 +24470,7 @@ uint64_t GetResourceHashAndValidate(void)
       PackageValidationStatusCode = (uint64_t)ResourceHash;
     }
     if ((int)PackageValidationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupResourceData();
+            CleanupResourceData();
     }
   }
   return HashValidationResult;
@@ -24744,8 +24516,7 @@ uint64_t ValidateResourceHashIntegrity(void)
       PackageValidationStatusCode = (uint64_t)ResourceHash;
     }
     if ((int)PackageValidationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupResourceData();
+            CleanupResourceData();
     }
   }
   return HashValidationResult;
@@ -24767,8 +24538,7 @@ uint64_t ValidateResourceHashIntegrity(void)
 void CleanupResourceHandler(void)
 
 {
-                    // WARNING: Subroutine does not return
-  CleanupResourceData();
+        CleanupResourceData();
 }
 
 
@@ -24820,8 +24590,7 @@ uint8_t ProcessSPRPResource(uint8_t ResourceHandle,int64_t *ResourceTable)
   PackageValidationStatusCode = InitializeResourceLoader(ValidationContext, StackBuffer);
   if ((int)PackageValidationStatusCode == 0x12) {
 ResourceProcessLoop:
-                    // WARNING: Subroutine does not return
-    CleanupResourceData(ValidationContext, EncryptedValue);
+          CleanupResourceData(ValidationContext, EncryptedValue);
   }
   if ((int)HashValidationResult != 0) {
     return HashValidationResult;
@@ -24894,8 +24663,7 @@ ResourceCleanup:
     }
     if ((int)PackageValidationStatusCode == 0) {
 ResourceFinalize:
-                    // WARNING: Subroutine does not return
-      CleanupResourceData(ValidationContext, ResourceOperationBuffer);
+            CleanupResourceData(ValidationContext, ResourceOperationBuffer);
     }
   }
   return HashValidationResult;
@@ -24924,8 +24692,7 @@ uint8_t ManageResourceTable(void)
   ValidationStatusCode = InitializeResourceLoader();
   if ((int)ValidationStatusCode == 0x12) {
 ResourceProcessLoop:
-                    // WARNING: Subroutine does not return
-    CleanupResourceData();
+          CleanupResourceData();
   }
   if ((int)HashValidationResult != 0) {
     return HashValidationResult;
@@ -24998,8 +24765,7 @@ ResourceCleanup:
     }
     if ((int)ValidationStatusCode == 0) {
 ResourceFinalize:
-                    // WARNING: Subroutine does not return
-      CleanupResourceData();
+            CleanupResourceData();
     }
   }
   return HashValidationResult;
@@ -25129,8 +24895,7 @@ void ProcessResourceValidationAndReadData(int64_t ObjectContext, uint8_t *Valida
           *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset4) = *(uint32_t *)(ObjectContext + 0x14);
           *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset8) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
           *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffsetc) = *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
-                    // WARNING: Subroutine does not return
-          CleanupResourceData(ValidationContext,ResourceValidationBuffer);
+                CleanupResourceData(ValidationContext,ResourceValidationBuffer);
         }
       }
     }
@@ -25199,8 +24964,7 @@ void ProcessResourceValidationAndMemoryAllocation(uint32_t ObjectContext)
             *(uint32_t *)(SystemRegisterContext + 0x204) = *(uint32_t *)(SystemRegisterContext + 0x14);
             *(uint32_t *)(SystemRegisterContext + 0x208) = *(uint32_t *)(SystemRegisterContext + 0x18);
             *(uint32_t *)(SystemRegisterContext + 0x20c) = *(uint32_t *)(SystemRegisterContext + 0x1c);
-                    // WARNING: Subroutine does not return
-            CleanupResourceData(*(uint32_t *)(SystemRegisterContext + 0x10),&ObjectStackBufferResource);
+                  CleanupResourceData(*(uint32_t *)(SystemRegisterContext + 0x10),&ObjectStackBufferResource);
           }
         }
       }
@@ -25300,8 +25064,7 @@ uint64_t ProcessResourceValidationAndAllocation(int64_t ObjectContext,uint8_t *V
               if (((int)ValidationStatusCode == 0) &&
                  ((*(uint *)(ResourceData + 8) < 0x85 ||
                   (ValidationStatusCode = ResourceDataValidator(ValidationContext,ObjectContext + 0x108), (int)ValidationStatusCode == 0)))) {
-                    // WARNING: Subroutine does not return
-                CleanupResourceData(ValidationContext,ResourceOperationBuffer);
+                      CleanupResourceData(ValidationContext,ResourceOperationBuffer);
               }
             }
           }
@@ -25389,8 +25152,7 @@ uint64_t ValidateAndAllocateResourceData(void)
               if (((int)ValidationStatusCode == 0) &&
                  ((*(uint *)(ResourceContext + 8) < 0x85 || (ValidationStatusCode = ResourceDataValidator(), (int)ValidationStatusCode == 0))))
               {
-                    // WARNING: Subroutine does not return
-                CleanupResourceData();
+                      CleanupResourceData();
               }
             }
           }
@@ -25476,8 +25238,7 @@ uint64_t ProcessResourceReadAndValidation(void)
             }
             if (((int)ValidationStatusCode == 0) &&
                ((*(uint *)(ResourceContext + 8) < 0x85 || (ValidationStatusCode = ResourceDataValidator(), (int)ValidationStatusCode == 0)))) {
-                    // WARNING: Subroutine does not return
-              CleanupResourceData();
+                    CleanupResourceData();
             }
           }
         }
@@ -25557,8 +25318,7 @@ uint64_t ProcessResourceValidationAndAllocation(void)
             }
             if (((int)ValidationStatusCode == 0) &&
                ((*(uint *)(ResourceContext + 8) < 0x85 || (ValidationStatusCode = ResourceDataValidator(), (int)ValidationStatusCode == 0)))) {
-                    // WARNING: Subroutine does not return
-              CleanupResourceData();
+                    CleanupResourceData();
             }
           }
         }
@@ -25616,8 +25376,7 @@ uint64_t ValidateResourceDataIntegrity(void)
         if ((0x84 < *(uint *)(ResourceContext + 8)) && (ValidationResult = ResourceDataValidator(), (int)ValidationResult != 0)) {
           return ResourceHashValidationResult;
         }
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
       ValidationResult = (uint64_t)ResourceOperationCode;
     }
@@ -25661,8 +25420,7 @@ uint64_t CheckResourceAvailability(void)
     }
     if (ResourceOperationCode == 0) {
       if ((*(uint *)(ResourceContext + 8) < 0x85) || (ResourceHash = ResourceDataValidator(), (int)ResourceHash == 0)) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
     }
     else {
@@ -25751,8 +25509,7 @@ uint8_t ResourceValidationHandler(int64_t ObjectContext,uint8_t *ValidationConte
           HashValidationResult = 0x1c;
         }
         if ((int)HashValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-          CleanupResourceData(ValidationContext,ResourceValidationBuffer);
+                CleanupResourceData(ValidationContext,ResourceValidationBuffer);
         }
       }
     }
@@ -25804,8 +25561,7 @@ uint8_t ResourceDataProcessor(void)
         ValidationResult = 0x1c;
       }
       if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
     }
   }
@@ -25857,8 +25613,7 @@ uint8_t ResourceDataManager(void)
         ValidationResult = 0x1c;
       }
       if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
     }
   }
@@ -25897,8 +25652,7 @@ uint8_t ResourceHandler(void)
       ResourceHash = 0x1c;
     }
     if ((int)ResourceHash == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupResourceData();
+            CleanupResourceData();
     }
   }
   return ResourceHash;
@@ -25971,8 +25725,7 @@ uint8_t ResourceContextProcessor(int64_t ObjectContext,uint8_t *ValidationContex
         ResourceHash = 0x1c;
       }
       if ((int)ResourceHash == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData(ValidationContext,ResourceValidationBuffer);
+              CleanupResourceData(ValidationContext,ResourceValidationBuffer);
       }
     }
   }
@@ -26098,8 +25851,7 @@ SecurityCheckHandler:
         ValidationResult = (uint64_t)HashValidationResult;
       }
       if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData(ValidationContext,EncryptionBuffer);
+              CleanupResourceData(ValidationContext,EncryptionBuffer);
       }
     }
   }
@@ -26214,8 +25966,7 @@ SecurityCheckHandler:
         ValidationResult = (uint64_t)loopIncrement;
       }
       if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
     }
   }
@@ -26325,8 +26076,7 @@ SecurityCheckHandler:
         ValidationResult = (uint64_t)loopIncrement;
       }
       if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
     }
   }
@@ -26432,8 +26182,7 @@ SecurityCheckHandler:
         ValidationResult = (uint64_t)loopIncrement;
       }
       if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData();
+              CleanupResourceData();
       }
     }
   }
@@ -26565,8 +26314,7 @@ SecurityValidationLoop:
       }
       loopIncrement = ProcessResourceData(ValidationContext,dataContext + 0x78,0);
       if (((int)loopCondition == 0) && (loopIncrement = CheckResourceFinalization(ValidationContext,ObjectContext + 0x88,0), (int)loopCondition == 0)) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceData(ValidationContext,ResourceOperationBuffer);
+              CleanupResourceData(ValidationContext,ResourceOperationBuffer);
       }
     }
   }
@@ -26692,8 +26440,7 @@ SecurityValidationLoop:
     ResourceCounter = ProcessResourceData(PrimaryResourceHash,CpuRegisterR15 + 0x78,0);
     if (((int)ResourceCounter == 0) &&
        (ResourceCounter = CheckResourceFinalization(FloatingPointResultFourth,CpuRegisterR15 + 0x88,0), (int)ResourceCounter == 0)) {
-                    // WARNING: Subroutine does not return
-      CleanupResourceData(FloatingPointResultFifth,ExecutionContextPointer + 7);
+            CleanupResourceData(FloatingPointResultFifth,ExecutionContextPointer + 7);
     }
   }
   return ResourceCounter;
@@ -26770,8 +26517,7 @@ SecurityValidationLoop:
   }
   loopIncrement = ProcessResourceData();
   if (((int)loopCondition == 0) && (loopIncrement = CheckResourceFinalization(), (int)loopCondition == 0)) {
-                    // WARNING: Subroutine does not return
-    CleanupResourceData();
+          CleanupResourceData();
   }
   return loopCondition;
 }
@@ -27127,8 +26873,7 @@ SecurityValidationFailed:
     loopIncrement = (uint64_t)HashValidationResult;
   }
   if ((int)loopCondition == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupResourceData(ValidationContext,ResourceLowByteFlag);
+          CleanupResourceData(ValidationContext,ResourceLowByteFlag);
   }
   return loopCondition;
 }
@@ -27445,8 +27190,7 @@ SecurityValidationFailed:
     loopIncrement = (uint64_t)HashValidationResult;
   }
   if ((int)loopCondition == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupResourceData();
+          CleanupResourceData();
   }
   return loopCondition;
 }
@@ -27740,8 +27484,7 @@ SecurityValidationFailed:
   if ((int)ResourceContextOffset != 0) {
     return ResourceContextOffset;
   }
-                    // WARNING: Subroutine does not return
-  CleanupResourceData();
+        CleanupResourceData();
 }
 
 
@@ -27818,8 +27561,7 @@ uint8_t DataValidationProcessor(int64_t ObjectContext,uint8_t *ValidationContext
       ValidationResult = ReadResourceData(ResourceHash,ObjectContext + 0xe4,8);
     }
     if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupResourceData(ValidationContext,ResourceValidationBuffer);
+            CleanupResourceData(ValidationContext,ResourceValidationBuffer);
     }
   }
   return ResourceHashValidationResult;
@@ -27859,8 +27601,7 @@ uint8_t DataCleanupHandler(void)
     }
   }
   if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupResourceData();
+          CleanupResourceData();
   }
   return ResourceHashValidationResult;
 }
@@ -28145,8 +27886,7 @@ uint8_t ResourceIdentifierProcessor(int64_t ObjectContext,int64_t *ValidationCon
                             (*(uint8_t **)(*ValidationContext + 8),ResourceValidationBuffer,4);
           if (((int)ResourceHash == 0) &&
              (ResourceHash = ProcessResourceData(ValidationContext,ObjectContext + ObjectContextSecurityContextOffset,0x3d), (int)ResourceHash == 0)) {
-                    // WARNING: Subroutine does not return
-            CleanupResourceBuffer(ValidationContext,EncryptionBuffer);
+                  CleanupResourceBuffer(ValidationContext,EncryptionBuffer);
           }
         }
         else {
@@ -28300,8 +28040,7 @@ uint8_t ResourceValidationService(void)
         ResourceHash = (**(code **)**(uint8_t **)(*ResourceContext + 8))
                           (*(uint8_t **)(*ResourceContext + 8),&StackBufferB0,4);
         if (((int)ResourceHash == 0) && (ResourceHash = ProcessResourceData(), (int)ResourceHash == 0)) {
-                    // WARNING: Subroutine does not return
-          CleanupResourceBuffer();
+                CleanupResourceBuffer();
         }
       }
       else {
@@ -28380,16 +28119,14 @@ void SystemResourceValidationHandler(void)
     if (SavedBasePointer != 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
-    CleanupResourceBuffer();
+          CleanupResourceBuffer();
   }
   ResourceIndex = GetSystemState();
   if (ResourceIndex != 0) {
     return;
   }
 SystemResourceCleanup:
-                    // WARNING: Subroutine does not return
-  CleanupResourceBuffer();
+        CleanupResourceBuffer();
 }
 
 
@@ -28445,8 +28182,7 @@ uint64_t ValidateResourceDataIntegrity(int64_t ObjectContext,uint8_t *Validation
       ValidationResult = (uint64_t)ResourceHash;
       if ((ResourceHash == 0) &&
          ((ValidationMode == '\0' || (ValidationResult = CheckResourceIntegrity(ObjectContext + 0x48,ValidationContext), (int)ValidationResult == 0)))) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceBuffer(ValidationContext,aResourceMidByteFlag);
+              CleanupResourceBuffer(ValidationContext,aResourceMidByteFlag);
       }
     }
     else {
@@ -28475,8 +28211,7 @@ uint64_t ValidateResourceDataIntegrityInternal(void)
       if ((ResourceHash == 0) &&
          ((StackVariableD0 == '\0' || (ValidationResult = CheckResourceIntegrity(ExecutionContextPointer + 0x48), (int)ValidationResult == 0)))
          ) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceBuffer();
+              CleanupResourceBuffer();
       }
     }
     else {
@@ -28537,8 +28272,7 @@ uint8_t ModelResourceProcessor(int64_t ObjectContext,int64_t *ValidationContext)
         ResourceHash = GetResourceEntry(*ValidationContext,ObjectContext + 0xdc);
         if (((int)ResourceHash == 0) &&
            (ResourceHash = ValidateResourceChunk(ValidationContext,ObjectContext + 0xec,0x80), (int)ResourceHash == 0)) {
-                    // WARNING: Subroutine does not return
-          CleanupResourceBuffer(ValidationContext,ResourceValidationBuffer);
+                CleanupResourceBuffer(ValidationContext,ResourceValidationBuffer);
         }
       }
     }
@@ -28616,8 +28350,7 @@ uint64_t ProcessResourceCertificateValidation(int64_t ObjectContext,int64_t *Val
             if ((int)loopCondition != 0) {
               return loopCondition;
             }
-                    // WARNING: Subroutine does not return
-            CleanupResourceBuffer(ValidationContext,ResourceChecksumBuffer);
+                  CleanupResourceBuffer(ValidationContext,ResourceChecksumBuffer);
           }
         }
       }
@@ -28690,8 +28423,7 @@ uint64_t ValidateResourceCertificateChain(void)
         if (ValidationResult == 0) {
           ValidationStatusCode = VerifyResourceSignature();
           if ((int)ValidationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-            CleanupResourceBuffer();
+                  CleanupResourceBuffer();
           }
           return HashValidationResult;
         }
@@ -28756,8 +28488,7 @@ uint64_t ProcessResourceCertificateSigning(void)
         if ((int)HashValidationResult != 0) {
           return HashValidationResult;
         }
-                    // WARNING: Subroutine does not return
-        CleanupResourceBuffer();
+              CleanupResourceBuffer();
       }
     }
   }
@@ -28804,8 +28535,7 @@ uint64_t VerifyResourceCertificateIntegrity(void)
     if (ValidationResult == 0) {
       ValidationStatusCode = VerifyResourceSignature();
       if ((int)ValidationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceBuffer();
+              CleanupResourceBuffer();
       }
       return HashValidationResult;
     }
@@ -28834,8 +28564,7 @@ uint64_t ValidateResourceCertificateTimestamp(void)
     if (ResourceHash == 0) {
       ValidationResult = VerifyResourceSignature();
       if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceBuffer();
+              CleanupResourceBuffer();
       }
       return ResourceHashValidationResult;
     }
@@ -28860,8 +28589,7 @@ uint64_t ProcessResourceCertificateRevocation(void)
     if (ResourceHash == 0) {
       ValidationResult = VerifyResourceSignature();
       if ((int)ValidationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceBuffer();
+              CleanupResourceBuffer();
       }
       return ResourceHashValidationResult;
     }
@@ -28880,8 +28608,7 @@ ResourceSignatureVerifier(void)
   
   ResourceIndex = VerifyResourceSignature();
   if (ResourceIndex == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupResourceBuffer();
+          CleanupResourceBuffer();
   }
   return;
 }
@@ -28910,8 +28637,7 @@ ResourceDataValidator(int64_t ObjectContext,uint8_t ValidationContext)
   if (ResourceIndex == 0) {
     ResourceIndex = AccessResourceData(ValidationContext,ObjectContext + 8);
     if (ResourceIndex == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupResourceBuffer(ValidationContext,DataChecksumBuffer);
+            CleanupResourceBuffer(ValidationContext,DataChecksumBuffer);
     }
   }
   return;
@@ -28948,8 +28674,7 @@ uint8_t TextureResourceProcessor(int64_t ObjectContext,uint8_t *ValidationContex
       ResourceHash = GetResourceEntry(*ValidationContext,ObjectContext + ObjectContextProcessingDataOffset);
       if (((int)ResourceHash == 0) && (ResourceHash = ProcessResourceStream(ValidationContext,ObjectContext + ObjectContextMatrixScaleOffset,1,0), (int)ResourceHash == 0))
       {
-                    // WARNING: Subroutine does not return
-        CleanupResourceBuffer(ValidationContext,DataChecksumBuffer);
+              CleanupResourceBuffer(ValidationContext,DataChecksumBuffer);
       }
     }
   }
@@ -28988,8 +28713,7 @@ uint8_t AnimationResourceProcessor(int64_t ObjectContext,uint8_t *ValidationCont
       }
       ResourceHash = GetResourceEntry(*ValidationContext,ObjectContext + 0xd8);
       if ((int)ResourceHash == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceBuffer(ValidationContext,ResourceValidationBuffer);
+              CleanupResourceBuffer(ValidationContext,ResourceValidationBuffer);
       }
     }
   }
@@ -29119,8 +28843,7 @@ uint8_t ProcessResourceIdList(int64_t ObjectContext,uint8_t *ValidationContext)
       ResourceHash = GetResourceEntry(*ValidationContext,ObjectContext + 0xd8);
       if ((((int)ResourceHash == 0) && (ResourceHash = ValidateResourceMetadata(ValidationContext,ObjectContext + 0xf8), (int)ResourceHash == 0)) &&
          (ResourceHash = HandleSystemResource(ValidationContext,ObjectContext + 0xe8,1,ObjectContext), (int)ResourceHash == 0)) {
-                    // WARNING: Subroutine does not return
-        CleanupResourceBuffer(ValidationContext,ResourceValidationBuffer);
+              CleanupResourceBuffer(ValidationContext,ResourceValidationBuffer);
       }
     }
   }
@@ -29158,8 +28881,7 @@ uint8_t ValidateTextureResourceId(uint8_t ObjectContext,int64_t ValidationContex
       if ((int)ResourceHash == 0) {
         ResourceHash = AccessSystemData(ObjectContext,ValidationContext);
         if ((int)ResourceHash == 0) {
-                    // WARNING: Subroutine does not return
-          CleanupResourceBuffer(ValidationContext,DataChecksumBuffer);
+                CleanupResourceBuffer(ValidationContext,DataChecksumBuffer);
         }
       }
     }
@@ -29648,8 +29370,7 @@ void ResetResourceDescriptor(uint8_t exceptionCode, int64_t ExceptionContext)
 {
   *(uint8_t *)(ExceptionContext + 0x68) = &ResourceDescriptorTemplate;
   if (*(int64_t *)(ExceptionContext + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ExceptionContext + 0x70) = 0;
   *(uint32_t *)(ExceptionContext + 0x80) = 0;
@@ -29909,8 +29630,7 @@ void RestoreResourceDescriptorTemplateAndResetState(uint8_t ObjectContext, int64
 {
   *(uint8_t *)(ValidationContext + 0x138) = &ResourceDescriptorTemplate;
   if (*(int64_t *)(ValidationContext + 0x140) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x140) = 0;
   *(uint32_t *)(ValidationContext + 0x150) = 0;
@@ -29936,8 +29656,7 @@ void SetSystemResourceHandlerTemplate(uint8_t ObjectContext, int64_t ValidationC
 {
   *(uint8_t *)(ValidationContext + 0x1a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x1a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x1a8) = 0;
   *(uint32_t *)(ValidationContext + 0x1b8) = 0;
@@ -29983,8 +29702,7 @@ void RestoreSystemResourceHandlerToPrimaryContext(uint8_t ObjectContext, int64_t
 {
   *(uint8_t *)(ValidationContext + 0x180) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x188) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x188) = 0;
   *(uint32_t *)(ValidationContext + 0x198) = 0;
@@ -30363,8 +30081,7 @@ void ExecuteResourceCleanupLoop(uint8_t ObjectContext, int64_t ValidationContext
   if (*(int64_t *)(ValidationContext + 0x48) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -30397,8 +30114,7 @@ void ExecuteValidationCleanupLoop(uint8_t ObjectContext, int64_t ValidationConte
   if (*(int64_t *)(ValidationContext + 0x48) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -30466,8 +30182,7 @@ void ResetAuxiliaryResourceHandlerPointer(uint8_t ObjectContext, int64_t Validat
 {
   *(uint8_t *)(ValidationContext + 0x78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x80) = 0;
   *(uint32_t *)(ValidationContext + 0x90) = 0;
@@ -30530,8 +30245,7 @@ void RestoreResourceHandlerAtPrimaryContext(uint8_t ObjectContext, int64_t Valid
 {
   *(uint8_t *)(ValidationContext + 0xa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xb0) = 0;
   *(uint32_t *)(ValidationContext + 0xc0) = 0;
@@ -30552,8 +30266,7 @@ void RestoreResourceHandlerAtSecondaryContext(uint8_t ObjectContext, int64_t Val
 {
   *(uint8_t *)(ValidationContext + 0xd0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xd8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xd8) = 0;
   *(uint32_t *)(ValidationContext + 0xe8) = 0;
@@ -30574,8 +30287,7 @@ void RestoreResourceHandlerAtExceptionContext(uint8_t ObjectContext, int64_t Val
 {
   *(uint8_t *)(ValidationContext + 0x78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x80) = 0;
   *(uint32_t *)(ValidationContext + 0x90) = 0;
@@ -30701,8 +30413,7 @@ void ExecuteResourceHashCleanupCallbacks(uint8_t ObjectContext, int64_t Validati
   if (*(int64_t *)(ValidationContext + 0x120) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -30718,8 +30429,7 @@ void RestoreSystemResourceHandlerAtContextOffset100(uint8_t ObjectContext, int64
 {
   *(uint8_t *)(ValidationContext + 0x100) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x108) = 0;
   *(uint32_t *)(ValidationContext + 0x118) = 0;
@@ -30740,8 +30450,7 @@ void RestoreSystemResourceHandlerAtContextOffset88(uint8_t ObjectContext, int64_
 {
   *(uint8_t *)(ValidationContext + 0x88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x90) = 0;
   *(uint32_t *)(ValidationContext + 0xa0) = 0;
@@ -30779,8 +30488,7 @@ void CleanuResourceHashValidationResultPointers(uint8_t ObjectContext, int64_t V
   if (*(int64_t *)(ValidationContext + 0x120) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -30893,16 +30601,14 @@ void CleanupSystemDataOnException(uint8_t ObjectContext, int64_t ValidationConte
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerB;
   *(uint8_t *)(SystemContextPointer + 0x58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x60) = 0;
   *(uint32_t *)(SystemContextPointer + 0x70) = 0;
   *(uint8_t *)(SystemContextPointer + 0x58) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -30936,16 +30642,14 @@ void ResetResourceManagerOnException(uint8_t ObjectContext, int64_t ValidationCo
   *(uint8_t *)(SystemContextPointer + 0xd8) = &SystemResourceHandlerB;
   *(uint8_t *)(SystemContextPointer + 0x110) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x118) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x118) = 0;
   *(uint32_t *)(SystemContextPointer + 0x128) = 0;
   *(uint8_t *)(SystemContextPointer + 0x110) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf8) = 0;
@@ -30979,16 +30683,14 @@ void CleanupCacheDataOnException(uint8_t ObjectContext, int64_t ValidationContex
   *ResourceHashPointer = &SystemResourceHandlerB;
   ResourceHashPointer[7] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[8] = 0;
   *(uint32_t *)(ResourceHashPointer + 10) = 0;
   ResourceHashPointer[7] = &SystemDataStructure;
   ResourceHashPointer[1] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[2] = 0;
   *(uint32_t *)(ResourceHashPointer + 4) = 0;
@@ -31018,16 +30720,14 @@ void ResetMemoryManagerOnException(uint8_t ObjectContext, int64_t ValidationCont
   *ResourceHashPointer = &SystemResourceHandlerB;
   ResourceHashPointer[7] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[8] = 0;
   *(uint32_t *)(ResourceHashPointer + 10) = 0;
   ResourceHashPointer[7] = &SystemDataStructure;
   ResourceHashPointer[1] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[2] = 0;
   *(uint32_t *)(ResourceHashPointer + 4) = 0;
@@ -31157,15 +30857,13 @@ void ResetSystemContextOnException(uint8_t ObjectContext, int64_t ValidationCont
   for (ResourceTable = *ResourceContext; ResourceTable != *(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0xa8);
       ResourceTable = ResourceTable + 0x28) {
     if (*(int64_t *)(ResourceTable + 8) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*ResourceContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -31274,15 +30972,13 @@ void ResourceTableValidationHandler(uint8_t ObjectContext, int64_t ValidationCon
   pLocalContextPointer = *(int64_t **)(ValidationContext + 0x78);
   for (ResourceTable = *pLocalContextPointer; ResourceTable != pLocalContextPointer[1]; ResourceTable = ResourceTable + 0x28) {
     if (*(int64_t *)(ResourceTable + 8) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*pLocalContextPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -31313,8 +31009,7 @@ void ResourceTableCleanupHandler(uint8_t ObjectContext, int64_t ValidationContex
   if (*pResourceTable == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -31345,8 +31040,7 @@ void ResourceLoopCleanupHandler(uint8_t ObjectContext, int64_t ValidationContext
   if (*pResourceTable == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -31382,8 +31076,7 @@ void ResourcePointerCleanupHandler(uint8_t ObjectContext, int64_t ValidationCont
   if (*pResourceTable == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -31419,8 +31112,7 @@ void ResourceQueueCleanupHandler(uint8_t ObjectContext, int64_t ValidationContex
   if (*pResourceTable == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -31450,8 +31142,7 @@ void ResourceTableValidationHandler(uint8_t ObjectContext,int64_t ValidationCont
       if (*ResourceTablePointer == 0) {
         return;
       }
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     if (*(int64_t **)(ResourceIndex + 0x40) != (int64_t *)0x0) {
       (**(code **)(**(int64_t **)(ResourceIndex + 0x40) + 0x38))();
@@ -31460,8 +31151,7 @@ void ResourceTableValidationHandler(uint8_t ObjectContext,int64_t ValidationCont
     ProcessSystemState(ResourceIndex);
     ResourceIndex = ResourceIndex + 0x48;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -31492,8 +31182,7 @@ void ContextStateHandler(uint8_t ObjectContext, int64_t ValidationContext)
       if (*pResourceTable == 0) {
         return;
       }
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     if (*(int64_t **)(ResourceIndex + 0x40) != (int64_t *)0x0) {
       (**(code **)(**(int64_t **)(ResourceIndex + 0x40) + 0x38))();
@@ -31502,8 +31191,7 @@ void ContextStateHandler(uint8_t ObjectContext, int64_t ValidationContext)
     ProcessSystemState(ResourceIndex);
     ResourceIndex = ResourceIndex + 0x48;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -31636,8 +31324,7 @@ void ResourceLockManager(uint8_t ObjectContext,int64_t ValidationContext,uint8_t
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -31662,8 +31349,7 @@ void MemoryAllocationTracker(uint8_t ObjectContext,int64_t ValidationContext,uin
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     TransformDataBuffer(*(int64_t *)(ValidationContext + 0x70),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -31707,8 +31393,7 @@ void ResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationContext, u
   pResourceHash = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x78) + 0x10);
   if (pResourceHash != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x78),*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(pResourceHash);
+          ReleaseResourceHandle(pResourceHash);
   }
   return;
 }
@@ -31735,8 +31420,7 @@ void ResourceCommandExecutorAlternative(uint8_t ObjectContext, int64_t Validatio
   pResourceHash = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x78) + 0x10);
   if (pResourceHash != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x78),*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(pResourceHash);
+          ReleaseResourceHandle(pResourceHash);
   }
   return;
 }
@@ -31829,8 +31513,7 @@ void ContextResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationCon
   pResourceHash = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x30);
   if (pResourceHash != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x70) + 0x20,*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(pResourceHash);
+          ReleaseResourceHandle(pResourceHash);
   }
   return;
 }
@@ -31857,8 +31540,7 @@ void SystemResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationCont
   pResourceHash = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x60);
   if (pResourceHash != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x70) + 0x50,*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(pResourceHash);
+          ReleaseResourceHandle(pResourceHash);
   }
   return;
 }
@@ -31883,8 +31565,7 @@ void SystemResourceHandlerInitializer(uint8_t ObjectContext, int64_t ValidationC
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -31914,8 +31595,7 @@ void UnwindSystemContextBase(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
   *(uint8_t *)(SystemContextPointer + 0x50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x58) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x58) = 0;
   *(uint32_t *)(SystemContextPointer + 0x68) = 0;
@@ -31948,8 +31628,7 @@ void ProcessAdvancedDataCleanup(uint8_t ObjectContext,int64_t ValidationContext,
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ProcessAdvancedData(*(int64_t *)(ValidationContext + 0x70) + 0x70,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -31979,8 +31658,7 @@ void HandleMemoryResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext
   if (ResourceHashPointer != (uint8_t *)0x0) {
     HandleResourceAllocation(*(int64_t *)(ValidationContext + 0x78),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -31996,8 +31674,7 @@ void HandleBufferResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext
   if (ResourceHashPointer != (uint8_t *)0x0) {
     HandleResourceAllocation(*(int64_t *)(ValidationContext + 0x78),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -32238,8 +31915,7 @@ void UnwindExceptionHandlerBase(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
   *(uint8_t *)(SystemContextPointer + 0x40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x48) = 0;
   *(uint32_t *)(SystemContextPointer + 0x58) = 0;
@@ -32434,8 +32110,7 @@ void ReleaseResourceHandlesBatch(uint8_t ObjectContext,int64_t ValidationContext
     do {
       ResourceTable = *(int64_t *)(ResourceTablePointer + ContextHashValidationResult * 8);
       if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(ResourceTablePointer + ContextHashValidationResult * 8) = 0;
       ContextValidationStatusCode = ContextHashValidationResult + 1;
@@ -32500,8 +32175,7 @@ void CleanupResourceTableAndReleaseHandles(uint8_t ObjectContext,int64_t Validat
     do {
       ResourceTable = *(int64_t *)(ResourceTablePointer + ContextHashValidationResult * 8);
       if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(ResourceTablePointer + ContextHashValidationResult * 8) = 0;
       ContextValidationStatusCode = ContextHashValidationResult + 1;
@@ -32562,8 +32236,7 @@ void CleanupResourceTableBuffer(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -32658,8 +32331,7 @@ void ReleaseResourceHandleTable(uint8_t ObjectContext,int64_t ValidationContext)
     do {
       ResourceTable = *(int64_t *)(ResourceTablePointer + ContextHashValidationResult * 8);
       if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(ResourceTablePointer + ContextHashValidationResult * 8) = 0;
       ContextValidationStatusCode = ContextHashValidationResult + 1;
@@ -32724,8 +32396,7 @@ void ValidateMemoryAccessPermissions(uint8_t ObjectContext,int64_t ValidationCon
     do {
       ResourceTable = *(int64_t *)(ResourceTablePointer + ContextHashValidationResult * 8);
       if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(ResourceTablePointer + ContextHashValidationResult * 8) = 0;
       ContextValidationStatusCode = ContextHashValidationResult + 1;
@@ -32801,8 +32472,7 @@ void UnwindResourceTableOperations(uint8_t ObjectContext, int64_t ValidationCont
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -32840,8 +32510,7 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContext, int64_t ValidationCo
         if (*(int64_t **)(ResourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
@@ -32850,8 +32519,7 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContext, int64_t ValidationCo
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < ResourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -32891,8 +32559,7 @@ void UnwindResourceTableCleanup(uint8_t ObjectContext, int64_t ValidationContext
         if (*(int64_t **)(ResourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
@@ -32901,8 +32568,7 @@ void UnwindResourceTableCleanup(uint8_t ObjectContext, int64_t ValidationContext
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < ResourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -32942,8 +32608,7 @@ void UnwindBatchResourceRelease(uint8_t ObjectContext, int64_t ValidationContext
         if (*(int64_t **)(ResourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
@@ -32952,8 +32617,7 @@ void UnwindBatchResourceRelease(uint8_t ObjectContext, int64_t ValidationContext
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < ResourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -33124,8 +32788,7 @@ void UnwindResourceTableCleanupHandler(uint8_t ObjectContext,int64_t ValidationC
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -33182,8 +32845,7 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContext,int64_t ValidationC
         if (*(int64_t **)(ResourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
@@ -33192,8 +32854,7 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < ResourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -33232,8 +32893,7 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContext,int64_t ValidationC
         if (*(int64_t **)(ResourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
@@ -33242,8 +32902,7 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < ResourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -33270,8 +32929,7 @@ void UnwindSystemResourceProcessorSetupStandard(uint8_t ObjectContext,int64_t Va
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20) = 0;
@@ -33301,8 +32959,7 @@ void CleanupSystemResourceHandlerPrimary(uint8_t ObjectContext,int64_t Validatio
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20) = 0;
@@ -33332,8 +32989,7 @@ void CleanupSystemResourceHandlerB(uint8_t ObjectContext,int64_t ValidationConte
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -33432,8 +33088,7 @@ void SetupSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t Validation
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x90);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -33461,8 +33116,7 @@ void SystemResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
   loopCounter = *(int64_t *)(ValidationContext + 0x90);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -33716,11 +33370,9 @@ void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,
     return;
   }
   if (*(int *)(ResourceHashPointer[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+        terminate();
 }
 
 
@@ -33761,8 +33413,7 @@ void SystemExceptionHandler(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x38);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -33890,8 +33541,7 @@ void MemorySegmentCleaner(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -34085,8 +33735,7 @@ void ProcessResourceTableCleanup(uint8_t ObjectContext, int64_t ValidationContex
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -34119,8 +33768,7 @@ void ProcessSecondaryResourceTableCleanup(uint8_t ObjectContext, int64_t Validat
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -34143,8 +33791,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationCo
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -34333,8 +33980,7 @@ void UnwindMemoryPoolInitializer(uint8_t ObjectContext,int64_t ValidationContext
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x148) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x150) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x150) = 0;
   *(uint32_t *)(SystemContextPointer + 0x160) = 0;
@@ -34487,8 +34133,7 @@ void ProcessFileHandleCleanup(uint8_t ObjectContext,int64_t ValidationContext,ui
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -34510,8 +34155,7 @@ void ProcessDirectoryHandleCleanup(uint8_t ObjectContext,int64_t ValidationConte
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -34593,8 +34237,7 @@ void UnwindContextResetHandler(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x918) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x920) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x920) = 0;
   *(uint32_t *)(SystemContextPointer + 0x930) = 0;
@@ -34613,8 +34256,7 @@ void HandleFileStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,uin
   if (ResourceHashPointer != (uint8_t *)0x0) {
     HandleResourceAllocation(*(int64_t *)(ValidationContext + 0x40) + 0x938,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -34630,8 +34272,7 @@ void HandleMemoryStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,u
   if (ResourceHashPointer != (uint8_t *)0x0) {
     HandleResourceAllocation(*(int64_t *)(ValidationContext + 0x40) + 0x968,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -34647,8 +34288,7 @@ void HandleSystemMemoryCleanup(uint8_t ObjectContext,int64_t ValidationContext,u
   if (ResourceHashPointer != (uint8_t *)0x0) {
     HandleResourceAllocation(*(int64_t *)(ValidationContext + 0x48),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -34664,8 +34304,7 @@ void HandleUserMemoryCleanup(uint8_t ObjectContext,int64_t ValidationContext,uin
   if (ResourceHashPointer != (uint8_t *)0x0) {
     HandleResourceAllocation(*(int64_t *)(ValidationContext + 0x48),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -34741,8 +34380,7 @@ void ResourcePoolFinalizer(uint8_t ObjectContext,int64_t ValidationContext,uint8
   if (ResourceHashPointer != (uint8_t *)0x0) {
     HandleResourceAllocation(*(int64_t *)(ValidationContext + 0x40),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -34758,8 +34396,7 @@ void UnwindResourceAllocationHandler(uint8_t ObjectContext,int64_t ValidationCon
   if (ResourceHashPointer != (uint8_t *)0x0) {
     HandleResourceAllocation(*(int64_t *)(ValidationContext + 0x40),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -34781,8 +34418,7 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
   if (*(int64_t *)(ValidationContext + 0x28) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -34836,8 +34472,7 @@ void UnwindContextResetter(uint8_t ObjectContext,int64_t ValidationContext)
   FinalizeResourceOperation(SystemContextPointer + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -34875,8 +34510,7 @@ void UnwindResourceInitializer(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x68);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -34893,13 +34527,11 @@ void UnwindSystemValidator(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -34988,13 +34620,11 @@ void UnwindDataProcessor(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -35047,13 +34677,11 @@ void UnwindThreadManager(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -35071,8 +34699,7 @@ void UnwindSemaphoreHandler(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x48);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -35133,8 +34760,7 @@ void UnwindMutexHandler(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -35154,8 +34780,7 @@ void UnwindEventNotifier(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -35301,8 +34926,7 @@ void CleanupResourceTable(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -35610,8 +35234,7 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext,int64_t ValidationC
   InitializeResourceSystem();
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -35644,8 +35267,7 @@ void ExecuteResourceCleanupCommand(uint8_t ObjectContext,int64_t ValidationConte
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x30);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x80) + 0x20,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -35675,8 +35297,7 @@ void ExecuteResourceReleaseCommand(uint8_t ObjectContext,int64_t ValidationConte
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x88) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x88),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -35706,8 +35327,7 @@ void ProcessSecondaryResourceCleanup(uint8_t ObjectContext,int64_t ValidationCon
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x88) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x88),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -35734,8 +35354,7 @@ void ProcessResourceContextValidation(uint8_t ObjectContext,int64_t ValidationCo
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   *(uint8_t *)(SystemContextPointer + 0x40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x48) = 0;
   *(uint32_t *)(SystemContextPointer + 0x58) = 0;
@@ -35814,8 +35433,7 @@ void ExecuteResourceCleanupOperation(uint8_t ObjectContext,int64_t ValidationCon
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x30);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x40) + 0x20,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -35837,8 +35455,7 @@ void ProcessResourceReleaseOperation(uint8_t ObjectContext,int64_t ValidationCon
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -35869,20 +35486,17 @@ void ReleaseResourceHandlerReference(uint8_t ObjectContext,int64_t ValidationCon
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((LoopOffsetPointer[6] != 0) && (*(int64_t *)(LoopOffsetPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
     pStatusChar = (char *)(ResourceTablePointer + 0x141);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x138);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = (uint8_t *)LoopOffsetPointer[3];
@@ -36254,20 +35868,17 @@ void CleanupResourceHandlesAndReleaseMemory(uint8_t ObjectContext, int64_t Valid
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((LoopOffsetPointer[6] != 0) && (*(int64_t *)(LoopOffsetPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
     pStatusChar = (char *)(ResourceTablePointer + 0x141);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x138);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = (uint8_t *)LoopOffsetPointer[3];
@@ -36451,20 +36062,17 @@ void ResetSystemContextAndHandlers(uint8_t ObjectContext, int64_t ValidationCont
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((LoopOffsetPointer[6] != 0) && (*(int64_t *)(LoopOffsetPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
     pStatusChar = (char *)(ResourceTablePointer + 0x141);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x138);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = (uint8_t *)LoopOffsetPointer[3];
@@ -36700,28 +36308,23 @@ void ProcessResourceTransaction(uint8_t ObjectContext, int64_t ValidationContext
   *ResourceHashPointer = &SystemResourceHandlerC;
   ResourceHashPointer[0x18] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[0x19] = 0;
   *(uint32_t *)(ResourceHashPointer + 0x1b) = 0;
   ResourceHashPointer[0x18] = &SystemDataStructure;
   ProcessResourceValidation(ResourceHashPointer + 0x12,ResourceHashPointer[0x14],CleanupOption,CleanupFlag,0xfffffffffffffffe);
   if (ResourceHashPointer[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   if (ResourceHashPointer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   if (ResourceHashPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -36753,16 +36356,14 @@ void ProcessResourceTransactionSecondary(uint8_t ObjectContext, int64_t Validati
   }
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x110) = 0;
   *(uint32_t *)(SystemContextPointer + 0x120) = 0;
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x100) = 0;
@@ -36797,16 +36398,14 @@ void ProcessResourceTransactionTertiary(uint8_t ObjectContext, int64_t Validatio
   }
   *(uint8_t *)(SystemContextPointer + 0x178) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x180) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x180) = 0;
   *(uint32_t *)(SystemContextPointer + 400) = 0;
   *(uint8_t *)(SystemContextPointer + 0x178) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x158) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x160) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x160) = 0;
   *(uint32_t *)(SystemContextPointer + 0x170) = 0;
@@ -36841,16 +36440,14 @@ void ProcessResourceTransactionQuaternary(uint8_t ObjectContext, int64_t Validat
   }
   *(uint8_t *)(SystemContextPointer + 0x1e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x200) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1e0) = 0;
@@ -36885,16 +36482,14 @@ void ProcessResourceTransactionQuinary(uint8_t ObjectContext, int64_t Validation
   }
   *(uint8_t *)(SystemContextPointer + 600) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x260) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x260) = 0;
   *(uint32_t *)(SystemContextPointer + 0x270) = 0;
   *(uint8_t *)(SystemContextPointer + 600) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x238) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x240) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x240) = 0;
   *(uint32_t *)(SystemContextPointer + 0x250) = 0;
@@ -36929,16 +36524,14 @@ void ProcessResourceTransactionSenary(uint8_t ObjectContext, int64_t ValidationC
   }
   *(uint8_t *)(SystemContextPointer + 0x2c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2c0) = 0;
@@ -36973,16 +36566,14 @@ void ProcessResourceTransactionSeptenary(uint8_t ObjectContext, int64_t Validati
   }
   *(uint8_t *)(SystemContextPointer + 0x338) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x340) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x340) = 0;
   *(uint32_t *)(SystemContextPointer + 0x350) = 0;
   *(uint8_t *)(SystemContextPointer + 0x338) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x318) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 800) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 800) = 0;
   *(uint32_t *)(SystemContextPointer + 0x330) = 0;
@@ -37017,16 +36608,14 @@ void ProcessResourceTransactionOctonary(uint8_t ObjectContext, int64_t Validatio
   }
   *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x3b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x3b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3c0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x388) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x390) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x390) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3a0) = 0;
@@ -37061,16 +36650,14 @@ void ProcessResourceTransactionNonary(uint8_t ObjectContext, int64_t ValidationC
   }
   *(uint8_t *)(SystemContextPointer + 0x418) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x420) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x420) = 0;
   *(uint32_t *)(SystemContextPointer + 0x430) = 0;
   *(uint8_t *)(SystemContextPointer + 0x418) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x3f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x400) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x400) = 0;
   *(uint32_t *)(SystemContextPointer + 0x410) = 0;
@@ -37105,40 +36692,35 @@ void ProcessResourceTransactionDenary(uint8_t ObjectContext, int64_t ValidationC
   }
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x480) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x488) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x488) = 0;
   *(uint32_t *)(SystemContextPointer + 0x498) = 0;
   *(uint8_t *)(SystemContextPointer + 0x480) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x460) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x468) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x468) = 0;
   *(uint32_t *)(SystemContextPointer + 0x478) = 0;
@@ -37173,16 +36755,14 @@ void ValidateMemoryAccess(uint8_t ObjectContext, int64_t ValidationContext, uint
   }
   *(uint8_t *)(SystemContextPointer + 0x548) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x550) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x550) = 0;
   *(uint32_t *)(SystemContextPointer + 0x560) = 0;
   *(uint8_t *)(SystemContextPointer + 0x548) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x528) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x530) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x530) = 0;
   *(uint32_t *)(SystemContextPointer + 0x540) = 0;
@@ -37215,28 +36795,23 @@ void ValidateMemoryAccessSecondary(uint8_t ObjectContext, int64_t ValidationCont
   *ResourceHashPointer = &SystemResourceHandlerC;
   ResourceHashPointer[0x18] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[0x19] = 0;
   *(uint32_t *)(ResourceHashPointer + 0x1b) = 0;
   ResourceHashPointer[0x18] = &SystemDataStructure;
   ProcessResourceValidation(ResourceHashPointer + 0x12,ResourceHashPointer[0x14],CleanupOption,CleanupFlag,0xfffffffffffffffe);
   if (ResourceHashPointer[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   if (ResourceHashPointer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   if (ResourceHashPointer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -37268,16 +36843,14 @@ void ValidateMemoryAccessTertiary(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x110) = 0;
   *(uint32_t *)(SystemContextPointer + 0x120) = 0;
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x100) = 0;
@@ -37312,16 +36885,14 @@ void ValidateMemoryAccessQuaternary(uint8_t ObjectContext, int64_t ValidationCon
   }
   *(uint8_t *)(SystemContextPointer + 0x178) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x180) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x180) = 0;
   *(uint32_t *)(SystemContextPointer + 400) = 0;
   *(uint8_t *)(SystemContextPointer + 0x178) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x158) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x160) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x160) = 0;
   *(uint32_t *)(SystemContextPointer + 0x170) = 0;
@@ -37356,16 +36927,14 @@ void ValidateMemoryAccessQuinary(uint8_t ObjectContext, int64_t ValidationContex
   }
   *(uint8_t *)(SystemContextPointer + 0x1e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x200) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1e0) = 0;
@@ -37400,16 +36969,14 @@ void ValidateMemoryAccessSenary(uint8_t ObjectContext, int64_t ValidationContext
   }
   *(uint8_t *)(SystemContextPointer + 600) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x260) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x260) = 0;
   *(uint32_t *)(SystemContextPointer + 0x270) = 0;
   *(uint8_t *)(SystemContextPointer + 600) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x238) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x240) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x240) = 0;
   *(uint32_t *)(SystemContextPointer + 0x250) = 0;
@@ -37444,16 +37011,14 @@ void ValidateMemoryAccessSeptenary(uint8_t ObjectContext, int64_t ValidationCont
   }
   *(uint8_t *)(SystemContextPointer + 0x2c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2c0) = 0;
@@ -37488,16 +37053,14 @@ void ValidateMemoryAccessOctonary(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x338) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x340) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x340) = 0;
   *(uint32_t *)(SystemContextPointer + 0x350) = 0;
   *(uint8_t *)(SystemContextPointer + 0x338) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x318) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 800) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 800) = 0;
   *(uint32_t *)(SystemContextPointer + 0x330) = 0;
@@ -37532,16 +37095,14 @@ void ValidateMemoryAccessNonary(uint8_t ObjectContext, int64_t ValidationContext
   }
   *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x3b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x3b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3c0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x388) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x390) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x390) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3a0) = 0;
@@ -37576,16 +37137,14 @@ void ValidateMemoryAccessDenary(uint8_t ObjectContext, int64_t ValidationContext
   }
   *(uint8_t *)(SystemContextPointer + 0x418) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x420) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x420) = 0;
   *(uint32_t *)(SystemContextPointer + 0x430) = 0;
   *(uint8_t *)(SystemContextPointer + 0x418) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x3f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x400) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x400) = 0;
   *(uint32_t *)(SystemContextPointer + 0x410) = 0;
@@ -37620,40 +37179,35 @@ void ValidateMemoryAccessUndenary(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x480) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x488) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x488) = 0;
   *(uint32_t *)(SystemContextPointer + 0x498) = 0;
   *(uint8_t *)(SystemContextPointer + 0x480) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x460) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x468) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x468) = 0;
   *(uint32_t *)(SystemContextPointer + 0x478) = 0;
@@ -37688,16 +37242,14 @@ void ValidateMemoryAccessDuodenary(uint8_t ObjectContext, int64_t ValidationCont
   }
   *(uint8_t *)(SystemContextPointer + 0x548) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x550) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x550) = 0;
   *(uint32_t *)(SystemContextPointer + 0x560) = 0;
   *(uint8_t *)(SystemContextPointer + 0x548) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x528) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x530) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x530) = 0;
   *(uint32_t *)(SystemContextPointer + 0x540) = 0;
@@ -37727,8 +37279,7 @@ void ValidateContext(uint8_t ObjectContext, int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x88);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20) = 0;
@@ -37758,8 +37309,7 @@ void ValidateContextSecondary(uint8_t ObjectContext, int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x88);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -37848,16 +37398,14 @@ void UnwindSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext
   }
   *(uint8_t *)(SystemContextPointer + 0x488) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x490) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x490) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4a0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x488) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x468) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x470) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x470) = 0;
   *(uint32_t *)(SystemContextPointer + 0x480) = 0;
@@ -37890,16 +37438,14 @@ void UnwindSystemDataStructureHandler(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0x4f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x500) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x500) = 0;
   *(uint32_t *)(SystemContextPointer + 0x510) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4f8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4f0) = 0;
@@ -37934,16 +37480,14 @@ void CleanupLocalContextResources(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x568) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x570) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x570) = 0;
   *(uint32_t *)(SystemContextPointer + 0x580) = 0;
   *(uint8_t *)(SystemContextPointer + 0x568) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x548) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x550) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x550) = 0;
   *(uint32_t *)(SystemContextPointer + 0x560) = 0;
@@ -37978,16 +37522,14 @@ void ReleaseSystemDataStructures(uint8_t ObjectContext, int64_t ValidationContex
   }
   *(uint8_t *)(SystemContextPointer + 0x5d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5f0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x5d8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x5b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5d0) = 0;
@@ -38022,16 +37564,14 @@ void CleanupResourceWithParameters(uint8_t ObjectContext,int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x648) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x650) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x650) = 0;
   *(uint32_t *)(SystemContextPointer + 0x660) = 0;
   *(uint8_t *)(SystemContextPointer + 0x648) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x628) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x630) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x630) = 0;
   *(uint32_t *)(SystemContextPointer + 0x640) = 0;
@@ -38066,16 +37606,14 @@ void CleanupResourceWithValidation(uint8_t ObjectContext,int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x6b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x6c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x6c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x6d0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x6b8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x698) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x6a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x6a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x6b0) = 0;
@@ -38096,16 +37634,14 @@ void CleanupResourceWithStatusCheck(uint8_t ObjectContext,int64_t ValidationCont
   }
   *(uint8_t *)(SystemContextPointer + 0x728) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x730) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x730) = 0;
   *(uint32_t *)(SystemContextPointer + 0x740) = 0;
   *(uint8_t *)(SystemContextPointer + 0x728) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x708) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x710) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x710) = 0;
   *(uint32_t *)(SystemContextPointer + 0x720) = 0;
@@ -38141,16 +37677,14 @@ void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
   }
   *(uint8_t *)(SystemContextPointer + 0x798) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x7b0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x798) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x778) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x780) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x780) = 0;
   *(uint32_t *)(SystemContextPointer + 0x790) = 0;
@@ -38184,16 +37718,14 @@ void CleanupSystemResourceHandler9f0(uint8_t ObjectContext,int64_t ValidationCon
   }
   *(uint8_t *)(SystemContextPointer + 0x808) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x810) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x810) = 0;
   *(uint32_t *)(SystemContextPointer + 0x820) = 0;
   *(uint8_t *)(SystemContextPointer + 0x808) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x7e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x800) = 0;
@@ -38227,16 +37759,14 @@ void CleanupSystemResourceHandlerA10(uint8_t ObjectContext,int64_t ValidationCon
   }
   *(uint8_t *)(SystemContextPointer + 0x878) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x880) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x880) = 0;
   *(uint32_t *)(SystemContextPointer + 0x890) = 0;
   *(uint8_t *)(SystemContextPointer + 0x878) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x858) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x860) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x860) = 0;
   *(uint32_t *)(SystemContextPointer + 0x870) = 0;
@@ -38270,16 +37800,14 @@ void CleanupSystemResourceHandlerA30(uint8_t ObjectContext,int64_t ValidationCon
   }
   *(uint8_t *)(SystemContextPointer + 0x8e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x900) = 0;
   *(uint8_t *)(SystemContextPointer + 0x8e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x8c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x8e0) = 0;
@@ -38313,16 +37841,14 @@ void CleanupSystemResourceHandlerA50(uint8_t ObjectContext,int64_t ValidationCon
   }
   *(uint8_t *)(SystemContextPointer + 0x958) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x960) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x960) = 0;
   *(uint32_t *)(SystemContextPointer + 0x970) = 0;
   *(uint8_t *)(SystemContextPointer + 0x958) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x938) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x940) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x940) = 0;
   *(uint32_t *)(SystemContextPointer + 0x950) = 0;
@@ -38356,16 +37882,14 @@ void CleanupSystemResourceHandlerA70(uint8_t ObjectContext,int64_t ValidationCon
   }
   *(uint8_t *)(SystemContextPointer + 0x9d0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9d8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9d8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9e8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x9d0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x9b0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9b8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9b8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9c8) = 0;
@@ -38399,16 +37923,14 @@ void CleanupSystemResourceHandlerA90(uint8_t ObjectContext,int64_t ValidationCon
   }
   *(uint8_t *)(SystemContextPointer + 0xa48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa50) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa60) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa48) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa30) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa40) = 0;
@@ -38464,8 +37986,7 @@ void ValidateResourceContextAC0(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   *(uint8_t *)(SystemContextPointer + 0x10) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x18) = 0;
   *(uint32_t *)(SystemContextPointer + 0x28) = 0;
@@ -38495,8 +38016,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   *(uint8_t *)(SystemContextPointer + 0x30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x38) = 0;
   *(uint32_t *)(SystemContextPointer + 0x48) = 0;
@@ -38587,16 +38107,14 @@ void CleanupDualResourceHandlers(uint8_t ObjectContext,int64_t ValidationContext
   }
   *(uint8_t *)(SystemContextPointer + 0x488) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x490) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x490) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4a0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x488) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x468) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x470) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x470) = 0;
   *(uint32_t *)(SystemContextPointer + 0x480) = 0;
@@ -38629,16 +38147,14 @@ void ProcessSystemResourceCleanup1(uint8_t ObjectContext,int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x4f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x500) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x500) = 0;
   *(uint32_t *)(SystemContextPointer + 0x510) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4f8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4f0) = 0;
@@ -38671,16 +38187,14 @@ void ProcessSystemResourceCleanup2(uint8_t ObjectContext,int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x568) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x570) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x570) = 0;
   *(uint32_t *)(SystemContextPointer + 0x580) = 0;
   *(uint8_t *)(SystemContextPointer + 0x568) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x548) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x550) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x550) = 0;
   *(uint32_t *)(SystemContextPointer + 0x560) = 0;
@@ -38713,16 +38227,14 @@ void ProcessSystemResourceCleanup3(uint8_t ObjectContext,int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x5d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5f0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x5d8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x5b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5d0) = 0;
@@ -38755,16 +38267,14 @@ void ProcessSystemResourceCleanup4(uint8_t ObjectContext,int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x648) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x650) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x650) = 0;
   *(uint32_t *)(SystemContextPointer + 0x660) = 0;
   *(uint8_t *)(SystemContextPointer + 0x648) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x628) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x630) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x630) = 0;
   *(uint32_t *)(SystemContextPointer + 0x640) = 0;
@@ -38799,16 +38309,14 @@ void CleanupSystemResourcesPhase1(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x6b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x6c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x6c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x6d0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x6b8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x698) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x6a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x6a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x6b0) = 0;
@@ -38843,16 +38351,14 @@ void CleanupSystemResourcesPhase2(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x728) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x730) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x730) = 0;
   *(uint32_t *)(SystemContextPointer + 0x740) = 0;
   *(uint8_t *)(SystemContextPointer + 0x728) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x708) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x710) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x710) = 0;
   *(uint32_t *)(SystemContextPointer + 0x720) = 0;
@@ -38887,16 +38393,14 @@ void CleanupSystemResourcesPhase3(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x798) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x7b0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x798) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x778) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x780) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x780) = 0;
   *(uint32_t *)(SystemContextPointer + 0x790) = 0;
@@ -38931,16 +38435,14 @@ void CleanupSystemResourcesPhase4(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x808) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x810) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x810) = 0;
   *(uint32_t *)(SystemContextPointer + 0x820) = 0;
   *(uint8_t *)(SystemContextPointer + 0x808) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x7e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x800) = 0;
@@ -38975,16 +38477,14 @@ void CleanupSystemResourcesPhase5(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x878) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x880) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x880) = 0;
   *(uint32_t *)(SystemContextPointer + 0x890) = 0;
   *(uint8_t *)(SystemContextPointer + 0x878) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x858) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x860) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x860) = 0;
   *(uint32_t *)(SystemContextPointer + 0x870) = 0;
@@ -39019,16 +38519,14 @@ void CleanupSystemResourcesPhase6(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x8e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x900) = 0;
   *(uint8_t *)(SystemContextPointer + 0x8e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x8c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x8e0) = 0;
@@ -39063,16 +38561,14 @@ void CleanupSystemResourcesPhase7(uint8_t ObjectContext, int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x958) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x960) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x960) = 0;
   *(uint32_t *)(SystemContextPointer + 0x970) = 0;
   *(uint8_t *)(SystemContextPointer + 0x958) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x938) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x940) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x940) = 0;
   *(uint32_t *)(SystemContextPointer + 0x950) = 0;
@@ -39105,16 +38601,14 @@ void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
   }
   *(uint8_t *)(SystemContextPointer + 0x9d0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9d8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9d8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9e8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x9d0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x9b0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9b8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9b8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9c8) = 0;
@@ -39147,16 +38641,14 @@ void CleanupAdvancedSystemResourceHandler(uint8_t ObjectContext,int64_t Validati
   }
   *(uint8_t *)(SystemContextPointer + 0xa48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa50) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa60) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa48) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa30) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa40) = 0;
@@ -39186,8 +38678,7 @@ void ReleaseObjectContextResources(uint8_t ObjectContext, int64_t ValidationCont
   loopCounter = *(int64_t *)(ValidationContext + 0x88);
   *(uint8_t *)(SystemContextPointer + 0x10) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x18) = 0;
   *(uint32_t *)(SystemContextPointer + 0x28) = 0;
@@ -39217,8 +38708,7 @@ void ReleaseValidationContextResources(uint8_t ObjectContext, int64_t Validation
   loopCounter = *(int64_t *)(ValidationContext + 0x88);
   *(uint8_t *)(SystemContextPointer + 0x30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x38) = 0;
   *(uint32_t *)(SystemContextPointer + 0x48) = 0;
@@ -39281,40 +38771,35 @@ void CleanupThreadManagerResources(uint8_t ObjectContext, int64_t ValidationCont
   }
   *(uint8_t *)(SystemContextPointer + 0x160) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x168) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x168) = 0;
   *(uint32_t *)(SystemContextPointer + 0x178) = 0;
   *(uint8_t *)(SystemContextPointer + 0x160) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x140) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x148) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x148) = 0;
   *(uint32_t *)(SystemContextPointer + 0x158) = 0;
   *(uint8_t *)(SystemContextPointer + 0x140) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x120) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x128) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x128) = 0;
   *(uint32_t *)(SystemContextPointer + 0x138) = 0;
   *(uint8_t *)(SystemContextPointer + 0x120) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x100) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x108) = 0;
   *(uint32_t *)(SystemContextPointer + 0x118) = 0;
   *(uint8_t *)(SystemContextPointer + 0x100) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf8) = 0;
@@ -39349,40 +38834,35 @@ void CleanupFileSystemResources(uint8_t ObjectContext, int64_t ValidationContext
   }
   *(uint8_t *)(SystemContextPointer + 0x220) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x228) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x228) = 0;
   *(uint32_t *)(SystemContextPointer + 0x238) = 0;
   *(uint8_t *)(SystemContextPointer + 0x220) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x200) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x208) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x208) = 0;
   *(uint32_t *)(SystemContextPointer + 0x218) = 0;
   *(uint8_t *)(SystemContextPointer + 0x200) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1b8) = 0;
@@ -39415,40 +38895,35 @@ void CleanupExtendedSystemResourceHandler(uint8_t ObjectContext,int64_t Validati
   }
   *(uint8_t *)(SystemContextPointer + 0x2e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x280) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x288) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x288) = 0;
   *(uint32_t *)(SystemContextPointer + 0x298) = 0;
   *(uint8_t *)(SystemContextPointer + 0x280) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x260) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x268) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x268) = 0;
   *(uint32_t *)(SystemContextPointer + 0x278) = 0;
@@ -39483,40 +38958,35 @@ void ResetSystemResourceHandlers(uint8_t ObjectContext, int64_t ValidationContex
   }
   *(uint8_t *)(SystemContextPointer + 0x3a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x3a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x3a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x3a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x380) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x388) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x388) = 0;
   *(uint32_t *)(SystemContextPointer + 0x398) = 0;
   *(uint8_t *)(SystemContextPointer + 0x380) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x360) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x368) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x368) = 0;
   *(uint32_t *)(SystemContextPointer + 0x378) = 0;
   *(uint8_t *)(SystemContextPointer + 0x360) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x340) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x348) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x348) = 0;
   *(uint32_t *)(SystemContextPointer + 0x358) = 0;
   *(uint8_t *)(SystemContextPointer + 0x340) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 800) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x328) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x328) = 0;
   *(uint32_t *)(SystemContextPointer + 0x338) = 0;
@@ -39537,40 +39007,35 @@ void CleanupSystemResourceHandler1(uint8_t ObjectContext,int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0x460) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x468) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x468) = 0;
   *(uint32_t *)(SystemContextPointer + 0x478) = 0;
   *(uint8_t *)(SystemContextPointer + 0x460) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x440) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x448) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x448) = 0;
   *(uint32_t *)(SystemContextPointer + 0x458) = 0;
   *(uint8_t *)(SystemContextPointer + 0x440) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x420) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x428) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x428) = 0;
   *(uint32_t *)(SystemContextPointer + 0x438) = 0;
   *(uint8_t *)(SystemContextPointer + 0x420) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x400) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x408) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x408) = 0;
   *(uint32_t *)(SystemContextPointer + 0x418) = 0;
   *(uint8_t *)(SystemContextPointer + 0x400) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x3e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 1000) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 1000) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3f8) = 0;
@@ -39605,40 +39070,35 @@ void CleanupSystemResourceHandlerSet1(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0x520) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x528) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x528) = 0;
   *(uint32_t *)(SystemContextPointer + 0x538) = 0;
   *(uint8_t *)(SystemContextPointer + 0x520) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x500) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x508) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x508) = 0;
   *(uint32_t *)(SystemContextPointer + 0x518) = 0;
   *(uint8_t *)(SystemContextPointer + 0x500) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4b8) = 0;
@@ -39673,40 +39133,35 @@ void CleanupSystemResourceHandlerSet2(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0x5e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x5e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x5c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x5c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x5a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x5a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x580) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x588) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x588) = 0;
   *(uint32_t *)(SystemContextPointer + 0x598) = 0;
   *(uint8_t *)(SystemContextPointer + 0x580) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x568) = 0;
   *(uint32_t *)(SystemContextPointer + 0x578) = 0;
@@ -39741,40 +39196,35 @@ void CleanupSystemResourceHandlerSet3(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0x6a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x6a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x6a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x6b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x6a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x680) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x688) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x688) = 0;
   *(uint32_t *)(SystemContextPointer + 0x698) = 0;
   *(uint8_t *)(SystemContextPointer + 0x680) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x660) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x668) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x668) = 0;
   *(uint32_t *)(SystemContextPointer + 0x678) = 0;
   *(uint8_t *)(SystemContextPointer + 0x660) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x640) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x648) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x648) = 0;
   *(uint32_t *)(SystemContextPointer + 0x658) = 0;
   *(uint8_t *)(SystemContextPointer + 0x640) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x620) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x628) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x628) = 0;
   *(uint32_t *)(SystemContextPointer + 0x638) = 0;
@@ -39809,40 +39259,35 @@ void CleanupSystemResourceHandlerSet4(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0x760) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x768) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x768) = 0;
   *(uint32_t *)(SystemContextPointer + 0x778) = 0;
   *(uint8_t *)(SystemContextPointer + 0x760) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x740) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x748) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x748) = 0;
   *(uint32_t *)(SystemContextPointer + 0x758) = 0;
   *(uint8_t *)(SystemContextPointer + 0x740) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x720) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x728) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x728) = 0;
   *(uint32_t *)(SystemContextPointer + 0x738) = 0;
   *(uint8_t *)(SystemContextPointer + 0x720) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x700) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x708) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x708) = 0;
   *(uint32_t *)(SystemContextPointer + 0x718) = 0;
   *(uint8_t *)(SystemContextPointer + 0x700) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x6e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x6e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x6e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x6f8) = 0;
@@ -39878,40 +39323,35 @@ void CleanupThreadPoolContextAndManageSystemState(uint8_t ObjectContext, int64_t
   }
   *(uint8_t *)(SystemContextPointer + 0x820) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x828) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x828) = 0;
   *(uint32_t *)(SystemContextPointer + 0x838) = 0;
   *(uint8_t *)(SystemContextPointer + 0x820) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x800) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x808) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x808) = 0;
   *(uint32_t *)(SystemContextPointer + 0x818) = 0;
   *(uint8_t *)(SystemContextPointer + 0x800) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x7e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x7f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x7e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x7c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x7d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x7c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x7a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x7b8) = 0;
@@ -39947,40 +39387,35 @@ void CleanupMemoryPoolContextAndProcessSystemState(uint8_t ObjectContext, int64_
   }
   *(uint8_t *)(SystemContextPointer + 0x8e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x8f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x8e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x8c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x8d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x8c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x8a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x8b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x8a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x880) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x888) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x888) = 0;
   *(uint32_t *)(SystemContextPointer + 0x898) = 0;
   *(uint8_t *)(SystemContextPointer + 0x880) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x860) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x868) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x868) = 0;
   *(uint32_t *)(SystemContextPointer + 0x878) = 0;
@@ -40016,40 +39451,35 @@ void CleanupEventSystemContextAndManageSystemResources(uint8_t ObjectContext, in
   }
   *(uint8_t *)(SystemContextPointer + 0x9a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x9a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x980) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x988) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x988) = 0;
   *(uint32_t *)(SystemContextPointer + 0x998) = 0;
   *(uint8_t *)(SystemContextPointer + 0x980) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x960) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x968) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x968) = 0;
   *(uint32_t *)(SystemContextPointer + 0x978) = 0;
   *(uint8_t *)(SystemContextPointer + 0x960) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x940) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x948) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x948) = 0;
   *(uint32_t *)(SystemContextPointer + 0x958) = 0;
   *(uint8_t *)(SystemContextPointer + 0x940) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x920) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x928) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x928) = 0;
   *(uint32_t *)(SystemContextPointer + 0x938) = 0;
@@ -40085,40 +39515,35 @@ void CleanupLoggingSystemContextAndProcessSystemState(uint8_t ObjectContext, int
   }
   *(uint8_t *)(SystemContextPointer + 0xa60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa68) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa78) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa60) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa48) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa48) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa58) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa40) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa28) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa38) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa20) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa00) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa08) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa08) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa18) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa00) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x9e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9f8) = 0;
@@ -40154,40 +39579,35 @@ void CleanupNetworkSystemContextAndManageSystemResources(uint8_t ObjectContext, 
   }
   *(uint8_t *)(SystemContextPointer + 0xb20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb28) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb38) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb20) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xb00) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb08) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb08) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb18) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb00) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xae0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xae8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xae8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xaf8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xae0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xac0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xac8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xac8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xad8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xac0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xaa0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xaa8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xaa8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xab8) = 0;
@@ -40223,40 +39643,35 @@ void CleanupSecuritySystemContextAndProcessSystemState(uint8_t ObjectContext, in
   }
   *(uint8_t *)(SystemContextPointer + 0xbe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xbe8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xbe8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xbf8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xbe0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xbc0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xbc8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xbc8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xbd8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xbc0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xba0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xba8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xba8) = 0;
   *(uint32_t *)(SystemContextPointer + 3000) = 0;
   *(uint8_t *)(SystemContextPointer + 0xba0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xb80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb88) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb88) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb98) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb80) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xb60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb68) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb78) = 0;
@@ -40292,40 +39707,35 @@ void CleanupConfigurationSystemContextAndManageSystemResources(uint8_t ObjectCon
   }
   *(uint8_t *)(SystemContextPointer + 0xca0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xca8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xca8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xcb8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xca0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc88) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc88) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc98) = 0;
   *(uint8_t *)(SystemContextPointer + 0xc80) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc68) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc78) = 0;
   *(uint8_t *)(SystemContextPointer + 0xc60) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc48) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc48) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc58) = 0;
   *(uint8_t *)(SystemContextPointer + 0xc40) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc28) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc38) = 0;
@@ -40361,16 +39771,14 @@ void CleanupDiagnosticsSystemContextAndProcessSystemState(uint8_t ObjectContext,
   }
   *(uint8_t *)(SystemContextPointer + 0xd08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd10) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd20) = 0;
   *(uint8_t *)(SystemContextPointer + 0xd08) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xce8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xcf0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xcf0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd00) = 0;
@@ -40406,16 +39814,14 @@ void CleanupPerformanceMonitoringContextAndManageSystemResources(uint8_t ObjectC
   }
   *(uint8_t *)(SystemContextPointer + 0xd78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd80) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd90) = 0;
   *(uint8_t *)(SystemContextPointer + 0xd78) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xd58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd60) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd70) = 0;
@@ -40450,16 +39856,14 @@ void CleanupSystemResourceHandlerSet5(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0xde8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xdf0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xdf0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe00) = 0;
   *(uint8_t *)(SystemContextPointer + 0xde8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xdc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xdd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xdd0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xde0) = 0;
@@ -40494,40 +39898,35 @@ void CleanupSystemResourceHandlerSet6(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0xeb0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xeb8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xeb8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xec8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xeb0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe90) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe98) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe98) = 0;
   *(uint32_t *)(SystemContextPointer + 0xea8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe90) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe70) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe78) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe78) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe88) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe70) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe58) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe58) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe68) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe50) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe38) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe38) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe48) = 0;
@@ -40562,40 +39961,35 @@ void CleanupSystemResourceHandlerSet7(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0xf70) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf78) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf78) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf88) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf70) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xf50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf58) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf58) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf68) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf50) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xf30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf38) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf38) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf48) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf30) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xf10) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf18) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf18) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf28) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf10) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xef0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xef8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xef8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf08) = 0;
@@ -40630,40 +40024,35 @@ void CleanupSystemResourceHandlerSet8(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0x1030) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1038) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1038) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1048) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1030) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1010) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1018) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1018) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1028) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1010) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xff0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xff8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xff8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1008) = 0;
   *(uint8_t *)(SystemContextPointer + 0xff0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xfd0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xfd8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xfd8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xfe8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xfd0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xfb0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xfb8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xfb8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xfc8) = 0;
@@ -40698,16 +40087,14 @@ void CleanupSystemResourceHandlerSet9(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0x1098) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x10b0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1098) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1078) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1080) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1080) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1090) = 0;
@@ -40742,16 +40129,14 @@ void CleanupSystemResourceHandlerSet10(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(SystemContextPointer + 0x1108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1110) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1110) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1120) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1108) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x10e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1100) = 0;
@@ -40786,16 +40171,14 @@ void CleanupSystemResourceHandlerSet11(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(SystemContextPointer + 0x1178) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1180) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1180) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1190) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1178) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1158) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1160) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1160) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1170) = 0;
@@ -40830,16 +40213,14 @@ void CleanupSystemResourceHandlerSet12(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(SystemContextPointer + 0x11e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x11f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x11f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1200) = 0;
   *(uint8_t *)(SystemContextPointer + 0x11e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x11c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x11d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x11d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x11e0) = 0;
@@ -40874,16 +40255,14 @@ void CleanupSystemResourceHandlerSet13(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(SystemContextPointer + 0x1258) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1260) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1260) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1270) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1258) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1238) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1240) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1240) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1250) = 0;
@@ -40918,16 +40297,14 @@ void CleanupSystemResourceHandlerSet14(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(SystemContextPointer + 0x12c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x12d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x12d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x12e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x12c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x12a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x12b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x12b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x12c0) = 0;
@@ -40962,16 +40339,14 @@ void CleanupSystemResourceHandlerSet15(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(SystemContextPointer + 0x1338) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1340) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1340) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1350) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1338) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1318) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1320) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1320) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1330) = 0;
@@ -41012,8 +40387,7 @@ void CleanupSystemResourceHandlerSet16(uint8_t ObjectContext,int64_t ValidationC
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -41049,8 +40423,7 @@ void CleanupSystemResourceHandlerSet17(uint8_t ObjectContext,int64_t ValidationC
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -41075,8 +40448,7 @@ void ResetSystemResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -41158,8 +40530,7 @@ void CleanupObjectContext(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -41209,8 +40580,7 @@ void ValidateObjectContext(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x20);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -41247,8 +40617,7 @@ void ResetObjectContext(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -41277,8 +40646,7 @@ void UnwindSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x48) = 0;
   *(uint32_t *)(SystemContextPointer + 0x58) = 0;
@@ -41308,8 +40676,7 @@ void UnwindSystemResourceSecondaryHandler(uint8_t ObjectContext,int64_t Validati
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemResourceContext + 0x68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x68) = 0;
   *(uint32_t *)(SystemContextPointer + 0x78) = 0;
@@ -41339,8 +40706,7 @@ void UnwindSystemResourceTertiaryHandler(uint8_t ObjectContext,int64_t Validatio
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x88) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x88) = 0;
   *(uint32_t *)(SystemContextPointer + 0x98) = 0;
@@ -41398,8 +40764,7 @@ void ResetSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationContext
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   *(uint8_t *)(SystemContextPointer + 0x60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemResourceContext + 0x68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x68) = 0;
   *(uint32_t *)(SystemContextPointer + 0x78) = 0;
@@ -41462,40 +40827,35 @@ void ResetMultiLayerSystemResourceHandler(uint8_t ObjectContext, int64_t Validat
   }
   *(uint8_t *)(SystemContextPointer + 0x160) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x168) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x168) = 0;
   *(uint32_t *)(SystemContextPointer + 0x178) = 0;
   *(uint8_t *)(SystemContextPointer + 0x160) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x140) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x148) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x148) = 0;
   *(uint32_t *)(SystemContextPointer + 0x158) = 0;
   *(uint8_t *)(SystemContextPointer + 0x140) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x120) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x128) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x128) = 0;
   *(uint32_t *)(SystemContextPointer + 0x138) = 0;
   *(uint8_t *)(SystemContextPointer + 0x120) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x100) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x108) = 0;
   *(uint32_t *)(SystemContextPointer + 0x118) = 0;
   *(uint8_t *)(SystemContextPointer + 0x100) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf8) = 0;
@@ -41537,40 +40897,35 @@ void Unwind_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t Validatio
   }
   *(uint8_t *)(SystemContextPointer + 0x220) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x228) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x228) = 0;
   *(uint32_t *)(SystemContextPointer + 0x238) = 0;
   *(uint8_t *)(SystemContextPointer + 0x220) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x200) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x208) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x208) = 0;
   *(uint32_t *)(SystemContextPointer + 0x218) = 0;
   *(uint8_t *)(SystemContextPointer + 0x200) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1b8) = 0;
@@ -41612,40 +40967,35 @@ void Unwind_SystemResourceCleanup_Batch2(uint8_t ObjectContext,int64_t Validatio
   }
   *(uint8_t *)(SystemContextPointer + 0x2e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x280) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x288) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x288) = 0;
   *(uint32_t *)(SystemContextPointer + 0x298) = 0;
   *(uint8_t *)(SystemContextPointer + 0x280) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x260) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x268) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x268) = 0;
   *(uint32_t *)(SystemContextPointer + 0x278) = 0;
@@ -41687,40 +41037,35 @@ void Unwind_SystemResourceCleanup_Batch3(uint8_t ObjectContext,int64_t Validatio
   }
   *(uint8_t *)(SystemContextPointer + 0x3a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x3a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x3a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x3a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x380) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x388) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x388) = 0;
   *(uint32_t *)(SystemContextPointer + 0x398) = 0;
   *(uint8_t *)(SystemContextPointer + 0x380) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x360) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x368) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x368) = 0;
   *(uint32_t *)(SystemContextPointer + 0x378) = 0;
   *(uint8_t *)(SystemContextPointer + 0x360) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x340) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x348) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x348) = 0;
   *(uint32_t *)(SystemContextPointer + 0x358) = 0;
   *(uint8_t *)(SystemContextPointer + 0x340) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 800) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x328) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x328) = 0;
   *(uint32_t *)(SystemContextPointer + 0x338) = 0;
@@ -41762,40 +41107,35 @@ void Unwind_SystemResourceCleanup_Batch4(uint8_t ObjectContext,int64_t Validatio
   }
   *(uint8_t *)(SystemContextPointer + 0x460) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x468) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x468) = 0;
   *(uint32_t *)(SystemContextPointer + 0x478) = 0;
   *(uint8_t *)(SystemContextPointer + 0x460) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x440) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x448) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x448) = 0;
   *(uint32_t *)(SystemContextPointer + 0x458) = 0;
   *(uint8_t *)(SystemContextPointer + 0x440) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x420) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x428) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x428) = 0;
   *(uint32_t *)(SystemContextPointer + 0x438) = 0;
   *(uint8_t *)(SystemContextPointer + 0x420) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x400) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x408) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x408) = 0;
   *(uint32_t *)(SystemContextPointer + 0x418) = 0;
   *(uint8_t *)(SystemContextPointer + 0x400) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x3e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 1000) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 1000) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3f8) = 0;
@@ -41837,40 +41177,35 @@ void Unwind_SystemResourceCleanup_Batch5(uint8_t ObjectContext,int64_t Validatio
   }
   *(uint8_t *)(SystemContextPointer + 0x520) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x528) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x528) = 0;
   *(uint32_t *)(SystemContextPointer + 0x538) = 0;
   *(uint8_t *)(SystemContextPointer + 0x520) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x500) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x508) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x508) = 0;
   *(uint32_t *)(SystemContextPointer + 0x518) = 0;
   *(uint8_t *)(SystemContextPointer + 0x500) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4b8) = 0;
@@ -41906,40 +41241,35 @@ void InitializeSystemResourceHandlers(uint8_t ObjectContext,int64_t ValidationCo
   }
   *(uint8_t *)(SystemContextPointer + 0x5e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x5e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x5c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x5c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x5a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x5a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x5b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x5a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x580) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x588) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x588) = 0;
   *(uint32_t *)(SystemContextPointer + 0x598) = 0;
   *(uint8_t *)(SystemContextPointer + 0x580) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x568) = 0;
   *(uint32_t *)(SystemContextPointer + 0x578) = 0;
@@ -41975,40 +41305,35 @@ void SetupSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext,
   }
   *(uint8_t *)(SystemContextPointer + 0x6a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x6a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x6a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x6b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x6a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x680) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x688) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x688) = 0;
   *(uint32_t *)(SystemContextPointer + 0x698) = 0;
   *(uint8_t *)(SystemContextPointer + 0x680) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x660) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x668) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x668) = 0;
   *(uint32_t *)(SystemContextPointer + 0x678) = 0;
   *(uint8_t *)(SystemContextPointer + 0x660) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x640) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x648) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x648) = 0;
   *(uint32_t *)(SystemContextPointer + 0x658) = 0;
   *(uint8_t *)(SystemContextPointer + 0x640) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x620) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x628) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x628) = 0;
   *(uint32_t *)(SystemContextPointer + 0x638) = 0;
@@ -42044,40 +41369,35 @@ void ConfigureResourceValidation(uint8_t ObjectContext,int64_t ValidationContext
   }
   *(uint8_t *)(SystemContextPointer + 0x760) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x768) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x768) = 0;
   *(uint32_t *)(SystemContextPointer + 0x778) = 0;
   *(uint8_t *)(SystemContextPointer + 0x760) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x740) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x748) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x748) = 0;
   *(uint32_t *)(SystemContextPointer + 0x758) = 0;
   *(uint8_t *)(SystemContextPointer + 0x740) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x720) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x728) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x728) = 0;
   *(uint32_t *)(SystemContextPointer + 0x738) = 0;
   *(uint8_t *)(SystemContextPointer + 0x720) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x700) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x708) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x708) = 0;
   *(uint32_t *)(SystemContextPointer + 0x718) = 0;
   *(uint8_t *)(SystemContextPointer + 0x700) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x6e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x6e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x6e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x6f8) = 0;
@@ -42112,40 +41432,35 @@ void CleanupResourceBlock1(uint8_t ObjectContext,int64_t ValidationContext,uint8
   }
   *(uint8_t *)(SystemContextPointer + 0x820) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x828) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x828) = 0;
   *(uint32_t *)(SystemContextPointer + 0x838) = 0;
   *(uint8_t *)(SystemContextPointer + 0x820) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x800) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x808) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x808) = 0;
   *(uint32_t *)(SystemContextPointer + 0x818) = 0;
   *(uint8_t *)(SystemContextPointer + 0x800) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x7e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x7f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x7e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x7c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x7d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x7c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x7a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x7a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x7a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x7b8) = 0;
@@ -42180,40 +41495,35 @@ void CleanupResourceBlock2(uint8_t ObjectContext,int64_t ValidationContext,uint8
   }
   *(uint8_t *)(SystemContextPointer + 0x8e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x8f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x8e0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x8c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x8d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x8c0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x8a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x8a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x8a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x8b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x8a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x880) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x888) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x888) = 0;
   *(uint32_t *)(SystemContextPointer + 0x898) = 0;
   *(uint8_t *)(SystemContextPointer + 0x880) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x860) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x868) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x868) = 0;
   *(uint32_t *)(SystemContextPointer + 0x878) = 0;
@@ -42248,40 +41558,35 @@ void CleanupResourceBlock3(uint8_t ObjectContext,int64_t ValidationContext,uint8
   }
   *(uint8_t *)(SystemContextPointer + 0x9a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9a8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x9a0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x980) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x988) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x988) = 0;
   *(uint32_t *)(SystemContextPointer + 0x998) = 0;
   *(uint8_t *)(SystemContextPointer + 0x980) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x960) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x968) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x968) = 0;
   *(uint32_t *)(SystemContextPointer + 0x978) = 0;
   *(uint8_t *)(SystemContextPointer + 0x960) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x940) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x948) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x948) = 0;
   *(uint32_t *)(SystemContextPointer + 0x958) = 0;
   *(uint8_t *)(SystemContextPointer + 0x940) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x920) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x928) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x928) = 0;
   *(uint32_t *)(SystemContextPointer + 0x938) = 0;
@@ -42316,40 +41621,35 @@ void CleanupResourceBlock4(uint8_t ObjectContext,int64_t ValidationContext,uint8
   }
   *(uint8_t *)(SystemContextPointer + 0xa60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa68) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa78) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa60) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa48) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa48) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa58) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa40) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa28) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa38) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa20) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa00) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa08) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa08) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa18) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa00) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x9e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9e8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9f8) = 0;
@@ -42384,40 +41684,35 @@ void CleanupResourceBlock5(uint8_t ObjectContext,int64_t ValidationContext,uint8
   }
   *(uint8_t *)(SystemContextPointer + 0xb20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb28) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb38) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb20) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xb00) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb08) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb08) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb18) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb00) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xae0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xae8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xae8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xaf8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xae0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xac0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xac8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xac8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xad8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xac0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xaa0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xaa8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xaa8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xab8) = 0;
@@ -42452,40 +41747,35 @@ void CleanupResourceBlock6(uint8_t ObjectContext,int64_t ValidationContext,uint8
   }
   *(uint8_t *)(SystemContextPointer + 0xbe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xbe8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xbe8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xbf8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xbe0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xbc0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xbc8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xbc8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xbd8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xbc0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xba0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xba8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xba8) = 0;
   *(uint32_t *)(SystemContextPointer + 3000) = 0;
   *(uint8_t *)(SystemContextPointer + 0xba0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xb80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb88) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb88) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb98) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb80) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xb60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb68) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb78) = 0;
@@ -42520,40 +41810,35 @@ void CleanupResourceBlock7(uint8_t ObjectContext,int64_t ValidationContext,uint8
   }
   *(uint8_t *)(SystemContextPointer + 0xca0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xca8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xca8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xcb8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xca0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc88) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc88) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc98) = 0;
   *(uint8_t *)(SystemContextPointer + 0xc80) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc68) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc78) = 0;
   *(uint8_t *)(SystemContextPointer + 0xc60) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc48) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc48) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc58) = 0;
   *(uint8_t *)(SystemContextPointer + 0xc40) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc28) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc38) = 0;
@@ -42588,16 +41873,14 @@ void CleanupResourceBlock8(uint8_t ObjectContext,int64_t ValidationContext,uint8
   }
   *(uint8_t *)(SystemContextPointer + 0xd08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd10) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd20) = 0;
   *(uint8_t *)(SystemContextPointer + 0xd08) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xce8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xcf0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xcf0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd00) = 0;
@@ -42632,16 +41915,14 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
   }
   *(uint8_t *)(SystemContextPointer + 0xd78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd80) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd90) = 0;
   *(uint8_t *)(SystemContextPointer + 0xd78) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xd58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd60) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd70) = 0;
@@ -42676,16 +41957,14 @@ void ValidateSystemResourceContext(uint8_t ObjectContext,int64_t ValidationConte
   }
   *(uint8_t *)(SystemContextPointer + 0xde8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xdf0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xdf0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe00) = 0;
   *(uint8_t *)(SystemContextPointer + 0xde8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xdc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xdd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xdd0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xde0) = 0;
@@ -42720,40 +41999,35 @@ void CleanupSystemResourceMemory(uint8_t ObjectContext,int64_t ValidationContext
   }
   *(uint8_t *)(SystemContextPointer + 0xeb0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xeb8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xeb8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xec8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xeb0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe90) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe98) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe98) = 0;
   *(uint32_t *)(SystemContextPointer + 0xea8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe90) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe70) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe78) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe78) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe88) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe70) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe58) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe58) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe68) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe50) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe38) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe38) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe48) = 0;
@@ -42788,40 +42062,35 @@ void ReleaseSystemResourceHandle(uint8_t ObjectContext,int64_t ValidationContext
   }
   *(uint8_t *)(SystemContextPointer + 0xf70) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf78) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf78) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf88) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf70) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xf50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf58) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf58) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf68) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf50) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xf30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf38) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf38) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf48) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf30) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xf10) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf18) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf18) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf28) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf10) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xef0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xef8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xef8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf08) = 0;
@@ -42856,40 +42125,35 @@ void FreeSystemResourceMemory(uint8_t ObjectContext,int64_t ValidationContext,ui
   }
   *(uint8_t *)(SystemContextPointer + 0x1030) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1038) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1038) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1048) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1030) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1010) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1018) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1018) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1028) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1010) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xff0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xff8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xff8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1008) = 0;
   *(uint8_t *)(SystemContextPointer + 0xff0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xfd0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xfd8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xfd8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xfe8) = 0;
   *(uint8_t *)(SystemContextPointer + 0xfd0) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xfb0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xfb8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xfb8) = 0;
   *(uint32_t *)(SystemContextPointer + 0xfc8) = 0;
@@ -42924,16 +42188,14 @@ void ResetSystemResourceState(uint8_t ObjectContext,int64_t ValidationContext,ui
   }
   *(uint8_t *)(SystemContextPointer + 0x1098) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x10b0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1098) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1078) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1080) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1080) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1090) = 0;
@@ -42968,16 +42230,14 @@ void InitializeResourceHandler(uint8_t ObjectContext,int64_t ValidationContext,u
   }
   *(uint8_t *)(SystemContextPointer + 0x1108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1110) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1110) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1120) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1108) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x10e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1100) = 0;
@@ -43012,16 +42272,14 @@ void ConfigureSystemResourceManager(uint8_t ObjectContext,int64_t ValidationCont
   }
   *(uint8_t *)(SystemContextPointer + 0x1178) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1180) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1180) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1190) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1178) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1158) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1160) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1160) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1170) = 0;
@@ -43056,16 +42314,14 @@ void ValidateSystemResourceIntegrity(uint8_t ObjectContext,int64_t ValidationCon
   }
   *(uint8_t *)(SystemContextPointer + 0x11e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x11f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x11f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1200) = 0;
   *(uint8_t *)(SystemContextPointer + 0x11e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x11c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x11d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x11d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x11e0) = 0;
@@ -43102,16 +42358,14 @@ void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t Vali
   }
   *(uint8_t *)(SystemContextPointer + 0x1258) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1260) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1260) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1270) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1258) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1238) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1240) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1240) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1250) = 0;
@@ -43148,16 +42402,14 @@ void InitializeSystemResourceHandlerExtended3(uint8_t ObjectContext,int64_t Vali
   }
   *(uint8_t *)(SystemContextPointer + 0x12c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x12d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x12d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x12e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x12c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x12a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x12b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x12b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x12c0) = 0;
@@ -43192,16 +42444,14 @@ void ExecuteSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContex
   }
   *(uint8_t *)(SystemContextPointer + 0x1338) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1340) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1340) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1350) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1338) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1318) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1320) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1320) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1330) = 0;
@@ -43242,8 +42492,7 @@ void ProcessSystemResourceHashTable(uint8_t ObjectContext,int64_t ValidationCont
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -43279,8 +42528,7 @@ void ValidateSystemResourceStatus(uint8_t ObjectContext,int64_t ValidationContex
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -43623,8 +42871,7 @@ void Unwind_ContextCleanup_Basic1(uint8_t ObjectContext,int64_t ValidationContex
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = 0;
   *(uint32_t *)(SystemContextPointer + 0x30) = 0;
@@ -43654,8 +42901,7 @@ void ReleaseSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = 0;
   *(uint32_t *)(SystemContextPointer + 0x30) = 0;
@@ -44109,16 +43355,14 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext,int64_t ValidationC
   resourceIndex = *(int64_t *)(ValidationContext + 0x60);
   *(uint8_t *)(SystemResourceContext + 0x40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemResourceContext + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemResourceContext + 0x48) = 0;
   *(uint32_t *)(SystemResourceContext + 0x58) = 0;
   *(uint8_t *)(SystemResourceContext + 0x40) = &SystemDataStructure;
   *(uint8_t *)(SystemResourceContext + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemResourceContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemResourceContext + 0x28) = 0;
   *(uint32_t *)(SystemResourceContext + 0x38) = 0;
@@ -44150,8 +43394,7 @@ void InitializeSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t Valid
   ResourceIndex = *(int64_t *)(ValidationContext + 0x60);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -44224,8 +43467,7 @@ void ResetSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x58) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x58) = 0;
   *(uint32_t *)(ValidationContext + 0x68) = 0;
@@ -44319,8 +43561,7 @@ void CleanupSystemResourceContextPrimary(uint8_t ObjectContext,int64_t Validatio
   ResourceIndex = *(int64_t *)(ValidationContext + 0x48);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -44338,8 +43579,7 @@ void CleanupSystemResourceContextB(uint8_t ObjectContext,int64_t ValidationConte
   contextIndex = *(int64_t *)(ValidationContext + 0x68);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -44544,21 +43784,18 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext,int64_t ValidationContext)
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0xa8) != 0) && (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0xa8) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0xa0);
   while (LoopOffset != 0) {
     StatuscharPointer = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
     if (*StatuscharPointer != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0x90);
@@ -44621,21 +43858,18 @@ void ReleaseSystemResourceIndexExtended(uint8_t ObjectContext,int64_t Validation
       *(uint8_t *)ValidationResultPointer[3] = 0;
     }
     (**(code **)*ValidationResultPointer)(ValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ValidationResultPointer);
+          ReleaseResourceHandle(ValidationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0x310) != 0) &&
      (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0x310) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x308);
   while (LoopOffset != 0) {
     statusFlagPointer = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
     if (*statusFlagPointer != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0x2f8);
@@ -44695,21 +43929,18 @@ void ReleaseValidationContextResourceHandle(uint8_t ObjectContext,int64_t Valida
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0x578) != 0) &&
      (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0x578) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x570);
   while (LoopOffset != 0) {
     pStatusChar = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0x560);
@@ -44997,21 +44228,18 @@ void ReleaseResourceHandleAtContextOffset70(uint8_t ObjectContext,int64_t Valida
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0xa8) != 0) && (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0xa8) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0xa0);
   while (LoopOffset != 0) {
     pStatusChar = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0x90);
@@ -45071,21 +44299,18 @@ void ReleaseResourceHandleAtContextOffset2E0(uint8_t ObjectContext,int64_t Valid
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0x310) != 0) &&
      (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0x310) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x308);
   while (LoopOffset != 0) {
     pStatusChar = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0x2f8);
@@ -45145,21 +44370,18 @@ void ReleaseResourceHandleAtContextOffset2F8(uint8_t ObjectContext,int64_t Valid
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0x578) != 0) &&
      (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0x578) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x570);
   while (LoopOffset != 0) {
     pStatusChar = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0x560);
@@ -45370,11 +44592,9 @@ void CleanupResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext,ui
     return;
   }
   if (*(int *)(ResourceHashPointer[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+        terminate();
 }
 
 
@@ -45476,11 +44696,9 @@ void ProcessResourceHashOperations(uint8_t ObjectContext,int64_t ValidationConte
     return;
   }
   if (*(int *)(ResourceHashPointer[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+        terminate();
 }
 
 
@@ -45525,8 +44743,7 @@ void HandleExceptionAndResourceTable(uint8_t ObjectContext,int64_t ValidationCon
     ResourceTable = *(int64_t *)(SystemContextPointer + 0x40);
   }
   *(int64_t *)(SystemContextPointer + 0x40) = ResourceTable;
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -45548,8 +44765,7 @@ void HandleException(uint8_t ObjectContext,int64_t ValidationContext)
   CleanupSystemResources(SystemContextPointer);
   ResetSystemMemory(*(int64_t *)(ValidationContext + 0x60) + 8,0);
   ConfigureSystemParameters(*(uint8_t *)(SystemContextPointer + 0x50),*(uint8_t *)(ValidationContext + 0x68));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -45608,8 +44824,7 @@ void ProcessException(uint8_t ObjectContext,int64_t ValidationContext)
     ArrayIndex = *(int64_t *)(ArrayIndex + 0x100);
     ResourceContextOffset = ContextHashValidationResult;
   }
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -45684,8 +44899,7 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
   }
   SetupSystemTable(*(uint8_t *)(SystemContextPointer + 0x50),ResourceTable);
   *(uint8_t *)(SystemContextPointer + 0x40) = *(uint8_t *)(ValidationContext + 0xa8);
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -45757,16 +44971,14 @@ void InitializeSystemResourceHandlersAB(uint8_t ObjectContext,int64_t Validation
   *ResourceHashPointer = &SystemResourceHandlerB;
   ResourceHashPointer[7] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[8] = 0;
   *(uint32_t *)(ResourceHashPointer + 10) = 0;
   ResourceHashPointer[7] = &SystemDataStructure;
   ResourceHashPointer[1] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[2] = 0;
   *(uint32_t *)(ResourceHashPointer + 4) = 0;
@@ -45799,16 +45011,14 @@ void ProcessResourceHashCleanupAndValidation(uint8_t ObjectContext,int64_t Valid
   *ResourceHashPointer = &SystemResourceHandlerB;
   ResourceHashPointer[7] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[8] = 0;
   *(uint32_t *)(ResourceHashPointer + 10) = 0;
   ResourceHashPointer[7] = &SystemDataStructure;
   ResourceHashPointer[1] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[2] = 0;
   *(uint32_t *)(ResourceHashPointer + 4) = 0;
@@ -45840,16 +45050,14 @@ void InitializeResourceHashAndSystemHandler(uint8_t ObjectContext,int64_t Valida
   *ResourceHashPointer = &SystemResourceHandlerB;
   ResourceHashPointer[7] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[8] = 0;
   *(uint32_t *)(ResourceHashPointer + 10) = 0;
   ResourceHashPointer[7] = &SystemDataStructure;
   ResourceHashPointer[1] = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[2] = 0;
   *(uint32_t *)(ResourceHashPointer + 4) = 0;
@@ -45981,11 +45189,9 @@ void ProcessResourceHashOperation(uint8_t ObjectContext,int64_t ValidationContex
     return;
   }
   if (*(int *)(ResourceHashPointer[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+        terminate();
 }
 
 
@@ -46019,8 +45225,7 @@ void ExecuteResourceHashValidationCallbacks(uint8_t ObjectContext,int64_t Valida
   if (*(int64_t *)(ValidationContext + 0xc0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -46055,8 +45260,7 @@ void ExecuteResourceHashValidationLoop(uint8_t ObjectContext,int64_t ValidationC
   if (*(int64_t *)(ValidationContext + 0xc0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -46216,8 +45420,7 @@ void ExecuteResourceCleanupWithValidation(uint8_t ObjectContext,int64_t Validati
   if (*(int64_t *)(ValidationContext + 0x90) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -46252,8 +45455,7 @@ void ProcessResourceHashAndCleanup(uint8_t ObjectContext,int64_t ValidationConte
   if (*(int64_t *)(ValidationContext + 0x90) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -46347,8 +45549,7 @@ void InitializeLocalContextAndResourceHandler(uint8_t ObjectContext,int64_t Vali
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x38) = 0;
   *(uint32_t *)(SystemContextPointer + 0x48) = 0;
@@ -46377,8 +45578,7 @@ void SetResourceHashPointerAndValidateSystem(uint8_t ObjectContext,int64_t Valid
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0xa8);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -46416,8 +45616,7 @@ void ExecuteResourceCleanupAndValidateSystem(uint8_t ObjectContext,int64_t Valid
   if (*(int64_t *)(ValidationContext + 0x20) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -46450,8 +45649,7 @@ void BatchExecuteResourceCleanupAndValidateSystem(uint8_t ObjectContext,int64_t 
   if (*(int64_t *)(ValidationContext + 0x20) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -46519,8 +45717,7 @@ void ReleaseSystemResourceAndCleanupDataStructure(uint8_t ObjectContext,int64_t 
 {
   *(uint8_t *)(ValidationContext + 0xb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xc0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xc0) = 0;
   *(uint32_t *)(ValidationContext + 0xd0) = 0;
@@ -46558,8 +45755,7 @@ void ExecuteSystemResourceCleanupAndValidateContext(uint8_t ObjectContext,int64_
   if (*(int64_t *)(ValidationContext + 0x98) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -46610,8 +45806,7 @@ void ExecuteResourceValidation(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0xd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xe0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xe0) = 0;
   *(uint32_t *)(ValidationContext + 0xf0) = 0;
@@ -46654,8 +45849,7 @@ void ProcessSystemResourceCleanupHandler(uint8_t ObjectContext,int64_t Validatio
 {
   *(uint8_t *)(ValidationContext + 0xf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x100) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x100) = 0;
   *(uint32_t *)(ValidationContext + 0x110) = 0;
@@ -46680,8 +45874,7 @@ void ExecuteSystemResourceCleanupWithFlags(uint8_t ObjectContext,int64_t Validat
   if (*(int64_t *)(ValidationContext + 0x40) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -46737,8 +45930,7 @@ void ProcessSystemResourceValidationWithFlags(uint8_t ObjectContext,int64_t Vali
   if (*(int64_t *)(ValidationContext + 0x98) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -46879,8 +46071,7 @@ void ResetSystemResourceHandlerAtResourcePoolOffset(uint8_t ObjectContext,int64_
 {
   *(uint8_t *)(ValidationContext + 0x1e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x1f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x1f0) = 0;
   *(uint32_t *)(ValidationContext + 0x200) = 0;
@@ -46911,8 +46102,7 @@ void ResetSystemResourceHandlerAtOffset0x168(uint8_t ObjectContext,int64_t Valid
 {
   *(uint8_t *)(ValidationContext + 0x168) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x170) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x170) = 0;
   *(uint32_t *)(ValidationContext + 0x180) = 0;
@@ -46927,8 +46117,7 @@ void ResetSystemResourceHandlerAtOffset0x1a8(uint8_t ObjectContext,int64_t Valid
 {
   *(uint8_t *)(ValidationContext + 0x1a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x1b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x1b0) = 0;
   *(uint32_t *)(ValidationContext + 0x1c0) = 0;
@@ -46955,8 +46144,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
 {
   *(uint8_t *)(ValidationContext + 0x188) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 400) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 400) = 0;
   *(uint32_t *)(ValidationContext + 0x1a0) = 0;
@@ -46995,8 +46183,7 @@ void CleanupResourceHandlersAtMemoryOffset(uint8_t ObjectContext,int64_t Validat
   if (*(int64_t *)(ValidationContext + 0x148) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -47016,8 +46203,7 @@ void CleanupResourceHandlersAtOffset0x208(uint8_t ObjectContext,int64_t Validati
   if (*(int64_t *)(ValidationContext + 0x208) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -47045,8 +46231,7 @@ void ResetSystemResourceHandlerAtOffset0x128(uint8_t ObjectContext,int64_t Valid
 {
   *(uint8_t *)(ValidationContext + 0x128) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x130) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x130) = 0;
   *(uint32_t *)(ValidationContext + 0x140) = 0;
@@ -47085,8 +46270,7 @@ void CleanupResourceHandlersAtOffset0x148(uint8_t ObjectContext,int64_t Validati
   if (*(int64_t *)(ValidationContext + 0x108) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -47120,8 +46304,7 @@ void CleanupResourceHandlersAtOffset0x108(uint8_t ObjectContext,int64_t Validati
   if (*(int64_t *)(ValidationContext + 0x228) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -47143,8 +46326,7 @@ void ResetSystemResourceHandlerAtOffset0xc8(uint8_t ObjectContext,int64_t Valida
 {
   *(uint8_t *)(ValidationContext + 200) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xd0) = 0;
   *(uint32_t *)(ValidationContext + 0xe0) = 0;
@@ -47171,8 +46353,7 @@ void ResetSystemResourceHandlerAtOffset0xd0(uint8_t ObjectContext,int64_t Valida
 {
   *(uint8_t *)(ValidationContext + 0x1c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x1d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x1d0) = 0;
   *(uint32_t *)(ValidationContext + 0x1e0) = 0;
@@ -47277,8 +46458,7 @@ void CleanupResourceHandleAndHashValidation(uint8_t ObjectContext,int64_t Valida
   if (*(int64_t *)(ValidationContext + 0x148) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -47476,8 +46656,7 @@ void CleanupThreadManagerResources(uint8_t ObjectContext,int64_t ValidationConte
   if (*(int64_t *)(ValidationContext + 0x108) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -47559,8 +46738,7 @@ void CleanupGraphicsManagerResources(uint8_t ObjectContext,int64_t ValidationCon
   if (*(int64_t *)(ValidationContext + 0x228) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -47756,8 +46934,7 @@ void ResetResourceHashPointerState(uint8_t ObjectContext,int64_t ValidationConte
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x150);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -47784,8 +46961,7 @@ void ResetValidationContextResourceState(uint8_t ObjectContext,int64_t Validatio
 {
   *(uint8_t *)(ValidationContext + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x110) = 0;
   *(uint32_t *)(ValidationContext + 0x120) = 0;
@@ -48352,8 +47528,7 @@ void ValidateSystemStatusAndEmergencyExitPrimary(uint8_t ObjectContext, int64_t 
 
 {
   if ((*(char *)(ValidationContext + 0x48) == '\0') && (*(int64_t *)(ValidationContext + 0x30) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -48376,8 +47551,7 @@ void ValidateSystemStatusAndEmergencyExitB(uint8_t ObjectContext, int64_t Valida
 
 {
   if ((*(char *)(ValidationContext + 0x68) == '\0') && (*(int64_t *)(ValidationContext + 0x50) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -48401,8 +47575,7 @@ void InitializeSystemResourceHandlerTemplateAtOffset90(uint8_t ObjectContext,int
 {
   *(uint8_t *)(ValidationContext + 0x90) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x98) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x98) = 0;
   *(uint32_t *)(ValidationContext + 0xa8) = 0;
@@ -48429,8 +47602,7 @@ void InitializeSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t Valid
 {
   *(uint8_t *)(ValidationContext + 0x90) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x98) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x98) = 0;
   *(uint32_t *)(ValidationContext + 0xa8) = 0;
@@ -49185,8 +48357,7 @@ void ExecuteResourceHashTableCleanup(uint8_t ObjectContext,int64_t ValidationCon
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -49320,16 +48491,14 @@ ResourceCleanupHandler:
   _Mtx_destroy_in_situ(ResourceTablePointer);
   StackPointer10 = ResourceDataPointer + 0x16;
   if (*StackPointer10 != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   StackPointer10 = ResourceDataPointer + 0xc;
   _Mtx_destroy_in_situ();
   StackPointer10 = ResourceContext;
   ValidateResourceBuffer(ResourceContext);
   if ((1 < (uint64_t)ResourceDataPointer[8]) && (ResourceDataPointer[7] != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   if ((code *)ResourceDataPointer[3] != (code *)0x0) {
     (*(code *)ResourceDataPointer[3])(ResourceDataPointer + 1,0,0);
@@ -49357,8 +48526,7 @@ void InitializeSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t Valid
   LoopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0xc0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 200) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 200) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd8) = 0;
@@ -49383,40 +48551,35 @@ void InitializeMultipleSystemResourceHandlers(uint8_t ObjectContext,int64_t Vali
 {
   *(uint8_t *)(ValidationContext + 0x100) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x108) = 0;
   *(uint32_t *)(ValidationContext + 0x118) = 0;
   *(uint8_t *)(ValidationContext + 0x100) = &SystemDataStructure;
   *(uint8_t *)(ValidationContext + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xe8) = 0;
   *(uint32_t *)(ValidationContext + 0xf8) = 0;
   *(uint8_t *)(ValidationContext + 0xe0) = &SystemDataStructure;
   *(uint8_t *)(ValidationContext + 0xb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xc0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xc0) = 0;
   *(uint32_t *)(ValidationContext + 0xd0) = 0;
   *(uint8_t *)(ValidationContext + 0xb8) = &SystemDataStructure;
   *(uint8_t *)(ValidationContext + 0x98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xa0) = 0;
   *(uint32_t *)(ValidationContext + 0xb0) = 0;
   *(uint8_t *)(ValidationContext + 0x98) = &SystemDataStructure;
   *(uint8_t *)(ValidationContext + 0x68) = &ResourceDescriptorTemplate;
   if (*(int64_t *)(ValidationContext + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x70) = 0;
   *(uint32_t *)(ValidationContext + 0x80) = 0;
@@ -49587,8 +48750,7 @@ void Unwind_MemoryPoolCleanup(uint8_t ObjectContext,int64_t ValidationContext,ui
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -49624,8 +48786,7 @@ void CleanupResourceHashHashValidationResults(uint8_t ObjectContext, int64_t Val
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -49702,16 +48863,14 @@ void CleanupSystemResourceTable(uint8_t ObjectContext, int64_t ValidationContext
   for (ResourceIndex = *ResourceTablePointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x28) {
     *(uint8_t *)(ResourceIndex + 8) = &SystemResourceHandlerTemplate;
     if (*(int64_t *)(ResourceIndex + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *(uint8_t *)(ResourceIndex + 0x10) = 0;
     *(uint32_t *)(ResourceIndex + 0x20) = 0;
     *(uint8_t *)(ResourceIndex + 8) = &SystemDataStructure;
   }
   if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -49750,8 +48909,7 @@ void CleanupResourceTableHashValidationResults(uint8_t ObjectContext, int64_t Va
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -49788,8 +48946,7 @@ void CleanupAlternateResourceTableHashValidationResults(uint8_t ObjectContext, i
   if (*AlternateResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -49819,16 +48976,14 @@ void ResetResourceIndexAndCleanup(uint8_t ObjectContext, int64_t ValidationConte
   for (CurrentResourceIndex = *ResourceTablePointer; CurrentResourceIndex != SystemContextPointer; CurrentResourceIndex = CurrentResourceIndex + 0x28) {
     *(uint8_t *)(CurrentResourceIndex + 8) = &SystemResourceHandlerTemplate;
     if (*(int64_t *)(CurrentResourceIndex + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *(uint8_t *)(CurrentResourceIndex + 0x10) = 0;
     *(uint32_t *)(CurrentResourceIndex + 0x20) = 0;
     *(uint8_t *)(CurrentResourceIndex + 8) = &SystemDataStructure;
   }
   if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -49852,8 +49007,7 @@ void ResetValidationContextResourceHandler(uint8_t ObjectContext, int64_t Valida
 {
   *(uint8_t *)(ValidationContext + 0x200) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x208) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x208) = 0;
   *(uint32_t *)(ValidationContext + 0x218) = 0;
@@ -49963,8 +49117,7 @@ void CleanupResourceTableAndExecuteCallbacks(uint8_t ObjectContext,int64_t Valid
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -50189,16 +49342,14 @@ ResourceCleanupHandler:
   _Mtx_destroy_in_situ(ResourceTablePointer);
   StackPointer10 = ResourceDataPointer + 0x16;
   if (*StackPointer10 != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   StackPointer10 = ResourceDataPointer + 0xc;
   _Mtx_destroy_in_situ();
   StackPointer10 = ResourceContext;
   ValidateResourceBuffer(ResourceContext);
   if ((1 < (uint64_t)ResourceDataPointer[8]) && (ResourceDataPointer[7] != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   if ((code *)ResourceDataPointer[3] != (code *)0x0) {
     (*(code *)ResourceDataPointer[3])(ResourceDataPointer + 1,0,0);
@@ -50225,8 +49376,7 @@ void Unwind_ResourceBatchCleanup(uint8_t ObjectContext,int64_t ValidationContext
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -50255,16 +49405,14 @@ void ValidateResourceHashAndCleanup(uint8_t ObjectContext,int64_t ValidationCont
   for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointer; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 5) {
     *PackageValidationStatusCodePointer = &SystemResourceHandlerTemplate;
     if (HashValidationResultPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     HashValidationResultPointer[1] = 0;
     *(uint32_t *)(HashValidationResultPointer + 3) = 0;
     *PackageValidationStatusCodePointer = &SystemDataStructure;
   }
   if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -50302,8 +49450,7 @@ void ExecuteResourceCleanupAndValidation(uint8_t ObjectContext,int64_t Validatio
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -50352,8 +49499,7 @@ void ResetSystemContextPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (**(int64_t **)(ValidationContext + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   **(int64_t **)(ValidationContext + 0x40) = 0;
   return;
@@ -50533,8 +49679,7 @@ void InitializeResourceDescriptor(uint8_t ObjectContext, int64_t ValidationConte
 {
   *(uint8_t *)(ValidationContext + 0x68) = &ResourceDescriptorTemplate;
   if (*(int64_t *)(ValidationContext + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x70) = 0;
   *(uint32_t *)(ValidationContext + 0x80) = 0;
@@ -50561,8 +49706,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationCo
 {
   *(uint8_t *)(ValidationContext + 0x98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xa0) = 0;
   *(uint32_t *)(ValidationContext + 0xb0) = 0;
@@ -50589,8 +49733,7 @@ void InitializeSystemResourceHandlerAlt(uint8_t ObjectContext, int64_t Validatio
 {
   *(uint8_t *)(ValidationContext + 0xb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xc0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xc0) = 0;
   *(uint32_t *)(ValidationContext + 0xd0) = 0;
@@ -50605,8 +49748,7 @@ void InitializeSystemResourceHandlerE0(uint8_t ObjectContext,int64_t ValidationC
 {
   *(uint8_t *)(ValidationContext + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xe8) = 0;
   *(uint32_t *)(ValidationContext + 0xf8) = 0;
@@ -50621,8 +49763,7 @@ void InitializeSystemResourceHandler100(uint8_t ObjectContext,int64_t Validation
 {
   *(uint8_t *)(ValidationContext + 0x100) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x108) = 0;
   *(uint32_t *)(ValidationContext + 0x118) = 0;
@@ -50720,8 +49861,7 @@ void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -50785,21 +49925,18 @@ void CleanupExceptionUnwindResources(uint8_t ObjectContext, int64_t ValidationCo
       *(uint8_t *)resourcePointer[3] = 0;
     }
     (**(code **)*resourcePointer)(resourcePointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(resourcePointer);
+          ReleaseResourceHandle(resourcePointer);
   }
   if ((*(int64_t *)(resourceItem + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(resourceItem + 0x40) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   resourceList = *(int64_t *)(resourceItem + 0x38);
   while (resourceList != 0) {
     resourceFlag = (char *)(resourceList + 0x141);
     resourceList = *(int64_t *)(resourceList + 0x138);
     if (*resourceFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   resourcePointer = *(uint8_t **)(resourceItem + 0x28);
@@ -50857,8 +49994,7 @@ void ResetExceptionUnwindPointerTable(uint8_t ObjectContext, int64_t ValidationC
       pointerEntry = *(uint8_t **)(pointerArray + pointerIndex * 8);
       if (pointerEntry != (uint8_t *)0x0) {
         *pointerEntry = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(pointerArray + pointerIndex * 8) = 0;
       pointerIndex = pointerIndex + 1;
@@ -50867,8 +50003,7 @@ void ResetExceptionUnwindPointerTable(uint8_t ObjectContext, int64_t ValidationC
   }
   *(uint8_t *)(unwindContext + 0x348) = 0;
   if ((1 < pointerCount) && (*(int64_t *)(unwindContext + 0x338) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -50892,20 +50027,17 @@ void Unwind_180905b90(uint8_t ObjectContext,int64_t ValidationContext)
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((LoopOffsetPointer[6] != 0) && (*(int64_t *)(LoopOffsetPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
     pStatusChar = (char *)(ResourceTablePointer + 0x141);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x138);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = (uint8_t *)LoopOffsetPointer[3];
@@ -51060,8 +50192,7 @@ void UnwindAndCleanuResourceIndexPointer(uint8_t ObjectContext,int64_t Validatio
       ResourceHashValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
         *ResourceHashValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -51070,8 +50201,7 @@ void UnwindAndCleanuResourceIndexPointer(uint8_t ObjectContext,int64_t Validatio
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -51108,8 +50238,7 @@ void UnwindResourceContextCleanupType1(uint8_t ObjectContext,int64_t ValidationC
       ResourceHashValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
         *ResourceHashValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -51118,8 +50247,7 @@ void UnwindResourceContextCleanupType1(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -51157,8 +50285,7 @@ void UnwindResourceContextCleanupType2(uint8_t ObjectContext,int64_t ValidationC
       ResourceHashValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
         *ResourceHashValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -51167,8 +50294,7 @@ void UnwindResourceContextCleanupType2(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -51193,8 +50319,7 @@ void UnwindResourceContextCleanupType3(uint8_t ObjectContext,int64_t ValidationC
       ValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ValidationResultPointer != (uint8_t *)0x0) {
         *ValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -51203,8 +50328,7 @@ void UnwindResourceContextCleanupType3(uint8_t ObjectContext,int64_t ValidationC
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -51230,21 +50354,18 @@ void Unwind_180905c50(uint8_t ObjectContext,int64_t ValidationContext)
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0x40) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0x38);
   while (LoopOffset != 0) {
     pStatusChar = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0x28);
@@ -51293,8 +50414,7 @@ void Unwind_180905c60(uint8_t ObjectContext,int64_t ValidationContext)
       ValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ValidationResultPointer != (uint8_t *)0x0) {
         *ValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -51303,8 +50423,7 @@ void Unwind_180905c60(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x348) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 0x338) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -51329,8 +50448,7 @@ void Unwind_180905c80(uint8_t ObjectContext,int64_t ValidationContext)
       ValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ValidationResultPointer != (uint8_t *)0x0) {
         *ValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -51339,8 +50457,7 @@ void Unwind_180905c80(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -51365,8 +50482,7 @@ void Unwind_180905c90(uint8_t ObjectContext,int64_t ValidationContext)
       ValidationResultPointer = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ValidationResultPointer != (uint8_t *)0x0) {
         *ValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -51375,8 +50491,7 @@ void Unwind_180905c90(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -51411,20 +50526,17 @@ void ExecuteSystemResourceCleanupAndValidation(uint8_t ObjectContext, int64_t Va
       *(uint8_t *)SystemHashValidationResultPointer[3] = 0;
     }
     (**(code **)*SystemHashValidationResultPointer)(SystemHashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(SystemHashValidationResultPointer);
+          ReleaseResourceHandle(SystemHashValidationResultPointer);
   }
   if ((SystemContextLoopOffset[6] != 0) && (*(int64_t *)(SystemContextLoopOffset[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   SystemResourceTablePointer = SystemContextLoopOffset[5];
   while (SystemResourceTablePointer != 0) {
     SystemStatusChar = (char *)(SystemResourceTablePointer + 0x141);
     SystemResourceTablePointer = *(int64_t *)(SystemResourceTablePointer + 0x138);
     if (*SystemStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   SystemPackageValidationStatusCodePointer = (uint8_t *)SystemContextLoopOffset[3];
@@ -51806,8 +50918,7 @@ void Catch_180905e00(uint8_t ObjectContext,int64_t ValidationContext)
   CleanupSystemResources(SystemContextPointer);
   ResetSystemMemory(*(int64_t *)(ValidationContext + 0x70) + 8,0);
   FinalizeSystemSetup(*(uint8_t *)(SystemContextPointer + 0x50),*(uint8_t *)(ValidationContext + 0x78));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -51933,21 +51044,18 @@ void Unwind_180905ea0(uint8_t ObjectContext,int64_t ValidationContext)
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0xf8) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0xf0);
   while (LoopOffset != 0) {
     pStatusChar = (char *)(LoopOffset + 0x3541);
     LoopOffset = *(int64_t *)(LoopOffset + 0x3538);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0xe0);
@@ -51993,8 +51101,7 @@ void Unwind_180905ec0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -52014,8 +51121,7 @@ void Unwind_180905ee0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -52037,20 +51143,17 @@ void Unwind_180905ef0(uint8_t ObjectContext,int64_t ValidationContext)
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((LoopOffsetPointer[6] != 0) && (*(int64_t *)(LoopOffsetPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
     pStatusChar = (char *)(ResourceTablePointer + 0x3541);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x3538);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = (uint8_t *)LoopOffsetPointer[3];
@@ -52186,20 +51289,17 @@ void Unwind_180905f70(uint8_t ObjectContext,int64_t ValidationContext)
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((LoopOffsetPointer[6] != 0) && (*(int64_t *)(LoopOffsetPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
     pStatusChar = (char *)(ResourceTablePointer + 0x3541);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x3538);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = (uint8_t *)LoopOffsetPointer[3];
@@ -52245,8 +51345,7 @@ void Unwind_180905f80(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -52287,21 +51386,18 @@ void Unwind_180905fa0(uint8_t ObjectContext,int64_t ValidationContext)
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((*(int64_t *)(ResourceTablePointer + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(ResourceTablePointer + 0xf8) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   LoopOffset = *(int64_t *)(ResourceTablePointer + 0xf0);
   while (LoopOffset != 0) {
     pStatusChar = (char *)(LoopOffset + 0x3541);
     LoopOffset = *(int64_t *)(LoopOffset + 0x3538);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointer + 0xe0);
@@ -52347,8 +51443,7 @@ void Unwind_180905fc0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -52370,20 +51465,17 @@ void Unwind_180905fe0(uint8_t ObjectContext,int64_t ValidationContext)
       *(uint8_t *)HashValidationResultPointer[3] = 0;
     }
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(HashValidationResultPointer);
+          ReleaseResourceHandle(HashValidationResultPointer);
   }
   if ((LoopOffsetPointer[6] != 0) && (*(int64_t *)(LoopOffsetPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceTablePointer = LoopOffsetPointer[5];
   while (ResourceTablePointer != 0) {
     pStatusChar = (char *)(ResourceTablePointer + 0x3541);
     ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x3538);
     if (*pStatusChar != '\0') {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   PackageValidationStatusCodePointer = (uint8_t *)LoopOffsetPointer[3];
@@ -52513,8 +51605,7 @@ void ProcessResourceTableEntries(uint8_t ObjectContext,int64_t ValidationContext
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -52538,8 +51629,7 @@ void ValidateResourceTableAccess(uint8_t ObjectContext,int64_t ValidationContext
   _Mtx_destroy_in_situ();
   ResourceContext = (int64_t *)*ResourceTablePointer;
   if (ResourceContext != ResourceTablePointer) {
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceContext);
+          ReleaseResourceHandle(ResourceContext);
   }
   return;
 }
@@ -52565,8 +51655,7 @@ void ReleaseResourceTableLock(uint8_t ObjectContext,int64_t ValidationContext)
   _Mtx_destroy_in_situ();
   ResourceContext = (int64_t *)*ResourceTablePointer;
   if (ResourceContext != ResourceTablePointer) {
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceContext);
+          ReleaseResourceHandle(ResourceContext);
   }
   return;
 }
@@ -52595,8 +51684,7 @@ void DestroyResourceTableAndReleaseHandle(uint8_t ObjectContext, int64_t Validat
   _Mtx_destroy_in_situ();
   ResourceContext = (int64_t *)*ResourceTablePointer;
   if (ResourceContext != ResourceTablePointer) {
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceContext);
+          ReleaseResourceHandle(ResourceContext);
   }
   return;
 }
@@ -52622,8 +51710,7 @@ void ReleaseResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
   
   ResourceContext = (int64_t *)**(int64_t **)(ValidationContext + 0x68);
   if (ResourceContext != *(int64_t **)(ValidationContext + 0x68)) {
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceContext);
+          ReleaseResourceHandle(ResourceContext);
   }
   return;
 }
@@ -52668,8 +51755,7 @@ void ReleaseValidationContextResourcePointer(uint8_t ObjectContext, int64_t Vali
   
   ResourceContext = (int64_t *)**(int64_t **)(ValidationContext + 0x70);
   if (ResourceContext != *(int64_t **)(ValidationContext + 0x70)) {
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceContext);
+          ReleaseResourceHandle(ResourceContext);
   }
   return;
 }
@@ -52749,8 +51835,7 @@ void CleanupResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceContext = (int64_t *)**(int64_t **)(ValidationContext + 0x40);
   if (ResourceContext != *(int64_t **)(ValidationContext + 0x40)) {
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceContext);
+          ReleaseResourceHandle(ResourceContext);
   }
   return;
 }
@@ -52773,8 +51858,7 @@ void ReleaseResourceHandle(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceContext = (int64_t *)**(int64_t **)(ValidationContext + 0x40);
   if (ResourceContext != *(int64_t **)(ValidationContext + 0x40)) {
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceContext);
+          ReleaseResourceHandle(ResourceContext);
   }
   return;
 }
@@ -53079,8 +52163,7 @@ void UnwindResetSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCo
 {
   *(uint8_t *)(ValidationContext + 0xb0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xb8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xb8) = 0;
   *(uint32_t *)(ValidationContext + 200) = 0;
@@ -53186,8 +52269,7 @@ void Unwind_1809063f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0xe0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -53252,8 +52334,7 @@ void ExecuteResourceCleanupHandlers(uint8_t ObjectContext,int64_t ValidationCont
   if (*(int64_t *)(ValidationContext + 0xe0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -53298,30 +52379,25 @@ void Unwind_180906480(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x82) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x82) = 0;
   if (*(int64_t *)(ValidationContext + 0x8a) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x8a) = 0;
   if (*(int64_t *)(ValidationContext + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x70) = 0;
   if (*(int64_t *)(ValidationContext + 0x78) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x78) = 0;
   ValidateResourceIndex();
   *(uint8_t *)(ValidationContext + 0x30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x38) = 0;
   *(uint32_t *)(ValidationContext + 0x48) = 0;
@@ -53342,32 +52418,27 @@ void Unwind_180906490(uint8_t ObjectContext,int64_t ValidationContext)
   while( true ) {
     if (ResourceTablePointer == ResourceContext) {
       if (*(int64_t *)(ValidationContext + 0x50) != 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       return;
     }
     if (*(int64_t *)((int64_t)ResourceTablePointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *(uint8_t *)((int64_t)ResourceTablePointer + 0x12) = 0;
     if (*(int64_t *)((int64_t)ResourceTablePointer + 0x1a) != 0) break;
     *(uint8_t *)((int64_t)ResourceTablePointer + 0x1a) = 0;
     if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *pResourceTable = 0;
     if (ResourceTablePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     ResourceTablePointer[1] = 0;
     ResourceTablePointer = (int64_t *)((int64_t)ResourceTablePointer + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -53376,13 +52447,11 @@ void Unwind_1809064a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(int64_t *)(ValidationContext + 0x70) = 0;
   if (*(int64_t *)(ValidationContext + 0x78) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x78) = 0;
   return;
@@ -53394,13 +52463,11 @@ void Unwind_1809064b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x82) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(int64_t *)(ValidationContext + 0x82) = 0;
   if (*(int64_t *)(ValidationContext + 0x8a) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x8a) = 0;
   return;
@@ -53421,32 +52488,27 @@ void Unwind_1809064c0(uint8_t ObjectContext,int64_t ValidationContext)
   while( true ) {
     if (ResourceIndexPointer == ResourceContext) {
       if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       return;
     }
     if (*(int64_t *)((int64_t)ResourceIndexPointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *(uint8_t *)((int64_t)ResourceIndexPointer + 0x12) = 0;
     if (*(int64_t *)((int64_t)ResourceIndexPointer + 0x1a) != 0) break;
     *(uint8_t *)((int64_t)ResourceIndexPointer + 0x1a) = 0;
     if (*ResourceIndexPointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *ResourceIndexPointer = 0;
     if (ResourceIndexPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     ResourceIndexPointer[1] = 0;
     ResourceIndexPointer = (int64_t *)((int64_t)ResourceIndexPointer + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -53464,32 +52526,27 @@ void Unwind_1809064d0(uint8_t ObjectContext,int64_t ValidationContext)
   while( true ) {
     if (ResourceIndexPointer == ResourceContext) {
       if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       return;
     }
     if (*(int64_t *)((int64_t)ResourceIndexPointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *(uint8_t *)((int64_t)ResourceIndexPointer + 0x12) = 0;
     if (*(int64_t *)((int64_t)ResourceIndexPointer + 0x1a) != 0) break;
     *(uint8_t *)((int64_t)ResourceIndexPointer + 0x1a) = 0;
     if (*ResourceIndexPointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *ResourceIndexPointer = 0;
     if (ResourceIndexPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     ResourceIndexPointer[1] = 0;
     ResourceIndexPointer = (int64_t *)((int64_t)ResourceIndexPointer + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -53501,13 +52558,11 @@ void Unwind_1809064e0(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(int64_t *)(SystemContextPointer + 0x40) = 0;
   if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x48) = 0;
   return;
@@ -53522,13 +52577,11 @@ void Unwind_1809064f0(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   if (*(int64_t *)(SystemContextPointer + 0x52) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(int64_t *)(SystemContextPointer + 0x52) = 0;
   if (*(int64_t *)(SystemContextPointer + 0x5a) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x5a) = 0;
   return;
@@ -53549,32 +52602,27 @@ void Unwind_180906500(uint8_t ObjectContext,int64_t ValidationContext)
   while( true ) {
     if (ResourceIndexPointer == ResourceContext) {
       if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       return;
     }
     if (*(int64_t *)((int64_t)ResourceIndexPointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *(uint8_t *)((int64_t)ResourceIndexPointer + 0x12) = 0;
     if (*(int64_t *)((int64_t)ResourceIndexPointer + 0x1a) != 0) break;
     *(uint8_t *)((int64_t)ResourceIndexPointer + 0x1a) = 0;
     if (*ResourceIndexPointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *ResourceIndexPointer = 0;
     if (ResourceIndexPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     ResourceIndexPointer[1] = 0;
     ResourceIndexPointer = (int64_t *)((int64_t)ResourceIndexPointer + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -53592,32 +52640,27 @@ void Unwind_180906510(uint8_t ObjectContext,int64_t ValidationContext)
   while( true ) {
     if (ResourceIndexPointer == ResourceContext) {
       if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
       return;
     }
     if (*(int64_t *)((int64_t)ResourceIndexPointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *(uint8_t *)((int64_t)ResourceIndexPointer + 0x12) = 0;
     if (*(int64_t *)((int64_t)ResourceIndexPointer + 0x1a) != 0) break;
     *(uint8_t *)((int64_t)ResourceIndexPointer + 0x1a) = 0;
     if (*ResourceIndexPointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *ResourceIndexPointer = 0;
     if (ResourceIndexPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     ResourceIndexPointer[1] = 0;
     ResourceIndexPointer = (int64_t *)((int64_t)ResourceIndexPointer + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -53662,13 +52705,11 @@ void Unwind_180906550(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceContext = *(int64_t **)(ValidationContext + 0x58);
   if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *ResourceContext = 0;
   if (ResourceContext[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceContext[1] = 0;
   return;
@@ -53683,13 +52724,11 @@ void Unwind_180906560(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x58);
   if (*(int64_t *)(SystemContextPointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(int64_t *)(SystemContextPointer + 0x12) = 0;
   if (*(int64_t *)(SystemContextPointer + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a) = 0;
   return;
@@ -53704,13 +52743,11 @@ void Unwind_180906570(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceContext = *(int64_t **)(ValidationContext + 0x50);
   if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *ResourceContext = 0;
   if (ResourceContext[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceContext[1] = 0;
   return;
@@ -53725,13 +52762,11 @@ void Unwind_180906580(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   if (*(int64_t *)(SystemContextPointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(int64_t *)(SystemContextPointer + 0x12) = 0;
   if (*(int64_t *)(SystemContextPointer + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a) = 0;
   return;
@@ -53746,13 +52781,11 @@ void Unwind_180906590(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceContext = *(int64_t **)(ValidationContext + 0x60);
   if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *ResourceContext = 0;
   if (ResourceContext[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceContext[1] = 0;
   return;
@@ -53767,13 +52800,11 @@ void Unwind_1809065a0(uint8_t ObjectContext,int64_t ValidationContext)
   
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
   if (*(int64_t *)(SystemContextPointer + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(int64_t *)(SystemContextPointer + 0x12) = 0;
   if (*(int64_t *)(SystemContextPointer + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a) = 0;
   return;
@@ -54112,8 +53143,7 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext, int64_t Validation
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -54272,8 +53302,7 @@ void Unwind_180906890(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -54395,8 +53424,7 @@ void ExecuteResourceCleanupHandler(uint8_t ObjectContext, int64_t ValidationCont
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -54847,16 +53875,14 @@ void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext)
   for (ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x88); ValidationResultPointer != ResourceHashPointer; ValidationResultPointer = ResourceHashValidationResultPointer + 6) {
     *ValidationResultPointer = &SystemResourceHandlerTemplate;
     if (ResourceHashValidationResultPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     ResourceHashValidationResultPointer[1] = 0;
     *(uint32_t *)(ResourceHashValidationResultPointer + 3) = 0;
     *ValidationResultPointer = &SystemDataStructure;
   }
   if (*(int64_t *)(ValidationContext + 0x88) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -54895,16 +53921,14 @@ void Unwind_180906b40(uint8_t ObjectContext,int64_t ValidationContext)
   for (ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x88); ValidationResultPointer != ResourceHashPointer; ValidationResultPointer = ResourceHashValidationResultPointer + 6) {
     *ValidationResultPointer = &SystemResourceHandlerTemplate;
     if (ResourceHashValidationResultPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     ResourceHashValidationResultPointer[1] = 0;
     *(uint32_t *)(ResourceHashValidationResultPointer + 3) = 0;
     *ValidationResultPointer = &SystemDataStructure;
   }
   if (*(int64_t *)(ValidationContext + 0x88) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -54959,16 +53983,14 @@ void Unwind_180906b60(uint8_t ObjectContext,int64_t ValidationContext)
   for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointer; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 6) {
     *PackageValidationStatusCodePointer = &SystemResourceHandlerTemplate;
     if (HashValidationResultPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     HashValidationResultPointer[1] = 0;
     *(uint32_t *)(HashValidationResultPointer + 3) = 0;
     *PackageValidationStatusCodePointer = &SystemDataStructure;
   }
   if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -55251,15 +54273,13 @@ void Unwind_180906c60(uint8_t ObjectContext,int64_t ValidationContext)
   for (ResourceContext = *(int64_t **)(ValidationContext + 0xf8); ResourceContext != *(int64_t **)(ValidationContext + 0x100);
       ResourceContext = ResourceContext + 4) {
     if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*(int64_t *)(ValidationContext + 0xf8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -55272,15 +54292,13 @@ void Unwind_180906c70(uint8_t ObjectContext,int64_t ValidationContext)
   for (ResourceContext = *(int64_t **)(ValidationContext + 0xd8); ResourceContext != *(int64_t **)(ValidationContext + 0xe0);
       ResourceContext = ResourceContext + 4) {
     if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*(int64_t *)(ValidationContext + 0xd8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -55414,15 +54432,13 @@ void ValidateResourceContextIntegrity(uint8_t ObjectContext,int64_t ValidationCo
   for (ResourceContext = *(int64_t **)(ValidationContext + 0x30); ResourceContext != *(int64_t **)(ValidationContext + 0x38);
       ResourceContext = ResourceContext + 4) {
     if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*(int64_t *)(ValidationContext + 0x30) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -55531,15 +54547,13 @@ void ValidateResourceContextAndExecuteEmergencyExit(uint8_t ObjectContext,int64_
   for (ResourceContext = *(int64_t **)(ValidationContext + 0xf8); ResourceContext != *(int64_t **)(ValidationContext + 0x100);
       ResourceContext = ResourceContext + 4) {
     if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*(int64_t *)(ValidationContext + 0xf8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -55660,15 +54674,13 @@ void Unwind_180906d20(uint8_t ObjectContext,int64_t ValidationContext)
   for (ResourceContext = *(int64_t **)(ValidationContext + 0xd8); ResourceContext != *(int64_t **)(ValidationContext + 0xe0);
       ResourceContext = ResourceContext + 4) {
     if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*(int64_t *)(ValidationContext + 0xd8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -55969,15 +54981,13 @@ void Unwind_180906db0(uint8_t ObjectContext,int64_t ValidationContext)
   for (ResourceContext = *(int64_t **)(ValidationContext + 0x30); ResourceContext != *(int64_t **)(ValidationContext + 0x38);
       ResourceContext = ResourceContext + 4) {
     if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*(int64_t *)(ValidationContext + 0x30) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -56027,15 +55037,13 @@ void Unwind_180906dd0(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContext = *(int64_t **)(ValidationContext + 0x40);
   for (ResourceTablePointer = (int64_t *)*ResourceContext; ResourceTablePointer != (int64_t *)ResourceContext[1]; ResourceTablePointer = ResourceTablePointer + 4) {
     if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*ResourceContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -56049,15 +55057,13 @@ void Unwind_180906de0(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContext = *(int64_t **)(ValidationContext + 0x40);
   for (ResourceTablePointer = (int64_t *)*ResourceContext; ResourceTablePointer != (int64_t *)ResourceContext[1]; ResourceTablePointer = ResourceTablePointer + 4) {
     if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*ResourceContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -56927,8 +55933,7 @@ void Unwind_180907190(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -56981,8 +55986,7 @@ void Unwind_1809071e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -56993,8 +55997,7 @@ void Unwind_1809071f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57005,8 +56008,7 @@ void Unwind_180907200(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57017,8 +56019,7 @@ void Unwind_180907210(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57034,8 +56035,7 @@ void Unwind_180907230(uint8_t ObjectContext,int64_t ValidationContext)
   ReleaseSystemResourceHandle(*(uint8_t *)(SystemContextPointer + 0xb0));
   *(uint8_t *)(SystemContextPointer + 0xb0) = 0;
   if (*(int64_t *)(SystemContextPointer + 0xb8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb8) = 0;
   return;
@@ -57047,8 +56047,7 @@ void Unwind_180907250(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57059,8 +56058,7 @@ void Unwind_180907270(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57071,8 +56069,7 @@ void Unwind_180907280(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57083,8 +56080,7 @@ void Unwind_180907290(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x68) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57095,8 +56091,7 @@ void Unwind_1809072a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57112,8 +56107,7 @@ void Unwind_1809072c0(uint8_t ObjectContext,int64_t ValidationContext)
   ReleaseSystemResourceHandle(*(uint8_t *)(SystemContextPointer + 0xb0));
   *(uint8_t *)(SystemContextPointer + 0xb0) = 0;
   if (*(int64_t *)(SystemContextPointer + 0xb8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb8) = 0;
   return;
@@ -57125,8 +56119,7 @@ void Unwind_1809072e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57886,8 +56879,7 @@ void Unwind_1809076c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x60) + 8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57898,8 +56890,7 @@ void Unwind_1809076d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x60) + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57910,8 +56901,7 @@ void Unwind_1809076e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57922,8 +56912,7 @@ void Unwind_1809076f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -57938,8 +56927,7 @@ void Unwind_180907700(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -57963,19 +56951,16 @@ void Unwind_180907710(uint8_t ObjectContext,int64_t ValidationContext)
     ResourceIndex = __RTCastToVoid(ResourceHashPointer);
     (**(code **)*ResourceHashPointer)(ResourceHashPointer,0);
     if (ResourceIndex != 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseResourceHandle(ResourceIndex);
+            ReleaseResourceHandle(ResourceIndex);
     }
   }
   ResourceHashValidationResultPointer[0x11] = 0;
   if (ResourceHashValidationResultPointer[0x12] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashValidationResultPointer[0xd] = &SystemResourceHandlerTemplate;
   if (ResourceHashValidationResultPointer[0xe] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashValidationResultPointer[0xe] = 0;
   *(uint32_t *)(ResourceHashValidationResultPointer + 0x10) = 0;
@@ -58015,19 +57000,16 @@ void Unwind_180907740(uint8_t ObjectContext,int64_t ValidationContext)
     ResourceIndex = __RTCastToVoid(ResourceHashPointer);
     (**(code **)*ResourceHashPointer)(ResourceHashPointer,0);
     if (ResourceIndex != 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseResourceHandle(ResourceIndex);
+            ReleaseResourceHandle(ResourceIndex);
     }
   }
   ResourceHashValidationResultPointer[0x11] = 0;
   if (ResourceHashValidationResultPointer[0x12] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashValidationResultPointer[0xd] = &SystemResourceHandlerTemplate;
   if (ResourceHashValidationResultPointer[0xe] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashValidationResultPointer[0xe] = 0;
   *(uint32_t *)(ResourceHashValidationResultPointer + 0x10) = 0;
@@ -58176,8 +57158,7 @@ void ValidateResourceVersionExtended(uint8_t ObjectContext,int64_t ValidationCon
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -58209,8 +57190,7 @@ void ProcessResourceHashValidationExtended(uint8_t ObjectContext,int64_t Validat
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -58275,8 +57255,7 @@ void ExecuteResourceCommandExtended(uint8_t ObjectContext,int64_t ValidationCont
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 0xc0);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x20) + 0xb0,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -58291,8 +57270,7 @@ void Unwind_180907860(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 0xf0);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x20) + 0xe0,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -58350,8 +57328,7 @@ void Unwind_1809078a0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -58373,8 +57350,7 @@ void Unwind_1809078b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -58427,8 +57403,7 @@ void Unwind_180907900(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x28) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x28),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -58443,8 +57418,7 @@ void Unwind_180907910(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x28) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x28),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -58466,8 +57440,7 @@ void Unwind_180907920(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -58500,8 +57473,7 @@ void Unwind_180907950(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0xb8);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -58519,8 +57491,7 @@ void Unwind_180907960(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0xb0);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -58575,8 +57546,7 @@ void Unwind_1809079a0(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = 0;
   *(uint32_t *)(SystemContextPointer + 0x30) = 0;
@@ -58594,8 +57564,7 @@ void Unwind_1809079b0(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x40) = 0;
   *(uint32_t *)(SystemContextPointer + 0x50) = 0;
@@ -58613,8 +57582,7 @@ void UnwindSystemResourceHandler001(uint8_t ObjectContext,int64_t ValidationCont
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x60) = 0;
   *(uint32_t *)(SystemContextPointer + 0x70) = 0;
@@ -58635,8 +57603,7 @@ void UnwindSystemResourceHandler002(uint8_t ObjectContext,int64_t ValidationCont
   ResourceIndex = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t **)(ResourceIndex + 0xd8) = &SystemDataStructure;
   if (*(int64_t *)(ResourceIndex + 0xa8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   UpdateResourceTimestamp(ResourceIndex + 0x78);
   if ((1 < *(uint64_t *)(ResourceIndex + 0x88)) &&
@@ -58711,8 +57678,7 @@ void ResetResourceValidationTable(uint8_t ObjectContext,int64_t ValidationContex
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x70);
   *ResourceHashPointer = &ResourceValidationTable003;
   if (ResourceHashPointer[3] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint32_t *)(ResourceHashPointer + 4) = 0;
   ResourceHashPointer[3] = 0;
@@ -58937,8 +57903,7 @@ void Unwind_180907a90(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x28);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -59139,8 +58104,7 @@ void SystemUnwindResourceHandler(uint8_t ObjectContext,int64_t ValidationContext
   *(uint8_t **)(ValidationContext + 0x50) = &SystemDataStructure;
   *(uint8_t *)(ValidationContext + 0x30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x38) = 0;
   *(uint32_t *)(ValidationContext + 0x48) = 0;
@@ -59261,8 +58225,7 @@ void SystemUnwindResourceHashHandler(uint8_t ObjectContext,int64_t ValidationCon
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 600);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -59499,8 +58462,7 @@ void Unwind_180907cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x168) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -59528,8 +58490,7 @@ void Unwind_180907cf0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x1c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x1c8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x1c8) = 0;
   *(uint32_t *)(ValidationContext + 0x1d8) = 0;
@@ -59547,8 +58508,7 @@ void Unwind_180907d00(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x1e8);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -59590,8 +58550,7 @@ void Unwind_180907d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x168) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -59773,8 +58732,7 @@ void Unwind_180907e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x28) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -60071,11 +59029,9 @@ void Unwind_180907f80(uint8_t ObjectContext,int64_t ValidationContext)
     return;
   }
   if (((char)ResourceContext[3] == '\0') && (*ResourceContext != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResourceHandle(ResourceContext);
+        ReleaseResourceHandle(ResourceContext);
 }
 
 
@@ -60097,8 +59053,7 @@ void ResetSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t Validation
 {
   *(uint8_t *)(ValidationContext + 0xa0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xa8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xa8) = 0;
   *(uint32_t *)(ValidationContext + 0xb8) = 0;
@@ -60125,8 +59080,7 @@ void ResetSystemResourceHandlerTemplateAlternate(uint8_t ObjectContext,int64_t V
 {
   *(uint8_t *)(ValidationContext + 0xa0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xa8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xa8) = 0;
   *(uint32_t *)(ValidationContext + 0xb8) = 0;
@@ -60165,8 +59119,7 @@ void Unwind_180907ff0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x78);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(ValidationContext + 0x68,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60217,8 +59170,7 @@ void Unwind_180908010(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x78);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(ValidationContext + 0x68,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60233,8 +59185,7 @@ void Unwind_180908020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x78);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(ValidationContext + 0x68,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60351,8 +59302,7 @@ void Catch_180908080(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0x40));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -60371,8 +59321,7 @@ void Unwind_1809080a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(ResourceTable + 0x40);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(ResourceTable + 0x30,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60393,8 +59342,7 @@ void Unwind_1809080b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(ResourceTable + 0x20);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(ResourceTable + 0x10,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60409,8 +59357,7 @@ void Unwind_1809080c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x78) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x78),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60436,8 +59383,7 @@ void Unwind_1809080e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x78) + 0x70);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x78) + 0x60,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60472,8 +59418,7 @@ void Unwind_180908110(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x68) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x68),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60488,8 +59433,7 @@ void Unwind_180908120(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x68) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x68),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60504,8 +59448,7 @@ void Unwind_180908130(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x98);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -60547,8 +59490,7 @@ void Unwind_180908160(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(ResourceTable + 0x20);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(ResourceTable + 0x10,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60563,8 +59505,7 @@ void Unwind_180908170(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x60),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60590,8 +59531,7 @@ void Unwind_180908190(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x70);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x60) + 0x60,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60632,8 +59572,7 @@ void Unwind_1809081c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(ResourceTable + 0x20);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(ResourceTable + 0x10,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60648,8 +59587,7 @@ void Unwind_1809081d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x40),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60675,8 +59613,7 @@ void Unwind_1809081f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0x70);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x40) + 0x60,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -60715,8 +59652,7 @@ void Catch_180908220(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0x58));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -60725,8 +59661,7 @@ void Catch_180908240(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0x90));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -60735,8 +59670,7 @@ void Catch_180908270(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0x40));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -60745,8 +59679,7 @@ void Catch_180908290(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0xa0));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+        _CxxThrowException(0,0);
 }
 
 
@@ -60806,8 +59739,7 @@ void ExecuteSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContex
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -60951,8 +59883,7 @@ void ExecuteSystemResourceCleanupExtended(uint8_t ObjectContext,int64_t Validati
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -61334,8 +60265,7 @@ void Unwind_180908730(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -61375,8 +60305,7 @@ void Unwind_180908770(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -61472,8 +60401,7 @@ void Unwind_1809087d0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x160) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -61649,8 +60577,7 @@ void Unwind_180908860(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x160) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -61809,8 +60736,7 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext, int64_t Validation
   loopCounter = *(int64_t *)(ValidationContext + 0x70);
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = 0;
   *(uint32_t *)(SystemContextPointer + 0x30) = 0;
@@ -61828,8 +60754,7 @@ void Unwind_180908910(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = 0;
   *(uint32_t *)(SystemContextPointer + 0x30) = 0;
@@ -62480,8 +61405,7 @@ void Unwind_180908b00(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x30);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -62630,8 +61554,7 @@ void Unwind_180908ba0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0xa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xb0) = 0;
   *(uint32_t *)(ValidationContext + 0xc0) = 0;
@@ -62663,8 +61586,7 @@ void Unwind_180908bc0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x50) = 0;
   *(uint32_t *)(ValidationContext + 0x60) = 0;
@@ -62688,8 +61610,7 @@ void Unwind_180908bd0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -62718,8 +61639,7 @@ void Unwind_180908bf0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0xa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xb0) = 0;
   *(uint32_t *)(ValidationContext + 0xc0) = 0;
@@ -62765,8 +61685,7 @@ void Unwind_180908c30(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x50) = 0;
   *(uint32_t *)(ValidationContext + 0x60) = 0;
@@ -62809,8 +61728,7 @@ void Unwind_180908c60(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x1b8);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -62962,8 +61880,7 @@ void Unwind_180908db0(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x108);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -62981,8 +61898,7 @@ void Unwind_180908dc0(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x108);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -63129,8 +62045,7 @@ void Unwind_180908e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x30);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x60) + 0x20,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -63273,8 +62188,7 @@ void Unwind_180908e90(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -64129,8 +63043,7 @@ void Unwind_180909320(uint8_t ObjectContext,int64_t ValidationContext)
           ResourceHashValidationResultPointer[0x11] = 0;
         }
         *ValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceHashValidationResultPointer);
+              ReleaseResourceHandle(ResourceHashValidationResultPointer);
       }
       *(uint8_t *)(ContextHashValidationResult * 8 + *ResourceContext) = 0;
       ContextValidationStatusCode = (uint64_t)((int)ContextHashValidationResult + 1);
@@ -64142,16 +63055,14 @@ void Unwind_180909320(uint8_t ObjectContext,int64_t ValidationContext)
   if (ValidationResultPointer != (uint8_t *)0x0) {
     ProcessResourceValidation(HashValidationResultPointer + 0x1041,*ResourceHashValidationResultPointer);
     ResourceHashValidationResultPointer[4] = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashValidationResultPointer);
+          ReleaseResourceHandle(ResourceHashValidationResultPointer);
   }
   ProcessResourceOperation(HashValidationResultPointer + 0x103b,HashValidationResultPointer[0x103d]);
   ProcessResourceOperation(HashValidationResultPointer + 0x1035,HashValidationResultPointer[0x1037]);
   ProcessResourceOperation(HashValidationResultPointer + 0x102f,HashValidationResultPointer[0x1031]);
   RegisterResourceHandler(HashValidationResultPointer + 0x101b,0x20,5,SystemResourceHandler);
   if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   RegisterResourceHandler(HashValidationResultPointer + 0xffd,0x20,5,SystemResourceHandler);
   LoopOffset = HashValidationResultPointer[0xffa];
@@ -64159,8 +63070,7 @@ void Unwind_180909320(uint8_t ObjectContext,int64_t ValidationContext)
     ProcessMemoryAllocation(ResourceTablePointer);
   }
   if (HashValidationResultPointer[0xff9] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -64277,8 +63187,7 @@ void Unwind_1809093b0(uint8_t ObjectContext,int64_t ValidationContext)
           ResourceHashValidationResultPointer[0x11] = 0;
         }
         *ValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceHashValidationResultPointer);
+              ReleaseResourceHandle(ResourceHashValidationResultPointer);
       }
       *(uint8_t *)(ContextHashValidationResult * 8 + *ResourceContext) = 0;
       ContextValidationStatusCode = (uint64_t)((int)ContextHashValidationResult + 1);
@@ -64290,16 +63199,14 @@ void Unwind_1809093b0(uint8_t ObjectContext,int64_t ValidationContext)
   if (ValidationResultPointer != (uint8_t *)0x0) {
     ProcessResourceValidation(HashValidationResultPointer + 0x1041,*ResourceHashValidationResultPointer);
     ResourceHashValidationResultPointer[4] = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashValidationResultPointer);
+          ReleaseResourceHandle(ResourceHashValidationResultPointer);
   }
   ProcessResourceOperation(HashValidationResultPointer + 0x103b,HashValidationResultPointer[0x103d]);
   ProcessResourceOperation(HashValidationResultPointer + 0x1035,HashValidationResultPointer[0x1037]);
   ProcessResourceOperation(HashValidationResultPointer + 0x102f,HashValidationResultPointer[0x1031]);
   RegisterResourceHandler(HashValidationResultPointer + 0x101b,0x20,5,SystemResourceHandler);
   if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   RegisterResourceHandler(HashValidationResultPointer + 0xffd,0x20,5,SystemResourceHandler);
   LoopOffset = HashValidationResultPointer[0xffa];
@@ -64307,8 +63214,7 @@ void Unwind_1809093b0(uint8_t ObjectContext,int64_t ValidationContext)
     ProcessMemoryAllocation(ResourceTablePointer);
   }
   if (HashValidationResultPointer[0xff9] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -64354,8 +63260,7 @@ void Unwind_1809093c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
           ResourceHashValidationResultPointer[0x11] = 0;
         }
         *ValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceHashValidationResultPointer);
+              ReleaseResourceHandle(ResourceHashValidationResultPointer);
       }
       *(uint8_t *)(ContextHashValidationResult * 8 + *ResourceContext) = 0;
       ContextValidationStatusCode = (uint64_t)((int)ContextHashValidationResult + 1);
@@ -64367,16 +63272,14 @@ void Unwind_1809093c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (ValidationResultPointer != (uint8_t *)0x0) {
     ProcessResourceValidation(ResourceIndex + 0x8208,*ResourceHashValidationResultPointer);
     ResourceHashValidationResultPointer[4] = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashValidationResultPointer);
+          ReleaseResourceHandle(ResourceHashValidationResultPointer);
   }
   ProcessResourceOperation(ResourceIndex + 0x81d8,*(uint8_t *)(ResourceIndex + 0x81e8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   ProcessResourceOperation(ResourceIndex + 0x81a8,*(uint8_t *)(ResourceIndex + 0x81b8));
   ProcessResourceOperation(ResourceIndex + 0x8178,*(uint8_t *)(ResourceIndex + 0x8188));
   RegisterResourceHandler(ResourceIndex + 0x80d8,0x20,5,SystemResourceHandler);
   if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   RegisterResourceHandler(ResourceIndex + 0x7fe8,0x20,5,SystemResourceHandler);
   LoopOffset = *(int64_t *)(ResourceIndex + 0x7fd0);
@@ -64384,8 +63287,7 @@ void Unwind_1809093c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     ProcessMemoryAllocation(ResourceTablePointer);
   }
   if (*(int64_t *)(ResourceIndex + 0x7fc8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -64480,8 +63382,7 @@ void Unwind_180909460(uint8_t ObjectContext,int64_t ValidationContext)
 {
   if (*(char *)(ValidationContext + 0xb1) == '\0') {
     if ((*(char *)(ValidationContext + 0xb0) == '\0') && (*(int64_t *)(ValidationContext + 0xa0) != 0)) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *(int64_t *)(ValidationContext + 0xa0) = 0;
     *(uint8_t *)(ValidationContext + 0xa8) = 0;
@@ -64519,8 +63420,7 @@ void Unwind_180909480(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x140) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -64556,8 +63456,7 @@ void Unwind_1809094b0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x140) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -64577,8 +63476,7 @@ void Unwind_1809094c0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -64596,8 +63494,7 @@ void Unwind_1809094d0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x1b8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -64616,8 +63513,7 @@ void Unwind_1809094f0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x218) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x220) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x220) = 0;
   *(uint32_t *)(ValidationContext + 0x230) = 0;
@@ -64632,8 +63528,7 @@ void Unwind_180909500(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x298) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x2a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x2a0) = 0;
   *(uint32_t *)(ValidationContext + 0x2b0) = 0;
@@ -64657,8 +63552,7 @@ void Unwind_180909520(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x278) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x280) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x280) = 0;
   *(uint32_t *)(ValidationContext + 0x290) = 0;
@@ -64717,8 +63611,7 @@ void Unwind_180909560(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x1f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x200) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x200) = 0;
   *(uint32_t *)(ValidationContext + 0x210) = 0;
@@ -64749,8 +63642,7 @@ void Unwind_180909580(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0xf0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xf8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xf8) = 0;
   *(uint32_t *)(ValidationContext + 0x108) = 0;
@@ -64781,8 +63673,7 @@ void Unwind_1809095a0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x198) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x1a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x1a0) = 0;
   *(uint32_t *)(ValidationContext + 0x1b0) = 0;
@@ -64856,8 +63747,7 @@ void Unwind_180909610(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x2f0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x2f8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x2f8) = 0;
   *(uint32_t *)(ValidationContext + 0x308) = 0;
@@ -64907,8 +63797,7 @@ void Unwind_180909650(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x1b8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -65136,8 +64025,7 @@ void Unwind_1809096b0(uint8_t ObjectContext,int64_t ValidationContext)
           ResourceHashValidationResultPointer[0x11] = 0;
         }
         *ValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceHashValidationResultPointer);
+              ReleaseResourceHandle(ResourceHashValidationResultPointer);
       }
       *(uint8_t *)(ContextHashValidationResult * 8 + *ResourceContext) = 0;
       ContextValidationStatusCode = (uint64_t)((int)ContextHashValidationResult + 1);
@@ -65149,16 +64037,14 @@ void Unwind_1809096b0(uint8_t ObjectContext,int64_t ValidationContext)
   if (ValidationResultPointer != (uint8_t *)0x0) {
     ProcessResourceValidation(HashValidationResultPointer + 0x1041,*ResourceHashValidationResultPointer);
     ResourceHashValidationResultPointer[4] = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashValidationResultPointer);
+          ReleaseResourceHandle(ResourceHashValidationResultPointer);
   }
   ProcessResourceOperation(HashValidationResultPointer + 0x103b,HashValidationResultPointer[0x103d]);
   ProcessResourceOperation(HashValidationResultPointer + 0x1035,HashValidationResultPointer[0x1037]);
   ProcessResourceOperation(HashValidationResultPointer + 0x102f,HashValidationResultPointer[0x1031]);
   RegisterResourceHandler(HashValidationResultPointer + 0x101b,0x20,5,SystemResourceHandler);
   if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   RegisterResourceHandler(HashValidationResultPointer + 0xffd,0x20,5,SystemResourceHandler);
   LoopOffset = HashValidationResultPointer[0xffa];
@@ -65166,8 +64052,7 @@ void Unwind_1809096b0(uint8_t ObjectContext,int64_t ValidationContext)
     ProcessMemoryAllocation(ResourceTablePointer);
   }
   if (HashValidationResultPointer[0xff9] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -65213,8 +64098,7 @@ void Unwind_1809096c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
           ResourceHashValidationResultPointer[0x11] = 0;
         }
         *ValidationResultPointer = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceHashValidationResultPointer);
+              ReleaseResourceHandle(ResourceHashValidationResultPointer);
       }
       *(uint8_t *)(ContextHashValidationResult * 8 + *ResourceContext) = 0;
       ContextValidationStatusCode = (uint64_t)((int)ContextHashValidationResult + 1);
@@ -65226,16 +64110,14 @@ void Unwind_1809096c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (ValidationResultPointer != (uint8_t *)0x0) {
     ProcessResourceValidation(ResourceIndex + 0x8208,*ResourceHashValidationResultPointer);
     ResourceHashValidationResultPointer[4] = &SystemDataStructure;
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashValidationResultPointer);
+          ReleaseResourceHandle(ResourceHashValidationResultPointer);
   }
   ProcessResourceOperation(ResourceIndex + 0x81d8,*(uint8_t *)(ResourceIndex + 0x81e8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   ProcessResourceOperation(ResourceIndex + 0x81a8,*(uint8_t *)(ResourceIndex + 0x81b8));
   ProcessResourceOperation(ResourceIndex + 0x8178,*(uint8_t *)(ResourceIndex + 0x8188));
   RegisterResourceHandler(ResourceIndex + 0x80d8,0x20,5,SystemResourceHandler);
   if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   RegisterResourceHandler(ResourceIndex + 0x7fe8,0x20,5,SystemResourceHandler);
   LoopOffset = *(int64_t *)(ResourceIndex + 0x7fd0);
@@ -65243,8 +64125,7 @@ void Unwind_1809096c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     ProcessMemoryAllocation(ResourceTablePointer);
   }
   if (*(int64_t *)(ResourceIndex + 0x7fc8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -65309,8 +64190,7 @@ void Unwind_180909740(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x60) = 0;
   *(uint32_t *)(SystemContextPointer + 0x70) = 0;
@@ -65325,8 +64205,7 @@ void Unwind_180909750(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x10) = 0;
   *(uint32_t *)(ValidationContext + 0x20) = 0;
@@ -65353,8 +64232,7 @@ void Unwind_180909770(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -65372,8 +64250,7 @@ void Unwind_180909780(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20) = 0;
@@ -65411,8 +64288,7 @@ void Unwind_1809097b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x20),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -65427,8 +64303,7 @@ void Unwind_1809097c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 0x10);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x20),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -65473,8 +64348,7 @@ void Unwind_180909800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 200);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x40) + 0xb8,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -65489,8 +64363,7 @@ void Unwind_180909820(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 0xf8);
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x40) + 0xe8,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -66272,8 +65145,7 @@ void Unwind_180909ce0(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x568) = 0;
   *(uint32_t *)(SystemContextPointer + 0x578) = 0;
@@ -66300,8 +65172,7 @@ void Unwind_180909d00(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -66332,8 +65203,7 @@ void Unwind_180909d60(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -66355,8 +65225,7 @@ void Unwind_180909d80(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -66378,8 +65247,7 @@ void Unwind_180909da0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -66401,8 +65269,7 @@ void Unwind_180909dc0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -66517,8 +65384,7 @@ void Unwind_180909f40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ValidateResourceHash(*(int64_t *)(ValidationContext + 0x40) + 0xa90,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -66537,8 +65403,7 @@ void Unwind_180909f60(uint8_t ObjectContext,int64_t ValidationContext)
   FinalizeResourceRegistration();
   _Mtx_destroy_in_situ();
   if (*(int64_t *)(ResourceIndex + 0xae0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0xac0);
   if (ValidationResultPointer != (uint8_t *)0x0) {
@@ -66657,8 +65522,7 @@ void Unwind_18090a060(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -66712,8 +65576,7 @@ void CleanupResourceHashUnwindA(void* ObjectContext, int64_t ValidationContext, 
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x48),*(uint8_t *)ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -66740,8 +65603,7 @@ void CleanupResourceHashUnwindB(void* ObjectContext, int64_t ValidationContext, 
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x48),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -66830,8 +65692,7 @@ void Unwind_18090a130(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x40),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -66847,8 +65708,7 @@ void Unwind_18090a140(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x40),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -66901,8 +65761,7 @@ void Unwind_18090a1d0(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
   *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x568) = 0;
   *(uint32_t *)(SystemContextPointer + 0x578) = 0;
@@ -66929,8 +65788,7 @@ void Unwind_18090a1f0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -66961,8 +65819,7 @@ void Unwind_18090a250(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -66984,8 +65841,7 @@ void Unwind_18090a270(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -67007,8 +65863,7 @@ void Unwind_18090a290(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -67030,8 +65885,7 @@ void Unwind_18090a2b0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -67146,8 +66000,7 @@ void Unwind_18090a430(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x60) + 0xa90,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -67166,8 +66019,7 @@ void Unwind_18090a450(uint8_t ObjectContext,int64_t ValidationContext)
   FinalizeResourceRegistration();
   _Mtx_destroy_in_situ();
   if (*(int64_t *)(ResourceIndex + 0xae0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0xac0);
   if (ValidationResultPointer != (uint8_t *)0x0) {
@@ -67277,8 +66129,7 @@ void Unwind_18090a550(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -67300,8 +66151,7 @@ void Unwind_18090a570(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -67335,8 +66185,7 @@ void Unwind_18090a5a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x68),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -67352,8 +66201,7 @@ void Unwind_18090a5b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (ResourceHashPointer != (uint8_t *)0x0) {
     ProcessResourceHashOperation(*(int64_t *)(ValidationContext + 0x68),*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(ResourceHashPointer);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(ResourceHashPointer);
+          ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -67732,8 +66580,7 @@ void Unwind_18090a7b0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x30) = 0;
   *(uint32_t *)(ValidationContext + 0x40) = 0;
@@ -67762,8 +66609,7 @@ void Unwind_18090a7d0(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0xa0);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -67802,8 +66648,7 @@ void Unwind_18090a7f0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x30) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -67835,8 +66680,7 @@ void Unwind_18090a830(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x30) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -67956,8 +66800,7 @@ void Unwind_18090a8a0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -67979,8 +66822,7 @@ void Unwind_18090a8b0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -68002,8 +66844,7 @@ void Unwind_18090a8c0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -68025,8 +66866,7 @@ void Unwind_18090a8d0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -68076,8 +66916,7 @@ void Unwind_18090a900(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -68093,8 +66932,7 @@ void Unwind_18090a910(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -68121,8 +66959,7 @@ void Unwind_18090a920(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -68431,8 +67268,7 @@ void Unwind_18090aae0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xa0) = 0;
   *(uint32_t *)(ValidationContext + 0xb0) = 0;
@@ -68973,8 +67809,7 @@ void Unwind_18090af70(uint8_t ObjectContext,int64_t ValidationContext)
         if (*(int64_t **)(ResourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -68983,8 +67818,7 @@ void Unwind_18090af70(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x2b8) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 0x2a8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -69580,8 +68414,7 @@ void Unwind_18090b4b0(uint8_t ObjectContext,int64_t ValidationContext)
         if (*(int64_t **)(ResourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -69590,8 +68423,7 @@ void Unwind_18090b4b0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -69618,8 +68450,7 @@ void Unwind_18090b4c0(uint8_t ObjectContext,int64_t ValidationContext)
         if (*(int64_t **)(ResourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -69628,8 +68459,7 @@ void Unwind_18090b4c0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -69674,8 +68504,7 @@ void Unwind_18090b4f0(uint8_t ObjectContext,int64_t ValidationContext)
         if (*(int64_t **)(ResourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -69684,8 +68513,7 @@ void Unwind_18090b4f0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -69712,8 +68540,7 @@ void Unwind_18090b500(uint8_t ObjectContext,int64_t ValidationContext)
         if (*(int64_t **)(ResourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -69722,8 +68549,7 @@ void Unwind_18090b500(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -70015,8 +68841,7 @@ void Unwind_18090b7d0(uint8_t ObjectContext,int64_t ValidationContext)
         if (*(int64_t **)(ResourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -70025,8 +68850,7 @@ void Unwind_18090b7d0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x2b8) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 0x2a8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -70622,8 +69446,7 @@ void Unwind_18090bd10(uint8_t ObjectContext,int64_t ValidationContext)
         if (*(int64_t **)(ResourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -70632,8 +69455,7 @@ void Unwind_18090bd10(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -70660,8 +69482,7 @@ void Unwind_18090bd20(uint8_t ObjectContext,int64_t ValidationContext)
         if (*(int64_t **)(ResourceTable + 8) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTable + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        ReleaseResourceHandle(ResourceTable);
+              ReleaseResourceHandle(ResourceTable);
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
@@ -70670,8 +69491,7 @@ void Unwind_18090bd20(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
   if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -70723,8 +69543,7 @@ void Unwind_18090bd70(uint8_t ObjectContext,int64_t ValidationContext)
 {
   if (*(char *)(ValidationContext + 0x51) == '\0') {
     if ((*(char *)(ValidationContext + 0x50) == '\0') && (*(int64_t *)(ValidationContext + 0x40) != 0)) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *(int64_t *)(ValidationContext + 0x40) = 0;
     *(uint8_t *)(ValidationContext + 0x48) = 0;
@@ -71042,8 +69861,7 @@ void Unwind_18090bfb0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -71087,8 +69905,7 @@ void Unwind_18090bfe0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -71161,8 +69978,7 @@ void Unwind_18090c060(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -71267,8 +70083,7 @@ void Unwind_18090c100(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x50) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -71306,8 +70121,7 @@ void Unwind_18090c130(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t *)(ValidationContext + 0x50) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -71359,8 +70173,7 @@ void Unwind_18090c150(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -71395,8 +70208,7 @@ void Unwind_18090c170(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -71782,8 +70594,7 @@ void Unwind_18090c310(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = 0;
   *(uint32_t *)(SystemContextPointer + 0x38) = 0;
@@ -71969,8 +70780,7 @@ void Unwind_18090c420(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t *processPointer;
   
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x1d8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x70) + 0x1b8);
   if (ResourceContext != (int64_t *)0x0) {
@@ -72090,8 +70900,7 @@ void Unwind_18090c4a0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0xd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xe0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xe0) = 0;
   *(uint32_t *)(ValidationContext + 0xf0) = 0;
@@ -72115,8 +70924,7 @@ void Unwind_18090c4b0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -72154,8 +70962,7 @@ void Unwind_18090c4e0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0xd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xe0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xe0) = 0;
   *(uint32_t *)(ValidationContext + 0xf0) = 0;
@@ -72198,8 +71005,7 @@ void Unwind_18090c510(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x118);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -72912,8 +71718,7 @@ void Unwind_18090c790(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x148) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x150) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x150) = 0;
   *(uint32_t *)(ValidationContext + 0x160) = 0;
@@ -74249,8 +73054,7 @@ void Unwind_18090cdf0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x148) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x150) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x150) = 0;
   *(uint32_t *)(ValidationContext + 0x160) = 0;
@@ -74274,8 +73078,7 @@ void Unwind_18090ce00(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -74296,8 +73099,7 @@ void Unwind_18090ce10(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x358) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x360) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x360) = 0;
   *(uint32_t *)(ValidationContext + 0x370) = 0;
@@ -74321,8 +73123,7 @@ void Unwind_18090ce20(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -74343,8 +73144,7 @@ void Unwind_18090ce30(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x1f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x200) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x200) = 0;
   *(uint32_t *)(ValidationContext + 0x210) = 0;
@@ -74365,8 +73165,7 @@ void Unwind_18090ce40(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 600) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x260) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x260) = 0;
   *(uint32_t *)(ValidationContext + 0x270) = 0;
@@ -74387,8 +73186,7 @@ void Unwind_18090ce50(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x2b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x2c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x2c0) = 0;
   *(uint32_t *)(ValidationContext + 0x2d0) = 0;
@@ -74409,8 +73207,7 @@ void Unwind_18090ce60(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x3b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x3c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x3c0) = 0;
   *(uint32_t *)(ValidationContext + 0x3d0) = 0;
@@ -74434,8 +73231,7 @@ void Unwind_18090ce70(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -74464,8 +73260,7 @@ void Unwind_18090ce90(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x148) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x150) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x150) = 0;
   *(uint32_t *)(ValidationContext + 0x160) = 0;
@@ -74508,8 +73303,7 @@ void Unwind_18090cec0(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x38);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -74549,8 +73343,7 @@ void Unwind_18090cef0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x358) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x360) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x360) = 0;
   *(uint32_t *)(ValidationContext + 0x370) = 0;
@@ -74587,8 +73380,7 @@ void Unwind_18090cf20(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x1f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x200) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x200) = 0;
   *(uint32_t *)(ValidationContext + 0x210) = 0;
@@ -74625,8 +73417,7 @@ void Unwind_18090cf50(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 600) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x260) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x260) = 0;
   *(uint32_t *)(ValidationContext + 0x270) = 0;
@@ -74663,8 +73454,7 @@ void Unwind_18090cf80(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x2b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x2c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x2c0) = 0;
   *(uint32_t *)(ValidationContext + 0x2d0) = 0;
@@ -74701,8 +73491,7 @@ void Unwind_18090cfb0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x3b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x3c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x3c0) = 0;
   *(uint32_t *)(ValidationContext + 0x3d0) = 0;
@@ -77586,8 +76375,7 @@ void Unwind_18090d530(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -77631,8 +76419,7 @@ void Unwind_18090d560(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x130);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -77664,8 +76451,7 @@ void Unwind_18090d580(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x90) = 0;
   *(uint32_t *)(ValidationContext + 0xa0) = 0;
@@ -77689,8 +76475,7 @@ void Unwind_18090d590(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -77719,8 +76504,7 @@ void Unwind_18090d5b0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x90) = 0;
   *(uint32_t *)(ValidationContext + 0xa0) = 0;
@@ -77830,8 +76614,7 @@ void Unwind_18090d650(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -78010,8 +76793,7 @@ void Unwind_18090d7e0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   ExecuteSystemInitialization();
   if (*(int64_t *)(ResourceIndex + 0x1480) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0x1460);
   if (ValidationResultPointer == (uint8_t *)0x0) {
@@ -78405,16 +77187,14 @@ void Unwind_18090dd00(uint8_t ObjectContext,int64_t ValidationContext)
   for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointer; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 6) {
     *PackageValidationStatusCodePointer = &SystemResourceHandlerTemplate;
     if (HashValidationResultPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     HashValidationResultPointer[1] = 0;
     *(uint32_t *)(HashValidationResultPointer + 3) = 0;
     *PackageValidationStatusCodePointer = &SystemDataStructure;
   }
   if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -78433,16 +77213,14 @@ void Unwind_18090dd10(uint8_t ObjectContext,int64_t ValidationContext)
   for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointer; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 6) {
     *PackageValidationStatusCodePointer = &SystemResourceHandlerTemplate;
     if (HashValidationResultPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     HashValidationResultPointer[1] = 0;
     *(uint32_t *)(HashValidationResultPointer + 3) = 0;
     *PackageValidationStatusCodePointer = &SystemDataStructure;
   }
   if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -78581,8 +77359,7 @@ void Unwind_18090de50(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -78784,8 +77561,7 @@ void Unwind_18090e000(uint8_t ObjectContext,int64_t ValidationContext)
   }
   ExecuteSystemInitialization();
   if (*(int64_t *)(ResourceIndex + 0x1480) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ValidationResultPointer = *(uint8_t **)(ResourceIndex + 0x1460);
   if (ValidationResultPointer == (uint8_t *)0x0) {
@@ -79179,8 +77955,7 @@ void Unwind_18090e3e0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -80015,8 +78790,7 @@ void Unwind_18090e8d0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x68) = &ResourceDescriptorTemplate;
   if (*(int64_t *)(ValidationContext + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x70) = 0;
   *(uint32_t *)(ValidationContext + 0x80) = 0;
@@ -80040,8 +78814,7 @@ void Unwind_18090e8e0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -80062,8 +78835,7 @@ void Unwind_18090e8f0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0xf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x100) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x100) = 0;
   *(uint32_t *)(ValidationContext + 0x110) = 0;
@@ -80137,8 +78909,7 @@ void ResetResourceDescriptorTemplateAndCheckEmergencyExit(uint8_t ObjectContext,
 {
   *(uint8_t *)(ValidationContext + 0x68) = &ResourceDescriptorTemplate;
   if (*(int64_t *)(ValidationContext + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x70) = 0;
   *(uint32_t *)(ValidationContext + 0x80) = 0;
@@ -80217,8 +78988,7 @@ void SetSystemResourceHandlerTemplateAndCheckEmergencyExit(uint8_t ObjectContext
   loopCounter = *(int64_t *)(ValidationContext + 0x28);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -80270,8 +79040,7 @@ void Unwind_18090e980(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0xf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x100) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0x100) = 0;
   *(uint32_t *)(ValidationContext + 0x110) = 0;
@@ -80327,8 +79096,7 @@ void Unwind_18090e9c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x38) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -80348,8 +79116,7 @@ void Unwind_18090e9d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x38) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -80491,8 +79258,7 @@ void Unwind_18090eb20(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -80536,8 +79302,7 @@ void Unwind_18090eb50(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x108);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -80605,8 +79370,7 @@ void Unwind_18090ebf0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 0x98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xa0) = 0;
   *(uint32_t *)(ValidationContext + 0xb0) = 0;
@@ -80630,8 +79394,7 @@ void Unwind_18090ec00(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -80660,8 +79423,7 @@ void Unwind_18090ec20(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xa0) = 0;
   *(uint32_t *)(ValidationContext + 0xb0) = 0;
@@ -80690,8 +79452,7 @@ void Unwind_18090ec40(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x30);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -80843,8 +79604,7 @@ void Unwind_18090ed20(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(ValidationContext + 200) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xd0) = 0;
   *(uint32_t *)(ValidationContext + 0xe0) = 0;
@@ -80868,8 +79628,7 @@ void Unwind_18090ed30(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -80898,8 +79657,7 @@ void Unwind_18090ed50(uint8_t ObjectContext,int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 200) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + 0xd0) = 0;
   *(uint32_t *)(ValidationContext + 0xe0) = 0;
@@ -80928,8 +79686,7 @@ void Unwind_18090ed70(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -81179,8 +79936,7 @@ void Unwind_18090eea0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t *processPointer;
   
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x58) + 0x1d8) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x58) + 0x1b8);
   if (ResourceContext != (int64_t *)0x0) {
@@ -81505,13 +80261,11 @@ void Unwind_18090efe0(uint8_t ObjectContext,int64_t ValidationContext)
       LoopOffset = *ResourceTablePointerPointer;
       ResourceTablePointerPointer = ResourceTablePointerPointer + 1;
       if (LoopOffset != 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
     }
     if (*ResourceTablePointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *pResourceTable = 0;
   }
@@ -81546,8 +80300,7 @@ void Unwind_18090f000(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -81601,13 +80354,11 @@ void Unwind_18090f040(uint8_t ObjectContext,int64_t ValidationContext)
       ResourceIndex = *LoopOffsetPointer;
       LoopOffsetPointer = LoopOffsetPointer + 1;
       if (ResourceIndex != 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
     }
     if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *ResourceContext = 0;
   }
@@ -81632,15 +80383,13 @@ void Unwind_18090f050(uint8_t ObjectContext,int64_t ValidationContext)
         ResourceTable = *ResourceIndexPointer;
         ResourceIndexPointer = ResourceIndexPointer + 1;
         if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-          ExecuteSystemEmergencyExit();
+                ExecuteSystemEmergencyExit();
         }
       } while (ResourceIndexPointer < (int64_t *)(ResourceContext[9] + 8));
       ResourceTable = *ResourceContext;
     }
     if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *ResourceContext = 0;
   }
@@ -81675,8 +80424,7 @@ void Unwind_18090f060(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -81764,13 +80512,11 @@ void Unwind_18090f0c0(uint8_t ObjectContext,int64_t ValidationContext)
       ResourceIndex = *LoopOffsetPointer;
       LoopOffsetPointer = LoopOffsetPointer + 1;
       if (ResourceIndex != 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemEmergencyExit();
+              ExecuteSystemEmergencyExit();
       }
     }
     if (*ResourceContext != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *ResourceContext = 0;
   }
@@ -81805,8 +80551,7 @@ void Unwind_18090f0d0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -81861,15 +80606,13 @@ void Unwind_18090f110(uint8_t ObjectContext,int64_t ValidationContext)
         ResourceTable = *ResourceIndexPointer;
         ResourceIndexPointer = ResourceIndexPointer + 1;
         if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-          ExecuteSystemEmergencyExit();
+                ExecuteSystemEmergencyExit();
         }
       } while (ResourceIndexPointer < (int64_t *)(ResourceContext[9] + 8));
       ResourceTable = *ResourceContext;
     }
     if (ResourceTable != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     *ResourceContext = 0;
   }
@@ -81914,8 +80657,7 @@ void Unwind_18090f140(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -81933,8 +80675,7 @@ void Unwind_18090f150(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20) = 0;
@@ -81952,8 +80693,7 @@ void Unwind_18090f160(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x78);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20) = 0;
@@ -81999,8 +80739,7 @@ void Unwind_18090f190(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20) = 0;
@@ -82109,8 +80848,7 @@ void Unwind_18090f200(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x60) + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   _Mtx_destroy_in_situ();
   return;
@@ -82349,8 +81087,7 @@ void Unwind_18090f2d0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -82417,8 +81154,7 @@ void Unwind_18090f330(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -82440,8 +81176,7 @@ void Unwind_18090f350(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -82459,8 +81194,7 @@ void Unwind_18090f370(uint8_t ObjectContext,int64_t ValidationContext)
   LoopOffsetPointer = (int64_t *)(SystemContextPointer + 600);
   do {
     if (*LoopOffsetPointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     ResourceTable = (int64_t)(int)HashValidationResult;
     LoopOffsetPointer = LoopOffsetPointer + 1;
@@ -82773,8 +81507,7 @@ void Unwind_18090f650(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
   *(uint8_t *)(SystemContextPointer + 0x4140) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4148) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4148) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4158) = 0;
@@ -82792,8 +81525,7 @@ void Unwind_18090f670(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
   *(uint8_t *)(SystemContextPointer + 0x4190) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4198) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4198) = 0;
   *(uint32_t *)(SystemContextPointer + 0x41a8) = 0;
@@ -82818,8 +81550,7 @@ void Unwind_18090f690(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -83012,8 +81743,7 @@ void Unwind_18090f7e0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -83485,8 +82215,7 @@ void Unwind_18090fac0(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -83530,8 +82259,7 @@ void Unwind_18090faf0(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x120);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -83617,8 +82345,7 @@ void Unwind_18090fb70(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0xd0);
   *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
   *(uint32_t *)(ResourceHashPointer + 3) = 0;
@@ -83958,8 +82685,7 @@ void Unwind_18090fe50(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -83979,8 +82705,7 @@ void Unwind_18090fe60(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84085,8 +82810,7 @@ void Unwind_18090ff10(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84147,8 +82871,7 @@ void Unwind_18090ff80(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84225,8 +82948,7 @@ void Unwind_18090ffe0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84246,8 +82968,7 @@ void Unwind_18090fff0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84281,8 +83002,7 @@ void Unwind_180910010(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84302,8 +83022,7 @@ void Unwind_180910020(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84325,8 +83044,7 @@ void Unwind_180910030(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84348,8 +83066,7 @@ void Unwind_180910040(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84371,8 +83088,7 @@ void Unwind_180910050(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84540,8 +83256,7 @@ void Unwind_1809100d0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84563,8 +83278,7 @@ void Unwind_1809100e0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84636,8 +83350,7 @@ void Unwind_180910100(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84650,8 +83363,7 @@ void Unwind_180910110(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x60);
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x110) = 0;
   *(uint32_t *)(SystemContextPointer + 0x120) = 0;
@@ -84669,8 +83381,7 @@ void Unwind_180910130(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x50);
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x110) = 0;
   *(uint32_t *)(SystemContextPointer + 0x120) = 0;
@@ -84695,8 +83406,7 @@ void Unwind_180910150(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84727,8 +83437,7 @@ void Unwind_1809101c0(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x110) = 0;
   *(uint32_t *)(SystemContextPointer + 0x120) = 0;
@@ -84950,8 +83659,7 @@ void Unwind_1809102e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0xe8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84971,8 +83679,7 @@ void Unwind_1809102f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 200) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -84992,8 +83699,7 @@ void Unwind_180910300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0xe8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -85015,8 +83721,7 @@ void Unwind_180910310(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -85072,8 +83777,7 @@ void Unwind_180910330(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 200) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -85388,8 +84092,7 @@ void Unwind_1809104d0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -85609,8 +84312,7 @@ void Unwind_180910620(uint8_t ObjectContext,int64_t ValidationContext)
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -85854,15 +84556,13 @@ void Unwind_180910760(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceContext = *(int64_t **)(ValidationContext + 0x40);
   for (ResourceTable = *ResourceContext; ResourceTable != ResourceContext[1]; ResourceTable = ResourceTable + 0x28) {
     if (*(int64_t *)(ResourceTable + 8) != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
   }
   if (*ResourceContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -85986,16 +84686,14 @@ void Unwind_1809107a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x9c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x9c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x9a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9c0) = 0;
@@ -86016,16 +84714,14 @@ void Unwind_1809107c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xa38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa40) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa50) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa38) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa20) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa30) = 0;
@@ -86046,16 +84742,14 @@ void Unwind_1809107e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xaa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xab0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xab0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xac0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xaa8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa90) = 0;
   *(uint32_t *)(SystemContextPointer + 0xaa0) = 0;
@@ -86076,16 +84770,14 @@ void Unwind_180910800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xb18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb20) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb30) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb18) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xaf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb00) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb00) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb10) = 0;
@@ -86106,16 +84798,14 @@ void Unwind_180910820(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xb88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb90) = 0;
   *(uint32_t *)(SystemContextPointer + 0xba0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb88) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xb68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb70) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb80) = 0;
@@ -86136,16 +84826,14 @@ void Unwind_180910840(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xbf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc00) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc00) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc10) = 0;
   *(uint8_t *)(SystemContextPointer + 0xbf8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xbd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xbe0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xbe0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xbf0) = 0;
@@ -86166,16 +84854,14 @@ void Unwind_180910860(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xc68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc70) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc80) = 0;
   *(uint8_t *)(SystemContextPointer + 0xc68) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc50) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc60) = 0;
@@ -86196,16 +84882,14 @@ void Unwind_180910880(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xcd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xce0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xce0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xcf0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xcd8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xcb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xcc0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xcc0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xcd0) = 0;
@@ -86226,16 +84910,14 @@ void Unwind_1809108a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xd48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd50) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd60) = 0;
   *(uint8_t *)(SystemContextPointer + 0xd48) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xd28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd30) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd40) = 0;
@@ -86256,16 +84938,14 @@ void Unwind_1809108c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xdb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xdc0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xdc0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xdd0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xdb8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xd98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xda0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xda0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xdb0) = 0;
@@ -86286,16 +84966,14 @@ void Unwind_1809108e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xe28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe30) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe40) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe28) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe10) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe20) = 0;
@@ -86316,16 +84994,14 @@ void Unwind_180910900(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xe98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xea0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xea0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xeb0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe98) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe80) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe90) = 0;
@@ -86346,16 +85022,14 @@ void Unwind_180910920(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xf08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf10) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf20) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf08) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xee8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xef0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xef0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf00) = 0;
@@ -86376,16 +85050,14 @@ void Unwind_180910940(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xf78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf80) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf90) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf78) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xf58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf60) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf70) = 0;
@@ -86406,16 +85078,14 @@ void Unwind_180910960(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xfe8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xff0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xff0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1000) = 0;
   *(uint8_t *)(SystemContextPointer + 0xfe8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xfc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xfd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xfd0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xfe0) = 0;
@@ -86436,16 +85106,14 @@ void Unwind_180910980(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1058) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1060) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1060) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1070) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1058) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1038) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1040) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1040) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1050) = 0;
@@ -86466,16 +85134,14 @@ void Unwind_1809109a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x10c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x10e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x10c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x10a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x10c0) = 0;
@@ -86496,16 +85162,14 @@ void Unwind_1809109c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1138) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1140) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1140) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1150) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1138) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1118) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1120) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1120) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1130) = 0;
@@ -86526,16 +85190,14 @@ void Unwind_1809109e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x11a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x11b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x11b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x11c0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x11a8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1188) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1190) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1190) = 0;
   *(uint32_t *)(SystemContextPointer + 0x11a0) = 0;
@@ -86556,16 +85218,14 @@ void Unwind_180910a00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1218) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1220) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1220) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1230) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1218) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x11f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1200) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1200) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1210) = 0;
@@ -86586,16 +85246,14 @@ void Unwind_180910a20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1288) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1290) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1290) = 0;
   *(uint32_t *)(SystemContextPointer + 0x12a0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1288) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1268) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1270) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1270) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1280) = 0;
@@ -86616,16 +85274,14 @@ void Unwind_180910a40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x12f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1300) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1300) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1310) = 0;
   *(uint8_t *)(SystemContextPointer + 0x12f8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x12d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x12e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x12e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x12f0) = 0;
@@ -86646,16 +85302,14 @@ void Unwind_180910a60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1368) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1370) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1370) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1380) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1368) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1348) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1350) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1350) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1360) = 0;
@@ -86676,16 +85330,14 @@ void Unwind_180910a80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x13d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x13e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x13e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x13f0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x13d8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x13b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x13c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x13c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x13d0) = 0;
@@ -86706,16 +85358,14 @@ void Unwind_180910aa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1448) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1450) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1450) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1460) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1448) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1428) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1430) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1430) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1440) = 0;
@@ -86736,16 +85386,14 @@ void Unwind_180910ac0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x14b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x14c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x14c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x14d0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x14b8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1498) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x14a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x14a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x14b0) = 0;
@@ -86766,16 +85414,14 @@ void Unwind_180910ae0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1528) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1530) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1530) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1540) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1528) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1508) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1510) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1510) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1520) = 0;
@@ -86796,16 +85442,14 @@ void Unwind_180910b00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1598) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x15a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x15a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x15b0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1598) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1578) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1580) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1580) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1590) = 0;
@@ -86826,16 +85470,14 @@ void Unwind_180910b20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1608) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1610) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1610) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1620) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1608) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x15e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x15f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x15f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1600) = 0;
@@ -86856,16 +85498,14 @@ void Unwind_180910b40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1678) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1680) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1680) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1690) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1678) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1658) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1660) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1660) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1670) = 0;
@@ -86886,16 +85526,14 @@ void Unwind_180910b60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x16e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x16f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x16f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1700) = 0;
   *(uint8_t *)(SystemContextPointer + 0x16e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x16c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x16d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x16d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x16e0) = 0;
@@ -86916,16 +85554,14 @@ void Unwind_180910b80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1758) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1760) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1760) = 0;
   *(uint32_t *)(SystemContextPointer + 6000) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1758) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1738) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1740) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1740) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1750) = 0;
@@ -86946,16 +85582,14 @@ void Unwind_180910ba0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x17c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x17d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x17d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x17e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x17c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x17a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x17b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x17b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x17c0) = 0;
@@ -86976,16 +85610,14 @@ void Unwind_180910bc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1838) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1840) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1840) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1850) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1838) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1818) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1820) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1820) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1830) = 0;
@@ -87006,16 +85638,14 @@ void Unwind_180910be0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x18a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x18b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x18b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x18c0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x18a8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1888) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1890) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1890) = 0;
   *(uint32_t *)(SystemContextPointer + 0x18a0) = 0;
@@ -87036,16 +85666,14 @@ void Unwind_180910c00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1918) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1920) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1920) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1930) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1918) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x18f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1900) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1900) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1910) = 0;
@@ -87066,16 +85694,14 @@ void Unwind_180910c20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1988) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1990) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1990) = 0;
   *(uint32_t *)(SystemContextPointer + 0x19a0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1988) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1968) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1970) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1970) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1980) = 0;
@@ -87096,16 +85722,14 @@ void Unwind_180910c40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x19f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1a00) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a00) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1a10) = 0;
   *(uint8_t *)(SystemContextPointer + 0x19f8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x19d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x19e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x19e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x19f0) = 0;
@@ -87126,16 +85750,14 @@ void Unwind_180910c60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1a68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1a70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a70) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1a80) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1a68) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1a48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1a50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a50) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1a60) = 0;
@@ -87156,16 +85778,14 @@ void Unwind_180910c80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1ad8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ae0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ae0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1af0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1ad8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1ab8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ac0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ac0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1ad0) = 0;
@@ -87186,16 +85806,14 @@ void Unwind_180910ca0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1b48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1b50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1b50) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1b60) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1b48) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1b28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1b30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1b30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1b40) = 0;
@@ -87216,16 +85834,14 @@ void Unwind_180910cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1bb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1bc0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1bc0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1bd0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1bb8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1b98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ba0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ba0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1bb0) = 0;
@@ -87246,16 +85862,14 @@ void Unwind_180910ce0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1c28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1c30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1c30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1c40) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1c28) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1c08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1c10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1c10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1c20) = 0;
@@ -87276,16 +85890,14 @@ void Unwind_180910d00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1c98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ca0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ca0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1cb0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1c98) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1c78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1c80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1c80) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1c90) = 0;
@@ -87306,16 +85918,14 @@ void Unwind_180910d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1d08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1d10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1d10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d20) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1d08) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1ce8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1cf0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1cf0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d00) = 0;
@@ -87336,16 +85946,14 @@ void Unwind_180910d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1d78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1d80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1d80) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d90) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1d78) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1d58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1d60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1d60) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d70) = 0;
@@ -87366,16 +85974,14 @@ void Unwind_180910d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1de8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1df0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1df0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1e00) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1de8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1dc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1dd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1dd0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1de0) = 0;
@@ -87396,16 +86002,14 @@ void Unwind_180910d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1e58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1e60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1e60) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1e70) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1e58) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1e38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1e40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1e40) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1e50) = 0;
@@ -87426,16 +86030,14 @@ void Unwind_180910da0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1ec8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ed0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ed0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1ee0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1ec8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1ea8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1eb0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1eb0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1ec0) = 0;
@@ -87456,16 +86058,14 @@ void Unwind_180910dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1f38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 8000) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 8000) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1f50) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1f38) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1f18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1f20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1f20) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1f30) = 0;
@@ -87486,16 +86086,14 @@ void Unwind_180910de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1fa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1fb0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1fb0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1fc0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1fa8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1f88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1f90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1f90) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1fa0) = 0;
@@ -87516,16 +86114,14 @@ void Unwind_180910e00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2018) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2020) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2020) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2030) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2018) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1ff8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2000) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2000) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2010) = 0;
@@ -87546,16 +86142,14 @@ void Unwind_180910e20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2088) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2090) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2090) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20a0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2088) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2068) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2070) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2070) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2080) = 0;
@@ -87576,16 +86170,14 @@ void Unwind_180910e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x20f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2100) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2100) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2110) = 0;
   *(uint8_t *)(SystemContextPointer + 0x20f8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x20d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20f0) = 0;
@@ -87606,16 +86198,14 @@ void Unwind_180910e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2168) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2170) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2170) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2180) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2168) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2148) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2150) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2150) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2160) = 0;
@@ -87636,16 +86226,14 @@ void Unwind_180910e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x21d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x21e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x21e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x21f0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x21d8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x21b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x21c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x21c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x21d0) = 0;
@@ -87666,16 +86254,14 @@ void Unwind_180910ea0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2248) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2250) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2250) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2260) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2248) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2228) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2230) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2230) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2240) = 0;
@@ -87696,16 +86282,14 @@ void Unwind_180910ec0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x22b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x22c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x22c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x22d0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x22b8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2298) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x22a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x22a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x22b0) = 0;
@@ -87726,16 +86310,14 @@ void Unwind_180910ee0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 9000) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2330) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2330) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2340) = 0;
   *(uint8_t *)(SystemContextPointer + 9000) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2308) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2310) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2310) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2320) = 0;
@@ -87756,16 +86338,14 @@ void Unwind_180910f00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2398) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x23a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x23a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x23b0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2398) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2378) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2380) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2380) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2390) = 0;
@@ -87786,16 +86366,14 @@ void Unwind_180910f20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2408) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2410) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2410) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2420) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2408) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x23e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x23f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x23f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2400) = 0;
@@ -87816,16 +86394,14 @@ void Unwind_180910f40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2478) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2480) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2480) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2490) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2478) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2458) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2460) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2460) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2470) = 0;
@@ -87846,16 +86422,14 @@ void Unwind_180910f60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x24e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x24f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x24f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2500) = 0;
   *(uint8_t *)(SystemContextPointer + 0x24e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x24c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x24d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x24d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x24e0) = 0;
@@ -87876,16 +86450,14 @@ void Unwind_180910f80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2558) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2560) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2560) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2570) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2558) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2538) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2540) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2540) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2550) = 0;
@@ -87906,16 +86478,14 @@ void Unwind_180910fa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x25c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x25d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x25d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x25e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x25c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x25a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x25b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x25b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x25c0) = 0;
@@ -87942,8 +86512,7 @@ void Unwind_180910fc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -87965,8 +86534,7 @@ void Unwind_180910fe0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -87982,16 +86550,14 @@ void Unwind_180911000(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x9c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x9c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x9a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9c0) = 0;
@@ -88012,16 +86578,14 @@ void Unwind_180911020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xa38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa40) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa50) = 0;
   *(uint8_t *)(SystemContextPointer + 0xa38) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa20) = 0;
   *(uint32_t *)(SystemContextPointer + 0xa30) = 0;
@@ -88042,16 +86606,14 @@ void Unwind_180911040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xaa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xab0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xab0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xac0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xaa8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xa88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xa90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xa90) = 0;
   *(uint32_t *)(SystemContextPointer + 0xaa0) = 0;
@@ -88072,16 +86634,14 @@ void Unwind_180911060(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xb18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb20) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb30) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb18) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xaf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb00) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb00) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb10) = 0;
@@ -88102,16 +86662,14 @@ void Unwind_180911080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xb88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb90) = 0;
   *(uint32_t *)(SystemContextPointer + 0xba0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xb88) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xb68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xb70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xb70) = 0;
   *(uint32_t *)(SystemContextPointer + 0xb80) = 0;
@@ -88132,16 +86690,14 @@ void Unwind_1809110a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xbf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc00) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc00) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc10) = 0;
   *(uint8_t *)(SystemContextPointer + 0xbf8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xbd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xbe0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xbe0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xbf0) = 0;
@@ -88162,16 +86718,14 @@ void Unwind_1809110c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xc68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc70) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc80) = 0;
   *(uint8_t *)(SystemContextPointer + 0xc68) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xc48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xc50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xc50) = 0;
   *(uint32_t *)(SystemContextPointer + 0xc60) = 0;
@@ -88192,16 +86746,14 @@ void Unwind_1809110e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xcd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xce0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xce0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xcf0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xcd8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xcb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xcc0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xcc0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xcd0) = 0;
@@ -88222,16 +86774,14 @@ void Unwind_180911100(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xd48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd50) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd60) = 0;
   *(uint8_t *)(SystemContextPointer + 0xd48) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xd28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xd30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xd30) = 0;
   *(uint32_t *)(SystemContextPointer + 0xd40) = 0;
@@ -88252,16 +86802,14 @@ void Unwind_180911120(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xdb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xdc0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xdc0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xdd0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xdb8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xd98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xda0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xda0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xdb0) = 0;
@@ -88282,16 +86830,14 @@ void Unwind_180911140(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xe28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe30) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe40) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe28) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe10) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe20) = 0;
@@ -88312,16 +86858,14 @@ void Unwind_180911160(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xe98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xea0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xea0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xeb0) = 0;
   *(uint8_t *)(SystemContextPointer + 0xe98) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xe78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xe80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xe80) = 0;
   *(uint32_t *)(SystemContextPointer + 0xe90) = 0;
@@ -88342,16 +86886,14 @@ void Unwind_180911180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xf08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf10) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf20) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf08) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xee8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xef0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xef0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf00) = 0;
@@ -88372,16 +86914,14 @@ void Unwind_1809111a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xf78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf80) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf90) = 0;
   *(uint8_t *)(SystemContextPointer + 0xf78) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xf58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xf60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xf60) = 0;
   *(uint32_t *)(SystemContextPointer + 0xf70) = 0;
@@ -88402,16 +86942,14 @@ void Unwind_1809111c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0xfe8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xff0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xff0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1000) = 0;
   *(uint8_t *)(SystemContextPointer + 0xfe8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0xfc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0xfd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0xfd0) = 0;
   *(uint32_t *)(SystemContextPointer + 0xfe0) = 0;
@@ -88432,16 +86970,14 @@ void Unwind_1809111e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1058) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1060) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1060) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1070) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1058) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1038) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1040) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1040) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1050) = 0;
@@ -88462,16 +86998,14 @@ void Unwind_180911200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x10c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x10e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x10c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x10a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x10b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x10c0) = 0;
@@ -88492,16 +87026,14 @@ void Unwind_180911220(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1138) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1140) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1140) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1150) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1138) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1118) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1120) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1120) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1130) = 0;
@@ -88522,16 +87054,14 @@ void Unwind_180911240(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x11a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x11b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x11b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x11c0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x11a8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1188) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1190) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1190) = 0;
   *(uint32_t *)(SystemContextPointer + 0x11a0) = 0;
@@ -88552,16 +87082,14 @@ void Unwind_180911260(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1218) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1220) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1220) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1230) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1218) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x11f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1200) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1200) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1210) = 0;
@@ -88582,16 +87110,14 @@ void Unwind_180911280(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1288) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1290) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1290) = 0;
   *(uint32_t *)(SystemContextPointer + 0x12a0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1288) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1268) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1270) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1270) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1280) = 0;
@@ -88612,16 +87138,14 @@ void Unwind_1809112a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x12f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1300) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1300) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1310) = 0;
   *(uint8_t *)(SystemContextPointer + 0x12f8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x12d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x12e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x12e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x12f0) = 0;
@@ -88642,16 +87166,14 @@ void Unwind_1809112c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1368) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1370) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1370) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1380) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1368) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1348) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1350) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1350) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1360) = 0;
@@ -88672,16 +87194,14 @@ void Unwind_1809112e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x13d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x13e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x13e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x13f0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x13d8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x13b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x13c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x13c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x13d0) = 0;
@@ -88702,16 +87222,14 @@ void Unwind_180911300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1448) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1450) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1450) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1460) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1448) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1428) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1430) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1430) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1440) = 0;
@@ -88732,16 +87250,14 @@ void Unwind_180911320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x14b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x14c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x14c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x14d0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x14b8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1498) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x14a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x14a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x14b0) = 0;
@@ -88762,16 +87278,14 @@ void Unwind_180911340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1528) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1530) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1530) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1540) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1528) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1508) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1510) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1510) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1520) = 0;
@@ -88792,16 +87306,14 @@ void Unwind_180911360(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1598) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x15a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x15a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x15b0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1598) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1578) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1580) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1580) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1590) = 0;
@@ -88822,16 +87334,14 @@ void Unwind_180911380(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1608) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1610) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1610) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1620) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1608) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x15e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x15f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x15f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1600) = 0;
@@ -88852,16 +87362,14 @@ void Unwind_1809113a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1678) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1680) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1680) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1690) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1678) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1658) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1660) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1660) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1670) = 0;
@@ -88882,16 +87390,14 @@ void Unwind_1809113c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x16e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x16f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x16f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1700) = 0;
   *(uint8_t *)(SystemContextPointer + 0x16e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x16c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x16d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x16d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x16e0) = 0;
@@ -88912,16 +87418,14 @@ void Unwind_1809113e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1758) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1760) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1760) = 0;
   *(uint32_t *)(SystemContextPointer + 6000) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1758) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1738) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1740) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1740) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1750) = 0;
@@ -88942,16 +87446,14 @@ void Unwind_180911400(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x17c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x17d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x17d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x17e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x17c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x17a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x17b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x17b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x17c0) = 0;
@@ -88972,16 +87474,14 @@ void Unwind_180911420(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1838) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1840) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1840) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1850) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1838) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1818) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1820) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1820) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1830) = 0;
@@ -89002,16 +87502,14 @@ void Unwind_180911440(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x18a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x18b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x18b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x18c0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x18a8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1888) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1890) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1890) = 0;
   *(uint32_t *)(SystemContextPointer + 0x18a0) = 0;
@@ -89032,16 +87530,14 @@ void Unwind_180911460(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1918) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1920) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1920) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1930) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1918) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x18f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1900) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1900) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1910) = 0;
@@ -89062,16 +87558,14 @@ void Unwind_180911480(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1988) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1990) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1990) = 0;
   *(uint32_t *)(SystemContextPointer + 0x19a0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1988) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1968) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1970) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1970) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1980) = 0;
@@ -89092,16 +87586,14 @@ void Unwind_1809114a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x19f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1a00) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a00) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1a10) = 0;
   *(uint8_t *)(SystemContextPointer + 0x19f8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x19d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x19e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x19e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x19f0) = 0;
@@ -89122,16 +87614,14 @@ void Unwind_1809114c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1a68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1a70) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a70) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1a80) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1a68) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1a48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1a50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1a50) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1a60) = 0;
@@ -89152,16 +87642,14 @@ void Unwind_1809114e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1ad8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ae0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ae0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1af0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1ad8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1ab8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ac0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ac0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1ad0) = 0;
@@ -89182,16 +87670,14 @@ void Unwind_180911500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1b48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1b50) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1b50) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1b60) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1b48) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1b28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1b30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1b30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1b40) = 0;
@@ -89212,16 +87698,14 @@ void Unwind_180911520(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1bb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1bc0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1bc0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1bd0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1bb8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1b98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ba0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ba0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1bb0) = 0;
@@ -89242,16 +87726,14 @@ void Unwind_180911540(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1c28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1c30) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1c30) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1c40) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1c28) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1c08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1c10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1c10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1c20) = 0;
@@ -89272,16 +87754,14 @@ void Unwind_180911560(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1c98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ca0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ca0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1cb0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1c98) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1c78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1c80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1c80) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1c90) = 0;
@@ -89302,16 +87782,14 @@ void Unwind_180911580(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1d08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1d10) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1d10) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d20) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1d08) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1ce8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1cf0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1cf0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d00) = 0;
@@ -89332,16 +87810,14 @@ void Unwind_1809115a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1d78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1d80) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1d80) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d90) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1d78) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1d58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1d60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1d60) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1d70) = 0;
@@ -89362,16 +87838,14 @@ void Unwind_1809115c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1de8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1df0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1df0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1e00) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1de8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1dc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1dd0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1dd0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1de0) = 0;
@@ -89392,16 +87866,14 @@ void Unwind_1809115e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1e58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1e60) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1e60) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1e70) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1e58) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1e38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1e40) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1e40) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1e50) = 0;
@@ -89422,16 +87894,14 @@ void Unwind_180911600(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1ec8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1ed0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1ed0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1ee0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1ec8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1ea8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1eb0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1eb0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1ec0) = 0;
@@ -89452,16 +87922,14 @@ void Unwind_180911620(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1f38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 8000) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 8000) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1f50) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1f38) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1f18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1f20) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1f20) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1f30) = 0;
@@ -89482,16 +87950,14 @@ void Unwind_180911640(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x1fa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1fb0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1fb0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1fc0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x1fa8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1f88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x1f90) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x1f90) = 0;
   *(uint32_t *)(SystemContextPointer + 0x1fa0) = 0;
@@ -89512,16 +87978,14 @@ void Unwind_180911660(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2018) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2020) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2020) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2030) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2018) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1ff8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2000) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2000) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2010) = 0;
@@ -89542,16 +88006,14 @@ void Unwind_180911680(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2088) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2090) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2090) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20a0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2088) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2068) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2070) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2070) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2080) = 0;
@@ -89572,16 +88034,14 @@ void Unwind_1809116a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x20f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2100) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2100) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2110) = 0;
   *(uint8_t *)(SystemContextPointer + 0x20f8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x20d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x20e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x20f0) = 0;
@@ -89602,16 +88062,14 @@ void Unwind_1809116c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2168) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2170) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2170) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2180) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2168) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2148) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2150) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2150) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2160) = 0;
@@ -89632,16 +88090,14 @@ void Unwind_1809116e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x21d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x21e0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x21e0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x21f0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x21d8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x21b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x21c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x21c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x21d0) = 0;
@@ -89662,16 +88118,14 @@ void Unwind_180911700(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2248) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2250) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2250) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2260) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2248) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2228) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2230) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2230) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2240) = 0;
@@ -89692,16 +88146,14 @@ void Unwind_180911720(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x22b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x22c0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x22c0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x22d0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x22b8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2298) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x22a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x22a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x22b0) = 0;
@@ -89722,16 +88174,14 @@ void Unwind_180911740(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 9000) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2330) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2330) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2340) = 0;
   *(uint8_t *)(SystemContextPointer + 9000) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2308) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2310) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2310) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2320) = 0;
@@ -89752,16 +88202,14 @@ void Unwind_180911760(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2398) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x23a0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x23a0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x23b0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2398) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2378) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2380) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2380) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2390) = 0;
@@ -89782,16 +88230,14 @@ void Unwind_180911780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2408) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2410) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2410) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2420) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2408) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x23e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x23f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x23f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2400) = 0;
@@ -89812,16 +88258,14 @@ void Unwind_1809117a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2478) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2480) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2480) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2490) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2478) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2458) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2460) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2460) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2470) = 0;
@@ -89842,16 +88286,14 @@ void Unwind_1809117c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x24e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x24f0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x24f0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2500) = 0;
   *(uint8_t *)(SystemContextPointer + 0x24e8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x24c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x24d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x24d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x24e0) = 0;
@@ -89872,16 +88314,14 @@ void Unwind_1809117e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x2558) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2560) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2560) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2570) = 0;
   *(uint8_t *)(SystemContextPointer + 0x2558) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x2538) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x2540) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x2540) = 0;
   *(uint32_t *)(SystemContextPointer + 0x2550) = 0;
@@ -89902,16 +88342,14 @@ void Unwind_180911800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   *(uint8_t *)(SystemContextPointer + 0x25c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x25d0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x25d0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x25e0) = 0;
   *(uint8_t *)(SystemContextPointer + 0x25c8) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x25a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x25b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x25b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x25c0) = 0;
@@ -89938,8 +88376,7 @@ void Unwind_180911820(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -89961,8 +88398,7 @@ void Unwind_180911840(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*ResourceTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -89982,8 +88418,7 @@ void Unwind_180911860(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x70) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90003,8 +88438,7 @@ void Unwind_180911870(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x110) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90024,8 +88458,7 @@ void Unwind_180911880(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0xf0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90045,8 +88478,7 @@ void Unwind_180911890(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0xd0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90066,8 +88498,7 @@ void Unwind_1809118a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0xb0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90087,8 +88518,7 @@ void Unwind_1809118b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x130) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90153,8 +88583,7 @@ void Unwind_1809118e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x70) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90210,8 +88639,7 @@ void Unwind_180911900(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x110) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90231,8 +88659,7 @@ void Unwind_180911910(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0xf0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90252,8 +88679,7 @@ void Unwind_180911920(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0xd0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90273,8 +88699,7 @@ void Unwind_180911930(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0xb0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90294,8 +88719,7 @@ void Unwind_180911940(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   if (*(int64_t *)(ValidationContext + 0x130) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -90507,8 +88931,7 @@ void Unwind_180911b00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90526,8 +88949,7 @@ void Unwind_180911b10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90545,8 +88967,7 @@ void Unwind_180911b20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90564,8 +88985,7 @@ void Unwind_180911b30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90583,8 +89003,7 @@ void Unwind_180911b40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90602,8 +89021,7 @@ void Unwind_180911b50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90621,8 +89039,7 @@ void Unwind_180911b70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90684,8 +89101,7 @@ void Unwind_180911c30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90703,16 +89119,14 @@ void Unwind_180911c40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x70) + 0x1608);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90730,8 +89144,7 @@ void Unwind_180911c60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90749,8 +89162,7 @@ void Unwind_180911c80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90768,8 +89180,7 @@ void Unwind_180911ca0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90787,8 +89198,7 @@ void Unwind_180911cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90806,8 +89216,7 @@ void Unwind_180911ce0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90825,8 +89234,7 @@ void Unwind_180911d00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90844,8 +89252,7 @@ void Unwind_180911d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90863,8 +89270,7 @@ void Unwind_180911d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90882,8 +89288,7 @@ void Unwind_180911d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90901,8 +89306,7 @@ void Unwind_180911d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90920,8 +89324,7 @@ void Unwind_180911da0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90939,8 +89342,7 @@ void Unwind_180911dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -90972,8 +89374,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
         if (GlobalUnwindContext != 0) {
           *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
         }
-                    // WARNING: Subroutine does not return
-        ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+              ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
       }
       ContextValidationStatusCode = (int)SecurityHashValue + 1;
       ResourceContextOffset = ResourceContextOffset + 0x10;
@@ -90987,8 +89388,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   ResourceIndex = *(int64_t *)(LoopOffset + 0x1e68);
   if (ResourceIndex == 0) {
@@ -90998,8 +89398,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       if (GlobalUnwindContext != 0) {
         *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
       }
-                    // WARNING: Subroutine does not return
-      ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+            ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     }
     LoopOffset = *(int64_t *)(LoopOffset + 0x1e68);
     if (LoopOffset == 0) {
@@ -91008,15 +89407,13 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(LoopOffset,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(LoopOffset,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(LoopOffset + 0x1e60) = 0;
   if (GlobalUnwindContext != 0) {
     *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
   }
-                    // WARNING: Subroutine does not return
-  ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+        ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
 }
 
 
@@ -91032,8 +89429,7 @@ void Unwind_180911e00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91051,8 +89447,7 @@ void Unwind_180911e20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91072,24 +89467,21 @@ void Unwind_180911e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x1ec8);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x1eb8);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91112,24 +89504,21 @@ void Unwind_180911e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x2d58);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x2d48);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   return;
 }
@@ -91147,8 +89536,7 @@ void Unwind_180911e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91166,8 +89554,7 @@ void Unwind_180911ea0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91185,8 +89572,7 @@ void Unwind_180911ec0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91204,8 +89590,7 @@ void Unwind_180911ee0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91223,8 +89608,7 @@ void Unwind_180911f00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91252,8 +89636,7 @@ void Unwind_180911f50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91271,8 +89654,7 @@ void Unwind_180911f70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91290,8 +89672,7 @@ void Unwind_180911f90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91309,8 +89690,7 @@ void Unwind_180911fa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91328,8 +89708,7 @@ void Unwind_180911fb0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91347,8 +89726,7 @@ void Unwind_180911fc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91366,8 +89744,7 @@ void Unwind_180911fd0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91385,8 +89762,7 @@ void Unwind_180911fe0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91404,8 +89780,7 @@ void Unwind_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t Validatio
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91423,8 +89798,7 @@ void Unwind_SystemResourceCleanup_Batch2(uint8_t ObjectContext,int64_t Validatio
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91442,8 +89816,7 @@ void Unwind_180912010(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91461,8 +89834,7 @@ void Unwind_180912020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91480,8 +89852,7 @@ void Unwind_180912040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91499,8 +89870,7 @@ void Unwind_180912060(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91518,8 +89888,7 @@ void Unwind_180912080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91537,8 +89906,7 @@ void Unwind_180912090(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91556,8 +89924,7 @@ void Unwind_1809120a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91575,8 +89942,7 @@ void Unwind_1809120b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91594,8 +89960,7 @@ void Unwind_1809120d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91613,8 +89978,7 @@ void Unwind_1809120f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91632,8 +89996,7 @@ void Unwind_180912110(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91651,8 +90014,7 @@ void Unwind_180912130(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91670,8 +90032,7 @@ void Unwind_180912150(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91689,8 +90050,7 @@ void Unwind_180912170(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91710,40 +90070,35 @@ void Unwind_180912180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x1e0);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x1d0);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x1c0);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 400);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91761,8 +90116,7 @@ void Unwind_1809121a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91780,8 +90134,7 @@ void Unwind_1809121c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91799,8 +90152,7 @@ void Unwind_1809121e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91823,56 +90175,49 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x378);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x368);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x358);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x318);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x308);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x2f8);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   return;
 }
@@ -91890,8 +90235,7 @@ void Unwind_180912220(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91909,8 +90253,7 @@ void Unwind_180912240(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91928,8 +90271,7 @@ void Unwind_180912260(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91947,8 +90289,7 @@ void Unwind_180912280(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -91968,40 +90309,35 @@ void Unwind_1809122a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x1e0);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x1d0);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x1c0);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ResourceTable + 400);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92019,8 +90355,7 @@ void Unwind_1809122c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92038,8 +90373,7 @@ void Unwind_1809122e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92057,8 +90391,7 @@ void Unwind_180912300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92081,56 +90414,49 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x378);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x368);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x358);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x318);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x308);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   loopCounter = *(int64_t *)(ResourceTable + 0x2f8);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,HashValidationResult);
   }
   return;
 }
@@ -92148,8 +90474,7 @@ void Unwind_180912340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92167,8 +90492,7 @@ void Unwind_180912350(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92186,8 +90510,7 @@ void Unwind_180912360(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92235,8 +90558,7 @@ void Unwind_180912400(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92254,8 +90576,7 @@ void Unwind_180912410(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92273,8 +90594,7 @@ void Unwind_180912420(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92292,8 +90612,7 @@ void Unwind_180912430(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92311,8 +90630,7 @@ void Unwind_180912440(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92330,8 +90648,7 @@ void Unwind_180912450(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92349,8 +90666,7 @@ void Unwind_180912460(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92388,8 +90704,7 @@ void Unwind_1809124d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92407,8 +90722,7 @@ void Unwind_1809124e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92433,8 +90747,7 @@ void Unwind_1809124f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -92452,8 +90765,7 @@ void Unwind_180912500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92471,8 +90783,7 @@ void Unwind_180912510(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92490,8 +90801,7 @@ void Unwind_180912520(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92509,8 +90819,7 @@ void Unwind_180912530(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92528,8 +90837,7 @@ void Unwind_180912540(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92557,8 +90865,7 @@ void Unwind_180912580(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92577,8 +90884,7 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (loopCounter != 0) {
@@ -92586,8 +90892,7 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint32_t *)(ValidationContext + 0x60) = 0;
   loopCounter = *(int64_t *)(ValidationContext + 0x58);
@@ -92595,16 +90900,14 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92622,8 +90925,7 @@ void Unwind_1809125a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92641,8 +90943,7 @@ void Unwind_1809125b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92660,8 +90961,7 @@ void Unwind_1809125c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92709,8 +91009,7 @@ void Unwind_180912660(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92738,8 +91037,7 @@ void Unwind_1809126a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92796,8 +91094,7 @@ void Unwind_180912770(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92821,8 +91118,7 @@ void Unwind_180912780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -92846,8 +91142,7 @@ void Unwind_180912790(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -92871,8 +91166,7 @@ void Unwind_1809127a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -92896,8 +91190,7 @@ void Unwind_1809127b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -92922,8 +91215,7 @@ void Unwind_1809127c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashValidationResult);
   }
   return;
 }
@@ -92967,8 +91259,7 @@ void Unwind_1809127e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -92986,8 +91277,7 @@ void Unwind_1809127f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -93005,8 +91295,7 @@ void Unwind_180912800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -93104,16 +91393,14 @@ void Unwind_180912910(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x218) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x220) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x220) = 0;
   *(uint32_t *)(SystemContextPointer + 0x230) = 0;
   *(uint8_t *)(SystemContextPointer + 0x218) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + 0x1f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x200) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x200) = 0;
   *(uint32_t *)(SystemContextPointer + 0x210) = 0;
@@ -93167,8 +91454,7 @@ void Unwind_180912950(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x388) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x390) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x390) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3a0) = 0;
@@ -93186,8 +91472,7 @@ void Unwind_180912970(uint8_t ObjectContext,int64_t ValidationContext)
   loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x3b0) != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x3b0) = 0;
   *(uint32_t *)(SystemContextPointer + 0x3c0) = 0;
@@ -93301,8 +91586,7 @@ uint32_t InitializeNetworkBufferDataWithSecurity(uint8_t BufferHandle, int64_t B
     *(uint32_t *)(BufferContext + 0x20) = 0;
     return *(uint32_t *)(BufferContext + 0x20);
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+        terminate();
 }
 
 
@@ -93364,8 +91648,7 @@ void InitializeResourceTableManager(void)
   
   SystemResourceHandler = &SystemResourceHandlerTemplate;
   if (SystemResourceHandlerFlag != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   SystemResourceHandlerFlag = 0;
   SystemResourceHandlerLock = 0;
@@ -93379,11 +91662,9 @@ void InitializeResourceTableManager(void)
     if (SystemResourceTableStart == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -93852,8 +92133,7 @@ void InitializeSystemDataStructureU(void)
 {
   SystemResourceHandlerPointer001 = &SystemResourceHandlerTemplate;
   if (SystemResourceStatusFlag001 != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   SystemResourceStatusFlag001 = 0;
   SystemResourceCleanupFlag001 = 0;
@@ -93879,8 +92159,7 @@ void InitializeSystemDataStructureV(void)
 {
   SystemResourceHandlerPointer002 = &SystemResourceHandlerTemplate;
   if (SystemResourceStatusFlag002 != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   SystemResourceStatusFlag002 = 0;
   SystemResourceCleanupFlag002 = 0;
@@ -93953,8 +92232,7 @@ void InitializeSystemDataStructureX(void)
 {
   MemoryAllocator = &SystemResourceHandlerTemplate;
   if (MemoryAllocatorFlag != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   MemoryAllocatorFlag = 0;
   MemoryAllocatorLock = 0;
@@ -94036,15 +92314,13 @@ void ExecuteSystemStatusCheckAndCleanup(void)
   if (SystemInitializationFlag != '\0') {
     CleanupResourceSystem();
     if ((1 < SystemInitializationCounter) && (SystemInitializationDataPointer != 0)) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     if (SystemInitializationManager != (int64_t *)0x0) {
       (**(code **)(*SystemInitializationManager + 0x38))();
     }
     if (SystemInitializationTimer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
@@ -94110,8 +92386,7 @@ void InitializeSystemDataStructureAE(void)
 {
   MemoryPoolManager = &SystemResourceHandlerTemplate;
   if (MemoryPoolManagerFlag != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   MemoryPoolManagerFlag = 0;
   MemoryPoolManagerLock = 0;
@@ -94177,12 +92452,10 @@ void InitializeSystemDataStructureAH(void)
 {
   SystemDataStructureInitializer(0x180d497e0);
   if (SystemValidationManager != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   if (SystemInitializationStatusFlag != 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   SecondaryDataStructureInitializer(0x180d498a0);
   SystemDataStructurePointer001 = &SystemDataStructure;
@@ -94222,8 +92495,7 @@ void InitializeSystemDataStructureAI(void)
       loopCounter = *(int64_t *)(MemoryPoolStartAddress + -8);
       ValidationResult = ResourceHashValidationResult + 0x27;
       if (0x1f < (MemoryPoolStartAddress - SystemContextPointer) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn();
+              _invalid_parameter_noinfo_noreturn();
       }
     }
     free(SystemContextPointer,ResourceHashValidationResult);
@@ -95166,8 +93438,7 @@ void ProcessSystemOperationA(uint8_t ObjectContext,uint8_t ValidationContext,uin
   if (SystemDataValidationPointer001 == (uint8_t *)0x0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -95210,8 +93481,7 @@ void ProcessSystemOperationB(uint8_t ObjectContext,uint8_t ValidationContext,uin
   if (SystemDataValidationPointer002 == (uint8_t *)0x0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -95254,8 +93524,7 @@ void ProcessSystemOperationC(uint8_t ObjectContext,uint8_t ValidationContext,uin
   if (SystemDataValidationPointer003 == (uint8_t *)0x0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
 }
 
 
@@ -95304,8 +93573,7 @@ void InitializeSystemDataStructureCB(void)
     if (0xfff < SystemResourceCounter + 1) {
       ResourceTable = *(int64_t *)(SystemContextPointer + -8);
       if (0x1f < (SystemContextPointer - ResourceTable) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,SystemResourceCounter + 0x28);
+              _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,SystemResourceCounter + 0x28);
       }
     }
     free(ResourceTable);
@@ -95351,8 +93619,7 @@ void InitializeSystemDataStructureCC(void)
     if (0xfff < SystemResourcePrimaryCounter + 1) {
       ResourceTable = *(int64_t *)(SystemContextPointer + -8);
       if (0x1f < (SystemContextPointer - ResourceTable) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,SystemResourcePrimaryCounter + 0x28);
+              _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,SystemResourcePrimaryCounter + 0x28);
       }
     }
     free(ResourceTable);
@@ -95381,8 +93648,7 @@ void InitializeSystemDataStructureCD(void)
     if (0xfff < ResourcePoolCounter + 1) {
       ResourceTable = *(int64_t *)(SystemContextPointer + -8);
       if (0x1f < (SystemContextPointer - ResourceTable) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,ResourcePoolCounter + 0x28);
+              _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,ResourcePoolCounter + 0x28);
       }
     }
     free(ResourceTable);
@@ -95417,8 +93683,7 @@ void InitializeSystemDataStructureCE(void)
     if (0xfff < MemoryPoolCounter + 1) {
       ResourceTable = *(int64_t *)(SystemContextPointer + -8);
       if (0x1f < (SystemContextPointer - ResourceTable) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,MemoryPoolCounter + 0x28);
+              _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,MemoryPoolCounter + 0x28);
       }
     }
     free(ResourceTable);
@@ -95461,16 +93726,14 @@ void ProcessSystemOperationD(uint8_t ObjectContext,uint8_t ValidationContext,uin
   for (ValidationResultPointer = SystemResourceValidationPrimaryPointer; ValidationResultPointer != ResourceHashPointer; ValidationResultPointer = ResourceHashValidationResultPointer + 7) {
     *ValidationResultPointer = &SystemResourceHandlerTemplate;
     if (ResourceHashValidationResultPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     ResourceHashValidationResultPointer[1] = 0;
     *(uint32_t *)(ResourceHashValidationResultPointer + 3) = 0;
     *ValidationResultPointer = &SystemDataStructure;
   }
   if (SystemResourceValidationPrimaryPointer != (uint8_t *)0x0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemEmergencyExit();
+          ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -95911,8 +94174,7 @@ void InitializeSystemDataStructureCR(void)
     if (0xfff < SystemResourceSecondaryCounter + 1) {
       ResourceTable = *(int64_t *)(SystemContextPointer + -8);
       if (0x1f < (SystemContextPointer - ResourceTable) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,SystemResourceSecondaryCounter + 0x28);
+              _invalid_parameter_noinfo_noreturn(SystemContextPointer - ResourceTable,SystemResourceSecondaryCounter + 0x28);
       }
     }
     free(ResourceTable);
@@ -95946,8 +94208,7 @@ void ReleaseResourceHashTable(void)
     if (0xfff < ResourceHash) {
       ResourceTable = *(int64_t *)(ResourceTableBaseAddress + -8);
       if (0x1f < (ResourceTableBaseAddress - ResourceTable) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn
+              _invalid_parameter_noinfo_noreturn
                   (ResourceTableBaseAddress - ResourceTable,ResourceHash + 0x27,ResourceTable,ResourceRegisterValue,0xfffffffffffffffe);
       }
     }
@@ -95992,8 +94253,7 @@ void ReleaseHashValidationResultTable(void)
     if (0xfff < ResourceHashValidationResult) {
       loopCounter = *(int64_t *)(SystemMemoryBufferPointer + -8);
       if (0x1f < (SystemMemoryBufferPointer - SystemContextPointer) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(SystemMemoryBufferPointer - SystemContextPointer,ResourceHashValidationResult + 0x27);
+              _invalid_parameter_noinfo_noreturn(SystemMemoryBufferPointer - SystemContextPointer,ResourceHashValidationResult + 0x27);
       }
     }
     free(SystemContextPointer);
@@ -96086,8 +94346,7 @@ void ProcessNetworkDataPacket(uint8_t ObjectContext,uint8_t ValidationContext,ui
   networkDataPointer = NetworkDataBufferPointer;
   if (NetworkDataBufferPointer != (uint8_t *)0x0) {
     SystemResourceManager(ObjectContext,*NetworkDataBufferPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-    ReleaseResourceHandle(networkDataPointer);
+          ReleaseResourceHandle(networkDataPointer);
   }
   return;
 }
@@ -96138,8 +94397,7 @@ void TerminateSystemProcess(void)
 {
   if (SystemTerminationFlag != '\0') {
     if (EmergencyExitHandler != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     EmergencyExitHandler = 0;
   }
@@ -96246,8 +94504,7 @@ void InitializeSystemDataStructureCV(void)
   SystemContextPointer = ResourceHandlerContextPointer;
   if (DataStructureCVFlag != '\0') {
     if (EmergencyExitHandler2 != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
     EmergencyExitHandler2 = 0;
     if (ResourceHandlerContextPointer != 0) {
@@ -96256,8 +94513,7 @@ void InitializeSystemDataStructureCV(void)
       _Cnd_destroy_in_situ();
       SystemContextHandler(SystemContextPointer + 0x60);
       SystemContextFinalizer();
-                    // WARNING: Subroutine does not return
-      ReleaseResourceHandle(SystemContextPointer);
+            ReleaseResourceHandle(SystemContextPointer);
     }
     ResourceHandlerContextPointer = 0;
 
@@ -96302,8 +94558,7 @@ void InitializeSystemDataStructureCX(void)
       (**(code **)(*SystemContext + 0x38))();
     }
     if (SystemCleanupPointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
 
  /**
@@ -96320,8 +94575,7 @@ void InitializeSystemDataStructureCY(void)
 {
   if (SystemCleanupFlag != '\0') {
     if (CleanupProcessPointer != 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteSystemEmergencyExit();
+            ExecuteSystemEmergencyExit();
     }
 
  /**
@@ -96478,8 +94732,7 @@ void ClearSystemCacheAndResetState(void)
 {
   SystemCachePointer = &DefaultCacheResetValue;
   if (SystemCacheStatus != 0) {
-                    // WARNING: Subroutine does not return
-    EmergencyCleanupFunction();
+          EmergencyCleanupFunction();
   }
   SystemCacheStatus = 0;
   SystemCacheData = 0;
@@ -96546,8 +94799,7 @@ void InitializeSystemContext(uint8_t ContextPtr, uint8_t SetupParam, uint8_t Con
   if (SystemContextHandler != (uint8_t *)0x0) {
     InitializeContextData(&SystemContextData, *SystemContextHandler, ConfigParam, FlagsParam, 0xfffffffffffffffe);
     SetupSystemHandler(SystemContextHandlerPointer + ResourceManagementCleanupOffset);
-                    // WARNING: Subroutine does not return
-    ExecuteSystemHandler(SystemContextHandlerPointer);
+          ExecuteSystemHandler(SystemContextHandlerPointer);
   }
   return;
 }
