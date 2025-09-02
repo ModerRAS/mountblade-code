@@ -7008,28 +7008,28 @@ void ProcessDynamicBufferReallocation(void)
     if (ResourceIndex < 8) {
       ResourceIndex = 8;
     }
-    if (ResourceIndex < *(int *)(ResourceContext + 0x28)) goto MemoryErrorHandler;
+    if (ResourceIndex < *(int *)(ResourceContext + ResourceContextSizeOffset)) goto MemoryErrorHandler;
     if (ResourceIndex != 0) {
       if (0x3ffffffe < ResourceIndex * 8 - 1U) goto MemoryErrorHandler;
-      ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex * 8,&ResourceAllocationTemplate,0xf4,0)
+      ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemManagerContextOffset),ResourceIndex * 8,&ResourceAllocationTemplate,0xf4,0)
       ;
       if (ResourceIndex == 0) goto MemoryErrorHandler;
-      if (*(int *)(ResourceContext + 0x28) != 0) {
-              memcpy(ResourceIndex,*(uint8_t *)(ResourceContext + 0x20),(int64_t)*(int *)(ResourceContext + 0x28) << 3);
+      if (*(int *)(ResourceContext + ResourceContextSizeOffset) != 0) {
+              memcpy(ResourceIndex,*(uint8_t *)(ResourceContext + ResourceContextDataOffset),(int64_t)*(int *)(ResourceContext + ResourceContextSizeOffset) << 3);
       }
     }
-    if ((0 < *(int *)(ResourceContext + 0x2c)) && (*(int64_t *)(ResourceContext + 0x20) != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ResourceContext + 0x20),
+    if ((0 < *(int *)(ResourceContext + ResourceContextCapacityOffset)) && (*(int64_t *)(ResourceContext + ResourceContextDataOffset) != 0)) {
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemManagerContextOffset),*(int64_t *)(ResourceContext + ResourceContextDataOffset),
                     &ResourceAllocationTemplate,0x100,1);
     }
-    *(int64_t *)(ResourceContext + 0x20) = ResourceIndex;
-    *(int *)(ResourceContext + 0x2c) = ResourceIndex;
+    *(int64_t *)(ResourceContext + ResourceContextDataOffset) = ResourceIndex;
+    *(int *)(ResourceContext + ResourceContextCapacityOffset) = ResourceIndex;
   }
-  *(uint8_t *)(*(int64_t *)(ResourceContext + 0x20) + (int64_t)*(int *)(ResourceContext + 0x28) * 8) =
+  *(uint8_t *)(*(int64_t *)(ResourceContext + ResourceContextDataOffset) + (int64_t)*(int *)(ResourceContext + ResourceContextSizeOffset) * 8) =
        StackParameterContext;
-  *(int *)(ResourceContext + 0x28) = *(int *)(ResourceContext + 0x28) + 1;
+  *(int *)(ResourceContext + ResourceContextSizeOffset) = *(int *)(ResourceContext + ResourceContextSizeOffset) + 1;
 MemoryErrorHandler:
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + SystemContextResourceManagerOffset));
 }
 
 
@@ -32021,12 +32021,12 @@ void SystemResourceHandlerInitializer(uint8_t ObjectContext, int64_t ValidationC
  * @note 此函数用于系统上下文恢复
  * @warning 如果系统资源处理器已初始化，将触发紧急退出
  */
-void UnwindSystemContextBase(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemContextBase(uint8_t SystemContextFlags,int64_t SystemValidationContext)
 
 {
-  int64_t loopCounter;
+  int64_t ResourceIndex;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
+  ResourceIndex = *(int64_t *)(SystemValidationContext + SystemContextPrimaryResourceManagerOffset);
   *(uint8_t *)(SystemContextPointer + 0x50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x58) != 0) {
           ExecuteSystemEmergencyExit();
@@ -32053,16 +32053,16 @@ void UnwindSystemContextBase(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数用于清理高级数据资源
  * @warning 清理操作不可逆，请确保资源不再使用
  */
-void ProcessAdvancedDataCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessAdvancedDataCleanup(uint8_t CleanupContext,int64_t ResourceValidationContext,uint8_t CleanupMode,uint8_t CleanupFlags)
 
 {
-  uint8_t *ResourceHashAddress;
+  uint8_t *ResourceDataPointer;
   
-  ResourceHashAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x80);
-  if (ResourceHashAddress != (uint8_t *)0x0) {
-    ProcessAdvancedData(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x70,*ResourceHashAddress,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-    ResetSystemState(ResourceHashAddress);
-          ReleaseResourceHandle(ResourceHashAddress);
+  ResourceDataPointer = *(uint8_t **)(*(int64_t *)(ResourceValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x80);
+  if (ResourceDataPointer != (uint8_t *)0x0) {
+    ProcessAdvancedData(*(int64_t *)(ResourceValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x70,*ResourceDataPointer,CleanupMode,CleanupFlags,0xfffffffffffffffe);
+    ResetSystemState(ResourceDataPointer);
+          ReleaseResourceHandle(ResourceDataPointer);
   }
   return;
 }
