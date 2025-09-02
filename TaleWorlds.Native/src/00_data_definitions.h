@@ -9107,15 +9107,15 @@ Label_18060ad2d:
                               }
                             }
                             else {
-                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a260);
+                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryAddress01);
                               if (NetworkRequestStatus == '\0') {
-                                NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a348);
+                                NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryAddress02);
                                 if (NetworkRequestStatus == '\0') {
-                                  NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a320);
+                                  NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryAddress03);
                                   if (NetworkRequestStatus == '\0') {
-                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a398);
+                                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemMemoryAddress04);
                                     if (NetworkRequestStatus == '\0') {
-                                      pBufferSize = &UNK_180a3a370;
+                                      pBufferSize = &SystemMemoryAddress05;
                                       goto Label_18060a103;
                                     }
                                     goto Label_18060acd8;
@@ -13042,7 +13042,7 @@ bool SystemAudioIsInitialized(void)
       if (FileSystemHandle == unaff_R12) {
         LongLoop = _wfsopen();
         if (LongLoop == 0) {
-          ProcessSystemBuffer(&SystemBufferPointer,0xc1,&SystemBufferPointer,&UNK_18098b520);
+          ProcessSystemBuffer(&SystemBufferPointer,0xc1,&SystemBufferPointer,&SystemCommandBuffer04);
           CharValue2 = false;
         }
         else {
@@ -13077,21 +13077,21 @@ Label_1808fbdeb:
             do {
               FileSystemHandle = LongCounter;
               if (LongLoop == 0) {
-                ExecuteSystemCommand(LongOffset,LongAddress,&UNK_18098b5f8,SystemStateValue,IntegerResult);
+                ExecuteSystemCommand(LongOffset,LongAddress,&SystemCommandBuffer05,SystemStateValue,IntegerResult);
               }
               else {
-                ExecuteSystemCommand(LongOffset,LongAddress,&UNK_18098b5d8,SystemStateValue,IntegerResult);
+                ExecuteSystemCommand(LongOffset,LongAddress,&SystemCommandBuffer06,SystemStateValue,IntegerResult);
               }
               FileSystemHandle = _wfsopen(LongOffset,pMemoryAddress1,0x20);
               if (FileSystemHandle != 0) {
-                pMemoryAddress1 = &UNK_18098b610;
+                pMemoryAddress1 = &SystemCommandBuffer07;
                 uVar6 = 0xeb;
                 goto Label_1808fbebe;
               }
               IntegerResult = IntegerResult + 1;
               LongCounter = 0;
             } while (IntegerResult < 9);
-            pMemoryAddress1 = &UNK_18098b640;
+            pMemoryAddress1 = &SystemCommandBuffer08;
             uVar6 = 0xef;
 Label_1808fbebe:
             ProcessSystemBuffer(&SystemBufferPointer,uVar6,&SystemBufferPointer,pMemoryAddress1);
