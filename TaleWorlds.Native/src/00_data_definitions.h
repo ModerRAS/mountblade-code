@@ -5602,7 +5602,7 @@ LAB_180203fb6:
       _DAT_180c91cf0 = pSystemStateValue;
       _DAT_180c91cf8 = pSystemStateValue + 2;
     }
-    cVar6 = FUN_180068a90(0x180c919f0,&lStackX_20);
+    cVar6 = GetSystemMemoryConfiguration(0x180c919f0,&lStackX_20);
     pSystemStateValue = _DAT_180c91cf8;
     ModuleInitializationResult0 = lStackX_20;
   } while( true );
