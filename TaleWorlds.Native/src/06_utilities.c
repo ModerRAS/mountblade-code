@@ -99081,7 +99081,7 @@ void InitializeSystemDataStructureJ(void)
 void InitializeSystemDataStructureJ(void)
 
 {
-  SystemResourcePointer1 = &SystemDataStructure;
+  SystemResourcePrimaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -99319,12 +99319,12 @@ void InitializeSystemDataStructureU(void)
 void InitializeSystemDataStructureU(void)
 
 {
-  SystemResourceHandlerPointer001 = &SystemResourceHandlerTemplate;
-  if (SystemResourceStatusFlag001 != 0) {
+  SystemResourceHandlerPrimaryPointer = &SystemResourceHandlerTemplate;
+  if (SystemResourcePrimaryStatusFlag != 0) {
           ExecuteSystemEmergencyExit();
   }
-  SystemResourceStatusFlag001 = 0;
-  SystemResourceCleanupFlag001 = 0;
+  SystemResourcePrimaryStatusFlag = 0;
+  SystemResourcePrimaryCleanupFlag = 0;
   SystemDataDenaryPointer = &SystemDataStructure;
   return;
 }
@@ -99345,12 +99345,12 @@ void InitializeSystemDataStructureV(void)
 void InitializeSystemDataStructureV(void)
 
 {
-  SystemResourceHandlerPointer002 = &SystemResourceHandlerTemplate;
-  if (SystemResourceStatusFlag002 != 0) {
+  SystemResourceHandlerSecondaryPointer = &SystemResourceHandlerTemplate;
+  if (SystemResourceSecondaryStatusFlag != 0) {
           ExecuteSystemEmergencyExit();
   }
-  SystemResourceStatusFlag002 = 0;
-  SystemResourceCleanupFlag002 = 0;
+  SystemResourceSecondaryStatusFlag = 0;
+  SystemResourceSecondaryCleanupFlag = 0;
   SystemDataUndenaryPointer = &SystemDataStructure;
   return;
 }
