@@ -20092,8 +20092,8 @@ ResourceValidationLoop:
       ValidationStatusCode = (uint)(CharStackArray[0] == '\0');
       LoopIncrement = 0;
     }
-    if (loopIncrement != 0) {
-      return (uint64_t)loopIncrement;
+    if (LoopIncrement != 0) {
+      return (uint64_t)LoopIncrement;
     }
     *(uint *)(ObjectContext + 0xb8) = (*(uint *)(ObjectContext + 0xb8) | SecurityHashValue) & ~HashValidationResult;
   }
@@ -50016,13 +50016,13 @@ void ResetExceptionUnwindPointerTable(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_180905b90(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
-  char *pStatusChar;
+  char *StatusChar;
   uint8_t *HashValidationResultPointer;
-  int64_t *contextPointer;
+  int64_t *ContextPointer;
   int64_t MemoryRegion;
   uint64_t ContextHashValidationResult;
   
