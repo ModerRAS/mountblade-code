@@ -568,15 +568,15 @@ void OptimizeResourceUsage(void);
  */
 void MonitorResourcePerformance(void);
 
-void* ResourceManagerHandle;
-uint32_t ResourceManagementStatus;
-void* ResourceConfigurationContext;
-void* ResourceStatusMonitor;
-void* SmallBufferPool;
-void* MediumBufferPool;
-void* LargeBufferPool;
-void* ResourceManager;
-void* ResourceDatabase;
+void* ResourceManagerHandle;               // 资源管理器句柄
+uint32_t ResourceManagementStatus;           // 资源管理状态
+void* ResourceConfigurationContext;         // 资源配置上下文
+void* ResourceStatusMonitor;                 // 资源状态监控器
+void* SmallBufferPool;                       // 小型缓冲池
+void* MediumBufferPool;                      // 中型缓冲池
+void* LargeBufferPool;                       // 大型缓冲池
+void* ResourceManagerInstance;              // 资源管理器实例
+void* ResourceDatabaseConnection;            // 资源数据库连接
 
  /**
  * @brief 初始化纹理管理器
@@ -589,12 +589,12 @@ void* ResourceDatabase;
  * @warning 调用此函数前必须确保图形子系统已经初始化
  */
 void InitializeTextureManager(void);
-void* TextureManager;
-void* TextureExecutionContext;
-void* TextureCacheHandle;
-void* TextureLoaderHandle;
-void* TextureMemoryPool;
-void* TextureDescriptorTable;
+void* TextureManagerInstance;               // 纹理管理器实例
+void* TextureExecutionContext;              // 纹理执行上下文
+void* TextureCacheHandle;                   // 纹理缓存句柄
+void* TextureLoaderHandle;                  // 纹理加载器句柄
+void* TextureMemoryPool;                     // 纹理内存池
+void* TextureDescriptorTable;                // 纹理描述符表
 
  /**
  * @brief 初始化音频系统
@@ -607,11 +607,11 @@ void* TextureDescriptorTable;
  * @warning 调用此函数前必须确保音频硬件设备可用
  */
 void InitializeAudioSystem(void);
-void* AudioSystem;
-void* AudioDeviceHandle;
-void* AudioMixerHandle;
-void* AudioBufferPool;
-void* AudioStreamManager;
+void* AudioSystemInstance;                  // 音频系统实例
+void* AudioDeviceHandle;                     // 音频设备句柄
+void* AudioMixerHandle;                      // 音频混音器句柄
+void* AudioBufferPool;                       // 音频缓冲池
+void* AudioStreamManager;                    // 音频流管理器
 
  /**
  * @brief 初始化物理引擎
@@ -6155,8 +6155,8 @@ uint8_t ValidateSystemDataIntegrity(int64_t DataBuffer, int64_t ValidationConfig
  * 并执行相应的队列操作。函数会验证队列上下文，初始化处理队列
  * 然后遍历队列节点，处理每个节点的操作
  * 
- * @param objectHandle 对象句柄，包含要处理的对象信息
- * @param queueContext 队列上下文，包含队列的配置和状态信息
+ * @param ObjectHandle 对象句柄，包含要处理的对象信息
+ * @param QueueContext 队列上下文，包含队列的配置和状态信息
  * @note 此函数会处理队列中的所有对象，直到队列为空或遇到错误
  * @warning 处理失败时会导致队列处理中断
  */
@@ -6251,7 +6251,7 @@ uint8_t ValidateSystemConfiguration(int64_t ConfigHandle)
  * @param ObjectContext 对象上下文指针，包含对象的状态信息
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  */
-void ValidateObjectStateAndDispatch(int64_t ObjectContext, int64_t schedulerContext)
+void ValidateObjectStateAndDispatch(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
   int PackageValidationStatusCode;
@@ -100791,13 +100791,14 @@ void InitializeSystemDataStructureCX(void)
     }
 
  /**
- * 初始化系统数据结构CY
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureCY(void)
-/**
- * 初始化系统数据结构CY
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构CY
+ * 
+ * 该函数负责初始化系统数据结构CY，设置全局系统数据结构指针
+ * 用于系统初始化过程中的数据管理
+ * 
+ * @return 无返回值
+ * @note 此函数在系统启动时调用，确保数据结构正确初始化
+ * @warning 调用此函数前必须确保系统基础环境已准备就绪
  */
 void InitializeSystemDataStructureCY(void)
 
