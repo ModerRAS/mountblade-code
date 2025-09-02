@@ -680,6 +680,96 @@ def replace_undefined_variables(content):
     
     return content
 
+def replace_dat_variables(content):
+    """替换DAT_变量为更有意义的名称"""
+    
+    # 创建替换映射
+    replacements = [
+        # UI系统函数指针
+        (r'_DAT_180d4a7c0', 'UISystemMemoryOperationFunction'),
+        (r'_DAT_180d4a788', 'UISystemDataValidationFunction'), 
+        (r'_DAT_180d4a740', 'UISystemSecurityCheckFunction'),
+        (r'_DAT_180d4a700', 'UISystemResourceAllocationFunction'),
+        (r'_DAT_180d4a6e0', 'UISystemMemoryAllocationFunction'),
+        (r'_DAT_180d4a6b8', 'UISystemBufferManagementFunction'),
+        (r'_DAT_180d4a968', 'UISystemEventHandlingFunction'),
+        (r'_DAT_180d4a948', 'UISystemInputProcessingFunction'),
+        (r'_DAT_180d4a920', 'UISystemStateUpdateFunction'),
+        (r'_DAT_180d4a8f0', 'UISystemDataBindingFunction'),
+        (r'_DAT_180d4a8d0', 'UISystemThemeManager'),
+        (r'_DAT_180d4a898', 'UISystemThemeRenderingFunction'),
+        (r'_DAT_180d4a858', 'UIMemoryPoolIntegrityFunction'),
+        (r'_DAT_180d4a820', 'UIMemoryPoolCounterFunction'),
+        (r'_DAT_180d4a7e0', 'UIMemoryPoolIndexFunction'),
+        (r'_DAT_180d4a7b0', 'UIMemoryPoolAnalysisFunction'),
+        (r'_DAT_180d4a778', 'UIMemoryPoolMetricsFunction'),
+        (r'_DAT_180d4a750', 'UIMemoryPoolAllocatorFunction'),
+        (r'_DAT_180d4a708', 'UIMemoryPoolParameterFunction'),
+        (r'_DAT_180d4a958', 'UISystemReportGenerationFunction'),
+        (r'_DAT_180d4a928', 'UISystemPerformanceAnalysisFunction'),
+        (r'_DAT_180d4a910', 'UISystemPredictionFunction'),
+        (r'_DAT_180d4a8c0', 'UISystemRecommendationFunction'),
+        (r'_DAT_180d4a8a8', 'UISystemAuthenticationManager'),
+        
+        # 动画系统配置变量
+        (r'_DAT_180d4ab70', 'AnimationSystemPrimaryConfig'),
+        (r'_DAT_180d4ab68', 'AnimationSystemSecondaryConfig'),
+        (r'_DAT_180d4ab60', 'AnimationSystemTertiaryConfig'),
+        (r'_DAT_180d4ab58', 'AnimationSystemQuaternaryConfig'),
+        (r'_DAT_180d4ab50', 'AnimationSystemQuinaryConfig'),
+        (r'_DAT_180d4ab48', 'AnimationSystemSenaryConfig'),
+        (r'_DAT_180d4ab40', 'AnimationSystemSeptenaryConfig'),
+        (r'_DAT_180d4ab38', 'AnimationSystemOctonaryConfig'),
+        (r'_DAT_180d4ab30', 'AnimationSystemNonaryConfig'),
+        (r'_DAT_180d4ab28', 'AnimationSystemDenaryConfig'),
+        (r'_DAT_180d4ab20', 'AnimationSystemUndenaryConfig'),
+        (r'_DAT_180d4ab18', 'AnimationSystemDuodenaryConfig'),
+        
+        # 动画数据缓冲区
+        (r'DAT_180d4ab10', 'AnimationRedChannelBuffer'),
+        (r'DAT_180d4aaf0', 'AnimationGreenChannelBuffer1'),
+        (r'DAT_180d4aad0', 'AnimationGreenChannelBuffer2'),
+        (r'DAT_180d4aab0', 'AnimationGreenChannelBuffer3'),
+        (r'DAT_180d4aa98', 'AnimationGreenChannelBuffer4'),
+        (r'DAT_180d4aa80', 'AnimationGreenChannelBuffer5'),
+        (r'DAT_180d4ab00', 'AnimationBlueChannelBuffer1'),
+        (r'DAT_180d4aae0', 'AnimationBlueChannelBuffer2'),
+        (r'DAT_180d4aac8', 'AnimationBlueChannelBuffer3'),
+        (r'DAT_180d4aaa8', 'AnimationBlueChannelBuffer4'),
+        (r'DAT_180d4aa88', 'AnimationBlueChannelBuffer5'),
+        (r'DAT_180d4aa70', 'AnimationBlueChannelBuffer6'),
+        (r'DAT_180d4ab08', 'AnimationAlphaChannelBuffer1'),
+        (r'DAT_180d4aae0', 'AnimationAlphaChannelBuffer2'),
+        (r'DAT_180d4aac0', 'AnimationAlphaChannelBuffer3'),
+        (r'DAT_180d4aaa8', 'AnimationAlphaChannelBuffer4'),
+        (r'DAT_180d4aa90', 'AnimationAlphaChannelBuffer5'),
+        (r'DAT_180d4aa78', 'AnimationAlphaChannelBuffer6'),
+        (r'DAT_180d4aa68', 'AnimationOpacityBuffer1'),
+        (r'DAT_180d4aa58', 'AnimationOpacityBuffer2'),
+        (r'DAT_180d4aa40', 'AnimationOpacityBuffer3'),
+        (r'DAT_180d4aa20', 'AnimationOpacityBuffer4'),
+        (r'DAT_180d4aa08', 'AnimationOpacityBuffer5'),
+        (r'DAT_180d4a9f8', 'AnimationOpacityBuffer6'),
+        (r'DAT_180d4a9f0', 'AnimationOpacityBuffer7'),
+        (r'DAT_180d4a9e8', 'AnimationOpacityBuffer8'),
+        (r'DAT_180d4a9e0', 'AnimationOpacityBuffer9'),
+        (r'DAT_180d4a9d8', 'AnimationOpacityBuffer10'),
+        (r'DAT_180d4aa60', 'AnimationTransformBuffer1'),
+        (r'DAT_180d4aa50', 'AnimationTransformBuffer2'),
+        (r'DAT_180d4aa30', 'AnimationTransformBuffer3'),
+        (r'DAT_180d4aa10', 'AnimationTransformBuffer4'),
+        (r'DAT_180d4aa00', 'AnimationTransformBuffer5'),
+        (r'DAT_180d4a9f0', 'AnimationTransformBuffer6'),
+        (r'DAT_180d4a9e0', 'AnimationTransformBuffer7'),
+        (r'DAT_180d4a9d0', 'AnimationTransformBuffer8'),
+    ]
+    
+    # 应用替换
+    for pattern, replacement in replacements:
+        content = re.sub(pattern, replacement, content)
+    
+    return content
+
 def replace_unaff_variables(content):
     """替换unaff_变量为更有意义的名称"""
     
@@ -738,6 +828,7 @@ def main():
     content = replace_unk_variables(content)
     content = replace_param_variables(content)
     content = replace_undefined_variables(content)
+    content = replace_dat_variables(content)
     content = replace_unaff_variables(content)
     
     # 写入文件

@@ -1170,10 +1170,10 @@ void* SystemDataBufferCommonSeptenary;
 char SystemCommonFlagBufferPrimary;
 void* SystemDataBufferStandard01;
 void* SystemDataBufferStandard02;
-void* SystemDataBufferStandardTertiary;
-void* SystemDataBufferStandardQuaternary;
-void* SystemDataBufferStandardQuinary;
-void* SystemDataBufferStandardSenary;
+void* SystemDataBufferStandard03;
+void* SystemDataBufferStandard04;
+void* SystemDataBufferStandard05;
+void* SystemDataBufferStandard06;
 void* SystemDataBufferStandardSeptenary;
 void* SystemDataBufferStandardOctonary;
 void* SystemDataBufferStandardNonary;
@@ -53127,7 +53127,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   uint8_t EncryptionKeyBuffer168 [32];
   uint8_t *pSystemThreadId148;
   void* *SystemMemoryContext;
-  uint8_t *ResourceBufferPointer130;
+  uint8_t *ResourceDataBufferPointer;
   uint SystemMemoryOffset;
   ulong long SystemThreadContextFlags;
   char SystemStatusByte;
@@ -53320,7 +53320,7 @@ LAB_1800722f5:
       SystemMemoryOffset = 0;
       ResourceDataBufferPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x15,0x13);
       *ResourceDataBufferPointer = 0;
-      ResourceHash = StartSystemThread(ResourceBufferPointer130);
+      ResourceHash = StartSystemThread(ResourceDataBufferPointer);
       SystemThreadContextFlags = ConcatenatedValue44(SystemThreadContextFlags._4_4_,ResourceHash);
       pSystemSecondaryStatus = (uint32_t *)(ResourceBufferPointer130 + SystemMemoryOffset);
       *pSystemSecondaryStatus = 0x69746f4e;
@@ -53358,7 +53358,7 @@ LAB_1800725ac:
       else if ((uint)SystemThreadContextFlags < 0x17) {
         pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
         SystemMemoryOffset = 0x15;
-        ResourceBufferPointer130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointer130,0x17,0x10);
+        ResourceDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceDataBufferPointer,0x17,0x10);
         goto LAB_1800725ac;
       }
       *(void*2 *)(ResourceBufferPointer130 + SystemMemoryOffset) = 10;
