@@ -24131,30 +24131,30 @@ uint64_t GetResourceHashAndValidate(void)
   if (*(int *)(InputParameter + 0x18) != 0) {
     return 0x1c;
   }
-  resourceHash = GetResourceHash(*resourceContext,systemContext + 0x60);
-  validationStatusCode = (uint64_t)resourceHash;
-  if (resourceHash == 0) {
-    validationStatusCode = 0x1c;
-    if (*(uint *)(resourceContext + 8) < 0x36) {
-      validationResult = 0;
+  ResourceHash = GetResourceHash(*ResourceContext, SystemContext + 0x60);
+  ValidationStatusCode = (uint64_t)ResourceHash;
+  if (ResourceHash == 0) {
+    ValidationStatusCode = 0x1c;
+    if (*(uint *)(ResourceContext + 8) < 0x36) {
+      ValidationResult = 0;
     }
     else {
-      validationResult = ValidationResult;
-      if (*(int *)(resourceContext[1] + 0x18) == 0) {
-        validationResult = GetResourceHash(*resourceContext,systemContext + 0x70);
+      ValidationResult = ValidationResult;
+      if (*(int *)(ResourceContext[1] + 0x18) == 0) {
+        ValidationResult = GetResourceHash(*ResourceContext, SystemContext + 0x70);
       }
     }
-    if ((int)validationResult != 0) {
+    if ((int)ValidationResult != 0) {
       return ResourceValidationResult;
     }
-    if (*(uint *)(resourceContext + 8) < 0x3d) {
-      validationStatusCode = 0;
+    if (*(uint *)(ResourceContext + 8) < 0x3d) {
+      ValidationStatusCode = 0;
     }
-    else if (*(int *)(resourceContext[1] + 0x18) == 0) {
-      resourceHash = ProcessResourceHash(*resourceContext,systemContext + 0x40);
-      validationStatusCode = (uint64_t)resourceHash;
+    else if (*(int *)(ResourceContext[1] + 0x18) == 0) {
+      ResourceHash = ProcessResourceHash(*ResourceContext, SystemContext + 0x40);
+      ValidationStatusCode = (uint64_t)ResourceHash;
     }
-    if ((int)validationStatusCode == 0) {
+    if ((int)ValidationStatusCode == 0) {
                     // WARNING: Subroutine does not return
       CleanupResourceData();
     }
@@ -24172,36 +24172,36 @@ uint64_t GetResourceHashAndValidate(void)
 uint64_t ValidateResourceHashIntegrity(void)
 
 {
-  uint ResourceHash;
+  uint32_t ResourceHash;
   uint64_t ResourceValidationResult;
-  uint8_t *resourceContext;
+  uint8_t *ResourceContext;
   int64_t SystemContext;
   uint64_t ValidationResult;
   
-  resourceHash = GetResourceHash(*resourceContext,systemContext + 0x60);
-  validationStatusCode = (uint64_t)resourceHash;
-  if (resourceHash == 0) {
-    validationStatusCode = 0x1c;
-    if (*(uint *)(resourceContext + 8) < 0x36) {
-      validationResult = 0;
+  ResourceHash = GetResourceHash(*ResourceContext, SystemContext + 0x60);
+  ValidationStatusCode = (uint64_t)ResourceHash;
+  if (ResourceHash == 0) {
+    ValidationStatusCode = 0x1c;
+    if (*(uint *)(ResourceContext + 8) < 0x36) {
+      ValidationResult = 0;
     }
     else {
-      validationResult = ValidationResult;
-      if (*(int *)(resourceContext[1] + 0x18) == 0) {
-        validationResult = GetResourceHash(*resourceContext,systemContext + 0x70);
+      ValidationResult = ValidationResult;
+      if (*(int *)(ResourceContext[1] + 0x18) == 0) {
+        ValidationResult = GetResourceHash(*ResourceContext, SystemContext + 0x70);
       }
     }
-    if ((int)validationResult != 0) {
+    if ((int)ValidationResult != 0) {
       return ResourceValidationResult;
     }
-    if (*(uint *)(resourceContext + 8) < 0x3d) {
-      validationStatusCode = 0;
+    if (*(uint *)(ResourceContext + 8) < 0x3d) {
+      ValidationStatusCode = 0;
     }
-    else if (*(int *)(resourceContext[1] + 0x18) == 0) {
-      resourceHash = ProcessResourceHash(*resourceContext,systemContext + 0x40);
-      validationStatusCode = (uint64_t)resourceHash;
+    else if (*(int *)(ResourceContext[1] + 0x18) == 0) {
+      ResourceHash = ProcessResourceHash(*ResourceContext, SystemContext + 0x40);
+      ValidationStatusCode = (uint64_t)ResourceHash;
     }
-    if ((int)validationStatusCode == 0) {
+    if ((int)ValidationStatusCode == 0) {
                     // WARNING: Subroutine does not return
       CleanupResourceData();
     }
@@ -24260,32 +24260,32 @@ void ExecuteSystemCleanupOperation(void)
 uint8_t ProcessSPRPResource(uint8_t ResourceHandle,int64_t *ResourceTable)
 
 {
-  int64_t *processPointer;
-  int64_t resourceTable;
+  int64_t *ProcessPointer;
+  int64_t ResourceTable;
   uint8_t ValidationResult;
-  int aiStackX_18 [2];
+  int StackBuffer [2];
   uint StackContextBuffer [2];
   uint32_t EncryptionBuffer [2];
   int64_t ValidationContextOffset;
   uint8_t ResourceOperationBuffer [32];
-  uint8_t aEncryptedValue [32];
+  uint8_t EncryptedValue [32];
   
-  validationStatusCode = ComputeDataChecksum(validationContext,aEncryptedValue,1,0x53505250);
+  ValidationStatusCode = ComputeDataChecksum(validationContext, EncryptedValue, 1, 0x53505250);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
-  aiStackX_18[0] = 0;
-  validationStatusCode = InitializeResourceLoader(validationContext,aiStackX_18);
-  if ((int)validationStatusCode == 0x12) {
+  StackBuffer[0] = 0;
+  ValidationStatusCode = InitializeResourceLoader(validationContext, StackBuffer);
+  if ((int)ValidationStatusCode == 0x12) {
 ResourceProcessLoop:
                     // WARNING: Subroutine does not return
-    CleanupResourceData(validationContext,aEncryptedValue);
+    CleanupResourceData(validationContext, EncryptedValue);
   }
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
-  if (aiStackX_18[0] < 1) goto ResourceProcessLoop;
-  validationStatusCode = ComputeDataChecksum(validationContext,ResourceOperationBuffer,0,0x504f5250);
+  if (StackBuffer[0] < 1) goto ResourceProcessLoop;
+  ValidationStatusCode = ComputeDataChecksum(validationContext, ResourceOperationBuffer, 0, 0x504f5250);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
@@ -24293,67 +24293,67 @@ ResourceProcessLoop:
   if (*(int *)(ResourceContentTable[1] + 0x18) != 0) {
     return 0x1c;
   }
-  resourceContext = (int64_t *)*validationContext;
-  if (*resourceContext == 0) {
-    validationStatusCode = 0x1c;
+  ResourceContext = (int64_t *)*validationContext;
+  if (*ResourceContext == 0) {
+    ValidationStatusCode = 0x1c;
   }
   else {
-    if (resourceContext[2] != 0) {
+    if (ResourceContext[2] != 0) {
       StackContextBuffer[0] = 0;
-      validationStatusCode = ValidateResourceAccess(*resourceContext,StackContextBuffer);
+      ValidationStatusCode = ValidateResourceAccess(*ResourceContext, StackContextBuffer);
       if ((int)ValidationResult != 0) {
         return ValidationResult;
       }
-      if ((uint64_t)resourceContext[2] < (uint64_t)StackContextBuffer[0] + 4) {
-        validationStatusCode = 0x11;
+      if ((uint64_t)ResourceContext[2] < (uint64_t)StackContextBuffer[0] + 4) {
+        ValidationStatusCode = 0x11;
         goto ResourceCleanup;
       }
     }
-    validationStatusCode = CalculateResourceHash(*resourceContext,EncryptionBuffer,1,4,0);
+    ValidationStatusCode = CalculateResourceHash(*ResourceContext, EncryptionBuffer, 1, 4, 0);
   }
 ResourceCleanup:
-  if ((int)validationStatusCode == 0) {
+  if ((int)ValidationStatusCode == 0) {
     ValidationContextOffset = 0;
-    validationStatusCode = ProcessResourceLoading(objectContext,EncryptionBuffer[0],&ValidationContextOffset);
-    resourceTable = ValidationContextOffset;
+    ValidationStatusCode = ProcessResourceLoading(objectContext, EncryptionBuffer[0], &ValidationContextOffset);
+    ResourceTable = ValidationContextOffset;
     if ((int)ValidationResult != 0) {
       return ValidationResult;
     }
-    if (*(int *)(resourceData[1] + 0x18) == 0) {
-      validationStatusCode = ReadResourceData(*validationContext,ValidationContextOffset + 0x48,2);
+    if (*(int *)(ResourceData[1] + 0x18) == 0) {
+      ValidationStatusCode = ReadResourceData(*validationContext, ValidationContextOffset + 0x48, 2);
       if ((int)ValidationResult != 0) {
         return ValidationResult;
       }
-      if (*(int *)(resourceData[1] + 0x18) == 0) {
-        validationStatusCode = ReadResourceData(*validationContext,resourceTable + 0x4a,2);
+      if (*(int *)(ResourceData[1] + 0x18) == 0) {
+        ValidationStatusCode = ReadResourceData(*validationContext, ResourceTable + 0x4a, 2);
         if ((int)ValidationResult != 0) {
           return ValidationResult;
         }
-        validationStatusCode = ValidateResourceHash(validationContext,resourceTable + 0x30);
+        ValidationStatusCode = ValidateResourceHash(validationContext, ResourceTable + 0x30);
         if ((int)ValidationResult != 0) {
           return ValidationResult;
         }
-        validationStatusCode = ComputeDataChecksum(validationContext,resourceTable + 0x20);
+        ValidationStatusCode = ComputeDataChecksum(validationContext, ResourceTable + 0x20);
         if ((int)ValidationResult != 0) {
           return ValidationResult;
         }
-        validationStatusCode = ValidateResourceHash(validationContext,resourceTable + 0x10,0);
-        if ((int)validationStatusCode == 0) {
-          *(uint32_t *)(resourceTable + 0x44) = 0xffffffff;
+        ValidationStatusCode = ValidateResourceHash(validationContext, ResourceTable + 0x10, 0);
+        if ((int)ValidationStatusCode == 0) {
+          *(uint32_t *)(ResourceTable + 0x44) = 0xffffffff;
           goto ResourceFinalize;
         }
       }
       else {
-        validationStatusCode = 0x1c;
+        ValidationStatusCode = 0x1c;
       }
     }
     else {
-      validationStatusCode = 0x1c;
+      ValidationStatusCode = 0x1c;
     }
-    if ((int)validationStatusCode == 0) {
+    if ((int)ValidationStatusCode == 0) {
 ResourceFinalize:
                     // WARNING: Subroutine does not return
-      CleanupResourceData(validationContext,ResourceOperationBuffer);
+      CleanupResourceData(validationContext, ResourceOperationBuffer);
     }
   }
   return ValidationResult;
