@@ -51775,7 +51775,7 @@ void ValidateResourceTableOffsetStatus(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_180905ff0(void)
+void DestroyConditionVariableInPlace(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -52382,7 +52382,7 @@ void UnwindResourceContextFromValidationOffset40(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_1809061d0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
