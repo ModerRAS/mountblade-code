@@ -7239,20 +7239,20 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   SystemLightConfigValue2 = 0x40000000;
   SystemLightConfigValue3 = 0x3f800000;
   SystemLightConfigFlag4 = 0;
-  _DAT_180c95f48 = 1;
-  _DAT_180c95f40 = &SystemModuleConfigDataBuffer;
-  DAT_180c95ef0 = 1;
-  _DAT_180c95ee8 = 3;
-  _DAT_180c95ee0 = 0;
-  _DAT_180c95ed8 = 0;
-  _DAT_180c95ed0 = 0;
-  DAT_180c95ec8 = 1;
-  DAT_180c96098 = 1;
-  _DAT_180c960a0 = 0;
-  DAT_180c960b8 = 1;
+  SystemLightConfigFlag5 = 1;
+  SystemLightConfigDataPointer = &SystemModuleConfigDataBuffer;
+  SystemLightConfigFlag6 = 1;
+  SystemLightConfigValue4 = 3;
+  SystemLightConfigFlag7 = 0;
+  SystemLightConfigValue5 = 0;
+  SystemLightConfigFlag8 = 0;
+  SystemLightConfigFlag9 = 1;
+  SystemRenderConfigFlag4 = 1;
+  SystemRenderConfigValue1 = 0;
+  SystemRenderConfigFlag5 = 1;
   return;
 }
-    DAT_180c82845 = '\x01';
+    SystemConfigFlag1 = '\x01';
     LongValue = SystemDataTransfer(&StackBufferPointer2,SystemEngineContext + 0x2c0);
     pMemoryAllocationResult = &SystemConstantStringPrimary;
     if (*(void **)(LongValue + 8) != (void *)0x0) {
@@ -7484,16 +7484,16 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
     UNLOCK();
     if (bVar9) {
       applStackX_8[0] = aplStackX_18;
-      aplStackX_18[0] = _DAT_180c91d18;
-      if (_DAT_180c91d18 != (longlong *)0x0) {
-        (**(code **)(*_DAT_180c91d18 + 0x28))();
+      aplStackX_18[0] = SystemDataPointer1;
+      if (SystemDataPointer1 != (longlong *)0x0) {
+        (**(code **)(*SystemDataPointer1 + 0x28))();
       }
       UnsignedValue = ProcessSystemRuntimeData(StringProcessingResult,aplStackX_18);
     }
   }
   return UnsignedValue;
 }
-    DAT_180d49f6c = '\0';
+    SystemConfigFlag2 = '\0';
     ProcessSystemConfigurationData(&SystemProcessingData);
   }
   BufferSize = *(uint64_t *)(*(longlong *)(*(longlong *)(param_1 + 0x8a8) + 0x260) + 0x208);
@@ -7698,7 +7698,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
        ((pfVar9[5] <= FloatResult && FloatResult != pfVar9[5] || (pfVar9[6] <= fVar16 && fVar16 != pfVar9[6]))
        )) {
       do {
-      } while (DAT_180d49f6c != '\0');
+      } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
       pfVar3 = *(float **)(param_1 + 0x860);
@@ -7730,11 +7730,11 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       }
       *(ulonglong *)(pfVar3 + 4) = CONCAT44(fStack_194,fStack_198);
       *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,fStack_190);
-      DAT_180d49f6c = '\0';
+      SystemConfigFlag2 = '\0';
     }
     if (((fVar18 < *pfVar9) || (FloatValue < pfVar9[1])) || (fStack_180 < pfVar9[2])) {
       do {
-      } while (DAT_180d49f6c != '\0');
+      } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
       pfVar9 = *(float **)(param_1 + 0x860);
@@ -7766,14 +7766,14 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       }
       *(ulonglong *)(pfVar9 + 4) = CONCAT44(fStack_194,fStack_198);
       *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,fStack_190);
-      DAT_180d49f6c = '\0';
+      SystemConfigFlag2 = '\0';
     }
     pfVar9 = *(float **)(param_1 + 0x868);
     if (((pfVar9[4] <= FloatCalculationResult && FloatCalculationResult != pfVar9[4]) ||
         (pfVar9[5] <= FloatResult && FloatResult != pfVar9[5])) ||
        (pfVar9[6] <= fVar16 && fVar16 != pfVar9[6])) {
       do {
-      } while (DAT_180d49f6c != '\0');
+      } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
       pfVar3 = *(float **)(param_1 + 0x868);
@@ -7805,11 +7805,11 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       }
       *(ulonglong *)(pfVar3 + 4) = CONCAT44(fStack_194,fStack_198);
       *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,fStack_190);
-      DAT_180d49f6c = '\0';
+      SystemConfigFlag2 = '\0';
     }
     if (((fVar18 < *pfVar9) || (FloatValue < pfVar9[1])) || (fStack_180 < pfVar9[2])) {
       do {
-      } while (DAT_180d49f6c != '\0');
+      } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
       pfVar9 = *(float **)(param_1 + 0x868);
@@ -7841,19 +7841,19 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       }
       *(ulonglong *)(pfVar9 + 4) = CONCAT44(fStack_194,fStack_198);
       *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,fStack_190);
-      DAT_180d49f6c = '\0';
+      SystemConfigFlag2 = '\0';
     }
   }
   return;
 }
-        DAT_180d49f98 = 0;
-        _DAT_180d49f90 = 8;
-        strcpy_s(&DAT_180d49f98,64,&SystemConfigMessagePath);
+        SystemConfigDataBuffer1 = 0;
+        SystemConfigDataSize1 = 8;
+        strcpy_s(&SystemConfigDataBuffer1,64,&SystemConfigMessagePath);
         GetSystemConfigurationTemplate(GetPrimarySystemConfigurationTemplate);
-        ProcessSystemConfigurationData(&DAT_180d49f70);
+        ProcessSystemConfigurationData(&SystemConfigDataBuffer2);
       }
     }
-    (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,&DAT_180d49f80);
+    (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,&SystemConfigDataBuffer3);
     return;
   }
   if (-1 < param_1) {
@@ -7863,19 +7863,19 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
     }
   }
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180d49fd8) {
-    ValidateSystemConfigurationTemplate(&DAT_180d49fd8);
-    if (_DAT_180d49fd8 == -1) {
-      _DAT_180d49fe0 = &SystemMemoryPool;
-      _DAT_180d49fe8 = &DAT_180d49ff8;
-      DAT_180d49ff8 = 0;
-      _DAT_180d49ff0 = 0;
-      strcpy_s(&DAT_180d49ff8,64,&SystemConstantStringPrimary);
+              0x48) < SystemConfigDataSize2) {
+    ValidateSystemConfigurationTemplate(&SystemConfigDataBuffer4);
+    if (SystemConfigDataSize2 == -1) {
+      SystemConfigDataPointer1 = &SystemMemoryPool;
+      SystemConfigDataPointer2 = &SystemConfigDataBuffer5;
+      SystemConfigDataBuffer5 = 0;
+      SystemConfigDataSize3 = 0;
+      strcpy_s(&SystemConfigDataBuffer5,64,&SystemConstantStringPrimary);
       GetSystemConfigurationTemplate(GetSecondarySystemConfigurationTemplate);
-      ProcessSystemConfigurationData(&DAT_180d49fd8);
+      ProcessSystemConfigurationData(&SystemConfigDataBuffer4);
     }
   }
-  (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,&DAT_180d49fe0);
+  (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,&SystemConfigDataPointer1);
   return;
 }
 /**
@@ -8377,7 +8377,7 @@ ProcessSystemConfiguration(uint64_t param_1,uint64_t param_2,uint8_t param_3,uin
                                                                                     &UNK_180a3ad30);
                                                         if (NetworkRequestStatus != '\0') goto Label_18060acd8;
                                                         NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                    &DAT_180a06a48);
+                                                                                    &SystemNetworkDataBuffer1);
                                                         if (NetworkRequestStatus != '\0') goto Label_18060a114;
                                                         NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ad18);
@@ -8778,7 +8778,7 @@ Label_18060b76f:
                                                                               &UNK_180a3a8c0);
                                                   if (NetworkRequestStatus != '\0') goto Label_18060b1d7;
                                                   NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                              &DAT_180a0ba58);
+                                                                              &SystemNetworkDataBuffer2);
                                                   if (NetworkRequestStatus != '\0') goto Label_18060b1f5;
                                                   NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
                                                                               &UNK_180a3a5a8);
@@ -9875,11 +9875,11 @@ Label_18060bbae:
   CleanupSystemResources(aStackCounter4);
   return StringProcessingResult;
 }
-  DAT_180bf66d8 = 0;
+  SystemModuleConfigFlag14 = 0;
   GetSystemConfigurationTemplate(GetSystemConfigurationTemplate);
   ProcessSystemConfigurationData(&UNK_18064ffc0);
   LongValue = 0;
-  _DAT_180c96858 = GetSystemConfigurationData;
+  SystemConfigFunctionPointer1 = GetSystemConfigurationData;
   pBufferSize = (uint32_t *)&SystemModuleConfigDataBuffer;
   LongIndex = 0x16;
   do {
@@ -9893,12 +9893,12 @@ Label_18060bbae:
     pBufferSize = pBufferSize + 6;
     LongIndex = LongIndex + -1;
   } while (LongIndex != 0);
-  if (_DAT_180bfbf64 == 0) {
-    ProcessBufferSize(&DAT_180bfbf60);
+  if (SystemMemoryConfigFlag1 == 0) {
+    ProcessBufferSize(&SystemMemoryConfigBuffer1);
   }
-  _DAT_180bf7308 = (longlong)_DAT_180bfbf60;
-  if (_DAT_180bfbf7c == 0) {
-    ProcessBufferSize(&DAT_180bfbf78);
+  SystemMemoryConfigPointer1 = (longlong)SystemMemoryConfigBuffer1;
+  if (SystemMemoryConfigFlag2 == 0) {
+    ProcessBufferSize(&SystemMemoryConfigBuffer2);
   }
   _DAT_180bf72a8 = (longlong)_DAT_180bfbf78;
   CleanupSystemConfiguration();
@@ -11447,11 +11447,11 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   unaff_RDI[1] = MemoryAddress;
   return StringProcessingResult;
 }
-  DAT_180bf66d8 = 0;
+  SystemModuleConfigFlag14 = 0;
   GetSystemConfigurationTemplate(GetSystemConfigurationTemplate);
   ProcessSystemConfigurationData(&UNK_18064ffc0);
   LongIndex = 0;
-  _DAT_180c96858 = GetSystemConfigurationData;
+  SystemConfigFunctionPointer1 = GetSystemConfigurationData;
   pMemoryAddress = (uint32_t *)&SystemModuleConfigDataBuffer;
   LongCounter = 0x16;
   do {
@@ -11465,12 +11465,12 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
     pMemoryAddress = pMemoryAddress + 6;
     LongCounter = LongCounter + -1;
   } while (LongCounter != 0);
-  if (_DAT_180bfbf64 == 0) {
-    ProcessBufferSize(&DAT_180bfbf60);
+  if (SystemMemoryConfigFlag1 == 0) {
+    ProcessBufferSize(&SystemMemoryConfigBuffer1);
   }
-  _DAT_180bf7308 = (longlong)_DAT_180bfbf60;
-  if (_DAT_180bfbf7c == 0) {
-    ProcessBufferSize(&DAT_180bfbf78);
+  SystemMemoryConfigPointer1 = (longlong)SystemMemoryConfigBuffer1;
+  if (SystemMemoryConfigFlag2 == 0) {
+    ProcessBufferSize(&SystemMemoryConfigBuffer2);
   }
   _DAT_180bf72a8 = (longlong)_DAT_180bfbf78;
   CleanupSystemConfiguration();
