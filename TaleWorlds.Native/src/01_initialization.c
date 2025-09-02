@@ -27201,7 +27201,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   uint systemStatus3;
   bool isSystemConfigured;
   float scaleFactorX;
-  float fVar16;
+  float scaleFactorY;
   float fVar17;
   float fVar18;
   float fVar19;
@@ -27213,13 +27213,13 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   
   localMemoryAddress = SystemNodeManagerPointer;
   if ((*(long long *)(SystemMemoryContext + 0x7ab8) == 0) || (*(int *)(SystemNodeManagerPointer + 0x540) < 1)) {
-    bVar14 = *(int *)(SystemNodeManagerPointer + 0x2140) != 0;
+    isSystemConfigured = *(int *)(SystemNodeManagerPointer + 0x2140) != 0;
   }
   else {
-    bVar14 = false;
+    isSystemConfigured = false;
   }
-  if (bVar14) {
-    fVar15 = (float)exp2f(SystemNodeManagerPointer,in_RDX,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  if (isSystemConfigured) {
+    scaleFactorX = (float)exp2f(SystemNodeManagerPointer,in_RDX,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     if (*(char *)(ResourceManagerPointer + 0x22d) == '\0') {
       localMemoryAddress = *(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
       if ((*(int *)(localMemoryAddress + 0x48) < SystemDataValue1) &&

@@ -1,17 +1,20 @@
 #!/bin/bash
 
 # ============================================================================
-# 修复重复函数定义的脚本
-# 用于修复 /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c 
-# 文件中的重复函数定义问题
+# 修复重复函数定义的脚本 - 最终版本
+# 用于修复 06_utilities.c 文件中的重复函数定义问题
 # 
 # 重复函数定义模式：
-# 1. 第一行：空格 + 返回类型 + 函数名 + 参数列表 (无分号)
-# 2. 第二行：/** 注释块 */
-# 3. 第三行：返回类型 + 函数名 + 参数列表 (无分号)
-# 4. 第四行：{ 函数体开始
+#  void FunctionName(void)
+# /**
+#  * @brief 函数说明
+#  */
+# void FunctionName(void)
+# {
+#     // 函数体
+# }
 # 
-# 修复目标：删除第一行的重复声明，保留完整的函数定义
+# 修复目标：删除第一行的重复声明
 # ============================================================================
 
 set -e
@@ -19,7 +22,6 @@ set -e
 # 文件路径
 INPUT_FILE="/dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c"
 BACKUP_FILE="${INPUT_FILE}.backup_duplicate_functions"
-TEMP_FILE="${INPUT_FILE}.temp"
 
 # 颜色定义
 RED='\033[0;31m'
@@ -48,79 +50,71 @@ print_message $GREEN "备份已创建：$BACKUP_FILE"
 
 # 统计修复前的重复函数数量
 print_message $BLUE "分析重复函数定义..."
-duplicate_count=$(grep -n "^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]\+[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*([[:space:]]*void[[:space:]]*)[[:space:]]*$" "$INPUT_FILE" | wc -l)
+duplicate_count=$(grep -n "^[[:space:]]*void[[:space:]]\+[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*(void)[[:space:]]*$" "$INPUT_FILE" | wc -l)
 print_message $YELLOW "发现 $duplicate_count 个可能的重复函数定义"
 
-# 创建临时文件
+# 使用python进行更精确的修复
 print_message $BLUE "开始修复重复函数定义..."
 
-# 使用awk处理文件，修复重复函数定义
-awk '
-# 状态变量
-in_duplicate_pattern = 0
-duplicate_line = ""
-skip_next_line = 0
+python3 << 'EOF'
+import re
+import sys
 
-# 主处理循环
-{
+# 读取文件
+with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c', 'r', encoding='utf-8') as f:
+    lines = f.readlines()
+
+# 正则表达式匹配重复函数定义
+# 模式：行首有空格，然后是void函数名(void)行尾
+duplicate_pattern = re.compile(r'^\s*void\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(\s*void\s*\)\s*$')
+
+# 修复后的行
+fixed_lines = []
+i = 0
+fixed_count = 0
+
+while i < len(lines):
+    line = lines[i]
+    
     # 检查是否是重复函数定义的第一行
-    # 模式：行首有空格，然后是返回类型，函数名，参数列表，行尾无分号
-    if (match($0, /^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]\+[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*\([[:space:]]*void[[:space:]]*\)[[:space:]]*$/)) {
-        # 检查下一行是否是注释块
-        getline next_line
-        if (next_line ~ /^[[:space:]]*\/\*\*.*$/) {
-            # 检查下下行是否是相同的函数定义
-            getline next_next_line
-            # 提取当前行的函数名
-            if (match($0, /([a-zA-Z_][a-zA-Z0-9_]*)[[:space:]]*\([[:space:]]*void[[:space:]]*\)[[:space:]]*$/, arr)) {
-                current_func = arr[1]
-                # 检查下下行是否包含相同的函数名
-                if (next_next_line ~ current_func && next_next_line ~ /^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]\+[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*\([[:space:]]*void[[:space:]]*\)[[:space:]]*$/) {
+    match = duplicate_pattern.match(line.strip())
+    if match:
+        func_name = match.group(1)
+        
+        # 检查是否有足够的后续行
+        if i + 2 < len(lines):
+            next_line = lines[i + 1]
+            next_next_line = lines[i + 2]
+            
+            # 检查下一行是否是注释块
+            if '/**' in next_line:
+                # 检查下下一行是否是相同的函数定义
+                next_next_match = duplicate_pattern.match(next_next_line.strip())
+                if next_next_match and next_next_match.group(1) == func_name:
                     # 发现重复函数定义，跳过当前行
-                    print "/* 修复重复函数定义：删除重复声明 " $0 " */"
-                    print next_line  # 输出注释块
-                    print next_next_line  # 输出正确的函数声明
-                    skip_next_line = 1
-                    next
-                } else {
-                    # 不是重复定义，输出所有行
-                    print $0
-                    print next_line
-                    print next_next_line
-                    next
-                }
-            } else {
-                # 无法提取函数名，输出所有行
-                print $0
-                print next_line
-                print next_next_line
-                next
-            }
-        } else {
-            # 下一行不是注释块，输出当前行和下一行
-            print $0
-            print next_line
-            next
-        }
-    }
+                    fixed_lines.append(f"/* 修复重复函数定义：删除重复声明 {line.strip()} */\n")
+                    fixed_lines.append(next_line)
+                    fixed_lines.append(next_next_line)
+                    fixed_count += 1
+                    i += 3
+                    continue
     
-    # 检查是否需要跳过下一行
-    if (skip_next_line) {
-        skip_next_line = 0
-        next
-    }
-    
-    # 输出当前行
-    print
-}
-' "$INPUT_FILE" > "$TEMP_FILE"
+    # 不是重复定义，正常添加
+    fixed_lines.append(line)
+    i += 1
 
-# 替换原文件
-mv "$TEMP_FILE" "$INPUT_FILE"
+# 写入修复后的文件
+with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c', 'w', encoding='utf-8') as f:
+    f.writelines(fixed_lines)
+
+print(f"修复完成！共修复了 {fixed_count} 个重复函数定义")
+EOF
 
 # 统计修复后的重复函数数量
 print_message $BLUE "验证修复结果..."
-remaining_duplicates=$(grep -n "^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]\+[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*([[:space:]]*void[[:space:]]*)[[:space:]]*$" "$INPUT_FILE" | wc -l)
+remaining_duplicates=$(grep -n "^[[:space:]]*void[[:space:]]\+[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*(void)[[:space:]]*$" "$INPUT_FILE" | wc -l)
+
+# 计算修复数量
 fixed_count=$((duplicate_count - remaining_duplicates))
 
 print_message $GREEN "修复完成！"
@@ -138,7 +132,7 @@ echo "----------------------------------------"
 if [ $remaining_duplicates -gt 0 ]; then
     print_message $YELLOW "警告：仍有 $remaining_duplicates 个重复函数定义需要手动修复"
     print_message $YELLOW "请运行以下命令查看剩余的重复函数："
-    echo "grep -n \"^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]\\+[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*([[:space:]]*void[[:space:]]*)[[:space:]]*$\" \"$INPUT_FILE\""
+    echo "grep -n \"^[[:space:]]*void[[:space:]]\\+[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*(void)[[:space:]]*$\" \"$INPUT_FILE\""
 fi
 
 print_message $GREEN "脚本执行完成！"
