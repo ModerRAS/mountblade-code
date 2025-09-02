@@ -97245,12 +97245,12 @@ void ProcessSystemResourceCleanupOperationOffset78(uint8_t ObjectContext, int64_
 {
   int64_t ResourceCounter;
   
-  ResourceCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x78);
+  ResourceCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + ResourceCounterOffset78);
   if (ResourceCounter != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) = *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPrimaryPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -97285,12 +97285,12 @@ void ProcessSystemResourceCleanupOperationOffset88(uint8_t ObjectContext, int64_
 {
   int64_t ResourceCounter;
   
-  ResourceCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x88);
+  ResourceCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + ResourceCounterOffset88);
   if (ResourceCounter != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) = *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPrimaryPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
