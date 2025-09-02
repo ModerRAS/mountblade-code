@@ -27736,8 +27736,8 @@ EmptySystemOperation(void)
 
 
 
- f47c(void)
-f47c(void)
+ NullOperationHandler(void)
+NullOperationHandler(void)
 
 {
   return;

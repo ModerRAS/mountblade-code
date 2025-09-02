@@ -5654,7 +5654,7 @@ LAB_180203fb6:
 }
         DAT_180d48da8 = '\x01';
         iStack_2c8 = 0x786;
-        FUN_180060680(auStack_258,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798);
+        InitializeSystemModuleConfiguration(auStack_258,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798);
         OutputDebugStringA(auStack_258);
       }
       FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)param_1 + 0x5e) - 1) *
@@ -5682,7 +5682,7 @@ LAB_180203fb6:
     break;
   case 0x16:
     iStack_2c8 = param_4;
-    FUN_1802a41e0(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    ProcessModuleInitializationData(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
 code_r0x0001802a14f5:
     *param_2 = (float)uStack_2b0._2_1_ * 0.003921569;
     bVar1 = (byte)uStack_2b0;
@@ -5698,7 +5698,7 @@ code_r0x0001802a1528:
     break;
   case 0x1e:
     iStack_2c8 = param_4;
-    puVar8 = (uint16_t *)FUN_1802a4590(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    puVar8 = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
     fVar16 = (float)ConvertToFloatValue(puVar8[2]);
     fVar17 = (float)ConvertToFloatValue(puVar8[1]);
     FloatCalculationResult = (float)ConvertToFloatValue(*puVar8);
@@ -5710,7 +5710,7 @@ code_r0x0001802a1528:
     break;
   case 0x20:
     iStack_2c8 = param_4;
-    FUN_1802a1fb0(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    ValidateModuleInitializationData(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
     *param_2 = (float)uStack_2b0;
     param_2[2] = (float)uStack_2a8;
 code_r0x0001802a1ad1:
@@ -5747,7 +5747,7 @@ code_r0x0001802a1ade:
       *(uint64_t *)(param_2 + 2) = BufferSize;
     }
     else if (param_4 == 1) {
-      FUN_1802a4e60(param_1,&uStackX_18,param_3,&fStack_298);
+      ConfigureModuleInitializationSettings(param_1,&uStackX_18,param_3,&fStack_298);
       fVar16 = (float)modff((float)(int)(*(ushort *)((longlong)param_1 + 0x5e) - 1) *
                             uStackX_18._4_4_,&uStack_2b0);
       fVar17 = (float)modff();
@@ -5821,7 +5821,7 @@ FUN_1802a1af3:
   SystemSecurityCheck(uStack_58 ^ (ulonglong)auStack_2e8);
 }
     DAT_180d48da8 = '\x01';
-    FUN_180060680(unaff_RBP + -0x70,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798,0x786);
+    InitializeSystemModuleConfiguration(unaff_RBP + -0x70,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798,0x786);
     OutputDebugStringA(unaff_RBP + -0x70);
   }
   MemoryAddress = *(ushort *)(unaff_RDI + 0x5c);
@@ -5844,7 +5844,7 @@ FUN_1802a1af3:
   SystemSecurityCheck(*(ulonglong *)(unaff_RBP + 400) ^ (ulonglong)&stack0x00000000);
 }
   DAT_180d48da8 = 1;
-  FUN_180060680(unaff_RBP + -0x70,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798,0x786);
+  InitializeSystemModuleConfiguration(unaff_RBP + -0x70,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798,0x786);
   OutputDebugStringA(unaff_RBP + -0x70);
   MemoryAddress = *(ushort *)(unaff_RDI + 0x5c);
   fVar3 = *(float *)(unaff_RBP + 0x200);
@@ -5867,7 +5867,7 @@ FUN_1802a1af3:
 }
         DAT_180d48dac = '\x01';
         lStack_278 = CONCAT44(lStack_278._4_4_,0x4ea);
-        FUN_180060680(auStack_238,&UNK_180a177f0,&UNK_180a17830,&UNK_180a17880);
+        InitializeSystemModuleConfiguration(auStack_238,&UNK_180a177f0,&UNK_180a17830,&UNK_180a17880);
         OutputDebugStringA(auStack_238);
       }
       goto LAB_1802a83bc;
@@ -5908,7 +5908,7 @@ LAB_1802a83bc:
 }
         DAT_180d48daa = '\x01';
         puStack_2d8 = (void *)CONCAT44(puStack_2d8._4_4_,0xc88);
-        FUN_180060680(auStack_228,&UNK_180a177f0,&UNK_180a17a68,&UNK_180a17880);
+        InitializeSystemModuleConfiguration(auStack_228,&UNK_180a177f0,&UNK_180a17a68,&UNK_180a17880);
         OutputDebugStringA(auStack_228);
       }
       puVar7 = &SystemConstantStringPrimary;
@@ -5944,7 +5944,7 @@ LAB_1802a912b:
 }
       DAT_180d48dab = '\x01';
       uStack_228 = 0xac7;
-      FUN_180060680(auStack_218,&UNK_180a177f0,&UNK_180a179d0,&UNK_180a17880);
+      InitializeSystemModuleConfiguration(auStack_218,&UNK_180a177f0,&UNK_180a179d0,&UNK_180a17880);
       OutputDebugStringA(auStack_218);
     }
   }
@@ -10099,7 +10099,7 @@ LAB_18062e327:
   *(uint8_t *)(pMemoryAllocationResult + 3) = 0;
   uStack_58 = 0x18;
   uStack_50._0_4_ = StringProcessingResult;
-  FUN_180060680(acStack_40,&UNK_1809fd0a0,iVar8);
+  InitializeSystemModuleConfiguration(acStack_40,&UNK_1809fd0a0,iVar8);
   ModuleInitializationResult0 = -1;
   do {
     lVar9 = ModuleInitializationResult0;
