@@ -5039,30 +5039,30 @@ uint8_t ProcessComplexObjectHandle(int64_t objectContext)
   int64_t contextHandleBuffer[2];
   
   operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), contextHandleBuffer);
-  if ((int)OperationResult == 0) {
-    if (ContextHandleBuffer[0] == 0) {
-      ContextHandleBuffer[0] = 0;
+  if ((int)operationResult == 0) {
+    if (contextHandleBuffer[0] == 0) {
+      contextHandleBuffer[0] = 0;
     }
     else {
-      ContextHandleBuffer[0] = ContextHandleBuffer[0] - 8;
+      contextHandleBuffer[0] = contextHandleBuffer[0] - 8;
     }
-    OperationResultBuffer[0] = 0;
-    OperationResult = ProcessSystemContextValidation(ContextHandleBuffer[0], ObjectContext + ObjectContextValidationDataOffset, OperationResultBuffer);
-    if ((int)OperationResult == 0) {
-      if (OperationResultBuffer[0] != 0) {
-        if (*(int64_t *)(OperationResultBuffer[0] + 8) == 0) {
+    operationResultBuffer[0] = 0;
+    operationResult = ProcessSystemContextValidation(contextHandleBuffer[0], objectContext + ObjectContextValidationDataOffset, operationResultBuffer);
+    if ((int)operationResult == 0) {
+      if (operationResultBuffer[0] != 0) {
+        if (*(int64_t *)(operationResultBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
-        OperationResult = ProcessResourceOperation(*(int64_t *)(OperationResultBuffer[0] + 8), *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset),
-                                      *(uint8_t *)(ObjectContext + ObjectContextStatusDataOffset));
-        if ((int)OperationResult != 0) {
-          return OperationResult;
+        operationResult = ProcessResourceOperation(*(int64_t *)(operationResultBuffer[0] + 8), *(uint32_t *)(objectContext + ObjectContextProcessingDataOffset),
+                                      *(uint8_t *)(objectContext + ObjectContextStatusDataOffset));
+        if ((int)operationResult != 0) {
+          return operationResult;
         }
       }
-      OperationResult = 0;
+      operationResult = 0;
     }
   }
-  return OperationResult;
+  return operationResult;
 }
 
 

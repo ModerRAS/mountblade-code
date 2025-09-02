@@ -52093,7 +52093,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   void* *SystemDataBufferPointer;
   ulong long SystemContextPointer;
   uint8_t SystemConcatenatedBuffer448 [32];
-  uint8_t *puStack_168;
+  uint8_t *SystemBytePointer;
   void* *SystemResourcePointer160;
   uint8_t *pSystemConfigurationId;
   uint8_t SystemThreadId148;
@@ -52118,7 +52118,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   uint32_t secondarySystemDataBuffer;
   uint32_t StackUnsignedValue94;
   long long SystemConfigurationFlags;
-  long long lStack_88;
+  long long SystemConfigurationData;
   void* ThreadContextFlag;
   void* SystemProcessFlags58;
   void* ConcatenatedValue44;
@@ -52135,7 +52135,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   SystemProcessFlags58 = 0;
   ConcatenatedValue44 = 0;
   secondarySystemDataBuffer = AdditionalParameter;
-  lStack_88 = ConfigurationFlag;
+  SystemConfigurationData = ConfigurationFlag;
   FormatSystemResourceString(&SystemProcessFlags58,0x10,&SystemDataBufferTemplateI,AdditionalParameter);
   resourceCounter = ProcessSystemQueue(&SystemMemoryAllocatorReferencePointer,ConfigurationFlag);
   pUnsignedStackFlag118 = &SystemGlobalDataReference;
@@ -52190,7 +52190,7 @@ LAB_180070a3f:
         }
         else {
           if (ResourceHash <= SystemOperationStatus4) goto LAB_180070b00;
-          puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
+          SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
           SystemDataPointer0 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemDataPointer0,ResourceHash,0x10);
         }
         pUnsignedStackFlag110 = SystemDataPointer0;
@@ -52282,7 +52282,7 @@ LAB_180070db8:
     SystemMemoryOffset = ConcatenatedValue44(SystemMemoryOffset.HighPart,ThreadContextFlag);
   }
   else if (currentThreadId < 3) {
-    puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
+    SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
     StackValue2 = 1;
     SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,3,0x10);
     goto LAB_180070db8;
@@ -52311,7 +52311,7 @@ LAB_180070db8:
         else {
           currentThreadId = StackValue2;
           if (SystemOperationStatus4 <= (uint)SystemMemoryOffset) goto LAB_180070e64;
-          puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
+          SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
           StackValue2 = ResourceHash;
           SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,SystemOperationStatus4,0x10);
         }
@@ -52333,7 +52333,7 @@ LAB_180070ee8:
     SystemMemoryOffset = ConcatenatedValue44(SystemMemoryOffset.HighPart,ThreadContextFlag);
   }
   else if ((uint)SystemMemoryOffset < 4) {
-    puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
+    SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
     StackValue2 = ResourceHash;
     SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,4,0x10);
     goto LAB_180070ee8;
@@ -52354,7 +52354,7 @@ LAB_180070ee8:
     }
     else {
       if (SystemOperationStatus4 <= (uint)SystemMemoryOffset) goto LAB_180070f81;
-      puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
+      SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
       SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,SystemOperationStatus4,0x10);
     }
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
@@ -52375,25 +52375,25 @@ LAB_180070f81:
     }
     else {
       if (currentThreadId <= (uint)SystemMemoryOffset) goto LAB_180071000;
-      puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
+      SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
       SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,currentThreadId,0x10);
     }
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = ConcatenatedValue44(SystemMemoryOffset.HighPart,ThreadContextFlag);
   }
 LAB_180071000:
-  resourceDataIndex5 = lStack_88;
+  resourceDataIndex5 = SystemConfigurationData;
   ThreadLocalStorage = (void* *)(SystemMemoryContext + StackValue2);
   *ThreadLocalStorage = 0x6973736572707845;
   *(uint32_t *)(ThreadLocalStorage + 1) = 0x203a6e6f;
   *(uint8_t *)((long long)ThreadLocalStorage + 0xc) = 0;
   resourceDataIndex6 = -1;
   StackValue2 = SystemOperationStatus4;
-  if (lStack_88 != 0) {
+  if (SystemConfigurationData != 0) {
     do {
       resourceDataIndex7 = resourceDataIndex6;
       resourceDataIndex6 = resourceDataIndex7 + 1;
-    } while (*(char *)(lStack_88 + resourceDataIndex6) != '\0');
+    } while (*(char *)(SystemConfigurationData + resourceDataIndex6) != '\0');
     if (0 < (int)resourceDataIndex6) {
       systemIndex = SystemOperationStatus4 + (int)resourceDataIndex6;
       if (systemIndex != 0) {
@@ -52407,7 +52407,7 @@ LAB_180071000:
         }
         else {
           if (ResourceHash <= (uint)SystemMemoryOffset) goto LAB_1800710b8;
-          puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
+          SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
           SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,ResourceHash,0x10);
         }
         ThreadContextFlag = StartSystemThread(SystemMemoryContext);
@@ -52429,7 +52429,7 @@ LAB_1800710b8:
     }
     else {
       if (ResourceHash <= (uint)SystemMemoryOffset) goto LAB_18007113f;
-      puStack_168 = (uint8_t *)CONCAT71(puStack_168._1_7_,0x13);
+      SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
       SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,ResourceHash,0x10);
     }
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
@@ -52493,14 +52493,14 @@ LAB_18007113f:
   }
   SystemDataPointer0 = pUnsignedStackFlag110;
   ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationDataBufferA);
-  puStack_168 = &SystemStringTemplate;
+  SystemBytePointer = &SystemStringTemplate;
   if (SystemMemoryContext != (uint8_t *)0x0) {
-    puStack_168 = SystemMemoryContext;
+    SystemBytePointer = SystemMemoryContext;
   }
   ConfigureSystemManager(SystemContextManagerPointer,4,0xffffffff00000000,&SystemConfigurationDataBufferB);
-  puStack_168 = &SystemStringTemplate;
+  SystemBytePointer = &SystemStringTemplate;
   if (SystemDataPointer0 != (uint8_t *)0x0) {
-    puStack_168 = SystemDataPointer0;
+    SystemBytePointer = SystemDataPointer0;
   }
   SystemManagerSetFlags(SystemContextManagerPointer,4,0xffffffff00000000,3);
   InitializeSystemManager();
@@ -52546,7 +52546,7 @@ LAB_18007113f:
         if (((SystemInitializationFlag == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
            (SystemSilentMode == '\0')) break;
         if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
-          puStack_168 = &SystemStackDataTemplate1;
+          SystemBytePointer = &SystemStackDataTemplate1;
           SystemResourcePointer160 = SystemDataBufferPointer;
           pSystemConfigurationId = pSystemSecondaryStatus;
           SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd);
@@ -52585,7 +52585,7 @@ LAB_18007113f:
         }
         else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
           SystemResourcePointer160 = &SystemErrorMessageBuffer;
-          puStack_168 = &SystemStackDataTemplate1;
+          SystemBytePointer = &SystemStackDataTemplate1;
           pSystemConfigurationId = pSystemSecondaryStatus;
           SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd);
         }
@@ -53029,7 +53029,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   void* *SystemDataBufferPointerA8;
   void** SystemDataPointer;
   uint32_t SystemConfigurationValue;
-  long long lStack_88;
+  long long SystemConfigurationData;
   void* *pUnsignedStackFlag80;
   long long StackInteger78;
   uint32_t EncryptionValue68;
@@ -56951,7 +56951,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
   uint32_t StackUnsignedValue9C;
   float *pfStack_98;
   uint32_t SystemConfigurationValue;
-  long long lStack_88;
+  long long SystemConfigurationData;
   void* SystemUnsignedFlag78;
   void* SystemProcessFlags70;
   void* EncryptionValue68;
@@ -56988,9 +56988,9 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
     SystemConfigurationValue = 0;
     pfStack_98 = pfloatValue6;
     ProcessFloatValue(&pfStack_98);
-    if (*(int *)(lStack_88 + 0x10) != 0) {
+    if (*(int *)(SystemConfigurationData + 0x10) != 0) {
       do {
-        pfloatValue6 = (float *)((long long)(int)ThreadContextFlag * 0x10 + *(long long *)(lStack_88 + 0x18));
+        pfloatValue6 = (float *)((long long)(int)ThreadContextFlag * 0x10 + *(long long *)(SystemConfigurationData + 0x18));
         fStack_a8 = *pfloatValue6;
         if (*primaryFloatPointer < fStack_a8) {
           fStack_a8 = *primaryFloatPointer;
@@ -57020,7 +57020,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         *(ulong long *)(SystemResourceManager + 0xa1) = ConcatenatedValue44(fStack_b4,fStack_b8);
         *(ulong long *)(SystemResourceManager + 0xa3) = ConcatenatedValue44(uStack_ac,fStack_b0);
         ThreadContextFlag = ThreadContextFlag + 1;
-      } while (ThreadContextFlag < *(uint *)(lStack_88 + 0x10));
+      } while (ThreadContextFlag < *(uint *)(SystemConfigurationData + 0x10));
     }
     pfloatValue6 = *(float **)(SystemResourceManager + 0x6e);
     if ((pfloatValue6 != (float *)0x0) && (((uint)pfloatValue6[0x4e] & 0x3000) != 0)) {
@@ -57086,9 +57086,9 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       SystemResourceManager[0xa7] = (SystemResourceManager[0xa3] + SystemResourceManager[0x9f]) * 0.5;
       SystemResourceManager[0xa8] = 3.4028235e+38;
       ScalingFactor = 0.0;
-      OperationCode = (ulong long)*(uint *)(lStack_88 + 0x10);
-      if (0 < (int)*(uint *)(lStack_88 + 0x10)) {
-        pfloatValue6 = *(float **)(lStack_88 + 0x18);
+      OperationCode = (ulong long)*(uint *)(SystemConfigurationData + 0x10);
+      if (0 < (int)*(uint *)(SystemConfigurationData + 0x10)) {
+        pfloatValue6 = *(float **)(SystemConfigurationData + 0x18);
         OffsetValue = ScalingFactor;
         do {
           ScalingFactor = (*pfloatValue6 - SystemResourceManager[0xa5]) * (*pfloatValue6 - SystemResourceManager[0xa5]) +
@@ -63030,7 +63030,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
   uint32_t StackUnsignedValue9C;
   float *pfStack_98;
   uint32_t SystemConfigurationValue;
-  long long lStack_88;
+  long long SystemConfigurationData;
   void* UnsignedStackFlag80;
   void* SystemUnsignedFlag78;
   void* SystemProcessFlags70;
@@ -63096,9 +63096,9 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     SystemConfigurationValue = 0;
     pfStack_98 = pfloatValue7;
     InitializeSystemContext(&pfStack_98);
-    if (*(int *)(lStack_88 + 0x10) != 0) {
+    if (*(int *)(SystemConfigurationData + 0x10) != 0) {
       do {
-        pfloatValue7 = (float *)((long long)(int)OperationCode * 0x10 + *(long long *)(lStack_88 + 0x18));
+        pfloatValue7 = (float *)((long long)(int)OperationCode * 0x10 + *(long long *)(SystemConfigurationData + 0x18));
         fStack_a8 = *pfloatValue7;
         if (*primaryFloatPointer < fStack_a8) {
           fStack_a8 = *primaryFloatPointer;
@@ -63128,7 +63128,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         *(ulong long *)(SystemResourceManager + 0xa1) = ConcatenatedValue44(fStack_b4,fStack_b8);
         *(ulong long *)(SystemResourceManager + 0xa3) = ConcatenatedValue44(uStack_ac,fStack_b0);
         OperationCode = OperationCode + 1;
-      } while (OperationCode < *(uint *)(lStack_88 + 0x10));
+      } while (OperationCode < *(uint *)(SystemConfigurationData + 0x10));
     }
     pfloatValue7 = *(float **)(SystemResourceManager + 0x6e);
     if ((pfloatValue7 != (float *)0x0) && (((uint)pfloatValue7[0x4e] & 0x3000) != 0)) {
@@ -63191,9 +63191,9 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       SystemResourceManager[0xa7] = (SystemResourceManager[0xa3] + SystemResourceManager[0x9f]) * 0.5;
       SystemResourceManager[0xa8] = 3.4028235e+38;
       floatValue6 = 0.0;
-      ThreadContextFlag = (ulong long)*(uint *)(lStack_88 + 0x10);
-      if (0 < (int)*(uint *)(lStack_88 + 0x10)) {
-        pfloatValue7 = *(float **)(lStack_88 + 0x18);
+      ThreadContextFlag = (ulong long)*(uint *)(SystemConfigurationData + 0x10);
+      if (0 < (int)*(uint *)(SystemConfigurationData + 0x10)) {
+        pfloatValue7 = *(float **)(SystemConfigurationData + 0x18);
         OffsetValue = floatValue6;
         do {
           floatValue6 = (*pfloatValue7 - SystemResourceManager[0xa5]) * (*pfloatValue7 - SystemResourceManager[0xa5]) +
@@ -65645,11 +65645,11 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     currentThreadId = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x40,8,0x20);
     pplStack_a0 = aplStack_58;
     plStack_b0 = &lStack_98;
-    plStack_88 = (long long *)*AdditionalParameter;
+    pSystemConfigurationData = (long long *)*AdditionalParameter;
     lStack_98 = SystemResourceManager;
     bStack_90 = ConfigurationDataPointer;
-    if (plStack_88 != (long long *)0x0) {
-      (**(code **)(*plStack_88 + 0x28))();
+    if (pSystemConfigurationData != (long long *)0x0) {
+      (**(code **)(*pSystemConfigurationData + 0x28))();
     }
     plStack_80 = (long long *)*ConfigurationFlag;
     if (plStack_80 != (long long *)0x0) {
@@ -65658,8 +65658,8 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     plStack_b0 = &lStack_98;
     lStack_78 = lStack_98;
     bStack_70 = bStack_90;
-    pLocalSystemStatus = plStack_88;
-    plStack_88 = (long long *)0x0;
+    pLocalSystemStatus = pSystemConfigurationData;
+    pSystemConfigurationData = (long long *)0x0;
     psystemMemoryOffset = plStack_80;
     plStack_80 = (long long *)0x0;
     plStack_b8 = &lStack_78;
@@ -65676,8 +65676,8 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     if (plStack_80 != (long long *)0x0) {
       (**(code **)(*plStack_80 + 0x38))();
     }
-    if (plStack_88 != (long long *)0x0) {
-      (**(code **)(*plStack_88 + 0x38))();
+    if (pSystemConfigurationData != (long long *)0x0) {
+      (**(code **)(*pSystemConfigurationData + 0x38))();
     }
     pSystemThreadFlags = (long long *)CreateMemoryAllocationHandle(currentThreadId,aplStack_58);
     plStack_30 = pSystemThreadFlags;
