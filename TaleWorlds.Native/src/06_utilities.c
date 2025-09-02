@@ -7098,7 +7098,7 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
         }
         IterationCounter = (int)BufferIndex + 1;
         BufferIndex = (uint64_t)IterationCounter;
-        bufferEntryOffset = bufferEntryOffset + 0x18;
+        BufferEntryOffset = BufferEntryOffset + 0x18;
       } while ((int)IterationCounter < *(int *)(BufferArrayOffset + 0x28));
     }
     ValidationStatus = 0x4a;
@@ -52998,7 +52998,19 @@ void Unwind_1809064f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906500(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表指针和验证上下文数据
+ * 
+ * 该函数负责清理验证上下文中的资源表指针和相关的验证数据
+ * 遍历资源表中的所有条目，清理相应的数据并验证完整性
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源表和验证信息
+ * @return 无返回值
+ * @note 此函数会遍历资源表并清理所有相关数据
+ * @warning 如果发现任何无效的资源状态，函数会触发紧急退出
+ */
+void CleanupResourceTableAndValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;

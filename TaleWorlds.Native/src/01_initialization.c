@@ -18810,7 +18810,7 @@ LibraryHandleLoadedSuccessfully:
     }
   }
 SymbolInitializationCleanup:
-  uStack_a0 = 0;
+  UnsignedStackFlagA0 = 0;
   alternateBufferPtrB0 = (void* *)0x0;
   systemGlobalDataPtrB8 = &SystemMemoryAllocatorReference;
   int mutexUnlockResult = _Mtx_unlock(threadMutexPointer);
@@ -20089,9 +20089,9 @@ int InitializeSystemCoreComponents(long long ResourceManagerPointer,long long In
   UnsignedStackFlag110 = 0;
   UnsignedStackFlagC0 = 0;
   UnsignedStackFlagB8 = 0;
-  uStack_b0 = 0;
+  UnsignedStackFlagB0 = 0;
   uStack_a8 = 0;
-  uStack_a0 = 0;
+  UnsignedStackFlagA0 = 0;
   systemConfigurationValue = 0;
   SystemConfigurationValue = 0;
   uStack_88 = 0;
@@ -20773,7 +20773,7 @@ void InitializeSystemConfigurationData(void* ResourceManagerPointer,void* Config
   void* *puStack_c8;
   void* *pUnsignedStackFlagC0;
   uint UnsignedStackFlagB8;
-  void* uStack_b0;
+  void* UnsignedStackFlagB0;
   void* *puStack_a8;
   char *pcStack_a0;
   uint32_t uStack_98;
@@ -20789,7 +20789,7 @@ void InitializeSystemConfigurationData(void* ResourceManagerPointer,void* Config
     return;
   }
   puStack_c8 = &SystemGlobalDataReference;
-  uStack_b0 = 0;
+  UnsignedStackFlagB0 = 0;
   pUnsignedStackFlagC0 = (void* *)0x0;
   UnsignedStackFlagB8 = 0;
   systemStatus6 = *(uint *)(SystemStatusFlagsPointer + 0x180);
@@ -20803,7 +20803,7 @@ void InitializeSystemConfigurationData(void* ResourceManagerPointer,void* Config
   if (pUnsignedStackFlagC0 != (void* *)0x0) {
     pUnsignedStackFlagC0[systemOperationFlags] = 0;
   }
-  uStack_b0 = CONCAT44(*(uint32_t *)(nextDataIndex1 + 0x18c),(uint32_t)uStack_b0);
+  UnsignedStackFlagB0 = CONCAT44(*(uint32_t *)(nextDataIndex1 + 0x18c),(uint32_t)UnsignedStackFlagB0);
   UnsignedStackFlagB8 = systemStatus6;
   InitializeSystemDataBuffer(&puStack_c8,5);
   *(uint32_t *)(pUnsignedStackFlagC0 + UnsignedStackFlagB8) = 0x73676f6c;
@@ -25401,7 +25401,7 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
   uint32_t uStack_d0;
   void* *puStack_c8;
   long long lStack_c0;
-  uint32_t uStack_b0;
+  uint32_t UnsignedStackFlagB0;
   void* uStack_a8;
   void* *stackParameterB;
   uint8_t *pStackParameterC;
@@ -25553,7 +25553,7 @@ uint32_t GetSystemResourceStatus(void)
   void* *puStack_c8;
   long long lStack_c0;
   uint UnsignedStackFlagB8;
-  ulong long uStack_b0;
+  ulong long UnsignedStackFlagB0;
   void* *puStack_a8;
   long long lStack_a0;
   uint uStack_98;
@@ -25569,7 +25569,7 @@ uint32_t GetSystemResourceStatus(void)
             (ulong long)(*(uint *)(*(long long *)(SystemStatusFlagsPointer + 8) + 0x13c) & 1) * 0x48);
   if ((asystemStatus._12_4_ != 0) && (asystemStatus._8_4_ != 0)) {
     puStack_c8 = &SystemGlobalDataReference;
-    uStack_b0 = 0;
+    UnsignedStackFlagB0 = 0;
     lStack_c0 = 0;
     UnsignedStackFlagB8 = 0;
     ProcessSystemData(&puStack_c8,asystemStatus._0_4_);
@@ -25602,7 +25602,7 @@ uint32_t GetSystemResourceStatus(void)
         SystemCleanupFunction();
     }
     lStack_c0 = 0;
-    uStack_b0 = uStack_b0 & 0xffffffff00000000;
+    UnsignedStackFlagB0 = UnsignedStackFlagB0 & 0xffffffff00000000;
     puStack_c8 = &SystemMemoryAllocatorReference;
   }
   localSystemHandle = *(long long *)(localResourceOffset + 8);
@@ -29387,7 +29387,7 @@ void ProcessSystemConfigurationParameters(long long ResourceManagerPointer)
   void* *punsignedSystemValue9;
   uint8_t auStack_c8 [32];
   uint8_t uStack_a8;
-  uint8_t uStack_a0;
+  uint8_t UnsignedStackFlagA0;
   void* *stackParameterB;
   void* *pStackParameterC;
   uint uStack_88;
@@ -29485,7 +29485,7 @@ void ProcessSystemConfigurationParameters(long long ResourceManagerPointer)
     if (pStackParameterC != (void* *)0x0) {
       punsignedSystemValue9 = pStackParameterC;
     }
-    uStack_a0 = 0;
+    UnsignedStackFlagA0 = 0;
     uStack_a8 = 0;
     uStack_88 = allocationContext + 0x2b;
     (**(code **)(*(long long *)*SystemMemoryBlockStorage + 0x20))
@@ -42945,7 +42945,7 @@ ulong long ProcessAndManageSystemResources(void* ResourceManagerPointer)
   void* *systemGlobalDataPtrB8;
   long long lStack_b0;
   int iStack_a8;
-  ulong long uStack_a0;
+  ulong long UnsignedStackFlagA0;
   void* *stackParameterB;
   void* *pStackParameterC;
   void* uStack_88;
@@ -43015,7 +43015,7 @@ ulong long ProcessAndManageSystemResources(void* ResourceManagerPointer)
         SystemCleanupFunction();
     }
     lStack_b0 = 0;
-    uStack_a0 = uStack_a0 & 0xffffffff00000000;
+    UnsignedStackFlagA0 = UnsignedStackFlagA0 & 0xffffffff00000000;
     systemGlobalDataPtrB8 = &SystemMemoryAllocatorReference;
     memoryAllocationBuffer = &SystemGlobalDataReference;
     if (memoryAllocationEnd != (void* *)0x0) {
@@ -43103,7 +43103,7 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
   ulong long threadBufferSize;
   uint uStack_a8;
   uint32_t uStack_a4;
-  uint32_t uStack_a0;
+  uint32_t UnsignedStackFlagA0;
   uint32_t uStack_9c;
   ulong long systemConfigurationValue;
   ulong long StackParameterC;
@@ -43128,7 +43128,7 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
     resourceEntryPointer = *(void* **)(ConfigurationDataPointer + 8);
   }
   systemGlobalDataPtrB8 = (void* *)0x0;
-  uStack_b0 = 0xf;
+  UnsignedStackFlagB0 = 0xf;
   uStack_c8 = 0;
   allocationFlags = -1;
   nextDataIndex2 = -1;
@@ -43193,11 +43193,11 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
     uStack_70 = 0xf;
     uStack_88 = 0;
     if (0xf < threadBufferSize) {
-      unsignedSystemValue9 = uStack_b0 + 1;
+      unsignedSystemValue9 = UnsignedStackFlagB0 + 1;
       nextDataIndex2 = CONCAT71(uStack_c7,uStack_c8);
       allocationFlags = nextDataIndex2;
       if (0xfff < unsignedSystemValue9) {
-        unsignedSystemValue9 = uStack_b0 + 0x28;
+        unsignedSystemValue9 = UnsignedStackFlagB0 + 0x28;
         allocationFlags = *(long long *)(nextDataIndex2 + -8);
         if (0x1f < (nextDataIndex2 - allocationFlags) - 8U) {
             _invalid_parameter_noinfo_noreturn();
@@ -43206,7 +43206,7 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
       free(allocationFlags,unsignedSystemValue9);
     }
     systemGlobalDataPtrB8 = (void* *)0x0;
-    uStack_b0 = 0xf;
+    UnsignedStackFlagB0 = 0xf;
     uStack_c8 = 0;
       ValidateSystemChecksum(EncryptionValue48 ^ (ulong long)encryptionBuffer);
   }
@@ -43228,7 +43228,7 @@ void ConfigureAndManageSystemResourceData(long long *ResourceManagerPointer,long
   systemStatus = EncryptionValue68;
   uStack_a8 = EncryptionValue68;
   uStack_a4 = uStack_64;
-  uStack_a0 = uStack_60;
+  UnsignedStackFlagA0 = uStack_60;
   uStack_9c = uStack_5c;
   SystemConfigurationValue = uStack_50;
   uStack_e8 = 0;
@@ -43459,7 +43459,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
   void* *puStack_c8;
   void* *pUnsignedStackFlagC0;
   uint32_t UnsignedStackFlagB8;
-  void* auStack_b0 [40];
+  void* aUnsignedStackFlagB0 [40];
   uint32_t StackBuffer [14];
   ulong long uStack_50;
   ulong long uStack_38;
@@ -43505,9 +43505,9 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
   }
   ProcessSystemQueue(&pGlobalDataFlags2,pointerToUnsigned16);
   puStack_c8 = &SystemMemoryTemplateE;
-  pUnsignedStackFlagC0 = auStack_b0;
+  pUnsignedStackFlagC0 = aUnsignedStackFlagB0;
   UnsignedStackFlagB8 = 0;
-  auStack_b0[0] = 0;
+  aUnsignedStackFlagB0[0] = 0;
   uStack_310 = 4;
   InitializeGameSettings(&puStack_c8,&SystemDataBufferTemplateI,0x130a7);
   puStack_348 = &SystemStringTemplate;
@@ -44167,13 +44167,13 @@ void ProcessSystemResourceConfiguration(void* ResourceManagerPointer,void* Confi
   void* *dataBufferContext;
   void* *puStack_c8;
   uint32_t UnsignedStackFlagB8;
-  void* uStack_b0;
+  void* UnsignedStackFlagB0;
   void* **ppuStack_a8;
   uint32_t auStack_98 [14];
   ulong long uStack_60;
   ulong long EncryptionValue48;
   
-  uStack_b0 = 0xfffffffffffffffe;
+  UnsignedStackFlagB0 = 0xfffffffffffffffe;
   EncryptionValue48 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_1f8;
   cVar1 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
   systemIndex = 0;
@@ -45150,7 +45150,7 @@ void ProcessSystemResourceMemoryAllocation(long long *ResourceManagerPointer)
   long long lStack_c8;
   long long lStack_c0;
   void* UnsignedStackFlagB8;
-  void*2 uStack_b0;
+  void*2 UnsignedStackFlagB0;
   uint8_t uStack_ae;
   uint8_t StackBuffer [64];
   void* EncryptionValue48;
@@ -45178,10 +45178,10 @@ void ProcessSystemResourceMemoryAllocation(long long *ResourceManagerPointer)
   localResourceOffset = ResourceManagerPointer[1];
   UnsignedStackFlagB8 = *(void* *)(localResourceOffset + 0x140);
   lStack_c8 = (long long)systemId + *(long long *)(localResourceOffset + 0x1f0);
-  uStack_b0 = 1;
+  UnsignedStackFlagB0 = 1;
   lStack_c0 = lStack_c8;
   (**(code **)(localResourceOffset + 0x180))(&lStack_c8,*(long long *)(localResourceOffset + 0x1f8) + 8);
-  if (((char)uStack_b0 == '\0') && (lStack_c8 != 0)) {
+  if (((char)UnsignedStackFlagB0 == '\0') && (lStack_c8 != 0)) {
       SystemCleanupFunction();
   }
   LOCK();
@@ -47833,7 +47833,21 @@ void ResetResourceManagerPointerArray(long long ResourceManagerPointer)
 
 
 void*
-FUN_18006bda0(long long ResourceManagerPointer,long long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,
+/**
+ * @brief 系统资源分配和配置函数
+ * 
+ * 该函数负责系统资源的分配、配置和初始化
+ * 包括内存池管理、哈希表操作和资源索引分配
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数指针
+ * @param ConfigurationFlag 配置标志指针
+ * @param OutputResult 输出结果指针
+ * 
+ * 原始函数名为FUN_18006bda0，现已重命名为AllocateAndConfigureSystemResource
+ */
+void AllocateAndConfigureSystemResource(long long ResourceManagerPointer,long long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,
              long long *OutputResult)
 
 {
@@ -48006,7 +48020,7 @@ void ProcessSystemResourceNodeQueue(long long ResourceManagerPointer)
   long long lStack_c8;
   long long lStack_c0;
   uint8_t UnsignedStackFlagB8;
-  uint8_t auStack_b0 [16];
+  uint8_t aUnsignedStackFlagB0 [16];
   code *pcStack_a0;
   code *pcStack_98;
   uint8_t aStackParameterC [16];
@@ -48110,13 +48124,13 @@ void ProcessSystemResourceNodeQueue(long long ResourceManagerPointer)
       lStack_c8 = *(long long *)(nextDataIndex3 + 0x130);
       lStack_c0 = *(long long *)(nextDataIndex3 + 0x138);
       UnsignedStackFlagB8 = *(uint8_t *)(nextDataIndex3 + 0x140);
-      if (auStack_b0 != (uint8_t *)(nextDataIndex3 + 0x148)) {
+      if (aUnsignedStackFlagB0 != (uint8_t *)(nextDataIndex3 + 0x148)) {
         if (pcStack_a0 != (code *)0x0) {
-          (*pcStack_a0)(auStack_b0,0,0);
+          (*pcStack_a0)(aUnsignedStackFlagB0,0,0);
         }
         pcVar22 = *(code **)(nextDataIndex3 + 0x158);
         if (pcVar22 != (code *)0x0) {
-          (*pcVar22)(auStack_b0,(uint8_t *)(nextDataIndex3 + 0x148),1);
+          (*pcVar22)(aUnsignedStackFlagB0,(uint8_t *)(nextDataIndex3 + 0x148),1);
           pcVar22 = *(code **)(nextDataIndex3 + 0x158);
         }
         pcStack_98 = *(code **)(nextDataIndex3 + 0x160);
@@ -48386,9 +48400,9 @@ LAB_18006c9ac:
       if (pcStack_80 != (code *)0x0) {
         (*pcStack_80)(aStackParameterC,0,0);
       }
-      ppuStack_248 = (void* **)auStack_b0;
+      ppuStack_248 = (void* **)aUnsignedStackFlagB0;
       if (pcStack_a0 != (code *)0x0) {
-        (*pcStack_a0)(auStack_b0,0,0);
+        (*pcStack_a0)(aUnsignedStackFlagB0,0,0);
       }
     }
     else {
@@ -48401,9 +48415,9 @@ LAB_18006ca95:
       if (pcStack_80 != (code *)0x0) {
         (*pcStack_80)(aStackParameterC,0,0);
       }
-      ppuStack_248 = (void* **)auStack_b0;
+      ppuStack_248 = (void* **)aUnsignedStackFlagB0;
       if (pcStack_a0 != (code *)0x0) {
-        (*pcStack_a0)(auStack_b0,0,0);
+        (*pcStack_a0)(aUnsignedStackFlagB0,0,0);
       }
     }
     ppuStack_248 = &SystemGlobalDataReferencePtr2;
@@ -51168,7 +51182,7 @@ ulong long InitializeAndProcessSystemResources(void* ResourceManagerPointer,void
   ulong long uStack_c8;
   void* *pUnsignedStackFlagC0;
   void* *systemGlobalDataPtrB8;
-  uint32_t uStack_b0;
+  uint32_t UnsignedStackFlagB0;
   void* uStack_a8;
   void* *SystemDataPointer;
   void* *stackParameterB;
@@ -51206,10 +51220,10 @@ ulong long InitializeAndProcessSystemResources(void* ResourceManagerPointer,void
     pUnsignedStackFlagC0 = &SystemGlobalDataReference;
     uStack_a8 = 0;
     systemGlobalDataPtrB8 = (void* *)0x0;
-    uStack_b0 = 0;
+    UnsignedStackFlagB0 = 0;
     if (!bVar3) {
       allocationFlags = FUN_1800f9ce0(&DataBufferPtrE0,0);
-      uStack_b0 = *(uint32_t *)(allocationFlags + 0x10);
+      UnsignedStackFlagB0 = *(uint32_t *)(allocationFlags + 0x10);
       systemGlobalDataPtrB8 = *(void* **)(allocationFlags + 8);
       uStack_a8 = *(void* *)(allocationFlags + 0x18);
       *(uint32_t *)(allocationFlags + 0x10) = 0;
@@ -51404,7 +51418,7 @@ ulong long ConfigureAndManageSystemResources(void* ResourceManagerPointer,void* 
   byte bStack_d8;
   void* *alternateBufferPtrB0;
   void* *puStack_a8;
-  uint32_t uStack_a0;
+  uint32_t UnsignedStackFlagA0;
   ulong long uStack_98;
   void* *pStackParameterC;
   void* *puStack_88;
@@ -51461,7 +51475,7 @@ ulong long ConfigureAndManageSystemResources(void* ResourceManagerPointer,void* 
   alternateBufferPtrB0 = &SystemGlobalDataReference;
   systemConfigurationValue = 0;
   puStack_a8 = (void* *)0x0;
-  uStack_a0 = 0;
+  UnsignedStackFlagA0 = 0;
   ConfigureSystemDataBuffer(&alternateBufferPtrB0,&SystemAlternateBufferTemplate,ConfigurationDataPointer);
   FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationTemplate);
   pointerToUnsigned10 = &SystemStringTemplate;
@@ -52688,7 +52702,7 @@ void FUN_180072000(void* ResourceManagerPointer,long long ConfigurationDataPoint
   void* *puStack_c8;
   uint32_t UnsignedStackFlagC0;
   ulong long UnsignedStackFlagB8;
-  uint32_t uStack_b0;
+  uint32_t UnsignedStackFlagB0;
   void* *puStack_a8;
   void* *SystemDataPointer;
   uint32_t SystemConfigurationValue;
@@ -52706,7 +52720,7 @@ void FUN_180072000(void* ResourceManagerPointer,long long ConfigurationDataPoint
   pointerToUnsigned10 = (uint8_t *)0x0;
   uStack_114 = 0;
   uStack_116 = 0;
-  uStack_b0 = AdditionalParameter;
+  UnsignedStackFlagB0 = AdditionalParameter;
   lStack_88 = ConfigurationFlag;
   if ((SystemInitializationFlag != '\0') || (SystemVerboseFlag != '\0')) goto LAB_180072d7b;
   uStack_58 = 0;
@@ -52957,7 +52971,7 @@ LAB_1800726e7:
       }
       *(void*2 *)(puStack_130 + uStack_128) = 0x3a;
       uStack_128 = 0x17;
-      ProcessSystemData(&systemMemoryContext,uStack_b0);
+      ProcessSystemData(&systemMemoryContext,UnsignedStackFlagB0);
       hashValue = uStack_128;
       unsignedSystemValue4 = uStack_128 + 1;
       if (unsignedSystemValue4 != 0) {
@@ -53256,7 +53270,7 @@ bool FUN_180072f00(void* ResourceManagerPointer,void* *ConfigurationDataPointer)
   ulong long UnsignedStackFlagB8;
   void* *alternateBufferPtrB0;
   void* *puStack_a8;
-  uint32_t uStack_a0;
+  uint32_t UnsignedStackFlagA0;
   ulong long uStack_98;
   void* *pStackParameterC;
   uint8_t *puStack_88;
@@ -53391,7 +53405,7 @@ bool FUN_180072f00(void* ResourceManagerPointer,void* *ConfigurationDataPointer)
     alternateBufferPtrB0 = &SystemGlobalDataReference;
     systemConfigurationValue = 0;
     puStack_a8 = (void* *)0x0;
-    uStack_a0 = 0;
+    UnsignedStackFlagA0 = 0;
     if (*(int *)(SystemStatusFlagsPointer + 0x158) != 0) {
       systemResult = *(int *)(SystemStatusFlagsPointer + 0x158) + 1;
       if (systemResult < 0x10) {
@@ -53407,7 +53421,7 @@ bool FUN_180072f00(void* ResourceManagerPointer,void* *ConfigurationDataPointer)
       }
     }
     if (*(long long *)(bufferBaseAddress + 0x150) != 0) {
-      uStack_a0 = 0;
+      UnsignedStackFlagA0 = 0;
       if (pcurrentThreadId != (void* *)0x0) {
         *(uint8_t *)pcurrentThreadId = 0;
       }
@@ -55125,7 +55139,7 @@ void ManageSystemResourceTimestamp(long long ResourceManagerPointer, long long T
   void* *puStack_c8;
   uint8_t *pUnsignedStackFlagC0;
   uint32_t UnsignedStackFlagB8;
-  uint8_t auStack_b0 [136];
+  uint8_t aUnsignedStackFlagB0 [136];
   ulong long EncryptionKeyValue;
   
   uStack_d8 = 0xfffffffffffffffe;
@@ -55147,9 +55161,9 @@ void ManageSystemResourceTimestamp(long long ResourceManagerPointer, long long T
   *(uint32_t **)(ConfigurationDataPointer + 8) = (uint32_t *)(localSystemPointer + 1);
   if (systemResult == 0) {
     puStack_c8 = &SystemResourceTemplatePrimary;
-    pUnsignedStackFlagC0 = auStack_b0;
+    pUnsignedStackFlagC0 = aUnsignedStackFlagB0;
     UnsignedStackFlagB8 = 0;
-    auStack_b0[0] = 0;
+    aUnsignedStackFlagB0[0] = 0;
     allocationContext = **(uint **)(ConfigurationDataPointer + 8);
     pointerToUnsigned1 = *(uint **)(ConfigurationDataPointer + 8) + 1;
     *(uint **)(ConfigurationDataPointer + 8) = pointerToUnsigned1;
@@ -56559,8 +56573,8 @@ void FUN_180075ff0(long long *ResourceManagerPointer)
   void* uStack_c8;
   void* UnsignedStackFlagC0;
   uint8_t UnsignedStackFlagB8;
-  void* uStack_b0;
-  void* uStack_a0;
+  void* UnsignedStackFlagB0;
+  void* UnsignedStackFlagA0;
   void* StackParameterC;
   
   SystemConfigurationValue = 0xfffffffffffffffe;
@@ -56682,8 +56696,8 @@ void FUN_180075ff0(long long *ResourceManagerPointer)
           (**(code **)(*ResourceManagerPointer + 0x28))(ResourceManagerPointer);
           uStack_c8 = 0;
           UnsignedStackFlagC0 = 0;
-          uStack_a0 = 0;
-          uStack_b0 = 0;
+          UnsignedStackFlagA0 = 0;
+          UnsignedStackFlagB0 = 0;
           UnsignedStackFlagB8 = 0;
           FUN_18022f2e0(&uStack_c8,ResourceManagerPointer,0);
           (**(code **)(*ResourceManagerPointer + 0x38))(ResourceManagerPointer);
@@ -62437,7 +62451,7 @@ void FUN_1800796b0(long long ResourceManagerPointer)
   void* uStack_c8;
   void* UnsignedStackFlagC0;
   void* UnsignedStackFlagB8;
-  uint32_t uStack_b0;
+  uint32_t UnsignedStackFlagB0;
   
   UnsignedStackFlag110 = 0xfffffffffffffffe;
   pointerToInteger1 = (int *)(ResourceManagerPointer + 0x60);
@@ -63413,7 +63427,7 @@ LAB_18007a312:
     uStack_c8 = *HashNodePointer;
     UnsignedStackFlagC0 = HashNodePointer[1];
     UnsignedStackFlagB8 = *(void* *)(localResourceOffset1 + 0x50 + localSystemHandle1);
-    uStack_b0 = *(uint32_t *)(localResourceOffset1 + 0x58 + localSystemHandle1);
+    UnsignedStackFlagB0 = *(uint32_t *)(localResourceOffset1 + 0x58 + localSystemHandle1);
     FUN_180080c10(pointerToInteger1,&uStack_108);
     allocationContext8 = (long long)pointerToInteger26 - (long long)pointerToInteger16 >> 2;
     allocationContext0 = 0;
@@ -63577,9 +63591,9 @@ ulong long FUN_18007b240(long long ResourceManagerPointer,long long *Configurati
   long long *plStack_c8;
   long long *plStack_c0;
   long long *plStack_b8;
-  uint8_t auStack_b0 [8];
+  uint8_t aUnsignedStackFlagB0 [8];
   long long lStack_a8;
-  uint32_t uStack_a0;
+  uint32_t UnsignedStackFlagA0;
   long long *plStack_98;
   long long lStack_90;
   uint32_t uStack_88;
@@ -63779,16 +63793,16 @@ LAB_18007b8dc:
       if (*(char *)(ResourceManagerPointer + 0xf4) == '\x01') {
         plStack_b8 = (long long *)0x0;
         plStack_98 = (long long *)0x0;
-        auStack_b0[0] = 0;
-        uStack_a0 = 3;
+        aUnsignedStackFlagB0[0] = 0;
+        UnsignedStackFlagA0 = 3;
         lStack_a8 = ResourceManagerPointer;
-        FUN_18007f4c0(auStack_b0);
+        FUN_18007f4c0(aUnsignedStackFlagB0);
         PrimaryResourcePointer2 = plStack_98;
         plStack_98 = (long long *)0x0;
         if (PrimaryResourcePointer2 != (long long *)0x0) {
           (**(code **)(*PrimaryResourcePointer2 + 0x38))();
         }
-        FUN_18007f6a0(auStack_b0);
+        FUN_18007f6a0(aUnsignedStackFlagB0);
         if (plStack_98 != (long long *)0x0) {
           localSystemFlags = *plStack_98;
           PrimaryResourcePointer2 = plStack_98;
