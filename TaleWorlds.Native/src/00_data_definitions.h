@@ -3583,10 +3583,10 @@ Label_SecondCompatibilitySpaceFound:
                 }
                 StackDataBuffer = &SystemNullPointer;
                 if (StackStringData != 0) {
-                  SystemBufferValidate(lStack_1f0,BufferSize1);
+                  SystemBufferValidate(StackStringData,BufferSize1);
                 }
-                lStack_1f0 = 0;
-                uStack_1e0 = 0;
+                StackStringData = 0;
+                StackUnsignedValue2 = 0;
                 puStack_1f8 = &SystemBufferTemplate;
               }
               else {
