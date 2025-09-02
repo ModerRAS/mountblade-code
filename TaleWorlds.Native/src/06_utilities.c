@@ -7199,7 +7199,7 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
          (NewBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),ValidationStatus * 8,&ResourceAllocationTemplate,
                                 0xf4,0,0,1), NewBufferPointer == 0)) goto ErrorHandler;
       if (*(int *)(bufferContext + BufferContextSizeOffset) != 0) {
-              memcpy(NewBufferPointer,*(uint8_t *)(bufferContext + 0x20),(int64_t)*(int *)(bufferContext + BufferContextSizeOffset) << 3);
+              memcpy(NewBufferPointer,*(uint8_t *)(bufferContext + BufferContextDataOffset),(int64_t)*(int *)(bufferContext + BufferContextSizeOffset) << 3);
       }
     }
     if ((0 < *(int *)(bufferContext + BufferContextCapacityOffset)) && (*(int64_t *)(bufferContext + BufferContextDataOffset) != 0)) {
@@ -7251,13 +7251,13 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   if (PrimaryContextPointer == 0) {
     BufferOffset = NewBufferPointer;
   }
-  ValidationStatus = ValidateBufferContext(BufferOffset, systemBasePointer + 0x18);
+  ValidationStatus = ValidateBufferContext(BufferOffset, systemBasePointer + ValidationContextDataOffset);
   if (ValidationStatus != 0) {
     return;
   }
-  CapacityCheck = (int)*(uint *)(secondaryContextPointer + 0x2c) >> ErrorResourceValidationFailed;
-  BufferSize = (*(uint *)(secondaryContextPointer + 0x2c) ^ CapacityCheck) - CapacityCheck;
-  ValidationStatus = *(int *)(secondaryContextPointer + 0x28) + 1;
+  CapacityCheck = (int)*(uint *)(secondaryContextPointer + BufferContextCapacityOffset) >> ErrorResourceValidationFailed;
+  BufferSize = (*(uint *)(secondaryContextPointer + BufferContextCapacityOffset) ^ CapacityCheck) - CapacityCheck;
+  ValidationStatus = *(int *)(secondaryContextPointer + BufferContextSizeOffset) + 1;
   if (OperationResult < ResourceIndex) {
     OperationStatusCode = (int)((float)OperationResult * 1.5);
     if (ResourceIndex <= OperationResult) {
@@ -10189,13 +10189,13 @@ uint8_t ProcessDataValidationAndSystemOperation(int64_t ObjectContext,int64_t Va
 uint64_t GetSystemRuntimeStatus(void)
 
 {
-  float CalculatedFloatResult;
-  int64_t ResourceTable;
+  float CalculatedFloatValue;
+  int64_t ResourceTablePointer;
   uint8_t ResourceHashValidationResult;
   uint8_t *LoopProcessingPointer;
   int64_t ResourceContext;
   int64_t SavedRegisterValue;
-  float TertiaryFloatValue;
+  float UpperBoundFloatValue;
   uint32_t ResourceContextSecondary;
   float FloatComparisonResult;
   float thirdFloatResult;
