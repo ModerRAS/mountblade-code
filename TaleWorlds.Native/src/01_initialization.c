@@ -27186,30 +27186,30 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
 
 {
   ulong long systemStatus;
-  float FloatVariable2;
-  float FloatVariable3;
-  ulong long unsignedSystemValue4;
+  float calculationResult1;
+  float calculationResult2;
+  ulong long threadContextValue;
   ulong long currentThreadId;
   int systemFlag;
-  uint unsignedSystemValue7;
+  uint renderStatusValue1;
   long long localMemoryAddress;
-  uint unsignedSystemValue9;
-  void* in_RDX;
+  uint renderStatusValue2;
+  void* contextParameter;
   long long allocationFlags;
-  uint systemStatus1;
-  uint systemStatus2;
-  uint systemStatus3;
+  uint renderStatus3;
+  uint renderStatus4;
+  uint renderStatus5;
   bool isSystemConfigured;
   float scaleFactorX;
   float scaleFactorY;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
+  float interpolationFactor1;
+  float interpolationFactor2;
+  float interpolationFactor3;
+  float interpolationFactor4;
   uint32_t creationFlags1;
-  float fVar22;
-  float fStackX_8;
-  float fStackX_c;
+  float interpolationFactor5;
+  float scaleResult1;
+  float scaleResult2;
   
   localMemoryAddress = SystemNodeManagerPointer;
   if ((*(long long *)(SystemMemoryContext + 0x7ab8) == 0) || (*(int *)(SystemNodeManagerPointer + 0x540) < 1)) {
@@ -27219,7 +27219,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
     isSystemConfigured = false;
   }
   if (isSystemConfigured) {
-    scaleFactorX = (float)exp2f(SystemNodeManagerPointer,in_RDX,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+    scaleFactorX = (float)exp2f(SystemNodeManagerPointer,contextParameter,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     if (*(char *)(ResourceManagerPointer + 0x22d) == '\0') {
       localMemoryAddress = *(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
       if ((*(int *)(localMemoryAddress + 0x48) < SystemDataValue1) &&
@@ -27227,43 +27227,43 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
         SystemDataValue2 = ConfigurationDataPointer;
         InitializeSystemDataPointer(&SystemDataValue1);
       }
-      fVar16 = (float)exp2f();
-      fVar17 = (float)exp2f();
-      fVar18 = (float)exp2f();
-      fVar19 = (float)exp2f();
-      fVar20 = (float)exp2f();
-      SystemDataValue2 = (1.0 - fVar16) * SystemDataValue2 + fVar16 * ConfigurationDataPointer;
-      fVar2 = (float)*(int *)(SystemNodeManagerPointer + 0x21b0);
+      calculationResult1 = (float)exp2f();
+      interpolationFactor1 = (float)exp2f();
+      interpolationFactor2 = (float)exp2f();
+      interpolationFactor3 = (float)exp2f();
+      interpolationFactor4 = (float)exp2f();
+      SystemDataValue2 = (1.0 - calculationResult1) * SystemDataValue2 + calculationResult1 * ConfigurationDataPointer;
+      calculationResult2 = (float)*(int *)(SystemNodeManagerPointer + 0x21b0);
       if (*(float *)(SystemStatusFlagsPointer + 0x1f8) <= (float)*(int *)(SystemNodeManagerPointer + 0x21b0)) {
-        fVar2 = *(float *)(SystemStatusFlagsPointer + 0x1f8);
+        calculationResult2 = *(float *)(SystemStatusFlagsPointer + 0x1f8);
       }
-      fVar22 = *(float *)(SystemNodeManagerPointer + 0x1e30);
+      interpolationFactor5 = *(float *)(SystemNodeManagerPointer + 0x1e30);
       if (0 < *(int *)(SystemNodeManagerPointer + 0x1f80)) {
-        fVar22 = fVar22 / (float)*(int *)(SystemNodeManagerPointer + 0x1f80);
+        interpolationFactor5 = interpolationFactor5 / (float)*(int *)(SystemNodeManagerPointer + 0x1f80);
       }
-      fVar3 = (float)((int)fVar22 + -1);
-      if (fVar2 <= (float)((int)fVar22 + -1)) {
-        fVar3 = fVar2;
+      scaleFactorY = (float)((int)interpolationFactor5 + -1);
+      if (calculationResult2 <= (float)((int)interpolationFactor5 + -1)) {
+        scaleFactorY = calculationResult2;
       }
       if ((*(int *)(localMemoryAddress + 0x48) < SystemDataValue3) &&
          (CheckSystemDataAvailability(&SystemDataValue3), SystemDataValue3 == -1)) {
-        SystemDataValue4 = fVar3;
+        SystemDataValue4 = scaleFactorY;
         InitializeSystemDataPointer(&SystemDataValue3);
       }
-      SystemDataValue4 = (1.0 - fVar16) * SystemDataValue4 + fVar3 * fVar16;
-      fVar18 = ((float)(int)((SystemDataValue2 / SystemDataValue4) / fVar17) * fVar17 - 1.0) * fVar18 *
-               fVar19 + fVar18;
-      if (fVar18 <= fVar15) {
-        fVar18 = fVar15;
+      SystemDataValue4 = (1.0 - calculationResult1) * SystemDataValue4 + scaleFactorY * calculationResult1;
+      interpolationFactor2 = ((float)(int)((SystemDataValue2 / SystemDataValue4) / interpolationFactor1) * interpolationFactor1 - 1.0) * interpolationFactor2 *
+               interpolationFactor3 + interpolationFactor2;
+      if (interpolationFactor2 <= scaleResult1) {
+        interpolationFactor2 = scaleResult1;
       }
-      if (1.0 <= fVar18) {
-        fVar18 = 1.0;
+      if (1.0 <= interpolationFactor2) {
+        interpolationFactor2 = 1.0;
       }
-      fVar20 = (float)(int)((fVar18 + 0.05) / fVar20) * fVar20;
-      if ((fVar15 <= fVar20) && (fVar15 = fVar20, 1.0 <= fVar20)) {
-        fVar15 = 1.0;
+      interpolationFactor4 = (float)(int)((interpolationFactor2 + 0.05) / interpolationFactor4) * interpolationFactor4;
+      if ((scaleResult1 <= interpolationFactor4) && (scaleResult1 = interpolationFactor4, 1.0 <= interpolationFactor4)) {
+        scaleResult1 = 1.0;
       }
-      *(float *)(ResourceManagerPointer + 0x238) = fVar15;
+      *(float *)(ResourceManagerPointer + 0x238) = scaleResult1;
       creationFlags1 = log2f();
       *(uint32_t *)(ResourceManagerPointer + 0x248) = creationFlags1;
       *(float *)(ResourceManagerPointer + 0x250) = SystemDataValue2;
@@ -27272,7 +27272,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
       localMemoryAddress = SystemNodeManagerPointer;
     }
     else {
-      *(float *)(ResourceManagerPointer + 0x238) = fVar15;
+      *(float *)(ResourceManagerPointer + 0x238) = scaleResult1;
       localMemoryAddress = SystemNodeManagerPointer;
       allocationFlags = SystemRenderManagerPointer;
     }
@@ -27283,22 +27283,22 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   }
   if ((*(long long *)(SystemMemoryContext + 0x7ab8) == 0) || (*(int *)(localMemoryAddress + 0x540) < 1)) {
     if (*(int *)(localMemoryAddress + 0x2140) == 0) {
-      fVar15 = *(float *)(localMemoryAddress + 0x20d0);
+      scaleResult1 = *(float *)(localMemoryAddress + 0x20d0);
     }
     else {
-      fVar15 = 100.0;
+      scaleResult1 = 100.0;
     }
-    fVar15 = fVar15 * 0.01;
+    scaleResult1 = scaleResult1 * 0.01;
   }
   else {
-    fVar15 = 1.0;
+    scaleResult1 = 1.0;
   }
-  *(float *)(ResourceManagerPointer + 0x234) = fVar15;
-  systemStatus1 = (uint)*(float *)(allocationFlags + 0x17ec);
-  systemStatus3 = (uint)*(float *)(allocationFlags + 0x17f0);
-  systemStatus2 = systemStatus1;
-  unsignedSystemValue7 = systemStatus3;
-  if (1.0 <= fVar15) {
+  *(float *)(ResourceManagerPointer + 0x234) = scaleResult1;
+  renderStatus3 = (uint)*(float *)(allocationFlags + 0x17ec);
+  renderStatus5 = (uint)*(float *)(allocationFlags + 0x17f0);
+  renderStatus4 = renderStatus3;
+  renderStatusValue1 = renderStatus5;
+  if (1.0 <= scaleResult1) {
     fStackX_8 = 1.0;
     fStackX_c = 1.0;
   }
@@ -27318,9 +27318,9 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
       systemStatus = (long long)(int)(((int)systemStatus3 / (int)systemStatus2) * systemStatus1) / (long long)systemFlag;
       unsignedSystemValue7 = (uint)systemStatus;
       if (((systemStatus1 & 1) == 0) && ((systemStatus & 1) == 0)) goto SystemFlagHandlerCheck;
-      fVar15 = fVar15 + 0.01;
-      *(float *)(ResourceManagerPointer + 0x234) = fVar15;
-    } while (fVar15 <= 1.0);
+      scaleResult1 = scaleResult1 + 0.01;
+      *(float *)(ResourceManagerPointer + 0x234) = scaleResult1;
+    } while (scaleResult1 <= 1.0);
     *(uint32_t *)(ResourceManagerPointer + 0x234) = 0x3f800000;
 SystemFlagHandlerCheck:
     fStackX_8 = (float)(int)systemStatus1 / fStackX_8;
@@ -27328,8 +27328,8 @@ SystemFlagHandlerCheck:
     systemStatus3 = unsignedSystemValue7;
   }
   *(ulong long *)(ResourceManagerPointer + 0x254) = CONCAT44(fStackX_c,fStackX_8);
-  fVar15 = *(float *)(ResourceManagerPointer + 0x238);
-  if (1.0 <= fVar15) {
+  scaleResult1 = *(float *)(ResourceManagerPointer + 0x238);
+  if (1.0 <= scaleResult1) {
     fStackX_8 = 1.0;
     fStackX_c = 1.0;
   }
@@ -27353,9 +27353,9 @@ SystemFlagHandlerCheck:
       }
       systemStatus = (long long)(int)(((int)systemStatus3 / (int)systemStatus2) * unsignedSystemValue7) / (long long)systemFlag;
       if (((unsignedSystemValue7 & 1) == 0) && ((systemStatus & 1) == 0)) goto SystemFlagHandler;
-      fVar15 = fVar15 + 0.01;
-      *(float *)(ResourceManagerPointer + 0x238) = fVar15;
-    } while (fVar15 <= 1.0);
+      scaleResult1 = scaleResult1 + 0.01;
+      *(float *)(ResourceManagerPointer + 0x238) = scaleResult1;
+    } while (scaleResult1 <= 1.0);
     *(uint32_t *)(ResourceManagerPointer + 0x238) = 0x3f800000;
 SystemFlagHandler:
     fStackX_8 = (float)(int)unsignedSystemValue7 / (float)(int)systemStatus1;
@@ -29377,7 +29377,7 @@ void ProcessSystemConfigurationParameters(long long ResourceManagerPointer)
 
 {
   uint systemStatus;
-  double dVar2;
+  double timeElapsed;
   uint allocationContext;
   long long bufferBaseAddress;
   uint32_t *pcurrentThreadId;
@@ -29422,8 +29422,8 @@ void ProcessSystemConfigurationParameters(long long ResourceManagerPointer)
         QueryPerformanceCounter(alStack_70);
         bufferBaseAddress = alStack_70[0];
       }
-      dVar2 = (double)(bufferBaseAddress - SystemPerformanceCounterStorage) * SystemPerformanceFrequencyStorage;
-    } while ((SystemTimeoutFlag == '\0') || (dVar2 - *(double *)(ResourceManagerPointer + 0xc0) <= 900.0));
+      timeElapsed = (double)(bufferBaseAddress - SystemPerformanceCounterStorage) * SystemPerformanceFrequencyStorage;
+    } while ((SystemTimeoutFlag == '\0') || (timeElapsed - *(double *)(ResourceManagerPointer + 0xc0) <= 900.0));
     LOCK();
     *(uint32_t *)(ResourceManagerPointer + 200) = 1;
     UNLOCK();
@@ -56162,7 +56162,7 @@ void FUN_180075630(long long ResourceManagerPointer,void* *ConfigurationDataPoin
             do {
               localResourceOffset = *PrimaryResourcePointer0;
               if ((*(uint *)(localResourceOffset + 0x100) & 0x4000000) == 0) {
-                fVar15 = *(float *)(localResourceOffset + 0x294);
+                scaleResult1 = *(float *)(localResourceOffset + 0x294);
                 fVar16 = *(float *)(localResourceOffset + 0x298);
                 fVar17 = *(float *)(localResourceOffset + 0x29c);
                 FloatRatioValue = *(float *)(localResourceOffset + 0x2a4);
@@ -56171,7 +56171,7 @@ void FUN_180075630(long long ResourceManagerPointer,void* *ConfigurationDataPoin
                 FloatRatioValue = *(float *)(localResourceOffset + 0x298);
                 fVar17 = *(float *)(localResourceOffset + 0x294);
                 fVar13 = *(float *)(localResourceOffset + 0x29c);
-                fVar15 = *(float *)(localResourceOffset + 0x130) * FloatRatioValue + *(float *)(localResourceOffset + 0x120) * fVar17 +
+                scaleResult1 = *(float *)(localResourceOffset + 0x130) * FloatRatioValue + *(float *)(localResourceOffset + 0x120) * fVar17 +
                          *(float *)(localResourceOffset + 0x140) * fVar13 + *(float *)(localResourceOffset + 0x150);
                 fVar16 = *(float *)(localResourceOffset + 0x134) * FloatRatioValue + *(float *)(localResourceOffset + 0x124) * fVar17 +
                          *(float *)(localResourceOffset + 0x144) * fVar13 + *(float *)(localResourceOffset + 0x154);
@@ -56202,12 +56202,12 @@ void FUN_180075630(long long ResourceManagerPointer,void* *ConfigurationDataPoin
                 }
               }
               fVar17 = *(float *)((long long)resourcePoolPointer + 0x23c) - fVar17;
-              fVar15 = *(float *)((long long)resourcePoolPointer + 0x234) - fVar15;
+              scaleResult1 = *(float *)((long long)resourcePoolPointer + 0x234) - fVar15;
               fVar16 = (*(float *)(resourcePoolPointer + 0x47) - fVar16) * (*(float *)(resourcePoolPointer + 0x47) - fVar16) +
                        fVar15 * fVar15 + fVar17 * fVar17;
-              fVar15 = fVar14 - FloatRatioValue;
+              scaleResult1 = fVar14 - FloatRatioValue;
               if (fVar15 <= 0.0) {
-                fVar15 = 0.0;
+                scaleResult1 = 0.0;
               }
               if (fVar15 * fVar15 < fVar16) {
                 fVar14 = SQRT(fVar16) + FloatRatioValue;
@@ -58102,7 +58102,7 @@ LAB_180077879:
       FloatRatioValue = AdditionalParameter[3];
       fVar13 = AdditionalParameter[4];
       fVar14 = AdditionalParameter[5];
-      fVar15 = AdditionalParameter[6];
+      scaleResult1 = AdditionalParameter[6];
       fVar16 = AdditionalParameter[7];
       fVar17 = AdditionalParameter[8];
       fVar18 = AdditionalParameter[9];
@@ -58426,7 +58426,7 @@ void SystemNoOperationA(void)
     FloatRatioValue = in_stack_00000180[3];
     fVar13 = in_stack_00000180[4];
     fVar14 = in_stack_00000180[5];
-    fVar15 = in_stack_00000180[6];
+    scaleResult1 = in_stack_00000180[6];
     fVar16 = in_stack_00000180[7];
     fVar17 = in_stack_00000180[8];
     fVar18 = in_stack_00000180[9];
@@ -58690,7 +58690,7 @@ void FUN_180077ad8(void)
     FloatRatioValue = in_stack_00000180[3];
     fVar13 = in_stack_00000180[4];
     fVar14 = in_stack_00000180[5];
-    fVar15 = in_stack_00000180[6];
+    scaleResult1 = in_stack_00000180[6];
     fVar16 = in_stack_00000180[7];
     fVar17 = in_stack_00000180[8];
     fVar18 = in_stack_00000180[9];
@@ -58850,7 +58850,7 @@ void FUN_180077c96(void)
     FloatRatioValue = systemStringIteratorPtr[5];
     fVar13 = systemStringIteratorPtr[6];
     fVar14 = systemStringIteratorPtr[7];
-    fVar15 = systemStringIteratorPtr[8];
+    scaleResult1 = systemStringIteratorPtr[8];
     fVar16 = systemStringIteratorPtr[9];
     fVar17 = systemStringIteratorPtr[10];
     fVar18 = systemStringIteratorPtr[0xb];
@@ -59016,7 +59016,7 @@ void FUN_180077dc6(void)
     FloatRatioValue = in_stack_00000180[5];
     fVar13 = in_stack_00000180[6];
     fVar14 = in_stack_00000180[7];
-    fVar15 = in_stack_00000180[8];
+    scaleResult1 = in_stack_00000180[8];
     fVar16 = in_stack_00000180[9];
     fVar17 = in_stack_00000180[10];
     fVar18 = in_stack_00000180[0xb];
@@ -59273,7 +59273,7 @@ LAB_180077fcf:
         fVar5 = *(float *)(ResourceManagerPointer + 0x154);
         fVar13 = *ConfigurationFlag;
         fVar14 = ConfigurationFlag[1];
-        fVar15 = ConfigurationFlag[2];
+        scaleResult1 = ConfigurationFlag[2];
         fVar16 = ConfigurationFlag[8];
         fVar17 = ConfigurationFlag[9];
         fVar18 = ConfigurationFlag[10];
@@ -60212,7 +60212,7 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
     fVar16 = pfVar5[0xd];
     FloatScaleFactor = pfVar5[9];
     fVar17 = pfVar5[1];
-    fVar15 = pfVar5[0xe];
+    scaleResult1 = pfVar5[0xe];
     fVar23 = pfVar5[2];
     fVar25 = pfVar5[10];
     fVar28 = pfVar5[5];
@@ -60226,7 +60226,7 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
     fVar30 = fVar23 * pfVar5[9] - fVar25 * pfVar5[1];
     *(float *)((long long)ResourceManagerPointer + 0xc4) = fVar30;
     fVar16 = pfVar5[5];
-    fVar15 = pfVar5[1];
+    scaleResult1 = pfVar5[1];
     *(uint32_t *)((long long)ResourceManagerPointer + 0xcc) = 0;
     fVar31 = fVar18 * fVar15 - fVar23 * fVar16;
     *(float *)(ResourceManagerPointer + 0x19) = fVar31;
@@ -60235,11 +60235,11 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
     fVar27 = fVar25 * *pfVar5 - fVar23 * pfVar5[8];
     *(float *)((long long)ResourceManagerPointer + 0xd4) = fVar27;
     fVar16 = pfVar5[4];
-    fVar15 = *pfVar5;
+    scaleResult1 = *pfVar5;
     *(uint32_t *)((long long)ResourceManagerPointer + 0xdc) = 0;
     fVar26 = fVar23 * fVar16 - fVar18 * fVar15;
     *(float *)(ResourceManagerPointer + 0x1b) = fVar26;
-    fVar15 = FloatScaleFactor * pfVar5[4] - fVar28 * pfVar5[8];
+    scaleResult1 = FloatScaleFactor * pfVar5[4] - fVar28 * pfVar5[8];
     *(float *)(ResourceManagerPointer + 0x1c) = fVar15;
     FloatScaleFactor = fVar17 * pfVar5[8] - FloatScaleFactor * *pfVar5;
     *(float *)((long long)ResourceManagerPointer + 0xe4) = FloatScaleFactor;
@@ -60354,7 +60354,7 @@ void FUN_180078c10(long long ResourceManagerPointer)
   fVar5 = pfVar1[4];
   fVar4 = *pfVar1;
   *(uint32_t *)(ResourceManagerPointer + 0xdc) = 0;
-  fVar15 = FloatRatioValue * fVar5 - fVar7 * fVar4;
+  scaleResult1 = FloatRatioValue * fVar5 - fVar7 * fVar4;
   *(float *)(ResourceManagerPointer + 0xd8) = fVar15;
   fVar4 = fVar2 * pfVar1[4] - fVar17 * pfVar1[8];
   *(float *)(ResourceManagerPointer + 0xe0) = fVar4;
@@ -61315,13 +61315,13 @@ void FUN_1800792ea(void)
   void* in_stack_00000058;
   
   allocationContext5 = (int)*(char *)(systemDataIndexPtr + 0xd) + *(int *)(systemDataIndexPtr + 0x18);
-  pfVar15 = (float *)**(long long **)(systemMemoryBlockPtr + 600);
+  pscaleResult1 = (float *)**(long long **)(systemMemoryBlockPtr + 600);
   bufferBaseAddress3 = (long long)*(int *)(SystemMemoryContext + 0xe78) * 0x128 + SystemMemoryContext + 0xc28;
   allocationContext3 = allocationContext5 >> 0xd;
   nextDataIndex6 = *(long long *)(bufferBaseAddress3 + 8 + (ulong long)allocationContext3 * 8);
   localResourceOffset1 = (ulong long)(allocationContext5 + allocationContext3 * -0x2000) * 0x40;
   creationFlags9 = ((void* *)(nextDataIndex6 + localResourceOffset1))[1];
-  *(void* *)pfVar15 = *(void* *)(nextDataIndex6 + localResourceOffset1);
+  *(void* *)pscaleResult1 = *(void* *)(nextDataIndex6 + localResourceOffset1);
   *(void* *)(pfVar15 + 2) = creationFlags9;
   punsignedSystemValue4 = (void* *)(nextDataIndex6 + 0x10 + localResourceOffset1);
   creationFlags9 = punsignedSystemValue4[1];
@@ -61357,7 +61357,7 @@ void FUN_1800792ea(void)
   fVar11 = *(float *)(nextDataIndex6 + 0x388);
   FloatRatioValue = *(float *)(nextDataIndex6 + 0x390);
   fVar13 = *(float *)(nextDataIndex6 + 0x398);
-  *pfVar15 = fVar5 * fVar25 + fVar6 * fVar21 + fVar7 * fVar17;
+  *pscaleResult1 = fVar5 * fVar25 + fVar6 * fVar21 + fVar7 * fVar17;
   pfVar15[1] = fVar5 * fVar26 + fVar6 * fVar22 + fVar7 * fVar18;
   pfVar15[2] = fVar5 * fVar27 + fVar6 * fVar23 + fVar7 * fVar19;
   pfVar15[3] = fVar5 * fVar28 + fVar6 * fVar24 + fVar7 * fVar20;
@@ -64911,7 +64911,7 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
   case 2:
     if (3 < localSystemHandle7) {
       localSystemHandle5 = (long long)systemCode;
-      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x48);
+      pscaleResult1 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x48);
       pfVar13 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x100);
       localSystemHandle2 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle1 = localSystemHandle2 * 4;
@@ -64928,19 +64928,19 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
         *pfVar20 = pfVar13[0x16];
         pfVar20[1] = 1.0 - pfVar13[0x17];
         pfVar20 = (float *)((long long)pfVar20 + localSystemHandle5);
-        pfVar15 = pfVar15 + 0x5c;
+        pscaleResult1 = pfVar15 + 0x5c;
         pfVar13 = pfVar13 + 0x5c;
         localSystemHandle2 = localSystemHandle2 + -1;
       } while (localSystemHandle2 != 0);
     }
     if (localSystemHandle1 < localSystemHandle7) {
-      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x48 + localSystemHandle1 * 0x5c);
+      pscaleResult1 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x48 + localSystemHandle1 * 0x5c);
       localSystemHandle7 = localSystemHandle7 - localSystemHandle1;
       do {
         *pfVar20 = pfVar15[-1];
         pfVar20[1] = 1.0 - *pfVar15;
         pfVar20 = (float *)((long long)pfVar20 + (long long)systemCode);
-        pfVar15 = pfVar15 + 0x17;
+        pscaleResult1 = pfVar15 + 0x17;
         localSystemHandle7 = localSystemHandle7 + -1;
       } while (localSystemHandle7 != 0);
     }
@@ -64948,7 +64948,7 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
   case 3:
     if (3 < localSystemHandle7) {
       localSystemHandle5 = (long long)systemCode;
-      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x50);
+      pscaleResult1 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x50);
       pfVar13 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x108);
       localSystemHandle2 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle1 = localSystemHandle2 * 4;
@@ -64965,19 +64965,19 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
         *pfVar20 = pfVar13[0x16];
         pfVar20[1] = 1.0 - pfVar13[0x17];
         pfVar20 = (float *)((long long)pfVar20 + localSystemHandle5);
-        pfVar15 = pfVar15 + 0x5c;
+        pscaleResult1 = pfVar15 + 0x5c;
         pfVar13 = pfVar13 + 0x5c;
         localSystemHandle2 = localSystemHandle2 + -1;
       } while (localSystemHandle2 != 0);
     }
     if (localSystemHandle1 < localSystemHandle7) {
-      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x50 + localSystemHandle1 * 0x5c);
+      pscaleResult1 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x50 + localSystemHandle1 * 0x5c);
       localSystemHandle7 = localSystemHandle7 - localSystemHandle1;
       do {
         *pfVar20 = pfVar15[-1];
         pfVar20[1] = 1.0 - *pfVar15;
         pfVar20 = (float *)((long long)pfVar20 + (long long)systemCode);
-        pfVar15 = pfVar15 + 0x17;
+        pscaleResult1 = pfVar15 + 0x17;
         localSystemHandle7 = localSystemHandle7 + -1;
       } while (localSystemHandle7 != 0);
     }
@@ -65039,7 +65039,7 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
   case 6:
     if (3 < localSystemHandle7) {
       localSystemHandle5 = (long long)systemCode;
-      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x38);
+      pscaleResult1 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x38);
       pointerToUnsigned16 = (uint32_t *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0xf0);
       localSystemHandle2 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle1 = localSystemHandle2 * 4;
@@ -65060,21 +65060,21 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
         pointerToUnsigned17[1] = pointerToUnsigned16[0x17];
         pointerToUnsigned17[2] = pointerToUnsigned16[0x18];
         pfVar20 = (float *)((long long)pointerToUnsigned17 + localSystemHandle5);
-        pfVar15 = pfVar15 + 0x5c;
+        pscaleResult1 = pfVar15 + 0x5c;
         pointerToUnsigned16 = pointerToUnsigned16 + 0x5c;
         localSystemHandle2 = localSystemHandle2 + -1;
       } while (localSystemHandle2 != 0);
     }
     if (localSystemHandle1 < localSystemHandle7) {
       pfVar20 = pfVar20 + 2;
-      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x38 + localSystemHandle1 * 0x5c);
+      pscaleResult1 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x38 + localSystemHandle1 * 0x5c);
       localSystemHandle7 = localSystemHandle7 - localSystemHandle1;
       do {
         pfVar20[-2] = pfVar15[-1];
         pfVar20[-1] = *pfVar15;
         *pfVar20 = pfVar15[1];
         pfVar20 = (float *)((long long)pfVar20 + (long long)systemCode);
-        pfVar15 = pfVar15 + 0x17;
+        pscaleResult1 = pfVar15 + 0x17;
         localSystemHandle7 = localSystemHandle7 + -1;
       } while (localSystemHandle7 != 0);
     }
@@ -65082,7 +65082,7 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
   case 7:
     if (3 < localSystemHandle7) {
       localSystemHandle2 = (long long)systemCode;
-      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x14);
+      pscaleResult1 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x14);
       pfVar13 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0xc0);
       localSystemHandle5 = (localSystemHandle7 - 4U >> 2) + 1;
       localSystemHandle1 = localSystemHandle5 * 4;
@@ -65141,14 +65141,14 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
         }
         pfVar20[3] = fVar28;
         pfVar20 = (float *)((long long)pfVar20 + localSystemHandle2);
-        pfVar15 = pfVar15 + 0x5c;
+        pscaleResult1 = pfVar15 + 0x5c;
         pfVar13 = pfVar13 + 0x5c;
         localSystemHandle5 = localSystemHandle5 + -1;
       } while (localSystemHandle5 != 0);
     }
     if (localSystemHandle1 < localSystemHandle7) {
       pfVar20 = pfVar20 + 2;
-      pfVar15 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 8 + localSystemHandle1 * 0x5c);
+      pscaleResult1 = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 8 + localSystemHandle1 * 0x5c);
       localSystemHandle7 = localSystemHandle7 - localSystemHandle1;
       do {
         pfVar20[-2] = pfVar15[3];
@@ -65164,7 +65164,7 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
         }
         pfVar20[1] = fVar28;
         pfVar20 = (float *)((long long)pfVar20 + (long long)systemCode);
-        pfVar15 = pfVar15 + 0x17;
+        pscaleResult1 = pfVar15 + 0x17;
         localSystemHandle7 = localSystemHandle7 + -1;
       } while (localSystemHandle7 != 0);
     }
@@ -65453,17 +65453,17 @@ code_r0x00018007db1b:
       fVar28 = fRam0000000180d49154;
       do {
         localSystemHandle4 = *(long long *)(ConfigurationDataPointer + 0x68);
-        pfVar15 = (float *)(localSystemHandle1 + 0x34 + localSystemHandle4);
+        pscaleResult1 = (float *)(localSystemHandle1 + 0x34 + localSystemHandle4);
         fStack_108 = *pfVar15;
         fStack_104 = pfVar15[1];
         fStack_100 = pfVar15[2];
         fStack_fc = pfVar15[3];
-        pfVar15 = (float *)(localSystemHandle1 + 0x14 + localSystemHandle4);
+        pscaleResult1 = (float *)(localSystemHandle1 + 0x14 + localSystemHandle4);
         fStack_f8 = *pfVar15;
         fStack_f4 = pfVar15[1];
         fStack_f0 = pfVar15[2];
         fStack_ec = pfVar15[3];
-        pfVar15 = (float *)(localSystemHandle1 + 0x24 + localSystemHandle4);
+        pscaleResult1 = (float *)(localSystemHandle1 + 0x24 + localSystemHandle4);
         fStack_e8 = *pfVar15;
         fStack_e4 = pfVar15[1];
         fStack_e0 = pfVar15[2];
