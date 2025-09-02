@@ -13500,8 +13500,8 @@ int RegisterSystemModuleD(void);
  * - SystemConfigurationValidationBuffer39 -> SystemConfigurationValidationBuffer39
  * - SystemConfigurationValidationBuffer40 -> SystemConfigurationValidationBuffer40
  * - SystemConfigurationValidationBuffer41 -> SystemConfigurationValidationBuffer41
- * - UNK_180a39f78 -> SystemConfigurationValidationBuffer42
- * - UNK_180a3ab18 -> SystemConfigurationValidationBuffer43
+ * - SystemConfigurationValidationBuffer42 -> SystemConfigurationValidationBuffer42
+ * - SystemConfigurationValidationBuffer43 -> SystemConfigurationValidationBuffer43
  * - UNK_180a39fb0 -> SystemConfigurationValidationBuffer44
  * - UNK_180a3ab50 -> SystemConfigurationValidationBuffer45
  * - UNK_180a3ab38 -> SystemConfigurationValidationBuffer46
