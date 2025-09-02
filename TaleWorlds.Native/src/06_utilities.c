@@ -90143,7 +90143,17 @@ void DestroyMutexResourceInPlace(void)
 
 
 
-void Unwind_1809103e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源表004到验证上下文
+ * 
+ * 该函数负责将系统资源表004的地址设置到验证上下文的指定位置
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含操作所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会修改验证上下文中的资源表指针
+ */
+void SetSystemResourceTable004(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x40) = &SystemResourceTable004;
@@ -90152,7 +90162,17 @@ void Unwind_1809103e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809103f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源表001到验证上下文（备用路径）
+ * 
+ * 该函数负责将系统资源表001的地址设置到验证上下文的备用位置
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含操作所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会修改验证上下文中的资源表指针（备用路径）
+ */
+void SetSystemResourceTable001Alternate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x90) = &SystemResourceTable001;
