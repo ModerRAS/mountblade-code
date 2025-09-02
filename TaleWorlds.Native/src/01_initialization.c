@@ -51706,7 +51706,7 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   uint32_t UnsignedStackFlag80;
   ulong long SystemUnsignedFlag78;
   void* *SystemProcessFlagsPointer;
-  long long lStack_68;
+  long long LocalSystemStatus;
   uint32_t SystemProcessFlags58;
   void* *memoryAllocationEnd;
   long long SystemStatusFlag48;
@@ -51875,10 +51875,10 @@ LAB_180070230:
       }
       ProcessSystemConfiguration(SystemOperationStatusFlags,&SystemProcessFlagsPointer,SystemOperationStatus3,0,SystemDataPointer0);
       SystemProcessFlagsPointer = &SystemGlobalDataReference;
-      if (lStack_68 != 0) {
+      if (LocalSystemStatus != 0) {
           SystemCleanupFunction();
       }
-      lStack_68 = 0;
+      LocalSystemStatus = 0;
       SystemProcessFlags58 = 0;
       SystemProcessFlagsPointer = &SystemMemoryAllocatorReference;
     }
@@ -52097,7 +52097,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   void* *SystemResourcePointer160;
   uint8_t *pSystemConfigurationId;
   uint8_t SystemThreadId148;
-  char cStack_147;
+  char SystemStatusCharacter;
   void* *pSystemThreadContext140;
   uint8_t *SystemMemoryContext;
   uint StackValue2;
@@ -52117,7 +52117,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   uint32_t UnsignedStackFlagC0;
   uint32_t secondarySystemDataBuffer;
   uint32_t StackUnsignedValue94;
-  long long lStack_90;
+  long long SystemConfigurationFlags;
   long long lStack_88;
   void* ThreadContextFlag;
   void* SystemProcessFlags58;
@@ -52238,7 +52238,7 @@ LAB_180070b00:
     }
     goto LAB_1800718e9;
   }
-  lStack_90 = SystemAllocationFlagsTemplate;
+  SystemConfigurationFlags = SystemAllocationFlagsTemplate;
   pSystemThreadContext140 = &SystemGlobalDataReference;
   SystemMemoryOffset = 0;
   SystemMemoryContext = (uint8_t *)0x0;
@@ -52448,10 +52448,10 @@ LAB_18007113f:
     isByteValid3 = 0;
   }
   if (SystemGlobalStatusFlags == 0) {
-    cStack_147 = '\0';
+    SystemStatusCharacter = '\0';
   }
   else {
-    cStack_147 = *(char *)(SystemGlobalStatusFlags + 0x24);
+    SystemStatusCharacter = *(char *)(SystemGlobalStatusFlags + 0x24);
   }
   isSystemActive = true;
   if (resourceCounter != 0) {
@@ -52512,7 +52512,7 @@ LAB_18007113f:
   ProcessResourceDataIndex(resourceDataIndex5);
   if (SystemInitializationFlag != '\0') {
     if (isByteValid3 != 0) {
-      if (((cStack_147 == '\0') && (SystemStatus != '\0')) && (*(int *)(SystemGlobalStatusFlags + 0x340) != 2)) {
+      if (((SystemStatusCharacter == '\0') && (SystemStatus != '\0')) && (*(int *)(SystemGlobalStatusFlags + 0x340) != 2)) {
         SystemThreadId148 = 1;
       }
       else if (SystemDebugFlag == '\0') {
@@ -52604,7 +52604,7 @@ LAB_18007113f:
     else {
       charFlag = *(char *)(SystemGlobalStatusFlags + 0x29);
     }
-    if (cStack_147 != '\0') {
+    if (SystemStatusCharacter != '\0') {
       EmergencySystemExitHandler(charFlag,5);
       systemFunctionPointer = (code *)swi(3);
       (*systemFunctionPointer)();
@@ -52621,7 +52621,7 @@ LAB_18007113f:
         ProcessRenderManagerData(SystemRenderManagerPointer,*(uint8_t *)(SystemRenderManagerPointer + 0x160a));
       }
     }
-    if (lStack_90 != 0) {
+    if (SystemConfigurationFlags != 0) {
       ResumeSystemThreads();
     }
     do {
@@ -64538,7 +64538,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   long long lStack_a8;
   uint32_t UnsignedStackFlagA0;
   long long *plStack_98;
-  long long lStack_90;
+  long long SystemConfigurationFlags;
   uint32_t UnsignedStackFlag88;
   long long *aplStack_78 [2];
   code *SystemFunctionPointer68;
@@ -64625,8 +64625,8 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
     SystemResourceManagerLink(PrimaryResourcePointer4 + 1);
   }
   UnsignedStackFlag88 = 1;
-  lStack_90 = SystemResourceManager;
-  InitializeSystemContext(&lStack_90);
+  SystemConfigurationFlags = SystemResourceManager;
+  InitializeSystemContext(&SystemConfigurationFlags);
   SystemThreadFlags = *(long long *)(SystemResourceManager + 0x210);
   if (SystemThreadFlags == 0) {
 LAB_18007b44a:
@@ -64635,7 +64635,7 @@ LAB_18007b454:
       LOCK();
       *(uint8_t *)((long long)PrimaryResourcePointer4 + 0x15) = 4;
       UNLOCK();
-      OperationCode = ProcessSystemStatus(&lStack_90);
+      OperationCode = ProcessSystemStatus(&SystemConfigurationFlags);
       return OperationCode & MAX_UNSIGNED_32_BITffffff00;
     }
   }
@@ -64732,7 +64732,7 @@ SystemResourceCleanupPoint:
       plStack_c8 = PrimaryResourcePointer0;
       (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
       ConfigureResourceAllocation(SystemResourceManager,AdditionalParameter,&plStack_c8,&plStack_d0);
-      ProcessSystemStatus(&lStack_90);
+      ProcessSystemStatus(&SystemConfigurationFlags);
       if (*(char *)(SystemResourceManager + 0xf4) == '\x01') {
         plStack_b8 = (long long *)0x0;
         plStack_98 = (long long *)0x0;
@@ -64763,7 +64763,7 @@ SystemResourceCleanupPoint:
   }
   (**(code **)(*PrimaryResourcePointer1 + 0x38))(PrimaryResourcePointer1);
   (**(code **)(*PrimaryResourcePointer0 + 0x38))(PrimaryResourcePointer0);
-  ProcessSystemStatus(&lStack_90);
+  ProcessSystemStatus(&SystemConfigurationFlags);
 LAB_18007b8fd:
   return (ulong long)((byte)(*(char*)((long long)PrimaryResourcePointer4 + 0x15) - 2U) < 2);
 }
@@ -65658,7 +65658,7 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     plStack_b0 = &lStack_98;
     lStack_78 = lStack_98;
     bStack_70 = bStack_90;
-    plStack_68 = plStack_88;
+    pLocalSystemStatus = plStack_88;
     plStack_88 = (long long *)0x0;
     psystemMemoryOffset = plStack_80;
     plStack_80 = (long long *)0x0;
@@ -65668,10 +65668,10 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     plStack_a8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
     *plStack_a8 = lStack_78;
     *(byte *)(plStack_a8 + 1) = bStack_70;
-    plStack_a8[2] = (long long)plStack_68;
+    plStack_a8[2] = (long long)pLocalSystemStatus;
     plStack_a8[3] = (long long)psystemMemoryOffset;
     psystemMemoryOffset = (long long *)0x0;
-    plStack_68 = (long long *)0x0;
+    pLocalSystemStatus = (long long *)0x0;
     aplStack_58[0] = plStack_a8;
     if (plStack_80 != (long long *)0x0) {
       (**(code **)(*plStack_80 + 0x38))();
