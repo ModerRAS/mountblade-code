@@ -9555,7 +9555,7 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int
 void ValidateAndProcessBufferContext(int64_t ObjectContext,int64_t ValidationContext)
 
 {
-  int PackageValidationStatusCode;
+  int PackageValidationStatus;
   uint8_t BufferContext;
   
   ResourceIndex = ProcessSchedulerValidation(ValidationContext,ObjectContext + ObjectContextValidationDataOffset,&ValidationContext);
@@ -9584,12 +9584,12 @@ void ValidateAndProcessBufferContext(int64_t ObjectContext,int64_t ValidationCon
 void ProcessBufferContextValidationAndCleanup(int64_t ObjectContext,int64_t ValidationContext)
 
 {
-  int ProcessingStatusCode;
-  int64_t StackContextPointer;
+  int ProcessingStatus;
+  int64_t StackContextData;
   
-  ResourceIndex = ProcessSchedulerOperation(ValidationContext,ObjectContext + ObjectContextValidationDataOffset,&StackContextPointer);
+  ResourceIndex = ProcessSchedulerOperation(ValidationContext,ObjectContext + ObjectContextValidationDataOffset,&StackContextData);
   if (ResourceIndex == 0) {
-    ResourceIndex = ValidateBufferContext(*(uint8_t *)(StackContextPointer + 0xd0),ObjectContext + ObjectContextProcessingDataOffset);
+    ResourceIndex = ValidateBufferContext(*(uint8_t *)(StackContextData + 0xd0),ObjectContext + ObjectContextProcessingDataOffset);
     if (ResourceIndex == 0) {
       CleanupSystemContextData(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
     }
@@ -74232,21 +74232,34 @@ void Unwind_ExecuteResourceMemoryRelease(uint8_t ObjectContext,int64_t Validatio
  * @note 此函数在异常处理过程中被调用，用于确保资源池的正确清理
  * @warning 如果资源池表指针为空，可能会触发系统紧急退出操作
  */
-void Unwind_ExecuteResourcePoolCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源池
+ * 
+ * 该函数负责清理系统资源池中的所有资源，包括：
+ * - 遍历资源表指针
+ * - 执行每个资源的清理回调函数
+ * - 确保所有资源都被正确释放
+ * 
+ * @param ObjectContext 对象上下文，用于验证和清理操作
+ * @param ValidationContext 验证上下文，包含资源表信息
+ * @return 无返回值
+ * @note 此函数是系统清理过程的重要组成部分
+ */
+void CleanupSystemResourcePool(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
-  int64_t *ResourceTablePointerPointer;
+  int64_t *ProcessPointer;
+  int64_t *ResourceTablePointer;
   int64_t *ResourceIndexPointer;
   
-  ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 8);
+  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 8);
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x10);
-  for (ResourceIndexPointer = (int64_t *)*ResourceTablePointerPointer; ResourceIndexPointer != ResourceContext; ResourceIndexPointer = ResourceIndexPointer + 1) {
+  for (ResourceIndexPointer = (int64_t *)*ResourceTablePointer; ResourceIndexPointer != ResourceContext; ResourceIndexPointer = ResourceIndexPointer + 1) {
     if ((int64_t *)*ResourceIndexPointer != (int64_t *)0x0) {
       (**(code **)(*(int64_t *)*ResourceIndexPointer + 0x38))();
     }
   }
-  if (*ResourceTablePointerPointer == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
         ExecuteSystemEmergencyExit();
@@ -74254,7 +74267,7 @@ void Unwind_ExecuteResourcePoolCleanup(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_18090a8c0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupAtAddress8c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -74276,7 +74289,7 @@ void Unwind_18090a8c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a8d0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupAtAddress8d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -103082,13 +103095,13 @@ void CleanupMutexResources(void)
 void InitializeSystemContext(uint8_t ContextPtr, uint8_t SetupParam, uint8_t ConfigParam, uint8_t FlagsParam)
 
 {
-  uint8_t *SystemContextPointerrPointer;
+  uint8_t *systemContextPointerPointer;
   
-  SystemContextPointerrPointer = SystemContextPointerr;
+  systemContextPointerPointer = SystemContextPointerr;
   if (SystemContextPointerr != (uint8_t *)0x0) {
     InitializeContextData(&SystemContextData, *SystemContextPointerr, ConfigParam, FlagsParam, 0xfffffffffffffffe);
-    SetupSystemHandler(SystemContextPointerrPointer + ResourceManagementCleanupOffset);
-          ExecuteSystemHandler(SystemContextPointerrPointer);
+    SetupSystemHandler(systemContextPointerPointer + ResourceManagementCleanupOffset);
+          ExecuteSystemHandler(systemContextPointerPointer);
   }
   return;
 }
