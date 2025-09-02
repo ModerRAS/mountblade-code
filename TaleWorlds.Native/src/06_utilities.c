@@ -13768,34 +13768,34 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               inputFloatValue = 0.0;
               pinputFloatValue = (float *)(resourceTable + 0x94);
               do {
-                if (*pinputFloatValue5 != 0.0) {
+                if (*pinputFloatValue != 0.0) {
                   ResourceContextSize = BufferContextSize;
                   ResourceContextFlags = 0;
                   StackPointer1c0 = &SystemResourceTemplateHardware;
-                  FloatStackValue = inputFloatValue3;
-                  FloatInputHardwareValue = *pinputFloatValue5;
+                  FloatStackValue = inputFloatValue;
+                  FloatInputHardwareValue = *pinputFloatValue;
                   ProcessStatus = GetAndValidateResourceData(ObjectContext,&StackPointer1c0);
                   if (ProcessStatus != 0) goto HandleMemoryCleanup;
                 }
-                inputFloatValue3 = (float)((int)inputFloatValue3 + 1);
-                pinputFloatValue5 = pinputFloatValue5 + 1;
-              } while ((int)inputFloatValue3 < 4);
-              pinputFloatValue5 = (float *)&SystemFloatTemplateActive;
-              inputFloatValue3 = 0.0;
+                inputFloatValue = (float)((int)inputFloatValue + 1);
+                pinputFloatValue = pinputFloatValue + 1;
+              } while ((int)inputFloatValue < 4);
+              pinputFloatValue = (float *)&SystemFloatTemplateActive;
+              inputFloatValue = 0.0;
               do {
-                floatComparisonResult = *(float *)(resourceTable + -0x180985054 + (int64_t)pinputFloatValue5);
-                if (inputFloatValue != *pinputFloatValue5) {
+                floatComparisonResult = *(float *)(resourceTable + -0x180985054 + (int64_t)pinputFloatValue);
+                if (inputFloatValue != *pinputFloatValue) {
                   ResourceContextSize = BufferContextSize;
                   ResourceContextFlags = 0;
                   StackPointer1c0 = &SystemResourceTemplateInput;
-                  FloatStackValue = inputFloatValue3;
+                  FloatStackValue = inputFloatValue;
                   FloatInputHardwareValue = inputFloatValue;
                   ProcessStatus = GetAndValidateResourceData(ObjectContext,&StackPointer1c0);
                   if (ProcessStatus != 0) goto HandleMemoryCleanup;
                 }
-                inputFloatValue3 = (float)((int)inputFloatValue3 + 1);
-                pinputFloatValue5 = pinputFloatValue5 + 1;
-              } while ((int)inputFloatValue3 < 6);
+                inputFloatValue = (float)((int)inputFloatValue + 1);
+                pinputFloatValue = pinputFloatValue + 1;
+              } while ((int)inputFloatValue < 6);
               SecurityHashValue = CalculateSecurityHash(ValidationContext + 200);
               if ((float)(SecurityHashValue / 0x30) != 0.0) {
                 StackPointer1c0 = &SystemResourceTemplateJob;
