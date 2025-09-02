@@ -17,6 +17,7 @@
 #define ResourceManagementCleanupOffset 0x5
 #define ResourceManagementStatusOffset 0x7
 #define InvalidRegistrationStatus -1
+#define RegistrationStatusSuccess 2
 #define RegistrationArrayInitialSize 8
 #define RegistrationArrayGrowthFactor 1.5
 #define ErrorInvalidObjectHandle 0x1c
@@ -3493,13 +3494,13 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   uint64_t SecurityKey;
   
   SecurityKey = SecurityContextKey ^ (uint64_t)MetadataBuffer;
-  ProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
-  if ((ProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
+  ProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
+  if ((ProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
     DataBuffer = Workspace;
     ProcessedCount = 0;
     BufferIndex = 0;
     MaxProcessableItems = MaximumProcessableItemsLimit;
-    ProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
+    ProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
                           &DataBuffer);
     if (ProcessingResult == 0) {
       if (0 < BufferIndex) {
@@ -3507,12 +3508,12 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
         do {
           ObjectValidationState = *(uint8_t *)(DataBuffer + CurrentObjectOffset);
           ProcessingResult = ValidateObjectStatus(ObjectValidationState);
-          if (ProcessingResult != 2) {
+          if (ProcessingResult != RegistrationStatusSuccess) {
                     // WARNING: Subroutine does not return
             HandleInvalidObject(ObjectValidationState, 1);
           }
           ProcessedCount = ProcessedCount + 1;
-          CurrentObjectOffset = CurrentObjectOffset + 8;
+          CurrentObjectOffset = CurrentObjectOffset + ResourceEntrySizeBytes;
         } while (ProcessedCount < BufferIndex);
       }
       FreeObjectListMemory(&DataBuffer);
@@ -46879,7 +46880,19 @@ void CleanupResourceHandlersAtOffset0x108(uint8_t objectContext,int64_t validati
 
 
 
-void Unwind_180905180(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 重置偏移量0xc8处的系统资源处理器
+ * 
+ * 该函数负责重置位于偏移量0xc8处的系统资源处理器
+ * 重新初始化资源处理器的状态和参数
+ * 
+ * @param objectContext 对象上下文，包含对象的配置信息
+ * @param validationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统重置时调用
+ * @warning 调用此函数前必须确保资源处理器已停止工作
+ */
+void ResetSystemResourceHandlerAtOffset0xc8(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 200) = &SystemResourceHandlerTemplate;
@@ -46895,7 +46908,19 @@ void Unwind_180905180(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905190(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 重置偏移量0xd0处的系统资源处理器
+ * 
+ * 该函数负责重置位于偏移量0xd0处的系统资源处理器
+ * 重新初始化资源处理器的状态和参数
+ * 
+ * @param objectContext 对象上下文，包含对象的配置信息
+ * @param validationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统重置时调用
+ * @warning 调用此函数前必须确保资源处理器已停止工作
+ */
+void ResetSystemResourceHandlerAtOffset0xd0(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0x1c8) = &SystemResourceHandlerTemplate;
@@ -50055,7 +50080,7 @@ void UnwindResourceContextCleanup180905c20(uint8_t objectContext,int64_t validat
 
 
 
-void Unwind_180905c30(uint8_t objectContext,int64_t validationContext)
+void UnwindResourceContextCleanup180905c30(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -50091,7 +50116,7 @@ void Unwind_180905c30(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905c40(uint8_t objectContext,int64_t validationContext)
+void UnwindResourceContextCleanup180905c40(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -59984,7 +60009,7 @@ void Unwind_180908770(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180908780(uint8_t objectContext,int64_t validationContext)
+void ExecuteSystemEmergencyShutdown(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((int64_t *)**(int64_t **)(validationContext + 0x30) != (int64_t *)0x0) {
@@ -59995,7 +60020,7 @@ void Unwind_180908780(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180908790(uint8_t objectContext,int64_t validationContext)
+void HandleSystemCriticalError(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x180) = &SystemDataStructure;
@@ -60004,7 +60029,7 @@ void Unwind_180908790(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809087a0(uint8_t objectContext,int64_t validationContext)
+void ResetSystemDataStructure(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x1e0) = &SystemDataStructure;
@@ -60013,7 +60038,7 @@ void Unwind_1809087a0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809087b0(uint8_t objectContext,int64_t validationContext)
+void CleanupSystemResources(uint8_t objectContext,int64_t validationContext)
 
 {
   if (*(int64_t **)(validationContext + 0xf0) != (int64_t *)0x0) {
