@@ -925,10 +925,12 @@ int InitializeConditionMutexD(uint64_t threadId,uint64_t syncPtr,uint64_t mutexT
 }
 
 /**
- * 初始化字符串处理器A
- * 设置字符串处理所需的数据结构和回调
+ * 初始化基础字符串处理器
+ * 设置基础字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorA(void)
+int InitializeBasicStringProcessor(void)
 {
   int64_t CallbackRegistrationResult;
   uint64_t StringProcessorAFlags;
@@ -941,10 +943,12 @@ int InitializeStringProcessorA(void)
   return (CallbackRegistrationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器B
- * 设置字符串处理所需的数据结构和回调
+ * 初始化高级字符串处理器
+ * 设置高级字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorB(void)
+int InitializeAdvancedStringProcessor(void)
 {
   int64_t SystemCallbackRegistrationResult;
   uint64_t StringProcessorBFlags;
@@ -957,10 +961,12 @@ int InitializeStringProcessorB(void)
   return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器C
- * 设置字符串处理所需的数据结构和回调
+ * 初始化增强字符串处理器
+ * 设置增强字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorC(void)
+int InitializeEnhancedStringProcessor(void)
 {
   int64_t SystemCallbackRegistrationResult;
   uint64_t StringProcessorCFlags;
@@ -973,10 +979,12 @@ int InitializeStringProcessorC(void)
   return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器D
- * 设置字符串处理所需的数据结构和回调
+ * 初始化优化字符串处理器
+ * 设置优化字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorD(void)
+int InitializeOptimizedStringProcessor(void)
 {
   int64_t SystemCallbackRegistrationResult;
   uint64_t StringProcessorDFlags;
@@ -989,10 +997,12 @@ int InitializeStringProcessorD(void)
   return (SystemCallbackRegistrationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器E
- * 设置字符串处理所需的数据结构和回调
+ * 初始化扩展字符串处理器
+ * 设置扩展字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorE(void)
+int InitializeExtendedStringProcessor(void)
 {
   int64_t SystemCallbackRegistrationResult;
   uint64_t StringProcessorEFlags;
@@ -6964,10 +6974,10 @@ ValidateNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRequ
           LongCounter = LongValue;
         } while (0 < LongValue);
       }
-      if ((pUnsignedValue == (uint *)param_3[1]) || (*(uint *)(LongIndex + LongLoop) < *pUnsignedValue)) {
-        LongIndex = GetNetworkRequestConfiguration(param_1,*(uint32_t *)(LongIndex + LongLoop),param_4);
+      if ((pUnsignedValue == (uint *)MemoryDataPointer[1]) || (*(uint *)(LongIndex + LongLoop) < *pUnsignedValue)) {
+        LongIndex = GetNetworkRequestConfiguration(SystemContextPointer,*(uint32_t *)(LongIndex + LongLoop),NetworkRequestFlags);
         uVar6 = 1;
-        *(uint *)(LongIndex + 8) = *(uint *)(LongIndex + 8) | param_5;
+        *(uint *)(LongIndex + 8) = *(uint *)(LongIndex + 8) | ConfigurationOption;
       }
       LongLoop = LongLoop + 4;
       MemoryAddress = MemoryAddress - 1;
@@ -7039,7 +7049,7 @@ uint8_t SystemModuleInitializeComplete(void)
   return;
 }
 uint32_t
-ProcessStringBufferDataOperation(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+ProcessStringBufferDataOperation(uint64_t SystemContextPointer,uint64_t BufferSizeParameter,uint64_t MemoryAddressParameter,uint64_t OperationFlags)
 {
   code *pNetworkRequestStatus;
   uint32_t BufferSize;
@@ -7047,8 +7057,8 @@ ProcessStringBufferDataOperation(uint64_t param_1,uint64_t param_2,uint64_t para
   void *StackBuffer28;
   longlong lStack_20;
   pNetworkRequestStatus = *(code **)(*SystemModuleCallbackTable + 0x70);
-  StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatPrimary,param_3,param_4,0,SystemMutexFlags);
-  BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,param_3,param_4,1);
+  StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatPrimary,MemoryAddressParameter,OperationFlags,0,SystemMutexFlags);
+  BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,MemoryAddressParameter,OperationFlags,1);
   StackBuffer28 = &SystemNullPointer;
   if (lStack_20 != 0) {
     CleanupSystemResources();
@@ -7056,7 +7066,7 @@ ProcessStringBufferDataOperation(uint64_t param_1,uint64_t param_2,uint64_t para
   return BufferSize;
 }
 uint32_t
-ProcessStringBufferSecondaryOperation(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+ProcessStringBufferSecondaryOperation(uint64_t SystemContextPointer,uint64_t BufferSizeParameter,uint64_t MemoryAddressParameter,uint64_t OperationFlags)
 {
   code *pNetworkRequestStatus;
   uint32_t BufferSize;
@@ -7064,8 +7074,8 @@ ProcessStringBufferSecondaryOperation(uint64_t param_1,uint64_t param_2,uint64_t
   void *StackBuffer28;
   longlong lStack_20;
   pNetworkRequestStatus = *(code **)(*SystemModuleCallbackTable + 0x70);
-  StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatSecondary,param_3,param_4,0,SystemMutexFlags);
-  BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,param_3,param_4,1);
+  StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatSecondary,MemoryAddressParameter,OperationFlags,0,SystemMutexFlags);
+  BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,MemoryAddressParameter,OperationFlags,1);
   StackBuffer28 = &SystemNullPointer;
   if (lStack_20 != 0) {
     CleanupSystemResources();
@@ -7073,7 +7083,7 @@ ProcessStringBufferSecondaryOperation(uint64_t param_1,uint64_t param_2,uint64_t
   return BufferSize;
 }
 uint32_t
-ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t BufferSizeParameter,uint64_t MemoryAddressParameter,uint64_t OperationFlags)
 {
   code *pNetworkRequestStatus;
   uint32_t BufferSize;
@@ -7084,7 +7094,7 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   NetworkRequestResult = SystemMutexFlags;
   pNetworkRequestStatus = *(code **)(*SystemModuleCallbackTable + 0x70);
   StringProcessingResult = ProcessSystemMemoryData(&pStackCounter4);
-  BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,param_3,param_4,NetworkRequestResult);
+  BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,MemoryAddressParameter,OperationFlags,NetworkRequestResult);
   pStackCounter4 = &SystemNullPointer;
   if (lStack_28 != 0) {
     CleanupSystemResources();
@@ -7460,13 +7470,13 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
   }
   CleanupSystemResources();
 }
-uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
+uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlags)
 {
   FinalizeDataProcessing();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x360);
+  if ((ProcessingFlags & 1) != 0) {
+    free(BufferPointer,0x360);
   }
-  return param_1;
+  return BufferPointer;
 }
       SystemOperationCounter = 1;
     }
@@ -7880,7 +7890,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
  * @param param_4 数据处理参数4，指定处理选项
  * @return 处理成功返回0，失败返回-1
  */
-int SystemDataProcessBatch(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+int SystemDataProcessBatch(uint64_t SystemContextPointer,uint64_t BufferSizeParameter,uint64_t MemoryAddressParameter,uint64_t ProcessingFlags)
 {
   int LoopCounter;
   longlong LongCounter;
@@ -8271,7 +8281,7 @@ Label_180609070:
   CleanupSystemResources();
 }
 uint64_t
-ProcessSystemConfiguration(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4)
+ProcessSystemConfiguration(uint64_t SystemContextPointer,uint64_t ConfigurationSizeParameter,uint8_t ConfigurationTypeParameter,uint64_t ConfigurationFlagsParameter)
 {
   char NetworkRequestStatus;
   void *pBufferSize;
@@ -9910,7 +9920,7 @@ double SystemGetPerformanceTime(void)
   }
   return (double)(ModuleInitializationResult - SystemConfigDataPointer4) * PerformanceCounterFactor;
 }
-bool SystemCompareStringData(longlong param_1,longlong param_2,char param_3)
+bool SystemCompareStringData(longlong StringDataPointer1,longlong StringDataPointer2,char ComparisonFlag)
 {
   char NetworkRequestStatus;
   char BooleanCheck;
@@ -9954,7 +9964,7 @@ bool SystemCompareStringData(longlong param_1,longlong param_2,char param_3)
  * @param param_1 要比较的数据指针
  * @return 比较成功返回true，失败返回false
  */
-int SystemDataCompare(longlong param_1)
+int SystemDataCompare(longlong DataStructurePointer)
 {
   int LoopCounter;
   longlong LongCounter;
@@ -10001,7 +10011,7 @@ Label_18062995a:
  * @param param_2 第二个数据块的指针
  * @return 比较结果，相等返回0，不相等返回非零值
  */
-int SystemDataCompareFunction(longlong param_1,longlong param_2)
+int SystemDataCompareFunction(longlong DataStructurePointer1,longlong DataStructurePointer2)
 {
   int LoopCounter;
   longlong LongCounter;
@@ -10032,41 +10042,41 @@ int SystemDataCompareFunction(longlong param_1,longlong param_2)
   }
   return -1;
 }
-uint64_t * SystemDataProcess(longlong param_1,uint64_t *param_2,int param_3,int param_4)
+uint64_t * SystemDataProcess(longlong DataStructurePointer,uint64_t *BufferPointer,int StartIndex,int EndIndex)
 {
   uint8_t MemoryAddress;
   int StringIndex;
   int IntegerCounter;
   ulonglong NetworkRequestResult;
   ulonglong MemoryAllocationResult;
-  NetworkRequestResult = (ulonglong)param_3;
-  IntegerCounter = param_4;
-  if (param_4 < 0) {
-    IntegerCounter = *(int *)(param_1 + 0x10);
+  NetworkRequestResult = (ulonglong)StartIndex;
+  IntegerCounter = EndIndex;
+  if (EndIndex < 0) {
+    IntegerCounter = *(int *)(DataStructurePointer + 0x10);
   }
-  *param_2 = &SystemBufferTemplate;
-  param_2[1] = 0;
-  *(uint32_t *)(param_2 + 2) = 0;
-  *param_2 = &SystemNullPointer;
-  param_2[3] = 0;
-  param_2[1] = 0;
-  *(uint32_t *)(param_2 + 2) = 0;
-  StringIndex = *(int *)(param_1 + 0x10) - param_3;
-  if (IntegerCounter - param_3 < StringIndex) {
-    StringIndex = IntegerCounter - param_3;
+  *BufferPointer = &SystemBufferTemplate;
+  BufferPointer[1] = 0;
+  *(uint32_t *)(BufferPointer + 2) = 0;
+  *BufferPointer = &SystemNullPointer;
+  BufferPointer[3] = 0;
+  BufferPointer[1] = 0;
+  *(uint32_t *)(BufferPointer + 2) = 0;
+  StringIndex = *(int *)(DataStructurePointer + 0x10) - StartIndex;
+  if (IntegerCounter - StartIndex < StringIndex) {
+    StringIndex = IntegerCounter - StartIndex;
   }
-  SystemBufferCopy(param_2,StringIndex + 1,param_3,param_4,1,SystemMutexFlags);
+  SystemBufferCopy(BufferPointer,StringIndex + 1,StartIndex,EndIndex,1,SystemMutexFlags);
   for (MemoryAllocationResult = NetworkRequestResult;
-      ((longlong)NetworkRequestResult < (longlong)IntegerCounter && ((uint)MemoryAllocationResult < *(uint *)(param_1 + 0x10)));
+      ((longlong)NetworkRequestResult < (longlong)IntegerCounter && ((uint)MemoryAllocationResult < *(uint *)(DataStructurePointer + 0x10)));
       MemoryAllocationResult = (ulonglong)((uint)MemoryAllocationResult + 1)) {
-    MemoryAddress = *(uint8_t *)(NetworkRequestResult + *(longlong *)(param_1 + 8));
-    SystemBufferCopy(param_2,*(int *)(param_2 + 2) + 1);
-    *(uint8_t *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]) = MemoryAddress;
-    *(uint8_t *)((ulonglong)(*(int *)(param_2 + 2) + 1) + param_2[1]) = 0;
-    *(int *)(param_2 + 2) = *(int *)(param_2 + 2) + 1;
+    MemoryAddress = *(uint8_t *)(NetworkRequestResult + *(longlong *)(DataStructurePointer + 8));
+    SystemBufferCopy(BufferPointer,*(int *)(BufferPointer + 2) + 1);
+    *(uint8_t *)((ulonglong)*(uint *)(BufferPointer + 2) + BufferPointer[1]) = MemoryAddress;
+    *(uint8_t *)((ulonglong)(*(int *)(BufferPointer + 2) + 1) + BufferPointer[1]) = 0;
+    *(int *)(BufferPointer + 2) = *(int *)(BufferPointer + 2) + 1;
     NetworkRequestResult = NetworkRequestResult + 1;
   }
-  return param_2;
+  return BufferPointer;
 }
   SystemConfigFlag4 = 1;
   pStackCounter1 = &SystemNullPointer;
@@ -10158,9 +10168,9 @@ Label_18062e327:
 Label_18062e3f0:
   memcpy(pMemoryAllocationResult + 3,acStack_40,(longlong)((int)LongAddress + 2));
 }
-char * SystemStringProcessData(uint32_t param_1,uint64_t param_2,char *param_3,uint64_t param_4,
-                    longlong *param_5,longlong param_6,ulonglong param_7,uint64_t *param_8,
-                    int *param_9,uint64_t *param_10)
+char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParameter,char *StringPointer,uint64_t MemoryAddressParameter,
+                    longlong *DataArrayPointer,longlong ArrayIndex,ulonglong MemoryOffset,uint64_t *ResultBufferPointer,
+                    int *StatusPointer,uint64_t *OutputBufferPointer)
 {
   char NetworkRequestStatus;
   uint32_t BufferSize;
@@ -10500,8 +10510,8 @@ Label_18062e8bc:
   *puStack_c8 = &SystemBufferTemplate;
   return pNetworkRequestStatus5;
 }
-char * SystemStringProcessBuffer(uint64_t param_1,uint64_t param_2,uint64_t *param_3,longlong param_4,
-                    uint64_t param_5,uint64_t *param_6,uint64_t *param_7)
+char * SystemStringProcessBuffer(uint64_t SystemContextPointer,uint64_t BufferSizeParameter,uint64_t *MemoryDataPointer,longlong ArrayIndex,
+                    uint64_t MemoryOffset,uint64_t *ResultBufferPointer,uint64_t *OutputBufferPointer)
 {
   uint32_t MemoryAddress;
   uint32_t BufferSize;
@@ -10707,7 +10717,7 @@ Label_18062eece:
   *param_7 = &SystemBufferTemplate;
   return pNetworkRequestStatus4;
 }
-longlong SystemMemoryAllocateBuffer(longlong param_1,longlong param_2,uint32_t param_3,longlong param_4)
+longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong AlignmentParameter,uint32_t AllocationFlags,longlong ContextPointer)
 {
   char NetworkRequestStatus;
   char BooleanCheck;
@@ -10953,7 +10963,7 @@ Label_18062f4a5:
   }
   CleanupSystemResources();
 }
-int SystemBufferValidateData(uint64_t param_1,char *param_2)
+int SystemBufferValidateData(uint64_t BufferPointer,char *ValidationString)
 {
   char *pNetworkRequestStatus;
   char BooleanCheck;
@@ -12310,7 +12320,7 @@ FUN_1807c3d8b:
   }
   return &SystemConfigurationDataBuffer;
 }
-uint64_t SystemConfigureParameters(uint64_t *param_1,longlong param_2,char param_3,char param_4)
+uint64_t SystemConfigureParameters(uint64_t *ConfigurationArrayPointer,longlong ConfigurationIndex,char ConfigurationFlag1,char ConfigurationFlag2)
 {
   int LoopCounter;
   uint BufferSize;
@@ -12390,8 +12400,8 @@ Label_1808c73b4:
   return NetworkRequestResult;
 }
 uint64_t
-HandleNetworkOperation(longlong param_1,longlong param_2,longlong *param_3,longlong *param_4,
-             uint64_t *param_5,char param_6,char param_7)
+HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,longlong *RequestDataPointer,longlong *ResponseDataPointer,
+             uint64_t *TimeoutParameter,char OperationFlag1,char OperationFlag2)
 {
   uint MemoryAddress;
   longlong LongCounter;
@@ -12484,7 +12494,7 @@ uint64_t SystemGetAudioError(void)
 {
   return 0x809200ff;
 }
-uint32_t SystemAudioConfigure(int param_1,int param_2,int param_3)
+uint32_t SystemAudioConfigure(int AudioFormatParameter,int SampleRateParameter,int ChannelCountParameter)
 {
   int LoopCounter;
   uint32_t BufferSize;
@@ -12511,7 +12521,7 @@ uint32_t SystemAudioConfigure(int param_1,int param_2,int param_3)
   func_0x0001808f6ce0();
   return aStackCounter5[0];
 }
-uint64_t SystemAudioCreateBuffer(uint32_t param_1,uint *param_2)
+uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatPointer)
 {
   int64_t ModuleInitializationResult;
   uint BufferSize;
@@ -12608,7 +12618,7 @@ uint64_t SystemAudioCreateBuffer(uint32_t param_1,uint *param_2)
   func_0x0001808f6ce0();
   return 0;
 }
-int SystemAudioProcessData(uint32_t param_1,byte *param_2)
+int SystemAudioProcessData(uint32_t AudioBufferPointer,byte *AudioDataPointer)
 {
   char NetworkRequestStatus;
   int StringIndex;
@@ -12734,7 +12744,7 @@ longlong SystemGetTimeCounter(void)
   MemoryAddress = timeGetTime();
   return (ulonglong)MemoryAddress * 1000;
 }
-uint SystemProcessTimer(longlong param_1,int param_2,int param_3,char param_4)
+uint SystemProcessTimer(longlong TimerContextPointer,int TimerIntervalParameter,int TimerFlagsParameter,char TimerModeParameter)
 {
   ulonglong MemoryAddress;
   byte ValidationStatusByte;
@@ -12787,7 +12797,7 @@ uint SystemProcessTimer(longlong param_1,int param_2,int param_3,char param_4)
   SystemInitializationCompleteFlag = 1;
   return;
 }
-uint32_t SystemProcessAudioData(byte param_1,byte *param_2,int param_3)
+uint32_t SystemProcessAudioData(byte AudioFormatParameter,byte *AudioDataPointer,int DataSizeParameter)
 {
   uint *pMemoryAddress;
   byte ValidationStatusByte;
@@ -12802,7 +12812,7 @@ uint32_t SystemProcessAudioData(byte param_1,byte *param_2,int param_3)
   }
   return CONCAT31((int3)(~StringProcessingResult >> 8),*pMemoryAddress != ~StringProcessingResult);
 }
-float * SystemProcessAudioBuffer(float *param_1,float *param_2,float *param_3)
+float * SystemProcessAudioBuffer(float *InputBufferPointer,float *OutputBufferPointer,float *AudioProcessingParameter)
 {
   float fVar1;
   float fVar2;
@@ -12826,7 +12836,7 @@ float * SystemProcessAudioBuffer(float *param_1,float *param_2,float *param_3)
   param_2[2] = (fVar6 * fVar8 + fVar7 * fVar2 + fVar5 * fVar4) - fVar3 * fVar1;
   return param_2;
 }
-uint64_t SystemAudioGetFormat(uint64_t param_1,uint32_t *param_2)
+uint64_t SystemAudioGetFormat(uint64_t AudioContextPointer,uint32_t *FormatParameterPointer)
 {
   int64_t ModuleInitializationResult;
   ModuleInitializationResult = func_0x0001808f0dd0(param_1,0);
@@ -13193,7 +13203,7 @@ Label_1808fbebe:
   }
   return 0;
 }
-uint64_t SystemAudioCreateChannel(uint param_1)
+uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
 {
   code *pNetworkRequestStatus;
   byte ValidationStatusByte;
