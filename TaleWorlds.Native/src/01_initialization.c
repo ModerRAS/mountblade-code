@@ -37315,7 +37315,17 @@ void* * FUN_18005d484(void* SystemResourcePointer,void* *ConfigurationDataPointe
 
 
 
-void* FUN_18005d498(long long SystemResourcePointer)
+/**
+ * @brief 获取系统资源数据指针
+ * 
+ * 该函数从系统资源指针的指定偏移量处获取数据指针
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 数据指针
+ * 
+ * 原始函数名为FUN_18005d498，现已重命名为GetSystemResourceDataPointer
+ */
+void* GetSystemResourceDataPointer(long long SystemResourcePointer)
 
 {
   return *(void* *)(SystemResourcePointer + 0x58);
@@ -37463,18 +37473,31 @@ void* FUN_18005d548(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005d560(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005d560(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 执行系统资源迭代器操作
+ * 
+ * 该函数负责遍历系统资源数组，对每个资源执行指定的操作
+ * 通过迭代器模式处理系统资源集合中的每个元素
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 无返回值
+ * @note 此函数会遍历整个资源数组并执行操作
+ * @warning 如果系统资源指针为空，函数会直接返回
+ */
+void ExecuteSystemResourceIterator(long long *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *pointerToUnsigned1;
-  void** SystemDataTable;
-  void* unsignedSystemValue3;
+  void* *resourceIteratorEnd;
+  void** systemDataTable;
+  void* operationFlags;
   
-  unsignedSystemValue3 = 0xfffffffffffffffe;
-  pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
-  for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 4) {
-    (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue3);
+  operationFlags = 0xfffffffffffffffe;
+  resourceIteratorEnd = (void* *)SystemResourcePointer[1];
+  for (resourceIterator = (void* *)*SystemResourcePointer; resourceIterator != resourceIteratorEnd; resourceIterator = resourceIterator + 4) {
+    (**(code **)*resourceIterator)(resourceIterator,0,AdditionalParameter,ConfigurationFlag,operationFlags);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -37508,27 +37531,52 @@ void CleanupSystemMemoryAllocation(long long *SystemResourcePointer,void* Config
 
 
 
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，设置虚拟表和处理器
+ * 根据配置标志决定是否释放系统资源
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return void* 返回系统资源指针
+ * @note 此函数会设置系统虚拟表并初始化资源处理器
+ * @warning 如果配置标志第一位为1，会释放系统资源
+ */
 void* *
-FUN_18005d600(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+InitializeSystemResourceManager(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* unsignedSystemValue1;
+  void* operationFlags;
   
-  unsignedSystemValue1 = 0xfffffffffffffffe;
+  operationFlags = 0xfffffffffffffffe;
   *SystemResourcePointer = &SystemVirtualTableTemplateB;
   InitializeSystemResourceHandler();
   if ((ConfigurationDataPointer & 1) != 0) {
-    free(SystemResourcePointer,0xc0,AdditionalParameter,ConfigurationFlag,unsignedSystemValue1);
+    free(SystemResourcePointer,0xc0,AdditionalParameter,ConfigurationFlag,operationFlags);
   }
   return SystemResourcePointer;
 }
 
 
 
-uint8_t * FUN_18005d660(uint8_t *SystemResourcePointer)
+/**
+ * @brief 初始化系统同步对象
+ * 
+ * 该函数负责初始化系统同步对象，包括信号量和各种句柄
+ * 设置系统资源的基本配置和同步机制
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return uint8_t* 返回系统资源指针
+ * @note 此函数会创建信号量并初始化系统同步机制
+ * @warning 函数会关闭现有的系统句柄并重新初始化
+ */
+uint8_t * InitializeSystemSynchronizationObjects(uint8_t *SystemResourcePointer)
 
 {
-  void* unsignedSystemValue1;
+  void* semaphoreHandle;
   
   *(void* *)(SystemResourcePointer + 8) = 0;
   *(void* *)(SystemResourcePointer + 0x10) = 0;
@@ -37542,10 +37590,10 @@ uint8_t * FUN_18005d660(uint8_t *SystemResourcePointer)
   *(void* *)(SystemResourcePointer + 0x50) = 0;
   *(void* *)(SystemResourcePointer + 0x58) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x60) = 3;
-  unsignedSystemValue1 = CreateSemaphoreW(0,0,0x7fffffff,0,0xfffffffffffffffe);
-  *(void* *)(SystemResourcePointer + 0x68) = unsignedSystemValue1;
-  unsignedSystemValue1 = CreateSemaphoreW(0,0,0x7fffffff,0);
-  *(void* *)(SystemResourcePointer + 0x70) = unsignedSystemValue1;
+  semaphoreHandle = CreateSemaphoreW(0,0,0x7fffffff,0,0xfffffffffffffffe);
+  *(void* *)(SystemResourcePointer + 0x68) = semaphoreHandle;
+  semaphoreHandle = CreateSemaphoreW(0,0,0x7fffffff,0);
+  *(void* *)(SystemResourcePointer + 0x70) = semaphoreHandle;
   CloseSystemHandle(SystemResourcePointer + 0x78);
   CloseSystemHandle(SystemResourcePointer + 0x2e0);
   CloseSystemHandle(SystemResourcePointer + 0x548);
@@ -37931,7 +37979,7 @@ void FUN_18005dbb0(void)
   lStack_198 = localAllocationFlags + 0x78;
   lStack_190 = localAllocationFlags + 0x548;
   lStack_188 = localAllocationFlags + 0x68;
-  unsignedSystemValue3 = FUN_18020e410(unsignedSystemValue3,&puStack_160,0,0);
+  unsignedSystemValue3 = ProcessSystemResources(unsignedSystemValue3,&puStack_160,0,0);
   *(void* *)*ppointerToUnsigned15 = unsignedSystemValue3;
   puStack_160 = &SystemMemoryAllocatorReference;
   punsignedSystemValue4 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
