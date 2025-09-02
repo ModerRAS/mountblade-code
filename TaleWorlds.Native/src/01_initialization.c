@@ -52612,24 +52612,24 @@ LAB_180071d1f:
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
   systemOperationStatus2 = threadCreationFlags + 0xd;
   stackParameterOffset = systemOperationStatus1;
-  if (systemStatus2 != 0) {
-    systemStatus1 = creationFlags + 0xe;
-    if (pUnsignedStackFlag88 == (uint8_t *)0x0) {
-      if ((int)systemStatus1 < 0x10) {
-        systemStatus1 = 0x10;
+  if (systemOperationStatus2 != 0) {
+    systemOperationStatus1 = threadCreationFlags + 0xe;
+    if (threadObjectPointer == (uint8_t *)0x0) {
+      if ((int)systemOperationStatus1 < 0x10) {
+        systemOperationStatus1 = 0x10;
       }
-      pUnsignedStackFlag88 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)systemStatus1,0x13);
-      *pUnsignedStackFlag88 = 0;
+      threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)systemOperationStatus1,0x13);
+      *threadObjectPointer = 0;
     }
     else {
-      if (systemStatus1 <= (uint)UnsignedStackFlag78) goto LAB_180071d94;
-      pUnsignedStackFlag88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,pUnsignedStackFlag88,systemStatus1,0x10,0x13);
+      if (systemOperationStatus1 <= (uint)threadHandleValue) goto LAB_180071d94;
+      threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,systemOperationStatus1,0x10,0x13);
     }
-    allocationContext = StartSystemThread(pUnsignedStackFlag88);
-    UnsignedStackFlag78 = CONCAT44(UnsignedStackFlag78._4_4_,allocationContext);
+    memoryAllocationContext = StartSystemThread(threadObjectPointer);
+    threadHandleValue = CONCAT44(threadHandleValue._4_4_,memoryAllocationContext);
   }
 LAB_180071d94:
-  HashBucketNode = (void* *)(pUnsignedStackFlag88 + UnsignedStackFlag80);
+  HashBucketNode = (void* *)(threadObjectPointer + stackParameterOffset);
   *HashBucketNode = 0x6973736572707845;
   *(uint32_t *)(HashBucketNode + 1) = 0x203a6e6f;
   *(uint8_t *)((long long)HashBucketNode + 0xc) = 0;
