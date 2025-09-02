@@ -56847,7 +56847,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
     SystemResourceManager[0xa8] = 3.4028235e+38;
     SystemConfigurationValue = 0;
     pfStack_98 = pfloatValue6;
-    FUN_18007f770(&pfStack_98);
+    ProcessFloatValue(&pfStack_98);
     if (*(int *)(lStack_88 + 0x10) != 0) {
       do {
         pfloatValue6 = (float *)((long long)(int)ThreadContextFlag * 0x10 + *(long long *)(lStack_88 + 0x18));
@@ -66368,7 +66368,6 @@ void ConfigureSystemResourceDataStructure(long long SystemResourceManager,long l
 
 
 
-// 函数: void FUN_18007e080(long long SystemResourceManager,ulong long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag)
 /**
  * @brief 处理系统纹理管理器配置
  * 
@@ -66471,7 +66470,6 @@ void ProcessSystemTextureManagerConfiguration(long long SystemResourceManager,ul
 
 
 
-// 函数: void FUN_18007e2b0(long long SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 初始化系统资源配置
  * 
@@ -66483,8 +66481,7 @@ void ProcessSystemTextureManagerConfiguration(long long SystemResourceManager,ul
  * @param AdditionalParameter 额外参数
  * @param ConfigurationFlag 配置标志
  * 
- *FUN_18007e2b0：InitializeSystemResourceConfiguration
- */
+  */
 void InitializeSystemResourceConfiguration(long long SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
@@ -66522,7 +66519,6 @@ void InitializeSystemResourceConfiguration(long long SystemResourceManager,long 
 
 
 
-// 函数: void FUN_18007e5b0(long long SystemResourceManager,long long *ConfigurationDataPointer)
 /**
  * @brief 处理系统资源数据缓冲区
  * 
@@ -66639,7 +66635,6 @@ void ProcessSystemResourceDataBuffer(long long SystemResourceManager,long long *
 
 
 
-// 函数: void FUN_18007e880(long long SystemResourceManager,char ConfigurationDataPointer,void* AdditionalParameter)
 /**
  * @brief 配置系统资源数据指针
  * 
@@ -66682,7 +66677,6 @@ void ConfigureSystemResourceDataPointer(long long SystemResourceManager,char Con
 
 
 
-// 函数: void FUN_18007e930(long long SystemResourceManager)
 /**
  * @brief 初始化系统资源内存块
  * 
@@ -66709,7 +66703,6 @@ void InitializeSystemResourceMemoryBlock(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_18007e95f(void)
 /**
  * @brief 分配系统内存块
  * 
@@ -66730,7 +66723,6 @@ void AllocateSystemMemoryBlock(void)
 
 
 
-// 函数: void FUN_18007e988(void)
 /**
  * @brief 系统空操作函数F
  * 
@@ -68953,7 +68945,6 @@ void CleanupSystemResourceManagerFinal(void)
 
 
 
-// 函数: void FUN_18007fb5f(void)
 /**
  * @brief 初始化系统线程本地存储
  * 
@@ -69058,7 +69049,6 @@ void InitializeSystemThreadLocalStorage(void)
 
 
 
-// 函数: void FUN_18007fc19(void)
 /**
  * @brief 处理系统哈希节点数据
  * 
