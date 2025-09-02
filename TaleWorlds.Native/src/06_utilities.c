@@ -268,7 +268,7 @@
  * @param ValidationParameter 验证参数值低7位
  * @return 合并后的64位值
  */
-uint64_t CombineSystemContextWithValidation(uint64_t SystemContext, uint8_t ValidationParameter);
+uint64_t CombineSystemContextWithValidation(uint64_t systemContext, uint8_t validationParameter);
 
 /**
  * @brief 计算数据校验和
@@ -282,7 +282,7 @@ uint64_t CombineSystemContextWithValidation(uint64_t SystemContext, uint8_t Vali
  * @param ChecksumSeed 校验种子值
  * @return 计算得到的校验和值
  */
-uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
+uint64_t ComputeDataChecksum(uint64_t systemContext, void* dataBuffer, int algorithmType, uint32_t checksumSeed);
 
 /**
  * @brief 计算数据校验和(扩展版)
@@ -4703,23 +4703,23 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的相关信息
  * @return 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ValidatedObjectPointer;
-  uint8_t ValidationStatusCode;
-  int64_t ObjectContextHandles [4];
+uint8_t IncrementObjectReferenceCount(int64_t objectContext) {
+  int64_t validatedObjectPointer;
+  uint8_t validationStatusCode;
+  int64_t objectContextHandles [4];
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
-  if ((int)ValidationStatusCode != 0) {
-    return ValidationStatusCode;
+  validationStatusCode = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), objectContextHandles);
+  if ((int)validationStatusCode != 0) {
+    return validationStatusCode;
   }
-  if (ObjectContextHandles[0] != 0) {
-    ObjectContextHandles[0] = ObjectContextHandles[0] + -8;
+  if (objectContextHandles[0] != 0) {
+    objectContextHandles[0] = objectContextHandles[0] + -8;
   }
-  ValidatedObjectPointer = *(int64_t *)(ObjectContextHandles[0] + ObjectHandleMemoryOffset);
-  if (ValidatedObjectPointer != 0) {
-    *(int *)(ValidatedObjectPointer + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectPointer + ObjectReferenceCountOffset) + 1;
-    if ((*(char *)(ValidatedObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationStatusCode = CheckSystemStatus(), (int)ValidationStatusCode != 0)) {
-      return ValidationStatusCode;
+  validatedObjectPointer = *(int64_t *)(objectContextHandles[0] + ObjectHandleMemoryOffset);
+  if (validatedObjectPointer != 0) {
+    *(int *)(validatedObjectPointer + ObjectReferenceCountOffset) = *(int *)(validatedObjectPointer + ObjectReferenceCountOffset) + 1;
+    if ((*(char *)(validatedObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (validationStatusCode = CheckSystemStatus(), (int)validationStatusCode != 0)) {
+      return validationStatusCode;
     }
     return 0;
   }
@@ -4737,22 +4737,22 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文参数，包含对象的初始化信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandleBasic(int64_t ObjectContext) {
-  uint8_t ObjectValidationStatusCode;
-  int64_t ValidatedSystemContext;
+uint8_t InitializeObjectHandleBasic(int64_t objectContext) {
+  uint8_t objectValidationStatusCode;
+  int64_t validatedSystemContext;
   
-  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &ValidatedSystemContext);
-  if ((int)ObjectValidationStatusCode == 0) {
-    if (ValidatedSystemContext == 0) {
-      ValidatedSystemContext = 0;
+  objectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), &validatedSystemContext);
+  if ((int)objectValidationStatusCode == 0) {
+    if (validatedSystemContext == 0) {
+      validatedSystemContext = 0;
     }
     else {
-      ValidatedSystemContext = ValidatedSystemContext + -8;
+      validatedSystemContext = validatedSystemContext + -8;
     }
-    if (*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset), 1);
+    if (*(int64_t *)(validatedSystemContext + ObjectHandleMemoryOffset) != 0) {
+            ExecuteSystemExitOperation(*(int64_t *)(validatedSystemContext + ObjectHandleMemoryOffset), 1);
     }
-    ObjectValidationStatusCode = 0;
+    objectValidationStatusCode = 0;
   }
   return ObjectValidationStatusCode;
 }
