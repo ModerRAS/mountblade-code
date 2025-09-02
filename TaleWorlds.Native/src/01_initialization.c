@@ -5892,7 +5892,7 @@ void InitializeSystemMessageProcessor(void)
   MessageConfigurationBuffer = MessageConfigurationBuffer;
   MessageConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 10;
-  strcpy_s(MessageConfigurationBuffer,0x80,&SystemMessageProcessorTemplate,systemContextParameter,0xfffffffffffffffe);
+  strcpy_s(MessageConfigurationBuffer,0x80,&SystemMessageProcessorTemplate,SystemContextParameter,0xfffffffffffffffe);
   SystemMessageProcessorHandle = InitializeMessageProcessorCallback(&messageProcessorReference);
   return;
 }
@@ -5939,7 +5939,7 @@ void InitializeSystemLogManager(void)
   LogConfigurationBuffer = LogConfigurationBuffer;
   LogConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 9;
-  strcpy_s(LogConfigurationBuffer,0x80,&SystemLogManagerTemplate,systemContextParameter,0xfffffffffffffffe);
+  strcpy_s(LogConfigurationBuffer,0x80,&SystemLogManagerTemplate,SystemContextParameter,0xfffffffffffffffe);
   SystemLogManagerHandle = InitializeLogManagerCallback(&logManagerReference);
   return;
 }
@@ -6029,7 +6029,7 @@ void InitializeSystemResourceManager(void)
   ResourceConfigurationBuffer = ResourceConfigurationBuffer;
   ResourceConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 7;
-  strcpy_s(ResourceConfigurationBuffer,0x80,&SystemResourceManagerTemplate,systemContextParameter,0xfffffffffffffffe);
+  strcpy_s(ResourceConfigurationBuffer,0x80,&SystemResourceManagerTemplate,SystemContextParameter,0xfffffffffffffffe);
   SystemResourceManagerHandle = InitializeResourceManagerCallback(&resourceManagerReference);
   return;
 }
