@@ -1,77 +1,83 @@
 #!/bin/bash
 
 # UI系统变量名美化脚本
-# 批量替换04_ui_system.c文件中的UNK_变量名为有意义的名称
+# 批量替换04_ui_system.c文件中的变量名为有意义的名称
+
+INPUT_FILE="/dev/shm/mountblade-code/TaleWorlds.Native/src/04_ui_system.c"
 
 echo "开始美化UI系统变量名..."
 
-# 创建变量映射文件
-cat > ui_variable_mapping.txt << 'EOF'
-# UI系统变量映射表
-UNK_1809581e0=UiSystemInstance
-UNK_1809583d0=UiSystemContext
-UNK_180958660=UiWindowManager
-UNK_1809586e0=UiRenderer
-UNK_180958758=UiInputHandler
-UNK_180958970=UiEventDispatcher
-UNK_1809589a0=UiFontManager
-UNK_180958a10=UiTextureAtlas
-UNK_180958a50=UiShaderProgram
-UNK_18076804b=UiVertexBuffer
-UNK_180958b20=UiIndexBuffer
-UNK_180958ac0=UiAnimationSystem
-UNK_180958b00=UiLayoutManager
-UNK_180958b10=UiStyleManager
-UNK_180958ba0=UiWindowFactory
-UNK_180958c10=UiWidgetManager
-UNK_1807693c0=UiControlManager
-UNK_180958bf0=UiFocusManager
-UNK_180958c88=UiThemeManager
-UNK_180958cb0=UiLayoutEngine
-UNK_180958d20=UiRenderQueue
-UNK_000003b8=UiSystemFlags
-UNK_000003c0=UiSystemState
-UNK_180958d90=UiEventQueue
-UNK_180958e20=UiCommandBuffer
-UNK_180958fb0=UiResourceCache
-UNK_180770640=UiFontCache
-UNK_180958ec0=UiTextureCache
-UNK_180958f10=UiShaderCache
-UNK_180958f68=UiVertexCache
-UNK_1809590c0=UiMaterialCache
-UNK_180747d60=UiSystemConfig
-UNK_1807868c0=UiWindowStack
-UNK_180786c90=UiWidgetStack
-UNK_180788fc0=UiControlStack
-UNK_180959140=UiEventStack
-UNK_1809591b0=UiRenderStack
-UNK_180959410=UiCommandStack
-UNK_180959630=UiResourceStack
-UNK_1809596a4=UiSystemStack
-UNK_180959b80=UiMemoryPool
-UNK_180959d10=UiObjectPool
-UNK_180959d80=UiBufferPool
-UNK_1803f60a0=UiSystemData
-UNK_180655e50=UiWindowData
-UNK_180084650=UiWidgetData
-UNK_180655f30=UiControlData
-UNK_1806561b0=UiEventData
-UNK_1806561c0=UiRenderData
-UNK_1dd01c85c=UiSystemByte
-EOF
+# 替换SIMD相关的变量名
+sed -i 's/SimdResult4\._0_4_/SimdResultX/g' "$INPUT_FILE"
+sed -i 's/SimdResult4\._4_4_/SimdResultY/g' "$INPUT_FILE"
+sed -i 's/SimdResult4\._8_4_/SimdResultZ/g' "$INPUT_FILE"
+sed -i 's/SimdResult4\._12_4_/SimdResultW/g' "$INPUT_FILE"
+sed -i 's/SimdResult2\._0_4_/SimdSourceX/g' "$INPUT_FILE"
+sed -i 's/SimdResult2\._4_4_/SimdSourceY/g' "$INPUT_FILE"
+sed -i 's/SimdResult2\._8_4_/SimdSourceZ/g' "$INPUT_FILE"
+sed -i 's/SimdResult2\._12_4_/SimdSourceW/g' "$INPUT_FILE"
+sed -i 's/SimdResult1\._0_4_/SimdTempX/g' "$INPUT_FILE"
+sed -i 's/SimdResult1\._4_4_/SimdTempY/g' "$INPUT_FILE"
+sed -i 's/SimdResult1\._8_4_/SimdTempZ/g' "$INPUT_FILE"
+sed -i 's/SimdResult1\._12_4_/SimdTempW/g' "$INPUT_FILE"
 
-# 执行替换
-while IFS='=' read -r old_name new_name; do
-    # 跳过注释行和空行
-    if [[ $old_name =~ ^#.*$ ]] || [[ -z $old_name ]]; then
-        continue
-    fi
-    
-    echo "替换 $old_name 为 $new_name"
-    sed -i "s/\b$old_name\b/$new_name/g" /dev/shm/mountblade-code/TaleWorlds.Native/src/04_ui_system.c
-done < ui_variable_mapping.txt
+# 替换像素通道相关的变量名
+sed -i 's/SimdResult1\._0_2_/RedChannelValue/g' "$INPUT_FILE"
+sed -i 's/SimdResult1\._2_2_/GreenChannelValue/g' "$INPUT_FILE"
+sed -i 's/SimdResult1\._4_2_/BlueChannelValue/g' "$INPUT_FILE"
+sed -i 's/SimdResult1\._6_2_/AlphaChannelValue/g' "$INPUT_FILE"
+sed -i 's/PixelDataBuffer\._0_4_/PixelData/g' "$INPUT_FILE"
+sed -i 's/SourcePixelData\._0_4_/SourceRedChannel/g' "$INPUT_FILE"
+sed -i 's/SourcePixelData\._4_4_/SourceGreenChannel/g' "$INPUT_FILE"
+sed -i 's/SourcePixelData\._8_4_/SourceBlueChannel/g' "$INPUT_FILE"
+sed -i 's/SourcePixelData\._12_4_/SourceAlphaChannel/g' "$INPUT_FILE"
+
+# 替换栈变量名
+sed -i 's/auStack_[0-9a-fA-F]*/LocalStackBuffer/g' "$INPUT_FILE"
+sed -i 's/uStack_[0-9a-fA-F]*/LocalStackUInt/g' "$INPUT_FILE"
+sed -i 's/uiStack_[0-9a-fA-F]*/LocalStackUI/g' "$INPUT_FILE"
+sed -i 's/lStack_[0-9a-fA-F]*/LocalStackLong/g' "$INPUT_FILE"
+sed -i 's/iStack_[0-9a-fA-F]*/LocalStackInt/g' "$INPUT_FILE"
+sed -i 's/cStack_[0-9a-fA-F]*/LocalStackChar/g' "$INPUT_FILE"
+sed -i 's/pcStack_[0-9a-fA-F]*/LocalStackPtrChar/g' "$INPUT_FILE"
+
+# 替换临时变量名
+sed -i 's/tempUInt[0-9]*/TempUInt/g' "$INPUT_FILE"
+sed -i 's/tempPtr[0-9]*/TempPtr/g' "$INPUT_FILE"
+sed -i 's/tempShort[0-9]*/TempShort/g' "$INPUT_FILE"
+sed -i 's/ptempUInt[0-9]*/TempPointer/g' "$INPUT_FILE"
+sed -i 's/sVar[0-9]*/TempShortVar/g' "$INPUT_FILE"
+
+# 替换动画相关的变量名
+sed -i 's/animationDataBuffer[0-9]*/AnimationDataBuffer/g' "$INPUT_FILE"
+sed -i 's/animationFrameIndex[0-9]*/AnimationFrameIndex/g' "$INPUT_FILE"
+sed -i 's/animationDataSize/AnimationDataSize/g' "$INPUT_FILE"
+
+# 替换参数变量名
+sed -i 's/parameter[0-9]*/Parameter/g' "$INPUT_FILE"
+sed -i 's/parameterTwo/ParameterSecond/g' "$INPUT_FILE"
+sed -i 's/parameterThree/ParameterThird/g' "$INPUT_FILE"
+sed -i 's/parameterFour/ParameterFourth/g' "$INPUT_FILE"
+
+# 替换系统相关的变量名
+sed -i 's/UserInterfaceSystemFlags/UserInterfaceSystemFlags/g' "$INPUT_FILE"
+sed -i 's/UIInterfaceMemoryBufferFlag/UIInterfaceMemoryBufferFlag/g' "$INPUT_FILE"
+sed -i 's/UserInterfaceSystemRenderBufferA/UserInterfaceSystemRenderBufferA/g' "$INPUT_FILE"
+sed -i 's/UIInitializationCompletedFlag/UIInitializationCompletedFlag/g' "$INPUT_FILE"
+
+# 替换未知指针名
+sed -i 's/UISystemUnknownDataPointer530/UISystemUnknownDataPointer530/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer580/UISystemUnknownDataPointer580/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer598/UISystemUnknownDataPointer598/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer5A8/UISystemUnknownDataPointer5A8/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer608/UISystemUnknownDataPointer608/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer2B0/UISystemUnknownDataPointer2B0/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer3E8/UISystemUnknownDataPointer3E8/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer308/UISystemUnknownDataPointer308/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer358/UISystemUnknownDataPointer358/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer610/UISystemUnknownDataPointer610/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer258/UISystemUnknownDataPointer258/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer650/UISystemUnknownDataPointer650/g' "$INPUT_FILE"
+sed -i 's/UISystemUnknownDataPointer9B0/UISystemUnknownDataPointer9B0/g' "$INPUT_FILE"
 
 echo "UI系统变量名美化完成"
-
-# 清理临时文件
-rm -f ui_variable_mapping.txt
