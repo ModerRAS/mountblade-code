@@ -26872,12 +26872,12 @@ LAB_SystemValidation:
           if (bVar2 != unsignedSystemValue5) break;
           pbVar4 = pbVar4 + 1;
         } while (unsignedSystemValue5 != 0);
-        if ((int)(bVar2 - unsignedSystemValue5) < 1) goto LAB_180051fc9;
+        if ((int)(bVar2 - unsignedSystemValue5) < 1) goto LAB_SystemValueValidation;
       }
     }
   }
   pointerToUnsigned10 = pointerToUnsigned1;
-LAB_180051fc9:
+LAB_SystemValueValidation:
   puStack_30 = &SystemGlobalDataReference;
   if (pbStack_28 == (byte *)0x0) {
     return pointerToUnsigned10 != pointerToUnsigned1;
@@ -38349,7 +38349,7 @@ void ProcessSystemResourceAllocationAndCallback(void* SystemResourcePointer,long
           cVar7 = (**(code **)(*plocalResourceOffset + 0x20))(plocalResourceOffset,0);
         }
         else {
-          cVar7 = FUN_18020ee40();
+          cVar7 = GetSystemStatusValue();
         }
         if (cVar7 == '\0') {
           plocalResourceOffset = *(long long **)(unsignedSystemValue4 * 8 + *ConfigurationDataPointer);
