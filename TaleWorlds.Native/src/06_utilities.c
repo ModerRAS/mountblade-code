@@ -12934,6 +12934,14 @@ void ModuleProcessErrorHandler(void)
  * 使用寄存器来优化性能，并处理各种资源类型的数据
  * 主要用于资源管理和系统优化
  */
+/**
+ * @brief 处理复杂资源和寄存器操作
+ * 
+ * 此函数负责处理系统中的复杂资源管理操作，包括资源验证、数据提取和寄存器操作。
+ * 它通过多个循环处理不同类型的资源，并确保数据的一致性和完整性。
+ * 
+ * @note 该函数涉及多个系统寄存器的操作和资源表的访问
+ */
 void ProcessComplexResourceWithRegisters(void)
 
 {
@@ -12941,8 +12949,8 @@ void ProcessComplexResourceWithRegisters(void)
   int64_t resourceTablePointer;
   uint32_t validationStatus1;
   uint32_t validationStatus2;
-  uint32_t resourceData1;
-  uint32_t resourceData2;
+  uint32_t resourceHashValue1;
+  uint32_t resourceHashValue2;
   int ProcessingResult;
   int processingCounter;
   int temporaryIndex;
