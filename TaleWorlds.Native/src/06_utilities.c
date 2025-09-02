@@ -5051,19 +5051,19 @@ uint32_t ValidateRegisterPointer(void)
 
 {
   int64_t RegisterValue;
-  int64_t AdjustedValue;
+  int64_t AdjustedRegisterValue;
   
   if (RegisterValue == 0) {
-    AdjustedValue = 0;
+    AdjustedRegisterValue = 0;
   }
   else {
-    AdjustedValue = RegisterValue - 8;
+    AdjustedRegisterValue = RegisterValue - 8;
   }
-  if (*(int64_t *)(AdjustedValue + 0x10) == 0) {
+  if (*(int64_t *)(AdjustedRegisterValue + 0x10) == 0) {
     return ErrorInvalidObjectHandle;
   }
   // 调用处理函数，该函数不会返回
-  HandlePointerOperation(*(int64_t *)(AdjustedValue + 0x10), 1);
+  HandlePointerOperation(*(int64_t *)(AdjustedRegisterValue + 0x10), 1);
 }
 
 
@@ -5110,22 +5110,22 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 
 {
   uint8_t ContextValidationStatus;
-  int64_t ValidatedContextPointer;
+  int64_t ValidatedResourcePointer;
   
-  ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandleIdentifier + ObjectContextDataArrayOffset),&ValidatedContextPointer);
+  ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandleIdentifier + ObjectContextDataArrayOffset),&ValidatedResourcePointer);
   if ((int)ContextValidationStatus != 0) {
     return ContextValidationStatus;
   }
-  if (ValidatedContextPointer == 0) {
-    ValidatedContextPointer = 0;
+  if (ValidatedResourcePointer == 0) {
+    ValidatedResourcePointer = 0;
   }
   else {
-    ValidatedContextPointer = ValidatedContextPointer - 8;
+    ValidatedResourcePointer = ValidatedResourcePointer - 8;
   }
-  if (*(int64_t *)(ValidatedContextPointer + ObjectContextValidationDataOffset) == 0) {
+  if (*(int64_t *)(ValidatedResourcePointer + ObjectContextValidationDataOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + ObjectContextValidationDataOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedResourcePointer + ObjectContextValidationDataOffset),1);
 }
 
 
@@ -5144,19 +5144,19 @@ uint32_t ProcessSystemResource(void)
 {
   int64_t InputParameterValue;
   int64_t LoopCounter;
-  int64_t ContextPointer;
+  int64_t SystemContextPointer;
   
   InputParameterValue = InputParameter;
   if (InputParameterValue == 0) {
-    ContextPointer = 0;
+    SystemContextPointer = 0;
   }
   else {
-    ContextPointer = InputParameterValue - 8;
+    SystemContextPointer = InputParameterValue - 8;
   }
-  if (*(int64_t *)(ContextPointer + 0x10) == 0) {
+  if (*(int64_t *)(SystemContextPointer + 0x10) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ContextPointer + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + 0x10),1);
 }
 
 
