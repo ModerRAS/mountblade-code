@@ -25446,7 +25446,7 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
       ProcessSystemResourceData(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,
                     *(uint8_t *)(SystemResourcePointer + 0x3d5));
       bVar6 = true;
-      goto LAB_18004e721;
+      goto LAB_ErrorHandler;
     }
   }
   else {
@@ -25460,14 +25460,14 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
       }
       ProcessSystemResourceData(*(long long *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,unsignedSystemValue5);
       bVar6 = systemCounter == 2;
-      goto LAB_18004e721;
+      goto LAB_ErrorHandler;
     }
     if (!bVar4) {
       return;
     }
   }
   bVar6 = false;
-LAB_18004e721:
+LAB_ErrorHandler:
   UpdateTextureManagerSystem(SystemTextureManagerPointer,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,bVar6);
   if (!bVar4) {
     return;

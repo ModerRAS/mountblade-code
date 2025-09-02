@@ -20948,7 +20948,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
   uint32_t ResourceLowByteFlag;
   uint32_t ResourceCounterPrimary;
   uint32_t ResourceMidByteFlag;
-  uint32_t uStack_6c;
+  uint32_t ResourceCounterSecondary;
   uint8_t EncryptionBuffer [32];
   uint8_t resourceValidationBuffer [32];
   
@@ -25937,7 +25937,7 @@ uint64_t ProcessComplexResourceOperations(int64_t objectContext,uint8_t *validat
   uint32_t ResourceLowByteFlag;
   uint32_t ResourceCounterPrimary;
   uint32_t ResourceMidByteFlag;
-  uint32_t uStack_6c;
+  uint32_t ResourceCounterSecondary;
   uint8_t ResourceOperationBuffer [32];
   uint8_t aEncryptedValue [32];
   
