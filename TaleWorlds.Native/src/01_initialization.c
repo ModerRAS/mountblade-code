@@ -49848,8 +49848,17 @@ void* * FUN_18006e460(void* *ResourceManagerPointer,ulong long ConfigurationData
 
 
 
-// 函数: void FUN_18006e4a0(long long *ResourceManagerPointer)
-void FUN_18006e4a0(long long *ResourceManagerPointer)
+/**
+ * @brief 清理资源管理器指针函数
+ * 
+ * 该函数负责清理资源管理器的指针和数据结构，包括哈希节点、
+ * 字符串处理指针、缓冲区地址等。用于系统资源管理器的内存清理。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * 
+ * 原始函数名为FUN_18006e4a0，现已重命名为CleanupResourceManagerPointers
+ */
+void CleanupResourceManagerPointers(long long *ResourceManagerPointer)
 
 {
   int *pointerToInteger1;
@@ -50855,7 +50864,7 @@ ulong long FUN_18006f940(void* ResourceManagerPointer,void* ConfigurationDataPoi
   bool bVar3;
   long long bufferBaseAddress;
   void* *pcurrentThreadId;
-  char cVar6;
+  char debuggerCheckResult;
   int systemOffset;
   int systemCode;
   uint32_t unsignedSystemValue9;
@@ -50896,8 +50905,8 @@ ulong long FUN_18006f940(void* ResourceManagerPointer,void* ConfigurationDataPoi
       FUN_18005dab0(bufferBaseAddress);
     }
     bVar15 = true;
-    cVar6 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-    if ((cVar6 == '\0') && (systemOffset = IsDebuggerPresent(), systemOffset != 0)) {
+    debuggerCheckResult = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
+    if ((debuggerCheckResult == '\0') && (systemOffset = IsDebuggerPresent(), systemOffset != 0)) {
       bVar3 = true;
     }
     else {
