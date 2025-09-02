@@ -18673,7 +18673,7 @@ Label_18089af81:
     ResourceContextPointer = (int64_t *)*ResourceContextPointer;
     if (*ResourceContextPointer != 0) {
       if (ResourceContextPointer[2] == 0) {
-LAB_18089b1ab:
+Label_18089b1ab:
         RegisterEDI = CalculateResourceHash(*ResourceContextPointer,&StackBuffer38,RegisterESI,4,0);
       }
       else {
