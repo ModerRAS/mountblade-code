@@ -70385,19 +70385,19 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
             if (startRow < endRow) {
               targetRow = currentRow + halfRange;
               do {
-                ulong long targetIndex = (ulong long)targetRow;
+                ulong long targetRowIndex = (ulong long)targetRow;
                 matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
-                result2 = *(float *)(matrixPointer + targetIndex * 8);
-                result1 = *(float *)(matrixPointer + 4 + targetIndex * 8);
+                secondResult = *(float *)(matrixPointer + targetRowIndex * 8);
+                firstResult = *(float *)(matrixPointer + 4 + targetRowIndex * 8);
                 matrixVal1 = *(float *)(matrixPointer + startRow * 8);
                 matrixVal2 = *(float *)(matrixPointer + 4 + startRow * 8);
-                tempResult1 = result2 * sineValue - result1 * cosineValue;
-                result2 = result1 * sineValue + result2 * cosineValue;
-                *(float *)(matrixPointer + startRow * 8) = tempResult1 + matrixVal1;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + startRow * 8) = result2 + matrixVal2;
+                float intermediateResult = secondResult * sineValue - firstResult * cosineValue;
+                secondResult = firstResult * sineValue + secondResult * cosineValue;
+                *(float *)(matrixPointer + startRow * 8) = intermediateResult + matrixVal1;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + startRow * 8) = secondResult + matrixVal2;
                 startRow = startRow + 1;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + targetIndex * 8) = matrixVal1 - tempResult1;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + targetIndex * 8) = matrixVal2 - result2;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + targetRowIndex * 8) = matrixVal1 - intermediateResult;
+                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + targetRowIndex * 8) = matrixVal2 - secondResult;
                 targetRow = targetRow + 1;
               } while (startRow < endRow);
             }
