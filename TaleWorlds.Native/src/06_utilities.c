@@ -3655,7 +3655,7 @@ void ValidateSystemObjectCollection(void)
     ProcessedCount = 0;
     RetrievedCount = 0;
     MaxCapacity = MaximumCapacityLimit;
-    ValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(ObjectContext + 8),
+    ValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
                           &RetrievedObjectDataBuffer);
     if (ValidationResult == 0) {
       RetrievedCount = *(int *)(RetrievedObjectDataBuffer + 4);
