@@ -33630,8 +33630,8 @@ void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,
   validationStatusCode = 0xfffffffffffffffe;
   *ResourceHashPointer = &ResourceHashTable002;
   StatusChar = ProcessResourceHashOperation(ResourceHashPointer,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-  while (StatusChar != '\0') {
-    StatusChar = ProcessResourceHashOperation(ResourceHashPointer,1,CleanupOption,CleanupFlag,HashValidationResult);
+  while (operationStatus != '\0') {
+    operationStatus = ProcessResourceHashOperation(ResourceHashPointer,1,CleanupOption,CleanupFlag,HashValidationResult);
   }
   if (ResourceHashPointer[1] == 0) {
     ResourceHashPointer[1] = 0;
@@ -45284,8 +45284,8 @@ void CleanupResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext,ui
   validationStatusCode = 0xfffffffffffffffe;
   *ResourceHashPointer = &ResourceHashTable002;
   StatusChar = ProcessResourceHashOperation(ResourceHashPointer,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-  while (StatusChar != '\0') {
-    StatusChar = ProcessResourceHashOperation(ResourceHashPointer,1,CleanupOption,CleanupFlag,HashValidationResult);
+  while (operationStatus != '\0') {
+    operationStatus = ProcessResourceHashOperation(ResourceHashPointer,1,CleanupOption,CleanupFlag,HashValidationResult);
   }
   if (ResourceHashPointer[1] == 0) {
     ResourceHashPointer[1] = 0;
@@ -48916,21 +48916,45 @@ void ExecuteIndirectExtendedCleanupCallback(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_180905700(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理回调函数
+ * 
+ * 该函数负责执行资源清理的回调函数
+ * 通过调用资源表中的清理函数来释放资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数会遍历资源表并执行所有清理回调
+ */
+void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  code *CleanupCallbackPointer;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0x48) + 0x10);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0x48),0,0,CleanupFlag,0xfffffffffffffffe);
+  CleanupCallbackPointer = *(code **)(*(int64_t *)(ValidationContext + 0x48) + 0x10);
+  if (CleanupCallbackPointer != (code *)0x0) {
+    (*CleanupCallbackPointer)(*(int64_t *)(ValidationContext + 0x48),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905710(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责设置系统数据结构的指针
+ * 将全局系统数据结构地址存储到指定的上下文中
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于初始化系统数据结构引用
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 8) = &SystemDataStructure;
@@ -48939,7 +48963,18 @@ void Unwind_180905710(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905720(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希表指针
+ * 
+ * 该函数负责初始化资源哈希表的指针
+ * 将资源哈希表地址存储到验证上下文的指定位置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于设置资源哈希表的初始指针
+ */
+void InitializeResourceHashTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x40) = &ResourceHashTable002;
@@ -48948,7 +48983,18 @@ void Unwind_180905720(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905730(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化辅助资源哈希表指针
+ * 
+ * 该函数负责初始化辅助资源哈希表的指针
+ * 将资源哈希表地址存储到验证上下文的另一个位置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于设置辅助资源哈希表的初始指针
+ */
+void InitializeSecondaryResourceHashTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x60) = &ResourceHashTable002;
@@ -48957,7 +49003,18 @@ void Unwind_180905730(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905740(uint8_t ObjectContext,uint *ValidationContext)
+/**
+ * @brief 处理资源缓冲区状态
+ * 
+ * 该函数负责处理资源缓冲区的状态
+ * 当验证标志位被设置时，处理相应的资源缓冲区
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ * @note 此函数会检查验证标志并相应地处理资源缓冲区
+ */
+void ProcessResourceBufferState(uint8_t ObjectContext,uint *ValidationContext)
 
 {
   if ((*ValidationContext & 1) != 0) {
@@ -48969,21 +49026,35 @@ void Unwind_180905740(uint8_t ObjectContext,uint *ValidationContext)
 
 
 
-void Unwind_180905770(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源哈希表清理
+ * 
+ * 该函数负责执行资源哈希表的清理操作
+ * 遍历资源哈希表中的所有条目并执行相应的清理回调
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数会遍历整个资源哈希表并执行清理操作
+ * @warning 如果资源表为空，系统会执行紧急退出程序
+ */
+void ExecuteResourceHashTableCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
-  int64_t *presourceTable;
-  uint8_t *HashValidationResultPointer;
+  int64_t *ResourceTablePointer;
+  uint8_t *HashEntryPointer;
   uint8_t loopCondition;
   
-  presourceTable = *(int64_t **)(ValidationContext + 0x28);
+  ResourceTablePointer = *(int64_t **)(ValidationContext + 0x28);
   loopIncrement = 0xfffffffffffffffe;
-  ResourceHashPointer = (uint8_t *)presourceTable[1];
-  for (PackageValidationStatusCodePointer = (uint8_t *)*presourceTable; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 0x13) {
-    (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0,CleanupOption,CleanupFlag,loopIncrement);
+  ResourceHashPointer = (uint8_t *)ResourceTablePointer[1];
+  for (HashEntryPointer = (uint8_t *)*ResourceTablePointer; HashEntryPointer != ResourceHashPointer; HashEntryPointer = HashEntryPointer + 0x13) {
+    (**(code **)*HashEntryPointer)(HashEntryPointer,0,CleanupOption,CleanupFlag,loopIncrement);
   }
-  if (*presourceTable == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
