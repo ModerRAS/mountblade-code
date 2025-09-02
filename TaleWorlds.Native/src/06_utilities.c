@@ -292,7 +292,7 @@ bool GraphicsSystemInitializationComplete; // 图形系统初始化完成标志
  * @warning 状态标志值的含义取决于具体的音频系统实现
  */
 uint32_t GetAudioSystemStatusFlag(void);
-bool AudioSystemInitializationComplete;
+bool AudioSystemInitializationComplete;   // 音频系统初始化完成标志
 
 
 /**
@@ -307,8 +307,8 @@ bool AudioSystemInitializationComplete;
  * @warning 调用此函数后，所有线程同步对象将失效
  */
 void DestroyThreadSynchronizationObjects(void);
-void* ThreadSynchronizationObjectHandle;
-void* ThreadSynchronizationExecutionContext;
+void* ThreadSynchronizationObjectHandle;   // 线程同步对象句柄
+void* ThreadSynchronizationExecutionContext; // 线程同步执行上下文
 
  /**
  * @brief 关闭系统句柄
