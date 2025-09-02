@@ -7385,7 +7385,7 @@ void CleanupSecurityTokenFunction(void)
 uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t ContextPointer)
 
 {
-    uint8_t matrixValidationStatus;
+    uint8_t MatrixValidationStatus;
   int FirstRowInfinityStatus;
   int SecondRowInfinityStatus;
   int ThirdRowInfinityStatus;
