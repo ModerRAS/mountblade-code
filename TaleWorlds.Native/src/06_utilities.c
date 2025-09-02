@@ -8102,7 +8102,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
  * @param OperationControlParam2 第二个操作控制参数，用于控制操作行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
-uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_t ObjectContext, int64_t SystemContext, uint8_t OperationControlParam1, uint8_t OperationControlParam2)
+uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectContext, int64_t SystemContext, uint8_t OperationControlParam1, uint8_t OperationControlParam2)
 
 {
   float InputValue;
@@ -8114,17 +8114,17 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
   float RangeValue;
   int64_t StackBuffer;
   
-  StackContextPointer = CONCAT44(StackContextPointer.VectorComponent,*(uint *)(ObjectContext + ObjectContextProcessingDataOffset));
+  StackContextData = CONCAT44(StackContextData.VectorComponent,*(uint *)(ObjectContext + ObjectContextProcessingDataOffset));
   if ((*(uint *)(ObjectContext + ObjectContextProcessingDataOffset) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  LoopCondition = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&StackContextPointer);
+  LoopCondition = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&StackContextData);
   if ((int)LoopCondition != 0) {
     return LoopCondition;
   }
-  ResourceTablePointer = StackContextPointer;
-  if (StackContextPointer != 0) {
-    ResourceTablePointer = StackContextPointer + -8;
+  ResourceTableData = StackContextData;
+  if (StackContextData != 0) {
+    ResourceTableData = StackContextData + -8;
   }
   OperationStatusCode = *(int *)(ObjectContext + ObjectContextValidationDataOffset);
   if ((OperationResult < 0) || (*(int *)(ResourceTablePointer + 0x28) <= OperationResult)) {
