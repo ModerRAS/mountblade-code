@@ -24722,7 +24722,7 @@ ResourceProcessLoop:
   }
 ResourceCleanup:
   if ((int)validationStatusCode == 0) {
-    StackRegisterStorage38 = 0;
+    ResourceTablePointer = 0;
     validationStatusCode = ProcessResourceLoading();
     resourceTable = StackRegisterStorage38;
     if ((int)HashValidationResult != 0) {
@@ -94366,19 +94366,19 @@ void ReleaseResourceHashTable(void)
   int64_t ResourceTable;
   uint8_t RegisterValueNine;
   
-  if (MemoryAddress_180d49d68 != 0) {
-    resourceHash = (lRam0000000180d49d78 - MemoryAddress_180d49d68 >> 3) * 8;
-    resourceTable = MemoryAddress_180d49d68;
+  if (ResourceTableBaseAddress != 0) {
+    resourceHash = (lRam0000000180d49d78 - ResourceTableBaseAddress >> 3) * 8;
+    resourceTable = ResourceTableBaseAddress;
     if (0xfff < resourceHash) {
-      resourceTable = *(int64_t *)(MemoryAddress_180d49d68 + -8);
-      if (0x1f < (MemoryAddress_180d49d68 - resourceTable) - 8U) {
+      resourceTable = *(int64_t *)(ResourceTableBaseAddress + -8);
+      if (0x1f < (ResourceTableBaseAddress - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn
-                  (MemoryAddress_180d49d68 - resourceTable,resourceHash + 0x27,resourceTable,RegisterValue9,0xfffffffffffffffe);
+                  (ResourceTableBaseAddress - resourceTable,resourceHash + 0x27,resourceTable,RegisterValue9,0xfffffffffffffffe);
       }
     }
     free(resourceTable);
-    MemoryAddress_180d49d68 = 0;
+    ResourceTableBaseAddress = 0;
     SystemConfigurationFlag = 0;
     lRam0000000180d49d78 = 0;
   }

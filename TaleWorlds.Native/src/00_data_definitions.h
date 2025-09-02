@@ -13477,15 +13477,15 @@ int RegisterSystemModuleD(void);
  * 2025年新增重命名变量：
  * 
  * 系统配置验证缓冲区：
- * - UNK_180a3ac00 -> SystemConfigurationValidationBuffer19
- * - UNK_180a3acf8 -> SystemConfigurationValidationBuffer20
- * - UNK_180a3acd8 -> SystemConfigurationValidationBuffer21
- * - UNK_180a3ad30 -> SystemConfigurationValidationBuffer22
- * - UNK_180a3ad18 -> SystemConfigurationValidationBuffer23
- * - UNK_180a3ac90 -> SystemConfigurationValidationBuffer24
- * - UNK_180a3ac80 -> SystemConfigurationValidationBuffer25
- * - UNK_180a3acc8 -> SystemConfigurationValidationBuffer26
- * - UNK_180a3aca8 -> SystemConfigurationValidationBuffer27
+ * - SystemConfigurationValidationBuffer19 -> SystemConfigurationValidationBuffer19
+ * - SystemConfigurationValidationBuffer20 -> SystemConfigurationValidationBuffer20
+ * - SystemConfigurationValidationBuffer21 -> SystemConfigurationValidationBuffer21
+ * - SystemConfigurationValidationBuffer22 -> SystemConfigurationValidationBuffer22
+ * - SystemConfigurationValidationBuffer23 -> SystemConfigurationValidationBuffer23
+ * - SystemConfigurationValidationBuffer24 -> SystemConfigurationValidationBuffer24
+ * - SystemConfigurationValidationBuffer25 -> SystemConfigurationValidationBuffer25
+ * - SystemConfigurationValidationBuffer26 -> SystemConfigurationValidationBuffer26
+ * - SystemConfigurationValidationBuffer27 -> SystemConfigurationValidationBuffer27
  * - UNK_180a3ade8 -> SystemConfigurationValidationBuffer28
  * - UNK_180a3add0 -> SystemConfigurationValidationBuffer29
  * - UNK_180a3ae18 -> SystemConfigurationValidationBuffer30
