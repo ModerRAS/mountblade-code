@@ -73827,6 +73827,22 @@ void Unwind_ResourceHashValidationStatusCodeCleanupHandler(uint8_t ObjectContext
 
 
 
+/**
+ * @brief 执行资源分配清理操作
+ * 
+ * 该函数负责在异常处理过程中清理资源分配相关的状态和数据
+ * 主要功能包括：
+ * 1. 执行资源处理器的回调函数
+ * 2. 重置资源处理器模板
+ * 3. 清理资源上下文状态
+ * 4. 重置验证标志和计数器
+ * 
+ * @param ObjectContext 对象上下文，包含资源分配相关的对象信息
+ * @param ValidationContext 验证上下文，用于验证和清理资源状态
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被调用，用于确保资源分配状态的正确清理
+ * @warning 清理过程中可能会触发系统紧急退出操作
+ */
 void Unwind_ExecuteResourceAllocationCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -74110,7 +74126,23 @@ void ValidateResourceHashStatusCode(uint8_t ObjectContext, int64_t ValidationCon
 
 
 
-void Unwind_18090a890(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源释放处理程序
+ * 
+ * 该函数负责在异常处理过程中释放资源相关的内存和状态
+ * 主要功能包括：
+ * 1. 验证资源哈希状态码地址
+ * 2. 计算内存地址增量
+ * 3. 处理资源索引和引用计数
+ * 4. 执行内存访问验证或资源释放
+ * 
+ * @param ObjectContext 对象上下文，包含资源释放相关的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被调用，用于确保资源的正确释放
+ * @warning 资源释放过程中可能会触发系统清理操作
+ */
+void Unwind_ExecuteResourceDeallocationHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -74146,7 +74178,23 @@ void Unwind_18090a890(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a8a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源内存释放操作
+ * 
+ * 该函数负责在异常处理过程中释放资源占用的内存
+ * 主要功能包括：
+ * 1. 遍历资源表指针
+ * 2. 执行每个资源的清理函数
+ * 3. 检查资源表状态
+ * 4. 在必要时触发系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，包含资源内存释放相关的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被调用，用于确保资源内存的正确释放
+ * @warning 如果资源表指针为空，可能会触发系统紧急退出操作
+ */
+void Unwind_ExecuteResourceMemoryRelease(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -74168,7 +74216,23 @@ void Unwind_18090a8a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a8b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源池清理操作
+ * 
+ * 该函数负责在异常处理过程中清理资源池的状态和数据
+ * 主要功能包括：
+ * 1. 遍历资源池表指针
+ * 2. 执行每个资源池的清理函数
+ * 3. 检查资源池状态
+ * 4. 在必要时触发系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，包含资源池清理相关的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源池状态的上下文信息
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被调用，用于确保资源池的正确清理
+ * @warning 如果资源池表指针为空，可能会触发系统紧急退出操作
+ */
+void Unwind_ExecuteResourcePoolCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
