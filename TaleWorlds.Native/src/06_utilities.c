@@ -14615,8 +14615,7 @@ uint8_t ValidateResourceRenderingState(void)
 
 
 
- 802e(void)
-void ExecuteNullOperation(void)
+ void ExecuteNullOperation(void)
 
 {
   return;
@@ -14628,8 +14627,7 @@ void ExecuteNullOperation(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 8040(int64_t *objectContext)
-8040(int64_t *objectContext)
+ void ProcessResourceDataValidation(int64_t *objectContext)
 
 {
   float calculatedFloatResult;
@@ -14935,8 +14933,7 @@ ResourceProcessingComplete:
 
 
 
- 86b0(int64_t objectContext,uint8_t validationContext)
-86b0(int64_t objectContext,uint8_t validationContext)
+ void ProcessResourceAllocationExpansion(int64_t objectContext,uint8_t validationContext)
 
 {
   int ProcessingResult;
@@ -15978,8 +15975,7 @@ uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *dataBuffer)
 
 
 
- 8fc0(uint8_t objectContext,int64_t validationContext)
-8fc0(uint8_t objectContext,int64_t validationContext)
+ void ValidateResourceMemoryAllocation(uint8_t objectContext,int64_t validationContext)
 
 {
   int ProcessingResult;
@@ -47032,8 +47028,20 @@ void InitializeSystemResourceHandlerTemplate(uint8_t objectContext,int64_t valid
 
 
 
-void Unwind_1809054e0(uint8_t objectContext,int64_t validationContext)
+void SetSystemDataStructurePointer(uint8_t objectContext,int64_t validationContext)
 
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责设置系统数据结构的指针
+ * 将系统数据结构指针写入验证上下文中
+ * 
+ * @param objectContext 对象上下文，包含系统对象的相关信息
+ * @param validationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统初始化过程中调用
+ * @warning 此函数会直接修改验证上下文中的指针
+ */
 {
   **(uint8_t **)(validationContext + 0x100) = &SystemDataStructure;
   return;
@@ -47060,8 +47068,18 @@ void Unwind_1809054f0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905500(void)
+void DestroyMutexInPlace(void)
 
+/**
+ * @brief 销毁原位置互斥锁
+ * 
+ * 该函数负责销毁原位置的互斥锁对象
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数在系统清理或线程结束时调用
+ * @warning 此函数会直接销毁互斥锁，可能影响系统的同步机制
+ */
 {
   _Mtx_destroy_in_situ();
   return;
@@ -47069,8 +47087,18 @@ void Unwind_180905500(void)
 
 
 
-void Unwind_180905520(void)
+void DestroyMutexInPlaceSecondary(void)
 
+/**
+ * @brief 销毁原位置互斥锁（备用）
+ * 
+ * 该函数负责销毁原位置的互斥锁对象（备用版本）
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数是DestroyMutexInPlace的备用版本
+ * @warning 此函数会直接销毁互斥锁，可能影响系统的同步机制
+ */
 {
   _Mtx_destroy_in_situ();
   return;
