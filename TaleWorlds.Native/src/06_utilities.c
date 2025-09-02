@@ -5043,20 +5043,20 @@ uint64_t ValidateAndProcessObjectHandle(uint64_t ObjectHandleIdentifier)
 uint32_t ValidateAndProcessCurrentObjectHandle(void)
 
 {
-  int64_t currentRegister;
-  int64_t processedValue;
+  int64_t CurrentRegisterValue;
+  int64_t ProcessedMemoryPointer;
   
-  if (currentRegister == 0) {
-    processedValue = 0;
+  if (CurrentRegisterValue == 0) {
+    ProcessedMemoryPointer = 0;
   }
   else {
-    processedValue = currentRegister + -8;
+    ProcessedMemoryPointer = CurrentRegisterValue + -8;
   }
-  if (*(int64_t *)(processedValue + 0x10) == 0) {
+  if (*(int64_t *)(ProcessedMemoryPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(processedValue + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(ProcessedMemoryPointer + 0x10), 1);
 }
 
 
