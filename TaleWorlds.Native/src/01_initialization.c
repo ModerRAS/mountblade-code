@@ -18998,91 +18998,91 @@ uint32_t FinalSystemInitialization(void)
   long long***** SystemSuperManager;
   long long**** TemporaryManager14;
   
-  CalculationFlagss = 0xfffffffffffffffe;
+  CalculationFlags = 0xfffffffffffffffe;
   if (SystemGlobalControllerPointer != (void* *)0x0) {
     while( true ) {
       if ((void* *)*SystemGlobalControllerPointer == &SystemVirtualTableTemplateB) {
-        IsActiveFlag = *(char *)(SystemGlobalControllerPointer + 2) != '\0';
+        SystemActiveStatus = *(char *)(SystemGlobalControllerPointer + 2) != '\0';
       }
       else {
-        IsActiveFlag = (**(code **)((void* *)*SystemGlobalControllerPointer + 0x68))();
+        SystemActiveStatus = (**(code **)((void* *)*SystemGlobalControllerPointer + 0x68))();
       }
-      if (IsActiveFlag != '\0') break;
+      if (SystemActiveStatus != '\0') break;
       Sleep(1);
     }
   }
-  systemManager = (long long ****)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xc0,8,3,CalculationFlagss);
-  stackManager8 = systemManager;
-  InitializeSystemDataTableManager(systemManager);
-  *systemManager = (long long ***)&SystemManagerGlobalTable;
-  stackManager20 = (long long ***)systemManager;
-  (*(code *)(*systemManager)[5])(systemManager);
-  systemObject = SystemAllocationFlagsTemplate;
-  systemSuperManager = &stackManager8;
-  stackManager8 = systemManager;
-  (*(code *)(*systemManager)[5])(systemManager);
-  SystemManagerInitialize(systemObject,&stackManager8);
+  SystemManagerInstance = (long long ****)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xc0,8,3,CalculationFlags);
+  StackManager8 = SystemManagerInstance;
+  InitializeSystemDataTableManager(SystemManagerInstance);
+  *SystemManagerInstance = (long long ***)&SystemManagerGlobalTable;
+  StackManager20 = (long long ***)SystemManagerInstance;
+  (*(code *)(*SystemManagerInstance)[5])(SystemManagerInstance);
+  SystemObjectHandle = SystemAllocationFlagsTemplate;
+  SystemSuperManager = &StackManager8;
+  StackManager8 = SystemManagerInstance;
+  (*(code *)(*SystemManagerInstance)[5])(SystemManagerInstance);
+  SystemManagerInitialize(SystemObjectHandle,&StackManager8);
   while( true ) {
-    if (*systemManager == (long long ***)&SystemManagerGlobalTable) {
-      IsActiveFlag = *(char *)(systemManager + 2) != '\0';
+    if (*SystemManagerInstance == (long long ***)&SystemManagerGlobalTable) {
+      SystemActiveStatus = *(char *)(SystemManagerInstance + 2) != '\0';
     }
     else {
-      IsActiveFlag = (*(code *)(*systemManager)[0xd])(systemManager);
+      SystemActiveStatus = (*(code *)(*SystemManagerInstance)[0xd])(SystemManagerInstance);
     }
-    if (IsActiveFlag != '\0') break;
+    if (SystemActiveStatus != '\0') break;
     Sleep(1);
   }
   InitializeSystemManager();
-  systemObject = SystemContextManagerPointer;
-  SystemAllocationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
-  tempManager8 = (long long ****)AllocateSystemMemory(SystemAllocationFlags,2,systemObject);
-  tempManager14 = tempManager8;
-  if (tempManager8 != (long long ****)0x0) {
-    (*(code *)(*tempManager8)[5])(tempManager8);
+  SystemObjectHandle = SystemContextManagerPointer;
+  MemoryAllocationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
+  TemporaryManager8 = (long long ****)AllocateSystemMemory(MemoryAllocationFlags,2,SystemObjectHandle);
+  TemporaryManager14 = TemporaryManager8;
+  if (TemporaryManager8 != (long long ****)0x0) {
+    (*(code *)(*TemporaryManager8)[5])(TemporaryManager8);
   }
-  systemPtr = *(void* **)(systemObject + 400);
-  systemCallback = *(code **)*systemPtr;
-  stackManager8 = &stackManager10;
-  stackManager10 = (long long ***)tempManager8;
-  if (tempManager8 != (long long ****)0x0) {
-    (*(code *)(*tempManager8)[5])(tempManager8);
+  SystemInterfacePointer = *(void* **)(SystemObjectHandle + 400);
+  SystemCallbackFunction = *(code **)*SystemInterfacePointer;
+  StackManager8 = &StackManager10;
+  StackManager10 = (long long ***)TemporaryManager8;
+  if (TemporaryManager8 != (long long ****)0x0) {
+    (*(code *)(*TemporaryManager8)[5])(TemporaryManager8);
   }
-  (*systemCallback)(systemPtr,&stackManager10);
-  CalculationFlagss = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlagss,systemSuperManager,tempManager14);
-  tempManager9 = (long long ***)AllocateSystemMemory(CalculationFlagss,0,systemObject);
-  if (tempManager9 != (long long ***)0x0) {
-    (*(code *)(*tempManager9)[5])(tempManager9);
+  (*SystemCallbackFunction)(SystemInterfacePointer,&StackManager10);
+  CalculationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlags,SystemSuperManager,TemporaryManager14);
+  TemporaryManager9 = (long long ***)AllocateSystemMemory(CalculationFlags,0,SystemObjectHandle);
+  if (TemporaryManager9 != (long long ***)0x0) {
+    (*(code *)(*TemporaryManager9)[5])(TemporaryManager9);
   }
-  systemPtr = *(void* **)(systemObject + 400);
-  systemCallback = *(code **)*systemPtr;
-  stackManager8 = (long long ****)&stackController18;
-  stackController18 = (long long **)tempManager9;
-  if (tempManager9 != (long long ***)0x0) {
-    (*(code *)(*tempManager9)[5])(tempManager9);
+  SystemInterfacePointer = *(void* **)(SystemObjectHandle + 400);
+  SystemCallbackFunction = *(code **)*SystemInterfacePointer;
+  StackManager8 = (long long ****)&StackController18;
+  StackController18 = (long long **)TemporaryManager9;
+  if (TemporaryManager9 != (long long ***)0x0) {
+    (*(code *)(*TemporaryManager9)[5])(TemporaryManager9);
   }
-  (*systemCallback)(systemPtr,&stackController18);
-  ProcessSystemCallback(*(void* *)(systemObject + 400));
-  if (tempManager9 != (long long ***)0x0) {
-    (*(code *)(*tempManager9)[7])(tempManager9);
+  (*SystemCallbackFunction)(SystemInterfacePointer,&StackController18);
+  ProcessSystemCallback(*(void* *)(SystemObjectHandle + 400));
+  if (TemporaryManager9 != (long long ***)0x0) {
+    (*(code *)(*TemporaryManager9)[7])(TemporaryManager9);
   }
-  if (tempManager8 != (long long ****)0x0) {
-    (*(code *)(*tempManager8)[7])(tempManager8);
+  if (TemporaryManager8 != (long long ****)0x0) {
+    (*(code *)(*TemporaryManager8)[7])(TemporaryManager8);
   }
-  tempManager14 = SystemManagerPointerStorage;
+  TemporaryManager14 = SystemManagerPointerStorage;
   *(uint8_t *)(SystemManagerPointerStorage[1] + 0x80) = 1;
   while( true ) {
-    systemController = *tempManager14[1];
-    if (systemController == (long long **)&SystemControllerDefaultTable) {
-      IsActiveFlag = *(char *)(tempManager14[1] + 2) != '\0';
+    SystemControllerInstance = *TemporaryManager14[1];
+    if (SystemControllerInstance == (long long **)&SystemControllerDefaultTable) {
+      SystemActiveStatus = *(char *)(TemporaryManager14[1] + 2) != '\0';
     }
     else {
-      IsActiveFlag = (*(code *)systemController[0xd])();
+      SystemActiveStatus = (*(code *)SystemControllerInstance[0xd])();
     }
-    tempManager8 = SystemManagerPointerStorage;
-    if (IsActiveFlag != '\0') break;
+    TemporaryManager8 = SystemManagerPointerStorage;
+    if (SystemActiveStatus != '\0') break;
     Sleep(1);
   }
-  stackManager8 = SystemManagerPointerStorage;
+  StackManager8 = SystemManagerPointerStorage;
   if (SystemManagerPointerStorage != (long long ****)0x0) {
     SystemManagerPointer = __RTCastToVoid(SystemManagerPointerStorage);
     *SystemManagerTable = (long long ***)&SystemManagerCompletionTable;
@@ -19097,16 +19097,16 @@ uint32_t FinalSystemInitialization(void)
     SystemResourceTriplePointer2 = (long long ***)(ppppSystemMemoryAddress + 0x40070);
     _Mtx_destroy_in_situ();
     ConfigureSystemBuffer(ppppSystemMemoryAddress);
-    if (SystemAllocationFlags != 0) {
-        SystemCleanupFunction(SystemAllocationFlags);
+    if (MemoryAllocationFlags != 0) {
+        SystemCleanupFunction(MemoryAllocationFlags);
     }
   }
   pppPrimaryResourcePointer4 = SystemInitializationFlag;
-  SystemAllocationFlags = SystemAllocationFlagsTemplate;
+  MemoryAllocationFlags = SystemAllocationFlagsTemplate;
   SystemManagerPointerStorage = (long long ****)0x0;
   if (SystemAllocationFlagsTemplate != 0) {
     InitializeSystemLogger(SystemAllocationFlagsTemplate);
-      SystemCleanupFunction(SystemAllocationFlags);
+      SystemCleanupFunction(MemoryAllocationFlags);
   }
   SystemAllocationFlagsTemplate = 0;
   *(uint32_t *)(SystemInitializationFlag + 0x2d) = 2;
@@ -19115,13 +19115,13 @@ uint32_t FinalSystemInitialization(void)
     SystemInitializationFlag = (long long ****)0x0;
     WaitForSingleObject(SystemSemaphoreHandle,0xffffffff);
     do {
-      systemValue = ReleaseSemaphore(SystemSemaphoreHandle,1);
-    } while (systemValue == 0);
+      SystemValue = ReleaseSemaphore(SystemSemaphoreHandle,1);
+    } while (SystemValue == 0);
     SystemSecondaryStatus = __acrt_iob_func(1);
     fflush(SystemSecondaryStatus);
     SystemSecondaryStatus = __acrt_iob_func(2);
     fflush(SystemSecondaryStatus);
-    resourceAddress = SystemGlobalStateStorage;
+    ResourceAddress = SystemGlobalStateStorage;
     (*(code *)(*ppppSystemThreadFlags)[7])(ppppSystemThreadFlags);
     return resourceAddress;
   }
