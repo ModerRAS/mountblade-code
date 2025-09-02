@@ -282,7 +282,7 @@ uint64_t CombineSystemContextWithValidation(uint64_t SystemContext, uint8_t Vali
  * @param ChecksumSeed 校验种子值
  * @return 计算得到的校验和值
  */
-uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t checksumSeed);
+uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
 
 /**
  * @brief 计算数据校验和(扩展版)

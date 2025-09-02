@@ -10108,7 +10108,7 @@ void InitializeSystemLogManager(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 8;
   strcpy_s(SystemProcessingBuffer,0x80,&SystemResourceStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
-  SystemMemoryAllocationTableEntry006 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntrySenary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -35038,7 +35038,7 @@ void* ReleaseSystemResourceHandler(void* SystemResourceManager,ulong long Config
  * @param SystemResourceManager 系统资源指针的指针，包含需要初始化的资源信息
  * @note 这是系统资源初始化的重要组成部分，用于设置系统资源的基础结构
  */
-void InitializeAndCleanupSystemResource(void* *SystemResourceManager)
+void InitializeAndCleanupSystemResource(void* *systemResourceManager)
 
 {
   ulong long SystemOperationStatus;
