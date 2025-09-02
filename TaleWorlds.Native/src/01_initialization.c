@@ -20553,9 +20553,9 @@ void InitializeSystemCoreEngine(void)
   systemBufferFlag = 0;
   dataBufferPointer = (uint8_t *)0x0;
   systemOffsetCounter = 0;
-  WriteDataToBuffer(&globalDataReferencePointer4,IntegerStackInitializationFlag);
-  if (IntegerStackInitializationFlag != 0) {
-      memcpy(dataBufferPointer,dataBufferSize,IntegerStackInitializationFlag + 1);
+  WriteDataToBuffer(&globalDataReferencePointer4,SystemThreadInitializedFlag);
+  if (SystemThreadInitializedFlag != 0) {
+      memcpy(dataBufferPointer,dataBufferSize,SystemThreadInitializedFlag + 1);
   }
   if (dataBufferSize != 0) {
     systemOffsetCounter = 0;

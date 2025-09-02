@@ -65793,7 +65793,19 @@ void ExecuteSystemContextResourceManagerCleanupHandler(uint8_t ObjectContext,int
 
 
 
-void Unwind_180908be0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文回调函数2
+ * 
+ * 该函数负责执行验证上下文中的回调函数，处理资源相关的异常情况
+ * 如果验证上下文中存在回调函数指针，则调用该回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被调用
+ * @warning 原始函数名：Unwind_180908be0
+ */
+void ExecuteValidationContextCallback2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xa0) != (int64_t *)0x0) {
@@ -65804,7 +65816,19 @@ void Unwind_180908be0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908bf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1
+ * 
+ * 该函数负责执行资源上下文中的回调函数，处理资源相关的异常情况
+ * 设置资源处理器模板并清理资源状态
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在资源处理过程中被调用
+ * @warning 原始函数名：Unwind_180908bf0
+ */
+void ExecuteResourceContextCallback1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0xa8) = &SystemResourceHandlerTemplate;
