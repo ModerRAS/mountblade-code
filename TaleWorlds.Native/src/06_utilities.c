@@ -3557,6 +3557,15 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  * @note 此函数会验证所有系统对象的状态，并执行相应的处理逻辑
  * @warning 如果对象验证失败，函数将不会返回
  */
+/**
+ * @brief 验证系统对象集合
+ * 
+ * 该函数负责验证系统中的对象集合，检查每个对象的有效性
+ * 如果对象无效，则调用处理函数进行处理
+ * 
+ * @return void 无返回值
+ * @note 此函数会遍历所有系统对象并进行验证
+ */
 void ValidateSystemObjectCollection(void)
 {
   uint8_t ObjectIdentifier;
@@ -11449,13 +11458,13 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
           *SystemContextRegister = StackIndexCounter;
           return 0;
         }
-        goto StackVariableHandler;
+        goto StackIndexHandler;
       }
       OperationStatusCode = *(int *)(SystemContextPointer + 4 + ResourceTable * 0x10);
     } while (OperationResult != -1);
   }
   StackIndexCounter = 0;
-StackVariableHandler:
+StackIndexHandler:
   PackageValidationStatusCodePointer = (uint8_t *)
            ((int64_t)*(int *)(*(int64_t *)(SystemContextData + 0x18) + CleanupOption * 0xc) +
            *(int64_t *)(SystemContextData + 8));
@@ -13561,7 +13570,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
             ResourceCheckResult = CheckResourceIndex(ResourceIndex,1);
             ResourceHashPointer6 = ResourceHashStackPointer;
             if ((ResourceCheckResult == '\0') && (*(float *)(ResourceIndex + 0x4c) != *(float *)(LoopOffset + 0x28))) {
-              PrimaryStackVariable = *(uint32_t *)(LocalContextBuffer + 4 + SystemDataPointer);
+              PrimaryStackData = *(uint32_t *)(LocalContextBuffer + 4 + SystemDataPointer);
               ResourceOperationParameter = &SystemResourceTemplateDatabase;
               ResourceDataLength = BufferContextSize;
               ResourceHandlerParam = 0;
@@ -28211,7 +28220,7 @@ uint64_t ValidateResourceDataIntegrityInternal(void)
       ResourceHash = GetResourceEntry(*ResourceContext,ExecutionContextPointer + 0x10);
       ValidationResult = (uint64_t)ResourceHash;
       if ((ResourceHash == 0) &&
-         ((StackVariableD0 == '\0' || (ValidationResult = CheckResourceIntegrity(ExecutionContextPointer + 0x48), (int)ValidationResult == 0)))
+         ((ResourceValidationFlag == '\0' || (ValidationResult = CheckResourceIntegrity(ExecutionContextPointer + 0x48), (int)ValidationResult == 0)))
          ) {
               CleanupResourceBuffer();
       }
