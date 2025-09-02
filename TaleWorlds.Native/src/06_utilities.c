@@ -11717,8 +11717,8 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *Val
     ObjectContextOffset = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
     SecurityContextOffset = ArrayIterationIndex * 3;
     int64_t SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + ArrayIterationIndex * 0xc) + *(int64_t *)(ObjectContext + ObjectContextHandleDataOffset);
-    char SystemStatusChar = *(char *)(ObjectContextOffset + ResourceCleanupOffset + ArrayIterationIndex * 0xc);
-    if (SystemStatusChar == '\x01') {
+    char SystemStatusCharacter = *(char *)(ObjectContextOffset + ResourceCleanupOffset + ArrayIterationIndex * 0xc);
+    if (SystemStatusCharacter == '\x01') {
       int MaxOperationCount = *(int *)(ObjectContext + ObjectContextResourceCountOffset);
       if (OperationResult < MaxOperationCount) {
         *(int *)(ObjectContext + ObjectContextProcessingDataOffset) = OperationResult + 1;
@@ -11766,15 +11766,15 @@ VALIDATION_FAILURE_HANDLER:
       }
     }
     else {
-      if (SystemStatusChar == '\x06') {
-        SystemStatusChar = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-        if (SystemStatusChar == '\0') goto HANDLE_VALIDATION_FAILED;
+      if (SystemStatusCharacter == '\x06') {
+        SystemStatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+        if (SystemStatusCharacter == '\0') goto HANDLE_VALIDATION_FAILED;
         *ValidationContext = 0;
         goto HandleSystemError;
       }
-      if (SystemStatusChar == '\a') {
-        SystemStatusChar = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-        if (SystemStatusChar == '\0') {
+      if (SystemStatusCharacter == '\a') {
+        SystemStatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+        if (SystemStatusCharacter == '\0') {
           if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(ObjectContext + 0x58) + 0x90) + 0x790) +
                       0x1c8) != 0) {
             *ValidationContext = 0;
@@ -11784,7 +11784,7 @@ VALIDATION_FAILURE_HANDLER:
         }
       }
       else {
-        if ((SystemStatusChar != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
+        if ((SystemStatusCharacter != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
         SecurityValidationFlag = *(uint32_t *)(SystemDataPointer + 0x20);
         OperationStatusCode = ProcessDataWithContext(ObjectContext,OperationResult,&SecurityValidationFlag);
         if (OperationResult != 0) goto HandleSystemError;
@@ -11875,9 +11875,9 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       ArrayIterationIndex = SystemContextPointer - ((int64_t)CalculatedFloatResult + ArrayIterationIndex);
       *(int64_t *)(SystemRegisterContext + 0x98) = ArrayIterationIndex;
     }
-    StatusChar = (int64_t)calculatedFloatValue + ResourceTablePointer < SystemContextPointer - ArrayIterationIndex;
+    StatusCharacter = (int64_t)calculatedFloatValue + ResourceTablePointer < SystemContextPointer - ArrayIterationIndex;
     if ((*(byte *)(SystemRegisterContext + 0x6c) & 2) != 0) {
-      StatusChar = StatusByte;
+      StatusCharacter = StatusByte;
     }
     if (*(int64_t *)(SystemRegisterContext + 0xc0) != 0) {
       ContextValidationStatusCode = ProcessSystemParameters();
@@ -11887,7 +11887,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       calculationResult = StackParameterContextExtended;
       if (HashValidationResult != 0) goto HANDLE_CONTEXT_ERROR;
     }
-    if ((((StatusChar != '\0') && (ValidationStatusCode = *calculationResult, *calculationResult = HashValidationResult + 1, HashValidationResult < 10)) &&
+    if ((((StatusCharacter != '\0') && (ValidationStatusCode = *calculationResult, *calculationResult = HashValidationResult + 1, HashValidationResult < 10)) &&
         ((*(uint *)(SystemRegisterContext + 0x6c) >> 0x18 & 1) == 0)) &&
        (((*(uint *)(SystemRegisterContext + 0x6c) >> 0x19 & 1) != 0 && (OperationStatusCode == *(int *)(SystemRegisterContext + 0xb0)))))
     {
@@ -11896,15 +11896,15 @@ VALIDATION_FAILURE_HANDLER:
     }
   }
   else {
-    if (StatusChar == '\x06') {
-      StatusChar = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-      if (StatusChar == '\0') goto HANDLE_VALIDATION_FAILED;
+    if (StatusCharacter == '\x06') {
+      StatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+      if (StatusCharacter == '\0') goto HANDLE_VALIDATION_FAILED;
       *SystemContext = 0;
       goto HANDLE_CONTEXT_ERROR;
     }
-    if (StatusChar == '\a') {
-      StatusChar = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
-      if (StatusChar == '\0') {
+    if (StatusCharacter == '\a') {
+      StatusCharacter = ProcessObjectData(*(uint8_t *)(ObjectContext + 0x58));
+      if (StatusCharacter == '\0') {
         if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(SystemRegisterContext + 0x58) + 0x90) + 0x790) +
                     0x1c8) != 0) {
           *SystemContext = 0;
@@ -11914,7 +11914,7 @@ VALIDATION_FAILURE_HANDLER:
       }
     }
     else {
-      if ((StatusChar != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
+      if ((StatusCharacter != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
       ResourceContextSecondary.Field44 = *(uint32_t *)(ResourceContextDataPointer + 0x20);
       OperationStatusCode = ProcessDataWithContext(ObjectContext,ResourceIterationIndex,(int64_t)&ObjectSecondaryBuffer + 4);
       if (OperationResult != 0) goto HANDLE_CONTEXT_ERROR;
@@ -19265,7 +19265,7 @@ void ProcessObjectContextValidation(int64_t ObjectContext,int *ValidationContext
   TableIndex = CONCAT31(HashValidationResult,StatusCharacter + '\x18');
   *ValidationContext = *ValidationContext + ResourceTableIndex;
   ContextValidationPointer = (char *)((int64_t)&PointerStackValue8 + CONCAT44(InputParameterValue,ResourceTableIndex));
-  *ContextValidationPointer = *ContextValidationPointer + SystemStatusChar + '\x18';
+  *ContextValidationPointer = *ContextValidationPointer + SystemStatusCharacter + '\x18';
   SystemCallHandler = (code *)swi(3);
   (*SystemCallHandler)();
   return;
@@ -102597,7 +102597,30 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SystemRegisterContextCountOffsetSecondary 0x20
 #define SystemRegisterContextIdentifierOffsetSecondary 0x18
 #define SystemRegisterContextValidationOffset 0x1c
-#define SystemRegisterContextValidationShift ErrorResourceValidationFailed
+
+// 系统资源验证失败错误码常量
+#define SystemResourceValidationErrorOffset0 0x38
+#define SystemResourceValidationErrorOffset8 0x40
+#define SystemResourceValidationErrorOffset18 0x48
+#define SystemResourceValidationErrorOffset20 0x50
+#define SystemResourceValidationErrorOffset30 0x58
+#define SystemResourceValidationErrorOffset38 0x60
+#define SystemResourceValidationErrorOffset50 0x68
+#define SystemResourceValidationErrorOffset60 0x70
+#define SystemResourceValidationErrorOffset70 0x78
+#define SystemResourceValidationErrorOffset88 0x88
+#define SystemResourceValidationErrorOffset90 0x90
+#define SystemResourceValidationErrorOffset00 0x98
+#define SystemResourceDataValidationErrorOffset 0xa0
+#define SystemResourceValidationErrorOffsetA0 0xa0
+#define SystemResourceValidationErrorOffsetA8 0xa8
+#define SystemResourceValidationErrorOffsetC0 0xc0
+#define SystemResourceValidationErrorOffsetD0 0xd0
+#define SystemResourceValidationErrorOffsetE0 0xe0
+#define SystemResourceValidationErrorOffsetB0 0xb0
+#define SystemResourceValidationErrorOffsetF8 0xf8
+#define SystemResourceExtendedValidationErrorCode 0x928c9d
+#define SystemRegisterContextValidationShift SystemResourceValidationErrorOffset
 
 // 对象虚拟方法表偏移量常量
 #define ObjectVirtualMethodTableOffset 0x2f0
