@@ -64283,8 +64283,16 @@ void ConfigureSystemResourceTable(long long *SystemResourceManager)
 
 
 
-// 函数: void FUN_18007b1c0(long long *SystemResourceManager)
-void FUN_18007b1c0(long long *SystemResourceManager)
+/**
+ * @brief 验证系统资源表
+ * 
+ * 验证系统资源表的完整性和有效性，检查资源数据的正确性。
+ * 该函数负责确保资源表的数据结构完整，为后续操作提供验证保障。
+ * 
+ * @param SystemResourceManager 资源管理器指针，包含要验证的资源表
+ * @return 无返回值
+ */
+void ValidateSystemResourceTable(long long *SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;

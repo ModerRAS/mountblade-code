@@ -11224,7 +11224,7 @@ Label_18062f4a5:
 }
   SystemConfigFlag4 = 0;
   if (NetworkRequestStatus != '\0') {
-    ProcessSystemStringAllocation(&UNK_180a3cc28,param_1);
+    ProcessSystemStringAllocation(&SystemStringAllocationBuffer,param_1);
   }
   if (LongIndex != -1) {
     LOCK();
@@ -11426,7 +11426,7 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
-      LongCounter = strchr(&UNK_180a3cc48,(int)pcStack_28[ModuleInitializationResult]);
+      LongCounter = strchr(&SystemStringProcessingBuffer,(int)pcStack_28[ModuleInitializationResult]);
       if (LongCounter != 0) {
         pcStack_28[ModuleInitializationResult] = ' ';
       }
