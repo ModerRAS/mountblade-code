@@ -19141,23 +19141,23 @@ ResourceOperationExit:
 
 
 /**
- * @brief 设置状态标志为7
+ * @brief 设置系统状态标志为激活状态
  * 
- * 该函数负责将状态标志设置为7。
- * 如果RegisterR15D不为0，则返回该值，否则调用CleanupResourceData()函数。
+ * 该函数负责将系统状态标志设置为激活状态（值为7）。
+ * 如果SystemStatusRegister不为0，则返回该值，否则调用CleanupResourceData()函数。
  * 
- * @return int 返回状态码或RegisterR15D的值
+ * @return int 返回状态码或SystemStatusRegister的值
  * @note 这是一个简化的状态设置函数
  */
-int SetStatusFlagToSeven(void)
+int SetSystemStatusFlagToActive(void)
 
 {
   int64_t ExecutionContextPointer;
-  int RegisterR15D;
+  int SystemStatusRegister;
   
   *(uint32_t *)(ExecutionContextPointer + 0xd4) = 7;
-  if (RegisterR15D != 0) {
-    return RegisterR15D;
+  if (SystemStatusRegister != 0) {
+    return SystemStatusRegister;
   }
                     // WARNING: Subroutine does not return
   CleanupResourceData();
