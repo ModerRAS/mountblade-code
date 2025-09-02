@@ -70103,13 +70103,24 @@ void ExecuteResourceIndexValidationAndMemoryManagementExtended(uint8_t ObjectCon
 
 
 
-void Unwind_18090a970(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源索引验证和内存管理操作（第三个版本）
+ * 
+ * 该函数负责执行资源索引的验证和内存管理操作
+ * 与前两个函数功能相同，但从验证上下文的0x50偏移量获取资源索引
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数与前两个函数功能相同，但可能用于不同的调用上下文
+ */
+void ExecuteResourceIndexValidationAndMemoryManagementThird(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
-  uint8_t *ResourceHashValidationResultPointer;
+  uint8_t *ValidationResultPointer;
   int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  uint64_t MemoryAddressBase;
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x50);
   ExecuteResourceInitialization();
@@ -89849,7 +89860,29 @@ void ExecuteAdvancedResourceCleanupOperation4(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_180911080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统资源清理处理器 - 高级清理操作5
+ * 
+ * 功能描述：
+ * 该函数负责执行第五组高级系统资源清理操作，处理特定的资源处理器集合
+ * 并确保所有相关资源都被正确释放和重置。
+ * 
+ * 参数说明：
+ * @param ObjectContext 对象上下文，标识要清理的对象
+ * @param ValidationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 此函数会处理第五组系统资源处理器集合
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void ExecuteAdvancedResourceCleanupOperation5(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -89877,7 +89910,29 @@ void Unwind_180911080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809110a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统资源清理处理器 - 高级清理操作6
+ * 
+ * 功能描述：
+ * 该函数负责执行第六组高级系统资源清理操作，处理不同的资源处理器集合
+ * 并确保所有相关资源都被正确释放和重置。
+ * 
+ * 参数说明：
+ * @param ObjectContext 对象上下文，标识要清理的对象
+ * @param ValidationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 此函数会处理第六组系统资源处理器集合
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void ExecuteAdvancedResourceCleanupOperation6(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
