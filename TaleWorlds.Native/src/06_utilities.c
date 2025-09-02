@@ -24317,72 +24317,72 @@ uint64_t ExecuteResourceDataIntegrityValidation(void)
     return 0x1c;
   }
   ResourceContext = (int64_t *)*SystemRegisterContext;
-  validationStatusCode = 0x1c;
+  PackageValidationStatus = 0x1c;
   if (*ResourceContext == 0) {
-    ValidationResult = 0x1c;
+    PackageValidationStatus = 0x1c;
   }
   else {
     if (ResourceContext[2] != 0) {
       SecurityValidationBuffer = 0;
-      ValidationResult = ValidateResourceAccess(*ResourceContext, &SecurityValidationStack);
-      if ((int)HashValidationResult != 0) {
-        return ResourceHashValidationResult;
+      PackageValidationStatus = ValidateResourceAccess(*ResourceContext, &SecurityValidationBuffer);
+      if ((int)PackageValidationStatus != 0) {
+        return PackageValidationStatus;
       }
       if ((uint64_t)ResourceContext[2] < (uint64_t)SecurityValidationBuffer + 4) {
-        ValidationResult = 0x11;
+        PackageValidationStatus = 0x11;
         goto ValidateHashResult;
       }
     }
-    ValidationResult = CalculateResourceHash(*ResourceContext, &HashValidationBuffer, 1, 4, 0);
+    PackageValidationStatus = CalculateResourceHash(*ResourceContext, ResourceHashBuffer, 1, 4, 0);
   }
 ValidateHashResult:
-  if ((int)HashValidationResult != 0) {
-    return ResourceHashValidationResult;
+  if ((int)PackageValidationStatus != 0) {
+    return PackageValidationStatus;
   }
-  *(uint *)(ResourceRegisterPointer + 0x10) = HashValidationValue;
-  ValidationResult = 0xd;
-  if (HashValidationValue < 5) {
-    ValidationResult = 0;
+  *(uint *)(ObjectContext + 0x10) = ResourceHashBuffer[0];
+  PackageValidationStatus = 0xd;
+  if (ResourceHashBuffer[0] < 5) {
+    PackageValidationStatus = 0;
   }
-  if ((int)HashValidationResult != 0) {
-    return ResourceHashValidationResult;
+  if ((int)PackageValidationStatus != 0) {
+    return PackageValidationStatus;
   }
   if (*(int *)(SystemRegisterContext[1] + 0x18) != 0) {
     return 0x1c;
   }
   ResourceContext = (int64_t *)*SystemRegisterContext;
   if (*ResourceContext == 0) {
-    ValidationResult = 0x1c;
+    PackageValidationStatus = 0x1c;
   }
   else {
     if (ResourceContext[2] != 0) {
       SecurityValidationBuffer = 0;
-      ValidationResult = ValidateResourceAccess(*ResourceContext, &SecurityValidationStack);
-      if ((int)HashValidationResult != 0) {
-        return ResourceHashValidationResult;
+      PackageValidationStatus = ValidateResourceAccess(*ResourceContext, &SecurityValidationBuffer);
+      if ((int)PackageValidationStatus != 0) {
+        return PackageValidationStatus;
       }
       if ((uint64_t)ResourceContext[2] < (uint64_t)SecurityValidationBuffer + 4) {
-        ValidationResult = 0x11;
+        PackageValidationStatus = 0x11;
         goto ValidateSecondHash;
       }
     }
-    ValidationResult = CalculateResourceHash(*ResourceContext, &HashValidationBuffer, 1, 4, 0);
+    PackageValidationStatus = CalculateResourceHash(*ResourceContext, ResourceHashBuffer, 1, 4, 0);
   }
 ValidateSecondHash:
-  if ((int)HashValidationResult != 0) {
-    return ResourceHashValidationResult;
+  if ((int)PackageValidationStatus != 0) {
+    return PackageValidationStatus;
   }
-  *(uint *)(ResourceRegisterPointer + 0x14) = HashValidationValue;
-  ValidationResult = 0xd;
-  if (HashValidationValue < 3) {
-    ValidationResult = 0;
+  *(uint *)(ObjectContext + 0x14) = ResourceHashBuffer[0];
+  PackageValidationStatus = 0xd;
+  if (ResourceHashBuffer[0] < 3) {
+    PackageValidationStatus = 0;
   }
-  if ((int)HashValidationResult != 0) {
-    return ResourceHashValidationResult;
+  if ((int)PackageValidationStatus != 0) {
+    return PackageValidationStatus;
   }
-  ValidationResult = InitializeResourceProcessor();
-  if ((int)HashValidationResult != 0) {
-    return ResourceHashValidationResult;
+  PackageValidationStatus = InitializeResourceProcessor(ValidationContext, ObjectContext, 0);
+  if ((int)PackageValidationStatus != 0) {
+    return PackageValidationStatus;
   }
   if (2 < (int)SystemRegisterContext[8] - 0x65U) goto RegisterCheckFailed;
   hasValidResource = false;
