@@ -539,12 +539,10 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
 #define QueueContextHeadPointerOffset 0x50
 #define ObjectHandleStatusOffset 0x10
 
-// 系统请求处理相关偏移量常量
 #define RequestParameterPrimaryOffset 0x10
 #define RequestParameterSecondaryOffset 0x18
 #define SystemContextSecondaryDataOffset 0x90
 #define ValidationContextObjectDataOffset 8
-// 额外需要的偏移量常量
 #define ResourceContextSecondaryOffset 0x78
 #define ResourceContextValidationOffset 0x24
 #define ResourceContextConfigOffset 0xbc
