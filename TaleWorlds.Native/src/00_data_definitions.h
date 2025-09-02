@@ -6449,7 +6449,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
         uRam0000000180d48ec8 = 0;
         _DAT_180d48ed0 = 3;
         _DAT_180d48e30 = 0;
-        FUN_1808fc820(&UNK_180941dc0);
+        FUN_1808fc820(&SystemConfigurationSecondaryTemplate);
         FUN_1808fcb30(&DAT_180d48e24);
       }
       puVar7 = (uint *)&DAT_180d48e30;
@@ -6468,7 +6468,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
         uRam0000000180d48ec8 = 0;
         _DAT_180d48ed0 = 3;
         _DAT_180d48e30 = 0;
-        FUN_1808fc820(&UNK_180941dc0);
+        FUN_1808fc820(&SystemConfigurationSecondaryTemplate);
         FUN_1808fcb30(&DAT_180d48e24);
       }
       puVar6 = &DAT_180d48e30;
@@ -6485,7 +6485,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
            (0.0001 <= ABS(*(float *)(puVar6 + 0x28) - (float)puVar7[10]))))))) {
         *puVar7 = *puVar7 | 8;
       }
-      StringProcessingResult = FUN_180328540(param_1,puVar6 + 0x88,puVar7 + 0x22);
+      StringProcessingResult = ProcessStringDataValidation(param_1,puVar6 + 0x88,puVar7 + 0x22);
       uVar8 = uVar8 + 1;
       MemoryAddress2 = MemoryAddress2 + 0xb0;
       MemoryAddress1 = MemoryAddress1 - 1;
@@ -6543,7 +6543,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   MemoryAllocationResult = 0;
   bVar2 = *(byte *)(param_3 + 2);
   if ((param_4 >> 1 & 1) != 0) {
-    FUN_1800b4a00(_DAT_180c86930,&plStack_78,param_3 + 0x14,1);
+    InitializeSystemDataProcessing(_DAT_180c86930,&plStack_78,param_3 + 0x14,1);
     pNetworkRequestResult = (uint64_t *)FUN_1800bf6c0();
     FUN_1800763c0(*pNetworkRequestResult,&plStackX_18);
     if (plStack_80 != (longlong *)0x0) {
