@@ -54435,81 +54435,66 @@ void ValidateSystemResourceState(uint *ResourceManagerPointer)
 
 
 // 函数: void FUN_180073e0b(uint32_t *ResourceManagerPointer)
-void FUN_180073e0b(uint32_t *ResourceManagerPointer)
-
+/**
+ * @brief 初始化资源管理器哈希节点
+ * 
+ * 该函数负责初始化资源管理器的哈希节点，设置哈希值和相关属性
+ * 用于资源管理器的数据结构初始化
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，指向要初始化的资源管理器
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180073e0b，现已重命名为InitializeResourceManagerHashNode
+ */
+void InitializeResourceManagerHashNode(uint32_t *ResourceManagerPointer)
 {
-  ushort systemStatus;
-  void* creationFlags;
+  ushort SystemResourceStatus;
+  void* ResourceCreationFlags;
   uint32_t *HashNodePointer;
-  uint *punsignedSystemValue4;
-  long long SystemTimeValue;
-  long long *systemMemoryBlockPtr;
-  ulong long hashValue;
-  uint32_t unaff_R13D;
-  long long systemResourceHandle;
+  uint *SystemStatusValue;
+  long long SystemTimestamp;
+  long long *SystemMemoryBlockPtr;
+  ulong long ResourceHashValue;
+  uint32_t ResourceNodeId;
+  long long SystemResourceHandle;
   
-  if ((ulong long)((*systemMemoryBlockPtr - (long long)ResourceManagerPointer) + systemMemoryBlockPtr[2]) < 5) {
+  if ((ulong long)((*SystemMemoryBlockPtr - (long long)ResourceManagerPointer) + SystemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
-    ResourceManagerPointer = (uint32_t *)systemMemoryBlockPtr[1];
+    ResourceManagerPointer = (uint32_t *)SystemMemoryBlockPtr[1];
   }
-  *ResourceManagerPointer = unaff_R13D;
-  systemMemoryBlockPtr[1] = systemMemoryBlockPtr[1] + 4;
-  HashNodePointer = (uint32_t *)systemMemoryBlockPtr[1];
-  if ((ulong long)((*systemMemoryBlockPtr - (long long)HashNodePointer) + systemMemoryBlockPtr[2]) < 5) {
+  *ResourceManagerPointer = ResourceNodeId;
+  SystemMemoryBlockPtr[1] = SystemMemoryBlockPtr[1] + 4;
+  HashNodePointer = (uint32_t *)SystemMemoryBlockPtr[1];
+  if ((ulong long)((*SystemMemoryBlockPtr - (long long)HashNodePointer) + SystemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
-    HashNodePointer = (uint32_t *)systemMemoryBlockPtr[1];
+    HashNodePointer = (uint32_t *)SystemMemoryBlockPtr[1];
   }
   *HashNodePointer = 0x10;
-  systemMemoryBlockPtr[1] = systemMemoryBlockPtr[1] + 4;
-  punsignedSystemValue4 = (uint *)systemMemoryBlockPtr[1];
-  systemStatus = *(ushort *)(systemResourceHandle + 0x50);
-  if ((ulong long)((*systemMemoryBlockPtr - (long long)punsignedSystemValue4) + systemMemoryBlockPtr[2]) < 5) {
+  SystemMemoryBlockPtr[1] = SystemMemoryBlockPtr[1] + 4;
+  SystemStatusValue = (uint *)SystemMemoryBlockPtr[1];
+  SystemResourceStatus = *(ushort *)(SystemResourceHandle + 0x50);
+  if ((ulong long)((*SystemMemoryBlockPtr - (long long)SystemStatusValue) + SystemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
-    punsignedSystemValue4 = (uint *)systemMemoryBlockPtr[1];
+    SystemStatusValue = (uint *)SystemMemoryBlockPtr[1];
   }
-  *punsignedSystemValue4 = (uint)systemStatus;
-  HashNodePointer = (uint32_t *)(systemMemoryBlockPtr[1] + 4);
-  systemMemoryBlockPtr[1] = (long long)HashNodePointer;
-  if (*(ushort *)(systemResourceHandle + 0x50) != 0) {
-    creationFlags = *(void* *)(systemResourceHandle + 0x48);
-    hashValue = (ulong long)*(ushort *)(systemResourceHandle + 0x50) * 4;
-    if ((ulong long)((*systemMemoryBlockPtr - (long long)HashNodePointer) + systemMemoryBlockPtr[2]) <= hashValue) {
+  *SystemStatusValue = (uint)SystemResourceStatus;
+  HashNodePointer = (uint32_t *)(SystemMemoryBlockPtr[1] + 4);
+  SystemMemoryBlockPtr[1] = (long long)HashNodePointer;
+  if (*(ushort *)(SystemResourceHandle + 0x50) != 0) {
+    ResourceCreationFlags = *(void* *)(SystemResourceHandle + 0x48);
+    ResourceHashValue = (ulong long)*(ushort *)(SystemResourceHandle + 0x50) * 4;
+    if ((ulong long)((*SystemMemoryBlockPtr - (long long)HashNodePointer) + SystemMemoryBlockPtr[2]) <= ResourceHashValue) {
       FUN_180639bf0();
-      HashNodePointer = (uint32_t *)systemMemoryBlockPtr[1];
+      HashNodePointer = (uint32_t *)SystemMemoryBlockPtr[1];
     }
-      memcpy(HashNodePointer,creationFlags,hashValue);
+      memcpy(HashNodePointer,ResourceCreationFlags,ResourceHashValue);
   }
-  if ((ulong long)((*systemMemoryBlockPtr - (long long)HashNodePointer) + systemMemoryBlockPtr[2]) < 5) {
+  if ((ulong long)((*SystemMemoryBlockPtr - (long long)HashNodePointer) + SystemMemoryBlockPtr[2]) < 5) {
     FUN_180639bf0();
-    HashNodePointer = (uint32_t *)systemMemoryBlockPtr[1];
+    HashNodePointer = (uint32_t *)SystemMemoryBlockPtr[1];
   }
-  *HashNodePointer = unaff_R13D;
-  systemMemoryBlockPtr[1] = systemMemoryBlockPtr[1] + 4;
-  HashNodePointer = (uint32_t *)systemMemoryBlockPtr[1];
-  if ((ulong long)((*systemMemoryBlockPtr - (long long)HashNodePointer) + systemMemoryBlockPtr[2]) < 5) {
-    FUN_180639bf0();
-    HashNodePointer = (uint32_t *)systemMemoryBlockPtr[1];
-  }
-  *HashNodePointer = 0x10;
-  systemMemoryBlockPtr[1] = systemMemoryBlockPtr[1] + 4;
-  punsignedSystemValue4 = (uint *)systemMemoryBlockPtr[1];
-  systemStatus = *(ushort *)(systemResourceHandle + 0x62);
-  if ((ulong long)((*systemMemoryBlockPtr - (long long)punsignedSystemValue4) + systemMemoryBlockPtr[2]) < 5) {
-    FUN_180639bf0();
-    punsignedSystemValue4 = (uint *)systemMemoryBlockPtr[1];
-  }
-  *punsignedSystemValue4 = (uint)systemStatus;
-  localSystemPointer = systemMemoryBlockPtr[1] + 4;
-  systemMemoryBlockPtr[1] = localSystemPointer;
-  if (*(ushort *)(systemResourceHandle + 0x62) != 0) {
-    creationFlags = *(void* *)(systemResourceHandle + 0x5a);
-    hashValue = (ulong long)*(ushort *)(systemResourceHandle + 0x62) * 4;
-    if ((ulong long)((*systemMemoryBlockPtr - localSystemPointer) + systemMemoryBlockPtr[2]) <= hashValue) {
-      FUN_180639bf0();
-      localSystemPointer = systemMemoryBlockPtr[1];
-    }
-      memcpy(localSystemPointer,creationFlags,hashValue);
-  }
+  *HashNodePointer = ResourceNodeId;
+  SystemMemoryBlockPtr[1] = SystemMemoryBlockPtr[1] + 4;
   return;
 }
 
@@ -54822,145 +54807,156 @@ void ProcessSystemResourceOperationC(long long *ResourceManagerPointer,long long
 
 
 // 函数: void FUN_1800740a2(long long *ResourceManagerPointer)
-void FUN_1800740a2(long long *ResourceManagerPointer)
+/**
+ * @brief 处理系统资源分配和数据初始化
+ * 
+ * 该函数负责处理系统资源的分配和数据的初始化操作
+ * 用于系统资源管理和数据结构的建立
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，指向要处理的资源管理器
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_1800740a2，现已重命名为ProcessSystemResourceAllocation
+ */
+void ProcessSystemResourceAllocation(long long *ResourceManagerPointer)
 
 {
   long long *PrimaryResourcePointer;
-  int *pointerToInteger2;
-  uint allocationContext;
-  int systemIndex;
-  uint *in_RAX;
-  long long SystemTimeValue;
-  ulong long hashValue;
-  long long localDataIndex;
-  long long localMemoryAddress;
-  uint *punsignedSystemValue9;
-  long long allocationFlags;
-  long long systemDataIndexPtr;
-  long long nextDataIndex1;
-  long long *PrimaryResourcePointer2;
+  int *SecondaryResourcePointer;
+  uint AllocationContextSize;
+  int SystemResourceIndex;
+  uint *SystemResourceArray;
+  long long SystemTimestamp;
+  ulong long ResourceHashValue;
+  long long CurrentDataIndex;
+  long long MemoryAllocationSize;
+  uint *ResourceDataPointer;
+  long long ResourceAllocationFlags;
+  long long SystemDataIndexPointer;
+  long long ResourceDataOffset;
+  long long *SecondaryResourceDataPointer;
   
-  allocationContext = *in_RAX;
-  punsignedSystemValue9 = in_RAX + 1;
-  *(uint **)(systemDataIndexPtr + 8) = punsignedSystemValue9;
-  if (allocationContext != 0) {
-    (**(code **)(*ResourceManagerPointer + 0x18))(ResourceManagerPointer,punsignedSystemValue9,allocationContext);
-    *(long long *)(systemDataIndexPtr + 8) = *(long long *)(systemDataIndexPtr + 8) + (ulong long)allocationContext;
-    punsignedSystemValue9 = *(uint **)(systemDataIndexPtr + 8);
+  AllocationContextSize = *SystemResourceArray;
+  ResourceDataPointer = SystemResourceArray + 1;
+  *(uint **)(SystemDataIndexPointer + 8) = ResourceDataPointer;
+  if (AllocationContextSize != 0) {
+    (**(code **)(*ResourceManagerPointer + 0x18))(ResourceManagerPointer,ResourceDataPointer,AllocationContextSize);
+    *(long long *)(SystemDataIndexPointer + 8) = *(long long *)(SystemDataIndexPointer + 8) + (ulong long)AllocationContextSize;
+    ResourceDataPointer = *(uint **)(SystemDataIndexPointer + 8);
   }
-  localMemoryAddress = (long long)(int)*punsignedSystemValue9;
-  *(uint **)(systemDataIndexPtr + 8) = punsignedSystemValue9 + 1;
+  MemoryAllocationSize = (long long)(int)*ResourceDataPointer;
+  *(uint **)(SystemDataIndexPointer + 8) = ResourceDataPointer + 1;
   PrimaryResourcePointer = ResourceManagerPointer + 4;
-  FUN_180074b30(PrimaryResourcePointer,localMemoryAddress);
-  localSystemPointer = *(long long *)(systemDataIndexPtr + 8);
-  localDataIndex = 0;
-  nextDataIndex1 = localDataIndex;
-  if (0 < localMemoryAddress) {
+  FUN_180074b30(PrimaryResourcePointer,MemoryAllocationSize);
+  localSystemPointer = *(long long *)(SystemDataIndexPointer + 8);
+  CurrentDataIndex = 0;
+  ResourceDataOffset = CurrentDataIndex;
+  if (0 < MemoryAllocationSize) {
     do {
-      allocationFlags = *PrimaryResourcePointer;
-      *(int **)(systemDataIndexPtr + 8) = (int *)(localSystemPointer + 8);
-      systemIndex = *(int *)(localSystemPointer + 8);
-      PrimaryResourcePointer2 = (long long *)(allocationFlags + nextDataIndex1);
-      *(long long *)(systemDataIndexPtr + 8) = localSystemPointer + 0xc;
-      if (0 < systemIndex) {
-        *(short *)(PrimaryResourcePointer2 + 2) = (short)systemIndex;
-        if (PrimaryResourcePointer2[1] != 0) {
+      ResourceAllocationFlags = *PrimaryResourcePointer;
+      *(int **)(SystemDataIndexPointer + 8) = (int *)(localSystemPointer + 8);
+      SystemResourceIndex = *(int *)(localSystemPointer + 8);
+      SecondaryResourceDataPointer = (long long *)(ResourceAllocationFlags + ResourceDataOffset);
+      *(long long *)(SystemDataIndexPointer + 8) = localSystemPointer + 0xc;
+      if (0 < SystemResourceIndex) {
+        *(short *)(SecondaryResourceDataPointer + 2) = (short)SystemResourceIndex;
+        if (SecondaryResourceDataPointer[1] != 0) {
             SystemCleanupFunction();
         }
-        PrimaryResourcePointer2[1] = 0;
-        if (*PrimaryResourcePointer2 == 0) {
-          *PrimaryResourcePointer2 = 0;
-          if ((ulong long)*(ushort *)(PrimaryResourcePointer2 + 2) == 0) {
-            hashValue = 0;
-            localSystemPointer = localDataIndex;
+        SecondaryResourceDataPointer[1] = 0;
+        if (*SecondaryResourceDataPointer == 0) {
+          *SecondaryResourceDataPointer = 0;
+          if ((ulong long)*(ushort *)(SecondaryResourceDataPointer + 2) == 0) {
+            ResourceHashValue = 0;
+            localSystemPointer = CurrentDataIndex;
           }
           else {
-            localSystemPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)*(ushort *)(PrimaryResourcePointer2 + 2) * 4,4);
-            hashValue = (ulong long)*(ushort *)(PrimaryResourcePointer2 + 2);
+            localSystemPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)*(ushort *)(SecondaryResourceDataPointer + 2) * 4,4);
+            ResourceHashValue = (ulong long)*(ushort *)(SecondaryResourceDataPointer + 2);
           }
-          PrimaryResourcePointer2[1] = localSystemPointer;
-          if (hashValue != 0) {
-            localDataIndex = CreateSystemThreadObject(SystemMemoryPoolTemplate,hashValue << 4,4);
+          SecondaryResourceDataPointer[1] = localSystemPointer;
+          if (ResourceHashValue != 0) {
+            CurrentDataIndex = CreateSystemThreadObject(SystemMemoryPoolTemplate,ResourceHashValue << 4,4);
           }
-          *PrimaryResourcePointer2 = localDataIndex;
-            memcpy(PrimaryResourcePointer2[1],*(void* *)(systemDataIndexPtr + 8),(long long)(systemIndex * 4));
+          *SecondaryResourceDataPointer = CurrentDataIndex;
+            memcpy(SecondaryResourceDataPointer[1],*(void* *)(SystemDataIndexPointer + 8),(long long)(SystemResourceIndex * 4));
         }
           SystemCleanupFunction();
       }
-      allocationFlags = *PrimaryResourcePointer;
-      pointerToInteger2 = (int *)(localSystemPointer + 0x14);
-      *(int **)(systemDataIndexPtr + 8) = pointerToInteger2;
+      ResourceAllocationFlags = *PrimaryResourcePointer;
+      SecondaryResourcePointer = (int *)(localSystemPointer + 0x14);
+      *(int **)(SystemDataIndexPointer + 8) = SecondaryResourcePointer;
       localSystemPointer = localSystemPointer + 0x18;
-      systemIndex = *pointerToInteger2;
-      allocationFlags = allocationFlags + nextDataIndex1;
-      *(long long *)(systemDataIndexPtr + 8) = localSystemPointer;
-      if (0 < systemIndex) {
-        *(short *)(allocationFlags + 0x22) = (short)systemIndex;
-        if (*(long long *)(allocationFlags + 0x1a) != 0) {
+      SystemResourceIndex = *SecondaryResourcePointer;
+      ResourceAllocationFlags = ResourceAllocationFlags + ResourceDataOffset;
+      *(long long *)(SystemDataIndexPointer + 8) = localSystemPointer;
+      if (0 < SystemResourceIndex) {
+        *(short *)(ResourceAllocationFlags + 0x22) = (short)SystemResourceIndex;
+        if (*(long long *)(ResourceAllocationFlags + 0x1a) != 0) {
             SystemCleanupFunction();
         }
-        *(void* *)(allocationFlags + 0x1a) = 0;
-        if (*(long long *)(allocationFlags + 0x12) == 0) {
-          *(void* *)(allocationFlags + 0x12) = 0;
-          if ((ulong long)*(ushort *)(allocationFlags + 0x22) == 0) {
-            hashValue = 0;
-            localSystemPointer = localDataIndex;
+        *(void* *)(ResourceAllocationFlags + 0x1a) = 0;
+        if (*(long long *)(ResourceAllocationFlags + 0x12) == 0) {
+          *(void* *)(ResourceAllocationFlags + 0x12) = 0;
+          if ((ulong long)*(ushort *)(ResourceAllocationFlags + 0x22) == 0) {
+            ResourceHashValue = 0;
+            localSystemPointer = CurrentDataIndex;
           }
           else {
-            localSystemPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)*(ushort *)(allocationFlags + 0x22) * 4,4);
-            hashValue = (ulong long)*(ushort *)(allocationFlags + 0x22);
+            localSystemPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)*(ushort *)(ResourceAllocationFlags + 0x22) * 4,4);
+            ResourceHashValue = (ulong long)*(ushort *)(ResourceAllocationFlags + 0x22);
           }
-          *(long long *)(allocationFlags + 0x1a) = localSystemPointer;
-          if (hashValue != 0) {
-            localDataIndex = CreateSystemThreadObject(SystemMemoryPoolTemplate,hashValue << 4,4);
+          *(long long *)(ResourceAllocationFlags + 0x1a) = localSystemPointer;
+          if (ResourceHashValue != 0) {
+            CurrentDataIndex = CreateSystemThreadObject(SystemMemoryPoolTemplate,ResourceHashValue << 4,4);
           }
-          *(long long *)(allocationFlags + 0x12) = localDataIndex;
-            memcpy(*(void* *)(allocationFlags + 0x1a),*(void* *)(systemDataIndexPtr + 8),(long long)(systemIndex * 4)
+          *(long long *)(ResourceAllocationFlags + 0x12) = CurrentDataIndex;
+            memcpy(*(void* *)(ResourceAllocationFlags + 0x1a),*(void* *)(SystemDataIndexPointer + 8),(long long)(SystemResourceIndex * 4)
                 );
         }
           SystemCleanupFunction();
       }
-      localMemoryAddress = localMemoryAddress + -1;
-      nextDataIndex1 = nextDataIndex1 + 0x24;
-    } while (localMemoryAddress != 0);
+      MemoryAllocationSize = MemoryAllocationSize + -1;
+      ResourceDataOffset = ResourceDataOffset + 0x24;
+    } while (MemoryAllocationSize != 0);
   }
-  *(int **)(systemDataIndexPtr + 8) = (int *)(localSystemPointer + 8);
-  systemIndex = *(int *)(localSystemPointer + 8);
-  *(long long *)(systemDataIndexPtr + 8) = localSystemPointer + 0xc;
-  if (systemIndex < 1) {
-    *(int **)(systemDataIndexPtr + 8) = (int *)(localSystemPointer + 0x14);
-    systemIndex = *(int *)(localSystemPointer + 0x14);
-    *(long long *)(systemDataIndexPtr + 8) = localSystemPointer + 0x18;
-    if (systemIndex < 1) {
+  *(int **)(SystemDataIndexPointer + 8) = (int *)(localSystemPointer + 8);
+  SystemResourceIndex = *(int *)(localSystemPointer + 8);
+  *(long long *)(SystemDataIndexPointer + 8) = localSystemPointer + 0xc;
+  if (SystemResourceIndex < 1) {
+    *(int **)(SystemDataIndexPointer + 8) = (int *)(localSystemPointer + 0x14);
+    SystemResourceIndex = *(int *)(localSystemPointer + 0x14);
+    *(long long *)(SystemDataIndexPointer + 8) = localSystemPointer + 0x18;
+    if (SystemResourceIndex < 1) {
       return;
     }
-    *(short *)((long long)ResourceManagerPointer + 0x62) = (short)systemIndex;
+    *(short *)((long long)ResourceManagerPointer + 0x62) = (short)SystemResourceIndex;
     if (*(long long *)((long long)ResourceManagerPointer + 0x5a) == 0) {
       *(void* *)((long long)ResourceManagerPointer + 0x5a) = 0;
       if (*(long long *)((long long)ResourceManagerPointer + 0x52) == 0) {
         *(void* *)((long long)ResourceManagerPointer + 0x52) = 0;
         if ((ulong long)*(ushort *)((long long)ResourceManagerPointer + 0x62) == 0) {
-          hashValue = 0;
-          localSystemPointer = localDataIndex;
+          ResourceHashValue = 0;
+          localSystemPointer = CurrentDataIndex;
         }
         else {
           localSystemPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)*(ushort *)((long long)ResourceManagerPointer + 0x62) * 4,
                                 4);
-          hashValue = (ulong long)*(ushort *)((long long)ResourceManagerPointer + 0x62);
+          ResourceHashValue = (ulong long)*(ushort *)((long long)ResourceManagerPointer + 0x62);
         }
         *(long long *)((long long)ResourceManagerPointer + 0x5a) = localSystemPointer;
-        if (hashValue != 0) {
-          localDataIndex = CreateSystemThreadObject(SystemMemoryPoolTemplate,hashValue << 4,4);
+        if (ResourceHashValue != 0) {
+          CurrentDataIndex = CreateSystemThreadObject(SystemMemoryPoolTemplate,ResourceHashValue << 4,4);
         }
-        *(long long *)((long long)ResourceManagerPointer + 0x52) = localDataIndex;
-          memcpy(*(void* *)((long long)ResourceManagerPointer + 0x5a),*(void* *)(systemDataIndexPtr + 8),
-               (long long)(systemIndex * 4));
+        *(long long *)((long long)ResourceManagerPointer + 0x52) = CurrentDataIndex;
+          memcpy(*(void* *)((long long)ResourceManagerPointer + 0x5a),*(void* *)(SystemDataIndexPointer + 8),
+               (long long)(SystemResourceIndex * 4));
       }
         SystemCleanupFunction();
     }
       SystemCleanupFunction();
   }
-  *(short *)(ResourceManagerPointer + 10) = (short)systemIndex;
+  *(short *)(ResourceManagerPointer + 10) = (short)SystemResourceIndex;
   if (ResourceManagerPointer[9] != 0) {
       SystemCleanupFunction();
   }
@@ -54968,19 +54964,19 @@ void FUN_1800740a2(long long *ResourceManagerPointer)
   if (ResourceManagerPointer[8] == 0) {
     ResourceManagerPointer[8] = 0;
     if ((ulong long)*(ushort *)(ResourceManagerPointer + 10) == 0) {
-      hashValue = 0;
-      localSystemPointer = localDataIndex;
+      ResourceHashValue = 0;
+      localSystemPointer = CurrentDataIndex;
     }
     else {
       localSystemPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)*(ushort *)(ResourceManagerPointer + 10) * 4,4);
-      hashValue = (ulong long)*(ushort *)(ResourceManagerPointer + 10);
+      ResourceHashValue = (ulong long)*(ushort *)(ResourceManagerPointer + 10);
     }
     ResourceManagerPointer[9] = localSystemPointer;
-    if (hashValue != 0) {
-      localDataIndex = CreateSystemThreadObject(SystemMemoryPoolTemplate,hashValue << 4,4);
+    if (ResourceHashValue != 0) {
+      CurrentDataIndex = CreateSystemThreadObject(SystemMemoryPoolTemplate,ResourceHashValue << 4,4);
     }
-    ResourceManagerPointer[8] = localDataIndex;
-      memcpy(ResourceManagerPointer[9],*(void* *)(systemDataIndexPtr + 8),(long long)(systemIndex * 4));
+    ResourceManagerPointer[8] = CurrentDataIndex;
+      memcpy(ResourceManagerPointer[9],*(void* *)(SystemDataIndexPointer + 8),(long long)(SystemResourceIndex * 4));
   }
     SystemCleanupFunction();
 }
