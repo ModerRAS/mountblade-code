@@ -28424,7 +28424,7 @@ uint64_t ValidateResourceDataIntegrity(int64_t ObjectContext,uint8_t *Validation
 {
   uint ResourceHash;
   uint64_t ResourceHashValidationResult;
-  uint8_t aResourceMidByteFlag [64];
+  uint8_t ResourceMidByteFlag [64];
   uint8_t ResourceValidationHashBuffer [40];
   
   ValidationResult = CalculateDataChecksum(ValidationContext,ResourceValidationHashBuffer,1,0x5453494c,CleanupOption);
