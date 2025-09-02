@@ -9990,42 +9990,42 @@ bool SystemCompareStringData(longlong StringDataPointer1,longlong StringDataPoin
  */
 int SystemDataCompare(longlong DataStructurePointer)
 {
-  int LoopCounter;
-  longlong LongCounter;
-  int IntegerCounter;
-  ulonglong NetworkRequestResult;
-  longlong LongLoop;
-  void *pStackCounter4;
-  longlong lStack_28;
-  int iStack_20;
-  InitializeSystemBuffer(&pStackCounter4);
-  LoopCounter = (*(int *)(param_1 + 0x10) - iStack_20) + 1;
-  IntegerCounter = 0;
-  if (0 < LoopCounter) {
-    LongLoop = 0;
+  int IterationCounter;
+  longlong LongIterationCounter;
+  int IntegerIterationCounter;
+  ulonglong NetworkResponseData;
+  longlong LongIterationIndex;
+  void *StackBufferPointer;
+  longlong StackBufferLong;
+  int StackBufferInteger;
+  InitializeSystemBuffer(&StackBufferPointer);
+  IterationCounter = (*(int *)(DataStructurePointer + 0x10) - StackBufferInteger) + 1;
+  IntegerIterationCounter = 0;
+  if (0 < IterationCounter) {
+    LongIterationIndex = 0;
     do {
-      NetworkRequestResult = 0;
-      LongCounter = 0;
-      if (0 < iStack_20) {
+      NetworkResponseData = 0;
+      LongIterationCounter = 0;
+      if (0 < StackBufferInteger) {
         do {
-          if (*(char *)(*(longlong *)(param_1 + 8) + LongLoop + LongCounter) != *(char *)(NetworkRequestResult + lStack_28))
+          if (*(char *)(*(longlong *)(DataStructurePointer + 8) + LongIterationIndex + LongIterationCounter) != *(char *)(NetworkResponseData + StackBufferLong))
           break;
-          NetworkRequestResult = (ulonglong)((int)NetworkRequestResult + 1);
-          stringLength = stringLength + 1;
-        } while (LongCounter < iStack_20);
+          NetworkResponseData = (ulonglong)((int)NetworkResponseData + 1);
+          StringLength = StringLength + 1;
+        } while (LongIterationCounter < StackBufferInteger);
       }
-      if ((int)NetworkRequestResult == iStack_20) goto Label_18062995a;
-      IntegerCounter = IntegerCounter + 1;
-      LongLoop = LongLoop + 1;
-    } while (LongLoop < LoopCounter);
+      if ((int)NetworkResponseData == StackBufferInteger) goto Label_18062995a;
+      IntegerIterationCounter = IntegerIterationCounter + 1;
+      LongIterationIndex = LongIterationIndex + 1;
+    } while (LongIterationIndex < IterationCounter);
   }
-  IntegerCounter = -1;
+  IntegerIterationCounter = -1;
 Label_18062995a:
-  pStackCounter4 = &SystemNullPointer;
-  if (lStack_28 != 0) {
+  StackBufferPointer = &SystemNullPointer;
+  if (StackBufferLong != 0) {
     CleanupSystemResources();
   }
-  return IntegerCounter;
+  return IntegerIterationCounter;
 }
 /**
  * 系统数据比较功能函数
