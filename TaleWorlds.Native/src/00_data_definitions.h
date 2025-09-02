@@ -6549,7 +6549,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     if (plStack_80 != (longlong *)0x0) {
       (**(code **)(*plStack_80 + 0x38))();
     }
-    FUN_180076910(plStackX_18,&plStack_78);
+    ProcessNetworkRequestValidation(plStackX_18,&plStack_78);
     *(uint *)(plStackX_18 + 0x20) = *(uint *)(plStackX_18 + 0x20) | 0x40000000;
     auStackX_20[0] = *param_3;
     pModuleInitializationResult = (longlong *)(param_1 + 0x3d8);
