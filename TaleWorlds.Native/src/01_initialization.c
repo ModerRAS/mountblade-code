@@ -46328,7 +46328,7 @@ void CopyStringToSystemBuffer(long long ResourceManagerPointer,long long Configu
     strcpy_s(*(void* *)(ResourceManagerPointer + 8),0x100,ConfigurationDataPointer);
     return;
   }
-  FUN_180626f80(&SystemMemoryTemplateG,0x100,ConfigurationDataPointer);
+  AllocateSystemMemory(&SystemMemoryTemplateG,0x100,ConfigurationDataPointer);
   *(uint32_t *)(ResourceManagerPointer + 0x10) = 0;
   **(uint8_t **)(ResourceManagerPointer + 8) = 0;
   return;
@@ -59617,7 +59617,7 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
       if (*(void* **)(nextDataIndex + 0x18) != (void* *)0x0) {
         resourceEntryPointer = *(void* **)(nextDataIndex + 0x18);
       }
-      FUN_180626f80(&UNK_1809ffae0,resourceEntryPointer);
+      AllocateSystemMemory(&SystemResourceDataBuffer,resourceEntryPointer);
     }
     systemId = systemId + 1;
     plocalMemoryAddress = plocalMemoryAddress + 1;
