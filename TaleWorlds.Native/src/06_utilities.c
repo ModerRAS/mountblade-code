@@ -5675,7 +5675,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
       }
       return ResourceHashValidationResult;
     }
-    validationResult = 0x1f;
+    ResourceHashValidationResult = 0x1f;
   }
   return ResourceHashValidationResult;
 }
