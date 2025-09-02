@@ -69709,7 +69709,7 @@ void UnwindSystemResourceProcessingL(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_180909740(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingM(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -69727,7 +69727,7 @@ void Unwind_180909740(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909750(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingN(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 8) = &SystemResourceHandlerTemplate;
@@ -69742,7 +69742,7 @@ void Unwind_180909750(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909760(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingO(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 8) = &SystemDataStructure;
@@ -69751,7 +69751,7 @@ void Unwind_180909760(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909770(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingP(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -69769,7 +69769,7 @@ void Unwind_180909770(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909780(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingQ(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -69787,7 +69787,7 @@ void Unwind_180909780(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909790(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindSystemResourceProcessingR(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ConfigureResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
@@ -69797,7 +69797,7 @@ void Unwind_180909790(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809097a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindSystemResourceProcessingS(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ConfigureResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
