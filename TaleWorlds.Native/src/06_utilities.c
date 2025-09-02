@@ -28626,7 +28626,7 @@ uint8_t ResourceValidationService(void)
   uint8_t ResourceHash;
   int64_t *ResourceContext;
   int64_t SystemContext;
-  uint32_t RegisterStorageBuffer3;
+  uint32_t RegisterStorageBufferTertiary;
   
   if (*(int *)(InputParameter + 0x18) == 0) {
     ResourceHash = GetResourceEntry(*ResourceContext,SystemContext + 0x10);
