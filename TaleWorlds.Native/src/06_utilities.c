@@ -50059,10 +50059,10 @@ void CleanupResourceHashValidationStatus(uint8_t ObjectContext, int64_t Validati
 {
   int32_t *resourceTablePointerIndexPointer;
   uint8_t *resourceHashValidationStatusCodeAddress;
-  int64_t resourceIndex;
+  int64_t primaryResourceIndex;
   uint64_t cleanupLoopIncrement;
   uint64_t memoryAddressIncrement;
-  int64_t resourceIndex;
+  int64_t secondaryResourceIndex;
   int *resourceIndexPointer;
   
   ResourceHashValidationStatusCodeAddress = (uint8_t *)**(uint64_t **)(ValidationContext + 0x2e8);
