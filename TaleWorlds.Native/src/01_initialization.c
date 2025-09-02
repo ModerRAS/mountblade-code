@@ -31646,8 +31646,8 @@ void InitializeSystemResourceManager(ulong long *SystemResourcePointer)
       }
     }
     else {
-      SystemExceptionCheck(unsignedSystemValue7,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue7 + 0x70) == &ExceptionList),
-                          punsignedSystemValue4,unsignedSystemValue7,0xfffffffffffffffe);
+      SystemExceptionCheck(systemValue1,CONCAT71(0xff000000,*(void ***)(systemValue1 + 0x70) == &ExceptionList),
+                          resourcePointer,systemValue1,0xfffffffffffffffe);
     }
   }
   return;
