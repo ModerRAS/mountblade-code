@@ -51613,7 +51613,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
       DataBufferPtrE0 = &SystemGlobalDataReference;
       StackValueC8 = 0;
       SystemMemoryAllocatorReferencePointer = (void* *)0x0;
-      uStack_d0 = 0;
+      SystemThreadPriority = 0;
       SystemThreadLocalStoragePointer = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
       *(uint8_t *)SystemThreadLocalStoragePointer = 0;
       SystemMemoryAllocatorReferencePointer = SystemThreadLocalStoragePointer;
@@ -51657,7 +51657,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
           SystemCleanupFunction();
       }
       SystemMemoryAllocatorReferencePointer = (void* *)0x0;
-      uStack_c8 = uStack_c8 & MAX_UNSIGNED_32_BIT00000000;
+      SystemThreadIdentifier = SystemThreadIdentifier & MAX_UNSIGNED_32_BIT00000000;
       DataBufferPtrE0 = &SystemMemoryAllocatorReference;
     }
     SetSystemConfigurationValue(ConfigurationDataPointer,0);
