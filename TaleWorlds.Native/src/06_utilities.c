@@ -3627,18 +3627,6 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数会进行安全验证，确保只有有效的对象被处理
  * @warning 调用此函数前必须确保游戏上下文和系统上下文已正确初始化
  */
-/**
- * @brief 处理游戏对象集合
- * 
- * 该函数负责处理系统中的游戏对象集合，包括对象验证、状态检查和批量处理
- * 函数会获取对象列表，验证每个对象的状态，并执行相应的处理逻辑
- * 
- * @param GameContext 游戏上下文，包含游戏相关的状态信息
- * @param SystemContext 系统上下文，包含系统运行环境信息
- * @return 无返回值
- * @note 此函数在游戏循环中定期调用
- * @warning 处理失败时会导致程序异常终止
- */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t ObjectValidationState;
@@ -67534,7 +67522,13 @@ void ProcessSystemResourceCleanupPhase9(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_1809091b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段1
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_1809091b0
+ */
+void ProcessSystemResourceCleanupPhase1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67548,7 +67542,13 @@ void Unwind_1809091b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809091d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理阶段2
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_1809091d0
+ */
+void ProcessSystemResourceCleanupPhase2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
