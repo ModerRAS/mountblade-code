@@ -7226,7 +7226,7 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   SystemShadowEnabled = 1;
   SystemShadowConfigFlag2 = 0;
   SystemShadowConfigFlag3 = 0;
-  _DAT_180c95fa8 = 0;
+  SystemShadowConfigValue1 = 0;
   _DAT_180c95fa0 = 3;
   uRam0000000180c95f98 = 0;
   _DAT_180c95f90 = 0;
