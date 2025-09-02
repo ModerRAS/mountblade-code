@@ -46239,10 +46239,8 @@ void SystemMemoryCopy(void)
 void ResetSystemResourceData(uint8_t *ResourceManagerPointer)
 
 {
-  long long systemDataIndexPtr;
-  
   *ResourceManagerPointer = 0;
-  *(uint32_t *)(systemDataIndexPtr + 0x10) = 0;
+  *(uint32_t *)(ResourceManagerPointer + 0x10) = 0;
   return;
 }
 
@@ -49982,8 +49980,13 @@ void CleanupResourceManagerExtendedPointers(long long *ResourceManagerPointer)
 
 
 
-// 函数: void FUN_18006e4b9(void)
-void FUN_18006e4b9(void)
+/**
+ * @brief 重置系统内存块状态
+ * 
+ * 该函数负责重置系统内存块的状态，清理相关资源
+ * 用于系统内存管理中的状态重置操作
+ */
+void ResetSystemMemoryBlockState(void)
 
 {
   void* *systemMemoryBlockPtr;
@@ -49992,19 +49995,24 @@ void FUN_18006e4b9(void)
     *(void* *)systemMemoryBlockPtr[3] = 0;
   }
   (**(code **)*systemMemoryBlockPtr)();
-    SystemCleanupFunction();
+  SystemCleanupFunction();
 }
 
 
 
 
-// 函数: void FUN_18006e50f(void)
-void FUN_18006e50f(void)
+/**
+ * @brief 清理系统字符串迭代器资源
+ * 
+ * 该函数负责清理系统字符串迭代器的相关资源，包括哈希节点和缓冲区
+ * 用于系统字符串管理中的资源清理操作
+ */
+void CleanupSystemStringIteratorResources(void)
 
 {
-  int *pointerToInteger1;
+  int *resourceReferenceCount;
   char *stringProcessingPointer;
-  void* *HashNodePointer;
+  void* *hashNodePointer;
   long long bufferBaseAddress;
   long long systemStringIteratorPtr;
   ulong long currentThreadId;
@@ -50015,31 +50023,31 @@ void FUN_18006e50f(void)
   }
   bufferBaseAddress = *(long long *)(systemStringIteratorPtr + 0x28);
   while (bufferBaseAddress != 0) {
-    pcVar2 = (char *)(bufferBaseAddress + 0x3541);
+    stringProcessingPointer = (char *)(bufferBaseAddress + 0x3541);
     bufferBaseAddress = *(long long *)(bufferBaseAddress + 0x3538);
     if (*stringProcessingPointer != '\0') {
         SystemCleanupFunction();
     }
   }
-  HashNodePointer = *(void* **)(systemStringIteratorPtr + 0x18);
-  if (HashNodePointer != (void* *)0x0) {
-    currentThreadId = (ulong long)HashNodePointer & 0xffffffffffc00000;
+  hashNodePointer = *(void* **)(systemStringIteratorPtr + 0x18);
+  if (hashNodePointer != (void* *)0x0) {
+    currentThreadId = (ulong long)hashNodePointer & 0xffffffffffc00000;
     if (currentThreadId != 0) {
-      bufferBaseAddress = currentThreadId + 0x80 + ((long long)HashNodePointer - currentThreadId >> 0x10) * 0x50;
+      bufferBaseAddress = currentThreadId + 0x80 + ((long long)hashNodePointer - currentThreadId >> 0x10) * 0x50;
       bufferBaseAddress = bufferBaseAddress - (ulong long)*(uint *)(bufferBaseAddress + 4);
       if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(bufferBaseAddress + 0xe) == '\0')) {
-        *HashNodePointer = *(void* *)(bufferBaseAddress + 0x20);
-        *(void* **)(bufferBaseAddress + 0x20) = HashNodePointer;
-        pointerToInteger1 = (int *)(bufferBaseAddress + 0x18);
-        *pointerToInteger1 = *pointerToInteger1 + -1;
-        if (*pointerToInteger1 == 0) {
+        *hashNodePointer = *(void* *)(bufferBaseAddress + 0x20);
+        *(void* **)(bufferBaseAddress + 0x20) = hashNodePointer;
+        resourceReferenceCount = (int *)(bufferBaseAddress + 0x18);
+        *resourceReferenceCount = *resourceReferenceCount + -1;
+        if (*resourceReferenceCount == 0) {
           ReleaseSystemResource();
           return;
         }
       }
       else {
         SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                            HashNodePointer,currentThreadId,0xfffffffffffffffe);
+                            hashNodePointer,currentThreadId,0xfffffffffffffffe);
       }
     }
     return;
