@@ -40839,7 +40839,7 @@ void* ProcessSystemResourceAllocationRequest(long long SystemResourceManager,cha
   }
   plStackX_18 = pResourceDataOffset;
   SystemResourceAddress = 0;
-LAB_180060993:
+ResourceCleanupComplete:
   if (plStackX_18 != (long long *)0x0) {
     (**(code **)(*plStackX_18 + 0x38))(plStackX_18);
   }
@@ -42419,12 +42419,12 @@ ulong long SearchSystemResource(long long *SystemResourceManager,long long Confi
             pisMemoryReady = pisMemoryReady + 1;
           } while (*pisByteValid != 0);
         }
-LAB_18006357e:
+MemoryAllocationLoop:
         if (SystemHashValue == 0) {
           return CONCAT71((int7)((ulong long)pisMemoryReady >> 8),1);
         }
       }
-      else if (allocationContext == 0) goto LAB_18006357e;
+      else if (allocationContext == 0) goto MemoryAllocationLoop;
       systemId = systemId + 1;
       SystemAllocationFlags = SystemAllocationFlags + 0x20;
       in_RAX = (ulong long)systemId;
