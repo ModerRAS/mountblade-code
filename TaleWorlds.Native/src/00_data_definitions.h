@@ -6044,8 +6044,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatResult = (float)ColorDataPointer[2] * 0.007843138 - 1.0;
         ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
-        fVar11 = aMemoryAddress2._0_4_;
-        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        NormalizationFactor = aMemoryAddress2._0_4_;
+        ColorMagnitude = NormalizationFactor * 0.5 * (3.0 - ColorMagnitude * NormalizationFactor * NormalizationFactor);
         *ColorDataPointer = (byte)(int)((ColorMagnitude * FloatValue + 1.0) * 127.5);
         ColorDataPointer[1] = (byte)(int)((ColorMagnitude * FloatCalculationResult + 1.0) * 127.5);
         StringIndex = (int)((ColorMagnitude * FloatResult + 1.0) * 127.5);
@@ -6069,8 +6069,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatResult = (float)PointerValue[2] * 3.0518044e-05 - 1.0;
         ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
-        fVar11 = aMemoryAddress2._0_4_;
-        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        NormalizationFactor = aMemoryAddress2._0_4_;
+        ColorMagnitude = NormalizationFactor * 0.5 * (3.0 - ColorMagnitude * NormalizationFactor * NormalizationFactor);
         *PointerValue = (ushort)(int)((ColorMagnitude * FloatValue + 1.0) * 32767.5);
         PointerValue[1] = (ushort)(int)((ColorMagnitude * FloatCalculationResult + 1.0) * 32767.5);
         StringIndex = (int)((ColorMagnitude * FloatResult + 1.0) * 32767.5);
@@ -6091,8 +6091,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatResult = (ColorProcessingPointer[2] + ColorProcessingPointer[2]) - 1.0;
         ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
-        fVar11 = aMemoryAddress2._0_4_;
-        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        NormalizationFactor = aMemoryAddress2._0_4_;
+        ColorMagnitude = NormalizationFactor * 0.5 * (3.0 - ColorMagnitude * NormalizationFactor * NormalizationFactor);
         *ColorProcessingPointer = (ColorMagnitude * FloatValue + 1.0) * 0.5;
         ColorProcessingPointer[1] = (ColorMagnitude * FloatCalculationResult + 1.0) * 0.5;
         ColorProcessingPointer[2] = (ColorMagnitude * FloatResult + 1.0) * 0.5;
@@ -6114,8 +6114,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatResult = (SecondaryColorProcessingPointer[2] + SecondaryColorProcessingPointer[2]) - 1.0;
         ColorMagnitude = FloatCalculationResult * FloatCalculationResult + FloatValue * FloatValue + FloatResult * FloatResult;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
-        fVar11 = aMemoryAddress2._0_4_;
-        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        NormalizationFactor = aMemoryAddress2._0_4_;
+        ColorMagnitude = NormalizationFactor * 0.5 * (3.0 - ColorMagnitude * NormalizationFactor * NormalizationFactor);
         *SecondaryColorProcessingPointer = (ColorMagnitude * FloatValue + 1.0) * 0.5;
         SecondaryColorProcessingPointer[2] = (FloatResult * ColorMagnitude + 1.0) * 0.5;
         SecondaryColorProcessingPointer[1] = (ColorMagnitude * FloatCalculationResult + 1.0) * 0.5;
@@ -6139,8 +6139,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatResult = (float)PointerValue[2] * 0.007843138 - 1.0;
         ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
-        fVar11 = aMemoryAddress2._0_4_;
-        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        NormalizationFactor = aMemoryAddress2._0_4_;
+        ColorMagnitude = NormalizationFactor * 0.5 * (3.0 - ColorMagnitude * NormalizationFactor * NormalizationFactor);
         *PointerValue = (ushort)(int)((FloatValue * ColorMagnitude + 1.0) * 127.5);
         PointerValue[1] = (ushort)(int)((FloatCalculationResult * ColorMagnitude + 1.0) * 127.5);
         StringIndex = (int)((FloatResult * ColorMagnitude + 1.0) * 127.5);
@@ -6166,8 +6166,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatResult = (float)ColorDataPointer[2] * 0.007843138 - 1.0;
         ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
-        fVar11 = aMemoryAddress2._0_4_;
-        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        NormalizationFactor = aMemoryAddress2._0_4_;
+        ColorMagnitude = NormalizationFactor * 0.5 * (3.0 - ColorMagnitude * NormalizationFactor * NormalizationFactor);
         *ColorDataPointer = (byte)(int)((ColorMagnitude * FloatValue + 1.0) * 127.5);
         ColorDataPointer[1] = (byte)(int)((ColorMagnitude * FloatCalculationResult + 1.0) * 127.5);
         StringProcessingResult = (uint)((ColorMagnitude * FloatResult + 1.0) * 127.5);
@@ -6527,7 +6527,7 @@ code_r0x000180329ed1:
 uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffer, uint32_t *ValidationFlags, uint ProcessingMode)
 {
   longlong *pModuleInitializationResult;
-  byte bVar2;
+  byte ValidationStatusByte;
   int IntegerCounter;
   uint64_t *pNetworkRequestResult;
   uint64_t MemoryAllocationResult;
@@ -7448,14 +7448,14 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
       fVar12 = FloatCalculationResult + fVar9;
       fVar9 = fVar12 + fVar9;
       FloatValue = FloatResult * 13.5 + 4.5;
-      fVar11 = fVar9 + FloatValue;
-      FloatValue = FloatValue + fVar11;
+      NormalizationFactor = fVar9 + FloatValue;
+      FloatValue = FloatValue + NormalizationFactor;
       ColorMagnitude = FloatResult * 37.5 + 12.5 + FloatValue;
       FloatResult = FloatResult * 45.0 + 15.0 + ColorMagnitude;
       *(float *)(param_1 + 0x68) = FloatCalculationResult * FloatCalculationResult;
       *(float *)((longlong)param_1 + 0x344) = fVar12 * fVar12;
       *(float *)(param_1 + 0x69) = fVar9 * fVar9;
-      *(float *)((longlong)param_1 + 0x34c) = fVar11 * fVar11;
+      *(float *)((longlong)param_1 + 0x34c) = NormalizationFactor * NormalizationFactor;
       *(float *)(param_1 + 0x6a) = FloatValue * FloatValue;
       *(float *)((longlong)param_1 + 0x354) = ColorMagnitude * ColorMagnitude;
       *(float *)(param_1 + 0x6b) = FloatResult * FloatResult;
@@ -12745,7 +12745,7 @@ longlong SystemGetTimeCounter(void)
 uint SystemProcessTimer(longlong param_1,int param_2,int param_3,char param_4)
 {
   ulonglong MemoryAddress;
-  byte bVar2;
+  byte ValidationStatusByte;
   int IntegerCounter;
   int IntegerResult;
   uint MemoryAllocationResult;
@@ -12798,7 +12798,7 @@ uint SystemProcessTimer(longlong param_1,int param_2,int param_3,char param_4)
 uint32_t SystemProcessAudioData(byte param_1,byte *param_2,int param_3)
 {
   uint *pMemoryAddress;
-  byte bVar2;
+  byte ValidationStatusByte;
   uint StringProcessingResult;
   param_3 = param_3 + -4;
   pMemoryAddress = (uint *)(param_2 + param_3);
@@ -13204,7 +13204,7 @@ Label_1808fbebe:
 uint64_t SystemAudioCreateChannel(uint param_1)
 {
   code *pcVar1;
-  byte bVar2;
+  byte ValidationStatusByte;
   int IntegerCounter;
   uint64_t NetworkRequestResult;
   if (DAT_180c821d9 == '\0') {

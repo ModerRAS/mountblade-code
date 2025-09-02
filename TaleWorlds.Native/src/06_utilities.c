@@ -3387,12 +3387,12 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
     MaximumProcessableItems = MaximumProcessableItemsLimit;
     ProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
                           &ObjectDataBuffer);
-    if (ProcessingResultCode == 0) {
+    if (ProcessingResult == 0) {
       if (0 < BufferIndex) {
-        CurrentGameObjectPointer = 0;
+        CurrentObjectPointer = 0;
         do {
-          GameObjectValidationState = *(uint8_t *)(GameObjectDataBuffer + CurrentGameObjectPointer);
-          ProcessingResultCode = ValidateObjectStatus(GameObjectValidationState);
+          GameObjectValidationState = *(uint8_t *)(ObjectDataBuffer + CurrentObjectPointer);
+          ProcessingResult = ValidateObjectStatus(GameObjectValidationState);
           if (ProcessingResultCode != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidObject(GameObjectValidationState, 1);
