@@ -102505,7 +102505,6 @@ void InitializeSecondaryDataPointer(void)
  * @param CleanupFlag 数据包标志
  */
 void ProcessNetworkDataPacket(uint8_t ObjectContext,uint8_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-void ProcessNetworkDataPacket(uint8_t ObjectContext,uint8_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *networkDataPointer;
