@@ -46917,7 +46917,21 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void CleanupResourceHandlersAtOffset0x148(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理内存偏移量处的资源处理器
+ * 
+ * 该函数负责清理验证上下文中内存偏移量处的资源处理器
+ * 用于系统资源清理和内存管理
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @param CleanupOption 清理选项参数，指定清理的方式
+ * @param CleanupFlag 清理标志参数，控制清理的行为
+ * @return 无返回值
+ * @note 此函数通常在系统清理或资源释放时调用
+ * @warning 如果验证上下文中的偏移量0x148为0，将执行系统紧急退出
+ */
+void CleanupResourceHandlersAtMemoryOffset(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -52692,7 +52706,18 @@ void ReleaseResourceHandle(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void UnwindResourceContextAt0xa8(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 展开验证偏移量处的资源上下文
+ * 
+ * 该函数负责展开验证上下文中验证偏移量处的资源上下文
+ * 用于系统资源清理和异常处理
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理或异常处理时调用
+ */
+void UnwindResourceContextAtValidationOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -52706,7 +52731,18 @@ void UnwindResourceContextAt0xa8(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
-void UnwindResourceValidationAt0xa8(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 展开上下文偏移量处的资源验证
+ * 
+ * 该函数负责展开验证上下文中上下文偏移量处的资源验证
+ * 用于系统资源清理和异常处理
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理或异常处理时调用
+ */
+void UnwindResourceValidationAtContextOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
