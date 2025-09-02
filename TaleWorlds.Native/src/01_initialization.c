@@ -59871,8 +59871,8 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   float fStack0000000000000060;
   float fStack0000000000000064;
   float fStack0000000000000068;
-  uint32_t uStack000000000000006c;
-  uint32_t in_stack_000000e0;
+  uint32_t SystemDataPointer9;
+  uint32_t InputParameterE0;
   uint32_t in_stack_000000e8;
   
   floatValue4 = *systemDataIndexPtr;
@@ -59903,11 +59903,11 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   fStack0000000000000064 = AdditionalParameter * in_XMM4_Db + floatValue2 * BaseValue + floatValue1 * floatValue8 + systemDataIndexPtr[0xd];
   fStack0000000000000068 = AdditionalParameter * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * ScaleValue + systemDataIndexPtr[0xe];
   uStack0000000000000028 = in_stack_000000e8;
-  uStack000000000000006c = 0x3f800000;
+  SystemDataPointer9 = 0x3f800000;
   uStack000000000000005c = 0;
   uStack000000000000004c = 0;
   uStack000000000000003c = 0;
-  FUN_180252ca0(0x3f800000,floatValue1 * floatValue7,systemResourceCounterD,&stackBuffer30,in_stack_000000e0);
+  FUN_180252ca0(0x3f800000,floatValue1 * floatValue7,systemResourceCounterD,&stackBuffer30,InputParameterE0);
   return;
 }
 
@@ -59935,26 +59935,26 @@ void InitializeSystemDataIndexPointer(void)
   void* SystemDataPointer2;
   ulong long SystemDataPointer3;
   void* SystemDataPointer4;
-  ulong long uStack0000000000000058;
-  uint32_t uStack0000000000000060;
-  uint32_t uStack0000000000000064;
-  uint32_t uStack0000000000000068;
-  uint32_t uStack000000000000006c;
-  uint32_t in_stack_000000e0;
+  ulong long SystemDataPointer5;
+  uint32_t SystemDataPointer6;
+  uint32_t SystemDataPointer7;
+  uint32_t SystemDataPointer8;
+  uint32_t SystemDataPointer9;
+  uint32_t InputParameterE0;
   uint32_t in_stack_000000e8;
   
   SystemDataPointer0 = *systemDataIndexPtr;
   SystemDataPointer2 = systemDataIndexPtr[2];
   SystemDataPointer4 = systemDataIndexPtr[4];
-  uStack0000000000000060 = *(uint32_t *)(systemDataIndexPtr + 6);
-  uStack0000000000000064 = *(uint32_t *)((long long)systemDataIndexPtr + 0x34);
-  uStack0000000000000068 = *(uint32_t *)(systemDataIndexPtr + 7);
+  SystemDataPointer6 = *(uint32_t *)(systemDataIndexPtr + 6);
+  SystemDataPointer7 = *(uint32_t *)((long long)systemDataIndexPtr + 0x34);
+  SystemDataPointer8 = *(uint32_t *)(systemDataIndexPtr + 7);
   uStack0000000000000028 = in_stack_000000e8;
-  uStack000000000000006c = 0x3f800000;
-  uStack0000000000000058 = systemDataIndexPtr[5] & 0xffffffff;
+  SystemDataPointer9 = 0x3f800000;
+  SystemDataPointer5 = systemDataIndexPtr[5] & 0xffffffff;
   SystemDataPointer3 = systemDataIndexPtr[3] & 0xffffffff;
   SystemDataPointer1 = systemDataIndexPtr[1] & 0xffffffff;
-  FUN_180252ca0(0x3f800000,uStack0000000000000060,systemResourceCounterD,&stackBuffer30,in_stack_000000e0);
+  FUN_180252ca0(0x3f800000,SystemDataPointer6,systemResourceCounterD,&stackBuffer30,InputParameterE0);
   return;
 }
 

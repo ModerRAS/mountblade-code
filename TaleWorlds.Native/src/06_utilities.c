@@ -82480,7 +82480,7 @@ void Unwind_18090d450(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultAddress = *(uint8_t **)(ValidationContext + 0x470);
+  ResourceHashValidationResultAddress = *(uint8_t **)(ValidationContext + 0x470);
   if (ResourceHashValidationResultAddress == (uint8_t *)0x0) {
     return;
   }
