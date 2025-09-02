@@ -44186,10 +44186,10 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
     ReleaseSystemMemoryAllocation(&SystemDataBufferPointerA8);
   }
   SystemEncryptionValue = &SystemDataBufferPointerA8;
-  ppsystemMemoryOffset = &plStack_b0;
+  ppsystemMemoryOffset = &SystemMemoryManagerPointer;
   ExecuteSystemResourceCommand(&SystemEncryptionValue,SystemNodeManagerPointer,&SystemNodeManagerConfiguration);
   ExecuteSystemResourceCommand(&SystemEncryptionValue,SystemMemoryManagerPointer,&SystemMemoryManagerConfig);
-  systemFunctionPointer = *(code **)(*plStack_b0 + 0x40);
+  systemFunctionPointer = *(code **)(*SystemMemoryManagerPointer + 0x40);
   resourceAllocationContext = CreateSystemObject(&SystemEncryptionValue,SystemContextManagerPointer + 0x28);
   (*systemFunctionPointer)(plStack_b0,resourceAllocationContext);
   SystemEncryptionValue = (void* **)&SystemGlobalDataReference;
@@ -44199,7 +44199,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   ppsystemMemoryOffset = (long long **)0x0;
   ConcatenatedValue44 = 0;
   SystemEncryptionValue = (void* **)&SystemMemoryAllocatorReference;
-  systemFunctionPointer = *(code **)(*plStack_b0 + 0x40);
+  systemFunctionPointer = *(code **)(*SystemMemoryManagerPointer + 0x40);
   resourceAllocationContext = CreateSystemObject(&pUnsignedStackFlag88,SystemContextManagerPointer + 0xe0);
   (*systemFunctionPointer)(plStack_b0,resourceAllocationContext);
   pUnsignedStackFlag88 = &SystemGlobalDataReference;
