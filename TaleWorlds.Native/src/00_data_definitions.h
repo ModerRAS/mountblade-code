@@ -9496,7 +9496,7 @@ Label_18060b805:
                           if (NetworkRequestStatus != '\0') goto Label_18060a114;
                           NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterEA8);
                           if (NetworkRequestStatus != '\0') goto Label_18060b32d;
-                          NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f88);
+                          NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterF88);
                           if (NetworkRequestStatus != '\0') goto Label_18060ae57;
                           NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationValidationBuffer42);
                           if (NetworkRequestStatus != '\0') {
@@ -9510,7 +9510,7 @@ Label_18060b6a9:
                             StringProcessingResult = 0x40;
                             goto Label_18060bbae;
                           }
-                          NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f98);
+                          NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterF98);
                           if (NetworkRequestStatus != '\0') {
 Label_18060a66e:
                             StringProcessingResult = 0x44;

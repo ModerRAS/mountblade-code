@@ -3064,7 +3064,7 @@ uint8_t SystemResourceEnumerator;
 uint8_t SystemResourceGenerator;
 uint8_t SystemResourceFactory;
 uint8_t SystemResourceBuilder;
-uint8_t SystemResourceCreator;
+uint8_t SystemResourcePrimaryCreator;
 uint8_t SystemResourceConstructor;
 uint8_t SystemResourceInitializer;
 uint8_t SystemResourceConfigurator;
