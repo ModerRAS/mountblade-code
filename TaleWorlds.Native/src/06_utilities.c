@@ -4462,8 +4462,20 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
  * 
  * @note 该函数是系统请求处理的核心入口点，确保所有请求都经过适当的验证和处理
  */
-uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
-
+/**
+ * @brief 处理系统请求
+ * 
+ * 该函数负责处理和验证系统请求，包括对象上下文验证、内存上下文初始化、
+ * 资源表处理和系统对象操作。函数会执行完整的请求处理流程，
+ * 确保请求的安全性和有效性。
+ * 
+ * @param RequestParameters 请求参数，包含主要和次要请求信息
+ * @param SystemContext 系统上下文，包含系统运行时状态和配置
+ * @return uint64_t 操作结果状态码，0表示成功，非0表示错误码
+ * @note 此函数会执行复杂的验证和处理流程，包括内存管理和资源分配
+ * @warning 处理失败时会返回相应的错误状态码，调用者需要检查返回值
+ */
+uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
 {
   int64_t *ProcessResultPointer;
   int64_t *ResourceTablePointerPointer;

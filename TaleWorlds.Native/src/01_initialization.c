@@ -53554,14 +53554,14 @@ void ProcessSystemResourceInitializationConfiguration(void* SystemResourceManage
   long long *PrimaryResourcePointer;
   void* resourceCreationFlags;
   void* *pointerUnsigned30;
-  long long lStack_28;
+  long long LocalMemoryAddress;
   
   PrimaryResourcePointer = *(long long **)(SystemGlobalStatusFlags + 0x2b0);
   if (PrimaryResourcePointer != (long long *)0x0) {
     resourceCreationFlags = (**(code **)(*PrimaryResourcePointer + 0x110))(PrimaryResourcePointer,&pointerUnsigned30,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
     ConfigureSystemResourceParameters(ConfigurationDataPointer,resourceCreationFlags);
     pointerUnsigned30 = &SystemGlobalDataReference;
-    if (lStack_28 != 0) {
+    if (LocalMemoryAddress != 0) {
         SystemCleanupFunction();
     }
   }
@@ -53607,7 +53607,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   uint SystemOperationStatus5;
   void* *pUnsignedStackFlag110;
   void* *systemHashPointer;
-  int iStack_100;
+  int LocalIndexCounter;
   void* MemoryBufferAddress;
   void* *SystemResourcePointerF0;
   void*2 *pointerUnsignedE8;
@@ -53674,7 +53674,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
     }
     ConfigureSystemDataBuffer(&SystemResourcePointerF0,&SystemConfigurationDataBufferF,&SystemConfigurationDataBufferG);
     ConfigureSystemResourceManager(&pUnsignedStackFlag110);
-    if (iStack_100 != 0) {
+    if (LocalIndexCounter != 0) {
       ConfigureSystemDataBuffer(&SystemResourcePointerF0,&SystemDataBufferTemplateA,&SystemConfigurationDataBufferH);
       resourceEntryPointer = (void* *)&SystemStringTemplate;
       if (pEncryptionOffset1 != (void* *)0x0) {
@@ -53727,7 +53727,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
     pUnsignedStackFlag110 = &SystemGlobalDataReference;
     MemoryBufferAddress = 0;
     pEncryptionOffset1 = (void* *)0x0;
-    iStack_100 = 0;
+    LocalIndexCounter = 0;
     resourceEntryPointer = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x34,0x13);
     *(uint8_t *)resourceEntryPointer = 0;
     pEncryptionOffset1 = resourceEntryPointer;
@@ -53743,7 +53743,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
     *(uint32_t *)((long long)resourceEntryPointer + 0x2c) = 0x6c6f4667;
     *(uint32_t *)(resourceEntryPointer + 6) = 0x726564;
     systemCounter = 0x33;
-    iStack_100 = 0x33;
+    LocalIndexCounter = 0x33;
     SystemOperationStatus1 = 2;
     SystemOperationStatus5 = 2;
     phashTableNode = &pEncryptionOffset1;
@@ -53884,7 +53884,7 @@ void InitializeSystemResourceManagerConfiguration(void* SystemResourceManager,vo
   char validationStatusFlag;
   uint32_t aSystemParameterPointer [4];
   void* *pointerUnsigned30;
-  long long lStack_28;
+  long long LocalMemoryAddress;
   
   SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0,&SystemResourceManagerDataBufferA,ConfigurationDataPointer,0xfffffffffffffffe);
   if (SystemInitializationFlag == '\0') {
@@ -53902,7 +53902,7 @@ void InitializeSystemResourceManagerConfiguration(void* SystemResourceManager,vo
                 ((long long *)SystemMemoryBlockStorage[1],&pointerUnsigned30,aSystemParameterPointer);
     }
     pointerUnsigned30 = &SystemGlobalDataReference;
-    if (lStack_28 != 0) {
+    if (LocalMemoryAddress != 0) {
         SystemCleanupFunction();
     }
   }
@@ -53930,7 +53930,7 @@ void ConfigureSystemResourceManagerData(void* SystemResourceManager,void* Config
   char validationStatusFlag;
   uint32_t aSystemParameterPointer [4];
   void* *pointerUnsigned30;
-  long long lStack_28;
+  long long LocalMemoryAddress;
   
   SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,1,&SystemResourceManagerDataBufferB,ConfigurationDataPointer,0xfffffffffffffffe);
   if (SystemInitializationFlag == '\0') {
@@ -53948,7 +53948,7 @@ void ConfigureSystemResourceManagerData(void* SystemResourceManager,void* Config
                 ((long long *)SystemMemoryBlockStorage[1],&pointerUnsigned30,aSystemParameterPointer);
     }
     pointerUnsigned30 = &SystemGlobalDataReference;
-    if (lStack_28 != 0) {
+    if (LocalMemoryAddress != 0) {
         SystemCleanupFunction();
     }
   }
@@ -53978,7 +53978,7 @@ void SetSystemManagerParameters(void* SystemResourceManager,uint32_t Configurati
   char validationStatusFlag;
   uint32_t aSystemConfigurationPointer [2];
   void* *pointerUnsigned30;
-  long long lStack_28;
+  long long LocalMemoryAddress;
   
   SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0xc,&SystemResourceManagerDataBufferC,AdditionalParameter,0xfffffffffffffffe);
   if (SystemInitializationFlag == '\0') {
@@ -53996,7 +53996,7 @@ void SetSystemManagerParameters(void* SystemResourceManager,uint32_t Configurati
                 ((long long *)SystemMemoryBlockStorage[1],&pointerUnsigned30,aSystemConfigurationPointer);
     }
     pointerUnsigned30 = &SystemGlobalDataReference;
-    if (lStack_28 != 0) {
+    if (LocalMemoryAddress != 0) {
         SystemCleanupFunction();
     }
   }
@@ -64793,7 +64793,7 @@ void ProcessSystemResourceAllocation(long long* SystemResourceManager)
   uint8_t StackBuffer40 [8];
   long long longValue38;
   uint32_t SystemResourceStatusFlag;
-  long long *plStack_28;
+  long long *pLocalMemoryAddress;
   
   resourceAllocationContext = 0xfffffffffffffffe;
   resourceDataIndex = *SystemResourceManager;
@@ -64823,19 +64823,19 @@ void ProcessSystemResourceAllocation(long long* SystemResourceManager)
   longValue38 = *SystemResourceManager;
   if (*(char *)(longValue38 + 0xf4) == '\x01') {
     PrimaryResourcePointer = (long long *)0x0;
-    plStack_28 = (long long *)0x0;
+    pLocalMemoryAddress = (long long *)0x0;
     StackBuffer40[0] = 0;
     SystemResourceStatusFlag = 3;
     InitializeSystemResourceEncryption(StackBuffer40);
-    resourcePoolPointer = plStack_28;
-    SecondaryResourcePointer = plStack_28;
-    plStack_28 = (long long *)0x0;
+    resourcePoolPointer = pLocalMemoryAddress;
+    SecondaryResourcePointer = pLocalMemoryAddress;
+    pLocalMemoryAddress = (long long *)0x0;
     if (resourcePoolPointer != (long long *)0x0) {
       (**(code **)(*resourcePoolPointer + 0x38))();
     }
     CleanupSystemResourceEncryption(StackBuffer40);
-    if (plStack_28 != (long long *)0x0) {
-      (**(code **)(*plStack_28 + 0x38))();
+    if (pLocalMemoryAddress != (long long *)0x0) {
+      (**(code **)(*pLocalMemoryAddress + 0x38))();
     }
   }
   return;
@@ -65215,14 +65215,14 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
   *(uint32_t *)(SystemResourceManager + 0x2a0) = resourceAddress;
   *(uint32_t *)(SystemResourceManager + 0x2a4) = *(uint32_t *)(AdditionalParameter + 200);
   plStack_30 = (long long *)0x0;
-  lStack_28 = 0;
+  LocalMemoryAddress = 0;
   if (ConfigurationDataPointer != 0) {
     pSystemThreadFlags = (long long *)(ConfigurationDataPointer + 0x158);
     if ((*pSystemThreadFlags == 0) && (*(long long *)(ConfigurationDataPointer + 0x160) == 0)) {
       pSystemThreadFlags = (long long *)(ConfigurationDataPointer + 0x34);
     }
     plStack_30 = (long long *)*pSystemThreadFlags;
-    lStack_28 = pSystemThreadFlags[1];
+    LocalMemoryAddress = pSystemThreadFlags[1];
   }
   SystemContextValue = 0;
   pSystemThreadFlags = (long long *)(SystemResourceManager + 0x1b8);
@@ -66943,7 +66943,7 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
   uint8_t StackBuffer40 [8];
   long long longValue38;
   uint32_t SystemResourceStatusFlag;
-  long long *plStack_28;
+  long long *pLocalMemoryAddress;
   
   if (*(char *)(SystemResourceManager + 0xf4) == ConfigurationDataPointer) {
     return;
@@ -66956,13 +66956,13 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
       SystemThreadHandle = SystemThreadHandle + 0x18;
     } while (SystemThreadHandle < 0x180);
   }
-  plStack_28 = (long long *)0x0;
+  pLocalMemoryAddress = (long long *)0x0;
   StackBuffer40[0] = 0;
   SystemResourceStatusFlag = 1;
   longValue38 = SystemResourceManager;
   InitializeSystemResourceEncryption(StackBuffer40);
-  if (plStack_28 == (long long *)0x0) goto LAB_18007eb55;
-  SystemResourceOffsetPointer = plStack_28;
+  if (pLocalMemoryAddress == (long long *)0x0) goto LAB_18007eb55;
+  SystemResourceOffsetPointer = pLocalMemoryAddress;
   if (ConfigurationDataPointer != '\0') {
     if ((ConfigurationDataPointer != '\x01') || ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0)) goto LAB_18007eb55;
     SystemThreadHandle = *(long long *)(SystemResourceManager + 0x1b8);
@@ -66971,20 +66971,20 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
       isByteValid = func_0x00018022d300();
       *(byte *)(SystemThreadHandle + 0x38c) = isByteValid;
     }
-    SystemResourceOffsetPointer = plStack_28;
+    SystemResourceOffsetPointer = pLocalMemoryAddress;
     if ((*(char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + (ulong long)isByteValid * 0x18) != '\x03') &&
        (*(char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + (ulong long)isByteValid * 0x18) != '\x02'))
     goto LAB_18007eb55;
   }
-  plStack_28 = (long long *)0x0;
+  pLocalMemoryAddress = (long long *)0x0;
   if (SystemResourceOffsetPointer != (long long *)0x0) {
     (**(code **)(*SystemResourceOffsetPointer + 0x38))();
   }
 LAB_18007eb55:
   *(char *)(SystemResourceManager + 0xf4) = ConfigurationDataPointer;
   CleanupSystemResourceEncryption(StackBuffer40);
-  if (plStack_28 != (long long *)0x0) {
-    (**(code **)(*plStack_28 + 0x38))();
+  if (pLocalMemoryAddress != (long long *)0x0) {
+    (**(code **)(*pLocalMemoryAddress + 0x38))();
   }
   return;
 }
