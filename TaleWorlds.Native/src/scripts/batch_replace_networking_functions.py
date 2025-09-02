@@ -7,6 +7,29 @@
 import re
 import sys
 
+def replace_function_names():
+    """替换05_networking.c中的函数名"""
+    
+    # 定义函数名映射
+    function_mappings = {
+        'func_0x0001808757f0': 'HandleNetworkPrimaryTransfer',
+        'func_0x0001808d2620': 'ProcessNetworkTransferOperation',
+        'func_0x0001808d2660': 'ProcessNetworkTransferValidation',
+        'func_0x0001808c8710': 'GetNetworkSessionPrimaryStatus',
+        'func_0x0001808c8700': 'GetNetworkSessionSecondaryStatus',
+        'func_0x0001808c8470': 'GetNetworkSessionTertiaryStatus',
+        'func_0x0001808c7d30': 'ValidateNetworkConnectionHandle',
+        'func_0x000180867680': 'InitializeNetworkTimeoutContext',
+        'func_0x000180867960': 'ProcessNetworkTimeoutOperation',
+        'func_0x0001808c2130': 'ValidateNetworkHandleStatus',
+        'func_0x00018088aed0': 'ProcessNetworkPacketCompletion',
+        'func_0x0001808d2830': 'ExecuteNetworkTransferFinalization',
+        'func_0x00018085eef0': 'ProcessNetworkDataBuffer',
+        'func_0x0001808e64b0': 'ProcessNetworkHandleOperation'
+    }
+    
+    return function_mappings
+
 def replace_unk_variables():
     """替换05_networking.c中的UNK变量"""
     
@@ -104,5 +127,45 @@ def replace_unk_variables():
         print(f"处理文件时出错: {e}")
         return False
 
+def batch_replace_function_names():
+    """批量替换函数名"""
+    
+    function_mappings = replace_function_names()
+    
+    # 读取文件
+    input_file = '/dev/shm/mountblade-code/TaleWorlds.Native/src/05_networking.c'
+    
+    try:
+        with open(input_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        original_content = content
+        replacement_count = 0
+        
+        # 执行替换
+        for old_func, new_func in function_mappings.items():
+            old_count = content.count(old_func)
+            if old_count > 0:
+                content = content.replace(old_func, new_func)
+                replacement_count += old_count
+                print(f"替换完成: {old_func} -> {new_func} (替换了 {old_count} 处)")
+        
+        # 检查是否有变化
+        if content != original_content:
+            with open(input_file, 'w', encoding='utf-8') as f:
+                f.write(content)
+            print(f"\n总共替换了 {replacement_count} 处函数名")
+            return replacement_count
+        else:
+            print("没有找到需要替换的函数名")
+            return 0
+            
+    except Exception as e:
+        print(f"处理文件时出错: {e}")
+        return False
+
 if __name__ == "__main__":
-    replace_unk_variables()
+    # 执行函数名替换
+    result = batch_replace_function_names()
+    if result:
+        print(f"函数名替换完成，共替换了 {result} 处")
