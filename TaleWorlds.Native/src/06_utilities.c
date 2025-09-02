@@ -6068,25 +6068,25 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t ParameterObject)
  * @param managerHandle 管理器句柄，用于标识特定的系统管理器
  * @return 初始化成功返回0，失败返回非零值
  */
-int InitializeSystemManager(int64_t ManagerHandle)
+int InitializeSystemManager(int64_t SystemManagerHandle)
 
 {
-  int SystemManagerInitializationResult;
+  int SystemInitializationResult;
   int64_t SystemResourceTableAddress;
-  uint8_t ResourceValidationDataBuffer[8];
-  uint8_t ObjectContextInformationBuffer[72];
+  uint8_t ResourceValidationBuffer[8];
+  uint8_t ObjectContextInfoBuffer[72];
   
   SystemResourceTableAddress = 0;
   if (0 < *(int *)(ObjectContext + ObjectContextProcessingDataOffset)) {
     SystemResourceTableHandle = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
   }
-  ValidationOperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + SystemManagerValidationOffset),ResourceValidationBuffer);
-  if (ValidationOperationResult == 0) {
-    ValidationOperationResult = *(int *)(ObjectContext + SystemManagerContextOffset);
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + SystemManagerValidationOffset),ResourceValidationBuffer);
+  if (ValidationResult == 0) {
+    ValidationResult = *(int *)(ObjectContext + SystemManagerContextOffset);
     if (SystemManagerMaxContextSize < *(int *)(ObjectContext + SystemManagerContextOffset)) {
-      ValidationOperationResult = SystemManagerMaxContextSize;
+      ValidationResult = SystemManagerMaxContextSize;
     }
-          memcpy(ObjectContextDataBuffer,ObjectContext + SystemManagerContextOffset,(int64_t)ValidationOperationResult);
+          memcpy(ObjectContextDataBuffer,ObjectContext + SystemManagerContextOffset,(int64_t)ValidationResult);
   }
   if (SystemResourceTableHandle != 0) {
           ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),SystemResourceTableHandle,&SystemResourceTable,SystemManagerAllocationSize,1);
@@ -6109,17 +6109,17 @@ int InitializeSystemManager(int64_t ManagerHandle)
  * @note 此函数在系统消息处理循环中调用
  * @warning 验证失败时会跳过资源操作
  */
-void ProcessMessageQueue(int64_t MessageQueueHandle, uint8_t ConfigurationData)
+void ProcessMessageQueue(int64_t MessageQueueHandle, uint8_t SystemConfigData)
 
 {
   uint8_t ValidationContext;
-  int OperationResult[2];
+  int ProcessingResult[2];
   int64_t MessageDataOffset;
   
-  OperationResult[0] = ValidateObjectContext(*(uint32_t *)(MessageQueueHandle + MessageQueueContextOffset), &ValidationContext);
-  if (OperationResult[0] == 0) {
+  ProcessingResult[0] = ValidateObjectContext(*(uint32_t *)(MessageQueueHandle + MessageQueueContextOffset), &ValidationContext);
+  if (ProcessingResult[0] == 0) {
     MessageDataOffset = MessageQueueHandle + MessageQueueDataOffset;
-    ProcessResourceOperationEx(ConfigurationData, OperationResult, *(uint32_t *)(MessageQueueHandle + MessageQueueSizeOffset), ValidationContext);
+    ProcessResourceOperationEx(SystemConfigData, ProcessingResult, *(uint32_t *)(MessageQueueHandle + MessageQueueSizeOffset), ValidationContext);
   }
   return;
 }
