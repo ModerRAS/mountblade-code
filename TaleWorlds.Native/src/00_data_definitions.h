@@ -6019,7 +6019,7 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   uint8_t aMemoryAddress [16];
   int StringIndex;
   uint StringProcessingResult;
-  float *pfVar4;
+  float *ColorProcessingPointer;
   ulonglong MemoryAllocationResult;
   ushort *PointerValue;
   float *pfVar7;
