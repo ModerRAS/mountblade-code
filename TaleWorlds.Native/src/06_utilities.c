@@ -47416,7 +47416,12 @@ void Unwind_180905560(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905570(void)
+/**
+ * @brief 互斥锁销毁器：销毁互斥锁资源
+ * 
+ * 该函数负责销毁互斥锁资源，确保线程同步资源的正确清理
+ */
+void DestroyMutexLock(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -47425,7 +47430,13 @@ void Unwind_180905570(void)
 
 
 
-void Unwind_180905590(void)
+/**
+ * @brief 互斥锁销毁器副本：销毁互斥锁资源
+ * 
+ * 该函数负责销毁互斥锁资源，确保线程同步资源的正确清理
+ * 功能与DestroyMutexLock相同，但用于不同的清理场景
+ */
+void DestroyMutexLockDuplicate(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -48870,7 +48881,12 @@ void Unwind_1809059c0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809059d0(void)
+/**
+ * @brief 系统互斥锁销毁器：销毁系统互斥锁资源
+ * 
+ * 该函数负责销毁系统互斥锁资源，确保系统线程同步资源的正确清理
+ */
+void DestroySystemMutexLock(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -49164,7 +49180,12 @@ void Unwind_180905b10(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180905b30(void)
+/**
+ * @brief 互斥锁资源销毁器：销毁互斥锁资源
+ * 
+ * 该函数负责销毁互斥锁资源，确保线程同步资源的正确清理
+ */
+void DestroyMutexResource(void)
 
 {
   _Mtx_destroy_in_situ();
