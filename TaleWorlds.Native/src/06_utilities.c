@@ -50032,6 +50032,7 @@ void ValidateAndResetResourceContext(uint8_t ObjectContext,int64_t ValidationCon
 
 {
   int64_t *processPointer;
+  int64_t *ResourceContext;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xd0);
   if (ResourceContext != (int64_t *)0x0) {
@@ -50057,7 +50058,7 @@ void ValidateAndResetResourceContext(uint8_t ObjectContext,int64_t ValidationCon
 void ExecuteResourceContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *ResourceContextPtr;
+  int64_t *ResourceContext;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xd8);
   if (ResourceContext != (int64_t *)0x0) {
@@ -50083,7 +50084,7 @@ void ExecuteResourceContextCallback(uint8_t ObjectContext, int64_t ValidationCon
 void ExecuteResourceContextCallbackAlt(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *ResourceContextPtr;
+  int64_t *ResourceContext;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xe0);
   if (ResourceContext != (int64_t *)0x0) {
