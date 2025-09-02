@@ -70727,7 +70727,18 @@ void InitializeSystemDataStructure(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_180909ad0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责设置系统数据结构的指针，将系统数据结构的地址
+ * 存储到验证上下文的指定偏移量位置
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统验证和管理信息
+ * @return 无返回值
+ * @note 此函数通常在系统初始化期间调用
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x200) = &SystemDataStructure;
@@ -70908,7 +70919,7 @@ void ExecuteTertiaryResourceContextHandler(uint8_t ObjectContext,int64_t Validat
 
 
 
-void Unwind_180909bb0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceOperationWithFlag1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -70920,7 +70931,7 @@ void Unwind_180909bb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909be0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnlockResourceMutex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -70934,7 +70945,7 @@ void Unwind_180909be0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909bf0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceOperationWithFlag2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -70946,7 +70957,7 @@ void Unwind_180909bf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909c20(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateResourceHashAndIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -71035,7 +71046,17 @@ void UnwindMutexDestroyD(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909c80(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁系统中的互斥锁资源
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数在系统清理期间调用
+ * @warning 调用此函数前必须确保互斥锁不再被使用
+ */
+void DestroyMutexInPlace(void)
 
 {
   MutexDestroyInPlace();
@@ -71044,7 +71065,19 @@ void Unwind_180909c80(void)
 
 
 
-void Unwind_180909c90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 销毁指定上下文的互斥锁
+ * 
+ * 该函数负责销毁指定验证上下文中的互斥锁资源
+ * 根据验证上下文中的信息定位并销毁对应的互斥锁
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含互斥锁的位置信息
+ * @return 无返回值
+ * @note 此函数在系统清理期间调用，用于清理特定上下文的互斥锁
+ * @warning 调用此函数前必须确保互斥锁不再被使用
+ */
+void DestroyMutexWithContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   MutexDestroyInPlace(*(uint8_t *)(ValidationContext + 0x98));
