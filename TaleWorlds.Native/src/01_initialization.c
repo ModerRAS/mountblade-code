@@ -20784,7 +20784,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   long long localSystemFlags;
   long long localDataIndex;
   uint32_t *newThreadLocalStorage;
-  void* *punsignedSystemValue9;
+  void* *SystemValuePointer9;
   ulong long systemOperationFlags;
   long long nextDataIndex1;
   ulong long SystemSecondaryStatus;
@@ -20794,14 +20794,14 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   uint SystemOperationStatusFlag;
   int SystemErrorStatusFlag;
   void* *systemDataPointer;
-  void* *systemStackFlagC0;
+  void* *SystemStackPointerC0;
   uint systemDataBuffer;
   void* SystemStackFlagB0;
   void* *SystemStackFlagA8;
   char *charPointerA0;
   uint32_t secondarySystemDataBuffer;
   ulong long StackParameterC;
-  void* *pUnsignedStackFlag88;
+  void* *SystemStackPointer88;
   char *charPointer80;
   uint32_t UnsignedStackFlag78;
   ulong long processFlags70;
@@ -20841,24 +20841,24 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   newThreadLocalStorage[4] = 0x747874;
   systemDataBuffer = 0x18;
   SystemThreadContext = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x18,8,3);
-  punsignedSystemValue9 = &SystemStringTemplate;
-  if (pUnsignedStackFlagC0 != (void* *)0x0) {
-    punsignedSystemValue9 = pUnsignedStackFlagC0;
+  SystemValuePointer9 = &SystemStringTemplate;
+  if (SystemStackPointerC0 != (void* *)0x0) {
+    SystemValuePointer9 = SystemStackPointerC0;
   }
   *SystemThreadContext = 0;
   *(uint8_t *)(SystemThreadContext + 2) = 0;
-  ConfigureSystemNodeParameters(SystemThreadContext,punsignedSystemValue9,&SystemConfigurationDataTemplate);
+  ConfigureSystemNodeParameters(SystemThreadContext,SystemValuePointer9,&SystemConfigurationDataTemplate);
   SystemOperationStatus6 = 0;
   systemOperationFlags = SystemSecondaryStatus;
   if (SystemInitializationDataEnd - SystemInitializationDataStart >> 8 != 0) {
     do {
       nextDataIndex3 = SystemInitializationDataStart;
       nextDataIndex1 = 0;
-      pUnsignedStackFlag88 = &SystemGlobalDataReference;
+      SystemStackPointer88 = &SystemGlobalDataReference;
       processFlags70 = 0;
       charPointer80 = (char *)0x0;
       UnsignedStackFlag78 = 0;
-      InitializeSystemDataBuffer(&pUnsignedStackFlag88,*(uint32_t *)(SystemInitializationDataStart + 0x10 + systemOperationFlags));
+      InitializeSystemDataBuffer(&SystemStackPointer88,*(uint32_t *)(SystemInitializationDataStart + 0x10 + systemOperationFlags));
       SystemOperationStatus7 = *(int *)(nextDataIndex3 + 0x10 + systemOperationFlags);
       if (SystemOperationStatus7 != 0) {
           memcpy(charPointer80,*(void* *)(nextDataIndex3 + 8 + systemOperationFlags),SystemOperationStatus7 + 1);
@@ -58880,9 +58880,9 @@ void SystemNoOperationA(void)
   if ((isSystemActive9 != 0) && (isOperationComplete0 != 0)) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
     *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+    *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
+    *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
+    *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
@@ -59150,9 +59150,9 @@ void CleanupGlobalSystemResources(void)
   if ((isOperationComplete0 != 0) && (isOperationComplete1 != 0)) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
     *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+    *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
+    *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
+    *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
@@ -59260,52 +59260,52 @@ void ProcessSystemMatrixOperations(void)
     StackMatrixElement2 = MatrixElementX * AspectRatio + MatrixElementY * RotationAngleY + MatrixElementZ * InterpolationDelta;
     StackMatrixElement3 = MatrixElementX * InterpolationAlpha + MatrixElementY * RotationAngleZ + MatrixElementZ * InterpolationEpsilon;
     StackMatrixElement4 = MatrixElementX * InterpolationBeta + MatrixElementY * ScaleFactor + MatrixElementZ * MagnitudeSquared;
-    floatValue1 = *(float *)(systemMemoryBlockPtr + 0x138);
-    floatValue2 = *(float *)(systemMemoryBlockPtr + 0x140);
-    floatValue3 = *(float *)(systemMemoryBlockPtr + 0x144);
-    fStack00000000000000b0 = floatValue4 * floatValue11 + floatValue5 * floatValue7 + floatValue1 * interpolationFactor3;
-    fStack00000000000000b4 = floatValue4 * FloatRatioValue + floatValue5 * floatValue8 + floatValue1 * interpolationFactor4;
-    fStack00000000000000b8 = floatValue4 * interpolationFactor1 + floatValue5 * floatValue9 + floatValue1 * interpolationFactor5;
-    fStack00000000000000bc = floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
-    floatValue1 = *(float *)(systemMemoryBlockPtr + 0x148);
-    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x154);
-    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x150);
-    fStack00000000000000c0 = floatValue3 * floatValue11 + floatValue2 * floatValue7 + floatValue1 * interpolationFactor3;
-    fStack00000000000000c4 = floatValue3 * FloatRatioValue + floatValue2 * floatValue8 + floatValue1 * interpolationFactor4;
-    fStack00000000000000c8 = floatValue3 * interpolationFactor1 + floatValue2 * floatValue9 + floatValue1 * interpolationFactor5;
-    fStack00000000000000cc = floatValue3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
-    floatValue1 = *(float *)(systemMemoryBlockPtr + 0x158);
-    fStack00000000000000d0 = floatValue4 * floatValue11 + floatValue5 * floatValue7 + floatValue1 * interpolationFactor3 + systemStringIteratorPtr[0xc];
-    fStack00000000000000d4 = floatValue4 * FloatRatioValue + floatValue5 * floatValue8 + floatValue1 * interpolationFactor4 + systemStringIteratorPtr[0xd];
-    fStack00000000000000d8 = floatValue4 * interpolationFactor1 + floatValue5 * floatValue9 + floatValue1 * interpolationFactor5 + systemStringIteratorPtr[0xe];
-    fStack00000000000000dc = floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + systemStringIteratorPtr[0xf];
+    float QuaternionW = *(float *)(MemoryBlockAddress + 0x138);
+    float TransformX = *(float *)(MemoryBlockAddress + 0x140);
+    float TransformY = *(float *)(MemoryBlockAddress + 0x144);
+    StackVectorElement1 = MatrixElementW * TranslationX + VectorMagnitude * RotationAngleX + QuaternionW * InterpolationGamma;
+    StackVectorElement2 = MatrixElementW * AspectRatio + VectorMagnitude * RotationAngleY + QuaternionW * InterpolationDelta;
+    StackVectorElement3 = MatrixElementW * InterpolationAlpha + VectorMagnitude * RotationAngleZ + QuaternionW * InterpolationEpsilon;
+    StackVectorElement4 = MatrixElementW * InterpolationBeta + VectorMagnitude * ScaleFactor + QuaternionW * MagnitudeSquared;
+    QuaternionW = *(float *)(MemoryBlockAddress + 0x148);
+    MatrixElementW = *(float *)(MemoryBlockAddress + 0x154);
+    VectorMagnitude = *(float *)(MemoryBlockAddress + 0x150);
+    StackTransformElement1 = TransformY * TranslationX + TransformX * RotationAngleX + QuaternionW * InterpolationGamma;
+    StackTransformElement2 = TransformY * AspectRatio + TransformX * RotationAngleY + QuaternionW * InterpolationDelta;
+    StackTransformElement3 = TransformY * InterpolationAlpha + TransformX * RotationAngleZ + QuaternionW * InterpolationEpsilon;
+    StackTransformElement4 = TransformY * InterpolationBeta + TransformX * ScaleFactor + QuaternionW * MagnitudeSquared;
+    QuaternionW = *(float *)(MemoryBlockAddress + 0x158);
+    StackPhysicsElement1 = MatrixElementW * TranslationX + VectorMagnitude * RotationAngleX + QuaternionW * InterpolationGamma + StringIteratorPointer[0xc];
+    StackPhysicsElement2 = MatrixElementW * AspectRatio + VectorMagnitude * RotationAngleY + QuaternionW * InterpolationDelta + StringIteratorPointer[0xd];
+    StackPhysicsElement3 = MatrixElementW * InterpolationAlpha + VectorMagnitude * RotationAngleZ + QuaternionW * InterpolationEpsilon + StringIteratorPointer[0xe];
+    StackPhysicsElement4 = MatrixElementW * InterpolationBeta + VectorMagnitude * ScaleFactor + QuaternionW * MagnitudeSquared + StringIteratorPointer[0xf];
   }
-  FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7));
-  creationFlags6 = ThreadCreationParameter;
-  creationFlags5 = InputStackParameter90;
-  creationFlags4 = InputStackParameter88;
-  creationFlags3 = InputStackParameter80;
-  creationFlags2 = InputStackParameter78;
-  creationFlags1 = InputStackParameter70;
-  creationFlags0 = InputStackParameter68;
-  SystemOperationStatus9 = InputStackParameter60;
-  isSystemActive8 = *(byte *)(unaff_R13 + 0x1bd8);
-  systemFlag = *(int *)(SystemStatusFlagsPointer + 0x224);
-  if (((*(byte *)(systemMemoryBlockPtr + 0xfd) & 1) == 0) &&
-     ((*(int *)(systemMemoryBlockPtr + 0x1d0) == systemFlag || (*(int *)(systemMemoryBlockPtr + 0x1d0) == systemFlag + -1)))) {
-    isSystemActive7 = 0;
+  ProcessSystemMatrixOperations(&StackParameterArray, RegisterR13Value + 0x30, *(uint8_t *)(MemoryBlockAddress + 0xf7));
+  NetworkConnectionFlags = ThreadContextParameter;
+  SecurityStackParameter = SecurityStackParameter;
+  SystemConfigurationFlags = NetworkStackParameter;
+  ResourceInitializationFlags = AudioStackParameter;
+  MemoryAllocationFlags = PhysicsStackParameter;
+  ThreadCreationFlags = TransformStackParameter;
+  ResourceCreationFlags = VectorStackParameter;
+  SystemContextPointer = MatrixStackParameter;
+  IsAudioSystemActive = *(byte *)(RegisterR13Value + 0x1bd8);
+  CalculationFlags = *(int *)(SystemStatusFlagsPointer + 0x224);
+  if (((*(byte *)(MemoryBlockAddress + 0xfd) & 1) == 0) &&
+     ((*(int *)(MemoryBlockAddress + 0x1d0) == CalculationFlags || (*(int *)(MemoryBlockAddress + 0x1d0) == CalculationFlags + -1)))) {
+    IsPhysicsSystemActive = 0;
   }
   else {
-    isSystemActive7 = 1;
+    IsPhysicsSystemActive = 1;
   }
-  *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe | isSystemActive7;
-  isSystemActive8 = isSystemActive8 & 0x20;
-  if ((isSystemActive8 != 0) && (isSystemActive7 != 0)) {
-    *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
-    *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+  *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe | IsPhysicsSystemActive;
+  IsAudioSystemActive = IsAudioSystemActive & 0x20;
+  if ((IsAudioSystemActive != 0) && (IsPhysicsSystemActive != 0)) {
+    *(void* *)(MemoryBlockAddress + 0x160) = MatrixStackParameter;
+    *(void* *)(MemoryBlockAddress + 0x168) = VectorStackParameter;
+    *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
+    *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
+    *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
@@ -59474,9 +59474,9 @@ void InitializeSystemVectorCalculations(void)
   if ((isSystemActive8 != 0) && (isSystemActive7 != 0)) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
     *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+    *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
+    *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
+    *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
@@ -59550,9 +59550,9 @@ void ExecuteSystemTransformOperations(void)
   if ((isByteValid1 != 0) && (isByteValid0 != 0)) {
     *(void* *)(systemMemoryBlockPtr + 0x160) = InputStackParameter60;
     *(void* *)(systemMemoryBlockPtr + 0x168) = InputStackParameter68;
-    *(void* *)(systemMemoryBlockPtr + 0x170) = InputStackParameter70;
-    *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
-    *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
+    *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
+    *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
+    *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;

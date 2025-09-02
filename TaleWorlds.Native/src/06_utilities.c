@@ -63991,7 +63991,18 @@ void UnwindSystemContextSuspend(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908770(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表并处理异常
+ * 
+ * 该函数负责遍历资源表中的所有资源，逐个清理每个资源
+ * 如果资源表为空，则执行系统紧急退出程序
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908770
+ */
+void CleanupResourceTableAndHandleException(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -64089,7 +64100,18 @@ void ReleaseSystemMemory(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809087d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证上下文资源表
+ * 
+ * 该函数负责清理验证上下文中特定偏移量的资源表
+ * 遍历所有资源并执行清理操作，如果资源表为空则执行紧急退出
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_1809087d0
+ */
+void CleanupValidationContextResourceTable(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -64151,7 +64173,18 @@ void ExecuteValidationContextAtD0(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_180908800(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文（偏移量D8）
+ * 
+ * 该函数负责执行位于验证上下文偏移量D8处的处理函数
+ * 如果验证上下文存在，则调用相应的处理函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908800
+ */
+void ExecuteValidationContextAtD8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xd8) != (int64_t *)0x0) {
@@ -64162,7 +64195,17 @@ void Unwind_180908800(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908810(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针（偏移量1E0）
+ * 
+ * 该函数负责设置验证上下文中偏移量1E0处的系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908810
+ */
+void SetSystemDataStructurePointerAt1E0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1e0) = &SystemDataStructure;
@@ -64171,7 +64214,18 @@ void Unwind_180908810(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908820(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文（偏移量E8）
+ * 
+ * 该函数负责执行位于验证上下文偏移量E8处的处理函数
+ * 如果验证上下文存在，则调用相应的处理函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908820
+ */
+void ExecuteValidationContextAtE8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xe8) != (int64_t *)0x0) {
@@ -64182,7 +64236,18 @@ void Unwind_180908820(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908830(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希验证结果（偏移量A0）
+ * 
+ * 该函数负责处理位于验证上下文偏移量A0处的资源哈希验证结果
+ * 执行内存访问验证和资源清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908830
+ */
+void ProcessResourceHashValidationAtA0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -64218,7 +64283,18 @@ void Unwind_180908830(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908840(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源验证（偏移量F0）
+ * 
+ * 该函数负责处理位于验证上下文偏移量F0处的资源验证操作
+ * 执行内存访问验证和资源清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908840
+ */
+void ProcessResourceValidationAtF0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -69609,7 +69685,7 @@ void SetupSystemDataStructure(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_18090a1d0(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -69627,7 +69703,7 @@ void Unwind_18090a1d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a1f0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -69649,7 +69725,7 @@ void Unwind_18090a1f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a210(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemResourceManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x60) + 0x5a0,0x20,9,SystemResourceHandlerEx);
@@ -69658,7 +69734,7 @@ void Unwind_18090a210(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a250(uint8_t ObjectContext,int64_t ValidationContext)
+void SetupSystemResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
