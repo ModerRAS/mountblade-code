@@ -3049,11 +3049,12 @@ uint8_t EventHandlerSlotNinety;
 uint8_t EventHandlerSlotNinetyOne;
 // 事件处理器槽九十二 - 第九十二号事件处理器槽
 uint8_t EventHandlerSlotNinetyTwo;
-uint8_t SystemEventHandlerSlotNinetyThree;
-uint8_t SystemEventHandlerSlotNinetyFour;
-uint8_t SystemEventHandlerSlotNinetyFive;
-uint8_t SystemEventHandlerSlotNinetySix;
-uint8_t SystemEventHandlerSlotNinetySeven;
+// 事件处理器槽九十三 - 第九十三号事件处理器槽
+uint8_t EventHandlerSlotNinetyThree;
+uint8_t EventHandlerSlotNinetyFour;
+uint8_t EventHandlerSlotNinetyFive;
+uint8_t EventHandlerSlotNinetySix;
+uint8_t EventHandlerSlotNinetySeven;
 uint8_t SystemEventHandlerSlotNinetyEight;
 uint8_t SystemEventHandlerSlotNinetyNine;
 uint8_t SystemEventHandlerSlotOneHundred;
