@@ -47780,7 +47780,17 @@ void ConfigureSystemBuffer(void* *SystemResourcePointer)
 
 
 // 函数: void FUN_18006c070(long long SystemResourcePointer)
-void FUN_18006c070(long long SystemResourcePointer)
+/**
+ * @brief 处理系统资源节点队列
+ * 
+ * 该函数负责处理系统资源节点队列，包括节点的创建、销毁和状态管理。
+ * 主要用于系统资源的动态管理和内存分配。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_18006c070，现已重命名为ProcessSystemResourceNodeQueue
+ */
+void ProcessSystemResourceNodeQueue(long long SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -48238,7 +48248,17 @@ LAB_18006ca95:
 
 
 // 函数: void FUN_18006cb90(long long SystemResourcePointer)
-void FUN_18006cb90(long long SystemResourcePointer)
+/**
+ * @brief 清理系统资源数据表
+ * 
+ * 该函数负责清理系统资源数据表，释放资源并重置数据表状态。
+ * 主要用于系统资源的清理和内存回收。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_18006cb90，现已重命名为CleanupSystemResourceDataTable
+ */
+void CleanupSystemResourceDataTable(long long SystemResourcePointer)
 
 {
   long long nextDataIndex;
