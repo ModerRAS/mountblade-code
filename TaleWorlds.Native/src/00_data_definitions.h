@@ -8576,40 +8576,40 @@ Label_18060b76f:
                                                                                   &SystemConfigurationValidationBuffer63);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060ad3e;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a830);
+                                                                                  &SystemConfigurationValidationBuffer64);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060a114;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a870);
+                                                                                  &SystemConfigurationValidationBuffer65);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060ba49;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a860);
+                                                                                  &SystemConfigurationValidationBuffer66);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060b32d;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a04be8);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060b34b;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a938);
+                                                                                  &SystemConfigurationValidationBuffer67);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060b369;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a920);
+                                                                                  &SystemConfigurationValidationBuffer68);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060b387;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &SystemConfigurationValidationBuffer40);
                                                       if (NetworkRequestStatus != '\0') goto Label_18060b3a5;
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a948);
+                                                                                  &SystemConfigurationValidationBuffer69);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0xf8;
                                                         goto Label_18060bbae;
                                                       }
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a8f0);
+                                                                                  &SystemConfigurationValidationBuffer70);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0xfc;
                                                         goto Label_18060bbae;
                                                       }
                                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,
-                                                                                  &UNK_180a3a8d8);
+                                                                                  &SystemConfigurationValidationBuffer71);
                                                       if (NetworkRequestStatus != '\0') {
                                                         StringProcessingResult = 0x100;
                                                         goto Label_18060bbae;
@@ -13389,36 +13389,36 @@ int InitializeSystemBuffer(void* bufferPtr, int bufferSize);
 int ProcessSystemDataBuffer(void* targetBuffer, void* sourceBuffer, int bufferSize);
 
 /**
- * 注册系统模块A
- * 向系统注册第一个核心模块，初始化模块所需资源
+ * 注册系统核心模块
+ * 向系统注册核心引擎模块，初始化模块所需资源
  * 
  * @return 注册成功返回0，失败返回-1
  */
-int RegisterSystemModuleA(void);
+int RegisterSystemCoreModule(void);
 
 /**
- * 注册系统模块B
- * 向系统注册第二个核心模块，初始化模块所需资源
+ * 注册系统渲染模块
+ * 向系统注册渲染引擎模块，初始化渲染所需资源
  * 
  * @return 注册成功返回0，失败返回-1
  */
-int RegisterSystemModuleB(void);
+int RegisterSystemRenderModule(void);
 
 /**
- * 注册系统模块C
- * 向系统注册第三个核心模块，初始化模块所需资源
+ * 注册系统音频模块
+ * 向系统注册音频引擎模块，初始化音频处理所需资源
  * 
  * @return 注册成功返回0，失败返回-1
  */
-int RegisterSystemModuleC(void);
+int RegisterSystemAudioModule(void);
 
 /**
- * 注册系统模块D
- * 向系统注册第四个核心模块，初始化模块所需资源
+ * 注册系统网络模块
+ * 向系统注册网络引擎模块，初始化网络通信所需资源
  * 
  * @return 注册成功返回0，失败返回-1
  */
-int RegisterSystemModuleD(void);
+int RegisterSystemNetworkModule(void);
 
 /**
  * @brief UNK_变量重命名总结
