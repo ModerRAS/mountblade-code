@@ -17906,7 +17906,7 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
     callbackTable = (int *)(threadLocalStoragePtr + 0x60);
   }
   else {
-    if (*callbackTable != 0x1e) goto LAB_1808fd14a;
+    if (*callbackTable != 0x1e) goto CallbackTableInitializationComplete;
     callbackTable = (int *)malloc(0x100);
     free(0);
     if (callbackTable == (int *)0x0) {
@@ -17916,7 +17916,7 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
   }
   *callbackTable = 0;
   *(int **)(threadLocalStoragePtr + 0x50) = callbackTable;
-LAB_1808fd14a:
+CallbackTableInitializationComplete:
   *(code **)(callbackTable + (uint64_t)*callbackTable * 2 + 4) = SystemTableCallbackFunction;
   *callbackTable = *callbackTable + 1;
   return 0;
@@ -18374,7 +18374,7 @@ void InitializeMainSystemController(long long systemParameter)
     else {
       IsActiveFlag = (**(code **)((void* )SystemGlobalControllerPointer + 0x68))();
     }
-    if (!IsActiveFlag) goto LAB_180043e47;
+    if (!IsActiveFlag) goto SkipControllerInitialization;
   }
   ControllerPointer = (long long )SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xc0,8,3,allocationFlags);
   SystemDataBuffer20 = ControllerPointer;
@@ -18405,7 +18405,7 @@ void InitializeMainSystemController(long long systemParameter)
   if (ControllerPointer != (long long )0x0) {
     (**(code **)(ControllerPointer + 0x38))();
   }
-LAB_180043e47:
+SkipControllerInitialization:
   SystemThreadSyncBroadcast((void* )(SystemResourcePointer + 0x20));
   if ((char )(SystemStatusFlagsPointer + 0x1ed) != '\0') {
     ControllerPointer = (long long )SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x28,8,3);
