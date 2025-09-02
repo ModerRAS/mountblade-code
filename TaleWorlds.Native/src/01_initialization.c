@@ -1320,20 +1320,14 @@ void* GetSystemInitializationFunction;
 /**
  * @brief 初始化游戏核心系统
  * 
- * 该函数负责初始化游戏的核心系统组件，包括系统节点的遍历、
- * 内存分配和核心系统数据的设置。这是游戏启动过程中的关键步骤。
+ * 初始化游戏核心系统，包括系统节点的创建、配置和激活。
+ * 用于游戏核心系统的启动和初始化工作。
  * 
  * @note 该函数会遍历系统节点树，查找或创建游戏核心系统节点，
  *       并设置相关的系统数据和回调函数。
  * @note 函数使用全局常量GAME_CORE_SYSTEM_ID进行系统识别
  * @note 函数依赖GetSystemRootPointer和GetGameCoreSystemInitializationFunction等辅助函数
  * @note 函数会设置GAME_CORE_NODE_DATA相关配置
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 初始化游戏核心系统，包括系统节点的创建、配置和激活。
- * 用于游戏核心系统的启动和初始化工作。
  * 
  * @return 无返回值
  */
@@ -51621,7 +51615,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
       SystemThreadIdentifier = ConcatenatedValue44(SystemThreadIdentifier._4_4_,ThreadContextFlag);
       *SystemThreadLocalStoragePointer = 0x4e524157204c4752;
       *(uint32_t *)(SystemThreadLocalStoragePointer + 1) = 0x474e49;
-      uStack_d0 = 0xb;
+      SystemThreadPriority = 0xb;
       if (((SystemInitializationFlag == '\0') || (systemOffset = IsDebuggerPresent(), systemOffset != 0)) &&
          (SystemSilentMode == '\0')) {
         MessageBoxA(0,ConfigurationDataPointer,SystemThreadLocalStoragePointer,0x41030);
@@ -52176,7 +52170,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   controlFlag = ControlFlag;
   SystemDataPointer0 = (uint8_t *)0x0;
   SystemOperationStatus4 = 0;
-  uStack_11c = 0;
+  SystemOperationMode = 0;
   SystemThreadId148 = 0;
   SystemProcessFlags58 = 0;
   ConcatenatedValue44 = 0;

@@ -73827,7 +73827,7 @@ void Unwind_ResourceHashValidationStatusCodeCleanupHandler(uint8_t ObjectContext
 
 
 
-void Unwind_18090a7b0(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_ExecuteResourceAllocationCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x48) != (int64_t *)0x0) {
