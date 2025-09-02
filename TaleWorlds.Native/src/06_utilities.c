@@ -1006,7 +1006,7 @@ bool GraphicsSystemInitializationComplete;               // 系统图形系统�
  */
 uint32_t GetAudioSystemStatusFlag(void);
 // 音频系统状态标志
-bool AudioSystemInitializationComplete;                 // 系统音频系统初始化完成标志
+bool AudioSystemInitializationComplete;                 // 音频系统初始化完成标志
 
 
 /**
@@ -1022,8 +1022,8 @@ bool AudioSystemInitializationComplete;                 // 系统音频系统初
  */
 void DestroyThreadSynchronizationObjects(void);
 // 线程同步对象全局变量
-void* ThreadSynchronizationObjectHandle;              // 系统线程同步对象句柄
-void* ThreadSynchronizationExecutionContext;          // 系统线程同步执行上下文
+void* ThreadSynchronizationObjectHandle;              // 线程同步对象句柄
+void* ThreadSynchronizationExecutionContext;          // 线程同步执行上下文
 
  /**
  * @brief 关闭系统句柄
@@ -1049,11 +1049,11 @@ void CloseSystemHandle(void);
  */
 void CleanupThreadResources(void);
 // 线程清理系统全局变量
-uint32_t ThreadCleanupStatus;                          // 系统线程清理状态
-void* ThreadCleanupMainStorage;                        // 系统线程清理主存储
-void* ThreadCleanupSecondaryStorage;                   // 系统线程清理次级存储
-void* ThreadCleanupResourceHandle;                     // 系统线程清理资源句柄
-void* ThreadCleanupAuxiliaryStorage;                   // 系统线程清理辅助存储
+uint32_t ThreadCleanupStatus;                          // 线程清理状态
+void* ThreadCleanupMainStorage;                        // 线程清理主存储
+void* ThreadCleanupSecondaryStorage;                   // 线程清理次级存储
+void* ThreadCleanupResourceHandle;                     // 线程清理资源句柄
+void* ThreadCleanupAuxiliaryStorage;                   // 线程清理辅助存储
 
  /**
  * @brief 初始化资源管理器
@@ -2685,8 +2685,6 @@ uint8_t SystemEnvironmentDataTemplatePrimary;
 
  void ConfigureSystemParameters(void);
 
-void InitializeSystemResources(void);
-
 /**
  * @brief 初始化系统资源管理器
  * 
@@ -2719,7 +2717,6 @@ uint8_t KernelOptimizedMemoryConfiguration;
  * 该函数负责初始化系统的线程管理组件
  * 设置线程创建、调度和同步的机制
  */
-void InitializeThreadManager(void);
 uint8_t DataStructureReference;
 uint8_t DataTableInstance;
 uint8_t DataBufferStorage;
@@ -3228,7 +3225,6 @@ uint8_t ThreadLocalStorage;
  * @return 无返回值
  * @note 此函数必须在系统启动时调用
  */
-void InitializeThreadManager(void);
 uint8_t ThreadManagerContextData;
 uint8_t ThreadSchedulerData;
 uint8_t PhysicsWorldDataTable;
@@ -4221,46 +4217,46 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int ObjectProcessingStatus;
-  int64_t CurrentObjectIndex;
-  int ProcessedObjectCount;
-  uint8_t ObjectMetaDataBuffer[32];
-  int64_t SystemHandleBuffer[2];
-  uint8_t *DataBuffer;
-  int BufferPosition;
-  uint32_t MaxProcessableObjects;
-  uint8_t ObjectProcessingWorkspace[512];
-  uint64_t SecurityValidationKey;
+  int ProcessingStatus;
+  int64_t CurrentIndex;
+  int ProcessedCount;
+  uint8_t MetaDataBuffer[32];
+  int64_t HandleBuffer[2];
+  uint8_t *BufferData;
+  int Position;
+  uint32_t MaxObjects;
+  uint8_t ProcessingWorkspace[512];
+  uint64_t ValidationKey;
   
-  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetaDataBuffer;
-  ObjectProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleBuffer);
-  if ((ObjectProcessingStatus == 0) && (*(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
-    DataBuffer = ObjectProcessingWorkspace;
-    ProcessedObjectCount = 0;
-    BufferPosition = 0;
-    MaxProcessableObjects = MaximumProcessableItemsLimit;
-    ObjectProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset),
-                          &DataBuffer);
-    if (ObjectProcessingStatus == 0) {
-      if (0 < BufferPosition) {
-        CurrentObjectIndex = 0;
+  ValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)MetaDataBuffer;
+  ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), HandleBuffer);
+  if ((ProcessingStatus == 0) && (*(int64_t *)(HandleBuffer[0] + RegistrationHandleOffset) != 0)) {
+    BufferData = ProcessingWorkspace;
+    ProcessedCount = 0;
+    Position = 0;
+    MaxObjects = MaximumProcessableItemsLimit;
+    ProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(HandleBuffer[0] + RegistrationHandleOffset),
+                          &BufferData);
+    if (ProcessingStatus == 0) {
+      if (0 < Position) {
+        CurrentIndex = 0;
         do {
-          uint8_t ObjectState = *(uint8_t *)(DataBuffer + CurrentObjectIndex);
-          ObjectProcessingStatus = ValidateObjectStatus(ObjectState);
-          if (ObjectProcessingStatus != RegistrationStatusSuccess) {
+          uint8_t ObjectState = *(uint8_t *)(BufferData + CurrentIndex);
+          ProcessingStatus = ValidateObjectStatus(ObjectState);
+          if (ProcessingStatus != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectState, 1);
           }
-          ProcessedObjectCount++;
-          CurrentObjectIndex += ResourceEntrySizeBytes;
-        } while (ProcessedObjectCount < BufferPosition);
+          ProcessedCount++;
+          CurrentIndex += ResourceEntrySizeBytes;
+        } while (ProcessedCount < Position);
       }
-      FreeObjectListMemory(&DataBuffer);
+      FreeObjectListMemory(&BufferData);
     }
     else {
-      FreeObjectListMemory(&DataBuffer);
+      FreeObjectListMemory(&BufferData);
     }
   }
-        PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetaDataBuffer);
+        PerformSecurityValidation(ValidationKey ^ (uint64_t)MetaDataBuffer);
 }
 
 
@@ -4278,36 +4274,36 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  */
 void ValidateSystemObjectCollection(void)
 {
-  uint8_t ObjectIdentifier;
-  int ObjectValidationStatus;
+  uint8_t ObjectId;
+  int ValidationStatus;
   int64_t ObjectContext;
   int64_t SystemContext;
-  int64_t DataPosition;
+  int64_t Position;
   int ProcessedCount;
-  uint8_t *ObjectCollectionBuffer;
+  uint8_t *CollectionBuffer;
   int RetrievedCount;
   uint32_t MaxCapacity;
   uint64_t SecurityHash;
   
   if (*(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset) != 0) {
-    ObjectCollectionBuffer = ProcessingWorkspace;
+    CollectionBuffer = ProcessingWorkspace;
     ProcessedCount = 0;
     RetrievedCount = 0;
     MaxCapacity = MaximumCapacityLimit;
-    ObjectValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
+    ValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (ObjectValidationStatus == 0) {
+    if (ValidationStatus == 0) {
       RetrievedCount = *(int *)(ProcessingWorkspace + 4);
       if (0 < RetrievedCount) {
-        DataPosition = 8;
+        Position = 8;
         do {
-          ObjectIdentifier = *(uint8_t *)(ObjectCollectionBuffer + DataPosition);
-          ObjectValidationStatus = ValidateSystemObject(ObjectIdentifier);
-          if (ObjectValidationStatus != 2) {
-                  HandleInvalidSystemObject(ObjectIdentifier, 1);
+          ObjectId = *(uint8_t *)(CollectionBuffer + Position);
+          ValidationStatus = ValidateSystemObject(ObjectId);
+          if (ValidationStatus != 2) {
+                  HandleInvalidSystemObject(ObjectId, 1);
           }
           ProcessedCount++;
-          DataPosition += 8;
+          Position += 8;
         } while (ProcessedCount < RetrievedCount);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
@@ -4507,10 +4503,10 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
  */
 uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
 {
-  int64_t *ProcessResultPointer;
-  int64_t *ResourceTablePointerPointer;
-  int64_t *ResourceIndexPointer;
-  int PackageValidationStatusCode;
+  int64_t *ResultPointer;
+  int64_t *TablePointerPointer;
+  int64_t *IndexPointer;
+  int ValidationStatusCode;
   uint ProcessResult;
   uint64_t OperationResult;
   int64_t *ResourceDataAddress;
@@ -4521,8 +4517,8 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
   int64_t ValidationContext;
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterSecondaryOffset),&ValidationContext);
-  PackageValidationStatusCode = (int)OperationResult;
-  if (PackageValidationStatusCode == 0) {
+  ValidationStatusCode = (int)OperationResult;
+  if (ValidationStatusCode == 0) {
     NullDataPointer = (int64_t *)0x0;
     CleanupDataPointer = NullDataPointer;
     if (ValidationContext != 0) {
