@@ -68921,24 +68921,43 @@ void FUN_18007fc19(void)
 
 
 
-// 函数: void FUN_18007fc35(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18007fc35(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 复制系统资源数据到目标内存区域
+ * 
+ * 该函数负责将系统资源数据从源位置复制到目标内存区域
+ * 主要用于系统资源的数据迁移和备份操作
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名：FUN_18007fc35
+ */
+void CopySystemResourceDataToMemory(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  long long systemStackFramePtr;
-  int unaff_ESI;
-  uint systemAllocationOffsetD;
+  long long SystemStackFramePointer;
+  int ResourceIndex;
+  uint DataAllocationSize;
   
-    memcpy(*(long long *)(systemStackFramePtr + 8 + SystemResourceManager * 8) +
-         (ulong long)(uint)(unaff_ESI + (int)SystemResourceManager * -0x800) * 4,ConfigurationFlag,(ulong long)systemAllocationOffsetD << 2
+    memcpy(*(long long *)(SystemStackFramePointer + 8 + SystemResourceManager * 8) +
+         (ulong long)(uint)(ResourceIndex + (int)SystemResourceManager * -0x800) * 4,ConfigurationFlag,(ulong long)DataAllocationSize << 2
         );
 }
 
 
 
 
-// 函数: void FUN_18007fc63(void)
-void FUN_18007fc63(void)
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作
+ * 主要用于系统初始化和清理过程中的占位操作
+ * 
+ * 原始函数名：FUN_18007fc63
+ */
+void SystemNullOperationC(void)
 
 {
   return;
@@ -68947,8 +68966,15 @@ void FUN_18007fc63(void)
 
 
 
-// 函数: void FUN_18007fc68(void)
-void FUN_18007fc68(void)
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作
+ * 主要用于系统初始化和清理过程中的占位操作
+ * 
+ * 原始函数名：FUN_18007fc68
+ */
+void SystemNullOperationD(void)
 
 {
   return;
@@ -68957,8 +68983,15 @@ void FUN_18007fc68(void)
 
 
 
-// 函数: void FUN_18007fc6d(void)
-void FUN_18007fc6d(void)
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作
+ * 主要用于系统初始化和清理过程中的占位操作
+ * 
+ * 原始函数名：FUN_18007fc6d
+ */
+void SystemNullOperationE(void)
 
 {
   return;
@@ -68967,28 +69000,35 @@ void FUN_18007fc6d(void)
 
 
 
-// 函数: void InitializeSystemPreferences(void)
+/**
+ * @brief 初始化系统偏好设置
+ * 
+ * 该函数负责初始化系统的偏好设置和配置参数
+ * 主要用于系统启动时的配置初始化
+ * 
+ * 原始函数名：InitializeSystemPreferences
+ */
 void InitializeSystemPreferences(void)
 
 {
-  uint32_t SystemOperationStatus;
-  long long systemStackFramePtr;
-  uint unaff_ESI;
-  uint32_t *in_R9;
-  ulong long creationFlags;
-  uint systemAllocationOffsetD;
+  uint32_t SystemOperationStatusCode;
+  long long SystemStackFramePointer;
+  uint ResourceIndex;
+  uint32_t *PreferenceDataPointer;
+  ulong long ConfigurationLoopCounter;
+  uint PreferenceAllocationSize;
   
-  if (systemAllocationOffsetD != 0) {
-    creationFlags = (ulong long)systemAllocationOffsetD;
+  if (PreferenceAllocationSize != 0) {
+    ConfigurationLoopCounter = (ulong long)PreferenceAllocationSize;
     do {
-      SystemOperationStatus = *in_R9;
-      in_R9 = in_R9 + 1;
+      SystemOperationStatusCode = *PreferenceDataPointer;
+      PreferenceDataPointer = PreferenceDataPointer + 1;
       *(uint32_t *)
-       (*(long long *)(systemStackFramePtr + 8 + (ulong long)(unaff_ESI >> 0xb) * 8) +
-       (ulong long)(unaff_ESI + (unaff_ESI >> 0xb) * -0x800) * 4) = SystemOperationStatus;
-      creationFlags = creationFlags - 1;
-      unaff_ESI = unaff_ESI + 1;
-    } while (creationFlags != 0);
+       (*(long long *)(SystemStackFramePointer + 8 + (ulong long)(ResourceIndex >> 0xb) * 8) +
+       (ulong long)(ResourceIndex + (ResourceIndex >> 0xb) * -0x800) * 4) = SystemOperationStatusCode;
+      ConfigurationLoopCounter = ConfigurationLoopCounter - 1;
+      ResourceIndex = ResourceIndex + 1;
+    } while (ConfigurationLoopCounter != 0);
   }
   return;
 }
