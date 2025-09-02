@@ -46012,14 +46012,25 @@ FUN_1800691e0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,v
 
 
 // 函数: void FUN_180069220(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
-void FUN_180069220(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
+/**
+ * @brief 系统数据拷贝函数
+ * 
+ * 该函数负责将配置数据拷贝到系统资源中，并重置目标缓冲区
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数（数据大小）
+ * 
+ * 原始函数名为FUN_180069220，现已重命名为CopySystemDataToBuffer
+ */
+void CopySystemDataToBuffer(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
 
 {
   if (AdditionalParameter + 1 < 0x100) {
       memcpy(*(uint8_t **)(SystemResourcePointer + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
   }
-  **(uint8_t **)(targetBuffer + 8) = 0;
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(SystemResourcePointer + 8) = 0;
+  *(uint32_t *)(SystemResourcePointer + 0x10) = 0;
   return;
 }
 
@@ -46027,7 +46038,14 @@ void FUN_180069220(long long SystemResourcePointer,void* ConfigurationDataPointe
 
 
 // 函数: void FUN_180069241(void)
-void FUN_180069241(void)
+/**
+ * @brief 系统内存拷贝函数
+ * 
+ * 该函数负责系统内存的拷贝操作
+ * 
+ * 原始函数名为FUN_180069241，现已重命名为SystemMemoryCopy
+ */
+void SystemMemoryCopy(void)
 
 {
     memcpy();
@@ -46037,7 +46055,16 @@ void FUN_180069241(void)
 
 
 // 函数: void FUN_180069266(uint8_t *SystemResourcePointer)
-void FUN_180069266(uint8_t *SystemResourcePointer)
+/**
+ * @brief 重置系统资源数据
+ * 
+ * 该函数负责重置系统资源数据，清零相关字段
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_180069266，现已重命名为ResetSystemResourceData
+ */
+void ResetSystemResourceData(uint8_t *SystemResourcePointer)
 
 {
   long long systemDataIndexPtr;
@@ -46052,7 +46079,18 @@ void FUN_180069266(uint8_t *SystemResourcePointer)
 
 
 // 函数: void FUN_180069280(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
-void FUN_180069280(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 系统资源配置和数据处理函数
+ * 
+ * 该函数负责系统资源的配置和数据处理操作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * 
+ * 原始函数名为FUN_180069280，现已重命名为ConfigureSystemResourceAndProcessData
+ */
+void ConfigureSystemResourceAndProcessData(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   long long localMemoryPointer;
