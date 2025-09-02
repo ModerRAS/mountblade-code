@@ -450,7 +450,6 @@ uint32_t ProcessSystemContextValidation(void* SystemContext);
  */
 uint32_t ReleaseValidationResources(void* ResourceHandles);
 
-// 新增的偏移量常量
 #define SystemObjectContextSize 0x1000
 #define SystemDataStructureSize 0x1000
 #define ResourceDataPointerOffset 0x20
