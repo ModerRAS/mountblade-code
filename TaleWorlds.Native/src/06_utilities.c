@@ -56996,7 +56996,7 @@ void CleanupSystemDataPointerType1(void)
  * 
  * 该函数负责清理系统数据指针，释放相关资源
  */
-void CleanupSystemDataPointer1809077f0(void)
+void CleanupSystemDataPointerType2(void)
 
 {
   SystemDataPointer008 = &SystemDataStructure;
@@ -57013,7 +57013,7 @@ void CleanupSystemDataPointer1809077f0(void)
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void ValidateResourceVersion180907800(uint8_t objectContext,int64_t validationContext)
+void ValidateResourceVersionExtended(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -57044,7 +57044,7 @@ void ValidateResourceVersion180907800(uint8_t objectContext,int64_t validationCo
  * @param CleanupOption 参数3
  * @param CleanupFlag 参数4
  */
-void ProcessResourceHashValidation180907810(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceHashValidationExtended(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -57077,7 +57077,7 @@ void ProcessResourceHashValidation180907810(uint8_t objectContext,int64_t valida
  * @param CleanupOption 参数3
  * @param CleanupFlag 参数4
  */
-void ProcessResourceData180907820(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceDataExtended(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContext + 0x20) + 0x48,
