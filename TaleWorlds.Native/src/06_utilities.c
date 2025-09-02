@@ -2229,8 +2229,8 @@ uint8_t SystemMemoryConfigSecureSixth;   // 系统内存安全第6配置项
 uint8_t SystemMemoryConfigPrimary;     // 系统内存主要配置
 uint8_t SystemMemoryConfigSecureSeventh; // 系统内存安全第7配置项
 uint8_t SystemMemoryConfigEighth;      // 系统内存第8配置项
-uint8_t MemoryConfigNinth;            // 普通第9配置项
-uint8_t MemoryConfigTenth;             // 第10配置项
+uint8_t SystemMemoryConfigNinth;       // 系统内存第9配置项
+uint8_t SystemMemoryConfigTenth;       // 系统内存第10配置项
 
  /**
  * @brief 配置日志输出
