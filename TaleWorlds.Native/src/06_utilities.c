@@ -9984,12 +9984,12 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
   operationResult = operationResult + OperationResult;
   operationStatusCode = ProcessStringOperation(operationResult + ValidationContext,dataLength - operationResult,&StringProcessingTemplate);
   operationResult = operationResult + OperationResult;
-  operationStatusCode = ProcessResourceData(operationResult + ValidationContext,dataLength - operationResult,
+  OperationStatusCode = ProcessResourceData(operationResult + ValidationContext,dataLength - operationResult,
                         ObjectContext + 0x20 + (int64_t)*(int *)(ObjectContext + 0x18) * 8);
   operationResult = operationResult + OperationResult;
   operationStatusCode = ProcessStringOperation(operationResult + ValidationContext,dataLength - operationResult,&StringProcessingTemplate);
   operationResult = operationResult + OperationResult;
-  operationStatusCode = ValidateResourceFormat(operationResult + ValidationContext,dataLength - operationResult,*(uint8_t *)(ObjectContext + 0x1c));
+  OperationStatusCode = ValidateResourceFormat(operationResult + ValidationContext,dataLength - operationResult,*(uint8_t *)(ObjectContext + 0x1c));
   return OperationResult + operationResult;
 }
 
@@ -10017,20 +10017,20 @@ int ProcessDataWithSimplifiedValidator(int64_t ObjectContext,int64_t ValidationC
   
   ProcessedDataLength = dataLength;
   ResourceIndex = ParseDataContent(ValidationContext,ProcessedDataLength,*(uint32_t *)(ObjectContext + 0x10));
-  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedProcessedDataLength - ResourceIndex,&StringProcessingTemplateObject);
+  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
   OperationStatusCode = ProcessStringValidation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,ObjectContext + 0x18,
                         *(uint32_t *)(ObjectContext + 0x10));
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = ProcessResourceData(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,
+  OperationStatusCode = ProcessResourceData(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,
                         ObjectContext + 0x18 + (int64_t)*(int *)(ObjectContext + 0x10) * 8);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = ValidateResourceFormat(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,*(uint8_t *)(ObjectContext + 0x14));
-  return OperationResult + ResourceIndex;
+  OperationStatusCode = ValidateResourceFormat(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,*(uint8_t *)(ObjectContext + 0x14));
+  return OperationResultValue + ResourceIndex;
 }
 
 
@@ -10050,22 +10050,22 @@ int ProcessDataWithBuffer(int64_t *ObjectContext,int64_t ValidationContext,int d
 
 {
   int ResourceIndex;
-  int operationStatusCode;
-  int OperationResult;
-  int DataLength;
-  void* SystemStringBufferA;
+  int OperationStatusCode;
+  int OperationResultValue;
+  int ProcessedDataLength;
+  void* SystemStringBuffer;
   void* StringProcessingTemplate;
   
-  DataLength = dataLength;
-  ResourceIndex = ProcessStringOperation(ValidationContext,DataLength,&SystemStringBufferA);
-  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  ProcessedDataLength = dataLength;
+  ResourceIndex = ProcessStringOperation(ValidationContext,ProcessedDataLength,&SystemStringBuffer);
+  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,(int)ObjectContext[3] * 8 + 0x20);
+  OperationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,(int)ObjectContext[3] * 8 + 0x20);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex);
-  return OperationResult + ResourceIndex;
+  OperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex);
+  return OperationResultValue + ResourceIndex;
 }
 
 
@@ -10085,22 +10085,22 @@ int ProcessDataWithQueue(int64_t *ObjectContext,int64_t ValidationContext,int da
 
 {
   int ResourceIndex;
-  int operationStatusCode;
-  int OperationResult;
-  int DataLength;
-  void* SystemStringBufferB;
+  int OperationStatusCode;
+  int OperationResultValue;
+  int ProcessedDataLength;
+  void* SystemStringBuffer;
   void* StringProcessingTemplate;
   
-  DataLength = dataLength;
-  ResourceIndex = ProcessStringOperation(ValidationContext,DataLength,&SystemStringBufferB);
-  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  ProcessedDataLength = dataLength;
+  ResourceIndex = ProcessStringOperation(ValidationContext,ProcessedDataLength,&SystemStringBuffer);
+  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,(int)ObjectContext[3] * 0xc + 0x20);
+  OperationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,(int)ObjectContext[3] * 0xc + 0x20);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
+  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex);
-  return OperationResult + ResourceIndex;
+  OperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex);
+  return OperationResultValue + ResourceIndex;
 }
 
 
@@ -10135,7 +10135,7 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
   operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,dataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
   operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,dataLength - ResourceIndex);
-  return OperationResult + ResourceIndex;
+  return OperationResultValue + ResourceIndex;
 }
 
 
@@ -30508,13 +30508,18 @@ void RestoreSystemResourceHandlerAtContextOffset78(uint8_t ObjectContext, int64_
 
 
 /**
- * @brief 在异常处理时重置验证上下文0x148位置的间接系统数据结构引用
- * 该函数将验证上下文中0x148位置的间接指针重置为系统数据结构
+ * @brief 在异常处理时重置验证上下文扩展位置的间接系统数据结构引用
+ * 
+ * 该函数将验证上下文中扩展位置的间接指针重置为系统数据结构
  * 用于在异常处理过程中恢复间接引用的系统数据结构
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和重置操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于重置扩展位置的间接数据结构引用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
  */
-void ResetIndirectSystemDataStructureAtContextOffset148(uint8_t ObjectContext, int64_t ValidationContext)
+void ResetIndirectSystemDataStructureAtExtendedContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   **(uint8_t **)(ValidationContext + 0x148) = &SystemDataStructure;
   return;
