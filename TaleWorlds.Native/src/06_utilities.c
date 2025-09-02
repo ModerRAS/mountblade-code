@@ -293,6 +293,14 @@
 #define ExceptionHandlerMutexLockOffset 0x60
 #define ResourceContextSecurityOffset 0x40
 
+// 系统状态码常量
+#define SystemInitializationStatusCode 0x1e
+#define SystemVersionInfoStatusCode 0x1f
+#define SystemObjectValidationStatusCode 0x1e
+#define SystemResourceProcessingStatusCode 0x1f
+#define SystemMemoryAllocationStatusCode 0x1e
+#define SystemDataValidationStatusCode 0x1f
+
 /**
  * @brief 初始化模块依赖关系
  * 
@@ -5951,7 +5959,7 @@ int ValidateSystemConfigurationParameter(uint32_t ConfigParameter)
   
   SystemResourceTable = 0;
   if (ConfigParameter == 0) {
-    StackMemoryOffset = *(int64_t *)(OriginalRegisterValue + 0x10);
+    StackMemoryOffset = *(int64_t *)(OriginalRegisterValue + ObjectContextValidationOffset);
     ValidationStatusCode = 1;
     SystemResourceTable = StackMemoryOffset;
   }
@@ -6000,7 +6008,7 @@ uint8_t GetSystemStatusFlag(void)
 uint8_t GetSystemVersionInfo(void)
 
 {
-  return 0x1f;
+  return SystemVersionInfoStatusCode;
 }
 
 
@@ -6138,9 +6146,9 @@ void ProcessSystemObjectQueue(int64_t ObjectHandle, int64_t QueueContext)
   QueueTailPointer = (int64_t *)0x0;
   QueueContextBuffer[0] = 0;
   QueueProcessingStatus = InitializeProcessingQueue(QueueContextBuffer);
-  if ((QueueProcessingStatus == 0) && (QueueProcessingStatus = ValidateQueueContext(*(uint8_t *)(queueContext + 0x90)), QueueProcessingStatus == 0)) {
-    QueueHeadPointer = (int64_t *)(*(int64_t *)(queueContext + 0x50) + -8);
-    if (*(int64_t *)(queueContext + 0x50) == 0) {
+  if ((QueueProcessingStatus == 0) && (QueueProcessingStatus = ValidateQueueContext(*(uint8_t *)(queueContext + QueueContextValidationDataOffset)), QueueProcessingStatus == 0)) {
+    QueueHeadPointer = (int64_t *)(*(int64_t *)(queueContext + QueueContextHeadPointerOffset) + -8);
+    if (*(int64_t *)(queueContext + QueueContextHeadPointerOffset) == 0) {
       QueueHeadPointer = QueueTailPointer;
     }
     QueueCurrentIterator = QueueTailPointer;
@@ -6148,8 +6156,8 @@ void ProcessSystemObjectQueue(int64_t ObjectHandle, int64_t QueueContext)
       QueueCurrentIterator = QueueHeadPointer + 1;
     }
     do {
-      if (QueueCurrentIterator == (int64_t *)(queueContext + 0x50)) {
-        if (*(char *)(objectHandle + 0x10) != '\0') {
+      if (QueueCurrentIterator == (int64_t *)(queueContext + QueueContextHeadPointerOffset)) {
+        if (*(char *)(objectHandle + ObjectContextValidationOffset) != '\0') {
           ProcessQueueEvent(queueContext);
         }
         break;
