@@ -1,0 +1,231 @@
+#!/usr/bin/env python3
+"""
+美化02_core_engine.c中的剩余函数和变量名
+"""
+
+import re
+import sys
+
+def read_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return f.read()
+
+def write_file(file_path, content):
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(content)
+
+def beautify_core_engine(content):
+    # 美化函数定义
+    replacements = [
+        # 函数定义替换
+        (r'void FUN_1800572e6\(void\)', 'void InitializeSystemMemoryPointers(void)'),
+        (r'void FUN_180057314\(void\)', 'void SetupSystemMemoryConfiguration(void)'),
+        (r'void FUN_1800577c0\(void\)', 'void ProcessSystemMemoryCleanup(void)'),
+        (r'void FUN_180057e90\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemEventQueueWithContext(long long systemContext, uint64_t eventFlags, uint64_t reservedParam1, uint64_t reservedParam2)'),
+        (r'void FUN_180057ec0\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemEventData(long long systemContext, uint64_t eventData, uint64_t eventFlags, uint64_t reservedParam)'),
+        (r'void FUN_180057ee0\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemResourceFlags(long long systemContext, uint64_t resourceData, uint64_t resourceFlags, uint64_t reservedParam)'),
+        (r'void FUN_180057f10\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemResourceDataWithFlags(long long systemContext, uint64_t resourceData, uint64_t resourceFlags, uint64_t reservedParam)'),
+        (r'void FUN_180057f30\(long long \*param_1\)', 'void ProcessSystemContextPointer(long long *systemContext)'),
+        (r'void FUN_180058020\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryData(long long systemContext, uint64_t memoryData, uint64_t memoryFlags, uint64_t reservedParam)'),
+        (r'void FUN_180058710\(uint64_t param_1,uint64_t \*param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemContextDataHandler(uint64_t systemContext, uint64_t *dataBuffer, uint64_t flags, uint64_t reservedParam)'),
+        (r'void FUN_1800587d0\(uint64_t param_1,uint64_t \*param_2\)', 'void ProcessSystemDataBuffer(uint64_t systemContext, uint64_t *dataBuffer)'),
+        (r'void FUN_1800587e2\(uint64_t param_1\)', 'void CleanupSystemDataHandler(uint64_t systemContext)'),
+        (r'void FUN_1800589a3\(long long param_1,uint64_t param_2,long long param_3\)', 'void ProcessMemoryAllocationData(long long memoryContext, uint64_t allocationSize, long long memoryFlags)'),
+        (r'void FUN_180058a20\(long long \*param_1,long long param_2,long long param_3,long long param_4\)', 'void ProcessMemoryAllocationRequest(long long *memoryPointer, long long allocationSize, long long alignment, long long flags)'),
+        (r'void FUN_180058a31\(long long \*param_1,long long param_2,long long param_3,long long param_4\)', 'void ProcessMemoryAllocationWithAlignment(long long *memoryPointer, long long allocationSize, long long alignment, long long flags)'),
+        (r'void FUN_180058b3e\(long long param_1,long long param_2\)', 'void ProcessMemoryFreeOperation(long long memoryContext, long long memorySize)'),
+        (r'void FUN_180058d90\(long long \*param_1\)', 'void ProcessMemoryReferenceCount(long long *memoryReference)'),
+        (r'void FUN_180058db0\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryCleanup(long long memoryContext, uint64_t cleanupFlags, uint64_t reservedParam1, uint64_t reservedParam2)'),
+        (r'void FUN_180058e60\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryInitialization(long long memoryContext, uint64_t initData, uint64_t initFlags, uint64_t reservedParam)'),
+        (r'void FUN_180058e90\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryConfiguration(long long memoryContext, uint64_t configData, uint64_t configFlags, uint64_t reservedParam)'),
+        (r'void FUN_180058f00\(uint64_t param_1,uint64_t \*param_2\)', 'void ProcessSystemMemoryAllocation(uint64_t memoryContext, uint64_t *allocationData)'),
+        (r'void FUN_180059000\(long long \*param_1\)', 'void ProcessSystemMemoryDeallocation(long long *memoryPointer)'),
+        (r'uint64_t \* FUN_1800590b0\(uint64_t \*param_1,uint8_t \*param_2,long long param_3\)', 'uint64_t * ProcessSystemMemoryBuffer(uint64_t *bufferPointer, uint8_t *bufferData, long long bufferSize)'),
+        (r'void FUN_1800591c0\(long long \*param_1\)', 'void ProcessSystemMemoryRelease(long long *memoryPointer)'),
+        (r'void FUN_180059230\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryAllocationData(long long memoryContext, uint64_t allocationData, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'long long FUN_18005926c\(long long param_1,uint64_t param_2,long long param_3\)', 'long long CalculateMemoryAllocationOffset(long long memoryContext, uint64_t offsetData, long long allocationSize)'),
+        (r'void FUN_1800592e4\(void\)', 'void InitializeSystemMemoryAllocator(void)'),
+        (r'void FUN_180059350\(long long param_1,long long param_2,uint64_t param_3\)', 'void ProcessSystemMemoryAllocationSize(long long memoryContext, long long allocationSize, uint64_t allocationFlags)'),
+        (r'void FUN_180059380\(uint64_t \*param_1\)', 'void CleanupSystemMemoryAllocator(uint64_t *allocatorContext)'),
+        (r'void FUN_1800593f0\(uint64_t param_1,uint64_t \*param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryAllocationRequest(uint64_t memoryContext, uint64_t *allocationData, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'void FUN_1800594b0\(uint64_t \*param_1\)', 'void ProcessSystemMemoryReference(uint64_t *memoryReference)'),
+        (r'void FUN_1800595c0\(uint64_t \*param_1\)', 'void CleanupSystemMemoryReferences(uint64_t *memoryReference)'),
+        (r'void FUN_180059620\(long long \*param_1\)', 'void ProcessSystemMemoryDataArray(long long *dataArray)'),
+        (r'void FUN_180059640\(long long \*param_1\)', 'void ProcessSystemMemoryDataBuffer(long long *dataBuffer)'),
+        (r'void FUN_180059ba0\(uint64_t \*param_1\)', 'void InitializeSystemMemoryPool(uint64_t *memoryPool)'),
+        (r'void FUN_180059bc0\(void\)', 'void SetupSystemMemoryConfiguration(void)'),
+        (r'void FUN_180059ee0\(long long \*param_1\)', 'void ProcessSystemMemoryCleanupOperation(long long *memoryContext)'),
+        (r'void FUN_180059ee4\(long long \*param_1\)', 'void ProcessSystemMemoryReleaseOperation(long long *memoryContext)'),
+        (r'void FUN_180059ef9\(void\)', 'void FinalizeSystemMemoryCleanup(void)'),
+        (r'void FUN_180059f4f\(void\)', 'void InitializeSystemMemoryManager(void)'),
+        (r'void FUN_180059fb0\(uint64_t \*param_1\)', 'void ProcessSystemMemoryAllocationComplete(uint64_t *allocationData)'),
+        (r'void FUN_180059fc0\(long long \*param_1\)', 'void ProcessSystemMemoryDeallocationComplete(long long *memoryPointer)'),
+        (r'void FUN_180060200\(uint64_t \*param_1\)', 'void ProcessSystemMemoryAllocationFinalize(uint64_t *allocationData)'),
+        (r'uint64_t FUN_1800603e0\(uint64_t param_1,unsigned long long param_2\)', 'uint64_t GetSystemMemoryAllocationSize(uint64_t memoryContext, unsigned long long allocationType)'),
+        (r'void FUN_180060420\(uint64_t \*param_1\)', 'void InitializeSystemMemoryAllocatorContext(uint64_t *allocatorContext)'),
+        (r'uint64_t \* FUN_1800605d0\(uint64_t \*param_1,unsigned long long param_2\)', 'uint64_t * GetSystemMemoryAllocationPointer(uint64_t *memoryContext, unsigned long long allocationIndex)'),
+        (r'void FUN_180060610\(uint64_t \*param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryAllocationDataBuffer(uint64_t *memoryContext, uint64_t allocationData, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'uint64_t FUN_180060630\(uint64_t param_1,unsigned long long param_2,uint64_t param_3,uint64_t param_4\)', 'uint64_t ProcessSystemMemoryAllocationRequest(uint64_t memoryContext, unsigned long long allocationSize, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'int FUN_180060680\(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'int ProcessSystemMemoryAllocationBuffer(uint64_t memoryContext, uint64_t allocationData, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'void FUN_1800606e0\(long long \*param_1\)', 'void ProcessSystemMemoryAllocationCleanup(long long *memoryContext)'),
+        (r'uint64_t FUN_1800607f0\(long long param_1,char param_2\)', 'uint64_t GetSystemMemoryAllocationStatus(long long memoryContext, char statusFlag)'),
+        (r'bool FUN_1800609c0\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'bool CheckSystemMemoryAllocationStatus(long long memoryContext, uint64_t allocationData, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'unsigned long long FUN_180060a50\(long long \*param_1,uint \*param_2\)', 'unsigned long long GetSystemMemoryAllocationInfo(long long *memoryContext, uint *allocationInfo)'),
+        (r'long long \* FUN_180060b80\(long long \*param_1,long long \*param_2\)', 'long long * ProcessSystemMemoryAllocationPointer(long long *memoryContext, long long *allocationPointer)'),
+        (r'long long \* FUN_180060bd0\(long long \*param_1\)', 'long long * GetSystemMemoryAllocationData(long long *memoryContext)'),
+        (r'uint64_t FUN_180060c60\(long long param_1,uint64_t param_2\)', 'uint64_t ProcessSystemMemoryAllocationData(long long memoryContext, uint64_t allocationData)'),
+        (r'uint64_t FUN_180060d76\(void\)', 'uint64_t GetSystemMemoryAllocationCount(void)'),
+        (r'uint8_t FUN_180060e22\(void\)', 'uint8_t GetSystemMemoryAllocationType(void)'),
+        (r'uint64_t FUN_180060e40\(uint64_t \*param_1,long long param_2,uint64_t param_3\)', 'uint64_t ProcessSystemMemoryAllocationRequestData(uint64_t *memoryContext, long long allocationSize, uint64_t allocationFlags)'),
+        (r'bool FUN_180060f50\(long long param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'bool ValidateSystemMemoryAllocation(long long memoryContext, uint64_t allocationData, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'void FUN_180060fc0\(long long \*param_1,long long \*param_2\)', 'void ProcessSystemMemoryAllocationPair(long long *memoryContext1, long long *memoryContext2)'),
+        (r'void FUN_1800611a0\(long long param_1,long long \*param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryAllocationWithContext(long long memoryContext, long long *allocationData, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'void FUN_180061290\(uint64_t \*param_1\)', 'void CleanupSystemMemoryAllocationData(uint64_t *allocationData)'),
+        (r'void FUN_1800612b0\(uint64_t \*param_1\)', 'void FinalizeSystemMemoryAllocation(uint64_t *allocationData)'),
+        (r'void FUN_180061f80\(void\)', 'void InitializeSystemMemoryManager(void)'),
+        (r'void FUN_1800622d0\(uint64_t param_1,uint64_t param_2,uint32_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryAllocationWithType(uint64_t memoryContext, uint64_t allocationData, uint32_t allocationType, uint64_t reservedParam)'),
+        (r'void FUN_180062300\(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryAllocationWithFlags(uint64_t memoryContext, uint64_t allocationData, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'void FUN_180062340\(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'void ProcessSystemMemoryAllocationWithData(uint64_t memoryContext, uint64_t allocationData, uint64_t allocationSize, uint64_t reservedParam)'),
+        (r'void FUN_180062380\(void\)', 'void SetupSystemMemoryAllocator(void)'),
+        (r'void FUN_1800623b0\(void\)', 'void InitializeSystemMemoryHandler(void)'),
+        (r'void FUN_1800623e0\(long long \*param_1\)', 'void ProcessSystemMemoryHandlerContext(long long *memoryContext)'),
+        (r'void FUN_1800624c0\(void\)', 'void CleanupSystemMemoryAllocator(void)'),
+        (r'void FUN_180062920\(int \*param_1\)', 'void ProcessSystemMemoryAllocationArray(int *allocationArray)'),
+        (r'uint64_t FUN_180062ee0\(uint64_t param_1,uint32_t param_2\)', 'uint64_t GetSystemMemoryAllocationInfoByType(uint64_t memoryContext, uint32_t allocationType)'),
+        (r'void FUN_180062fd0\(long long param_1\)', 'void ProcessSystemMemoryAllocationContext(long long memoryContext)'),
+        (r'int FUN_1800634b0\(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'int ProcessSystemMemoryAllocationRequestWithFlags(uint64_t memoryContext, uint64_t allocationData, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'unsigned long long FUN_180063510\(long long \*param_1,long long param_2\)', 'unsigned long long GetSystemMemoryAllocationSizeFromContext(long long *memoryContext, long long allocationSize)'),
+        (r'void FUN_1800635c0\(void\)', 'void InitializeSystemMemoryPool(void)'),
+        (r'int FUN_1800635e0\(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4\)', 'int ProcessSystemMemoryPoolAllocation(uint64_t memoryPool, uint64_t allocationSize, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'uint64_t FUN_180063650\(uint64_t \*param_1,unsigned long long param_2,uint64_t param_3,uint64_t param_4\)', 'uint64_t ProcessSystemMemoryPoolAllocationRequest(uint64_t *memoryPool, unsigned long long allocationSize, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'uint64_t FUN_1800636f0\(uint64_t \*param_1,uint32_t param_2,uint64_t param_3,uint64_t param_4\)', 'uint64_t GetSystemMemoryPoolAllocationData(uint64_t *memoryPool, uint32_t allocationType, uint64_t allocationFlags, uint64_t reservedParam)'),
+        (r'long long FUN_1800637c0\(long long param_1\)', 'long long InitializeSystemMemoryContext(long long memoryContext)'),
+        (r'long long FUN_1800637f0\(long long param_1\)', 'long long ProcessSystemMemoryContextData(long long memoryContext)'),
+        (r'void FUN_180063820\(uint64_t param_1\)', 'void CleanupSystemMemoryContext(uint64_t memoryContext)'),
+        (r'void FUN_180063b30\(uint64_t param_1,long long param_2\)', 'void ProcessSystemMemoryContextWithSize(uint64_t memoryContext, long long contextSize)'),
+        (r'void FUN_180063cf0\(void\)', 'void InitializeSystemMemoryHandler(void)'),
+        (r'void FUN_180064010\(uint64_t param_1\)', 'void ProcessSystemMemoryAllocationWithTypeAndSize(uint64_t memoryContext)'),
+        (r'void FUN_180064400\(void\)', 'void SetupSystemMemoryAllocatorContext(void)'),
+        (r'unsigned long long FUN_1800649d0\(uint64_t param_1\)', 'unsigned long long GetSystemMemoryAllocationInfoWithContext(uint64_t memoryContext)'),
+        (r'void FUN_180064c00\(long long \*param_1,long long param_2,long long param_3\)', 'void ProcessSystemMemoryAllocationWithParameters(long long *memoryContext, long long allocationSize, long long allocationFlags)'),
+        
+        # 变量替换
+        (r'UNK_1809fda10', 'SystemEventQueuePrimary'),
+        (r'UNK_1809fda30', 'SystemEventQueueSecondary'),
+        (r'UNK_1809fda58', 'SystemEventQueueTertiary'),
+        (r'UNK_1809fda80', 'SystemEventQueueQuaternary'),
+        (r'UNK_1809fdaa8', 'SystemEventQueueQuinary'),
+        (r'UNK_1809fdad0', 'SystemEventQueueSenary'),
+        (r'UNK_1809fdaf8', 'SystemEventQueueSeptenary'),
+        (r'UNK_1809fdb20', 'SystemEventQueueOctonary'),
+        (r'DAT_180c8a9b0', 'SystemDataConfiguration'),
+        (r'UNK_18098bc48', 'SystemStringBuffer'),
+        (r'UNK_1809fe5a0', 'SystemEventQueueHandler'),
+        (r'UNK_1809fe62c', 'SystemEventQueueData'),
+        (r'UNK_1809fe608', 'SystemEventQueueConfig'),
+        (r'UNK_1809fe800', 'SystemMemoryBufferPrimary'),
+        (r'UNK_1809fe868', 'SystemMemoryBufferSecondary'),
+        (r'UNK_1809fe880', 'SystemMemoryBufferTertiary'),
+        (r'UNK_1809fe898', 'SystemMemoryBufferQuaternary'),
+        (r'UNK_1809fe8b0', 'SystemMemoryBufferQuinary'),
+        (r'DAT_00000008', 'SystemNullPointer'),
+        (r'DAT_180063480', 'SystemDataArray'),
+        
+        # 函数调用替换
+        (r'FUN_18005c090\(', 'InitializeSystemMemoryAllocator('),
+        (r'FUN_18015c450\(', 'InitializeSystemResourceManager('),
+        (r'FUN_180058c20\(', 'ProcessSystemMemoryCleanup('),
+        (r'FUN_180058210\(', 'ProcessSystemMemoryAllocation('),
+        (r'FUN_18010f010\(', 'ProcessSystemEventQueueData('),
+        (r'FUN_18012cfe0\(', 'FinalizeSystemEventQueue('),
+        (r'FUN_180058a20\(', 'ProcessMemoryAllocationRequest('),
+        (r'FUN_18020e0e0\(', 'ProcessSystemContextWithData('),
+        (r'FUN_18020e840\(', 'FinalizeSystemContextProcessing('),
+        (r'FUN_18005ea90\(', 'ProcessSystemContextAllocation('),
+        (r'FUN_180060680\(', 'ProcessSystemMemoryAllocationBuffer('),
+        (r'FUN_180059ba0\(', 'InitializeSystemMemoryPool('),
+        (r'FUN_18004b790\(', 'ProcessSystemBufferData('),
+        (r'FUN_1800582b0\(', 'ProcessSystemMemoryAllocationWithAlignment('),
+        (r'FUN_180058370\(', 'ProcessSystemMemoryConfiguration('),
+        (r'FUN_175aa0\(', 'GetSystemMemoryInfo('),
+        (r'FUN_18064e990\(', 'GetMemoryAllocationInfo('),
+        (r'FUN_180175f80\(', 'InitializeSystemDataTemplate('),
+        (r'FUN_18062cb00\(', 'ProcessSystemDataConfiguration('),
+        (r'FUN_180058080\(', 'FindMatchingDataNode('),
+        (r'FUN_180624440\(', 'ProcessSystemEventDataWithFlags('),
+        (r'FUN_180627910\(', 'ProcessSystemMemoryBufferWithData('),
+        (r'FUN_1801762b0\(', 'FinalizeSystemDataProcessing('),
+        (r'FUN_1800590b0\(', 'ProcessSystemMemoryBuffer('),
+        (r'FUN_1800594b0\(', 'ProcessSystemMemoryReference('),
+        (r'FUN_180059780\(', 'CalculateMemoryBufferOffset('),
+        (r'FUN_180626f80\(', 'ProcessSystemStringData('),
+        (r'FUN_180058710\(', 'ProcessSystemContextDataHandler('),
+        (r'FUN_1800587d0\(', 'ProcessSystemDataBuffer('),
+        (r'FUN_18005cb60\(', 'CleanupSystemDataBuffer('),
+        (r'FUN_180059250\(', 'GetMemoryBufferStartAddress('),
+        (r'FUN_180059300\(', 'CalculateMemoryBufferSize('),
+        (r'FUN_1800593f0\(', 'ProcessSystemMemoryAllocationRequest('),
+        (r'FUN_18004b730\(', 'FinalizeSystemMemoryProcessing('),
+        (r'FUN_1808fc8a8\(', 'ConfigureSystemMemoryContext('),
+        (r'FUN_1800596a0\(', 'ProcessSystemMemoryDataElement('),
+        (r'FUN_180057110\(', 'InitializeSystemMemoryManager('),
+        (r'FUN_180058826\(', 'InitializeCoreEngineSystemState('),
+        (r'FUN_180058830\(', 'CleanupCoreEngineSystemResources('),
+        (r'FUN_18005d580\(', 'ProcessSystemMemoryCleanupOperation('),
+        (r'FUN_1800587d0\(', 'ProcessSystemDataBuffer('),
+        (r'FUN_18005cb60\(', 'CleanupSystemDataBuffer('),
+        (r'FUN_180090420\(', 'ProcessPrimarySystemData('),
+        (r'FUN_180090380\(', 'ProcessSecondarySystemData('),
+        (r'FUN_180628210\(', 'ProcessCharacterDataBuffer('),
+        (r'FUN_180059820\(', 'ProcessCharacterDataHandler('),
+        (r'FUN_18005e570\(', 'ProcessSystemDataWithTimeout('),
+        (r'FUN_18005d580\(', 'ProcessSystemMemoryCleanupOperation('),
+        (r'FUN_180627e10\(', 'ProcessSystemMemoryBufferWithContext('),
+        (r'FUN_180057980\(', 'ProcessCharacterDataBuffer('),
+        (r'FUN_1800495d0\(', 'ProcessSystemDataWithConfiguration('),
+        (r'FUN_18064e0d0\(', 'ProcessSystemMemoryWithFlags('),
+        (r'FUN_180060e40\(', 'ProcessSystemMemoryAllocationRequestData('),
+        (r'FUN_180060a50\(', 'GetSystemMemoryAllocationInfo('),
+        (r'FUN_180060c60\(', 'ProcessSystemMemoryAllocationData('),
+        (r'FUN_180060b80\(', 'ProcessSystemMemoryAllocationPointer('),
+        (r'FUN_180060fc0\(', 'ProcessSystemMemoryAllocationPair('),
+        (r'FUN_180639250\(', 'CleanupSystemMemoryContext('),
+        (r'FUN_1800636f0\(', 'GetSystemMemoryPoolAllocationData('),
+        (r'FUN_1800637c0\(', 'InitializeSystemMemoryContext('),
+        (r'FUN_180066dd0\(', 'ProcessSystemMemoryContextHandler('),
+        (r'FUN_18005d3a0\(', 'ProcessSystemEventQueueHandler('),
+        (r'FUN_1806391a0\(', 'ProcessSystemMemoryBufferWithData('),
+        (r'FUN_18062da70\(', 'ProcessSystemMemoryConfiguration('),
+        (r'FUN_180062ee0\(', 'GetSystemMemoryAllocationInfoByType('),
+        (r'FUN_1800635e0\(', 'ProcessSystemMemoryPoolAllocation('),
+        (r'FUN_180064400\(', 'SetupSystemMemoryAllocatorContext('),
+        (r'FUN_1800622d0\(', 'ProcessSystemMemoryAllocationWithType('),
+        (r'FUN_1800623e0\(', 'GetSystemMemoryAllocationContext('),
+        (r'FUN_180062920\(', 'ProcessSystemMemoryAllocationArray('),
+        (r'FUN_1800671b0\(', 'InitializeSystemMemoryHandler('),
+        (r'FUN_1800ba980\(', 'ProcessSystemDataPrimary('),
+        (r'FUN_18062d3b0\(', 'ProcessSystemDataSecondary('),
+        (r'FUN_180628040\(', 'ProcessSystemDataTertiary('),
+        (r'FUN_1800ba940\(', 'ProcessSystemDataPrimary('),
+        (r'FUN_180064c00\(', 'ProcessSystemMemoryAllocationWithParameters('),
+    ]
+    
+    # 应用替换
+    for pattern, replacement in replacements:
+        content = re.sub(pattern, replacement, content)
+    
+    return content
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python beautify_02_core_engine.py <file_path>")
+        sys.exit(1)
+    
+    file_path = sys.argv[1]
+    content = read_file(file_path)
+    beautified_content = beautify_core_engine(content)
+    write_file(file_path, beautified_content)
+    print(f"Beautified {file_path}")
+
+if __name__ == "__main__":
+    main()

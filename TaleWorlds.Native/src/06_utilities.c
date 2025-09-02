@@ -11238,7 +11238,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   int64_t MemoryRegion;
   uint8_t ContextHashValidationResult;
   int64_t BufferPointer;
-  int RegisterEBX;
+  int ArrayIndexRegister;
   uint32_t SavedRegisterValue1c;
   int64_t ExecutionContextPointer;
   int64_t SavedRegisterValue;
@@ -14606,7 +14606,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *objectContext,int64_t validati
       if (ValidationResult != 0) {
 LoopExit:
                     // WARNING: Subroutine does not return
-        FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)StackBuffer2a8);
+        FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)SecurityEncryptionBuffer);
       }
       uint32_t dataBuffer1 = *(uint32_t *)(SystemResourceContext + 0x10);
       uint32_t dataBuffer2 = *(uint32_t *)(SystemResourceContext + 0x14);
@@ -24011,8 +24011,8 @@ uint64_t ValidateAndProcessResourceDataIntegrity(void)
   int ResultRecordIndex;
   int64_t ExecutionContextPointer;
   int64_t *SystemContext;
-  uint StackVariable80;
-  uint StackRegisterStorageOctal;
+  uint ResourceSizeLimit;
+  uint ResourceIndexCounter;
   
   ValidationResult = 0x1c;
   if (*(int *)(InputParameter + 0x18) == 0) {
@@ -24022,23 +24022,23 @@ uint64_t ValidateAndProcessResourceDataIntegrity(void)
     }
     else {
       if (ResourceContext[2] != 0) {
-        StackRegisterStorageOctal = 0;
-        validationStatusCode = ValidateResourceAccess(*ResourceContext,&StackBuffer88);
+        ResourceIndexCounter = 0;
+        validationStatusCode = ValidateResourceAccess(*ResourceContext,&ResourceAccessBuffer);
         if ((int)HashValidationResult != 0) {
           return HashValidationResult;
         }
-        if ((uint64_t)ResourceContext[2] < (uint64_t)StackRegisterStorageOctal + 4) {
+        if ((uint64_t)ResourceContext[2] < (uint64_t)ResourceIndexCounter + 4) {
           validationStatusCode = 0x11;
           goto ResourceValidationFailed;
         }
       }
-      validationStatusCode = CalculateResourceHash(*ResourceContext,&StackBuffer80,1,4,0);
+      validationStatusCode = CalculateResourceHash(*ResourceContext,&ResourceSizeLimit,1,4,0);
     }
 VALIDATION_CHECKPOINT:
     if ((int)HashValidationResult != 0) {
       return HashValidationResult;
     }
-    if (0x3ff < StackVariable80) {
+    if (0x3ff < ResourceSizeLimit) {
       return 0xd;
     }
     validationStatusCode = GetResourceHandle(ExecutionContextPointer + 0x48);
