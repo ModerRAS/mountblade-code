@@ -29474,9 +29474,6 @@ void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext, int64_t ValidationCont
  * @return 无返回值
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
- * 
- * @param ObjectContext 异常上下文参数
- * @param ValidationContext 系统上下文指针
  */
 void UnwindExceptionHandlerTypeThree(uint8_t ObjectContext, int64_t ValidationContext) {
   if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset) != (int64_t *)0x0) {
@@ -72543,7 +72540,17 @@ void Unwind_RegisterResourceHandlerAtC68(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_18090a570(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源表清理处理器
+ * 
+ * 该函数负责清理资源表中的资源项，遍历资源表并调用每个资源的清理函数
+ * 主要用于系统关闭或资源释放时的清理工作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090a570
+ */
+void Unwind_ResourceTableCleanupProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -72565,7 +72572,19 @@ void Unwind_18090a570(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a580(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 资源表访问清理处理器
+ * 
+ * 该函数处理资源表访问的清理工作，包括资源释放和状态重置
+ * 主要用于资源访问完成后的清理操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_18090a580
+ */
+void Unwind_ResourceTableAccessCleanupProcessor(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(ValidationContext + 0x68),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x68) + 0x10),
