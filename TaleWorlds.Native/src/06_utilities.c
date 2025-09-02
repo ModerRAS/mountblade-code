@@ -115,7 +115,7 @@
  * @warning 调用此函数前必须确保系统已准备好处理模块依赖关系
  */
 void InitializeModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
-void* GlobalModuleDependencyRegistry;
+void* ModuleDependencyGlobalRegistry;
 uint32_t ModuleDependencyEntryCount;
 uint32_t ModuleDependencyConfigurationFlags;
 uint32_t ModuleDependencyInitializationStatus;
