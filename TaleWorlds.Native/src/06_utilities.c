@@ -39708,7 +39708,7 @@ void CleanupSystemResourceHandlerPhaseOne(uint8_t ObjectContext,int64_t Validati
  * @note 此函数会清理系统资源处理器集合2中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPhaseTwo(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -39771,7 +39771,7 @@ void CleanupSystemResourceHandlerSet2(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数会清理系统资源处理器集合3中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPhaseThree(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -39834,7 +39834,7 @@ void CleanupSystemResourceHandlerSet3(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数会清理系统资源处理器集合4中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPhaseFour(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -98982,14 +98982,12 @@ void InitializeGlobalModuleB(void)
  /**
  * @brief 初始化系统数据结构A
  * 
- * 该函数负责初始化系统的数据结构A
- * 设置基础数据结构的默认值和状态
+ * 该函数负责初始化系统的数据结构A，设置相应的指针指向全局系统数据结构
+ * 主要用于系统启动时的数据结构初始化
  */
 void InitializeSystemDataStructureA(void)
-
 {
   SystemDataStructurePointerA = &SystemDataStructure;
-  return;
 }
 
 
@@ -98999,14 +98997,12 @@ void InitializeSystemDataStructureA(void)
  /**
  * @brief 初始化系统数据结构B
  * 
- * 该函数负责初始化系统的数据结构B
- * 设置基础数据结构的默认值和状态
+ * 该函数负责初始化系统的数据结构B，设置相应的指针指向全局系统数据结构
+ * 主要用于系统启动时的数据结构初始化
  */
 void InitializeSystemDataStructureB(void)
-
 {
   SystemDataStructurePointerB = &SystemDataStructure;
-  return;
 }
 
 
@@ -99016,14 +99012,12 @@ void InitializeSystemDataStructureB(void)
  /**
  * @brief 初始化系统数据结构C
  * 
- * 该函数负责初始化系统的数据结构C
- * 设置基础数据结构的默认值和状态
+ * 该函数负责初始化系统的数据结构C，设置相应的指针指向全局系统数据结构
+ * 主要用于系统启动时的数据结构初始化
  */
 void InitializeSystemDataStructureC(void)
-
 {
   SystemDataStructurePointerC = &SystemDataStructure;
-  return;
 }
 
 
