@@ -6207,15 +6207,15 @@ uint8_t CheckObjectPropertiesAndIncrementCounter(int64_t ObjectContext, int64_t 
 {
   int CounterValue;
   uint8_t OperationResult;
-  int64_t propertyBuffer;
+  int64_t PropertyBuffer;
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&propertyBuffer);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&PropertyBuffer);
   if ((int)OperationResult == 0) {
-    if (*(int *)(propertyBuffer + 0x34) != 0) {
+    if (*(int *)(PropertyBuffer + 0x34) != 0) {
       return 0x2e;
     }
-    CounterValue = *(int *)(propertyBuffer + 0x28);
-    *(int *)(propertyBuffer + 0x28) = CounterValue + 1;
+    CounterValue = *(int *)(PropertyBuffer + 0x28);
+    *(int *)(PropertyBuffer + 0x28) = CounterValue + 1;
     if (CounterValue == 0) {
             ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
     }
@@ -6240,11 +6240,11 @@ void ResetObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedulerCo
 
 {
   int InitializationStatus;
-  int64_t propertyBuffer;
+  int64_t PropertyBuffer;
   
-  InitializationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&propertyBuffer);
+  InitializationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&PropertyBuffer);
   if (InitializationStatus == 0) {
-    *(uint32_t *)(propertyBuffer + 0x30) = 0;
+    *(uint32_t *)(PropertyBuffer + 0x30) = 0;
           ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
   }
   return;
@@ -12006,19 +12006,19 @@ uint8_t GetMemoryAllocationFailureCode(void)
  */
 uint64_t ResizeArray(int64_t *arrayPointer, int newSize)
 {
-  int64_t newMemoryBlock;
+  int64_t NewMemoryBlock;
   
   if (newSize < (int)arrayPointer[1]) {
     return 0x1c;
   }
-  newMemoryBlock = 0;
+  NewMemoryBlock = 0;
   if (newSize != 0) {
     if (newSize * 0xc - 1U < 0x3fffffff) {
-      newMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,
+      NewMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,
                             0xf4,0,0,1);
-      if (newMemoryBlock != 0) {
+      if (NewMemoryBlock != 0) {
         if ((int)arrayPointer[1] != 0) {
-                memcpy(newMemoryBlock,*arrayPointer,(int64_t)(int)arrayPointer[1] * 0xc);
+                memcpy(NewMemoryBlock,*arrayPointer,(int64_t)(int)arrayPointer[1] * 0xc);
         }
         goto cleanup_old_memory;
       }
@@ -30073,19 +30073,19 @@ void ResetSystemResourceManagerPointer(uint8_t ObjectContext, int64_t Validation
 void ExecuteResourceCleanupLoop(uint8_t ObjectContext, int64_t ValidationContext, uint8_t cleanupParam3, uint8_t cleanupParam4)
 
 {
-  uint8_t *ResourceHashPointer;
-  uint8_t *ResourceHashValidationResultPointer;
-  uint8_t cleanupFlag;
+  uint8_t *HashDataPointer;
+  uint8_t *ValidationResultPointer;
+  uint8_t CleanupStatusFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
-  ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x50);
-  for (ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x48); ValidationResultPointer != ResourceHashPointer; ValidationResultPointer = ResourceHashValidationResultPointer + 4) {
-    (**(code **)*ResourceHashValidationResultPointer)(ResourceHashValidationResultPointer,0,CleanupOption,CleanupFlag,cleanupFlag);
+  CleanupStatusFlag = 0xfffffffffffffffe;
+  HashDataPointer = *(uint8_t **)(ValidationContext + 0x50);
+  for (ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x48); ValidationResultPointer != HashDataPointer; ValidationResultPointer = ValidationResultPointer + 4) {
+    (**(code **)*ValidationResultPointer)(ValidationResultPointer,0,CleanupOption,CleanupStatusFlag,CleanupStatusFlag);
   }
   if (*(int64_t *)(ValidationContext + 0x48) == 0) {
     return;
   }
-        ExecuteSystemEmergencyExit();
+  ExecuteSystemEmergencyExit();
 }
 
 
@@ -30106,19 +30106,19 @@ void ExecuteResourceCleanupLoop(uint8_t ObjectContext, int64_t ValidationContext
 void ExecuteValidationCleanupLoop(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  uint8_t *ResourceHashPointer;
-  uint8_t *ResourceHashValidationResultPointer;
-  uint8_t cleanupFlag;
+  uint8_t *HashDataPointer;
+  uint8_t *ValidationResultPointer;
+  uint8_t CleanupStatusFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
-  ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x50);
-  for (ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x48); ValidationResultPointer != ResourceHashPointer; ValidationResultPointer = ResourceHashValidationResultPointer + 4) {
-    (**(code **)*ResourceHashValidationResultPointer)(ResourceHashValidationResultPointer,0,CleanupOption,CleanupFlag,cleanupFlag);
+  CleanupStatusFlag = 0xfffffffffffffffe;
+  HashDataPointer = *(uint8_t **)(ValidationContext + 0x50);
+  for (ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x48); ValidationResultPointer != HashDataPointer; ValidationResultPointer = ValidationResultPointer + 4) {
+    (**(code **)*ValidationResultPointer)(ValidationResultPointer,0,CleanupOption,CleanupFlag,CleanupStatusFlag);
   }
   if (*(int64_t *)(ValidationContext + 0x48) == 0) {
     return;
   }
-        ExecuteSystemEmergencyExit();
+  ExecuteSystemEmergencyExit();
 }
 
 
@@ -30138,21 +30138,21 @@ void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t ObjectContext, int
 
 {
   int *ResourceIndexPointer;
-  uint8_t *ResourceHashValidationResultPointer;
+  uint8_t *ValidationResultDataPointer;
   int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  uint64_t MemoryAddressOffset;
   
   ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x48);
   if (ValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)ResourceHashValidationResultPointer & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceHashValidationResultPointer - loopIncrement >> 0x10) * 0x50;
+  MemoryAddressOffset = (uint64_t)ValidationResultDataPointer & 0xffffffffffc00000;
+  if (MemoryAddressOffset != 0) {
+    ResourceIndex = MemoryAddressOffset + 0x80 + ((int64_t)ValidationResultDataPointer - MemoryAddressOffset >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+    if ((*(void ***)(MemoryAddressOffset + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *ValidationResultPointer = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultPointer;
+      *(uint8_t **)(ResourceIndex + 0x20) = ValidationResultDataPointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
       if (*ResourceIndexPointer == 0) {
@@ -30161,8 +30161,8 @@ void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t ObjectContext, int
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressOffset,CONCAT71(0xff000000,*(void ***)(MemoryAddressOffset + 0x70) == &ExceptionList),
+                          ValidationResultDataPointer,MemoryAddressOffset,0xfffffffffffffffe);
     }
   }
   return;
