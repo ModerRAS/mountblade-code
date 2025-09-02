@@ -98,6 +98,13 @@
 #define ChecksumSeedValueFCS 0x46464353
 #define ChecksumSeedValueEFCS 0x46454353
 #define ChecksumSeedValuePANS 0x50414e53
+#define ObjectContextValidationOffset 0x10
+#define ObjectContextHandleDataOffset 0x18
+#define ObjectContextConfigDataOffset 0x1c
+#define HandleMemoryBufferHeaderOffset 0x10
+#define HandleMemoryBufferAdjustment -8
+#define ContextPrimaryDataOffset 0x20
+#define ContextSecondaryDataOffset 0x18
 #define ChecksumSeedValueBPANS 0x42414e53
 #define ChecksumSeedValueSPRP 0x53505250
 #define ChecksumSeedValuePORP 0x504f5250
@@ -4392,7 +4399,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleToValidate)
   uint8_t ValidationResult;
   int64_t HandleMemoryBuffer;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(objectHandle + 0x10), &HandleMemoryBuffer);
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(objectHandle + ObjectContextValidationOffset), &HandleMemoryBuffer);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
@@ -4400,12 +4407,12 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleToValidate)
     HandleMemoryBuffer = 0;
   }
   else {
-    HandleMemoryBuffer = HandleMemoryBuffer + -8;
+    HandleMemoryBuffer = HandleMemoryBuffer + HandleMemoryBufferAdjustment;
   }
-  if (*(int64_t *)(HandleMemoryBuffer + 0x10) == 0) {
+  if (*(int64_t *)(HandleMemoryBuffer + HandleMemoryBufferHeaderOffset) == 0) {
     return 0x1c;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + HandleMemoryBufferHeaderOffset), 1);
 }
 
 
@@ -4427,12 +4434,12 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
     MemoryPointer = 0;
   }
   else {
-    MemoryPointer = RegisterContext + -8;
+    MemoryPointer = RegisterContext + HandleMemoryBufferAdjustment;
   }
-  if (*(int64_t *)(MemoryPointer + 0x10) == 0) {
+  if (*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
     return 0x1c;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset), 1);
 }
 
 
@@ -5234,7 +5241,7 @@ uint64_t ValidateAndProcessObjectHandle(uint64_t ObjectHandleIdentifier)
   uint64_t ResourceHashValidationResult;
   int64_t StackMemoryOffset;
   
-  ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleIdentifier + 0x10), &StackMemoryOffset);
+  ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleIdentifier + ObjectContextValidationOffset), &StackMemoryOffset);
   if ((int)ResourceHashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
@@ -5327,7 +5334,7 @@ uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
   uint64_t HashValidationResult;
   int64_t StackOffset;
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(extendedObjectHandle + 0x10),&StackOffset);
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(extendedObjectHandle + ObjectContextValidationOffset),&StackOffset);
   if ((int)HashValidationResult != 0) {
     return HashValidationResult;
   }
@@ -5420,7 +5427,7 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
   uint64_t ResourceHashValidationResult;
   int64_t ValidatedContextPointer;
   
-  ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(advancedObjectHandle + 0x10), &ValidatedContextPointer);
+  ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(advancedObjectHandle + ObjectContextValidationOffset), &ValidatedContextPointer);
   if ((int)ResourceHashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
@@ -5500,7 +5507,7 @@ uint64_t ValidateObjectPointerAndExecuteExit(int64_t ObjectPointer)
   uint64_t ResourceHashValidationResult;
   int64_t StackOffset;
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectPointer + 0x10), &StackOffset);
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectPointer + ObjectContextValidationOffset), &StackOffset);
   if ((int)HashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
@@ -5579,7 +5586,7 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
   uint8_t HashValidationResult;
   int64_t StackOffset;
   
-  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectPointer + 0x10), &StackOffset);
+  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectPointer + ObjectContextValidationOffset), &StackOffset);
   if ((int)HashValidationResult != 0) {
     return HashValidationResult;
   }
@@ -5691,10 +5698,10 @@ void ProcessObjectConfiguration(int64_t ObjectPointer, uint8_t ConfigData)
   uint8_t ObjectConfiguration;
   uint32_t ObjectFlags;
   
-  ObjectConfiguration = *(uint8_t *)(ObjectPointer + 0x10);
-  ObjectFlags = *(uint32_t *)(ObjectPointer + 0x18);
+  ObjectConfiguration = *(uint8_t *)(ObjectPointer + ObjectContextValidationOffset);
+  ObjectFlags = *(uint32_t *)(ObjectPointer + ObjectContextHandleDataOffset);
   ConfigurationParameters[0] = 2;
-  ProcessResult = ProcessConfigurationData(configData, ConfigurationParameters, *(uint32_t *)(ObjectPointer + 0x1c), TemporaryBuffer);
+  ProcessResult = ProcessConfigurationData(configData, ConfigurationParameters, *(uint32_t *)(ObjectPointer + ObjectContextConfigDataOffset), TemporaryBuffer);
   if (ProcessResult == 0) {
     InitializeObjectWithConfig(configData, TemporaryBuffer[0]);
   }
@@ -7036,7 +7043,7 @@ void ProcessObjectContextRelease(int64_t ObjectHandle, int64_t SystemContext)
   int PackageValidationStatusCode;
   uint8_t ContextBuffer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandle + 0x10), &ContextBuffer);
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandle + ObjectContextValidationOffset), &ContextBuffer);
   if (ValidationStatus == 0) {
     ValidationStatus = ProcessSystemValidation(ContextBuffer);
     if (ValidationStatus == 0) {
