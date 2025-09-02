@@ -74842,7 +74842,16 @@ void Unwind_ExecuteQuaternaryResourceRelease(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_18090aa50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源标志位4
+ * 
+ * 在系统unwind过程中清理资源数据的第4个标志位，
+ * 并释放相关的系统资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupResourceFlag4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 4) != 0) {
@@ -74854,7 +74863,16 @@ void Unwind_18090aa50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090aa80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源标志位8
+ * 
+ * 在系统unwind过程中清理资源数据的第8个标志位，
+ * 并释放相关的系统资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupResourceFlag8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 8) != 0) {
@@ -74866,7 +74884,16 @@ void Unwind_18090aa80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090aab0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源标志位1
+ * 
+ * 在系统unwind过程中清理资源数据的第1个标志位，
+ * 并释放相关的系统资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupResourceFlag1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
