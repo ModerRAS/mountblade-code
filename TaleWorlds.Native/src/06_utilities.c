@@ -80158,7 +80158,19 @@ void SetSystemResourceHandlerTemplateAndCheckEmergencyExit(uint8_t ObjectContext
 
 
 
-void Unwind_18090e960(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文偏移28+58的资源清理操作
+ * 
+ * 该函数负责从验证上下文偏移28位置获取资源上下文（偏移58）
+ * 如果资源上下文有效，则调用其清理函数进行资源释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源上下文信息
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中调用
+ * @warning 此函数涉及函数指针调用，需要确保指针有效性
+ */
+void ExecuteResourceCleanupAtContextOffset28Plus58(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
