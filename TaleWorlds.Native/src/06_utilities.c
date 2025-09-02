@@ -7879,35 +7879,35 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
 
 uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t validationParams)
 {
-  int validationStatus;
-  int arrayIndex;
+  int ValidationStatus;
+  int ArrayIndex;
   uint8_t ResourceValidationCode;
-  float *floatPointer;
-  int64_t resourcePointer;
-  uint64_t contextOffset;
-  float *floatArrayPointer;
-  uint64_t loopCounter;
-  uint arraySize;
-  float minValue;
-  float maxValue;
-  float currentValue;
-  uint32_t stackBuffer;
-  uint64_t resourceHash;
+  float *FloatPointer;
+  int64_t ResourcePointer;
+  uint64_t ContextOffset;
+  float *FloatArrayPointer;
+  uint64_t LoopCounter;
+  uint ArraySize;
+  float MinValue;
+  float MaxValue;
+  float CurrentValue;
+  uint32_t StackBuffer;
+  uint64_t ResourceHash;
   
-  ResourceValidationCode = ValidateObjectContext(*(uint32_t *)(ObjectContextParameter + 0x10),&currentValue);
+  ResourceValidationCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&CurrentValue);
   if ((int)ResourceValidationCode != 0) {
     return ResourceValidationResult;
   }
-  loopCounter = 0;
-  contextOffset = CONCAT44(stackBuffer,currentValue) - 8;
-  if (CONCAT44(stackBuffer,currentValue) == 0) {
-    contextOffset = loopCounter;
+  LoopCounter = 0;
+  ContextOffset = CONCAT44(StackBuffer,CurrentValue) - 8;
+  if (CONCAT44(StackBuffer,CurrentValue) == 0) {
+    ContextOffset = LoopCounter;
   }
-  arrayIndex = *(int *)(contextOffset + 0x28);
-  floatArrayPointer = (float *)(ObjectContextParameter + 0x20 + (int64_t)*(int *)(ObjectContextParameter + 0x18) * 4);
-  if (0 < *(int *)(ObjectContextParameter + 0x18)) {
-    floatPointer = floatArrayPointer;
-    resourceHash = loopCounter;
+  ArrayIndex = *(int *)(ContextOffset + 0x28);
+  FloatArrayPointer = (float *)(ObjectContext + 0x20 + (int64_t)*(int *)(ObjectContext + 0x18) * 4);
+  if (0 < *(int *)(ObjectContext + 0x18)) {
+    FloatPointer = FloatArrayPointer;
+    ResourceHash = LoopCounter;
     do {
       arrayIndex = *(int *)(((ObjectContextParameter + 0x20) - (int64_t)floatArrayPointer) + (int64_t)floatPointer);
       if (arrayIndex != -1) {
@@ -8249,16 +8249,16 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContextParameter
   case 5:
     break;
   default:
-    goto code_r0x000180893206;
+    goto ValidationContinueLabel;
   }
   if (FloatValueToValidate < 0.0) {
-joined_r0x00018089322a:
+ValidationNegativePath:
     if (FloatValueToValidate != -1.0) {
-code_r0x000180893206:
+ValidationContinueLabel:
       return 0x1f;
     }
   }
-code_r0x00018089322c:
+ValidationCompleteLabel:
   ResourceValidationCode = ValidateObjectContext(*(uint32_t *)(ObjectContextParameter + 0x10));
   if ((int)ResourceValidationCode != 0) {
     return ResourceValidationResult;
@@ -10081,12 +10081,12 @@ void FinalizeSecurityOperationHandler(void)
   int64_t ResourceValue;
   uint64_t StackParameter;
   
-  resourceValue = *(int64_t *)(securityContext + 0x48);
-  if ((resourceValue != 0) || (operationResult = AcquireResourceLock(), operationResult == 0)) {
-    *resourcePointer = resourceValue;
+  ResourceValue = *(int64_t *)(SecurityContext + 0x48);
+  if ((ResourceValue != 0) || (OperationStatus = AcquireResourceLock(), OperationStatus == 0)) {
+    *ResourcePointer = ResourceValue;
   }
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(stackParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
+  FinalizeSecurityOperation(StackParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
