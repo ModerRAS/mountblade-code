@@ -3930,7 +3930,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   uint8_t ProcessingWorkspace[512];
   uint64_t SecurityValidationKey;
   
-  SecurityValidationKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
+  SecurityValidationKey = 0x12345678 ^ (uint64_t)ObjectMetadataBuffer;
   ProcessingStatusCode = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
   if ((ProcessingStatusCode == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
     DataBuffer = ProcessingWorkspace;
@@ -3988,14 +3988,14 @@ void ValidateSystemObjectCollection(void)
   uint64_t SecurityHash;
   
   if (*(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset) != 0) {
-    ObjectCollectionBuffer = &SystemObjectDataBuffer;
+    ObjectCollectionBuffer = ProcessingWorkspace;
     ProcessedCount = 0;
     RetrievedCount = 0;
     MaxCapacity = MaximumCapacityLimit;
     ValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
-                          &RetrievedObjectDataBuffer);
+                          &ProcessingWorkspace);
     if (ValidationResult == 0) {
-      RetrievedCount = *(int *)(RetrievedObjectDataBuffer + 4);
+      RetrievedCount = *(int *)(ProcessingWorkspace + 4);
       if (0 < RetrievedCount) {
         DataPosition = 8;
         do {
@@ -4008,13 +4008,13 @@ void ValidateSystemObjectCollection(void)
           DataPosition = DataPosition + 8;
         } while (ProcessedCount < RetrievedCount);
       }
-      ReleaseSystemObjectCollection(&RetrievedObjectDataBuffer);
+      ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
     else {
-      ReleaseSystemObjectCollection(&RetrievedObjectDataBuffer);
+      ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
   }
-        PerformSecurityValidation(SecurityHash ^ (uint64_t)&SystemSecurityValidationBuffer);
+        PerformSecurityValidation(SecurityHash ^ (uint64_t)ProcessingWorkspace);
 }
 
 
