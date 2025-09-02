@@ -1920,8 +1920,19 @@ void InitializeSystemCoreData(void)
 
 
 /**
- * 初始化系统数据表结构
- * 设置系统数据表和相关的内存结构
+ * @brief 初始化系统数据表结构
+ * 
+ * 该函数负责初始化系统数据表结构，包括创建数据表节点、
+ * 设置节点标识符和数据指针。这是系统初始化过程中的重要步骤，
+ * 用于建立系统数据管理的基础结构。
+ * 
+ * @note 该函数会遍历系统节点树，查找或创建数据表节点，
+ *       并设置相关的系统数据和配置参数。
+ * @note 函数使用SystemDataComparisonTemplateB进行系统识别
+ * @note 函数依赖GetSystemRootPointer和GetSystemMemorySize等辅助函数
+ * @note 函数会设置SystemNodeLinkPointerB相关配置
+ * 
+ * @return 无返回值
  */
 void InitializeSystemDataTable(void)
 
@@ -2005,8 +2016,14 @@ int InitializeSystemGlobalVariables(void)
 /**
  * @brief 初始化核心引擎
  * 
- * 该函数负责初始化游戏引擎的核心系统
- * 设置基本的运行环境和管理结构
+ * 该函数负责初始化游戏引擎的核心系统，设置基本的运行环境和管理结构。
+ * 这是系统启动过程中的关键步骤，负责建立引擎运行所需的基础设施。
+ * 
+ * @note 该函数会调用其他初始化函数来完成各个子系统的初始化工作
+ * @note 函数负责设置引擎的全局状态和配置参数
+ * @note 这是系统启动的主要入口点之一
+ * 
+ * @return 无返回值
  */
 void InitializeCoreEngine(void)
 
@@ -19415,8 +19432,13 @@ void ResetSystemBuffer(uint8_t *bufferPointer)
  * @brief 系统初始化完成处理函数
  * 
  * 该函数在系统初始化完成后执行，调用系统的完成处理函数。
+ * 这是系统初始化过程的最后一步，负责执行所有初始化完成后的清理和设置工作。
  * 
  * @note 这是一个系统完成处理函数，通常在初始化过程结束时调用
+ * @note 函数会调用SystemDataOperation()来完成最终的数据操作
+ * @note 这是系统启动序列中的最后一个函数
+ * 
+ * @return 无返回值
  */
 void FinalizeSystemInitialization(void)
 
@@ -19438,8 +19460,7 @@ void FinalizeSystemInitialization(void)
  * @param reservedParam4 保留参数4
  * @return 返回系统指针池指针
  */
-void* *
-InitializeSystemPointerPool(void* *systemPointerPool,ulong long InitializationFlags,void* reservedParam3,void* reservedParam4)
+void** InitializeSystemPointerPool(void** systemPointerPool, unsigned long long initializationFlags, void* reservedParam3, void* reservedParam4)
 
 {
   *systemPointerPool = &SystemMemoryAllocatorReference;

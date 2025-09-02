@@ -5256,35 +5256,35 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
 {
   int64_t ResourceDataAddressOffset;
   int ResourceIdentifier;
-  uint8_t OperationResultCode;
-  uint32_t *ResourceIdentifierPointer;
-  uint64_t ProcessedSystemContext;
+  uint8_t InitializationResult;
+  uint32_t *ResourceIdArrayPointer;
+  uint64_t AdjustedContextHandle;
   uint ConfigurationFlags;
   uint64_t IterationCounter;
   int64_t BaseAddressOffset;
   int64_t ValidatedContextHandle;
   
-  OperationResultCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextHandle);
-  if ((int)OperationResultCode == 0) {
+  InitializationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextHandle);
+  if ((int)InitializationResult == 0) {
     IterationCounter = 0;
-    ProcessedSystemContext = ValidatedContextHandle - 8;
+    AdjustedContextHandle = ValidatedContextHandle - 8;
     if (ValidatedContextHandle == 0) {
-      ProcessedSystemContext = IterationCounter;
+      AdjustedContextHandle = IterationCounter;
     }
-    ResourceIdentifierPointer = (uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
+    ResourceIdArrayPointer = (uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
     if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
-      BaseAddressOffset = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)ResourceIdentifierPointer;
+      BaseAddressOffset = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)ResourceIdArrayPointer;
       do {
-        ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)ResourceIdentifierPointer);
+        ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)ResourceIdArrayPointer);
         if (ResourceIdentifier != -1) {
           ResourceDataAddressOffset = *(int64_t *)(SystemContextPointer + ResourceContextOffset) + (int64_t)ResourceIdentifier * ResourceIdentifierOffset;
           int64_t ResourceContextHandle = *(int64_t *)(ResourceDataAddressOffset + 8);
           if ((ResourceContextHandle == 0)) {
             return ErrorInvalidObjectHandle;
           }
-          OperationResultCode = ProcessResourceOperation(ResourceContextHandle, *ResourceIdentifierPointer, 0);
-          if ((int)OperationResultCode != 0) {
-            return OperationResultCode;
+          InitializationResult = ProcessResourceOperation(ResourceContextHandle, *ResourceIdentifierPointer, 0);
+          if ((int)InitializationResult != 0) {
+            return InitializationResult;
           }
         }
         uint32_t NextIterationCount = (uint32_t)IterationCounter + 1;
@@ -5292,9 +5292,9 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
         ResourceIdentifierPointer = ResourceIdentifierPointer + 1;
       } while ((int)NextIterationCount < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
     }
-    OperationResultCode = 0;
+    InitializationResult = 0;
   }
-  return OperationResultCode;
+  return InitializationResult;
 }
 
 
@@ -74905,7 +74905,16 @@ void CleanupResourceFlag1(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090aae0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源处理器模板
+ * 
+ * 在系统unwind过程中设置系统资源处理器模板，
+ * 并在必要时执行紧急退出操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset) = &SystemResourceHandlerTemplate;
@@ -74920,7 +74929,16 @@ void Unwind_18090aae0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090aaf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理扩展资源标志位1
+ * 
+ * 在系统unwind过程中清理扩展资源的第1个标志位，
+ * 该标志位位于资源数据的0x60偏移处。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupExtendedResourceFlag1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x60) & 1) != 0) {
@@ -74932,7 +74950,16 @@ void Unwind_18090aaf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ab20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理扩展资源标志位2
+ * 
+ * 在系统unwind过程中清理扩展资源的第2个标志位，
+ * 该标志位位于资源数据的0x60偏移处。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupExtendedResourceFlag2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x60) & 2) != 0) {
@@ -74944,7 +74971,16 @@ void Unwind_18090ab20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ab50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理扩展资源标志位4
+ * 
+ * 在系统unwind过程中清理扩展资源的第4个标志位，
+ * 该标志位位于资源数据的0x60偏移处。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupExtendedResourceFlag4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -74956,7 +74992,16 @@ void Unwind_18090ab50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ab80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理扩展资源标志位8
+ * 
+ * 在系统unwind过程中清理扩展资源的第8个标志位，
+ * 该标志位位于资源数据的0x20偏移处。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void CleanupExtendedResourceFlag8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -74970,7 +75015,16 @@ void Unwind_18090ab80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ab90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源清理处理器
+ * 
+ * 在系统unwind过程中初始化资源清理处理器，
+ * 设置必要的处理参数和状态。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void InitializeResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
