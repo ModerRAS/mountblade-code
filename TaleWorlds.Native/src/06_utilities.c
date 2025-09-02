@@ -4411,7 +4411,7 @@ uint8_t InitializeObjectHandleOperationC(int64_t ObjectContext)
 
 {
   int64_t ResourceDataOffset;
-  int resourceIdentifier;
+  int ResourceIdentifier;
   uint8_t OperationResultCode;
   uint32_t *resourceIdentifierPointer;
   uint64_t SystemContextHandle;
@@ -12641,11 +12641,11 @@ void ProcessComplexResourceOperation(uint8_t objectContext,int64_t validationCon
   uint8_t GraphicsOperationFlag6;
   uint32_t GraphicsOperationFlag7;
   uint GraphicsOperationFlag8;
-  uint8_t *GraphicsDataPointer2;
-  int GraphicsDataIndex2;
+  uint8_t *GraphicsDataPointerSecondary;
+  int GraphicsDataIndexSecondary;
   uint GraphicsOperationFlag9;
   uint32_t GraphicsOperationFlag10;
-  int GraphicsDataIndex3;
+  int GraphicsDataIndexTertiary;
   uint32_t GraphicsOperationFlag11;
   uint GraphicsOperationFlag12;
   uint32_t GraphicsOperationFlag13;
@@ -94542,7 +94542,7 @@ void ResetThreadLocalStorage(void)
     CleanupThreadResources();
   }
   *(uint8_t *)(ThreadContextData + ThreadResourceStateOffset) = 0;
-  *(uint32_t *)(ThreadContextData + ThreadresourceCountOffset) = 0;
+  *(uint32_t *)(ThreadContextData + ThreadResourceCountOffset) = 0;
   *(uint8_t *)(ThreadContextData + ThreadLocalStorageDataOffset) = &DefaultThreadResource;
   return;
 }
