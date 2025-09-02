@@ -1856,7 +1856,8 @@ void* SystemMemoryQualityController;
 bool SystemMemoryQualityEnabled;
 void* SystemMemoryQualityThreshold;
 void* SystemMemoryQualityMetric;
-void* SystemPerformanceCounterPrimary;
+// 主要性能计数器 - 主要性能监控计数器
+void* PerformanceCounterPrimary;
 void* SystemMemoryValidationController;
 void* SystemMemoryPackageValidationStatus;
 void* SystemMemoryValidationFlags;
@@ -2756,10 +2757,14 @@ uint8_t Tracer;
 uint8_t Logger;
 // 调试器 - 用于程序调试
 uint8_t Debugger;
-uint8_t SystemMonitor;
-uint8_t SystemStatistics;
-uint8_t SystemMetrics;
-uint8_t SystemAnalyzer;
+// 监控器 - 用于系统监控
+uint8_t Monitor;
+// 统计器 - 用于数据统计
+uint8_t Statistics;
+// 指标收集器 - 用于性能指标收集
+uint8_t Metrics;
+// 分析器 - 用于数据分析
+uint8_t Analyzer;
 uint8_t SystemOptimizer;
 uint8_t MemoryPoolManager;
 // 内存分配器 - 负责内存分配操作
