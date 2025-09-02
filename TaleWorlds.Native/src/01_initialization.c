@@ -59217,7 +59217,7 @@ void CleanupGlobalSystemResources(void)
          FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent + FloatParameterArray[0xf];
     pfloatValue36 = &stackBufferA0;
   }
-  FUN_180085190(&stack0x00000060,localSystemHandle9 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue36);
+  FUN_180085190(&stackBuffer60,localSystemHandle9 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue36);
   creationFlags8 = ThreadCreationParameter;
   creationFlags7 = InputStackParameter90;
   NetworkConnectionFlags = InputStackParameter88;

@@ -9658,9 +9658,9 @@ uint64_t GetSystemRuntimeStatus(void)
   }
   floatComparisonResult = *(float *)(ResourceContext + 0x10);
   thirdFloatResult = *(float *)(ResourceTable + 0x38);
-  if ((*(float *)(ResourceTable + 0x38) <= inputFloatValue) &&
-     (thirdFloatResult = *(float *)(ResourceTable + 0x3c), inputFloatValue <= *(float *)(ResourceTable + 0x3c))) {
-    thirdFloatResult = inputFloatValue;
+  if ((*(float *)(ResourceTable + 0x38) <= InputParameterValue) &&
+     (thirdFloatResult = *(float *)(ResourceTable + 0x3c), InputParameterValue <= *(float *)(ResourceTable + 0x3c))) {
+    thirdFloatResult = InputParameterValue;
   }
   *(float *)(ResourceContext + 0x10) = resultFloatValue;
   ValidationStatusCode = ValidateResourceParameters(SystemRegisterContext + 0x60,ResourceContextSecondary,resultFloatValue);
@@ -70583,7 +70583,19 @@ void InitializeResourceHashProcessor(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090a7e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调操作
+ * 
+ * 该函数负责执行资源上下文的回调操作
+ * 从验证上下文中获取资源上下文并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会执行资源上下文的回调函数
+ * @warning 回调函数的执行可能会导致系统状态的变化
+ */
+void ExecuteResourceContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
