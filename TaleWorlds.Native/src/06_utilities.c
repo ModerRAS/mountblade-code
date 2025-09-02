@@ -11220,7 +11220,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
     if (*(int64_t *)(SystemRegisterContext + 0xc0) != 0) {
       ContextValidationStatusCode = ProcessSystemParameters();
       ValidationStatusCode = (**(code **)(SystemRegisterContext + 0xc0))
-                        (ContextHashValidationResult,ResourceIterationIndex,*(uint32_t *)(LongValue8 + 0x18),
+                        (ContextHashValidationResult,ResourceIterationIndex,*(uint32_t *)(ResourceContextDataPointer + 0x18),
                          *(uint8_t *)(SystemRegisterContext + 0xb8));
       calculationResult = StackParameterContextExtended;
       if (HashValidationResult != 0) goto HANDLE_CONTEXT_ERROR;
@@ -11230,7 +11230,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
        (((*(uint *)(SystemRegisterContext + 0x6c) >> 0x19 & 1) != 0 && (OperationStatusCode == *(int *)(SystemRegisterContext + 0xb0)))))
     {
 VALIDATION_FAILURE_HANDLER:
-            memcpy(ExecutionContextPointer + -0x10,LongValue8,(int64_t)*(int *)(LongValue8 + 8));
+            memcpy(ExecutionContextPointer + -0x10,ResourceContextDataPointer,(int64_t)*(int *)(ResourceContextDataPointer + 8));
     }
   }
   else {
@@ -11253,7 +11253,7 @@ VALIDATION_FAILURE_HANDLER:
     }
     else {
       if ((StatusChar != '\x02') || ((*(byte *)(ObjectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
-      ResourceContextSecondary.Field44 = *(uint32_t *)(LongValue8 + 0x20);
+      ResourceContextSecondary.Field44 = *(uint32_t *)(ResourceContextDataPointer + 0x20);
       OperationStatusCode = ProcessDataWithContext(ObjectContext,ResourceIterationIndex,(int64_t)&ObjectStackBufferSecondary + 4);
       if (OperationResult != 0) goto HANDLE_CONTEXT_ERROR;
       OperationStatusCode = ValidateObjectContext(ResourceContextSecondary.Field44,ExecutionContextPointer + -0x78);
@@ -13549,9 +13549,9 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
             ResourceIndex = *(int64_t *)(LocalContextBuffer + 0x10 + SystemDataPointer);
             LoopOffset = *(int64_t *)(LocalContextBuffer + 8 + SystemDataPointer);
             ResourceCheckResult = CheckResourceIndex(ResourceIndex,1);
-            ResourceHashPointer6 = StackPointer190;
+            ResourceHashPointer6 = ResourceHashStackPointer;
             if ((ResourceCheckResult == '\0') && (*(float *)(ResourceIndex + 0x4c) != *(float *)(LoopOffset + 0x28))) {
-              StackVariablePrimary = *(uint32_t *)(LocalContextBuffer + 4 + SystemDataPointer);
+              PrimaryStackVariable = *(uint32_t *)(LocalContextBuffer + 4 + SystemDataPointer);
               ResourceOperationParameter = &SystemResourceTemplateDatabase;
               ResourceDataLength = BufferContextSize;
               ResourceHandlerParam = 0;
