@@ -62989,7 +62989,15 @@ void ConfigureSystemDataStructureAtOffset80(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_180908160(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源表清理和哈希验证操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_180908160
+ */
+void ExecuteResourceTableCleanupAndHashValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
