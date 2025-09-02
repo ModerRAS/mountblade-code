@@ -45991,21 +45991,36 @@ void Unwind_180905890(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809058a0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源表中的验证结果
+ * 
+ * 该函数负责清理资源表中存储的验证结果，遍历验证结果数组
+ * 并对每个验证结果执行清理操作，释放相关资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的状态信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会遍历资源表并清理所有验证结果
+ * @warning 如果资源表无效，系统将执行紧急退出
+ */
+void CleanupResourceTableValidationResults(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  uint8_t *presourceHash;
-  int64_t *presourceTable;
-  uint8_t *pValidationResult;
-  uint8_t LoopCondition;
+  uint8_t *ResourceHashPointer;
+  int64_t *ResourceTablePointer;
+  uint8_t *ValidationResultPointer;
+  uint8_t *ValidationStatusCodePointer;
+  int64_t LoopIncrementValue;
   
-  presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x2e0) + 0x20);
-  LoopIncrement = 0xfffffffffffffffe;
-  presourceHash = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x2e0) + 0x28);
-  for (pValidationStatusCode = (uint8_t *)*presourceTable; pValidationResult != presourceHash; pValidationStatusCode = pValidationResult + 4) {
-    (**(code **)*pValidationResult)(pValidationResult,0,CleanupOption,CleanupFlag,LoopIncrement);
+  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x2e0) + 0x20);
+  LoopIncrementValue = 0xfffffffffffffffe;
+  ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x2e0) + 0x28);
+  for (ValidationStatusCodePointer = (uint8_t *)*ResourceTablePointer; ValidationResultPointer != ResourceHashPointer; ValidationStatusCodePointer = ValidationResultPointer + 4) {
+    (**(code **)*ValidationResultPointer)(ValidationResultPointer, 0, CleanupOption, CleanupFlag, LoopIncrementValue);
   }
-  if (*presourceTable == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
