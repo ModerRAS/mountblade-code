@@ -2050,11 +2050,11 @@ void InitializeSystemMemoryManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
-  systemSearchFunctionPointer = GetSystemSearchFunction;
+  SystemSearchFunctionPointer = GetSystemSearchFunction;
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4, &SystemDataComparisonTemplateD, 0x10);
     if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
@@ -2066,16 +2066,16 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateD,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateD, HashBucketNode + 4, 0x10), MemoryComparisonResult < 0)) {
+    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable, &SystemAllocatedNode, HashBucketNode, SystemMemoryAllocationSize + 0x20, SystemMemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
   }
   HashBucketNode[6] = 0x406be72011d07d37;
   HashBucketNode[7] = 0x71876af946c867ab;
   HashBucketNode[8] = &SystemDataNodeTertiaryRoot;
   HashBucketNode[9] = 0;
-  HashBucketNode[10] = eventCallbackPointer;
+  HashBucketNode[10] = EventCallbackPointer;
   return;
 }
 
@@ -2105,11 +2105,11 @@ void InitializeSystemMemoryAllocator(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
-  systemSearchFunctionPointer = GetSystemSearchFunctionB;
+  SystemSearchFunctionPointerB = GetSystemSearchFunctionB;
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    MemoryComparisonResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
+    MemoryComparisonResult = memcmp(SystemCurrentNode + 4, &SystemDataComparisonTemplateG, 0x10);
     if (MemoryComparisonResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = HashBucketNode;
@@ -2121,16 +2121,16 @@ void InitializeSystemMemoryAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateG,HashBucketNode + 4,0x10), MemoryComparisonResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,HashBucketNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((HashBucketNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateG, HashBucketNode + 4, 0x10), MemoryComparisonResult < 0)) {
+    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable, &SystemAllocatedNode, HashBucketNode, SystemMemoryAllocationSize + 0x20, SystemMemoryAllocationSize);
     HashBucketNode = SystemAllocatedNode;
   }
   HashBucketNode[6] = 0x40afa5469b6ac06d;
   HashBucketNode[7] = 0x2f4bab01d34055a5;
   HashBucketNode[8] = &SystemDataNodeQuaternaryRoot;
   HashBucketNode[9] = 3;
-  HashBucketNode[10] = eventCallbackPointer;
+  HashBucketNode[10] = EventCallbackPointer;
   return;
 }
 
@@ -2182,7 +2182,7 @@ void InitializeSystemStringHandler(void)
   StringDataBufferPointer = StringDataBuffer;
   StringDataBuffer[0] = 0;
   StringBufferSize = 7;
-  strcpy_s(StringDataBuffer,0x80,&SystemStringProcessorTemplate,SystemStringParameter,0xfffffffffffffffe);
+  strcpy_s(StringDataBuffer, 0x80, &SystemStringProcessorTemplate, SystemStringParameter, 0xfffffffffffffffe);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessCallbackPointer);
   return;
 }
