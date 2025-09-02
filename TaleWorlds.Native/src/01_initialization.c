@@ -18492,7 +18492,7 @@ SkipControllerInitialization:
  * @return 返回内存管理器指针
  */
 void* *
-CleanupMemoryManager(void* *memoryManager,ulong long cleanupFlags,void* reservedParam3,void* reservedParam4)
+CleanupSystemMemoryManager(void* *memoryManager,ulong long cleanupFlags,void* reservedParam3,void* reservedParam4)
 
 {
   *memoryManager = &SystemMemoryTemplateD;
@@ -19641,7 +19641,7 @@ void UpdateSystemConfigurationParameter(uint64_t configHandle, uint32_t configVa
  * @return 返回处理后的资源指针
  */
 void*
-FreeSystemMemoryResource(void* resourcePointer, uint64_t freeFlags, uint64_t freeParameter1, uint64_t freeParameter2)
+ReleaseSystemMemoryResource(void* resourcePointer, uint64_t freeFlags, uint64_t freeParameter1, uint64_t freeParameter2)
 
 {
   *resourcePointer = &SystemMemoryResourceTemplate;
@@ -30971,7 +30971,7 @@ void SystemMemoryCleanup(void)
         memoryReferenceCount = (int *)(memoryBlockAddress + 0x18);
         *memoryReferenceCount = *memoryReferenceCount + -1;
         if (*memoryReferenceCount == 0) {
-          CleanupMemoryManager();
+          CleanupSystemMemoryManager();
           return;
         }
       }
