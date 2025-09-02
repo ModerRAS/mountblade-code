@@ -4215,6 +4215,17 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数在游戏循环中定期调用以维护对象集合的完整性
  * @warning 验证失败的对象将被标记为无效状态并可能被移除
  */
+/**
+ * @brief 处理游戏对象集合
+ * 
+ * 该函数负责处理游戏中的对象集合，包括对象的验证、状态更新和批量处理
+ * 主要用于游戏逻辑中的对象管理和批量操作
+ * 
+ * @param GameContext 游戏上下文，包含游戏相关的状态和数据
+ * @param SystemContext 系统上下文，包含系统运行时的状态信息
+ * @return 无返回值
+ * @note 这是一个内部处理函数，由系统自动调用
+ */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int ProcessingStatus;
