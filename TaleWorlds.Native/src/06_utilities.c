@@ -4329,8 +4329,8 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   }
   
   // 验证注册句柄
-  RegistrationHandle = *(int64_t *)(StackPointer + 8);
-  if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + RegistrationHandleOffset) != StackPointer)) {
+  RegistrationHandle = *(int64_t *)(RegistrationStackPointer + 8);
+  if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + RegistrationHandleOffset) != RegistrationStackPointer)) {
     return ErrorInvalidObjectHandle;
   }
   
@@ -4358,50 +4358,50 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
     if ((char)ValidationResult == (char)StatusResult) {
       if (ObjectName[0] == (char)StatusResult) {
         // 搜索现有注册项
-        BasePointer = (int64_t *)(RegistrationData + RegistrationArrayOffset);
-        Iterator = 0;
+        RegistrationBasePointer = (int64_t *)(RegistrationData + RegistrationArrayOffset);
+        RegistrationIterator = 0;
         RegistrationArraySize = *(int *)(RegistrationData + RegistrationSizeOffset);
         if (0 < RegistrationArraySize) {
-          RegistrationEntryArray = (int64_t *)*BasePointer;
-          Index = Iterator;
+          RegistrationEntryArray = (int64_t *)*RegistrationBasePointer;
+          CurrentRegistrationIndex = RegistrationIterator;
           do {
             if (*RegistrationEntryArray == RegistrationHandle) {
-              if (-1 < (int)Index) {
+              if (-1 < (int)CurrentRegistrationIndex) {
                 return 0;
               }
               break;
             }
-            Index = (uint64_t)((int)Index + 1);
-            Iterator = Iterator + 1;
+            CurrentRegistrationIndex = (uint64_t)((int)CurrentRegistrationIndex + 1);
+            RegistrationIterator = RegistrationIterator + 1;
             RegistrationEntryArray = RegistrationEntryArray + 1;
-          } while ((int64_t)Iterator < (int64_t)RegistrationArraySize);
+          } while ((int64_t)RegistrationIterator < (int64_t)RegistrationArraySize);
         }
         
         // 检查是否需要扩容
-        Counter = Counter + 1;
-        if (*(int *)(RegistrationData + RegistrationCapacityOffset) < Counter) {
+        RegistrationCounter = RegistrationCounter + 1;
+        if (*(int *)(RegistrationData + RegistrationCapacityOffset) < RegistrationCounter) {
           // 计算新的容量大小
-          NewSize = (int)((float)*(int *)(RegistrationData + RegistrationCapacityOffset) * RegistrationArrayGrowthFactor);
-          Size = Counter;
-          if (Counter <= NewSize) {
-            Size = NewSize;
+          NewRegistrationArraySize = (int)((float)*(int *)(RegistrationData + RegistrationCapacityOffset) * RegistrationArrayGrowthFactor);
+          CalculatedRegistrationSize = RegistrationCounter;
+          if (RegistrationCounter <= NewRegistrationArraySize) {
+            CalculatedRegistrationSize = NewRegistrationArraySize;
           }
-          if (Size < RegistrationArrayInitialSize) {
-            NewSize = RegistrationArrayInitialSize;
+          if (CalculatedRegistrationSize < RegistrationArrayInitialSize) {
+            NewRegistrationArraySize = RegistrationArrayInitialSize;
           }
-          else if (NewSize < Counter) {
-            NewSize = Counter;
+          else if (NewRegistrationArraySize < RegistrationCounter) {
+            NewRegistrationArraySize = RegistrationCounter;
           }
           
           // 执行数组扩容
-          Counter = ResizeRegistrationArray(BasePointer, NewSize);
-          if (Counter != 0) {
+          RegistrationCounter = ResizeRegistrationArray(RegistrationBasePointer, NewRegistrationArraySize);
+          if (RegistrationCounter != 0) {
             return 0;
           }
         }
         
         // 添加新的注册项
-        *(int64_t *)(*BasePointer + (int64_t)*(int *)(RegistrationData + RegistrationSizeOffset) * 8) = RegistrationHandle;
+        *(int64_t *)(*RegistrationBasePointer + (int64_t)*(int *)(RegistrationData + RegistrationSizeOffset) * 8) = RegistrationHandle;
         *(int *)(RegistrationData + RegistrationSizeOffset) = *(int *)(RegistrationData + RegistrationSizeOffset) + 1;
         *(int *)(RegistrationData + RegistrationCountOffset) = *(int *)(RegistrationData + RegistrationCountOffset) + 1;
       }
@@ -4650,21 +4650,11 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
     }
   }
         ReleaseValidationResources(ResourceContextHandles);
+  return 0;
 }
 
 
 
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数负责增加系统对象的引用计数，用于对象生命周期管理
- * 通过对象上下文验证和引用计数递增来确保对象正确管理
- * 
- * @param ObjectContext 对象上下文参数，包含对象的状态和引用信息
- * @return 操作状态码，0表示成功，非0表示错误码
- * @note 此函数用于对象的引用计数管理，防止对象被过早释放
- * @warning 如果对象句柄无效或系统状态检查失败，将返回错误码
- */
 /**
  * @brief 增加对象引用计数
  * 
@@ -6125,15 +6115,15 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
 uint32_t ValidateStackObject(void)
 
 {
-  int64_t StackPointer;
+  int64_t ObjectStackPointer;
   
-  if (StackPointer != 0) {
-    StackPointer = StackPointer + -8;
+  if (ObjectStackPointer != 0) {
+    ObjectStackPointer = ObjectStackPointer + -8;
   }
-  if (*(int64_t *)(StackPointer + ObjectContextValidationOffset) == 0) {
+  if (*(int64_t *)(ObjectStackPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackPointer + ObjectContextValidationOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ObjectStackPointer + ObjectContextValidationOffset), 1);
 }
 
 
@@ -7354,12 +7344,12 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
   int CalculatedSize;
   int64_t SystemContext;
   int64_t MemoryContext;
-  int NewSize;
+  int NewConfigurationSize;
   int64_t ThreadContext;
   uint8_t StackParameter;
   
-  NewSize = ConfigurationIndex + 1;
-  if (CurrentConfigValue - ConfigurationSize < NewSize) {
+  NewConfigurationSize = ConfigurationIndex + 1;
+  if (CurrentConfigValue - ConfigurationSize < NewConfigurationSize) {
     ResourceIndex = (int)((float)(InputParameterValue - ValidationContext) * 1.5);
     if (OperationResult <= ResourceIndex) {
       OperationStatusCode = ResourceIndex;
@@ -20759,7 +20749,17 @@ void ExecuteSystemBackupOperation(void)
  * @param ValidationContext 资源数据指针，包含需要处理的数据
  * @return 返回处理结果状态码
  */
-uint64_t ProcessResourceDataA(int64_t ObjectContext,int64_t *ValidationContext)
+/**
+ * @brief 验证和处理资源数据完整性
+ * 
+ * 该函数负责验证和处理资源数据的完整性，包括数据校验和计算、
+ * 哈希验证、资源访问验证和清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源数据
+ * @param ValidationContext 验证上下文，用于数据验证操作
+ * @return 处理结果状态码，0表示成功，非0表示错误代码
+ */
+uint64_t ValidateAndProcessResourceDataIntegrity(int64_t ObjectContext,int64_t *ValidationContext)
 
 {
   int64_t *ProcessPointer;
@@ -75039,7 +75039,18 @@ void UnwindSystemResourceHandlerK(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_18090b0d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统资源清理器A
+ * 
+ * 该函数负责清理系统资源，执行资源释放和内存回收操作
+ * 主要用于系统资源管理的清理阶段
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会释放指定的系统资源
+ */
+void CleanupSystemResourceA(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75053,7 +75064,18 @@ void Unwind_18090b0d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b0f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统资源清理器B
+ * 
+ * 该函数负责清理系统资源，执行资源释放和内存回收操作
+ * 主要用于系统资源管理的清理阶段
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会释放指定的系统资源
+ */
+void CleanupSystemResourceB(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75067,7 +75089,18 @@ void Unwind_18090b0f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b110(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统资源清理器C
+ * 
+ * 该函数负责清理系统资源，执行资源释放和内存回收操作
+ * 主要用于系统资源管理的清理阶段
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会释放指定的系统资源
+ */
+void CleanupSystemResourceC(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75081,7 +75114,18 @@ void Unwind_18090b110(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b130(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统资源清理器D
+ * 
+ * 该函数负责清理系统资源，执行资源释放和内存回收操作
+ * 主要用于系统资源管理的清理阶段
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会释放指定的系统资源
+ */
+void CleanupSystemResourceD(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
