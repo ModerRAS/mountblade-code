@@ -3197,26 +3197,18 @@ uint8_t SystemMemoryFlagKernel;
  /**
  * @brief 处理游戏数据对象
  * 
- * 该函数负责处理游戏中的数据对象，包括对象的验证、状态检查和安全处理
- * 它会从游戏上下文中获取对象列表，逐个验证对象状态，并处理无效对象
+ /**
+ * @brief 处理游戏对象的主函数
  * 
- * @param GameContext 游戏上下文，包含游戏相关的状态信息
- * @param SystemContext 系统上下文，包含系统相关的配置信息
+ * 该函数负责处理游戏中的所有对象，包括对象的验证、状态检查和安全验证
+ * 遍历对象列表，验证每个对象的状态，并在发现无效对象时进行处理
+ * 最后执行安全验证以确保操作的安全性
+ * 
+ * @param GameContext 游戏上下文，包含游戏运行时的环境信息
+ * @param SystemContext 系统上下文，包含系统运行时的配置信息
  * @return 无返回值
- * @note 此函数在游戏运行时定期调用
- * @warning 调用此函数前必须确保游戏和系统上下文已正确初始化
- */
-/**
- * @brief 处理游戏对象
- * 
- * 该函数负责处理游戏中的各种对象，包括对象的验证、更新和状态管理
- * 遍历游戏对象列表，对每个对象执行相应的处理操作
- * 
- * @param GameContext 游戏上下文，包含游戏状态和对象信息
- * @param SystemContext 系统上下文，提供系统级别的支持和服务
- * @return 无返回值
- * @note 此函数通常在游戏主循环中调用
- * @warning 调用此函数前必须确保游戏上下文已正确初始化
+ * @note 此函数会遍历所有游戏对象并执行验证操作
+ * @warning 如果发现无效对象，函数会调用处理程序并可能不返回
  */
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 
@@ -91398,19 +91390,19 @@ void ReleaseResourceHashTable(void)
   int64_t resourceTable;
   uint8_t RegisterValue9;
   
-  if (lRam0000000180d49d68 != 0) {
-    resourceHash = (lRam0000000180d49d78 - lRam0000000180d49d68 >> 3) * 8;
-    resourceTable = lRam0000000180d49d68;
+  if (MemoryAddress_180d49d68 != 0) {
+    resourceHash = (lRam0000000180d49d78 - MemoryAddress_180d49d68 >> 3) * 8;
+    resourceTable = MemoryAddress_180d49d68;
     if (0xfff < resourceHash) {
-      resourceTable = *(int64_t *)(lRam0000000180d49d68 + -8);
-      if (0x1f < (lRam0000000180d49d68 - resourceTable) - 8U) {
+      resourceTable = *(int64_t *)(MemoryAddress_180d49d68 + -8);
+      if (0x1f < (MemoryAddress_180d49d68 - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn
-                  (lRam0000000180d49d68 - resourceTable,resourceHash + 0x27,resourceTable,RegisterValue9,0xfffffffffffffffe);
+                  (MemoryAddress_180d49d68 - resourceTable,resourceHash + 0x27,resourceTable,RegisterValue9,0xfffffffffffffffe);
       }
     }
     free(resourceTable);
-    lRam0000000180d49d68 = 0;
+    MemoryAddress_180d49d68 = 0;
     SystemConfigurationFlag = 0;
     lRam0000000180d49d78 = 0;
   }

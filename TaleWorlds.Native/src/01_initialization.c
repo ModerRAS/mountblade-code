@@ -37774,37 +37774,49 @@ void InitializeAndConfigureSystemResources(void)
 
 
 
-// 函数: void FUN_18005e110(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005e110(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 处理系统资源信号量和配置数据
+ * 
+ * 该函数负责处理系统资源的信号量操作，并根据线程本地存储的状态
+ * 选择不同的资源处理路径，包括资源偏移处理和缓冲区配置
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18005e110，现已重命名为ProcessSystemResourceSemaphore
+ */
+void ProcessSystemResourceSemaphore(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  uint unsignedSystemValue1;
-  int systemResult;
-  long long localResourceOffset;
-  long long localBufferAddress;
-  void* unsignedSystemValue5;
+  uint ThreadLocalStorageIndex;
+  int SemaphoreReleaseResult;
+  long long ResourceOffset;
+  long long BufferAddress;
+  void* ConfigurationMask;
   
-  unsignedSystemValue5 = 0xfffffffffffffffe;
+  ConfigurationMask = (void*)0xfffffffffffffffe;
   (**(code **)(*(long long *)*ConfigurationDataPointer + 0x78))();
-  unsignedSystemValue1 = *(uint *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8)
+  ThreadLocalStorageIndex = *(uint *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8)
                    + 0xc);
-  if (unsignedSystemValue1 == 0xffffffff) {
-    localResourceOffset = FUN_18005eb80(SystemResourcePointer + 0x78);
-    if (localResourceOffset != 0) {
-      FUN_18005f220(localResourceOffset,ConfigurationDataPointer);
+  if (ThreadLocalStorageIndex == 0xffffffff) {
+    ResourceOffset = GetResourceOffsetHandler(SystemResourcePointer + 0x78);
+    if (ResourceOffset != 0) {
+      ProcessResourceConfiguration(ResourceOffset,ConfigurationDataPointer);
     }
   }
   else {
-    localResourceOffset = *(long long *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + (ulong long)unsignedSystemValue1 * 8) + 0x70);
-    localBufferAddress = localResourceOffset + -8;
-    if (localResourceOffset == 0) {
-      localBufferAddress = 0;
+    ResourceOffset = *(long long *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + (ulong long)ThreadLocalStorageIndex * 8) + 0x70);
+    BufferAddress = ResourceOffset + -8;
+    if (ResourceOffset == 0) {
+      BufferAddress = 0;
     }
-    FUN_18005f040(localBufferAddress,ConfigurationDataPointer,(ulong long)__tls_index,ConfigurationFlag,unsignedSystemValue5);
+    ConfigureSystemBuffer(BufferAddress,ConfigurationDataPointer,(ulong long)__tls_index,ConfigurationFlag,ConfigurationMask);
   }
   do {
-    systemResult = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1);
-  } while (systemResult == 0);
+    SemaphoreReleaseResult = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1);
+  } while (SemaphoreReleaseResult == 0);
   if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
     (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
