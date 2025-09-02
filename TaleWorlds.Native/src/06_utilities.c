@@ -8235,8 +8235,10 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t ComparisonParameter)
  * 该函数处理简化的参数化浮点数比较操作，直接进行范围检查
  * 根据传入的参数和上下文信息，检查浮点数是否在指定范围内
  * 
- * @param SimplifiedComparisonParameter 简化比较参数，用于控制比较行为
- * @return uint8_t 操作结果，成功返回0，失败返回错误码
+ * @param SimplifiedComparisonParameter 简化的比较参数
+ * @return uint8_t 比较结果，0表示成功，非0表示错误码
+ * @note 此函数使用硬编码的偏移量进行内存访问
+ * @warning 函数中使用了魔法数字，应该替换为有意义的常量
  */
 uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t SimplifiedComparisonParameter)
 
@@ -8248,16 +8250,16 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t SimplifiedCompari
   int64_t SimplifiedObjectContext;
   int64_t SimplifiedStackBuffer;
   
-  SimplifiedComparisonResult = ValidateObjectContextAndProcessData(SimplifiedObjectContext,SimplifiedProcessingContext + 0x25,SimplifiedProcessingContext + 0x20);
+  SimplifiedComparisonResult = ValidateObjectContextAndProcessData(SimplifiedObjectContext,SimplifiedProcessingContext + RangeDataMinOffset,SimplifiedProcessingContext + RangeDataMaxOffset);
   if ((int)SimplifiedComparisonResult == 0) {
-    SimplifiedProcessedFloatValue = *(float *)(SimplifiedProcessingContext + 0x20);
-    if ((*(float *)(SimplifiedResourceContext + 0x38) <= SimplifiedProcessedFloatValue) &&
-       (SimplifiedProcessedFloatValue < *(float *)(SimplifiedResourceContext + 0x3c) || SimplifiedProcessedFloatValue == *(float *)(SimplifiedResourceContext + 0x3c))) {
-      SimplifiedComparisonResult = *(uint8_t *)(SimplifiedSystemExecutionPointer + 0x98);
-      *(float *)(SimplifiedResourceContextSecondary + 4) = SimplifiedProcessedFloatValue;
+    SimplifiedProcessedFloatValue = *(float *)(SimplifiedProcessingContext + RangeDataMaxOffset);
+    if ((*(float *)(SimplifiedResourceContext + RangeLowerBoundOffset) <= SimplifiedProcessedFloatValue) &&
+       (SimplifiedProcessedFloatValue < *(float *)(SimplifiedResourceContext + RangeUpperBoundOffset) || SimplifiedProcessedFloatValue == *(float *)(SimplifiedResourceContext + RangeUpperBoundOffset))) {
+      SimplifiedComparisonResult = *(uint8_t *)(SimplifiedSystemExecutionPointer + SystemExecutionStatusOffset);
+      *(float *)(SimplifiedResourceContextSecondary + ResourceDataOffset) = SimplifiedProcessedFloatValue;
             ReleaseSystemContextResources(SimplifiedComparisonResult);
     }
-    SimplifiedComparisonResult = 0x1c;
+    SimplifiedComparisonResult = SystemStatusConstant;
   }
   return SimplifiedComparisonResult;
 }
@@ -71595,6 +71597,15 @@ void SystemResourceCleanupHandler3(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
+/**
+ * @brief 注册资源处理器到系统上下文C08
+ * 
+ * 该函数负责在系统异常情况下注册资源处理器，用于确保系统状态的一致性。
+ * 当系统发生异常时，该处理器会被调用以执行必要的资源清理操作。
+ * 
+ * @param ObjectContext 对象上下文，用于标识需要清理的资源对象
+ * @param ValidationContext 验证上下文，包含系统资源和状态信息
+ */
 void Unwind_RegisterResourceHandlerC08(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -72264,7 +72275,7 @@ void Unwind_ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_18090a450(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_FinalizeResourceRegistrationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -72306,7 +72317,7 @@ void Unwind_18090a450(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a470(void)
+void Unwind_DestroyMutex9(void)
 
 {
   MutexDestroyInPlace();
@@ -72315,7 +72326,7 @@ void Unwind_18090a470(void)
 
 
 
-void Unwind_18090a490(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_ManageResourceTableEntryWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ManageResourceTableEntry(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0xba8,
@@ -72326,7 +72337,7 @@ void Unwind_18090a490(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090a4b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void Unwind_ProcessResourceOperationWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0xbd8,
@@ -72537,7 +72548,7 @@ void Unwind_18090a5d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a5e0(void)
+void Unwind_DestroyMutex10(void)
 
 {
   MutexDestroyInPlace();
