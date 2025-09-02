@@ -73987,7 +73987,19 @@ void ResetResourceStatusFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_18090a830(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表遍历回调
+ * 
+ * 该函数负责遍历资源表并执行相应的回调函数
+ * 检查资源表中的每个条目，如果条目有效则执行其回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会遍历资源表并执行回调函数
+ * @warning 如果资源表为空，系统会执行紧急退出程序
+ */
+void ExecuteResourceTableCallbacks(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -74007,7 +74019,19 @@ void Unwind_18090a830(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a840(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源操作标志
+ * 
+ * 该函数负责重置资源操作标志
+ * 检查资源数据的操作标志并执行相应的重置操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会重置资源数据中的操作标志
+ * @warning 资源操作标志的重置可能会影响系统的资源管理行为
+ */
+void ResetResourceOperationFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 2) != 0) {
