@@ -40043,9 +40043,9 @@ void CleanupLoggingSystemContextAndProcessSystemState(uint8_t ObjectContext, int
 void CleanupNetworkSystemContextAndManageSystemResources(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  int64_t loopCounter;
+  int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x40);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x40);
   if (*(code **)(LocalContextData + 0xb50) != (code *)0x0) {
     (**(code **)(LocalContextData + 0xb50))(LocalContextData + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
