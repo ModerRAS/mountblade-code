@@ -11013,75 +11013,75 @@ uint8_t ReturnResourcePoolErrorCode(void)
  */
 void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *ValidationContext, int *calculationResult)
 {
-  uint8_t encryptionShiftValue;
-  int64_t ResourceTable;
-  char statusFlag;
-  int resultRecordIndex;
+  uint8_t EncryptionShiftValue;
+  int64_t ResourceTablePointer;
+  char SystemStatusFlag;
+  int ResultRecordIndex;
   uint8_t ResourceContextOffset;
-  int64_t memoryAddress;
-  int64_t bufferPointer;
-  int operationCounter;
-  int64_t resourceHandle;
-  float calculatedFloatResult;
-  float resultFloatValue;
+  int64_t MemoryAddress;
+  int64_t BufferPointer;
+  int OperationCounter;
+  int64_t ResourceHandle;
+  float CalculatedFloatResult;
+  float ResultFloatValue;
   uint8_t SecurityValidationBuffer [68];
-  uint32_t securityValidationFlag;
-  int *parameterPointer;
+  uint32_t SecurityValidationFlag;
+  int *ParameterPointer;
   int64_t ObjectContextOffset;
-  int64_t securityContextOffset;
-  int64_t securityContextArray [13];
-  uint8_t securityDataLargeBuffer [1536];
-  uint64_t validationParameter;
+  int64_t SecurityContextOffset;
+  int64_t SecurityContextArray [13];
+  uint8_t SecurityDataLargeBuffer [1536];
+  uint64_t ValidationParameter;
   
-  validationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityValidationBuffer;
+  ValidationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityValidationBuffer;
   int OperationStatusCode = *(int *)(ObjectContext + 0xac);
-  int64_t arrayIndex = (int64_t)OperationResult;
-  parameterPointer = cleanupOption;
+  int64_t ArrayIndex = (int64_t)OperationResult;
+  ParameterPointer = CleanupOption;
   if (OperationResult < *(int *)(ObjectContext + ObjectContextProcessingDataOffset)) {
     ObjectContextOffset = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
-    securityContextOffset = arrayIndex * 3;
-    int64_t systemDataPointer = (int64_t)*(int *)(ObjectContextOffset + arrayIndex * 0xc) + *(int64_t *)(ObjectContext + 8);
-    char systemStatusChar = *(char *)(ObjectContextOffset + 8 + arrayIndex * 0xc);
-    if (systemStatusChar == '\x01') {
-      int maxOperationCount = *(int *)(ObjectContext + 0xb0);
-      if (OperationResult < maxOperationCount) {
+    SecurityContextOffset = ArrayIndex * 3;
+    int64_t SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + ArrayIndex * 0xc) + *(int64_t *)(ObjectContext + 8);
+    char SystemStatusChar = *(char *)(ObjectContextOffset + 8 + ArrayIndex * 0xc);
+    if (SystemStatusChar == '\x01') {
+      int MaxOperationCount = *(int *)(ObjectContext + 0xb0);
+      if (OperationResult < MaxOperationCount) {
         *(int *)(ObjectContext + 0xac) = OperationResult + 1;
         goto HandleSystemError;
       }
-      calculatedFloatResult = *(float *)(systemDataPointer + 0x18);
-      resultFloatValue = calculatedFloatResult;
-      if (maxOperationCount != -1) {
-        resultFloatValue = *(float *)(ObjectContext + 0xb4);
-        maxOperationCount = -1;
+      CalculatedFloatResult = *(float *)(SystemDataPointer + 0x18);
+      ResultFloatValue = CalculatedFloatResult;
+      if (MaxOperationCount != -1) {
+        ResultFloatValue = *(float *)(ObjectContext + 0xb4);
+        MaxOperationCount = -1;
         *(uint32_t *)(ObjectContext + 0xb0) = 0xffffffff;
         *(uint32_t *)(ObjectContext + 0xb4) = 0xbf800000;
       }
-      *(float *)(ObjectContext + 0xa8) = calculatedFloatResult;
-      arrayIndex = 0;
-      calculatedFloatResult = (float)*(uint *)(ObjectContext + 0x68) * calculatedFloatResult;
-      if ((9.223372e+18 <= calculatedFloatResult) && (calculatedFloatResult = calculatedFloatResult - 9.223372e+18, calculatedFloatResult < 9.223372e+18)) {
-        arrayIndex = -0x8000000000000000;
+      *(float *)(ObjectContext + 0xa8) = CalculatedFloatResult;
+      ArrayIndex = 0;
+      CalculatedFloatResult = (float)*(uint *)(ObjectContext + 0x68) * CalculatedFloatResult;
+      if ((9.223372e+18 <= CalculatedFloatResult) && (CalculatedFloatResult = CalculatedFloatResult - 9.223372e+18, CalculatedFloatResult < 9.223372e+18)) {
+        ArrayIndex = -0x8000000000000000;
       }
-      ResourceTable = *(int64_t *)(ObjectContext + 0xa0);
-      int64_t resourceEntryPointer = *(int64_t *)(ObjectContext + 0x98);
-      if (resourceEntryPointer == 0) {
-        resultFloatValue = (float)*(uint *)(ObjectContext + 0x68) * resultFloatValue;
-        resourceEntryPointer = 0;
-        if ((9.223372e+18 <= resultFloatValue) && (resultFloatValue = resultFloatValue - 9.223372e+18, resultFloatValue < 9.223372e+18)) {
-          resourceEntryPointer = -0x8000000000000000;
+      ResourceTablePointer = *(int64_t *)(ObjectContext + 0xa0);
+      int64_t ResourceEntryPointer = *(int64_t *)(ObjectContext + 0x98);
+      if (ResourceEntryPointer == 0) {
+        ResultFloatValue = (float)*(uint *)(ObjectContext + 0x68) * ResultFloatValue;
+        ResourceEntryPointer = 0;
+        if ((9.223372e+18 <= ResultFloatValue) && (ResultFloatValue = ResultFloatValue - 9.223372e+18, ResultFloatValue < 9.223372e+18)) {
+          ResourceEntryPointer = -0x8000000000000000;
         }
-        resourceEntryPointer = ResourceTable - ((int64_t)resultFloatValue + resourceEntryPointer);
-        *(int64_t *)(ObjectContext + 0x98) = resourceEntryPointer;
+        ResourceEntryPointer = ResourceTablePointer - ((int64_t)ResultFloatValue + ResourceEntryPointer);
+        *(int64_t *)(ObjectContext + 0x98) = ResourceEntryPointer;
       }
-      encryptionShiftValue = *(uint8_t *)(ObjectContext + 0x6c);
+      EncryptionShiftValue = *(uint8_t *)(ObjectContext + 0x6c);
       if (*(int64_t *)(ObjectContext + 0xc0) != 0) {
         ResourceContextOffset = ProcessSystemParameters(ObjectContext);
         OperationStatusCode = (**(code **)(ObjectContext + 0xc0))
-                          (ResourceContextOffset, OperationResult, *(uint32_t *)(systemDataPointer + 0x18), *(uint8_t *)(ObjectContext + 0xb8)
+                          (ResourceContextOffset, OperationResult, *(uint32_t *)(SystemDataPointer + 0x18), *(uint8_t *)(ObjectContext + 0xb8)
                           );
         if (OperationResult != 0) goto HandleSystemError;
       }
-      if (((((encryptionShiftValue & 2) != 0 || (int64_t)calculatedFloatResult + ArrayIndex < ResourceTable - ResourceEntryPointer) &&
+      if (((((EncryptionShiftValue & 2) != 0 || (int64_t)CalculatedFloatResult + ArrayIndex < ResourceTablePointer - ResourceEntryPointer) &&
            (OperationStatusCode = *ParameterPointer, *ParameterPointer = OperationResult + 1, OperationResult < 10)) &&
           ((*(uint *)(ObjectContext + 0x6c) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(ObjectContext + 0x6c) >> 0x19 & 1) != 0 && (MaxOperationCount == *(int *)(ObjectContext + 0xb0))))) {
