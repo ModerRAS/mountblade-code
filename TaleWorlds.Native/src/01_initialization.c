@@ -46723,7 +46723,7 @@ ulong long AllocateSystemResource(void* ResourceManagerPointer,void* *Configurat
         *resourceEntryPointer = systemStatus;
         resourcePoolPointer[1] = currentThreadId;
       }
-      currentThreadId = FUN_18005ff50(*(void* *)(bufferBaseAddress + 0x50));
+      currentThreadId = GetResourceOffsetPointer(*(void* *)(bufferBaseAddress + 0x50));
       if (currentThreadId != 0) {
         *(void* *)(currentThreadId + 0x108) = 0;
         resourceEntryPointer[1] = currentThreadId;
@@ -46822,7 +46822,7 @@ CreateSystemObject(void* ResourceManagerPointer,void* ConfigurationDataPointer,v
   
   allocationContext = 0xfffffffffffffffe;
   creationFlags = 0;
-  systemStatus = FUN_180628ca0();
+  systemStatus = GetSystemStatusFlags();
   CreateSystemObject(ConfigurationDataPointer,systemStatus,AdditionalParameter,ConfigurationFlag,creationFlags,allocationContext);
   return ConfigurationDataPointer;
 }
@@ -51219,7 +51219,7 @@ LAB_180070230:
   }
   else {
     if (*(int *)(SystemMemoryBlockSecondary + 0x460) == 1) {
-      FUN_1806272a0(&UNK_1809ff610,ConfigurationDataPointer);
+      FUN_1806272a0(&SystemRuntimeConfigurationData,ConfigurationDataPointer);
     }
     alternateBufferPtrB0 = &SystemGlobalDataReference;
     if (puStack_a8 != (void* *)0x0) {
