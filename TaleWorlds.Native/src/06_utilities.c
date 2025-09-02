@@ -3886,7 +3886,7 @@ uint64_t DecrementSystemResourceCounter(int64_t SystemContext, uint64_t Resource
 {
   int64_t ContextData;
   uint64_t OperationResult;
-  int resourceCounter;
+  int ResourceCounter;
   int64_t ContextHandles[2];
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(SystemContext + 0x10), ContextHandles);
@@ -3897,9 +3897,9 @@ uint64_t DecrementSystemResourceCounter(int64_t SystemContext, uint64_t Resource
   if (*(int *)(ContextHandles[0] + 0x4c) < 1) {
     return 0x1c;
   }
-  resourceCounter = *(int *)(ContextHandles[0] + 0x4c) + -1;
-  *(int *)(ContextHandles[0] + 0x4c) = resourceCounter;
-  if (*(int *)(ContextHandles[0] + 0x58) + *(int *)(ContextHandles[0] + 0x54) + resourceCounter != 0) {
+  ResourceCounter = *(int *)(ContextHandles[0] + 0x4c) + -1;
+  *(int *)(ContextHandles[0] + 0x4c) = ResourceCounter;
+  if (*(int *)(ContextHandles[0] + 0x58) + *(int *)(ContextHandles[0] + 0x54) + ResourceCounter != 0) {
     return 0;
   }
   ContextHandles[0] = 0;
@@ -10007,7 +10007,7 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
   uint resourceFlagByte7;
   uint resourceFlagByte8;
   uint32_t resourceFlagPrimary;
-  uint resourceFlagSecondary1;
+  uint resourceSecondaryByte1;
   uint resourceFlagSecondary2;
   uint resourceFlagSecondary3;
   int64_t ResourceHandleBackup;
@@ -10099,7 +10099,7 @@ void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationC
   uint resourceFlagByte6;
   uint resourceFlagByte7;
   uint resourceFlagByte8;
-  uint resourceValidationFlag9;
+  uint resourceValidationFlagNonary;
   uint resourceFlagSecondary2;
   uint32_t validationParameter;
   uint validationParameterSecondary;
@@ -10537,7 +10537,7 @@ uint ValidateAndProcessDataContainer(int64_t *objectContext)
 {
   int ProcessingResult;
   uint ResourceHashValidationResult;
-  uint unsignedValue3;
+  uint operationResultCode;
   
   validationStatusCode = *(uint *)((int64_t)objectContext + 0xc);
   validationResult = HashValidationResult ^ (int)HashValidationResult >> 0x1f;
@@ -12998,13 +12998,13 @@ void ProcessComplexResourceWithRegisters(void)
   int systemRegister2;
   int64_t systemRegister3;
   char systemFlag1;
-  float calculatedFloatResult1;
-  float calculatedFloatResult2;
-  float calculatedFloatResult3;
-  float calculatedFloatResult4;
-  float calculatedFloatResult5;
-  float calculatedFloatResult6;
-  float calculatedFloatResult7;
+  float calculatedPrimaryResult;
+  float calculatedSecondaryResult;
+  float calculatedTertiaryResult;
+  float calculatedQuaternaryResult;
+  float calculatedQuinaryResult;
+  float calculatedSenaryResult;
+  float calculatedSeptenaryResult;
   float finalResultFloat;
   uint32_t contextFlags;
   float resourceFloatValue;
@@ -14002,8 +14002,8 @@ void CalculateFloatValueAndValidateResources(void)
   uint8_t *StackResourcePointer;
   float StackFloatValue;
   uint32_t StackValidationCode;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
+  float stackFloatValue1;
+  float stackFloatValue2;
   uint8_t StackParameterContext48;
   float StackParameter50;
   uint8_t *resourceDataPointer;
@@ -14244,8 +14244,8 @@ void ProcessFloatOperationsAndContextValidation(float objectContext)
   uint8_t *StackResourcePointer;
   float StackFloatValue;
   uint32_t StackValidationCode;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
+  float stackFloatValue1;
+  float stackFloatValue2;
   float StackParameter50;
   
   if (objectContext != 1.0) {
@@ -18028,7 +18028,7 @@ uint8_t ProcessResourceOperation(uint8_t *resourceHandle, uint8_t operationParam
   uint8_t HashValidationResult;
   int ValidationStatusCode;
   int64_t SystemContext;
-  int iStack0000000000000030;
+  int stackIntegerValue2;
   
   ResourceIndex = *(int *)(systemContext + 0x18);
   iStack0000000000000030 = ResourceIndex;
@@ -24501,8 +24501,8 @@ uint8_t ManageResourceTable(void)
   int64_t *resourceContext;
   uint32_t StackVariable30;
   int64_t StackRegisterStorage38;
-  int iStack00000000000000b0;
-  uint StackRegisterStorageB8;
+  int stackIntegerValue1;
+  uint stackRegisterStorage;
   
   iStack00000000000000b0 = 0;
   validationStatusCode = InitializeResourceLoader();
@@ -25708,8 +25708,8 @@ uint64_t ValidateAndProcessResourceData(void)
   uint ResourceContextOffset;
   uint configurationFlags;
   uint64_t SecurityHashValue;
-  uint StackRegisterStorageB0;
-  uint StackRegisterStorageB8;
+  uint stackRegisterStorage2;
+  uint stackRegisterStorage;
   
   if (*(int *)(InputParameter + 0x18) != 0) {
     return 0x1c;
@@ -25822,8 +25822,8 @@ uint64_t ValidateAndProcessResourceDataVariantB(void)
   uint ResourceContextOffset;
   uint configurationFlags;
   uint64_t SecurityHashValue;
-  uint StackRegisterStorageB0;
-  uint StackRegisterStorageB8;
+  uint stackRegisterStorage2;
+  uint stackRegisterStorage;
   
   validationResult = ReadResourceData(*resourceContext,systemContext + 0x44,4);
   if ((int)HashValidationResult != 0) {
@@ -25933,7 +25933,7 @@ uint64_t ValidateAndProcessResourceDataVariantC(void)
   uint ResourceContextOffset;
   uint configurationFlags;
   uint64_t SecurityHashValue;
-  uint StackRegisterStorageB0;
+  uint stackRegisterStorage2;
   uint StackVariableB8;
   
   SecurityHashValue = 0;
@@ -27756,7 +27756,7 @@ uint8_t ResourceValidationService(void)
   uint8_t ResourceHash;
   int64_t *resourceContext;
   int64_t SystemContext;
-  uint32_t StackRegisterStorageB0;
+  uint32_t stackRegisterStorage3;
   
   if (*(int *)(InputParameter + 0x18) == 0) {
     resourceHash = GetResourceEntry(*resourceContext,systemContext + 0x10);
@@ -28021,7 +28021,7 @@ uint64_t ValidateResourceDataIntegrityInternal(void)
   uint64_t ResourceHashValidationResult;
   uint8_t *resourceContext;
   int64_t ExecutionContextPointer;
-  char StackVariableD0;
+  char stackVariableChar;
   
   validationResult = CalculateDataChecksum();
   if ((int)validationResult == 0) {
