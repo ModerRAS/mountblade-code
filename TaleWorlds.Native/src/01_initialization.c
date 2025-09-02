@@ -51482,7 +51482,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
       charSignal = *(char *)(SystemGlobalStatusFlags + 0x29);
     }
     if (*(char *)(SystemGlobalStatusFlags + 0x25) != '\0') {
-      FUN_180055f70(SystemGlobalStatusFlags,5);
+      EmergencySystemExitHandler(SystemGlobalStatusFlags,5);
       pSystemOperationResult = (code *)swi(3);
       SystemSecondaryStatus = (*pSystemOperationResult)();
       return SystemSecondaryStatus;
@@ -51749,7 +51749,7 @@ LAB_180070230:
       charFlag = *(char *)(SystemGlobalStatusFlags + 0x29);
     }
     if (*(char *)(SystemGlobalStatusFlags + 0x25) != '\0') {
-      FUN_180055f70(SystemGlobalStatusFlags,5);
+      EmergencySystemExitHandler(SystemGlobalStatusFlags,5);
       systemFunctionPointer = (code *)swi(3);
       SystemOperationStatus1 = (*systemFunctionPointer)();
       return SystemOperationStatus1;
@@ -52464,7 +52464,7 @@ LAB_18007113f:
       charFlag = *(char *)(SystemGlobalStatusFlags + 0x29);
     }
     if (cStack_147 != '\0') {
-      FUN_180055f70(charFlag,5);
+      EmergencySystemExitHandler(charFlag,5);
       systemFunctionPointer = (code *)swi(3);
       (*systemFunctionPointer)();
       return;
@@ -52515,7 +52515,7 @@ LAB_1800715eb:
   if (puStack_f0 != (void* *)0x0) {
     SystemDataBufferPointer = puStack_f0;
   }
-  SystemThreadContextFlag = FUN_1800f98e0(SystemDataBufferPointer);
+  SystemThreadContextFlag = GetSystemContextFlag(SystemDataBufferPointer);
     UpdateContextManagerSystem(SystemContextManagerPointer,&SystemConfigurationDataBufferE,isByteValid3 ^ 1,SystemThreadContextFlag);
 }
 
@@ -53308,7 +53308,7 @@ LAB_1800729bd:
       if (stackParameterA != (void* *)0x0) {
         ThreadLocalStorageEntry = stackParameterA;
       }
-      systemCounter = FUN_1800f98e0(ThreadLocalStorageEntry);
+      systemCounter = GetSystemContextFlag(ThreadLocalStorageEntry);
       if ((cStack_118 == '\0') && (systemCounter == 0)) {
         if ((SystemGlobalStatusFlags == 0) || (*(char *)(SystemGlobalStatusFlags + 0x141) == '\0')) {
           SystemOperationStatus8 = 0;
@@ -57910,7 +57910,7 @@ void ReleaseSystemResourceManager(long long *SystemResourceManager)
 
 
 
-ulong long FUN_180077040(long long SystemResourceManager)
+ulong long InitializeSystemResourceContext(long long SystemResourceManager)
 
 {
   int *SystemIntegerPointer;
@@ -58078,7 +58078,7 @@ LAB_18007738d:
 
 
 
-void* FUN_180077420(long long SystemResourceManager,long long ConfigurationDataPointer)
+void* ConfigureSystemResourceData(long long SystemResourceManager,long long ConfigurationDataPointer)
 
 {
   uint *SystemDataPointer;
@@ -59676,7 +59676,7 @@ void ExecuteSystemTransformOperations(void)
 
 
 
-uint8_t FUN_180077ef9(void)
+uint8_t ValidateSystemIntegrity(void)
 
 {
   return 0;
@@ -60282,7 +60282,7 @@ LAB_SystemStatusSet:
 
 
 
-// 函数: void FUN_1800782a8(long long SystemResourceManager)
+// 函数: void CleanupSystemResources(long long SystemResourceManager)
 /**
  * @brief 处理系统资源状态和配置
  * 
@@ -60423,7 +60423,7 @@ void InitializeSystemDataIndex(void)
 
 
 
-void* * FUN_1800784e0(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
+void* * InitializeSystemResourceManager(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
   void* SystemOperationStatus;
@@ -60442,7 +60442,7 @@ void* * FUN_1800784e0(void* *SystemResourceManager,ulong long ConfigurationDataP
 
 
 
-// 函数: void FUN_180078550(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ConfigureSystemResourceManager(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 配置系统资源管理器
  * 
@@ -60537,7 +60537,7 @@ void ConfigureSystemResourceManager(void* *SystemResourceManager,void* Configura
 
 
 
-// 函数: void FUN_1800786e0(void* *SystemResourceManager,long long ConfigurationDataPointer)
+// 函数: void InitializeSystemResourcePool(void* *SystemResourceManager,long long ConfigurationDataPointer)
 /**
  * @brief 初始化系统资源数据
  * 
@@ -60869,7 +60869,7 @@ void InitializeSystemResourceData(void* *SystemResourceManager,long long Configu
 
 
 
-// 函数: void FUN_180078c10(long long SystemResourceManager)
+// 函数: void ProcessSystemFloatOperations(long long SystemResourceManager)
 /**
  * @brief 处理系统浮点数运算和插值计算
  * 
@@ -61198,7 +61198,7 @@ void SerializeSystemResourceManagerData(uint32_t *SystemResourceManager,long lon
 
 
 
-// 函数: void FUN_1800791a0(long long SystemResourceManager)
+// 函数: void ValidateSystemResourceStatus(long long SystemResourceManager)
 /**
  * @brief 系统资源管理器初始化函数
  * 
@@ -61237,7 +61237,7 @@ void InitializeSystemResourceManagerEx(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_180079270(long long SystemResourceManager,long long ConfigurationDataPointer)
+// 函数: void ConfigureSystemResourceParameters(long long SystemResourceManager,long long ConfigurationDataPointer)
 /**
  * @brief 系统资源配置处理函数
  * 
@@ -62697,7 +62697,7 @@ void* * GetSystemResourceConfigurationPointer(long long SystemResourceManager,vo
       SystemDataValue6 = &SystemResourceTemplatePrimary;
       SystemDataValue7 = &SystemDataValue8;
 
-// 函数: void FUN_180079520(long long SystemResourceManager)
+// 函数: void InitializeSystemResourceAllocation(long long SystemResourceManager)
 /**
  * @brief 系统资源锁定状态管理器函数
  * 
@@ -62834,7 +62834,7 @@ uint8_t GetSystemStatusFlag(void)
 
 000180079699)
 
-float * FUN_1800795b0(float *SystemResourceManager)
+float * ProcessSystemFloatData(float *SystemResourceManager)
 
 {
   float *primaryFloatPointer;
@@ -64310,7 +64310,7 @@ void ValidateSystemResourceTable(long long *SystemResourceManager)
 
 
 
-uint8_t FUN_18007b1e0(long long SystemResourceManager)
+uint8_t ValidateSystemResourceAccess(long long SystemResourceManager)
 
 {
   char SystemNodeFlag;
@@ -64336,7 +64336,7 @@ uint8_t FUN_18007b1e0(long long SystemResourceManager)
 00018007b868)
 00018007b879)
 
-ulong long FUN_18007b240(long long SystemResourceManager,long long *ConfigurationDataPointer,byte AdditionalParameter,char ConfigurationFlag)
+ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,long long *ConfigurationDataPointer,byte AdditionalParameter,char ConfigurationFlag)
 
 {
   byte *pisByteValid;
@@ -64697,8 +64697,18 @@ void ReleaseSystemResourceHandle(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_18007baa0(long long SystemResourceManager)
-void FUN_18007baa0(long long SystemResourceManager)
+/**
+ * @brief 初始化系统内存操作状态
+ * 
+ * 该函数负责初始化系统内存操作状态，为系统内存管理做准备。
+ * 如果系统资源管理器的内存操作状态为空，则分配新的内存并初始化。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含系统资源管理信息
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_18007baa0
+ */
+void InitializeSystemMemoryOperationStatus(long long SystemResourceManager)
 
 {
   void* SystemOperationStatus;
@@ -64713,8 +64723,18 @@ void FUN_18007baa0(long long SystemResourceManager)
 
 
 
-// 函数: void FUN_18007bb70(long long *SystemResourceManager)
-void FUN_18007bb70(long long *SystemResourceManager)
+/**
+ * @brief 执行系统资源管理器回调函数
+ * 
+ * 该函数负责执行系统资源管理器的回调函数，包括主回调函数和参数回调函数。
+ * 如果系统资源管理器或回调参数有效，则调用相应的回调函数。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含回调函数信息
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_18007bb70
+ */
+void ExecuteSystemResourceManagerCallbacks(long long *SystemResourceManager)
 
 {
   if ((long long *)SystemResourceManager[1] != (long long *)0x0) {
@@ -65271,8 +65291,18 @@ void ConfigureSystemInitializationParameters(long long *SystemResourceManager,by
 
 
 
-// 函数: void FUN_18007c790(long long *SystemResourceManager)
-void FUN_18007c790(long long *SystemResourceManager)
+/**
+ * @brief 配置系统哈希表和内存分配
+ * 
+ * 该函数负责配置系统哈希表和内存分配，包括哈希表条目的设置和内存分配。
+ * 如果系统资源管理器包含有效的哈希表条目，则使用该条目，否则使用系统字符串模板。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含哈希表和内存分配信息
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_18007c790
+ */
+void ConfigureSystemHashTableAndMemoryAllocation(long long *SystemResourceManager)
 
 {
   char *systemFunctionPointer;
@@ -65297,7 +65327,19 @@ void FUN_18007c790(long long *SystemResourceManager)
 
 
 
-void* * FUN_18007c7f0(void* *SystemResourceManager,void* *ConfigurationDataPointer)
+/**
+ * @brief 初始化系统资源管理器配置
+ * 
+ * 该函数负责初始化系统资源管理器配置，包括主要资源指针的设置和回调函数的调用。
+ * 从配置数据指针复制配置信息到系统资源管理器，并初始化主要资源指针。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，用于存储配置信息
+ * @param ConfigurationDataPointer 配置数据指针，包含要复制的配置信息
+ * @return 返回配置后的系统资源管理器指针
+ * 
+ * 原始函数名：FUN_18007c7f0
+ */
+void* * InitializeSystemResourceManagerConfiguration(void* *SystemResourceManager,void* *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -65320,8 +65362,19 @@ void* * FUN_18007c7f0(void* *SystemResourceManager,void* *ConfigurationDataPoint
 
 
 
-// 函数: void FUN_18007c860(long long SystemResourceManager,uint8_t ConfigurationDataPointer)
-void FUN_18007c860(long long SystemResourceManager,uint8_t ConfigurationDataPointer)
+/**
+ * @brief 处理系统线程状态和配置
+ * 
+ * 该函数负责处理系统线程状态和配置，包括线程句柄的获取、状态检查和配置更新。
+ * 根据系统资源管理器的状态，决定是否需要获取线程句柄并进行相应的状态处理。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含线程和配置信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置参数
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_18007c860
+ */
+void ProcessSystemThreadStatusAndConfiguration(long long SystemResourceManager,uint8_t ConfigurationDataPointer)
 
 {
   char SystemNodeFlag;
@@ -66679,8 +66732,19 @@ void SystemNoOperationF(void)
 
 
 
-// 函数: void FUN_18007e990(long long SystemResourceManager,int ConfigurationDataPointer)
-void FUN_18007e990(long long SystemResourceManager,int ConfigurationDataPointer)
+/**
+ * @brief 配置系统资源管理器的主要资源指针
+ * 
+ * 该函数负责配置系统资源管理器的主要资源指针，包括资源创建标志的设置和内存分配。
+ * 如果配置数据指针发生变化，则清理原有资源并分配新的资源。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含主要资源指针信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置参数
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_18007e990
+ */
+void ConfigureSystemResourceManagerPrimaryResourcePointer(long long SystemResourceManager,int ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -67211,8 +67275,18 @@ void SystemNoOperationH(void)
 
 
 
-// 函数: void FUN_18007f0ca(long long SystemResourceManager)
-void FUN_18007f0ca(long long SystemResourceManager)
+/**
+ * @brief 重置系统资源管理器状态标志
+ * 
+ * 该函数负责重置系统资源管理器的状态标志，将状态标志设置为0。
+ * 这是一个简单的状态重置操作，用于初始化或清理系统状态。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含状态标志信息
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_18007f0ca
+ */
+void ResetSystemResourceManagerStatusFlags(long long SystemResourceManager)
 
 {
   *(uint32_t *)(SystemResourceManager + 0x14) = 0;
