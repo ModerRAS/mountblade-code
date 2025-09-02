@@ -620,11 +620,11 @@ void* AudioStreamManager;                    // 音频流管理器
  * 设置碰撞检测、重力模拟和物理计算的相关系统
  */
 void InitializePhysicsEngine(void);
-void* PhysicsEngine;
-void* PhysicsWorldHandle;
-void* CollisionSystemHandle;
-void* RigidBodyManager;
-void* PhysicsSolver;
+void* PhysicsEngineInstance;                // 物理引擎实例
+void* PhysicsWorldHandle;                   // 物理世界句柄
+void* CollisionSystemHandle;                 // 碰撞系统句柄
+void* RigidBodyManager;                      // 刚体管理器
+void* PhysicsSolverInstance;                 // 物理求解器实例
 
  /**
  * @brief 初始化输入管理器
@@ -633,12 +633,12 @@ void* PhysicsSolver;
  * 设置键盘、鼠标和手柄输入的处理机制
  */
 void InitializeInputManager(void);
-void* InputSystem;
-void* InputDeviceManager;
-void* KeyboardHandler;
-void* MouseHandler;
-void* ControllerManager;
-void* InputEventQueue;
+void* InputSystemInstance;                  // 输入系统实例
+void* InputDeviceManager;                   // 输入设备管理器
+void* KeyboardInputHandler;                 // 键盘输入处理器
+void* MouseInputHandler;                    // 鼠标输入处理器
+void* GameControllerManager;                // 游戏控制器管理器
+void* InputEventQueue;                      // 输入事件队列
 
  /**
  * @brief 初始化网络管理器
@@ -906,11 +906,11 @@ void* SecurityAccessControl;
  * 设置日志记录、错误跟踪和调试信息输出
  */
 void InitializeLoggingSystem(void);
-void* LoggingSystemInstance;
-void* LogFileHandle;
-uint32_t SystemLogLevelConfiguration;
-void* LogOutputBuffer;
-void* LogRotationManager;
+void* LoggingSystemInstance;                // 日志系统实例
+void* LogFileHandle;                         // 日志文件句柄
+uint32_t SystemLogLevelConfiguration;        // 系统日志级别配置
+void* LogOutputBuffer;                       // 日志输出缓冲区
+void* LogRotationManager;                    // 日志轮转管理器
 
  /**
  * @brief 初始化性能监控器
@@ -919,42 +919,42 @@ void* LogRotationManager;
  * 设置性能指标收集、分析和报告机制
  */
 void InitializePerformanceMonitor(void);
-void* PerformanceMonitorInstance;
-void* PerformanceCounterArray;
-void* PerformanceMetricsTable;
-void* ProfilingDataBuffer;
-uint32_t SystemPerformanceFpsCounter;
-void* MemoryUsageTracker;
-void* CpuUsageMonitor;
-void* GpuPerformanceTracker;
-void* FrameTimeAnalyzer;
-void* NetworkLatencyMonitor;
-void* DiskIOPerformanceTracker;
-void* ThreadPerformanceProfiler;
+void* PerformanceMonitorInstance;           // 性能监控器实例
+void* PerformanceCounterArray;              // 性能计数器数组
+void* PerformanceMetricsTable;               // 性能指标表
+void* ProfilingDataBuffer;                   // 性能分析数据缓冲区
+uint32_t SystemPerformanceFpsCounter;       // 系统性能FPS计数器
+void* MemoryUsageTracker;                    // 内存使用跟踪器
+void* CpuUsageMonitor;                       // CPU使用率监控器
+void* GpuPerformanceTracker;                // GPU性能跟踪器
+void* FrameTimeAnalyzer;                    // 帧时间分析器
+void* NetworkLatencyMonitor;                // 网络延迟监控器
+void* DiskIOPerformanceTracker;             // 磁盘IO性能跟踪器
+void* ThreadPerformanceProfiler;            // 线程性能分析器
 // 资源监控器指针 - 指向资源监控器的指针
-void* ResourceMonitorPtr;
-void* PerformanceReportGenerator;
-void* OptimizationSuggestionEngine;
-void* BenchmarkingTool;
-void* PerformanceThresholdManager;
-void* AlertSystem;
-void* DataCollector;
-void* AnalyticsEngine;
-void* VisualizationTool;
-void* HistoricalDataStorage;
-void* SystemFileSystemSettingsBuffer;
-void* SystemDatabaseSettingsBuffer;
-void* SystemSecuritySettingsBuffer;
-void* SystemLoggingSettingsBuffer;
-void* SystemAudioProcessingBuffer;
-void* SystemNetworkDataBuffer;
-void* SystemPhysicsComputationBuffer;
-void* SystemRenderingCommandBuffer;
-void* SystemInputEventBuffer;
-void* SystemAnimationStateBuffer;
-void* SystemScriptExecutionContext;
-void* SystemFileSystemCacheBuffer;
-void* SystemDatabaseQueryBuffer;
+void* ResourceMonitorInstance;              // 资源监控器实例
+void* PerformanceReportGenerator;           // 性能报告生成器
+void* OptimizationSuggestionEngine;         // 优化建议引擎
+void* BenchmarkingToolInstance;             // 基准测试工具实例
+void* PerformanceThresholdManager;          // 性能阈值管理器
+void* AlertSystemInstance;                  // 警报系统实例
+void* DataCollectorInstance;                // 数据收集器实例
+void* AnalyticsEngineInstance;               // 分析引擎实例
+void* VisualizationToolInstance;             // 可视化工具实例
+void* HistoricalDataStorage;                // 历史数据存储
+void* SystemFileSystemSettingsBuffer;       // 系统文件系统设置缓冲区
+void* SystemDatabaseSettingsBuffer;          // 系统数据库设置缓冲区
+void* SystemSecuritySettingsBuffer;          // 系统安全设置缓冲区
+void* SystemLoggingSettingsBuffer;           // 系统日志设置缓冲区
+void* SystemAudioProcessingBuffer;           // 系统音频处理缓冲区
+void* SystemNetworkDataBuffer;               // 系统网络数据缓冲区
+void* SystemPhysicsComputationBuffer;         // 系统物理计算缓冲区
+void* SystemRenderingCommandBuffer;           // 系统渲染命令缓冲区
+void* SystemInputEventBuffer;                 // 系统输入事件缓冲区
+void* SystemAnimationStateBuffer;            // 系统动画状态缓冲区
+void* SystemScriptExecutionContext;          // 系统脚本执行上下文
+void* SystemFileSystemCacheBuffer;           // 系统文件系统缓存缓冲区
+void* SystemDatabaseQueryBuffer;              // 系统数据库查询缓冲区
 void* SystemSecurityValidationBuffer;
 void* SystemLoggingOutputBuffer;
 void* SystemPerformanceMetricBuffer;
