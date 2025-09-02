@@ -21663,7 +21663,7 @@ uint8_t * GetResourceDataPointerA(void)
   uint32_t ResourceHashValidationResultPrimary;
   float primaryValidationResult;
   float tertiaryFloatResult;
-  float FloatingPointResultThird;
+  float resourceHashValue;
   float secondaryFloatResult;
   float resourceHashValidationValue;
   float CalculatedFloatResult;
@@ -21921,7 +21921,7 @@ uint8_t * GetResourceDataPointerB(void)
   uint32_t ResourceHashValidationResultPrimary;
   float primaryValidationResult;
   float tertiaryFloatResult;
-  float FloatingPointResultThird;
+  float resourceHashValue;
   float secondaryFloatResult;
   float resourceHashValidationValue;
   float CalculatedFloatResult;
@@ -22790,7 +22790,7 @@ uint64_t ResourceHashValidationHandler(void)
   float FloatingPointCalculationResult;
   float primaryValidationResult;
   float tertiaryFloatResult;
-  float FloatingPointResultThird;
+  float resourceHashValue;
   float secondaryFloatResult;
   float resourceHashValidationValue;
   float objectContextPointer;
@@ -23164,7 +23164,7 @@ uint64_t ResourceContextValidationHandler(void)
   float FloatingPointCalculationResult;
   float primaryValidationResult;
   float tertiaryFloatResult;
-  float FloatingPointResultThird;
+  float resourceHashValue;
   float secondaryFloatResult;
   float resourceHashValidationValue;
   float objectContextPointer;
@@ -23421,7 +23421,7 @@ uint64_t ResourceIntegrityValidationHandler(void)
   float FloatingPointCalculationResult;
   float primaryValidationResult;
   float tertiaryFloatResult;
-  float FloatingPointResultThird;
+  float resourceHashValue;
   float secondaryFloatResult;
   float resourceHashValidationValue;
   float objectContextPointer;
@@ -23680,7 +23680,7 @@ uint64_t ProcessFloatParameterResourceHash(float ObjectContext)
   float FloatingPointCalculationResult;
   float primaryValidationResult;
   float tertiaryFloatResult;
-  float FloatingPointResultThird;
+  float resourceHashValue;
   float secondaryFloatResult;
   float resourceHashValidationValue;
   float objectContextPointer;
@@ -28462,10 +28462,12 @@ uint64_t ProcessResourceCertificateValidation(int64_t ObjectContext,int64_t *Val
   uint16_t ResourceValidationBuffer [4];
   uint16_t StackContextBuffer [4];
   uint32_t ResourceOperationBuffer [2];
-  uint32_t ResourceValidationByte2;
-  uint32_t ResourceValidationByte3;
-  uint32_t ValidationParameter;
-  uint32_t ValidationParam2;
+  uint32_t ResourceSecurityByteFirst;
+  uint32_t ResourceSecurityByteSecond;
+  uint32_t ResourceSecurityByteThird;
+  uint32_t ResourceSecurityByteFourth;
+  uint32_t ValidationParameterPrimary;
+  uint32_t ValidationParameterSecondary;
   uint8_t ResourceChecksumData [40];
   
   PackageValidationStatusCodePointer = (uint32_t *)AllocateMemoryBlock();
