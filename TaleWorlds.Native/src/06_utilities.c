@@ -7927,25 +7927,25 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
   uint64_t SecurityToken;
   
   SecurityToken = SecurityEncryptionKey ^ (uint64_t)SystemSecurityBuffer;
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &contextBuffer);
-  if (ValidationStatus == 0) {
-    if (contextBuffer != 0) {
-      contextBuffer = contextBuffer + -8;
+  SystemValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ContextBuffer);
+  if (SystemValidationStatus == 0) {
+    if (ContextBuffer != 0) {
+      ContextBuffer = ContextBuffer + -8;
     }
-    if (*(int64_t *)(contextBuffer + 0x18) != 0) {
-      objectDataPointer = *(int64_t *)(contextBuffer + ObjectContextSecondaryDataOffset) + ObjectContextExtendedDataOffset;
+    if (*(int64_t *)(ContextBuffer + 0x18) != 0) {
+      ObjectDataPointer = *(int64_t *)(ContextBuffer + ObjectContextSecondaryDataOffset) + ObjectContextExtendedDataOffset;
       AllocatedMemory = (**(code **)(**(int64_t **)(SystemContext + ObjectVirtualMethodTableOffset) + ObjectContextMatrixRotationDataOffset))
-                        (*(int64_t **)(SystemContext + ObjectVirtualMethodTableOffset), objectDataPointer, 1);
+                        (*(int64_t **)(SystemContext + ObjectVirtualMethodTableOffset), ObjectDataPointer, 1);
       if (AllocatedMemory == 0) {
-              ProcessMemoryAllocationFailure(objectDataPointer, ProcessingBuffer);
+              ProcessMemoryAllocationFailure(ObjectDataPointer, SystemProcessingBuffer);
       }
-      pointerReference = (int64_t *)(AllocatedMemory + AllocatedMemoryPointerOffset);
-      if (((int64_t *)*pointerReference != pointerReference) || (*(int64_t **)(AllocatedMemory + MemoryAllocationTrailerSize) != pointerReference)) {
+      PointerReference = (int64_t *)(AllocatedMemory + AllocatedMemoryPointerOffset);
+      if (((int64_t *)*PointerReference != PointerReference) || (*(int64_t **)(AllocatedMemory + MemoryAllocationTrailerSize) != PointerReference)) {
               ProcessSystemObject(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
       }
     }
   }
-        CleanupSecurityToken(SecurityToken ^ (uint64_t)SecurityBuffer);
+        CleanupSecurityToken(SecurityToken ^ (uint64_t)SystemSecurityBuffer);
 }
 
 
