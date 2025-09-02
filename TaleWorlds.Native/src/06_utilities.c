@@ -3000,13 +3000,13 @@ uint8_t ModuleDataTemplateDuodenary;                  // 第十二系统模块�
  * 确保所有日志消息都被写入输出目标
  */
 void FlushLogBuffer(void);
-uint8_t ResourceQueue;
-uint8_t ResourceStackManager;
-uint8_t ResourceHeap;
-uint8_t ResourceCacheManager;
-uint8_t MemoryScheduler;
-uint8_t MemoryOptimizer;
-uint8_t LogConfigurationData;
+uint8_t ResourceQueueManager;
+uint8_t ResourceStackController;
+uint8_t ResourceHeapManager;
+uint8_t ResourceCacheController;
+uint8_t MemorySchedulerService;
+uint8_t MemoryOptimizerService;
+uint8_t LogConfigurationManager;
 
  /**
  * @brief 设置日志级别
@@ -12998,11 +12998,11 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
   uint8_t ResourceDecryptionKey [8];
   uint8_t EncryptionBuffer [40];
   
-  ResourceCount = *(uint *)(ObjectContext + ObjectContextEncryptionOffset);
-  ContextProcessingStatusCode = 0;
-  OperationStatusCode = 0;
-  if ((ResourceCount >> 0x1a & 1) == 0) goto ResourceValidationComplete;
-  if ((ResourceCount & 1) == 0) {
+  ResourceEntryCount = *(uint *)(ObjectContext + ObjectContextEncryptionOffset);
+  ContextProcessingStatus = 0;
+  OperationStatus = 0;
+  if ((ResourceEntryCount >> 0x1a & 1) == 0) goto ResourceValidationComplete;
+  if ((ResourceEntryCount & 1) == 0) {
     DataHandlerContextPointer = (int64_t *)(dataContext + 0x70);
     ResourceAllocationFlag = 0;
     ResourceCapacityMultiplier = 0;
@@ -43543,7 +43543,7 @@ void ValidateSystemResourceIntegrity(uint8_t ObjectContext,int64_t ValidationCon
  * 
  * 原始函数名为Unwind_180904510，现已重命名为InitializeSystemResourceHandlerExtended2
  */
-void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void InitializeSystemResourceHandlerSecondary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -43587,7 +43587,7 @@ void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t Vali
  * 
  * 原始函数名为Unwind_180904530，现已重命名为InitializeSystemResourceHandlerExtended3
  */
-void InitializeSystemResourceHandlerExtended3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void InitializeSystemResourceHandlerTertiary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -44176,7 +44176,7 @@ void ExecuteSystemResourceCleanupCallback(uint8_t ObjectContext,int64_t Validati
  * 
  * 原始函数名为Unwind_180904710，现已重命名为ExecuteSystemResourceCleanupCallbackWrapper2
  */
-void ExecuteSystemResourceCleanupCallbackWrapper2(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupCallbackSecondary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *callbackPointer;
@@ -44206,7 +44206,7 @@ void ExecuteSystemResourceCleanupCallbackWrapper2(uint8_t ObjectContext, int64_t
  * 
  * 原始函数名为Unwind_180904730，现已重命名为ExecuteSystemResourceCleanupCallbackWrapper3
  */
-void ExecuteSystemResourceCleanupCallbackWrapper3(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupCallbackTertiary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *callbackPointer;
@@ -44282,7 +44282,7 @@ void CleanupSynchronizationResources(uint8_t ObjectContext,int64_t ValidationCon
  * 
  * 原始函数名为Unwind_180904760，现已重命名为ExecuteSystemResourceCleanupCallbackWrapper6
  */
-void ExecuteSystemResourceCleanupCallbackWrapper6(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupCallbackAdvanced(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharacterPointer;
@@ -46146,7 +46146,7 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数会将指定位置的指针设置为资源哈希表004
  */
-void SetResourceHashTable004AtOffset50(uint8_t ObjectContext,int64_t ValidationContext)
+void SetResourceHashTablePrimaryAtOffset50(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x50) = &ResourceHashTable004;
@@ -51587,7 +51587,7 @@ void UnwindAndCleanupResourceIndexPointer(uint8_t ObjectContext,int64_t Validati
  * @note 此函数通常在异常处理的unwind过程中调用
  * @warning 调用此函数会永久销毁相关资源
  */
-void UnwindResourceContextCleanupType1(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindResourceContextCleanupBasic(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -51634,7 +51634,7 @@ void UnwindResourceContextCleanupType1(uint8_t ObjectContext,int64_t ValidationC
  * @note 此函数通常在异常处理的unwind过程中调用
  * @warning 调用此函数会永久销毁相关资源
  */
-void UnwindResourceContextCleanupType2(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindResourceContextCleanupExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -51668,7 +51668,7 @@ void UnwindResourceContextCleanupType2(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void UnwindResourceContextCleanupType3(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindResourceContextCleanupAdvanced(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -74739,7 +74739,12 @@ void ExecuteResourceIndexValidationAndMemoryManagementThird(uint8_t ObjectContex
 
 
 
-void Unwind_18090a980(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源表的资源释放函数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void Unwind_ReleaseSystemResourceTableEntry(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -74753,7 +74758,12 @@ void Unwind_18090a980(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a9a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统操作上下文的资源释放函数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void Unwind_ExecuteSystemOperationContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -74767,7 +74777,12 @@ void Unwind_18090a9a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a9b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据中的标志位并释放系统资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void Unwind_ClearResourceDataFlagsAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
