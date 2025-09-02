@@ -2900,8 +2900,8 @@ uint8_t SystemMemoryConfigSecureBackup;   // 系统内存安全备用配置数�
 uint8_t SystemMemoryConfigPrimary;     // 系统内存主要配置数据
 uint8_t SystemMemoryConfigSecureExtended; // 系统内存安全扩展配置数据
 uint8_t SystemMemoryConfigOptimized;    // 系统内存优化配置数据
-uint8_t SystemMemoryConfigPerformance;  // 系统内存性能配置项
-uint8_t SystemMemoryConfigBalanced;    // 系统内存平衡配置项
+uint8_t SystemMemoryConfigPerformance;  // 系统内存性能配置数据
+uint8_t SystemMemoryConfigBalanced;    // 系统内存平衡配置数据
 
  /**
  * @brief 配置日志输出
