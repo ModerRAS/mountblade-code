@@ -4999,23 +4999,23 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
 
 {
   uint64_t ResourceValidationResult;
-  int64_t stackOffset;
+  int64_t StackOffset;
   
-  validationResult = ValidateObjectContext(*(uint32_t *)(advancedObjectHandle + 0x10),&stackOffset);
-  if ((int)validationResult != 0) {
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(AdvancedObjectHandle + 0x10), &StackOffset);
+  if ((int)ValidationResult != 0) {
     return ResourceValidationResult;
   }
-  if (stackOffset == 0) {
-    stackOffset = 0;
+  if (StackOffset == 0) {
+    StackOffset = 0;
   }
   else {
-    stackOffset = stackOffset + -8;
+    StackOffset = StackOffset + -8;
   }
-  if (*(int64_t *)(stackOffset + 0x10) == 0) {
+  if (*(int64_t *)(StackOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(stackOffset + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10), 1);
 }
 
 
@@ -5031,20 +5031,20 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
 uint32_t ValidateAndExecuteSystemExit(void)
 
 {
-  int64_t systemRegister;
-  int64_t calculatedOffset;
+  int64_t SystemRegister;
+  int64_t CalculatedOffset;
   
-  if (systemRegister == 0) {
-    calculatedOffset = 0;
+  if (SystemRegister == 0) {
+    CalculatedOffset = 0;
   }
   else {
-    calculatedOffset = systemRegister + -8;
+    CalculatedOffset = SystemRegister + -8;
   }
-  if (*(int64_t *)(calculatedOffset + 0x10) == 0) {
+  if (*(int64_t *)(CalculatedOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(calculatedOffset + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(CalculatedOffset + 0x10), 1);
 }
 
 
