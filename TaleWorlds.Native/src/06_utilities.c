@@ -13450,9 +13450,9 @@ uint8_t ValidateAndGetBufferContext(int64_t ObjectContext,uint8_t ValidationCont
   uint GraphicsTwelfthOperationFlag;
   uint32_t GraphicsThirteenthOperationFlag;
   uint32_t GraphicsFourteenthOperationFlag;
-  uint32_t GraphicsQuindenaryOperationFlag;
+  uint32_t GraphicsFifteenthOperationFlag;
   uint8_t *GraphicsDataPointerTertiary;
-  uint32_t GraphicsSexdenaryOperationFlag;
+  uint32_t GraphicsSixteenthOperationFlag;
   uint GraphicsSeptendenaryOperationFlag;
   uint32_t GraphicsOctodenaryOperationFlag;
   uint8_t GraphicsDataBufferSecondary [520];
