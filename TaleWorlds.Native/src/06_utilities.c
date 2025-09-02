@@ -6590,7 +6590,7 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
     *(int *)(bufferContext + 0x2c) = ValidationStatus;
   }
   *(int64_t *)(*(int64_t *)(bufferContext + 0x20) + (int64_t)*(int *)(bufferContext + 0x28) * 8) =
-       temporaryStackBuffer;
+       memoryContextBuffer;
   *(int *)(bufferContext + 0x28) = *(int *)(bufferContext + 0x28) + 1;
 ErrorHandler:
                     // WARNING: Subroutine does not return
@@ -8532,10 +8532,10 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int6
   uint8_t HashValidationResult;
   int64_t ContextPointer;
   uint8_t ObjectContextData;
-  int64_t StackBuffer;
+  int64_t ValidationContextBuffer;
   
   ValidationFloatValue = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
-  StackBuffer = CONCAT44(StackBuffer.VectorComponent,ValidationFloatValue);
+  ValidationContextBuffer = CONCAT44(ValidationContextBuffer.VectorComponent,ValidationFloatValue);
   if (((uint)ValidationFloatValue & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
