@@ -50709,7 +50709,7 @@ ulong long FUN_18006f620(void* ResourceManagerPointer,void* ConfigurationDataPoi
   FUN_18004c2b0(ConfigurationDataPointer);
   localResourceOffset = SystemRenderManagerPointer;
   if (((isSystemBusy) && (SystemRenderManagerPointer != 0)) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
-    FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(SystemRuntimeCounter + 0x2028) != '\0',
+    ProcessSystemResourceAllocation(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(SystemRuntimeCounter + 0x2028) != '\0',
                   *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
     *(uint8_t *)(localResourceOffset + 0x1609) = 1;
   }
@@ -50871,11 +50871,11 @@ ulong long FUN_18006f940(void* ResourceManagerPointer,void* ConfigurationDataPoi
     if (SystemSilentMode == '\0') {
       if (bVar15) {
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
-          FUN_1801719d0(*(long long *)(SystemStatusFlagsPointer + 8));
+          ValidateSystemResourceStatus(*(long long *)(SystemStatusFlagsPointer + 8));
         }
         bufferBaseAddress = SystemRenderManagerPointer;
         if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
-          FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),
+          ProcessSystemResourceAllocation(*(void* *)(SystemStatusFlagsPointer + 8),
                         *(char *)(SystemRuntimeCounter + 0x2028) != '\0',
                         *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
           *(uint8_t *)(bufferBaseAddress + 0x1609) = 1;
@@ -50949,7 +50949,7 @@ ulong long FUN_18006f940(void* ResourceManagerPointer,void* ConfigurationDataPoi
     }
     if ((SystemSilentMode == '\0') && (bVar15)) {
       if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
-        FUN_1801718f0();
+        CleanupSystemResources();
       }
       if (SystemRenderManagerPointer != 0) {
         FUN_180092940(SystemRenderManagerPointer,*(uint8_t *)(SystemRenderManagerPointer + 0x160a));
@@ -51100,11 +51100,11 @@ LAB_180070230:
     if (SystemSilentMode == '\0') {
       if (bVar14) {
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
-          FUN_1801719d0(*(long long *)(SystemStatusFlagsPointer + 8));
+          ValidateSystemResourceStatus(*(long long *)(SystemStatusFlagsPointer + 8));
         }
         localDataIndex = SystemRenderManagerPointer;
         if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
-          FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),
+          ProcessSystemResourceAllocation(*(void* *)(SystemStatusFlagsPointer + 8),
                         *(char *)(SystemRuntimeCounter + 0x2028) != '\0',
                         *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
           *(uint8_t *)(localDataIndex + 0x1609) = 1;
@@ -51203,7 +51203,7 @@ LAB_180070230:
     }
     if ((SystemSilentMode == '\0') && (bVar14)) {
       if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
-        FUN_1801718f0();
+        CleanupSystemResources();
       }
       if (SystemRenderManagerPointer != 0) {
         FUN_180092940(SystemRenderManagerPointer,*(uint8_t *)(SystemRenderManagerPointer + 0x160a));
@@ -51326,7 +51326,7 @@ void FUN_180070680(void* ResourceManagerPointer,void* ConfigurationDataPointer)
   OutputDebugStringA(newThreadLocalStorage);
   localSystemPointer = SystemRenderManagerPointer;
   if (((isSystemBusy) && (SystemRenderManagerPointer != 0)) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
-    FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(SystemRuntimeCounter + 0x2028) != '\0',
+    ProcessSystemResourceAllocation(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(SystemRuntimeCounter + 0x2028) != '\0',
                   *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
     *(uint8_t *)(localSystemPointer + 0x1609) = 1;
   }
@@ -51742,12 +51742,12 @@ LAB_18007113f:
   resourceCounter = SystemRenderManagerPointer;
   if ((SystemSilentMode == '\0') && (bVar2)) {
     if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
-      FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(SystemRuntimeCounter + 0x2028) != '\0',
+      ProcessSystemResourceAllocation(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(SystemRuntimeCounter + 0x2028) != '\0',
                     *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
       *(uint8_t *)(resourceCounter + 0x1609) = 1;
     }
     if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
-      FUN_1801719d0();
+      ValidateSystemResourceStatus();
     }
   }
   puStack_118 = &SystemGlobalDataReference;
@@ -51894,7 +51894,7 @@ LAB_18007113f:
     }
     if ((SystemSilentMode == '\0') && (cStack_11f != '\0')) {
       if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
-        FUN_1801718f0();
+        CleanupSystemResources();
       }
       if (SystemRenderManagerPointer != 0) {
         FUN_180092940(SystemRenderManagerPointer,*(uint8_t *)(SystemRenderManagerPointer + 0x160a));
@@ -52401,13 +52401,13 @@ LAB_1800721e1:
 LAB_1800722f5:
         resourceCounter = SystemRenderManagerPointer;
         if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
-          FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),
+          ProcessSystemResourceAllocation(*(void* *)(SystemStatusFlagsPointer + 8),
                         *(char *)(SystemRuntimeCounter + 0x2028) != '\0',
                         *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
           *(uint8_t *)(resourceCounter + 0x1609) = 1;
         }
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
-          FUN_1801719d0();
+          ValidateSystemResourceStatus();
         }
       }
       else {
@@ -52780,7 +52780,7 @@ LAB_1800729bd:
       FUN_1800f96b0(ThreadLocalStorageEntry,1);
       if (cStack_117 != '\0') {
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
-          FUN_1801718f0();
+          CleanupSystemResources();
         }
         if (SystemRenderManagerPointer != 0) {
           FUN_180092940(SystemRenderManagerPointer,*(uint8_t *)(SystemRenderManagerPointer + 0x160a));
