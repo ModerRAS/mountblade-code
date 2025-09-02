@@ -11305,49 +11305,52 @@ CleanupHandler:
  * @brief 验证并处理数据容器
  * 
  * 该函数负责验证数据容器的完整性，并进行相应的处理操作
+ * 包括资源分配、内存清理和数据验证等步骤
  * 
- * @param ObjectContext 数据容器指针
- * @return 处理结果状态码
+ * @param DataContainerPointer 数据容器指针，包含容器数据和状态信息
+ * @return uint 处理结果状态码，0表示成功，非0表示错误
+ * @note 该函数会处理资源分配和内存清理操作
+ * @warning 如果数据容器验证失败，会返回相应的错误代码
  */
-uint ValidateAndProcessDataContainer(int64_t *ObjectContext)
+uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
 
 {
-  int ProcessingStatusCode;
-  uint ResourceHashValidationResult;
+  int ContainerStatusCode;
+  uint ResourceValidationHash;
   uint OperationResultCode;
   
-  ProcessingStatusCode = *(uint *)((int64_t)ObjectContext + 0xc);
-  OperationResultCode = ResourceHashValidationResult ^ (int)ResourceHashValidationResult >> ErrorResourceValidationFailed;
-  if ((int)(ResourceHashValidationResult - ((int)ResourceHashValidationResult >> ErrorResourceValidationFailed)) < 0) {
-    if (0 < (int)ObjectContext[1]) {
-      return ResourceHashValidationResult;
+  ContainerStatusCode = *(uint *)((int64_t)DataContainerPointer + 0xc);
+  OperationResultCode = ResourceValidationHash ^ (int)ResourceValidationHash >> ErrorResourceValidationFailed;
+  if ((int)(ResourceValidationHash - ((int)ResourceValidationHash >> ErrorResourceValidationFailed)) < 0) {
+    if (0 < (int)DataContainerPointer[1]) {
+      return ResourceValidationHash;
     }
-    if ((0 < (int)ResourceHashValidationResult) && (*ObjectContext != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ObjectContext,&ResourceAllocationTemplate,0x100,1);
+    if ((0 < (int)ResourceValidationHash) && (*DataContainerPointer != 0)) {
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*DataContainerPointer,&ResourceAllocationTemplate,0x100,1);
     }
-    *ObjectContext = 0;
-    ProcessingStatusCode = 0;
-    *(uint32_t *)((int64_t)ObjectContext + 0xc) = 0;
+    *DataContainerPointer = 0;
+    ContainerStatusCode = 0;
+    *(uint32_t *)((int64_t)DataContainerPointer + 0xc) = 0;
   }
-  int ResourceIndex = (int)ObjectContext[1];
+  int ResourceIndex = (int)DataContainerPointer[1];
   if (ResourceIndex < 0) {
     if (ResourceIndex < 0) {
-            memset(*ObjectContext + (int64_t)ResourceIndex * 0xc,0,(uint64_t)(uint)-ResourceIndex * 0xc);
+            memset(*DataContainerPointer + (int64_t)ResourceIndex * 0xc,0,(uint64_t)(uint)-ResourceIndex * 0xc);
     }
   }
-  *(uint32_t *)(ObjectContext + 1) = 0;
-  ProcessingStatusCode = (ResourceHashValidationResult ^ (int)ResourceHashValidationResult >> ErrorResourceValidationFailed) - ((int)ResourceHashValidationResult >> ErrorResourceValidationFailed);
-  if ((int)ResourceHashValidationResult < 1) {
-    return ResourceHashValidationResult;
+  *(uint32_t *)(DataContainerPointer + 1) = 0;
+  ContainerStatusCode = (ResourceValidationHash ^ (int)ResourceValidationHash >> ErrorResourceValidationFailed) - ((int)ResourceValidationHash >> ErrorResourceValidationFailed);
+  if ((int)ResourceValidationHash < 1) {
+    return ResourceValidationHash;
   }
-  if (0 < (int)ObjectContext[1]) {
+  if (0 < (int)DataContainerPointer[1]) {
     return ErrorInvalidObjectHandle;
   }
-  if ((0 < *(int *)((int64_t)ObjectContext + 0xc)) && (*ObjectContext != 0)) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ObjectContext,&ResourceAllocationTemplate,0x100,1);
+  if ((0 < *(int *)((int64_t)DataContainerPointer + 0xc)) && (*DataContainerPointer != 0)) {
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*DataContainerPointer,&ResourceAllocationTemplate,0x100,1);
   }
-  *ObjectContext = 0;
-  *(uint32_t *)((int64_t)ObjectContext + 0xc) = 0;
+  *DataContainerPointer = 0;
+  *(uint32_t *)((int64_t)DataContainerPointer + 0xc) = 0;
   return 0;
 }
 
@@ -11522,53 +11525,55 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
  * 会重新分配更大的内存空间，并复制现有资源到新位置。
  * 
  * @param ResourcePoolHandle 资源池句柄，指向需要扩展的资源池
- * @return 返回操作状态码，0表示成功，非0表示失败
+ * @return uint8_t 返回操作状态码，0表示成功，非0表示失败
+ * @note 该函数会检查当前容量并执行扩展操作
+ * @warning 如果资源池句柄无效或扩展失败，会返回相应的错误代码
  */
 uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
 
 {
-  int CurrentPoolSize;
-  int64_t ResourceCount;
-  uint8_t OperationStatus;
-  uint64_t LoopCounter;
-  int64_t NewPoolSize;
-  uint SignExtendValue;
-  int *resourceIndexPointer;
-  int ResourceCapacity;
-  uint64_t InitializationCounter;
-  uint64_t CopyCounter;
+  int CurrentResourceCount;
+  int64_t TotalResourceCount;
+  uint8_t ExpansionStatus;
+  uint64_t ResourceInitializationCounter;
+  int64_t ExpandedPoolSize;
+  uint ValidationSignValue;
+  int *ResourceIndexPointer;
+  int MaximumResourceCapacity;
+  uint64_t ResourceSetupCounter;
+  uint64_t ResourceCopyCounter;
   
-  ResourceCapacity = *(int *)((int64_t)ResourcePoolHandle + ResourceContextValidationOffset);
-  if (ResourceCapacity == -1) {
+  MaximumResourceCapacity = *(int *)((int64_t)ResourcePoolHandle + ResourceContextValidationOffset);
+  if (MaximumResourceCapacity == -1) {
     return ErrorInvalidObjectHandle;
   }
-  CurrentPoolSize = (int)ResourcePoolHandle[1];
-  if (ResourceCapacity == CurrentPoolSize) {
-    ResourceCapacity = ResourceCapacity * 2;
-    if (ResourceCapacity < 4) {
-      ResourceCapacity = 4;
+  CurrentResourceCount = (int)ResourcePoolHandle[1];
+  if (MaximumResourceCapacity == CurrentResourceCount) {
+    MaximumResourceCapacity = MaximumResourceCapacity * 2;
+    if (MaximumResourceCapacity < 4) {
+      MaximumResourceCapacity = 4;
     }
-    if (((ResourceCapacity <= CurrentPoolSize) || ((int)ResourcePoolHandle[3] != CurrentPoolSize)) || ((int)ResourcePoolHandle[4] != -1)) {
+    if (((MaximumResourceCapacity <= CurrentResourceCount) || ((int)ResourcePoolHandle[3] != CurrentResourceCount)) || ((int)ResourcePoolHandle[4] != -1)) {
       return ErrorInvalidObjectHandle;
     }
-    SignExtendValue = (int)*(uint *)((int64_t)ResourcePoolHandle + 0x1c) >> ErrorResourceValidationFailed;
-    if (((int)((*(uint *)((int64_t)ResourcePoolHandle + 0x1c) ^ SignExtendValue) - SignExtendValue) < ResourceCapacity) &&
-       (OperationStatus = ResourcePoolOperation(ResourcePoolHandle + 2,ResourceCapacity), (int)OperationStatus != 0)) {
-      return OperationStatus;
+    ValidationSignValue = (int)*(uint *)((int64_t)ResourcePoolHandle + 0x1c) >> ErrorResourceValidationFailed;
+    if (((int)((*(uint *)((int64_t)ResourcePoolHandle + 0x1c) ^ ValidationSignValue) - ValidationSignValue) < MaximumResourceCapacity) &&
+       (ExpansionStatus = ResourcePoolOperation(ResourcePoolHandle + 2,MaximumResourceCapacity), (int)ExpansionStatus != 0)) {
+      return ExpansionStatus;
     }
-    OperationStatus = InitializeResourcePool(ResourcePoolHandle,ResourceCapacity);
-    if ((int)OperationStatus != 0) {
-      return OperationStatus;
+    ExpansionStatus = InitializeResourcePool(ResourcePoolHandle,MaximumResourceCapacity);
+    if ((int)ExpansionStatus != 0) {
+      return ExpansionStatus;
     }
-    InitializationCounter = 0;
-    loopCounter = InitializationCounter;
-    if (0 < ResourceCapacity) {
+    ResourceSetupCounter = 0;
+    ResourceInitializationCounter = ResourceSetupCounter;
+    if (0 < MaximumResourceCapacity) {
       do {
-        *(uint32_t *)(*ResourcePoolHandle + loopCounter * 4) = 0xffffffff;
-        loopCounter = loopCounter + 1;
-      } while ((int64_t)loopCounter < (int64_t)ResourceCapacity);
+        *(uint32_t *)(*ResourcePoolHandle + ResourceInitializationCounter * 4) = 0xffffffff;
+        ResourceInitializationCounter = ResourceInitializationCounter + 1;
+      } while ((int64_t)ResourceInitializationCounter < (int64_t)MaximumResourceCapacity);
     }
-    ResourceCount = ResourcePoolHandle[3];
+    TotalResourceCount = ResourcePoolHandle[3];
     loopCounter = InitializationCounter;
     CopyCounter = InitializationCounter;
     if (0 < (int)ResourceCount) {
