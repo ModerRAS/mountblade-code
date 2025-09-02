@@ -52973,7 +52973,7 @@ LAB_1800721e1:
         memcpy(SystemDataPointer0 + SystemContextPointer,ConfigurationDataPointer,(long long)((int)resourceDataIndex7 + 2));
     }
   }
-  FUN_180627e10(&pUnsignedStackFlag110,&SystemDataBufferPointerA8,&SystemProcessFlags58);
+  FinalizeSystemInitialization(&pUnsignedStackFlag110,&SystemDataBufferPointerA8,&SystemProcessFlags58);
   uStack_114 = 0;
   pUnsignedStackFlag110 = &SystemGlobalDataReference;
   if (SystemDataPointer0 != (uint8_t *)0x0) {
@@ -56466,7 +56466,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager, 
             else {
               ResourceCounter = CalculateResourceCount(ResourceDataOffset + 0x120, StackBuffer, ResourcePoolPointer[5] + 0x70);
             }
-            FUN_18063a240(SystemDataPointer, ResourceDataOffset + 0x274, ResourceCounter);
+            ProcessResourceDataAllocation(SystemDataPointer, ResourceDataOffset + 0x274, ResourceCounter);
             PrimaryResourcePointer0 = PrimaryResourcePointer0 + 2;
           } while (PrimaryResourcePointer0 < (long long*)ResourcePoolPointer[8]);
         }
@@ -56714,10 +56714,10 @@ void ConfigureSystemResourceManager(long long SystemResourceManager,long long *C
         SystemContextValue = 0;
         AcquireSystemOperationCounter(&SystemOperationCounter);
         PrimaryResourcePointer = plStack_10;
-        FUN_1800860f0(plStack_10 + 2,lStack_30 + 0x10);
-        FUN_1800860f0(PrimaryResourcePointer + 7,lStack_30 + 0x38);
-        FUN_180086090(PrimaryResourcePointer + 0xc,lStack_30 + 0x60);
-        FUN_180085fb0(PrimaryResourcePointer + 0x11,lStack_30 + 0x88);
+        InitializeResourcePointer(plStack_10 + 2,lStack_30 + 0x10);
+        InitializeResourcePointer(PrimaryResourcePointer + 7,lStack_30 + 0x38);
+        ConfigureResourceSettings(PrimaryResourcePointer + 0xc,lStack_30 + 0x60);
+        SetupResourceParameters(PrimaryResourcePointer + 0x11,lStack_30 + 0x88);
         FUN_180085ec0(PrimaryResourcePointer + 0x19,lStack_30 + 200);
         ReleaseSystemOperationCounter(&SystemOperationCounter);
       }
