@@ -6619,7 +6619,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
 }
     DAT_180d49748 = 0;
     InitializeSystemDataTemplate(0x180d496e0);
-    FUN_1808fc820(FUN_180941dd0);
+    FUN_1808fc820(GetSystemConfigurationTemplate);
     FUN_1808fcb30(&DAT_180d496d0);
   }
   StringIndex = _Mtx_lock(param_1 + 0x6e8);
@@ -6676,8 +6676,8 @@ longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint
   uint *pStringProcessingResult;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                0x48) < _DAT_180d497d0) && (ValidateSystemConfigurationTemplate(&DAT_180d497d0), _DAT_180d497d0 == -1)) {
-    FUN_180320c80(0x180d497e0);
-    FUN_1808fc820(FUN_180941e00);
+    InitializeSystemDataResources(0x180d497e0);
+    FUN_1808fc820(GetSystemDataResources);
     FUN_1808fcb30(&DAT_180d497d0);
   }
   if ((ulonglong)param_3 <= *(ulonglong *)(param_1 + 0x160)) {
