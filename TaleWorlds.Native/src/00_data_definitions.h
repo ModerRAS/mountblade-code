@@ -4992,7 +4992,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       CleanupSystemMemoryBuffers(in_RCX + 0x4cf);
       while( true ) {
         ppplVar3 = *in_RCX[0x4ce];
-        if (ppplVar3 == (longlong ***)&UNK_180a0c2b8) {
+        if (ppplVar3 == (longlong ***)&SystemGlobalDataPointer) {
           cVar6 = *(char *)(in_RCX[0x4ce] + 2) != '\0';
         }
         else {
@@ -5654,7 +5654,7 @@ LAB_180203fb6:
 }
         DAT_180d48da8 = '\x01';
         iStack_2c8 = 0x786;
-        InitializeSystemModuleConfiguration(auStack_258,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798);
+        InitializeSystemModuleConfiguration(auStack_258,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary);
         OutputDebugStringA(auStack_258);
       }
       FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)param_1 + 0x5e) - 1) *
@@ -5821,7 +5821,7 @@ SystemSecurityValidationRoutine:
   SystemSecurityCheck(uStack_58 ^ (ulonglong)auStack_2e8);
 }
     DAT_180d48da8 = '\x01';
-    InitializeSystemModuleConfiguration(unaff_RBP + -0x70,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798,0x786);
+    InitializeSystemModuleConfiguration(unaff_RBP + -0x70,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary,0x786);
     OutputDebugStringA(unaff_RBP + -0x70);
   }
   MemoryAddress = *(ushort *)(unaff_RDI + 0x5c);
@@ -5844,7 +5844,7 @@ SystemSecurityValidationRoutine:
   SystemSecurityCheck(*(ulonglong *)(unaff_RBP + 400) ^ (ulonglong)&stack0x00000000);
 }
   DAT_180d48da8 = 1;
-  InitializeSystemModuleConfiguration(unaff_RBP + -0x70,&UNK_180a177f0,&UNK_180a17770,&UNK_180a17798,0x786);
+  InitializeSystemModuleConfiguration(unaff_RBP + -0x70,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary,0x786);
   OutputDebugStringA(unaff_RBP + -0x70);
   MemoryAddress = *(ushort *)(unaff_RDI + 0x5c);
   fVar3 = *(float *)(unaff_RBP + 0x200);
@@ -5867,7 +5867,7 @@ SystemSecurityValidationRoutine:
 }
         DAT_180d48dac = '\x01';
         lStack_278 = CONCAT44(lStack_278._4_4_,0x4ea);
-        InitializeSystemModuleConfiguration(auStack_238,&UNK_180a177f0,&UNK_180a17830,&UNK_180a17880);
+        InitializeSystemModuleConfiguration(auStack_238,&SystemConfigPrimary,&SystemConfigQuaternary,&SystemConfigQuinary);
         OutputDebugStringA(auStack_238);
       }
       goto LAB_1802a83bc;
@@ -5888,12 +5888,12 @@ SystemSecurityValidationRoutine:
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar7 = *(void **)(param_1 + 8);
     }
-    iVar4 = fopen_s(&puStack_268,puVar7,&UNK_180a0cf4c);
+    iVar4 = fopen_s(&puStack_268,puVar7,&SystemFileOpenMode);
     puStack_260 = puStack_268;
     if (iVar4 != 0) {
       puStack_260 = (void *)0x0;
     }
-    puStack_268 = &UNK_18042d5d0;
+    puStack_268 = &SystemDefaultFilePointer;
     if (puStack_260 == (void *)0x0) goto LAB_1802a83bc;
     puVar7 = puStack_260;
     if (lVar6 != 0) {
@@ -5908,14 +5908,14 @@ LAB_1802a83bc:
 }
         DAT_180d48daa = '\x01';
         puStack_2d8 = (void *)CONCAT44(puStack_2d8._4_4_,0xc88);
-        InitializeSystemModuleConfiguration(auStack_228,&UNK_180a177f0,&UNK_180a17a68,&UNK_180a17880);
+        InitializeSystemModuleConfiguration(auStack_228,&SystemConfigPrimary,&SystemConfigSenary,&SystemConfigQuinary);
         OutputDebugStringA(auStack_228);
       }
       puVar7 = &SystemConstantStringPrimary;
       if (*(void **)(param_1 + 8) != (void *)0x0) {
         puVar7 = *(void **)(param_1 + 8);
       }
-      InitializeSystemDataProcessing(_DAT_180c86928,&UNK_180a17960,puVar7);
+      InitializeSystemDataProcessing(_DAT_180c86928,&SystemConfigOctonary,puVar7);
     }
   }
   cVar3 = ProcessModuleConfigurationValidation(param_3);
@@ -5924,7 +5924,7 @@ LAB_1802a83bc:
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar7 = *(void **)(param_1 + 8);
     }
-    ProcessSystemStringAllocation(&UNK_180a17a18,puVar7);
+    ProcessSystemStringAllocation(&SystemConfigNonary,puVar7);
   }
   else {
     *(uint64_t *)(param_3 + 0x14) = 0;
@@ -5944,12 +5944,12 @@ LAB_1802a912b:
 }
       DAT_180d48dab = '\x01';
       uStack_228 = 0xac7;
-      InitializeSystemModuleConfiguration(auStack_218,&UNK_180a177f0,&UNK_180a179d0,&UNK_180a17880);
+      InitializeSystemModuleConfiguration(auStack_218,&SystemConfigPrimary,&SystemConfigDenary,&SystemConfigQuinary);
       OutputDebugStringA(auStack_218);
     }
   }
   else {
-    ProcessSystemStringAllocation(&UNK_180a17a38);
+    ProcessSystemStringAllocation(&SystemConfigUndenary);
   }
   SystemSecurityCheck(uStack_18 ^ (ulonglong)auStack_248);
 }
@@ -6438,7 +6438,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
   uStack_40 = 0x12;
-  strcpy_s(auStack_38,0x20,&UNK_180a1a918);
+  strcpy_s(auStack_38,0x20,&SystemDefaultTemplatePath);
   FinalizeModuleInitialization();
   puStack_50 = &SystemBufferTemplate;
   SystemSecurityCheck(uStack_18 ^ (ulonglong)auStack_78);
@@ -6725,7 +6725,7 @@ longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlo
       _DAT_180d48de8 = ValidateNetworkRequestResult(NetworkRequestResult);
       pMemoryAllocationResult = (uint64_t *)AllocateSystemMemory(_DAT_180c8ed18,0xf8,8,3);
       ProcessMemoryAllocationResult(pMemoryAllocationResult);
-      *pMemoryAllocationResult = &UNK_180a1b368;
+      *pMemoryAllocationResult = &SystemMemoryPoolPrimary;
       ValidateMemoryAllocationResult(pMemoryAllocationResult);
       _DAT_180d48df0 = pMemoryAllocationResult;
       _DAT_180d48df8 = GetSystemMemoryStatus();
