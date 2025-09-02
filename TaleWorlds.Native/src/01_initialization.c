@@ -50037,15 +50037,25 @@ void CleanupSystemResourceArray(long long *SystemResourcePointer)
 
 
 // 函数: void FUN_18006e640(long long *SystemResourcePointer)
-void FUN_18006e640(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源批量清理函数
+ * 
+ * 该函数负责批量清理系统资源，遍历资源链表并逐个清理每个资源项。
+ * 使用固定步长0x1a8遍历资源，最后调用系统清理函数完成清理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向需要清理的资源数组
+ * 
+ * 原始函数名为FUN_18006e640，现已重命名为CleanupSystemResourceBatch
+ */
+void CleanupSystemResourceBatch(long long *SystemResourcePointer)
 
 {
-  long long nextDataIndex;
-  long long localSystemHandle;
+  long long resourceEndIndex;
+  long long currentResourceHandle;
   
-  nextDataIndex = SystemResourcePointer[1];
-  for (localSystemHandle = *SystemResourcePointer; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x1a8) {
-    FUN_180069530(localSystemHandle);
+  resourceEndIndex = SystemResourcePointer[1];
+  for (currentResourceHandle = *SystemResourcePointer; currentResourceHandle != resourceEndIndex; currentResourceHandle = currentResourceHandle + 0x1a8) {
+    CleanupSystemResourceItem(currentResourceHandle);
   }
   if (*SystemResourcePointer == 0) {
     return;
