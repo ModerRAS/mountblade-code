@@ -3957,24 +3957,24 @@ void CleanupSystemResources(void)
 uint8_t ValidateAndProcessObjectHandle(int64_t objectHandle)
 
 {
-  uint8_t operationResult;
-  int64_t handleBuffer;
+  uint8_t OperationStatusCode;
+  int64_t HandleBufferContext;
   
-  operationResult = ValidateObjectContext(*(uint32_t *)(objectHandle + 0x10), &handleBuffer);
-  if ((int)operationResult != 0) {
-    return operationResult;
+  OperationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandle + 0x10), &HandleBufferContext);
+  if ((int)OperationStatusCode != 0) {
+    return OperationStatusCode;
   }
-  if (handleBuffer == 0) {
-    handleBuffer = 0;
+  if (HandleBufferContext == 0) {
+    HandleBufferContext = 0;
   }
   else {
-    handleBuffer = handleBuffer + -8;
+    HandleBufferContext = HandleBufferContext + -8;
   }
-  if (*(int64_t *)(handleBuffer + 0x10) == 0) {
+  if (*(int64_t *)(HandleBufferContext + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(handleBuffer + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(HandleBufferContext + 0x10), 1);
 }
 
 
@@ -3989,20 +3989,20 @@ uint8_t ValidateAndProcessObjectHandle(int64_t objectHandle)
 uint32_t ValidateObjectHandleFromRegisterV2(void)
 
 {
-  int64_t registerValue;
-  int64_t adjustedPointer;
+  int64_t RegisterValueV2;
+  int64_t AdjustedRegisterPointerV2;
   
-  if (registerValue == 0) {
-    adjustedPointer = 0;
+  if (RegisterValueV2 == 0) {
+    AdjustedRegisterPointerV2 = 0;
   }
   else {
-    adjustedPointer = registerValue + -8;
+    AdjustedRegisterPointerV2 = RegisterValueV2 + -8;
   }
-  if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
+  if (*(int64_t *)(AdjustedRegisterPointerV2 + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(adjustedPointer + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(AdjustedRegisterPointerV2 + 0x10), 1);
 }
 
 
