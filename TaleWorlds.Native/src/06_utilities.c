@@ -404,8 +404,8 @@ void MonitorResourcePerformance(void);
 
 void* SystemResourceManagerHandle;
 uint32_t SystemResourceManagementStatus;
-void* ResourceContextConfiguration;
-void* ResourceContextStatusMonitor;
+void* ResourceConfigurationContext;
+void* ResourceStatusMonitor;
 void* ResourceSmallBufferPool;
 void* ResourceMediumBufferPool;
 void* ResourceLargeBufferPool;
