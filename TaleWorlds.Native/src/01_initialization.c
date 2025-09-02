@@ -44180,7 +44180,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   CreateSystemObject(&SystemDataBufferPointerA8,SystemGlobalStatusFlags + 0x170,AdditionalParameter,ConfigurationFlag,0);
   systemValue = secondarySystemDataBuffer + 3;
   ExecuteSystemCommand(&SystemDataBufferPointerA8,systemValue);
-  *(uint32_t *)((ulong long)secondarySystemDataBuffer + lStack_a0) = 0x706d74;
+  *(uint32_t *)((ulong long)secondarySystemDataBuffer + SystemDataBufferOffset) = 0x706d74;
   secondarySystemDataBuffer = systemValue;
   SystemValidationResult = ValidateSystemMemoryAllocation(&SystemDataBufferPointerA8);
   if (validationStatusFlag == '\0') {
