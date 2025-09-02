@@ -53010,9 +53010,9 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   uint8_t *ResourceBufferPointer130;
   uint SystemMemoryOffset;
   ulong long SystemResourceFlags120;
-  char cStack_118;
-  char cStack_117;
-  uint8_t uStack_116;
+  char SystemStatusByte;
+  char SystemControlByte;
+  uint8_t SystemByteFlag;
   uint StackUnsignedValue114;
   void* *pUnsignedStackFlag110;
   uint8_t *pEncryptionOffset1;
@@ -53137,7 +53137,7 @@ LAB_1800721e1:
   if (validationStatusFlag == '\0') {
     systemCounter = WaitForSingleObject(SystemSemaphoreHandle,0);
     if (systemCounter == 0) {
-      cStack_117 = '\x01';
+      SystemControlByte = '\x01';
       SystemOperationResult = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
       if ((SystemOperationResult == '\0') && (systemCounter = IsDebuggerPresent(), systemCounter != 0)) {
         validationStatusFlag = '\x01';
@@ -53145,7 +53145,7 @@ LAB_1800721e1:
       else {
         validationStatusFlag = '\0';
       }
-      cStack_118 = SystemOperationResult;
+      SystemStatusByte = SystemOperationResult;
       if (SystemAllocationFlagsTemplate == 0) {
 LAB_1800722f5:
         resourceCounter = SystemRenderManagerPointer;
@@ -53162,8 +53162,8 @@ LAB_1800722f5:
       else {
         systemCounter = *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48);
         systemValue = _Thrd_id();
-        cStack_117 = systemValue == systemCounter;
-        if ((bool)cStack_117) goto LAB_1800722f5;
+        SystemControlByte = systemValue == systemCounter;
+        if ((bool)SystemControlByte) goto LAB_1800722f5;
       }
       if (validationStatusFlag != '\0') {
         if ((SystemMode == '\0') || (*(int *)(SystemGlobalStatusFlags + 0x340) == 2)) {
@@ -53171,7 +53171,7 @@ LAB_1800722f5:
           (*systemFunctionPointer)();
           return;
         }
-        uStack_116 = 1;
+        SystemByteFlag = 1;
       }
       pUnsignedStackFlag110 = &SystemGlobalDataReference;
       MemoryBufferAddress = 0;
@@ -53450,7 +53450,7 @@ LAB_1800729bd:
         ThreadLocalStorageEntry = stackParameterA;
       }
       systemCounter = GetSystemContextFlag(ThreadLocalStorageEntry);
-      if ((cStack_118 == '\0') && (systemCounter == 0)) {
+      if ((SystemStatusByte == '\0') && (systemCounter == 0)) {
         if ((SystemGlobalStatusFlags == 0) || (*(char *)(SystemGlobalStatusFlags + 0x141) == '\0')) {
           SystemOperationStatus8 = 0;
         }
@@ -53527,7 +53527,7 @@ LAB_1800729bd:
         ThreadLocalStorageEntry = stackParameterA;
       }
       UpdateThreadLocalStorageEntry(ThreadLocalStorageEntry,1);
-      if (cStack_117 != '\0') {
+      if (SystemControlByte != '\0') {
         if (*(long long *)(SystemGlobalStatusFlags + 8) != 0) {
           CleanupSystemResources();
         }
