@@ -4701,23 +4701,32 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数增加前会验证对象上下文的有效性
  * @warning 如果对象句柄无效或系统状态检查失败，将返回相应的错误代码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，确保对象在使用期间不会被意外释放
+ * 包含对象验证和状态检查机制
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象的上下文信息
+ * @return 操作结果状态码，0表示成功，非0表示失败
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ValidatedSystemObjectPointer;
-  uint8_t SystemValidationStatus;
+  int64_t ValidatedObjectPointer;
+  uint8_t ValidationStatusCode;
   int64_t ObjectContextHandles [4];
   
-  SystemValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
-  if ((int)SystemValidationStatus != 0) {
-    return SystemValidationStatus;
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
+  if ((int)ValidationStatusCode != 0) {
+    return ValidationStatusCode;
   }
   if (ObjectContextHandles[0] != 0) {
     ObjectContextHandles[0] = ObjectContextHandles[0] + -8;
   }
-  ValidatedSystemObjectPointer = *(int64_t *)(ObjectContextHandles[0] + ObjectHandleMemoryOffset);
-  if (ValidatedSystemObjectPointer != 0) {
-    *(int *)(ValidatedSystemObjectPointer + ObjectReferenceCountOffset) = *(int *)(ValidatedSystemObjectPointer + ObjectReferenceCountOffset) + 1;
-    if ((*(char *)(ValidatedSystemObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (SystemValidationStatus = CheckSystemStatus(), (int)SystemValidationStatus != 0)) {
-      return SystemValidationStatus;
+  ValidatedObjectPointer = *(int64_t *)(ObjectContextHandles[0] + ObjectHandleMemoryOffset);
+  if (ValidatedObjectPointer != 0) {
+    *(int *)(ValidatedObjectPointer + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectPointer + ObjectReferenceCountOffset) + 1;
+    if ((*(char *)(ValidatedObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationStatusCode = CheckSystemStatus(), (int)ValidationStatusCode != 0)) {
+      return ValidationStatusCode;
     }
     return 0;
   }
@@ -29760,9 +29769,24 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
+/**
+ * @brief 异常处理函数：解卷主上下文异常处理器
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理主级异常情况的资源清理工作
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
 void UnwindPrimaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
-  if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
+  int64_t* ExceptionHandlerPointer;
+  
+  ExceptionHandlerPointer = (int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset);
+  if (ExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }

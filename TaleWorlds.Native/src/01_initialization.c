@@ -44170,11 +44170,12 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   uint32_t SystemProcessFlags70;
   void* **SystemEncryptionValue;
   long long **ppsystemMemoryOffset;
+  long long **SystemMemoryManagerPointer;
   uint32_t ConcatenatedValue44;
   void* SystemEncryptionKey;
   
   SystemEncryptionKey = 0xfffffffffffffffe;
-  plStack_b0 = *(long long **)(SystemMemoryBlockStorage + 0x18);
+  SystemMemoryManagerPointer = *(long long **)(SystemMemoryBlockStorage + 0x18);
   CreateSystemObject(&SystemDataBufferPointerA8,SystemGlobalStatusFlags + 0x170,AdditionalParameter,ConfigurationFlag,0);
   systemValue = secondarySystemDataBuffer + 3;
   ExecuteSystemCommand(&SystemDataBufferPointerA8,systemValue);
