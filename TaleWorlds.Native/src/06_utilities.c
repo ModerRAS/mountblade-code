@@ -14196,7 +14196,7 @@ void CalculateFloatValueAndValidateResources(void)
   uint8_t StackParameterContextExtended;
   float StackParameter50;
   uint8_t *ResourceDataPointer;
-  int64_t StackBuffer60;
+  int64_t InputParameterLimit;
   int64_t ResourceRegisterPointer;
   uint32_t Xmm6RegisterA;
   uint32_t ResourceContextOffset;
@@ -14204,7 +14204,7 @@ void CalculateFloatValueAndValidateResources(void)
   if (0 < InputParameter) {
     ResourceHashValidationResult2 = (uint64_t)(uint)FloatRegisterValue;
     ResourceHashValidationResultPrimary = (uint64_t)(uint)FloatRegisterValue;
-    StackBuffer60 = InputParameter;
+    InputParameterLimit = InputParameter;
     do {
       LocalContextPointer = *(int64_t *)(RegisterR15 + 0x20);
       resourceTable = *(int64_t *)(ResourceHashValidationResultPrimary + 0x10 + LocalContextPointer);
@@ -14235,7 +14235,7 @@ void CalculateFloatValueAndValidateResources(void)
       ResourceHashValidationResult2 = ResourceHashValidationResult2 + 1;
       ResourceHashValidationResultPrimary = ResourceHashValidationResultPrimary + 0x18;
       ResourceRegisterPointer = StackVariable68;
-    } while ((int64_t)ResourceHashValidationResult2 < StackBuffer60);
+    } while ((int64_t)ResourceHashValidationResult2 < InputParameterLimit);
   }
   ResourceHash7 = *(uint8_t *)(*(int64_t *)(SystemContext + 8) + 800);
   ResourceHash6 = (**(code **)*ResourceDataPointer)(ResourceDataPointer);
@@ -50123,7 +50123,19 @@ void Unwind_ResourceBatchCleanup(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
-void Unwind_180905980(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希并执行清理操作
+ * 
+ * 该函数负责验证系统资源的哈希值，并在验证通过后执行清理操作
+ * 确保资源数据的完整性和安全性，清理无效或损坏的资源
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会验证资源哈希值并在需要时执行系统紧急退出
+ * @warning 如果哈希验证失败，系统可能会执行紧急退出操作
+ */
+void ValidateResourceHashAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -50151,7 +50163,21 @@ void Unwind_180905980(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809059a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理和验证操作
+ * 
+ * 该函数负责执行系统资源的清理和验证操作
+ * 根据提供的清理选项和标志，对资源进行相应的处理
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会根据清理选项和标志执行相应的资源处理
+ * @warning 如果资源表无效，系统可能会执行紧急退出操作
+ */
+void ExecuteResourceCleanupAndValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -50215,7 +50241,19 @@ void DestroySystemMutexLock(void)
 
 
 
-void Unwind_1809059f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证并重置资源上下文
+ * 
+ * 该函数负责验证资源上下文的有效性，并在验证通过后执行重置操作
+ * 确保资源上下文的状态正确，并在需要时执行回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会验证资源上下文并执行相应的回调操作
+ * @warning 如果资源上下文无效，可能会引发系统异常
+ */
+void ValidateAndResetResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -96013,11 +96051,6 @@ void InitializeSystemDataStructureDA(void)
  * 设置全局系统数据结构指针，用于系统初始化
  */
 void InitializeSystemDataStructureDB(void)
-/**
- * 初始化系统数据结构DB
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureDB(void)
 
 {
   SystemDataStructurePointerDB = &SystemDataStructure;
@@ -96027,8 +96060,7 @@ void InitializeSystemDataStructureDB(void)
 
 
 
- void ResourceOperationsProcessor(void)
-/**
+ /**
  * @brief 处理资源操作
  * 
  * 该函数负责处理资源相关的操作任务
@@ -96046,8 +96078,7 @@ void ResourceOperationsProcessor(void)
 
 
 
- void ResourceIntegrityValidator(void)
-/**
+ /**
  * @brief 验证资源完整性
  * 
  * 该函数负责验证系统中的资源完整性
@@ -96065,8 +96096,7 @@ void ResourceIntegrityValidator(void)
 
 
 
- void DestroyMutexResource(void)
-/**
+ /**
  * @brief 销毁互斥锁资源
  * 
  * 该函数负责销毁指定的互斥锁资源
