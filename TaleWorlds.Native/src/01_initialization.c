@@ -38929,7 +38929,20 @@ long long ManageSystemResourceAllocationPool(void)
 
 
 
-void* * FUN_18005ee30(long long *SystemResourcePointer,char ConfigurationDataPointer,uint8_t *AdditionalParameter)
+/**
+ * @brief 创建和初始化系统线程对象
+ * 
+ * 该函数负责创建和初始化系统线程对象，根据不同的配置数据
+ * 创建不同类型的线程对象，并进行相应的初始化设置。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针，决定创建的线程对象类型
+ * @param AdditionalParameter 附加参数指针，用于返回创建状态
+ * @return 创建的线程对象指针，创建失败时返回NULL
+ * 
+ * 原始函数名为FUN_18005ee30，现已重命名为CreateAndInitializeSystemThreadObject
+ */
+void* * CreateAndInitializeSystemThreadObject(long long *SystemResourcePointer,char ConfigurationDataPointer,uint8_t *AdditionalParameter)
 
 {
   long long *PrimaryResourcePointer;
@@ -39208,7 +39221,19 @@ LAB_18005f30a:
 
 
 
-void* FUN_18005f340(long long SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 扩展系统资源分配器
+ * 
+ * 该函数负责扩展系统资源分配器，增加资源容量和处理能力。
+ * 主要用于系统资源的动态扩展和管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 扩展后的资源指针
+ * 
+ * 原始函数名为FUN_18005f340，现已重命名为ExpandSystemResourceAllocator
+ */
+void* ExpandSystemResourceAllocator(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -40068,7 +40093,19 @@ ulong long FUN_180060080(long long SystemResourcePointer,long long *Configuratio
 
 
 
-void* FUN_1800601c0(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 初始化系统资源上下文
+ * 
+ * 该函数负责初始化系统资源上下文，设置资源的环境和状态。
+ * 主要用于系统资源的上下文管理和初始化。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 初始化后的上下文指针
+ * 
+ * 原始函数名为FUN_1800601c0，现已重命名为InitializeSystemResourceContext
+ */
+void* InitializeSystemResourceContext(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_180060200();
@@ -40398,7 +40435,21 @@ void ConfigureSystemResources(void* *SystemResourcePointer,void* ConfigurationDa
 
 
 
-void* FUN_180060630(void* SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 释放系统资源内存
+ * 
+ * 该函数负责释放系统资源的内存，根据配置标志决定是否执行释放操作。
+ * 主要用于系统资源的内存管理和清理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 释放后的资源指针
+ * 
+ * 原始函数名为FUN_180060630，现已重命名为ReleaseSystemResourceMemory
+ */
+void* ReleaseSystemResourceMemory(void* SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
