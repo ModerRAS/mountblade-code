@@ -27581,7 +27581,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   uint8_t SystemStackBufferE8 [16];
   void* *punsignedValueD8;
   void* SystemResourcePointerD0;
-  int iStack_c8;
+  int IntegerStackC8;
   ulong long unsignedValue18;
   
   systemFlag1A0 = 0xfffffffffffffffe;
@@ -27602,10 +27602,10 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   *SystemDataPointer = 0x3a757067;
   *(void*2 *)(SystemDataPointer + 1) = 0x20;
   *(int *)(ConfigurationDataPointer + 0x10) = systemCounter;
-  if (0 < iStack_c8) {
-    ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + iStack_c8);
+  if (0 < IntegerStackC8) {
+    ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + IntegerStackC8);
       memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),SystemResourcePointerD0,
-           (long long)(iStack_c8 + 1));
+           (long long)(IntegerStackC8 + 1));
   }
   ExecuteSystemCommand(ConfigurationDataPointer,systemResult + 6);
   *(void*2 *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
