@@ -8027,11 +8027,11 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t ComparisonParameter)
   }
   ComparisonResult = ValidateObjectContextAndProcessData(ComparisonParameter,ObjectValidationContext + 0x25,ObjectValidationContext + ObjectContextProcessingDataOffset);
   if ((int)ComparisonResult == 0) {
-    FloatValue = *(float *)(ObjectValidationContext + ObjectContextProcessingDataOffset);
-    if ((*(float *)(ValidationDataPointer + 0x38) <= FloatValue) &&
-       (FloatValue < *(float *)(ValidationDataPointer + 0x3c) || FloatValue == *(float *)(ValidationDataPointer + 0x3c))) {
+    ProcessedFloatValue = *(float *)(ObjectValidationContext + ObjectContextProcessingDataOffset);
+    if ((*(float *)(ValidationDataPointer + 0x38) <= ProcessedFloatValue) &&
+       (ProcessedFloatValue < *(float *)(ValidationDataPointer + 0x3c) || ProcessedFloatValue == *(float *)(ValidationDataPointer + 0x3c))) {
       ComparisonResult = *(uint8_t *)(SystemValidationContext + 0x98);
-      *(float *)(ResultStackBuffer + 4) = FloatValue;
+      *(float *)(ResultStackBuffer + 4) = ProcessedFloatValue;
             ReleaseSystemContextResources(ComparisonResult);
     }
     ComparisonResult = 0x1c;
@@ -8050,28 +8050,28 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t ComparisonParameter)
  * @param ComparisonParameter 比较参数，用于控制比较行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
-uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t Parameter)
+uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t SimplifiedComparisonParameter)
 
 {
-  float ProcessedFloatParameter;
-  uint8_t OperationResult;
-  int64_t DataPointer;
-  int64_t SystemContext;
-  int64_t ObjectContext;
-  int64_t StackBuffer;
+  float SimplifiedProcessedFloatValue;
+  uint8_t SimplifiedComparisonResult;
+  int64_t SimplifiedDataPointer;
+  int64_t SimplifiedSystemContext;
+  int64_t SimplifiedObjectContext;
+  int64_t SimplifiedStackBuffer;
   
-  HashValidationResult = ValidateObjectContextAndProcessData(ObjectContext,ProcessingContext + 0x25,ProcessingContext + 0x20);
-  if ((int)ValidationResult == 0) {
-    FirstFloatValue = *(float *)(ProcessingContext + 0x20);
-    if ((*(float *)(ResourceContext + 0x38) <= FirstFloatValue) &&
-       (FirstFloatValue < *(float *)(ResourceContext + 0x3c) || FirstFloatValue == *(float *)(ResourceContext + 0x3c))) {
-      ValidationResult = *(uint8_t *)(SystemExecutionPointer + 0x98);
-      *(float *)(ResourceContextSecondary + 4) = FirstFloatValue;
-            ReleaseSystemContextResources(ValidationResult);
+  SimplifiedHashValidationResult = ValidateObjectContextAndProcessData(SimplifiedObjectContext,SimplifiedProcessingContext + 0x25,SimplifiedProcessingContext + 0x20);
+  if ((int)SimplifiedValidationResult == 0) {
+    SimplifiedFirstFloatValue = *(float *)(SimplifiedProcessingContext + 0x20);
+    if ((*(float *)(SimplifiedResourceContext + 0x38) <= SimplifiedFirstFloatValue) &&
+       (SimplifiedFirstFloatValue < *(float *)(SimplifiedResourceContext + 0x3c) || SimplifiedFirstFloatValue == *(float *)(SimplifiedResourceContext + 0x3c))) {
+      SimplifiedValidationResult = *(uint8_t *)(SimplifiedSystemExecutionPointer + 0x98);
+      *(float *)(SimplifiedResourceContextSecondary + 4) = SimplifiedFirstFloatValue;
+            ReleaseSystemContextResources(SimplifiedValidationResult);
     }
-    ValidationResult = 0x1c;
+    SimplifiedValidationResult = 0x1c;
   }
-  return ResourceHashValidationResult;
+  return SimplifiedResourceHashValidationResult;
 }
 
 
