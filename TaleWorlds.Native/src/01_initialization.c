@@ -50436,8 +50436,21 @@ void FUN_18006efc0(void* *ResourceManagerPointer,void* ConfigurationDataPointer,
 
 
 
-// 函数: void FUN_18006f160(long long *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18006f160(long long *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void UpdateSystemResourceCounter(long long *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 更新系统资源计数器
+ * 
+ * 该函数负责更新系统资源的计数器，管理资源的使用统计。
+ * 它会锁定资源管理器，更新计数器值，并在必要时清理资源。
+ * 
+ * @param ResourceManagerPointer 系统资源指针，指向资源管理器数据结构
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18006f160，现已重命名为UpdateSystemResourceCounter
+ */
+void UpdateSystemResourceCounter(long long *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -50465,8 +50478,18 @@ void FUN_18006f160(long long *ResourceManagerPointer,void* ConfigurationDataPoin
 
 
 
-// 函数: void FUN_18006f310(long long *ResourceManagerPointer)
-void FUN_18006f310(long long *ResourceManagerPointer)
+// 函数: void CleanupSystemResourceHandle(long long *ResourceManagerPointer)
+/**
+ * @brief 清理系统资源句柄
+ * 
+ * 该函数负责清理系统资源句柄，释放相关资源并清理内存。
+ * 这是一个简单的资源清理函数，确保资源句柄被正确释放。
+ * 
+ * @param ResourceManagerPointer 系统资源指针，指向需要清理的资源句柄
+ * 
+ * 原始函数名为FUN_18006f310，现已重命名为CleanupSystemResourceHandle
+ */
+void CleanupSystemResourceHandle(long long *ResourceManagerPointer)
 
 {
   if ((long long *)*ResourceManagerPointer != ResourceManagerPointer) {
