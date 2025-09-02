@@ -89,9 +89,9 @@
 #define SystemMutexQuinaryAddress 0x180c4f498
 #define SystemMutexSenaryAddress 0x180c4f4a0
 #define SystemMutexSeptenaryAddress 0x180c4f4a8
-#define SystemMutexOctonaryAddress SystemMutexOctonaryAddress
-#define SystemMutexNonaryAddress SystemMutexNonaryAddress
-#define SystemMutexDenaryAddress SystemMutexDenaryAddress
+#define SystemMutexOctonaryAddress 0x180c4f4b0
+#define SystemMutexNonaryAddress 0x180c4f4b8
+#define SystemMutexDenaryAddress 0x180c4f4c0
 #define SystemMemoryCleanupAddress SystemMemoryCleanupAddress
 #define SystemContextStatusFlag1Offset 0x180
 #define SystemContextStatusFlag2Offset 0x184
