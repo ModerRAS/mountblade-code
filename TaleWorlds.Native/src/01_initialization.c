@@ -25315,7 +25315,7 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
   ulong long creationFlags8;
   ulong long creationFlags9;
   uint allocationContext0;
-  bool bVar31;
+  bool isSystemResourceMatch;
   uint32_t extraout_XMM0_Da;
   uint32_t extraout_XMM0_Da_00;
   uint8_t auStack_368 [32];
@@ -25456,12 +25456,12 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
         SystemUtilityHandler(extraout_XMM0_Da,resourceCounter);
         if (unsignedSystemValue8 == 8) {
           systemFlag = strcmp(ThreadLocalStorage,&SystemResourceTemplateDenary);
-          bVar31 = systemFlag == 0;
+          isSystemResourceMatch = systemFlag == 0;
         }
         else {
-          bVar31 = false;
+          isSystemResourceMatch = false;
         }
-        if (bVar31) {
+        if (isSystemResourceMatch) {
 
 /**
  * @brief 更新系统渲染管理器
@@ -25477,17 +25477,17 @@ void UpdateSystemRenderManager(long long ResourceManagerPointer)
   int *pointerToInteger1;
   uint32_t creationFlags;
   int MemoryComparisonResult;
-  bool bVar4;
+  bool isTextureUpdateRequired;
   void* currentThreadId;
-  bool bVar6;
+  bool isSystemInitialized;
   
   pointerToInteger1 = (int *)(ResourceManagerPointer + 0x3d0);
   if (((int)*(float *)(SystemRenderManagerPointer + 0x17ec) == *(int *)(ResourceManagerPointer + 0x3cc)) &&
      ((int)*(float *)(SystemRenderManagerPointer + 0x17f0) == *pointerToInteger1)) {
-    bVar4 = false;
+    isTextureUpdateRequired = false;
   }
   else {
-    bVar4 = true;
+    isTextureUpdateRequired = true;
     UpdateRenderManagerSystem(SystemRenderManagerPointer,*(int *)(ResourceManagerPointer + 0x3cc),*pointerToInteger1);
   }
   if (*(int *)(*(long long *)(ResourceManagerPointer + 8) + 0x38) == 2) {
@@ -25500,31 +25500,31 @@ void UpdateSystemRenderManager(long long ResourceManagerPointer)
       ProcessNodeManagerOperation(SystemNodeManagerPointer,creationFlags);
       ProcessSystemResourceData(*(void* *)(ResourceManagerPointer + 8),*(uint32_t *)(ResourceManagerPointer + 0x3cc),*pointerToInteger1,
                     *(uint8_t *)(ResourceManagerPointer + 0x3d5));
-      bVar6 = true;
+      isSystemInitialized = true;
       goto ErrorHandler;
     }
   }
   else {
     if (*(char *)(ResourceManagerPointer + 0x3d4) != '\0') {
       systemCounter = *(int *)(SystemNodeManagerPointer + 0x1ea0);
-      if ((*(char *)(ResourceManagerPointer + 0x3d5) != '\0') || (bVar4)) {
+      if ((*(char *)(ResourceManagerPointer + 0x3d5) != '\0') || (isTextureUpdateRequired)) {
         currentThreadId = 1;
       }
       else {
         currentThreadId = 0;
       }
       ProcessSystemResourceData(*(long long *)(ResourceManagerPointer + 8),*(uint32_t *)(ResourceManagerPointer + 0x3cc),*pointerToInteger1,currentThreadId);
-      bVar6 = systemCounter == 2;
+      isSystemInitialized = systemCounter == 2;
       goto ErrorHandler;
     }
-    if (!bVar4) {
+    if (!isTextureUpdateRequired) {
       return;
     }
   }
-  bVar6 = false;
+  isSystemInitialized = false;
 ErrorHandler:
-  UpdateTextureManagerSystem(SystemTextureManagerPointer,*(uint32_t *)(ResourceManagerPointer + 0x3cc),*pointerToInteger1,bVar6);
-  if (!bVar4) {
+  UpdateTextureManagerSystem(SystemTextureManagerPointer,*(uint32_t *)(ResourceManagerPointer + 0x3cc),*pointerToInteger1,isSystemInitialized);
+  if (!isTextureUpdateRequired) {
     return;
   }
     UpdateContextManagerSystem(SystemContextManagerPointer,&SystemResourceTemplateUndenary,*(uint32_t *)(ResourceManagerPointer + 0x3cc),*pointerToInteger1);
@@ -26864,9 +26864,9 @@ bool SystemResourceValidator(long long ResourceManagerPointer)
 
 {
   void* *pointerToUnsigned1;
-  byte bVar2;
-  bool bVar3;
-  byte *pbVar4;
+  byte byteValue;
+  bool isValidOperation;
+  byte *stringPointer;
   uint currentThreadId;
   int systemFlag;
   long long localDataIndex;
@@ -26885,22 +26885,22 @@ bool SystemResourceValidator(long long ResourceManagerPointer)
   if (newThreadLocalStorage != (void* *)0x0) {
     do {
       if (iStack_20 == 0) {
-        bVar3 = false;
+        isValidOperation = false;
         punsignedSystemValue9 = (void* *)newThreadLocalStorage[1];
       }
       else {
         if (*(int *)(newThreadLocalStorage + 6) == 0) {
-          bVar3 = true;
+          isValidOperation = true;
         }
         else {
-          pbVar4 = pbStack_28;
+          stringPointer = pbStack_28;
           do {
-            currentThreadId = (uint)pbVar4[newThreadLocalStorage[5] - (long long)pbStack_28];
-            systemFlag = *pbVar4 - currentThreadId;
-            if (*pbVar4 != currentThreadId) break;
-            pbVar4 = pbVar4 + 1;
+            currentThreadId = (uint)stringPointer[newThreadLocalStorage[5] - (long long)pbStack_28];
+            systemFlag = *stringPointer - currentThreadId;
+            if (*stringPointer != currentThreadId) break;
+            stringPointer = stringPointer + 1;
           } while (currentThreadId != 0);
-          bVar3 = 0 < systemFlag;
+          isValidOperation = 0 < systemFlag;
           if (systemFlag < 1) {
             punsignedSystemValue9 = (void* *)newThreadLocalStorage[1];
             goto SystemValidationCheck;

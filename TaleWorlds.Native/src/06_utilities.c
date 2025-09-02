@@ -26554,8 +26554,6 @@ void ResourceContextHandler(void)
  */
 void SystemStatusChecker(void)
 
-SystemStatusChecker(void)
-
 {
   return;
 }
