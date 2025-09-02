@@ -49431,7 +49431,19 @@ void ProcessResourceValidationAndCleanup(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_ResourceTableRelease(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源表
+ * 
+ * 该函数负责释放系统资源表，清理资源表中的所有资源
+ * 包括资源哈希表、资源缓冲区和相关数据结构
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 原始函数名：Unwind_ResourceTableRelease
+ */
+void ReleaseResourceTable(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -49554,7 +49566,21 @@ ResourceCleanupHandler:
 
 
 
-void Unwind_ResourceBatchCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源批量清理
+ * 
+ * 该函数负责执行系统资源的批量清理操作，清理资源表中的所有资源
+ * 包括资源哈希表、资源缓冲区和相关数据结构
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源批量清理过程中被调用
+ * @warning 原始函数名：Unwind_ResourceBatchCleanup
+ */
+void ExecuteResourceBatchCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -53681,7 +53707,17 @@ void InitializeResourceHashTablePointer(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_CleanupComplete(void)
+/**
+ * @brief 完成清理操作
+ * 
+ * 该函数负责完成系统清理操作，销毁互斥锁资源
+ * 确保系统资源被正确释放
+ * 
+ * @return 无返回值
+ * @note 此函数在系统清理完成时被调用
+ * @warning 原始函数名：Unwind_CleanupComplete
+ */
+void CompleteCleanupOperation(void)
 
 {
   _Mtx_destroy_in_situ();
