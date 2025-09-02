@@ -92,7 +92,7 @@
 #define SystemMutexOctonaryAddress 0x180c4f4b0
 #define SystemMutexNonaryAddress 0x180c4f4b8
 #define SystemMutexDenaryAddress 0x180c4f4c0
-#define SystemMemoryCleanupAddress SystemMemoryCleanupAddress
+#define SystemMemoryCleanupAddress 0x180c4f4c8
 #define SystemContextStatusFlag1Offset 0x180
 #define SystemContextStatusFlag2Offset 0x184
 #define SystemFloatMaxValue 256.0
