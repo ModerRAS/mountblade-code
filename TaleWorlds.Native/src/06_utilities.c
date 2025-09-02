@@ -3099,8 +3099,8 @@ uint8_t UndenaryConfigEntry;
 uint8_t DuodenaryConfigEntry;
 
 // 系统资源管理相关全局变量
-uint8_t SystemResourceData[0x1000];        // 系统资源数据缓冲区
-uint8_t* SystemResourceManagerPointer;     // 系统资源管理器指针
+uint8_t SystemResourceDatabase[0x1000];        // 系统资源数据库
+uint8_t* SystemResourceManagerHandle;     // 系统资源管理器句柄
 uint8_t ResourceCleanupMarker;             // 资源清理标记
 uint8_t ResourceResetMarker;                // 资源重置标记
 
@@ -66714,14 +66714,24 @@ void InitializeStdLibraryLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_180908f00(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 资源哈希扩展处理器
+ * 
+ * 该函数负责处理扩展资源的哈希计算和验证操作
+ * 通过验证上下文中的指针调用相应的哈希处理函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在扩展资源验证和处理过程中调用
+ */
+void ProcessResourceHashExtended(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  uint8_t *ResourceHashPointer;
+  uint8_t *HashDataPointer;
   
-  ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x70);
-  if (ResourceHashPointer != (uint8_t *)0x0) {
-                        (**(code **)*ResourceHashPointer)(ResourceHashPointer,1);
+  HashDataPointer = *(uint8_t **)(ValidationContext + 0x70);
+  if (HashDataPointer != (uint8_t *)0x0) {
+    (**(CodeFunction **)*HashDataPointer)(HashDataPointer, 1);
     return;
   }
   return;
@@ -66729,26 +66739,46 @@ void Unwind_180908f00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908f10(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 基础输出流销毁器
+ * 
+ * 该函数负责销毁标准库的基础输出流对象，释放相关资源
+ * 通过调用标准库输出流销毁函数来清理资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在输出流对象清理过程中调用
+ */
+void DestroyBasicOutputStream(uint8_t ObjectContext, int64_t ValidationContext)
 {
-                      __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + -0x98);
+  DestroyStdBasicOutputStream(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + -0x98);
   return;
 }
 
 
 
-void Unwind_180908f30(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 资源表处理器
+ * 
+ * 该函数负责处理资源表的操作，包括资源哈希计算和表指针设置
+ * 包括系统数据指针的设置和资源表的管理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在资源管理和处理过程中调用
+ */
+void ProcessResourceTable(uint8_t ObjectContext, int64_t ValidationContext)
 {
   uint8_t ResourceHash;
   int64_t ResourceTable;
   int64_t ResourceIndex;
-  uint8_t *PloopIncrement;
+  uint8_t *ResourcePointer;
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
-  PloopIncrement = (uint8_t *)(ResourceIndex + -0xa0);
-  *PloopIncrement = &SystemDataPointer001;
+  ResourcePointer = (uint8_t *)(ResourceIndex + -0xa0);
+  *ResourcePointer = &SystemDataPointer001;
   if ((*(int64_t *)(ResourceIndex + -0x20) != 0) && (**(int64_t **)(ResourceIndex + -0x88) == ResourceIndex + -0x30)) {
     ResourceHash = *(uint8_t *)(ResourceIndex + -0x10);
     ResourceTable = *(int64_t *)(ResourceIndex + -0x18);
@@ -66757,9 +66787,9 @@ void Unwind_180908f30(uint8_t ObjectContext,int64_t ValidationContext)
     **(int **)(ResourceIndex + -0x50) = (int)ResourceHash - (int)ResourceTable;
   }
   if (*(char *)(ResourceIndex + -0x24) != '\0') {
-    ProcessResourcePointer(PloopIncrement);
+    ProcessResourcePointer(ResourcePointer);
   }
-                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
+  DestroyStdBasicStreamBuffer(ResourcePointer);
   return;
 }
 
