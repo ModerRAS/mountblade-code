@@ -107,59 +107,51 @@ char* SystemModuleGraphicsBuffer;
 uint32_t StringProcessorFlags;
 uint32_t SystemMutexFlags;
 
-// 字符串处理系统AB的配置变量
-void* StringProcessingSystemABMemoryPool;
-void* StringProcessingSystemABConfigBuffer;
-char StringProcessingSystemABConfigBuffer[64];
-uint32_t StringProcessingSystemABConfigSize;
+// 字符串处理系统实例的配置变量
+void* StringProcessingSystemInstance7_MemoryPool;
+void* StringProcessingSystemInstance7_ConfigBuffer;
+char StringProcessingSystemInstance7_ConfigBuffer[64];
+uint32_t StringProcessingSystemInstance7_ConfigSize;
 
-// 字符串处理系统AC的配置变量
-void* StringProcessingSystemACMemoryPool;
-void* StringProcessingSystemACConfigBuffer;
-char StringProcessingSystemACConfigBuffer[64];
-uint32_t StringProcessingSystemACConfigSize;
+void* StringProcessingSystemInstance8_MemoryPool;
+void* StringProcessingSystemInstance8_ConfigBuffer;
+char StringProcessingSystemInstance8_ConfigBuffer[64];
+uint32_t StringProcessingSystemInstance8_ConfigSize;
 
-// 字符串处理系统AD的配置变量
-void* StringProcessingSystemADMemoryPool;
-void* StringProcessingSystemADConfigBuffer;
-char StringProcessingSystemADConfigBuffer[64];
-uint32_t StringProcessingSystemADConfigSize;
+void* StringProcessingSystemInstance9_MemoryPool;
+void* StringProcessingSystemInstance9_ConfigBuffer;
+char StringProcessingSystemInstance9_ConfigBuffer[64];
+uint32_t StringProcessingSystemInstance9_ConfigSize;
 
-// 字符串处理系统AE的配置变量
-void* StringProcessingSystemAEMemoryPool;
-void* StringProcessingSystemAEConfigBuffer;
-char StringProcessingSystemAEConfigBuffer[64];
-uint32_t StringProcessingSystemAEConfigSize;
+void* StringProcessingSystemInstance10_MemoryPool;
+void* StringProcessingSystemInstance10_ConfigBuffer;
+char StringProcessingSystemInstance10_ConfigBuffer[64];
+uint32_t StringProcessingSystemInstance10_ConfigSize;
 
-// 字符串处理系统AF的配置变量
-void* StringProcessingSystemAFMemoryPoolPointer;
-void* StringProcessingSystemAFConfigBufferPointer;
-char StringProcessingSystemAFConfigBuffer[64];
-uint32_t StringProcessingSystemAFConfigSize;
+void* StringProcessingSystemInstance11_MemoryPoolPointer;
+void* StringProcessingSystemInstance11_ConfigBufferPointer;
+char StringProcessingSystemInstance11_ConfigBuffer[64];
+uint32_t StringProcessingSystemInstance11_ConfigSize;
 
-// 字符串处理系统AG的配置变量
-void* StringProcessingSystemAGMemoryPoolPointer;
-void* StringProcessingSystemAGConfigBufferPointer;
-char StringProcessingSystemAGConfigBuffer[64];
-uint32_t StringProcessingSystemAGConfigSize;
+void* StringProcessingSystemInstance12_MemoryPoolPointer;
+void* StringProcessingSystemInstance12_ConfigBufferPointer;
+char StringProcessingSystemInstance12_ConfigBuffer[64];
+uint32_t StringProcessingSystemInstance12_ConfigSize;
 
-// 字符串处理系统AH的配置变量
-void* StringProcessingSystemAHMemoryPoolPointer;
-void* StringProcessingSystemAHConfigBufferPointer;
-char StringProcessingSystemAHConfigBuffer[64];
-uint32_t StringProcessingSystemAHConfigSize;
+void* StringProcessingSystemInstance13_MemoryPoolPointer;
+void* StringProcessingSystemInstance13_ConfigBufferPointer;
+char StringProcessingSystemInstance13_ConfigBuffer[64];
+uint32_t StringProcessingSystemInstance13_ConfigSize;
 
-// 字符串处理系统AI的配置变量
-void* StringProcessingSystemAIMemoryPoolPointer;
-void* StringProcessingSystemAIConfigBufferPointer;
-char StringProcessingSystemAIConfigBuffer[64];
-uint32_t StringProcessingSystemAIConfigSize;
+void* StringProcessingSystemInstance14_MemoryPoolPointer;
+void* StringProcessingSystemInstance14_ConfigBufferPointer;
+char StringProcessingSystemInstance14_ConfigBuffer[64];
+uint32_t StringProcessingSystemInstance14_ConfigSize;
 
-// 字符串处理系统AJ的配置变量
-void* StringProcessingSystemAJMemoryPool;
-void* StringProcessingSystemAJConfigBuffer;
-char StringProcessingSystemAJConfigBuffer[64];
-uint32_t StringProcessingSystemAJConfigSize;
+void* StringProcessingSystemInstance15_MemoryPool;
+void* StringProcessingSystemInstance15_ConfigBuffer;
+char StringProcessingSystemInstance15_ConfigBuffer[64];
+uint32_t StringProcessingSystemInstance15_ConfigSize;
 
 // 系统内存配置模板 - 用于内存配置操作
 void* SystemMemoryConfigTemplate;
@@ -233,42 +225,42 @@ void* SystemModuleDataPointerSystemEngine;
 void* SystemModuleDataPointerRenderCore;
 void* SystemModuleDataPointerRenderEngine;
 
-// 字符串处理系统V-AA的变量声明 - 用于字符串处理系统的数据管理
-void* StringProcessingSystemV_BasePointer;
-void* StringProcessingSystemV_BufferPointer;
-void* StringProcessingSystemV_DataBuffer;
-uint32_t StringProcessingSystemV_BufferSize;
-void* StringProcessingSystemV_Template;
+// 字符串处理系统实例变量声明 - 用于字符串处理系统的数据管理
+void* StringProcessingSystemInstance1_BasePointer;
+void* StringProcessingSystemInstance1_BufferPointer;
+void* StringProcessingSystemInstance1_DataBuffer;
+uint32_t StringProcessingSystemInstance1_BufferSize;
+void* StringProcessingSystemInstance1_Template;
 
-void* StringProcessingSystemW_BasePointer;
-void* StringProcessingSystemW_BufferPointer;
-void* StringProcessingSystemW_DataBuffer;
-uint32_t StringProcessingSystemW_BufferSize;
-void* StringProcessingSystemW_Template;
+void* StringProcessingSystemInstance2_BasePointer;
+void* StringProcessingSystemInstance2_BufferPointer;
+void* StringProcessingSystemInstance2_DataBuffer;
+uint32_t StringProcessingSystemInstance2_BufferSize;
+void* StringProcessingSystemInstance2_Template;
 
-void* StringProcessingSystemX_BasePointer;
-void* StringProcessingSystemX_BufferPointer;
-void* StringProcessingSystemX_DataBuffer;
-uint32_t StringProcessingSystemX_BufferSize;
-void* StringProcessingSystemX_Template;
+void* StringProcessingSystemInstance3_BasePointer;
+void* StringProcessingSystemInstance3_BufferPointer;
+void* StringProcessingSystemInstance3_DataBuffer;
+uint32_t StringProcessingSystemInstance3_BufferSize;
+void* StringProcessingSystemInstance3_Template;
 
-void* StringProcessingSystemY_BasePointer;
-void* StringProcessingSystemY_BufferPointer;
-void* StringProcessingSystemY_DataBuffer;
-uint32_t StringProcessingSystemY_BufferSize;
-void* StringProcessingSystemY_Template;
+void* StringProcessingSystemInstance4_BasePointer;
+void* StringProcessingSystemInstance4_BufferPointer;
+void* StringProcessingSystemInstance4_DataBuffer;
+uint32_t StringProcessingSystemInstance4_BufferSize;
+void* StringProcessingSystemInstance4_Template;
 
-void* StringProcessingSystemZ_BasePointer;
-void* StringProcessingSystemZ_BufferPointer;
-void* StringProcessingSystemZ_DataBuffer;
-uint32_t StringProcessingSystemZ_BufferSize;
-void* StringProcessingSystemZ_Template;
+void* StringProcessingSystemInstance5_BasePointer;
+void* StringProcessingSystemInstance5_BufferPointer;
+void* StringProcessingSystemInstance5_DataBuffer;
+uint32_t StringProcessingSystemInstance5_BufferSize;
+void* StringProcessingSystemInstance5_Template;
 
-void* StringProcessingSystemAA_BasePointer;
-void* StringProcessingSystemAA_BufferPointer;
-void* StringProcessingSystemAA_DataBuffer;
-uint32_t StringProcessingSystemAA_BufferSize;
-void* StringProcessingSystemAA_Template;
+void* StringProcessingSystemInstance6_BasePointer;
+void* StringProcessingSystemInstance6_BufferPointer;
+void* StringProcessingSystemInstance6_DataBuffer;
+uint32_t StringProcessingSystemInstance6_BufferSize;
+void* StringProcessingSystemInstance6_Template;
 
 // 系统配置数据指针 - 用于存储系统配置信息
 void* SystemConfigDataPointerAudio;
