@@ -2756,19 +2756,19 @@ int InitializeSystemSecurityManager(void)
 }
   SystemConfigurationStatus = 1;
   SystemInitializationStatus = 0;
-  auStackX_18[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,auStackX_18);
+  SystemModuleHandleArray[0] = GetModuleHandleA(0);
+  InitializeSystemData(param_1,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
 }
 void InitializeNativeSDLL(uint64_t initFlags)
 {
-  uint64_t auStackX_18 [2];
+  uint64_t SystemModuleHandleArray [2];
   SystemConfigurationStatus = 0;
   SystemInitializationStatus = 0;
-  auStackX_18[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,auStackX_18);
+  SystemModuleHandleArray[0] = GetModuleHandleA(0);
+  InitializeSystemData(param_1,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
@@ -2862,30 +2862,30 @@ LAB_1800451ca:
 }
   SystemConfigurationStatus = 1;
   SystemInitializationStatus = 0;
-  auStackX_18[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,auStackX_18);
+  SystemModuleHandleArray[0] = GetModuleHandleA(0);
+  InitializeSystemData(param_1,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
 }
 void InitializeNativeCore(uint64_t initFlags)
 {
-  uint64_t auStackX_18 [2];
+  uint64_t SystemModuleHandleArray [2];
   SystemConfigurationStatus = 0;
   SystemInitializationStatus = 0;
-  auStackX_18[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,auStackX_18);
+  SystemModuleHandleArray[0] = GetModuleHandleA(0);
+  InitializeSystemData(param_1,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
 }
 void InitializeNativeCoreCLR(uint64_t initFlags)
 {
-  uint64_t auStackX_18 [2];
+  uint64_t SystemModuleHandleArray [2];
   SystemConfigurationStatus = 0;
   SystemInitializationStatus = 1;
-  auStackX_18[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,auStackX_18);
+  SystemModuleHandleArray[0] = GetModuleHandleA(0);
+  InitializeSystemData(param_1,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
@@ -2893,7 +2893,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
     SystemValidationStatus = iVar8 != 0xb7;
   }
   ProcessSystemStringData(SystemStringDataPointer,0,0xd,&SystemStringProcessingTemplate,SystemStringDataBufferA);
-  if (puStack_28 == (void *)0x0) {
+  if (StackBuffer28 == (void *)0x0) {
     return;
   }
   CleanupSystemResources();
@@ -4300,7 +4300,7 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
     lVar6 = 0;
   }
   puStack_30 = &SystemNullPointer;
-  if (puStack_28 == (void *)0x0) {
+  if (StackBuffer28 == (void *)0x0) {
     puStack_28 = (void *)0x0;
     uStack_18 = 0;
     puStack_30 = &SystemBufferTemplate;
@@ -7050,7 +7050,7 @@ ProcessStringBufferDataOperation(uint64_t param_1,uint64_t param_2,uint64_t para
   code *pcVar1;
   uint32_t BufferSize;
   uint64_t StringProcessingResult;
-  void *puStack_28;
+  void *StackBuffer28;
   longlong lStack_20;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
   StringProcessingResult = FUN_1800ba4b0(&puStack_28,&SystemStringFormatPrimary,param_3,param_4,0,SystemMutexFlags);
@@ -7067,7 +7067,7 @@ ProcessStringBufferSecondaryOperation(uint64_t param_1,uint64_t param_2,uint64_t
   code *pcVar1;
   uint32_t BufferSize;
   uint64_t StringProcessingResult;
-  void *puStack_28;
+  void *StackBuffer28;
   longlong lStack_20;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
   StringProcessingResult = FUN_1800ba4b0(&puStack_28,&SystemStringFormatSecondary,param_3,param_4,0,SystemMutexFlags);
@@ -13379,5 +13379,62 @@ int RegisterSystemModuleC(void);
  * @return 注册成功返回0，失败返回-1
  */
 int RegisterSystemModuleD(void);
+
+/**
+ * @brief UNK_变量重命名总结
+ * 
+ * 本次美化操作已将以下UNK_变量重命名为有意义的语义化名称：
+ * 
+ * 系统配置相关：
+ * - UNK_180a177f0 -> SystemConfigPrimary
+ * - UNK_180a17830 -> SystemConfigQuaternary
+ * - UNK_180a17880 -> SystemConfigQuinary
+ * - UNK_180a17a68 -> SystemConfigSenary
+ * - UNK_180a17960 -> SystemConfigOctonary
+ * - UNK_180a17a18 -> SystemConfigNonary
+ * - UNK_180a179d0 -> SystemConfigDenary
+ * - UNK_180a17a38 -> SystemConfigUndenary
+ * 
+ * 文件和路径相关：
+ * - UNK_180a0cf4c -> SystemFileOpenMode
+ * - UNK_18042d5d0 -> SystemDefaultFilePointer
+ * - UNK_180a1a918 -> SystemDefaultTemplatePath
+ * - UNK_180a353b8 -> SystemConfigMessagePath
+ * 
+ * 内存和缓冲区相关：
+ * - UNK_180a1b368 -> SystemMemoryPoolPrimary
+ * - UNK_180a1b3f0 -> SystemMemoryPoolSecondary
+ * - UNK_180a1a2f0 -> SystemDataBufferPrimary
+ * - UNK_180a2fc20 -> SystemDataBufferSecondary
+ * - UNK_18045f210 -> SystemBufferPointerPrimary
+ * - UNK_18045f200 -> SystemBufferPointerSecondary
+ * 
+ * 字符串处理相关：
+ * - UNK_180a02fc8 -> SystemStringFormatPrimary
+ * - UNK_180a02fa0 -> SystemStringFormatSecondary
+ * 
+ * 数据处理相关：
+ * - UNK_1804ce1a0 -> SystemDataProcessor
+ * - UNK_180a0c2b8 -> SystemGlobalDataPointer
+ * 
+ * 网络请求相关：
+ * - UNK_180a389f0 -> NetworkRequestStringLogin
+ * - UNK_180a38a08 -> NetworkRequestStringAuth
+ * - UNK_180a38c28 -> NetworkRequestResultSuccess
+ * - UNK_180a389d8 -> NetworkRequestStringConnect
+ * - UNK_180a38aa8 -> NetworkRequestStringVerify
+ * - UNK_180a38ac0 -> NetworkRequestStringValidate
+ * - UNK_180a38978 -> NetworkRequestStringDisconnect
+ * 
+ * 系统验证相关：
+ * - UNK_180a38a3c -> SystemValidationData
+ * - UNK_180a29944 -> SystemValidationCore
+ * 
+ * 其他系统变量：
+ * - UNK_18076804b -> SystemExceptionHandler
+ * - UNK_18098a100 -> SystemHashTable
+ * 
+ * 注意：仍有部分UNK_变量需要继续处理，建议后续工作中继续完善。
+ */
 
 #endif /* DATA_DEFINITIONS_H */
