@@ -33033,7 +33033,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           if ((long long)SystemDataPointer3 - (long long)SystemDataPointer7 != 0) {
               memcpy(&SystemDataBuffer268,SystemDataPointer7,(long long)SystemDataPointer3 - (long long)SystemDataPointer7);
           }
-                              SystemDataBuffer268._0_1_ = 0;
+                              SystemDataBuffer268.BufferFlags = 0;
           SystemOperationStatus6 = 0;
           unsignedSystemValue7 = 0;
           pointerUnsigned330 = &SystemGlobalDataReference;
