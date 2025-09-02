@@ -4219,7 +4219,7 @@ uint8_t InitializeObjectHandleB(int64_t ObjectContext)
  * @param objectContext 对象上下文参数，包含对象初始化所需的信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandleOperationC(int64_t objectContext)
+uint8_t InitializeObjectHandleOperationC(int64_t ObjectContext)
 
 {
   int64_t ResourceDataOffset;
@@ -4232,16 +4232,16 @@ uint8_t InitializeObjectHandleOperationC(int64_t objectContext)
   int64_t BaseAddressOffset;
   int64_t ValidatedContextHandle;
   
-  operationResultCode = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10), &ValidatedContextHandle);
+  operationResultCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ValidatedContextHandle);
   if ((int)operationResultCode == 0) {
     IterationCount = 0;
     SystemContextHandle = ValidatedContextHandle - 8;
     if (ValidatedContextHandle == 0) {
       SystemContextHandle = IterationCount;
     }
-    ResourceIdentifierPointer = (uint32_t *)(objectContext + 0x20 + (int64_t)*(int *)(objectContext + 0x18) * 4);
-    if (0 < *(int *)(objectContext + 0x18)) {
-      BaseAddressOffset = (objectContext + 0x20) - (int64_t)ResourceIdentifierPointer;
+    ResourceIdentifierPointer = (uint32_t *)(ObjectContext + 0x20 + (int64_t)*(int *)(ObjectContext + 0x18) * 4);
+    if (0 < *(int *)(ObjectContext + 0x18)) {
+      BaseAddressOffset = (ObjectContext + 0x20) - (int64_t)ResourceIdentifierPointer;
       do {
         ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)ResourceIdentifierPointer);
         if (ResourceIdentifier != -1) {
@@ -13791,7 +13791,7 @@ void CalculateFloatValueAndValidateResources(void)
   int64_t StackBuffer60;
   int64_t ResourceRegisterPointer;
   uint32_t Xmm6RegisterDa;
-  uint32_t StackVariable1a8;
+  uint32_t ResourceContextOffset;
   
   if (0 < InputRAX) {
     ResourceValidationResult2 = (uint64_t)(uint)FloatRegisterValue;
@@ -13802,7 +13802,7 @@ void CalculateFloatValueAndValidateResources(void)
       resourceTable = *(int64_t *)(ResourceValidationResult0 + 0x10 + LocalContextData5);
       ResourceIndex = *(int64_t *)(ResourceValidationResult0 + 8 + LocalContextData5);
       validationResult = CheckResourceIndex(resourceTable,1);
-      ResourceDataPointer = StackVariable58;
+      ResourceDataPointer = ResourceBufferPointer;
       if ((validationResult == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(ResourceIndex + 0x28))) {
         ResourceValidationResult3 = *(uint32_t *)(ResourceValidationResult0 + 4 + LocalContextData5);
         ExecutionContextPointer[-4] = &SystemResourceTemplateDatabase;
@@ -23510,14 +23510,14 @@ LAB_18089cd46:
   }
 LAB_18089cd76:
   operationStatusCode = 0;
-  if (0 < (int)StackVariable80) {
+  if (0 < (int)ResourceCount) {
     do {
       validationStatusCode = ValidateResourceHandle();
       if ((int)ValidationResult != 0) {
         return ValidationResult;
       }
       operationStatusCode = OperationResult + 1;
-    } while (OperationResult < (int)StackVariable80);
+    } while (OperationResult < (int)ResourceCount);
   }
   if (*(uint *)(SystemContext + 8) < 0x6e) {
     validationResult = 0;
@@ -46254,7 +46254,7 @@ void CleanupResourceValidationResults(uint8_t objectContext, int64_t validationC
   int64_t resourceIndex;
   uint64_t cleanupLoopIncrement;
   
-  pvalidationResult = (uint8_t *)**(uint64_t **)(validationContext + 0x2e8);
+  resourceValidationResultPointer = (uint8_t *)**(uint64_t **)(validationContext + 0x2e8);
   if (pvalidationResult == (uint8_t *)0x0) {
     return;
   }
@@ -46282,7 +46282,19 @@ void CleanupResourceValidationResults(uint8_t objectContext, int64_t validationC
 
 
 
-void Unwind_180905890(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 清理系统资源表
+ * 
+ * 该函数负责清理系统资源表，遍历资源表并重置资源状态
+ * 管理资源表中的资源句柄和数据结构
+ * 
+ * @param objectContext 对象上下文参数，包含对象的状态信息
+ * @param validationContext 验证上下文参数，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数会清理资源表中的所有资源项
+ * @warning 如果资源表无效，系统将执行紧急退出
+ */
+void CleanupSystemResourceTable(uint8_t objectContext, int64_t validationContext)
 
 {
   int64_t loopCounter;
