@@ -6755,7 +6755,7 @@ longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlo
   return *(longlong *)(&DAT_180d48de0 + (ulonglong)*(uint *)(moduleData + 0x8c) * 8);
 }
 uint64_t
-FUN_18032bd90(uint64_t systemId, longlong *dataBuffer, uint64_t *dataArray, uint32_t flagsParam4,
+ProcessSystemModuleConfiguration(uint64_t systemId, longlong *dataBuffer, uint64_t *dataArray, uint32_t flagsParam4,
              uint32_t flagsParam5, uint8_t byteParam6)
 {
   int64_t ModuleInitializationResult;
@@ -6785,8 +6785,8 @@ FUN_18032bd90(uint64_t systemId, longlong *dataBuffer, uint64_t *dataArray, uint
         } while (0 < lVar5);
       }
       if ((puVar7 == (uint *)param_3[1]) || (*(uint *)(ModuleInitializationResult + lVar6) < *puVar7)) {
-        NetworkRequestResult = FUN_18032ba60(param_1,*(uint32_t *)(ModuleInitializationResult + lVar6),param_4);
-        FUN_1803296c0(param_1,NetworkRequestResult,param_5,param_4,param_6);
+        NetworkRequestResult = CreateNetworkRequestContext(param_1,*(uint32_t *)(ModuleInitializationResult + lVar6),param_4);
+        ProcessNetworkRequestConfiguration(param_1,NetworkRequestResult,param_5,param_4,param_6);
         NetworkRequestResult = 1;
       }
       lVar6 = lVar6 + 4;
@@ -6822,8 +6822,8 @@ uint8_t SystemModuleInitializeCleanup(void)
       } while (0 < lVar2);
     }
     if ((pMemoryAllocationResult == (uint *)unaff_R14[1]) || (*(uint *)(*unaff_R15 + lVar3) < *pMemoryAllocationResult)) {
-      FUN_18032ba60();
-      FUN_1803296c0();
+      CreateNetworkRequestContext();
+      ProcessNetworkRequestConfiguration();
       unaff_SIL = 1;
     }
     lVar3 = lVar3 + 4;

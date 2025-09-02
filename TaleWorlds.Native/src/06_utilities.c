@@ -11332,58 +11332,58 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int SearchKey)
   uint32_t *KeyPointer;
   uint8_t NewValue;
   
-  indexPointer = (int *)(*poolHeader + (int64_t)index * 4);
-  currentEntry = *(int *)(*poolHeader + (int64_t)index * 4);
-  if (currentEntry != -1) {
-    poolData = poolHeader[2];
+  IndexPointer = (int *)(*PoolHeader + (int64_t)SearchIndex * 4);
+  CurrentEntry = *(int *)(*PoolHeader + (int64_t)SearchIndex * 4);
+  if (CurrentEntry != -1) {
+    poolData = PoolHeader[2];
     do {
-      entryOffset = (int64_t)currentEntry;
-      if (*(int *)(poolData + entryOffset * 0x10) == SearchKey) {
-        *(uint8_t *)(poolData + 8 + entryOffset * 0x10) = *valuePointer;
+      EntryOffset = (int64_t)CurrentEntry;
+      if (*(int *)(poolData + EntryOffset * 0x10) == SearchKey) {
+        *(uint8_t *)(poolData + 8 + EntryOffset * 0x10) = *ValuePointer;
         return 0;
       }
-      currentEntry = *(int *)(poolData + 4 + entryOffset * 0x10);
-      indexPointer = (int *)(poolData + 4 + entryOffset * 0x10);
-    } while (currentEntry != -1);
+      CurrentEntry = *(int *)(poolData + 4 + EntryOffset * 0x10);
+      IndexPointer = (int *)(poolData + 4 + EntryOffset * 0x10);
+    } while (CurrentEntry != -1);
   }
-  currentEntry = (int)poolHeader[4];
-  if (currentEntry == -1) {
-    newValue = *valuePointer;
-    currentEntry = (int)poolHeader[3];
-    entryCount = currentEntry + 1;
-    PoolCapacity = (int)*(uint *)((int64_t)poolHeader + 0x1c) >> 0x1f;
-    NewPoolCapacity = (*(uint *)((int64_t)poolHeader + 0x1c) ^ PoolCapacity) - PoolCapacity;
-    if (NewPoolCapacity < entryCount) {
-      ExpandedPoolCapacity = (int)((float)NewPoolCapacity * 1.5);
-      NewPoolCapacity = entryCount;
-      if (entryCount <= ExpandedPoolCapacity) {
-        NewPoolCapacity = ExpandedPoolCapacity;
+  CurrentEntry = (int)PoolHeader[4];
+  if (CurrentEntry == -1) {
+    NewValue = *ValuePointer;
+    CurrentEntry = (int)PoolHeader[3];
+    EntryCount = CurrentEntry + 1;
+    PoolCapacity = (int)*(uint *)((int64_t)PoolHeader + 0x1c) >> 0x1f;
+    NewPoolCapacity = (*(uint *)((int64_t)PoolHeader + 0x1c) ^ PoolCapacity) - PoolCapacity;
+    if (NewPoolCapacity < EntryCount) {
+      ExpandedCapacity = (int)((float)NewPoolCapacity * 1.5);
+      NewPoolCapacity = EntryCount;
+      if (EntryCount <= ExpandedCapacity) {
+        NewPoolCapacity = ExpandedCapacity;
       }
       if (NewPoolCapacity < 4) {
-        ExpandedPoolCapacity = 4;
+        ExpandedCapacity = 4;
       }
-      else if (ExpandedPoolCapacity < entryCount) {
-        ExpandedPoolCapacity = entryCount;
+      else if (ExpandedCapacity < EntryCount) {
+        ExpandedCapacity = EntryCount;
       }
-      operationResult = ResourcePoolOperation(poolHeader + 2, ExpandedPoolCapacity);
-      if ((int)operationResult != 0) {
-        return operationResult;
+      OperationResult = ResourcePoolOperation(PoolHeader + 2, ExpandedCapacity);
+      if ((int)OperationResult != 0) {
+        return OperationResult;
       }
     }
-    entryPointer = (uint8_t *)((int64_t)(int)poolHeader[3] * 0x10 + poolHeader[2]);
-    *entryPointer = CONCAT44(0xffffffff, SearchKey);
-    entryPointer[1] = newValue;
-    *(int *)(poolHeader + 3) = (int)poolHeader[3] + 1;
+    EntryPointer = (uint8_t *)((int64_t)(int)PoolHeader[3] * 0x10 + PoolHeader[2]);
+    *EntryPointer = CONCAT44(0xffffffff, SearchKey);
+    EntryPointer[1] = NewValue;
+    *(int *)(PoolHeader + 3) = (int)PoolHeader[3] + 1;
   }
   else {
-    entryData = (uint32_t *)((int64_t)currentEntry * 0x10 + poolHeader[2]);
-    *(uint32_t *)(poolHeader + 4) = entryData[1];
-    entryData[1] = 0xffffffff;
-    *entryData = *keyPointer;
-    *(uint8_t *)(entryData + 2) = *valuePointer;
+    EntryData = (uint32_t *)((int64_t)CurrentEntry * 0x10 + PoolHeader[2]);
+    *(uint32_t *)(PoolHeader + 4) = EntryData[1];
+    EntryData[1] = 0xffffffff;
+    *EntryData = *KeyPointer;
+    *(uint8_t *)(EntryData + 2) = *ValuePointer;
   }
-  *indexPointer = currentEntry;
-  *(int *)((int64_t)poolHeader + 0x24) = *(int *)((int64_t)poolHeader + 0x24) + 1;
+  *IndexPointer = CurrentEntry;
+  *(int *)((int64_t)PoolHeader + 0x24) = *(int *)((int64_t)PoolHeader + 0x24) + 1;
   return 0;
 }
 
