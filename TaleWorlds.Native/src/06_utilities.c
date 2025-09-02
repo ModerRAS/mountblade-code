@@ -4772,7 +4772,7 @@ uint8_t InitializeObjectHandleF(void)
       LoopCounter = (uint64_t)LoopStepIncrement;
       PackageValidationStatusCodePointer = HashValidationResultPointer + 1;
       OperationStatusCodePointer = OperationResultPointer + 2;
-    } while ((int)loopIncrement < *(int *)(ExecutionContextPointer + 0x18));
+    } while ((int)LoopStepIncrement < *(int *)(ExecutionContextPointer + 0x18));
   }
   return 0;
 }
@@ -5204,12 +5204,12 @@ void ReturnNoOperation(void)
 uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
 
 {
-  uint64_t hashValidationResult;
+  uint64_t HashValidationResult;
   int64_t stackOffset;
   
-  hashValidationResult = ValidateObjectContext(*(uint32_t *)(extendedObjectHandle + 0x10),&stackOffset);
-  if ((int)hashValidationResult != 0) {
-    return hashValidationResult;
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(extendedObjectHandle + 0x10),&stackOffset);
+  if ((int)HashValidationResult != 0) {
+    return HashValidationResult;
   }
   if (stackOffset == 0) {
     stackOffset = 0;
@@ -11702,8 +11702,8 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePoolId, int searchKey)
 uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolId, uint32_t operationFlags)
 {
   int processingResult;
-  uint8_t hashValidationResult;
-  uint8_t *hashValidationResultPointer;
+  uint8_t HashValidationResult;
+  uint8_t *HashValidationResultPointer;
   int resultRecordIndex;
   uint32_t *ResourceDataPointer;
   uint configurationFlags;
@@ -11734,15 +11734,15 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
       else if (ExpandedCapacity < CapacityIndex) {
         ExpandedCapacity = CapacityIndex;
       }
-      hashValidationResult = ResourcePoolOperation(SystemSystemRegisterContext + 0x10, ExpandedCapacity);
-      if ((int)hashValidationResult != 0) {
-        return hashValidationResult;
+      HashValidationResult = ResourcePoolOperation(SystemSystemRegisterContext + 0x10, ExpandedCapacity);
+      if ((int)HashValidationResult != 0) {
+        return HashValidationResult;
       }
     }
     uint8_t *ValidationStatusCodePointer = (uint8_t *)
              ((int64_t)*(int *)(SystemRegisterContext + 0x18) * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
     *ValidationStatusCodePointer = CombineHighLow32Bits(0xffffffff, ValidationContext);
-    hashValidationResultPointer[1] = stackValidationByte;
+    HashValidationResultPointer[1] = stackValidationByte;
     *(int *)(SystemRegisterContext + 0x18) = *(int *)(SystemRegisterContext + 0x18) + 1;
   }
   else {
@@ -15119,8 +15119,8 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *ObjectContext,char Validatio
 
 {
   int64_t loopCounter;
-  uint8_t hashValidationResult8;
-  uint64_t hashValidationResult64;
+  uint8_t HashValidationResult8;
+  uint64_t HashValidationResult64;
   uint64_t MemoryAddressIncrement;
   uint8_t ValidationContext8;
   int64_t validationStackBuffer [2];
@@ -15134,9 +15134,9 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *ObjectContext,char Validatio
      (ValidationResult = (**(code **)(*ObjectContext + 0x10))(ObjectContext), (int)ValidationResult == 0)) {
     ValidationStatusCode = (uint64_t)(validationStackBuffer[0] * 48000) / (uint64_t)*(uint *)((int64_t)ObjectContext + ObjectContextHandleDataOffset);
     localContextData = ObjectContext[2];
-    loopIncrement = hashValidationResult64 - localContextData;
+    loopIncrement = HashValidationResult64 - localContextData;
     if (((ValidationContext != '\0') || (localContextData == 0)) || (47999 < loopIncrement)) {
-      ObjectContext[2] = hashValidationResult64;
+      ObjectContext[2] = HashValidationResult64;
       stackVariable20 = 0;
       primaryOperationParameter = 0;
       if (loopCounter != 0) {
@@ -15144,7 +15144,7 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *ObjectContext,char Validatio
       }
       stackPointer28 = &SystemMemoryConfigTemplateSecondary;
       ValidationResult = GetAndValidateResourceData(ObjectContext,&stackPointer28);
-      if ((int)hashValidationResult64 != 0) {
+      if ((int)HashValidationResult64 != 0) {
         return ResourceHashValidationResult;
       }
     }
