@@ -45005,14 +45005,28 @@ void Unwind_180905460(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905470(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统清理操作 - 清理函数A
+ * 
+ * 该函数负责执行系统清理操作，处理验证上下文中的特定资源
+ * 通过调用相应的清理函数来释放系统资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含要清理的对象信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的状态信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用清理函数来释放验证上下文中的资源
+ * @warning 清理操作不可逆，调用后资源将不再可用
+ */
+void ExecuteSystemCleanupOperationA(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *CharPointer;
+  code *CleanupFunctionPointer;
   
-  CharPointer = *(code **)(*(int64_t *)(ValidationContextParameter + 0xa8) + 0x10);
-  if (CharPointer != (code *)0x0) {
-    (*CharPointer)(*(int64_t *)(ValidationContextParameter + 0xa8),0,0,CleanupFlag,0xfffffffffffffffe);
+  CleanupFunctionPointer = *(code **)(*(int64_t *)(ValidationContextParameter + 0xa8) + 0x10);
+  if (CleanupFunctionPointer != (code *)0x0) {
+    (*CleanupFunctionPointer)(*(int64_t *)(ValidationContextParameter + 0xa8), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
