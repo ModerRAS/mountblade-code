@@ -42,6 +42,10 @@ def beautify_variables(content):
     content = re.sub(r'UISystemConfigDataTableTemplate60', 'UISystemConfigDataTableTemplateQuattuordecenary', content)
     content = re.sub(r'UISystemConfigDataTableTemplate80', 'UISystemConfigDataTableTemplateQuindecenary', content)
     
+    # 替换参数六为frameIndexComponent
+    content = re.sub(r'参数六\._4_4_', 'frameIndexComponent', content)
+    content = re.sub(r'参数六([^._])', r'animationFrame\1', content)
+    
     return content
 
 def main():
