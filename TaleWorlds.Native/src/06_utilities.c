@@ -8973,7 +8973,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t ObjectContex
     secondFloatResult = InputFloatParameter;
   }
   *(float *)(ObjectContext + 0x14) = InputFloatParameter;
-  *(float *)(CONCAT44(ValidationContextParam,ValidationContext) + 4) = InputFloatParameter;
+  *(float *)(CombineValidationContextAndParam(ValidationContextParam,ValidationContext) + 4) = InputFloatParameter;
         ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
 }
 
@@ -9518,10 +9518,10 @@ void ProcessObjectContextFloatRangeValidationAndClamping(void)
   float RangeMinValue;
   uint32_t StackParameter;
   
-  RangeMinValue = *(float *)(CONCAT44(ParameterRegister,ValidationRegister) + 0x38);
+  RangeMinValue = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister,ValidationRegister) + 0x38);
   InputValue = *(float *)(ContextPointer + 0x18);
   if ((RangeMinValue <= InputValue) &&
-     (RangeMinValue = *(float *)(CONCAT44(ParameterRegister,ValidationRegister) + 0x3c), InputValue <= RangeMinValue)) {
+     (RangeMinValue = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister,ValidationRegister) + 0x3c), InputValue <= RangeMinValue)) {
     RangeMinValue = InputValue;
   }
   *(float *)(ContextPointer + 0x18) = RangeMinValue;
@@ -9795,7 +9795,7 @@ void ProcessFloatRangeClamping(void)
   float SecondaryFloatValue;
   uint32_t ResourceContextSecondary;
   
-  SecondaryFloatValue = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x38);
+  SecondaryFloatValue = *(float *)(CombineInputRegisters(InputRegisterHigh,InputRegisterLow) + 0x38);
   CalculatedFloatResult = *(float *)(ResourceContext + 0x10);
   if ((CalculatedFloatResult <= CalculatedFloatResult) &&
      (SecondaryFloatValue = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x3c), CalculatedFloatResult <= CalculatedFloatResult)) {
