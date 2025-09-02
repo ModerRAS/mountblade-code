@@ -78717,7 +78717,19 @@ void Unwind_18090cff0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d000(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果指针（偏移0xb0）
+ * 
+ * 该函数负责清理位于验证上下文0xb0偏移处的资源哈希验证结果指针
+ * 处理资源索引的递减和系统清理工作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希验证结果指针
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理资源哈希验证相关的资源
+ * @warning 如果资源索引递减到0，将触发系统清理处理程序
+ */
+void CleanupResourceHashValidationResultPointerOffsetB0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -78753,7 +78765,19 @@ void Unwind_18090d000(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d010(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果指针（偏移0xd0）
+ * 
+ * 该函数负责清理位于验证上下文0xd0偏移处的资源哈希验证结果指针
+ * 处理资源索引的递减和系统清理工作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希验证结果指针
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理资源哈希验证相关的资源
+ * @warning 如果资源索引递减到0，将触发系统清理处理程序
+ */
+void CleanupResourceHashValidationResultPointerOffsetD0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -78789,7 +78813,19 @@ void Unwind_18090d010(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d020(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果指针（偏移0xf0）
+ * 
+ * 该函数负责清理位于验证上下文0xf0偏移处的资源哈希验证结果指针
+ * 处理资源索引的递减和系统清理工作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希验证结果指针
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理资源哈希验证相关的资源
+ * @warning 如果资源索引递减到0，将触发系统清理处理程序
+ */
+void CleanupResourceHashValidationResultPointerOffsetF0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -78825,7 +78861,19 @@ void Unwind_18090d020(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d030(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果指针（偏移0x110）
+ * 
+ * 该函数负责清理位于验证上下文0x110偏移处的资源哈希验证结果指针
+ * 处理资源索引的递减和系统清理工作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希验证结果指针
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理资源哈希验证相关的资源
+ * @warning 如果资源索引递减到0，将触发系统清理处理程序
+ */
+void CleanupResourceHashValidationResultPointerOffset110(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -80024,7 +80072,19 @@ void Unwind_18090d240(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d250(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果指针（偏移0x170）
+ * 
+ * 该函数负责清理位于验证上下文0x170偏移处的资源哈希验证结果指针
+ * 处理资源索引的递减和系统清理工作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希验证结果指针
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理资源哈希验证相关的资源
+ * @warning 如果资源索引递减到0，将触发系统清理处理程序
+ */
+void CleanupResourceHashValidationResultPointerOffset170(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -80060,7 +80120,19 @@ void Unwind_18090d250(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d260(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果指针（偏移400）
+ * 
+ * 该函数负责清理位于验证上下文400偏移处的资源哈希验证结果指针
+ * 处理资源索引的递减和系统清理工作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希验证结果指针
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理资源哈希验证相关的资源
+ * @warning 如果资源索引递减到0，将触发系统清理处理程序
+ */
+void CleanupResourceHashValidationResultPointerOffset400(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -80096,7 +80168,19 @@ void Unwind_18090d260(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d270(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果指针（偏移0x1a0）
+ * 
+ * 该函数负责清理位于验证上下文0x1a0偏移处的资源哈希验证结果指针
+ * 处理资源索引的递减和系统清理工作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希验证结果指针
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理资源哈希验证相关的资源
+ * @warning 如果资源索引递减到0，将触发系统清理处理程序
+ */
+void CleanupResourceHashValidationResultPointerOffset1A0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
