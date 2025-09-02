@@ -11636,7 +11636,7 @@ uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t resourcePool, int cleanupFl
   
   pValidationStatusCode = (uint8_t *)0x0;
   if (RegisterEDI == 0) {
-LAB_180895fdc:
+ValidationComplete:
     if ((0 < *(int *)((int64_t)ResourceContextPointer + 0xc)) && (*ResourceContextPointer != 0)) {
                     // WARNING: Subroutine does not return
       ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*ResourceContextPointer,&ResourceTableTemplate,0x100,1);
