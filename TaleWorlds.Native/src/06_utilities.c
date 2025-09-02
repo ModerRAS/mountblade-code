@@ -6681,7 +6681,7 @@ void ValidateObjectStateAndDispatch(int64_t ObjectContext, int64_t SchedulerCont
     return;
   }
 ValidationFailureLabel:
-        ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + SchedulerContextObjectOffset),ObjectContext);
 }
 
 
@@ -6802,7 +6802,7 @@ void ValidateObjectStateAndDispatchB(int64_t ObjectContext, int64_t schedulerCon
     return;
   }
 ValidationCompleteLabel:
-        ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + SchedulerContextObjectOffset),ObjectContext);
 }
 
 
@@ -6827,13 +6827,13 @@ uint8_t CheckObjectPropertiesAndIncrementCounter(int64_t ObjectContext, int64_t 
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&PropertyBuffer);
   if ((int)OperationResult == 0) {
-    if (*(int *)(PropertyBuffer + 0x34) != 0) {
+    if (*(int *)(PropertyBuffer + PropertyBufferStatusOffset) != 0) {
       return ErrorFlagCheckFailure;
     }
-    CounterValue = *(int *)(PropertyBuffer + 0x28);
-    *(int *)(PropertyBuffer + 0x28) = CounterValue + 1;
+    CounterValue = *(int *)(PropertyBuffer + PropertyBufferCounterOffset);
+    *(int *)(PropertyBuffer + PropertyBufferCounterOffset) = CounterValue + 1;
     if (CounterValue == 0) {
-            ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + SchedulerContextObjectOffset),ObjectContext);
     }
     OperationResult = 0;
   }
@@ -6860,8 +6860,8 @@ void ResetObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedulerCo
   
   InitializationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&PropertyBuffer);
   if (InitializationStatus == 0) {
-    *(uint32_t *)(PropertyBuffer + 0x30) = 0;
-          ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+    *(uint32_t *)(PropertyBuffer + PropertyBufferSizeOffset) = 0;
+          ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + SchedulerContextObjectOffset),ObjectContext);
   }
   return;
 }
@@ -6889,19 +6889,19 @@ uint8_t CheckObjectPropertiesAndDecrementCounter(int64_t ObjectContext, int64_t 
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &PropertyBuffer);
   if ((int)OperationResult == 0) {
-    if (*(int *)(PropertyBuffer + 0x34) != 0) {
+    if (*(int *)(PropertyBuffer + PropertyBufferStatusOffset) != 0) {
       return ErrorFlagCheckFailure;
     }
-    CounterValue = *(int *)(PropertyBuffer + 0x28);
+    CounterValue = *(int *)(PropertyBuffer + PropertyBufferCounterOffset);
     if (CounterValue < 0) {
       return ErrorInvalidObjectHandle;
     }
     if (CounterValue == 0) {
       return ErrorPointerCheckFailure;
     }
-    *(int *)(PropertyBuffer + 0x28) = CounterValue + -1;
+    *(int *)(PropertyBuffer + PropertyBufferCounterOffset) = CounterValue + -1;
     if (CounterValue == 1) {
-            ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + SchedulerContextObjectOffset), ObjectContext);
     }
     OperationResult = 0;
   }
@@ -6965,7 +6965,7 @@ uint8_t ActivateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t Sched
     return ErrorStatusCheckFailure;
   }
   *(uint8_t *)(PropertyBuffer + 0x2c) = 1;
-        ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + SchedulerContextObjectOffset), ObjectContext);
 }
 
 
@@ -7015,7 +7015,7 @@ void SetObjectContextPackageValidationStatusFlag(int64_t ObjectContext, int64_t 
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&contextBuffer);
   if (ValidationStatus == 0) {
     *(uint8_t *)(contextBuffer + 0x28) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
-          ProcessContext(*(uint8_t *)(processContext + 0x98),ObjectContext);
+          ProcessContext(*(uint8_t *)(processContext + ProcessContextObjectOffset),ObjectContext);
   }
   return;
 }
