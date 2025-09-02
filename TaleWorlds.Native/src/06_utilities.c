@@ -8994,15 +8994,15 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
         if (*(uint *)(ResourceTablePointerPointer + 0x30) != loopCounter) {
           return ErrorResourceValidationFailed;
         }
-        fifthFloatResult = *(float *)(ResourceTablePointerPointer + 0x38);
+        FifthFloatResult = *(float *)(ResourceTablePointerPointer + 0x38);
         if ((*(float *)(ResourceTablePointerPointer + 0x38) <= InputFloatValue) &&
-           (fifthFloatResult = *(float *)(ResourceTablePointerPointer + 0x3c), InputFloatValue <= *(float *)(ResourceTablePointerPointer + 0x3c))) {
-          fifthFloatResult = InputFloatValue;
+           (FifthFloatResult = *(float *)(ResourceTablePointerPointer + 0x3c), InputFloatValue <= *(float *)(ResourceTablePointerPointer + 0x3c))) {
+          FifthFloatResult = InputFloatValue;
         }
-        *psecondFloatResult = calculatedFloatValue;
+        *PSecondFloatResult = calculatedFloatValue;
       }
       ResourceCount = ResourceCount + 1;
-      psecondFloatResult = floatParameterValue + 1;
+      PSecondFloatResult = floatParameterValue + 1;
     } while ((int)ResourceCount < *(int *)(ResourceContext + 0x18));
     if (0 < *(int *)(ResourceContext + 0x18)) {
       ResourceTablePointerPointer = (ResourceContext + 0x20) - (int64_t)floatParameterValue;
