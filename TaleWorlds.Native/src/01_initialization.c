@@ -49141,7 +49141,7 @@ LAB_18006d3bb:
 void* CleanupSystemResourceManager(void* SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
-  FUN_18006cf00();
+  InitializeSystemResourceManager();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,0x68);
   }
@@ -49194,7 +49194,7 @@ void* GetSystemDataResourcePointer(ulong long* SystemResourceManager, void* Conf
     systemOperationFlags = SystemOperationStatus1;
   } while (SystemSecondaryStatus < 3);
   if (SystemSecondaryStatus != 0) {
-    charValue = FUN_18006d810(unsignedSystemValue9,ConfigurationDataPointer,unsignedSystemValue7,SystemOperationStatus1,0xfffffffffffffffe);
+    charValue = ManageSystemResourceAllocation(unsignedSystemValue9,ConfigurationDataPointer,unsignedSystemValue7,SystemOperationStatus1,0xfffffffffffffffe);
     if (charValue != '\0') {
       return 1;
     }
@@ -49202,7 +49202,7 @@ void* GetSystemDataResourcePointer(ulong long* SystemResourceManager, void* Conf
     while (unsignedSystemValue7 != 0) {
       if (unsignedSystemValue7 != unsignedSystemValue9) {
         if (*(char *)(unsignedSystemValue7 + 0x48) == '\0') {
-          charValue = FUN_18006da90(unsignedSystemValue7,ConfigurationDataPointer);
+          charValue = GetSystemResourceHash(unsignedSystemValue7,ConfigurationDataPointer);
         }
         else {
           if (0x8000000000000000 <
@@ -49308,10 +49308,10 @@ LAB_18006d7fb:
       *SystemThreadContext = SystemOperationStatus;
       resourcePoolPointer[1] = SystemResourceAddress;
     }
-    SystemResourceAddress = FUN_18006d920(*(void* *)(SystemResourceManager + 0x50));
+    SystemResourceAddress = CalculateAndFindSystemResourceManager(*(void* *)(SystemResourceManager + 0x50));
     if (SystemResourceAddress != 0) {
       *(void* *)(SystemResourceAddress + 0x3508) = 0;
-      FUN_18006cd80(SystemResourceAddress,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,SystemHashValue);
+      ProcessSystemResourceData(SystemResourceAddress,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,SystemHashValue);
       SystemThreadContext[1] = SystemResourceAddress;
       *(ulong long *)(SystemResourceManager + 0x40) = SystemResourceAddress;
       goto LAB_18006d7fb;
@@ -49350,7 +49350,7 @@ void* ManageSystemResourceAllocation(long long SystemResourceManager,void* Confi
   ulong long SystemOperationCode;
   
   if (*(char *)(SystemResourceManager + 0x48) == '\0') {
-    unsignedSystemValue7 = FUN_18006da90();
+    unsignedSystemValue7 = GetSystemResourceHash();
   }
   else {
     if (0x8000000000000000 <
@@ -49377,7 +49377,7 @@ void* ManageSystemResourceAllocation(long long SystemResourceManager,void* Confi
                   PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 0x10);
         SystemOperationCode = (ulong long)((uint)SystemResourceAddress & 0x1f);
         ResourceDataOffset = SystemOperationCode * 0x1a8 + localSystemFlags;
-        FUN_18006dcb0(ConfigurationDataPointer,ResourceDataOffset,PrimaryResourcePointer,localSystemPointer,0xfffffffffffffffe,localSystemFlags,SystemResourceAddress);
+        ConfigureResourceManagerData(ConfigurationDataPointer,ResourceDataOffset,PrimaryResourcePointer,localSystemPointer,0xfffffffffffffffe,localSystemFlags,SystemResourceAddress);
         ReleaseSystemResource(ResourceDataOffset);
         *(uint8_t *)((localSystemFlags - SystemOperationCode) + 0x352f) = 1;
         return 1;
@@ -49736,14 +49736,14 @@ long long ConfigureResourceManagerData(long long SystemResourceManager,long long
     if (*(code **)(SystemResourceManager + 0x158) != (code *)0x0) {
       (**(code **)(SystemResourceManager + 0x158))(nextDataIndex,0,0);
     }
-    FUN_180069130(nextDataIndex,ConfigurationDataPointer + 0x148);
+    UpdateSystemConfigurationData(nextDataIndex,ConfigurationDataPointer + 0x148);
   }
   nextDataIndex = SystemResourceManager + 0x168;
   if (nextDataIndex != ConfigurationDataPointer + 0x168) {
     if (*(code **)(SystemResourceManager + 0x178) != (code *)0x0) {
       (**(code **)(SystemResourceManager + 0x178))(nextDataIndex,0,0);
     }
-    FUN_180069130(nextDataIndex,ConfigurationDataPointer + 0x168);
+    UpdateSystemConfigurationData(nextDataIndex,ConfigurationDataPointer + 0x168);
   }
   *(void* *)(SystemResourceManager + 0x188) = *(void* *)(ConfigurationDataPointer + 0x188);
   *(void* *)(SystemResourceManager + 400) = *(void* *)(ConfigurationDataPointer + 400);
