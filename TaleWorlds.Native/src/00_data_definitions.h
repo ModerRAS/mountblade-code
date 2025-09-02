@@ -108,50 +108,50 @@ uint32_t StringProcessorFlags;
 uint32_t SystemMutexFlags;
 
 // 字符串处理系统实例的配置变量
-void* StringProcessingSystemInstance7_MemoryPool;
-void* StringProcessingSystemInstance7_ConfigBuffer;
-char StringProcessingSystemInstance7_ConfigBuffer[64];
-uint32_t StringProcessingSystemInstance7_ConfigSize;
+void* StringProcessingSystemPrimary_MemoryPool;
+void* StringProcessingSystemPrimary_ConfigBuffer;
+char StringProcessingSystemPrimary_ConfigBuffer[64];
+uint32_t StringProcessingSystemPrimary_ConfigSize;
 
-void* StringProcessingSystemInstance8_MemoryPool;
-void* StringProcessingSystemInstance8_ConfigBuffer;
-char StringProcessingSystemInstance8_ConfigBuffer[64];
-uint32_t StringProcessingSystemInstance8_ConfigSize;
+void* StringProcessingSystemSecondary_MemoryPool;
+void* StringProcessingSystemSecondary_ConfigBuffer;
+char StringProcessingSystemSecondary_ConfigBuffer[64];
+uint32_t StringProcessingSystemSecondary_ConfigSize;
 
-void* StringProcessingSystemInstance9_MemoryPool;
-void* StringProcessingSystemInstance9_ConfigBuffer;
-char StringProcessingSystemInstance9_ConfigBuffer[64];
-uint32_t StringProcessingSystemInstance9_ConfigSize;
+void* StringProcessingSystemTertiary_MemoryPool;
+void* StringProcessingSystemTertiary_ConfigBuffer;
+char StringProcessingSystemTertiary_ConfigBuffer[64];
+uint32_t StringProcessingSystemTertiary_ConfigSize;
 
-void* StringProcessingSystemInstance10_MemoryPool;
-void* StringProcessingSystemInstance10_ConfigBuffer;
-char StringProcessingSystemInstance10_ConfigBuffer[64];
-uint32_t StringProcessingSystemInstance10_ConfigSize;
+void* StringProcessingSystemQuaternary_MemoryPool;
+void* StringProcessingSystemQuaternary_ConfigBuffer;
+char StringProcessingSystemQuaternary_ConfigBuffer[64];
+uint32_t StringProcessingSystemQuaternary_ConfigSize;
 
-void* StringProcessingSystemInstance11_MemoryPoolPointer;
-void* StringProcessingSystemInstance11_ConfigBufferPointer;
-char StringProcessingSystemInstance11_ConfigBuffer[64];
-uint32_t StringProcessingSystemInstance11_ConfigSize;
+void* StringProcessingSystemQuinary_MemoryPool;
+void* StringProcessingSystemQuinary_ConfigBuffer;
+char StringProcessingSystemQuinary_ConfigBuffer[64];
+uint32_t StringProcessingSystemQuinary_ConfigSize;
 
-void* StringProcessingSystemInstance12_MemoryPoolPointer;
-void* StringProcessingSystemInstance12_ConfigBufferPointer;
-char StringProcessingSystemInstance12_ConfigBuffer[64];
-uint32_t StringProcessingSystemInstance12_ConfigSize;
+void* StringProcessingSystemSenary_MemoryPool;
+void* StringProcessingSystemSenary_ConfigBuffer;
+char StringProcessingSystemSenary_ConfigBuffer[64];
+uint32_t StringProcessingSystemSenary_ConfigSize;
 
-void* StringProcessingSystemInstance13_MemoryPoolPointer;
-void* StringProcessingSystemInstance13_ConfigBufferPointer;
-char StringProcessingSystemInstance13_ConfigBuffer[64];
-uint32_t StringProcessingSystemInstance13_ConfigSize;
+void* StringProcessingSystemSeptenary_MemoryPool;
+void* StringProcessingSystemSeptenary_ConfigBuffer;
+char StringProcessingSystemSeptenary_ConfigBuffer[64];
+uint32_t StringProcessingSystemSeptenary_ConfigSize;
 
-void* StringProcessingSystemInstance14_MemoryPoolPointer;
-void* StringProcessingSystemInstance14_ConfigBufferPointer;
-char StringProcessingSystemInstance14_ConfigBuffer[64];
-uint32_t StringProcessingSystemInstance14_ConfigSize;
+void* StringProcessingSystemOctonary_MemoryPool;
+void* StringProcessingSystemOctonary_ConfigBuffer;
+char StringProcessingSystemOctonary_ConfigBuffer[64];
+uint32_t StringProcessingSystemOctonary_ConfigSize;
 
-void* StringProcessingSystemInstance15_MemoryPool;
-void* StringProcessingSystemInstance15_ConfigBuffer;
-char StringProcessingSystemInstance15_ConfigBuffer[64];
-uint32_t StringProcessingSystemInstance15_ConfigSize;
+void* StringProcessingSystemNonary_MemoryPool;
+void* StringProcessingSystemNonary_ConfigBuffer;
+char StringProcessingSystemNonary_ConfigBuffer[64];
+uint32_t StringProcessingSystemNonary_ConfigSize;
 
 // 系统内存配置模板 - 用于内存配置操作
 void* SystemMemoryConfigTemplate;
@@ -226,41 +226,41 @@ void* SystemModuleDataPointerRenderCore;
 void* SystemModuleDataPointerRenderEngine;
 
 // 字符串处理系统实例变量声明 - 用于字符串处理系统的数据管理
-void* StringProcessingSystemInstance1_BasePointer;
-void* StringProcessingSystemInstance1_BufferPointer;
-void* StringProcessingSystemInstance1_DataBuffer;
-uint32_t StringProcessingSystemInstance1_BufferSize;
-void* StringProcessingSystemInstance1_Template;
+void* StringProcessingSystemMain_BasePointer;
+void* StringProcessingSystemMain_BufferPointer;
+void* StringProcessingSystemMain_DataBuffer;
+uint32_t StringProcessingSystemMain_BufferSize;
+void* StringProcessingSystemMain_Template;
 
-void* StringProcessingSystemInstance2_BasePointer;
-void* StringProcessingSystemInstance2_BufferPointer;
-void* StringProcessingSystemInstance2_DataBuffer;
-uint32_t StringProcessingSystemInstance2_BufferSize;
-void* StringProcessingSystemInstance2_Template;
+void* StringProcessingSystemAlternate_BasePointer;
+void* StringProcessingSystemAlternate_BufferPointer;
+void* StringProcessingSystemAlternate_DataBuffer;
+uint32_t StringProcessingSystemAlternate_BufferSize;
+void* StringProcessingSystemAlternate_Template;
 
-void* StringProcessingSystemInstance3_BasePointer;
-void* StringProcessingSystemInstance3_BufferPointer;
-void* StringProcessingSystemInstance3_DataBuffer;
-uint32_t StringProcessingSystemInstance3_BufferSize;
-void* StringProcessingSystemInstance3_Template;
+void* StringProcessingSystemReserve_BasePointer;
+void* StringProcessingSystemReserve_BufferPointer;
+void* StringProcessingSystemReserve_DataBuffer;
+uint32_t StringProcessingSystemReserve_BufferSize;
+void* StringProcessingSystemReserve_Template;
 
-void* StringProcessingSystemInstance4_BasePointer;
-void* StringProcessingSystemInstance4_BufferPointer;
-void* StringProcessingSystemInstance4_DataBuffer;
-uint32_t StringProcessingSystemInstance4_BufferSize;
-void* StringProcessingSystemInstance4_Template;
+void* StringProcessingSystemStandby_BasePointer;
+void* StringProcessingSystemStandby_BufferPointer;
+void* StringProcessingSystemStandby_DataBuffer;
+uint32_t StringProcessingSystemStandby_BufferSize;
+void* StringProcessingSystemStandby_Template;
 
-void* StringProcessingSystemInstance5_BasePointer;
-void* StringProcessingSystemInstance5_BufferPointer;
-void* StringProcessingSystemInstance5_DataBuffer;
-uint32_t StringProcessingSystemInstance5_BufferSize;
-void* StringProcessingSystemInstance5_Template;
+void* StringProcessingSystemBackup_BasePointer;
+void* StringProcessingSystemBackup_BufferPointer;
+void* StringProcessingSystemBackup_DataBuffer;
+uint32_t StringProcessingSystemBackup_BufferSize;
+void* StringProcessingSystemBackup_Template;
 
-void* StringProcessingSystemInstance6_BasePointer;
-void* StringProcessingSystemInstance6_BufferPointer;
-void* StringProcessingSystemInstance6_DataBuffer;
-uint32_t StringProcessingSystemInstance6_BufferSize;
-void* StringProcessingSystemInstance6_Template;
+void* StringProcessingSystemTemporary_BasePointer;
+void* StringProcessingSystemTemporary_BufferPointer;
+void* StringProcessingSystemTemporary_DataBuffer;
+uint32_t StringProcessingSystemTemporary_BufferSize;
+void* StringProcessingSystemTemporary_Template;
 
 // 系统配置数据指针 - 用于存储系统配置信息
 void* SystemConfigDataPointerAudio;
@@ -849,13 +849,13 @@ int InitializeMemoryManager(void)
  * @param mutexAttr 互斥锁属性
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeRenderingThreadSync(uint64_t threadId, uint64_t syncPtr, uint64_t mutexType, uint64_t mutexAttr)
+int InitializeRenderingThreadSync(uint64_t ThreadId, uint64_t SyncPtr, uint64_t MutexType, uint64_t MutexAttr)
 {
   int64_t CallbackRegistrationResult;
   uint64_t RenderingThreadMutexFlags;
   RenderingThreadMutexFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS, 2, mutexType, mutexAttr, RenderingThreadMutexFlags);
+  _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS, 2, MutexType, MutexAttr, RenderingThreadMutexFlags);
   RenderingSyncState = 0;
   CallbackRegistrationResult = RegisterSystemCallback(RenderingThreadSyncCallback);
   return (CallbackRegistrationResult != 0) - 1;
@@ -870,13 +870,13 @@ int InitializeRenderingThreadSync(uint64_t threadId, uint64_t syncPtr, uint64_t 
  * @param mutexAttr 互斥锁属性
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializePhysicsEngineSync(uint64_t threadId, uint64_t syncPtr, uint64_t mutexType, uint64_t mutexAttr)
+int InitializePhysicsEngineSync(uint64_t ThreadId, uint64_t SyncPtr, uint64_t MutexType, uint64_t MutexAttr)
 {
   int64_t CallbackRegistrationResult;
   uint64_t PhysicsEngineMutexFlags;
   PhysicsEngineMutexFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS, 2, mutexType, mutexAttr, PhysicsEngineMutexFlags);
+  _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS, 2, MutexType, MutexAttr, PhysicsEngineMutexFlags);
   PhysicsSyncState = 0;
   CallbackRegistrationResult = RegisterSystemCallback(PhysicsEngineSyncCallback);
   return (CallbackRegistrationResult != 0) - 1;
