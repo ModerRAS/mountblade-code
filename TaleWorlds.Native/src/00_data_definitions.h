@@ -6449,8 +6449,8 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
         uRam0000000180d48ec8 = 0;
         _DAT_180d48ed0 = 3;
         _DAT_180d48e30 = 0;
-        FUN_1808fc820(&SystemConfigurationSecondaryTemplate);
-        FUN_1808fcb30(&DAT_180d48e24);
+        ProcessSystemConfigurationTemplate(&SystemConfigurationSecondaryTemplate);
+        ValidateSystemConfigurationData(&DAT_180d48e24);
       }
       puVar7 = (uint *)&DAT_180d48e30;
       if (uVar8 < (ulonglong)
@@ -6468,8 +6468,8 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
         uRam0000000180d48ec8 = 0;
         _DAT_180d48ed0 = 3;
         _DAT_180d48e30 = 0;
-        FUN_1808fc820(&SystemConfigurationSecondaryTemplate);
-        FUN_1808fcb30(&DAT_180d48e24);
+        ProcessSystemConfigurationTemplate(&SystemConfigurationSecondaryTemplate);
+        ValidateSystemConfigurationData(&DAT_180d48e24);
       }
       puVar6 = &DAT_180d48e30;
       if (uVar8 < (ulonglong)
@@ -6619,7 +6619,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
 }
     DAT_180d49748 = 0;
     InitializeSystemDataTemplate(0x180d496e0);
-    FUN_1808fc820(GetSystemConfigurationTemplate);
+    ProcessSystemConfigurationTemplate(GetSystemConfigurationTemplate);
     FUN_1808fcb30(&DAT_180d496d0);
   }
   StringIndex = _Mtx_lock(param_1 + 0x6e8);
