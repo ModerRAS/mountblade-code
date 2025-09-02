@@ -3714,16 +3714,6 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  /**
  * @brief 验证系统对象集合
  * 
- * 该函数负责验证系统中的对象集合，确保所有对象都处于有效状态
- * 包括对象标识符验证、数据完整性检查和安全验证
- * 
- * @return 无返回值
- * @note 此函数在系统维护和清理过程中调用
- * @warning 验证失败时可能会导致系统异常终止
- */
-/**
- * @brief 验证系统对象集合
- * 
  * 该函数负责验证系统中所有对象的集合完整性和有效性
  * 通过遍历对象集合并对每个对象进行验证检查
  * 
@@ -11420,7 +11410,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   uint8_t StackParameterContextForty;
   int *StackParameterContextExtended;
   
-  int64_t ResourceTablePointer = CONCAT44(SavedRegisterValue,ResourceIterationIndex) + CONCAT44(SavedRegisterValue,ResourceIterationIndex) * 2;
+  int64_t ResourceTablePointer = CombineSavedRegisterAndIndex(SavedRegisterValue,ResourceIterationIndex) + CombineSavedRegisterAndIndex(SavedRegisterValue,ResourceIterationIndex) * 2;
   ResourceDataOffset = (int64_t)*(int *)(InputParameter + ResourceTablePointer * 4) + *(int64_t *)(ObjectContext + 8);
   char ResourceStatusFlag = *(char *)(InputParameter + ResourceCleanupOffset + ResourceTablePointer * 4);
   *(int64_t *)(SystemExecutionPointer + -0x80) = ResourceTablePointer;
