@@ -100687,12 +100687,24 @@ void InitializeSystemContext(uint8_t ContextPtr, uint8_t SetupParam, uint8_t Con
 /**
  * @brief 重置线程本地存储
  * 
- * 该函数负责重置线程本地存储状态，清理不再需要的资源
- * 并将线程恢复到初始状态，重置线程数据结构和资源指针
+ * 该函数负责重置线程本地存储状态，清理不再需要的资源，并将线程恢复到初始状态，
+ * 重置线程数据结构和资源指针。这是一个重要的线程管理函数，确保线程本地存储
+ * 处于干净状态，避免资源泄漏。
+ * 
+ * @重置过程包括：
+ * - 获取当前线程的上下文指针
+ * - 设置线程本地存储数据指针
+ * - 检查线程资源状态，如果处于活动状态则清理资源
+ * - 重置线程资源状态为初始状态
+ * - 清零线程资源计数器
+ * - 设置线程本地存储为默认资源指针
  * 
  * @return 无返回值
  * @note 此函数会清理线程本地存储中的所有资源
- * @warning 调用此函数后，线程本地存储将被完全重置
+ * @warning 调用此函数后，线程本地存储将被完全重置，所有之前的数据将丢失
+ * @warning 如果线程资源处于活动状态，会触发资源清理程序
+ * @see CleanupThreadResources
+ * @see ClearSystemCacheAndResetState
  */
 void ResetThreadLocalStorage(void)
 
@@ -100717,8 +100729,18 @@ void ResetThreadLocalStorage(void)
  /**
  * @brief 清理系统资源
  * 
- * 该函数负责清理系统运行过程中分配的各种资源
- * 包括内存、句柄、数据结构等系统资源
+ * 该函数负责清理系统运行过程中分配的各种资源，包括内存、句柄、数据结构等系统资源。
+ * 这是一个核心的资源管理函数，确保系统资源得到正确的释放和清理，避免资源泄漏。
+ * 
+ * @清理过程包括：
+ * - 验证系统资源管理器句柄的有效性
+ * - 调用底层资源释放函数清理指定资源
+ * - 设置资源状态为清理状态标记
+ * - 检查是否需要执行紧急资源清理
+ * - 重置资源清理状态标志
+ * - 清零资源管理状态
+ * - 设置资源状态为重置状态
+ * - 调用最终资源清理函数完成清理过程
  * 
  * @param ResourceType 资源类型，用于标识要清理的资源种类
  * @param ResourceInstance 资源实例，用于标识具体的资源实例
@@ -100727,6 +100749,10 @@ void ResetThreadLocalStorage(void)
  * @return 无返回值
  * @note 此函数会释放指定类型的系统资源
  * @warning 调用此函数后，被清理的资源将不再可用
+ * @warning 如果系统资源管理器句柄无效，函数将直接返回
+ * @see ReleaseSystemResources
+ * @see EmergencyResourceCleanup
+ * @see FinalizeResourceCleanup
  */
 void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint8_t CleanupOptions, uint8_t CleanupFlags)
 
