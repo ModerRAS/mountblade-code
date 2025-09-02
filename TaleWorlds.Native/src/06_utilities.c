@@ -8305,7 +8305,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t objectContext, int64_t
   float floatValueToValidate;
   
   floatValueToValidate = *(float *)(objectContext + 0x1c);
-  StackContextPointer = CONCAT44(StackContextPointer._4_4_,floatValueToValidate);
+  StackContextPointer = CONCAT44(StackContextPointer.Field44,floatValueToValidate);
   if (((uint)floatValueToValidate & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
@@ -8381,7 +8381,7 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t objectContext, in
   if (3 < *(uint *)(objectContext + 0x18)) {
     return 0x1f;
   }
-  StackContextPointer = CONCAT44(StackContextPointer._4_4_,*(uint *)(objectContext + 0x1c));
+  StackContextPointer = CONCAT44(StackContextPointer.Field44,*(uint *)(objectContext + 0x1c));
   if ((*(uint *)(objectContext + 0x1c) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
@@ -9999,7 +9999,7 @@ ValidateResourceTableAccess(uint64_t resource_handle)
   if (resourceTable == 0) {
                     // WARNING: Subroutine does not return
     ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,LocalContextPointer & 0xffffffff,
-                  LocalContextPointer._4_2_);
+                  LocalContextPointer.Field42);
   }
   if (**(int **)(resourceTable + 0xd0) == 0) {
     ResourceIndex = CheckResourceAvailability(*(uint32_t *)(RegisterContext + 0x18));
@@ -11001,10 +11001,10 @@ HANDLE_VALIDATION_FAILED:
     }
     else {
       if ((StatusChar != '\x02') || ((*(byte *)(objectContext + 0x6c) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
-      StackParameterContextSecondary._4_4_ = *(uint32_t *)(longValue8 + 0x20);
+      StackParameterContextSecondary.Field44 = *(uint32_t *)(longValue8 + 0x20);
       operationStatusCode = ProcessDataWithContext(objectContext,RegisterEBX,(int64_t)&ObjectStackBufferResource40 + 4);
       if (OperationResult != 0) goto HANDLE_CONTEXT_ERROR;
-      operationStatusCode = ValidateObjectContext(StackParameterContextSecondary._4_4_,ExecutionContextPointer + -0x78);
+      operationStatusCode = ValidateObjectContext(StackParameterContextSecondary.Field44,ExecutionContextPointer + -0x78);
       if ((OperationResult != 0) || (*(int *)(*(int64_t *)(ExecutionContextPointer + -0x78) + 0x30) != 2))
       goto HANDLE_VALIDATION_FAILED;
     }
@@ -11229,9 +11229,9 @@ uint8_t ProcessResourceHashAndCallback(int64_t resourceArray, uint8_t contextCon
   uint8_t callbackParameter;
   
   resourceHash = *(uint8_t *)(resourceArray + 8 + arrayIndex * 8);
-  callbackParameter._4_4_ = (int)((uint64_t)resourceHash >> 0x20);
-  if (callbackParameter._4_4_ != 0) {
-    *resultPointer = callbackParameter._4_4_;
+  callbackParameter.Field44 = (int)((uint64_t)resourceHash >> 0x20);
+  if (callbackParameter.Field44 != 0) {
+    *resultPointer = callbackParameter.Field44;
     return 0;
   }
   callbackPointer = (uint8_t *)
@@ -11977,25 +11977,25 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
             operationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10),aResourceFlag5);
             resourceContext3 = DataHandlerContextPointer;
             if (operationStatusCode == 0) {
-              puStack_d8 = &CompressionTemplate;
-              uStack_c8 = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
-              uStack_d0 = 0;
-              uStack_c0 = 0x3f800000;
-              CompressData(&puStack_d8,*(uint8_t *)(objectContext + 0x58));
+              CompressionDataPointer = &CompressionTemplate;
+              CompressionResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              CompressionFlags = 0;
+              CompressionScaleFactor = 0x3f800000;
+              CompressData(&CompressionDataPointer,*(uint8_t *)(objectContext + 0x58));
               pResourceFlag1 = &DecompressionTemplate;
               ResourceFlag3 = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
               ResourceFlag2 = 0;
               ResourceFlag4 = 0;
               DecompressData(&pResourceFlag1,*(uint8_t *)(objectContext + 0x58));
-              puStack_b8 = &EncodingTemplate;
-              uStack_a8 = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
-              uStack_b0 = 0;
-              uStack_a0 = uStack_a0 & 0xffffff00;
-              EncodeData(&puStack_b8,*(uint8_t *)(objectContext + 0x58));
-              puStack_f0 = &DecodingTemplate;
-              uStack_e0 = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
-              uStack_e8 = 0;
-              DecodeData(&puStack_f0,*(uint8_t *)(objectContext + 0x58));
+              EncodingDataPointer = &EncodingTemplate;
+              EncodingResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              EncodingFlags = 0;
+              EncodingScaleFactor = EncodingScaleFactor & 0xffffff00;
+              EncodeData(&EncodingDataPointer,*(uint8_t *)(objectContext + 0x58));
+              DecodingDataPointer = &DecodingTemplate;
+              DecodingResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              DecodingFlags = 0;
+              DecodeData(&DecodingDataPointer,*(uint8_t *)(objectContext + 0x58));
               resourceContext3 = DataHandlerContextPointer;
             }
           }
@@ -12040,17 +12040,17 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
               ContextvalidationStatusCode = (uint64_t)ResourceCounter;
               operationStatusCode = (int)ResourceHandlerFlag2;
               if (ResourceCounter != 0) {
-                ResourceCounter = ResourceHandlerFlag2._4_4_;
+                ResourceCounter = ResourceHandlerFlag2.Field44;
                 if ((int64_t)ResourceHandlerFlag2 < 0) {
-                  ResourceCounter = -ResourceHandlerFlag2._4_4_;
+                  ResourceCounter = -ResourceHandlerFlag2.Field44;
                 }
                 ResourceTablePointer = (int64_t)(int)ResourceHandlerFlag2;
-                ValidationCounter = ResourceHandlerFlag2._4_4_;
+                ValidationCounter = ResourceHandlerFlag2.Field44;
                 if ((int)ResourceCounter < 0) {
                   if (0 < (int)ResourceHandlerFlag2) {
                     return ContextValidationResult;
                   }
-                  if ((0 < (int)ResourceHandlerFlag2._4_4_) && (ResourceHandlerFlag1 != 0)) {
+                  if ((0 < (int)ResourceHandlerFlag2.Field44) && (ResourceHandlerFlag1 != 0)) {
                     // WARNING: Subroutine does not return
                     ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),ResourceHandlerFlag1,&ResourceTableTemplate,
                                   0x100,1);
@@ -12079,12 +12079,12 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
                 ValidateDataIntegrity(&ResourceHandlerFlag1,0);
                 return ContextValidationResult;
               }
-              resourceHash0 = (uint64_t)ResourceHandlerFlag2._4_4_;
+              resourceHash0 = (uint64_t)ResourceHandlerFlag2.Field44;
               ResourceIndex4 = (int)ResourceHandlerFlag2;
             }
             SystemCommandParams[0] = ResourceIndex4 + 1;
             ContextvalidationStatusCode = (uint64_t)SystemCommandParams[0];
-            ResourceHandlerFlag2 = CONCAT44(ResourceHandlerFlag2._4_4_,SystemCommandParams[0]);
+            ResourceHandlerFlag2 = CONCAT44(ResourceHandlerFlag2.Field44,SystemCommandParams[0]);
             *(uint32_t *)(ResourceHandlerFlag1 + (int64_t)ResourceIndex4 * 4) = ResourceValidationResult;
             resourceContext3 = DataHandlerContextPointer;
           }
@@ -13286,25 +13286,25 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
   ResourceFlag9 = SecurityEncryptionKey ^ (uint64_t)StackArray1e8;
   resourceTable = *(int64_t *)(validationContext + 0x80);
   LocalContextData4 = 0;
-  uStack_1c8 = 0;
+  StackVariable1c8 = 0;
   longValue8 = resourceTable + 8;
   if (resourceTable == 0) {
     longValue8 = LocalContextData4;
   }
   StackBuffer180 = validationContext;
-  integerValue6 = ValidateBufferContext(longValue8,&uStack_1c8);
+  integerValue6 = ValidateBufferContext(longValue8,&StackVariable1c8);
   if (integerValue6 == 0) {
     presourceHash6 = (uint8_t *)(validationContext + 8);
-    uStack_1a0 = 0;
-    puStack_190 = presourceHash6;
+    StackVariable1a0 = 0;
+    StackPointer190 = presourceHash6;
     longValue8 = (*(code *)**(uint8_t **)(validationContext + 8))(presourceHash6);
-    integerValue6 = ValidateBufferContext(*(uint8_t *)(longValue8 + 0xd0),&uStack_1a0);
+    integerValue6 = ValidateBufferContext(*(uint8_t *)(longValue8 + 0xd0),&StackVariable1a0);
     if (integerValue6 == 0) {
       uStack_170 = 0;
-      puStack_178 = &SystemResourceTemplateCache;
-      uStack_160 = uStack_1c8;
-      uStack_168 = uStack_1a0;
-      integerValue6 = GetAndValidateResourceData(objectContext,&puStack_178);
+      StackPointer178 = &SystemResourceTemplateCache;
+      StackVariable160 = StackVariable1c8;
+      StackVariable168 = StackVariable1a0;
+      integerValue6 = GetAndValidateResourceData(objectContext,&StackPointer178);
       if (integerValue6 == 0) {
         StackBuffer188 = (int64_t)*(int *)(resourceTable + 0x28);
         longValue8 = LocalContextData4;
@@ -13314,13 +13314,13 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
             ResourceIndex = *(int64_t *)(LocalContextData4 + 0x10 + SystemDataPointer);
             LoopOffset = *(int64_t *)(LocalContextData4 + 8 + SystemDataPointer);
             ResourceCheckResult = CheckResourceIndex(ResourceIndex,1);
-            presourceHash6 = puStack_190;
+            presourceHash6 = StackPointer190;
             if ((ResourceCheckResult == '\0') && (*(float *)(ResourceIndex + 0x4c) != *(float *)(LoopOffset + 0x28))) {
               uStack_f0 = *(uint32_t *)(LocalContextData4 + 4 + SystemDataPointer);
               poperationParameter8 = &SystemResourceTemplateDatabase;
-              uStack_f8 = uStack_1c8;
+              StackVariablef8 = StackVariable1c8;
               ResourceHandlerParam = 0;
-              SystemDataPointer = (**(code **)*puStack_190)(puStack_190);
+              SystemDataPointer = (**(code **)*StackPointer190)(StackPointer190);
               uStack_e8 = *(uint8_t *)(*(int64_t *)(SystemDataPointer + 0x90) + longValue8 * 8);
               uStack_ec = 0;
               if (*(int *)(ResourceIndex + 0x58) < 1) {
@@ -13347,19 +13347,19 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
             integerValue6 = memcmp(resourceTable + 0x38,resourceHash1,0x30);
             if (integerValue6 != 0) {
               OperationParam20 = *(uint8_t *)(resourceTable + 0x38);
-              uStack_138 = *(uint8_t *)(resourceTable + 0x40);
-              uStack_130 = *(uint32_t *)(resourceTable + 0x48);
-              uStack_12c = *(uint32_t *)(resourceTable + 0x4c);
-              uStack_128 = *(uint32_t *)(resourceTable + 0x50);
-              uStack_124 = *(uint32_t *)(resourceTable + 0x54);
-              puStack_158 = &SystemResourceTemplateEvent;
-              uStack_150 = 0;
-              uStack_120 = *(uint32_t *)(resourceTable + 0x58);
-              uStack_11c = *(uint32_t *)(resourceTable + 0x5c);
+              StackVariable138 = *(uint8_t *)(resourceTable + 0x40);
+              StackVariable130 = *(uint32_t *)(resourceTable + 0x48);
+              StackVariable12c = *(uint32_t *)(resourceTable + 0x4c);
+              StackVariable128 = *(uint32_t *)(resourceTable + 0x50);
+              StackVariable124 = *(uint32_t *)(resourceTable + 0x54);
+              StackPointer158 = &SystemResourceTemplateEvent;
+              StackVariable150 = 0;
+              StackVariable120 = *(uint32_t *)(resourceTable + 0x58);
+              StackVariable11c = *(uint32_t *)(resourceTable + 0x5c);
               ResourceHandlerFlag1 = *(uint32_t *)(resourceTable + 0x60);
-              uStack_114 = *(uint32_t *)(resourceTable + 100);
-              OperationParam28 = uStack_1c8;
-              integerValue6 = GetAndValidateResourceData(objectContext,&puStack_158);
+              StackVariable114 = *(uint32_t *)(resourceTable + 100);
+              OperationParam28 = StackVariable1c8;
+              integerValue6 = GetAndValidateResourceData(objectContext,&StackPointer158);
               if (integerValue6 != 0) goto HandleMemoryCleanup;
             }
           }
@@ -13367,8 +13367,8 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
           if (integerValue6 == 0) {
             if (fStack_19c != 1.0) {
               FloatStackValue = fStack_19c;
-              puStack_1c0 = &SystemResourceTemplateFile;
-              uStack_1b0 = uStack_1c8;
+              StackPointer1c0 = &SystemResourceTemplateFile;
+              StackVariable1b0 = StackVariable1c8;
               uStack_1b8 = 0;
               integerValue6 = GetAndValidateResourceData(objectContext,&puStack_1c0);
               if (integerValue6 != 0) goto HandleMemoryCleanup;
@@ -13378,7 +13378,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               if (StackFloatBuffer[0] != 1.0) {
                 FloatStackValue = StackFloatBuffer[0];
                 puStack_1c0 = &SystemResourceTemplateGraphics;
-                uStack_1b0 = uStack_1c8;
+                StackVariable1b0 = StackVariable1c8;
                 uStack_1b8 = 0;
                 integerValue6 = GetAndValidateResourceData(objectContext,&puStack_1c0);
                 if (integerValue6 != 0) goto HandleMemoryCleanup;
@@ -13387,7 +13387,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               pinputFloatValue5 = (float *)(resourceTable + 0x94);
               do {
                 if (*pinputFloatValue5 != 0.0) {
-                  uStack_1b0 = uStack_1c8;
+                  StackVariable1b0 = StackVariable1c8;
                   uStack_1b8 = 0;
                   puStack_1c0 = &SystemResourceTemplateHardware;
                   FloatStackValue = inputFloatValue3;
@@ -13403,7 +13403,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               do {
                 floatComparisonResult = *(float *)(resourceTable + -0x180985054 + (int64_t)pinputFloatValue5);
                 if (inputFloatValue != *pinputFloatValue5) {
-                  uStack_1b0 = uStack_1c8;
+                  StackVariable1b0 = StackVariable1c8;
                   uStack_1b8 = 0;
                   puStack_1c0 = &SystemResourceTemplateInput;
                   FloatStackValue = inputFloatValue3;
@@ -13417,7 +13417,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               SecurityHashValue = CalculateSecurityHash(validationContext + 200);
               if ((float)(SecurityHashValue / 0x30) != 0.0) {
                 puStack_1c0 = &SystemResourceTemplateJob;
-                uStack_1b0 = uStack_1c8;
+                StackVariable1b0 = StackVariable1c8;
                 uStack_1b8 = 0;
                 FloatStackValue = (float)(SecurityHashValue / 0x30);
                 integerValue6 = GetAndValidateResourceData(objectContext,&puStack_1c0);
@@ -13426,7 +13426,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               if ((*(uint *)(resourceData + 0x2d8) >> 1 & 1) != 0) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &SystemResourceTemplateKernel;
-                uStack_1b0 = uStack_1c8;
+                StackVariable1b0 = StackVariable1c8;
                 FloatStackValue = (float)CONCAT31(FloatStackValue._1_3_,1);
                 integerValue6 = GetAndValidateResourceData(objectContext,&puStack_1c0);
                 if (integerValue6 != 0) goto HandleMemoryCleanup;
@@ -13435,7 +13435,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               if (integerValue6 != 2) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &SystemResourceTemplateLibrary;
-                uStack_1b0 = uStack_1c8;
+                StackVariable1b0 = StackVariable1c8;
                 integerValue6 = GetAndValidateResourceData(objectContext,&puStack_1c0);
                 if (integerValue6 != 0) goto HandleMemoryCleanup;
               }
@@ -13443,7 +13443,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               if (integerValue6 == 4) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &SystemResourceTemplateMemory;
-                uStack_1b0 = uStack_1c8;
+                StackVariable1b0 = StackVariable1c8;
                 FloatStackValue = 0.0;
                 integerValue6 = GetAndValidateResourceData(objectContext,&puStack_1c0);
                 if (integerValue6 != 0) goto HandleMemoryCleanup;
@@ -13451,7 +13451,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               if ((*(uint *)(resourceData + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &SystemResourceTemplateNetwork;
-                uStack_1b0 = uStack_1c8;
+                StackVariable1b0 = StackVariable1c8;
                 GetAndValidateResourceData(objectContext,&puStack_1c0);
               }
             }

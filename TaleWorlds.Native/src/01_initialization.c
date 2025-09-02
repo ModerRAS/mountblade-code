@@ -41013,7 +41013,17 @@ void* AllocateSystemResourceMemory(long long SystemResourcePointer,void* Configu
 
 
 
-void* FUN_180060d76(void)
+/**
+ * @brief 获取系统数据索引指针
+ * 
+ * 该函数负责获取系统数据索引指针，处理字符串迭代器和数据索引
+ * 用于系统数据管理和索引操作
+ * 
+ * @return 系统数据索引指针
+ * 
+ * 原始函数名为FUN_180060d76，现已重命名为GetSystemDataIndexPointer
+ */
+void* GetSystemDataIndexPointer(void)
 
 {
   ulong long *pointerToUnsigned1;
@@ -44539,7 +44549,17 @@ void HandleSystemOutOfRangeException(void)
 
 
 // 函数: void FUN_180067070(long long *SystemResourcePointer)
-void FUN_180067070(long long *SystemResourcePointer)
+/**
+ * @brief 释放系统资源内存
+ * 
+ * 该函数负责释放系统资源内存，处理内存分配和释放操作
+ * 用于系统资源管理和内存清理
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_180067070，现已重命名为FreeSystemResourceMemory
+ */
+void FreeSystemResourceMemory(long long *SystemResourcePointer)
 
 {
   ulong long unsignedSystemValue1;
@@ -44568,10 +44588,18 @@ void FUN_180067070(long long *SystemResourcePointer)
 
 
 // 函数: void FUN_1800670d0(void)
-void FUN_1800670d0(void)
+/**
+ * @brief 执行系统资源内存释放
+ * 
+ * 该函数负责执行系统资源内存释放操作，调用内存释放函数
+ * 用于系统资源清理和内存管理
+ * 
+ * 原始函数名为FUN_1800670d0，现已重命名为ExecuteSystemResourceMemoryFree
+ */
+void ExecuteSystemResourceMemoryFree(void)
 
 {
-  FUN_180067070();
+  FreeSystemResourceMemory();
   return;
 }
 
@@ -44808,13 +44836,20 @@ void HandleSystemParameterError(void)
 
 
 
-// 函数: void FUN_1800672b7(void)
-void FUN_1800672b7(void)
+/**
+ * @brief 处理系统长度错误和软件中断
+ * 
+ * 该函数负责处理系统长度错误，并通过软件中断执行错误处理程序
+ * 用于系统错误处理和异常管理
+ * 
+ * 原始函数名为FUN_1800672b7，现已重命名为HandleSystemLengthErrorAndSWI
+ */
+void HandleSystemLengthErrorAndSWI(void)
 
 {
   code *pcVar1;
   
-  FUN_1800670f0();
+  HandleLengthError();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -44824,8 +44859,17 @@ void FUN_1800672b7(void)
 
 
 
-// 函数: void FUN_1800672c0(long long SystemResourcePointer)
-void FUN_1800672c0(long long SystemResourcePointer)
+/**
+ * @brief 处理系统资源队列和完成状态
+ * 
+ * 该函数负责处理系统资源队列，获取完成状态并处理线程优先级
+ * 用于系统资源管理和队列处理
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_1800672c0，现已重命名为ProcessSystemResourceQueueAndCompletion
+ */
+void ProcessSystemResourceQueueAndCompletion(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
