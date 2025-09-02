@@ -3662,12 +3662,12 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
 
 {
   int64_t *ProcessResultPointer;
-  int64_t *resourceTablePointer;
-  int64_t *resourceIndexPointer;
+  int64_t *ResourceTablePointer;
+  int64_t *ResourceIndexPointer;
   int ValidationStatusCode;
   uint ProcessResult;
   uint64_t OperationResult;
-  int64_t *resourceDataPointer;
+  int64_t *ResourceDataPointer;
   int64_t *ContextDataPointer;
   int64_t *CleanupDataPointer;
   int64_t *NullDataPointer;
@@ -3696,18 +3696,18 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
          (OperationResult = InitializeMemoryContext(MemoryContextHandle), (int)OperationResult != 0)) {
         return OperationResult;
       }
-      resourceTablePointer = (int64_t *)(MemoryContextHandle + 0x240);
-      resourceDataPointer = (int64_t *)(*resourceTablePointer + -0x18);
-      if (*resourceTablePointer == 0) {
-        resourceDataPointer = NullDataPointer;
+      ResourceTablePointer = (int64_t *)(MemoryContextHandle + 0x240);
+      ResourceDataPointer = (int64_t *)(*ResourceTablePointer + -0x18);
+      if (*ResourceTablePointer == 0) {
+        ResourceDataPointer = NullDataPointer;
       }
       ContextDataPointer = NullDataPointer;
-      resourceIndexPointer = NullDataPointer;
-      if (resourceDataPointer != (int64_t *)0x0) {
-        ContextDataPointer = resourceDataPointer + 3;
+      ResourceIndexPointer = NullDataPointer;
+      if (ResourceDataPointer != (int64_t *)0x0) {
+        ContextDataPointer = ResourceDataPointer + 3;
       }
       while( true ) {
-        if (ContextDataPointer == resourceTablePointer) {
+        if (ContextDataPointer == ResourceTablePointer) {
           *(int64_t **)(MemoryContextHandle + 0x80) = CleanupDataPointer;
           ProcessMemoryData(MemoryContextHandle,CleanupDataPointer);
           CleanupDataPointer[2] = MemoryContextHandle;
@@ -3717,7 +3717,7 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
           }
           return OperationResult;
         }
-        if ((int)CleanupDataPointer[5] <= (int)resourceIndexPointer) {
+        if ((int)CleanupDataPointer[5] <= (int)ResourceIndexPointer) {
           return 0x1c;
         }
         resourceDataPointer = ContextDataPointer + 4;
@@ -4005,15 +4005,15 @@ uint8_t CleanupObjectHandle(void)
 
 /**
  * @brief 验证字符参数并执行相应操作
- * @param CharInput 输入的字符参数
+ * @param CharacterToValidate 输入的字符参数
  * @return 返回0表示成功
  * 
  * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作
  */
-uint8_t ValidateCharacterParameter(char InputCharacter)
+uint8_t ValidateCharacterParameter(char CharacterToValidate)
 
 {
-  if (InputCharacter != '\0') {
+  if (CharacterToValidate != '\0') {
                     // WARNING: Subroutine does not return
     ExecuteSystemExitOperation();
   }
@@ -4027,10 +4027,12 @@ uint8_t ValidateCharacterParameter(char InputCharacter)
  * @brief 初始化系统资源
  * 
  * 该函数负责初始化系统所需的资源，为后续操作做准备
+ * 目前为空实现，预留用于后续系统资源初始化逻辑
  */
 void InitializeSystemResources(void)
 
 {
+  // 预留系统资源初始化逻辑
   return;
 }
 
@@ -4038,32 +4040,32 @@ void InitializeSystemResources(void)
 
 /**
  * @brief 验证对象句柄有效性
- * @param objectPointer 对象指针
+ * @param ObjectHandleToValidate 对象句柄
  * @return 返回验证结果，0表示成功，非0表示错误代码
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
  */
-uint8_t ValidateObjectHandle(int64_t ObjectHandle)
+uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
 
 {
-  uint8_t ContextHashValidationResult;
-  int64_t HandleStorageMemoryBuffer;
+  uint8_t HashValidationResult;
+  int64_t HandleMemoryBuffer;
   
-  ContextHashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContextPointer + 0x10), &HandleStorageMemoryBuffer);
-  if ((int)ContextHashValidationResult != 0) {
-    return ContextHashValidationResult;
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContextPointer + 0x10), &HandleMemoryBuffer);
+  if ((int)HashValidationResult != 0) {
+    return HashValidationResult;
   }
-  if (HandleStorageMemoryBuffer == 0) {
-    HandleStorageMemoryBuffer = 0;
+  if (HandleMemoryBuffer == 0) {
+    HandleMemoryBuffer = 0;
   }
   else {
-    HandleStorageMemoryBuffer = HandleStorageMemoryBuffer + -8;
+    HandleMemoryBuffer = HandleMemoryBuffer + -8;
   }
-  if (*(int64_t *)(HandleStorageMemoryBuffer + 0x10) == 0) {
+  if (*(int64_t *)(HandleMemoryBuffer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(HandleStorageMemoryBuffer + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + 0x10), 1);
 }
 
 
@@ -4077,20 +4079,20 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandle)
 uint32_t ValidateObjectHandleFromRegister(void)
 
 {
-  int64_t RegisterContextValue;
-  int64_t AdjustedMemoryPointer;
+  int64_t RegisterValue;
+  int64_t MemoryPointer;
   
-  if (RegisterContextValue == 0) {
-    AdjustedMemoryPointer = 0;
+  if (RegisterValue == 0) {
+    MemoryPointer = 0;
   }
   else {
-    AdjustedMemoryPointer = RegisterContextValue + -8;
+    MemoryPointer = RegisterValue + -8;
   }
-  if (*(int64_t *)(AdjustedMemoryPointer + 0x10) == 0) {
+  if (*(int64_t *)(MemoryPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(AdjustedMemoryPointer + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + 0x10), 1);
 }
 
 
@@ -4115,10 +4117,12 @@ void RaiseSystemException(void)
  * @brief 清理系统资源
  * 
  * 该函数负责清理系统资源，释放不再使用的内存和对象
+ * 目前为空实现，预留用于后续系统资源清理逻辑
  */
 void CleanupSystemResources(void)
 
 {
+  // 预留系统资源清理逻辑
   return;
 }
 
@@ -4126,33 +4130,33 @@ void CleanupSystemResources(void)
 
 /**
  * @brief 验证并处理对象句柄（版本2）
- * @param objectHandle 对象句柄
+ * @param ObjectHandleToValidate 对象句柄
  * @return 返回操作结果，0表示成功，非0表示错误代码
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
  * 这是validateObjectHandle函数的另一个版本
  */
-uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleIdentifier)
+uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleToValidate)
 
 {
-  uint8_t OperationStatusCode;
-  int64_t HandleBufferContext;
+  uint8_t ValidationResult;
+  int64_t HandleMemoryBuffer;
   
-  OperationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandle + 0x10), &HandleBufferContext);
-  if ((int)OperationStatusCode != 0) {
-    return OperationStatusCode;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(objectHandle + 0x10), &HandleMemoryBuffer);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
-  if (HandleBufferContext == 0) {
-    HandleBufferContext = 0;
+  if (HandleMemoryBuffer == 0) {
+    HandleMemoryBuffer = 0;
   }
   else {
-    HandleBufferContext = HandleBufferContext + -8;
+    HandleMemoryBuffer = HandleMemoryBuffer + -8;
   }
-  if (*(int64_t *)(HandleBufferContext + 0x10) == 0) {
+  if (*(int64_t *)(HandleMemoryBuffer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(HandleBufferContext + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + 0x10), 1);
 }
 
 
@@ -4167,20 +4171,20 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleIdentifier)
 uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 
 {
-  int64_t RegisterValue;
-  int64_t AdjustedRegisterPointer;
+  int64_t RegisterContext;
+  int64_t MemoryPointer;
   
-  if (RegisterValue == 0) {
-    AdjustedRegisterPointer = 0;
+  if (RegisterContext == 0) {
+    MemoryPointer = 0;
   }
   else {
-    AdjustedRegisterPointer = RegisterValue + -8;
+    MemoryPointer = RegisterContext + -8;
   }
-  if (*(int64_t *)(AdjustedRegisterPointer + 0x10) == 0) {
+  if (*(int64_t *)(MemoryPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(AdjustedRegisterPointer + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + 0x10), 1);
 }
 
 
@@ -46311,7 +46315,7 @@ void ValidateResourceIntegrity(uint8_t objectContext, int64_t validationContext)
 
 
 
-void Unwind_180905010(uint8_t objectContext,int64_t validationContext)
+void ProcessSystemResourceCleanupHandler(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0xf8) = &SystemResourceHandlerTemplate;
