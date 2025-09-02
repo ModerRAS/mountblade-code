@@ -5254,14 +5254,14 @@ uint8_t InitializeObjectHandleAdvanced(int64_t ObjectContext)
 uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
 
 {
-  int64_t ResourceDataAddressOffset;
+  int64_t ResourceDataTableAddress;
   int ResourceIdentifier;
   uint8_t InitializationResult;
   uint32_t *ResourceIdArrayPointer;
   uint64_t AdjustedContextHandle;
   uint ConfigurationFlags;
   uint64_t IterationCounter;
-  int64_t BaseAddressOffset;
+  int64_t ArrayBaseAddressOffset;
   int64_t ValidatedContextHandle;
   
   InitializationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextHandle);
@@ -5277,19 +5277,19 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
       do {
         ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)ResourceIdArrayPointer);
         if (ResourceIdentifier != -1) {
-          ResourceDataAddressOffset = *(int64_t *)(SystemContextPointer + ResourceContextOffset) + (int64_t)ResourceIdentifier * ResourceIdentifierOffset;
-          int64_t ResourceContextHandle = *(int64_t *)(ResourceDataAddressOffset + 8);
+          ResourceDataTableAddress = *(int64_t *)(SystemContextPointer + ResourceContextOffset) + (int64_t)ResourceIdentifier * ResourceIdentifierOffset;
+          int64_t ResourceContextHandle = *(int64_t *)(ResourceDataTableAddress + 8);
           if ((ResourceContextHandle == 0)) {
             return ErrorInvalidObjectHandle;
           }
-          InitializationResult = ProcessResourceOperation(ResourceContextHandle, *ResourceIdentifierPointer, 0);
+          InitializationResult = ProcessResourceOperation(ResourceContextHandle, *ResourceIdArrayPointer, 0);
           if ((int)InitializationResult != 0) {
             return InitializationResult;
           }
         }
         uint32_t NextIterationCount = (uint32_t)IterationCounter + 1;
         IterationCounter = (uint64_t)NextIterationCount;
-        ResourceIdentifierPointer = ResourceIdentifierPointer + 1;
+        ResourceIdArrayPointer = ResourceIdArrayPointer + 1;
       } while ((int)NextIterationCount < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
     }
     InitializationResult = 0;

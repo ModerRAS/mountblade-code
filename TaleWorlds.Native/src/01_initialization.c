@@ -19464,8 +19464,8 @@ void** InitializeSystemPointerPool(void** systemPointerPool, unsigned long long 
 
 {
   *systemPointerPool = &SystemMemoryAllocatorReference;
-  if ((InitializationFlags & 1) != 0) {
-    free(systemPointerPool,0x1018,reservedParam3,reservedParam4,InvalidHandleValue);
+  if ((initializationFlags & 1) != 0) {
+    free(systemPointerPool, 0x1018, reservedParam3, reservedParam4, InvalidHandleValue);
   }
   return systemPointerPool;
 }
