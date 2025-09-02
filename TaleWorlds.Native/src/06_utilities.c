@@ -57098,7 +57098,7 @@ void ProcessResourceDataExtended(uint8_t objectContext,int64_t validationContext
  * @param CleanupOption 参数3
  * @param CleanupFlag 参数4
  */
-void ProcessResourceValidation180907830(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceValidationExtended(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContext + 0x20) + 0x78,
@@ -57119,7 +57119,7 @@ void ProcessResourceValidation180907830(uint8_t objectContext,int64_t validation
  * @param CleanupOption 参数3
  * @param CleanupFlag 参数4
  */
-void ExecuteResourceCommand180907840(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteResourceCommandExtended(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
