@@ -47186,7 +47186,7 @@ void ConfigureSystemResources(long long ResourceManagerPointer)
 
 
 
-long long FUN_18006b350(long long *ResourceManagerPointer,long long *ConfigurationDataPointer,int AdditionalParameter)
+long long ManageSystemResourceHandler(long long *ResourceManagerPointer,long long *ConfigurationDataPointer,int OperationParameter)
 
 {
   void* *pointerToUnsigned1;
