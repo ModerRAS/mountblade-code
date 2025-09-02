@@ -67939,51 +67939,51 @@ void* ProcessAudioSignal(void)
   int unaff_XMM12_Dc;
   int unaff_XMM12_Dd;
   
-  systemStatus0 = 0;
-  if (0 < (int)in_R9D) {
-    fVar25 = unaff_XMM6_Da;
-    if (7 < in_R9D) {
-      unsignedSystemValue9 = in_R9D & 0x80000007;
-      if ((int)unsignedSystemValue9 < 0) {
-        unsignedSystemValue9 = (unsignedSystemValue9 - 1 | 0xfffffff8) + 1;
+  audioStatusIndex0 = 0;
+  if (0 < (int)audioTotalChannels) {
+    audioSignal25 = audioTotalSum;
+    if (7 < audioTotalChannels) {
+      audioProcessingFlag9 = audioTotalChannels & 0x80000007;
+      if ((int)audioProcessingFlag9 < 0) {
+        audioProcessingFlag9 = (audioProcessingFlag9 - 1 | 0xfffffff8) + 1;
       }
-      aunsignedSystemValue20._0_4_ = in_XMM5_Da + -1;
-      aunsignedSystemValue20._4_4_ = in_XMM5_Db + -1;
-      aunsignedSystemValue20._8_4_ = in_XMM5_Dc + -1;
-      aunsignedSystemValue20._12_4_ = in_XMM5_Dd + -1;
-      aunsignedSystemValue17._0_4_ = (float)aunsignedSystemValue20._0_4_;
-      aunsignedSystemValue17._4_4_ = (float)aunsignedSystemValue20._4_4_;
-      aunsignedSystemValue17._8_4_ = (float)aunsignedSystemValue20._8_4_;
-      aunsignedSystemValue17._12_4_ = (float)aunsignedSystemValue20._12_4_;
-      aunsignedSystemValue20 = rcpps(aunsignedSystemValue20,aunsignedSystemValue17);
-      fVar25 = 0.0;
-      fVar29 = 0.0;
-      fVar31 = 0.0;
-      fVar18 = 0.0;
-      fVar19 = aunsignedSystemValue20._0_4_;
-      fVar21 = aunsignedSystemValue20._4_4_;
-      fVar22 = aunsignedSystemValue20._8_4_;
-      fVar23 = aunsignedSystemValue20._12_4_;
-      fVar30 = 0.0;
-      fVar32 = 0.0;
-      fVar33 = 0.0;
-      fVar34 = 0.0;
-      fVar35 = 0.0;
-      fVar36 = 0.0;
-      fVar37 = 0.0;
-      fVar38 = 0.0;
-      fVar24 = 0.0;
-      fVar26 = 0.0;
-      fVar27 = 0.0;
-      fVar28 = 0.0;
-      fVar19 = (fVar19 + fVar19) - fVar19 * fVar19 * aunsignedSystemValue17._0_4_;
-      fVar21 = (fVar21 + fVar21) - fVar21 * fVar21 * aunsignedSystemValue17._4_4_;
-      fVar22 = (fVar22 + fVar22) - fVar22 * fVar22 * aunsignedSystemValue17._8_4_;
-      fVar23 = (fVar23 + fVar23) - fVar23 * fVar23 * aunsignedSystemValue17._12_4_;
-      pfVar11 = systemDataIndexPtr;
-      systemStatus2 = systemStatus0;
+      audioCoefficientArray20._0_4_ = audioFilterCoeffA + -1;
+      audioCoefficientArray20._4_4_ = audioFilterCoeffB + -1;
+      audioCoefficientArray20._8_4_ = audioFilterCoeffC + -1;
+      audioCoefficientArray20._12_4_ = audioFilterCoeffD + -1;
+      audioCoefficientArray17._0_4_ = (float)audioCoefficientArray20._0_4_;
+      audioCoefficientArray17._4_4_ = (float)audioCoefficientArray20._4_4_;
+      audioCoefficientArray17._8_4_ = (float)audioCoefficientArray20._8_4_;
+      audioCoefficientArray17._12_4_ = (float)audioCoefficientArray20._12_4_;
+      audioCoefficientArray20 = rcpps(audioCoefficientArray20,audioCoefficientArray17);
+      audioSignal25 = 0.0;
+      audioSignal29 = 0.0;
+      audioSignal31 = 0.0;
+      audioSignal18 = 0.0;
+      audioSignal19 = audioCoefficientArray20._0_4_;
+      audioSignal21 = audioCoefficientArray20._4_4_;
+      audioSignal22 = audioCoefficientArray20._8_4_;
+      audioSignal23 = audioCoefficientArray20._12_4_;
+      audioSignal30 = 0.0;
+      audioSignal32 = 0.0;
+      audioSignal33 = 0.0;
+      audioSignal34 = 0.0;
+      audioSignal35 = 0.0;
+      audioSignal36 = 0.0;
+      audioSignal37 = 0.0;
+      audioSignal38 = 0.0;
+      audioSignal24 = 0.0;
+      audioSignal26 = 0.0;
+      audioSignal27 = 0.0;
+      audioSignal28 = 0.0;
+      audioSignal19 = (audioSignal19 + audioSignal19) - audioSignal19 * audioSignal19 * audioCoefficientArray17._0_4_;
+      audioSignal21 = (audioSignal21 + audioSignal21) - audioSignal21 * audioSignal21 * audioCoefficientArray17._4_4_;
+      audioSignal22 = (audioSignal22 + audioSignal22) - audioSignal22 * audioSignal22 * audioCoefficientArray17._8_4_;
+      audioSignal23 = (audioSignal23 + audioSignal23) - audioSignal23 * audioSignal23 * audioCoefficientArray17._12_4_;
+      audioDataPointer11 = audioDataIndexPtr;
+      audioStatusIndex2 = audioStatusIndex0;
       do {
-        fVar1 = *pfVar11;
+        audioSignal1 = *audioDataPointer11;
         fVar2 = pfVar11[1];
         fVar3 = pfVar11[2];
         fVar4 = pfVar11[3];
