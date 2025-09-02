@@ -21813,10 +21813,10 @@ uint8_t SystemInitializationProcessData(long long ResourceManagerPointer,void* C
 {
   uint8_t systemStatus;
   int systemResult;
-  void* uStackX_8;
+  void* timeoutParameter;
   void* allocationContext;
-  long long lStack_20;
-  char cStack_18;
+  long long mutexAddress;
+  char lockAcquiredFlag;
   
   allocationContext = 0xfffffffffffffffe;
   lStack_20 = ResourceManagerPointer + 0x48;
@@ -29490,7 +29490,7 @@ void ProcessSystemConfigurationParameters(long long ResourceManagerPointer)
     UnsignedStackFlag88 = allocationContext + 0x2b;
     (**(code **)(*(long long *)*SystemMemoryBlockStorage + 0x20))
               ((long long *)*SystemMemoryBlockStorage,&SystemBufferConfig,0x175c,punsignedSystemValue9);
-    *(double *)(ResourceManagerPointer + 0xc0) = dVar2;
+    *(double *)(ResourceManagerPointer + 0xc0) = SystemPerformanceTimeElapsed;
     stackParameterB = &SystemGlobalDataReference;
     if (pStackParameterC != (void* *)0x0) {
         SystemCleanupFunction();
@@ -48836,7 +48836,18 @@ LAB_18006cfb1:
 
 
 
-void* * FUN_18006d0b0(long long *ResourceManagerPointer)
+/**
+ * @brief 获取线程本地存储条目
+ * 
+ * 该函数负责获取或创建线程本地存储（TLS）条目，支持多线程环境下的
+ * 线程私有数据管理。使用哈希表来存储和检索线程特定的数据。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，包含线程本地存储的哈希表
+ * @return void** 返回线程本地存储条目指针，失败时返回NULL
+ * 
+ * 原始函数名为FUN_18006d0b0，现已重命名为GetThreadLocalStorageEntry
+ */
+void** GetThreadLocalStorageEntry(long long* ResourceManagerPointer)
 
 {
   long long *PrimaryResourcePointer;
