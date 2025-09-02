@@ -215,6 +215,10 @@
 #define ObjectContextHandleOffset 0x18
 #define BufferContextValidationOffset 0xd0
 #define BufferArraySizeOffset 0x28
+#define SystemResourceManagerOffset 0x98
+#define SystemResourceHandlerOffset 0x980
+#define SystemResourceHandlerFlagOffset 0x988
+#define SystemResourceMethodTableOffset 0x990
 
 // System scheduler context related constants
 #define SystemSchedulerContextObjectOffset 0x98
@@ -7214,10 +7218,10 @@ uint8_t ValidateAndClearObjectState(int64_t ObjectContext, int64_t SystemContext
   if ((int)ResourceHashStatus != 0) {
     return ResourceHashStatus;
   }
-  if (*(char *)(ContextBuffer + 0x2c) == '\0') {
+  if (*(char *)(ContextBuffer + ContextBufferStatusOffset) == '\0') {
     return SystemInvalidDataStatusCode;
   }
-  *(uint8_t *)(ContextBuffer + 0x2c) = 0;
+  *(uint8_t *)(ContextBuffer + ContextBufferStatusOffset) = 0;
         ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset),ObjectContext);
 }
 
