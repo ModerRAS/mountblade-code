@@ -2030,8 +2030,7 @@ void ValidateSecurityToken(void);
 uint8_t AuthenticationContext;
 uint8_t AuthenticationConfiguration;
 
- void ProcessAuthenticationRequest(void);
-/**
+ /**
  * @brief 处理认证请求
  * 
  * 该函数负责处理系统的认证请求
