@@ -44567,7 +44567,7 @@ void HandleSystemOutOfRangeException(void)
 {
   code *pcVar1;
   
-  __Xout_of_range_std__YAXPEBD_Z(&UNK_1809fec28);
+  __Xout_of_range_std__YAXPEBD_Z(&SystemErrorMessageOutOfRange);
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -44647,7 +44647,7 @@ void HandleLengthError(void)
 {
   code *pcVar1;
   
-  __Xlength_error_std__YAXPEBD_Z(&UNK_1809fec40);
+  __Xlength_error_std__YAXPEBD_Z(&SystemErrorMessageLengthError);
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
