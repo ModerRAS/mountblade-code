@@ -4416,14 +4416,14 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
     }
     
     // 验证对象状态
-    RegistrationStatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
-    if ((int)RegistrationStatusResult != 0) {
-      return RegistrationStatusResult;
+    registrationStatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
+    if ((int)registrationStatusResult != 0) {
+      return registrationStatusResult;
     }
     
     // 验证状态一致性
-    if ((char)RegistrationValidationStatus == (char)RegistrationStatusResult) {
-      if (ObjectName[0] == (char)RegistrationStatusResult) {
+    if ((char)RegistrationValidationStatus == (char)registrationStatusResult) {
+      if (ObjectName[0] == (char)registrationStatusResult) {
         // 搜索现有注册项
         RegistrationBasePointer = (int64_t *)(RegistrationData + RegistrationArrayOffset);
         RegistrationIterator = 0;
@@ -27270,7 +27270,7 @@ uint64_t ProcessResourceHashCalculationAndValidation(void)
   pSecurityHashValue = (uint32_t *)AllocateMemoryBlock();
   ResourceCount = 0;
   ResourceContextOffset = *(uint *)(SystemRegisterContext + 8);
-  PrimaryResourceHash = *pSecurityHashValue;
+  PrimaryResourceHash = *securityHashValuePointer;
   ValidationStatusCode = pSecurityHashValue[1];
   ValidationStatusCode = pSecurityHashValue[2];
   LoopIncrement = pSecurityHashValue[3];
@@ -27402,7 +27402,7 @@ SecurityValidationLoop:
           LoopIncrement = 0x26;
           goto SecurityValidationLoop;
         }
-        ResourceHash = *pSecurityHashValue;
+        ResourceHash = *securityHashValuePointer;
         *(int64_t *)ResourceTablePointerPointer = ResourceTablePointerPointer;
         *(int64_t *)(ResourceTablePointerPointer + 8) = ResourceTablePointerPointer;
         *(uint32_t *)(ResourceTablePointerPointer + 0x10) = ResourceHash;
