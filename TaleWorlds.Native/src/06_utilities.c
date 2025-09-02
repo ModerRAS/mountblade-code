@@ -46813,7 +46813,19 @@ void ReleaseSystemComponentWithFlagCheck(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void ResetSystemResourceHandlerAtOffset0x1e8(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源池偏移量处的系统资源处理器
+ * 
+ * 该函数负责重置验证上下文中资源池偏移量处的系统资源处理器
+ * 用于系统资源管理和内存池维护
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统初始化或资源重置时调用
+ * @warning 如果验证上下文中的偏移量0x1f0不为0，将执行系统紧急退出
+ */
+void ResetSystemResourceHandlerAtResourcePoolOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x1e8) = &SystemResourceHandlerTemplate;
