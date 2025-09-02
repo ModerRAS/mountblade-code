@@ -70069,9 +70069,9 @@ void ExecuteResourceIndexValidationAndMemoryManagementExtended(uint8_t ObjectCon
 
 {
   int *ResourceIndexPointer;
-  uint8_t *ResourceHashValidationResultPointer;
+  uint8_t *ValidationResultPointer;
   int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  uint64_t MemoryAddressBase;
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x50);
   ExecuteResourceInitialization();
