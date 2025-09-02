@@ -3401,7 +3401,7 @@ LAB_18004dda1:
                         *(uint8_t *)(SystemControlDataAddress + 0x22) = 1;
                         goto LAB_18004d527;
                       }
-LAB_18004e25f:
+LabelNetworkProcessingExit:
                       bVar31 = false;
                     }
                     else {
@@ -3409,7 +3409,7 @@ LAB_18004e25f:
                         LoopCounterValue = strcmp(pMemoryAddress1);
                         if (LoopCounterValue == 0) {
                           pMemoryAddress7 = &SystemNetworkDataBuffer;
-LAB_18004d511:
+LabelStringProcessingExit:
                           ProcessNetworkData(SystemStringDataPointer,pMemoryAddress7);
                         }
                         goto LAB_18004e25f;
@@ -3599,7 +3599,7 @@ LAB_18004e56d:
             }
           }
         }
-LAB_18004d527:
+LabelSystemOperationExit:
         pMemoryAddress4 = (uint8_t *)0x0;
         uStack_300 = 0;
         SystemDataPointer = lStack_260;
@@ -4291,7 +4291,7 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
     lVar5 = lVar3;
   } while (*pcVar1 != '\0');
   if (lVar3 != 0) {
-    fwrite(&DAT_1809fcc18,1,1,lVar6);
+    fwrite(&SystemFileWriteBuffer,1,1,lVar6);
     fwrite(&SystemStringDataBufferB,lVar3,1,lVar6);
     CleanupSystemResources(0);
   }
@@ -4322,13 +4322,13 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
   InitializeNetworkSystem(MemoryManagerDataAddress);
   InitializeRenderingSystem();
   InitializeAudioSystem(0);
-  if (DAT_180c82853 != '\0') {
+  if (SystemDebugFlag != '\0') {
     LOCK();
     *(uint32_t *)(*(longlong *)(SystemEngineContext + 0x48) + 0xcc) = 0;
     UNLOCK();
   }
   InitializeInputSystem();
-  if ((DAT_180c82860 == '\0') &&
+  if ((SystemReleaseFlag == '\0') &&
      (pModuleInitializationResult = *(longlong **)(SystemMemoryManager + 0x18), pModuleInitializationResult != (longlong *)0x0)) {
     cVar3 = (**(code **)*pModuleInitializationResult)(pModuleInitializationResult);
     if (cVar3 != '\0') {
@@ -4428,17 +4428,17 @@ uint HandleMutexOperations(void)
   }
   return in_EAX & 0xffffff00;
 }
-      DAT_180d49178 = 0;
+      SystemStringBuffer = 0;
       SystemNetworkStatusFlag = 0;
-      strcpy_s(&DAT_180d49178,0x80,&SystemConstantStringPrimary,param_4,MemoryAddress);
+      strcpy_s(&SystemStringBuffer,0x80,&SystemConstantStringPrimary,param_4,MemoryAddress);
       InitializeSystemCallback(SystemCallbackHandler);
-      ConfigureSystemData(&DAT_180d49158);
-      return &DAT_180d49160;
+      ConfigureSystemData(&SystemConfigBuffer);
+      return &SystemReturnBuffer;
     }
   }
-  return &DAT_180d49160;
+  return &SystemReturnBuffer;
 }
-    DAT_180d48d40 = '\x01';
+    SystemInitializationFlag = '\x01';
     SystemBufferInitialize(param_1,CONCAT71((int7)((ulonglong)pStringProcessingResult >> 8),1));
   }
   SystemSecurityCheck(uStack_18 ^ (ulonglong)auStack_298);
@@ -4774,7 +4774,7 @@ LAB_1800d3d65:
   }
   CleanupSystemResources();
 }
-    DAT_180bfc049 = '\0';
+    SystemShutdownFlag = '\0';
   }
   _DAT_00000010 = plVar4;
   (**(code **)(_DAT_00000000 + 0x18))(0);
@@ -4791,14 +4791,14 @@ LAB_1800d3d65:
   (*pcVar3)(pBufferSize,&plStackX_8);
   return;
 }
-      DAT_180d492a8 = 0;
+      SystemMemoryPoolData = 0;
       SystemMemoryPoolSize = 6;
-      strcpy_s(&DAT_180d492a8,0x40,&DAT_180a06998,param_4,MemoryAddress);
+      strcpy_s(&SystemMemoryPoolData,0x40,&SystemMemoryTemplate,param_4,MemoryAddress);
       SystemMemoryPoolPointer1 = &SystemMemoryPool;
       SystemMemoryPoolDataPointer1 = &SystemMemoryPoolData1;
       SystemMemoryPoolData1 = 0;
       SystemMemoryPoolSize1 = 4;
-      strcpy_s(&SystemMemoryPoolData1,0x40,&DAT_180a06990);
+      strcpy_s(&SystemMemoryPoolData1,0x40,&SystemMemoryTemplate1);
       SystemMemoryPoolPointer2 = &SystemMemoryPool;
       SystemMemoryPoolPointer3 = &SystemMemoryPoolData2;
       SystemMemoryPoolData2 = 0;
