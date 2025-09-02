@@ -48151,7 +48151,20 @@ void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_1809054f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希表并执行系统清理
+ * 
+ * 该函数负责初始化资源哈希表并执行系统清理操作。
+ * 设置资源哈希表指针，初始化系统清理机制，并验证资源哈希。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会初始化资源哈希表并执行系统清理
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_1809054f0
+ */
+void InitializeResourceHashAndSystemCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t *resourceHashPointer;
@@ -48208,7 +48221,20 @@ void DestroyMutexInPlaceSecondary(void)
 
 
 
-void Unwind_180905540(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源索引并执行清理操作
+ * 
+ * 该函数负责验证资源索引的有效性并执行相应的清理操作。
+ * 检查资源索引状态，确保资源正确释放。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会验证资源索引并执行清理操作
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_180905540
+ */
+void ValidateResourceIndexAndExecuteCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -48244,7 +48270,20 @@ void Unwind_180905540(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905560(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构指针。
+ * 将验证上下文偏移0x60处的指针设置为系统数据结构。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会直接修改验证上下文中的指针
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_180905560
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x60) = &SystemDataStructure;
@@ -48282,7 +48321,20 @@ void DestroyMutexLockDuplicate(void)
 
 
 
-void Unwind_1809055b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希验证和清理操作
+ * 
+ * 该函数负责执行资源哈希的验证和清理操作。
+ * 检查资源索引和验证结果，执行必要的内存访问验证和资源清理。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会验证资源哈希并执行清理操作
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_1809055b0
+ */
+void ExecuteResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
