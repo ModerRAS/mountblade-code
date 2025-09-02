@@ -9050,9 +9050,9 @@ int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t 
     if (*(int *)(ObjectContext + 0x20) < 1) {
       ResourceIndex = ProcessDataValidation(ValidationContext,ObjectContext + 0x4c);
       if ((ResourceIndex == 0) &&
-         (ResourceIndex = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x4c),&StackContextPointer), ResourceIndex == 0)) {
-        if (*(int *)(StackContextPointer + 0x30) == 1) {
-          *(uint32_t *)(StackContextPointer + 0x30) = 2;
+         (ResourceIndex = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x4c),&ThreadStackContextPointer), ResourceIndex == 0)) {
+        if (*(int *)(ThreadStackContextPointer + 0x30) == 1) {
+          *(uint32_t *)(ThreadStackContextPointer + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
@@ -9062,11 +9062,11 @@ int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t 
       ResourceIndex = 0x1f;
     }
     else {
-      resourceTable = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),*(int *)(ObjectContext + 0x20),
+      MemoryResourceTable = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),*(int *)(ObjectContext + 0x20),
                             &SystemMemoryAllocationTable,0x315,0,0,1);
-      if (resourceTable != 0) {
+      if (MemoryResourceTable != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(resourceTable,*(uint8_t *)(ObjectContext + 0x18),(int64_t)*(int *)(ObjectContext + 0x20));
+        memcpy(MemoryResourceTable,*(uint8_t *)(ObjectContext + 0x18),(int64_t)*(int *)(ObjectContext + 0x20));
       }
       ResourceIndex = 0x26;
     }
@@ -9093,11 +9093,11 @@ int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t 
 int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t ObjectContext,uint8_t ValidationContext)
 
 {
-  int ProcessingResult;
-  int64_t ResourceTable;
-  int64_t SavedRegisterValue;
-  int64_t ResourceContextHandle;
-  int64_t StackParameterContext;
+  int ValidationProcessingResult;
+  int64_t MemoryResourceTable;
+  int64_t ProcessorRegisterValue;
+  int64_t SystemResourceContextHandle;
+  int64_t FunctionParameterContext;
   
   if ((int)ValidationContext < 1) {
     ResourceIndex = ProcessDataValidation();
