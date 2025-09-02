@@ -2647,7 +2647,7 @@ int InitializeSystemResourceManager(void)
 int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t requestData,uint64_t requestFlags)
 {
   int64_t ModuleInitializationResult;
-  _Mtx_init_in_situ(RequestMutexAddress,2,param_3,param_4,SystemMutexFlags);
+  _Mtx_init_in_situ(RequestMutexAddress,2,MutexParameter3,MutexParameter4,SystemMutexFlags);
   SystemRequestMemoryTemplate = &SystemMemoryPoolTemplate;
   SystemRequestMemoryBuffer = &SystemMemoryPoolBufferPrimary;
   SystemRequestMemorySize = 0;
@@ -2760,7 +2760,7 @@ int InitializeSystemSecurityManager(void)
   SystemConfigurationStatus = 1;
   SystemInitializationStatus = 0;
   SystemModuleHandleArray[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,SystemModuleHandleArray);
+  InitializeSystemData(SystemContextPointer,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
@@ -2771,7 +2771,7 @@ void InitializeNativeSDLL(uint64_t initFlags)
   SystemConfigurationStatus = 0;
   SystemInitializationStatus = 0;
   SystemModuleHandleArray[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,SystemModuleHandleArray);
+  InitializeSystemData(SystemContextPointer,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
@@ -2779,7 +2779,7 @@ void InitializeNativeSDLL(uint64_t initFlags)
   SystemInitializationFlag = 0;
   MemoryAllocationResult = AllocateSystemMemory(SystemMemoryAllocationPointer,0x7b8,8,3);
   MemoryManagerDataAddress = InitializeMemoryBlock(MemoryAllocationResult);
-  InitializeStackBuffer(&StackBufferPointer,param_1);
+  InitializeStackBuffer(&StackBufferPointer,SystemContextPointer);
   StringProcessingResult = ValidateStackData(&StackBufferPointer,&SystemStackValidationTemplate);
   MemoryAddress4 = (ulonglong)(int)StringProcessingResult;
   if (StringProcessingResult < StackBufferSize) {
@@ -2837,8 +2837,8 @@ LabelStringProcessingSpaceCheck2:
   MemoryPointerArray[0x1b] = 0;
   MemoryPointerArray[0x19] = 0;
   *(uint32_t *)(MemoryPointerArray + 0x1a) = 0;
-  (*(code *)(*pplStackX_18)[2])(pplStackX_18,param_1);
-  MemoryPointerArray[0x1c] = param_2;
+  (*(code *)(*pplStackX_18)[2])(pplStackX_18,SystemContextPointer);
+  MemoryPointerArray[0x1c] = Parameter2Value;
   plStack_48 = MemoryPointerArray;
   (ExecuteMemoryFunction28)(MemoryPointerArray);
   SystemStateValue = MemoryManagerDataAddress;
@@ -2866,7 +2866,7 @@ LabelStringProcessingSpaceCheck2:
   SystemConfigurationStatus = 1;
   SystemInitializationStatus = 0;
   SystemModuleHandleArray[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,SystemModuleHandleArray);
+  InitializeSystemData(SystemContextPointer,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
@@ -2877,7 +2877,7 @@ void InitializeNativeCore(uint64_t initFlags)
   SystemConfigurationStatus = 0;
   SystemInitializationStatus = 0;
   SystemModuleHandleArray[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,SystemModuleHandleArray);
+  InitializeSystemData(SystemContextPointer,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
@@ -2888,7 +2888,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
   SystemConfigurationStatus = 0;
   SystemInitializationStatus = 1;
   SystemModuleHandleArray[0] = GetModuleHandleA(0);
-  InitializeSystemData(param_1,SystemModuleHandleArray);
+  InitializeSystemData(SystemContextPointer,SystemModuleHandleArray);
   ProcessSystemInitialization();
   FinalizeSystemSetup();
   return;
@@ -2907,7 +2907,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
   StackCounter2 = 0;
   StackCounter3 = 0;
   StackParameter1 = 3;
-  InitializeSystemBuffer(&StackBufferPointer2,param_1);
+  InitializeSystemBuffer(&StackBufferPointer2,SystemContextPointer);
   ProcessSystemDataBuffer(&StackCounter1,&StackBufferPointer2);
   StackBufferPointer2 = &SystemNullPointer;
   if (lStack_40 != 0) {
@@ -2937,12 +2937,12 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
   stringLength = -1;
   do {
     stringLength = stringLength + 1;
-  } while (*(char *)(param_1 + LongCounter) != '\0');
+  } while (*(char *)(SystemContextPointer + LongCounter) != '\0');
   MemoryAddress = (uint)stringLength;
   if (0x1fff < MemoryAddress) {
     MemoryAddress = 0x1fff;
   }
-  memcpy(&SystemStringDataBufferC,param_1,(longlong)(int)MemoryAddress);
+  memcpy(&SystemStringDataBufferC,SystemContextPointer,(longlong)(int)MemoryAddress);
 }
           SystemOperationStatus = 1;
           SystemProcessStatus = 0;
@@ -7106,7 +7106,7 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
       stringLength = -1;
       do {
         stringLength = stringLength + 1;
-      } while (*(char *)(param_1 + LongCounter) != '\0');
+      } while (*(char *)(SystemContextPointer + LongCounter) != '\0');
       SystemNetworkDataSize = (uint32_t)LongCounter;
       strcpy_s(&SystemStringBuffer,0x100,param_1);
     }
@@ -7157,7 +7157,7 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
     LongCounter = LongCounter + -1;
   } while (LongCounter != 0);
   SystemMemoryInitFlag = 0;
-  _Mtx_init_in_situ(0x180c95d70,2,param_3,param_4,StringProcessingResult);
+  _Mtx_init_in_situ(0x180c95d70,2,MutexParameter3,MutexParameter4,StringProcessingResult);
   SystemModuleConfigMask1 = 0xffffffff;
   SystemModuleConfigFlag3 = 0;
   SystemModuleConfigMask2 = 0;
@@ -11547,7 +11547,7 @@ uint32_t SystemGetDeviceParameter(int deviceId)
   stringLength = -1;
   do {
     stringLength = stringLength + 1;
-  } while (*(char *)(param_1 + LongCounter) != '\0');
+  } while (*(char *)(SystemContextPointer + LongCounter) != '\0');
   MemoryAddress = (uint)stringLength;
   if (0x1fff < MemoryAddress) {
     MemoryAddress = 0x1fff;

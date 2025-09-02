@@ -4813,7 +4813,7 @@ void InitiateSystemShutdown(void)
  * 该函数是一个空操作函数，不执行任何实际操作
  * 通常用作占位符或默认实现
  */
-void PerformNoOperation(void)
+void ExecuteNullOperation(void)
 {
   return;
 }
@@ -9282,26 +9282,26 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t objectContext, u
 void ProcessObjectContextFloatRangeValidationAndClamping(void)
 
 {
-  float inputValue;
-  uint32_t validationRegister;
+  float InputValue;
+  uint32_t ValidationRegister;
   int ValidationStatusCode;
-  uint32_t parameterRegister;
-  int64_t contextPointer;
-  int64_t systemPointer;
-  float rangeMinValue;
-  uint32_t stackParameter;
+  uint32_t ParameterRegister;
+  int64_t ContextPointer;
+  int64_t SystemPointer;
+  float RangeMinValue;
+  uint32_t StackParameter;
   
-  rangeMinValue = *(float *)(CONCAT44(parameterRegister,validationRegister) + 0x38);
-  inputValue = *(float *)(contextPointer + 0x18);
-  if ((rangeMinValue <= inputValue) &&
-     (rangeMinValue = *(float *)(CONCAT44(parameterRegister,validationRegister) + 0x3c), inputValue <= rangeMinValue)) {
-    rangeMinValue = inputValue;
+  RangeMinValue = *(float *)(CONCAT44(ParameterRegister,ValidationRegister) + 0x38);
+  InputValue = *(float *)(ContextPointer + 0x18);
+  if ((RangeMinValue <= InputValue) &&
+     (RangeMinValue = *(float *)(CONCAT44(ParameterRegister,ValidationRegister) + 0x3c), InputValue <= RangeMinValue)) {
+    RangeMinValue = InputValue;
   }
-  *(float *)(contextPointer + 0x18) = rangeMinValue;
-  validationStatus = ValidateResourceParameters(systemPointer + 0x60,stackParameter,rangeMinValue);
-  if (validationStatus == 0) {
+  *(float *)(ContextPointer + 0x18) = RangeMinValue;
+  ValidationStatusCode = ValidateResourceParameters(SystemPointer + 0x60,StackParameter,RangeMinValue);
+  if (ValidationStatusCode == 0) {
                     // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(systemPointer + 0x98));
+    ReleaseSystemContextResources(*(uint8_t *)(SystemPointer + 0x98));
   }
   return;
 }
@@ -9558,27 +9558,27 @@ uint64_t GetSystemRuntimeStatus(void)
  */
 void ProcessFloatRangeClamping(void)
 {
-  float calculatedFloatResult;
+  float CalculatedFloatResult;
   uint8_t *ResourceHashValidationResultPointer;
   uint32_t InputRegisterLow;
   int ValidationStatusCode;
   uint32_t InputRegisterHigh;
-  int64_t resourceContext;
+  int64_t ResourceContext;
   int64_t SavedRegisterValue;
   float SecondaryFloatValue;
   uint32_t ResourceContextSecondary;
   
-  secondFloatResult = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x38);
-  floatComparisonResult = *(float *)(resourceContext + 0x10);
-  if ((inputFloatValue <= inputFloatValue) &&
-     (secondFloatResult = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x3c), inputFloatValue <= inputFloatValue)) {
-    secondFloatResult = inputFloatValue;
+  SecondaryFloatValue = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x38);
+  CalculatedFloatResult = *(float *)(ResourceContext + 0x10);
+  if ((CalculatedFloatResult <= CalculatedFloatResult) &&
+     (SecondaryFloatValue = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x3c), CalculatedFloatResult <= CalculatedFloatResult)) {
+    SecondaryFloatValue = CalculatedFloatResult;
   }
-  *(float *)(resourceContext + 0x10) = inputFloatValue;
-  ValidationStatus = ValidateResourceParameters(SystemRegisterContext + 0x60,ResourceContextSecondary,inputFloatValue);
-  if (ValidationStatus == 0) {
-    pvalidationResult = (uint8_t *)GetResourcePointer(SystemRegisterContext + 0x60,&ObjectStackBufferResource,ResourceContextSecondary);
-    *(uint8_t *)(resourceContext + 0x18) = *pResourceHashValidationResult;
+  *(float *)(ResourceContext + 0x10) = CalculatedFloatResult;
+  ValidationStatusCode = ValidateResourceParameters(SystemRegisterContext + 0x60,ResourceContextSecondary,CalculatedFloatResult);
+  if (ValidationStatusCode == 0) {
+    ResourceHashValidationResultPointer = (uint8_t *)GetResourcePointer(SystemRegisterContext + 0x60,&ObjectStackBufferResource,ResourceContextSecondary);
+    *(uint8_t *)(ResourceContext + 0x18) = *ResourceHashValidationResultPointer;
                     // WARNING: Subroutine does not return
     ReleaseSystemContextResources(*(uint8_t *)(SystemRegisterContext + 0x98));
   }
@@ -17302,7 +17302,7 @@ void ProcessResourceHashValidation(uint8_t *objectContext)
  * 
  * @return 无返回值
  */
-void PerformNoOperation2(void)
+void ExecuteNullOperationAlternate(void)
 
 
 
@@ -17315,7 +17315,7 @@ void PerformNoOperation2(void)
  * 
  * @return 无返回值
  */
-void PerformNoOperation3(void)
+void ExecuteNullOperationSecondary(void)
 
 
 
@@ -17432,7 +17432,7 @@ uint8_t ExecuteResourceValidationFlow(void)
  * 
  * @return 无返回值
  */
-void PerformNoOperation4(void)
+void ExecuteNullOperationTertiary(void)
 
 
 
@@ -17576,7 +17576,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
  * 
  * @return 无返回值
  */
-void PerformNoOperation5(void)
+void ExecuteNullOperationQuaternary(void)
 
 
 
