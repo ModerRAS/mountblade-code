@@ -19779,7 +19779,7 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
  * @param param2 第二个参数
  * @param param3 第三个参数
  */
-void ProcessSystemThreeParameterData(long long param1,long long param2,long long param3)
+void ProcessSystemThreeParameterData(long long sourceStringPointer,long long targetStringPointer,long long searchStringLength)
 
 {
   long long StringSearchResult;
@@ -25682,12 +25682,12 @@ uint32_t GetSystemResourceStatus(void)
  * 该函数负责初始化系统资源，包括内存分配、缓冲区设置和系统参数配置。
  * 这是系统启动过程中的核心初始化函数。
  * 
- * @param ResourceManagerPointer 系统资源指针
- * @param parameter2 初始化参数2
- * @param parameter3 初始化参数3
- * @param parameter4 初始化参数4
+ * @param resourceManagerPointer 系统资源指针
+ * @param memoryAllocationFlags 内存分配标志
+ * @param systemConfiguration 系统配置
+ * @param threadParameters 线程参数
  */
-void SystemResourceInitializer(void* ResourceManagerPointer,void* parameter2,void* parameter3,void* parameter4)
+void SystemResourceInitializer(void* resourceManagerPointer,void* memoryAllocationFlags,void* systemConfiguration,void* threadParameters)
 
 {
   uint systemStatus;
@@ -44042,13 +44042,13 @@ void ExecuteSystemResourceCommand(long long *ResourceManagerPointer,void* Config
   void* *pEncryptionValue48;
   uint32_t uStack_38;
   
-  uStack_88 = 0;
-  lStack_80 = 0;
+  SystemMemoryAllocationFlag = 0;
+  SystemMemoryAllocationHandle = 0;
   localSystemHandle = *ResourceManagerPointer;
   puStack_70 = &SystemGlobalDataReference;
-  uStack_58 = 0;
-  lStack_68 = 0;
-  uStack_60 = 0;
+  SystemMemoryAllocationValue = 0;
+  SystemMemoryAllocationPointer = 0;
+  SystemMemoryAllocationStatus = 0;
   systemStatus = *(uint *)(localSystemHandle + 0x10);
   unsignedSystemValue4 = (ulong long)systemStatus;
   if (*(long long *)(localSystemHandle + 8) != 0) {
@@ -47012,7 +47012,18 @@ void* ReleaseSystemResourceHandler(void* ResourceManagerPointer,ulong long Confi
 
 
 
-void* FUN_18006a050(int ResourceManagerPointer)
+/**
+ * @brief 系统资源管理器指针验证函数
+ * 
+ * 该函数验证资源管理器指针的有效性，检查其是否为特定的保留值。
+ * 主要用于系统初始化时的参数验证。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @return 返回验证结果，有效返回1，无效返回0
+ * 
+ * 原始函数名为FUN_18006a050，现已重命名为ValidateResourceManagerPointer
+ */
+void* ValidateResourceManagerPointer(int ResourceManagerPointer)
 
 {
   if ((ResourceManagerPointer != -0x3fffff03) && (ResourceManagerPointer != -0x3ffffffb)) {
@@ -47024,7 +47035,19 @@ void* FUN_18006a050(int ResourceManagerPointer)
 
 
 
-void* * FUN_18006a090(void* *ResourceManagerPointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 系统资源管理器指针初始化函数
+ * 
+ * 该函数初始化资源管理器指针，设置系统线程模板和全局数据引用。
+ * 主要用于系统资源的初始化和配置。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 返回初始化后的资源管理器指针
+ * 
+ * 原始函数名为FUN_18006a090，现已重命名为InitializeResourceManagerPointer
+ */
+void* * InitializeResourceManagerPointer(void* *ResourceManagerPointer,ulong long ConfigurationDataPointer)
 
 {
   *ResourceManagerPointer = &SystemThreadTemplate;
@@ -47643,7 +47666,19 @@ void DestroyResourceManagerPointer(void* *ResourceManagerPointer)
 
 
 
-void* FUN_18006bd20(void* ResourceManagerPointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 系统资源管理器配置函数
+ * 
+ * 该函数配置系统资源管理器，包括配置系统缓冲区和根据配置标志
+ * 决定是否释放资源管理器内存。用于系统资源管理的配置和清理。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针（包含清理标志）
+ * @return 配置后的资源管理器指针
+ * 
+ * 原始函数名为FUN_18006bd20，现已重命名为ConfigureResourceManager
+ */
+void* ConfigureResourceManager(void* ResourceManagerPointer,ulong long ConfigurationDataPointer)
 
 {
   ConfigureSystemBuffer();
@@ -48931,7 +48966,19 @@ LAB_18006d3bb:
 
 
 
-void* FUN_18006d450(void* ResourceManagerPointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 系统资源管理器清理函数
+ * 
+ * 该函数清理系统资源管理器，初始化资源管理器指针，并根据配置标志
+ * 决定是否释放资源管理器内存。用于系统资源管理的清理和回收。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针（包含清理标志）
+ * @return 清理后的资源管理器指针
+ * 
+ * 原始函数名为FUN_18006d450，现已重命名为CleanupResourceManagerPointer
+ */
+void* CleanupResourceManagerPointer(void* ResourceManagerPointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_18006cf00();
@@ -49021,7 +49068,7 @@ void* FUN_18006d4e0(ulong long *ResourceManagerPointer,void* ConfigurationDataPo
                         >> 5) + PrimaryResourcePointer[1] & *PrimaryResourcePointer - 1U) * 0x10);
               unsignedSystemValue8 = (ulong long)((uint)unsignedSystemValue8 & 0x1f);
               localResourceOffset = unsignedSystemValue8 * 0x1a8 + bufferBaseAddress;
-              FUN_18006dcb0(ConfigurationDataPointer,localResourceOffset);
+              ConfigureResourceManagerData(ConfigurationDataPointer,localResourceOffset);
               FUN_180069530(localResourceOffset);
               *(uint8_t *)((bufferBaseAddress - unsignedSystemValue8) + 0x352f) = 1;
               cVar5 = '\x01';
@@ -49334,7 +49381,7 @@ ulong long FUN_18006da90(long long ResourceManagerPointer,void* ConfigurationDat
       hashValue = *(ulong long *)(localSystemPointer + 8);
       allocationFlags = (ulong long)((uint)unsignedSystemValue8 & 0x1f) * 0x1a8 + hashValue;
       localDataIndex = *(long long *)(ResourceManagerPointer + 0x50);
-      FUN_18006dcb0(ConfigurationDataPointer,allocationFlags,systemStatus1,PrimaryResourcePointer,0xfffffffffffffffe,hashValue,unsignedSystemValue8,localSystemPointer);
+      ConfigureResourceManagerData(ConfigurationDataPointer,allocationFlags,systemStatus1,PrimaryResourcePointer,0xfffffffffffffffe,hashValue,unsignedSystemValue8,localSystemPointer);
       FUN_180069530(allocationFlags);
       LOCK();
       HashEntryStatus = (ulong long *)(hashValue + 0x3508);
@@ -49456,7 +49503,19 @@ void CleanupSystemResourceDataB(long long *ResourceManagerPointer)
 
 
 
-long long FUN_18006dcb0(long long ResourceManagerPointer,long long ConfigurationDataPointer)
+/**
+ * @brief 配置资源管理器数据函数
+ * 
+ * 该函数负责配置资源管理器的数据结构和参数，包括字符串模板、
+ * 哈希条目状态、数据索引和各种配置参数的设置。用于系统资源管理的数据初始化。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 配置结果状态码
+ * 
+ * 原始函数名为FUN_18006dcb0，现已重命名为ConfigureResourceManagerData
+ */
+long long ConfigureResourceManagerData(long long ResourceManagerPointer,long long ConfigurationDataPointer)
 
 {
   long long nextDataIndex;
@@ -49617,7 +49676,19 @@ long long * FUN_18006e000(long long ResourceManagerPointer,long long Configurati
 
 
 
-long long FUN_18006e0b0(long long ResourceManagerPointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 清理资源管理器函数
+ * 
+ * 该函数负责清理资源管理器的所有资源，包括销毁互斥锁、条件变量、
+ * 释放系统资源和根据配置标志决定是否释放内存。用于系统资源的清理和回收。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针（包含清理标志）
+ * @return 清理后的资源管理器指针
+ * 
+ * 原始函数名为FUN_18006e0b0，现已重命名为CleanupResourceManager
+ */
+long long CleanupResourceManager(long long ResourceManagerPointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_18006e5d0();
@@ -49635,8 +49706,17 @@ long long FUN_18006e0b0(long long ResourceManagerPointer,ulong long Configuratio
 
 
 
-// 函数: void FUN_18006e140(void)
-void FUN_18006e140(void)
+/**
+ * @brief 初始化系统线程对象函数
+ * 
+ * 该函数负责创建和初始化系统线程对象，设置线程对象的各个字段和参数，
+ * 包括内存指针、计数器、缓冲区大小等。用于系统线程管理的前期准备工作。
+ * 
+ * @return 初始化结果指针，失败时返回0
+ * 
+ * 原始函数名为FUN_18006e140，现已重命名为InitializeSystemThreadObject
+ */
+void* InitializeSystemThreadObject(void)
 
 {
   long long nextDataIndex;
