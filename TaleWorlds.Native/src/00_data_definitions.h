@@ -2700,7 +2700,7 @@ int InitializeSystemLogManager(void)
   return (ModuleInitializationResult != 0) - 1;
 }
   SystemPrimaryFlagBuffer = 0;
-  _DAT_180bf6058 = 0xd;
+  SystemPrimaryConfigSize = 0xd;
   strcpy_s(&SystemPrimaryFlagBuffer,0x20,&SystemPrimaryFlagString,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeNetworkManagerModule);
   return (ModuleInitializationResult != 0) - 1;
@@ -2715,16 +2715,16 @@ int InitializeSystemNetworkManager(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf6498 = &SystemStringMemoryTemplate;
-  _DAT_180bf64a0 = &SystemSecondaryFlagBufferA;
+  SystemNetworkMemoryTemplate = &SystemStringMemoryTemplate;
+  SystemNetworkFlagBuffer = &SystemSecondaryFlagBufferA;
   SystemSecondaryFlagBufferA = 0;
-  _DAT_180bf64a8 = 9;
+  SystemNetworkFlagSize = 9;
   strcpy_s(&SystemSecondaryFlagBufferA,0x20,&SystemSecondaryFlagString,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringMemoryModule);
   return (ModuleInitializationResult != 0) - 1;
 }
   SystemPrimaryFlagBufferB = 0;
-  _DAT_180bf6508 = 0xd;
+  SystemSecondaryConfigSize = 0xd;
   strcpy_s(&SystemPrimaryFlagBufferB,0x20,&SystemPrimaryFlagString,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSecurityManagerModule);
   return (ModuleInitializationResult != 0) - 1;
@@ -2739,10 +2739,10 @@ int InitializeSystemSecurityManager(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf6558 = &SystemStringMemoryTemplate;
-  _DAT_180bf6560 = &SystemSecondaryFlagBufferB;
+  SystemSecurityMemoryTemplate = &SystemStringMemoryTemplate;
+  SystemSecurityFlagBuffer = &SystemSecondaryFlagBufferB;
   SystemSecondaryFlagBufferB = 0;
-  _DAT_180bf6568 = 9;
+  SystemSecurityFlagSize = 9;
   strcpy_s(&SystemSecondaryFlagBufferB,0x20,&SystemSecondaryFlagString,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSecurityManagerModule);
   return (ModuleInitializationResult != 0) - 1;
