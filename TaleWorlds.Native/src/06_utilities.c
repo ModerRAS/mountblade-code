@@ -62667,8 +62667,22 @@ void Catch_180908080(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809080a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行系统资源清理和哈希验证操作
+ * 
+ * 该函数负责执行系统资源的清理操作，包括资源哈希验证、
+ * 资源处理命令执行和资源句柄释放。这是一个核心的资源管理函数，
+ * 确保系统资源在不再需要时被正确清理。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的特定行为
+ * @return 无返回值
+ * @note 此函数会初始化资源系统并执行完整的清理流程
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void ExecuteSystemResourceCleanupAndHashValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 {
   uint8_t *ResourceHashPointer;
   int64_t ResourceTable;
@@ -62688,8 +62702,21 @@ void Unwind_1809080a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809080b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行辅助系统资源清理和哈希验证操作
+ * 
+ * 该函数是系统资源清理的辅助函数，负责处理不同偏移量的资源清理操作。
+ * 它与主清理函数类似，但使用不同的内存偏移量来访问资源表和哈希指针。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的特定行为
+ * @return 无返回值
+ * @note 此函数使用不同的偏移量（0x70, 0x40, 0x50, 0x20, 0x10）进行资源访问
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void ExecuteSecondarySystemResourceCleanupAndHashValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 {
   uint8_t *ResourceHashPointer;
   int64_t ResourceTable;
