@@ -46331,7 +46331,7 @@ void ProcessSystemResourceCleanupHandler(uint8_t objectContext,int64_t validatio
 
 
 
-void Unwind_180905020(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupWithFlags(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
