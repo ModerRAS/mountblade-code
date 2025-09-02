@@ -10728,7 +10728,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ObjectContext)
 {
   int ProcessingResult;
   uint8_t HashValidationResult;
-  uint unsignedValue3;
+  uint UnsignedValue;
   
   ValidationStatusCode = *(uint *)((int64_t)ObjectContext + 0xc);
   if ((int)((HashValidationResult ^ (int)HashValidationResult >> 0x1f) - ((int)HashValidationResult >> 0x1f)) < 0) {
@@ -12106,7 +12106,7 @@ uint64_t ReturnArrayOperationError(void)
 uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
 
 {
-  byte *pencryptionShiftValue;
+  byte *EncryptionShiftPointer;
   uint32_t ResourceHashValidationResult;
   uint8_t HashValidationResult;
   int ResultRecordIndex;
@@ -12127,8 +12127,8 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
   uint SystemCommandParams [2];
   uint8_t ResourceValidationBuffer;
   uint8_t StackContextBuffer [8];
-  uint64_t ResourceHandlerFlag1;
-  uint8_t ResourceHandlerFlag2;
+  uint64_t ResourceHandlerPrimaryFlag;
+  uint8_t ResourceHandlerSecondaryFlag;
   int64_t *DataHandlerContextPointer;
   uint64_t ResourceHandlerParam;
   int ResourceHandlerArray [2];
@@ -51228,7 +51228,19 @@ void ValidateResourceTableStatus(uint8_t ObjectContext, int64_t ValidationContex
 
 
 
-void Unwind_180905ec0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表遍历和清理
+ * 
+ * 该函数负责遍历资源表并对每个资源索引进行处理
+ * 如果资源表指针为空，则执行系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源表指针和计数器信息
+ * @return 无返回值
+ * @note 此函数会遍历资源表并处理每个资源索引
+ * @warning 如果资源表指针为空，将触发系统紧急退出
+ */
+void ProcessResourceTableCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -51280,7 +51292,19 @@ void InitializeSystemContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_180905ef0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源句柄释放和状态验证
+ * 
+ * 该函数负责释放资源句柄，验证资源状态
+ * 并清理相关的内存区域和上下文数据
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源表和状态信息
+ * @return 无返回值
+ * @note 此函数会处理资源释放和状态验证
+ * @warning 如果发现无效状态，将触发系统紧急退出
+ */
+void ReleaseResourceHandleAndValidateStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -51417,7 +51441,20 @@ void DestroyValidationContextMutex(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_180905f60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 销毁验证上下文中的条件变量
+ * 
+ * 该函数负责销毁验证上下文中指定位置的条件变量。
+ * 从验证上下文偏移0x68处获取条件变量并销毁。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会销毁验证上下文中的条件变量
+ * @warning 销毁后条件变量将不再可用
+ * @remark 原始函数名：Unwind_180905f60
+ */
+void DestroyValidationContextConditionVariable(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   _Cnd_destroy_in_situ(*(uint8_t *)(ValidationContext + 0x68));
@@ -51426,7 +51463,20 @@ void Unwind_180905f60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905f70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源上下文验证和清理
+ * 
+ * 该函数负责验证资源上下文的有效性，并执行必要的清理操作
+ * 检查资源状态，处理哈希验证结果，并维护系统稳定性
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源上下文验证和清理
+ * @warning 如果发现无效状态，将触发系统紧急退出
+ * @remark 原始函数名：Unwind_180905f70
+ */
+void ValidateResourceContextAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -51484,7 +51534,20 @@ void Unwind_180905f70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905f80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理验证上下文中的资源表遍历
+ * 
+ * 该函数负责遍历验证上下文中的资源表
+ * 对每个资源索引进行处理，确保资源状态正确
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会遍历资源表并处理每个资源索引
+ * @warning 如果资源表指针为空，将触发系统紧急退出
+ * @remark 原始函数名：Unwind_180905f80
+ */
+void ProcessValidationContextResourceTable(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
