@@ -11288,7 +11288,15 @@ void InitializeSystemStringProcessorY(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorZ(void)
+/**
+ * @brief 初始化系统字符串处理器Z
+ * 
+ * 该函数负责初始化系统字符串处理器Z，设置字符串处理的相关参数和配置。
+ * 用于系统字符串处理的初始化工作。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void InitializeSystemStringProcessorZ(void)
 
 {
@@ -52007,7 +52015,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   long long resourceDataIndex6;
   void* *SystemDataBufferPointer;
   ulong long SystemContextPointer;
-  uint8_t aCONCAT448 [32];
+  uint8_t SystemConcatenatedBuffer448 [32];
   uint8_t *puStack_168;
   void* *SystemResourcePointer160;
   uint8_t *pSystemConfigurationId;
@@ -52041,7 +52049,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   long long resourceDataIndex7;
   
   ThreadContextFlag = 0xfffffffffffffffe;
-  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)aCONCAT448;
+  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemConcatenatedBuffer448;
   controlFlag = ControlFlag;
   SystemDataPointer0 = (uint8_t *)0x0;
   SystemOperationStatus4 = 0;
@@ -52564,7 +52572,7 @@ LAB_1800718e9:
     uStack_e0 = 0;
     SystemResourcePointerF0 = (void* *)0x0;
     pMemoryBufferAddress = &SystemMemoryAllocatorReference;
-      ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)aCONCAT448);
+      ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemConcatenatedBuffer448);
   }
 LAB_1800715eb:
   SystemDataBufferPointer = &SystemStringTemplate;
@@ -62953,7 +62961,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     SystemMaxOperationCount = 0;
     UnsignedStackFlag80 = 0x1800795fa;
     pfStack_28 = SystemResourceManager;
-    InitializeSystemResourceEncryption(aSystemResourceStatusFlag);
+    InitializeSystemResourceEncryption(SystemResourceStatusFlagCompact);
     UnsignedStackFlag80 = 0x180079605;
     floatValue6 = (float)FUN_1802349a0(0);
     if ((10 < (int)floatValue6) ||
