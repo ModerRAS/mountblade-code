@@ -45,109 +45,93 @@
 /**
  * @brief 处理系统内存页面
  * 
- * 该函数负责处理系统内存页面，包括页面分配、映射和管理
- * 用于系统内存管理的基础操作
+ * 处理系统内存页面，包括页面分配、映射和管理操作。
+ * 用于系统内存管理的基础操作。
  * 
  * @param MemoryAddress 内存地址，指定要处理的内存页面位置
  * @return 无返回值
- * 
- * 系统内存页面处理器
  */
 void ProcessSystemMemoryPage(long long MemoryAddress);
 
 /**
  * @brief 释放系统资源
  * 
- * 该函数负责释放系统资源，包括内存、句柄和对象
- * 用于系统资源的清理和回收
+ * 释放系统资源，包括内存、句柄和对象。
+ * 用于系统资源的清理和回收。
  * 
  * @return 无返回值
- * 
- * 系统资源释放器
  */
 void ReleaseSystemResource(void);
 
 /**
  * @brief 初始化系统内存缓冲区
  * 
- * 该函数负责初始化系统内存缓冲区，设置缓冲区参数和属性
- * 用于系统内存缓冲区的配置和准备工作
+ * 初始化系统内存缓冲区，设置缓冲区参数和属性。
+ * 用于系统内存缓冲区的配置和准备工作。
  * 
  * @param MemoryTemplate 内存模板，用于初始化缓冲区的模板数据
  * @param BufferSize 缓冲区大小，指定缓冲区的大小
  * @param SourceData 源数据，用于初始化缓冲区的数据源
  * @return 无返回值
- * 
- *InitializeSystemMemoryBuffer：InitializeSystemMemoryBuffer
  */
 void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferSize, void* SourceData);
 
 /**
  * @brief 写入数据到缓冲区
  * 
- * 该函数负责将数据写入到指定的缓冲区中，支持可变参数
- * 用于系统数据的写入和存储操作
+ * 将数据写入到指定的缓冲区中，支持可变参数。
+ * 用于系统数据的写入和存储操作。
  * 
  * @param Buffer 缓冲区指针，指定要写入数据的缓冲区
  * @param DataSize 数据大小，指定要写入的数据大小
  * @param ... 可变参数，表示要写入的数据
  * @return 无返回值
- * 
- *WriteDataToBuffer：WriteDataToBuffer
  */
 void WriteDataToBuffer(void* Buffer, long long DataSize, ...);
 
 /**
  * @brief 初始化系统内存分配器
  * 
- * 该函数负责初始化系统内存分配器，设置分配策略和参数
- * 用于系统内存分配的配置和准备工作
+ * 初始化系统内存分配器，设置分配策略和参数。
+ * 用于系统内存分配的配置和准备工作。
  * 
  * @param memoryHandle 内存句柄，指定要初始化的内存分配器句柄
  * @param bufferContext 缓冲区上下文，包含缓冲区的相关信息
  * @return 分配器指针，返回初始化后的内存分配器指针
- * 
- *InitializeSystemMemoryAllocator：InitializeSystemMemoryAllocator
  */
 void* InitializeSystemMemoryAllocator(long long memoryHandle, void* bufferContext);
 
 /**
  * @brief 初始化系统数据
  * 
- * 该函数负责初始化系统数据，设置数据结构和属性
- * 用于系统数据的配置和准备工作
+ * 初始化系统数据，设置数据结构和属性。
+ * 用于系统数据的配置和准备工作。
  * 
  * @param dataContext 数据上下文，包含要初始化的数据相关信息
  * @param templateContext 模板上下文，包含数据模板的相关信息
  * @return 无返回值
- * 
- *InitializeSystemData：InitializeSystemData
  */
 void InitializeSystemData(void* dataContext, void* templateContext);
 
 /**
  * @brief 验证系统配置
  * 
- * 该函数负责验证系统配置的有效性和完整性
- * 用于系统配置的安全检查和验证
+ * 验证系统配置的有效性和完整性。
+ * 用于系统配置的安全检查和验证。
  * 
  * @param configFlags 配置标志，指定要验证的配置项
  * @param configContext 配置上下文，包含配置的相关信息
  * @return 验证结果，返回0表示成功，非0表示失败
- * 
- *ValidateSystemConfiguration：ValidateSystemConfiguration
  */
 int ValidateSystemConfiguration(long long configFlags, void* configContext);
 
 /**
  * @brief 获取系统状态标志
  * 
- * 该函数负责获取系统的状态标志，用于监控系统运行状态
- * 用于系统状态的管理和监控
+ * 获取系统的状态标志，用于监控系统运行状态。
+ * 用于系统状态的管理和监控。
  * 
  * @return 系统状态标志，返回当前系统的状态标志位
- * 
- *GetSystemStatusFlags：GetSystemStatusFlags
  */
 long long GetSystemStatusFlags(void);
 
@@ -48143,18 +48127,18 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         SystemAllocationFlags = _Xtime_get_ticks();
         resourceDataIndex4 = (SystemAllocationFlags + 50000) * 100;
         SystemAllocationFlags = resourceDataIndex4 / 1000000000;
-        iStack_48 = (int)SystemAllocationFlags;
-        iStack_210 = (int)resourceDataIndex4 + iStack_48 * -1000000000;
+        StackInteger48 = (int)SystemAllocationFlags;
+        StackInteger210 = (int)resourceDataIndex4 + StackInteger48 * -1000000000;
         uStack_218._4_4_ = (uint32_t)((ulong long)SystemAllocationFlags >> 0x20);
         uStack_44 = uStack_218._4_4_;
         SystemFlag3c = SystemMaxOperationCountc;
         uStack_218 = SystemAllocationFlags;
-        iStack_40 = iStack_210;
+        StackInteger40 = StackInteger210;
         SystemOperationStatus7 = _Mtx_current_owns(resourceDataIndex3);
         if (SystemOperationStatus7 == 0) {
           __Throw_Cpp_error_std__YAXH_Z(4);
         }
-        SystemOperationStatusFlags = _Cnd_timedwait(SystemResourceManager + 0x330,resourceDataIndex3,&iStack_48);
+        SystemOperationStatusFlags = _Cnd_timedwait(SystemResourceManager + 0x330,resourceDataIndex3,&StackInteger48);
         if ((SystemOperationStatusFlags & 0xfffffffd) != 0) {
           __Throw_C_error_std__YAXH_Z(SystemOperationStatusFlags);
         }
