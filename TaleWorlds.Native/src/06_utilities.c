@@ -29425,9 +29425,7 @@ void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext, int64_t ValidationCont
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
-void UnwindExceptionHandlerTypeThree(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
+void UnwindExceptionHandlerTypeThree(uint8_t ObjectContext, int64_t ValidationContext) {
   if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset) != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
   }
@@ -29444,9 +29442,7 @@ void UnwindExceptionHandlerTypeThree(uint8_t ObjectContext,int64_t ValidationCon
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
-void UnwindExceptionHandlerTypeFour(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
+void UnwindExceptionHandlerTypeFour(uint8_t ObjectContext, int64_t ValidationContext) {
   uint8_t *ResourceHashAddress;
   
   ResourceHashAddress = *(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset);
@@ -29466,9 +29462,7 @@ void UnwindExceptionHandlerTypeFour(uint8_t ObjectContext,int64_t ValidationCont
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
-void UnwindExceptionHandlerTypeFive(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
+void UnwindExceptionHandlerTypeFive(uint8_t ObjectContext, int64_t ValidationContext) {
   uint8_t *ResourceHashAddress;
   
   ResourceHashAddress = *(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset);
@@ -29487,9 +29481,7 @@ void UnwindExceptionHandlerTypeFive(uint8_t ObjectContext,int64_t ValidationCont
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
-void UnwindExceptionHandlerTypeSix(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
+void UnwindExceptionHandlerTypeSix(uint8_t ObjectContext, int64_t ValidationContext) {
   **(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
   return;
 }
@@ -34558,18 +34550,14 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数在异常处理过程中被调用
  */
-void UnwindExceptionHandlerTypeSix(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
+void UnwindExceptionHandlerTypeSix(uint8_t ObjectContext, int64_t ValidationContext) {
   *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x438) = &SystemDataStructure;
   return;
 }
 
 
 
-void ReleaseFileSystemLock(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
-{
+void ReleaseFileSystemLock(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
   HandleResourceRequest(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x858,
                 *(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x868),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
