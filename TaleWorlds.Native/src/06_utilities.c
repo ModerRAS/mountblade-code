@@ -3045,8 +3045,10 @@ uint8_t SystemEventHandlerCustomSeventyFour;
 uint8_t SystemEventHandlerCustomSeventyFive;
 // 事件处理器槽九十 - 第九十号事件处理器槽
 uint8_t EventHandlerSlotNinety;
-uint8_t SystemEventHandlerSlotNinetyOne;
-uint8_t SystemEventHandlerSlotNinetyTwo;
+// 事件处理器槽九十一 - 第九十一号事件处理器槽
+uint8_t EventHandlerSlotNinetyOne;
+// 事件处理器槽九十二 - 第九十二号事件处理器槽
+uint8_t EventHandlerSlotNinetyTwo;
 uint8_t SystemEventHandlerSlotNinetyThree;
 uint8_t SystemEventHandlerSlotNinetyFour;
 uint8_t SystemEventHandlerSlotNinetyFive;
