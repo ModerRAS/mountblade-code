@@ -6558,8 +6558,8 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   int64_t BufferOffset;
   uint CapacityCheck;
   int64_t SystemBasePointer;
-  int64_t systemRegister;
-  int64_t primaryContextPointer;
+  int64_t SystemRegister;
+  int64_t PrimaryContextPointer;
   int64_t secondaryContextPointer;
   
   ValidationStatus = ProcessSystemContext(SystemContext, bufferContext, *(uint8_t *)(secondaryContextPointer + 8));
