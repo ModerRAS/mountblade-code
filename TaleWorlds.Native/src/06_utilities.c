@@ -3937,7 +3937,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     ProcessedObjectCount = 0;
     BufferPosition = 0;
     MaxProcessableObjects = MaximumProcessableItemsLimit;
-    ProcessingStatusCode = FetchObjectList(*(uint8_t *)(SystemExecutionContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
+    ProcessingStatusCode = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
                           &DataBuffer);
     if (ProcessingStatusCode == 0) {
       if (0 < BufferPosition) {
@@ -4581,7 +4581,7 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
   uint8_t ContextValidationResult;
   int64_t HandleMemoryBuffer;
   
-  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContextPointer + ObjectHandleMemoryOffset), &HandleMemoryBuffer);
+  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &HandleMemoryBuffer);
   if ((int)ContextValidationResult != 0) {
     return ContextValidationResult;
   }
@@ -4620,7 +4620,7 @@ uint32_t ValidateObjectHandleFromRegister(void)
   if (*(int64_t *)(MemoryPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + ObjectContextValidationOffset), SystemExitOperationParameter);
+        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + ObjectContextValidationOffset), 1);
 }
 
 
@@ -4677,7 +4677,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleToValidate)
     HandleMemoryBuffer = 0;
   }
   else {
-    HandleMemoryBuffer = HandleMemoryBuffer + HandleMemoryBufferAdjustment;
+    HandleMemoryBuffer = HandleMemoryBuffer + -8;
   }
   if (*(int64_t *)(HandleMemoryBuffer + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
@@ -4704,7 +4704,7 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
     MemoryPointer = 0;
   }
   else {
-    MemoryPointer = RegisterContext + HandleMemoryBufferAdjustment;
+    MemoryPointer = RegisterContext + -8;
   }
   if (*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
