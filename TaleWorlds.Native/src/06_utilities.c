@@ -80101,7 +80101,19 @@ void ExecuteCleanupOperationAtContextOffset98(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_18090e940(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文偏移28+20的资源清理操作
+ * 
+ * 该函数负责从验证上下文偏移28位置获取资源上下文
+ * 如果资源上下文有效，则调用其清理函数进行资源释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源上下文信息
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中调用
+ * @warning 此函数涉及函数指针调用，需要确保指针有效性
+ */
+void ExecuteResourceCleanupAtContextOffset28Plus20(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -80115,7 +80127,19 @@ void Unwind_18090e940(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e950(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源处理器模板并执行紧急退出检查
+ * 
+ * 该函数负责设置系统资源处理器模板，检查是否需要执行紧急退出
+ * 如果需要，则调用系统紧急退出函数，然后清理相关状态
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含系统上下文信息
+ * @return 无返回值
+ * @note 此函数通常在异常处理过程中调用
+ * @warning 此函数可能执行系统紧急退出，调用后不会返回
+ */
+void SetSystemResourceHandlerTemplateAndCheckEmergencyExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
