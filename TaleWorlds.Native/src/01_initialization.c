@@ -20441,11 +20441,11 @@ void InitializeSystemCoreEngine(void)
   DataBuffer2F0[0] = 0;
   uStack_2f8 = 0x18;
   systemOperationFlags = strcpy_s(DataBuffer2F0,0x40,&SystemDataBufferTemplateJ);
-  verticalResolutionFactor = (float)GetSystemResolutionFactor(systemOperationFlags,&puStack_308);
-  puStack_308 = &SystemMemoryAllocatorReference;
+  verticalResolutionFactor = (float)GetSystemResolutionFactor(systemOperationFlags,&VerticalResolutionBuffer);
+  VerticalResolutionBuffer = &SystemMemoryAllocatorReference;
   currentThreadId = GetSystemInitializationStatus();
   if (0 < SystemConfigDataPointerD) {
-    InitializeSystemConfiguration(&SystemConfigurationTemplate,&puStack_558,0,SystemConfigDataPointerD + -1);
+    InitializeSystemConfiguration(&SystemConfigurationTemplate,&SystemConfigPathBuffer,0,SystemConfigDataPointerD + -1);
     iStack_548 = iStack_548 + -1;
     localSystemFlags = (long long)iStack_548;
     systemCounter = -1;
