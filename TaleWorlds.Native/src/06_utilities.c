@@ -7393,7 +7393,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   int64_t transformContext;
   int64_t matrixBuffer [2];
   uint MatrixFlags;
-  float matrixScaleFactor;
+  float MatrixScaleFactor;
   int64_t matrixContextPointer;
   
   matrixContextPointer = 0;
@@ -14497,11 +14497,11 @@ LoopExit:
       uint32_t ChecksumValue = DataChecksumBuffer8[0];
       uint32_t EncryptionParam = encryptionFlag;
       int ResultIndex = ResultCounter;
-      int ResourceValidationStatusCode = GetAndValidateResourceData(ObjectContext,&StackPointer268);
+      int ResourceValidationStatusCode = GetAndValidateResourceData(ObjectContext,&SecurityContextPointer);
       if (ResourceHashValidationResult != 0) goto LoopExit;
       int ProcessingCounter = 0;
       int TableEntryIndex = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + 0xd0));
-      int LoopCounter2 = NextResultIndex;
+      int ValidationLoopCounter = NextResultIndex;
       if (0 < TableEntryIndex) {
         do {
           uint32_t LoopFlag = 0;
@@ -14510,9 +14510,9 @@ LoopExit:
           uint32_t ChecksumValue2 = DataChecksumBuffer8[0];
           if (((char)ResourceTable == '\0') && (int SystemStatusResult = CheckSystemStatus(ObjectContext,1), SystemStatusResult != 0))
           goto LoopExit;
-          int MemoryOperationStatusCode = (**(code **)(MemoryTemplatePointer + 0x10))(&MemoryTemplatePointer,StackBuffer238,0x200);
-          ProcessDataBuffer((int64_t)StackBuffer238 + (int64_t)memoryOperationResult,0x200 - memoryOperationResult,10);
-          int ObjectOperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,StackBuffer238);
+          int MemoryOperationStatusCode = (**(code **)(MemoryTemplatePointer + 0x10))(&MemoryTemplatePointer,ProcessingBuffer,0x200);
+          ProcessDataBuffer((int64_t)ProcessingBuffer + (int64_t)memoryOperationResult,0x200 - memoryOperationResult,10);
+          int ObjectOperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ProcessingBuffer);
           if (objectOperationResult != 0) goto LoopExit;
           if ((char)ResourceTable == '\0') {
             int SecondaryOperationStatusCode = (**(code **)(*ObjectContext + ObjectContextValidationDataOffset))(ObjectContext);
@@ -14740,7 +14740,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
   int64_t ResourceIndexOffset;
   int64_t *ResourceContextQuaternary;
   uint ResourceHashValue7;
-  float inputFloatValue8;
+  float InputParameterValue;
   int64_t *ResourceContextFinal;
   bool ValidationFlag;
   uint8_t AudioHashBuffer[32];
@@ -14775,7 +14775,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
   uint64_t EncryptedValue;
   
   // 初始化加密值用于安全操作
-  EncryptedValue = SecurityEncryptionKey ^ (uint64_t)StackBuffer368;
+  EncryptedValue = SecurityEncryptionKey ^ (uint64_t)SecurityContextBuffer;
   // 初始化资源上下文指针
   ResourceContext6 = (int64_t *)0x0;
   // 初始化音频处理缓冲区
@@ -15486,10 +15486,10 @@ uint32_t ExtractResourceHashData(uint8_t ResourceTableHandle,int ResourceIndex,u
   uint8_t *SystemContext;
   int64_t LocalContextBuffer;
   uint8_t *ResourceHashPointerFinal;
-  int ResourceIndex6;
+  int ResourceProcessingIndex;
   uint32_t ResourceHashValue7;
   int64_t *ResourceRegisterPointer;
-  int ResourceIndexOctal;
+  int ResourceSecondaryIndex;
   int *OutputResultPointer;
   
   if (CleanupOption != (uint32_t *)0x0) {
@@ -15502,7 +15502,7 @@ uint32_t ExtractResourceHashData(uint8_t ResourceTableHandle,int ResourceIndex,u
     CleanupOption[2] = ResourceContextOffset;
     CleanupOption[3] = ContextHashValidationResult;
   }
-  ResourceIndexOctal = 0;
+  ResourceSecondaryIndex = 0;
   SecondaryResourceHash = 0;
   ResourceIndexTertiary = (int)ExecutionContextPointer;
   loopIncrement = *(uint3 *)((int64_t)ValidationContext * 3 + ResourceRegisterPointer[6]);
@@ -15513,13 +15513,13 @@ uint32_t ExtractResourceHashData(uint8_t ResourceTableHandle,int ResourceIndex,u
       MaxOperationCount = GetResourceOffset(LocalContextBuffer);
       if (ResourceIndexTertiary != 0) {
         ResourceHashPointer5 = (uint8_t *)((MaxOperationCount + -1) + LocalContextBuffer);
-        ResourceIndex6 = MaxOperationCount;
-        while (0 < ResourceIndex6) {
-          ArrayIndex = ResourceIndex6;
-          if ((int)(ResourceIndexTertiary - SecondaryResourceHash) <= ResourceIndex6) {
+        ResourceProcessingIndex = MaxOperationCount;
+        while (0 < ResourceProcessingIndex) {
+          ArrayIndex = ResourceProcessingIndex;
+          if ((int)(ResourceIndexTertiary - SecondaryResourceHash) <= ResourceProcessingIndex) {
             ArrayIndex = ResourceIndexTertiary - SecondaryResourceHash;
           }
-          ResourceIndex6 = ResourceIndex6 - ArrayIndex;
+          ResourceProcessingIndex = ResourceProcessingIndex - ArrayIndex;
           if (ArrayIndex != 0) {
             ResourceHashPointer0 = SystemContext + (int)SecondaryResourceHash;
             SecondaryResourceHash = SecondaryResourceHash + ArrayIndex;
@@ -52396,7 +52396,7 @@ void ExecuteResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_1809061f0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceHashTableValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -52597,7 +52597,19 @@ void UnwindResetSystemDataStructurePointer(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_180906360(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源标志1
+ * 
+ * 该函数负责检查并释放资源数据中的第一个标志位
+ * 如果标志位被设置，则清除该位并释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文参数，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文参数，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会修改资源数据的标志位状态
+ * @remark 原始函数名：Unwind_180906360
+ */
+void ReleaseResourceFlag1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x54) & 1) != 0) {
@@ -52609,7 +52621,7 @@ void Unwind_180906360(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906390(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceFlag2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x54) & 2) != 0) {
@@ -52621,7 +52633,7 @@ void Unwind_180906390(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809063c0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceFlag4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x54) & 4) != 0) {
