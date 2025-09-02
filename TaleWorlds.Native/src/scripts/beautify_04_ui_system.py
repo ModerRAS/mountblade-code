@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 美化04_ui_system.c文件中的变量名
-替换十六进制变量名为语义化名称
+替换_DAT_变量名为语义化名称
 """
 
 import re
@@ -13,66 +13,54 @@ def beautify_ui_system_variables():
     with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/04_ui_system.c', 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # 定义变量名映射
-    variable_mapping = {
-        'UISystemMemoryOffsetTable2A0': 'UISystemTextureBufferOffset',
-        'UISystemMemoryOffsetTable300': 'UISystemShaderBufferOffset',
-        'UISystemMemoryOffsetTable5C0': 'UISystemFrameBufferOffset',
-        'UISystemMemoryOffsetTable6C0': 'UISystemStencilBufferOffset',
-        'UISystemMemoryOffsetTable880': 'UISystemDepthBufferOffset',
-        'UISystemMemoryOffsetTableD80': 'UISystemColorBufferOffset',
-        'UISystemMemoryOffsetTableDE0': 'UISystemAlphaBufferOffset',
-        'UISystemMemoryOffsetTableE90': 'UISystemNormalBufferOffset',
-        'UISystemMemoryOffsetTableFA0': 'UISystemPositionBufferOffset',
-        'UISystemMemoryOffsetTable9D0': 'UISystemTangentBufferOffset',
-        'UISystemMemoryOffsetTable080': 'UISystemUVBufferOffset',
-        'UISystemMemoryOffsetTable440': 'UISystemBoneBufferOffset',
-        'UISystemMemoryOffsetTable7B0': 'UISystemAnimationBufferOffset',
-        'UISystemMemoryOffsetTableBC0': 'UISystemLightBufferOffset',
-        'UISystemMemoryOffsetTable190': 'UISystemShadowBufferOffset',
-        'UISystemMemoryOffsetTable5D0': 'UISystemReflectionBufferOffset',
-        'UISystemMemoryOffsetTable945': 'UISystemFogBufferOffset',
-        'UISystemMemoryOffsetTableB22': 'UISystemWeatherBufferOffset',
-        'UISystemMemoryOffsetTableF34': 'UISystemTimeBufferOffset',
-        'UISystemMemoryOffsetTableFF0': 'UISystemCameraBufferOffset',
-        'UISystemMemoryOffsetTable630': 'UISystemProjectionBufferOffset',
-        'UISystemMemoryOffsetTableBC6': 'UISystemViewBufferOffset',
-        'UISystemMemoryOffsetTableEB4': 'UISystemWorldBufferOffset',
-        'UISystemMemoryOffsetTable470': 'UISystemModelBufferOffset',
-        'UISystemMemoryOffsetTable4E0': 'UISystemInstanceBufferOffset',
-        'UISystemMemoryOffsetTable550': 'UISystemMaterialBufferOffset',
-        'UISystemMemoryOffsetTable5E0': 'UISystemTextureOffset',
-        'UISystemMemoryOffsetTable670': 'UISystemSamplerOffset',
-        'UISystemMemoryOffsetTable6E0': 'UISystemConstantOffset',
-        'UISystemMemoryOffsetTable750': 'UISystemAttributeOffset',
-        'UISystemMemoryOffsetTable7C0': 'UISystemVaryingOffset',
-        'UISystemMemoryOffsetTable850': 'UISystemUniformOffset',
-        'UISystemMemoryOffsetTable8E0': 'UISystemVertexOffset',
-        'UISystemMemoryOffsetTable120': 'UISystemFragmentOffset',
-        'UISystemMemoryOffsetTableDCF': 'UISystemGeometryOffset',
-        'UISystemMemoryOffsetTable5D0': 'UISystemTessellationOffset',
-        'UISystemMemoryOffsetTable945': 'UISystemComputeOffset',
-        'UISystemMemoryOffsetTableB22': 'UISystemMeshOffset',
-        'UISystemMemoryOffsetTableF34': 'UISystemParticleOffset',
-        'UISystemMemoryOffsetTableFF0': 'UISystemPostProcessOffset',
-        'UISystemMemoryOffsetTable630': 'UISystemLightingOffset',
-        'UISystemMemoryOffsetTableBC6': 'UISystemShadowMappingOffset',
-        'UISystemMemoryOffsetTableEB4': 'UISystemReflectionOffset',
-        'UISystemMemoryOffsetTable470': 'UISystemAmbientOcclusionOffset',
-        'UISystemMemoryOffsetTable4E0': 'UISystemGlobalIlluminationOffset',
-        'UISystemMemoryOffsetTable550': 'UISystemAntiAliasingOffset',
-        'UISystemMemoryOffsetTable5E0': 'UISystemDepthOfFieldOffset',
-        'UISystemMemoryOffsetTable670': 'UISystemMotionBlurOffset',
-        'UISystemMemoryOffsetTable6E0': 'UISystemBloomOffset',
-        'UISystemMemoryOffsetTable750': 'UISystemTonemappingOffset',
-        'UISystemMemoryOffsetTable7C0': 'UISystemColorGradingOffset',
-        'UISystemMemoryOffsetTable850': 'UISystemVignetteOffset',
-        'UISystemMemoryOffsetTable8E0': 'UISystemChromaticAberrationOffset'
+    # 定义_DAT_变量名映射
+    dat_variable_mapping = {
+        "_DAT_180d4a7d8": "UIRestoreManagerInstance",
+        "_DAT_180d4a7a0": "UIConfigManagerInstance",
+        "_DAT_180d4a770": "UISettingsManagerInstance",
+        "_DAT_180d4a6f0": "UIEnvironmentManagerInstance",
+        "_DAT_180d4a6d8": "UIDebugManagerInstance",
+        "_DAT_180d4a6b0": "UIArchiveManagerInstance",
+        "_DAT_180d4a870": "UIValidatorManagerInstance",
+        "_DAT_180d4a830": "UIResourceAllocationCalculator",
+        "_DAT_180d4a7e8": "UIResourceAccessValidator",
+        "_DAT_180d4a7c0": "UIMemoryOperationProcessor",
+        "_DAT_180d4a788": "UIDataValidationProcessor",
+        "_DAT_180d4a740": "UISecurityCheckProcessor",
+        "_DAT_180d4a700": "UIResourceAllocationProcessor",
+        "_DAT_180d4a6e0": "UIMemoryAllocationProcessor",
+        "_DAT_180d4a6b8": "UIBufferManagementProcessor",
+        "_DAT_180d4a968": "UIEventHandlingProcessor",
+        "_DAT_180d4a948": "UIInputProcessingProcessor",
+        "_DAT_180d4a920": "UIStateUpdateProcessor",
+        "_DAT_180d4a8f0": "UIDataBindingProcessor",
+        "_DAT_180d4a8d0": "UIThemeSwitcherInstance",
+        "_DAT_180d4a898": "UIThemeRenderingProcessor",
+        "_DAT_180d4a858": "UIMemoryPoolIntegrityChecker",
+        "_DAT_180d4a820": "UIMemoryPoolCounterResetter",
+        "_DAT_180d4a7e0": "UIMemoryPoolIndexRebuilder",
+        "_DAT_180d4a7b0": "UIMemoryPoolUsageAnalyzer",
+        "_DAT_180d4a778": "UIMemoryPoolMetricsUpdater",
+        "_DAT_180d4a750": "UIMemoryPoolAllocatorInitializer",
+        "_DAT_180d4a708": "UIMemoryPoolParameterSetter",
+        "_DAT_180d4a958": "UIReportGenerationProcessor",
+        "_DAT_180d4a928": "UIPerformanceAnalysisProcessor",
+        "_DAT_180d4a910": "UIPredictionProcessor",
+        "_DAT_180d4a8c0": "UIRecommendationProcessor",
+        "_DAT_180d4a8a8": "UIAuthenticationManagerInstance",
+        "_DAT_180c0c1ec": "UIInitializationFlag",
+        "_DAT_180c0c1e8": "UISemaphoreCounter",
+        "_DAT_180c0c1e0": "UICriticalSection",
+        "_DAT_180c0c200": "UIRuntimeState",
+        "_DAT_180c0c1fc": "UIInitializationState",
+        "_DAT_180c0c1f8": "UIReferenceCounter",
+        "_DAT_180c0c1f0": "UILockSection"
     }
     
-    # 替换变量名
-    for old_name, new_name in variable_mapping.items():
-        content = content.replace(f'void* {old_name};', f'void* {new_name};')
+    # 替换_DAT_变量名
+    for old_name, new_name in dat_variable_mapping.items():
+        content = content.replace(old_name, new_name)
+        print(f"替换 {old_name} -> {new_name}")
     
     # 写回文件
     with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/04_ui_system.c', 'w', encoding='utf-8') as f:
