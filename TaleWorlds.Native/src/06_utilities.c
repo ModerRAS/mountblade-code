@@ -11079,8 +11079,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContextParameter, int ValidationC
  * @param validationFlags 验证标志，控制验证过程的选项
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext,int operationType,uint *validationFlags)
-
+uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext, int operationType, uint *validationFlags)
 {
   uint resourceHash;
   int64_t resourceTable;
@@ -11100,7 +11099,7 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext,int 
         do {
           ResourceIndex = (int64_t)tableEntry;
           if (*(uint *)(resourceTable + ResourceIndex * 0x10) == resourceHash) {
-            HashValueParam = (uint)((uint64_t)*(uint8_t *)(resourceTable + 8 + ResourceIndex * 0x10) >> 0x20);
+            uint HashValueParam = (uint)((uint64_t)*(uint8_t *)(resourceTable + 8 + ResourceIndex * 0x10) >> 0x20);
             if (HashValueParam != 0) {
               *hashOutput = HashValueParam;
               return 0;
@@ -11112,7 +11111,7 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext,int 
       }
       HashValueParam = 0;
 HashValueHandler:
-      pLoopIncrement = (uint8_t *)
+      uint8_t *pLoopIncrement = (uint8_t *)
                ((int64_t)*(int *)(*(int64_t *)(ObjectContextParameter + 0x18) + (int64_t)ValidationContextParameter * 0xc) +
                *(int64_t *)(ObjectContextParameter + 8));
       if (pLoopIncrement != (uint8_t *)0x0) {
@@ -18178,18 +18177,18 @@ void ProcessObjectContextValidation(int64_t ObjectContextParameter,int *Validati
   uint32_t UnsignedResult4;
   
   ContextValidationStatusCode = (uint32_t)((uint)InputRegisterValue >> 8);
-  SystemStatusChar = (char)InputRegisterValue + -0x57 + in_CF;
-  LoopIncrement = CONCAT31(ContextValidationResult,SystemStatusChar);
-  *(uint32_t *)CONCAT44(in_register_00000004,LoopIncrement) = LoopIncrement;
-  *(uint *)(ObjectContextParameter + -0x565dff77) = *(uint *)(ObjectContextParameter + -0x565dff77) & SavedBasePointer;
-  *(uint32_t *)CONCAT44(in_register_00000004,LoopIncrement) = LoopIncrement;
-  piStack_8 = ValidationContextParameter;
-  *(uint32_t *)CONCAT44(in_register_00000004,LoopIncrement) = LoopIncrement;
-  *(char *)CONCAT44(in_register_00000004,LoopIncrement) =
-       *(char *)CONCAT44(in_register_00000004,LoopIncrement) + SystemStatusChar;
-  *(char *)CONCAT44(in_register_00000004,LoopIncrement) =
-       *(char *)CONCAT44(in_register_00000004,LoopIncrement) + SystemStatusChar;
-  tableEntry = CONCAT31(ContextValidationResult,SystemStatusChar + '\x18');
+  StatusCharacter = (char)InputRegisterValue + -0x57 + CarryFlag;
+  LoopCounter = CONCAT31(ValidationResult,StatusCharacter);
+  *(uint32_t *)CONCAT44(RegisterParameter,LoopCounter) = LoopCounter;
+  *(uint *)(ObjectContextParameter + -0x565dff77) = *(uint *)(ObjectContextParameter + -0x565dff77) & BasePointer;
+  *(uint32_t *)CONCAT44(RegisterParameter,LoopCounter) = LoopCounter;
+  StackContextPointer = ValidationContextParameter;
+  *(uint32_t *)CONCAT44(RegisterParameter,LoopCounter) = LoopCounter;
+  *(char *)CONCAT44(RegisterParameter,LoopCounter) =
+       *(char *)CONCAT44(RegisterParameter,LoopCounter) + StatusCharacter;
+  *(char *)CONCAT44(RegisterParameter,LoopCounter) =
+       *(char *)CONCAT44(RegisterParameter,LoopCounter) + StatusCharacter;
+  TableIndex = CONCAT31(ValidationResult,StatusCharacter + '\x18');
   *ValidationContextParameter = *ValidationContextParameter + tableEntry;
   CharPointer = (char *)((int64_t)&piStack_8 + CONCAT44(in_register_00000004,tableEntry));
   *CharPointer = *CharPointer + SystemStatusChar + '\x18';
@@ -50004,7 +50003,18 @@ void Unwind_1809068b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809068d0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 执行资源操作处理器
+ * 
+ * 该函数负责执行特定的资源操作处理任务
+ * 根据验证上下文参数执行相应的资源操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象相关信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作合法性
+ * @return 无返回值
+ * @note 此函数会根据上下文参数执行资源操作
+ */
+void ExecuteResourceOperationHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   ExecuteResourceOperation(*(int64_t *)(ValidationContextParameter + 0x50) + 0x2e0);
@@ -50013,7 +50023,18 @@ void Unwind_1809068d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809068f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证资源参数处理器
+ * 
+ * 该函数负责验证资源参数的有效性
+ * 确保资源参数符合系统要求和安全标准
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象相关信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作合法性
+ * @return 无返回值
+ * @note 此函数会验证资源参数的有效性
+ */
+void ValidateResourceParametersHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   ValidateResourceParameters(*(int64_t *)(ValidationContextParameter + 0x50) + 0x2f0);
