@@ -11653,30 +11653,45 @@ StackIndexHandler:
  * @param callbackIndex 回调函数索引，用于确定要执行的回调函数
  * @return uint8_t 操作结果，成功返回0
  */
-uint8_t ProcessResourceHashAndCallback(int64_t resourceArray, uint8_t contextContext, int64_t callbackIndex)
+/**
+ * @brief 处理资源哈希值并执行回调函数
+ * 
+ * 该函数负责处理资源的哈希值，并根据哈希值执行相应的回调函数。
+ * 首先从资源数组中提取哈希值，然后检查是否存在错误状态。
+ * 如果没有错误，则查找并执行对应的回调函数。
+ * 
+ * @param ResourceArray 资源数组指针，包含要处理的资源数据
+ * @param ContextContext 上下文环境参数，用于确定执行环境
+ * @param CallbackIndex 回调函数索引，指定要执行的回调函数
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示错误
+ * 
+ * @note 此函数假设资源数组和回调函数表已正确初始化
+ * @warning 回调函数执行前必须验证其有效性
+ */
+uint8_t ProcessResourceHashAndExecuteCallback(int64_t ResourceArray, uint8_t ContextContext, int64_t CallbackIndex)
 
 {
-  uint8_t ResourceHash;
+  uint8_t ResourceHashValue;
   int64_t ArrayIndex;
-  uint8_t *callbackPointer;
-  int *resultPointer;
-  int64_t contextBase;
+  uint8_t *CallbackFunctionPointer;
+  int *ResultPointer;
+  int64_t ContextBaseAddress;
   uint8_t ResourceCallbackContext;
   
-  ResourceHash = *(uint8_t *)(resourceArray + ResourceCleanupOffset + ArrayIndex * 8);
-  ResourceCallbackContext.Field44 = (int)((uint64_t)ResourceHash >> 0x20);
+  ResourceHashValue = *(uint8_t *)(ResourceArray + ResourceCleanupOffset + ArrayIndex * 8);
+  ResourceCallbackContext.Field44 = (int)((uint64_t)ResourceHashValue >> 0x20);
   if (ResourceCallbackContext.Field44 != 0) {
-    *resultPointer = ResourceCallbackContext.Field44;
+    *ResultPointer = ResourceCallbackContext.Field44;
     return 0;
   }
-  callbackPointer = (uint8_t *)
-           ((int64_t)*(int *)(*(int64_t *)(contextBase + 0x18) + callbackIndex * 0xc) +
-           *(int64_t *)(contextBase + 8));
-  if (callbackPointer != (uint8_t *)0x0) {
-    ResourceCallbackContext = ResourceHash;
-    (**(code **)*callbackPointer)();
+  CallbackFunctionPointer = (uint8_t *)
+           ((int64_t)*(int *)(*(int64_t *)(ContextBaseAddress + 0x18) + CallbackIndex * 0xc) +
+           *(int64_t *)(ContextBaseAddress + 8));
+  if (CallbackFunctionPointer != (uint8_t *)0x0) {
+    ResourceCallbackContext = ResourceHashValue;
+    (**(code **)*CallbackFunctionPointer)();
   }
-  *resultPointer = 0;
+  *ResultPointer = 0;
   return 0;
 }
 
