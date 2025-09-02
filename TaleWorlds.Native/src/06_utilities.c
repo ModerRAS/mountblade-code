@@ -20334,7 +20334,7 @@ uint64_t ProcessResourceDataB(void)
   if (*(int *)(InputParameter + 0x18) != 0) {
     return 0x1c;
   }
-  ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemContext + 0x90);
+  ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemContext + SystemContextSecondaryDataOffset);
   if (HashValidationResult != 0) {
     return (uint64_t)HashValidationResult;
   }
