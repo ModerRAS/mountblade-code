@@ -6022,7 +6022,7 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   float *ColorProcessingPointer;
   ulonglong MemoryAllocationResult;
   ushort *PointerValue;
-  float *pfVar7;
+  float *SecondaryColorProcessingPointer;
   ulonglong UnsignedIndex;
   byte *pbVar9;
   float fVar10;
@@ -6035,9 +6035,9 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   case 0:
   case 1:
     pbVar9 = (byte *)*param_1;
-    pfVar4 = (float *)((ulonglong)param_1[1] >> 2);
-    if (0 < (int)pfVar4) {
-      UnsignedIndex = (ulonglong)pfVar4 & 0xffffffff;
+    ColorProcessingPointer = (float *)((ulonglong)param_1[1] >> 2);
+    if (0 < (int)ColorProcessingPointer) {
+      UnsignedIndex = (ulonglong)ColorProcessingPointer & 0xffffffff;
       do {
         FloatCalculationResult = (float)pbVar9[1] * 0.007843138 - 1.0;
         FloatValue = (float)*pbVar9 * 0.007843138 - 1.0;
@@ -6060,9 +6060,9 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     return 0;
   case 8:
     PointerValue = (ushort *)*param_1;
-    pfVar4 = (float *)((ulonglong)param_1[1] >> 3);
-    if (0 < (int)pfVar4) {
-      UnsignedIndex = (ulonglong)pfVar4 & 0xffffffff;
+    ColorProcessingPointer = (float *)((ulonglong)param_1[1] >> 3);
+    if (0 < (int)ColorProcessingPointer) {
+      UnsignedIndex = (ulonglong)ColorProcessingPointer & 0xffffffff;
       do {
         FloatCalculationResult = (float)PointerValue[1] * 3.0518044e-05 - 1.0;
         FloatValue = (float)*PointerValue * 3.0518044e-05 - 1.0;
@@ -6082,32 +6082,32 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     }
     break;
   case 0x1f:
-    pfVar4 = (float *)*param_1;
+    ColorProcessingPointer = (float *)*param_1;
     if (0 < (int)((ulonglong)param_1[1] / 0xc)) {
       UnsignedIndex = (ulonglong)param_1[1] / 0xc & 0xffffffff;
       do {
-        FloatValue = (*pfVar4 + *pfVar4) - 1.0;
-        FloatCalculationResult = (pfVar4[1] + pfVar4[1]) - 1.0;
-        FloatResult = (pfVar4[2] + pfVar4[2]) - 1.0;
+        FloatValue = (*ColorProcessingPointer + *ColorProcessingPointer) - 1.0;
+        FloatCalculationResult = (ColorProcessingPointer[1] + ColorProcessingPointer[1]) - 1.0;
+        FloatResult = (ColorProcessingPointer[2] + ColorProcessingPointer[2]) - 1.0;
         fVar10 = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
         aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = aMemoryAddress2._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *pfVar4 = (fVar10 * FloatValue + 1.0) * 0.5;
-        pfVar4[1] = (fVar10 * FloatCalculationResult + 1.0) * 0.5;
-        pfVar4[2] = (fVar10 * FloatResult + 1.0) * 0.5;
-        pfVar4 = pfVar4 + 3;
+        *ColorProcessingPointer = (fVar10 * FloatValue + 1.0) * 0.5;
+        ColorProcessingPointer[1] = (fVar10 * FloatCalculationResult + 1.0) * 0.5;
+        ColorProcessingPointer[2] = (fVar10 * FloatResult + 1.0) * 0.5;
+        ColorProcessingPointer = ColorProcessingPointer + 3;
         UnsignedIndex = UnsignedIndex - 1;
       } while (UnsignedIndex != 0);
-      return CONCAT71((int7)((ulonglong)pfVar4 >> 8),1);
+      return CONCAT71((int7)((ulonglong)ColorProcessingPointer >> 8),1);
     }
     break;
   case 0x20:
     UnsignedIndex = param_1[1];
     pfVar7 = (float *)*param_1;
-    pfVar4 = (float *)(UnsignedIndex >> 4);
-    if (0 < (int)pfVar4) {
-      MemoryAllocationResult = (ulonglong)pfVar4 & 0xffffffff;
+    ColorProcessingPointer = (float *)(UnsignedIndex >> 4);
+    if (0 < (int)ColorProcessingPointer) {
+      MemoryAllocationResult = (ulonglong)ColorProcessingPointer & 0xffffffff;
       do {
         FloatValue = (*pfVar7 + *pfVar7) - 1.0;
         FloatCalculationResult = (pfVar7[1] + pfVar7[1]) - 1.0;
@@ -6129,7 +6129,7 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     PointerValue = (ushort *)*param_1;
     aMemoryAddress._8_8_ = 0;
     aMemoryAddress._0_8_ = param_1[1];
-    pfVar4 = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * aMemoryAddress,0);
+    ColorProcessingPointer = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * aMemoryAddress,0);
     UnsignedIndex = (ulonglong)param_1[1] / 6;
     if (0 < (int)UnsignedIndex) {
       UnsignedIndex = UnsignedIndex & 0xffffffff;
@@ -6156,7 +6156,7 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     pbVar9 = (byte *)*param_1;
     aMemoryAddress2._8_8_ = 0;
     aMemoryAddress2._0_8_ = param_1[1];
-    pfVar4 = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * aMemoryAddress2,0);
+    ColorProcessingPointer = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * aMemoryAddress2,0);
     UnsignedIndex = (ulonglong)param_1[1] / 3;
     if (0 < (int)UnsignedIndex) {
       UnsignedIndex = UnsignedIndex & 0xffffffff;
@@ -6171,14 +6171,14 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         *pbVar9 = (byte)(int)((fVar10 * FloatValue + 1.0) * 127.5);
         pbVar9[1] = (byte)(int)((fVar10 * FloatCalculationResult + 1.0) * 127.5);
         StringProcessingResult = (uint)((fVar10 * FloatResult + 1.0) * 127.5);
-        pfVar4 = (float *)(ulonglong)StringProcessingResult;
+        ColorProcessingPointer = (float *)(ulonglong)StringProcessingResult;
         pbVar9[2] = (byte)StringProcessingResult;
         pbVar9 = pbVar9 + 3;
         UnsignedIndex = UnsignedIndex - 1;
       } while (UnsignedIndex != 0);
     }
   }
-  return CONCAT71((int7)((ulonglong)pfVar4 >> 8),1);
+  return CONCAT71((int7)((ulonglong)ColorProcessingPointer >> 8),1);
 }
 /**
  * 颜色亮度标准化处理函数
@@ -11819,7 +11819,7 @@ uint64_t SystemDataInitialize(int initFlags)
   longlong LongValue;
   float *pfVar5;
   int LoopCounterValue;
-  float *pfVar7;
+  float *SecondaryColorProcessingPointer;
   uint UnsignedIndex;
   ulonglong MemoryAddress0;
   ulonglong MemoryAddress1;
