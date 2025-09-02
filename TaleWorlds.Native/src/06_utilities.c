@@ -26392,7 +26392,7 @@ LAB_18089ea0f:
     aSecurityValidationContext[0] = 0;
     loopIncrement = ValidateResourceAccess(*presourceTable,aSecurityValidationContext);
     if ((int)loopCondition == 0) {
-      if ((uint64_t)aSecurityValidationContext[0] + 4 <= (uint64_t)presourceTable[2]) goto LAB_18089ea0f;
+      if ((uint64_t)aSecurityValidationContext[0] + 4 <= (uint64_t)presourceTable[2]) goto ContextValidationLoop;
       loopIncrement = 0x11;
     }
   }
@@ -26409,7 +26409,7 @@ LAB_18089ea0f:
       presourceTable = (int64_t *)*validationContext;
       if (*presourceTable == 0) {
         validationStatusCode = 0x1c;
-LAB_18089eaae:
+ResourceAccessCheck:
         ValidationSuccess = validationStatusCode == 0;
         if (ValidationSuccess) {
           MemorySizeCheck = acStack_a8[0] != '\0';
@@ -26418,9 +26418,9 @@ LAB_18089eaae:
       }
       else {
         if (presourceTable[2] == 0) {
-LAB_18089ea93:
+ContextValidationCheck:
           validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
-          goto LAB_18089eaae;
+          goto ResourceAccessCheck;
         }
         uStack_a4 = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
@@ -26428,9 +26428,9 @@ LAB_18089ea93:
         if (ValidationSuccess) {
           if ((uint64_t)presourceTable[2] < (uint64_t)uStack_a4 + 1) {
             validationStatusCode = 0x11;
-            goto LAB_18089eaae;
+            goto ResourceAccessCheck;
           }
-          goto LAB_18089ea93;
+          goto ContextValidationCheck;
         }
       }
       ResourceContextOffset = (uint64_t)ValidationResult;
@@ -26453,14 +26453,14 @@ LAB_18089ea93:
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
-LAB_18089eb22:
+MemoryBoundaryCheck1:
         validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
       }
       else {
         uStack_a4 = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto LAB_18089eb22;
+          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck1;
           validationStatusCode = 0x11;
         }
       }
@@ -26487,14 +26487,14 @@ LAB_18089eb22:
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
-LAB_18089ebaa:
+MemoryBoundaryCheck2:
         validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
       }
       else {
         uStack_a4 = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto LAB_18089ebaa;
+          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck2;
           validationStatusCode = 0x11;
         }
       }
@@ -26521,14 +26521,14 @@ LAB_18089ebaa:
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
-LAB_18089ec32:
+MemoryBoundaryCheck3:
         validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
       }
       else {
         uStack_a4 = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto LAB_18089ec32;
+          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck3;
           validationStatusCode = 0x11;
         }
       }
@@ -26553,14 +26553,14 @@ LAB_18089ec32:
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
-LAB_18089ecba:
+MemoryBoundaryCheck4:
         validationStatusCode = CalculateResourceHash(*presourceTable,acStack_a8,1,1,0);
       }
       else {
         uStack_a4 = 0;
         validationStatusCode = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (validationStatusCode == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto LAB_18089ecba;
+          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto MemoryBoundaryCheck4;
           validationStatusCode = 0x11;
         }
       }
@@ -26716,7 +26716,7 @@ LAB_18089ea0f:
       LocalContextData = *presourceTable;
       if (LocalContextData == 0) {
         validationStatusCode = 0x1c;
-LAB_18089eaae:
+ResourceAccessCheck:
         MemorySizeCheck = validationStatusCode == 0;
         if (MemorySizeCheck) {
           ContextValidationFlag = *(char *)(ExecutionContextPointer + -0x49) != '\0';
@@ -26725,9 +26725,9 @@ LAB_18089eaae:
       }
       else {
         if (presourceTable[2] == 0) {
-LAB_18089ea93:
+ContextValidationCheck:
           validationStatusCode = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,0);
-          goto LAB_18089eaae;
+          goto ResourceAccessCheck;
         }
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
         validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
@@ -26735,9 +26735,9 @@ LAB_18089ea93:
         if (MemorySizeCheck) {
           if ((uint64_t)presourceTable[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
             validationStatusCode = 0x11;
-            goto LAB_18089eaae;
+            goto ResourceAccessCheck;
           }
-          goto LAB_18089ea93;
+          goto ContextValidationCheck;
         }
       }
       ResourceContextOffset = (uint64_t)ValidationResult;
@@ -26761,7 +26761,7 @@ LAB_18089ea93:
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
-LAB_18089eb22:
+MemoryBoundaryCheck1:
         validationStatusCode = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,0);
       }
       else {
@@ -26769,7 +26769,7 @@ LAB_18089eb22:
         validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
         if (validationStatusCode == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
-          goto LAB_18089eb22;
+          goto MemoryBoundaryCheck1;
           validationStatusCode = 0x11;
         }
       }
@@ -26797,7 +26797,7 @@ LAB_18089eb22:
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
-LAB_18089ebaa:
+MemoryBoundaryCheck2:
         validationStatusCode = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,0);
       }
       else {
@@ -26805,7 +26805,7 @@ LAB_18089ebaa:
         validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
         if (validationStatusCode == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
-          goto LAB_18089ebaa;
+          goto MemoryBoundaryCheck2;
           validationStatusCode = 0x11;
         }
       }
@@ -26833,7 +26833,7 @@ LAB_18089ebaa:
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
-LAB_18089ec32:
+MemoryBoundaryCheck3:
         validationStatusCode = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,0);
       }
       else {
@@ -26841,7 +26841,7 @@ LAB_18089ec32:
         validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
         if (validationStatusCode == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
-          goto LAB_18089ec32;
+          goto MemoryBoundaryCheck3;
           validationStatusCode = 0x11;
         }
       }
@@ -26869,7 +26869,7 @@ LAB_18089ec32:
         validationStatusCode = 0x1c;
       }
       else if (presourceTable[2] == 0) {
-LAB_18089ecba:
+MemoryBoundaryCheck4:
         validationStatusCode = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,0);
       }
       else {
@@ -26877,7 +26877,7 @@ LAB_18089ecba:
         validationStatusCode = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + -0x45);
         if (validationStatusCode == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
-          goto LAB_18089ecba;
+          goto MemoryBoundaryCheck4;
           validationStatusCode = 0x11;
         }
       }
@@ -26979,7 +26979,7 @@ LAB_18089ea2c:
     resourceTable = *resourceContext;
     if (resourceTable == 0) {
       validationStatusCode = 0x1c;
-LAB_18089eaae:
+ResourceAccessCheck:
       MemorySizeCheck = validationStatusCode == 0;
       if (MemorySizeCheck) {
         ContextValidationFlag = *(char *)(ExecutionContextPointer + -0x49) != '\0';
@@ -26988,9 +26988,9 @@ LAB_18089eaae:
     }
     else {
       if (resourceContext[2] == 0) {
-LAB_18089ea93:
+ContextValidationCheck:
         validationStatusCode = CalculateResourceHash(*resourceContext,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,0);
-        goto LAB_18089eaae;
+        goto ResourceAccessCheck;
       }
       *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
       validationStatusCode = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x45);
@@ -26998,9 +26998,9 @@ LAB_18089ea93:
       if (MemorySizeCheck) {
         if ((uint64_t)resourceContext[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
           validationStatusCode = 0x11;
-          goto LAB_18089eaae;
+          goto ResourceAccessCheck;
         }
-        goto LAB_18089ea93;
+        goto ContextValidationCheck;
       }
     }
     CleanupOption = 0;
@@ -27026,7 +27026,7 @@ LAB_18089ea93:
     }
     else {
       if (resourceContext[2] == 0) {
-LAB_18089eb22:
+MemoryBoundaryCheck1:
         validationStatusCode = CalculateResourceHash(*resourceContext,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,CleanupOption);
       }
       else {
@@ -27038,7 +27038,7 @@ LAB_18089eb22:
             validationStatusCode = 0x11;
             goto LAB_18089eb3c;
           }
-          goto LAB_18089eb22;
+          goto MemoryBoundaryCheck1;
         }
       }
       CleanupOption = 0;
@@ -27069,7 +27069,7 @@ LAB_18089eb3c:
     }
     else {
       if (resourceContext[2] == 0) {
-LAB_18089ebaa:
+MemoryBoundaryCheck2:
         validationStatusCode = CalculateResourceHash(*resourceContext,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,CleanupOption);
       }
       else {
@@ -27081,7 +27081,7 @@ LAB_18089ebaa:
             validationStatusCode = 0x11;
             goto LAB_18089ebc4;
           }
-          goto LAB_18089ebaa;
+          goto MemoryBoundaryCheck2;
         }
       }
       CleanupOption = 0;
@@ -27112,7 +27112,7 @@ LAB_18089ebc4:
     }
     else {
       if (resourceContext[2] == 0) {
-LAB_18089ec32:
+MemoryBoundaryCheck3:
         validationStatusCode = CalculateResourceHash(*resourceContext,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,CleanupOption);
       }
       else {
@@ -27124,7 +27124,7 @@ LAB_18089ec32:
             validationStatusCode = 0x11;
             goto LAB_18089ec4c;
           }
-          goto LAB_18089ec32;
+          goto MemoryBoundaryCheck3;
         }
       }
       CleanupOption = 0;
@@ -27155,7 +27155,7 @@ LAB_18089ec4c:
     }
     else {
       if (resourceContext[2] == 0) {
-LAB_18089ecba:
+MemoryBoundaryCheck4:
         validationStatusCode = CalculateResourceHash(*resourceContext,ExecutionContextPointer + -0x49,ResourceDataPointerD,ResourceDataPointerD,CleanupOption);
       }
       else {
@@ -27167,7 +27167,7 @@ LAB_18089ecba:
             validationStatusCode = 0x11;
             goto LAB_18089ecd4;
           }
-          goto LAB_18089ecba;
+          goto MemoryBoundaryCheck4;
         }
       }
       CleanupOption = 0;
