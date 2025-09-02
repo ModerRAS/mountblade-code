@@ -1997,11 +1997,11 @@ uint8_t MemoryManagerConfigTemplateConservative;
 uint8_t MemoryManagerConfigTemplateDynamic;
 uint8_t MemoryManagerConfigTemplateEfficient;
 uint8_t MemoryManagerConfigTemplateFast;
-uint8_t MemoryManagerConfigTemplateGeneral;
-uint8_t MemoryManagerConfigTemplateHighPerformance;
-uint8_t MemoryManagerConfigTemplateIntelligent;
-uint8_t MemoryManagerConfigTemplateJustInTime;
-uint8_t MemoryManagerConfigTemplateKernelOptimized;
+uint8_t SystemMemoryConfigTemplateGeneral;
+uint8_t SystemMemoryConfigTemplateHighPerformance;
+uint8_t SystemMemoryConfigTemplateIntelligent;
+uint8_t SystemMemoryConfigTemplateJustInTime;
+uint8_t SystemMemoryConfigTemplateKernelOptimized;
 
  void InitializeSystemThreadManager(void)
 /**
@@ -2011,10 +2011,10 @@ uint8_t MemoryManagerConfigTemplateKernelOptimized;
  * 设置线程创建、调度和同步的机制
  */
 void InitializeSystemThreadManager(void);
-uint8_t DataStructurePointer;
-uint8_t DataTable;
-uint8_t DataBuffer;
-uint8_t DataCache;
+uint8_t DataStructureReferencePointer;
+uint8_t DataTableInstance;
+uint8_t DataBufferStorage;
+uint8_t DataCacheMemory;
 
  void CleanupMemoryBlock(void);
 /**
@@ -2024,13 +2024,13 @@ uint8_t DataCache;
  * 释放分配的内存，防止内存泄漏
  */
 void CleanupMemoryBlock(void);
-uint8_t SecurityContextData;
-uint8_t SecurityContextFlags;
-uint8_t SecurityContextHandle;
-uint8_t SecurityContextConfig;
-uint8_t SecurityValidationData;
-uint8_t SecurityValidationFlags;
-uint8_t SecurityValidationHandle;
+uint8_t SecurityContextDataBase;
+uint8_t SecurityContextStatusFlags;
+uint8_t SecurityContextIdentifier;
+uint8_t SecurityContextConfiguration;
+uint8_t SecurityValidationDataBase;
+uint8_t SecurityValidationStatusFlags;
+uint8_t SecurityValidationIdentifier;
 
  void InitializeSecurityContext(void);
 /**
@@ -2040,10 +2040,10 @@ uint8_t SecurityValidationHandle;
  * 设置安全参数和访问控制
  */
 void InitializeSecurityContext(void);
-uint8_t SecurityTokenBuffer;
-uint8_t SecurityTokenLength;
-uint8_t SecurityTokenType;
-uint8_t SecurityTokenFlags;
+uint8_t SecurityTokenDataBuffer;
+uint8_t SecurityTokenDataLength;
+uint8_t SecurityTokenTypeIdentifier;
+uint8_t SecurityTokenAccessFlags;
 
  void ValidateSecurityToken(void);
 /**
@@ -2054,7 +2054,7 @@ uint8_t SecurityTokenFlags;
  */
 void ValidateSecurityToken(void);
 uint8_t AuthenticationContextInstance;
-uint8_t AuthenticationConfigInstance;
+uint8_t AuthenticationConfigurationInstance;
 
  void ProcessAuthenticationRequest(void);
 /**
@@ -2064,10 +2064,10 @@ uint8_t AuthenticationConfigInstance;
  * 验证用户身份和权限
  */
 void ProcessAuthenticationRequest(void);
-uint8_t AuthenticationRequestData;
-uint8_t AuthenticationRequestConfig;
-uint8_t AuthenticationResponseData;
-uint8_t AuthenticationResponseConfig;
+uint8_t AuthenticationRequestDataBuffer;
+uint8_t AuthenticationRequestConfiguration;
+uint8_t AuthenticationResponseDataBuffer;
+uint8_t AuthenticationResponseConfiguration;
 
 /**
  * @brief 加密数据缓冲区
@@ -2088,7 +2088,7 @@ void EncryptDataBuffer(void);
  * 恢复加密的敏感数据
  */
 void DecryptDataBuffer(void);
-uint8_t DataEncryptionKey;
+uint8_t DataEncryptionSecretKey;
 uint8_t DataEncryptionInitializationVector;
 
  /**
@@ -4016,18 +4016,18 @@ uint8_t InitializeObjectHandleA(int64_t ObjectContext)
 uint8_t CleanupObjectHandle(void)
 
 {
-  int64_t ObjectHandle;
-  int64_t AdjustedObjectPointer;
+  int64_t ObjectHandleIdentifier;
+  int64_t AdjustedObjectMemoryPointer;
   
-  if (ObjectHandle == 0) {
-    AdjustedObjectPointer = 0;
+  if (ObjectHandleIdentifier == 0) {
+    AdjustedObjectMemoryPointer = 0;
   }
   else {
-    AdjustedObjectPointer = ObjectHandle + -8;
+    AdjustedObjectMemoryPointer = ObjectHandleIdentifier + -8;
   }
-  if (*(int64_t *)(AdjustedObjectPointer + 0x10) != 0) {
+  if (*(int64_t *)(AdjustedObjectMemoryPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    ExecuteSystemExitOperation(*(int64_t *)(AdjustedObjectPointer + 0x10), 1);
+    ExecuteSystemExitOperation(*(int64_t *)(AdjustedObjectMemoryPointer + 0x10), 1);
   }
   return 0;
 }
@@ -4074,27 +4074,27 @@ void InitializeSystemResources(void)
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
  */
-uint8_t ValidateObjectHandle(int64_t objectPointer)
+uint8_t ValidateObjectHandle(int64_t ObjectContextPointer)
 
 {
-  uint8_t HashValidationResult;
-  int64_t HandleStorageBuffer;
+  uint8_t ContextHashValidationResult;
+  int64_t HandleStorageMemoryBuffer;
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(objectPointer + 0x10), &HandleStorageBuffer);
-  if ((int)HashValidationResult != 0) {
-    return HashValidationResult;
+  ContextHashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContextPointer + 0x10), &HandleStorageMemoryBuffer);
+  if ((int)ContextHashValidationResult != 0) {
+    return ContextHashValidationResult;
   }
-  if (HandleStorageBuffer == 0) {
-    HandleStorageBuffer = 0;
+  if (HandleStorageMemoryBuffer == 0) {
+    HandleStorageMemoryBuffer = 0;
   }
   else {
-    HandleStorageBuffer = HandleStorageBuffer + -8;
+    HandleStorageMemoryBuffer = HandleStorageMemoryBuffer + -8;
   }
-  if (*(int64_t *)(HandleStorageBuffer + 0x10) == 0) {
+  if (*(int64_t *)(HandleStorageMemoryBuffer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(HandleStorageBuffer + 0x10), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(HandleStorageMemoryBuffer + 0x10), 1);
 }
 
 
