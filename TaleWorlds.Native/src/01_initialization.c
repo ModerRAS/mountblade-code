@@ -58689,7 +58689,7 @@ LAB_180077879:
       *(void* *)(SystemResourceManager + 400) = SystemMemoryAllocatorStatus;
       *(void* *)(SystemResourceManager + 0x198) = uStack_d0;
     }
-    SecurityParameter = FUN_18024a290(ConfigurationDataPointer,SystemResourceManager,&EncryptionOffset1,ConfigurationFlag,systemConfigurationParameter);
+    SecurityParameter = ValidateSystemSecurityConfiguration(ConfigurationDataPointer,SystemResourceManager,&EncryptionOffset1,ConfigurationFlag,systemConfigurationParameter);
     *(byte *)(SystemResourceManager + 0xfd) = *(byte *)(SystemResourceManager + 0xfd) & 0xfe;
     *(int *)(SystemResourceManager + 0x1d0) = SystemCounter;
     if (SystemActiveFlag != 0) {
@@ -58931,7 +58931,7 @@ void SystemNoOperationA(void)
     HashNodeData2 = &stackBuffer170;
     ResourceDataOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
-  FUN_180080e90(ResourceDataOffset3 + 0x3388,HashNodeData2,&StackBuffer40);
+  ProcessSystemResourceDataAllocation(ResourceDataOffset3 + 0x3388,HashNodeData2,&StackBuffer40);
   pfloatValue39 = FloatParameterArray;
   if ((*(uint *)(memoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -58979,7 +58979,7 @@ void SystemNoOperationA(void)
          BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent + FloatParameterArray[0xf];
     pfloatValue39 = &stackBufferA0;
   }
-  FUN_180085190(&StackBuffer60,ResourceDataOffset4 + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue39);
+  ConfigureSystemResourceBuffer(&StackBuffer60,ResourceDataOffset4 + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue39);
   resourceCreationFlags8 = ThreadCreationParameter;
   resourceCreationFlags7 = InputStackParameter90;
   NetworkConnectionFlags = InputStackParameter88;
@@ -59009,7 +59009,7 @@ void SystemNoOperationA(void)
     *(void* )(memoryBlockAddress + 400) = SecurityParameter;
     *(void* )(memoryBlockAddress + 0x198) = ThreadContextParameter;
   }
-  FUN_18024a290(ResourceDataOffset4);
+  ValidateSystemResourceData(ResourceDataOffset4);
   *(byte *)(memoryBlockAddress + 0xfd) = *(byte *)(memoryBlockAddress + 0xfd) & 0xfe;
   *(int *)(memoryBlockAddress + 0x1d0) = systemIndex0;
   if (isSystemActive9 != 0) {
@@ -59201,7 +59201,7 @@ void CleanupGlobalSystemResources(void)
     SystemHashNodeData4 = &stackBuffer170;
     ResourceDataOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
-  FUN_180080e90(ResourceDataOffset3 + 0x3388,SystemHashNodeData4,&StackBuffer40);
+  ProcessSystemHashNodeAllocation(ResourceDataOffset3 + 0x3388,SystemHashNodeData4,&StackBuffer40);
   pfloatValue36 = FloatParameterArray;
   if ((*(uint *)(memoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -59249,7 +59249,7 @@ void CleanupGlobalSystemResources(void)
          FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent + FloatParameterArray[0xf];
     pfloatValue36 = &stackBufferA0;
   }
-  FUN_180085190(&StackBuffer60,SystemThreadHandle9 + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue36);
+  InitializeSystemThreadBuffer(&StackBuffer60,SystemThreadHandle9 + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue36);
   resourceCreationFlags8 = ThreadCreationParameter;
   resourceCreationFlags7 = InputStackParameter90;
   NetworkConnectionFlags = InputStackParameter88;
@@ -59279,7 +59279,7 @@ void CleanupGlobalSystemResources(void)
     *(void* )(memoryBlockAddress + 400) = SecurityParameter;
     *(void* )(memoryBlockAddress + 0x198) = ThreadContextParameter;
   }
-  FUN_18024a290(SystemThreadHandle9);
+  ValidateSystemThreadHandle(SystemThreadHandle9);
   *(byte *)(memoryBlockAddress + 0xfd) = *(byte *)(memoryBlockAddress + 0xfd) & 0xfe;
   *(int *)(memoryBlockAddress + 0x1d0) = CalculationFlags;
   if (isOperationComplete0 != 0) {
@@ -59551,7 +59551,7 @@ void InitializeSystemVectorCalculations(void)
   void* StackParameter188;
   
   AudioSystemActivationFlag = 0xffffffff;
-  FUN_180080e90(SystemContextPointer + 0x3388,&StackBuffer30);
+  ProcessSystemContextAllocation(SystemContextPointer + 0x3388,&StackBuffer30);
   pfloatValue29 = FloatParameterArray;
   if ((*(uint *)(memoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -59600,7 +59600,7 @@ void InitializeSystemVectorCalculations(void)
          FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared + FloatParameterArray[0xf];
     pfloatValue29 = &stackBufferA0;
   }
-  FUN_180085190(&StackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue29);
+  ConfigureSystemContextBuffer(&StackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue29);
   NetworkConnectionFlags = ThreadCreationParameter;
   SecurityParameter = InputStackParameter90;
   ConfigurationData = InputStackParameter88;
@@ -59676,7 +59676,7 @@ void ExecuteSystemTransformOperations(void)
   void* InputStackParameter90;
   void* ThreadCreationParameter;
   
-  FUN_180085190(&StackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7));
+  FinalizeSystemContextBuffer(&StackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7));
   ThreadContextFlag = ThreadCreationParameter;
   OperationCode = InputStackParameter90;
   ThreadContextFlag = InputStackParameter88;
@@ -59793,7 +59793,7 @@ LAB_180077fcf:
         charStatus9 = func_0x00018022d300();
         *(char *)(SystemThreadHandle2 + 0x38c) = charStatus9;
       }
-      charStatus9 = FUN_18007b240(SystemResourceManager,SystemResourceManager + 0x1e8,charStatus9,1);
+      charStatus9 = ValidateSystemResourceStatus(SystemResourceManager,SystemResourceManager + 0x1e8,charStatus9,1);
       if (charStatus9 == '\0') {
         *(byte *)(SystemResourceManager + 0xfe) = *(byte *)(SystemResourceManager + 0xfe) & 0xfb;
       }
