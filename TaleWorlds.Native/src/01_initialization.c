@@ -20858,31 +20858,31 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* Configu
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x30 + systemOperationFlags);
       scaleFactorValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        scaleFactorValue = scaleFactorValue + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(pallocationSize,&SystemConfigurationTemplate,&SystemConfigurationSizeTemplate,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(scaleFactorValue * 9.5367431640625e-07));
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x38 + systemOperationFlags);
-      dVar1 = (double)nextDataIndex1;
+      scaleFactorValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        scaleFactorValue = scaleFactorValue + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(pallocationSize,&SystemConfigurationTemplate,&SystemConfigurationWidthTemplate,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(scaleFactorValue * 9.5367431640625e-07));
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x40 + systemOperationFlags);
-      dVar1 = (double)nextDataIndex1;
+      scaleFactorValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        scaleFactorValue = scaleFactorValue + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(pallocationSize,&SystemConfigurationTemplate,&SystemConfigurationHeightTemplate,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(scaleFactorValue * 9.5367431640625e-07));
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x48 + systemOperationFlags);
-      dVar1 = (double)nextDataIndex1;
+      scaleFactorValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        scaleFactorValue = scaleFactorValue + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(pallocationSize,&SystemConfigurationTemplate,&SystemConfigurationDepthTemplate,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(scaleFactorValue * 9.5367431640625e-07));
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x50 + systemOperationFlags);
       dVar1 = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
@@ -50007,15 +50007,25 @@ void FUN_18006e580(long long *SystemResourcePointer)
 
 
 // 函数: void FUN_18006e5d0(long long *SystemResourcePointer)
-void FUN_18006e5d0(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，遍历资源链表并逐个清理每个资源项。
+ * 使用固定步长0x1a8遍历资源，最后调用系统清理函数完成清理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向需要清理的资源数组
+ * 
+ * 原始函数名为FUN_18006e5d0，现已重命名为CleanupSystemResourceArray
+ */
+void CleanupSystemResourceArray(long long *SystemResourcePointer)
 
 {
-  long long nextDataIndex;
-  long long localSystemHandle;
+  long long resourceEndIndex;
+  long long currentResourceHandle;
   
-  nextDataIndex = SystemResourcePointer[1];
-  for (localSystemHandle = *SystemResourcePointer; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x1a8) {
-    FUN_180069530(localSystemHandle);
+  resourceEndIndex = SystemResourcePointer[1];
+  for (currentResourceHandle = *SystemResourcePointer; currentResourceHandle != resourceEndIndex; currentResourceHandle = currentResourceHandle + 0x1a8) {
+    CleanupSystemResourceItem(currentResourceHandle);
   }
   if (*SystemResourcePointer == 0) {
     return;
