@@ -2799,14 +2799,14 @@ LabelStringProcessingSpaceCheck1:
   if (StringProcessingResult < uStack_88) {
     pcVar12 = (char *)(lStack_90 + MemoryAddress4);
     do {
-      if (*pcVar12 == ' ') goto LAB_1800451ca;
+      if (*pcVar12 == ' ') goto LabelStringProcessingSpaceCheck2;
       MemoryAddress5 = (int)MemoryAddress4 + 1;
       MemoryAddress4 = (ulonglong)MemoryAddress5;
       pcVar12 = pcVar12 + 1;
     } while (MemoryAddress5 < uStack_88);
   }
   MemoryAddress4 = 0xffffffff;
-LAB_1800451ca:
+LabelStringProcessingSpaceCheck2:
   if (StringIndex != -1) {
     ProcessStackOperation(&StackBufferPointer,&StackDataBuffer,StringProcessingResult,MemoryAddress4);
     pMemoryAddress3 = &SystemConstantStringPrimary;
