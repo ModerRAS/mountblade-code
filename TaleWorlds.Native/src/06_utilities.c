@@ -74361,7 +74361,19 @@ void ExecuteSystemResourceCallbacks(uint8_t ObjectContext, int64_t ValidationCon
 
 
 
-void Unwind_18090a910(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证系统上下文资源状态
+ * 
+ * 该函数负责验证系统上下文的资源状态
+ * 检查资源索引的有效性和系统上下文的完整性
+ * 
+ * @param ObjectContext 对象上下文，包含要操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数通常在系统资源验证时调用
+ * @warning 调用此函数可能会触发系统紧急退出
+ */
+void ValidateSystemContextResourceState(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -74382,7 +74394,19 @@ void Unwind_18090a910(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a920(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源状态检查
+ * 
+ * 该函数负责执行系统资源的状态检查
+ * 验证资源索引和系统上下文的有效性
+ * 
+ * @param ObjectContext 对象上下文，包含要操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数通常在系统资源状态检查时调用
+ * @warning 调用此函数可能会触发系统紧急退出
+ */
+void ExecuteSystemResourceStateCheck(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
