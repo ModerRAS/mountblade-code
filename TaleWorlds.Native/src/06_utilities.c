@@ -5205,22 +5205,22 @@ uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
 
 {
   uint64_t HashValidationResult;
-  int64_t stackOffset;
+  int64_t StackOffset;
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(extendedObjectHandle + 0x10),&stackOffset);
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(extendedObjectHandle + 0x10),&StackOffset);
   if ((int)HashValidationResult != 0) {
     return HashValidationResult;
   }
-  if (stackOffset == 0) {
-    stackOffset = 0;
+  if (StackOffset == 0) {
+    StackOffset = 0;
   }
   else {
-    stackOffset = stackOffset + -8;
+    StackOffset = StackOffset + -8;
   }
-  if (*(int64_t *)(stackOffset + 0x10) == 0) {
+  if (*(int64_t *)(StackOffset + 0x10) == 0) {
     return 0x1c;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(stackOffset + 0x10),1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + 0x10),1);
 }
 
 
@@ -6482,8 +6482,8 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
 {
   int ValidationStatus;
   int CurrentCapacity;
-  int64_t newBufferPointer;
-  int64_t bufferOffset;
+  int64_t NewBufferPointer;
+  int64_t BufferOffset;
   uint CapacitySignBit;
   int64_t memoryContextBuffer;
   int64_t bufferContext;
@@ -6493,12 +6493,12 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
      (ValidationStatus = ProcessSystemContext(memoryContextBuffer,SystemContext,*(uint8_t *)(bufferContext + 8)), ValidationStatus != 0)) {
     return;
   }
-  newBufferPointer = 0;
-  bufferOffset = memoryContextBuffer + 8;
+  NewBufferPointer = 0;
+  BufferOffset = memoryContextBuffer + 8;
   if (memoryContextBuffer == 0) {
-    bufferOffset = newBufferPointer;
+    BufferOffset = NewBufferPointer;
   }
-  ValidationStatus = ValidateBufferContext(bufferOffset,ObjectContext + ObjectContextValidationDataOffset);
+  ValidationStatus = ValidateBufferContext(BufferOffset,ObjectContext + ObjectContextValidationDataOffset);
   if (ValidationStatus != 0) {
     return;
   }
@@ -6516,17 +6516,17 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
     if (ValidationStatus < *(int *)(bufferContext + 0x28)) goto ErrorHandler;
     if (ValidationStatus != 0) {
       if ((0x3ffffffe < ValidationStatus * 8 - 1U) ||
-         (newBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationStatus * 8,&ResourceAllocationTemplate,
-                                0xf4,0,0,1), newBufferPointer == 0)) goto ErrorHandler;
+         (NewBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),ValidationStatus * 8,&ResourceAllocationTemplate,
+                                0xf4,0,0,1), NewBufferPointer == 0)) goto ErrorHandler;
       if (*(int *)(bufferContext + 0x28) != 0) {
-              memcpy(newBufferPointer,*(uint8_t *)(bufferContext + 0x20),(int64_t)*(int *)(bufferContext + 0x28) << 3);
+              memcpy(NewBufferPointer,*(uint8_t *)(bufferContext + 0x20),(int64_t)*(int *)(bufferContext + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(bufferContext + 0x2c)) && (*(int64_t *)(bufferContext + 0x20) != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(bufferContext + 0x20),
                     &ResourceAllocationTemplate,0x100,1);
     }
-    *(int64_t *)(bufferContext + 0x20) = newBufferPointer;
+    *(int64_t *)(bufferContext + 0x20) = NewBufferPointer;
     *(int *)(bufferContext + 0x2c) = ValidationStatus;
   }
   *(int64_t *)(*(int64_t *)(bufferContext + 0x20) + (int64_t)*(int *)(bufferContext + 0x28) * 8) =
@@ -6554,8 +6554,8 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
 {
   int PackageValidationStatusCode;
   int BufferSize;
-  int64_t newBufferPointer;
-  int64_t bufferOffset;
+  int64_t NewBufferPointer;
+  int64_t BufferOffset;
   uint CapacityCheck;
   int64_t systemBasePointer;
   int64_t systemRegister;
@@ -6566,12 +6566,12 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   if (ValidationStatus != 0) {
     return;
   }
-  newBufferPointer = 0;
-  bufferOffset = primaryContextPointer + 8;
+  NewBufferPointer = 0;
+  BufferOffset = primaryContextPointer + 8;
   if (primaryContextPointer == 0) {
-    bufferOffset = newBufferPointer;
+    BufferOffset = NewBufferPointer;
   }
-  ValidationStatus = ValidateBufferContext(bufferOffset, systemBasePointer + 0x18);
+  ValidationStatus = ValidateBufferContext(BufferOffset, systemBasePointer + 0x18);
   if (ValidationStatus != 0) {
     return;
   }
@@ -6632,18 +6632,18 @@ void ProcessDynamicBufferReallocation(void)
   int ProcessingResult;
   int64_t InputParameterValue;
   int64_t ResourceIndex;
-  int64_t bufferPointer;
+  int64_t BufferPointer;
   uint ResourceContextOffset;
   int64_t ResourceContext;
   int64_t ResourceContextData;
   uint8_t StackParameterContextSixty;
   
   ResourceIndex = 0;
-  bufferPointer = InputParameter + 8;
+  BufferPointer = InputParameter + 8;
   if (InputParameter == 0) {
-    bufferPointer = ResourceIndex;
+    BufferPointer = ResourceIndex;
   }
-  ResourceIndex = ValidateBufferContext(bufferPointer);
+  ResourceIndex = ValidateBufferContext(BufferPointer);
   if (ResourceIndex != 0) {
     return;
   }
@@ -12655,18 +12655,18 @@ int ProcessDataBlockOperationWithSimplifiedValidator(int64_t ObjectContext,int64
  * 
  * @param ObjectContext 缓冲区上下文指针
  * @param ValidationContext 保留参数
- * @param bufferPointer 验证数据指针
+ * @param BufferPointer 验证数据指针
  * @return 验证结果或上下文信息
  */
-uint8_t ValidateAndGetBufferContext(int64_t ObjectContext,uint8_t ValidationContext,uint8_t bufferPointer)
+uint8_t ValidateAndGetBufferContext(int64_t ObjectContext,uint8_t ValidationContext,uint8_t BufferPointer)
 
 {
   uint8_t ResourceHash;
   
-  ResourceHash = ValidateResourceHash(bufferPointer,ObjectContext + 0x10);
+  ResourceHash = ValidateResourceHash(BufferPointer,ObjectContext + 0x10);
   if ((int)ResourceHash == 0) {
     *(uint32_t *)(ObjectContext + 0x14) = 0;
-    if ((1 < *(int *)(ObjectContext + 0x10)) && (ResourceHash = CalculateResourceHash(bufferPointer), (int)ResourceHash != 0)) {
+    if ((1 < *(int *)(ObjectContext + 0x10)) && (ResourceHash = CalculateResourceHash(BufferPointer), (int)ResourceHash != 0)) {
       return ResourceHash;
     }
     ResourceHash = 0;
