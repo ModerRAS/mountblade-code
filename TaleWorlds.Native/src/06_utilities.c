@@ -99787,12 +99787,12 @@ void InitializeSystemDataStructureMainController(void)
 
 
  /**
- * @brief 初始化系统数据结构B
+ * @brief 初始化系统数据结构辅助控制器
  * 
- * 该函数负责初始化系统的数据结构B，设置相应的指针指向全局系统数据结构
+ * 该函数负责初始化系统的数据结构辅助控制器，设置相应的指针指向全局系统数据结构
  * 主要用于系统启动时的数据结构初始化
  */
-void InitializeSystemDataStructureB(void)
+void InitializeSystemDataStructureAuxiliaryController(void)
 {
   SystemDataStructurePointerB = &SystemDataStructure;
 }
