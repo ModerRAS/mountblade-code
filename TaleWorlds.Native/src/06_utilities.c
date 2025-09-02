@@ -11012,27 +11012,27 @@ void FinalizeSecurityOperationWithStack(void)
 void ProcessResourceHashAndIndex(int64_t objectContext, int validationContext, uint8_t *hashOutput)
 {
   uint8_t resourceHash;
-  int *pOperationResult;
+  int *OperationResultPointer;
   int64_t ResourceIndex;
   int64_t DataOffset;
   int tableEntry;
   
   *hashOutput = 0;
   hashOutput[1] = 0;
-  int *poperationStatusCode = (int *)(**(code **)(*(int64_t *)
+  int *OperationStatusCodePointer = (int *)(**(code **)(*(int64_t *)
                                 ((int64_t)
                                  *(int *)(*(int64_t *)(objectContext + 0x18) + (int64_t)validationContext * 0xc) +
                                 *(int64_t *)(objectContext + 8)) + 0x50))();
-  if (poperationStatusCode == (int *)0x0) {
+  if (OperationStatusCodePointer == (int *)0x0) {
     tableEntry = 0;
   }
   else {
-    tableEntry = *pOperationResult;
+    tableEntry = *OperationResultPointer;
   }
   if (validationContext + 1 < *(int *)(objectContext + 0x20)) {
     int64_t LoopOffset = (int64_t)(validationContext + 1);
-    poperationStatusCode = (int *)(*(int64_t *)(objectContext + 0x18) + LoopOffset * 0xc);
-    while (((char)pOperationResult[2] != '\x02' ||
+    OperationStatusCodePointer = (int *)(*(int64_t *)(objectContext + 0x18) + LoopOffset * 0xc);
+    while (((char)OperationResultPointer[2] != '\x02' ||
            (ResourceIndex = (int64_t)*pOperationResult + *(int64_t *)(objectContext + 8), *(int *)(ResourceIndex + 0x20) != tableEntry)
            )) {
       LoopOffset = LoopOffset + 1;
