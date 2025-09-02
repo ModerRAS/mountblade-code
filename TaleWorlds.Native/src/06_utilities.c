@@ -11662,7 +11662,7 @@ ValidationComplete:
           LoopOffset = LoopOffset + -1;
         } while (LoopOffset != 0);
       }
-      goto LAB_180895fdc;
+      goto ValidationComplete;
     }
   }
   return 0x26;
@@ -11853,7 +11853,7 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContextParameter)
   ResourceCounter = *(uint *)(ObjectContextParameter + 0x6c);
   ContextValidationStatusCode = 0;
   OperationStatusCode = 0;
-  if ((ResourceCounter >> 0x1a & 1) == 0) goto LAB_1808963ec;
+  if ((ResourceCounter >> 0x1a & 1) == 0) goto ResourceValidationComplete;
   if ((ResourceCounter & 1) == 0) {
     DataHandlerContextPointer = (int64_t *)(dataContext + 0x70);
     ResourceHandlerFlag1 = 0;
@@ -12112,7 +12112,7 @@ LAB_18089638e:
   }
   *(uint *)(ObjectContextParameter + 0x6c) = *(uint *)(ObjectContextParameter + 0x6c) & 0xfbffffff;
   ResourceCounter = *(uint *)(ObjectContextParameter + 0x6c);
-LAB_1808963ec:
+ResourceValidationComplete:
   if ((ResourceCounter >> 0x19 & 1) != 0) {
     ResourceTablePointer = *(int64_t *)(ObjectContextParameter + 0xa0);
     ContextValidationStatusCode = SetupResourceEnvironment(*(uint8_t *)(ObjectContextParameter + 0x60),ObjectContextParameter + 0xa0,0);
