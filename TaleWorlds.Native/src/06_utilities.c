@@ -763,7 +763,8 @@ void* FrameTimeAnalyzer;
 void* NetworkLatencyMonitor;
 void* DiskIOPerformanceTracker;
 void* ThreadPerformanceProfiler;
-void* SystemResourceMonitor;
+// 资源监控器指针 - 指向资源监控器的指针
+void* ResourceMonitorPtr;
 void* PerformanceReportGenerator;
 void* OptimizationSuggestionEngine;
 void* BenchmarkingTool;
@@ -92337,7 +92338,7 @@ void InitializeSystemDataStructureV(void)
  * 初始化系统数据结构W
  * 
  * 此函数负责初始化系统中的某个关键数据结构W，处理资源验证
- * 和链接操作。函数会检查全局变量SystemResourceValidator，如果有效则
+ * 和链接操作。函数会检查全局变量ResourceValidator，如果有效则
  * 执行资源链接和引用计数管理。如果资源引用计数降为0，则
  * 调用清理函数。
  */
@@ -92350,16 +92351,16 @@ void InitializeSystemDataStructureW(void)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  pvalidationResult = SystemResourceValidator;
-  if (SystemResourceValidator == (uint8_t *)0x0) {
+  pvalidationResult = ResourceValidator;
+  if (ResourceValidator == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)SystemResourceValidator & 0xffffffffffc00000;
+  loopIncrement = (uint64_t)ResourceValidator & 0xffffffffffc00000;
   if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)SystemResourceValidator - loopIncrement >> 0x10) * 0x50;
+    ResourceIndex = loopIncrement + 0x80 + ((int64_t)ResourceValidator - loopIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *SystemResourceValidator = *(uint8_t *)(ResourceIndex + 0x20);
+      *ResourceValidator = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = pResourceHashValidationResult;
       pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
