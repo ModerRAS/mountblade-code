@@ -60302,12 +60302,18 @@ void InitializeSystemResourceHandlerAndContext(uint8_t ObjectContext,int64_t Val
 
 
 
-void Unwind_1809079b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器扩展上下文
+ * 
+ * 该函数负责初始化系统资源处理器的扩展上下文
+ * 设置系统资源处理模板到不同的偏移位置并验证系统状态
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void InitializeSystemResourceHandlerExtendedContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t loopCounter;
-  
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
           ExecuteSystemEmergencyExit();
