@@ -3364,6 +3364,15 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数会进行安全验证，确保只有有效的对象被处理
  * @warning 调用此函数前必须确保游戏上下文和系统上下文已正确初始化
  */
+/**
+ * @brief 处理游戏对象
+ * 
+ * 该函数负责处理游戏中的对象，包括对象的验证、状态检查和安全处理
+ * 函数会遍历所有游戏对象，验证它们的状态，并执行相应的操作
+ * 
+ * @param GameContext 游戏上下文，包含游戏状态和信息
+ * @param SystemContext 系统上下文，包含系统运行环境信息
+ */
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t GameObjectValidationState;
@@ -3401,10 +3410,10 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
           CurrentObjectPointer = CurrentObjectPointer + 8;
         } while (ProcessedObjectCount < BufferIndex);
       }
-      FreeObjectListMemory(&GameObjectDataBuffer);
+      FreeObjectListMemory(&ObjectDataBuffer);
     }
     else {
-      FreeObjectListMemory(&GameObjectDataBuffer);
+      FreeObjectListMemory(&ObjectDataBuffer);
     }
   }
                     // WARNING: Subroutine does not return

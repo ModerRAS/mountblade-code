@@ -6543,7 +6543,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   uint8_t aStackCounter3 [32];
   StackParameter2 = SystemMutexFlags;
   MemoryAllocationResult = 0;
-  bVar2 = *(byte *)(param_3 + 2);
+  ValidationStatusByte = *(byte *)(param_3 + 2);
   if ((param_4 >> 1 & 1) != 0) {
     InitializeSystemDataProcessing(SystemDataProcessorSecondary,&plStack_78,param_3 + 0x14,1);
     pNetworkRequestResult = (uint64_t *)CreateNetworkRequestContext();
@@ -6587,7 +6587,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     }
   }
   if ((param_4 >> 2 & 1) == 0) {
-    if (((param_4 >> 1 & 1) == 0) && ((bVar2 & 1) != 0)) {
+    if (((param_4 >> 1 & 1) == 0) && ((ValidationStatusByte & 1) != 0)) {
       SystemStateValue = GetSystemStateValue(param_1,*param_3);
       *param_2 = SystemStateValue;
       MemoryAllocationResult = 1;
@@ -11760,7 +11760,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
   SystemSecurityCheck(uStack_e8 ^ (ulonglong)auStack_3a8);
 }
                     DAT_1ac76f654 = DAT_1ac76f654 + cVar12;
-                    if (DAT_1ac76f654 != '\0' && bVar27 == DAT_1ac76f654 < '\0') {
+                    if (DAT_1ac76f654 != '\0' && ValidationStatusByte7 == DAT_1ac76f654 < '\0') {
                       out((short)param_2,LoopCounter1);
                       halt_baddata();
                     }
@@ -12756,22 +12756,22 @@ uint SystemProcessTimer(longlong param_1,int param_2,int param_3,char param_4)
   IntegerResult = IntegerCounter;
   if (0 < param_3) {
     do {
-      bVar2 = (byte)param_2 & 7;
+      ValidationStatusByte = (byte)param_2 & 7;
       IntegerResult = param_2;
       if (param_2 < 0) {
         IntegerResult = param_2 + 7;
-        bVar2 = bVar2 - 8;
+        ValidationStatusByte = ValidationStatusByte - 8;
       }
       param_2 = param_2 + 1;
-      uVar6 = *(byte *)((IntegerResult >> 3) + param_1) >> (bVar2 & 0x1f) & 1;
+      uVar6 = *(byte *)((IntegerResult >> 3) + param_1) >> (ValidationStatusByte & 0x1f) & 1;
       IntegerResult = IntegerCounter + 1;
       MemoryAllocationResult = MemoryAllocationResult | uVar6 << ((byte)IntegerCounter & 0x1f);
       IntegerCounter = IntegerResult;
     } while (IntegerResult < param_3);
   }
   if (((param_4 != '\0') && (uVar6 != 0)) && (IntegerResult < 0x20)) {
-    bVar2 = (byte)IntegerResult & 0x1f;
-    uVar6 = 1 << bVar2 | 1U >> 0x20 - bVar2;
+    ValidationStatusByte = (byte)IntegerResult & 0x1f;
+    uVar6 = 1 << ValidationStatusByte | 1U >> 0x20 - ValidationStatusByte;
     MemoryAddress = (ulonglong)(0x20 - IntegerResult);
     do {
       MemoryAllocationResult = MemoryAllocationResult | uVar6;
@@ -12804,9 +12804,9 @@ uint32_t SystemProcessAudioData(byte param_1,byte *param_2,int param_3)
   pMemoryAddress = (uint *)(param_2 + param_3);
   StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)~param_1 * 4) ^ 0xffffff;
   for (; 0 < param_3; param_3 = param_3 + -1) {
-    bVar2 = *param_2;
+    ValidationStatusByte = *param_2;
     param_2 = param_2 + 1;
-    StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)(bVar2 ^ (byte)StringProcessingResult) * 4) ^ StringProcessingResult >> 8;
+    StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)(ValidationStatusByte ^ (byte)StringProcessingResult) * 4) ^ StringProcessingResult >> 8;
   }
   return CONCAT31((int3)(~StringProcessingResult >> 8),*pMemoryAddress != ~StringProcessingResult);
 }
@@ -13216,8 +13216,8 @@ uint64_t SystemAudioCreateChannel(uint param_1)
     }
     IntegerCounter = func_0x0001808fd8d4();
     if ((IntegerCounter == 0) || (param_1 != 0)) {
-      bVar2 = 0x40 - ((byte)_DAT_180bf00a8 & 0x3f) & 0x3f;
-      _DAT_180c821e0 = (0xffffffffffffffffU >> bVar2 | -1L << 0x40 - bVar2) ^ _DAT_180bf00a8;
+      ValidationStatusByte = 0x40 - ((byte)_DAT_180bf00a8 & 0x3f) & 0x3f;
+      _DAT_180c821e0 = (0xffffffffffffffffU >> ValidationStatusByte | -1L << 0x40 - ValidationStatusByte) ^ _DAT_180bf00a8;
       uRam0000000180c821e8 = _DAT_180c821e0;
       _DAT_180c821f0 = _DAT_180c821e0;
       _DAT_180c821f8 = _DAT_180c821e0;
