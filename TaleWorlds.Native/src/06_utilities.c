@@ -10971,60 +10971,60 @@ void ProcessResourceCalculationAndValidation(int64_t objectContext, uint8_t *val
   int64_t resourceHandle;
   float calculatedFloatResult;
   float resultFloatValue;
-  uint8_t SecurityValidationBuffer [68];
-  uint32_t SecurityValidationFlag;
-  int *ParameterPointer;
-  int64_t ObjectContextOffset;
-  int64_t SecurityContextOffset;
-  int64_t SecurityContextArray [13];
-  uint8_t SecurityDataLargeBuffer [1536];
-  uint64_t ValidationParameter;
+  uint8_t securityValidationBuffer [68];
+  uint32_t securityValidationFlag;
+  int *parameterPointer;
+  int64_t objectContextOffset;
+  int64_t securityContextOffset;
+  int64_t securityContextArray [13];
+  uint8_t securityDataLargeBuffer [1536];
+  uint64_t validationParameter;
   
-  ValidationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityValidationBuffer;
+  validationParameter = SecurityEncryptionKey ^ (uint64_t)securityValidationBuffer;
   int operationStatusCode = *(int *)(objectContext + 0xac);
-  int64_t ArrayIndex = (int64_t)OperationResult;
-  ParameterPointer = CleanupOption;
-  if (OperationResult < *(int *)(objectContext + 0x20)) {
-    ObjectContextOffset = *(int64_t *)(objectContext + 0x18);
-    SecurityContextOffset = ArrayIndex * 3;
-    int64_t SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + ArrayIndex * 0xc) + *(int64_t *)(objectContext + 8);
-    char SystemStatusChar = *(char *)(ObjectContextOffset + 8 + ArrayIndex * 0xc);
-    if (SystemStatusChar == '\x01') {
-      int MaxOperationCount = *(int *)(objectContext + 0xb0);
-      if (OperationResult < MaxOperationCount) {
-        *(int *)(objectContext + 0xac) = OperationResult + 1;
+  int64_t arrayIndex = (int64_t)operationResult;
+  parameterPointer = cleanupOption;
+  if (operationResult < *(int *)(objectContext + 0x20)) {
+    objectContextOffset = *(int64_t *)(objectContext + 0x18);
+    securityContextOffset = arrayIndex * 3;
+    int64_t systemDataPointer = (int64_t)*(int *)(objectContextOffset + arrayIndex * 0xc) + *(int64_t *)(objectContext + 8);
+    char systemStatusChar = *(char *)(objectContextOffset + 8 + arrayIndex * 0xc);
+    if (systemStatusChar == '\x01') {
+      int maxOperationCount = *(int *)(objectContext + 0xb0);
+      if (operationResult < maxOperationCount) {
+        *(int *)(objectContext + 0xac) = operationResult + 1;
         goto HandleSystemError;
       }
-      calculatedFloatResult = *(float *)(SystemDataPointer + 0x18);
+      calculatedFloatResult = *(float *)(systemDataPointer + 0x18);
       resultFloatValue = calculatedFloatResult;
-      if (MaxOperationCount != -1) {
+      if (maxOperationCount != -1) {
         resultFloatValue = *(float *)(objectContext + 0xb4);
-        MaxOperationCount = -1;
+        maxOperationCount = -1;
         *(uint32_t *)(objectContext + 0xb0) = 0xffffffff;
         *(uint32_t *)(objectContext + 0xb4) = 0xbf800000;
       }
       *(float *)(objectContext + 0xa8) = calculatedFloatResult;
-      ArrayIndex = 0;
+      arrayIndex = 0;
       calculatedFloatResult = (float)*(uint *)(objectContext + 0x68) * calculatedFloatResult;
       if ((9.223372e+18 <= calculatedFloatResult) && (calculatedFloatResult = calculatedFloatResult - 9.223372e+18, calculatedFloatResult < 9.223372e+18)) {
-        ArrayIndex = -0x8000000000000000;
+        arrayIndex = -0x8000000000000000;
       }
       resourceTable = *(int64_t *)(objectContext + 0xa0);
-      int64_t ResourceEntryPointer = *(int64_t *)(objectContext + 0x98);
-      if (ResourceEntryPointer == 0) {
+      int64_t resourceEntryPointer = *(int64_t *)(objectContext + 0x98);
+      if (resourceEntryPointer == 0) {
         resultFloatValue = (float)*(uint *)(objectContext + 0x68) * resultFloatValue;
-        ResourceEntryPointer = 0;
+        resourceEntryPointer = 0;
         if ((9.223372e+18 <= resultFloatValue) && (resultFloatValue = resultFloatValue - 9.223372e+18, resultFloatValue < 9.223372e+18)) {
-          ResourceEntryPointer = -0x8000000000000000;
+          resourceEntryPointer = -0x8000000000000000;
         }
-        ResourceEntryPointer = resourceTable - ((int64_t)resultFloatValue + ResourceEntryPointer);
-        *(int64_t *)(objectContext + 0x98) = ResourceEntryPointer;
+        resourceEntryPointer = resourceTable - ((int64_t)resultFloatValue + resourceEntryPointer);
+        *(int64_t *)(objectContext + 0x98) = resourceEntryPointer;
       }
-      encryptionShiftValue = *(byte *)(objectContext + 0x6c);
+      encryptionShiftValue = *(uint8_t *)(objectContext + 0x6c);
       if (*(int64_t *)(objectContext + 0xc0) != 0) {
-        ResourceContextOffset = ProcessSystemParameters(objectContext);
+        resourceContextOffset = ProcessSystemParameters(objectContext);
         operationStatusCode = (**(code **)(objectContext + 0xc0))
-                          (ResourceContextOffset,OperationResult,*(uint32_t *)(SystemDataPointer + 0x18),*(uint8_t *)(objectContext + 0xb8)
+                          (resourceContextOffset, operationResult, *(uint32_t *)(systemDataPointer + 0x18), *(uint8_t *)(objectContext + 0xb8)
                           );
         if (OperationResult != 0) goto HandleSystemError;
       }
@@ -45763,7 +45763,18 @@ void ProcessResourceHashAndCleanup(uint8_t objectContext,int64_t validationConte
 
 
 
-void Unwind_180904f30(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 验证资源哈希并处理内存访问
+ * 
+ * 该函数负责验证资源哈希值，处理内存访问权限
+ * 并在验证失败时执行相应的清理操作
+ * 
+ * @param objectContext 对象上下文，包含资源相关的上下文信息
+ * @param validationContext 验证上下文，用于验证操作的环境信息
+ * @return 无返回值
+ * @note 此函数主要用于资源验证和内存访问控制
+ */
+void ValidateResourceHashAndMemoryAccess(uint8_t objectContext,int64_t validationContext)
 
 {
   int *ResourceIndexPointer;
@@ -45799,7 +45810,18 @@ void Unwind_180904f30(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904f40(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放系统资源并清理状态
+ * 
+ * 该函数负责检查资源状态标志，如果资源被标记为占用状态
+ * 则清除状态标志并释放相应的系统资源
+ * 
+ * @param objectContext 对象上下文，包含资源相关的上下文信息
+ * @param validationContext 验证上下文，用于验证操作的环境信息
+ * @return 无返回值
+ * @note 此函数主要用于系统资源的释放和状态清理
+ */
+void ReleaseSystemResourceAndCleanupStatus(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x68) & 1) != 0) {
@@ -45811,7 +45833,18 @@ void Unwind_180904f40(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904f70(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 初始化本地上下文数据并设置资源处理器
+ * 
+ * 该函数负责初始化本地上下文数据结构，设置系统资源处理器模板
+ * 并在检测到异常状态时执行紧急退出操作
+ * 
+ * @param objectContext 对象上下文，包含资源相关的上下文信息
+ * @param validationContext 验证上下文，用于验证操作的环境信息
+ * @return 无返回值
+ * @note 此函数主要用于本地上下文数据的初始化和资源处理器的设置
+ */
+void InitializeLocalContextAndResourceHandler(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
