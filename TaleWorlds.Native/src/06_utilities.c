@@ -5033,37 +5033,37 @@ void ResetSystemState(void)
  * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t ProcessComplexObjectHandle(int64_t objectContext)
+uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
 {
-  uint8_t operationResult;
-  int64_t operationResultBuffer[2];
-  int64_t contextHandleBuffer[2];
+  uint8_t OperationResult;
+  int64_t OperationResultBuffer[2];
+  int64_t ContextHandleBuffer[2];
   
-  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), contextHandleBuffer);
-  if ((int)operationResult == 0) {
-    if (contextHandleBuffer[0] == 0) {
-      contextHandleBuffer[0] = 0;
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandleBuffer);
+  if ((int)OperationResult == 0) {
+    if (ContextHandleBuffer[0] == 0) {
+      ContextHandleBuffer[0] = 0;
     }
     else {
-      contextHandleBuffer[0] = contextHandleBuffer[0] - 8;
+      ContextHandleBuffer[0] = ContextHandleBuffer[0] - 8;
     }
-    operationResultBuffer[0] = 0;
-    operationResult = ProcessSystemContextValidation(contextHandleBuffer[0], objectContext + ObjectContextValidationDataOffset, operationResultBuffer);
-    if ((int)operationResult == 0) {
-      if (operationResultBuffer[0] != 0) {
-        if (*(int64_t *)(operationResultBuffer[0] + 8) == 0) {
+    OperationResultBuffer[0] = 0;
+    OperationResult = ProcessSystemContextValidation(ContextHandleBuffer[0], ObjectContext + ObjectContextValidationDataOffset, OperationResultBuffer);
+    if ((int)OperationResult == 0) {
+      if (OperationResultBuffer[0] != 0) {
+        if (*(int64_t *)(OperationResultBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
-        operationResult = ProcessResourceOperation(*(int64_t *)(operationResultBuffer[0] + 8), *(uint32_t *)(objectContext + ObjectContextProcessingDataOffset),
-                                      *(uint8_t *)(objectContext + ObjectContextStatusDataOffset));
-        if ((int)operationResult != 0) {
-          return operationResult;
+        OperationResult = ProcessResourceOperation(*(int64_t *)(OperationResultBuffer[0] + 8), *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset),
+                                      *(uint8_t *)(ObjectContext + ObjectContextStatusDataOffset));
+        if ((int)OperationResult != 0) {
+          return OperationResult;
         }
       }
-      operationResult = 0;
+      OperationResult = 0;
     }
   }
-  return operationResult;
+  return OperationResult;
 }
 
 
@@ -5091,37 +5091,37 @@ uint8_t ProcessComplexObjectHandle(int64_t objectContext)
  * @param objectContext 对象上下文指针，包含对象管理所需的信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t ValidateAndProcessObjectStatus(int64_t objectContext)
+uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
 {
-  uint8_t validationResult;
-  int64_t resourceContextBuffer[2];
-  int64_t validationStackBuffer[2];
+  uint8_t ValidationResult;
+  int64_t ResourceContextBuffer[2];
+  int64_t ValidationStackBuffer[2];
   
-  validationHash = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), validationStackBuffer);
-  if ((int)validationHash == 0) {
-    if (validationStackBuffer[0] == 0) {
-      validationStackBuffer[0] = 0;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ValidationStackBuffer);
+  if ((int)ValidationResult == 0) {
+    if (ValidationStackBuffer[0] == 0) {
+      ValidationStackBuffer[0] = 0;
     }
     else {
-      validationStackBuffer[0] = validationStackBuffer[0] - 8;
+      ValidationStackBuffer[0] = ValidationStackBuffer[0] - 8;
     }
-    resourceContextBuffer[0] = 0;
-    validationHash = ValidateResourceContext(validationStackBuffer[0], objectContext + ObjectContextProcessingDataOffset, resourceContextBuffer);
-    if ((int)validationHash == 0) {
-      if (resourceContextBuffer[0] != 0) {
-        if (*(int64_t *)(resourceContextBuffer[0] + 8) == 0) {
+    ResourceContextBuffer[0] = 0;
+    ValidationResult = ValidateResourceContext(ValidationStackBuffer[0], ObjectContext + ObjectContextProcessingDataOffset, ResourceContextBuffer);
+    if ((int)ValidationResult == 0) {
+      if (ResourceContextBuffer[0] != 0) {
+        if (*(int64_t *)(ResourceContextBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
-        validationHash = ProcessResourceOperation(*(int64_t *)(resourceContextBuffer[0] + 8), *(uint32_t *)(objectContext + ObjectContextValidationDataOffset),
-                              *(uint8_t *)(objectContext + ObjectContextHandleDataOffset));
-        if ((int)validationHash != 0) {
-          return validationHash;
+        ValidationResult = ProcessResourceOperation(*(int64_t *)(ResourceContextBuffer[0] + 8), *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),
+                              *(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
+        if ((int)ValidationResult != 0) {
+          return ValidationResult;
         }
       }
-      validationHash = 0;
+      ValidationResult = 0;
     }
   }
-  return validationHash;
+  return ValidationResult;
 }
 
 
