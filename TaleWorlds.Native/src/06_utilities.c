@@ -403,7 +403,7 @@ void OptimizeResourceUsage(void);
 void MonitorResourcePerformance(void);
 
 void* SystemResourceManagerHandle;
-uint32_t SystemResourceManagementOperationStatus;
+uint32_t SystemResourceManagementStatus;
 void* ResourceContextConfiguration;
 void* ResourceContextStatusMonitor;
 void* ResourceSmallBufferPool;
