@@ -5977,54 +5977,66 @@ uint8_t ValidateSystemDataIntegrity(int64_t dataBuffer, int64_t validationConfig
  * @param objectHandle 对象句柄，用于标识要处理的对象
  * @param queueContext 队列上下文，包含队列的状态和管理信息
  */
+/**
+ * @brief 处理系统对象队列
+ * 
+ * 该函数负责处理系统中的对象队列，遍历队列中的每个对象
+ * 并执行相应的队列操作。函数会验证队列上下文，初始化处理队列
+ * 然后遍历队列节点，处理每个节点的操作
+ * 
+ * @param objectHandle 对象句柄，包含要处理的对象信息
+ * @param queueContext 队列上下文，包含队列的配置和状态信息
+ * @note 此函数会处理队列中的所有对象，直到队列为空或遇到错误
+ * @warning 处理失败时会导致队列处理中断
+ */
 void ProcessSystemObjectQueue(int64_t objectHandle, int64_t queueContext)
 
 {
-  int64_t *QueueIterator;
-  int ProcessingStatus;
-  int64_t *QueueNode;
-  int64_t *QueueHead;
-  int64_t *QueueTail;
-  uint8_t StackBuffer [2];
+  int64_t *QueueCurrentIterator;
+  int QueueProcessingStatus;
+  int64_t *QueueCurrentNode;
+  int64_t *QueueHeadPointer;
+  int64_t *QueueTailPointer;
+  uint8_t QueueContextBuffer [2];
   
-  QueueTail = (int64_t *)0x0;
-  StackBuffer[0] = 0;
-  ProcessingStatus = InitializeProcessingQueue(StackBuffer);
-  if ((ProcessingStatus == 0) && (ProcessingStatus = ValidateQueueContext(*(uint8_t *)(queueContext + 0x90)), ProcessingStatus == 0)) {
-    QueueHead = (int64_t *)(*(int64_t *)(queueContext + 0x50) + -8);
+  QueueTailPointer = (int64_t *)0x0;
+  QueueContextBuffer[0] = 0;
+  QueueProcessingStatus = InitializeProcessingQueue(QueueContextBuffer);
+  if ((QueueProcessingStatus == 0) && (QueueProcessingStatus = ValidateQueueContext(*(uint8_t *)(queueContext + 0x90)), QueueProcessingStatus == 0)) {
+    QueueHeadPointer = (int64_t *)(*(int64_t *)(queueContext + 0x50) + -8);
     if (*(int64_t *)(queueContext + 0x50) == 0) {
-      QueueHead = QueueTail;
+      QueueHeadPointer = QueueTailPointer;
     }
-    QueueIterator = QueueTail;
-    if (QueueHead != (int64_t *)0x0) {
-      QueueIterator = QueueHead + 1;
+    QueueCurrentIterator = QueueTailPointer;
+    if (QueueHeadPointer != (int64_t *)0x0) {
+      QueueCurrentIterator = QueueHeadPointer + 1;
     }
     do {
-      if (QueueIterator == (int64_t *)(queueContext + 0x50)) {
+      if (QueueCurrentIterator == (int64_t *)(queueContext + 0x50)) {
         if (*(char *)(objectHandle + 0x10) != '\0') {
           ProcessQueueEvent(queueContext);
         }
         break;
       }
-      QueueHead = QueueIterator;
-      if (QueueIterator != (int64_t *)(queueContext + 0x50)) {
-        QueueNode = (int64_t *)(*QueueIterator + -8);
-        if (*QueueIterator == 0) {
-          QueueNode = QueueTail;
+      QueueHeadPointer = QueueCurrentIterator;
+      if (QueueCurrentIterator != (int64_t *)(queueContext + 0x50)) {
+        QueueCurrentNode = (int64_t *)(*QueueCurrentIterator + -8);
+        if (*QueueCurrentIterator == 0) {
+          QueueCurrentNode = QueueTailPointer;
         }
-        QueueHead = QueueTail;
-        if (QueueNode != (int64_t *)0x0) {
-          QueueHead = QueueNode + 1;
+        QueueHeadPointer = QueueTailPointer;
+        if (QueueCurrentNode != (int64_t *)0x0) {
+          QueueHeadPointer = QueueCurrentNode + 1;
         }
       }
-      QueueNode = QueueIterator + 2;
-      if (QueueIterator == (int64_t *)0x0) {
-        QueueNode = (int64_t *)&QueueNullTerminator;
+      QueueCurrentNode = QueueCurrentIterator + 2;
+      if (QueueCurrentIterator == (int64_t *)0x0) {
+        QueueCurrentNode = (int64_t *)&QueueNullTerminator;
       }
-      QueueIterator = QueueHead;
-    } while ((*QueueNode == 0) || (ProcessingStatus = ProcessQueueOperation(queueContext), ProcessingStatus == 0));
+      QueueCurrentIterator = QueueHeadPointer;
+    } while ((*QueueCurrentNode == 0) || (QueueProcessingStatus = ProcessQueueOperation(queueContext), QueueProcessingStatus == 0));
   }
-        CleanupProcessingQueue(StackBuffer);
+        CleanupProcessingQueue(QueueContextBuffer);
 }
 
 
@@ -55118,7 +55130,7 @@ void ValidateObjectContextBasic(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906bd0(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateObjectContextExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x40) + 8,8,7,ProcessResourceOperation);
@@ -55208,7 +55220,7 @@ void CleanupValidationContextResourceHandlerAtOffset60(uint8_t ObjectContext,int
 
 
 
-void Unwind_180906c40(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateObjectContextWithFlags(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x80) != (int64_t *)0x0) {
@@ -55620,7 +55632,19 @@ void HandleResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t Val
 
 
 
-void Unwind_180906d10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 基础资源清理处理函数
+ * 
+ * 该函数负责执行基础的资源清理操作，处理对象上下文和验证上下文
+ * 中的资源索引和内存地址，确保资源的正确释放和清理
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源对象信息
+ * @param ValidationContext 验证上下文，包含资源验证所需的参数和状态
+ * @return 无返回值
+ * @note 此函数会在资源清理过程中被调用
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ProcessResourceCleanupBasic(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -55656,7 +55680,19 @@ void Unwind_180906d10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906d20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 扩展资源清理处理函数
+ * 
+ * 该函数负责执行扩展的资源清理操作，处理对象上下文和验证上下文
+ * 中的资源索引和内存地址，包含额外的安全检查和紧急退出机制
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源对象信息
+ * @param ValidationContext 验证上下文，包含资源验证所需的参数和状态
+ * @return 无返回值
+ * @note 此函数会在资源清理过程中被调用，包含额外的安全检查
+ * @warning 调用此函数前必须确保上下文参数有效，包含紧急退出机制
+ */
+void ProcessResourceCleanupExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -55675,7 +55711,19 @@ void Unwind_180906d20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906d30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 带标志的资源清理处理函数
+ * 
+ * 该函数负责执行带标志的资源清理操作，处理对象上下文和验证上下文
+ * 中的资源索引和内存地址，支持通过标志位控制清理行为
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源对象信息
+ * @param ValidationContext 验证上下文，包含资源验证所需的参数和状态
+ * @return 无返回值
+ * @note 此函数会在资源清理过程中被调用，支持标志位控制
+ * @warning 调用此函数前必须确保上下文参数有效，标志位设置正确
+ */
+void ProcessResourceCleanupWithFlags(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -55711,7 +55759,19 @@ void Unwind_180906d30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906d40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 带验证的资源清理处理函数
+ * 
+ * 该函数负责执行带验证的资源清理操作，处理对象上下文和验证上下文
+ * 中的资源索引和内存地址，包含完整的验证机制确保资源安全清理
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源对象信息
+ * @param ValidationContext 验证上下文，包含资源验证所需的参数和状态
+ * @return 无返回值
+ * @note 此函数会在资源清理过程中被调用，包含完整的验证机制
+ * @warning 调用此函数前必须确保上下文参数有效，验证机制已启用
+ */
+void ProcessResourceCleanupWithValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
