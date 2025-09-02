@@ -9465,21 +9465,21 @@ uint8_t GetErrorStatusCode(void)
  * @note 该函数会在数据验证失败时提前返回
  * @warning 在数据完整性检查失败时可能触发系统错误处理
  */
-void ExecuteDataValidationAndProcessing(int64_t DataContext, int64_t OperationContext)
+void ExecuteDataValidationAndProcessing(int64_t DataContext, int64_t SystemOperationContext)
 
 {
   int DataHashValidationResult;
   int64_t TempDataBuffer;
   int DataValidationResult;
   
-  DataValidationResult = ValidateDataFormat(OperationContext, DataContext + 0x10);
+  DataValidationResult = ValidateDataFormat(SystemOperationContext, DataContext + 0x10);
   if (DataValidationResult == 0) {
     DataValidationResult = CheckDataIntegrity(*(uint32_t *)(DataContext + 0x10), &TempDataBuffer);
     if (DataValidationResult == 0) {
       if (*(int *)(TempDataBuffer + 0x30) == 1) {
         *(uint32_t *)(TempDataBuffer + 0x30) = 2;
       }
-            ExecuteDataOperation(*(uint8_t *)(OperationContext + 0x98), DataContext);
+            ExecuteDataOperation(*(uint8_t *)(SystemOperationContext + 0x98), DataContext);
     }
   }
   return;
@@ -9495,7 +9495,7 @@ void ExecuteDataValidationAndProcessing(int64_t DataContext, int64_t OperationCo
  * @param OperationContext 操作上下文指针，包含操作所需的配置和状态信息
  * @return 操作结果状态码，0表示成功，非0表示错误码
  */
-int ProcessDataBlockOperation(int64_t DataContext, int64_t OperationContext)
+int ProcessDataBlockOperation(int64_t DataContext, int64_t SystemOperationContext)
 
 {
   uint DataProcessingMode;
