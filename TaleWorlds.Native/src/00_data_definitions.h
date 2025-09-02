@@ -1798,11 +1798,11 @@ int InitializeStringProcessorM(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorMFlags;
-  StringProcessorM_Base = &UnknownData1809fcc58;
+  StringProcessorM_Base = &SystemStringDataBase;
   StringProcessorM_BufferPtr = &StringProcessorM_Buffer;
   StringProcessorM_Buffer = 0;
   StringProcessorM_Length = 0xc;
-  strcpy_s(&StringProcessorM_Buffer,64,&UnknownData180a22c48,stringProcessorMFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessorM_Buffer,64,&SystemStringDataTemplateM,stringProcessorMFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorM_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1816,11 +1816,11 @@ int InitializeStringProcessorN(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorNFlags;
-  StringProcessorN_Base = &UnknownData1809fcc58;
+  StringProcessorN_Base = &SystemStringDataBase;
   StringProcessorN_BufferPtr = &StringProcessorN_Buffer;
   StringProcessorN_Buffer = 0;
   StringProcessorN_Length = 0x16;
-  strcpy_s(&StringProcessorN_Buffer,64,&UnknownData180a22c30,stringProcessorNFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessorN_Buffer,64,&SystemStringDataTemplateN,stringProcessorNFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorN_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1838,7 +1838,7 @@ int InitializeStringProcessorO(void)
   StringProcessorO_BufferPtr = &StringProcessorO_Buffer;
   StringProcessorO_Buffer = 0;
   StringProcessorO_Length = 0x13;
-  strcpy_s(&StringProcessorO_Buffer,64,&UnknownData180a22c18,stringProcessorOFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessorO_Buffer,64,&SystemStringDataTemplateO,stringProcessorOFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorO_Callback);
   return (CallbackResult != 0) - 1;
 }
