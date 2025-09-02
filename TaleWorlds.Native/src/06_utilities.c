@@ -6227,7 +6227,7 @@ void ProcessObjectStateAndSchedule(int64_t ObjectContext, int64_t SchedulerConte
       return;
     }
   }
-  CleanupSystemContextData(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
+  CleanupSystemContextData(*(uint8_t *)(SchedulerContext + SystemContextMatrixPointerOffset), ObjectContext);
   return;
 }
 
@@ -6250,11 +6250,11 @@ void InitializeObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t Schedu
   int PropertyStatus;
   int64_t ObjectPropertyBuffer;
   
-  PropertyStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ObjectPropertyBuffer);
+  PropertyStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectHandleMemoryOffset), &ObjectPropertyBuffer);
   if (PropertyStatus == 0) {
-    *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset) = *(uint32_t *)(ObjectPropertyBuffer + 0x30);
-    *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset) = *(uint32_t *)(ObjectPropertyBuffer + 0x34);
-    CleanupSystemContextData(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
+    *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset) = *(uint32_t *)(ObjectPropertyBuffer + ObjectContextExtendedDataOffset);
+    *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset) = *(uint32_t *)(ObjectPropertyBuffer + ObjectContextHandleDataOffset);
+    CleanupSystemContextData(*(uint8_t *)(SchedulerContext + SystemContextMatrixPointerOffset), ObjectContext);
   }
   return;
 }
@@ -6278,11 +6278,11 @@ void ValidateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedule
   int PackageValidationStatusCode;
   uint8_t PropertyBuffer;
   
-  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&PropertyBuffer);
+  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectHandleMemoryOffset),&PropertyBuffer);
   if (PackageValidationStatusCode == 0) {
     PackageValidationStatusCode = ValidatePropertyBuffer(PropertyBuffer,ObjectContext + ObjectContextValidationDataOffset);
     if (PackageValidationStatusCode == 0) {
-      CleanupSystemContextData(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+      CleanupSystemContextData(*(uint8_t *)(schedulerContext + SystemContextMatrixPointerOffset),ObjectContext);
     }
   }
   return;
@@ -6447,7 +6447,7 @@ uint8_t ExtractObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t Schedu
       return 0x4c;
     }
     *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset) = *(uint8_t *)(*(int64_t *)(PropertyBuffer + 8) + 0x78);
-    OperationResult = CleanupSystemContextData(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
+    OperationResult = CleanupSystemContextData(*(uint8_t *)(SchedulerContext + SystemContextMatrixPointerOffset), ObjectContext);
   }
   return OperationResult;
 }
@@ -64925,7 +64925,13 @@ void UnwindMemoryAccessValidator180908a50(uint8_t ObjectContext, int64_t Validat
 
 
 
-void Unwind_180908a60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源哈希清理处理器1
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180908a60
+ */
+void Unwind_ResourceHashCleanupHandler1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -64933,7 +64939,7 @@ void Unwind_180908a60(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1a0);
+  ResourceHashValidationResultPointer = *(uint8_t **)(ValidationContext + 0x1a0);
   if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
@@ -64961,7 +64967,13 @@ void Unwind_180908a60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908a70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源哈希清理处理器2
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180908a70
+ */
+void Unwind_ResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -64969,7 +64981,7 @@ void Unwind_180908a70(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x160);
+  ResourceHashValidationResultPointer = *(uint8_t **)(ValidationContext + 0x160);
   if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
