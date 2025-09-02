@@ -4274,37 +4274,37 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  */
 void ValidateSystemObjectCollection(void)
 {
-  uint8_t ObjectId;
+  uint8_t SystemObjectId;
   int ValidationStatus;
   int64_t ObjectContext;
   int64_t SystemContext;
-  int64_t Position;
-  int ProcessedCount;
+  int64_t CurrentPosition;
+  int ProcessedObjectCount;
   uint8_t *CollectionBuffer;
-  int RetrievedCount;
-  uint32_t MaxCapacity;
-  uint64_t SecurityHash;
+  int RetrievedObjectCount;
+  uint32_t MaximumCapacity;
+  uint64_t SecurityValidationHash;
   
   if (*(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset) != 0) {
     CollectionBuffer = ProcessingWorkspace;
-    ProcessedCount = 0;
-    RetrievedCount = 0;
-    MaxCapacity = MaximumCapacityLimit;
+    ProcessedObjectCount = 0;
+    RetrievedObjectCount = 0;
+    MaximumCapacity = MaximumCapacityLimit;
     ValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
     if (ValidationStatus == 0) {
-      RetrievedCount = *(int *)(ProcessingWorkspace + 4);
-      if (0 < RetrievedCount) {
-        Position = 8;
+      RetrievedObjectCount = *(int *)(ProcessingWorkspace + 4);
+      if (0 < RetrievedObjectCount) {
+        CurrentPosition = 8;
         do {
-          ObjectId = *(uint8_t *)(CollectionBuffer + Position);
-          ValidationStatus = ValidateSystemObject(ObjectId);
+          SystemObjectId = *(uint8_t *)(CollectionBuffer + CurrentPosition);
+          ValidationStatus = ValidateSystemObject(SystemObjectId);
           if (ValidationStatus != 2) {
-                  HandleInvalidSystemObject(ObjectId, 1);
+                  HandleInvalidSystemObject(SystemObjectId, 1);
           }
-          ProcessedCount++;
-          Position += 8;
-        } while (ProcessedCount < RetrievedCount);
+          ProcessedObjectCount++;
+          CurrentPosition += 8;
+        } while (ProcessedObjectCount < RetrievedObjectCount);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
@@ -4312,7 +4312,7 @@ void ValidateSystemObjectCollection(void)
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
   }
-        PerformSecurityValidation(SecurityHash ^ (uint64_t)ProcessingWorkspace);
+        PerformSecurityValidation(SecurityValidationHash ^ (uint64_t)ProcessingWorkspace);
 }
 
 
@@ -4351,13 +4351,13 @@ void TerminateSystemProcess(void)
 void CheckSystemFlags(void)
 {
   int64_t SystemContext;
-  uint64_t FlagCheckValidationToken;
+  uint64_t FlagValidationToken;
   
   if ((*(uint *)(SystemContext + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
           TriggerSystemFlagHandler();
   }
   ReleaseFlagCheckResources(&ObjectResourceBuffer);
-        ExecuteFlagCheckCleanup(FlagCheckValidationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+        ExecuteFlagCheckCleanup(FlagValidationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
