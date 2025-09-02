@@ -6060,7 +6060,7 @@ void ValidateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedule
   int ValidationStatusCode;
   uint8_t PropertyBuffer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&PropertyBuffer);
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&PropertyBuffer);
   if (ValidationStatus == 0) {
     ValidationStatus = ValidatePropertyBuffer(PropertyBuffer,ObjectContext + 0x18);
     if (ValidationStatus == 0) {
