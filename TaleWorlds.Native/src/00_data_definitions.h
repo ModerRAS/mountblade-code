@@ -149,7 +149,15 @@ void* NetworkConfigBufferSize;
  * 用于设置网络数据包的大小限制
  */
 void* NetworkConfigPacketSize;
+
 // 网络配置验证参数组 - 用于存储网络配置的验证规则和数据
+void* NetworkConfigValidationParameterReserved1;
+void* NetworkConfigValidationParameterReserved2;
+void* NetworkConfigValidationParameterReserved3;
+void* NetworkConfigValidationParameterReserved4;
+void* NetworkConfigValidationParameterReserved5;
+void* NetworkConfigValidationParameterReserved6;
+void* NetworkConfigValidationParameterReserved7;
 void* NetworkConfigValidationParameterReserved8;
 void* NetworkConfigValidationParameterReserved9;
 void* NetworkConfigValidationParameterReserved10;
