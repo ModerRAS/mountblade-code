@@ -5245,12 +5245,12 @@ uint32_t ProcessResourceTask(void)
   
   SystemTaskContextPointer = SystemTaskContext - 8;
   if (SystemTaskContext == 0) {
-    SystemContextPointer = 0;
+    SystemTaskContextPointer = 0;
   }
-  if (*(int64_t *)(SystemContextPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(SystemTaskContextPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + ObjectContextOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(SystemTaskContextPointer + ObjectContextOffset),1);
 }
 
 
@@ -5487,22 +5487,22 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
 
 {
   uint64_t ResourceHashValidationResult;
-  int64_t ValidatedContextPointer;
+  int64_t ValidatedAdvancedPointer;
   
-  ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(advancedObjectHandle + ObjectContextValidationOffset), &ValidatedContextPointer);
+  ResourceHashValidationResult = ValidateObjectContext(*(uint32_t *)(advancedObjectHandle + ObjectContextValidationOffset), &ValidatedAdvancedPointer);
   if ((int)ResourceHashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
-  if (ValidatedContextPointer == 0) {
-    ValidatedContextPointer = 0;
+  if (ValidatedAdvancedPointer == 0) {
+    ValidatedAdvancedPointer = 0;
   }
   else {
-    ValidatedContextPointer = ValidatedContextPointer + -8;
+    ValidatedAdvancedPointer = ValidatedAdvancedPointer + -8;
   }
-  if (*(int64_t *)(ValidatedContextPointer + 0x10) == 0) {
+  if (*(int64_t *)(ValidatedAdvancedPointer + 0x10) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedAdvancedPointer + 0x10), 1);
 }
 
 
