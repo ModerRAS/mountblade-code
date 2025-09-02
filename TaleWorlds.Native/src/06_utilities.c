@@ -4695,6 +4695,15 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数增加前会验证对象上下文的有效性
  * @warning 如果对象句柄无效或系统状态检查失败，将返回相应的错误代码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加指定对象的引用计数，常用于对象生命周期管理。
+ * 在多线程环境中，该函数会检查系统状态以确保操作的安全性。
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的相关信息
+ * @return 操作结果状态码，0表示成功，非0表示失败
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectPointer;
   uint8_t ValidationStatusCode;
@@ -4721,21 +4730,19 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
 
 
 /**
- * @brief 处理对象句柄初始化操作A
+ * @brief 初始化对象句柄基础操作
  * 
- * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
- * 状态检查和初始化设置等步骤
+ * 该函数负责处理对象句柄的基础初始化操作，包括句柄分配、
+ * 状态检查和初始化设置等步骤。这是对象生命周期管理的第一步。
  * 
- * @param ObjectContext 对象上下文参数
- * @return 操作结果状态码
+ * @param ObjectContext 对象上下文参数，包含对象的初始化信息
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandleBasic(int64_t ObjectContext)
-
-{
+uint8_t InitializeObjectHandleBasic(int64_t ObjectContext) {
   uint8_t ObjectValidationStatusCode;
   int64_t ValidatedSystemContext;
   
-  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset),&ValidatedSystemContext);
+  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &ValidatedSystemContext);
   if ((int)ObjectValidationStatusCode == 0) {
     if (ValidatedSystemContext == 0) {
       ValidatedSystemContext = 0;
@@ -4744,7 +4751,7 @@ uint8_t InitializeObjectHandleBasic(int64_t ObjectContext)
       ValidatedSystemContext = ValidatedSystemContext + -8;
     }
     if (*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset),1);
+            ExecuteSystemExitOperation(*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset), 1);
     }
     ObjectValidationStatusCode = 0;
   }
@@ -50014,20 +50021,20 @@ void ExecuteMemoryPoolResourceCleanup(uint8_t ObjectContext, int64_t ValidationC
 void CleanupResourceHashResourceHashValidationStatusCodes(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  uint8_t *ResourceHashPointer;
-  int64_t *ResourceTablePointerPointer;
-  uint8_t *ValidationStatusCodeAddress;
-  uint8_t *ResourceHashAddress;
+  uint8_t *resourceHashPointer;
+  int64_t *resourceTablePointerPointer;
+  uint8_t *validationStatusCodeAddress;
+  uint8_t *resourceHashAddress;
   uint8_t cleanupLoopCondition;
   int64_t cleanupLoopIncrement;
   
-  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x2e8);
+  resourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x2e8);
   cleanupLoopIncrement = 0xfffffffffffffffe;
-  ResourceHashPointer = (uint8_t *)ResourceTablePointerPointer[1];
-  for (ValidationStatusCodeAddress = (uint8_t *)*ResourceTablePointerPointer; ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ValidationStatusCodeAddress + 4) {
-    (**(code **)*ValidationStatusCodeAddress)(ValidationStatusCodeAddress, 0, CleanupOption, CleanupFlag, cleanupLoopIncrement);
+  resourceHashPointer = (uint8_t *)resourceTablePointerPointer[1];
+  for (validationStatusCodeAddress = (uint8_t *)*resourceTablePointerPointer; validationStatusCodeAddress != resourceHashAddress; validationStatusCodeAddress = validationStatusCodeAddress + 4) {
+    (**(code **)*validationStatusCodeAddress)(validationStatusCodeAddress, 0, CleanupOption, CleanupFlag, cleanupLoopIncrement);
   }
-  if (*ResourceTablePointerPointer == 0) {
+  if (*resourceTablePointerPointer == 0) {
     return;
   }
         ExecuteSystemEmergencyExit();
@@ -50050,10 +50057,13 @@ void CleanupResourceHashResourceHashValidationStatusCodes(uint8_t ObjectContext,
 void CleanupResourceHashValidationStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int32_t *ResourceTablePointerIndexPointer;
-  uint8_t *ResourceHashValidationStatusCodeAddress;
+  int32_t *resourceTablePointerIndexPointer;
+  uint8_t *resourceHashValidationStatusCodeAddress;
   int64_t resourceIndex;
   uint64_t cleanupLoopIncrement;
+  uint64_t memoryAddressIncrement;
+  int64_t resourceIndex;
+  int *resourceIndexPointer;
   
   ResourceHashValidationStatusCodeAddress = (uint8_t *)**(uint64_t **)(ValidationContext + 0x2e8);
   if (ResourceHashValidationStatusCodeAddress == (uint8_t *)0x0) {
