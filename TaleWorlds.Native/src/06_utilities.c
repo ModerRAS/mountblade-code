@@ -3502,7 +3502,7 @@ uint8_t SystemMemoryFlagKernel;
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t ObjectValidationState;
-  int ProcessingOutcome;
+  int ProcessingResult;
   int64_t CurrentObjectIndex;
   int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
@@ -4082,7 +4082,7 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext)
  * @param ObjectContext 对象上下文参数
  * @return 操作结果状态码
  */
-uint8_t InitializeObjectHandleAdvancedasic(int64_t ObjectContext)
+uint8_t InitializeObjectHandleBasic(int64_t ObjectContext)
 
 {
   uint8_t ResourceValidationHash;
@@ -4497,8 +4497,8 @@ uint8_t InitializeObjectHandleAdvanced(int64_t ObjectContext)
         ProcessedFloatValue = (float)CalculateFloatValue(*(int64_t *)(contextHandle + 0x18), ProcessedFloatValue);
         if (((*(char *)(contextHandle + 0x34) == '\0') ||
             ((*(uint *)(*(int64_t *)(contextHandle + 0x18) + 0x34) >> 1 & 1) == 0)) &&
-           (processedFloatValue != *(float *)(contextHandle + 0x20))) {
-          *(float *)(contextHandle + 0x20) = processedFloatValue;
+           (ProcessedFloatValue != *(float *)(contextHandle + 0x20))) {
+          *(float *)(contextHandle + 0x20) = ProcessedFloatValue;
           ReleaseResourceHandle(contextHandle);
           *(uint8_t *)(contextHandle + 0x35) = 0;
         }
@@ -4729,7 +4729,7 @@ uint8_t InitializeObjectHandleExtended(int64_t ObjectContext)
  * 
  * @return 操作结果状态码
  */
-uint8_t InitializeObjectHandleF(void)
+uint8_t InitializeObjectHandleFinal(void)
 
 {
   int64_t InputParameterValue;
@@ -5236,14 +5236,14 @@ uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
 uint32_t ValidateAndProcessCurrentObjectHandleExtended(void)
 
 {
-  int64_t registerValue;
+  int64_t RegisterValue;
   int64_t ValidatedContextPointer;
   
-  if (registerValue == 0) {
+  if (RegisterValue == 0) {
     ValidatedContextPointer = 0;
   }
   else {
-    ValidatedContextPointer = registerValue + -8;
+    ValidatedContextPointer = RegisterValue + -8;
   }
   if (*(int64_t *)(ValidatedContextPointer + 0x10) == 0) {
     return 0x1c;
@@ -11632,58 +11632,58 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePoolId, int searchKey)
   uint32_t *KeyDataPointer;
   uint8_t NewValue;
   
-  hashTableSlotPointer = (int *)(*poolHeaderPointer + (int64_t)hashTableIndex * 4);
-  currentEntryIndex = *(int *)(*poolHeaderPointer + (int64_t)hashTableIndex * 4);
-  if (currentEntryIndex != -1) {
-    poolDataAddress = poolHeaderPointer[2];
+  HashTableSlotPointer = (int *)(*PoolHeaderPointer + (int64_t)HashTableIndex * 4);
+  CurrentEntryIndex = *(int *)(*PoolHeaderPointer + (int64_t)HashTableIndex * 4);
+  if (CurrentEntryIndex != -1) {
+    poolDataAddress = PoolHeaderPointer[2];
     do {
-      entryOffset = (int64_t)currentEntryIndex;
-      if (*(int *)(poolDataAddress + entryOffset * 0x10) == searchKey) {
-        *(uint8_t *)(poolDataAddress + 8 + entryOffset * 0x10) = *valueDataPointer;
+      EntryOffset = (int64_t)CurrentEntryIndex;
+      if (*(int *)(poolDataAddress + EntryOffset * 0x10) == searchKey) {
+        *(uint8_t *)(poolDataAddress + 8 + EntryOffset * 0x10) = *ValueDataPointer;
         return 0;
       }
-      currentEntryIndex = *(int *)(poolDataAddress + 4 + entryOffset * 0x10);
-      hashTableSlotPointer = (int *)(poolDataAddress + 4 + entryOffset * 0x10);
-    } while (currentEntryIndex != -1);
+      CurrentEntryIndex = *(int *)(poolDataAddress + 4 + EntryOffset * 0x10);
+      HashTableSlotPointer = (int *)(poolDataAddress + 4 + EntryOffset * 0x10);
+    } while (CurrentEntryIndex != -1);
   }
-  currentEntryIndex = (int)poolHeaderPointer[4];
-  if (currentEntryIndex == -1) {
-    newValue = *valueDataPointer;
-    currentEntryIndex = (int)poolHeaderPointer[3];
-    entryCount = currentEntryIndex + 1;
-    currentPoolCapacity = (int)*(uint *)((int64_t)poolHeaderPointer + 0x1c) >> 0x1f;
-    newPoolCapacity = (*(uint *)((int64_t)poolHeaderPointer + 0x1c) ^ currentPoolCapacity) - currentPoolCapacity;
-    if (newPoolCapacity < entryCount) {
-      expandedPoolCapacity = (int)((float)newPoolCapacity * 1.5);
-      newPoolCapacity = entryCount;
-      if (entryCount <= expandedPoolCapacity) {
-        newPoolCapacity = expandedPoolCapacity;
+  CurrentEntryIndex = (int)PoolHeaderPointer[4];
+  if (CurrentEntryIndex == -1) {
+    NewValue = *ValueDataPointer;
+    CurrentEntryIndex = (int)PoolHeaderPointer[3];
+    EntryCount = CurrentEntryIndex + 1;
+    CurrentPoolCapacity = (int)*(uint *)((int64_t)PoolHeaderPointer + 0x1c) >> 0x1f;
+    NewPoolCapacity = (*(uint *)((int64_t)PoolHeaderPointer + 0x1c) ^ CurrentPoolCapacity) - CurrentPoolCapacity;
+    if (NewPoolCapacity < EntryCount) {
+      ExpandedPoolCapacity = (int)((float)NewPoolCapacity * 1.5);
+      NewPoolCapacity = EntryCount;
+      if (EntryCount <= ExpandedPoolCapacity) {
+        NewPoolCapacity = ExpandedPoolCapacity;
       }
-      if (newPoolCapacity < 4) {
-        expandedPoolCapacity = 4;
+      if (NewPoolCapacity < 4) {
+        ExpandedPoolCapacity = 4;
       }
-      else if (expandedPoolCapacity < entryCount) {
-        expandedPoolCapacity = entryCount;
+      else if (ExpandedPoolCapacity < EntryCount) {
+        ExpandedPoolCapacity = EntryCount;
       }
-      OperationResult = ResourcePoolOperation(poolHeaderPointer + 2, expandedPoolCapacity);
+      OperationResult = ResourcePoolOperation(PoolHeaderPointer + 2, ExpandedPoolCapacity);
       if ((int)OperationResult != 0) {
         return OperationResult;
       }
     }
-    entryDataPointer = (uint8_t *)((int64_t)(int)poolHeaderPointer[3] * 0x10 + poolHeaderPointer[2]);
-    *entryDataPointer = CombineHighLow32Bits(0xffffffff, searchKey);
-    entryDataPointer[1] = newValue;
-    *(int *)(poolHeaderPointer + 3) = (int)poolHeaderPointer[3] + 1;
+    EntryDataPointer = (uint8_t *)((int64_t)(int)PoolHeaderPointer[3] * 0x10 + PoolHeaderPointer[2]);
+    *EntryDataPointer = CombineHighLow32Bits(0xffffffff, searchKey);
+    EntryDataPointer[1] = NewValue;
+    *(int *)(PoolHeaderPointer + 3) = (int)PoolHeaderPointer[3] + 1;
   }
   else {
-    entryDataArray = (uint32_t *)((int64_t)currentEntryIndex * 0x10 + poolHeaderPointer[2]);
-    *(uint32_t *)(poolHeaderPointer + 4) = entryDataArray[1];
-    entryDataArray[1] = 0xffffffff;
-    *entryDataArray = *keyDataPointer;
-    *(uint8_t *)(entryDataArray + 2) = *valueDataPointer;
+    EntryDataArray = (uint32_t *)((int64_t)CurrentEntryIndex * 0x10 + PoolHeaderPointer[2]);
+    *(uint32_t *)(PoolHeaderPointer + 4) = EntryDataArray[1];
+    EntryDataArray[1] = 0xffffffff;
+    *EntryDataArray = *KeyDataPointer;
+    *(uint8_t *)(EntryDataArray + 2) = *ValueDataPointer;
   }
-  *hashTableSlotPointer = currentEntryIndex;
-  *(int *)((int64_t)poolHeaderPointer + 0x24) = *(int *)((int64_t)poolHeaderPointer + 0x24) + 1;
+  *HashTableSlotPointer = CurrentEntryIndex;
+  *(int *)((int64_t)PoolHeaderPointer + 0x24) = *(int *)((int64_t)PoolHeaderPointer + 0x24) + 1;
   return 0;
 }
 
