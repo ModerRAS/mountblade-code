@@ -6034,23 +6034,23 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   switch(*(int *)((longlong)param_1 + 0x54) + -1) {
   case 0:
   case 1:
-    pbVar9 = (byte *)*param_1;
+    ColorDataPointer = (byte *)*param_1;
     ColorProcessingPointer = (float *)((ulonglong)param_1[1] >> 2);
     if (0 < (int)ColorProcessingPointer) {
       UnsignedIndex = (ulonglong)ColorProcessingPointer & 0xffffffff;
       do {
-        FloatCalculationResult = (float)pbVar9[1] * 0.007843138 - 1.0;
-        FloatValue = (float)*pbVar9 * 0.007843138 - 1.0;
-        FloatResult = (float)pbVar9[2] * 0.007843138 - 1.0;
-        fVar10 = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
-        aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
+        FloatCalculationResult = (float)ColorDataPointer[1] * 0.007843138 - 1.0;
+        FloatValue = (float)*ColorDataPointer * 0.007843138 - 1.0;
+        FloatResult = (float)ColorDataPointer[2] * 0.007843138 - 1.0;
+        ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
+        aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
         fVar11 = aMemoryAddress2._0_4_;
-        fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *pbVar9 = (byte)(int)((fVar10 * FloatValue + 1.0) * 127.5);
-        pbVar9[1] = (byte)(int)((fVar10 * FloatCalculationResult + 1.0) * 127.5);
-        StringIndex = (int)((fVar10 * FloatResult + 1.0) * 127.5);
-        pbVar9[2] = (byte)StringIndex;
-        pbVar9 = pbVar9 + 4;
+        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        *ColorDataPointer = (byte)(int)((ColorMagnitude * FloatValue + 1.0) * 127.5);
+        ColorDataPointer[1] = (byte)(int)((ColorMagnitude * FloatCalculationResult + 1.0) * 127.5);
+        StringIndex = (int)((ColorMagnitude * FloatResult + 1.0) * 127.5);
+        ColorDataPointer[2] = (byte)StringIndex;
+        ColorDataPointer = ColorDataPointer + 4;
         UnsignedIndex = UnsignedIndex - 1;
       } while (UnsignedIndex != 0);
       return CONCAT71((uint7)(uint3)((uint)StringIndex >> 8),1);
@@ -6067,13 +6067,13 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatCalculationResult = (float)PointerValue[1] * 3.0518044e-05 - 1.0;
         FloatValue = (float)*PointerValue * 3.0518044e-05 - 1.0;
         FloatResult = (float)PointerValue[2] * 3.0518044e-05 - 1.0;
-        fVar10 = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
-        aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
+        ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
+        aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
         fVar11 = aMemoryAddress2._0_4_;
-        fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *PointerValue = (ushort)(int)((fVar10 * FloatValue + 1.0) * 32767.5);
-        PointerValue[1] = (ushort)(int)((fVar10 * FloatCalculationResult + 1.0) * 32767.5);
-        StringIndex = (int)((fVar10 * FloatResult + 1.0) * 32767.5);
+        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        *PointerValue = (ushort)(int)((ColorMagnitude * FloatValue + 1.0) * 32767.5);
+        PointerValue[1] = (ushort)(int)((ColorMagnitude * FloatCalculationResult + 1.0) * 32767.5);
+        StringIndex = (int)((ColorMagnitude * FloatResult + 1.0) * 32767.5);
         PointerValue[2] = (ushort)StringIndex;
         PointerValue = PointerValue + 4;
         UnsignedIndex = UnsignedIndex - 1;
@@ -6089,13 +6089,13 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatValue = (*ColorProcessingPointer + *ColorProcessingPointer) - 1.0;
         FloatCalculationResult = (ColorProcessingPointer[1] + ColorProcessingPointer[1]) - 1.0;
         FloatResult = (ColorProcessingPointer[2] + ColorProcessingPointer[2]) - 1.0;
-        fVar10 = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
-        aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
+        ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
+        aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
         fVar11 = aMemoryAddress2._0_4_;
-        fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *ColorProcessingPointer = (fVar10 * FloatValue + 1.0) * 0.5;
-        ColorProcessingPointer[1] = (fVar10 * FloatCalculationResult + 1.0) * 0.5;
-        ColorProcessingPointer[2] = (fVar10 * FloatResult + 1.0) * 0.5;
+        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        *ColorProcessingPointer = (ColorMagnitude * FloatValue + 1.0) * 0.5;
+        ColorProcessingPointer[1] = (ColorMagnitude * FloatCalculationResult + 1.0) * 0.5;
+        ColorProcessingPointer[2] = (ColorMagnitude * FloatResult + 1.0) * 0.5;
         ColorProcessingPointer = ColorProcessingPointer + 3;
         UnsignedIndex = UnsignedIndex - 1;
       } while (UnsignedIndex != 0);
@@ -6112,13 +6112,13 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatValue = (*SecondaryColorProcessingPointer + *SecondaryColorProcessingPointer) - 1.0;
         FloatCalculationResult = (SecondaryColorProcessingPointer[1] + SecondaryColorProcessingPointer[1]) - 1.0;
         FloatResult = (SecondaryColorProcessingPointer[2] + SecondaryColorProcessingPointer[2]) - 1.0;
-        fVar10 = FloatCalculationResult * FloatCalculationResult + FloatValue * FloatValue + FloatResult * FloatResult;
-        aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
+        ColorMagnitude = FloatCalculationResult * FloatCalculationResult + FloatValue * FloatValue + FloatResult * FloatResult;
+        aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
         fVar11 = aMemoryAddress2._0_4_;
-        fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *SecondaryColorProcessingPointer = (fVar10 * FloatValue + 1.0) * 0.5;
-        SecondaryColorProcessingPointer[2] = (FloatResult * fVar10 + 1.0) * 0.5;
-        SecondaryColorProcessingPointer[1] = (fVar10 * FloatCalculationResult + 1.0) * 0.5;
+        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        *SecondaryColorProcessingPointer = (ColorMagnitude * FloatValue + 1.0) * 0.5;
+        SecondaryColorProcessingPointer[2] = (FloatResult * ColorMagnitude + 1.0) * 0.5;
+        SecondaryColorProcessingPointer[1] = (ColorMagnitude * FloatCalculationResult + 1.0) * 0.5;
         SecondaryColorProcessingPointer = SecondaryColorProcessingPointer + 4;
         MemoryAllocationResult = MemoryAllocationResult - 1;
       } while (MemoryAllocationResult != 0);
@@ -6137,13 +6137,13 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
         FloatCalculationResult = (float)PointerValue[1] * 0.007843138 - 1.0;
         FloatValue = (float)*PointerValue * 0.007843138 - 1.0;
         FloatResult = (float)PointerValue[2] * 0.007843138 - 1.0;
-        fVar10 = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
-        aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
+        ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
+        aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
         fVar11 = aMemoryAddress2._0_4_;
-        fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *PointerValue = (ushort)(int)((FloatValue * fVar10 + 1.0) * 127.5);
-        PointerValue[1] = (ushort)(int)((FloatCalculationResult * fVar10 + 1.0) * 127.5);
-        StringIndex = (int)((FloatResult * fVar10 + 1.0) * 127.5);
+        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        *PointerValue = (ushort)(int)((FloatValue * ColorMagnitude + 1.0) * 127.5);
+        PointerValue[1] = (ushort)(int)((FloatCalculationResult * ColorMagnitude + 1.0) * 127.5);
+        StringIndex = (int)((FloatResult * ColorMagnitude + 1.0) * 127.5);
         PointerValue[2] = (ushort)StringIndex;
         PointerValue = PointerValue + 3;
         UnsignedIndex = UnsignedIndex - 1;
@@ -6153,7 +6153,7 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     break;
   case 0x27:
   case 0x28:
-    pbVar9 = (byte *)*param_1;
+    ColorDataPointer = (byte *)*param_1;
     aMemoryAddress2._8_8_ = 0;
     aMemoryAddress2._0_8_ = param_1[1];
     ColorProcessingPointer = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * aMemoryAddress2,0);
@@ -6161,19 +6161,19 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     if (0 < (int)UnsignedIndex) {
       UnsignedIndex = UnsignedIndex & 0xffffffff;
       do {
-        FloatCalculationResult = (float)pbVar9[1] * 0.007843138 - 1.0;
-        FloatValue = (float)*pbVar9 * 0.007843138 - 1.0;
-        FloatResult = (float)pbVar9[2] * 0.007843138 - 1.0;
-        fVar10 = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
-        aMemoryAddress2 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
+        FloatCalculationResult = (float)ColorDataPointer[1] * 0.007843138 - 1.0;
+        FloatValue = (float)*ColorDataPointer * 0.007843138 - 1.0;
+        FloatResult = (float)ColorDataPointer[2] * 0.007843138 - 1.0;
+        ColorMagnitude = FloatValue * FloatValue + FloatCalculationResult * FloatCalculationResult + FloatResult * FloatResult;
+        aMemoryAddress2 = rsqrtss(ZEXT416((uint)ColorMagnitude),ZEXT416((uint)ColorMagnitude));
         fVar11 = aMemoryAddress2._0_4_;
-        fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *pbVar9 = (byte)(int)((fVar10 * FloatValue + 1.0) * 127.5);
-        pbVar9[1] = (byte)(int)((fVar10 * FloatCalculationResult + 1.0) * 127.5);
-        StringProcessingResult = (uint)((fVar10 * FloatResult + 1.0) * 127.5);
+        ColorMagnitude = fVar11 * 0.5 * (3.0 - ColorMagnitude * fVar11 * fVar11);
+        *ColorDataPointer = (byte)(int)((ColorMagnitude * FloatValue + 1.0) * 127.5);
+        ColorDataPointer[1] = (byte)(int)((ColorMagnitude * FloatCalculationResult + 1.0) * 127.5);
+        StringProcessingResult = (uint)((ColorMagnitude * FloatResult + 1.0) * 127.5);
         ColorProcessingPointer = (float *)(ulonglong)StringProcessingResult;
-        pbVar9[2] = (byte)StringProcessingResult;
-        pbVar9 = pbVar9 + 3;
+        ColorDataPointer[2] = (byte)StringProcessingResult;
+        ColorDataPointer = ColorDataPointer + 3;
         UnsignedIndex = UnsignedIndex - 1;
       } while (UnsignedIndex != 0);
     }
@@ -7450,14 +7450,14 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
       FloatValue = FloatResult * 13.5 + 4.5;
       fVar11 = fVar9 + FloatValue;
       FloatValue = FloatValue + fVar11;
-      fVar10 = FloatResult * 37.5 + 12.5 + FloatValue;
-      FloatResult = FloatResult * 45.0 + 15.0 + fVar10;
+      ColorMagnitude = FloatResult * 37.5 + 12.5 + FloatValue;
+      FloatResult = FloatResult * 45.0 + 15.0 + ColorMagnitude;
       *(float *)(param_1 + 0x68) = FloatCalculationResult * FloatCalculationResult;
       *(float *)((longlong)param_1 + 0x344) = fVar12 * fVar12;
       *(float *)(param_1 + 0x69) = fVar9 * fVar9;
       *(float *)((longlong)param_1 + 0x34c) = fVar11 * fVar11;
       *(float *)(param_1 + 0x6a) = FloatValue * FloatValue;
-      *(float *)((longlong)param_1 + 0x354) = fVar10 * fVar10;
+      *(float *)((longlong)param_1 + 0x354) = ColorMagnitude * ColorMagnitude;
       *(float *)(param_1 + 0x6b) = FloatResult * FloatResult;
       *(uint32_t *)((longlong)param_1 + 0x35c) = 0x7f7fffff;
       *(uint32_t *)((longlong)param_1 + 0x33c) = 0;

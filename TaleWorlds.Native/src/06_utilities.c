@@ -3385,8 +3385,8 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
     ProcessedObjectCount = 0;
     BufferIndex = 0;
     MaximumProcessableItems = MaximumProcessableItemsLimit;
-    ProcessingResultCode = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
-                          &GameObjectDataBuffer);
+    ProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
+                          &ObjectDataBuffer);
     if (ProcessingResultCode == 0) {
       if (0 < BufferIndex) {
         CurrentGameObjectPointer = 0;
