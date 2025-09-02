@@ -85,10 +85,8 @@
 #define ResourceDataOffset 4
 #define SystemStatusConstant 0x1c
 
-// 系统资源基地址常量
 #define SystemResourceBaseAddress 0x180985054
 
-// 系统同步对象地址常量
 #define SystemPrimaryMutexAddress 0x180c4f450
 #define SystemCriticalSectionAddress 0x180c4f458
 #define SystemSecurityFunctionAddress 0x180c4f460
