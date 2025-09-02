@@ -13940,7 +13940,7 @@ void SystemInitializerPrimary(void)
             if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 1 & 1) != 0) {
               StackResourceTemplatePointer = &SystemResourceTemplateKernel;
               StackContextBufferPointer = StackContextBuffer;
-              StackFloatResourceValue = (float)CONCAT31(fStack0000000000000040.High31Bits,1);
+              StackFloatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
               StackFloatRegisterValue = FloatRegisterValue;
               ResourceIndexTertiary = GetAndValidateResourceData(ResourceHashValidationQuaternary,&PrimaryObjectStackBuffer);
               if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
@@ -14208,7 +14208,7 @@ void CalculateFloatValueAndValidateResources(void)
         if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 1 & 1) != 0) {
           StackResourceTemplatePointer = &SystemResourceTemplateKernel;
           StackContextBufferPointer = StackContextBuffer;
-          StackFloatResourceValue = (float)CONCAT31(fStack0000000000000040.High31Bits,1);
+          StackFloatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
           StackFloatRegisterValue = FloatRegisterValue;
           ResourceIndexTertiary = GetAndValidateResourceData(ResourceHashValidationTertiary,&PrimaryObjectStackBuffer);
           if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
@@ -14365,7 +14365,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
     if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 1 & 1) != 0) {
       StackResourceTemplatePointer = &SystemResourceTemplateKernel;
       StackContextBufferPointer = StackContextBuffer;
-      StackFloatResourceValue = (float)CONCAT31(fStack0000000000000040.High31Bits,1);
+      StackFloatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
       StackFloatRegisterValue = FloatRegisterValue;
       OperationStatusCode = GetAndValidateResourceData(ContextHashValidationResult,&PrimaryObjectStackBuffer);
       if (OperationResult != 0) goto OperationResultHandler;
@@ -93200,7 +93200,7 @@ void InitializeSystemDataStructureAG(void)
  * 2. 检查 SystemValidationManager 是否为0，如果不为0则调用错误处理函数
  * 3. 检查 SystemInitializationStatusFlag 是否为0，如果不为0则调用错误处理函数
  * 4. 调用 SecondaryDataStructureInitializer 初始化位于 0x180d498a0 的数据结构
- * 5. 将 SystemDataStructurePointer001 设置为指向 SystemDataStructure001
+ * 5. 将 PrimarySystemDataPointer 设置为指向 SystemCoreDataStructure
  */
 void InitializeSystemDataStructureAH(void)
 void InitializeSystemDataStructureAH(void)
@@ -93214,7 +93214,7 @@ void InitializeSystemDataStructureAH(void)
           ExecuteSystemEmergencyExit();
   }
   SecondaryDataStructureInitializer(0x180d498a0);
-  SystemDataStructurePointer001 = &SystemDataStructure;
+  PrimarySystemDataPointer = &SystemDataStructure;
   return;
 }
 
@@ -93268,14 +93268,14 @@ void InitializeSystemDataStructureAI(void)
 
  /**
  * 初始化系统数据结构AJ
- * 将全局变量 SystemDataStructurePointer002 设置为指向 SystemDataStructure001
+ * 将全局变量 SecondarySystemDataPointer 设置为指向 SystemCoreDataStructure
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAJ(void)
 void InitializeSystemDataStructureAJ(void)
 
 {
-  SystemDataStructurePointer002 = &SystemDataStructure;
+  SecondarySystemDataPointer = &SystemDataStructure;
   return;
 }
 
@@ -93285,14 +93285,14 @@ void InitializeSystemDataStructureAJ(void)
 
  /**
  * 初始化系统数据结构AK
- * 将全局变量 SystemDataStructurePointer003 设置为指向 SystemDataStructure001
+ * 将全局变量 TertiarySystemDataPointer 设置为指向 SystemCoreDataStructure
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAK(void)
 void InitializeSystemDataStructureAK(void)
 
 {
-  SystemDataStructurePointer003 = &SystemDataStructure;
+  TertiarySystemDataPointer = &SystemDataStructure;
   return;
 }
 
@@ -93302,14 +93302,14 @@ void InitializeSystemDataStructureAK(void)
 
  /**
  * 初始化系统数据结构AL
- * 将全局变量 SystemDataStructurePointer004 设置为指向 SystemDataStructure001
+ * 将全局变量 QuaternarySystemDataPointer 设置为指向 SystemCoreDataStructure
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAL(void)
 void InitializeSystemDataStructureAL(void)
 
 {
-  SystemDataStructurePointer004 = &SystemDataStructure;
+  QuaternarySystemDataPointer = &SystemDataStructure;
   return;
 }
 
@@ -93319,7 +93319,7 @@ void InitializeSystemDataStructureAL(void)
 
  /**
  * 初始化系统数据结构AM
- * 将全局变量 SystemDataStructurePointer005 设置为指向 SystemDataStructure001
+ * 将全局变量 QuinarySystemDataPointer 设置为指向 SystemCoreDataStructure
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAM(void)
