@@ -20740,7 +20740,7 @@ void InitializeSystemConfigurationData(void* ResourceManagerPointer,void* Config
   double scaleFactorValue;
   char validationStatusFlag;
   double numericValue;
-  uint unsignedSystemValue4;
+  uint SystemGlobalStateFlag;
   void* *pcurrentThreadId;
   long long localSystemFlags;
   long long localDataIndex;
@@ -20752,8 +20752,8 @@ void InitializeSystemConfigurationData(void* ResourceManagerPointer,void* Config
   long long nextDataIndex3;
   char *systemFunctionPointer4;
   void* *ThreadLocalStorageEntry;
-  uint systemStatus6;
-  int systemStatus7;
+  uint SystemOperationStatusFlag;
+  int SystemErrorStatusFlag;
   void* *puStack_c8;
   void* *puStack_c0;
   uint uStack_b8;
@@ -42946,28 +42946,28 @@ ulong long ProcessAndManageSystemResources(void* ResourceManagerPointer)
   pSystemConfigurationValue = (void* *)0x0;
   uStack_88 = 0;
   uStack_80 = 3;
-  cVar1 = FUN_180064400(&stackParameterB);
+  SystemConfigurationResult = ConfigureSystemResourceManager(&stackParameterB);
   HashBucketNode = pStackParameterC;
   resourceEntryPointer = stackParameterB;
-  if ((cVar1 == '\0') || (stackParameterB == pStackParameterC)) {
+  if ((SystemConfigurationResult == '\0') || (stackParameterB == pStackParameterC)) {
     ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemDataBufferTemplate3);
     creationFlags = InitializeSystemManager();
     punsignedSystemValue4 = resourceEntryPointer;
   }
   else {
-    uStack_78 = 0;
-    lStack_70 = 0;
-    FUN_180627e10(ResourceManagerPointer,&memoryAllocationBuffer,&SystemDataBufferTemplate4);
+    SystemMemoryAllocationFlag = 0;
+    SystemMemoryAllocationHandle = 0;
+    InitializeSystemMemoryAllocation(ResourceManagerPointer,&memoryAllocationBuffer,&SystemDataBufferTemplate4);
     HashNodePointer = &SystemStringTemplate;
     if (memoryAllocationEnd != (void* *)0x0) {
       HashNodePointer = memoryAllocationEnd;
     }
-    ProcessSystemResourceData(&uStack_78,HashNodePointer,&SystemEventTemplate);
+    ProcessSystemResourceData(&SystemMemoryAllocationFlag,HashNodePointer,&SystemEventTemplate);
     creationFlags = (long long)HashBucketNode - (long long)resourceEntryPointer >> 5;
     systemGlobalDataPtrB8 = &SystemGlobalDataReference;
-    uStack_a0 = 0;
-    lStack_b0 = 0;
-    iStack_a8 = 0;
+    SystemMemoryAllocationOffset = 0;
+    SystemMemoryAllocationSize = 0;
+    SystemMemoryAllocationCount = 0;
     if ((int)creationFlags != 0) {
       punsignedSystemValue4 = resourceEntryPointer + 1;
       creationFlags = creationFlags & 0xffffffff;
@@ -42981,8 +42981,8 @@ ulong long ProcessAndManageSystemResources(void* ResourceManagerPointer)
         creationFlags = creationFlags - 1;
       } while (creationFlags != 0);
     }
-    localSystemPointer = lStack_70;
-    creationFlags = fwrite(lStack_b0,1,(long long)iStack_a8,lStack_70);
+    localSystemPointer = SystemMemoryAllocationHandle;
+    creationFlags = fwrite(SystemMemoryAllocationSize,1,(long long)SystemMemoryAllocationCount,SystemMemoryAllocationHandle);
     if (localSystemPointer != 0) {
       fclose(localSystemPointer);
       lStack_70 = 0;
@@ -60079,7 +60079,17 @@ void FUN_180078c70(uint32_t *ResourceManagerPointer,long long *ConfigurationData
 
 
 // 函数: void FUN_1800791a0(long long ResourceManagerPointer)
-void FUN_1800791a0(long long ResourceManagerPointer)
+/**
+ * @brief 系统资源管理器初始化函数
+ * 
+ * 该函数负责初始化系统资源管理器，设置资源管理器的各种参数和状态。
+ * 包括资源句柄、系统状态标志和资源数据的初始化。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，指向需要初始化的资源管理器
+ * 
+ * 原始函数名为FUN_1800791a0，现已重命名为InitializeSystemResourceManagerEx
+ */
+void InitializeSystemResourceManagerEx(long long ResourceManagerPointer)
 
 {
   long long nextDataIndex;
