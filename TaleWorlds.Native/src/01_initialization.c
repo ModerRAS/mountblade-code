@@ -50868,7 +50868,19 @@ FUN_18006f590(void* *ResourceManagerPointer,void* ConfigurationDataPointer,void*
 
 
 
-ulong long FUN_18006f620(void* ResourceManagerPointer,void* ConfigurationDataPointer)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，包括配置系统数据、设置标志、
+ * 处理调试器检测、显示消息框等系统初始化操作
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 系统状态码
+ * 
+ * 原始函数名为FUN_18006f620，现已重命名为InitializeSystemResourceManagerA
+ */
+ulong long InitializeSystemResourceManagerA(void* ResourceManagerPointer,void* ConfigurationDataPointer)
 
 {
   code *systemFunctionPointer;
