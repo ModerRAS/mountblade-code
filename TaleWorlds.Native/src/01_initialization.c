@@ -59930,11 +59930,11 @@ void InitializeSystemDataIndexPointer(void)
   void* *systemDataIndexPtr;
   uint32_t SystemResourceCounter;
   uint32_t StackParameter28;
-  void* uStack0000000000000030;
-  ulong long uStack0000000000000038;
-  void* uStack0000000000000040;
-  ulong long uStack0000000000000048;
-  void* uStack0000000000000050;
+  void* SystemDataPointer0;
+  ulong long SystemDataPointer1;
+  void* SystemDataPointer2;
+  ulong long SystemDataPointer3;
+  void* SystemDataPointer4;
   ulong long uStack0000000000000058;
   uint32_t uStack0000000000000060;
   uint32_t uStack0000000000000064;
@@ -59943,17 +59943,17 @@ void InitializeSystemDataIndexPointer(void)
   uint32_t in_stack_000000e0;
   uint32_t in_stack_000000e8;
   
-  uStack0000000000000030 = *systemDataIndexPtr;
-  uStack0000000000000040 = systemDataIndexPtr[2];
-  uStack0000000000000050 = systemDataIndexPtr[4];
+  SystemDataPointer0 = *systemDataIndexPtr;
+  SystemDataPointer2 = systemDataIndexPtr[2];
+  SystemDataPointer4 = systemDataIndexPtr[4];
   uStack0000000000000060 = *(uint32_t *)(systemDataIndexPtr + 6);
   uStack0000000000000064 = *(uint32_t *)((long long)systemDataIndexPtr + 0x34);
   uStack0000000000000068 = *(uint32_t *)(systemDataIndexPtr + 7);
   uStack0000000000000028 = in_stack_000000e8;
   uStack000000000000006c = 0x3f800000;
   uStack0000000000000058 = systemDataIndexPtr[5] & 0xffffffff;
-  uStack0000000000000048 = systemDataIndexPtr[3] & 0xffffffff;
-  uStack0000000000000038 = systemDataIndexPtr[1] & 0xffffffff;
+  SystemDataPointer3 = systemDataIndexPtr[3] & 0xffffffff;
+  SystemDataPointer1 = systemDataIndexPtr[1] & 0xffffffff;
   FUN_180252ca0(0x3f800000,uStack0000000000000060,systemResourceCounterD,&stackBuffer30,in_stack_000000e0);
   return;
 }
@@ -61953,7 +61953,7 @@ void InitializeSystemResourcePool(void)
   bool isResourceAvailable8;
   uint32_t unaff_XMM7_Da;
   uint32_t unaff_XMM7_Db;
-  void* uStack0000000000000050;
+  void* SystemDataPointer4;
   void* in_stack_00000058;
   
   resourceAllocationContext5 = (int)*(char *)(systemDataIndexPtr + 0xd) + *(int *)(systemDataIndexPtr + 0x18);
@@ -62016,7 +62016,7 @@ void InitializeSystemResourcePool(void)
     systemIndex0 = *(int *)(resourceDataIndex6 + 0x1c) + *(int *)(resourceDataIndex6 + 0x18);
     *(int *)(resourceDataIndex6 + 0x28) = *(int *)(SystemGlobalStatusFlags + 0x224);
     if (0 < systemIndex0) {
-      uStack0000000000000050 = in_stack_00000058;
+      SystemDataPointer4 = in_stack_00000058;
       ResourceDataOffset1 = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
       resourceAllocationContext0 = FUN_180080380(ResourceDataOffset1,systemIndex0,SystemBufferAddress3,pInterpolationParam3,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32_t *)(resourceDataIndex6 + 0x30) = resourceAllocationContext0;
@@ -62254,7 +62254,7 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
   bool isResourceAvailable7;
   uint32_t unaff_XMM7_Da;
   uint32_t unaff_XMM7_Db;
-  void* uStack0000000000000050;
+  void* SystemDataPointer4;
   void* in_stack_00000058;
   
   SystemResourceManager = (long long)*(int *)(SystemResourceManager + 0x250) * 0x128 + SystemResourceManager;
@@ -62314,7 +62314,7 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
     systemCounter9 = *(int *)(resourceDataIndex5 + 0x1c) + *(int *)(resourceDataIndex5 + 0x18);
     *(int *)(resourceDataIndex5 + 0x28) = *(int *)(SystemGlobalStatusFlags + 0x224);
     if (0 < systemCounter9) {
-      uStack0000000000000050 = in_stack_00000058;
+      SystemDataPointer4 = in_stack_00000058;
       ResourceDataOffset1 = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
       resourceCreationFlags9 = FUN_180080380(ResourceDataOffset1,systemCounter9,SystemResourceManager,ConfigurationFlag,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32_t *)(resourceDataIndex5 + 0x30) = resourceCreationFlags9;
@@ -62522,7 +62522,7 @@ void ResetSystemResourceCounter(void)
   ulong long MemoryAllocationFlags;
   ulong long InitializationFlags;
   bool isSystemActive4;
-  void* uStack0000000000000050;
+  void* SystemDataPointer4;
   void* in_stack_00000058;
   
   localSystemPointer = *(long long *)(memoryBlockAddress + 600);
@@ -62530,7 +62530,7 @@ void ResetSystemResourceCounter(void)
     SystemOperationStatusFlags = *(int *)(localSystemPointer + 0x1c) + *(int *)(localSystemPointer + 0x18);
     *(int *)(localSystemPointer + 0x28) = *(int *)(SystemGlobalStatusFlags + 0x224);
     if (0 < SystemOperationStatusFlags) {
-      uStack0000000000000050 = in_stack_00000058;
+      SystemDataPointer4 = in_stack_00000058;
       resourceDataIndex2 = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
       ResourceHash = FUN_180080380(resourceDataIndex2,SystemOperationStatusFlags);
       *(uint32_t *)(localSystemPointer + 0x30) = ResourceHash;
