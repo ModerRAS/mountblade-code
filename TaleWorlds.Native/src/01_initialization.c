@@ -849,22 +849,21 @@ void* SystemInitializationProgressStatus;
 // 系统内存分配器 - 负责动态内存分配和管理
 
 // 系统数据比较模板和节点指针
-void* SystemDataComparisonTemplatePrimary;
-void* SystemDataComparisonTemplateSecondary;
-void* SystemDataComparisonTemplateTertiary;
-void* SystemDataComparisonTemplateQuaternary;
-void* SystemDataComparisonTemplateQuinary;
-void* SystemDataComparisonTemplateSenary;
-void* SystemDataComparisonTemplateSeptenary;
-void* SystemDataComparisonTemplateOctonary;
-void* SystemDataComparisonTemplateNonary;
-void* SystemDataComparisonTemplateDenary;
-void* SystemDataComparisonTemplateUndenary;
-void* SystemDataComparisonTemplateDuodenary;
-void* SystemDataComparisonTemplateTridenary;
-void* SystemDataComparisonTemplateQuattuordenary;
-void* SystemDataComparisonTemplateQuindenary;
-void* SystemDataComparisonTemplateSexdenary;
+void* SystemDataComparisonTemplateA;  // 系统数据比较模板A
+void* SystemDataComparisonTemplateB;  // 系统数据比较模板B
+void* SystemDataComparisonTemplateC;  // 系统数据比较模板C
+void* SystemDataComparisonTemplateD;  // 系统数据比较模板D
+void* SystemDataComparisonTemplateE;  // 系统数据比较模板E
+void* SystemDataComparisonTemplateF;  // 系统数据比较模板F
+void* SystemDataComparisonTemplateG;  // 系统数据比较模板G
+void* SystemDataComparisonTemplateH;  // 系统数据比较模板H
+void* SystemDataComparisonTemplateI;  // 系统数据比较模板I
+void* SystemDataComparisonTemplateJ;  // 系统数据比较模板J
+void* SystemDataComparisonTemplateK;  // 系统数据比较模板K
+void* SystemDataComparisonTemplateL;  // 系统数据比较模板L
+void* SystemDataComparisonTemplateM;  // 系统数据比较模板M
+void* SystemDataComparisonTemplateN;  // 系统数据比较模板N
+void* SystemDataComparisonTemplateO;  // 系统数据比较模板O
 void* SystemDataNodePrimaryRoot;       // 系统数据节点主根节点
 void* SystemDataNodeSecondaryRoot;     // 系统数据节点次根节点
 void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
@@ -896,12 +895,10 @@ void* SystemDataNodeLinkageCache;                // 系统数据节点链接缓�
 void* SystemDataNodeLinkageBackup;                // 系统数据节点链接备份
 void* SystemDataNodeLinkagePrimary;               // 系统数据节点链接主表
 void* SystemDataNodeLinkageSecondary;             // 系统数据节点链接次表
-void* SystemDataComparisonTemplateAlpha;  // 系统数据比较模板Alpha
-void* SystemDataComparisonTemplateBeta;  // 系统数据比较模板Beta
+// 系统数据比较模板变量已在上面声明
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
 void* SystemDataNodeLinkageQuaternary;            // 系统数据节点链接第四表
 void* SystemDataNodeLinkageQuinary;               // 系统数据节点链接第五表
-void* SystemDataComparisonTemplateGamma;  // 系统数据比较模板Gamma
 void* SystemConfigDataPointerGamma;        // 系统配置数据指针Gamma
 void* SystemConfigDataPointerEta;        // 系统配置数据指针Eta
 void* SystemResourceTemplate;        // 系统资源模板
