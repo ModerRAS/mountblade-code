@@ -44350,7 +44350,19 @@ void Unwind_1809049f0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904a00(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 关闭验证上下文中0x68偏移位置的句柄
+ * 
+ * 该函数负责关闭验证上下文中0x68偏移位置的句柄资源
+ * 释放相关系统资源
+ * 
+ * @param objectContext 对象上下文参数
+ * @param validationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数会关闭指定位置的系统句柄
+ * @warning 调用此函数后，被关闭的句柄将不再可用
+ */
+void CloseHandleAtContextOffset68(uint8_t objectContext,int64_t validationContext)
 
 {
   CloseHandle(*(uint8_t *)(*(int64_t *)(validationContext + 0x70) + 0x68));
@@ -44359,7 +44371,19 @@ void Unwind_180904a00(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904a10(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 关闭验证上下文中0x70偏移位置的句柄
+ * 
+ * 该函数负责关闭验证上下文中0x70偏移位置的句柄资源
+ * 释放相关系统资源
+ * 
+ * @param objectContext 对象上下文参数
+ * @param validationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数会关闭指定位置的系统句柄
+ * @warning 调用此函数后，被关闭的句柄将不再可用
+ */
+void CloseHandleAtContextOffset70(uint8_t objectContext,int64_t validationContext)
 
 {
   CloseHandle(*(uint8_t *)(*(int64_t *)(validationContext + 0x70) + 0x70));

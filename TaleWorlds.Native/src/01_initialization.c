@@ -46447,8 +46447,17 @@ void* InitializeSystemResourceData(void* SystemResourcePointer,ulong long Config
 
 
 
-// 函数: void FUN_1800697a0(void* *SystemResourcePointer)
-void FUN_1800697a0(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源状态更新函数
+ * 
+ * 该函数负责更新系统资源的状态信息，包括状态标志、数据指针和资源计数。
+ * 用于系统资源的动态状态管理和监控。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_1800697a0，现已重命名为UpdateSystemResourceStatus
+ */
+void UpdateSystemResourceStatus(void* *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
