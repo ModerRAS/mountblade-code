@@ -60036,13 +60036,13 @@ void ExecuteSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContex
   uint8_t *HashValidationResultPointer;
   uint8_t cleanupLoopCondition;
   
-  presourceTable = (int64_t *)(*(int64_t *)(ValidationContext + 0x80) + 0x388);
+  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + 0x80) + 0x388);
   loopIncrement = 0xfffffffffffffffe;
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x390);
-  for (PackageValidationStatusCodePointer = (uint8_t *)*presourceTable; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 4) {
+  for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointer; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 4) {
     (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0,CleanupOption,CleanupFlag,loopIncrement);
   }
-  if (*presourceTable == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -60051,7 +60051,16 @@ void ExecuteSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_180908360(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册系统资源释放处理器
+ * 
+ * 该函数负责注册系统资源释放处理器，用于处理资源释放操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterSystemResourceReleaseHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x80) + 0x3b0,0x20,0x20,ReleaseSystemResource,0xfffffffffffffffe);
@@ -60060,7 +60069,14 @@ void Unwind_180908360(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908380(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁互斥锁资源，确保线程同步资源的正确清理
+ * 
+ * @return 无返回值
+ */
+void DestroyMutexResource(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -60069,7 +60085,16 @@ void Unwind_180908380(void)
 
 
 
-void Unwind_1809083a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册系统资源释放处理器（扩展版本）
+ * 
+ * 该函数负责注册系统资源释放处理器的扩展版本
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterSystemResourceReleaseHandlerExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x88) + 8,0x20,0x20,ReleaseSystemResource);
@@ -60078,10 +60103,19 @@ void Unwind_1809083a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809083e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解锁互斥锁资源
+ * 
+ * 该函数负责解锁互斥锁资源，确保线程同步资源的正确释放
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void UnlockMutexResource(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int ProcessingResult;
+  int UnlockResult;
   
   ResourceIndex = _Mtx_unlock(*(uint8_t *)(ValidationContext + 0x98));
   if (ResourceIndex != 0) {
@@ -60092,7 +60126,16 @@ void Unwind_1809083e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809083f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源操作处理器
+ * 
+ * 该函数负责注册资源操作处理器，用于处理资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterResourceOperationHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x40) + 8,8,0x20,ProcessResourceOperation);
@@ -60101,7 +60144,16 @@ void Unwind_1809083f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908420(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源操作处理器（扩展版本）
+ * 
+ * 该函数负责注册资源操作处理器的扩展版本
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterResourceOperationHandlerExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x40) + 0x108,8,0x20,ProcessResourceOperation);
