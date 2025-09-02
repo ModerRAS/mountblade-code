@@ -4744,30 +4744,30 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 如果对象句柄无效，返回ErrorInvalidObjectHandle
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ValidatedObjectMemoryPointer;
-  uint8_t ObjectValidationResult;
-  int64_t ObjectValidationContext [4];
+  int64_t ValidatedObjectMemoryAddress;
+  uint8_t ValidationStatus;
+  int64_t ObjectValidationBuffer [4];
   
   // 验证对象上下文的有效性
-  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationContext);
-  if ((int)ObjectValidationResult != 0) {
-    return ObjectValidationResult;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationBuffer);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
   
   // 调整对象验证上下文指针
-  if (ObjectValidationContext[0] != 0) {
-    ObjectValidationContext[0] = ObjectValidationContext[0] - 8;
+  if (ObjectValidationBuffer[0] != 0) {
+    ObjectValidationBuffer[0] = ObjectValidationBuffer[0] - 8;
   }
   
   // 获取验证后的对象内存指针
-  ValidatedObjectMemoryPointer = *(int64_t *)(ObjectValidationContext[0] + ObjectHandleMemoryOffset);
-  if (ValidatedObjectMemoryPointer != 0) {
+  ValidatedObjectMemoryAddress = *(int64_t *)(ObjectValidationBuffer[0] + ObjectHandleMemoryOffset);
+  if (ValidatedObjectMemoryAddress != 0) {
     // 增加对象引用计数
-    *(int *)(ValidatedObjectMemoryPointer + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryPointer + ObjectReferenceCountOffset) + 1;
+    *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(ValidatedObjectMemoryPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ObjectValidationResult = CheckSystemStatus(), (int)ObjectValidationResult != 0)) {
-      return ObjectValidationResult;
+    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
+      return ValidationStatus;
     }
     return 0;
   }
@@ -76984,7 +76984,17 @@ void Unwind_18090b9f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ba10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源上下文处理器A
+ * 
+ * 该函数负责清理资源上下文中的第一个处理器，用于系统资源管理
+ * 和内存清理操作。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证的相关信息
+ * @note 这是系统资源清理链中的第一个处理器
+ */
+void CleanupResourceContextProcessorA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -76998,7 +77008,17 @@ void Unwind_18090ba10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ba30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源上下文处理器B
+ * 
+ * 该函数负责清理资源上下文中的第二个处理器，用于系统资源管理
+ * 和内存清理操作。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证的相关信息
+ * @note 这是系统资源清理链中的第二个处理器
+ */
+void CleanupResourceContextProcessorB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
