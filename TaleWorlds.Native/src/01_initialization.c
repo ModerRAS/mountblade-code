@@ -41589,25 +41589,46 @@ void UpdateContextManagerSystem(void* SystemResourcePointer,void* ConfigurationD
 
 
 
-// 函数: void FUN_180062340(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_180062340(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源管理器更新函数
+ * 
+ * 该函数负责更新系统资源管理器，处理资源分配和配置
+ * 用于系统资源管理器的动态更新
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_180062340，现已重命名为UpdateSystemResourceManager
+ */
+void UpdateSystemResourceManager(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* uStackX_20;
   
   uStackX_20 = ConfigurationFlag;
-  FUN_180061f80(SystemResourcePointer,ConfigurationDataPointer,0xffffffff00000000,0xd,AdditionalParameter,&uStackX_20);
+  ExecuteSystemDataOperation(SystemResourcePointer,ConfigurationDataPointer,0xffffffff00000000,0xd,AdditionalParameter,&uStackX_20);
   return;
 }
 
 
 
 
-// 函数: void FUN_180062380(void)
-void FUN_180062380(void)
+/**
+ * @brief 系统管理器设置函数
+ * 
+ * 该函数负责设置系统管理器的状态和标志
+ * 用于系统管理器的初始化和配置
+ * 
+ * @note 这是一个简单的系统管理器设置函数
+ * 
+ * 原始函数名为FUN_180062380，现已重命名为ConfigureSystemManager
+ */
+void ConfigureSystemManager(void)
 
 {
-  FUN_180061f80();
+  ExecuteSystemDataOperation();
   return;
 }
 
