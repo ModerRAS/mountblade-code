@@ -10718,13 +10718,6 @@ CleanupHandler:
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180895f53)
-// WARNING: Removing unreachable block (ram,0x000180895f67)
-// WARNING: Removing unreachable block (ram,0x000180895fa1)
-// WARNING: Removing unreachable block (ram,0x000180895fa9)
-// WARNING: Removing unreachable block (ram,0x000180895fb1)
-// WARNING: Removing unreachable block (ram,0x000180895fc0)
-// WARNING: Removing unreachable block (ram,0x000180896027)
 
 /**
  * @brief 验证并处理数据容器
@@ -29578,15 +29571,11 @@ void ReleaseCriticalSectionAndResetEvent(void)
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(SystemEventHandle);
+                        ResetEvent(SystemEventHandle);
     return;
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+                      (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
             (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
@@ -29604,15 +29593,11 @@ void ResetSystemUnwindFlag(void)
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(SystemEventHandle);
+                        ResetEvent(SystemEventHandle);
     return;
   }
   EncryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> EncryptionShiftValue |
+                      (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> EncryptionShiftValue |
             (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - EncryptionShiftValue))(0x180c82238);
   return;
 }
@@ -49290,9 +49275,7 @@ void ExecuteResourceHashCallback(uint8_t ObjectContext,int64_t ValidationContext
   
   ResourceHashPointer = (uint8_t *)**(int64_t **)(ValidationContext + 0x40);
   if (ResourceHashPointer != (uint8_t *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
-                    // WARNING: Treating indirect jump as call
-    (**(code **)*ResourceHashPointer)(ResourceHashPointer,1);
+                        (**(code **)*ResourceHashPointer)(ResourceHashPointer,1);
     return;
   }
   return;
@@ -49319,9 +49302,7 @@ void ExecuteResourceTableHashCallback(uint8_t ObjectContext,int64_t ValidationCo
   
   ResourceTableHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x40) + 8);
   if (ResourceTableHashPointer != (uint8_t *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
-                    // WARNING: Treating indirect jump as call
-    (**(code **)*ResourceTableHashPointer)(ResourceTableHashPointer,1);
+                        (**(code **)*ResourceTableHashPointer)(ResourceTableHashPointer,1);
     return;
   }
   return;
@@ -55245,15 +55226,11 @@ void ResetMemoryAllocationCounterAndProcessEvent(void)
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(SystemEventHandle);
+                        ResetEvent(SystemEventHandle);
     return;
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+                      (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
             (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
@@ -57631,15 +57608,11 @@ void InitializeValidationSystem(void)
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(SystemEventHandle);
+                        ResetEvent(SystemEventHandle);
     return;
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+                      (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
             (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
@@ -58898,7 +58871,17 @@ void ExecuteResourceCallbackFunction(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_180907570(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数
+ * 
+ * 该函数负责从验证上下文中获取资源上下文，并执行相应的回调函数
+ * 用于处理资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x58 + 0x10 位置获取资源上下文
+ */
+void ExecuteResourceContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -58912,7 +58895,17 @@ void Unwind_180907570(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907580(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行扩展资源上下文回调函数
+ * 
+ * 该函数负责从验证上下文中获取扩展资源上下文，并执行相应的回调函数
+ * 用于处理扩展资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含扩展资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x58 + 0x18 位置获取资源上下文
+ */
+void ExecuteExtendedResourceContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -58926,7 +58919,17 @@ void Unwind_180907580(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907590(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置资源哈希指针到分配模板
+ * 
+ * 该函数负责设置资源哈希指针到资源分配模板
+ * 用于初始化资源分配的哈希表结构
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @note 此函数会设置资源哈希指针并分配模板
+ */
+void SetResourceHashPointerToAllocationTemplate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -58939,7 +58942,17 @@ void Unwind_180907590(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809075a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行主要资源处理回调函数
+ * 
+ * 该函数负责从验证上下文中获取主要资源上下文，并执行相应的回调函数
+ * 用于处理主要资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含主要资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x40 + 0x20 位置获取资源上下文
+ */
+void ExecutePrimaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -58953,7 +58966,17 @@ void Unwind_1809075a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809075b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行次要资源处理回调函数
+ * 
+ * 该函数负责从验证上下文中获取次要资源上下文，并执行相应的回调函数
+ * 用于处理次要资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含次要资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x40 + 0x28 位置获取资源上下文
+ */
+void ExecuteSecondaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -58967,7 +58990,17 @@ void Unwind_1809075b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809075c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第三级资源处理回调函数
+ * 
+ * 该函数负责从验证上下文中获取第三级资源上下文，并执行相应的回调函数
+ * 用于处理第三级资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含第三级资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x40 + 0x30 位置获取资源上下文
+ */
+void ExecuteTertiaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -58981,7 +59014,17 @@ void Unwind_1809075c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809075d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第四级资源处理回调函数
+ * 
+ * 该函数负责从验证上下文中获取第四级资源上下文，并执行相应的回调函数
+ * 用于处理第四级资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含第四级资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x40 + 0x38 位置获取资源上下文
+ */
+void ExecuteQuaternaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -58995,7 +59038,17 @@ void Unwind_1809075d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809075e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第五级资源处理回调函数
+ * 
+ * 该函数负责从验证上下文中获取第五级资源上下文，并执行相应的回调函数
+ * 用于处理第五级资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含第五级资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x40 + 0x40 位置获取资源上下文
+ */
+void ExecuteQuinaryResourceProcessingCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -59009,7 +59062,17 @@ void Unwind_1809075e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809075f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第六级资源处理回调函数
+ * 
+ * 该函数负责从验证上下文中获取第六级资源上下文，并执行相应的回调函数
+ * 用于处理第六级资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含第六级资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x40 + 0x48 位置获取资源上下文
+ */
+void ExecuteSenaryResourceProcessingCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -59047,7 +59110,17 @@ void ResetDataProcessorOnException(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_180907610(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第七级资源处理回调函数
+ * 
+ * 该函数负责从验证上下文中获取第七级资源上下文，并执行相应的回调函数
+ * 用于处理第七级资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含第七级资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x40 + 0x58 位置获取资源上下文
+ */
+void ExecuteSeptenaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -59061,7 +59134,17 @@ void Unwind_180907610(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907620(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第八级资源处理回调函数
+ * 
+ * 该函数负责从验证上下文中获取第八级资源上下文，并执行相应的回调函数
+ * 用于处理第八级资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含第八级资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x40 + 0x60 位置获取资源上下文
+ */
+void ExecuteOctenaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -59075,7 +59158,17 @@ void Unwind_180907620(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907630(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行备选资源处理回调函数
+ * 
+ * 该函数负责从验证上下文中获取备选资源上下文，并执行相应的回调函数
+ * 用于处理备选资源相关的操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含备选资源上下文信息
+ * @note 此函数会从 ValidationContext + 0x20 + 8 位置获取资源上下文
+ */
+void ExecuteAlternativeResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -59089,7 +59182,17 @@ void Unwind_180907630(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907640(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册主要资源处理器
+ * 
+ * 该函数负责注册主要资源处理器到系统中
+ * 用于处理主要资源的相关操作和事件
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源处理信息
+ * @note 此函数会从 ValidationContext + 0x40 + 0x18 位置获取资源信息
+ */
+void RegisterPrimaryResourceHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x40) + 0x18,8,0x10,ProcessResourceOperation);
@@ -61504,15 +61607,11 @@ void Unwind_180908040(void)
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(SystemEventHandle);
+                        ResetEvent(SystemEventHandle);
     return;
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+                      (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
             (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
@@ -61531,9 +61630,7 @@ void Unwind_180908050(uint8_t ObjectContext,uint8_t ValidationContext,uint8_t Cl
   *_MemoryManagementArray = (int64_t)ResourceContext;
   _MemoryManagementArray[2] = (int64_t)ResourceContext;
   MemoryAllocationStatus = 0;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(_MemoryManagementArray,0x58);
+                      free(_MemoryManagementArray,0x58);
   return;
 }
 
@@ -61543,9 +61640,7 @@ void Unwind_180908050(uint8_t ObjectContext,uint8_t ValidationContext,uint8_t Cl
 void Unwind_180908060(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(_MemoryManagementArray,0x58);
+                      free(_MemoryManagementArray,0x58);
   return;
 }
 
@@ -61555,9 +61650,7 @@ void Unwind_180908060(void)
 void Unwind_180908070(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(_MemoryManagementArray,0x58);
+                      free(_MemoryManagementArray,0x58);
   return;
 }
 
@@ -64097,15 +64190,11 @@ void SystemResourceReleaseHandler(void)
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(SystemEventHandle);
+                        ResetEvent(SystemEventHandle);
     return;
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+                      (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
             (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
@@ -64498,9 +64587,7 @@ void Unwind_180908e90(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180908ea0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180908ea7. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(*(uint8_t *)(ValidationContext + 0x40));
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(*(uint8_t *)(ValidationContext + 0x40));
   return;
 }
 
@@ -64514,9 +64601,7 @@ void Unwind_180908eb0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(int64_t **)(ValidationContext + 0x30) != (int64_t *)0x0) {
     ResourceHashPointer = (uint8_t *)(**(code **)(**(int64_t **)(ValidationContext + 0x30) + 0x10))();
     if (ResourceHashPointer != (uint8_t *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018009fb51. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(code **)*ResourceHashPointer)(ResourceHashPointer,1);
+                          (**(code **)*ResourceHashPointer)(ResourceHashPointer,1);
       return;
     }
   }
@@ -64563,9 +64648,7 @@ void Unwind_180908ee0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180908ef0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180908ef7. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1_Lockit_std__QEAA_XZ(ValidationContext + 0x60);
+                      __1_Lockit_std__QEAA_XZ(ValidationContext + 0x60);
   return;
 }
 
@@ -64578,9 +64661,7 @@ void Unwind_180908f00(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x70);
   if (ResourceHashPointer != (uint8_t *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
-                    // WARNING: Treating indirect jump as call
-    (**(code **)*ResourceHashPointer)(ResourceHashPointer,1);
+                        (**(code **)*ResourceHashPointer)(ResourceHashPointer,1);
     return;
   }
   return;
@@ -64591,9 +64672,7 @@ void Unwind_180908f00(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180908f10(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180908f22. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(ValidationContext + 0x40) + -0x98);
+                      __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(ValidationContext + 0x40) + -0x98);
   return;
 }
 
@@ -64620,9 +64699,7 @@ void Unwind_180908f30(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(char *)(ResourceIndex + -0x24) != '\0') {
     ProcessResourcePointer(PloopIncrement);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
   return;
 }
 
@@ -64745,9 +64822,7 @@ void Unwind_180909010(uint8_t ObjectContext,int64_t ValidationContext)
   *(int *)((int64_t)OperationResult + -0xac + SystemContextPointer) = OperationResult + -0xa8;
   ValidateSystemResource(ValidationContext + 0x88);
   __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(ValidationContext + 0x90);
-                    // WARNING: Could not recover jumptable at 0x00018009fc52. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(SystemContextPointer);
+                      __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(SystemContextPointer);
   return;
 }
 
@@ -64796,9 +64871,7 @@ void Unwind_180909080(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(char *)(ValidationContext + 0x104) != '\0') {
     ProcessResourcePointer(HashValidationResultPointer);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(HashValidationResultPointer);
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(HashValidationResultPointer);
   return;
 }
 
@@ -68823,15 +68896,11 @@ void Unwind_18090a6e0(void)
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(SystemEventHandle);
+                        ResetEvent(SystemEventHandle);
     return;
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+                      (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
             (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
@@ -72826,9 +72895,7 @@ void Unwind_18090c200(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(char *)(ResourceIndex + -0x24) != '\0') {
     ProcessResourcePointer(PloopIncrement);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
   return;
 }
 
@@ -72866,9 +72933,7 @@ void Unwind_18090c240(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(char *)(ResourceIndex + -0x24) != '\0') {
     ProcessResourcePointer(PloopIncrement);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
   return;
 }
 
@@ -73125,9 +73190,7 @@ void Unwind_18090c380(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(char *)(ResourceIndex + 0x94) != '\0') {
     ProcessResourcePointer(PloopIncrement);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
   return;
 }
 
@@ -86718,9 +86781,7 @@ void Unwind_180910580(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(char *)(ResourceIndex + 0x8c) != '\0') {
     ProcessResourcePointer(PloopIncrement);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
   return;
 }
 
@@ -86926,9 +86987,7 @@ void Unwind_1809106a0(uint8_t ObjectContext,int64_t ValidationContext)
   if (*(char *)(ResourceIndex + -0x24) != '\0') {
     ProcessResourcePointer(PloopIncrement);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(PloopIncrement);
   return;
 }
 
@@ -93738,15 +93797,11 @@ void Unwind_1809127d0(void)
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(SystemEventHandle);
+                        ResetEvent(SystemEventHandle);
     return;
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+                      (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
             (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
@@ -94562,9 +94617,7 @@ void ReleaseMemoryResources(uint8_t memoryPointer, uint8_t resourceHandle, uint8
   *_MemoryManagementArray = (int64_t)MemoryPointer;
   _MemoryManagementArray[2] = (int64_t)MemoryPointer;
   MemoryAllocationStatus = 0;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(_MemoryManagementArray, 0x58);
+                      free(_MemoryManagementArray, 0x58);
   return;
 }
 
