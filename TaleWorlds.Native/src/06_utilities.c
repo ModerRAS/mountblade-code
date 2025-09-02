@@ -233,16 +233,6 @@ void* NetworkModuleHandle;
  * @note 此函数返回的状态标志可用于诊断系统状态
  * @warning 状态标志值的含义取决于具体的系统实现
  */
-/**
- * @brief 获取核心引擎系统状态标志
- * 
- * 该函数负责获取核心引擎系统的状态标志
- * 用于判断核心引擎是否已初始化并处于正常运行状态
- * 
- * @return uint32_t 返回核心引擎系统的状态标志值
- * @note 此函数返回的状态标志可用于诊断核心系统状态
- * @warning 状态标志值的含义取决于具体的核心引擎实现
- */
 uint32_t GetCoreEngineSystemStatusFlag(void);
 bool CoreEngineIsInitialized;
 
