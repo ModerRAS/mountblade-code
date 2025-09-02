@@ -49059,7 +49059,7 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
         *(char *)(ThreadLocalStorage + 2) = '\0';
       }
       UNLOCK();
-      if (isEntryAvailable) goto LAB_18006d3bb;
+      if (isEntryAvailable) goto EntryAvailableCheck;
     }
     PrimaryResourcePointer = ThreadLocalStorage + 1;
     ThreadLocalStorage = (void* *)(*PrimaryResourcePointer + -8);
@@ -49108,7 +49108,7 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
       ThreadLocalStorage = SystemThreadStorage;
     } while (!isEntryAvailable);
   }
-LAB_18006d3bb:
+EntryAvailableCheck:
   if (ThreadLocalStorage == (void* *)0x0) {
     LOCK();
     SystemResourceManager[7] = SystemResourceManager[7] + -1;
@@ -49247,7 +49247,7 @@ void* GetSystemDataResourcePointer(ulong long* SystemResourceManager, void* Conf
               ReleaseSystemResource(ResourceDataOffset);
               *(uint8_t *)((SystemBufferAddress - systemOperationCode) + 0x352f) = 1;
               systemStatusFlag = '\x01';
-              goto LAB_18006d67d;
+              goto ResourceValidationComplete;
             }
             LOCK();
             *(long long *)(unsignedSystemValue7 + 0x38) = *(long long *)(unsignedSystemValue7 + 0x38) + 1;
@@ -49255,7 +49255,7 @@ void* GetSystemDataResourcePointer(ulong long* SystemResourceManager, void* Conf
           }
           systemStatusFlag = '\0';
         }
-LAB_18006d67d:
+ResourceValidationComplete:
         if (systemStatusFlag != '\0') {
           return 1;
         }
@@ -49300,7 +49300,7 @@ void* AllocateSystemResourcePool(long long SystemResourceManager,void* Configura
   SystemOperationStatus = *(ulong long *)(SystemResourceManager + 0x20);
   if ((SystemOperationStatus & 0x1f) != 0) {
     FUN_18006cd80((ulong long)((uint)SystemOperationStatus & 0x1f) * 0x1a8 + *(long long *)(SystemResourceManager + 0x40));
-LAB_18006d7fb:
+MemoryAllocationComplete:
     *(ulong long *)(SystemResourceManager + 0x20) = SystemOperationStatus + 1;
     return 1;
   }
@@ -49329,7 +49329,7 @@ LAB_18006d7fb:
       ProcessSystemResourceData(resourceAddress,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,resourceHashValue);
       SystemThreadContext[1] = resourceAddress;
       *(ulong long *)(SystemResourceManager + 0x40) = resourceAddress;
-      goto LAB_18006d7fb;
+      goto MemoryAllocationComplete;
     }
     resourcePoolPointer = *(long long **)(SystemResourceManager + 0x60);
     resourcePoolPointer[1] = *resourcePoolPointer - 1U & resourcePoolPointer[1] - 1U;

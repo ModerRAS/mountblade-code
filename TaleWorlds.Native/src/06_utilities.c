@@ -68851,7 +68851,19 @@ void CloseFileHandleAndUpdateResourceReference(uint8_t ObjectContext,int64_t Val
 
 
 
-void Unwind_180909550(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 关闭扩展资源管理器句柄
+ * 
+ * 该函数负责关闭扩展资源管理器的句柄并更新系统操作计数
+ * 如果资源上下文有效，则执行关闭操作并更新计数器
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会检查资源上下文是否存在，如果存在则关闭句柄并更新操作计数
+ * @warning 调用此函数会修改验证上下文中的资源句柄和全局操作计数
+ */
+void CloseExtendedResourceManagerHandle(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -68924,7 +68936,19 @@ void CloseSecondaryResourceManagerFileAndUpdateReference(uint8_t ObjectContext,i
 
 
 
-void Unwind_180909580(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化标准资源处理器
+ * 
+ * 该函数负责初始化标准资源处理器模板并设置系统数据结构
+ * 如果检测到资源句柄存在，则执行紧急退出程序
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会初始化资源处理器模板，并确保系统数据结构正确设置
+ * @warning 如果检测到现有资源句柄，系统将执行紧急退出程序
+ */
+void InitializeStandardResourceProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0xf0) = &SystemResourceHandlerTemplate;
@@ -68940,7 +68964,19 @@ void Unwind_180909580(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909590(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化主资源处理器
+ * 
+ * 该函数负责初始化主资源处理器并关闭现有文件句柄
+ * 如果检测到现有文件句柄，则关闭文件并更新资源引用计数
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会检查现有文件句柄，如果存在则关闭并更新引用计数
+ * @warning 调用此函数会修改验证上下文中的文件句柄和全局资源引用计数
+ */
+void InitializePrimaryResourceProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x2c8) != 0) {
