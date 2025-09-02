@@ -291,14 +291,14 @@ uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int Algor
  * 该函数是ComputeDataChecksum的扩展版本，支持更多参数
  * 用于复杂的数据验证场景
  * 
- * @param ValidationContext 验证上下文
+ * @param SystemContext 系统上下文
  * @param DataBuffer 数据缓冲区
  * @param AlgorithmType 算法类型 (0=标准, 1=增强)
- * @param SeedValue 种子值
- * @param AdditionalParam 额外参数
+ * @param ChecksumSeed 校验种子值
+ * @param ExtendedParameter 扩展参数
  * @return 计算得到的校验和值
  */
-uint64_t CalculateDataChecksum(uint64_t ValidationContext, void* DataBuffer, int AlgorithmType, uint32_t SeedValue, uint32_t AdditionalParam);
+uint64_t CalculateDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed, uint32_t ExtendedParameter);
 
 /**
  * @brief 验证内存访问
@@ -307,10 +307,10 @@ uint64_t CalculateDataChecksum(uint64_t ValidationContext, void* DataBuffer, int
  * 包含异常检查和内存边界验证
  * 
  * @param MemoryAddress 内存地址
- * @param ValidationFlag 验证标志
+ * @param AccessValidationFlag 访问验证标志
  * @return 验证结果
  */
-uint32_t ValidateMemoryAccess(void* MemoryAddress, uint64_t ValidationFlag);
+uint32_t ValidateMemoryAccess(void* MemoryAddress, uint64_t AccessValidationFlag);
 
 /**
  * @brief 终止系统进程
@@ -318,10 +318,10 @@ uint32_t ValidateMemoryAccess(void* MemoryAddress, uint64_t ValidationFlag);
  * 该函数负责安全地终止系统进程
  * 执行清理操作并确保系统正常关闭
  * 
- * @param SecurityToken 安全令牌，用于验证终止操作的合法性
+ * @param TerminationSecurityToken 终止安全令牌，用于验证终止操作的合法性
  * @return 无返回值，函数不会返回
  */
-void TerminateSystem(uint64_t SecurityToken);
+void TerminateSystem(uint64_t TerminationSecurityToken);
 
 /**
  * @brief 检查系统状态
@@ -330,10 +330,10 @@ void TerminateSystem(uint64_t SecurityToken);
  * 支持不同类型的系统状态检查
  * 
  * @param SystemContext 系统上下文
- * @param CheckType 检查类型 (0=基本检查, 1=详细检查)
+ * @param StatusCheckType 状态检查类型 (0=基本检查, 1=详细检查)
  * @return 系统状态码，0表示正常，非0表示异常
  */
-uint32_t CheckSystemStatus(void* SystemContext, uint32_t CheckType);
+uint32_t CheckSystemStatus(void* SystemContext, uint32_t StatusCheckType);
 
 /**
  * @brief 处理系统对象状态
@@ -341,10 +341,10 @@ uint32_t CheckSystemStatus(void* SystemContext, uint32_t CheckType);
  * 该函数用于处理系统对象的状态变化
  * 执行状态转换和相关操作
  * 
- * @param ObjectHandle 对象句柄
+ * @param SystemObjectHandle 系统对象句柄
  * @return 处理结果状态码
  */
-uint32_t ProcessSystemObjectState(uint32_t ObjectHandle);
+uint32_t ProcessSystemObjectState(uint32_t SystemObjectHandle);
 
 /**
  * @brief 执行系统退出操作（无参数版本）
@@ -8824,23 +8824,23 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
  */
 uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t ValidationParams)
 {
-  int objectValidationStatus;
-  int arrayIndexCounter;
-  uint8_t hashValidationResult;
-  float *floatDataPointer;
-  int64_t resourceDataPointer;
-  uint64_t validationOffset;
-  float *floatArrayDataPointer;
-  uint64_t processingIterator;
-  uint totalArraySize;
-  float minimumFloatValue;
-  float maximumFloatValue;
-  float currentFloatValue;
-  uint32_t stackBuffer;
-  uint64_t resourceHash;
+  int ObjectValidationStatusCode;
+  int ArrayElementIndex;
+  uint8_t HashValidationResult;
+  float *FloatDataPointer;
+  int64_t ResourceDataPointer;
+  uint64_t ValidationOffset;
+  float *FloatArrayDataPointer;
+  uint64_t ProcessingIterator;
+  uint TotalArraySize;
+  float MinimumFloatValue;
+  float MaximumFloatValue;
+  float CurrentFloatValue;
+  uint32_t StackBuffer;
+  uint64_t ResourceHash;
   
-  hashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataOffset),&CurrentValidationValue);
-  if ((int)hashValidationResult != 0) {
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataOffset),&CurrentValidationValue);
+  if ((int)HashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
   ArrayProcessingIndex = 0;
@@ -9406,10 +9406,10 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t ObjectContex
     return ErrorResourceValidationFailed;
   }
   FloatComparisonResult = *(float *)(ObjectContext + ObjectContextValidationParamOffset);
-  secondFloatResult = *(float *)(ResourceTable + ResourceFloatValue1Offset);
+  SecondaryFloatValue = *(float *)(ResourceTable + ResourceFloatValue1Offset);
   if ((*(float *)(ResourceTable + ResourceFloatValue1Offset) <= InputFloatValue) &&
-     (secondFloatResult = *(float *)(ResourceTable + ResourceFloatValue2Offset), InputFloatValue <= *(float *)(ResourceTable + ResourceFloatValue2Offset))) {
-    secondFloatResult = InputFloatValue;
+     (SecondaryFloatValue = *(float *)(ResourceTable + ResourceFloatValue2Offset), InputFloatValue <= *(float *)(ResourceTable + ResourceFloatValue2Offset))) {
+    SecondaryFloatValue = InputFloatValue;
   }
   *(float *)(ObjectContext + ObjectContextValidationParamOffset) = InputFloatValue;
   *(float *)(CombineValidationContextAndParam(ValidationContextParam,ValidationContext) + 4) = InputFloatValue;
@@ -10221,6 +10221,15 @@ uint64_t GetSystemRuntimeStatus(void)
  * @param maxValue 最大值指针
  * @param currentValue 当前值指针
  * @param context 操作上下文
+ */
+/**
+ * @brief 处理浮点数范围限制
+ * 
+ * 该函数用于处理浮点数的范围限制操作，确保浮点数值在指定范围内
+ * 函数会读取输入寄存器中的浮点数值，进行范围检查和限制处理
+ * 
+ * @note 该函数主要处理浮点数的范围限制，确保数值在有效范围内
+ * @warning 如果浮点数值超出范围，会进行相应的限制处理
  */
 void ProcessFloatRangeClamping(void)
 {
@@ -11257,52 +11266,52 @@ void ValidateAndCleanupResourceEntry(int64_t ObjectContext, uint8_t ValidationCo
 uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t ConfigurationData, uint ValidationFlags, int64_t ResultBuffer)
 
 {
-  int64_t *ProcessPointer;
+  int64_t *ProcessingPointer;
   uint ResourceHashValidationResult;
-  int PackageValidationStatusCode;
-  int64_t *ContextPointer;
-  int EntryCounter;
-  uint ConfigurationFlags;
-  uint8_t StackBufferSize;
-  uint8_t DataChecksumBuffer[2];
-  int InitializationResult;
-  int ProcessingStatusCode;
-  int64_t *LinkPointer;
-  int64_t *ResourceContext;
+  int PackageValidationStatus;
+  int64_t *ValidationContextPointer;
+  int ResourceEntryCounter;
+  uint SystemConfigurationFlags;
+  uint8_t SystemStackSize;
+  uint8_t ChecksumBuffer[2];
+  int SystemInitializationResult;
+  int SystemProcessingStatus;
+  int64_t *ResourceLinkPointer;
+  int64_t *SystemResourceContext;
   
   if (ResultBuffer == 0) {
     return ErrorResourceValidationFailed;
   }
-  EntryCounter = 0;
+  ResourceEntryCounter = 0;
   ResourceHashValidationResult = *(uint *)(SystemContext + 0x20);
-  DataChecksumBuffer[0] = 0;
-  InitializationResult = InitializeProcessingQueue(DataChecksumBuffer, SystemContext);
-  if (InitializationResult == 0) {
-    StackBufferSize = 0;
-    PackageValidationStatusCode = ValidationFlags | 0x10000000;
+  ChecksumBuffer[0] = 0;
+  SystemInitializationResult = InitializeProcessingQueue(ChecksumBuffer, SystemContext);
+  if (SystemInitializationResult == 0) {
+    SystemStackSize = 0;
+    PackageValidationStatus = ValidationFlags | 0x10000000;
     if ((ResourceHashValidationResult & 1) == 0) {
-      PackageValidationStatusCode = ValidationFlags;
+      PackageValidationStatus = ValidationFlags;
     }
-    ProcessingStatusCode = ProcessConfigurationData(SystemContext, ConfigurationData, ResourceHashValidationResult, &StackBufferSize);
-    if ((ProcessingStatusCode == 0) && (ResourceContext = (int64_t *)(ResultBuffer + 8)) && (ResourceContext != (int64_t *)0x0)) {
-      LinkPointer = (int64_t *)*ResourceContext;
-      if (LinkPointer != ResourceContext) {
+    SystemProcessingStatus = ProcessConfigurationData(SystemContext, ConfigurationData, ResourceHashValidationResult, &SystemStackSize);
+    if ((SystemProcessingStatus == 0) && (SystemResourceContext = (int64_t *)(ResultBuffer + 8)) && (SystemResourceContext != (int64_t *)0x0)) {
+      ResourceLinkPointer = (int64_t *)*SystemResourceContext;
+      if (ResourceLinkPointer != SystemResourceContext) {
         do {
-          LinkPointer = (int64_t *)*LinkPointer;
-          EntryCounter = EntryCounter + 1;
-        } while (LinkPointer != ResourceContext);
-        if (EntryCounter != 0) goto CleanupHandler;
+          ResourceLinkPointer = (int64_t *)*ResourceLinkPointer;
+          ResourceEntryCounter = ResourceEntryCounter + 1;
+        } while (ResourceLinkPointer != SystemResourceContext);
+        if (ResourceEntryCounter != 0) goto CleanupHandler;
       }
-      *(uint8_t *)(resultBuffer + 0x10) = *(uint8_t *)(SystemContext + 0x58);
-      *ResourceContext = SystemContext + 0x50;
-      *(int64_t **)(SystemContext + 0x58) = ResourceContext;
-      **(int64_t **)(resultBuffer + 0x10) = (int64_t)ResourceContext;
-      ExecuteSystemOperation(resultBuffer,StackContextBuffer);
-      ProcessDataBlockOperation(SystemContext,StackContextBuffer);
+      *(uint8_t *)(ResultBuffer + 0x10) = *(uint8_t *)(SystemContext + 0x58);
+      *SystemResourceContext = SystemContext + 0x50;
+      *(int64_t **)(SystemContext + 0x58) = SystemResourceContext;
+      **(int64_t **)(ResultBuffer + 0x10) = (int64_t)SystemResourceContext;
+      ExecuteSystemOperation(ResultBuffer, SystemStackSize);
+      ProcessDataBlockOperation(SystemContext, SystemStackSize);
     }
   }
 CleanupHandler:
-        CleanupProcessingQueue(DataChecksumBuffer);
+        CleanupProcessingQueue(ChecksumBuffer);
 }
 
 
@@ -11319,15 +11328,15 @@ CleanupHandler:
  * @note 该函数会处理资源分配和内存清理操作
  * @warning 如果数据容器验证失败，会返回相应的错误代码
  */
-uint ValidateAndProcessDataContainer(int64_t *dataContainerPointer)
+uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
 
 {
-  int containerStatusCode;
+  int ContainerStatus;
   uint ResourceValidationHash;
-  uint OperationResultCode;
+  uint SystemOperationResult;
   
-  ContainerStatusCode = *(uint *)((int64_t)DataContainerPointer + 0xc);
-  OperationResultCode = ResourceValidationHash ^ (int)ResourceValidationHash >> ErrorResourceValidationFailed;
+  ContainerStatus = *(uint *)((int64_t)DataContainerPointer + 0xc);
+  SystemOperationResult = ResourceValidationHash ^ (int)ResourceValidationHash >> ErrorResourceValidationFailed;
   if ((int)(ResourceValidationHash - ((int)ResourceValidationHash >> ErrorResourceValidationFailed)) < 0) {
     if (0 < (int)DataContainerPointer[1]) {
       return ResourceValidationHash;
@@ -11336,17 +11345,17 @@ uint ValidateAndProcessDataContainer(int64_t *dataContainerPointer)
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*DataContainerPointer,&ResourceAllocationTemplate,0x100,1);
     }
     *DataContainerPointer = 0;
-    ContainerStatusCode = 0;
+    ContainerStatus = 0;
     *(uint32_t *)((int64_t)DataContainerPointer + 0xc) = 0;
   }
-  int ResourceIndex = (int)DataContainerPointer[1];
-  if (ResourceIndex < 0) {
-    if (ResourceIndex < 0) {
-            memset(*DataContainerPointer + (int64_t)ResourceIndex * 0xc,0,(uint64_t)(uint)-ResourceIndex * 0xc);
+  int SystemResourceIndex = (int)DataContainerPointer[1];
+  if (SystemResourceIndex < 0) {
+    if (SystemResourceIndex < 0) {
+            memset(*DataContainerPointer + (int64_t)SystemResourceIndex * 0xc,0,(uint64_t)(uint)-SystemResourceIndex * 0xc);
     }
   }
   *(uint32_t *)(DataContainerPointer + 1) = 0;
-  ContainerStatusCode = (ResourceValidationHash ^ (int)ResourceValidationHash >> ErrorResourceValidationFailed) - ((int)ResourceValidationHash >> ErrorResourceValidationFailed);
+  ContainerStatus = (ResourceValidationHash ^ (int)ResourceValidationHash >> ErrorResourceValidationFailed) - ((int)ResourceValidationHash >> ErrorResourceValidationFailed);
   if ((int)ResourceValidationHash < 1) {
     return ResourceValidationHash;
   }
