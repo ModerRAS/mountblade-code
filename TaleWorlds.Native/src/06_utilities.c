@@ -20007,41 +20007,45 @@ ResourceProcessingLoop:
  * @brief 处理本地上下文指针
  * 
  * 该函数负责处理本地上下文指针相关的操作
- * 验证和处理上下文数据
+ * 验证和处理上下文数据，确保系统上下文的有效性和完整性
+ * 
+ * @return 无返回值
+ * @note 此函数会验证系统上下文指针的有效性，并处理相关的资源数据
+ * @warning 如果上下文指针无效，函数会设置错误状态并返回
  */
 void ProcessLocalContextPointer(void)
 
 {
-  int64_t *ProcessPointer;
-  int PackageValidationStatusCode;
-  int64_t *RegisterPointer;
-  int64_t DestinationPointer;
-  char StackParameter;
-  uint8_t StackBuffer;
-  uint StackValue;
+  int64_t *ContextProcessPointer;
+  int DataValidationStatusCode;
+  int64_t *RegisterContextPointer;
+  int64_t TargetDestinationPointer;
+  char StackParameterFlag;
+  uint8_t ContextStackBuffer;
+  uint ProcessedStackValue;
   
-  SystemContextPointer = (int64_t *)*RegisterPointer;
-  StackBuffer = _stackValue;
+  SystemContextPointer = (int64_t *)*RegisterContextPointer;
+  ContextStackBuffer = _stackValue;
   if (*SystemContextPointer == 0) {
-    ValidationStatus = 0x1c;
+    DataValidationStatusCode = 0x1c;
   }
   else {
     if (SystemContextPointer[2] != 0) {
-      StackValue = 0;
-      ValidationStatus = ValidateObjectContextData(*SystemContextPointer,&ObjectSecondaryBuffer);
-      if (ValidationStatus != 0) {
+      ProcessedStackValue = 0;
+      DataValidationStatusCode = ValidateObjectContextData(*SystemContextPointer,&ObjectSecondaryBuffer);
+      if (DataValidationStatusCode != 0) {
         return;
       }
-      if ((uint64_t)SystemContextPointer[2] < (uint64_t)StackValue + 1) {
-        ValidationStatus = 0x11;
+      if ((uint64_t)SystemContextPointer[2] < (uint64_t)ProcessedStackValue + 1) {
+        DataValidationStatusCode = 0x11;
         goto ResourceProcessingLoop;
       }
     }
-    ValidationStatus = CalculateResourceHash(*SystemContextPointer,&ObjectResourceBuffer,1,1,0);
+    DataValidationStatusCode = CalculateResourceHash(*SystemContextPointer,&ObjectResourceBuffer,1,1,0);
   }
 ResourceProcessingLoop:
-  if (ValidationStatus == 0) {
-    *(bool *)(DestinationPointer + 0x7c) = StackParameter != '\0';
+  if (DataValidationStatusCode == 0) {
+    *(bool *)(TargetDestinationPointer + 0x7c) = StackParameterFlag != '\0';
   }
   return;
 }
@@ -20049,9 +20053,14 @@ ResourceProcessingLoop:
 
 
 /**
- * 获取系统状态函数
- * 获取当前系统状态，返回0表示系统正常
- * @return 系统状态码：0表示正常
+ * @brief 获取系统状态
+ * 
+ * 该函数负责获取当前系统的运行状态
+ * 返回0表示系统正常运行，其他值表示不同的错误状态
+ * 
+ * @return uint8_t 系统状态码：0表示正常，非0表示错误
+ * @note 这是一个简单的状态检查函数，用于系统初始化或运行时状态验证
+ * @warning 返回值为0并不表示所有子系统都正常，仅表示基础系统状态正常
  */
 uint8_t GetSystemStatus(void)
 
@@ -20067,8 +20076,11 @@ uint8_t GetSystemStatus(void)
  * 
  * 该函数负责初始化系统的输入组件
  * 设置键盘、鼠标和控制器输入处理的基础设施
+ * 为系统的用户交互提供必要的初始化支持
  * 
  * @return 无返回值
+ * @note 此函数在系统启动时调用，确保输入系统正常工作
+ * @warning 调用此函数前必须确保系统基础组件已正确初始化
  */
 void InitializeInputSystem(void)
 
@@ -67067,7 +67079,20 @@ void ExecuteSystemResourceUnlockAndStatusCheck(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_180908fb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源深度解锁和状态验证
+ * 
+ * 该函数负责执行系统资源的深度解锁操作，并进行状态验证
+ * 主要用于复杂系统资源管理中的解锁操作和状态验证
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于系统资源深度解锁和状态验证
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180908fb0
+ */
+void ExecuteSystemResourceDeepUnlockAndStatusValidation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -67108,7 +67133,20 @@ uint8_t * HandleStreamException(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909000(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统数据结构指针
+ * 
+ * 该函数负责初始化系统数据结构的指针
+ * 主要用于系统数据结构的初始化和配置
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于系统数据结构指针的初始化
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180909000
+ */
+void InitializeSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1a0) = &SystemDataStructure;
@@ -67117,7 +67155,20 @@ void Unwind_180909000(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909010(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统模块数据和上下文
+ * 
+ * 该函数负责初始化系统模块数据和上下文信息
+ * 主要用于系统模块的初始化和配置
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于系统模块数据和上下文的初始化
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180909010
+ */
+void InitializeSystemModuleDataAndContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -67136,7 +67187,20 @@ void Unwind_180909010(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909020(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源数据状态标志
+ * 
+ * 该函数负责重置资源数据的状态标志
+ * 主要用于资源状态管理和标志位处理
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于资源数据状态标志的重置
+ * @warning 调用此函数前必须确保ResourceData已正确初始化
+ * @remark 原始函数名：Unwind_180909020
+ */
+void ResetResourceDataStatusFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -67148,7 +67212,20 @@ void Unwind_180909020(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909060(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统输出流操作
+ * 
+ * 该函数负责执行系统输出流操作
+ * 主要用于系统输出流的管理和控制
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于系统输出流操作
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180909060
+ */
+void ExecuteSystemOutputStreamOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
                     // WARNING: Could not recover jumptable at 0x00018090906b. Too many branches
@@ -67159,7 +67236,20 @@ void Unwind_180909060(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909080(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希和表结构
+ * 
+ * 该函数负责初始化资源哈希和表结构
+ * 主要用于资源哈希和表结构的初始化和配置
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于资源哈希和表结构的初始化
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180909080
+ */
+void InitializeResourceHashAndTableStructure(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t ResourceHash;
@@ -67185,7 +67275,20 @@ void Unwind_180909080(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909090(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希验证和索引管理
+ * 
+ * 该函数负责执行资源哈希验证和索引管理操作
+ * 主要用于资源哈希验证和索引的管理
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于资源哈希验证和索引管理
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180909090
+ */
+void ExecuteResourceHashValidationAndIndexManagement(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
