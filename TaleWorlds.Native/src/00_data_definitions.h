@@ -11491,10 +11491,10 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   }
   HandleSystemConfigurationData(&UNK_180a3d988,&ExceptionList);
   ModuleInitializationResult = cpuid_Extended_Feature_Enumeration_info(7);
-  DAT_180c8f000 = (byte)(*(uint *)(ModuleInitializationResult + 8) >> 4) & 1;
+  SystemConfigFlag8 = (byte)(*(uint *)(ModuleInitializationResult + 8) >> 4) & 1;
   GetSystemInfo(auStack_40);
   if (uStack_3c != 0) {
-    _DAT_180bf66a8 = (ulonglong)uStack_3c;
+    SystemConfigDataSize5 = (ulonglong)uStack_3c;
   }
   InitializeSystemModules();
   HandleSystemConfigurationData(&SystemConfigDataHandle,0);
@@ -11505,20 +11505,20 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   }
   memset((void *)(*pLongIndex + 0x3d8),0,0x240);
 }
-  DAT_180d49131 = 1;
-  FlsSetValue(_DAT_180bf664c,0);
-  FlsFree(_DAT_180bf664c);
+  SystemConfigFlag9 = 1;
+  FlsSetValue(SystemConfigBufferSize1,0);
+  FlsFree(SystemConfigBufferSize1);
   ProcessSystemEvent(*(uint64_t *)
                  (*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                  0x10),1);
-  if (_DAT_180bfbd9c == 0) {
-    ProcessBufferSize(&DAT_180bfbd98);
+  if (SystemMemoryConfigFlag3 == 0) {
+    ProcessBufferSize(&SystemMemoryConfigBuffer3);
   }
-  if (_DAT_180bfbd98 == 0) {
-    if (_DAT_180bfbdb4 == 0) {
-      ProcessBufferSize(&DAT_180bfbdb0);
+  if (SystemMemoryConfigBuffer3 == 0) {
+    if (SystemMemoryConfigFlag4 == 0) {
+      ProcessBufferSize(&SystemMemoryConfigBuffer4);
     }
-    if (_DAT_180bfbdb0 == 0) goto Label_18064ff6c;
+    if (SystemMemoryConfigBuffer4 == 0) goto Label_18064ff6c;
   }
   pModuleInitializationResult = (longlong *)GetSystemModuleInfo();
   pBufferSize = (void *)(*pModuleInitializationResult + 0x3d8);
@@ -11528,18 +11528,18 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   }
   ConfigureSystemSettings();
 Label_18064ff6c:
-  HandleSystemConfigurationData(&UNK_180a3d958,_DAT_180bf4b20);
-  DAT_180bf66d8 = 1;
+  HandleSystemConfigurationData(&SystemNetworkDataBuffer6,SystemMemoryConfigPointer3);
+  SystemModuleConfigFlag14 = 1;
   return;
 }
 uint32_t SystemGetDeviceParameter(int deviceId)
 {
-  if (*(int *)(&DAT_180bfbd84 + (longlong)deviceId * 0x18) == 0) {
+  if (*(int *)(&SystemMemoryConfigBuffer5 + (longlong)deviceId * 0x18) == 0) {
     ProcessBufferSize(&SystemModuleConfigDataBuffer + (longlong)deviceId * 0x18);
   }
   return *(uint32_t *)(&SystemModuleConfigDataBuffer + (longlong)deviceId * 0x18);
 }
-    DAT_180c8f020 = 0;
+    SystemConfigFlag10 = 0;
     return;
   }
   stringLength = -1;
@@ -11552,7 +11552,7 @@ uint32_t SystemGetDeviceParameter(int deviceId)
   }
   memcpy(&DAT_180c8f020,param_1,(longlong)(int)MemoryAddress);
 }
-  DAT_180c8f020 = 0;
+  SystemConfigFlag10 = 0;
   return;
 }
 uint64_t SystemMemoryAllocate(uint64_t memorySize)
