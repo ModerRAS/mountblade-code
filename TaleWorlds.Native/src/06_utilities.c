@@ -19125,8 +19125,8 @@ uint64_t ValidateAndProcessResourceData(void)
   uint64_t ResourceContextOffset;
   int64_t *ResourceContext;
   int64_t ExecutionContextPointer;
-  uint RegisterESI;
-  uint RegisterEDI;
+  uint ResourceValidationIndex;
+  uint ResourceOperationCode;
   uint configurationFlags;
   uint SecurityHashValue;
   char ResourceValidationChar;
@@ -19138,14 +19138,14 @@ uint64_t ValidateAndProcessResourceData(void)
   SecurityHashValue = 0;
   if (InputParameterValue < 0x8c) {
     if (*(int *)(ResourceContext[1] + 0x18) != 0) {
-      return (uint64_t)RegisterEDI;
+      return (uint64_t)ResourceOperationCode;
     }
     ResourceContext = (int64_t *)*ResourceContext;
-    ValidationStatusCode = RegisterEDI;
+    ValidationStatusCode = ResourceOperationCode;
     if (*ResourceContext != 0) {
       if (ResourceContext[2] == 0) {
 ResourceHashCalculationStart:
-        ValidationStatusCode = CalculateResourceHash(*ResourceContext,&ObjectStackBufferResource,RegisterESI,RegisterESI,0);
+        ValidationStatusCode = CalculateResourceHash(*ResourceContext,&ObjectStackBufferResource,ResourceValidationIndex,ResourceValidationIndex,0);
       }
       else {
         StackVariable34 = 0;
@@ -19156,7 +19156,7 @@ ResourceHashCalculationStart:
         }
       }
     }
-    ValidationResult = RegisterESI;
+    ValidationResult = ResourceValidationIndex;
     if (ValidationStatusCode == 0) {
       ContextValidationStatusCode = (uint)(ResourceValidationChar != '\0');
       ValidationStatusCode = SecurityHashValue;
@@ -19248,7 +19248,7 @@ ResourceHashCalculationStart:
     if (*ResourceContext != 0) {
       if (ResourceContext[2] == 0) {
 ResourceValidationStart:
-        RegisterEDI = CalculateResourceHash(*ResourceContext,&StackBuffer38,RegisterESI,4,0);
+        RegisterEDI = CalculateResourceHash(*ResourceContext,&StackBuffer38,ResourceValidationIndex,4,0);
       }
       else {
         StackVariable34 = 0;
@@ -19263,30 +19263,30 @@ ResourceValidationStart:
     if (RegisterEDI != 0) goto ResourceOperationExit;
     switch(StackRegisterStorageOctal) {
     case 0:
-      RegisterESI = SecurityHashValue;
+      ResourceValidationIndex = SecurityHashValue;
       break;
     case 1:
       break;
     case 2:
-      RegisterESI = 2;
+      ResourceValidationIndex = 2;
       break;
     case 3:
-      RegisterESI = 3;
+      ResourceValidationIndex = 3;
       break;
     case 4:
-      RegisterESI = 4;
+      ResourceValidationIndex = 4;
       break;
     case 5:
-      RegisterESI = 5;
+      ResourceValidationIndex = 5;
       break;
     case 6:
-      RegisterESI = 6;
+      ResourceValidationIndex = 6;
       break;
     default:
       ContextValidationStatusCode = 0xd;
       goto ResourceDataValidation;
     }
-    *(uint *)(ExecutionContextPointer + 0xd4) = RegisterESI;
+    *(uint *)(ExecutionContextPointer + 0xd4) = ResourceValidationIndex;
     ContextValidationStatusCode = SecurityHashValue;
   }
 ResourceDataValidation:
@@ -23442,7 +23442,7 @@ uint64_t ResourceIntegrityValidationHandler(void)
   int PackageValidationStatusCode;
   int64_t *ResourceContext;
   int64_t ExecutionContextPointer;
-  uint32_t RegisterESI;
+  uint32_t ResourceValidationIndex;
   uint ResourceCounter;
   uint ValidationCounter;
   uint64_t SavedRegisterValue;
@@ -23464,7 +23464,7 @@ uint64_t ResourceIntegrityValidationHandler(void)
   uint32_t ResourceHash3;
   float FloatCalculationResult;
   
-  *(uint32_t *)(SystemContextBase + 0x30) = RegisterESI;
+  *(uint32_t *)(SystemContextBase + 0x30) = ResourceValidationIndex;
   if ((int)SystemRegisterContext != 0) {
     return SystemRegisterContext & 0xffffffff;
   }
@@ -28627,7 +28627,7 @@ uint64_t ValidateResourceCertificateChain(void)
   int64_t InputParameterValue;
   uint64_t HashValidationResult;
   int64_t ExecutionContextPointer;
-  uint RegisterESI;
+  uint ResourceValidationIndex;
   int64_t *SystemRegisterContext;
   uint32_t StackVariable30;
   uint32_t StackVariable38;
@@ -28636,22 +28636,22 @@ uint64_t ValidateResourceCertificateChain(void)
   uint16_t StackVariableA0;
   uint16_t StackVariableA8;
   
-  if (*(uint *)(InputParameter + 0x18) != RegisterESI) {
+  if (*(uint *)(InputParameter + 0x18) != ResourceValidationIndex) {
     return 0x1c;
   }
   ValidationResult = GetResourceEntry(*SystemRegisterContext,ExecutionContextPointer + 0x10);
   ValidationStatusCode = (uint64_t)ResourceHashValidationResult;
   if (ValidationResult == 0) {
-    if (*(uint *)(SystemRegisterContext[1] + 0x18) != RegisterESI) {
+    if (*(uint *)(SystemRegisterContext[1] + 0x18) != ResourceValidationIndex) {
       return 0x1c;
     }
     ValidationResult = GetResourceEntry(*SystemRegisterContext,ExecutionContextPointer + 0x20);
     ValidationStatusCode = (uint64_t)ResourceHashValidationResult;
     if (ValidationResult == 0) {
       ValidationStatusCode = 0x1c;
-      ValidationResult = RegisterESI;
+      ValidationResult = ResourceValidationIndex;
       if ((*(uint *)(SystemRegisterContext + 8) < 0x5a) &&
-         (ValidationResult = 0x1c, *(uint *)(SystemRegisterContext[1] + 0x18) == RegisterESI)) {
+         (ValidationResult = 0x1c, *(uint *)(SystemRegisterContext[1] + 0x18) == ResourceValidationIndex)) {
         StackVariable30 = StackVariable38;
         SystemContextPointer = *SystemRegisterContext;
         ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
@@ -28700,7 +28700,7 @@ uint64_t ProcessResourceCertificateSigning(void)
   uint ResourceHashValidationResult;
   uint64_t HashValidationResult;
   int64_t ExecutionContextPointer;
-  uint RegisterESI;
+  uint ResourceValidationIndex;
   int64_t *SystemRegisterContext;
   uint32_t StackVariable30;
   uint32_t StackVariable38;
@@ -28713,9 +28713,9 @@ uint64_t ProcessResourceCertificateSigning(void)
   ValidationStatusCode = (uint64_t)ResourceHashValidationResult;
   if (ValidationResult == 0) {
     ValidationStatusCode = 0x1c;
-    ValidationResult = RegisterESI;
+    ValidationResult = ResourceValidationIndex;
     if ((*(uint *)(SystemRegisterContext + 8) < 0x5a) &&
-       (ValidationResult = 0x1c, *(uint *)(SystemRegisterContext[1] + 0x18) == RegisterESI)) {
+       (ValidationResult = 0x1c, *(uint *)(SystemRegisterContext[1] + 0x18) == ResourceValidationIndex)) {
       StackVariable30 = StackVariable38;
       SystemContextPointer = *SystemRegisterContext;
       ValidationResult = (**(code **)**(uint8_t **)(SystemContextPointer + 8))
@@ -28812,11 +28812,11 @@ uint64_t ValidateResourceCertificateTimestamp(void)
   uint64_t ResourceHashValidationResult;
   uint64_t ResourceContext;
   int64_t ExecutionContextPointer;
-  uint RegisterESI;
+  uint ResourceValidationIndex;
   uint8_t *SystemRegisterContext;
   
-  if (RegisterESI != 0) {
-    return (uint64_t)RegisterESI;
+  if (ResourceValidationIndex != 0) {
+    return (uint64_t)ResourceValidationIndex;
   }
   if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
     ResourceHash = GetResourceEntry(*SystemRegisterContext,ExecutionContextPointer + 0x30);
