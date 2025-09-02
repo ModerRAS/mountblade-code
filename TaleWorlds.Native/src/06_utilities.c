@@ -4176,6 +4176,18 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数在游戏循环中定期调用以维护对象集合的完整性
  * @warning 验证失败的对象将被标记为无效状态并可能被移除
  */
+/**
+ * @brief 处理游戏对象集合
+ * 
+ * 该函数负责处理和管理游戏中的对象集合，包括对象的验证、状态检查和集合维护。
+ * 函数会获取对象列表，验证每个对象的状态，并进行相应的处理。
+ * 
+ * @param GameContext 游戏上下文，包含游戏环境和状态信息
+ * @param SystemContext 系统上下文，包含系统资源和配置信息
+ * @return 无返回值
+ * @note 此函数会遍历对象集合，对每个对象进行状态验证
+ * @warning 处理失败时可能会释放相关资源并返回错误状态
+ */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int SystemProcessingStatus;
@@ -4835,8 +4847,8 @@ void InitializeSystemResources(void)
 uint8_t ValidateObjectHandle(int64_t objectHandleToValidate)
 
 {
-  uint8_t contextValidationStatusCode;
-  int64_t handleMemoryBuffer;
+  uint8_t ContextValidationStatusCode;
+  int64_t HandleMemoryBuffer;
   
   contextValidationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandleToValidate + ObjectHandleMemoryOffset), &handleMemoryBuffer);
   if ((int)contextValidationStatusCode != 0) {
