@@ -6529,10 +6529,10 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
 
 {
   int ValidationStatus;
-  int currentCapacity;
+  int CurrentCapacity;
   int64_t newBufferPointer;
   int64_t bufferOffset;
-  uint capacitySignBit;
+  uint CapacitySignBit;
   int64_t temporaryStackBuffer;
   int64_t bufferContext;
   
@@ -6550,13 +6550,13 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   if (ValidationStatus != 0) {
     return;
   }
-  capacitySignBit = (int)*(uint *)(bufferContext + 0x2c) >> 0x1f;
-  currentCapacity = (*(uint *)(bufferContext + 0x2c) ^ capacitySignBit) - capacitySignBit;
+  CapacitySignBit = (int)*(uint *)(bufferContext + 0x2c) >> 0x1f;
+  CurrentCapacity = (*(uint *)(bufferContext + 0x2c) ^ CapacitySignBit) - CapacitySignBit;
   ValidationStatus = *(int *)(bufferContext + 0x28) + 1;
-  if (currentCapacity < ValidationStatus) {
-    currentCapacity = (int)((float)currentCapacity * 1.5);
-    if (ValidationStatus <= currentCapacity) {
-      ValidationStatus = currentCapacity;
+  if (CurrentCapacity < ValidationStatus) {
+    CurrentCapacity = (int)((float)CurrentCapacity * 1.5);
+    if (ValidationStatus <= CurrentCapacity) {
+      ValidationStatus = CurrentCapacity;
     }
     if (ValidationStatus < 8) {
       ValidationStatus = 8;
@@ -6604,10 +6604,10 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
 
 {
   int PackageValidationStatusCode;
-  int bufferSize;
+  int BufferSize;
   int64_t newBufferPointer;
   int64_t bufferOffset;
-  uint capacityCheck;
+  uint CapacityCheck;
   int64_t systemBasePointer;
   int64_t systemRegister;
   int64_t stackPointerPrimary;
@@ -6626,8 +6626,8 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   if (ValidationStatus != 0) {
     return;
   }
-  capacityCheck = (int)*(uint *)(stackPointerSecondary + 0x2c) >> 0x1f;
-  bufferSize = (*(uint *)(stackPointerSecondary + 0x2c) ^ capacityCheck) - capacityCheck;
+  CapacityCheck = (int)*(uint *)(stackPointerSecondary + 0x2c) >> 0x1f;
+  BufferSize = (*(uint *)(stackPointerSecondary + 0x2c) ^ CapacityCheck) - CapacityCheck;
   ValidationStatus = *(int *)(stackPointerSecondary + 0x28) + 1;
   if (OperationResult < ResourceIndex) {
     OperationStatusCode = (int)((float)OperationResult * 1.5);
@@ -7018,13 +7018,13 @@ void ProcessObjectValidation(int64_t ObjectContext, int64_t SystemContext)
 void ExecuteDualValidationObjectProcessing(int64_t ObjectContext, int64_t SystemContext)
 
 {
-  int primaryPackageValidationStatus;
+  int PrimaryPackageValidationStatus;
   uint8_t processingResult;
   
-  primaryPackageValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &processingResult);
-  if (primaryPackageValidationStatus == 0) {
-    primaryPackageValidationStatus = ProcessHashValidationResult(processingResult);
-    if (primaryPackageValidationStatus == 0) {
+  PrimaryPackageValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &processingResult);
+  if (PrimaryPackageValidationStatus == 0) {
+    PrimaryPackageValidationStatus = ProcessHashValidationResult(processingResult);
+    if (PrimaryPackageValidationStatus == 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
     }
