@@ -68087,49 +68087,66 @@ void* ProcessAudioSignal(void)
 
 
 
-void* FUN_1807794dd(int SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,uint ConfigurationFlag)
+/**
+ * @brief 系统资源配置处理函数
+ * 
+ * 该函数负责处理系统资源的配置和管理，包括：
+ * - 系统资源的初始化和配置
+ * - 配置数据的处理和应用
+ * - 系统参数的优化和调整
+ * - 资源状态的监控和管理
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @return void* 返回处理结果指针
+ * 
+ * @note 这是系统资源管理的核心函数，用于系统配置的深度处理
+ */
+void* ProcessSystemResourceConfiguration(int SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,uint ConfigurationFlag)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  uint unsignedSystemValue9;
-  float *pfVar10;
-  int unaff_EBX;
-  float *systemDataIndexPtr;
-  int systemStatus1;
-  float *in_R11;
-  uint unsignedSystemValue12;
-  uint unsignedSystemValue13;
-  uint unsignedSystemValue14;
-  uint unsignedSystemValue15;
-  uint8_t aunsignedSystemValue16 [16];
-  float fVar17;
-  int in_XMM5_Da;
-  float fVar18;
-  int in_XMM5_Db;
-  float fVar20;
-  int in_XMM5_Dc;
-  float fVar21;
-  int in_XMM5_Dd;
-  uint8_t aunsignedSystemValue19 [16];
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
+  float audioSignal1;
+  float audioSignal2;
+  float audioSignal3;
+  float audioSignal4;
+  float audioSignal5;
+  float audioSignal6;
+  float audioSignal7;
+  float audioSignal8;
+  uint audioProcessingFlag9;
+  float *audioDataPointer10;
+  int audioProcessingFactor;
+  float *audioDataIndexPtr;
+  int audioStatusIndex1;
+  float *audioOutputBuffer;
+  uint audioThresholdFlag12;
+  uint audioThresholdFlag13;
+  uint audioThresholdFlag14;
+  uint audioThresholdFlag15;
+  uint8_t audioCoefficientArray16 [16];
+  float audioSignal17;
+  int audioFilterCoeffA;
+  float audioSignal18;
+  int audioFilterCoeffB;
+  float audioSignal20;
+  int audioFilterCoeffC;
+  float audioSignal21;
+  int audioFilterCoeffD;
+  uint8_t audioCoefficientArray19 [16];
+  float audioSignal22;
+  float audioSignal23;
+  float audioSignal24;
+  float audioSignal25;
+  float audioSignal26;
+  float audioSignal27;
+  float audioSignal28;
+  float audioSignal29;
+  float audioSignal30;
+  float audioSignal31;
+  float audioSignal32;
+  float audioSignal33;
   float fVar34;
   float fVar35;
   float fVar36;
