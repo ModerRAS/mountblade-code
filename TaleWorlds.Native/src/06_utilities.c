@@ -13598,8 +13598,8 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
   float StackNormalizedValue;
   float StackFloatBuffer[2];
   uint8_t *ResourceContextPointer190;
-  int64_t StackBuffer188;
-  int64_t StackBuffer180;
+  int64_t ResourceValidationBuffer;
+  int64_t ContextDataBuffer;
   uint8_t *ResourceContextPointer178;
   uint32_t ResourceOperationStatus;
   uint32_t ValidationContextOffset;
