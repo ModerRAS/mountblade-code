@@ -9521,7 +9521,7 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext,int64_t Va
   float CalculatedFloatResult;
   uint8_t HashValidationResult;
   int64_t ResourceIndex;
-  uint32_t ArrayStackBuffer [2];
+  uint32_t SystemArrayStackBuffer [2];
   
   SystemCommandParams[0] = 0;
   ValidationResult = ProcessDataHashing(ValidationContext + 0x60,ObjectContext + 0x10,SystemCommandParams);
