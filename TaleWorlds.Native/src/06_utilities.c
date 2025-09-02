@@ -62491,7 +62491,11 @@ void Unwind_180908030(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908040(void)
+/**
+ * @brief 重置内存操作标志并执行系统加密函数
+ * @remark 原始函数名：Unwind_180908040
+ */
+void ResetMemoryOperationFlagAndExecuteEncryption(void)
 
 {
   byte encryptionShiftValue;
@@ -62501,11 +62505,11 @@ void Unwind_180908040(void)
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
-                        ResetEvent(SystemEventHandle);
+    ResetEvent(SystemEventHandle);
     return;
   }
   encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
-                      (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
             (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
@@ -62541,10 +62545,14 @@ void Unwind_180908060(void)
 
 
 
-void Unwind_180908070(void)
+/**
+ * @brief 释放内存管理数组
+ * @remark 原始函数名：Unwind_180908070
+ */
+void ReleaseMemoryManagementArray(void)
 
 {
-                      free(_MemoryManagementArray,0x58);
+  free(_MemoryManagementArray,0x58);
   return;
 }
 
