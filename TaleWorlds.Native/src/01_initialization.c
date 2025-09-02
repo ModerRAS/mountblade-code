@@ -7007,53 +7007,53 @@ void InitializeSystemResourceInitializer(void)
 void InitializeSystemFloatingPointCalculator(void)
 
 {
-  ulong long loopCounter;
-  float *floatTablePointer;
+  ulong long LoopCounter;
+  float *FloatTablePointer;
   int MemoryComparisonResult;
-  ulong long outerLoopCounter;
-  uint innerLoopCounter;
-  ulong long baseCounter;
-  int rangeOffset;
-  float *currentFloatTable;
-  float calculatedValue;
+  ulong long OuterLoopCounter;
+  uint InnerLoopCounter;
+  ulong long BaseCounter;
+  int RangeOffset;
+  float *CurrentFloatTable;
+  float CalculatedValue;
   
-  currentFloatTable = (float *)SYSTEM_FLOAT_TABLE_START_ADDRESS;
-  baseCounter = 0;
-  rangeOffset = -3;
-  outerLoopCounter = baseCounter;
+  CurrentFloatTable = (float *)SYSTEM_FLOAT_TABLE_START_ADDRESS;
+  BaseCounter = 0;
+  RangeOffset = -3;
+  OuterLoopCounter = BaseCounter;
   do {
-    if (0 < (long long)outerLoopCounter) {
-      int innerOffset = -3;
-      loopCounter = baseCounter;
-      floatTablePointer = currentFloatTable;
+    if (0 < (long long)OuterLoopCounter) {
+      int InnerOffset = -3;
+      LoopCounter = BaseCounter;
+      FloatTablePointer = CurrentFloatTable;
       do {
-        calculatedValue = 0.0;
-        if (-1 < (long long)loopCounter) {
-          if ((long long)loopCounter < 3) {
-            calculatedValue = 0.75;
+        CalculatedValue = 0.0;
+        if (-1 < (long long)LoopCounter) {
+          if ((long long)LoopCounter < 3) {
+            CalculatedValue = 0.75;
           }
           else {
-            calculatedValue = 1.0 - (float)innerOffset / (float)rangeOffset;
-            calculatedValue = SQRT(calculatedValue) * calculatedValue;
+            CalculatedValue = 1.0 - (float)InnerOffset / (float)RangeOffset;
+            CalculatedValue = SQRT(CalculatedValue) * CalculatedValue;
           }
         }
-        *floatTablePointer = calculatedValue;
-        innerOffset = innerOffset + 1;
-        floatTablePointer = floatTablePointer + 1;
-        loopCounter = loopCounter + 1;
-      } while ((long long)loopCounter < (long long)outerLoopCounter);
+        *FloatTablePointer = CalculatedValue;
+        InnerOffset = InnerOffset + 1;
+        FloatTablePointer = FloatTablePointer + 1;
+        LoopCounter = LoopCounter + 1;
+      } while ((long long)LoopCounter < (long long)OuterLoopCounter);
     }
-    rangeOffset = rangeOffset + 1;
-    outerLoopCounter = outerLoopCounter + 1;
-    currentFloatTable = currentFloatTable + 0x40;
-  } while ((long long)currentFloatTable < SYSTEM_FLOAT_TABLE_END_ADDRESS);
-  currentFloatTable = (float *)SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS;
+    RangeOffset = RangeOffset + 1;
+    OuterLoopCounter = OuterLoopCounter + 1;
+    CurrentFloatTable = CurrentFloatTable + 0x40;
+  } while ((long long)CurrentFloatTable < SYSTEM_FLOAT_TABLE_END_ADDRESS);
+  CurrentFloatTable = (float *)SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS;
   do {
-    innerLoopCounter = (int)baseCounter + 1;
-    *currentFloatTable = 1.0 / SQRT((float)baseCounter) + 1.0 / SQRT((float)baseCounter);
-    currentFloatTable = currentFloatTable + 1;
-    baseCounter = (ulong long)innerLoopCounter;
-  } while (innerLoopCounter < 0x40);
+    InnerLoopCounter = (int)BaseCounter + 1;
+    *CurrentFloatTable = 1.0 / SQRT((float)BaseCounter) + 1.0 / SQRT((float)BaseCounter);
+    CurrentFloatTable = CurrentFloatTable + 1;
+    BaseCounter = (ulong long)InnerLoopCounter;
+  } while (InnerLoopCounter < 0x40);
   return;
 }
 
@@ -48631,7 +48631,7 @@ LAB_18006ccef:
 
 
 
-// 函数: void FUN_18006cc8d(void* SystemResourceManager,void* ConfigurationDataPointer,long long AdditionalParameter)
+// 函数: void ConfigureSystemResourceNode(void* SystemResourceManager,void* ConfigurationDataPointer,long long AdditionalParameter)
 /**
  * @brief 配置系统资源节点
  * 
@@ -48697,7 +48697,7 @@ LAB_18006ccef:
 
 
 
-// 函数: void FUN_18006cd43(void)
+// 函数: void SystemCleanupFunctionB(void)
 /**
  * @brief 系统清理函数
  * 
@@ -59330,8 +59330,8 @@ void ProcessSystemMatrixOperations(void)
 
 
 
-// 函数: void FUN_180077dc6(void)
-void FUN_180077dc6(void)
+// 函数: void InitializeSystemVectorCalculations(void)
+void InitializeSystemVectorCalculations(void)
 
 {
   float FloatVariable1;
@@ -59501,8 +59501,8 @@ void FUN_180077dc6(void)
 
 
 
-// 函数: void FUN_180077dec(void)
-void FUN_180077dec(void)
+// 函数: void ExecuteSystemTransformOperations(void)
+void ExecuteSystemTransformOperations(void)
 
 {
   int SystemOperationStatus;
