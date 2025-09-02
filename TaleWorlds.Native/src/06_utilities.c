@@ -8371,21 +8371,21 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t objectContext,int64_t 
       ValidationCounter = (int)ResourceHashValue + 1;
       ResourceHashValue = (uint64_t)ValidationCounter;
       psecondFloatResult = floatParameterValue + 1;
-    } while ((int)validationCounter < *(int *)(objectContext + ObjectContextValidationDataOffset));
+    } while ((int)ValidationCounter < *(int *)(objectContext + ObjectContextValidationDataOffset));
     if (0 < *(int *)(objectContext + ObjectContextValidationDataOffset)) {
-      resourceTablePointer = (objectContext + ObjectContextProcessingDataOffset) - (int64_t)floatParameterValue;
+      ResourceTablePointer = (objectContext + ObjectContextProcessingDataOffset) - (int64_t)floatParameterValue;
       do {
-        resourceIndex = *(int *)((int64_t)floatParameterValue + resourceTablePointer);
-        if (resourceIndex != -1) {
-          *(float *)(*(int64_t *)(contextHashValidationResult + 0x20) + 4 + (int64_t)resourceIndex * 0x18) = *floatParameterValue;
+        ResourceIndex = *(int *)((int64_t)floatParameterValue + ResourceTablePointer);
+        if (ResourceIndex != -1) {
+          *(float *)(*(int64_t *)(contextHashValidationResult + 0x20) + 4 + (int64_t)ResourceIndex * 0x18) = *floatParameterValue;
         }
-        validationCounter = (int)resourceCounter + 1;
-        resourceCounter = (uint64_t)validationCounter;
+        ValidationCounter = (int)resourceCounter + 1;
+        resourceCounter = (uint64_t)ValidationCounter;
         floatParameterValue = floatParameterValue + 1;
-      } while ((int)validationCounter < *(int *)(objectContext + ObjectContextValidationDataOffset));
+      } while ((int)ValidationCounter < *(int *)(objectContext + ObjectContextValidationDataOffset));
     }
   }
-        ReleaseSystemContextResources(*(uint8_t *)(validationContext + 0x98),objectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),objectContext);
 }
 
 
