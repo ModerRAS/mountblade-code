@@ -3329,48 +3329,57 @@ uint8_t SystemMemoryFlagKernel;
 /**
  * @brief 处理游戏对象
  * 
- * 该函数负责处理游戏中的对象，包括对象的验证、状态检查和安全处理
- * 函数会遍历所有游戏对象，验证它们的状态，并执行相应的操作
+ * 该函数负责处理游戏中的对象，包括：
+ * - 对象验证和状态检查
+ * - 安全处理和错误处理
+ * - 对象列表的获取和遍历
+ * - 无效对象的处理和清理
  * 
- * @param GameContext 游戏上下文，包含游戏状态和信息
- * @param SystemContext 系统上下文，包含系统运行环境信息
+ * 函数会遍历所有游戏对象，验证它们的状态，并执行相应的操作
+ * 如果发现无效对象，会调用相应的处理函数
+ * 
+ * @param GameContext 游戏上下文，包含游戏状态和对象管理信息
+ * @param SystemContext 系统上下文，包含系统运行环境和安全验证信息
+ * @return 无返回值
+ * @note 此函数会进行安全验证，确保只有有效的对象被处理
+ * @warning 调用此函数前必须确保游戏上下文和系统上下文已正确初始化
  */
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t GameObjectValidationState;
-  int OperationResult;
+  int GameObjectProcessingResult;
   int64_t CurrentObjectOffset;
   int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
   int64_t SystemHandleArray[2];
   uint8_t *ObjectDataBuffer;
-  int BufferIndex;
+  int DataBufferIndex;
   uint32_t MaximumProcessableItems;
   uint8_t ProcessingWorkspace[512];
   uint64_t SecurityValidationKey;
   
   SecurityValidationKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  OperationResult = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
-  if ((OperationResult == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
+  GameObjectProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
+  if ((GameObjectProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
     ObjectDataBuffer = ProcessingWorkspace;
     ProcessedObjectCount = 0;
-    BufferIndex = 0;
+    DataBufferIndex = 0;
     MaximumProcessableItems = MaximumProcessableItemsLimit;
-    OperationResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
+    GameObjectProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
                           &ObjectDataBuffer);
-    if (OperationResult == 0) {
-      if (0 < BufferIndex) {
+    if (GameObjectProcessingResult == 0) {
+      if (0 < DataBufferIndex) {
         CurrentObjectOffset = 0;
         do {
           GameObjectValidationState = *(uint8_t *)(ObjectDataBuffer + CurrentObjectOffset);
-          OperationResult = ValidateObjectStatus(GameObjectValidationState);
-          if (OperationResult != 2) {
+          GameObjectProcessingResult = ValidateObjectStatus(GameObjectValidationState);
+          if (GameObjectProcessingResult != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidObject(GameObjectValidationState, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
           CurrentObjectOffset = CurrentObjectOffset + 8;
-        } while (ProcessedObjectCount < BufferIndex);
+        } while (ProcessedObjectCount < DataBufferIndex);
       }
       FreeObjectListMemory(&ObjectDataBuffer);
     }
