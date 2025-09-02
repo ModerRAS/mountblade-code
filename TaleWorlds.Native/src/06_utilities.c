@@ -4377,8 +4377,6 @@ uint8_t InitializeObjectHandleOperationD(void)
   IterationCount = 0;
   SystemContextHandle = InputRAX - 8;
   if (InputRAX == 0) {
-    SystemContextHandle = IterationCount;
-  }
   ResourceIdentifierPointer = (uint32_t *)(SystemContext + 0x20 + (int64_t)*(int *)(SystemContext + 0x18) * 4);
   if (0 < *(int *)(SystemContext + 0x18)) {
     BaseAddressOffset = (SystemContext + 0x20) - (int64_t)ResourceIdentifierPointer;
