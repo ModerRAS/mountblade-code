@@ -185,6 +185,29 @@
 #define TemporaryVariableInitialValue -0x8000000000000000
 #define TemporarySecondaryVariableInitialValue -0x80000000
 
+// 调度器上下文相关常量
+#define SchedulerContextObjectOffset 0x98
+#define SchedulerContextProcessingOffset 0x50
+
+// 属性缓冲区相关常量
+#define PropertyBufferCounterOffset 0x28
+#define PropertyBufferCapacityOffset 0x2c
+#define PropertyBufferSizeOffset 0x30
+#define PropertyBufferStatusOffset 0x34
+#define PropertyBufferActiveOffset 0x2c
+
+// 配置缓冲区相关常量
+#define ConfigBufferPrimaryOffset 0x50
+#define ConfigBufferSecondaryOffset 0x29
+#define ConfigBufferTertiaryOffset 0x28
+
+// 上下文缓冲区相关常量
+#define ContextBufferStatusOffset 0x29
+#define ContextBufferDataOffset 0x28
+
+// 进程上下文相关常量
+#define ProcessContextObjectOffset 0x98
+
 // CONCAT宏的语义化定义
 #define CombineValidationContextAndParam CONCAT44
 #define CombineParameterAndValidationRegisters CONCAT44
