@@ -58136,7 +58136,7 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
   void* SystemResourceStatusFlag;
   char SystemCharacter1;
   char SystemCharacter2;
-  char cStack_26;
+  char SystemCharacter3;
   ulong long SystemMaxOperationCount;
   
   ThreadContextFlag = 0xfffffffffffffffe;
@@ -58192,7 +58192,7 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
       (**(code **)(*SystemResourceManager + 0x38))(SystemResourceManager);
       ValidateMemoryAllocator(&memoryAllocationBuffer);
       if (memoryAllocationEnd != (ulong long *)0x0) {
-        if (cStack_26 != '\0') {
+        if (SystemCharacter3 != '\0') {
           ProcessMemoryAllocation(memoryAllocationBuffer);
         }
         CleanupSystemResourceEncryption(&SystemEncryptionKey);
@@ -58242,7 +58242,7 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
   uint32_t SystemProcessFlags70;
   uint32_t StackUnsignedValue6C;
   void*2 EncryptionValue68;
-  uint8_t uStack_66;
+  uint8_t SystemByteFlag1;
   uint32_t StackUnsignedValue64;
   uint8_t SystemThreadContext;
   void* SystemProcessFlags58;
@@ -58274,7 +58274,7 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
     SystemProcessFlags70 = 0;
     uStack_6c = 0xffffffff;
     EncryptionValue68 = 1;
-    uStack_66 = 0;
+    SystemByteFlag1 = 0;
     uStack_64 = 0xffffffff;
     SystemThreadContext = 1;
     SystemProcessFlags58 = 0;
