@@ -17599,8 +17599,17 @@ uint8_t WriteValidationContextData(int64_t objectContext, uint32_t *validationCo
 
 
 
- 9fe0(int64_t objectContext,uint32_t *validationContext)
-9fe0(int64_t objectContext,uint32_t *validationContext)
+ /**
+ * 处理资源属性集合
+ * 
+ * 该函数处理资源属性集合，包括资源属性获取和验证。
+ * 它遍历资源属性并执行相应的操作。
+ * 
+ * @param objectContext 对象上下文，包含资源和处理环境
+ * @param validationContext 验证上下文指针，包含验证信息
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+uint8_t ProcessResourcePropertySet(int64_t objectContext, uint32_t *validationContext)
 
 {
   uint ResourceHash;
