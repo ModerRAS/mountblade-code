@@ -58503,7 +58503,7 @@ LAB_180077879:
                 }
                 UNLOCK();
                 if (IsOperationComplete) {
-                  FUN_1800e94a0(HashNodeData,SystemCounter << 9);
+                  ProcessSystemHashNodeData(HashNodeData,SystemCounter << 9);
                   LOCK();
                   *(uint8_t *)((long long)HashNodeData + (long long)SystemCounter + 0x808) = 0;
                   UNLOCK();
@@ -58617,7 +58617,7 @@ LAB_180077879:
               HashEntryPointer2 = StackBuffer1;
               HashNodeData2 = *(uint **)(StackPointer1 + 10);
             }
-            FUN_180080e90(HashNodeData2 + 0xce2,HashEntryPointer2,MemoryOffsetArray);
+            ProcessSystemMemoryAllocation(HashNodeData2 + 0xce2,HashEntryPointer2,MemoryOffsetArray);
             AdditionalParameter = FloatPointer1;
             ConfigurationFlag = StackValue1;
           }
@@ -58667,7 +58667,7 @@ LAB_180077879:
       fStack_8c = floatValue4 * InterpolationParam4 + BaseValue * RatioValue + floatValue1 * ResultValue2 + AdditionalParameter[0xf];
       AdditionalParameter = &fStack_c8;
     }
-    FUN_180085190(&EncryptionOffset1,ConfigurationDataPointer + 0xc,*(uint8_t *)(SystemResourceManager + 0xf7),AdditionalParameter);
+    InitializeSystemEncryptionParameters(&EncryptionOffset1,ConfigurationDataPointer + 0xc,*(uint8_t *)(SystemResourceManager + 0xf7),AdditionalParameter);
     ResourceHash = ConfigurationDataPointer[0x6f6];
     SystemCounter = *(int *)(SystemGlobalStatusFlags + 0x224);
     if (((*(byte *)(SystemResourceManager + 0xfd) & 1) == 0) &&

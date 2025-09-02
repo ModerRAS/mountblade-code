@@ -168,6 +168,23 @@
 #define ChecksumSeedValueTIW 0x54494157
 #define ChecksumSeedValueBTIW 0x42494157
 
+// 系统上下文验证相关常量
+#define SystemContextValidationMask -0x565dff77
+#define SystemContextResourceBaseAddress 0x180985054
+#define SystemContextSecurityValidationAddress 0x180c4f450
+
+// 状态标志常量
+#define StatusFlagActive '\x01'
+#define StatusFlagInactive '\x02'
+#define StatusFlagProcessing '\x06'
+
+// 安全验证相关常量
+#define SecurityValidationKeySeed 0x12345678
+
+// 临时变量相关常量
+#define TemporaryVariableInitialValue -0x8000000000000000
+#define TemporarySecondaryVariableInitialValue -0x80000000
+
 // CONCAT宏的语义化定义
 #define CombineValidationContextAndParam CONCAT44
 #define CombineParameterAndValidationRegisters CONCAT44
@@ -14272,7 +14289,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               FloatLoopPointer = (float *)&SystemFloatTemplateActive;
               FloatLoopCounter = 0.0;
               do {
-                floatComparisonResult = *(float *)(ResourceTable + -0x180985054 + (int64_t)FloatLoopPointer);
+                floatComparisonResult = *(float *)(ResourceTable + -SystemContextResourceBaseAddress + (int64_t)FloatLoopPointer);
                 if (FloatLoopCounter != *FloatLoopPointer) {
                   ResourceContextSize = BufferContextSize;
                   ResourceContextFlags = 0;
