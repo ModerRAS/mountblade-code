@@ -323,6 +323,16 @@ void* ThreadSynchronizationExecutionContext;
  * @note 此函数会释放所有系统句柄占用的资源
  * @warning 调用此函数后，所有系统句柄将失效
  */
+/**
+ * @brief 关闭系统句柄
+ * 
+ * 该函数负责关闭系统运行过程中打开的各种句柄
+ * 释放系统资源，清理相关状态
+ * 
+ * @return 无返回值
+ * @note 此函数会关闭所有系统句柄
+ * @warning 调用此函数后，系统句柄将无法再使用
+ */
 void CloseSystemHandle(void);
 
  /**
@@ -8433,18 +8443,18 @@ void UpdateSystemConfigurationAndExecute(int64_t configObject, int64_t SystemCon
 uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int64_t validationContext,uint8_t securityFlags,uint8_t operationMode)
 
 {
-  float validationFloat;
+  float floatValueToValidate;
   uint8_t HashValidationResult;
   int64_t contextPointer;
   uint8_t ObjectContextData;
-  int64_t StackBuffer;
+  int64_t stackBuffer;
   
-  validationFloat = *(float *)(objectContext + 0x18);
-  stackBuffer = CONCAT44(stackBuffer.VectorComponent,validationFloat);
-  if (((uint)validationFloat & 0x7f800000) == 0x7f800000) {
+  floatValueToValidate = *(float *)(objectContext + 0x18);
+  stackBuffer = CONCAT44(stackBuffer.VectorComponent,floatValueToValidate);
+  if (((uint)floatValueToValidate & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  if ((validationFloat < 0.0) || (3.4028235e+38 <= validationFloat)) {
+  if ((floatValueToValidate < 0.0) || (3.4028235e+38 <= floatValueToValidate)) {
     return 0x1f;
   }
   HashValidationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&stackBuffer);
@@ -47006,7 +47016,19 @@ void Unwind_1809052c0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809052f0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 清理资源状态标志位2
+ * 
+ * 该函数负责清理资源数据中的状态标志位2
+ * 并释放相关的系统资源
+ * 
+ * @param objectContext 对象上下文，包含对象相关的状态信息
+ * @param validationContext 验证上下文，包含验证相关的数据和资源
+ * @return 无返回值
+ * @note 此函数用于异常处理时的资源清理
+ * @warning 调用此函数会释放系统资源，调用后资源将不可用
+ */
+void CleanupResourceStateFlag2(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
@@ -47018,7 +47040,19 @@ void Unwind_1809052f0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905320(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 清理资源状态标志位1
+ * 
+ * 该函数负责清理资源数据中的状态标志位1
+ * 并释放相关的系统资源
+ * 
+ * @param objectContext 对象上下文，包含对象相关的状态信息
+ * @param validationContext 验证上下文，包含验证相关的数据和资源
+ * @return 无返回值
+ * @note 此函数用于异常处理时的资源清理
+ * @warning 调用此函数会释放系统资源，调用后资源将不可用
+ */
+void CleanupResourceStateFlag1(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
@@ -47030,7 +47064,19 @@ void Unwind_180905320(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905350(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 重置资源哈希指针状态
+ * 
+ * 该函数负责重置资源哈希指针的状态
+ * 将其重置为系统数据结构模板
+ * 
+ * @param objectContext 对象上下文，包含对象相关的状态信息
+ * @param validationContext 验证上下文，包含验证相关的数据和资源
+ * @return 无返回值
+ * @note 此函数用于异常处理时的资源状态重置
+ * @warning 如果资源哈希指针状态异常，将触发系统紧急退出
+ */
+void ResetResourceHashPointerState(uint8_t objectContext,int64_t validationContext)
 
 {
   uint8_t *resourceHashPointer;
@@ -47049,7 +47095,19 @@ void Unwind_180905350(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905360(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 重置验证上下文资源状态
+ * 
+ * 该函数负责重置验证上下文中的资源状态
+ * 将相关指针重置为系统数据结构模板
+ * 
+ * @param objectContext 对象上下文，包含对象相关的状态信息
+ * @param validationContext 验证上下文，包含验证相关的数据和资源
+ * @return 无返回值
+ * @note 此函数用于异常处理时的验证上下文状态重置
+ * @warning 如果验证上下文状态异常，将触发系统紧急退出
+ */
+void ResetValidationContextResourceState(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0x108) = &SystemResourceHandlerTemplate;
@@ -47065,7 +47123,18 @@ void Unwind_180905360(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905370(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 设置验证上下文数据结构
+ * 
+ * 该函数负责设置验证上下文中的数据结构指针
+ * 将其指向系统数据结构
+ * 
+ * @param objectContext 对象上下文，包含对象相关的状态信息
+ * @param validationContext 验证上下文，包含验证相关的数据和资源
+ * @return 无返回值
+ * @note 此函数用于异常处理时的数据结构设置
+ */
+void SetValidationContextDataStructure(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x108) = &SystemDataStructure;

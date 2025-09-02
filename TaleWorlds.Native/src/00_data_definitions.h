@@ -1111,42 +1111,42 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
 }
   SystemConfigDataBufferPrimary = 0;
   SystemConfigDataBufferSizePrimary = 0x13;
-  strcpy_s(&SystemConfigDataBufferPrimary,64,&SystemConfigDataTemplateCB48,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&SystemConfigDataBufferPrimary,64,&SystemConfigDataTemplateNetwork,StringProcessorFlags,SystemMutexFlags);
   SystemConfigDataPointerPrimary = &SystemMemoryPool;
   SystemConfigDataPointerSecondary = &SystemConfigDataBufferSecondary;
   SystemConfigDataBufferSecondary = 0;
   SystemConfigDataBufferSizeSecondary = 0xd;
-  strcpy_s(&SystemConfigDataBufferSecondary,64,&SystemConfigDataTemplateCB80);
+  strcpy_s(&SystemConfigDataBufferSecondary,64,&SystemConfigDataTemplateAudio);
   SystemConfigDataPointerTertiary = &SystemMemoryPool;
   SystemConfigDataPointerQuaternary = &SystemConfigDataBufferTertiary;
   SystemConfigDataBufferTertiary = 0;
   SystemConfigDataBufferSizeTertiary = 0x17;
-  strcpy_s(&SystemConfigDataBufferTertiary,64,&SystemConfigDataTemplateCB90);
+  strcpy_s(&SystemConfigDataBufferTertiary,64,&SystemConfigDataTemplateVideo);
   SystemConfigDataPointerQuinary = &SystemMemoryPool;
   SystemConfigDataPointerSenary = &SystemConfigDataBufferQuaternary;
   SystemConfigDataBufferQuaternary = 0;
   SystemConfigDataBufferSizeQuaternary = 0xd;
-  strcpy_s(&SystemConfigDataBufferQuaternary,64,&SystemConfigDataTemplateCB60);
+  strcpy_s(&SystemConfigDataBufferQuaternary,64,&SystemConfigDataTemplatePhysics);
   SystemConfigDataPointerSeptenary = &SystemMemoryPool;
   SystemConfigDataPointerOctonary = &SystemConfigBufferPrimary;
   SystemConfigBufferPrimary = 0;
   SystemConfigDataBufferSizeQuinary = 0xc;
-  strcpy_s(&SystemConfigBufferPrimary,64,&SystemConfigDataTemplateCB70);
+  strcpy_s(&SystemConfigBufferPrimary,64,&SystemConfigDataTemplateInput);
   SystemConfigDataPointerNonary = &SystemMemoryPool;
   SystemConfigDataPointerDecenary = &SystemConfigBufferSecondary;
   SystemConfigBufferSecondary = 0;
   SystemConfigDataBufferSizeSenary = 0xc;
-  strcpy_s(&SystemConfigBufferSecondary,64,&SystemConfigDataTemplateCBE0);
+  strcpy_s(&SystemConfigBufferSecondary,64,&SystemConfigDataTemplateRender);
   SystemConfigDataPointerUndenary = &SystemMemoryPool;
   SystemConfigDataPointerDuodenary = &SystemConfigBufferTertiary;
   SystemConfigBufferTertiary = 0;
   SystemConfigDataBufferSizeOctonary = 16;
-  strcpy_s(&SystemConfigBufferTertiary,64,&SystemConfigDataTemplateCBF0);
+  strcpy_s(&SystemConfigBufferTertiary,64,&SystemConfigDataTemplateMemory);
   SystemConfigDataPointerTredecenary = &SystemMemoryPool;
   SystemConfigDataPointerQuattuordecenary = &SystemConfigBufferQuaternary;
   SystemConfigBufferQuaternary = 0;
   SystemConfigDataBufferSizeNonary = 0x1f;
-  strcpy_s(&SystemConfigBufferQuaternary,64,&SystemConfigDataTemplateCBA8);
+  strcpy_s(&SystemConfigBufferQuaternary,64,&SystemConfigDataTemplateThread);
   SystemConfigDataPointerQuindecenary = &SystemMemoryPool;
   SystemConfigDataPointerSexdecenary = &SystemConfigBufferQuinary;
   SystemConfigBufferQuinary = 0;
@@ -1834,7 +1834,7 @@ int InitializeStringProcessorO(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorOFlags;
-  StringProcessorO_Base = &UnknownData1809fcc58;
+  StringProcessorO_Base = &SystemStringDataBase;
   StringProcessorO_BufferPtr = &StringProcessorO_Buffer;
   StringProcessorO_Buffer = 0;
   StringProcessorO_Length = 0x13;
@@ -1852,11 +1852,11 @@ int InitializeStringProcessorP(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorPFlags;
-  StringProcessorP_Base = &UnknownData1809fcc58;
+  StringProcessorP_Base = &SystemStringDataBase;
   StringProcessorP_BufferPtr = &StringProcessorP_Buffer;
   StringProcessorP_Buffer = 0;
   StringProcessorP_Length = 0x14;
-  strcpy_s(&StringProcessorP_Buffer,64,&UnknownData180a22c00,stringProcessorPFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessorP_Buffer,64,&SystemStringDataTemplateP,stringProcessorPFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorP_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1870,11 +1870,11 @@ int InitializeStringProcessorQ(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorQFlags;
-  StringProcessorQ_Base = &UnknownData1809fcc58;
+  StringProcessorQ_Base = &SystemStringDataBase;
   StringProcessorQ_BufferPtr = &StringProcessorQ_Buffer;
   StringProcessorQ_Buffer = 0;
   StringProcessorQ_Length = 0x17;
-  strcpy_s(&StringProcessorQ_Buffer,64,&Data180a22cb0,stringProcessorQFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessorQ_Buffer,64,&SystemStringDataTemplateQ,stringProcessorQFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorQ_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1888,11 +1888,11 @@ int InitializeStringProcessorR(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorRFlags;
-  StringProcessorR_Base = &UnknownData1809fcc58;
+  StringProcessorR_Base = &SystemStringDataBase;
   StringProcessorR_BufferPtr = &StringProcessorR_Buffer;
   StringProcessorR_Buffer = 0;
   StringProcessorR_Length = 0x17;
-  strcpy_s(&StringProcessorR_Buffer,64,&UnknownData180a22c98,stringProcessorRFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessorR_Buffer,64,&SystemStringDataTemplateR,stringProcessorRFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorR_Callback);
   return (CallbackResult != 0) - 1;
 }
