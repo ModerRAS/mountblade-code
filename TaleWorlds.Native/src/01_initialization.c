@@ -25641,7 +25641,7 @@ uint32_t GetSystemResourceStatus(void)
   SystemOperationStatusArray = *(uint8_t (*) [16])
             (*(long long *)(SystemStatusFlagsPointer + 8) + 0xcc +
             (ulong long)(*(uint *)(*(long long *)(SystemStatusFlagsPointer + 8) + 0x13c) & 1) * 0x48);
-  if ((SystemOperationStatusArray._12_4_ != 0) && (SystemOperationStatusArray._8_4_ != 0)) {
+  if ((SystemOperationStatusArray.TertiaryField != 0) && (SystemOperationStatusArray.SecondaryField != 0)) {
     systemDataReference = &SystemGlobalDataReference;
     SystemStackFlagB0 = 0;
     systemOffsetCounter = 0;
@@ -25656,12 +25656,12 @@ uint32_t GetSystemResourceStatus(void)
     ExecuteSystemCommand(&systemDataReference,currentThreadId);
     *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
     systemDataBuffer = currentThreadId;
-    ProcessSystemData(&systemDataReference,SystemOperationStatusArray._8_8_ & 0xffffffff);
+    ProcessSystemData(&systemDataReference,SystemOperationStatusArray.SecondaryExtended & 0xffffffff);
     CalculationFlags = systemDataBuffer + 1;
     ExecuteSystemCommand(&systemDataReference,CalculationFlags);
     *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
     systemDataBuffer = CalculationFlags;
-    ProcessSystemData(&systemDataReference,SystemOperationStatusArray._8_8_ >> 0x20);
+    ProcessSystemData(&systemDataReference,SystemOperationStatusArray.SecondaryExtended >> 0x20);
     presourceAddress = (void* *)CreateSystemObject(SystemCounterBuffer80,&systemDataReference);
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xe30,presourceAddress);
     *presourceAddress = &SystemGlobalDataReference;
@@ -25681,7 +25681,7 @@ uint32_t GetSystemResourceStatus(void)
   }
   localSystemHandle = *(long long *)(ResourceDataOffset + 8);
   SystemOperationStatusArray = *(uint8_t (*) [16])(localSystemHandle + 0xdc + (ulong long)(*(uint *)(localSystemHandle + 0x13c) & 1) * 0x48);
-  if ((SystemOperationStatusArray._12_4_ != 0) && (SystemOperationStatusArray._8_4_ != 0)) {
+  if ((SystemOperationStatusArray.TertiaryField != 0) && (SystemOperationStatusArray.SecondaryField != 0)) {
     SystemStackFlagA8 = &SystemGlobalDataReference;
     SystemConfigurationValue = 0;
     secondarySystemOffsetCounter = 0;
@@ -60004,31 +60004,31 @@ void ProcessSystemResourceManagerStatus(long long SystemResourceManager)
   }
   if (*(long long *)(localMemoryAddress + 0x1b8) == 0) {
 LAB_SystemStatusCheck:
-    isByteValid0 = (*(byte *)(SystemResourceManager + 0xfd) & 2) != 0;
+    IsSystemByteValid = (*(byte *)(SystemResourceManager + 0xfd) & 2) != 0;
   }
   else {
-    unsignedSystemValue9 = *(uint *)(*(long long *)(localMemoryAddress + 0x1b8) + 0x138);
-    if ((unsignedSystemValue9 & 0x20) != 0) {
-      systemStatusFlag = '\0';
+    SystemConfigurationFlag = *(uint *)(*(long long *)(localMemoryAddress + 0x1b8) + 0x138);
+    if ((SystemConfigurationFlag & 0x20) != 0) {
+      SystemStatusFlag = '\0';
       goto LAB_SystemStatusSet;
     }
-    if ((unsignedSystemValue9 & 0x10) == 0) goto LAB_SystemStatusCheck;
-    isByteValid0 = (*(byte *)(SystemResourceManager + 0xfd) & 2) == 0;
+    if ((SystemConfigurationFlag & 0x10) == 0) goto LAB_SystemStatusCheck;
+    IsSystemByteValid = (*(byte *)(SystemResourceManager + 0xfd) & 2) == 0;
   }
-  systemStatusFlag = isByteValid0 + '\x01';
+  SystemStatusFlag = IsSystemByteValid + '\x01';
 LAB_SystemStatusSet:
-  *(char *)(SystemResourceManager + 0xff) = systemStatusFlag;
+  *(char *)(SystemResourceManager + 0xff) = SystemStatusFlag;
   localMemoryAddress = *(long long *)(SystemResourceManager + 0x1b8);
-  unsignedSystemValue9 = *(uint *)(localMemoryAddress + 0x138) & 0x3000;
-  resourceHashValue = 0;
-  if (unsignedSystemValue9 == 0x1000) {
+  SystemConfigurationFlag = *(uint *)(localMemoryAddress + 0x138) & 0x3000;
+  ResourceHashValue = 0;
+  if (SystemConfigurationFlag == 0x1000) {
     *(uint8_t *)(SystemResourceManager + 0xf7) = 1;
   }
   else {
-    if (unsignedSystemValue9 == 0x2000) {
-      resourceHashValue = 2;
+    if (SystemConfigurationFlag == 0x2000) {
+      ResourceHashValue = 2;
     }
-    *(uint8_t *)(SystemResourceManager + 0xf7) = resourceHashValue;
+    *(uint8_t *)(SystemResourceManager + 0xf7) = ResourceHashValue;
   }
   if ((((*(float *)(localMemoryAddress + 0x288) != 0.0) || (*(float *)(localMemoryAddress + 0x28c) != 0.0)) ||
       (*(float *)(localMemoryAddress + 0x290) != 0.0)) || (*(float *)(localMemoryAddress + 0x294) != 0.0)) {
