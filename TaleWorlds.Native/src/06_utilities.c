@@ -69303,7 +69303,7 @@ void UnwindSystemResourceProcessingA(uint8_t ObjectContext,int64_t ValidationCon
  * @note 此函数会处理资源哈希验证结果的回滚操作
  * @warning 如果资源处理失败，系统将执行清理处理程序
  */
-void Unwind_180909670(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -69351,7 +69351,7 @@ void Unwind_180909670(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数会处理资源哈希验证结果的回滚操作
  * @warning 如果资源处理失败，系统将执行清理处理程序
  */
-void Unwind_180909680(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingC(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -69399,7 +69399,7 @@ void Unwind_180909680(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数会处理资源哈希验证结果的回滚操作
  * @warning 如果资源处理失败，系统将执行清理处理程序
  */
-void Unwind_180909690(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingD(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -69435,7 +69435,19 @@ void Unwind_180909690(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809096a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统资源处理回滚函数E
+ * 
+ * 该函数负责系统资源处理的回滚操作
+ * 处理资源哈希验证结果的回滚和资源索引的更新
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会处理资源哈希验证结果的回滚操作
+ * @warning 如果资源处理失败，系统将执行清理处理程序
+ */
+void UnwindSystemResourceProcessingE(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -69471,7 +69483,19 @@ void Unwind_1809096a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809096b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统资源处理回滚函数F
+ * 
+ * 该函数负责系统资源处理的回滚操作
+ * 处理资源哈希验证结果的回滚和资源索引的更新
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会处理资源哈希验证结果的回滚操作
+ * @warning 如果资源处理失败，系统将执行清理处理程序
+ */
+void UnwindSystemResourceProcessingF(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
