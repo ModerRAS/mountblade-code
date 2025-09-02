@@ -12015,7 +12015,7 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
             }
           }
           else if (operationStatusCode == 5) {
-            operationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10),aResourceLowByteFlag);
+            operationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10),ResourceLowByteFlag);
             resourceContext3 = DataHandlerContextPointer;
             if (operationStatusCode == 0) {
               CompressionDataPointer = &CompressionTemplate;
@@ -26305,7 +26305,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
   if ((int)loopCondition != 0) {
     return loopCondition;
   }
-  loopIncrement = ComputeDataChecksum(validationContext,aResourceLowByteFlag,0,0x424e5254);
+  loopIncrement = ComputeDataChecksum(validationContext,ResourceLowByteFlag,0,0x424e5254);
   if ((int)loopCondition != 0) {
     return loopCondition;
   }
@@ -26580,7 +26580,7 @@ SecurityValidationFailed:
   }
   if ((int)loopCondition == 0) {
                     // WARNING: Subroutine does not return
-    CleanupResourceData(validationContext,aResourceLowByteFlag);
+    CleanupResourceData(validationContext,ResourceLowByteFlag);
   }
   return loopCondition;
 }

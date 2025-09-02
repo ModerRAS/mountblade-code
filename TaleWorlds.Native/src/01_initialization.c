@@ -26848,12 +26848,12 @@ bool SystemResourceValidator(long long SystemResourcePointer)
           bVar3 = 0 < systemFlag;
           if (systemFlag < 1) {
             punsignedSystemValue9 = (void* *)punsignedSystemValue8[1];
-            goto LAB_180051f8b;
+            goto LAB_SystemValidation;
           }
         }
         punsignedSystemValue9 = (void* *)*punsignedSystemValue8;
       }
-LAB_180051f8b:
+LAB_SystemValidation:
       pointerToUnsigned10 = punsignedSystemValue8;
       if (bVar3) {
         pointerToUnsigned10 = pointerToUnsigned11;
@@ -39125,7 +39125,7 @@ LAB_18005f0e6:
             (*(long long *)(SystemResourcePointer + 0x60) == *(long long *)(SystemResourcePointer + 0x68))) &&
            (cVar2 = FUN_18005f340(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x60),unsignedSystemValue7,ConfigurationFlag,
                                   0xfffffffffffffffe), cVar2 == '\0')))) ||
-         (localResourceOffset = FUN_18005ff50(*(void* *)(SystemResourcePointer + 0x50)), localResourceOffset == 0)) {
+         (localResourceOffset = GetSystemResourceOffset(*(void* *)(SystemResourcePointer + 0x50)), localResourceOffset == 0)) {
         return 0;
       }
       do {
@@ -65156,22 +65156,31 @@ void CleanupSystemResources(long long SystemResourcePointer,char ConfigurationDa
 
 
 
-// 函数: void FUN_18007ee70(long long SystemResourcePointer)
-void FUN_18007ee70(long long SystemResourcePointer)
+/**
+ * @brief 系统状态检查函数
+ * 
+ * 该函数负责检查系统状态，验证系统配置和资源状态
+ * 用于系统状态监控和验证
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_18007ee70，现已重命名为CheckSystemStatus
+ */
+void CheckSystemStatus(long long SystemResourcePointer)
 
 {
-  int systemStatus;
-  uint unsignedSystemValue2;
-  void* unsignedSystemValue3;
-  int systemIndex;
-  uint unsignedSystemValue5;
-  uint unsignedSystemValue6;
-  int systemOffset;
-  uint unsignedSystemValue8;
-  long long localResourcePointer;
-  long long localAllocationFlags;
-  ulong long unsignedSystemValue11;
-  void* *punsignedSystemValue12;
+  int StatusFlags;
+  uint ResourceCount;
+  void* ResourcePointer;
+  int SystemIndex;
+  uint ConfigurationFlags;
+  uint MemoryFlags;
+  int MemoryOffset;
+  uint ValidationFlags;
+  long long ResourceHandle;
+  long long AllocationContext;
+  ulong long SystemTimestamp;
+  void* *ResourceArray;
   ulong long unsignedSystemValue13;
   ulong long unsignedSystemValue14;
   long long localMemoryPointer5;
