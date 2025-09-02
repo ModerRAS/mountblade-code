@@ -70172,23 +70172,23 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   if ((int)ThreadContextFlag < 0) {
     ThreadContextFlag = (ThreadContextFlag - 1 | 0xfffffff8) + 1;
   }
-  aSystemContextPointer._0_4_ = AudioInterpolationCoeff1 + -1;
-  aSystemContextPointer._4_4_ = AudioInterpolationCoeff2 + -1;
-  aSystemContextPointer._8_4_ = AudioInterpolationCoeff3 + -1;
-  aSystemContextPointer._12_4_ = AudioInterpolationCoeff4 + -1;
-  aSystemOperationStatusFlags._0_4_ = (float)aSystemContextPointer._0_4_;
-  aSystemOperationStatusFlags._4_4_ = (float)aSystemContextPointer._4_4_;
-  aSystemOperationStatusFlags._8_4_ = (float)aSystemContextPointer._8_4_;
-  aSystemOperationStatusFlags._12_4_ = (float)aSystemContextPointer._12_4_;
-  aSystemContextPointer = rcpps(aSystemContextPointer,aSystemOperationStatusFlags);
+  SystemAudioContext._0_4_ = AudioInterpolationCoeff1 + -1;
+  SystemAudioContext._4_4_ = AudioInterpolationCoeff2 + -1;
+  SystemAudioContext._8_4_ = AudioInterpolationCoeff3 + -1;
+  SystemAudioContext._12_4_ = AudioInterpolationCoeff4 + -1;
+  SystemAudioStatusFlags._0_4_ = (float)SystemAudioContext._0_4_;
+  SystemAudioStatusFlags._4_4_ = (float)SystemAudioContext._4_4_;
+  SystemAudioStatusFlags._8_4_ = (float)SystemAudioContext._8_4_;
+  SystemAudioStatusFlags._12_4_ = (float)SystemAudioContext._12_4_;
+  SystemAudioContext = rcpps(SystemAudioContext,SystemAudioStatusFlags);
   floatValue24 = 0.0;
   floatValue28 = 0.0;
   floatValue30 = 0.0;
-  InterpolationFactorV = 0.0;
-  MagnitudeSquared = aSystemContextPointer._0_4_;
-  ResultValue2 = aSystemContextPointer._4_4_;
-  floatValue21 = aSystemContextPointer._8_4_;
-  floatValue22 = aSystemContextPointer._12_4_;
+  AudioInterpolationFactorV = 0.0;
+  AudioMagnitudeSquared = SystemAudioContext._0_4_;
+  AudioProcessingResult2 = SystemAudioContext._4_4_;
+  AudioSignal21 = SystemAudioContext._8_4_;
+  AudioSignal22 = SystemAudioContext._12_4_;
   floatValue29 = 0.0;
   floatValue31 = 0.0;
   floatValue32 = 0.0;
