@@ -10158,7 +10158,7 @@ Label_18060bbae:
 }
   SystemModuleConfigFlag14 = 0;
   GetSystemConfigurationTemplate(GetSystemConfigurationTemplate);
-  ProcessSystemConfigurationData(&UNK_18064ffc0);
+  ProcessSystemConfigurationData(&SystemDataConfigurationBuffer);
   LongValue = 0;
   SystemConfigFunctionPointer1 = GetSystemConfigurationData;
   pBufferSize = (uint32_t *)&SystemModuleConfigDataBuffer;
@@ -10168,7 +10168,7 @@ Label_18060bbae:
       ProcessBufferSize(pBufferSize);
     }
     if (LongValue != 2) {
-      HandleSystemConfigurationData(&UNK_180a3db60,*(uint64_t *)(pBufferSize + 4),*pBufferSize);
+      HandleSystemConfigurationData(&SystemDatabaseConfiguration,*(uint64_t *)(pBufferSize + 4),*pBufferSize);
     }
     LongValue = LongValue + 1;
     pBufferSize = pBufferSize + 6;
@@ -11730,7 +11730,7 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
 }
   SystemModuleConfigFlag14 = 0;
   GetSystemConfigurationTemplate(GetSystemConfigurationTemplate);
-  ProcessSystemConfigurationData(&UNK_18064ffc0);
+  ProcessSystemConfigurationData(&SystemDataConfigurationBuffer);
   LongIndex = 0;
   SystemConfigFunctionPointer1 = GetSystemConfigurationData;
   pMemoryAddress = (uint32_t *)&SystemModuleConfigDataBuffer;
@@ -11740,7 +11740,7 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
       ProcessBufferSize(pMemoryAddress);
     }
     if (LongIndex != 2) {
-      HandleSystemConfigurationData(&UNK_180a3db60,*(uint64_t *)(pMemoryAddress + 4),*pMemoryAddress);
+      HandleSystemConfigurationData(&SystemDatabaseConfiguration,*(uint64_t *)(pMemoryAddress + 4),*pMemoryAddress);
     }
     LongIndex = LongIndex + 1;
     pMemoryAddress = pMemoryAddress + 6;

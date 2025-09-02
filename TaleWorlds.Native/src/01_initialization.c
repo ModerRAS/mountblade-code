@@ -61554,8 +61554,16 @@ void ProcessSystemResourceConfiguration(long long SystemResourceManager,long lon
 
 
 
-// 函数: void FUN_180079284(long long SystemResourceManager)
-void FUN_180079284(long long SystemResourceManager)
+/**
+ * @brief 处理系统资源验证和计算
+ * 
+ * 对系统资源进行验证操作，包括浮点数计算、资源分配和状态检查。
+ * 该函数处理复杂的资源管理操作，包括插值计算、内存分配和资源状态更新。
+ * 
+ * @param SystemResourceManager 资源管理器指针，包含要处理的系统资源
+ * @return 无返回值
+ */
+void ProcessSystemResourceValidation(long long SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
