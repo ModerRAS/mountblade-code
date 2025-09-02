@@ -89749,7 +89749,29 @@ void ExecuteAdvancedResourceCleanupOperation2(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_180911040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统资源清理处理器 - 高级清理操作3
+ * 
+ * 功能描述：
+ * 该函数负责执行第三组高级系统资源清理操作，处理特定的资源处理器集合
+ * 并确保所有相关资源都被正确释放和重置。
+ * 
+ * 参数说明：
+ * @param ObjectContext 对象上下文，标识要清理的对象
+ * @param ValidationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 此函数会处理第三组系统资源处理器集合
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void ExecuteAdvancedResourceCleanupOperation3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -89777,7 +89799,29 @@ void Unwind_180911040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180911060(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统资源清理处理器 - 高级清理操作4
+ * 
+ * 功能描述：
+ * 该函数负责执行第四组高级系统资源清理操作，处理不同的资源处理器集合
+ * 并确保所有相关资源都被正确释放和重置。
+ * 
+ * 参数说明：
+ * @param ObjectContext 对象上下文，标识要清理的对象
+ * @param ValidationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 此函数会处理第四组系统资源处理器集合
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void ExecuteAdvancedResourceCleanupOperation4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
