@@ -13555,9 +13555,9 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
               ResourceOperationParameter = &SystemResourceTemplateDatabase;
               ResourceDataLength = BufferContextSize;
               ResourceHandlerParam = 0;
-              SystemDataPointer = (**(code **)*StackPointer190)(StackPointer190);
-              StackVariablee8 = *(uint8_t *)(*(int64_t *)(SystemDataPointer + 0x90) + LongValue8 * 8);
-              StackVariableec = 0;
+              SystemDataPointer = (**(code **)*ResourceHashStackPointer)(ResourceHashStackPointer);
+              ResourceValidationStatus = *(uint8_t *)(*(int64_t *)(SystemDataPointer + 0x90) + ResourceContextDataPointer * 8);
+              ResourceValidationFlag = 0;
               if (*(int *)(ResourceIndex + 0x58) < 1) {
                 ResourceHashPointer2 = &ResourceHashTemplate;
               }
