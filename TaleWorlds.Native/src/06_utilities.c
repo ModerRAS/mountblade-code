@@ -658,8 +658,10 @@ void* SystemSynchronizationBuffer;
 void* SystemLockManagementBuffer;
 void* SystemSemaphoreControlBuffer;
 void* SystemMutexHandleBuffer;
-void* SystemConditionVariableBuffer;
-void* SystemBarrierManagerBuffer;
+// 条件变量缓冲区 - 缓存条件变量数据
+void* ConditionVariableBuffer;
+// 屏障管理器缓冲区 - 缓存屏障管理器数据
+void* BarrierManagerBuffer;
 void* MemoryPoolBuffer;
 void* TaskExecutionQueueBuffer;
 void* StackManagerBuffer;
@@ -682,11 +684,14 @@ void* SystemThreadControlTable;
 void* SystemEventDispatcherTable;
 void* SystemTimerReferenceTable;
 void* SystemSynchronizationTable;
-void* SystemLockManagerTable;
+// 锁管理器表 - 管理锁管理器数据表
+void* LockManagerTable;
 void* SystemSemaphoreControlTable;
 void* SystemMutexHandleTable;
-void* SystemConditionVariableTable;
-void* SystemBarrierManagerTable;
+// 条件变量表 - 管理条件变量数据表
+void* ConditionVariableTable;
+// 屏障管理器表 - 管理屏障管理器数据表
+void* BarrierManagerTable;
 void* MemoryPoolTable;
 void* TaskManagementQueueTable;
 void* StackManagerTable;
@@ -809,7 +814,8 @@ void* SystemLogMessageBuffer;
 void* SystemProfilerSampleBuffer;
 void* SystemMemoryPageBuffer;
 void* SystemThreadWorkItemBuffer;
-void* SystemEventHandlerSlotBuffer;
+// 事件处理器槽缓冲区 - 缓存事件处理器槽数据
+void* EventHandlerSlotBuffer;
 void* SystemKernelCallBuffer;
 
 /**
@@ -927,14 +933,20 @@ void* CheckResourceTableStatus(void* tablePointer, uint32_t checkType);
 
 void* SystemThreadConfigurationTable;
 void* SystemProcessControlTable;
-void* SystemEventHandlerSlotTable;
-void* SystemTimerManagerTable;
+// 事件处理器槽表 - 管理事件处理器槽数据表
+void* EventHandlerSlotTable;
+// 定时器管理器表 - 管理定时器管理器数据表
+void* TimerManagerTable;
 void* SystemSyncControlTable;
-void* SystemLockManagerTable;
-void* SystemSemaphoreManagerTable;
-void* SystemMutexManagerTable;
+// 锁管理器表 - 管理锁管理器数据表
+void* LockManagerTable;
+// 信号量管理器表 - 管理信号量管理器数据表
+void* SemaphoreManagerTable;
+// 互斥量管理器表 - 管理互斥量管理器数据表
+void* MutexManagerTable;
 void* SystemConditionManagerTable;
-void* SystemBarrierManagerTable;
+// 屏障管理器表 - 管理屏障管理器数据表
+void* BarrierManagerTable;
 void* SystemPoolManagerTable;
 void* SystemQueueManagerTable;
 void* StackManagerTable;
@@ -2353,7 +2365,8 @@ uint8_t ResourceSystemPrimaryData;
 uint8_t ResourceSystemSecondaryData;
 uint8_t ProcessManagerData;
 uint8_t SystemSecurityManagerData;
-uint8_t SystemNetworkManagerData;
+// 网络管理器数据 - 存储网络管理器相关数据
+uint8_t NetworkManagerData;
 uint8_t SystemAudioManagerData;
 uint8_t ResourceSystemState;
 uint8_t SystemInputManagerData;
@@ -2731,7 +2744,8 @@ uint8_t ConditionVariable;
 uint8_t EventObject;
 // 定时器管理器 - 管理定时器
 uint8_t TimerManager;
-uint8_t SystemClockManager;
+// 时钟管理器 - 管理系统时钟
+uint8_t ClockManager;
 uint8_t SystemPerformanceCounter;
 uint8_t SystemProfiler;
 uint8_t SystemTracer;
@@ -3029,7 +3043,8 @@ uint8_t SystemEventHandlerCustomSeventyTwo;
 uint8_t SystemEventHandlerCustomSeventyThree;
 uint8_t SystemEventHandlerCustomSeventyFour;
 uint8_t SystemEventHandlerCustomSeventyFive;
-uint8_t SystemEventHandlerSlotNinety;
+// 事件处理器槽九十 - 第九十号事件处理器槽
+uint8_t EventHandlerSlotNinety;
 uint8_t SystemEventHandlerSlotNinetyOne;
 uint8_t SystemEventHandlerSlotNinetyTwo;
 uint8_t SystemEventHandlerSlotNinetyThree;
