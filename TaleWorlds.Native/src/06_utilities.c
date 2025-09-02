@@ -5017,34 +5017,34 @@ uint8_t InitializeObjectHandleExtended(int64_t ObjectContext)
 uint8_t InitializeObjectHandleFinal(void)
 
 {
-  int64_t InputParameterValue;
-  uint8_t ResourceHash;
-  int *OperationResultPointer;
-  int64_t SystemExecutionPointer;
-  uint32_t *HashValidationResultAddress;
-  uint ArrayStepSize;
-  uint64_t ContextHashValidationResult;
-  int64_t StackBufferPointer;
-  uint64_t LoopCounter;
-  int64_t ResourceValidationStackBuffer;
+  uint64_t ObjectHandleIdentifier;
+  uint8_t ResourceValidationResult;
+  int *SystemStatusPointer;
+  int64_t SystemExecutionContext;
+  uint32_t *HashValidationResultPointer;
+  uint ResourceProcessingStep;
+  uint64_t ContextValidationStatus;
+  int64_t ResourceStackBuffer;
+  uint64_t ProcessingIterator;
+  int64_t ResourceValidationContext;
   
-  LoopCounter = 0;
-  ContextValidationStatusCode = InputParameter - 8;
-  if (InputParameter == 0) {
-    ContextValidationStatusCode = loopCounter;
+  ProcessingIterator = 0;
+  ContextValidationStatus = ObjectHandleIdentifier - 8;
+  if (ObjectHandleIdentifier == 0) {
+    ContextValidationStatus = ProcessingIterator;
   }
-  PackageValidationStatusCodePointer = (uint32_t *)(SystemExecutionPointer + SystemExecutionContextPrimaryOffset + (int64_t)*(int *)(SystemExecutionPointer + SystemExecutionContextSecondaryOffset) * 8);
-  OperationStatusCodePointer = (int *)(SystemExecutionPointer + SystemExecutionContextPrimaryOffset);
-  if (0 < *(int *)(SystemExecutionPointer + SystemExecutionContextSecondaryOffset)) {
+  PackageValidationStatusCodePointer = (uint32_t *)(SystemExecutionContext + SystemExecutionContextPrimaryOffset + (int64_t)*(int *)(SystemExecutionContext + SystemExecutionContextSecondaryOffset) * 8);
+  OperationStatusCodePointer = (int *)(SystemExecutionContext + SystemExecutionContextPrimaryOffset);
+  if (0 < *(int *)(SystemExecutionContext + SystemExecutionContextSecondaryOffset)) {
     do {
-      if ((*OperationResultPointer != SystemValidationCodeA) || (OperationResultPointer[1] != SystemValidationCodeB)) {
-        ResourceValidationStackBuffer = 0;
-        ResourceHash = ValidateResourceContext(ContextHashValidationResult,(int *)(SystemExecutionPointer + SystemExecutionContextPrimaryOffset) + (int64_t)(int)loopCounter * 2,
+      if ((*SystemStatusPointer != SystemValidationCodeA) || (SystemStatusPointer[1] != SystemValidationCodeB)) {
+        ResourceValidationContext = 0;
+        ResourceValidationResult = ValidateResourceContext(ContextValidationStatus,(int *)(SystemExecutionContext + SystemExecutionContextPrimaryOffset) + (int64_t)(int)ProcessingIterator * 2,
                               &ObjectStackBufferTertiary);
-        if ((int)ResourceHash != 0) {
-          return ResourceHash;
+        if ((int)ResourceValidationResult != 0) {
+          return ResourceValidationResult;
         }
-        if (*(int64_t *)(ResourceValidationStackBuffer + 8) == 0) {
+        if (*(int64_t *)(ResourceValidationContext + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
         ResourceHash = ProcessResourceOperation(*(int64_t *)(ResourceValidationStackBuffer + 8),*HashValidationResultAddress,
@@ -64086,7 +64086,7 @@ void RegisterSystemResourceReleaseHandlerExtended5(uint8_t ObjectContext,int64_t
 void InitializeSystemDataPointer(void)
 
 {
-  SystemDataPointer009 = &SystemDataStructure;
+  SystemDataNonaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -66517,7 +66517,7 @@ void SystemResourceReleaseHandler(void)
 void SystemDataStructureInitializationHandler(void)
 
 {
-  SystemDataPointer011 = &SystemDataStructure;
+  SystemDataDenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -67248,7 +67248,7 @@ void ProcessResourceTable(uint8_t ObjectContext, int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ResourcePointer = (uint8_t *)(ResourceIndex + -0xa0);
-  *ResourcePointer = &SystemDataPointer001;
+  *ResourcePointer = &SystemDataPrimaryPointer;
   if ((*(int64_t *)(ResourceIndex + -0x20) != 0) && (**(int64_t **)(ResourceIndex + -0x88) == ResourceIndex + -0x30)) {
     ResourceHash = *(uint8_t *)(ResourceIndex + -0x10);
     ResourceTable = *(int64_t *)(ResourceIndex + -0x18);
@@ -72384,7 +72384,7 @@ void Unwind_18090a6a0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090a6d0(void)
 
 {
-  SystemDataPointer012 = &SystemDataStructure;
+  SystemDataUndenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98799,7 +98799,7 @@ void ReleaseMemoryResources(uint8_t memoryPointer, uint8_t resourceHandle, uint8
 void InitializeSystemDataStructureS(void)
 
 {
-  SystemDataPointer009 = &SystemDataStructure;
+  SystemDataNonaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98860,7 +98860,7 @@ void InitializeSystemDataStructureU(void)
   }
   SystemResourceStatusFlag001 = 0;
   SystemResourceCleanupFlag001 = 0;
-  SystemDataPointer011 = &SystemDataStructure;
+  SystemDataDenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -98886,7 +98886,7 @@ void InitializeSystemDataStructureV(void)
   }
   SystemResourceStatusFlag002 = 0;
   SystemResourceCleanupFlag002 = 0;
-  SystemDataPointer012 = &SystemDataStructure;
+  SystemDataUndenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -99937,7 +99937,7 @@ void InitializeSystemDataStructureBQ(void)
 void InitializeSystemDataStructureBQ(void)
 
 {
-  SystemDataPointer009 = &SystemDataStructure;
+  SystemDataNonaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -99977,7 +99977,7 @@ void InitializeSystemDataStructureBS(void)
 void InitializeSystemDataStructureBS(void)
 
 {
-  SystemDataPointer011 = &SystemDataStructure;
+  SystemDataDenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -99997,7 +99997,7 @@ void InitializeSystemDataStructureBT(void)
 void InitializeSystemDataStructureBT(void)
 
 {
-  SystemDataPointer012 = &SystemDataStructure;
+  SystemDataUndenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -100017,7 +100017,7 @@ void InitializeSystemDataStructureBU(void)
 void InitializeSystemDataStructureBU(void)
 
 {
-  SystemDataPointer013 = &SystemDataStructure;
+  SystemDataDuodenaryPointer = &SystemDataStructure;
   return;
 }
 
@@ -100037,7 +100037,7 @@ void InitializeSystemDataStructureBV(void)
 void InitializeSystemDataStructureBV(void)
 
 {
-  SystemDataPointer014 = &SystemDataStructure;
+  SystemDataTredecenaryPointer = &SystemDataStructure;
   return;
 }
 
