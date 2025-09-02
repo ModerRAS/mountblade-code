@@ -11763,7 +11763,7 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   SystemConfigFlag6 = 1;
   if (SystemConfigFlag7 == '\0') {
     SystemConfigFlag7 = '\x01';
-    BufferSize = FlsAlloc(&UNK_18064f970);
+    BufferSize = FlsAlloc(&SystemFlsConfigurationBuffer);
     SystemConfigBufferSize1 = BufferSize;
     *(uint64_t *)
      (*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x10) =
