@@ -60041,16 +60041,16 @@ void InitializeSystemDataPointer(void)
 
 
 
-void Unwind_1809085b0(void)
+void UnwindSystemDataInitialization(void)
 
 {
-  SystemDataPointer010 = &SystemDataStructure;
+  SystemDataPointer = &SystemDataStructure;
   return;
 }
 
 
 
-void Unwind_1809085c0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int ProcessingResult;
@@ -69999,7 +69999,7 @@ void Unwind_18090c070(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindResourceDataTransfer(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(ValidationContext + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x10),
@@ -70009,7 +70009,7 @@ void Unwind_18090c080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c090(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindResourceDataValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(ValidationContext + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x10),
@@ -70019,7 +70019,7 @@ void Unwind_18090c090(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c0a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void UnwindResourceDataProcessing(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(ValidationContext + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x40) + 0x10),
@@ -70029,7 +70029,7 @@ void Unwind_18090c0a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c0b0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemPointerReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x88) = &SystemDataStructure;
@@ -70038,7 +70038,7 @@ void Unwind_18090c0b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c0c0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemContextPointerReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x120) = &SystemDataStructure;
