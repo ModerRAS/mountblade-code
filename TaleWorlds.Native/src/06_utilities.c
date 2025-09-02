@@ -43867,7 +43867,21 @@ void ReleaseSystemResourceIndexExtended(uint8_t objectContext,int64_t validation
 
 
 
-void Unwind_180904940(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 关闭系统句柄
+ * 
+ * 该函数负责关闭系统句柄，释放系统资源
+ * 确保系统句柄在不再使用时正确关闭
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 句柄关闭失败时可能会触发系统错误
+ * 
+ * 原始函数名为Unwind_180904940，现已重命名为CloseSystemHandle
+ */
+void CloseSystemHandle(uint8_t objectContext,int64_t validationContext)
 
 {
   CloseHandle(*(uint8_t *)(*(int64_t *)(validationContext + 0x40) + 0x68));
