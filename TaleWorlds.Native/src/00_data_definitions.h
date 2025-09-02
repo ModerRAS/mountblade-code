@@ -1438,11 +1438,11 @@ int InitializeMultiStringProcessorSystem(void)
   strcpy_s(&GlobalStringProcessorZ_Buffer,0x80,&StringProcessorDataTemplateZ);
   
   // 初始化字符串处理器AA
-  g_stringProcessorAA_Base = &StringProcessorDataBaseAA;
-  g_stringProcessorAA_BufferPtr = &g_stringProcessorAA_Buffer;
-  g_stringProcessorAA_Buffer = 0;
-  g_stringProcessorAA_Length = 0xc;
-  strcpy_s(&g_stringProcessorAA_Buffer,0x80,&StringProcessorDataTemplateAA);
+  GlobalStringProcessorAA_Base = &StringProcessorDataBaseAA;
+  GlobalStringProcessorAA_BufferPtr = &GlobalStringProcessorAA_Buffer;
+  GlobalStringProcessorAA_Buffer = 0;
+  GlobalStringProcessorAA_Length = 0xc;
+  strcpy_s(&GlobalStringProcessorAA_Buffer,0x80,&StringProcessorDataTemplateAA);
   
   // 初始化字符串处理器AB
   g_stringProcessorAB_Base = &StringProcessorDataBaseAB;
@@ -1452,11 +1452,11 @@ int InitializeMultiStringProcessorSystem(void)
   strcpy_s(&g_stringProcessorAB_Buffer,0x80,&StringProcessorDataTemplateAB);
   
   // 初始化字符串处理器AC
-  g_stringProcessorAC_Base = &StringProcessorDataBaseAC;
-  g_stringProcessorAC_BufferPtr = &g_stringProcessorAC_Buffer;
-  g_stringProcessorAC_Buffer = 0;
-  g_stringProcessorAC_Length = 0x11;
-  strcpy_s(&g_stringProcessorAC_Buffer,0x80,&StringProcessorDataTemplateAC);
+  GlobalStringProcessorAC_Base = &StringProcessorDataBaseAC;
+  GlobalStringProcessorAC_BufferPtr = &GlobalStringProcessorAC_Buffer;
+  GlobalStringProcessorAC_Buffer = 0;
+  GlobalStringProcessorAC_Length = 0x11;
+  strcpy_s(&GlobalStringProcessorAC_Buffer,0x80,&StringProcessorDataTemplateAC);
   
   CallbackResult = RegisterSystemCallback(InitializeMultiStringProcessorSystem_Callback);
   return (CallbackResult != 0) - 1;
@@ -1641,11 +1641,11 @@ int InitializeStringProcessorAD(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorADFlags;
-  g_stringProcessorAD_Base = &StringProcessorADDataTemplate;
-  g_stringProcessorAD_BufferPtr = &g_stringProcessorAD_Buffer;
-  g_stringProcessorAD_Buffer = 0;
-  g_stringProcessorAD_Length = 9;
-  strcpy_s(&g_stringProcessorAD_Buffer,0x20,&StringProcessorADTemplate,stringProcessorADFlags,SystemMutexFlags);
+  GlobalStringProcessorAD_Base = &StringProcessorADDataTemplate;
+  GlobalStringProcessorAD_BufferPtr = &GlobalStringProcessorAD_Buffer;
+  GlobalStringProcessorAD_Buffer = 0;
+  GlobalStringProcessorAD_Length = 9;
+  strcpy_s(&GlobalStringProcessorAD_Buffer,0x20,&StringProcessorADTemplate,stringProcessorADFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAD_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1665,11 +1665,11 @@ int InitializeStringProcessorAE(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorAEFlags;
-  g_stringProcessorAE_Base = &StringProcessorAEDataTemplate;
-  g_stringProcessorAE_BufferPtr = &g_stringProcessorAE_Buffer;
-  g_stringProcessorAE_Buffer = 0;
-  g_stringProcessorAE_Length = 0x13;
-  strcpy_s(&g_stringProcessorAE_Buffer,0x40,&StringProcessorAETemplate,stringProcessorAEFlags,SystemMutexFlags);
+  GlobalStringProcessorAE_Base = &StringProcessorAEDataTemplate;
+  GlobalStringProcessorAE_BufferPtr = &GlobalStringProcessorAE_Buffer;
+  GlobalStringProcessorAE_Buffer = 0;
+  GlobalStringProcessorAE_Length = 0x13;
+  strcpy_s(&GlobalStringProcessorAE_Buffer,0x40,&StringProcessorAETemplate,stringProcessorAEFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAE_Callback);
   return (CallbackResult != 0) - 1;
 }
