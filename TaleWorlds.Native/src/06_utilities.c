@@ -8971,8 +8971,8 @@ uint8_t ProcessParameterizedFloatComparison(int64_t ObjectContext, int64_t Valid
   
   PrimaryOperationParameter = *(uint32_t *)(ObjectContext + 0x10);
   SecondaryOperationParameter = *(uint32_t *)(ObjectContext + 0x14);
-  operationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-  contextFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
+  OperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
+  ContextFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
   SystemContextPointer = (**(code **)(**(int64_t **)(ValidationContext + 800) + 600))
                     (*(int64_t **)(ValidationContext + 800),&PrimaryOperationParameter,1);
   if ((SystemContextPointer == 0) || (*(int64_t *)(SystemContextPointer + 0x2e8) == 0)) {
@@ -9008,8 +9008,8 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int
   
   PrimaryOperationParameter = *(uint32_t *)(ObjectContext + 0x10);
   SecondaryOperationParameter = *(uint32_t *)(ObjectContext + 0x14);
-  operationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-  contextFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
+  OperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
+  ContextFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
   SystemContextPointer = (**(code **)(**(int64_t **)(ValidationContext + 800) + 600))
                     (*(int64_t **)(ValidationContext + 800),&PrimaryOperationParameter,1);
   if ((SystemContextPointer == 0) || (*(int64_t *)(SystemContextPointer + 0x2e8) == 0)) {
@@ -10071,6 +10071,7 @@ int ProcessDataWithValidator(int64_t ObjectContext, int64_t ValidationContext, i
 int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationContext,int dataLength)
 
 {
+  void* StringProcessingTemplate;
     
   int DataFormatValidationResult = ValidateDataFormat(ValidationContext,dataLength,*(uint32_t *)(ObjectContext + 0x10));
   int StringProcessingResult = ProcessStringOperation(ValidationContext + DataFormatValidationResult,dataLength - DataFormatValidationResult,&StringProcessingTemplate);
