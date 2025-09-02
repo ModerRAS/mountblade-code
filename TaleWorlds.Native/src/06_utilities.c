@@ -15592,7 +15592,7 @@ uint8_t ProcessResourceTableIndex(int64_t *ObjectContextParameter,int Validation
     }
     return 0x26;
   }
-LAB_180898e0b:
+Label_180898e0b:
   if ((0 < *(int *)((int64_t)ObjectContextParameter + 0xc)) && (*ObjectContextParameter != 0)) {
                     // WARNING: Subroutine does not return
     ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*ObjectContextParameter,&ResourceTableTemplate,0x100,1);
@@ -15629,7 +15629,7 @@ uint8_t ValidateResourceParameters(uint8_t ObjectContextParameter,int Validation
   
   pValidationStatusCode = (uint16_t *)0x0;
   if (RegisterEDI == 0) {
-LAB_180898e0b:
+Label_180898e0b:
     if ((0 < *(int *)((int64_t)ResourceContextPointer + 0xc)) && (*ResourceContextPointer != 0)) {
                     // WARNING: Subroutine does not return
       ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*ResourceContextPointer,&ResourceTableTemplate,0x100,1);
@@ -15966,7 +15966,7 @@ uint8_t ProcessResourceTableQuery(int64_t *tableContext,uint *queryParam)
     }
     resourceHash = CalculateResourceHash(*ObjectContextParameter,aSecurityValidationContext,1,4,0);
   }
-LAB_1808992a5:
+Label_1808992a5:
   if ((int)resourceHash == 0) {
     *ValidationContextParameter = aSecurityValidationContext[0];
     if (2 < aSecurityValidationContext[0]) {
@@ -16013,7 +16013,7 @@ uint8_t ProcessResourceValidationOperation(int64_t *resourceContext)
     }
     resourceHash = CalculateResourceHash(*ObjectContextParameter,&ObjectStackBufferResource50,1,4,0);
   }
-LAB_1808992a5:
+Label_1808992a5:
   if ((int)resourceHash == 0) {
     *RegisterContext = StackRegisterStorage50;
     if (2 < StackRegisterStorage50) {
@@ -16142,7 +16142,7 @@ uint8_t ProcessResourceTableQueryOperation(uint8_t *tableHandle,int64_t *queryPa
     }
     resourceHash = CalculateResourceHash(*ValidationContextParameter,SystemCommandArray,1,4,0);
   }
-LAB_180899456:
+Label_180899456:
   if ((int)resourceHash == 0) {
     ProcessAudioData(ObjectContextParameter,SystemCommandArray[0]);
     pValidationStatusCode = (uint *)*ObjectContextParameter;
@@ -16194,7 +16194,7 @@ LAB_180899456:
       pValidationStatusCode = (uint *)((int64_t)pValidationResult + resourceTable);
     }
     if (SystemCommandArray[0] != 0) {
-LAB_180899546:
+Label_180899546:
       return 0x1c;
     }
     resourceHash = 0;
@@ -16230,7 +16230,7 @@ LAB_180899546:
     }
     ResourceIndex = CalculateResourceHash(*ObjectContextParameter,aSecurityValidationContext,1,4,0);
   }
-LAB_18089962f:
+Label_18089962f:
   if (ResourceIndex == 0) {
     *ValidationContextParameter = aSecurityValidationContext[0];
   }
@@ -16275,7 +16275,7 @@ uint8_t ProcessResourceDataExtraction(int64_t *resourceContext,int64_t *outputDa
     }
     resourceHash = CalculateResourceHash(*ObjectContextParameter,SystemCommandArray,1,4,0);
   }
-LAB_1808996c5:
+Label_1808996c5:
   if ((int)resourceHash == 0) {
     if (SystemCommandArray[0] < 0) {
       return 0xd;
@@ -18459,7 +18459,7 @@ uint8_t InitializeResourceTableCache(void)
   if ((int)ResourceValidationCode != 0) {
     return ResourceValidationResult;
   }
-LAB_18089ae18:
+Label_18089ae18:
                     // WARNING: Subroutine does not return
   CleanupResourceData();
 }
@@ -18570,7 +18570,7 @@ uint64_t ValidateAndProcessResourceData(void)
     ValidationStatusCode = RegisterEDI;
     if (*ResourceContextPointer != 0) {
       if (ResourceContextPointer[2] == 0) {
-LAB_18089af81:
+Label_18089af81:
         ValidationStatusCode = CalculateResourceHash(*ResourceContextPointer,&ObjectStackBufferResource,RegisterESI,RegisterESI,0);
       }
       else {
@@ -25711,17 +25711,17 @@ uint64_t ValidateAndProcessResourceDataVariantC(void)
   uint configurationFlags;
   uint64_t SecurityHashValue;
   uint StackRegisterStorageB0;
-  uint uStack00000000000000b8;
+  uint StackVariableB8;
   
   SecurityHashValue = 0;
-  uStack00000000000000b8 = 0;
+  StackVariableB8 = 0;
   ResourceValidationCode = LoadResourceData(*ResourceContextPointer,&stack0x000000b8);
   if ((int)ResourceValidationCode != 0) {
     return ResourceValidationResult;
   }
   StackRegisterStorageB0 = 0;
-  LoopIncrement = uStack00000000000000b8 & 1;
-  ContextValidationStatusCode = uStack00000000000000b8 >> 1;
+  LoopIncrement = StackVariableB8 & 1;
+  ContextValidationStatusCode = StackVariableB8 >> 1;
   ResourceValidationCode = SecurityHashValue;
   if (ContextValidationResult != 0) {
     do {
@@ -25772,9 +25772,9 @@ uint64_t ValidateAndProcessResourceDataVariantC(void)
   }
 LAB_18089e447:
   if ((int)ResourceValidationCode == 0) {
-    *(uint *)(SystemContextPointer + 0x4c) = uStack00000000000000b8;
+    *(uint *)(SystemContextPointer + 0x4c) = StackVariableB8;
     ResourceValidationCode = 0xd;
-    if (uStack00000000000000b8 < 7) {
+    if (StackVariableB8 < 7) {
       ResourceValidationCode = SecurityHashValue;
     }
     if ((int)ResourceValidationCode == 0) {
@@ -27973,9 +27973,9 @@ uint64_t ValidateResourceCertificateChain(void)
   uint RegisterESI;
   int64_t *RegisterContext;
   uint32_t StackVariable30;
-  uint32_t uStack0000000000000038;
-  uint16_t uStack000000000000003c;
-  uint16_t uStack000000000000003e;
+  uint32_t StackVariable38;
+  uint16_t StackVariable3C;
+  uint16_t StackVariable3E;
   uint16_t StackVariableA0;
   uint16_t StackVariableA8;
   
@@ -27995,16 +27995,16 @@ uint64_t ValidateResourceCertificateChain(void)
       ResourceValidationCode = RegisterESI;
       if ((*(uint *)(RegisterContext + 8) < 0x5a) &&
          (ResourceValidationCode = 0x1c, *(uint *)(RegisterContext[1] + 0x18) == RegisterESI)) {
-        StackVariable30 = uStack0000000000000038;
+        StackVariable30 = StackVariable38;
         LocalContextData = *RegisterContext;
         ResourceValidationCode = (**(code **)**(uint8_t **)(LocalContextData + 8))
                           (*(uint8_t **)(LocalContextData + 8),&ObjectStackBufferResource,4);
         if (ResourceValidationCode == 0) {
-          StackVariableA0 = uStack000000000000003c;
+          StackVariableA0 = StackVariable3C;
           ResourceValidationCode = (**(code **)**(uint8_t **)(LocalContextData + 8))
                             (*(uint8_t **)(LocalContextData + 8),&stack0x000000a0,2);
           if (ResourceValidationCode == 0) {
-            StackVariableA8 = uStack000000000000003e;
+            StackVariableA8 = StackVariable3E;
             ResourceValidationCode = (**(code **)**(uint8_t **)(LocalContextData + 8))
                               (*(uint8_t **)(LocalContextData + 8),&stack0x000000a8,2);
             if (ResourceValidationCode == 0) {
@@ -28046,9 +28046,9 @@ uint64_t ProcessResourceCertificateSigning(void)
   uint RegisterESI;
   int64_t *RegisterContext;
   uint32_t StackVariable30;
-  uint32_t uStack0000000000000038;
-  uint16_t uStack000000000000003c;
-  uint16_t uStack000000000000003e;
+  uint32_t StackVariable38;
+  uint16_t StackVariable3C;
+  uint16_t StackVariable3E;
   uint16_t StackVariableA0;
   uint16_t StackVariableA8;
   
@@ -28059,16 +28059,16 @@ uint64_t ProcessResourceCertificateSigning(void)
     ResourceValidationCode = RegisterESI;
     if ((*(uint *)(RegisterContext + 8) < 0x5a) &&
        (ResourceValidationCode = 0x1c, *(uint *)(RegisterContext[1] + 0x18) == RegisterESI)) {
-      StackVariable30 = uStack0000000000000038;
+      StackVariable30 = StackVariable38;
       LocalContextData = *RegisterContext;
       ResourceValidationCode = (**(code **)**(uint8_t **)(LocalContextData + 8))
                         (*(uint8_t **)(LocalContextData + 8),&ObjectStackBufferResource,4);
       if (ResourceValidationCode == 0) {
-        StackVariableA0 = uStack000000000000003c;
+        StackVariableA0 = StackVariable3C;
         ResourceValidationCode = (**(code **)**(uint8_t **)(LocalContextData + 8))
                           (*(uint8_t **)(LocalContextData + 8),&stack0x000000a0,2);
         if (ResourceValidationCode == 0) {
-          StackVariableA8 = uStack000000000000003e;
+          StackVariableA8 = StackVariable3E;
           ResourceValidationCode = (**(code **)**(uint8_t **)(LocalContextData + 8))
                             (*(uint8_t **)(LocalContextData + 8),&stack0x000000a8,2);
           if (ResourceValidationCode == 0) {
