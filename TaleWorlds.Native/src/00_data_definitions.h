@@ -8872,7 +8872,7 @@ Label_18060b0e8:
 Label_18060af51:
                                             NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkRequestValidationBuffer1);
                                             if (NetworkRequestStatus == '\0') {
-                                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a640)
+                                              NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkRequestValidationBuffer2)
                                               ;
                                               if (NetworkRequestStatus == '\0') {
                                                 pBufferSize = &SystemBufferSizeBuffer3;
@@ -8979,7 +8979,7 @@ Label_18060ad2d:
                                       if (NetworkRequestStatus != '\0') goto Label_18060b9cb;
                                       NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a5d0);
                                       if (NetworkRequestStatus != '\0') goto Label_18060ad3e;
-                                      NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a5c0);
+                                      NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemBufferSizeBuffer3);
                                       if (NetworkRequestStatus != '\0') goto Label_18060acd8;
                                     }
                                   }
@@ -13458,9 +13458,9 @@ int RegisterSystemModuleD(void);
  * - UNK_180a0c2b8 -> SystemGlobalDataPointer
  * 
  * 网络请求相关：
- * - UNK_180a389f0 -> NetworkRequestStringLogin
- * - UNK_180a38a08 -> NetworkRequestStringAuth
- * - UNK_180a38c28 -> NetworkRequestResultSuccess
+ * - NetworkRequestStringLogin -> NetworkRequestStringLogin
+ * - NetworkRequestStringAuth -> NetworkRequestStringAuth
+ * - NetworkRequestResultSuccess -> NetworkRequestResultSuccess
  * - UNK_180a389d8 -> NetworkRequestStringConnect
  * - UNK_180a38aa8 -> NetworkRequestStringVerify
  * - UNK_180a38ac0 -> NetworkRequestStringValidate
@@ -13502,22 +13502,22 @@ int RegisterSystemModuleD(void);
  * - SystemConfigurationValidationBuffer41 -> SystemConfigurationValidationBuffer41
  * - SystemConfigurationValidationBuffer42 -> SystemConfigurationValidationBuffer42
  * - SystemConfigurationValidationBuffer43 -> SystemConfigurationValidationBuffer43
- * - UNK_180a39fb0 -> SystemConfigurationValidationBuffer44
- * - UNK_180a3ab50 -> SystemConfigurationValidationBuffer45
- * - UNK_180a3ab38 -> SystemConfigurationValidationBuffer46
+ * - SystemConfigurationValidationBuffer44 -> SystemConfigurationValidationBuffer44
+ * - SystemConfigurationValidationBuffer45 -> SystemConfigurationValidationBuffer45
+ * - SystemConfigurationValidationBuffer46 -> SystemConfigurationValidationBuffer46
  * 
  * 网络请求验证缓冲区：
- * - UNK_180a3a650 -> NetworkRequestValidationBuffer1
- * - UNK_180a3a640 -> NetworkRequestValidationBuffer2
- * - UNK_180a3a800 -> NetworkRequestDataBuffer1
- * - UNK_180a3a7a8 -> NetworkRequestDataBuffer2
- * - UNK_180a3a798 -> NetworkRequestDataBuffer3
- * - UNK_180a3a7d0 -> NetworkRequestDataBuffer4
+ * - NetworkRequestValidationBuffer1 -> NetworkRequestValidationBuffer1
+ * - NetworkRequestValidationBuffer2 -> NetworkRequestValidationBuffer2
+ * - NetworkRequestDataBuffer1 -> NetworkRequestDataBuffer1
+ * - NetworkRequestDataBuffer2 -> NetworkRequestDataBuffer2
+ * - NetworkRequestDataBuffer3 -> NetworkRequestDataBuffer3
+ * - NetworkRequestDataBuffer4 -> NetworkRequestDataBuffer4
  * 
  * 系统缓冲区大小缓冲区：
- * - UNK_180a3ac10 -> SystemBufferSizeBuffer1
- * - UNK_180a3abe8 -> SystemBufferSizeBuffer2
- * - UNK_180a3a5c0 -> SystemBufferSizeBuffer3
+ * - SystemBufferSizeBuffer1 -> SystemBufferSizeBuffer1
+ * - SystemBufferSizeBuffer2 -> SystemBufferSizeBuffer2
+ * - SystemBufferSizeBuffer3 -> SystemBufferSizeBuffer3
  * 
  * 系统配置数据缓冲区：
  * - UNK_180a2e2bc -> SystemConfigurationDataBuffer1
