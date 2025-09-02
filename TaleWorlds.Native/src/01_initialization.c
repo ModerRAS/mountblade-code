@@ -44375,7 +44375,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   long long SystemResourceDataOffset;
   uint32_t MemoryBufferAddress;
   void* *SystemResourcePointerF0;
-  long long lStack_e8;
+  long long SystemMemoryAllocationContext;
   uint32_t SystemMemoryAllocatorStatus;
   void* *dataBufferContext;
   void* *pointerUnsignedC8;
@@ -44517,17 +44517,17 @@ SystemIndexCheckPoint:
     ConfigureSystemResources(&pSystemStackFlag,&pUnsignedStackFlag110,&SystemMemoryBufferTemplate1);
     ProcessSystemDataTransfer(&pUnsignedStackFlag110,&SystemResourcePointerF0);
     pUnsignedStackFlag110 = &SystemGlobalDataReference;
-    if (lStack_108 != 0) {
+    if (SystemResourceDataOffset != 0) {
         SystemCleanupFunction();
     }
-    lStack_108 = 0;
+    SystemResourceDataOffset = 0;
     MemoryBufferAddress = 0;
     pUnsignedStackFlag110 = &SystemMemoryAllocatorReference;
     SystemResourcePointerF0 = &SystemGlobalDataReference;
-    if (lStack_e8 != 0) {
+    if (SystemMemoryAllocationContext != 0) {
         SystemCleanupFunction();
     }
-    lStack_e8 = 0;
+    SystemMemoryAllocationContext = 0;
     SystemMemoryAllocatorStatus = 0;
     SystemResourcePointerF0 = &SystemMemoryAllocatorReference;
     SystemMemoryContext = &SystemGlobalDataReference;
@@ -53040,7 +53040,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   uint EncryptionOffset2;
   void* MemoryBufferAddress;
   void* *SystemResourcePointerF0;
-  long long lStack_e8;
+  long long SystemMemoryAllocationContext;
   uint32_t SystemMemoryAllocatorStatus;
   void* *dataBufferContext;
   void* *pointerUnsignedC8;
@@ -53207,10 +53207,10 @@ LAB_1800722f5:
         *(void* *)(resourceCounter + 8) = 0;
         *(void* *)(resourceCounter + 0x18) = 0;
         SystemResourcePointerF0 = &SystemGlobalDataReference;
-        if (lStack_e8 != 0) {
+        if (SystemMemoryAllocationContext != 0) {
             SystemCleanupFunction();
         }
-        lStack_e8 = 0;
+        SystemMemoryAllocationContext = 0;
         SystemMemoryAllocatorStatus = 0;
         SystemResourcePointerF0 = &SystemMemoryAllocatorReference;
       }
@@ -53536,10 +53536,10 @@ LAB_1800729bd:
         }
         ValidateSystemConfiguration(ThreadContextFlag,&SystemResourcePointerF0,SystemOperationStatus8,systemConfigurationParameter);
         SystemResourcePointerF0 = &SystemGlobalDataReference;
-        if (lStack_e8 != 0) {
+        if (SystemMemoryAllocationContext != 0) {
             SystemCleanupFunction();
         }
-        lStack_e8 = 0;
+        SystemMemoryAllocationContext = 0;
         SystemMemoryAllocatorStatus = 0;
         SystemResourcePointerF0 = &SystemMemoryAllocatorReference;
       }
