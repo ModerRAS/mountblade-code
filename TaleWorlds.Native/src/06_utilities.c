@@ -5713,7 +5713,7 @@ int InitializeSystemManager(int64_t ManagerHandle)
  * @param messageQueueHandle 消息队列句柄，用于访问消息队列
  * @param ConfigurationData 配置数据，包含系统配置信息
  */
-void ProcessSystemMessageQueue(int64_t messageQueueHandle, uint8_t ConfigurationData)
+void ProcessMessageQueue(int64_t messageQueueHandle, uint8_t ConfigurationData)
 
 {
   uint8_t validationContext;
