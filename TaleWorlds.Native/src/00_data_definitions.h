@@ -11502,7 +11502,7 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
-      LongCounter = strchr(&UNK_180a3cc04,(int)pcStack_28[ModuleInitializationResult]);
+      LongCounter = strchr(&SystemMemoryManagementBuffer,(int)pcStack_28[ModuleInitializationResult]);
       if (LongCounter != 0) {
         pcStack_28[ModuleInitializationResult] = ' ';
       }
@@ -11587,7 +11587,7 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
-      LongCounter = strchr(&UNK_180a3cc04,(int)pcStack_28[ModuleInitializationResult]);
+      LongCounter = strchr(&SystemMemoryManagementBuffer,(int)pcStack_28[ModuleInitializationResult]);
       if (LongCounter != 0) {
         pcStack_28[ModuleInitializationResult] = ' ';
       }
@@ -11625,7 +11625,7 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
     if (*pcStack_28 != '\0') {
       LongLoop = 0;
       do {
-        LongIndex = strchr(&UNK_180a3cc04,(int)pcStack_28[LongLoop]);
+        LongIndex = strchr(&SystemMemoryManagementBuffer,(int)pcStack_28[LongLoop]);
         if (LongIndex != 0) {
           pcStack_28[LongLoop] = ' ';
         }
@@ -11667,7 +11667,7 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
     if (*pcStack_50 != '\0') {
       LongLoop = 0;
       do {
-        LongIndex = strchr(&UNK_180a3cc04,(int)pcStack_50[LongLoop]);
+        LongIndex = strchr(&SystemMemoryManagementBuffer,(int)pcStack_50[LongLoop]);
         if (LongIndex != 0) {
           pcStack_50[LongLoop] = ' ';
         }

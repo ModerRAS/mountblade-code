@@ -64599,8 +64599,16 @@ LAB_18007b8fd:
 
 
 
-// 函数: void FUN_18007b930(long long *SystemResourceManager)
-void FUN_18007b930(long long *SystemResourceManager)
+/**
+ * @brief 处理系统资源分配
+ * 
+ * 处理系统资源的分配操作，包括内存分配、资源初始化和状态设置。
+ * 该函数负责管理资源的分配流程，确保资源正确分配和初始化。
+ * 
+ * @param SystemResourceManager 资源管理器指针，包含要分配的资源
+ * @return 无返回值
+ */
+void ProcessSystemResourceAllocation(long long *SystemResourceManager)
 
 {
   long long resourceDataIndex;
