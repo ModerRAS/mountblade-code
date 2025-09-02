@@ -25851,8 +25851,8 @@ void SystemCleanupHandler(void)
   ulong long SystemEncryptionKey;
   
   ResourceDataOffset = SystemStatusFlagsPointer;
-  systemFlag178 = 0xfffffffffffffffe;
-  EncryptionValue48 = SystemEncryptionKeyTemplate ^ (ulong long)aunsignedValue208;
+  SystemThreadFlag = 0xfffffffffffffffe;
+  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)aunsignedValue208;
   if (*(void* **)*SystemMemoryBlockStorage == &SystemMemoryBlockTemplatePrimary) {
     systemAvailabilityFlag = *(int *)(SystemStatusFlags + 0xe0) != 0;
   }
@@ -25884,8 +25884,8 @@ void SystemCleanupHandler(void)
   FloatRatioValue = 1.0;
   if (*(int *)(localSystemHandle + 0x1ea0) == 1) {
     SystemOperationStatus = *(int *)(localSystemHandle + 0x1d50);
-    pointerToInteger5 = (int *)GetSystemResourceManager(*(void* *)(SystemStatusFlagsPointer + 8),StackBuffer170);
-    FloatRatioValue = (float)SystemOperationStatus / (float)*pointerToInteger5;
+    SystemResourcePointer = (int *)GetSystemResourceManager(*(void* *)(SystemStatusFlagsPointer + 8),SystemStackBuffer);
+    FloatRatioValue = (float)SystemOperationStatus / (float)*SystemResourcePointer;
     FloatScaleFactor = FloatRatioValue * *(float *)(ResourceDataOffset + 0x234);
     FloatRatioValue = FloatRatioValue * *(float *)(ResourceDataOffset + 0x238);
   }
@@ -25970,8 +25970,8 @@ void SystemCleanupHandler(void)
   *HashBucketNode = 1;
   HashBucketNode = (uint32_t *)CreateSystemNodePointer(ResourceDataOffset + 0xe0,&SystemCallbackDataTable3);
   *HashBucketNode = 1;
-  longValue1d0 = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x3878,8,3);
-    memset(longValue1d0,0,0x3878);
+  SystemResourcePoolPointer = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x3878,8,3);
+    memset(SystemResourcePoolPointer,0,0x3878);
 }
 
 
@@ -28195,15 +28195,15 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
   lStack_1d8 = 0;
   uStack_1d0 = 0;
   localSystemFlags = *SystemResourceManager;
-  SetupSystemMemory(&puStack_168,ConfigurationDataPointer);
-  systemResult = ValidateSystemConfiguration(localSystemFlags,&puStack_168);
-  puStack_168 = &SystemGlobalDataReference;
+  SetupSystemMemory(&SystemResourcePointer,ConfigurationDataPointer);
+  systemResult = ValidateSystemConfiguration(localSystemFlags,&SystemResourcePointer);
+  SystemResourcePointer = &SystemGlobalDataReference;
   if (lStack_160 != 0) {
       SystemCleanupFunction();
   }
   lStack_160 = 0;
   SystemResourceSize = 0;
-  puStack_168 = &SystemMemoryAllocatorReference;
+  SystemResourcePointer = &SystemMemoryAllocatorReference;
   if ((systemResult < 0) ||
      (localSystemFlags = *(long long *)(*SystemResourceManager + 0x888),
      (ulong long)(*(long long *)(*SystemResourceManager + 0x890) - localSystemFlags >> 5) <= (ulong long)(long long)systemResult)) {
