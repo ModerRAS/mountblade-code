@@ -72419,7 +72419,18 @@ void Unwind_ProcessResourceOperationWithCleanup(uint8_t ObjectContext,int64_t Va
 
 
 
-void Unwind_18090a4d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 在偏移量C08处注册资源处理器
+ * 
+ * 该函数负责在验证上下文的指定偏移量处注册资源处理器
+ * 用于系统资源管理和异常处理时的资源清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在异常处理时调用，确保资源正确注册
+ */
+void Unwind_RegisterResourceHandlerAtC08(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0xc08,8,10,ProcessResourceOperation,0xfffffffffffffffe);
@@ -72428,7 +72439,18 @@ void Unwind_18090a4d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a4f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数
+ * 
+ * 该函数负责执行资源上下文的回调操作
+ * 通过验证上下文获取资源上下文，并调用相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在资源处理过程中调用，用于执行特定的回调操作
+ */
+void Unwind_ExecuteResourceContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -72442,7 +72464,18 @@ void Unwind_18090a4f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a510(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 在偏移量C60处注册资源处理器
+ * 
+ * 该函数负责在验证上下文的指定偏移量处注册资源处理器
+ * 用于系统资源管理和异常处理时的资源清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在异常处理时调用，确保资源正确注册
+ */
+void Unwind_RegisterResourceHandlerAtC60(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0xc60,8,0x14,ProcessResourceOperation);
@@ -72451,7 +72484,19 @@ void Unwind_18090a510(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a550(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 在偏移量C68处注册资源处理器并执行资源表操作
+ * 
+ * 该函数负责在验证上下文的指定偏移量处注册资源处理器
+ * 并遍历资源表执行相应的回调操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在异常处理时调用，确保资源正确注册和清理
+ * @warning 如果资源表指针为空，会执行系统紧急退出
+ */
+void Unwind_RegisterResourceHandlerAtC68(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
