@@ -54414,17 +54414,17 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
   long long SystemTimeValue;
   ulong long SystemHashValue;
   long long systemAllocationOffset;
-  uint unaff_R13D;
+  uint SystemResourceIndex;
   long long systemResourceHandle;
   
-  SystemHashValue = (ulong long)unaff_R13D;
+  SystemHashValue = (ulong long)SystemResourceIndex;
   do {
     localSystemPointer = *(long long *)(systemResourceHandle + 0x20) + SystemHashValue;
     if ((ulong long)((*MemoryBlockAddress - (long long)SystemResourceManager) + MemoryBlockAddress[2]) < 5) {
       FUN_180639bf0();
       SystemResourceManager = (uint *)MemoryBlockAddress[1];
     }
-    *SystemResourceManager = unaff_R13D;
+    *SystemResourceManager = SystemResourceIndex;
     MemoryBlockAddress[1] = MemoryBlockAddress[1] + 4;
     HashNodeData = (uint32_t *)MemoryBlockAddress[1];
     if ((ulong long)((*MemoryBlockAddress - (long long)HashNodeData) + MemoryBlockAddress[2]) < 5) {
@@ -54456,7 +54456,7 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
       FUN_180639bf0();
       pSystemResourceAddress = (uint *)MemoryBlockAddress[1];
     }
-    *pSystemResourceAddress = unaff_R13D;
+    *pSystemResourceAddress = SystemResourceIndex;
     MemoryBlockAddress[1] = MemoryBlockAddress[1] + 4;
     HashNodeData = (uint32_t *)MemoryBlockAddress[1];
     if ((ulong long)((*MemoryBlockAddress - (long long)HashNodeData) + MemoryBlockAddress[2]) < 5) {
@@ -54490,7 +54490,7 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
     FUN_180639bf0();
     SystemResourceManager = (uint *)MemoryBlockAddress[1];
   }
-  *SystemResourceManager = unaff_R13D;
+  *SystemResourceManager = SystemResourceIndex;
   MemoryBlockAddress[1] = MemoryBlockAddress[1] + 4;
   HashNodeData = (uint32_t *)MemoryBlockAddress[1];
   if ((ulong long)((*MemoryBlockAddress - (long long)HashNodeData) + MemoryBlockAddress[2]) < 5) {
@@ -54521,7 +54521,7 @@ void ValidateSystemResourceState(uint *SystemResourceManager)
     FUN_180639bf0();
     pSystemResourceAddress = (uint *)MemoryBlockAddress[1];
   }
-  *pSystemResourceAddress = unaff_R13D;
+  *pSystemResourceAddress = SystemResourceIndex;
   MemoryBlockAddress[1] = MemoryBlockAddress[1] + 4;
   HashNodeData = (uint32_t *)MemoryBlockAddress[1];
   if ((ulong long)((*MemoryBlockAddress - (long long)HashNodeData) + MemoryBlockAddress[2]) < 5) {
@@ -54638,11 +54638,11 @@ void ProcessSystemResourceOperationA(void)
   long long SystemTimeValue;
   long long *MemoryBlockAddress;
   ulong long SystemHashValue;
-  uint32_t unaff_R13D;
+  uint32_t SystemResourceIndex;
   long long systemResourceHandle;
   
   FUN_180639bf0();
-  *(uint32_t *)MemoryBlockAddress[1] = unaff_R13D;
+  *(uint32_t *)MemoryBlockAddress[1] = SystemResourceIndex;
   MemoryBlockAddress[1] = MemoryBlockAddress[1] + 4;
   HashNodeData = (uint32_t *)MemoryBlockAddress[1];
   if ((ulong long)((*MemoryBlockAddress - (long long)HashNodeData) + MemoryBlockAddress[2]) < 5) {
@@ -54673,7 +54673,7 @@ void ProcessSystemResourceOperationA(void)
     FUN_180639bf0();
     HashNodeData = (uint32_t *)MemoryBlockAddress[1];
   }
-  *HashNodeData = unaff_R13D;
+  *HashNodeData = SystemResourceIndex;
   MemoryBlockAddress[1] = MemoryBlockAddress[1] + 4;
   HashNodeData = (uint32_t *)MemoryBlockAddress[1];
   if ((ulong long)((*MemoryBlockAddress - (long long)HashNodeData) + MemoryBlockAddress[2]) < 5) {
@@ -55126,7 +55126,7 @@ void InitializeSystemBufferManager(long long SystemResourceManager)
   ulong long StringIteratorPointer;
   long long systemDataIndexPtr;
   ulong long currentThreadId;
-  long long unaff_R13;
+  long long SystemContextPointer;
   ulong long *resourceEntryPointer;
   long long systemResourceHandle;
   
@@ -55194,9 +55194,9 @@ void InitializeSystemBufferManager(long long SystemResourceManager)
         SystemCleanupFunction();
     }
     currentThreadId = currentThreadId + 0x24;
-    unaff_R13 = unaff_R13 + -1;
+    SystemContextPointer = SystemContextPointer + -1;
     SystemResourceManager = ResourceDataOffset + 0x18;
-  } while (unaff_R13 != 0);
+  } while (SystemContextPointer != 0);
   *(int **)(systemDataIndexPtr + 8) = (int *)(ResourceDataOffset + 0x20);
   SystemOperationStatus = *(int *)(ResourceDataOffset + 0x20);
   *(long long *)(systemDataIndexPtr + 8) = ResourceDataOffset + 0x24;
@@ -59494,7 +59494,7 @@ void InitializeSystemVectorCalculations(void)
   long long MemoryBlockAddress;
   byte IsAudioSystemActive;
   float *pfloatValue29;
-  long long unaff_R13;
+  long long SystemContextPointer;
   uint32_t uStack0000000000000030;
   void* InputStackParameter60;
   void* InputStackParameter68;
@@ -59532,7 +59532,7 @@ void InitializeSystemVectorCalculations(void)
   void* StackParameter188;
   
   uStack0000000000000030 = 0xffffffff;
-  FUN_180080e90(unaff_R13 + 0x3388,&stackBuffer30);
+  FUN_180080e90(SystemContextPointer + 0x3388,&stackBuffer30);
   pfloatValue29 = FloatParameterArray;
   if ((*(uint *)(MemoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -59581,7 +59581,7 @@ void InitializeSystemVectorCalculations(void)
          FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared + FloatParameterArray[0xf];
     pfloatValue29 = &stackBufferA0;
   }
-  FUN_180085190(&stackBuffer60,unaff_R13 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue29);
+  FUN_180085190(&stackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue29);
   NetworkConnectionFlags = ThreadCreationParameter;
   SecurityStackParameter = InputStackParameter90;
   SystemConfigurationFlags = InputStackParameter88;
@@ -59590,7 +59590,7 @@ void InitializeSystemVectorCalculations(void)
   ThreadCreationFlags = InputStackParameter70;
   ResourceCreationFlags = InputStackParameter68;
   SystemContextPointer = InputStackParameter60;
-  IsAudioSystemActive = *(byte *)(unaff_R13 + 0x1bd8);
+  IsAudioSystemActive = *(byte *)(SystemContextPointer + 0x1bd8);
   CalculationFlags = *(int *)(SystemStatusFlagsPointer + 0x224);
   if (((*(byte *)(MemoryBlockAddress + 0xfd) & 1) == 0) &&
      ((*(int *)(MemoryBlockAddress + 0x1d0) == CalculationFlags || (*(int *)(MemoryBlockAddress + 0x1d0) == CalculationFlags + -1)))) {
@@ -59647,7 +59647,7 @@ void ExecuteSystemTransformOperations(void)
   byte isByteValid0;
   long long MemoryBlockAddress;
   byte isByteValid1;
-  long long unaff_R13;
+  long long SystemContextPointer;
   void* InputStackParameter60;
   void* InputStackParameter68;
   void* InputStackParameter70;
@@ -59657,7 +59657,7 @@ void ExecuteSystemTransformOperations(void)
   void* InputStackParameter90;
   void* ThreadCreationParameter;
   
-  FUN_180085190(&stackBuffer60,unaff_R13 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7));
+  FUN_180085190(&stackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7));
   unsignedSystemValue9 = ThreadCreationParameter;
   SystemOperationCode = InputStackParameter90;
   unsignedSystemValue7 = InputStackParameter88;
@@ -59666,7 +59666,7 @@ void ExecuteSystemTransformOperations(void)
   SystemResourceAddress = InputStackParameter70;
   allocationContext = InputStackParameter68;
   creationFlags = InputStackParameter60;
-  isByteValid1 = *(byte *)(unaff_R13 + 0x1bd8);
+  isByteValid1 = *(byte *)(SystemContextPointer + 0x1bd8);
   SystemOperationStatus = *(int *)(SystemStatusFlagsPointer + 0x224);
   if (((*(byte *)(MemoryBlockAddress + 0xfd) & 1) == 0) &&
      ((*(int *)(MemoryBlockAddress + 0x1d0) == SystemOperationStatus || (*(int *)(MemoryBlockAddress + 0x1d0) == SystemOperationStatus + -1)))) {
@@ -68793,7 +68793,22 @@ void FUN_18007f983(void)
 
 
 // 函数: void FUN_18007fb5f(void)
-void FUN_18007fb5f(void)
+/**
+ * @brief 初始化系统线程本地存储
+ * 
+ * 该函数负责初始化系统线程本地存储，包括：
+ * - 线程ID的分配和管理
+ * - 线程本地存储对象的创建
+ * - 系统线程对象的初始化
+ * - 线程安全的状态管理
+ * 
+ * 函数会创建系统线程对象，设置线程本地存储，并管理线程相关的资源
+ * 
+ * @return 无返回值
+ * @note 此函数在系统初始化时调用，用于建立线程本地存储机制
+ * @warning 函数内部使用锁机制确保线程安全
+ */
+void InitializeSystemThreadLocalStorage(void)
 
 {
   uint32_t SystemOperationStatus;
@@ -68806,7 +68821,7 @@ void FUN_18007fb5f(void)
   uint32_t *resourceEntryPointer;
   ulong long unsignedSystemValue7;
   uint systemAllocationOffsetD;
-  void* *unaff_R13;
+  void* *SystemContextPointer;
   uint *newThreadLocalStorage;
   int systemId;
   ulong long systemOperationFlags;
@@ -68855,9 +68870,9 @@ void FUN_18007fb5f(void)
       pSystemOperationStatusFlag = pSystemOperationStatusFlag + 1;
       nextDataIndex1 = nextDataIndex1 + -1;
     } while (nextDataIndex1 != 0);
-    unaff_R13 = (void* *)(systemDataIndexPtr + 0x38);
+    SystemContextPointer = (void* *)(systemDataIndexPtr + 0x38);
   }
-  resourceEntryPointer = (uint32_t *)*unaff_R13;
+  resourceEntryPointer = (uint32_t *)*SystemContextPointer;
   allocationContext = currentThreadId >> 0xb;
   *(uint *)(systemDataIndexPtr + 0x2c) = currentThreadId;
   if (allocationContext != systemAllocationOffsetD + currentThreadId >> 0xb) {
@@ -68883,7 +68898,22 @@ void FUN_18007fb5f(void)
 
 
 // 函数: void FUN_18007fc19(void)
-void FUN_18007fc19(void)
+/**
+ * @brief 处理系统哈希节点数据
+ * 
+ * 该函数负责处理系统哈希节点数据，包括：
+ * - 哈希节点数据的读取和处理
+ * - 系统资源地址的计算和管理
+ * - 哈希表数据的更新和同步
+ * - 内存数据的安全复制
+ * 
+ * 函数会遍历哈希节点，处理每个节点的数据，并将结果写入到系统资源管理器中
+ * 
+ * @return 无返回值
+ * @note 此函数用于哈希表数据的管理和维护
+ * @warning 函数涉及指针操作，需要确保内存访问的安全性
+ */
+void ProcessSystemHashNodeData(void)
 
 {
   uint32_t SystemOperationStatus;
@@ -68894,9 +68924,9 @@ void FUN_18007fc19(void)
   uint32_t *HashNodeData;
   ulong long SystemResourceAddress;
   uint systemAllocationOffsetD;
-  void* *unaff_R13;
+  void* *SystemContextPointer;
   
-  HashNodeData = (uint32_t *)*unaff_R13;
+  HashNodeData = (uint32_t *)*SystemContextPointer;
   creationFlags = unaff_ESI >> 0xb;
   *(uint *)(systemDataIndexPtr + 0x2c) = unaff_ESI;
   if (creationFlags != systemAllocationOffsetD + unaff_ESI >> 0xb) {
@@ -70153,7 +70183,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
   float scaleValue;
   uint stackParam;
   
-  SystemHashValue = (ulong long)unaff_R13D;
+  SystemHashValue = (ulong long)SystemResourceIndex;
   do {
     SystemOperationStatus1 = 0;
     if (0 < (int)AdditionalParameter) {
@@ -70161,8 +70191,8 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
       do {
         currentThreadId = (long long)SystemOperationStatus1 / (long long)(int)systemResourceCounterD & 0xffffffff;
         unsignedSystemValue7 = 0;
-        SystemSecondaryStatus = unaff_R13D;
-        if (unaff_R13D != 0) {
+        SystemSecondaryStatus = SystemResourceIndex;
+        if (SystemResourceIndex != 0) {
           do {
             SystemOperationCode = (uint)currentThreadId;
             currentThreadId = currentThreadId >> 1;
