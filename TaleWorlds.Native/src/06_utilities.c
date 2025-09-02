@@ -1894,12 +1894,12 @@ uint8_t SystemMemoryManagerConfigTemplateBalanced;
 uint8_t SystemMemoryManagerConfigTemplateConservative;
 uint8_t SystemMemoryManagerConfigTemplateDynamic;
 uint8_t SystemMemoryManagerConfigTemplateEfficient;
-uint8_t SystemMemoryManagerConfigTemplateF;
-uint8_t SystemMemoryManagerConfigTemplateG;
-uint8_t SystemMemoryManagerConfigTemplateH;
-uint8_t SystemMemoryManagerConfigTemplateI;
-uint8_t SystemMemoryManagerConfigTemplateJ;
-uint8_t SystemMemoryManagerConfigTemplateK;
+uint8_t SystemMemoryManagerConfigTemplateFast;
+uint8_t SystemMemoryManagerConfigTemplateGeneral;
+uint8_t SystemMemoryManagerConfigTemplateHighPerformance;
+uint8_t SystemMemoryManagerConfigTemplateIntelligent;
+uint8_t SystemMemoryManagerConfigTemplateJustInTime;
+uint8_t SystemMemoryManagerConfigTemplateKernelOptimized;
 
  void InitializeSystemThreadManager(void)
 /**
@@ -2780,7 +2780,7 @@ uint8_t SystemConfigurationEntryNonary;
 uint8_t SystemConfigurationEntryDenary;
 uint8_t SystemConfigurationEntryUndenary;
 uint8_t SystemConfigurationEntryDuodenary;
-byte SystemConfigurationFlag;
+byte SystemConfigurationStatusFlag;
 uint8_t SystemStatusIndicator;
 uint8_t SystemConfigurationDebugMode;
 uint8_t SystemConfigurationLogLevel;
@@ -3179,20 +3179,20 @@ uint8_t MemoryPoolBufferOneHundredThirtyTwo;
 uint8_t MemoryPoolBufferOneHundredThirtyThree;
 uint8_t SystemDataBufferPrimary;
 uint8_t SystemConfigurationFlagActive;
-char SystemStatusCharBuffer;
+char SystemStatusCharacterBuffer;
 uint8_t SystemDataBufferSecondary;
 
  uint8_t MonitorResourcePerformancePrimary;
 uint8_t MonitorResourcePerformanceSecondary;
 uint8_t SystemMemoryConfigDataTemplateSecureSpecial;
-uint8_t SystemControlByteControl;
+uint8_t SystemControlByteStatus;
 uint8_t SystemDataBufferDelta;
 uint8_t SystemMemoryFlagEnabled;
 uint8_t SystemSyncFlagFast;
 uint8_t SystemThreadFlagGlobal;
 uint8_t SystemResourceFlagHighPriority;
 uint8_t SystemProcessFlagInteractive;
-char SystemStatusCharJournal;
+char SystemStatusCharacterJournal;
 uint8_t SystemDataBufferTertiary;
 uint8_t SystemDataBufferQuaternary;
 uint8_t SystemDataBufferQuinary;
@@ -3249,7 +3249,7 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 {
-  uint8_t ObjectValidationState;
+  uint8_t GameObjectValidationState;
   int ProcessingResultCode;
   int64_t CurrentGameObjectPointer;
   int ProcessedObjectCount;
@@ -3274,11 +3274,11 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
       if (0 < BufferIndex) {
         CurrentGameObjectPointer = 0;
         do {
-          ObjectValidationState = *(uint8_t *)(GameObjectDataBuffer + CurrentGameObjectPointer);
-          ProcessingResultCode = ValidateObjectStatus(ObjectValidationState);
+          GameObjectValidationState = *(uint8_t *)(GameObjectDataBuffer + CurrentGameObjectPointer);
+          ProcessingResultCode = ValidateObjectStatus(GameObjectValidationState);
           if (ProcessingResultCode != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(ObjectValidationState, 1);
+            HandleInvalidObject(GameObjectValidationState, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
           CurrentGameObjectPointer = CurrentGameObjectPointer + 8;

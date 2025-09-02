@@ -1,7 +1,7 @@
 #!/bin/bash
 # 变量名替换脚本
 
-FILE="/dev/shm/mountblade-code/TaleWorlds.Native/src/01_initialization.c"
+FILE="/dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c"
 
 # 替换UNK_变量
 sed -i 's/UNK_180a3cf50/SystemUnknownPointerA/g' "$FILE"
@@ -190,5 +190,11 @@ sed -i 's/DAT_180c91900/SystemInitializationData/g' "$FILE"
 
 # 替换param_变量
 sed -i 's/param_5/SystemParameterA/g' "$FILE"
+
+# 替换 objectContext 为 ObjectContext
+sed -i 's/\bobjectContext\b/ObjectContext/g' "$FILE"
+
+# 替换 validationContext 为 ValidationContext
+sed -i 's/\bvalidationContext\b/ValidationContext/g' "$FILE"
 
 echo "变量名替换完成！"
