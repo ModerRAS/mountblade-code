@@ -1997,13 +1997,14 @@ uint8_t SystemMemoryConfigDataDuodenary;
 uint8_t SystemMemoryConfigDataTerdenary;
 uint8_t SystemMemoryConfigDataQuattuordenary;
 uint8_t SystemMemoryConfigDataQuindenary;
-uint8_t SystemMemoryConfigDataSexdenary;
-uint8_t SystemMemoryConfigDataSeptendenary;
-uint8_t SystemMemoryConfigDataOctodenary;
-uint8_t SystemMemoryConfigDataNovendenary;
-uint8_t SystemMemoryConfigDataVigesimal;
-uint8_t SystemMemoryConfigDataUnvigesimal;
-uint8_t SystemMemoryConfigDataDuovigesimal;
+uint8_t SystemMemoryConfigDataSecondary;
+uint8_t SystemMemoryConfigDataTertiary;
+uint8_t SystemMemoryConfigDataQuaternary;
+uint8_t SystemMemoryConfigDataQuinary;
+uint8_t SystemMemoryConfigDataSenary;
+uint8_t SystemMemoryConfigDataSeptenary;
+uint8_t SystemMemoryConfigDataOctonary;
+uint8_t SystemMemoryConfigDataNonary;
 uint8_t SystemMemoryConfigTemplateAudio;
 uint8_t SystemMemoryConfigTemplatePhysics;
 uint8_t SystemMemoryConfigTemplateInput;
@@ -6014,7 +6015,7 @@ uint8_t GetSystemVersionInfo(void)
  * @param PacketHandle 数据包句柄，包含要传输的数据包信息
  * @param TransmissionConfig 传输配置，包含传输参数和设置
  */
-void ProcessSystemDataPacketTransmission(int64_t PacketHandle, int64_t TransmissionConfig)
+void ProcessSystemPacketTransmission(int64_t PacketHandle, int64_t TransmissionConfig)
 
 {
   int ProcessingStatusCode;
