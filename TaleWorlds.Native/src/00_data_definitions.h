@@ -5939,7 +5939,7 @@ LAB_1802a83bc:
     strcpy_s(param_3 + 0x14,0x40,NetworkRequestResult);
   }
 LAB_1802a912b:
-  FUN_1801ec3f0(auStack_260);
+  FinalizeSystemMemoryContext(auStack_260);
   SystemSecurityCheck(uStack_28 ^ (ulonglong)auStack_2f8);
 }
       DAT_180d48dab = '\x01';
@@ -6433,7 +6433,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
 }
   SystemGamePaused = 0;
   *(uint32_t *)(ModuleInitializationResult + 0x4c) = 0;
-  FUN_18023a940(*(uint64_t *)(ModuleInitializationResult + 0x108));
+  ProcessModuleSystemInitialization(*(uint64_t *)(ModuleInitializationResult + 0x108));
   puStack_50 = &SystemStringMemoryTemplate;
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
