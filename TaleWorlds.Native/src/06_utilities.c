@@ -14684,7 +14684,19 @@ uint8_t ValidateResourceRenderingState(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessResourceDataValidation(int64_t *objectContext)
+ /**
+ * @brief 处理资源数据验证
+ * 
+ * 该函数负责处理资源数据的验证操作，包括数据加密、
+ * 验证和缓冲区处理。它验证资源的完整性和安全性，
+ * 确保数据在处理过程中的安全性
+ * 
+ * @param objectContext 对象上下文指针，包含处理所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会进行大量的数据处理和验证操作
+ * @warning 处理过程中可能会修改原始数据，请确保数据已备份
+ */
+void ProcessResourceDataValidation(int64_t *objectContext)
 
 {
   float calculatedFloatResult;
@@ -14738,9 +14750,13 @@ uint8_t ValidateResourceRenderingState(void)
   uint8_t GraphicsDataBuffer[512];
   uint64_t EncryptedValue;
   
+  // 初始化加密值用于安全操作
   EncryptedValue = SecurityEncryptionKey ^ (uint64_t)StackBuffer368;
+  // 初始化资源上下文指针
   resourceContext6 = (int64_t *)0x0;
+  // 初始化音频处理缓冲区
   AudioProcessingBuffer300[1] = 0;
+  // 初始化处理队列
   integerValue6 = InitializeProcessingQueue(AudioProcessingBuffer300 + 1,objectContext[1]);
   if ((integerValue6 == 0) && (integerValue6 = CheckSystemStatus(objectContext,1), integerValue6 == 0)) {
     (**(code **)(*objectContext + 8))(objectContext,&NetworkStatusTemplate);
