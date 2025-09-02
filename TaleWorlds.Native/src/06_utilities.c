@@ -247,6 +247,14 @@
 #define ObjectContextSecurityResourceOffset 0x40
 #define ResourceMetadataTableSizeOffset 0x18
 #define InputParameterValidationOffset 0x18
+
+// 异常处理相关偏移量常量
+#define ExceptionHandlerPrimaryContextOffset 0xc0
+#define ExceptionHandlerSecondaryContextOffset 0x58
+#define ExceptionHandlerTertiaryContextOffset 0x48
+#define ExceptionHandlerFunctionPointerOffset 0x38
+#define ExceptionHandlerResourceHashOffset 0x48
+#define ExceptionHandlerMutexLockOffset 0x60
 #define ResourceContextSecurityOffset 0x40
 
 /**
@@ -29150,8 +29158,8 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
 void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  if ((int64_t *)**(int64_t **)(ValidationContext + 0xc0) != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + 0xc0) + 0x38))();
+  if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -29169,8 +29177,8 @@ void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext,int64_t ValidationConte
 void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  if (*(int64_t **)(ValidationContext + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(ValidationContext + 0x58) + 0x38))();
+  if (*(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -29188,8 +29196,8 @@ void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext,int64_t ValidationConte
 void UnwindExceptionHandlerTypeThree(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  if ((int64_t *)**(int64_t **)(ValidationContext + 0x48) != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + 0x48) + 0x38))();
+  if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset) != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -29209,7 +29217,7 @@ void UnwindExceptionHandlerTypeFour(uint8_t ObjectContext,int64_t ValidationCont
 {
   uint8_t *ResourceHashPointer;
   
-  ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x48);
+  ResourceHashPointer = *(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset);
   *ResourceHashPointer = &ResourceHashTemplate;
   *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
@@ -29231,7 +29239,7 @@ void UnwindExceptionHandlerTypeFive(uint8_t ObjectContext,int64_t ValidationCont
 {
   uint8_t *ResourceHashPointer;
   
-  ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x48);
+  ResourceHashPointer = *(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset);
   *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
   return;
@@ -67904,6 +67912,14 @@ void UnwindSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
+/**
+ * @brief 销毁互斥体
+ * 
+ * 该函数负责销毁互斥体资源
+ * 释放相关的系统资源并清理状态
+ * 
+ * @note 此函数直接调用系统底层的互斥体销毁函数
+ */
 void DestroyMutexInSitu(void)
 
 {
@@ -67913,6 +67929,14 @@ void DestroyMutexInSitu(void)
 
 
 
+/**
+ * @brief 销毁互斥体扩展版本
+ * 
+ * 该函数负责销毁互斥体资源的扩展版本
+ * 提供额外的清理功能
+ * 
+ * @note 此函数直接调用系统底层的互斥体销毁函数
+ */
 void DestroyMutexInSituExtended(void)
 
 {
@@ -67922,7 +67946,16 @@ void DestroyMutexInSituExtended(void)
 
 
 
-void Unwind_180909350(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 根据验证上下文销毁互斥体
+ * 
+ * 该函数负责根据验证上下文销毁互斥体资源
+ * 从验证上下文中提取互斥体指针并销毁
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文，包含互斥体指针信息
+ */
+void DestroyMutexByValidationContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(ValidationContext + 0x128));
@@ -67931,7 +67964,16 @@ void Unwind_180909350(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909360(uint8_t ObjectContext,uint *ValidationContext)
+/**
+ * @brief 根据验证状态释放资源句柄
+ * 
+ * 该函数负责根据验证状态释放资源句柄
+ * 检查验证标志并释放相应的资源句柄
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文指针，包含资源句柄信息
+ */
+void ReleaseResourceHandleByValidation(uint8_t ObjectContext,uint *ValidationContext)
 
 {
   if ((*ValidationContext & 1) != 0) {

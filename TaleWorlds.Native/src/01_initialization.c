@@ -42745,7 +42745,7 @@ void CleanupAndValidateSystemResources(void)
     do {
       CalculationFlags = *(int *)((long long)punsignedValue2d8 + SystemOperationStatus3 + 0x10);
       if (CalculationFlags < 4) {
-LAB_180063de9:
+SystemActivityCheck:
         isSystemActive = false;
       }
       else {
@@ -42753,7 +42753,7 @@ LAB_180063de9:
         do {
           localMemoryAddress = localDataIndex + 1;
           if (*(char *)(*(long long *)((long long)punsignedValue2d8 + SystemOperationStatus3 + 8) + (long long)(CalculationFlags + -4) +
-                       localDataIndex) != (&SystemMemoryOffsetTable)[localDataIndex]) goto LAB_180063de9;
+                       localDataIndex) != (&SystemMemoryOffsetTable)[localDataIndex]) goto SystemActivityCheck;
           localDataIndex = localMemoryAddress;
         } while (localMemoryAddress != 5);
         isSystemActive = true;
@@ -43317,7 +43317,7 @@ void ConfigureAndManageSystemResourceData(long long *SystemResourceManager,long 
   SystemValue50 = 0xf;
   EncryptionValue68 = EncryptionValue68 & 0xffffff00;
   systemConfigurationValue = unsignedSystemValue9;
-  if (unsignedSystemValue9 == 0) goto LAB_180065009;
+  if (unsignedSystemValue9 == 0) goto SystemValueCheckComplete;
   SystemAllocationFlags = 0;
   punsignedValue108 = &SystemGlobalDataReference;
   uStack_f0 = 0;
@@ -43412,7 +43412,7 @@ LAB_180064eed:
   punsignedValue100 = (uint8_t *)0x0;
   uStack_f0 = uStack_f0 & 0xffffffff00000000;
   punsignedValue108 = &SystemMemoryAllocatorReference;
-LAB_180065009:
+SystemValueCheckComplete:
   pSystemResourceAddress = (void* *)(nextDataIndex2 + (long long)HashNodeData);
   if (systemGlobalDataPtrB8 < (void* *)(nextDataIndex2 + (long long)HashNodeData)) {
     pSystemResourceAddress = systemGlobalDataPtrB8;
