@@ -3365,49 +3365,49 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 {
-  uint8_t GameObjectValidationState;
-  int GameObjectProcessingResult;
+  uint8_t ObjectValidationState;
+  int ProcessingResult;
   int64_t CurrentObjectOffset;
-  int ProcessedObjectCount;
-  uint8_t ObjectMetadataBuffer[32];
+  int ProcessedCount;
+  uint8_t MetadataBuffer[32];
   int64_t SystemHandleArray[2];
-  uint8_t *ObjectDataBuffer;
-  int DataBufferIndex;
-  uint32_t MaximumProcessableItems;
-  uint8_t ProcessingWorkspace[512];
-  uint64_t SecurityValidationKey;
+  uint8_t *DataBuffer;
+  int BufferIndex;
+  uint32_t MaxProcessableItems;
+  uint8_t Workspace[512];
+  uint64_t SecurityKey;
   
-  SecurityValidationKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  GameObjectProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
-  if ((GameObjectProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
-    ObjectDataBuffer = ProcessingWorkspace;
-    ProcessedObjectCount = 0;
-    DataBufferIndex = 0;
-    MaximumProcessableItems = MaximumProcessableItemsLimit;
-    GameObjectProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
-                          &ObjectDataBuffer);
-    if (GameObjectProcessingResult == 0) {
-      if (0 < DataBufferIndex) {
+  SecurityKey = SecurityContextKey ^ (uint64_t)MetadataBuffer;
+  ProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
+  if ((ProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
+    DataBuffer = Workspace;
+    ProcessedCount = 0;
+    BufferIndex = 0;
+    MaxProcessableItems = MaximumProcessableItemsLimit;
+    ProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
+                          &DataBuffer);
+    if (ProcessingResult == 0) {
+      if (0 < BufferIndex) {
         CurrentObjectOffset = 0;
         do {
-          GameObjectValidationState = *(uint8_t *)(ObjectDataBuffer + CurrentObjectOffset);
-          GameObjectProcessingResult = ValidateObjectStatus(GameObjectValidationState);
-          if (GameObjectProcessingResult != 2) {
+          ObjectValidationState = *(uint8_t *)(DataBuffer + CurrentObjectOffset);
+          ProcessingResult = ValidateObjectStatus(ObjectValidationState);
+          if (ProcessingResult != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(GameObjectValidationState, 1);
+            HandleInvalidObject(ObjectValidationState, 1);
           }
-          ProcessedObjectCount = ProcessedObjectCount + 1;
+          ProcessedCount = ProcessedCount + 1;
           CurrentObjectOffset = CurrentObjectOffset + 8;
-        } while (ProcessedObjectCount < DataBufferIndex);
+        } while (ProcessedCount < BufferIndex);
       }
-      FreeObjectListMemory(&ObjectDataBuffer);
+      FreeObjectListMemory(&DataBuffer);
     }
     else {
-      FreeObjectListMemory(&ObjectDataBuffer);
+      FreeObjectListMemory(&DataBuffer);
     }
   }
                     // WARNING: Subroutine does not return
-  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetadataBuffer);
+  PerformSecurityValidation(SecurityKey ^ (uint64_t)MetadataBuffer);
 }
 
 
@@ -3436,38 +3436,38 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 void ValidateSystemObjectCollection(void)
 
 {
-  uint8_t SystemObjectIdentifier;
-  int ValidationResultCode;
-  int64_t SystemObjectContext;
+  uint8_t ObjectIdentifier;
+  int ValidationResult;
+  int64_t ObjectContext;
   int64_t SystemContext;
-  int64_t ObjectDataPosition;
-  int ProcessedObjectTotal;
-  uint8_t *ObjectCollectionBuffer;
-  int RetrievedObjectTotal;
-  uint32_t MaximumCapacity;
-  uint64_t SecurityValidationHash;
+  int64_t DataPosition;
+  int ProcessedCount;
+  uint8_t *CollectionBuffer;
+  int RetrievedCount;
+  uint32_t MaxCapacity;
+  uint64_t SecurityHash;
   
-  if (*(int64_t *)(SystemObjectContext + 8) != 0) {
-    ObjectCollectionBuffer = &SystemObjectDataBuffer;
-    ProcessedObjectTotal = 0;
-    RetrievedObjectTotal = 0;
-    MaximumCapacity = MaximumCapacityLimit;
-    ValidationResultCode = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(SystemObjectContext + 8),
+  if (*(int64_t *)(ObjectContext + 8) != 0) {
+    CollectionBuffer = &SystemObjectDataBuffer;
+    ProcessedCount = 0;
+    RetrievedCount = 0;
+    MaxCapacity = MaximumCapacityLimit;
+    ValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(ObjectContext + 8),
                           &RetrievedObjectDataBuffer);
-    if (ValidationResultCode == 0) {
-      RetrievedObjectTotal = *(int *)(RetrievedObjectDataBuffer + 4);
-      if (0 < RetrievedObjectTotal) {
-        ObjectDataPosition = 8;
+    if (ValidationResult == 0) {
+      RetrievedCount = *(int *)(RetrievedObjectDataBuffer + 4);
+      if (0 < RetrievedCount) {
+        DataPosition = 8;
         do {
-          SystemObjectIdentifier = *(uint8_t *)(ObjectCollectionBuffer + ObjectDataPosition);
-          ValidationResultCode = ValidateSystemObject(SystemObjectIdentifier);
-          if (ValidationResultCode != 2) {
+          ObjectIdentifier = *(uint8_t *)(CollectionBuffer + DataPosition);
+          ValidationResult = ValidateSystemObject(ObjectIdentifier);
+          if (ValidationResult != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidSystemObject(SystemObjectIdentifier, 1);
+            HandleInvalidSystemObject(ObjectIdentifier, 1);
           }
-          ProcessedObjectTotal = ProcessedObjectTotal + 1;
-          ObjectDataPosition = ObjectDataPosition + 8;
-        } while (ProcessedObjectTotal < RetrievedObjectTotal);
+          ProcessedCount = ProcessedCount + 1;
+          DataPosition = DataPosition + 8;
+        } while (ProcessedCount < RetrievedCount);
       }
       ReleaseSystemObjectCollection(&RetrievedObjectDataBuffer);
     }
@@ -3476,7 +3476,7 @@ void ValidateSystemObjectCollection(void)
     }
   }
                     // WARNING: Subroutine does not return
-  PerformSecurityValidation(SecurityValidationHash ^ (uint64_t)&SystemSecurityValidationBuffer);
+  PerformSecurityValidation(SecurityHash ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -94687,16 +94687,16 @@ void InitializeSystemContext(uint8_t ContextPtr, uint8_t SetupParam, uint8_t Con
 void ResetThreadLocalStorage(void)
 
 {
-  int64_t ThreadContextData;
+  int64_t ThreadContext;
   
-  ThreadContextData = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  *(uint8_t *)(ThreadContextData + ThreadLocalStorageDataOffset) = &ThreadResourcePointer;
-  if (*(int64_t *)(ThreadContextData + ThreadResourceStateOffset) != 0) {
+  ThreadContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  *(uint8_t *)(ThreadContext + ThreadLocalStorageDataOffset) = &ThreadResourcePointer;
+  if (*(int64_t *)(ThreadContext + ThreadResourceStateOffset) != 0) {
     CleanupThreadResources();
   }
-  *(uint8_t *)(ThreadContextData + ThreadResourceStateOffset) = 0;
-  *(uint32_t *)(ThreadContextData + ThreadResourceCountOffset) = 0;
-  *(uint8_t *)(ThreadContextData + ThreadLocalStorageDataOffset) = &DefaultThreadResource;
+  *(uint8_t *)(ThreadContext + ThreadResourceStateOffset) = 0;
+  *(uint32_t *)(ThreadContext + ThreadResourceCountOffset) = 0;
+  *(uint8_t *)(ThreadContext + ThreadLocalStorageDataOffset) = &DefaultThreadResource;
   return;
 }
 
@@ -94722,21 +94722,21 @@ void ResetThreadLocalStorage(void)
 void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint8_t CleanupOptions, uint8_t CleanupFlags)
 
 {
-  uint8_t *ResourceManagementHandle;
+  uint8_t *ResourceHandle;
   
-  ResourceManagementHandle = SystemResourceManagerPointer;
+  ResourceHandle = SystemResourceManagerPointer;
   if (SystemResourceManagerPointer == (uint8_t *)0x0) {
     return;
   }
   ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, CleanupOptions, CleanupFlags, 0xfffffffffffffffe);
-  ResourceManagementHandle[ResourceManagementStateOffset] = &ResourceCleanupMarker;
-  if (ResourceManagementHandle[ResourceManagementCleanupOffset] != 0) {
+  ResourceHandle[ResourceManagementStateOffset] = &ResourceCleanupMarker;
+  if (ResourceHandle[ResourceManagementCleanupOffset] != 0) {
     EmergencyResourceCleanup();
   }
-  ResourceManagementHandle[ResourceManagementCleanupOffset] = 0;
-  *(uint32_t *)(ResourceManagementHandle + ResourceManagementStatusOffset) = 0;
-  ResourceManagementHandle[ResourceManagementStateOffset] = &ResourceResetMarker;
-  FinalizeResourceCleanup(ResourceManagementHandle);
+  ResourceHandle[ResourceManagementCleanupOffset] = 0;
+  *(uint32_t *)(ResourceHandle + ResourceManagementStatusOffset) = 0;
+  ResourceHandle[ResourceManagementStateOffset] = &ResourceResetMarker;
+  FinalizeResourceCleanup(ResourceHandle);
 }
 
 

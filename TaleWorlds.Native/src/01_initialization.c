@@ -67699,72 +67699,72 @@ void* NormalizeAudioData(void)
   int audioWeightFactor4;
   float *audioOutputBufferPtr;
   
-  audioBufferPtr = inputAudioData;
+  audioBufferPointer = audioInputData;
   do {
-    processedBitValue = 0;
-    loopCounter = bitLength;
-    shiftRegister = sampleIndex;
-    if (bitLength != 0) {
+    processedAudioBit = 0;
+    audioProcessingLoop = audioBitDepth;
+    audioShiftRegister = currentAudioSample;
+    if (audioBitDepth != 0) {
       do {
-        bitMaskValue = shiftRegister & 1;
-        shiftRegister = shiftRegister >> 1;
-        processedBitValue = processedBitValue * 2 | bitMaskValue;
-        loopCounter = loopCounter + -1;
-      } while (loopCounter != 0);
+        audioBitMask = audioShiftRegister & 1;
+        audioShiftRegister = audioShiftRegister >> 1;
+        processedAudioBit = processedAudioBit * 2 | audioBitMask;
+        audioProcessingLoop = audioProcessingLoop + -1;
+      } while (audioProcessingLoop != 0);
     }
-    sampleIndex = sampleIndex + 1;
-    normalizedValue = *(float *)(*(long long *)(audioContext + 0x218) + 4 + (long long)(int)processedBitValue * 8);
-    weightedSum2 = *(float *)(*(long long *)(audioContext + 0x218) + (long long)(int)processedBitValue * 8);
-    normalizedValue = SQRT(weightedSum2 * weightedSum2 + normalizedValue * normalizedValue) * 2.5;
-    if (maxAmplitude <= normalizedValue) {
-      normalizedValue = maxAmplitude;
+    currentAudioSample = currentAudioSample + 1;
+    audioNormalizedValue = *(float *)(*(long long *)(audioProcessingContext + 0x218) + 4 + (long long)(int)processedAudioBit * 8);
+    audioWeightedSum2 = *(float *)(*(long long *)(audioProcessingContext + 0x218) + (long long)(int)processedAudioBit * 8);
+    audioNormalizedValue = SQRT(audioWeightedSum2 * audioWeightedSum2 + audioNormalizedValue * audioNormalizedValue) * 2.5;
+    if (audioMaxAmplitude <= audioNormalizedValue) {
+      audioNormalizedValue = audioMaxAmplitude;
     }
-    *audioBufferPtr = normalizedValue;
-    audioBufferPtr = audioBufferPtr + 1;
-  } while ((int)sampleIndex < (int)channelCount);
-  if (outputBufferPtr != (float *)0x0) {
-    processingIndex = 0;
-    if (0 < (int)channelCount) {
-      normalizedValue = accumulatedSum1;
-      if (7 < channelCount) {
-        shiftRegister = channelCount & 0x80000007;
-        if ((int)shiftRegister < 0) {
-          shiftRegister = (shiftRegister - 1 | 0xfffffff8) + 1;
+    *audioBufferPointer = audioNormalizedValue;
+    audioBufferPointer = audioBufferPointer + 1;
+  } while ((int)currentAudioSample < (int)totalAudioChannels);
+  if (audioOutputBufferPtr != (float *)0x0) {
+    audioProcessingIndex = 0;
+    if (0 < (int)totalAudioChannels) {
+      audioNormalizedValue = audioAccumulatedSum1;
+      if (7 < totalAudioChannels) {
+        audioShiftRegister = totalAudioChannels & 0x80000007;
+        if ((int)audioShiftRegister < 0) {
+          audioShiftRegister = (audioShiftRegister - 1 | 0xfffffff8) + 1;
         }
-        inverseCoeffArray._0_4_ = windowOffset1 + -1;
-        inverseCoeffArray._4_4_ = windowOffset2 + -1;
-        inverseCoeffArray._8_4_ = windowOffset3 + -1;
-        inverseCoeffArray._12_4_ = windowOffset4 + -1;
-        coefficientArray._0_4_ = (float)inverseCoeffArray._0_4_;
-        coefficientArray._4_4_ = (float)inverseCoeffArray._4_4_;
-        coefficientArray._8_4_ = (float)inverseCoeffArray._8_4_;
-        coefficientArray._12_4_ = (float)inverseCoeffArray._12_4_;
-        inverseCoeffArray = rcpps(inverseCoeffArray,coefficientArray);
-        normalizedValue = 0.0;
-        weightedSum2 = 0.0;
-        weightedSum3 = 0.0;
-        intermediateResult = 0.0;
-        filterCoeff1 = inverseCoeffArray._0_4_;
-        filterCoeff2 = inverseCoeffArray._4_4_;
-        filterCoeff3 = inverseCoeffArray._8_4_;
-        filterCoeff4 = inverseCoeffArray._12_4_;
-        weightedSum1 = 0.0;
-        weightedSum4 = 0.0;
-        channelSum1 = 0.0;
-        channelSum2 = 0.0;
-        channelSum3 = 0.0;
-        channelSum4 = 0.0;
-        filterResult = 0.0;
-        accumulatedSum1 = 0.0;
-        accumulatedSum2 = 0.0;
-        accumulatedSum3 = 0.0;
-        accumulatedSum4 = 0.0;
-        filterCoeff1 = (filterCoeff1 + filterCoeff1) - filterCoeff1 * filterCoeff1 * coefficientArray._0_4_;
-        filterCoeff2 = (filterCoeff2 + filterCoeff2) - filterCoeff2 * filterCoeff2 * coefficientArray._4_4_;
-        filterCoeff3 = (filterCoeff3 + filterCoeff3) - filterCoeff3 * filterCoeff3 * coefficientArray._8_4_;
-        filterCoeff4 = (filterCoeff4 + filterCoeff4) - filterCoeff4 * filterCoeff4 * coefficientArray._12_4_;
-        audioBufferPtr = inputAudioData;
-        processingIndex = processingIndex;
+        audioInverseCoeffArray._0_4_ = audioWindowOffset1 + -1;
+        audioInverseCoeffArray._4_4_ = audioWindowOffset2 + -1;
+        audioInverseCoeffArray._8_4_ = audioWindowOffset3 + -1;
+        audioInverseCoeffArray._12_4_ = audioWindowOffset4 + -1;
+        audioCoefficientArray._0_4_ = (float)audioInverseCoeffArray._0_4_;
+        audioCoefficientArray._4_4_ = (float)audioInverseCoeffArray._4_4_;
+        audioCoefficientArray._8_4_ = (float)audioInverseCoeffArray._8_4_;
+        audioCoefficientArray._12_4_ = (float)audioInverseCoeffArray._12_4_;
+        audioInverseCoeffArray = rcpps(audioInverseCoeffArray,audioCoefficientArray);
+        audioNormalizedValue = 0.0;
+        audioWeightedSum2 = 0.0;
+        audioWeightedSum3 = 0.0;
+        audioIntermediateResult = 0.0;
+        audioFilterCoeff1 = audioInverseCoeffArray._0_4_;
+        audioFilterCoeff2 = audioInverseCoeffArray._4_4_;
+        audioFilterCoeff3 = audioInverseCoeffArray._8_4_;
+        audioFilterCoeff4 = audioInverseCoeffArray._12_4_;
+        audioWeightedSum1 = 0.0;
+        audioWeightedSum4 = 0.0;
+        audioChannelSum1 = 0.0;
+        audioChannelSum2 = 0.0;
+        audioChannelSum3 = 0.0;
+        audioChannelSum4 = 0.0;
+        audioFilterResult = 0.0;
+        audioAccumulatedSum1 = 0.0;
+        audioAccumulatedSum2 = 0.0;
+        audioAccumulatedSum3 = 0.0;
+        audioAccumulatedSum4 = 0.0;
+        audioFilterCoeff1 = (audioFilterCoeff1 + audioFilterCoeff1) - audioFilterCoeff1 * audioFilterCoeff1 * audioCoefficientArray._0_4_;
+        audioFilterCoeff2 = (audioFilterCoeff2 + audioFilterCoeff2) - audioFilterCoeff2 * audioFilterCoeff2 * audioCoefficientArray._4_4_;
+        audioFilterCoeff3 = (audioFilterCoeff3 + audioFilterCoeff3) - audioFilterCoeff3 * audioFilterCoeff3 * audioCoefficientArray._8_4_;
+        audioFilterCoeff4 = (audioFilterCoeff4 + audioFilterCoeff4) - audioFilterCoeff4 * audioFilterCoeff4 * audioCoefficientArray._12_4_;
+        audioBufferPointer = audioInputData;
+        audioProcessingIndex = audioProcessingIndex;
         do {
           fVar1 = *pfVar12;
           fVar2 = pfVar12[1];
