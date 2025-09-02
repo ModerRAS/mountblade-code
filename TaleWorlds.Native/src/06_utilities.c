@@ -3774,11 +3774,11 @@ uint8_t IncrementObjectReferenceCount(int64_t objectContext)
 uint8_t InitializeObjectHandleA(int64_t objectContext)
 
 {
-  uint8_t resourceHash;
+  uint8_t ResourceValidationHash;
   int64_t ObjectValidationContext;
   
-  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&ObjectValidationContext);
-  if ((int)resourceHash == 0) {
+  ResourceValidationHash = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&ObjectValidationContext);
+  if ((int)ResourceValidationHash == 0) {
     if (ObjectValidationContext == 0) {
       ObjectValidationContext = 0;
     }
@@ -3789,9 +3789,9 @@ uint8_t InitializeObjectHandleA(int64_t objectContext)
                     // WARNING: Subroutine does not return
       ExecuteSystemExitOperation(*(int64_t *)(ObjectValidationContext + 0x10),1);
     }
-    resourceHash = 0;
+    ResourceValidationHash = 0;
   }
-  return resourceHash;
+  return ResourceValidationHash;
 }
 
 
@@ -3808,7 +3808,7 @@ uint8_t CleanupObjectHandle(void)
 
 {
   int64_t ObjectHandle;
-  int64_t AdjustedPointer;
+  int64_t AdjustedObjectPointer;
   
   if (ObjectHandle == 0) {
     AdjustedPointer = 0;
@@ -50043,7 +50043,18 @@ void ValidateResourceParametersHandler(uint8_t ObjectContextParameter, int64_t V
 
 
 
-void Unwind_180906910(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 注册资源事件处理器
+ * 
+ * 该函数负责注册资源事件处理器
+ * 为资源操作建立事件处理机制
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象相关信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作合法性
+ * @return 无返回值
+ * @note 此函数会注册资源事件处理器
+ */
+void RegisterResourceEventHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContextParameter + 0x28),0x18,0x10,HandleResourceEvent);
@@ -50052,21 +50063,35 @@ void Unwind_180906910(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906940(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理处理器
+ * 
+ * 该函数负责执行资源清理处理任务
+ * 遍历资源表并执行相应的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象相关信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作合法性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会遍历资源表执行清理操作
+ * @warning 如果资源表为空，会执行系统紧急退出
+ */
+void ExecuteResourceCleanupHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  uint8_t *presourceHash;
-  int64_t *presourceTable;
-  uint8_t *pValidationResult;
+  uint8_t *ResourceHashPointer;
+  int64_t *ResourceTablePointer;
+  uint8_t *ValidationResultPointer;
   uint8_t LoopCondition;
   
-  presourceTable = *(int64_t **)(ValidationContextParameter + 0x58);
+  ResourceTablePointer = *(int64_t **)(ValidationContextParameter + 0x58);
   LoopIncrement = 0xfffffffffffffffe;
-  presourceHash = (uint8_t *)presourceTable[1];
-  for (pValidationStatusCode = (uint8_t *)*presourceTable; pValidationResult != presourceHash; pValidationStatusCode = pValidationResult + 4) {
-    (**(code **)*pValidationResult)(pValidationResult,0,CleanupOption,CleanupFlag,LoopIncrement);
+  ResourceHashPointer = (uint8_t *)ResourceTablePointer[1];
+  for (ValidationResultPointer = (uint8_t *)*ResourceTablePointer; ValidationResultPointer != ResourceHashPointer; ValidationResultPointer = ValidationResultPointer + 4) {
+    (**(code **)*ValidationResultPointer)(ValidationResultPointer, 0, CleanupOption, CleanupFlag, LoopIncrement);
   }
-  if (*presourceTable == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -50075,7 +50100,18 @@ void Unwind_180906940(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906950(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 设置系统数据结构处理器
+ * 
+ * 该函数负责设置系统数据结构
+ * 根据验证上下文参数配置系统数据结构指针
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象相关信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证操作合法性
+ * @return 无返回值
+ * @note 此函数会设置系统数据结构指针
+ */
+void SetSystemDataStructureHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x10) = &SystemDataStructure;
