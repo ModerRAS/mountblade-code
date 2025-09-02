@@ -895,7 +895,7 @@ void* SecurityManagerInstance;
 void* SecurityContext;
 void* SecurityPermissionTable;
 void* SecurityEncryptionKey;
-uint32_t SystemSecurityValidationFlags;
+uint32_t SystemSecurityValidationFlags;     // 系统安全验证标志
 void* SecurityAuditLog;
 void* SecurityAccessControl;
 
@@ -69996,7 +69996,21 @@ void CleanupResourceNonaryHandler(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_1809098c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理操作
+ * 
+ * 该函数负责执行系统资源的清理操作
+ * 根据提供的清理选项和标志来处理资源数据
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的对象信息
+ * @param ValidationContext 验证上下文，包含验证和清理所需的数据
+ * @param CleanupOption 清理选项，指定清理的类型和方式
+ * @param CleanupFlag 清理标志，控制清理过程的行为
+ * @return 无返回值
+ * @note 此函数会调用ProcessResourceData来实际执行清理操作
+ * @warning 清理操作可能会影响系统的资源状态
+ */
+void ExecuteResourceCleanupOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(ValidationContext + 0x48),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x10),
@@ -70006,7 +70020,19 @@ void Unwind_1809098c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void CleanupResourceDataFlag(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志
+ * 
+ * 该函数负责清理资源数据的标志位
+ * 当资源数据的特定标志位被设置时，清除该标志并释放相关系统资源
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的对象信息
+ * @param ValidationContext 验证上下文，包含验证和清理所需的数据
+ * @return 无返回值
+ * @note 此函数会检查ResourceData + 0x40处的标志位
+ * @warning 清理操作会释放系统资源，可能影响其他依赖该资源的操作
+ */
+void ClearResourceDataFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x40) & 1) != 0) {
@@ -70018,7 +70044,19 @@ void CleanupResourceDataFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void CleanupResourceOperationFlag(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源操作标志
+ * 
+ * 该函数负责清理资源操作的标志位
+ * 当资源操作的特定标志位被设置时，清除该标志并处理相关资源操作
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的对象信息
+ * @param ValidationContext 验证上下文，包含验证和清理所需的数据
+ * @return 无返回值
+ * @note 此函数会检查ResourceData + 0x30处的标志位
+ * @warning 清理操作会触发资源操作处理，可能影响系统状态
+ */
+void ClearResourceOperationFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -70030,7 +70068,19 @@ void CleanupResourceOperationFlag(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void CleanupExtendedResourceFlag(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理扩展资源标志
+ * 
+ * 该函数负责清理扩展资源的标志位
+ * 当扩展资源的特定标志位被设置时，清除该标志并处理相关资源操作
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的对象信息
+ * @param ValidationContext 验证上下文，包含验证和清理所需的数据
+ * @return 无返回值
+ * @note 此函数会检查ResourceData + 0x5c处的标志位
+ * @warning 清理操作会触发资源操作处理，可能影响系统状态
+ */
+void ClearExtendedResourceFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x5c) & 1) != 0) {
@@ -70042,7 +70092,19 @@ void CleanupExtendedResourceFlag(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
-void ResetSystemDataStructure(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统数据结构
+ * 
+ * 该函数负责重置系统数据结构的指针
+ * 将验证上下文中的特定指针指向系统数据结构
+ * 
+ * @param ObjectContext 对象上下文，包含要重置的对象信息
+ * @param ValidationContext 验证上下文，包含要重置的数据结构指针
+ * @return 无返回值
+ * @note 此函数会将ValidationContext + 0xf0处的指针设置为SystemDataStructure的地址
+ * @warning 重置操作可能会影响系统的数据访问和状态管理
+ */
+void ResetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0xf0) = &SystemDataStructure;
@@ -70051,6 +70113,18 @@ void ResetSystemDataStructure(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 释放资源互斥锁
+ * 
+ * 该函数负责释放系统资源的互斥锁
+ * 解锁后如果发生错误，会抛出标准错误异常
+ * 
+ * @param ObjectContext 对象上下文，包含要释放互斥锁的对象信息
+ * @param ValidationContext 验证上下文，包含互斥锁的相关信息
+ * @return 无返回值
+ * @note 此函数会调用MutexUnlock来解锁ValidationContext + 0xe8处的互斥锁
+ * @warning 如果解锁失败，会抛出C标准错误异常
+ */
 void ReleaseResourceMutex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -70065,7 +70139,19 @@ void ReleaseResourceMutex(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void ResetExtendedSystemData(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置扩展系统数据
+ * 
+ * 该函数负责重置扩展系统数据的指针
+ * 将验证上下文中的特定指针指向系统数据结构
+ * 
+ * @param ObjectContext 对象上下文，包含要重置的对象信息
+ * @param ValidationContext 验证上下文，包含要重置的数据结构指针
+ * @return 无返回值
+ * @note 此函数会将ValidationContext + 0x1d0处的指针设置为SystemDataStructure的地址
+ * @warning 重置操作可能会影响系统的数据访问和状态管理
+ */
+void ResetExtendedSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1d0) = &SystemDataStructure;
@@ -70074,6 +70160,18 @@ void ResetExtendedSystemData(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 初始化资源模板
+ * 
+ * 该函数负责初始化系统资源的模板
+ * 设置资源分配模板和缓存模板的地址
+ * 
+ * @param ObjectContext 对象上下文，包含要初始化的对象信息
+ * @param ValidationContext 验证上下文，包含模板初始化所需的数据
+ * @return 无返回值
+ * @note 此函数会设置ValidationContext + 0xe0处的资源模板地址
+ * @warning 模板初始化会影响系统的资源分配和缓存策略
+ */
 void InitializeResourceTemplates(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
