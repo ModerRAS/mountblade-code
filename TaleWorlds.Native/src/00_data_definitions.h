@@ -3582,7 +3582,7 @@ Label_SecondCompatibilitySpaceFound:
                   BufferSize1 = 0;
                 }
                 StackDataBuffer = &SystemNullPointer;
-                if (lStack_1f0 != 0) {
+                if (StackStringData != 0) {
                   SystemBufferValidate(lStack_1f0,BufferSize1);
                 }
                 lStack_1f0 = 0;
