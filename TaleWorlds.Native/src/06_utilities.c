@@ -54235,7 +54235,17 @@ void AcquireResourceLockWithTimeout(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_1809069b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源句柄清理操作
+ * 
+ * 该函数负责清理资源句柄相关的事务和资源
+ * 确保系统在异常情况下能够正确释放资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void ExecuteResourceHandleCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -54247,7 +54257,17 @@ void Unwind_1809069b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809069c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文清理操作
+ * 
+ * 该函数负责清理验证上下文相关的事务和资源
+ * 确保系统在异常情况下能够正确释放验证资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void ExecuteValidationContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x178) != (int64_t *)0x0) {
