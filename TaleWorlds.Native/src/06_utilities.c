@@ -35166,6 +35166,19 @@ void HandleMemoryStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,u
 
 
 
+/**
+ * @brief 处理系统内存清理操作
+ * 
+ * 该函数负责处理系统内存的清理操作
+ * 包括资源分配处理、系统状态重置和资源句柄释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @note 此函数在系统内存清理过程中被调用
+ */
 void HandleSystemMemoryCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -35182,6 +35195,19 @@ void HandleSystemMemoryCleanup(uint8_t ObjectContext,int64_t ValidationContext,u
 
 
 
+/**
+ * @brief 处理用户内存清理操作
+ * 
+ * 该函数负责处理用户内存的清理操作
+ * 包括资源分配处理、系统状态重置和资源句柄释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @note 此函数在用户内存清理过程中被调用
+ */
 void HandleUserMemoryCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
