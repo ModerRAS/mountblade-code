@@ -3182,8 +3182,8 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
           *(uint8_t *)(SystemEngineContext + 0x1f0) = 0;
           StackBuffer2C8 = &SystemNullPointer;
           StackProcessingBuffer1 = 0;
-          puStack_2c0 = (uint8_t *)0x0;
-          uStack_2b8 = 0;
+          SystemMemoryBufferPointer = (uint8_t *)0x0;
+          SystemOperationStatusFlag = 0;
           if (pMemoryAddress7 != (void *)0x0) {
             StringSearchResult = -1;
             do {
@@ -3264,7 +3264,7 @@ LabelLoopProcessingContinue:
             systemMode = InitializeDataBuffer(&StackBufferPointer3,&SystemTestModeString);
             BufferSize1 = (ulonglong)(int)systemMode;
             if (systemMode < StackLoopLimit) {
-              StringPointer = (char *)(lStack_230 + BufferSize1);
+              StringPointer = (char *)(StringProcessingBufferSecondary + BufferSize1);
               do {
                 LoopCounterValue = (int)BufferSize1;
                 if (*StringPointer == ' ') goto LabelCheckSpaceCharacter;
@@ -3277,7 +3277,7 @@ LabelCheckSpaceCharacter:
             UnsignedIndex = LoopCounterValue + 1;
             BufferSize1 = (ulonglong)(int)systemMode;
             if (systemMode < StackLoopLimit) {
-              StringPointer = (char *)(lStack_230 + BufferSize1);
+              StringPointer = (char *)(StringProcessingBufferSecondary + BufferSize1);
               do {
                 if (*StringPointer == ' ') goto LabelValidateSpaceCharacter;
                 BufferSize6 = (int)BufferSize1 + 1;
@@ -3289,7 +3289,7 @@ LabelCheckSpaceCharacter:
 LabelValidateSpaceCharacter:
             if (LoopCounterValue != -1) {
               ProcessBufferData(&StackBufferPointer3,&StackBufferPointer4,UnsignedIndex,BufferSize1);
-              LoopCounterValue = iStack_1a8;
+              LoopCounterValue = StringProcessingLoopCounter;
               LoopCounter9 = 0;
               StringSearchResult = strchr(puStack_1b0,0x2e);
               if (StringSearchResult != 0) {
@@ -3311,14 +3311,14 @@ LabelValidateSpaceCharacter:
                 CleanupSystemResources();
               }
               puStack_1b0 = (void *)0x0;
-              uStack_1a0 = 0;
+              SystemMemoryStatusFlagA0 = 0;
               StackBufferPointer4 = &SystemBufferTemplate;
             }
             StackBufferPointer3 = &SystemNullPointer;
-            if (lStack_230 != 0) {
+            if (StringProcessingBufferSecondary != 0) {
               CleanupSystemResources();
             }
-            lStack_230 = 0;
+            StringProcessingBufferSecondary = 0;
             StackResetFlag = 0;
             StackBufferPointer3 = &SystemBufferTemplate;
           }
@@ -5391,16 +5391,16 @@ Label_1801d58d5:
       }
       puStack_1a8 = &SystemNullPointer;
       uStack_190 = 0;
-      puStack_1a0 = (uint8_t *)0x0;
+      SystemMemoryBufferPointerA0 = (uint8_t *)0x0;
       uStack_198 = 0;
       SystemBufferCopy(&puStack_1a8,*(uint32_t *)(ModuleInitializationResult9 + 0x10));
       if (*(int *)(ModuleInitializationResult9 + 0x10) != 0) {
-        memcpy(puStack_1a0,*(uint64_t *)(ModuleInitializationResult9 + 8),*(int *)(ModuleInitializationResult9 + 0x10) + 1);
+        memcpy(SystemMemoryBufferPointerA0,*(uint64_t *)(ModuleInitializationResult9 + 8),*(int *)(ModuleInitializationResult9 + 0x10) + 1);
       }
       if (*(longlong *)(ModuleInitializationResult9 + 8) != 0) {
         uStack_198 = 0;
-        if (puStack_1a0 != (uint8_t *)0x0) {
-          *puStack_1a0 = 0;
+        if (SystemMemoryBufferPointerA0 != (uint8_t *)0x0) {
+          *pSystemMemoryStatusFlagA0 = 0;
         }
         uStack_190 = uStack_190 & 0xffffffff;
       }
@@ -5412,7 +5412,7 @@ Label_1801d58d5:
       BooleanFlag = InitializeSystemMemoryPool(&puStack_1a8);
       if (BooleanFlag == '\0') {
         puStack_1a8 = &SystemNullPointer;
-        if (puStack_1a0 != (uint8_t *)0x0) {
+        if (SystemMemoryBufferPointerA0 != (uint8_t *)0x0) {
           CleanupSystemResources();
         }
       }
@@ -5580,12 +5580,12 @@ Label_1801d5c43:
           SystemBufferValidate(pppppBufferSize5);
         }
         puStack_1a8 = &SystemNullPointer;
-        if (puStack_1a0 != (uint8_t *)0x0) {
+        if (SystemMemoryBufferPointerA0 != (uint8_t *)0x0) {
           CleanupSystemResources();
         }
       }
       uStack_190 = uStack_190 & 0xffffffff00000000;
-      puStack_1a0 = (uint8_t *)0x0;
+      SystemMemoryBufferPointerA0 = (uint8_t *)0x0;
       puStack_1a8 = &SystemBufferTemplate;
       StringIndex1 = StringIndex1 + 1;
       ppppppplStackX_8 = (longlong *******)CONCAT44(ppppppplStackX_8._4_4_,StringIndex1);
