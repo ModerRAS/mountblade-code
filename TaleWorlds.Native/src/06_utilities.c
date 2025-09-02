@@ -39010,7 +39010,7 @@ void CleanupSystemResourcesPhaseThree(uint8_t ObjectContext, int64_t ValidationC
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourceHandlerSet4(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPhaseFour(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -39052,7 +39052,7 @@ void CleanupSystemResourceHandlerSet4(uint8_t ObjectContext, int64_t ValidationC
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourceHandlerSet5(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPhaseFive(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
