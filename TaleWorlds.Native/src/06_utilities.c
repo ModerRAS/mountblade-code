@@ -12810,12 +12810,12 @@ uint64_t ResizeArray(int64_t *ArrayPointer, int newSize)
         if ((int)ArrayPointer[1] != 0) {
                 memcpy(NewMemoryBlock,*ArrayPointer,(int64_t)(int)ArrayPointer[1] * 0xc);
         }
-        goto cleanup_old_memory;
+        goto CleanupOldMemory;
       }
     }
     return SuccessStatusCode;
   }
-cleanup_old_memory:
+CleanupOldMemory:
   if ((0 < *(int *)((int64_t)ArrayPointer + 0xc)) && (*ArrayPointer != 0)) {
           ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ArrayPointer,&ResourceAllocationTemplate,0x100,1);
   }
@@ -12845,7 +12845,7 @@ uint64_t ExpandArray(uint8_t arrayHeader, int newSize)
   
   NewMemoryBlock = 0;
   if (CurrentSize == 0) {
-cleanup_old_memory:
+CleanupOldMemory:
     if ((0 < *(int *)((int64_t)ArrayPointer + 0xc)) && (*ArrayPointer != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ArrayPointer,&ResourceAllocationTemplate,0x100,1);
     }
@@ -12860,7 +12860,7 @@ cleanup_old_memory:
       if ((int)ArrayPointer[1] != 0) {
               memcpy(NewMemoryBlock,*ArrayPointer,(int64_t)(int)ArrayPointer[1] * 0xc);
       }
-      goto cleanup_old_memory;
+      goto CleanupOldMemory;
     }
   }
   return SuccessStatusCode;
