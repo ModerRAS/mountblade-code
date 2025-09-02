@@ -3798,7 +3798,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
 uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
 
 {
-  int64_t *processResultPointer;
+  int64_t *ProcessResultPointer;
   int64_t *ResourceTablePointer;
   int64_t *ResourceIndexPointer;
   int PackageValidationStatusCode;
@@ -3819,7 +3819,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
     if (ValidationContext != 0) {
       CleanupDataPointer = (int64_t *)(ValidationContext + -8);
     }
-    OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x10),&ValidationContext);
+    OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + 0x10),&ValidationContext);
     PackageValidationStatusCode = (int)OperationResult;
     if (PackageValidationStatusCode == 0) {
       MemoryContextHandle = 0;
@@ -3877,7 +3877,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
       return 0x1c;
     }
   }
-  if (ValidationStatusCode == 0x1e) {
+  if (PackageValidationStatusCode == 0) {
     return 0;
   }
   return OperationResult;
@@ -10030,6 +10030,19 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
 
 
  
+/**
+ * @brief 处理资源索引和安全验证
+ * 
+ * 该函数负责处理系统资源的索引操作和安全验证
+ * 包括资源标志验证、安全加密处理和资源索引管理
+ * 
+ * @param ObjectContext 对象上下文，包含对象状态和资源信息
+ * @param ValidationContext 验证上下文，包含验证数据和标志
+ * @param ResourceIndexOutput 资源索引输出，返回处理后的资源索引
+ * @return 无返回值
+ * @note 此函数会进行多层安全验证，确保资源访问的安全性
+ * @warning 调用此函数前必须确保对象上下文和验证上下文已正确初始化
+ */
 void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* ValidationContext, int64_t* ResourceIndexOutput)
 {
   int64_t* ProcessPointer;
