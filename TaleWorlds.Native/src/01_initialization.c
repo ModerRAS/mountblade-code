@@ -28193,8 +28193,8 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
   pointerUnsignedE8 = &SystemMemoryAllocatorReference;
   pGlobalDataFlags2 = &SystemGlobalDataReference;
   SystemDataProcessingFlag = 0;
-  lStack_1d8 = 0;
-  uStack_1d0 = 0;
+  LongStackVariable1d8 = 0;
+  StackVariable1d0 = 0;
   localSystemFlags = *SystemResourceManager;
   SetupSystemMemory(&SystemResourcePointer,ConfigurationDataPointer);
   systemResult = ValidateSystemConfiguration(localSystemFlags,&SystemResourcePointer);
@@ -28214,9 +28214,9 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
     localSystemFlags = (long long)systemResult * 0x20 + localSystemFlags;
   }
   punsignedValue208 = &SystemGlobalDataReference;
-  uStack_1f0 = 0;
-  lStack_200 = 0;
-  uStack_1f8 = 0;
+  StackVariable1f0 = 0;
+  LongStackVariable200 = 0;
+  StackVariable1f8 = 0;
   StackValue1e8 = 1;
   SystemOperationStatus = *(uint *)(localSystemFlags + 0x10);
   unsignedSystemValue7 = (ulong long)SystemOperationStatus;
@@ -28224,10 +28224,10 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
     ExecuteSystemCommand(&punsignedValue208,unsignedSystemValue7);
   }
   if (SystemOperationStatus != 0) {
-      memcpy(lStack_200,*(void* *)(localSystemFlags + 8),unsignedSystemValue7);
+      memcpy(LongStackVariable200,*(void* *)(localSystemFlags + 8),unsignedSystemValue7);
   }
-  if (lStack_200 != 0) {
-    *(uint8_t *)(unsignedSystemValue7 + lStack_200) = 0;
+  if (LongStackVariable200 != 0) {
+    *(uint8_t *)(unsignedSystemValue7 + LongStackVariable200) = 0;
   }
   uStack_1f0 = CONCAT44(*(uint *)(localSystemFlags + 0x1c),(uint32_t)uStack_1f0);
   if (0 < iStack_180) {
