@@ -20831,32 +20831,32 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* Configu
         systemFunctionPointer4 = pcStack_80;
       }
       SetSystemPropertyStringValue(pallocationSize,&SystemPropertyNameTemplate,systemFunctionPointer4);
-      dVar1 = *(double *)(nextDataIndex3 + 0xa0 + systemOperationFlags);
-      dVar3 = (double)*(uint *)(nextDataIndex3 + 0xb0 + systemOperationFlags);
-      if (dVar3 != 0.0) {
-        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyNumericTemplate,dVar3);
+      scaleFactorValue = *(double *)(nextDataIndex3 + 0xa0 + systemOperationFlags);
+      numericValue = (double)*(uint *)(nextDataIndex3 + 0xb0 + systemOperationFlags);
+      if (numericValue != 0.0) {
+        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyNumericTemplate,numericValue);
       }
-      if (dVar1 != 0.0) {
-        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyScaleFactorTemplate,dVar1);
+      if (scaleFactorValue != 0.0) {
+        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyScaleFactorTemplate,scaleFactorValue);
       }
-      dVar1 = *(double *)(nextDataIndex3 + 0xb8 + systemOperationFlags);
-      dVar3 = (double)*(uint *)(nextDataIndex3 + 200 + systemOperationFlags);
-      if (dVar3 != 0.0) {
-        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyVerticalScaleTemplate,dVar3);
+      scaleFactorValue = *(double *)(nextDataIndex3 + 0xb8 + systemOperationFlags);
+      numericValue = (double)*(uint *)(nextDataIndex3 + 200 + systemOperationFlags);
+      if (numericValue != 0.0) {
+        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyVerticalScaleTemplate,numericValue);
       }
-      if (dVar1 != 0.0) {
-        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyAspectRatioTemplate,dVar1);
+      if (scaleFactorValue != 0.0) {
+        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyAspectRatioTemplate,scaleFactorValue);
       }
-      dVar1 = *(double *)(nextDataIndex3 + 0x20 + systemOperationFlags);
-      if (dVar1 != 0.0) {
-        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyWidthTemplate,dVar1);
+      scaleFactorValue = *(double *)(nextDataIndex3 + 0x20 + systemOperationFlags);
+      if (scaleFactorValue != 0.0) {
+        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyWidthTemplate,scaleFactorValue);
       }
-      dVar1 = *(double *)(nextDataIndex3 + 0x28 + systemOperationFlags);
-      if (dVar1 != 0.0) {
-        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyHeightTemplate,dVar1);
+      scaleFactorValue = *(double *)(nextDataIndex3 + 0x28 + systemOperationFlags);
+      if (scaleFactorValue != 0.0) {
+        SetSystemPropertyNumericValue(pallocationSize,&SystemPropertyTemplate,&SystemPropertyHeightTemplate,scaleFactorValue);
       }
       nextDataIndex1 = *(long long *)(nextDataIndex3 + 0x30 + systemOperationFlags);
-      dVar1 = (double)nextDataIndex1;
+      scaleFactorValue = (double)nextDataIndex1;
       if (nextDataIndex1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
