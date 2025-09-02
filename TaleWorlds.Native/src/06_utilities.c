@@ -8862,21 +8862,21 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
       ValidationProcessingCounter = (int)ResourceProcessingHash + 1;
       ResourceProcessingHash = (uint64_t)ValidationProcessingCounter;
       FloatParameterIncrement = FloatParameterValue + 1;
-    } while ((int)ValidationCounter < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
+    } while ((int)ValidationProcessingCounter < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
     if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
-      ResourceTablePointer = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)floatParameterValue;
+      ResourceTableProcessingPointer = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatParameterValue;
       do {
-        ResourceIndex = *(int *)((int64_t)floatParameterValue + ResourceTablePointer);
-        if (ResourceIndex != -1) {
-          *(float *)(*(int64_t *)(contextHashValidationResult + 0x20) + 4 + (int64_t)ResourceIndex * 0x18) = *floatParameterValue;
+        ResourceElementIndex = *(int *)((int64_t)FloatParameterValue + ResourceTableProcessingPointer);
+        if (ResourceElementIndex != -1) {
+          *(float *)(*(int64_t *)(ContextHashValidationResult + ObjectContextResourceDataOffset) + ResourceDataOffset + (int64_t)ResourceElementIndex * ResourceEntrySizeBytes) = *FloatParameterValue;
         }
-        ValidationCounter = (int)resourceCounter + 1;
-        resourceCounter = (uint64_t)ValidationCounter;
-        floatParameterValue = floatParameterValue + 1;
-      } while ((int)ValidationCounter < *(int *)(objectContext + ObjectContextValidationDataOffset));
+        ResourceValidationCounter = (int)ResourceProcessingCounter + 1;
+        ResourceProcessingCounter = (uint64_t)ResourceValidationCounter;
+        FloatParameterValue = FloatParameterValue + 1;
+      } while ((int)ResourceValidationCounter < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
     }
   }
-        ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemObjectOffset),objectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemObjectOffset),ObjectContext);
 }
 
 
