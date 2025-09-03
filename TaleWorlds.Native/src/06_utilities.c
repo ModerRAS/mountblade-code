@@ -30290,26 +30290,16 @@ void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCon
  * 该函数用于处理系统第三级上下文中的异常情况
  * 通过调用注册的第三级异常处理器来处理异常
  * 
- * @param ExceptionContext 异常上下文
- * @param SystemContext 系统上下文指针
- * @return 无返回值
- */
-/**
- * @brief 处理第三级上下文异常
- * 
- * 该函数用于处理系统第三级上下文中的异常情况
- * 通过调用注册的第三级异常处理器来处理异常
- * 
  * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */
 void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerFunctionAddress;
+  int64_t* ExceptionHandlerFunctionPointer;
   
-  ExceptionHandlerFunctionAddress = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
-  if (ExceptionHandlerFunctionAddress != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerFunctionAddress + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
+  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -72854,10 +72844,14 @@ void SystemResourceCleanupHandler3(uint8_t ObjectContext,int64_t ValidationConte
  * @param ObjectContext 对象上下文，用于标识需要处理的资源对象
  * @param ValidationContext 验证上下文，包含系统资源和状态信息
  */
-void Unwind_RegisterResourceHandlerAtOffsetC08(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 在C08偏移量处注册资源处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandlerAtOffsetC08(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xc08,8,10,ProcessResourceOperation,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xc08, 8, 10, ProcessResourceOperation, 0xfffffffffffffffe);
   return;
 }
 
@@ -100045,17 +100039,23 @@ void CleanupResourceTableAtOffsetD0(uint8_t ObjectContext, int64_t ValidationCon
 
 
 
-void Unwind_180912280(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 清理资源表中的F0偏移量处的资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void CleanupResourceTableAtOffsetF0(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
-  int64_t LoopCounter;
+  int64_t ResourceCount;
   
-  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xf0);
-  if (LoopCounter != 0) {
+  ResourceCount = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xf0);
+  if (ResourceCount != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -100063,47 +100063,63 @@ void Unwind_180912280(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809122a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 清理资源表中的多个偏移量处的资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void CleanupMultipleResourceTableOffsets(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
-  int64_t LoopCounter;
+  int64_t ResourceCount;
   int64_t ResourceTablePointer;
   
   ResourceTablePointer = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
-  LoopCounter = *(int64_t *)(ResourceTablePointer + ErrorResourceValidationFailed0);
-  if (LoopCounter != 0) {
+  
+  // 清理错误资源验证失败的偏移量
+  ResourceCount = *(int64_t *)(ResourceTablePointer + ErrorResourceValidationFailed0);
+  if (ResourceCount != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
-  LoopCounter = *(int64_t *)(ResourceTablePointer + SystemOperationContextOffset);
-  if (LoopCounter != 0) {
+  
+  // 清理系统操作上下文偏移量
+  ResourceCount = *(int64_t *)(ResourceTablePointer + SystemOperationContextOffset);
+  if (ResourceCount != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
-  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x1d0);
-  if (LoopCounter != 0) {
+  
+  // 清理1D0偏移量
+  ResourceCount = *(int64_t *)(ResourceTablePointer + 0x1d0);
+  if (ResourceCount != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
-  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x1c0);
-  if (LoopCounter != 0) {
+  
+  // 清理1C0偏移量
+  ResourceCount = *(int64_t *)(ResourceTablePointer + 0x1c0);
+  if (ResourceCount != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
-  LoopCounter = *(int64_t *)(ResourceTablePointer + 400);
-  if (LoopCounter != 0) {
+  
+  // 清理400偏移量
+  ResourceCount = *(int64_t *)(ResourceTablePointer + 400);
+  if (ResourceCount != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -100111,17 +100127,23 @@ void Unwind_1809122a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809122c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 清理资源表中的220偏移量处的资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void CleanupResourceTableAtOffset220(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
-  int64_t LoopCounter;
+  int64_t ResourceCount;
   
-  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x220);
-  if (LoopCounter != 0) {
+  ResourceCount = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x220);
+  if (ResourceCount != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -100129,17 +100151,23 @@ void Unwind_1809122c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809122e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 清理资源表中的2C0偏移量处的资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void CleanupResourceTableAtOffset2C0(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
-  int64_t LoopCounter;
+  int64_t ResourceCount;
   
-  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x2c0);
-  if (LoopCounter != 0) {
+  ResourceCount = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x2c0);
+  if (ResourceCount != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
