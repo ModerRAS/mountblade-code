@@ -13979,7 +13979,7 @@ void ProcessComplexResourceWithRegisters(void)
   uint32_t systemContextFlags;
   float resourceFloatValue;
   uint8_t *dataTypeTemplate;
-  int resourceValidationErrorCode;
+  int ResourceValidationErrorCode;
   uint32_t extendedValidationFlags;
   float temporaryResourceValue;
   int64_t systemResourceContext;
@@ -13991,7 +13991,7 @@ void ProcessComplexResourceWithRegisters(void)
       ResourceTablePointerPointer = *(int64_t *)(SystemResourceContext + 0x68);
       if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (ResourceTablePointerPointer != 0)) {
         systemContextFlags = 0;
-        resourceValidationErrorCode = ValidateBufferContext(ResourceTablePointerPointer,&contextFlags);
+        ResourceValidationErrorCode = ValidateBufferContext(ResourceTablePointerPointer,&contextFlags);
         if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         PrimaryValidationStatus = *(uint32_t *)(SystemResourceContext + 0x10);
         SecondaryValidationStatus = *(uint32_t *)(SystemResourceContext + 0x14);
@@ -14044,7 +14044,7 @@ void ProcessComplexResourceWithRegisters(void)
       ResourceTablePointerPointer = *(int64_t *)(SystemResourceContext + 0x68);
       if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (ResourceTablePointerPointer != 0)) {
         systemContextFlags = 0;
-        resourceValidationErrorCode = ValidateBufferContext(ResourceTablePointerPointer,&contextFlags);
+        ResourceValidationErrorCode = ValidateBufferContext(ResourceTablePointerPointer,&contextFlags);
         if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         PrimaryValidationStatus = *(uint32_t *)(SystemResourceContext + 0x10);
         SecondaryValidationStatus = *(uint32_t *)(SystemResourceContext + 0x14);
@@ -14097,7 +14097,7 @@ void ProcessComplexResourceWithRegisters(void)
       ResourceTablePointerPointer = *(int64_t *)(SystemResourceContext + 0x68);
       if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (ResourceTablePointerPointer != 0)) {
         systemContextFlags = 0;
-        resourceValidationErrorCode = ValidateBufferContext(ResourceTablePointerPointer,&contextFlags);
+        ResourceValidationErrorCode = ValidateBufferContext(ResourceTablePointerPointer,&contextFlags);
         if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         PrimaryValidationStatus = *(uint32_t *)(SystemResourceContext + 0x10);
         SecondaryValidationStatus = *(uint32_t *)(SystemResourceContext + 0x14);
@@ -14150,7 +14150,7 @@ void ProcessComplexResourceWithRegisters(void)
       ResourceTablePointerPointer = *(int64_t *)(SystemResourceContext + 0x68);
       if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (ResourceTablePointerPointer != 0)) {
         systemContextFlags = 0;
-        resourceValidationErrorCode = ValidateBufferContext(ResourceTablePointerPointer,&contextFlags);
+        ResourceValidationErrorCode = ValidateBufferContext(ResourceTablePointerPointer,&contextFlags);
         if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         PrimaryValidationStatus = *(uint32_t *)(SystemResourceContext + 0x10);
         SecondaryValidationStatus = *(uint32_t *)(SystemResourceContext + 0x14);
@@ -18714,7 +18714,7 @@ void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
   int64_t resourceEntryPointer;
   int64_t ResourceDataAddress;
   uint8_t hashType;
-  int propertyIndex;
+  int PropertyIndex;
   uint32_t ResourcePropertyId;
   uint32_t ResourcePropertySecondary;
   uint32_t ResourcePropertyTertiary;
@@ -19180,7 +19180,7 @@ void ProcessResourceHash(int64_t ResourceContext, uint *hashPointer)
 
 {
   uint ResourceHash;
-  int processResult;
+  int ProcessResult;
   uint8_t hashType;
   uint32_t formattedHash;
   
@@ -19217,10 +19217,10 @@ uint8_t CalculateResourceDataHash(int64_t ResourceContext, uint8_t *ResourceData
 
 {
   uint8_t ResourceHash;
-  uint dataLength;
+  uint DataLength;
   uint lengthBuffer [2];
   
-  dataLength = *(int *)(ResourceData + 1) - 1;
+  DataLength = *(int *)(ResourceData + 1) - 1;
   if (*(int *)(ResourceData + 1) < 1) {
     dataLength = 0;
   }
@@ -30040,14 +30040,13 @@ void HandleQuinaryContextException(uint8_t ExceptionContext, int64_t SystemConte
 
 
 /**
- * @brief 异常处理函数：解卷六级上下文异常处理器
+ * @brief 六级上下文异常处理器
  * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 该函数负责处理六级异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理六级异常情况的资源清理工作
  * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
@@ -65914,7 +65913,7 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext, int64_t Validation
 
 
 
-void UnwindExceptionHandler180908910(uint8_t ObjectContext, int64_t ValidationContext)
+void HandleExceptionType180908910(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
