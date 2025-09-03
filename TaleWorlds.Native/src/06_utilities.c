@@ -7598,11 +7598,11 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t BufferConte
     return;
   }
   NewBufferPointer = 0;
-  BufferOffset = primaryContextPointer + 8;
+  BufferOffset = PrimaryContextPointer + 8;
   if (PrimaryContextPointer == 0) {
     BufferOffset = NewBufferPointer;
   }
-  ValidationStatus = ValidateBufferContext(BufferOffset, systemBasePointer + ValidationContextDataOffset);
+  ValidationStatus = ValidateBufferContext(BufferOffset, SystemBasePointer + ValidationContextDataOffset);
   if (ValidationStatus != 0) {
     return;
   }
