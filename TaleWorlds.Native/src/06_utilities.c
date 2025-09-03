@@ -100093,9 +100093,9 @@ void RegisterSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationCont
 void InitializeSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
+  int64_t ResourceContextIndex;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  ResourceContextIndex = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x218) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x220) != 0) {
           ExecuteSystemEmergencyExit();
@@ -100298,7 +100298,16 @@ void ConfigureSystemParameters(uint8_t *ParameterArray, int64_t ConfigurationCon
 
 
 
-bool CheckSystemConfigurationStatus(uint8_t *configurationPointer)
+/**
+ * @brief 检查系统配置状态
+ * 
+ * 该函数用于检查系统配置的状态
+ * 验证系统配置是否正确设置
+ * 
+ * @param ConfigurationPointer 配置指针
+ * @return 配置状态，true表示配置正确，false表示配置错误
+ */
+bool CheckSystemConfigurationStatus(uint8_t *ConfigurationPointer)
 
 {
   return *(int *)*configurationPointer == -0x3ffffffb;
