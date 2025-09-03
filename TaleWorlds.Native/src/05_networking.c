@@ -1239,7 +1239,7 @@ void NetworkInitializeConnectionState(void)
 {
   // 连接状态初始化变量
   uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
-  int32_t InitializationResult;                      // 初始化结果状态
+  int32_t NetworkInitializationResult;                      // 初始化结果状态
   int64_t NetworkSystemContext;                     // 网络系统上下文数据
   int32_t ConnectionIdentifier;                     // 连接标识符
   uint32_t ConnectionStateFlags;                    // 连接状态标志位
