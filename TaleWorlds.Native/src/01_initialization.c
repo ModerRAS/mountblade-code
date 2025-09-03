@@ -19708,7 +19708,7 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
       memcpy(SystemBufferPointer,*(long long *)(MainParameter + 8),StringSearchResult - *(long long *)(MainParameter + 8));
   }
   SystemMemoryReference = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(SystemChecksumValue ^ (ulong long)StackSecurityBuffer);
+    ValidateSystemChecksum(SystemChecksumValue ^ (unsigned long long)StackSecurityBuffer);
 }
 
 
