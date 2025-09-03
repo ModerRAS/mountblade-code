@@ -10258,7 +10258,7 @@ Label_18060b1f5:
             StringProcessingResult = 0x1a;
             goto Label_18060bbae;
           }
-          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39298,1);
+          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAA,1);
           if (NetworkRequestStatus != '\0') {
             StringProcessingResult = 0x1b;
             goto Label_18060bbae;
