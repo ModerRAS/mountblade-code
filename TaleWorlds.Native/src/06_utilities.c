@@ -5108,7 +5108,17 @@ uint8_t FreeObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示验证通过
  */
+/**
+ * @brief 验证字符安全性
+ * 
+ * 该函数用于验证输入的字符参数，确保字符输入的有效性
+ * 主要用于系统安全检查和输入验证
+ * 
+ * @param CharacterToValidate 要验证的字符参数
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示错误码
+ */
 uint8_t ValidateCharacterSafety(char CharacterToValidate) {
+  // 检查字符是否为空字符，如果不是则执行系统退出操作
   if (CharacterToValidate != '\0') {
     ExecuteSystemExitOperation();
   }
@@ -8548,9 +8558,9 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer, int64_t Cont
     *(uint8_t *)(MatrixContextPointer + MatrixContextDataOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
     *(uint8_t *)(MatrixContextPointer + MatrixContextConfigOffset) = MatrixConfigurationType;
     
-    uint32_t MatrixRotationFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixFlagsOffset);
-    uint32_t MatrixScaleFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixScaleOffset);
-    uint32_t MatrixTranslationFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixTranslationOffset);
+    uint32_t MatrixRotationState = *(uint32_t *)(ObjectContext + ObjectContextMatrixFlagsOffset);
+    uint32_t MatrixScaleState = *(uint32_t *)(ObjectContext + ObjectContextMatrixScaleOffset);
+    uint32_t MatrixTranslationState = *(uint32_t *)(ObjectContext + ObjectContextMatrixTranslationOffset);
     *(uint32_t *)(MatrixContextPointer + MatrixContextRangeDataOffset) = *(uint32_t *)(ObjectContext + ObjectContextRangeDataOffset);
     *(uint32_t *)(MatrixContextPointer + MatrixContextRotationFlagsOffset) = MatrixRotationFlags;
     *(uint32_t *)(MatrixContextPointer + MatrixContextScaleFlagsOffset) = MatrixScaleFlags;
@@ -104990,13 +105000,13 @@ void CleanupMutexResources(void)
 void InitializeSystemContext(uint8_t ContextPtr, uint8_t SetupParam, uint8_t ConfigParam, uint8_t FlagsParam)
 
 {
-  uint8_t *systemContextPointerPointer;
+  uint8_t *SystemContextPointer;
   
-  systemContextPointerPointer = SystemContextPointerr;
-  if (SystemContextPointerr != (uint8_t *)0x0) {
-    InitializeContextData(&SystemContextData, *SystemContextPointerr, ConfigParam, FlagsParam, 0xfffffffffffffffe);
-    SetupSystemHandler(systemContextPointerPointer + ResourceManagementCleanupOffset);
-          ExecuteSystemHandler(systemContextPointerPointer);
+  SystemContextPointer = SystemContextPointer;
+  if (SystemContextPointer != (uint8_t *)0x0) {
+    InitializeContextData(&SystemContextData, *SystemContextPointer, ConfigParam, FlagsParam, 0xfffffffffffffffe);
+    SetupSystemHandler(SystemContextPointer + ResourceManagementCleanupOffset);
+          ExecuteSystemHandler(SystemContextPointer);
   }
   return;
 }
