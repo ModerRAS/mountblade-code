@@ -511,9 +511,14 @@ uint32_t NetworkConnectionTable;                       // 网络连接表
 /**
  * @brief 初始化网络连接池
  * 
- * 初始化网络连接池，为后续连接做准备
+ * 初始化网络连接池，为后续连接做准备。此函数负责设置连接池的基本参数，
+ * 包括容量限制、健康状态、性能指标等。初始化后的连接池可以接受
+ * 新的连接请求并进行有效的连接管理。
  * 
  * @note 此函数会在系统启动时调用，确保连接池可用
+ * @warning 如果初始化失败，系统将无法建立新的网络连接
+ * 
+ * @return void 无返回值
  */
 void NetworkInitializeConnectionPool(void)
 {
@@ -548,9 +553,14 @@ void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfig
 /**
  * @brief 初始化网络套接字句柄
  * 
- * 初始化网络套接字句柄，为网络通信做准备
+ * 初始化网络套接字句柄，为网络通信做准备。此函数负责设置套接字的基本参数，
+ * 包括文件描述符、上下文大小、协议类型等。初始化后的套接字可以用于
+ * 建立网络连接和进行数据传输。
  * 
  * @note 此函数会在网络连接建立前调用
+ * @warning 如果初始化失败，网络通信功能将无法正常工作
+ * 
+ * @return void 无返回值
  */
 void NetworkInitializeSocketHandle(void)
 {
@@ -577,9 +587,14 @@ void NetworkInitializeSocketHandle(void)
 /**
  * @brief 绑定网络套接字
  * 
- * 绑定网络套接字到指定的地址和端口
+ * 绑定网络套接字到指定的地址和端口。此函数负责设置网络地址和端口配置，
+ * 包括服务器和客户端的IP地址、端口号等。绑定后的套接字可以监听
+ * 连接请求或发起连接。
  * 
  * @note 此函数使用全局配置中的IP地址和端口号
+ * @warning 如果绑定失败，套接字将无法进行网络通信
+ * 
+ * @return void 无返回值
  */
 void NetworkBindSocket(void)
 {
@@ -609,9 +624,14 @@ uint32_t NetworkSocketBindingInfo;
 /**
  * @brief 监听网络连接
  * 
- * 监听网络连接请求，等待客户端连接
+ * 监听网络连接请求，等待客户端连接。此函数负责设置监听队列参数、
+ * 连接限制参数、状态控制器等。监听模式下的套接字可以接受客户端的
+ * 连接请求并建立新的连接。
  * 
  * @note 此函数会使套接字进入监听状态
+ * @warning 如果监听失败，系统将无法接受新的连接请求
+ * 
+ * @return void 无返回值
  */
 void NetworkListenConnections(void)
 {
