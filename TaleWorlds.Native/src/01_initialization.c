@@ -1425,6 +1425,15 @@ void* GetSystemInitializationFunction;
  * @return 无返回值
  * @note 这是系统初始化过程的关键步骤，确保游戏核心功能的正常运行
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 初始化游戏核心系统，包括系统节点的创建、配置和激活。
+ * 该函数负责在系统数据表中查找或创建游戏核心系统节点，
+ * 并设置相应的标识符、数据指针和处理函数。
+ * 
+ * @return 无返回值
+ */
 void InitializeGameCoreSystem(void)
 {
   bool isNodeActive;
@@ -2017,37 +2026,37 @@ void InitializeSystemDataTable(void)
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   SystemRootPointer = (void**)*SystemDataTablePointer;
-  IsNodeActive = *(char*)((long long)SystemRootPointer[1] + SystemNodeActiveFlagOffset);
+  IsNodeActive = *(char*)((long long)SystemRootPointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   SystemInitializationHandler = 0;
   PreviousSystemNode = SystemRootPointer;
   CurrentSystemNode = (void**)SystemRootPointer[1];
   
   while (!IsNodeActive) {
-    IdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SystemDataComparisonTemplateB, SystemIdentifierSize);
+    IdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SYSTEM_DATA_COMPARISON_TEMPLATE_B, SYSTEM_IDENTIFIER_SIZE);
     if (IdentifierComparisonResult < 0) {
-      NextSystemNode = (void**)CurrentSystemNode[SystemNodeNextPointerOffset];
+      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
       CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      NextSystemNode = (void**)CurrentSystemNode[SystemNodeHeadPointerOffset];
+      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_HEAD_POINTER_OFFSET];
     }
     PreviousSystemNode = CurrentSystemNode;
     CurrentSystemNode = NextSystemNode;
-    IsNodeActive = *(char*)((long long)NextSystemNode + SystemNodeActiveFlagOffset);
+    IsNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   
   if ((PreviousSystemNode == SystemRootPointer) || 
-      (IdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateB, PreviousSystemNode + 4, SystemIdentifierSize), IdentifierComparisonResult < 0)) {
+      (IdentifierComparisonResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_B, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + SystemNodeAllocationExtraSize, MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     PreviousSystemNode = AllocatedSystemNode;
   }
   
-  PreviousSystemNode[SystemNodeIdentifier1Index] = SystemDataComparisonTemplateBIdentifier1;
-  PreviousSystemNode[SystemNodeIdentifier2Index] = SystemDataComparisonTemplateBIdentifier2;
-  PreviousSystemNode[SystemNodeDataPointerIndex] = &SystemNodeLinkPointerB;
-  PreviousSystemNode[SystemNodeFlagIndex] = 1;
-  PreviousSystemNode[SystemNodeHandlerIndex] = SystemInitializationHandler;
+  PreviousSystemNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID1;
+  PreviousSystemNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID2;
+  PreviousSystemNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemNodeLinkPointerSecondary;
+  PreviousSystemNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  PreviousSystemNode[SYSTEM_NODE_HANDLER_INDEX] = SystemInitializationHandler;
   return;
 }
 
@@ -22433,6 +22442,20 @@ void DestroySystemMutexAndConditionVariable(void* conditionVariable)
  * 
  * @note 这是系统初始化的重要函数，确保同步对象正确初始化
  */
+/**
+ * @brief 初始化系统同步对象
+ * 
+ * 该函数负责初始化系统同步对象，包括互斥锁、条件变量等同步机制。
+ * 它会设置同步对象的各个字段，初始化底层的同步原语，并确保对象处于可用状态。
+ * 
+ * @param SyncObject 指向同步对象指针的指针，将被初始化的同步对象
+ * @param SyncContextParameter 同步上下文参数，用于同步操作的上下文信息
+ * @param SyncConfigurationParameter 同步配置参数，用于配置同步对象的行为
+ * @param SyncSecurityParameter 同步安全参数，用于同步操作的安全设置
+ * @return void** 返回初始化后的同步对象指针
+ * 
+ * @note 这是系统同步机制的重要组成部分，确保多线程环境下的正确同步
+ */
 void* *
 InitializeSystemSyncObject(void* *SyncObject,void* SyncContextParameter,void* SyncConfigurationParameter,void* SyncSecurityParameter)
 
@@ -22907,18 +22930,18 @@ InitializeStringBufferWithBackup(void* *StringBuffer,long long StringLength,void
  * 
  * @note 这是系统内存管理的重要组成部分，确保内存分配器的正确重置
  */
-void ResetSystemMemoryAllocator(void* *SystemResourceManager)
+void ResetSystemMemoryAllocator(void* *MemoryManager)
 
 {
-  SystemResourceManager[4] = &SystemGlobalDataReference;
-  if (SystemResourceManager[5] != 0) {
+  MemoryManager[4] = &SystemGlobalDataReference;
+  if (MemoryManager[5] != 0) {
       SystemCleanupFunction();
   }
-  SystemResourceManager[5] = 0;
-  *(uint32_t *)(SystemResourceManager + 7) = 0;
-  SystemResourceManager[4] = &SystemMemoryAllocatorReference;
-  *SystemResourceManager = &SystemGlobalDataReference;
-  if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
+  MemoryManager[5] = 0;
+  *(uint32_t *)(MemoryManager + 7) = 0;
+  MemoryManager[4] = &SystemMemoryAllocatorReference;
+  *MemoryManager = &SystemGlobalDataReference;
+  if (MemoryManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
   }
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
@@ -23311,15 +23334,15 @@ void StartAndManageSystemThread(long long SystemResourceManager,long long Config
 
 
 void* *
-InitializeDataBufferTemplates(void* *dataBufferRef,ulong long InitializationFlags,void* reservedParam3,void* reservedParam4)
+InitializeDataBufferTemplates(void* *DataBufferReference,ulong long InitializationFlags,void* ReservedParam3,void* ReservedParam4)
 
 {
-  *dataBufferRef = &SystemDataBufferInputTemplateE;
-  *dataBufferRef = &SystemDataBufferOutputTemplateF;
+  *DataBufferReference = &SystemDataBufferInputTemplateE;
+  *DataBufferReference = &SystemDataBufferOutputTemplateF;
   if ((InitializationFlags & 1) != 0) {
-    free(dataBufferRef,0x10,reservedParam3,reservedParam4,InvalidHandleValue);
+    free(DataBufferReference,0x10,ReservedParam3,ReservedParam4,InvalidHandleValue);
   }
-  return dataBufferRef;
+  return DataBufferReference;
 }
 
 
@@ -23331,57 +23354,57 @@ bool SystemNodeCheckStatus(void)
   char SystemNodeFlag;
   uint32_t *ResourceHashEntryPointer;
   void* *SystemHashNodeData;
-  int systemIndex;
+  int SystemIndex;
   bool SystemNodeStatus;
   void* SystemEncryptionKey;
   long long LongValue40;
-  void* *pointerUnsigned30;
-  void* *pEncryptionKeyValue;
+  void* *StringBufferPointer;
+  void* *EncryptionKeyPointer;
   uint StringOffsetValue;
   
-  InitializeSystemStringBuffer(&pointerUnsigned30);
-  systemIndex = StringOffsetValue + 0x11;
-  ProcessSystemStringData(&pointerUnsigned30,systemIndex);
-  ResourceHashEntryPointer = (uint32_t *)(pEncryptionKeyValue + StringOffsetValue);
+  InitializeSystemStringBuffer(&StringBufferPointer);
+  SystemIndex = StringOffsetValue + 0x11;
+  ProcessSystemStringData(&StringBufferPointer,SystemIndex);
+  ResourceHashEntryPointer = (uint32_t *)(EncryptionKeyPointer + StringOffsetValue);
   *ResourceHashEntryPointer = 0x69676e65;
   ResourceHashEntryPointer[1] = 0x635f656e;
   ResourceHashEntryPointer[2] = 0x69666e6f;
   ResourceHashEntryPointer[3] = 0x78742e67;
   *(void*2 *)(ResourceHashEntryPointer + 4) = 0x74;
   SystemEncryptionKey = 0;
-  longValue40 = 0;
+  LongValue40 = 0;
   SystemHashNodeData = &SystemStringTemplate;
-  if (pEncryptionKeyValue != (void* *)0x0) {
-    SystemHashNodeData = pEncryptionKeyValue;
+  if (EncryptionKeyPointer != (void* *)0x0) {
+    SystemHashNodeData = EncryptionKeyPointer;
   }
-  StringOffsetValue = systemIndex;
+  StringOffsetValue = SystemIndex;
   ValidateSystemStringFormat(&SystemEncryptionKey,SystemHashNodeData,&SystemStringConstant);
-  if (longValue40 == 0) {
-    systemNodeStatus = false;
+  if (LongValue40 == 0) {
+    SystemNodeStatus = false;
   }
   else {
-    initializationStatusFlag = CheckSystemNodeAvailability(SystemNodeManagerPointer,&SystemEncryptionKey);
-    if (longValue40 != 0) {
+    InitializationStatusFlag = CheckSystemNodeAvailability(SystemNodeManagerPointer,&SystemEncryptionKey);
+    if (LongValue40 != 0) {
       fclose();
-      longValue40 = 0;
+      LongValue40 = 0;
       LOCK();
       SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
       UNLOCK();
     }
-    systemNodeStatus = initializationStatusFlag != '\0';
+    SystemNodeStatus = InitializationStatusFlag != '\0';
   }
-  if (longValue40 != 0) {
+  if (LongValue40 != 0) {
     fclose();
-    longValue40 = 0;
+    LongValue40 = 0;
     LOCK();
     SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
     UNLOCK();
   }
-  pointerUnsigned30 = &SystemGlobalDataReference;
-  if (pEncryptionKeyValue != (void* *)0x0) {
+  StringBufferPointer = &SystemGlobalDataReference;
+  if (EncryptionKeyPointer != (void* *)0x0) {
       SystemCleanupFunction();
   }
-  return systemNodeStatus;
+  return SystemNodeStatus;
 }
 
 
