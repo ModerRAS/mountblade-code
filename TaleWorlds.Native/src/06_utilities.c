@@ -5033,13 +5033,13 @@ uint8_t ReleaseObjectHandle(void) {
   int64_t ObjectMemoryLocation;
   
   if (ObjectHandle == 0) {
-    ObjectMemoryAddress = 0;
+    ObjectMemoryLocation = 0;
   }
   else {
-    ObjectMemoryAddress = ObjectHandle - 8;
+    ObjectMemoryLocation = ObjectHandle - 8;
   }
-  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
+  if (*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset), 1);
   }
   return 0;
 }
@@ -5047,27 +5047,16 @@ uint8_t ReleaseObjectHandle(void) {
 
 
 /**
- * @brief 验证字符输入参数
- * 
- * 验证输入的字符参数，如果字符不为空字符则执行系统退出操作。
- * 此函数用于系统安全检查，防止无效字符输入导致系统异常。
- * 
- * @param CharacterToValidate 要验证的字符
- * @return uint8_t 验证结果，0表示验证通过
- * @note 此函数用于字符输入的安全验证
- * @warning 如果字符无效，会触发系统退出操作
- */
-/**
  * @brief 验证字符输入
  * 
  * 该函数用于验证输入的字符参数，确保字符输入的有效性
  * 如果字符不为空字符，则执行系统退出操作以确保安全
  * 
- * @param InputCharacter 要验证的字符
+ * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示验证通过
  */
-uint8_t ValidateCharacterInput(char InputCharacter) {
-  if (InputCharacter != '\0') {
+uint8_t ValidateCharacterInput(char CharacterToValidate) {
+  if (CharacterToValidate != '\0') {
     ExecuteSystemExitOperation();
   }
   return OperationSuccessCode;
