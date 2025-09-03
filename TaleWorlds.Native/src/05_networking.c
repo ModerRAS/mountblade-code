@@ -90,7 +90,7 @@
 #define NetworkConnectionDataOffsetFirst 0x5c
 #define NetworkConnectionValidatorOffset 0x60
 #define NetworkConnectionIntegrityOffsetFirst 0x70
-#define NetworkConnectionIntegrityOffset2 0x74
+#define NetworkConnectionIntegrityOffsetSecond 0x74
 #define NetworkConnectionFinalizeOffset 0x7c
 #define NetworkConnectionSecurityOffset 0xf8
 #define NetworkConnectionHandleOffset 0xe8
@@ -104,7 +104,7 @@
 #define NetworkStatusTerminator 0x06
 
 // 网络系统常量
-#define NetworkMagicDeadFood 0xdeadf00d       // 调试魔数，用于内存检查
+#define NetworkMagicDebugFood 0xdeadf00d       // 调试魔数，用于内存检查
 #define NetworkMaxIntValue 0x7fffffff          // 最大32位有符号整数值
 #define NetworkFloatOne 0x3f800000             // 浮点数1.0的十六进制表示
 #define NetworkFloatNegativeOne 0xbf800000     // 浮点数-1.0的十六进制表示
