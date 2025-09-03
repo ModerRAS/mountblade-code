@@ -1348,26 +1348,26 @@ NetworkHandle ValidateConnectionNetworkPacket(int64_t ConnectionContext, Network
  */
 NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
-  NetworkHandle PacketProcessingResult;
+  NetworkHandle ProcessingResult;
   NetworkByte DecodedDataStreamBuffer [32];
   
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < NetworkPacketStatusLimit) {
-    PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
-    if ((int)PacketProcessingResult == 0) {
-      PacketProcessingResult = 0;
+    ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
+    if ((int)ProcessingResult == 0) {
+      ProcessingResult = 0;
     }
   }
   else {
-    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTnvel);
-    if ((int)PacketProcessingResult == 0) {
-      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBtvel);
-      if ((int)PacketProcessingResult == 0) {
-        NetworkHandle ConnectionDataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
-        if ((int)ConnectionDataProcessingResult == 0) {
+    ProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTnvel);
+    if ((int)ProcessingResult == 0) {
+      ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBtvel);
+      if ((int)ProcessingResult == 0) {
+        NetworkHandle ConnectionDataResult = ProcessConnectionData(ConnectionContext, PacketData);
+        if ((int)ConnectionDataResult == 0) {
             FinalizePacketProcessing(PacketData, DecodedDataStreamBuffer);
         }
       }
     }
   }
-  return PacketProcessingResult;
+  return ProcessingResult;
 }

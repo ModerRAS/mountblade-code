@@ -6210,17 +6210,17 @@ void InitializeSystemNetworkManager(void)
 
 {
   void* SystemContextParameter;
-  void* *networkManagerReference;
+  void* *NetworkManagerReference;
   uint8_t *NetworkConfigurationBuffer;
   uint32_t ConfigurationBufferSize;
   uint8_t NetworkConfigurationBuffer [136];
   
-  networkManagerReference = &SystemNetworkManagerNode;
+  NetworkManagerReference = &SystemNetworkManagerNode;
   NetworkConfigurationBuffer = NetworkConfigurationBuffer;
   NetworkConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 0x13;
   strcpy_s(NetworkConfigurationBuffer,StringBufferSize,&SystemNetworkManagerTemplate,SystemContextParameter,InvalidHandleValue);
-  SystemNetworkManagerHandle = InitializeNetworkManagerCallback(&networkManagerReference);
+  SystemNetworkManagerHandle = InitializeNetworkManagerCallback(&NetworkManagerReference);
   return;
 }
 
@@ -6241,7 +6241,7 @@ void InitializeSystemStorageManager(void)
   char SystemNodeTraversalFlag;
   void** SystemDataTableReference;
   int NodeIdentifierCompareResult;
-  long long *systemMemoryAllocationPointer;
+  long long *SystemMemoryAllocationPointer;
   long long systemTimestamp;
   void** SystemRootStorageNode;
   void** SystemCurrentStorageNode;
@@ -6300,7 +6300,7 @@ void InitializeSystemMemoryManagerNode(void)
   char SystemNodeTraversalFlag;
   void** SystemDataTableReference;
   int NodeIdentifierCompareResult;
-  long long *systemMemoryAllocationPointer;
+  long long *SystemMemoryAllocationPointer;
   long long systemTimestamp;
   void** SystemRootMemoryNode;
   void** SystemCurrentMemoryNode;
