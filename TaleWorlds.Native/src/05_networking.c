@@ -430,7 +430,13 @@ uint ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
   return 0;
 }
 
-// 处理连接请求 - 处理网络连接请求和验证
+/**
+ * 处理连接请求 - 处理网络连接请求和验证
+ * 此函数负责处理网络连接请求，验证连接参数，并建立安全连接
+ * @param ConnectionContext 连接上下文句柄
+ * @param PacketData 数据包数据句柄
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 NetworkHandle ProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   long long NetworkContextArray;
@@ -441,14 +447,14 @@ NetworkHandle ProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkH
   if (NetworkOperationFlag == 0) {
 LabelNetworkValidationStart:
     if ((0 < *(int *)((long long)NetworkOperationStatusPointer + 0xc)) && (*NetworkOperationStatusPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0), *NetworkOperationStatusPointer, &SecurityValidationData, 0x100, 1);
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *NetworkOperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
     *NetworkOperationStatusPointer = NetworkContextArray;
     *(int *)((long long)NetworkOperationStatusPointer + 0xc) = NetworkOperationFlag;
     return 0;
   }
   if ((int)PacketData - 1U < 0x3fffffff) {
-    NetworkContextArray = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0), PacketData, &SecurityValidationData, 0xf4, 0);
+    NetworkContextArray = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
     if (NetworkContextArray != 0) {
       if ((int)NetworkOperationStatusPointer[1] != 0) {
           memcpy(NetworkContextArray, *NetworkOperationStatusPointer, (long long)(int)NetworkOperationStatusPointer[1]);
@@ -456,7 +462,7 @@ LabelNetworkValidationStart:
       goto NETWORK_PROCESSING_CONTINUE;
     }
   }
-  return 0x26;
+  return NetworkErrorConnectionFailed;
 }
 
 // 初始化连接处理器 - 初始化网络连接处理器
