@@ -1313,25 +1313,25 @@ NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      PacketProcessingStatus = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
-      if ((int)PacketProcessingStatus != 0) {
-        return PacketProcessingStatus;
+      NetworkPacketValidationStatus = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
+      if ((int)NetworkPacketValidationStatus != 0) {
+        return NetworkPacketValidationStatus;
       }
     }
     else {
-      PacketProcessingStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffset1);
-      if ((int)PacketProcessingStatus != 0) {
-        return PacketProcessingStatus;
+      NetworkPacketValidationStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffset1);
+      if ((int)NetworkPacketValidationStatus != 0) {
+        return NetworkPacketValidationStatus;
       }
-      PacketProcessingStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffset2);
-      if ((int)PacketProcessingStatus != 0) {
-        return PacketProcessingStatus;
+      NetworkPacketValidationStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffset2);
+      if ((int)NetworkPacketValidationStatus != 0) {
+        return NetworkPacketValidationStatus;
       }
     }
-    PacketProcessingStatus = FinalizePacket(PacketData, ConnectionContext + NetworkConnectionFinalizeOffset, NetworkConnectionFinalizeValue);
-    return PacketProcessingStatus;
+    NetworkPacketValidationStatus = FinalizePacket(PacketData, ConnectionContext + NetworkConnectionFinalizeOffset, NetworkConnectionFinalizeValue);
+    return NetworkPacketValidationStatus;
   }
-  return PacketProcessingStatus;
+  return NetworkPacketValidationStatus;
 }
 
 /**
