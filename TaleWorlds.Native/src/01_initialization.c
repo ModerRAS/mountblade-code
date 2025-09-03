@@ -235,13 +235,13 @@ long long GetSystemStatusFlags(void);
  * 配置系统数据，设置数据参数和属性。
  * 用于系统数据的配置和管理。
  * 
- * @param bufferAddress 缓冲区地址，指定要配置的数据缓冲区
- * @param configData 配置数据，包含配置的相关信息
- * @param contextPointer 上下文指针，包含上下文相关信息
- * @param parameterArray 参数数组，包含配置参数的相关信息
+ * @param BufferAddress 缓冲区地址，指定要配置的数据缓冲区
+ * @param ConfigData 配置数据，包含配置的相关信息
+ * @param ContextPointer 上下文指针，包含上下文相关信息
+ * @param ParameterArray 参数数组，包含配置参数的相关信息
  * @return 无返回值
  */
-void ConfigureSystemData(void* bufferAddress, void* configData, void* contextPointer, void* parameterArray);
+void ConfigureSystemData(void* BufferAddress, void* ConfigData, void* ContextPointer, void* ParameterArray);
 
 /**
  * @brief 释放系统资源
@@ -249,10 +249,10 @@ void ConfigureSystemData(void* bufferAddress, void* configData, void* contextPoi
  * 释放系统资源，包括内存、句柄和对象。
  * 用于系统资源的清理和回收。
  * 
- * @param resourcePointer 资源指针，指定要释放的系统资源
+ * @param ResourcePointer 资源指针，指定要释放的系统资源
  * @return 无返回值
  */
-void ReleaseSystemResources(void* resourcePointer);
+void ReleaseSystemResources(void* ResourcePointer);
 
 /**
  * @brief 初始化系统缓冲区
@@ -265,7 +265,7 @@ void ReleaseSystemResources(void* resourcePointer);
  * @param parameter 参数，包含初始化所需的参数信息
  * @return 无返回值
  */
-void InitializeSystemBuffer(void* bufferAddress, int initFlag, int parameter);
+void InitializeSystemBuffer(void* BufferAddress, int InitFlag, int Parameter);
 
 /**
  * @brief 更新系统数据
@@ -50042,12 +50042,12 @@ InitializeSystemMemoryAllocatorWithHashNodes(long long* SystemResourceManager,vo
 {
   void** SystemDataPointer;
   code *SystemStringPointer;
-  void* *SystemHashNodeData;
-  void* *presourceAddress;
+  void* *HashNodeIterator;
+  void* *ResourceTemplateAddress;
   
   *SystemResourceManager = (long long)ConfigurationFlag;
   if (ConfigurationDataPointer != AdditionalParameter) {
-    SystemHashNodeData = ConfigurationDataPointer + 0x2b;
+    HashNodeIterator = ConfigurationDataPointer + 0x2b;
     do {
       *ConfigurationFlag = &SystemMemoryAllocatorReference;
       ConfigurationFlag[1] = 0;
