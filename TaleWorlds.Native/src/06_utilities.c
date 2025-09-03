@@ -4437,7 +4437,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  */
 void ValidateSystemObjectCollection(void)
 {
-  uint8_t CurrentObjectId;
+  uint8_t CurrentObjectIdParameter;
   int SystemObjectValidationResult;
   int64_t SystemObjectContextHandle;
   int64_t SystemRuntimeContext;
@@ -4463,10 +4463,10 @@ void ValidateSystemObjectCollection(void)
       if (0 < TotalRetrievedObjects) {
         CollectionBufferPosition = PointerSizeBytes;
         do {
-          CurrentObjectId = *(uint8_t *)(SystemObjectCollectionBuffer + CollectionBufferPosition);
-          SystemObjectValidationResult = ValidateSystemObject(CurrentObjectId);
+          CurrentObjectIdParameter = *(uint8_t *)(SystemObjectCollectionBuffer + CollectionBufferPosition);
+          SystemObjectValidationResult = ValidateSystemObject(CurrentObjectIdParameter);
           if (SystemObjectValidationResult != 2) {
-                  HandleInvalidSystemObject(CurrentObjectId, 1);
+                  HandleInvalidSystemObject(CurrentObjectIdParameter, 1);
           }
           ValidatedObjectCount++;
           CollectionBufferPosition += 8;
