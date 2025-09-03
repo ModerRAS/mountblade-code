@@ -343,7 +343,7 @@ uint32_t InitializeContext(int64_t NetworkContext);
  * @param NetworkContextEntry 网络上下文条目
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkHandleContextEntry(int64_t NetworkContextEntry);
+uint32_t HandleContextEntry(int64_t NetworkContextEntry);
 
 /**
  * @brief 处理网络连接数据
@@ -355,7 +355,7 @@ uint32_t NetworkHandleContextEntry(int64_t NetworkContextEntry);
  * @param ConnectionContext 连接上下文
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkHandleConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
+uint32_t HandleConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
 
 /**
  * @brief 处理辅助连接数据
@@ -366,7 +366,7 @@ uint32_t NetworkHandleConnectionData(int64_t NetworkContextEntry, int64_t Networ
  * @param ConnectionData 连接数据
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkHandleSecondaryConnectionData(int64_t ConnectionContext, int64_t ConnectionData);
+uint32_t HandleSecondaryConnectionData(int64_t ConnectionContext, int64_t ConnectionData);
 
 /**
  * @brief 验证网络上下文条目
