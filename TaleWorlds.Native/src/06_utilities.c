@@ -77086,9 +77086,14 @@ void Unwind_18090b470(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 /**
- * @brief 销毁基本互斥锁
+ * @brief 销毁基础互斥锁
+ * 
+ * 该函数负责销毁基础的互斥锁资源，调用底层的互斥锁销毁函数
+ * 来释放互斥锁占用的系统资源。这是线程同步资源清理的基础函数。
+ * 
+ * @return void 无返回值
  */
-void Unwind_DestroyMutexBasic(void)
+void DestroyBasicMutex(void)
 
 {
   MutexDestroyInPlace();
@@ -78177,8 +78182,13 @@ void Unwind_18090bcd0(uint8_t ObjectContext,int64_t ValidationContext)
 
 /**
  * @brief 销毁第三级互斥锁
+ * 
+ * 该函数负责销毁第三级互斥锁资源，调用底层的互斥锁销毁函数
+ * 来释放互斥锁占用的系统资源。这是线程同步资源清理的辅助函数。
+ * 
+ * @return void 无返回值
  */
-void Unwind_DestroyMutexTertiary(void)
+void DestroyTertiaryMutex(void)
 
 {
   MutexDestroyInPlace();
@@ -79963,7 +79973,15 @@ void Unwind_18090c560(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c570(void)
+/**
+ * @brief 减少资源引用计数
+ * 
+ * 该函数负责减少资源的引用计数，当引用计数减少到零时，
+ * 会调用资源管理器的回调函数来处理资源释放。这是资源管理的重要函数。
+ * 
+ * @return void 无返回值
+ */
+void DecrementResourceReferenceCounter(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;

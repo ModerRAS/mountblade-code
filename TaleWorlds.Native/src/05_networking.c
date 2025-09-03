@@ -1003,7 +1003,7 @@ NetworkValidationProcessingContinue:
       if ((int)ConnectionValidationResult[1] != 0) {
           memcpy(NetworkConnectionContext, *ConnectionValidationResult, (long long)(int)ConnectionValidationResult[1]);
       }
-      goto NetworkProcessingContinue;
+      goto NetworkProcessingSuccess;
     }
   }
   return NetworkErrorConnectionFailed;
@@ -1077,7 +1077,7 @@ NetworkHandle NetworkProcessConnectionDataHandler(int64_t *ConnectionContext, in
     }
     return NetworkErrorConnectionFailed;
   }
-NETWORK_PROCESSING_LOOP:
+NetworkMainProcessingLoop:
   if ((0 < *(int *)((long long)ConnectionContext + ConnectionParameterOffset)) && (*ConnectionContext != 0)) {
       ValidateConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *ConnectionContext, &SecurityValidationData, SecurityValidationBufferSize, 1);
   }
@@ -1115,7 +1115,7 @@ NetworkHandle NetworkProcessConnectionStatus(NetworkHandle ConnectionContext, in
   
   NetworkStatusBuffer = (NetworkStatus *)0x0;
   if (NetworkOperationCode == 0) {
-NETWORK_PROCESSING_LOOP:
+NetworkMainProcessingLoop:
     if ((0 < *(int *)((long long)NetworkOperationStatusBuffer + ConnectionParameterOffset)) && (*NetworkOperationStatusBuffer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *NetworkOperationStatusBuffer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
