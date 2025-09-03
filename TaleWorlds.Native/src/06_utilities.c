@@ -974,7 +974,7 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 // 系统状态码常量
 #define SystemInitializationStatusCode ErrorInvalidResourceData
 #define SystemVersionInfoStatusCode ErrorResourceValidationFailed
-#define SystemObjectValidationStatusCode ErrorInvalidResourceData
+#define SystemObjectValidationStatus ErrorInvalidResourceData
 #define SystemResourceProcessingStatusCode ErrorResourceValidationFailed
 #define SystemMemoryAllocationStatusCode ErrorInvalidResourceData
 #define SystemDataValidationStatusCode ErrorResourceValidationFailed
@@ -4430,7 +4430,7 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int ObjectValidationStatusCode;
+  int ObjectValidationStatus;
   int64_t ObjectCollectionIterator;
   int ProcessedObjectsCount;
   uint8_t ObjectMetadataWorkspace[32];
@@ -4445,28 +4445,28 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   SecurityValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetadataWorkspace;
   
   // 获取上下文句柄
-  ObjectValidationStatusCode = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleArray);
-  if ((ObjectValidationStatusCode == 0) && (*(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset) != 0)) {
+  ObjectValidationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleArray);
+  if ((ObjectValidationStatus == 0) && (*(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset) != 0)) {
     ObjectListBuffer = ObjectProcessingWorkspace;
-    ProcessedObjectsCount = 0;
+    ProcessedObjectCount = 0;
     TotalObjectCount = 0;
     MaximumObjectProcessingLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
-    ObjectValidationStatusCode = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset),
+    ObjectValidationStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset),
                           &ObjectListBuffer);
-    if (ObjectValidationStatusCode == 0) {
+    if (ObjectValidationStatus == 0) {
       if (0 < TotalObjectCount) {
         ObjectCollectionIterator = 0;
         do {
           uint8_t CurrentObjectStatus = *(uint8_t *)(ObjectListBuffer + ObjectCollectionIterator);
-          ObjectValidationStatusCode = ValidateObjectStatus(CurrentObjectStatus);
-          if (ObjectValidationStatusCode != RegistrationStatusSuccess) {
+          ObjectValidationStatus = ValidateObjectStatus(CurrentObjectStatus);
+          if (ObjectValidationStatus != RegistrationStatusSuccess) {
                   HandleInvalidObject(CurrentObjectStatus, 1);
           }
-          ProcessedObjectsCount++;
+          ProcessedObjectCount++;
           ObjectCollectionIterator += ResourceEntrySizeBytes;
-        } while (ProcessedObjectsCount < TotalObjectCount);
+        } while (ProcessedObjectCount < TotalObjectCount);
       }
       FreeObjectListMemory(&ObjectListBuffer);
     }
@@ -4742,7 +4742,7 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
   int64_t *ResultPointer;
   int64_t *ResourceTablePointer;
   int64_t *ResourceIndexCounter;
-  int ObjectValidationStatusCode;
+  int ObjectValidationStatus;
   uint SystemProcessResult;
   uint64_t OperationResult;
   int64_t *ResourceDataPointer;
@@ -4756,8 +4756,8 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
   int SystemOperationStatusCode;
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterSecondaryOffset),&ValidationContext);
-  ObjectValidationStatusCode = (int)OperationResult;
-  if (ObjectValidationStatusCode == 0) {
+  ObjectValidationStatus = (int)OperationResult;
+  if (ObjectValidationStatus == 0) {
     NullDataPointer = (int64_t *)0x0;
     CleanupDataPointer = NullDataPointer;
     if (ValidationContext != 0) {
@@ -9216,7 +9216,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
  */
 uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t ValidationParams)
 {
-  int ObjectValidationStatusCode;
+  int ObjectValidationStatus;
   int ArrayElementIndex;
   uint8_t HashValidationStatusCode;
   float *FloatDataPointer;
