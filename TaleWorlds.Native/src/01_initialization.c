@@ -27023,12 +27023,12 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
   LOCK();
   *(uint32_t *)(resourceDataIndex + 0x88) = 0;
   UNLOCK();
-  localDataIndex = SystemPerformancePreviousStorage;
+  resourceDataIndex = SystemPerformancePreviousStorage;
   if (SystemPerformancePreviousStorage == 0) {
     QueryPerformanceCounter(&stackValue20);
-    localDataIndex = stackValue20;
+    resourceDataIndex = stackValue20;
   }
-  *(double *)(systemResourcePointer + 0x68) = (double)(localDataIndex - SystemPerformanceCounterStorage) * SystemPerformanceFrequencyStorage;
+  *(double *)(systemResourcePointer + 0x68) = (double)(resourceDataIndex - SystemPerformanceCounterStorage) * SystemPerformanceFrequencyStorage;
   if (SystemMemoryFlag != '\0') {
     stackValue58 = 0x180c91288;
     SystemOperationStatus = _Mtx_lock(0x180c91288);
@@ -27958,12 +27958,12 @@ void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,v
   long long *StackParameter1;
   long long *StackParameter2;
   long long **StackParameter3;
-  long long localBuffer1 [2];
-  void* *localBuffer2;
-  void* *localBuffer3;
-  long long localBuffer4 [2];
-  void* *localBuffer5;
-  void* *localBuffer6;
+  long long systemDataBufferA [2];
+  void* *systemDataBufferB;
+  void* *systemDataBufferC;
+  long long systemDataBufferD [2];
+  void* *systemDataBufferE;
+  void* *systemDataBufferF;
   
   systemHandle = SystemGlobalStatusFlags;
   SystemResourceHandle = SystemResourceManager;
@@ -27993,19 +27993,19 @@ void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,v
   if (((*(int *)(SystemNodeManagerPointer + 0x4d4) != *(int *)(SystemNodeManagerPointer + 0x4d0)) ||
       (*(int *)(SystemNodeManagerPointer + 0x314) != *(int *)(SystemNodeManagerPointer + 0x310))) ||
      (*(int *)(SystemNodeManagerPointer + 0x544) != *(int *)(SystemNodeManagerPointer + 0x540))) {
-    SystemResourceHandle = localBuffer1;
-    localBuffer2 = &SystemBuffer1;
-    localBuffer3 = &SystemBuffer2;
-    ProcessSystemResourceData(localBuffer1);
+    SystemResourceHandle = systemDataBufferA;
+    systemDataBufferB = &SystemBuffer1;
+    systemDataBufferC = &SystemBuffer2;
+    ProcessSystemResourceData(systemDataBufferA);
   }
   if ((SystemAllocationFlags != 0) &&
      ((*(int *)(SystemNodeManagerPointer + 900) != *(int *)(SystemNodeManagerPointer + 0x380) ||
       (*(int *)(SystemNodeManagerPointer + 0x3f4) != *(int *)(SystemNodeManagerPointer + 0x3f0))))) {
     memoryAllocationHandle = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x40,8,3);
-    SystemResourceHandle = localBuffer4;
-    localBuffer5 = &SystemBuffer3;
-    localBuffer6 = &SystemBuffer4;
-    systemResourcePointer = (long long *)CreateMemoryAllocationHandle(memoryAllocationHandle,localBuffer4);
+    SystemResourceHandle = systemDataBufferD;
+    systemDataBufferE = &SystemBuffer3;
+    systemDataBufferF = &SystemBuffer4;
+    systemResourcePointer = (long long *)CreateMemoryAllocationHandle(memoryAllocationHandle,systemDataBufferD);
     StackParameter2 = systemResourcePointer;
     if (systemResourcePointer != (long long *)0x0) {
       (**(code **)(*systemResourcePointer + 0x28))(systemResourcePointer);
