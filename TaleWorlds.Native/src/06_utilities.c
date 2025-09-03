@@ -77328,7 +77328,7 @@ void CleanupSystemResourceTable(uint8_t ObjectContext, int64_t ValidationContext
 
 
 
-void Unwind_18090b500(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupOperation500(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -77364,7 +77364,7 @@ void Unwind_18090b500(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b510(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupOperation510(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
