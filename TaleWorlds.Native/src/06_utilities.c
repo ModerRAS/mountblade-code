@@ -49908,10 +49908,10 @@ void ExecuteResourceHashTableCleanup(uint8_t ObjectContext,int64_t ValidationCon
   uint8_t *HashEntryPointer;
   uint8_t LoopCondition;
   
-  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x28);
+  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + ResourceTablePointerOffset);
   LoopIncrement = 0xfffffffffffffffe;
   ResourceHashPtr = (uint8_t *)ResourceTablePointerPointer[1];
-  for (HashEntryPointer = (uint8_t *)*ResourceTablePointerPointer; HashEntryPointer != ResourceHashAddress; HashEntryPointer = HashEntryPointer + 0x13) {
+  for (HashEntryPointer = (uint8_t *)*ResourceTablePointerPointer; HashEntryPointer != ResourceHashAddress; HashEntryPointer = HashEntryPointer + ResourceHashEntrySize) {
     (**(code **)*HashEntryPointer)(HashEntryPointer,0,CleanupOption,CleanupFlag,LoopIncrement);
   }
   if (*ResourceTablePointerPointer == 0) {
@@ -61403,7 +61403,7 @@ void ValidateResourceTablePointerVersion(uint8_t ObjectContext,int64_t Validatio
   int64_t *ResourceTablePointerPointer;
   int64_t ResourceIndex;
   
-  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x28);
+  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + ResourceTablePointerOffset);
   SystemContextPointer = ResourceTablePointerPointer[1];
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x60) {
     CheckResourceVersion(ResourceIndex);
@@ -61437,7 +61437,7 @@ void SetResourceHashAddressToAllocationTemplate(uint8_t ObjectContext, int64_t V
   uint8_t *ResourceHashStatusAddress;
   uint8_t LoopCondition;
   
-  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x28);
+  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + ResourceTablePointerOffset);
   LoopIncrement = 0xfffffffffffffffe;
   ResourceHashPtr = (uint8_t *)ResourceTablePointerPointer[1];
   for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointerPointer; ResourceHashStatusAddress != ResourceHashAddress; PackageValidationStatusCodePointer = ResourceHashStatusAddress + 4) {
@@ -78265,7 +78265,7 @@ void Unwind_18090c060(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t *ResourceTablePointerPointer;
   int64_t *ResourceIndexPointer;
   
-  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x28);
+  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + ResourceTablePointerOffset);
   ResourceContext = (int64_t *)ResourceTablePointerPointer[1];
   for (ResourceIndexPointer = (int64_t *)*ResourceTablePointerPointer; ResourceIndexPointer != ResourceContext; ResourceIndexPointer = ResourceIndexPointer + 1) {
     if ((int64_t *)*ResourceIndexPointer != (int64_t *)0x0) {
