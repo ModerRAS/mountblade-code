@@ -15218,7 +15218,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
   int64_t ResourceRegisterPointer;
   int64_t SystemContextRegister;
   float FloatingPointCalculationResult;
-  uint32_t primaryValidationStatusCode;
+  uint32_t PrimaryValidationStatusCode;
   uint32_t tertiaryFloatValidationResult;
   uint32_t FloatingPointResultThird;
   uint32_t secondaryFloatValidationResult;
@@ -17983,7 +17983,7 @@ uint8_t ProcessResourceRegistry(uint8_t *ObjectContext, uint8_t ValidationContex
   int64_t ResourceRegisterPointer;
   uint64_t MemorySize;
   uint32_t FloatingPointCalculationResult;
-  uint32_t primaryValidationStatusCode;
+  uint32_t PrimaryValidationStatusCode;
   uint32_t tertiaryFloatValidationResult;
   uint32_t FloatingPointResultThird;
   uint32_t secondaryFloatValidationResult;
@@ -18149,7 +18149,7 @@ void ProcessResourceHashValidation(uint8_t *ObjectContext)
   int64_t ResourceRegisterPointer;
   int64_t BufferPointer;
   uint32_t FloatingPointCalculationResult;
-  uint32_t primaryValidationStatusCode;
+  uint32_t PrimaryValidationStatusCode;
   uint32_t tertiaryFloatValidationResult;
   uint32_t ResourceCount;
   
@@ -27324,7 +27324,7 @@ uint64_t ProcessResourceHashCalculationAndValidation(void)
   uint8_t *SystemRegisterContext;
   int64_t SystemContextRegister;
   uint32_t FloatingPointCalculationResult;
-  uint32_t primaryValidationStatusCode;
+  uint32_t PrimaryValidationStatusCode;
   uint32_t tertiaryFloatValidationResult;
   uint32_t FloatingPointResultThird;
   uint32_t PrimaryResourceHash;
