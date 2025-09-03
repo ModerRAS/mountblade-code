@@ -9810,13 +9810,13 @@ Label_18060a500:
                     if (NetworkRequestStatus != '\0') goto Label_18060ae75;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationDisplaySettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060ae93;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39bc0);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationRenderSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060aeb1;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b48);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationInterfaceSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060b6a9;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b30);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationUserInterfaceSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060a66e;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b78);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationInteractionSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060a68c;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b68);
                     if (NetworkRequestStatus != '\0') goto Label_18060a6aa;
@@ -13596,7 +13596,7 @@ ulonglong CalculateMemoryAddressMapping(longlong VirtualAddress)
   uint7 SectionBufferSize;
   IMAGE_SECTION_HEADER *SectionHeaderIterator;
   MappedMemoryAddress = 0;
-  for (SectionHeaderIterator = &IMAGE_SECTION_HEADER_1800002a0; SectionHeaderIterator != (IMAGE_SECTION_HEADER *)&UNK_1800003e0;
+  for (SectionHeaderIterator = &IMAGE_SECTION_HEADER_1800002a0; SectionHeaderIterator != (IMAGE_SECTION_HEADER *)&ImageSectionHeaderTerminator;
       SectionHeaderIterator = SectionHeaderIterator + 1) {
     if (((ulonglong)(uint)SectionHeaderIterator->VirtualAddress <= VirtualAddress - 0x180000000U) &&
        (MappedMemoryAddress = (ulonglong)((SectionHeaderIterator->Misc).PhysicalAddress + SectionHeaderIterator->VirtualAddress),
