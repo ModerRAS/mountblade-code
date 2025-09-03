@@ -14962,12 +14962,12 @@ void CalculateFloatValueAndValidateResources(void)
   uint32_t StackContextBuffer;
   char ResourceChecksumData[4];
   uint8_t *StackResourcePointer;
-  float stackFloatValue;
+  float StackFloatValue;
   uint32_t StackValidationCode;
-  float stackMatrixValueX;
-  float stackMatrixValueY;
+  float StackMatrixValueX;
+  float StackMatrixValueY;
   uint8_t StackParameterContextExtended;
-  float stackTransformParameter;
+  float StackTransformParameter;
   uint8_t *ResourceDataAddress;
   int64_t InputParameterLimit;
   int64_t ResourceRegisterPointer;
@@ -15203,11 +15203,11 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
   uint32_t ContextResourceHashStatus;
   uint32_t StackContextBuffer;
   uint8_t *StackResourcePointer;
-  float stackFloatValue;
+  float StackFloatValue;
   uint32_t StackValidationCode;
-  float stackMatrixValueX;
-  float stackMatrixValueY;
-  float stackTransformParameter;
+  float StackMatrixValueX;
+  float StackMatrixValueY;
+  float StackTransformParameter;
   
   if (ObjectContext != 1.0) {
     resourceTemplatePointer = &SystemResourceTemplateFile;
