@@ -102365,7 +102365,7 @@ void InitializeSystemDataStructureConfigurationManager(void)
 void InitializeSystemDataPointer(void)
 
 {
-  SystemDataPointer = &SystemDataStructure;
+  int64_t *SystemDataStructurePointer = &SystemDataStructure;
   return;
 }
 
