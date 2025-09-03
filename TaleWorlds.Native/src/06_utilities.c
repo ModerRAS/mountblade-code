@@ -102744,7 +102744,7 @@ void InitializeSystemDataPrimaryPointer(void)
 void InitializeGarbageCollectorTable(void)
 
 {
-  GarbageCollectorTable0 = &SystemDataStructure;
+  GarbageCollectorTablePointer = &SystemDataStructure;
   return;
 }
 
@@ -102764,7 +102764,7 @@ void InitializeGarbageCollectorTable(void)
 void InitializeMemoryStatisticsTable(void)
 
 {
-  MemoryStatisticsTable0 = &SystemDataStructure;
+  MemoryStatisticsTablePointer = &SystemDataStructure;
   return;
 }
 
@@ -102885,7 +102885,7 @@ void InitializeSystemDataStructureAV(void)
 void InitializeSystemDataStructureAV(void)
 
 {
-  SystemDataPointer022 = &SystemDataStructure;
+  SystemDataPointerPrimary = &SystemDataStructure;
   return;
 }
 
