@@ -5075,10 +5075,10 @@ uint8_t FreeObjectHandle(void) {
  * 检查传入字符的有效性，如果字符不为空则执行系统退出操作。
  * 主要用于输入验证和安全性检查。
  * 
- * @param CharacterToCheck 要检查的字符
- * @return uint8_t 检查结果，0表示成功
+ * @param CharacterToValidate 要验证的字符
+ * @return uint8_t 验证结果，0表示成功
  */
-uint8_t ValidateCharacter(char CharacterToCheck) {
+uint8_t ValidateCharacterSafety(char CharacterToValidate) {
   if (CharacterToCheck != '\0') {
     ExecuteSystemExitOperation();
   }
@@ -36007,26 +36007,37 @@ void UnwindSystemValidator(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 错误处理器的栈展开处理
+ * 
+ * 该函数负责在异常发生时进行栈展开处理
+ * 管理资源表的清理和内存释放操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含错误处理相关信息
+ * @note 此函数用于系统异常处理机制
+ * @warning 如果内存地址无效将触发内存访问验证
+ */
 void UnwindErrorHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int32_t *ResourceTablePointerIndexPointer;
-  uint8_t *ResourceHashStatusAddress;
-  int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  int32_t *ResourceTableEntryPointer;
+  uint8_t *StatusFlagAddress;
+  int64_t ResourceEntryIndex;
+  uint64_t MemoryBaseAddress;
   
   ValidationStatusCodeAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x20);
-  if (ResourceHashStatusAddress == (uint8_t *)0x0) {
+  if (StatusFlagAddress == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
+  MemoryBaseAddress = (uint64_t)StatusFlagAddress & 0xffffffffffc00000;
   if (MemoryAddressMask != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
-    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
+    ResourceEntryIndex = MemoryBaseAddress + 0x80 + ((int64_t)StatusFlagAddress - MemoryBaseAddress >> 0x10) * 0x50;
+    ResourceEntryIndex = ResourceEntryIndex - (uint64_t)*(uint *)(ResourceEntryIndex + 4);
+    if ((*(void ***)(MemoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceEntryIndex + 0xe) == '\0')) {
+      *StatusFlagAddress = *(uint8_t *)(ResourceEntryIndex + 0x20);
+      *(uint8_t **)(ResourceEntryIndex + 0x20) = StatusFlagAddress;
+      ResourceIndexPointer = (int *)(ResourceEntryIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
       if (*ResourceIndexPointer == 0) {
         SystemCleanupHandler();
@@ -36034,8 +36045,8 @@ void UnwindErrorHandler(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryBaseAddress,CONCAT71(0xff000000,*(void ***)(MemoryBaseAddress + 0x70) == &ExceptionList),
+                          StatusFlagAddress,MemoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
