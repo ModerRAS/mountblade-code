@@ -5333,57 +5333,57 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
 
 {
   int64_t ResourceDataTableAddress;
-  int ResourceIdentifier;
-  uint8_t InitializationResult;
-  uint32_t *ResourceIdArrayPointer;
+  int ResourceId;
+  uint8_t InitializationStatus;
+  uint32_t *ResourceArrayPointer;
   uint64_t AdjustedContextHandle;
   uint ConfigurationFlags;
-  uint64_t IterationCounter;
-  int64_t ArrayBaseAddressOffset;
-  int64_t ValidatedContextHandle;
+  uint64_t LoopCounter;
+  int64_t ArrayBaseOffset;
+  int64_t ValidatedContext;
   
   // 步骤1: 验证对象上下文的有效性
-  InitializationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextHandle);
-  if ((int)InitializationResult == 0) {
+  InitializationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContext);
+  if ((int)InitializationStatus == 0) {
     // 步骤2: 初始化迭代计数器并调整上下文句柄
-    IterationCounter = 0;
-    AdjustedContextHandle = ValidatedContextHandle - 8;
-    if (ValidatedContextHandle == 0) {
-      AdjustedContextHandle = IterationCounter;
+    LoopCounter = 0;
+    AdjustedContextHandle = ValidatedContext - 8;
+    if (ValidatedContext == 0) {
+      AdjustedContextHandle = LoopCounter;
     }
     // 步骤3: 设置资源标识符数组指针
-    ResourceIdArrayPointer = (uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
+    ResourceArrayPointer = (uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
     if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
       // 步骤4: 计算数组基址偏移量
-      ArrayBaseAddressOffset = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)ResourceIdArrayPointer;
+      ArrayBaseOffset = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)ResourceArrayPointer;
       do {
         // 步骤5: 获取当前资源标识符
-        ResourceIdentifier = *(int *)(ArrayBaseAddressOffset + (int64_t)ResourceIdArrayPointer);
-        if (ResourceIdentifier != -1) {
+        ResourceId = *(int *)(ArrayBaseOffset + (int64_t)ResourceArrayPointer);
+        if (ResourceId != -1) {
           // 步骤6: 计算资源数据表地址
-          ResourceDataTableAddress = *(int64_t *)(SystemContextPointer + ResourceContextOffset) + (int64_t)ResourceIdentifier * ResourceIdentifierOffset;
+          ResourceDataTableAddress = *(int64_t *)(SystemContextPointer + ResourceContextOffset) + (int64_t)ResourceId * ResourceIdentifierOffset;
           // 步骤7: 获取资源上下文句柄并验证
           int64_t ResourceContextHandle = *(int64_t *)(ResourceDataTableAddress + 8);
           if ((ResourceContextHandle == 0)) {
             return ErrorInvalidObjectHandle;
           }
           // 步骤8: 执行资源操作
-          InitializationResult = ProcessResourceOperation(ResourceContextHandle, *ResourceIdArrayPointer, 0);
+          InitializationStatus = ProcessResourceOperation(ResourceContextHandle, *ResourceArrayPointer, 0);
           // 步骤9: 检查资源操作结果
-          if ((int)InitializationResult != 0) {
-            return InitializationResult;
+          if ((int)InitializationStatus != 0) {
+            return InitializationStatus;
           }
         }
         // 步骤10: 更新迭代计数器和数组指针
-        uint32_t UpdatedIterationCount = (uint32_t)IterationCounter + 1;
-        IterationCounter = (uint64_t)UpdatedIterationCount;
-        ResourceIdArrayPointer = ResourceIdArrayPointer + 1;
-      } while ((int)UpdatedIterationCount < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
+        uint32_t UpdatedLoopCount = (uint32_t)LoopCounter + 1;
+        LoopCounter = (uint64_t)UpdatedLoopCount;
+        ResourceArrayPointer = ResourceArrayPointer + 1;
+      } while ((int)UpdatedLoopCount < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
     }
     // 步骤11: 设置成功状态码
-    InitializationResult = 0;
+    InitializationStatus = 0;
   }
-  return InitializationResult;
+  return InitializationStatus;
 }
 
 
