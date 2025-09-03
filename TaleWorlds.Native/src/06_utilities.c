@@ -8124,9 +8124,9 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
       BufferArrayOffset = StackBuffer - 8;
     }
     BufferEntryPosition = BufferIndex;
-    if (0 < *(int *)(BufferArrayOffset + 0x28)) {
+    if (0 < *(int *)(BufferArrayOffset + BufferArrayEntryCountOffset)) {
       do {
-        BufferContext = *(int64_t *)(BufferArrayOffset + 0x20) + BufferEntryPosition;
+        BufferContext = *(int64_t *)(BufferArrayOffset + BufferArrayDataOffset) + BufferEntryPosition;
         BufferEntryPointer = *(int64_t *)(BufferContext + BufferDataOffset);
         if (BufferEntryPointer == 0) {
           return ErrorInvalidResourceData;

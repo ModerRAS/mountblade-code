@@ -1048,31 +1048,31 @@ void NetworkRetrieveData(void)
 void NetworkValidatePacketAuthenticity(void)
 {
   // 初始化验证参数
-  NetworkHashAlgorithm = 0x01;                         // 设置哈希算法为SHA-256
-  NetworkSignatureMethod = 0x01;                        // 设置签名方法为RSA
-  NetworkEncryptionKeyLength = 0x100;                   // 设置加密密钥长度为256位
+  PacketHashAlgorithm = 0x01;                         // 设置哈希算法为SHA-256
+  PacketSignatureMethod = 0x01;                        // 设置签名方法为RSA
+  PacketEncryptionKeyLength = 0x100;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
-  NetworkValidationBufferPool = 0x01;                   // 初始化验证缓冲池
-  NetworkValidationBufferSize = 0x27;                   // 设置验证缓冲区大小为39字节
+  PacketValidationBufferPool = 0x01;                   // 初始化验证缓冲池
+  PacketValidationBufferSize = 0x27;                   // 设置验证缓冲区大小为39字节
   
   // 初始化安全验证
-  NetworkSecurityValidationData = 0x01;                 // 初始化安全验证数据
-  NetworkSecurityEncryptionData = 0x01;                 // 初始化安全加密数据
-  NetworkSecurityAuthenticationData = 0x01;              // 初始化安全认证数据
-  NetworkSecurityAuthorizationData = 0x01;               // 初始化安全授权数据
-  NetworkSecurityAuditData = 0x01;                       // 初始化安全审计数据
-  NetworkSecurityPolicyData = 0x01;                      // 初始化安全策略数据
-  NetworkSecurityCertificateData = 0x01;                 // 初始化安全证书数据
+  PacketSecurityValidationData = 0x01;                 // 初始化安全验证数据
+  PacketSecurityEncryptionData = 0x01;                 // 初始化安全加密数据
+  PacketSecurityAuthenticationData = 0x01;              // 初始化安全认证数据
+  PacketSecurityAuthorizationData = 0x01;               // 初始化安全授权数据
+  PacketSecurityAuditData = 0x01;                       // 初始化安全审计数据
+  PacketSecurityPolicyData = 0x01;                      // 初始化安全策略数据
+  PacketSecurityCertificateData = 0x01;                 // 初始化安全证书数据
   
   // 初始化加密缓冲区
-  NetworkPacketEncryptionBuffer = 0x01;                 // 初始化数据包加密缓冲区
-  NetworkPacketCompressionBuffer = 0x01;                // 初始化数据包压缩缓冲区
+  PacketEncryptionBuffer = 0x01;                 // 初始化数据包加密缓冲区
+  PacketCompressionBuffer = 0x01;                // 初始化数据包压缩缓冲区
   
   // 初始化压缩参数
-  NetworkDataCompressionLevel = 0x06;                  // 设置压缩级别为6（默认级别）
-  NetworkCompressionLevel = 0x06;                       // 设置压缩级别为6
-  NetworkCompressionAlgorithmType = 0x01;               // 设置压缩算法类型为ZLIB
+  PacketDataCompressionLevel = 0x06;                  // 设置压缩级别为6（默认级别）
+  PacketCompressionLevel = 0x06;                       // 设置压缩级别为6
+  PacketCompressionAlgorithmType = 0x01;               // 设置压缩算法类型为ZLIB
 }
 
 /**
@@ -1090,20 +1090,20 @@ void NetworkValidatePacketAuthenticity(void)
 void NetworkProcessPacketHandling(void)
 {
   // 初始化处理参数
-  NetworkConnectionTableIndex = 0x00;                 // 重置连接表索引
-  NetworkConnectionTableSize = 0x100;                  // 设置连接表大小为256
+  ConnectionTableIndex = 0x00;                 // 重置连接表索引
+  ConnectionTableSize = 0x100;                  // 设置连接表大小为256
   
   // 初始化连接管理
-  NetworkConnectionManager = 0x01;                      // 初始化连接管理器
-  NetworkConnectionData = 0x01;                        // 初始化连接数据
-  NetworkConnectionSize = 0x100;                       // 设置连接大小为256字节
-  NetworkConnectionIndex = 0x00;                       // 重置连接索引
+  ConnectionManager = 0x01;                      // 初始化连接管理器
+  ConnectionData = 0x01;                        // 初始化连接数据
+  ConnectionSize = 0x100;                       // 设置连接大小为256字节
+  ConnectionIndex = 0x00;                       // 重置连接索引
   
   // 初始化路由和过滤缓冲区
-  NetworkPacketRoutingBuffer = 0x01;                   // 初始化数据包路由缓冲区
-  NetworkPacketQueueBuffer = 0x01;                     // 初始化数据包队列缓冲区
-  NetworkPacketCacheBuffer = 0x01;                     // 初始化数据包缓存缓冲区
-  NetworkPacketFilterBuffer = 0x01;                    // 初始化数据包过滤缓冲区
+  PacketRoutingBuffer = 0x01;                   // 初始化数据包路由缓冲区
+  PacketQueueBuffer = 0x01;                     // 初始化数据包队列缓冲区
+  PacketCacheBuffer = 0x01;                     // 初始化数据包缓存缓冲区
+  PacketFilterBuffer = 0x01;                    // 初始化数据包过滤缓冲区
   
   // 初始化网络统计
   NetworkBandwidthUsage = 0x00;                         // 重置带宽使用量
@@ -1113,8 +1113,8 @@ void NetworkProcessPacketHandling(void)
   // 初始化重试机制
   NetworkRetryInterval = 0x03E8;                        // 设置重试间隔为1秒
   NetworkTimeoutInterval = 0x1388;                     // 设置超时间隔为5秒
-  NetworkConnectionRetryCount = 0x03;                  // 设置连接重试次数为3次
-  NetworkConnectionBackoffTime = 0x07D0;                // 设置连接退避时间为2秒
+  ConnectionRetryCount = 0x03;                  // 设置连接重试次数为3次
+  ConnectionBackoffTime = 0x07D0;                // 设置连接退避时间为2秒
   
   // 初始化事件处理
   NetworkEventSize = 0x40;                              // 设置事件大小为64字节
@@ -1148,11 +1148,11 @@ void NetworkManageErrorHandling(void)
   NetworkHandleStorageSize = 0x30;                      // 设置句柄存储大小为48字节
   
   // 初始化处理缓冲区
-  NetworkPacketProcessingSize = 0x100;                  // 设置数据包处理大小为256字节
+  PacketProcessingSize = 0x100;                  // 设置数据包处理大小为256字节
   
   // 初始化端口范围
-  NetworkPortRangeStartValue = 0x1F90;                  // 设置端口范围起始值为8080
-  NetworkPortRangeEndValue = 0x270F;                    // 设置端口范围结束值为9999
+  NetworkPortRangeStart = 0x1F90;                  // 设置端口范围起始值为8080
+  NetworkPortRangeEnd = 0x270F;                    // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
   NetworkConnectionTimeout = 0x7530;                   // 设置连接超时时间为30秒

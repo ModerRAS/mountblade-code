@@ -413,7 +413,7 @@ void* GetSystemDataPointer(int dataIndex);
  * @param primaryConfigParam 主要配置参数
  * @param secondaryConfigParam 次要配置参数
  */
-void InitializeSystemConfiguration(void* configContext, int configFlags, int primaryConfigParam, int secondaryConfigParam);
+void InitializeSystemConfiguration(void* ConfigContext, int ConfigFlags, int PrimaryConfigParam, int SecondaryConfigParam);
 
 /**
  * @brief 系统数据字段设置函数
@@ -425,7 +425,7 @@ void InitializeSystemConfiguration(void* configContext, int configFlags, int pri
  * @param fieldValue 字段值
  * @param additionalParameter 额外参数
  */
-void SetupSystemDataField(void* dataFieldContext, uint fieldValue, uint additionalParameter);
+void SetupSystemDataField(void* DataFieldContext, uint FieldValue, uint AdditionalParameter);
 
 /**
  * @brief 系统初始化完成函数
