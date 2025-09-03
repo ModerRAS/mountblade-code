@@ -60524,8 +60524,7 @@ LAB_SystemStatusSet:
  * @param ConfigurationFlag 配置标志
  * @return 无返回值
  * 
- * 原始函数名：FUN_180078239
- */
+  */
 void ProcessSystemFloatTransformation(float SystemResourceManager, float ConfigurationDataPointer, float AdditionalParameter, float ConfigurationFlag)
 
 {
