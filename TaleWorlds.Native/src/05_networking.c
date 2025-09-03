@@ -660,7 +660,7 @@ int32_t NetworkEncryptPacket(int64_t PacketData, int32_t PacketSize, int64_t Enc
  * @param ContextData 上下文数据
  * @return int32_t 处理结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkProcessSecurityContext(int64_t SecurityContext, int32_t ContextSize, int64_t ContextData);
+int32_t NetworkProcessSecurity(int64_t SecurityContext, int32_t ContextSize, int64_t ContextData);
 
 /**
  * @brief 网络获取连接数量
@@ -692,7 +692,7 @@ int64_t NetworkGetConnectionByIndex(int64_t ConnectionContext, int32_t Connectio
  * @param PacketData 数据包数据
  * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkValidateConnectionProtocol(int64_t NetworkData, int64_t PacketData);
+int32_t NetworkValidateProtocol(int64_t NetworkData, int64_t PacketData);
 
 // 网络连接事件处理器
 uint32_t NetworkConnectionEventHandler;

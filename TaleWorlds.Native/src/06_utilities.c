@@ -4886,7 +4886,7 @@ uint8_t VerifyCharacterParameter(char CharacterToValidate) {
  * 
  * @return void 无返回值
  */
-void InitializeSystemResources(void) {
+void SetupSystemResources(void) {
   // 预留系统资源初始化逻辑
   return;
 }
