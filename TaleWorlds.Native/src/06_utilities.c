@@ -459,7 +459,7 @@ uint32_t ProcessNetworkRequest(void* NetworkContext, void* RequestTemplate, uint
  * 
  * @return 系统状态码，0表示正常，非0表示异常
  */
-uint32_t GetSystemStatus(void);
+uint32_t RetrieveSystemStatus(void);
 
 /**
  * @brief 处理系统对象操作
@@ -8034,12 +8034,12 @@ void ExecuteSystemSecondaryOperation(void)
 void ValidateBufferContextAndProcess(void)
 
 {
-  int PackageValidationStatusCode;
-  int64_t SystemContext;
+  int ValidationStatusCode;
+  int64_t SystemContextPointer;
   
-  ValidationStatus = ValidateBufferContext();
-  if (ValidationStatus == 0) {
-    ProcessSystemObjectWithCleanup(*(uint8_t *)(SystemContext + SystemResourceManagerOffset));
+  ValidationStatusCode = ValidateBufferContext();
+  if (ValidationStatusCode == 0) {
+    ProcessSystemObjectWithCleanup(*(uint8_t *)(SystemContextPointer + SystemResourceManagerOffset));
   }
   return;
 }
