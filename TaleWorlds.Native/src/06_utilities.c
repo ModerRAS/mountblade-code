@@ -4709,7 +4709,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   int64_t *RegistrationEntryArray;
   int RegistrationArraySize;
   uint64_t RegistrationIterator;
-  int NewRegistrationArraySize;
+  int ExpandedRegistrationArraySize;
   uint64_t CurrentRegistrationIndex;
   int64_t *RegistrationBasePointer;
   int64_t RegistrationStackPointer;
