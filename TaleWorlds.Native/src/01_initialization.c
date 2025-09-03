@@ -59470,13 +59470,13 @@ void SystemNoOperationA(void)
   }
   ConfigureSystemResourceBuffer(&StackBuffer60,ResourceMemoryOffset4 + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue39);
   resourceCreationFlags8 = ThreadCreationParameter;
-  resourceCreationFlags7 = InputStackParameter90;
-  NetworkConnectionFlags = InputStackParameter88;
-  SecurityParameter = InputStackParameter80;
-  ConfigurationData = InputStackParameter78;
-  InitializationFlags = InputStackParameter70;
-  MemoryAllocationFlags = InputStackParameter68;
-  ThreadCreationFlags = InputStackParameter60;
+  resourceCreationFlags7 = InputParameterG;
+  NetworkConnectionFlags = InputParameterF;
+  SecurityParameter = InputParameterE;
+  ConfigurationData = InputParameterD;
+  InitializationFlags = InputParameterC;
+  MemoryAllocationFlags = InputParameterB;
+  ThreadCreationFlags = InputParameterA;
   isSystemActive9 = *(byte *)(ResourceMemoryOffset4 + 0x1bd8);
   systemIndex0 = *(int *)(SystemGlobalStatusFlags + 0x224);
   if (((*(byte *)(memoryBlockAddress + 0xfd) & 1) == 0) &&
@@ -59569,13 +59569,13 @@ void CleanupGlobalSystemResources(void)
   float *pfloatValue36;
   uint32_t InputStackParameter30;
   long long InputStackParameter40;
-  void* InputStackParameter60;
-  void* InputStackParameter68;
-  void* InputStackParameter70;
-  void* InputStackParameter78;
-  void* InputStackParameter80;
-  void* InputStackParameter88;
-  void* InputStackParameter90;
+  void* InputParameterA;
+  void* InputParameterB;
+  void* InputParameterC;
+  void* InputParameterD;
+  void* InputParameterE;
+  void* InputParameterF;
+  void* InputParameterG;
   void* ThreadCreationParameter;
   float StackFloatParameterA0;
   float StackFloatParameterA4;
