@@ -10282,32 +10282,32 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uin
   uint32_t ValidationToken = 0;
   int OperationStatusCode = 0;
   
-  SecurityValidationToken = 0;
-  OperationStatus = ProcessDataHashing(SystemContextHandle + ValidationContextHashOffset, ValidationContext, &SecurityValidationToken);
-  if ((int)OperationStatus == 0) {
-    ResourceHandleIndex = LookupResourceIndexPointer(SystemContextHandle + ValidationContextHashOffset, SecurityValidationToken);
-    if ((*(uint *)(ResourceHandleIndex + 0x34) >> 4 & 1) != 0) {
+  ValidationationToken = 0;
+  OperationStatusCode = ProcessDataHashing(SystemContextPointer + ValidationContextHashOffset, ValidationContext, &ValidationationToken);
+  if ((int)OperationStatusCode == 0) {
+    ResourceIndexPointer = LookupResourceIndexPointer(SystemContextPointer + ValidationContextHashOffset, ValidationToken);
+    if ((*(uint *)(ResourceIndexPointer + 0x34) >> 4 & 1) != 0) {
       return ErrorResourceValidationFailed;
     }
-    InputFloatParameter = *(float *)(ResourceDataPointer + 0x18);
-    MinimumRangeValue = *(float *)(ResourceHandleIndex + 0x38);
-    MaximumRangeValue = *(float *)(ResourceHandleIndex + 0x3c);
-    if ((MinimumRangeValue <= InputFloatParameter) && (InputFloatParameter <= MaximumRangeValue)) {
-      ClampedResultValue = InputFloatParameter;
+    OriginalFloatValue = *(float *)(ResourceDataBuffer + 0x18);
+    MinimumValidRange = *(float *)(ResourceIndexPointer + 0x38);
+    MaximumValidRange = *(float *)(ResourceIndexPointer + 0x3c);
+    if ((MinimumValidRange <= OriginalFloatValue) && (OriginalFloatValue <= MaximumValidRange)) {
+      ClampedFloatResult = OriginalFloatValue;
     }
-    else if (InputFloatParameter < MinimumRangeValue) {
-      ClampedResultValue = MinimumRangeValue;
+    else if (OriginalFloatValue < MinimumValidRange) {
+      ClampedFloatResult = MinimumValidRange;
     }
     else {
-      ClampedResultValue = MaximumRangeValue;
+      ClampedFloatResult = MaximumValidRange;
     }
-    *(float *)(ResourceDataPointer + 0x18) = ClampedResultValue;
-    OperationStatus = ValidateResourceParameters(SystemContextHandle + ValidationContextHashOffset, SecurityValidationToken, ClampedResultValue);
-    if ((int)OperationStatus == 0) {
-      ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + SystemResourceManagerOffset));
+    *(float *)(ResourceDataBuffer + 0x18) = ClampedFloatResult;
+    OperationStatusCode = ValidateResourceParameters(SystemContextPointer + ValidationContextHashOffset, ValidationToken, ClampedFloatResult);
+    if ((int)OperationStatusCode == 0) {
+      ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + SystemResourceManagerOffset));
     }
   }
-  return OperationStatus;
+  return OperationStatusCode;
 }
 
 
@@ -10316,22 +10316,28 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uin
  /**
  * @brief 处理对象上下文浮点数范围验证和限制
  * 
- * 该函数验证对象上下文中的浮点数是否在指定范围内，如果超出范围则进行限制
- * 主要用于浮点数参数的验证和规范化处理
+ * 该函数验证对象上下文中的浮点数是否在指定范围内，如果超出范围则进行限制。
+ * 主要用于浮点数参数的验证和规范化处理，确保数值在有效范围内。
  * 
- * @param ValidationContext 验证上下文，包含验证所需的数据和参数
- * @param SystemContext 系统上下文，用于系统级操作和错误处理
+ * 函数流程：
+ * 1. 从寄存器组合中获取最小和最大范围值
+ * 2. 从上下文指针中获取输入值
+ * 3. 验证输入值是否在范围内，如超出则进行限制
+ * 4. 将处理后的值写回上下文
+ * 5. 验证资源参数并释放系统资源
+ * 
+ * @return void 无返回值
  */
 void ProcessObjectContextFloatRangeValidationAndClamping(void)
 {
-  float InputValue;
+  float OriginalValue;
   uint32_t ValidationRegister;
-  int PackageValidationStatusCode;
+  int ResourceValidationStatusCode;
   uint32_t ParameterRegister;
-  int64_t ContextPointer;
-  int64_t SystemPointer;
-  float RangeMinValue;
-  float RangeMaxValue;
+  int64_t ObjectContextPointer;
+  int64_t SystemContextPointer;
+  float MinimumValidRange;
+  float MaximumValidRange;
   uint32_t StackParameter;
   
   RangeMinValue = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister, ValidationRegister) + 0x38);
