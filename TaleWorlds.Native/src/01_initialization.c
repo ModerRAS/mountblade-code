@@ -34222,7 +34222,7 @@ SystemResourceConfiguration:
  * @param ConfigurationFlag 配置标志，用于控制释放行为
  * @return 返回更新后的系统资源指针
  * 
- *FUN_180059900：InitializeSystemMemoryAllocatorReference
+ *InitializeSystemMemoryAllocatorReference
  */
 void* *InitializeSystemMemoryAllocatorReference(void* *SystemResourceManager,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -34247,7 +34247,7 @@ void* *InitializeSystemMemoryAllocatorReference(void* *SystemResourceManager,ulo
  * @param SystemResourceManager 系统资源指针
  * @param ConfigurationDataPointer 配置数据指针
  * 
- *FUN_180059940：ProcessSystemStringAndInitializeBuffer
+ *ProcessSystemStringAndInitializeBuffer
  */
 void ProcessSystemStringAndInitializeBuffer(long long SystemResourceManager,long long ConfigurationDataPointer)
 
@@ -34288,7 +34288,7 @@ void ProcessSystemStringAndInitializeBuffer(long long SystemResourceManager,long
  * @param ConfigurationDataPointer 配置数据指针，包含要复制的数据
  * @param AdditionalParameter 额外参数，指定要复制的数据大小
  * 
- *FUN_1800599c0：CopySystemBufferData
+ *CopySystemBufferData
  */
 void CopySystemBufferData(long long SystemResourceManager,void* ConfigurationDataPointer,int AdditionalParameter)
 
@@ -34357,7 +34357,7 @@ void ClearSystemResourceFlags(uint8_t *SystemResourceManager)
  * @param ConfigurationDataPointer 配置数据指针
  * @param AdditionalParameter 额外参数
  * 
- *FUN_180059a20：ProcessSystemResourceWithEncryption
+ *ProcessSystemResourceWithEncryption
  */
 void ProcessSystemResourceWithEncryption(long long SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter)
 
@@ -34727,7 +34727,7 @@ void ReleaseSystemResourceReference(void)
  * 该函数负责系统清理操作，处理缓冲区和内存管理。
  * 涉及系统资源的释放和内存区域的清理。
  * 
- *FUN_180059f4f：CleanupSystemAndProcessBuffers
+ *CleanupSystemAndProcessBuffers
  */
 void CleanupSystemAndProcessBuffers(void)
 
@@ -34789,7 +34789,7 @@ void CleanupSystemAndProcessBuffers(void)
  * 
  * @param SystemResourceManager 系统资源指针的指针
  * 
- *FUN_180059fb0：ManageSystemResourceManagerWithExceptionHandling
+ *ManageSystemResourceManagerWithExceptionHandling
  */
 void ManageSystemResourceManagerWithExceptionHandling(void* *SystemResourceManager)
 
@@ -34831,7 +34831,7 @@ void ManageSystemResourceManagerWithExceptionHandling(void* *SystemResourceManag
  * 
  * @param SystemResourceManager 系统资源指针数组，包含需要清理的资源信息
  * 
- *FUN_180059fc0：CleanupAndDestroySystemResources
+ *CleanupAndDestroySystemResources
  */
 void CleanupAndDestroySystemResources(long long* SystemResourceManager)
 
@@ -35039,7 +35039,7 @@ void ValidateSystemResourceManager(long long SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针，包含资源表信息
  * 
- *FUN_18005a130：ValidateAndCleanupSystemResourceTable
+ *ValidateAndCleanupSystemResourceTable
  */
 void ValidateAndCleanupSystemResourceTable(long long SystemResourceManager)
 
@@ -35418,7 +35418,7 @@ void ProcessAndCleanupBatchSystemResources(void* *SystemResourceManager,void* Co
  * @param additionalParameter 额外参数
  * @param configurationFlag 配置标志
  * 
- *FUN_18005aaf0：ConfigureSystemResourceManager
+ *ConfigureSystemResourceManager
  */
 void ConfigureSystemResourceManager(long long systemResourcePointer, void* configurationDataPointer, void* additionalParameter, void* configurationFlag)
 {
