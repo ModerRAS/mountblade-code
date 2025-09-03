@@ -6720,6 +6720,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t SystemO
   uint32_t ResourceOperationBuffer [2];
   int64_t ResourceHandleValue;
   int ResourceCount;
+  uint8_t ResourceValidationStatus;
   
   ResourceValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextSecurityResourceOffset),&ValidationContext);
   if ((int)ResourceValidationStatus == 0) {
