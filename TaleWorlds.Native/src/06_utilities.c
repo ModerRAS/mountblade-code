@@ -4771,6 +4771,15 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加指定对象的引用计数，确保对象在使用期间不会被意外释放
+ * 引用计数是内存管理的重要机制，用于跟踪对象被引用的次数
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @return 操作结果状态码，0表示成功，非0表示失败
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ObjectValidationResult;
@@ -29970,6 +29979,16 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会执行相应的异常处理逻辑
  */
+/**
+ * @brief 处理主上下文异常
+ * 
+ * 该函数用于处理系统主上下文中的异常情况
+ * 通过调用注册的主异常处理器来处理异常
+ * 
+ * @param ExceptionContext 异常上下文
+ * @param SystemContext 系统上下文指针
+ * @return 无返回值
+ */
 void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* PrimaryExceptionHandlerPointer;
   
@@ -29992,6 +30011,16 @@ void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
+/**
+ * @brief 处理次级上下文异常
+ * 
+ * 该函数用于处理系统次级上下文中的异常情况
+ * 通过调用注册的次级异常处理器来处理异常
+ * 
+ * @param ExceptionContext 异常上下文
+ * @param SystemContext 系统上下文指针
+ * @return 无返回值
  */
 void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** SecondaryExceptionHandlerPointer;
@@ -30027,6 +30056,16 @@ void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCo
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会执行相应的异常处理逻辑
  */
+/**
+ * @brief 处理第三级上下文异常
+ * 
+ * 该函数用于处理系统第三级上下文中的异常情况
+ * 通过调用注册的第三级异常处理器来处理异常
+ * 
+ * @param ExceptionContext 异常上下文
+ * @param SystemContext 系统上下文指针
+ * @return 无返回值
+ */
 void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* TertiaryExceptionHandlerFunctionPointer;
   
@@ -30049,6 +30088,16 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
+/**
+ * @brief 处理第四级上下文异常
+ * 
+ * 该函数用于处理系统第四级上下文中的异常情况
+ * 主要处理资源哈希相关的异常，包括资源分配和缓存
+ * 
+ * @param ExceptionContext 异常上下文
+ * @param SystemContext 系统上下文指针
+ * @return 无返回值
  */
 void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashDataPointer;
