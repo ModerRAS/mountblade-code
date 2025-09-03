@@ -9836,13 +9836,13 @@ Label_18060a500:
                     if (NetworkRequestStatus != '\0') goto Label_18060a66e;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationInteractionSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060a68c;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b68);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationAdvancedRenderingSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060a6aa;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39c80);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationPostProcessingSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060b703;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39c60);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationShaderSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060b76f;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39cb8);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationLightingSettings);
                     if (NetworkRequestStatus != '\0') {
 Label_18060b7e7:
                       StringProcessingResult = 0x7c;
