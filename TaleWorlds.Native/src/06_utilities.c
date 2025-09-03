@@ -4861,16 +4861,16 @@ uint8_t CleanupObjectHandle(void) {
 
 /**
  * @brief 验证字符参数并执行相应操作
- * @param CharacterToValidate 输入的字符参数
- * @return 返回0表示成功
  * 
- * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作
+ * 该函数用于验证输入的字符参数，如果字符不为空字符则执行相应的系统退出操作。
+ * 主要用于系统安全检查和参数验证。
+ * 
+ * @param CharacterToValidate 输入的字符参数，需要验证的字符
+ * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t ValidateCharacterParameter(char CharacterToValidate)
-
-{
+uint8_t ValidateCharacterParameter(char CharacterToValidate) {
   if (CharacterToValidate != '\0') {
-          ExecuteSystemExitOperation();
+    ExecuteSystemExitOperation();
   }
   return 0;
 }
@@ -4881,12 +4881,12 @@ uint8_t ValidateCharacterParameter(char CharacterToValidate)
 /**
  * @brief 初始化系统资源
  * 
- * 该函数负责初始化系统所需的资源，为后续操作做准备
- * 目前为空实现，预留用于后续系统资源初始化逻辑
+ * 该函数负责初始化系统所需的资源，为后续操作做准备。
+ * 目前为空实现，预留用于后续系统资源初始化逻辑。
+ * 
+ * @return void 无返回值
  */
-void InitializeSystemResources(void)
-
-{
+void InitializeSystemResources(void) {
   // 预留系统资源初始化逻辑
   return;
 }
@@ -4896,17 +4896,15 @@ void InitializeSystemResources(void)
 /**
  * @brief 验证对象句柄有效性
  * 
- * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
- * 包括上下文验证、内存缓冲区检查和系统退出操作
+ * 该函数验证对象句柄的有效性，并执行相应的资源管理操作。
+ * 包括上下文验证、内存缓冲区检查和系统退出操作。
  * 
  * @param ObjectHandleToValidate 对象句柄，用于标识要验证的对象
  * @return uint8_t 返回验证结果，0表示成功，非0表示错误代码
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  * @warning 验证失败时会触发系统退出操作
  */
-uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
-
-{
+uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
   uint8_t ContextValidationResult;
   int64_t ValidatedMemoryPointer;
   
@@ -4923,7 +4921,8 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
   if (*(int64_t *)(ValidatedMemoryPointer + ObjectHandleMemoryOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryPointer + ObjectHandleMemoryOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryPointer + ObjectHandleMemoryOffset), 1);
+  return 0;
 }
 
 

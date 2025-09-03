@@ -25766,11 +25766,11 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
         resourceCounter = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x40,*(uint8_t *)(SystemThreadHandle4 + 0x308));
         ProcessResourcePointerOperation(resourceCounter + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,&PointerUnsigned310);
         SystemAllocationFlags = SystemResourceAllocator(SystemThreadIndex,&SystemStatusFlag337,resourceCounter + 0x20);
-        if (systemStatusFlag337 != '\0') {
+        if (SystemStatusFlag337 != '\0') {
           if (SystemAllocationFlags == SystemThreadIndex) goto ResourceAllocationCheck;
           if (*(int *)(SystemAllocationFlags + 0x30) == 0) goto AllocationFlagCheck;
           if (*(int *)(resourceCounter + 0x30) == 0) goto ResourceAllocationCheck;
-          resourceStringPointer = *(byte **)(SystemAllocationFlags + 0x28);
+          ResourceStringPointer = *(byte **)(SystemAllocationFlags + 0x28);
           SystemThreadHandle4 = *(long long *)(resourceCounter + 0x28) - (long long)resourceStringPointer;
           goto AllocationHandler;
         }

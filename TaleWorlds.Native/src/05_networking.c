@@ -799,25 +799,25 @@ uint32_t ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
  */
 NetworkHandle ProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
-  long long NetworkContextData;
-  long long *NetworkOperationStatusPointer;
-  int NetworkOperationFlag;
+  long long ContextData;
+  long long *OperationStatusPointer;
+  int OperationFlag;
   
-  NetworkContextData = 0;
-  if (NetworkOperationFlag == 0) {
+  ContextData = 0;
+  if (OperationFlag == 0) {
 LabelNetworkValidationStart:
-    if ((0 < *(int *)((long long)NetworkOperationStatusPointer + 0xc)) && (*NetworkOperationStatusPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *NetworkOperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)((long long)OperationStatusPointer + 0xc)) && (*OperationStatusPointer != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *OperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *NetworkOperationStatusPointer = NetworkContextData;
-    *(int *)((long long)NetworkOperationStatusPointer + 0xc) = NetworkOperationFlag;
+    *OperationStatusPointer = ContextData;
+    *(int *)((long long)OperationStatusPointer + 0xc) = OperationFlag;
     return 0;
   }
   if ((int)PacketData - 1U < 0x3fffffff) {
-    NetworkContextData = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
-    if (NetworkContextData != 0) {
-      if ((int)NetworkOperationStatusPointer[1] != 0) {
-          memcpy(NetworkContextData, *NetworkOperationStatusPointer, (long long)(int)NetworkOperationStatusPointer[1]);
+    ContextData = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
+    if (ContextData != 0) {
+      if ((int)OperationStatusPointer[1] != 0) {
+          memcpy(ContextData, *OperationStatusPointer, (long long)(int)OperationStatusPointer[1]);
       }
       goto NETWORK_PROCESSING_CONTINUE;
     }
