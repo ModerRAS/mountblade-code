@@ -5184,24 +5184,24 @@ uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
  * @warning 验证失败时会触发系统退出操作
  */
 uint32_t ValidateObjectHandleFromRegister(void) {
-  int64_t RegisterObjectPtr = 0;
-  int64_t MemoryAddress;
+  int64_t RegisterStoredObjectPointer = 0;
+  int64_t CalculatedMemoryAddress;
   
   // 根据寄存器值计算验证后的内存位置
-  if (RegisterObjectPtr == 0) {
-    MemoryAddress = 0;
+  if (RegisterStoredObjectPointer == 0) {
+    CalculatedMemoryAddress = 0;
   }
   else {
-    MemoryAddress = RegisterObjectPtr - 8;
+    CalculatedMemoryAddress = RegisterStoredObjectPointer - 8;
   }
   
   // 检查对象上下文是否有效
-  if (*(int64_t *)(MemoryAddress + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(CalculatedMemoryAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(MemoryAddress + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(CalculatedMemoryAddress + ObjectContextOffset), 1);
   return OperationSuccessCode;
 }
 
