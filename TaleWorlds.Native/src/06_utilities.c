@@ -78150,7 +78150,7 @@ void UnwindSystemResourceHandlerA(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_18090b990(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceCleanupHandlerA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
