@@ -25829,12 +25829,12 @@ void UpdateSystemRenderManager(long long SystemResourceManager)
     if (*(char *)(SystemResourceManager + 0x3d4) != '\0') {
       SystemCounter = *(int *)(SystemNodeManagerPointer + 0x1ea0);
       if ((*(char *)(SystemResourceManager + 0x3d5) != '\0') || (isTextureUpdateRequired)) {
-        currentThreadId = 1;
+        CurrentThreadId = 1;
       }
       else {
-        currentThreadId = 0;
+        CurrentThreadId = 0;
       }
-      ProcessSystemResourceData(*(long long *)(SystemResourceManager + 8),*(uint32_t *)(SystemResourceManager + 0x3cc),*SystemIntegerPointer,currentThreadId);
+      ProcessSystemResourceData(*(long long *)(SystemResourceManager + 8),*(uint32_t *)(SystemResourceManager + 0x3cc),*SystemIntegerPointer,CurrentThreadId);
       isSystemInitialized = systemCounter == 2;
       goto ErrorHandler;
     }

@@ -844,42 +844,42 @@ NetworkHandle InitializeConnectionHandler(void)
  */
 NetworkHandle ProcessNetworkConnectionData(int64_t *ConnectionContext, int32_t PacketData)
 {
-  NetworkStatus *NetworkConnectionStatusData;
+  NetworkStatus *ConnectionStatusData;
   int32_t ConnectionCount;
   int64_t ConnectionBasePointer;
-  NetworkStatus NetworkPacketProcessingResult;
+  NetworkStatus PacketProcessingResult;
   NetworkStatus ProcessingStatus;
   NetworkStatus ValidationResult;
-  NetworkStatus *NetworkConnectionStatusBuffer;
+  NetworkStatus *StatusBuffer;
   int64_t ProcessingCounter;
-  NetworkStatus *NetworkPacketBuffer;
+  NetworkStatus *PacketBuffer;
   
   if (PacketData < (int)ConnectionContext[1]) {
     return NetworkConnectionNotFound;
   }
-  NetworkConnectionStatusBuffer = (NetworkStatus *)0x0;
+  StatusBuffer = (NetworkStatus *)0x0;
   if (PacketData != 0) {
     if (PacketData * ConnectionEntrySize - 1U < 0x3fffffff) {
-      NetworkConnectionStatusBuffer = (NetworkStatus *)
+      StatusBuffer = (NetworkStatus *)
                ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &SecurityValidationData,
                              0xf4, 0, 0, 1);
-      if (NetworkConnectionStatusBuffer != (NetworkStatus *)0x0) {
+      if (StatusBuffer != (NetworkStatus *)0x0) {
         ConnectionCount = (int)ConnectionContext[1];
         ProcessingCounter = (long long)ConnectionCount;
         if ((ConnectionCount != 0) && (ConnectionBasePointer = *ConnectionContext, 0 < ConnectionCount)) {
-          NetworkPacketBuffer = NetworkConnectionStatusBuffer;
+          PacketBuffer = StatusBuffer;
           do {
-            NetworkConnectionStatusData = (NetworkStatus *)((ConnectionBasePointer - (long long)NetworkConnectionStatusBuffer) + (long long)NetworkPacketBuffer);
-            NetworkPacketProcessingResult = NetworkConnectionStatusData[1];
-            ProcessingStatus = NetworkConnectionStatusData[2];
-            ValidationResult = NetworkConnectionStatusData[3];
-            *NetworkPacketBuffer = *NetworkConnectionStatusData;
-            NetworkPacketBuffer[1] = NetworkPacketProcessingResult;
-            NetworkPacketBuffer[2] = ProcessingStatus;
-            NetworkPacketBuffer[3] = ValidationResult;
-            NetworkPacketBuffer[4] = *(NetworkStatus *)((ConnectionBasePointer - (long long)NetworkConnectionStatusBuffer) + -4 + (long long)(NetworkPacketBuffer + 5));
+            ConnectionStatusData = (NetworkStatus *)((ConnectionBasePointer - (long long)StatusBuffer) + (long long)PacketBuffer);
+            PacketProcessingResult = ConnectionStatusData[1];
+            ProcessingStatus = ConnectionStatusData[2];
+            ValidationResult = ConnectionStatusData[3];
+            *PacketBuffer = *ConnectionStatusData;
+            PacketBuffer[1] = PacketProcessingResult;
+            PacketBuffer[2] = ProcessingStatus;
+            PacketBuffer[3] = ValidationResult;
+            PacketBuffer[4] = *(NetworkStatus *)((ConnectionBasePointer - (long long)StatusBuffer) + -4 + (long long)(PacketBuffer + 5));
             ProcessingCounter = ProcessingCounter + -1;
-            NetworkPacketBuffer = NetworkPacketBuffer + 5;
+            PacketBuffer = PacketBuffer + 5;
           } while (ProcessingCounter != 0);
         }
         goto NETWORK_PROCESSING_LOOP;

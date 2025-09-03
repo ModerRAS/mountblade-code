@@ -4937,9 +4937,7 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
  * @note 此函数直接从寄存器读取对象指针，需要确保寄存器状态正确
  * @warning 验证失败时会触发系统退出操作
  */
-uint32_t ValidateObjectHandleFromRegister(void)
-
-{
+uint32_t ValidateObjectHandleFromRegister(void) {
   int64_t RegisterContext = 0;
   int64_t MemoryPointer;
   
@@ -4952,7 +4950,8 @@ uint32_t ValidateObjectHandleFromRegister(void)
   if (*(int64_t *)(MemoryPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + ObjectContextValidationOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + ObjectContextValidationOffset), 1);
+  return 0;
 }
 
 
@@ -4961,12 +4960,14 @@ uint32_t ValidateObjectHandleFromRegister(void)
 /**
  * @brief 触发系统异常处理
  * 
- * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用
+ * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用。
+ * 主要用于系统错误处理和异常情况的处理。
+ * 
+ * @return void 无返回值
+ * @warning 此函数会立即终止系统运行，只在严重错误时使用
  */
-void RaiseSystemException(void)
-
-{
-        ExecuteSystemExitOperation();
+void RaiseSystemException(void) {
+  ExecuteSystemExitOperation();
 }
 
 
