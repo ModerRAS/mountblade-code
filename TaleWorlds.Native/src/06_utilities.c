@@ -3787,32 +3787,32 @@ uint8_t SystemEventHandlerCustomReserved46;
 uint8_t SystemEventHandlerCustomReserved47;
 uint8_t SystemEventHandlerCustomReserved48;
 uint8_t SystemEventHandlerCustomReserved49;
-uint8_t SystemEventHandlerCustomFifty;
-uint8_t SystemEventHandlerCustomFiftyOne;
-uint8_t SystemEventHandlerCustomFiftyTwo;
-uint8_t SystemEventHandlerCustomFiftyThree;
-uint8_t SystemEventHandlerCustomFiftyFour;
-uint8_t SystemEventHandlerCustomFiftyFive;
-uint8_t SystemEventHandlerCustomFiftySix;
-uint8_t SystemEventHandlerCustomFiftySeven;
-uint8_t SystemEventHandlerCustomFiftyEight;
-uint8_t SystemEventHandlerCustomFiftyNine;
-uint8_t SystemEventHandlerCustomSixty;
-uint8_t SystemEventHandlerCustomSixtyOne;
-uint8_t SystemEventHandlerCustomSixtyTwo;
-uint8_t SystemEventHandlerCustomSixtyThree;
-uint8_t SystemEventHandlerCustomSixtyFour;
-uint8_t SystemEventHandlerCustomSixtyFive;
-uint8_t SystemEventHandlerCustomSixtySix;
-uint8_t SystemEventHandlerCustomSixtySeven;
-uint8_t SystemEventHandlerCustomSixtyEight;
-uint8_t SystemEventHandlerCustomSixtyNine;
-uint8_t SystemEventHandlerCustomSeventy;
-uint8_t SystemEventHandlerCustomSeventyOne;
-uint8_t SystemEventHandlerCustomSeventyTwo;
-uint8_t SystemEventHandlerCustomSeventyThree;
-uint8_t SystemEventHandlerCustomSeventyFour;
-uint8_t SystemEventHandlerCustomSeventyFive;
+uint8_t SystemEventHandlerCustomReserved50;
+uint8_t SystemEventHandlerCustomReserved51;
+uint8_t SystemEventHandlerCustomReserved52;
+uint8_t SystemEventHandlerCustomReserved53;
+uint8_t SystemEventHandlerCustomReserved54;
+uint8_t SystemEventHandlerCustomReserved55;
+uint8_t SystemEventHandlerCustomReserved56;
+uint8_t SystemEventHandlerCustomReserved57;
+uint8_t SystemEventHandlerCustomReserved58;
+uint8_t SystemEventHandlerCustomReserved59;
+uint8_t SystemEventHandlerCustomReserved60;
+uint8_t SystemEventHandlerCustomReserved61;
+uint8_t SystemEventHandlerCustomReserved62;
+uint8_t SystemEventHandlerCustomReserved63;
+uint8_t SystemEventHandlerCustomReserved64;
+uint8_t SystemEventHandlerCustomReserved65;
+uint8_t SystemEventHandlerCustomReserved66;
+uint8_t SystemEventHandlerCustomReserved67;
+uint8_t SystemEventHandlerCustomReserved68;
+uint8_t SystemEventHandlerCustomReserved69;
+uint8_t SystemEventHandlerCustomReserved70;
+uint8_t SystemEventHandlerCustomReserved71;
+uint8_t SystemEventHandlerCustomReserved72;
+uint8_t SystemEventHandlerCustomReserved73;
+uint8_t SystemEventHandlerCustomReserved74;
+uint8_t SystemEventHandlerCustomReserved75;
 // 事件处理器槽九十 - 第九十号事件处理器槽
 uint8_t EventHandlerSlotNumberNinety;
 // 事件处理器槽九十一 - 第九十一号事件处理器槽
@@ -54192,7 +54192,7 @@ void UnwindReleaseSystemResourceAtExtendedOffset(uint8_t ObjectContext, int64_t 
  * @note 此函数会检查资源数据中的标志位来决定是否释放资源
  * @warning 调用此函数会修改资源数据中的标志位状态
  */
-void UnwindReleaseSystemResourceAtOffset70(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindReleaseSystemResourceAtOffset112(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x6c) & 4) != 0) {
@@ -54237,7 +54237,7 @@ void UnwindResetSystemDataStructurePointer(uint8_t ObjectContext, int64_t Valida
  * @note 此函数会修改资源数据的标志位状态
  * @remark 原始函数名：Unwind_180906360
  */
-void ReleaseResourceFlag1(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourcePrimaryFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x54) & 1) != 0) {
@@ -54261,7 +54261,7 @@ void ReleaseResourceFlag1(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数会修改资源数据的标志位状态
  * @remark 原始函数名：Unwind_180906390
  */
-void ReleaseResourceFlag2(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceSecondaryFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x54) & 2) != 0) {
@@ -54285,7 +54285,7 @@ void ReleaseResourceFlag2(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数会修改资源数据的标志位状态
  * @remark 原始函数名：Unwind_1809063c0
  */
-void ReleaseResourceFlag4(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceQuaternaryFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x54) & 4) != 0) {
@@ -54420,7 +54420,7 @@ void ExecuteResourceCleanupHandlers(uint8_t ObjectContext,int64_t ValidationCont
  * @note 此函数处理偏移量152处的资源释放
  * @remark 原始函数名：Unwind_180906470
  */
-void ReleaseSystemResourceAtOffset152(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemResourceAtOffset338(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
