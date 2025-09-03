@@ -101163,8 +101163,18 @@ void InitializeSystemDataPointer(void)
  * @note 此函数在系统初始化阶段调用
  * @warning 调用前必须确保SystemDataStructure已正确初始化
  */
-void InitializeSystemDataStructureAA(void)
-void InitializeSystemDataStructureAA(void)
+void InitializePrimarySystemDataStructure(void)
+/**
+ * @brief 初始化主系统数据结构
+ * 
+ * 该函数负责初始化系统中的主数据结构，将全局变量
+ * SystemDataStructurePointerB设置为指向预定义的数据结构SystemDataStructure。
+ * 这个数据结构用于系统核心数据管理和配置。
+ * 
+ * @note 此函数在系统初始化阶段调用
+ * @warning 调用前必须确保SystemDataStructure已正确初始化
+ */
+void InitializePrimarySystemDataStructure(void)
 
 {
   SystemDataStructurePointerB = &SystemDataStructure;
@@ -101200,17 +101210,17 @@ void ExecuteSystemStatusCheckAndCleanup(void)
     SystemMemoryRegionCleanup(SystemMemoryCleanupAddress);
 
  /**
- * @brief 初始化系统数据结构AC
+ * @brief 初始化模块数据结构A
  * 
- * 该函数负责初始化系统中的数据结构AC，将全局变量
+ * 该函数负责初始化系统中的模块数据结构A，将全局变量
  * ModuleDataPointerA设置为指向预定义的数据结构SystemDataStructure。
  * 这个数据结构用于模块化数据管理和系统配置。
  * 
  * @note 此函数在系统初始化阶段调用
  * @warning 调用前必须确保SystemDataStructure已正确初始化
  */
-void InitializeSystemDataStructureAC(void)
-void InitializeSystemDataStructureAC(void)
+void InitializeModuleDataStructureA(void)
+void InitializeModuleDataStructureA(void)
 
 {
   ModuleDataPointerA = &SystemDataStructure;
@@ -101222,17 +101232,17 @@ void InitializeSystemDataStructureAC(void)
 
 
  /**
- * @brief 初始化系统数据结构AD
+ * @brief 初始化模块数据结构B
  * 
- * 该函数负责初始化系统中的数据结构AD，将全局变量
+ * 该函数负责初始化系统中的模块数据结构B，将全局变量
  * ModuleDataPointerB设置为指向预定义的数据结构SystemDataStructure。
  * 这个数据结构用于模块化数据管理和系统配置。
  * 
  * @note 此函数在系统初始化阶段调用
  * @warning 调用前必须确保SystemDataStructure已正确初始化
  */
-void InitializeSystemDataStructureAD(void)
-void InitializeSystemDataStructureAD(void)
+void InitializeModuleDataStructureB(void)
+void InitializeModuleDataStructureB(void)
 
 {
   ModuleDataPointerB = &SystemDataStructure;
@@ -101244,17 +101254,18 @@ void InitializeSystemDataStructureAD(void)
 
 
  /**
- * 初始化系统数据结构AE
+ * @brief 初始化内存池管理器
+ * 
  * 初始化全局数据结构 MemoryPoolManager 并重置相关计数器
  * 
  * 功能：
- * 1. 将 MemoryPoolManager 设置为指向 SystemMemoryStructure001
+ * 1. 将 MemoryPoolManager 设置为指向 SystemResourceHandlerTemplate
  * 2. 检查 MemoryPoolManagerFlag 是否为0，如果不为0则调用错误处理函数
  * 3. 重置计数器 MemoryPoolManagerFlag 和 MemoryPoolManagerLock 为0
- * 4. 最后将 MemoryPoolManager 设置为指向 SystemDataStructure001
+ * 4. 最后将 MemoryPoolManager 设置为指向 SystemDataStructure
  */
-void InitializeSystemDataStructureAE(void)
-void InitializeSystemDataStructureAE(void)
+void InitializeMemoryPoolManager(void)
+void InitializeMemoryPoolManager(void)
 
 {
   MemoryPoolManager = &SystemResourceHandlerTemplate;
