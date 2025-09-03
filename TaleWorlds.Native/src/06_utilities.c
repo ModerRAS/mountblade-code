@@ -4437,20 +4437,20 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   // 检查注册状态
   if (*(int *)(RegistrationHandle + RegistrationStatusOffset) == InvalidRegistrationStatus) {
     // 获取对象名称
-    RegistrationValidationStatus = GetRegisteredObjectName(RegistrationHandle, ObjectName);
-    if ((int)RegistrationValidationStatus != 0) {
-      return RegistrationValidationStatus;
+    ValidationStatusCode = GetRegisteredObjectName(RegistrationHandle, SystemObjectNameBuffer);
+    if ((int)ValidationStatusCode != 0) {
+      return ValidationStatusCode;
     }
     
     // 验证对象状态
-    RegistrationStatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
-    if ((int)RegistrationStatusResult != 0) {
-      return RegistrationStatusResult;
+    StatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
+    if ((int)StatusResult != 0) {
+      return StatusResult;
     }
     
     // 验证状态一致性
-    if ((char)RegistrationValidationStatus == (char)RegistrationStatusResult) {
-      if (ObjectName[0] == (char)RegistrationStatusResult) {
+    if ((char)ValidationStatusCode == (char)StatusResult) {
+      if (SystemObjectNameBuffer[0] == (char)StatusResult) {
         // 搜索现有注册项
         RegistrationBasePointer = (int64_t *)(RegistrationData + RegistrationArrayOffset);
         RegistrationIterator = 0;
@@ -15508,6 +15508,7 @@ void ProcessResourceDataValidationOperation(int64_t *ObjectContext,uint8_t Valid
   uint8_t SecurityBuffer[32];
   uint8_t DataBuffer[1024];
   uint64_t OperationParameter;
+  uint64_t SecurityOperationParameter;
   
   SecurityOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityBuffer;
   SecurityValidationContext = ResourceDataParam;
@@ -30287,51 +30288,6 @@ void CleanupResourceHashValidationResources(uint8_t exceptionHandlerType, int64_
 
 
 
-/**
- * @brief 清理验证结果资源（重复实现）
- * 
- * 该函数在异常处理过程中清理验证结果相关的资源
- * 释放验证结果占用的内存，并在必要时调用系统清理处理器
- * 
- * @param exceptionHandlerType 异常处理器类型
- * @param ExceptionContext 异常上下文指针
- * 
- * @note 此函数与CleanupResourceHashStatusAddressResources功能完全相同
- * @note 可能是编译器生成的重复代码或用于不同的异常处理路径
- */
-void CleanupResourceHashStatusAddressResourcesDuplicate(uint8_t exceptionHandlerType, int64_t ExceptionContext)
-
-{
-  int32_t *ObjectReferenceCountPointer;
-  uint8_t *ResourceHashStatus;
-  int64_t ResourceIndex;
-  uint64_t ResourceBase;
-  
-  ResourceHashStatus = *(uint8_t **)(ExceptionContext + 0x2b8);
-  if (ResourceHashStatus == (uint8_t *)0x0) {
-    return;
-  }
-  resourceBase = (uint64_t)ResourceHashStatus & 0xffffffffffc00000;
-  if (resourceBase != 0) {
-    ResourceIndex = resourceBase + 0x80 + ((int64_t)ResourceHashStatus - resourceBase >> 0x10) * 0x50;
-    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(resourceBase + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashStatus = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatus;
-      referenceCount = (int *)(ResourceIndex + 0x18);
-      *referenceCount = *referenceCount - 1;
-      if (*referenceCount == 0) {
-        SystemCleanupHandler();
-        return;
-      }
-    }
-    else {
-      ValidateMemoryAccess(resourceBase,CONCAT71(0xff000000,*(void ***)(resourceBase + 0x70) == &ExceptionList),
-                          ResourceHashStatus,resourceBase,0xfffffffffffffffe);
-    }
-  }
-  return;
-}
 
 
 
