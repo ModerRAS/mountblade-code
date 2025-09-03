@@ -281,7 +281,7 @@ uint32_t NetworkVerifyConnectionEntry(int64_t ConnectionContext, uint32_t Networ
  * @param NetworkContext 网络上下文
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t InitializeNetworkContext(int64_t NetworkContext);
+uint32_t NetworkInitializeContext(int64_t NetworkContext);
 
 /**
  * @brief 处理网络上下文条目
@@ -291,7 +291,7 @@ uint32_t InitializeNetworkContext(int64_t NetworkContext);
  * @param NetworkContextEntry 网络上下文条目
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t HandleNetworkContextEntry(int64_t NetworkContextEntry);
+uint32_t NetworkHandleContextEntry(int64_t NetworkContextEntry);
 
 /**
  * @brief 处理网络连接数据
