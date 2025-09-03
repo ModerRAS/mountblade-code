@@ -6177,8 +6177,7 @@ void TerminateSystem(void)
 
 
 
- void ReturnNoOperationPrimary(void)
-/**
+ /**
  * @brief 无操作返回
  * 
  * 该函数是一个无操作函数，直接返回而不执行任何操作
