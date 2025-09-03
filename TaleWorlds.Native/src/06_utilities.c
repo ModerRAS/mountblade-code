@@ -105002,7 +105002,7 @@ void ResourceOperationsProcessor(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943038. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(SystemMutexSenaryAddress);
+  MutexDestroyInPlace(SystemResourceMutexAddress);
   return;
 }
 
