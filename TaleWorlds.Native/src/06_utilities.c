@@ -77406,14 +77406,26 @@ void ExecuteResourceCleanupOperation530(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_18090b550(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理操作（偏移量0x88）
+ * 
+ * 该函数用于执行指定偏移量处的资源清理操作
+ * 通过系统上下文资源偏移量获取资源上下文并执行清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090b550
+ */
+void ExecuteResourceCleanupAtOffset88(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ResourceCleanupHandler;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x88);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  ResourceCleanupHandler = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x88);
+  if (ResourceCleanupHandler != (int64_t *)0x0) {
+    (**(code **)(*ResourceCleanupHandler + 0x38))();
   }
   return;
 }
