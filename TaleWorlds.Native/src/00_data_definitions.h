@@ -6,115 +6,57 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-// 系统数据指针
-void* SystemGlobalData;
+// 系统全局数据指针
+void* GameEngineGlobalData;
 
-// 系统字符串缓冲区 - 用于存储系统字符串数据
-void* PrimaryStringBuffer;
-void* SecondaryStringBuffer;
-void* TertiaryStringBuffer;
-void* QuaternaryStringBuffer;
-void* QuinaryStringBuffer;
-void* SenaryStringBuffer;
-void* SeptenaryStringBuffer;
-void* OctonaryStringBuffer;
-void* NonaryStringBuffer;
-void* DenaryStringBuffer;
-void* UndenaryStringBuffer;
-void* DuodenaryStringBuffer;
-void* TredecenaryStringBuffer;
-void* QuattuordecenaryStringBuffer;
-void* QuindecenaryStringBuffer;
-void* SexdecenaryStringBuffer;
-void* SeptendecenaryStringBuffer;
-void* OctodecenaryStringBuffer;
-void* NovemdecenaryStringBuffer;
-void* VigesimalStringBuffer;
-void* UnvigesimalStringBuffer;
-void* DuovigesimalStringBuffer;
-void* TrevigesimalStringBuffer;
-void* QuattuorvigesimalStringBuffer;
-void* QuinvigesimalStringBuffer;
-void* SexvigesimalStringBuffer;
-void* SeptenvigesimalStringBuffer;
-void* OctovigesimalStringBuffer;
-void* NovemvigesimalStringBuffer;
-void* TrigesimalStringBuffer;
+// 游戏字符串缓冲区 - 用于存储游戏字符串数据
+void* GameStringBuffer[32];
 
-// 系统内存池 - 用于动态内存分配
-void* GlobalMemoryPool;
+// 游戏内存池 - 用于动态内存分配
+void* GameMemoryPool;
 
-// 系统内存配置缓冲区 - 用于存储内存配置数据
-void* PrimaryMemoryConfigBuffer;
-void* SecondaryMemoryConfigBuffer;
-void* TertiaryMemoryConfigBuffer;
-void* QuaternaryMemoryConfigBuffer;
-void* QuinaryMemoryConfigBuffer;
-void* SenaryMemoryConfigBuffer;
-void* SeptenaryMemoryConfigBuffer;
-void* OctonaryMemoryConfigBuffer;
-void* NonaryMemoryConfigBuffer;
-void* DenaryMemoryConfigBuffer;
-void* UndenaryMemoryConfigBuffer;
-void* DuodenaryMemoryConfigBuffer;
-void* TredecenaryMemoryConfigBuffer;
-void* QuattuordecenaryMemoryConfigBuffer;
-void* QuindecenaryMemoryConfigBuffer;
-void* SexdecenaryMemoryConfigBuffer;
-void* SeptendecenaryMemoryConfigBuffer;
-void* OctodecenaryMemoryConfigBuffer;
+// 游戏内存配置缓冲区 - 用于存储内存配置数据
+void* GameMemoryConfigBuffer[18];
 
-// 系统内存池缓冲区 - 用于存储内存池数据
-void* PrimaryMemoryPoolBuffer;
-void* SecondaryMemoryPoolBuffer;
-void* TertiaryMemoryPoolBuffer;
-void* QuaternaryMemoryPoolBuffer;
+// 游戏内存池缓冲区 - 用于存储内存池数据
+void* GameMemoryPoolBuffer[4];
 
-// 系统字符串内存缓冲区 - 用于存储字符串内存数据
-void* PrimaryStringMemoryBuffer;
-void* SecondaryStringMemoryBuffer;
-void* TertiaryStringMemoryBuffer;
-void* QuaternaryStringMemoryBuffer;
+// 游戏字符串内存缓冲区 - 用于存储字符串内存数据
+void* GameStringMemoryBuffer[4];
 
-// 系统状态标志 - 用于存储系统运行状态
-char PrimarySystemStatusFlag;
-char SecondarySystemStatusFlag;
+// 游戏状态标志 - 用于存储游戏运行状态
+char GameEngineStatusFlags[2];
 
-// 系统字符串数据缓冲区 - 用于存储字符串处理数据
-void* PrimaryStringDataBuffer;
-void* SecondaryStringDataBuffer;
-void* TertiaryStringDataBuffer;
+// 游戏字符串数据缓冲区 - 用于存储字符串处理数据
+void* GameStringDataBuffer[3];
 
-// 系统字符串标志 - 用于存储字符串处理状态
-char PrimaryStringFlag;
-char SecondaryStringFlag;
-char TertiaryStringFlag;
+// 游戏字符串标志 - 用于存储字符串处理状态
+char GameStringProcessingFlags[3];
 
-// 系统配置缓冲区 - 用于存储系统配置数据
-void* PrimarySystemConfigurationBuffer;
-void* SecondarySystemConfigurationBuffer;
+// 游戏配置缓冲区 - 用于存储游戏配置数据
+void* GameConfigurationBuffer[2];
 
-// 系统配置标志 - 用于存储系统配置状态
-char PrimarySystemConfigurationFlag;
+// 游戏配置标志 - 用于存储游戏配置状态
+char GameConfigurationStatusFlag;
 
-// 系统常量字符串 - 用于存储系统常量字符串数据
-char* PrimarySystemConstantString;
+// 游戏常量字符串 - 用于存储游戏常量字符串数据
+char* GameEngineConstantString;
 
-// 网络配置参数 - 用于存储网络配置的各种参数数据
+// 游戏网络配置参数 - 用于存储网络配置的各种参数数据
 
 /**
- * @brief 网络配置认证类型
+ * @brief 游戏网络配置认证类型
  * 
- * 用于指定网络连接的认证方式和类型
+ * 用于指定游戏网络连接的认证方式和类型
  */
-void* NetworkAuthenticationType;
+void* GameNetworkAuthenticationType;
 
 /**
- * @brief 网络配置加密算法
+ * @brief 游戏网络配置加密算法
  * 
- * 用于指定网络数据传输的加密算法类型
+ * 用于指定游戏网络数据传输的加密算法类型
  */
-void* NetworkEncryptionAlgorithm;
+void* GameNetworkEncryptionAlgorithm;
 
 /**
  * @brief 网络配置压缩方法
