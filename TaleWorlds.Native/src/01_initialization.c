@@ -1252,11 +1252,11 @@ void* SystemDataBufferExtended31;
 void* SystemDataBufferStandardExtraLarge;
 void* SystemDataBufferStandardExtraThirtyThree;
 void* SystemDataBufferStandardExtraThirtyFour;
-void* SystemDataBufferStandardExtra35;
-void* SystemDataBufferStandardExtra36;
-void* SystemDataBufferStandardExtra37;
-void* SystemDataBufferStandardExtra38;
-void* SystemDataBufferStandardExtra39;
+void* SystemDataBufferStandardExtraThirtyFive;
+void* SystemDataBufferStandardExtraThirtySix;
+void* SystemDataBufferStandardExtraThirtySeven;
+void* SystemDataBufferStandardExtraThirtyEight;
+void* SystemDataBufferStandardExtraThirtyNine;
 void* SystemDataBufferStandardExtra40;
 void* SystemDataBufferStandardExtra41;
 
