@@ -12395,7 +12395,7 @@ void InitializeSystemStringProcessor(void)
   SystemStringProcessingBuffer[0] = 0;
   SystemConfigurationFlag = 0x16;
   strcpy_s(SystemStringProcessingBuffer,0x80,&SystemSecurityStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry011 = SystemMemoryAllocationFunction(&SystemStackPointerPrimary);
+  SystemStackMemoryAllocation = SystemMemoryAllocationFunction(&SystemStackPointerPrimary);
   return;
 }
 
@@ -13012,7 +13012,7 @@ void InitializeSystemMemoryNodeManager(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x12;
   strcpy_s(SystemProcessingBuffer,StringBufferSize,&SystemStringTemplateA,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry012 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemDatabaseMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -13041,7 +13041,7 @@ void InitializeSystemDeviceNodeManager(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 8;
   strcpy_s(SystemProcessingBuffer,StringBufferSize,&SystemStringTemplateB,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry013 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemRenderingMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -14321,7 +14321,7 @@ void InitializeSystemEventManagerN(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x1b;
   strcpy_s(SystemProcessingBuffer,StringBufferSize,&SystemStringTemplateC,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry014 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemAudioMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
