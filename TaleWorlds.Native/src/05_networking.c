@@ -1463,12 +1463,12 @@ uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameter
 NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 连接请求处理变量
-  int64_t NetworkConnectionContextHandle;              // 网络连接上下文句柄
-  int64_t *ConnectionValidationResultPointer;          // 连接验证结果指针
-  int32_t ConnectionValidationStatusCode;               // 连接验证状态码
+  int64_t NetworkConnectionContext;              // 网络连接上下文句柄
+  int64_t *ValidationResultPointer;          // 连接验证结果指针
+  int32_t ValidationStatusCode;               // 连接验证状态码
   
-  NetworkConnectionContextHandle = 0;
-  if (ConnectionValidationStatusCode == 0) {
+  NetworkConnectionContext = 0;
+  if (ValidationStatusCode == 0) {
 NetworkValidationProcessingContinue:
     if ((0 < *(int *)((long long)ConnectionValidationResultPointer + ConnectionParameterOffset)) && (*ConnectionValidationResultPointer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ConnectionValidationResultPointer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
