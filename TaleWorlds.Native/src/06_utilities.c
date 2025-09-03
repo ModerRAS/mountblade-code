@@ -76168,7 +76168,17 @@ void ProcessSystemResourceRelease(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void Unwind_18090afb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理器(偏移量0x2E0)
+ * 
+ * 该函数通过偏移量0x2E0获取资源上下文并执行资源处理回调
+ * 主要用于系统资源管理和清理操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文指针
+ * @remark 原始函数名：Unwind_18090afb0
+ */
+void ExecuteSystemResourceHandlerOffset2E0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
