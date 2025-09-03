@@ -30440,6 +30440,7 @@ void HandleQuinaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void HandleSenaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+  // 重置资源缓存模板
   **(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
   return;
 }
