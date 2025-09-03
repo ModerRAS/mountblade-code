@@ -723,7 +723,7 @@ uint32_t VerifySystemContext(void* SystemContext);
  * @param ResourceHandles 资源句柄数组
  * @return 释放结果状态码
  */
-uint32_t FreeValidationResources(void* ResourceHandles);
+uint32_t ReleaseValidationResources(void* ResourceHandles);
 
 #define SystemObjectContextSize 0x1000
 #define SystemDataStructureSize 0x1000
