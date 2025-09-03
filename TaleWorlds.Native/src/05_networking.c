@@ -108,9 +108,8 @@
 #define NetworkFloatOne 0x3f800000
 #define NetworkFloatNegativeOne 0xbf800000
 #define NetworkFloatMax 0x7f7fffff
-#define NetworkConnectionNotFound 0x4a
-#define NetworkConnectionBusy 0x4b
-#define NetworkSecurityValidationFailed 0xffffffc0
+#define NetworkErrorInvalidPacket 0x1c
+#define NetworkConnectionFinalizeValue 0x7d
 
 // 网络缓冲区对齐和大小常量
 #define NetworkBufferAlignmentMask 0xfffffffc
