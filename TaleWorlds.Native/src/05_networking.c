@@ -1483,15 +1483,15 @@ NetworkHandle NetworkInitializeConnectionSystem(void)
 NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
-  NetworkStatus *NetworkConnectionContextDataArray;  // 网络连接上下文数据数组
+  NetworkStatus *ConnectionContextDataArray;  // 网络连接上下文数据数组
   int32_t ActiveConnectionCount;                    // 活跃连接数量
   int64_t ConnectionBaseAddressPointer;             // 连接基地址指针
   NetworkStatus PacketProcessingResult;              // 数据包处理结果
   NetworkStatus DataProcessingStatus;                // 数据处理状态
   NetworkStatus ConnectionValidationResult;          // 连接验证结果
-  NetworkStatus *NetworkStatusBufferPointer;          // 网络状态缓冲区指针
+  NetworkStatus *StatusBufferPointer;          // 网络状态缓冲区指针
   int64_t ProcessingIterationCounter;               // 处理迭代计数器
-  NetworkStatus *NetworkPacketBufferPointer;         // 网络数据包缓冲区指针
+  NetworkStatus *PacketBufferPointer;         // 网络数据包缓冲区指针
   
   // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[1]) {

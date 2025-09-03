@@ -77739,7 +77739,7 @@ void ProcessSystemResourceCleanupFourth(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_18090b890(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupFifth(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -77753,7 +77753,7 @@ void Unwind_18090b890(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b8b0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupSixth(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -99002,6 +99002,18 @@ void Unwind_180911d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
+/**
+ * @brief 清理资源操作第一个函数
+ * 
+ * 该函数用于清理系统资源，执行资源释放和内存清理操作
+ * 主要用于系统关闭或资源重置时的清理工作
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，用于验证操作的有效性
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ * @note 原始函数名为Unwind_180911d40，现已重命名为CleanupResourceOperationFirst
+ */
 void CleanupResourceOperationFirst(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -99020,6 +99032,18 @@ void CleanupResourceOperationFirst(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
+/**
+ * @brief 清理资源操作第二个函数
+ * 
+ * 该函数用于清理系统资源，执行资源释放和内存清理操作
+ * 主要用于系统关闭或资源重置时的清理工作
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，用于验证操作的有效性
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ * @note 原始函数名为Unwind_180911d60，现已重命名为CleanupResourceOperationSecond
+ */
 void CleanupResourceOperationSecond(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -99038,6 +99062,18 @@ void CleanupResourceOperationSecond(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
+/**
+ * @brief 清理资源操作第三个函数
+ * 
+ * 该函数用于清理系统资源，执行资源释放和内存清理操作
+ * 主要用于系统关闭或资源重置时的清理工作
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，用于验证操作的有效性
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ * @note 原始函数名为Unwind_180911d80，现已重命名为CleanupResourceOperationThird
+ */
 void CleanupResourceOperationThird(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
