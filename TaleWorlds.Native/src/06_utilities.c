@@ -1364,7 +1364,7 @@ void ValidateResourceIntegrity(void);
  * @note 此函数会释放所有不再使用的系统资源
  * @warning 调用此函数后，被释放的资源将不再可用
  */
-void ExecuteResourceCleanup(void);
+void PerformResourceCleanup(void);
 
 /**
  * @brief 优化资源使用
@@ -1411,7 +1411,7 @@ void* ResourceDatabaseConnection;                    // 资源数据库连接
  * @note 此函数必须在系统启动时调用，以确保纹理管理系统的正常运行
  * @warning 调用此函数前必须确保图形子系统已经初始化
  */
-void InitializeTextureManager(void);
+void SetupTextureManager(void);
 void* TextureManagerInstance;               // 纹理管理器实例
 void* TextureExecutionContext;              // 纹理执行上下文
 void* TextureCacheHandle;                   // 纹理缓存句柄
@@ -1429,7 +1429,7 @@ void* TextureDescriptorTable;                // 纹理描述符表
  * @note 此函数必须在系统启动时调用，以确保音频系统的正常运行
  * @warning 调用此函数前必须确保音频硬件设备可用
  */
-void InitializeAudioSystem(void);
+void SetupAudioSystem(void);
 void* AudioSystemInstance;                  // 音频系统实例
 void* AudioDeviceInstance;                    // 音频设备实例
 void* AudioMixerInstance;                     // 音频混音器实例
@@ -1442,7 +1442,7 @@ void* AudioStreamManagerInstance;             // 音频流管理器实例
  * 该函数负责初始化游戏物理引擎
  * 设置碰撞检测、重力模拟和物理计算的相关系统
  */
-void InitializePhysicsEngine(void);
+void SetupPhysicsEngine(void);
 void* PhysicsEngineInstance;                // 物理引擎实例
 void* PhysicsWorldInstance;                  // 物理世界实例
 void* CollisionSystemInstance;               // 碰撞系统实例
@@ -1455,7 +1455,7 @@ void* PhysicsSolverInstance;                 // 物理求解器实例
  * 该函数负责初始化游戏输入管理系统
  * 设置键盘、鼠标和手柄输入的处理机制
  */
-void InitializeInputManager(void);
+void SetupInputManager(void);
 void* InputSystemInstance;                  // 输入系统实例
 void* InputDeviceManagerInstance;            // 输入设备管理器实例
 void* KeyboardInputHandlerInstance;          // 键盘输入处理器实例
@@ -1469,7 +1469,7 @@ void* InputEventQueueInstance;               // 输入事件队列实例
  * 该函数负责初始化游戏网络管理系统
  * 设置网络连接、数据传输和通信协议
  */
-void InitializeNetworkManager(void);
+void SetupNetworkManager(void);
 void* NetworkSystemInstance;                // 网络系统实例
 void* NetworkConnectionManager;             // 网络连接管理器
 void* NetworkPacketHandler;                  // 网络数据包处理器
