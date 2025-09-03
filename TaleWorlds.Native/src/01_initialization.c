@@ -26958,8 +26958,8 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
   do {
     *systemTypedPointer = 0;
     systemTypedPointer = systemTypedPointer + 0xc;
-    localDataIndex = localDataIndex + -1;
-  } while (localDataIndex != 0);
+    resourceDataIndex = resourceDataIndex + -1;
+  } while (resourceDataIndex != 0);
   ReleaseGraphicsContext(SystemGraphicsContextPointer + 0x48);
   SystemPerformanceCounter1 = 0;
   SystemPerformanceCounterSecondary = 0;
@@ -26989,16 +26989,16 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
     ProcessSystemCallback(primaryResourcePointer[0x28]);
     (*(code *)(*memoryAllocationPointer)[7])(memoryAllocationPointer);
   }
-  localDataIndex = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
+  resourceDataIndex = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
   systemValueSecondary = loopCounter;
-  if (localDataIndex / 0x1c != 0) {
+  if (resourceDataIndex / 0x1c != 0) {
     do {
-      ProcessSystemMemory(localDataIndex,systemValue12 * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
-      systemValue10 = (int)loopCounter + 1;
-      loopCounterValue = (ulong long)systemValue10;
-      localDataIndex = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
-      systemValueSecondary = (long long)(int)systemValue10;
-    } while ((ulong long)(long long)(int)systemValue10 < (ulong long)(localDataIndex / 0x1c));
+      ProcessSystemMemory(resourceDataIndex,renderStride * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
+      renderItemCounter = (int)loopCounter + 1;
+      loopCounterValue = (ulong long)renderItemCounter;
+      resourceDataIndex = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
+      systemValueSecondary = (long long)(int)renderItemCounter;
+    } while ((ulong long)(long long)(int)renderItemCounter < (ulong long)(resourceDataIndex / 0x1c));
   }
   *(void* *)(SystemRenderManagerPointer + 0x18) = *(void* *)(SystemRenderManagerPointer + 0x10);
   *(uint8_t *)(*(long long *)(*(long long *)(systemResourcePointer + 8) + 0x140) + 0x208) = 1;
