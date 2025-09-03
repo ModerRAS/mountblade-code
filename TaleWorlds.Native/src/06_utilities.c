@@ -5097,7 +5097,7 @@ uint8_t ValidateCharacter(char CharacterToCheck) {
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t VerifyObjectHandle(int64_t ObjectHandleToVerify) {
+uint8_t ValidateObjectHandle(int64_t ObjectHandleToVerify) {
   uint8_t ValidationResult;
   int64_t ValidatedContextMemoryAddress;
   
