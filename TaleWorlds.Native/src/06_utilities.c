@@ -4953,19 +4953,19 @@ uint8_t VerifyObjectHandle(int64_t ObjectHandleToValidate) {
  * @warning 验证失败时会触发系统退出操作
  */
 uint32_t ValidateObjectHandleFromRegister(void) {
-  int64_t RegisterObjectContext = 0;
-  int64_t ObjectMemoryPointer;
+  int64_t RegisterContext = 0;
+  int64_t ObjectPointer;
   
-  if (RegisterObjectContext == 0) {
-    ObjectMemoryPointer = 0;
+  if (RegisterContext == 0) {
+    ObjectPointer = 0;
   }
   else {
-    ObjectMemoryPointer = RegisterObjectContext + -8;
+    ObjectPointer = RegisterContext + -8;
   }
-  if (*(int64_t *)(ObjectMemoryPointer + ObjectContextValidationOffset) == 0) {
+  if (*(int64_t *)(ObjectPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryPointer + ObjectContextValidationOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ObjectPointer + ObjectContextValidationOffset), 1);
   return 0;
 }
 
@@ -5025,26 +5025,26 @@ void CleanupSystemResources(void)
  */
 uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
 {
-  uint8_t ValidationResult;
-  int64_t ValidatedMemoryAddress;
+  uint8_t ValidationStatus;
+  int64_t MemoryAddress;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &ValidatedMemoryAddress);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &MemoryAddress);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
   
-  if (ValidatedMemoryAddress == 0) {
-    ValidatedMemoryAddress = 0;
+  if (MemoryAddress == 0) {
+    MemoryAddress = 0;
   }
   else {
-    ValidatedMemoryAddress = ValidatedMemoryAddress - 8;
+    MemoryAddress = MemoryAddress - 8;
   }
   
-  if (*(int64_t *)(ValidatedMemoryAddress + HandleMemoryBufferHeaderOffset) == 0) {
+  if (*(int64_t *)(MemoryAddress + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + HandleMemoryBufferHeaderOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(MemoryAddress + HandleMemoryBufferHeaderOffset), 1);
   return 0;
 }
 
@@ -5059,21 +5059,21 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
  */
 uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 {
-  int64_t RegisterObjectContext;
-  int64_t MemoryAddressPointer;
+  int64_t RegisterContext;
+  int64_t ObjectMemoryAddress;
   
-  if (RegisterObjectContext == 0) {
-    MemoryAddressPointer = 0;
+  if (RegisterContext == 0) {
+    ObjectMemoryAddress = 0;
   }
   else {
-    MemoryAddressPointer = RegisterObjectContext - 8;
+    ObjectMemoryAddress = RegisterContext - 8;
   }
   
-  if (*(int64_t *)(MemoryAddressPointer + HandleMemoryBufferHeaderOffset) == 0) {
+  if (*(int64_t *)(ObjectMemoryAddress + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(MemoryAddressPointer + HandleMemoryBufferHeaderOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + HandleMemoryBufferHeaderOffset), 1);
   return 0;
 }
 
@@ -76685,10 +76685,20 @@ void ExecuteResourceContextCallback3(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090b270(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源上下文回调函数4
+ * 
+ * 该函数从验证上下文中获取资源上下文，并执行相应的回调函数
+ * 使用偏移量0x390来定位资源上下文
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090b270
+ */
+void ExecuteResourceContextCallback4(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int64_t *processPointer;
+  int64_t *ResourceContext;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x390);
   if (ResourceContext != (int64_t *)0x0) {
