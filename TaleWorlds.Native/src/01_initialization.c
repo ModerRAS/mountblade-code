@@ -19426,7 +19426,7 @@ void ExecuteSystemCallback(long long *callbackParameter)
  * @param sourceString 源字符串指针
  * @note 这是系统字符串处理的重要组成部分，确保字符串复制的安全性
  */
-void ProcessSystemStringCopy(long long TargetBuffer,long long SourceString)
+void ProcessSystemStringCopy(long long TargetBuffer, long long SourceString)
 
 {
   long long SourceStringLength;
