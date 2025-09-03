@@ -1537,7 +1537,7 @@ NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int
             NetworkPacketBufferPointer[4] = *(NetworkStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + -4 + (long long)(NetworkPacketBufferPointer + 5));
             
             // 更新迭代计数器
-            ProcessingIterationCounter = ProcessingIterationCounter + -1;
+            ProcessingIterationCounter = ProcessingIterationCounter - 1;
             NetworkPacketBufferPointer = NetworkPacketBufferPointer + 5;
           } while (ProcessingIterationCounter != 0);
         }
