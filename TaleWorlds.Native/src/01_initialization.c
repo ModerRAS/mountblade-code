@@ -60411,8 +60411,7 @@ LAB_SystemStatusSet:
  * @param SystemResourceManager 系统资源管理器指针
  * @return 无返回值
  * 
- * 原始函数名：FUN_1800781f4
- */
+  */
 void ValidateSystemResourceManagerStatus(long long SystemResourceManager)
 
 {
