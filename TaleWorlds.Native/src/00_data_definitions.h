@@ -10269,11 +10269,11 @@ Label_18060b1f5:
     else {
       NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigStringPrimary,1);
       if (NetworkRequestStatus == '\0') {
-        NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38fd8,1);
+        NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataBD,1);
         if (NetworkRequestStatus != '\0') goto Label_18060b9cb;
         NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a1029c,1);
         if (NetworkRequestStatus != '\0') goto Label_18060ad3e;
-        NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38fc0,1);
+        NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataBE,1);
         if (NetworkRequestStatus != '\0') goto Label_18060acd8;
         NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataBB,1);
         if (NetworkRequestStatus != '\0') goto Label_18060a114;
