@@ -1499,30 +1499,30 @@ NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  StatusBufferPointer = (NetworkStatus *)0x0;
+  NetworkStatus *NetworkStatusBufferPointer = (NetworkStatus *)0x0;
   
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
-      StatusBufferPointer = (NetworkStatus *)
+      NetworkStatusBufferPointer = (NetworkStatus *)
                ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                              NetworkConnectionFinalizeValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (StatusBufferPointer != (NetworkStatus *)0x0) {
-        ActiveConnectionCount = (int)ConnectionContext[1];
-        ProcessingIterationCounter = (long long)ActiveConnectionCount;
+      if (NetworkStatusBufferPointer != (NetworkStatus *)0x0) {
+        int32_t ActiveConnectionCount = (int)ConnectionContext[1];
+        int64_t ConnectionProcessingCounter = (long long)ActiveConnectionCount;
         
         // 如果有活跃连接，处理连接数据
         if ((ActiveConnectionCount != 0) && (ConnectionBaseAddressPointer = *ConnectionContext, 0 < ActiveConnectionCount)) {
-          PacketBufferPointer = StatusBufferPointer;
+          NetworkStatus *PacketStatusBufferPointer = NetworkStatusBufferPointer;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            ConnectionContextDataArray = (NetworkStatus *)((ConnectionBaseAddressPointer - (long long)StatusBufferPointer) + (long long)PacketBufferPointer);
+            NetworkStatus *ConnectionContextDataArray = (NetworkStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + (long long)PacketStatusBufferPointer);
             
             // 提取连接状态信息
             NetworkStatus CurrentPacketStatus = ConnectionContextDataArray[1];
@@ -1530,16 +1530,16 @@ NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int
             NetworkStatus CurrentValidationResult = ConnectionContextDataArray[3];
             
             // 更新数据包缓冲区状态
-            *PacketBufferPointer = *ConnectionContextDataArray;
-            PacketBufferPointer[1] = CurrentPacketStatus;
-            PacketBufferPointer[2] = CurrentDataStatus;
-            PacketBufferPointer[3] = CurrentValidationResult;
-            PacketBufferPointer[4] = *(NetworkStatus *)((ConnectionBaseAddressPointer - (long long)StatusBufferPointer) + -4 + (long long)(PacketBufferPointer + 5));
+            *PacketStatusBufferPointer = *ConnectionContextDataArray;
+            PacketStatusBufferPointer[1] = CurrentPacketStatus;
+            PacketStatusBufferPointer[2] = CurrentDataStatus;
+            PacketStatusBufferPointer[3] = CurrentValidationResult;
+            PacketStatusBufferPointer[4] = *(NetworkStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + -4 + (long long)(PacketStatusBufferPointer + 5));
             
             // 更新迭代计数器
-            ProcessingIterationCounter = ProcessingIterationCounter - 1;
-            PacketBufferPointer = PacketBufferPointer + 5;
-          } while (ProcessingIterationCounter != 0);
+            ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
+            PacketStatusBufferPointer = PacketStatusBufferPointer + 5;
+          } while (ConnectionProcessingCounter != 0);
         }
         goto NetworkProcessingLoop;
       }
@@ -1598,16 +1598,16 @@ NetworkMainProcessingLoop:
     return 0;
   }
   if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
-    StatusBuffer = (NetworkStatus *)
+    NetworkStatus *ConnectionStatusBuffer = (NetworkStatus *)
              ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                            NetworkConnectionFinalizeValue, 0);
-    if (StatusBuffer != (NetworkStatus *)0x0) {
-      PacketProcessingStatus = (int)OperationStatusBuffer[1];
-      ProcessingCounter = (long long)PacketProcessingStatus;
+    if (ConnectionStatusBuffer != (NetworkStatus *)0x0) {
+      int32_t PacketProcessingStatus = (int)OperationStatusBuffer[1];
+      int64_t StatusProcessingCounter = (long long)PacketProcessingStatus;
       if ((PacketProcessingStatus != 0) && (ConnectionContextHandle = *OperationStatusBuffer, 0 < PacketProcessingStatus)) {
-        PacketFlagsBuffer = StatusBuffer;
+        NetworkStatus *PacketFlagsBuffer = ConnectionStatusBuffer;
         do {
-          ConnectionContextData = (NetworkStatus *)((ConnectionContextHandle - (long long)StatusBuffer) + (long long)PacketFlagsBuffer);
+          NetworkStatus *ConnectionContextData = (NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + (long long)PacketFlagsBuffer);
           NetworkStatus CurrentValidationStatus = ConnectionContextData[1];
           NetworkStatus CurrentTimeoutStatus = ConnectionContextData[2];
           NetworkStatus CurrentSecondaryStatus = ConnectionContextData[3];
@@ -1615,10 +1615,10 @@ NetworkMainProcessingLoop:
           PacketFlagsBuffer[1] = CurrentValidationStatus;
           PacketFlagsBuffer[2] = CurrentTimeoutStatus;
           PacketFlagsBuffer[3] = CurrentSecondaryStatus;
-          PacketFlagsBuffer[4] = *(NetworkStatus *)((ConnectionContextHandle - (long long)StatusBuffer) + -4 + (long long)(PacketFlagsBuffer + 5));
-          ProcessingCounter = ProcessingCounter + -1;
+          PacketFlagsBuffer[4] = *(NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + -4 + (long long)(PacketFlagsBuffer + 5));
+          StatusProcessingCounter = StatusProcessingCounter + -1;
           PacketFlagsBuffer = PacketFlagsBuffer + 5;
-        } while (ProcessingCounter != 0);
+        } while (StatusProcessingCounter != 0);
       }
 NetworkProcessingLoop:
       // 网络处理循环完成，继续后续处理
