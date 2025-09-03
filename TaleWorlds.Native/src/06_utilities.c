@@ -75853,7 +75853,19 @@ void ValidateObjectContextIntegrity(uint8_t ObjectContext, int64_t ValidationCon
 
 
 
-void Unwind_18090add0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置对象上下文状态
+ * 
+ * 该函数负责重置对象上下文的状态，将其恢复到初始状态
+ * 主要用于对象重用和状态清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含需要重置的对象信息
+ * @param ValidationContext 验证上下文，包含重置验证信息
+ * 
+ * @note 此函数会清除对象的所有状态数据
+ * @warning 重置操作会导致对象的所有状态信息丢失
+ */
+void ResetObjectContextState(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
