@@ -1081,7 +1081,7 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
  * @note 此函数必须在系统启动时调用
  * @warning 调用此函数前必须确保系统已准备好处理模块依赖关系
  */
-void InitializeModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
+void SetupModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
 // 系统模块依赖全局变量
 void* GlobalModuleDependencyRegistry;                    // 全局模块依赖注册表
 uint32_t ModuleDependencyEntryCount;                     // 模块依赖条目数量
@@ -1121,7 +1121,7 @@ uint8_t ProcessingWorkspace[1024];                       // 处理工作空间�
  * @note 此函数必须在系统启动时调用
  * @warning 调用此函数前必须确保系统资源已准备就绪
  */
-void InitializeCoreEngineModule(void);
+void SetupCoreEngineModule(void);
 // 核心引擎模块全局变量
 void* CoreEngineInstance;                                // 核心引擎实例
 void* CoreEngineConfiguration;                           // 核心引擎配置
@@ -1139,7 +1139,7 @@ void* CoreEngineHandle;                                  // 核心引擎句柄
  * @note 此函数必须在系统启动时调用
  * @warning 调用此函数前必须确保图形设备已初始化
  */
-void InitializeRenderingEngineModule(void);
+void SetupRenderingEngineModule(void);
 // 渲染引擎模块全局变量
 void* RenderingEngineInstance;                          // 渲染引擎实例
 void* RenderingEngineConfiguration;                     // 渲染引擎配置
@@ -1157,7 +1157,7 @@ void* RenderingEngineExecutionContext;                   // 渲染引擎执行�
  * @note 此函数必须在系统启动时调用
  * @warning 调用此函数前必须确保渲染引擎已初始化
  */
-void InitializeGraphicsSystemModule(void);
+void SetupGraphicsSystemModule(void);
 // 图形系统模块全局变量
 void* GraphicsSystemInstance;                            // 图形系统实例
 void* GraphicsSystemConfiguration;                       // 图形系统配置
@@ -1177,7 +1177,7 @@ void* GraphicsSystemExecutionContext;                    // 图形系统执行�
  * @note 此函数必须在系统启动时调用
  * @warning 调用此函数前必须确保音频设备可用
  */
-void InitializeAudioSystemModule(void);
+void SetupAudioSystemModule(void);
 // 音频系统模块全局变量
 void* AudioSystemInstance;                              // 音频系统实例
 void* AudioSystemConfiguration;                         // 音频系统配置
@@ -1196,7 +1196,7 @@ void* AudioSystemHandle;                                 // 音频系统句柄
  * @note 此函数必须在系统启动时调用
  * @warning 调用此函数前必须确保网络设备可用
  */
-void InitializeNetworkSystemModule(void);
+void SetupNetworkSystemModule(void);
 // 网络系统模块全局变量
 void* NetworkSystemInstance;                            // 网络系统实例
 void* NetworkSystemConfiguration;                       // 网络系统配置
@@ -1274,7 +1274,7 @@ bool AudioSystemInitializationComplete;                 // 音频系统初始化
  * @note 此函数应该在系统关闭时调用
  * @warning 调用此函数后，所有线程同步对象将失效
  */
-void DestroyThreadSynchronizationObjects(void);
+void CleanupThreadSynchronizationObjects(void);
 // 线程同步对象全局变量
 void* ThreadSynchronizationObjectHandle;              // 线程同步对象句柄
 void* ThreadSynchronizationExecutionContext;          // 线程同步执行上下文
@@ -1318,7 +1318,7 @@ void* ThreadCleanupAuxiliaryStorage;                   // 线程清理辅助存�
  * @return 无返回值
  * @note 此函数必须在系统启动时调用，以确保资源管理系统的正常运行
  */
-void InitializeResourceManager(void);
+void SetupResourceManager(void);
 
 /**
  * @brief 配置资源设置
