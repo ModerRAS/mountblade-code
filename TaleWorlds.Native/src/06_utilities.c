@@ -76050,7 +76050,17 @@ void ExecuteResourceContextCall288(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_18090af30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源清理操作
+ * 
+ * 该函数在异常处理过程中清理系统资源，确保资源正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态信息
+ * 
+ * @note 此函数通常在异常处理时调用，用于清理0x290偏移处的资源
+ */
+void ProcessSystemResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -100000,8 +100010,18 @@ void Unwind_180912540(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180912550(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行验证上下文检查
+ * 
+ * 该函数用于执行验证上下文的检查操作，确保系统状态的正确性。
+ * 主要用于系统初始化和异常处理过程中的验证。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文指针，包含验证所需的数据
+ * @note 此函数会调用内部检查机制来验证上下文数据
+ * @warning 验证失败可能会触发系统异常处理流程
+ */
+void ExecuteValidationContextCheck(uint8_t ObjectContext, int64_t ValidationContext)
 {
   _guard_check_icall(*(uint8_t *)(ValidationContext + ValidationContextTertiaryCountOffset),**(uint8_t **)(ValidationContext + ValidationContextDataOffset),
                      *(uint8_t *)(ValidationContext + 0x50));
