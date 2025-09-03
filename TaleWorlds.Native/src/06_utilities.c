@@ -5014,52 +5014,6 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数用于增加指定对象的引用计数，确保对象在使用期间不会被意外释放
- * 通过验证对象上下文来确保对象的有效性
- * 
- * @param ObjectContext 对象上下文指针，包含对象的内存地址和状态信息
- * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数增加指定对象的引用计数，用于对象生命周期管理。
- * 
- * @param ObjectContext 对象上下文指针
- * @return uint8_t 操作结果状态码
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数用于增加系统对象的引用计数，确保对象在引用期间不会被释放。
- * 在对象生命周期管理中起到关键作用。
- * 
- * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- * @note 成功时对象的引用计数会增加1
- * @warning 如果对象句柄无效，返回ErrorInvalidObjectHandle错误码
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数用于增加系统对象的引用计数，确保对象在使用期间不会被意外释放
- * 包含对象验证、引用计数递增和系统状态检查等操作
- * 
- * @param ObjectContext 对象上下文指针，包含对象的内存地址和状态信息
- * @return uint8_t 操作结果状态码，0表示成功，非0表示错误码
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数用于增加指定对象的引用计数，确保对象在引用期间不会被意外释放。
- * 包含对象上下文验证、内存地址检查和引用计数更新操作。
- * 
- * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- */
 uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
@@ -5230,24 +5184,24 @@ uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
  * @warning 验证失败时会触发系统退出操作
  */
 uint32_t ValidateObjectHandleFromRegister(void) {
-  int64_t RegisterStoredObjectPointer = 0;
-  int64_t CalculatedMemoryAddress;
+  int64_t RegisterObjectPtr = 0;
+  int64_t MemoryAddress;
   
   // 根据寄存器值计算验证后的内存位置
-  if (RegisterStoredObjectPointer == 0) {
-    CalculatedMemoryAddress = 0;
+  if (RegisterObjectPtr == 0) {
+    MemoryAddress = 0;
   }
   else {
-    CalculatedMemoryAddress = RegisterStoredObjectPointer - 8;
+    MemoryAddress = RegisterObjectPtr - 8;
   }
   
   // 检查对象上下文是否有效
-  if (*(int64_t *)(CalculatedMemoryAddress + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(MemoryAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(CalculatedMemoryAddress + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(MemoryAddress + ObjectContextOffset), 1);
   return OperationSuccessCode;
 }
 
@@ -5676,18 +5630,18 @@ uint8_t InitializeObjectHandleDetailed(void)
 
 {
   int64_t ResourceDataOffset;
-  int ResourceIdentifier;
+  int ResourceId;
   int64_t RegisterValue;
-  uint8_t OperationResultCode;
-  uint32_t *ResourceIdentifierPointer;
+  uint8_t OperationResult;
+  uint32_t *ResourceIdPointer;
   uint64_t SystemContextPointer;
   int64_t SystemContext;
-  uint SystemConfigurationFlags;
-  uint64_t IterationCount;
+  uint SystemConfigFlags;
+  uint64_t LoopCounter;
   int64_t BaseAddressOffset;
   int64_t InputContext;
   
-  IterationCount = 0;
+  LoopCounter = 0;
   InputContext = InputParameter;
   if (InputContext == 0) {
     SystemContextPointer = 0;
@@ -15729,18 +15683,18 @@ void ExecuteSecurityEncryptionValidation(int64_t *ObjectContext,int64_t Validati
 
 {
   int64_t LoopCounter;
-  int64_t ResourceTablePointer;
-  int PackageValidationStatusCode;
+  int64_t ResourceTablePtr;
+  int PackageValidationStatus;
   int ResultRecordIndex;
   int TableEntryIndex;
   int ProcessedResultIndex;
-  int PackageValidationStatusCode;
+  int ValidationStatusCode;
   uint8_t SecurityEncryptionBuffer [32];
   uint32_t DataChecksumBuffer [2];
-  uint8_t *NetworkRequestTemplatePointer0;
+  uint8_t *NetworkRequestTemplatePtr;
   uint32_t SecurityContextId;
   uint32_t EncryptionKeyIndex;
-  uint8_t *SecurityDataPointer;
+  uint8_t *SecurityDataPtr;
   uint32_t ResourceHandle;
   uint32_t MemoryBlockSize;
   int ResourceValidationIndex;
