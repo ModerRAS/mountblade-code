@@ -19222,7 +19222,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   InitializeSystemCore();
   libraryHandle = (long long *)AllocateSystemMemory(SystemMemoryPoolTemplate,0x68,8,3);
   symbolTablePointer = (long long **)(libraryHandle + 1);
-  threadLocalData = libraryHandle;
+  threadLocalDataBuffer = libraryHandle;
   threadManagerPointer = symbolTablePointer;
   InitializeMutex(symbolTablePointer,2);
   libraryHandle[0xb] = 0;

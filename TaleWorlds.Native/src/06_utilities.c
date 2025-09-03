@@ -12614,7 +12614,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContext, int ValidationContext, u
   
   *HashOutput = 0;
   HashOutput[1] = 0;
-  int *OperationStatusPointer = (int *)(**(code **)(*(int64_t *)
+  OperationStatusPointer = (int *)(**(code **)(*(int64_t *)
                                 ((int64_t)
                                  *(int *)(*(int64_t *)(ObjectContext + ObjectContextValidationDataOffset) + (int64_t)ValidationContext * 0xc) +
                                 *(int64_t *)(ObjectContext + 8)) + 0x50))();
@@ -48386,7 +48386,7 @@ void ProcessResourceHashValidationAndUpdateIndex(uint8_t ObjectContext, int64_t 
       *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
       int *ResourceReferenceCount = (int *)(ResourceIndex + 0x18);
-      *ResourceReferenceCount = *ResourceReferenceCount + -1;
+      *ResourceReferenceCount = *ResourceReferenceCount - 1;
       if (*ResourceReferenceCount == 0) {
         SystemCleanupHandler();
         return;
