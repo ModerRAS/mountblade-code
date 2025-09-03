@@ -70467,8 +70467,8 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
   ulong long matrixElementValue;
   float rotationSine;
   float rotationCosine;
-  float temporaryFloatValue1;
-  float temporaryFloatValue2;
+  float temporaryFloat1;
+  float temporaryFloat2;
   uint32_t loopCounterValue;
   
   maxBits = (ulong long)rotationBits;
@@ -70649,9 +70649,9 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
 void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
 
 {
-  float temporaryFloatValue1;
-  float temporaryFloatValue2;
-  float temporaryFloatValue3;
+  float temporaryFloat1;
+  float temporaryFloat2;
+  float temporaryFloat3;
   long long matrixPointer;
   ulong long bitValue;
   ulong long maxBits;
@@ -70667,7 +70667,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
   ulong long targetIndex;
   uint bitCount;
   uint halfRangeValue;
-  ulong long row4;
+  ulong long fourthRow;
   float sineValue;
   float cosineValue;
   float angleValue;

@@ -29949,14 +29949,13 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
 
 
 /**
- * @brief 异常处理函数：解卷次级上下文异常处理器
+ * @brief 次级上下文异常处理器
  * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 该函数负责处理次级异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理次级异常情况的资源清理工作
  * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
@@ -29973,14 +29972,13 @@ void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCon
 
 
 /**
- * @brief 异常处理函数：解卷三级上下文异常处理器
+ * @brief 三级上下文异常处理器
  * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 该函数负责处理三级异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理三级异常情况的资源清理工作
  * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
@@ -29997,14 +29995,13 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
 
 
 /**
- * @brief 异常处理函数：解卷四级上下文异常处理器
+ * @brief 四级上下文异常处理器
  * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 该函数负责处理四级异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理四级异常情况的资源清理工作
  * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
@@ -30021,14 +30018,13 @@ void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemCo
 
 
 /**
- * @brief 异常处理函数：解卷五级上下文异常处理器
+ * @brief 五级上下文异常处理器
  * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 该函数负责处理五级异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理五级异常情况的资源清理工作
  * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
