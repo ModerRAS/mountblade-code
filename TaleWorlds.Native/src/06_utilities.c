@@ -10962,9 +10962,9 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
 {
   void* StringProcessingTemplate;
     
-  int FormatValidationResult = ValidateDataFormat(ValidationContext,dataLength,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  int StringOperationResult = ProcessStringOperation(ValidationContext + FormatValidationResult,dataLength - FormatValidationResult,&StringProcessingTemplate);
-  int TotalProcessedBytes = FormatValidationResult + StringOperationResult;
+  int FormatValidationStatus = ValidateDataFormat(ValidationContext,dataLength,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  int StringOperationResult = ProcessStringOperation(ValidationContext + FormatValidationStatus,dataLength - FormatValidationStatus,&StringProcessingTemplate);
+  int TotalProcessedBytes = FormatValidationStatus + StringOperationResult;
   int DataContentResult = ParseDataContent(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
   TotalProcessedBytes = TotalProcessedBytes + DataContentResult;
   int StringValidationResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
