@@ -504,7 +504,7 @@ uint32_t NetworkConnectionPoolDeallocationCount;            // 网络连接池�
  * 
  * @note 此函数会在系统启动时调用，确保连接池可用
  */
-void InitializeNetworkConnectionPool(void);
+void NetworkInitializeConnectionPool(void);
 
 // 网络连接配置数据结构指针
 void *NetworkConnectionContextTemplate = &NetworkConnectionContextDataStructure;
@@ -526,7 +526,7 @@ void *NetworkConnectionRoutingConfigDataQuaternary = &NetworkConnectionRoutingCo
  * 
  * @note 此函数会在网络连接建立前调用
  */
-void InitializeNetworkSocketHandle(void);
+void NetworkInitializeSocketHandle(void);
 
 /**
  * @brief 绑定网络套接字
@@ -535,7 +535,7 @@ void InitializeNetworkSocketHandle(void);
  * 
  * @note 此函数使用全局配置中的IP地址和端口号
  */
-void BindNetworkSocket(void);
+void NetworkBindSocket(void);
 
 // 网络套接字绑定信息
 uint32_t NetworkSocketBindingInfo;
@@ -547,7 +547,7 @@ uint32_t NetworkSocketBindingInfo;
  * 
  * @note 此函数会使套接字进入监听状态
  */
-void ListenNetworkConnections(void);
+void NetworkListenConnections(void);
 
 /**
  * @brief 接受网络连接
@@ -556,7 +556,7 @@ void ListenNetworkConnections(void);
  * 
  * @note 此函数会为新的连接分配资源并初始化连接状态
  */
-void AcceptNetworkConnection(void);
+void NetworkAcceptConnection(void);
 
 /**
  * @brief 关闭网络连接
@@ -565,7 +565,7 @@ void AcceptNetworkConnection(void);
  * 
  * @note 此函数会清理连接状态并释放分配的资源
  */
-void CloseNetworkConnection(void);
+void NetworkCloseConnectionHandler(void);
 
 // =============================================================================
 // 网络安全和验证函数
