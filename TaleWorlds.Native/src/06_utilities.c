@@ -4947,25 +4947,25 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @warning 如果对象句柄无效，返回ErrorInvalidObjectHandle错误码
  */
 uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ValidatedObjectMemoryLocation;
-  uint8_t ObjectValidationResult;
-  int64_t ObjectContextValidationBuffer [4];
+  int64_t ValidatedObjectMemoryAddress;
+  uint8_t ContextValidationResult;
+  int64_t ObjectValidationBuffer [4];
   
-  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectContextValidationBuffer);
-  if ((int)ObjectValidationResult != 0) {
-    return ObjectValidationResult;
+  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationBuffer);
+  if ((int)ContextValidationResult != 0) {
+    return ContextValidationResult;
   }
   
-  if (ObjectContextValidationBuffer[0] != 0) {
-    ObjectContextValidationBuffer[0] = ObjectContextValidationBuffer[0] - 8;
+  if (ObjectValidationBuffer[0] != 0) {
+    ObjectValidationBuffer[0] = ObjectValidationBuffer[0] - 8;
   }
   
-  ValidatedObjectMemoryLocation = *(int64_t *)(ObjectContextValidationBuffer[0] + ObjectHandleOffset);
-  if (ValidatedObjectMemoryLocation != 0) {
-    *(int *)(ValidatedObjectMemoryLocation + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryLocation + ObjectReferenceCountOffset) + 1;
+  ValidatedObjectMemoryAddress = *(int64_t *)(ObjectValidationBuffer[0] + ObjectHandleOffset);
+  if (ValidatedObjectMemoryAddress != 0) {
+    *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
-    if ((*(char *)(ValidatedObjectMemoryLocation + ObjectSystemStatusOffset) != '\0') && (ObjectValidationResult = CheckSystemStatus(), (int)ObjectValidationResult != 0)) {
-      return ObjectValidationResult;
+    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ContextValidationResult = CheckSystemStatus(), (int)ContextValidationResult != 0)) {
+      return ContextValidationResult;
     }
     return OperationSuccessCode;
   }
