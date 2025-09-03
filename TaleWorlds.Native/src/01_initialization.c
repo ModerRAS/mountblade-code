@@ -141,6 +141,11 @@
 #define SYSTEM_SEMAPHORE_MAX_COUNT              0x7fffffff
 #define SYSTEM_EVENT_HANDLER_SIZE               0x20
 #define SYSTEM_EVENT_HANDLER_CAPACITY          8
+#define INVALID_HANDLE_VALUE                    0xfffffffffffffffe
+#define MAX_UINT64_VALUE                        0xffffffffffffffff
+#define MEMORY_FLAG_FREE_ENABLED                0x1
+#define MEMORY_BLOCK_SIZE                       0x98
+#define STRING_BUFFER_SIZE                      0x40
 
 /**
  * @brief 处理系统内存页面
@@ -11107,35 +11112,35 @@ void InitializeSystemStringProcessorP(void)
   void** HashTableNodePointer;
   uint64_t SystemInitializationFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
-  SystemRootNode = (void**)*SystemDataTable;
-  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SystemNodeActiveFlagOffset);
-  SystemInitFlag = 0;
-  HashTableNode = SystemRootNode;
-  SystemCurrentNode = (void**)SystemRootNode[1];
-  while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
+  SystemNodeActiveFlag = *(char*)((long long)SystemRootNodePointer[1] + SystemNodeActiveFlagOffset);
+  SystemInitializationFlag = 0;
+  HashTableNodePointer = SystemRootNodePointer;
+  SystemCurrentNodePointer = (void**)SystemRootNodePointer[1];
+  while (SystemNodeActiveFlag == '\0') {
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
     if (NodeIdentifierCompareResult < 0) {
-      SystemNextNode = (void**)SystemCurrentNode[2];
-      SystemCurrentNode = HashTableNode;
+      SystemNextNodePointer = (void**)SystemCurrentNodePointer[2];
+      SystemCurrentNodePointer = HashTableNodePointer;
     }
     else {
-      SystemNextNode = (void**)*SystemCurrentNode;
+      SystemNextNodePointer = (void**)*SystemCurrentNodePointer;
     }
-    HashTableNode = SystemCurrentNode;
-    SystemCurrentNode = SystemNextNode;
-    SystemNodeFlag = *(char*)((long long)SystemNextNode + SystemNodeActiveFlagOffset);
+    HashTableNodePointer = SystemCurrentNodePointer;
+    SystemCurrentNodePointer = SystemNextNodePointer;
+    SystemNodeActiveFlag = *(char*)((long long)SystemNextNodePointer + SystemNodeActiveFlagOffset);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateL,HashTableNode + 4,0x10), NodeIdentifierCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTableNode = AllocatedMemoryNode;
+  if ((HashTableNodePointer == SystemRootNodePointer) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateL,HashTableNodePointer + 4,0x10), NodeIdentifierCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer,&AllocatedMemoryNode,HashTableNodePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTableNodePointer = AllocatedMemoryNode;
   }
-  HashTableNode[SystemNodeIdentifier1Index] = 0x402feffe4481676e;
-  HashTableNode[SystemNodeIdentifier2Index] = 0xd4c2151109de93a0;
-  HashTableNode[SystemNodeDataPointerIndex] = &SystemDataNodeI;
-  HashTableNode[SystemNodeFlagIndex] = 0;
-  HashTableNode[10] = ResourceInitializationCallback;
+  HashTableNodePointer[SystemNodeIdentifier1Index] = 0x402feffe4481676e;
+  HashTableNodePointer[SystemNodeIdentifier2Index] = 0xd4c2151109de93a0;
+  HashTableNodePointer[SystemNodeDataPointerIndex] = &SystemDataNodeI;
+  HashTableNodePointer[SystemNodeFlagIndex] = 0;
+  HashTableNodePointer[10] = ResourceInitializationCallback;
   return;
 }
 
@@ -11143,18 +11148,31 @@ void InitializeSystemStringProcessorP(void)
 
 
 // 函数: void InitializeSystemStringProcessorQ(void)
+/**
+ * @brief 初始化系统字符串处理器Q
+ * 
+ * 该函数负责初始化系统的字符串处理器组件Q，为字符串处理操作
+ * 提供基础支持。它会创建字符串处理节点，设置字符串操作回调函数，
+ * 并建立字符串管理的标识符和指针。
+ * 
+ * 字符串处理器是系统中用于处理字符串操作的核心组件，包括字符串
+ * 的创建、修改、比较和销毁等功能。
+ * 
+ * @return 无返回值
+ * @note 该函数在系统初始化阶段调用，确保字符串处理系统的正常运行
+ */
 void InitializeSystemStringProcessorQ(void)
 
 {
-  char SystemNodeFlag;
-  void** SystemDataTable;
+  char SystemNodeActiveFlag;
+  void** SystemDataTablePointer;
   int NodeIdentifierCompareResult;
-  long long* MemorySystemPointer;
-  long long SystemTimeValue;
-  void** SystemRootNode;
-  void** SystemCurrentNode;
-  void** SystemNextNode;
-  void** HashTableNode;
+  long long* MemorySystemManagerPointer;
+  long long SystemTimestampValue;
+  void** SystemRootNodePointer;
+  void** SystemCurrentNodePointer;
+  void** SystemNextNodePointer;
+  void** HashTableNodePointer;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -22474,7 +22492,7 @@ InitializeSystemSyncObject(void* *SyncObject,void* SyncContextParameter,void* Sy
 {
   void* SystemErrorFlag;
   
-  SystemErrorFlag = 0xfffffffffffffffe;
+  SystemErrorFlag = INVALID_HANDLE_VALUE;
   *SyncObject = &SystemMemoryRegionTemplateA;
   *SyncObject = &SystemMemoryRegionTemplateB;
   *(uint32_t *)(SyncObject + 1) = 0;
@@ -22482,7 +22500,7 @@ InitializeSystemSyncObject(void* *SyncObject,void* SyncContextParameter,void* Sy
   LOCK();
   *(uint8_t *)(SyncObject + 2) = 0;
   UNLOCK();
-  SyncObject[3] = 0xffffffffffffffff;
+  SyncObject[3] = MAX_UINT64_VALUE;
   *SyncObject = &SystemMutexTemplate;
   _Cnd_init_in_situ(SyncObject + 4);
   _Mtx_init_in_situ(SyncObject + 0xd,2,SyncConfigurationParameter,SyncSecurityParameter,SystemErrorFlag);
@@ -22512,8 +22530,8 @@ FreeMemoryAndSetAllocator(void* *MemoryBlock,ulong long MemoryFlags,void* SyncCo
 
 {
   *MemoryBlock = &SystemMemoryAllocatorReference;
-  if ((MemoryFlags & 1) != 0) {
-    free(MemoryBlock,0x98,SyncContextParameter,SyncConfigurationParameter,InvalidHandleValue);
+  if ((MemoryFlags & MEMORY_FLAG_FREE_ENABLED) != 0) {
+    free(MemoryBlock,MEMORY_BLOCK_SIZE,SyncContextParameter,SyncConfigurationParameter,INVALID_HANDLE_VALUE);
   }
   return MemoryBlock;
 }
@@ -22923,7 +22941,7 @@ InitializeStringBufferWithBackup(void* *StringBuffer,long long StringLength,void
       CharacterIndex = CharacterIndex + 1;
     } while (*(char *)(StringLength + CharacterIndex) != '\0');
     *(int *)(StringBuffer + 2) = (int)CharacterIndex;
-    strcpy_s(StringBuffer[1],0x40,StringLength,ReservedParam4,InvalidHandleValue);
+    strcpy_s(StringBuffer[1],STRING_BUFFER_SIZE,StringLength,ReservedParam4,INVALID_HANDLE_VALUE);
   }
   return StringBuffer;
 }
@@ -22953,12 +22971,6 @@ void ResetSystemMemoryAllocator(void* *MemoryManager)
   *(uint32_t *)(MemoryManager + 7) = 0;
   MemoryManager[4] = &SystemMemoryAllocatorReference;
   *MemoryManager = &SystemGlobalDataReference;
-  if (MemoryManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
-      SystemCleanupFunction();
-  }
-  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
-  *(uint32_t *)(SystemResourceManager + 3) = 0;
-  *SystemResourceManager = &SystemMemoryAllocatorReference;
   return;
 }
 
@@ -22985,7 +22997,7 @@ void InitializeAndCleanupSystemMemoryAllocator(void* SystemResourceManager,void*
   if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  InitializeAndCleanupSystemMemoryAllocator(SystemResourceManager,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
+  InitializeAndCleanupSystemMemoryAllocator(SystemResourceManager,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,INVALID_HANDLE_VALUE);
   ConfigurationDataPointer[8] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[9] != 0) {
       SystemCleanupFunction();
