@@ -6024,20 +6024,20 @@ uint32_t ProcessSystemResource(void)
 
 {
   int64_t ValidatedSystemContext;
-  int64_t ProcessingCounter;
-  int64_t SystemContextPointer;
+  int64_t ResourceProcessingCounter;
+  int64_t AdjustedSystemContextPointer;
   
   ValidatedSystemContext = InputParameter;
   if (ValidatedSystemContext == 0) {
-    SystemContextPointer = 0;
+    AdjustedSystemContextPointer = 0;
   }
   else {
-    SystemContextPointer = ValidatedSystemContext - 8;
+    AdjustedSystemContextPointer = ValidatedSystemContext - 8;
   }
-  if (*(int64_t *)(SystemContextPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + ObjectContextOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset),1);
 }
 
 
@@ -11906,7 +11906,7 @@ uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
       return ErrorInvalidObjectHandle;
     }
     if ((0 < (int)LoopCondition) && (*ResourceContext != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ResourceContext,&ResourceAllocationTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ResourceContext,&ResourceAllocationTemplate,ResourceAllocationSize,ResourceAllocationFlag);
     }
     *ResourceContext = 0;
     LoopIncrement = 0;
@@ -11961,7 +11961,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolContext)
   }
   int ResourceIndex = (int)ObjectContext[1];
   if (ResourceIndex < 0) {
-          memset(*ObjectContext + (int64_t)ResourceIndex * 0xc,0,(int64_t)-ResourceIndex * 0xc);
+          memset(*ObjectContext + (int64_t)ResourceIndex * ResourceEntrySize,0,(int64_t)-ResourceIndex * ResourceEntrySize);
   }
   *(uint32_t *)(ObjectContext + 1) = 0;
   if ((0 < (int)((ResourceHashValidationCode ^ (int)ResourceHashValidationCode >> ErrorResourceValidationFailed) - ((int)ResourceHashValidationCode >> ErrorResourceValidationFailed))) &&
@@ -13187,7 +13187,7 @@ uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t resourcePool, int cleanupFl
   if (ValidationContextIndex == 0) {
 ValidationComplete:
     if ((0 < *(int *)((int64_t)ResourceContext + 0xc)) && (*ResourceContext != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ResourceContext,&ResourceAllocationTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ResourceContext,&ResourceAllocationTemplate,ResourceAllocationSize,ResourceAllocationFlag);
     }
     *ResourceContext = (int64_t)ResourceHashStatusAddress;
     *(int *)((int64_t)ResourceContext + 0xc) = ValidationContextIndex;
@@ -17142,7 +17142,7 @@ uint8_t ValidateResourceParameters(uint8_t ObjectContext,int ValidationContext)
   if (ResourceOperationCode == 0) {
 ResourceProcessingEntryPoint:
     if ((0 < *(int *)((int64_t)ResourceContext + 0xc)) && (*ResourceContext != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ResourceContext,&ResourceAllocationTemplate,0x100,1);
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ResourceContext,&ResourceAllocationTemplate,ResourceAllocationSize,ResourceAllocationFlag);
     }
     *ResourceContext = (int64_t)ResourceHashStatusAddress;
     *(int *)((int64_t)ResourceContext + 0xc) = ResourceOperationCode;
