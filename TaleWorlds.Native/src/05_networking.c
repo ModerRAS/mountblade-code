@@ -889,7 +889,7 @@ uint32_t NetworkConnectionProcessedCount;
  * 此函数负责初始化网络连接的状态缓冲区，设置连接参数，并准备连接上下文
  * @note 此函数会在连接建立前调用，确保所有状态数据正确初始化
  */
-void InitializeConnectionState(void)
+void NetworkInitializeConnectionState(void)
 {
   uint8_t *ConnectionStateBuffer;          // 连接状态缓冲区指针
   int32_t InitializationStatus;            // 初始化状态标志
@@ -1305,7 +1305,7 @@ NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t
  * @note 此函数会进行严格的数据包验证，确保连接安全性
  * @warning 验证过程中如果发现任何异常，会立即返回相应的错误码
  */
-NetworkHandle ValidateConnectionNetworkPacket(int64_t ConnectionContext, NetworkHandle *PacketData)
+NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, NetworkHandle *PacketData)
 {
   NetworkHandle ValidationStatus;
   NetworkByte SecurityValidationBuffer [32];
@@ -1346,7 +1346,7 @@ NetworkHandle ValidateConnectionNetworkPacket(int64_t ConnectionContext, Network
  * @note 此函数会根据数据包状态选择不同的处理策略
  * @warning 处理过程中如果发现数据包格式错误，会立即返回相应的错误码
  */
-NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
+NetworkHandle NetworkProcessConnectionPacketHandler(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   NetworkHandle ProcessingResult;
   NetworkByte DecodedDataStreamBuffer [32];
