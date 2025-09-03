@@ -4494,36 +4494,36 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  */
 void ValidateSystemObjectCollection(void)
 {
-  uint8_t CurrentObjectIdParameter;
+  uint8_t CurrentObjectId;
   int SystemObjectValidationStatus;
-  int64_t SystemObjectContextHandle;
-  int64_t SystemRuntimeContext;
+  int64_t SystemObjectContext;
+  int64_t SystemRuntimeData;
   int64_t CollectionBufferIndex;
   int ValidatedObjectCount;
   uint8_t *SystemObjectDataBuffer;
   int TotalRetrievedObjects;
-  uint32_t MaximumCollectionSize;
+  uint32_t MaximumCollectionLimit;
   uint64_t SecurityValidationKey;
   
   // 检查系统对象上下文是否有效
-  if (*(int64_t *)(SystemObjectContextHandle + ObjectHandleSecondaryOffset) != 0) {
+  if (*(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset) != 0) {
     SystemObjectDataBuffer = ProcessingWorkspace;
     ValidatedObjectCount = 0;
     TotalRetrievedObjects = 0;
-    MaximumCollectionSize = MaximumCapacityLimit;
+    MaximumCollectionLimit = MaximumCapacityLimit;
     
     // 获取系统对象集合
-    SystemObjectValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeContext + SystemContextSecondaryDataOffset), *(int64_t *)(SystemObjectContextHandle + ObjectHandleSecondaryOffset),
+    SystemObjectValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
     if (SystemObjectValidationStatus == 0) {
       TotalRetrievedObjects = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
       if (0 < TotalRetrievedObjects) {
         CollectionBufferIndex = PointerSizeBytes;
         do {
-          CurrentObjectIdParameter = *(uint8_t *)(SystemObjectDataBuffer + CollectionBufferIndex);
-          SystemObjectValidationStatus = ValidateSystemObject(CurrentObjectIdParameter);
+          CurrentObjectId = *(uint8_t *)(SystemObjectDataBuffer + CollectionBufferIndex);
+          SystemObjectValidationStatus = ValidateSystemObject(CurrentObjectId);
           if (SystemObjectValidationStatus != 2) {
-                  HandleInvalidSystemObject(CurrentObjectIdParameter, 1);
+                  HandleInvalidSystemObject(CurrentObjectId, 1);
           }
           ValidatedObjectCount++;
           CollectionBufferIndex += 8;
@@ -4576,12 +4576,12 @@ void TerminateSystemProcess(void)
  */
 void CheckSystemFlags(void)
 {
-  int64_t SystemRuntimeContext;
+  int64_t SystemRuntimeData;
   uint64_t SystemFlagValidationToken;
   void* ObjectResourceBuffer;
   
   // 检查系统标志位状态
-  if ((*(uint *)(SystemRuntimeContext + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
+  if ((*(uint *)(SystemRuntimeData + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
           TriggerSystemFlagHandler();
   }
   // 释放标志检查资源并执行清理
