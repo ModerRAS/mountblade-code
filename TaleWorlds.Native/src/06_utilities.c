@@ -30457,7 +30457,8 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * 
  * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @return 无返回值
+ * @return void 无返回值
+ * @note 此函数重置资源哈希模板以恢复系统状态
  */
 void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashDataPointer;
@@ -30465,10 +30466,10 @@ void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemCo
   // 获取资源哈希数据指针
   ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
   
-  // 重置资源哈希模板
-  *ResourceHashDataPointer = &ResourceHashTemplate;
-  *ResourceHashDataPointer = &ResourceAllocationTemplate;
-  *ResourceHashDataPointer = &ResourceCacheTemplate;
+  // 重置资源哈希模板以恢复系统状态
+  *ResourceHashDataPointer = ResourceHashTemplate;
+  *ResourceHashDataPointer = ResourceAllocationTemplate;
+  *ResourceHashDataPointer = ResourceCacheTemplate;
   
   return;
 }
@@ -30483,7 +30484,8 @@ void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemCo
  * 
  * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @return 无返回值
+ * @return void 无返回值
+ * @note 此函数重置资源分配和缓存模板以恢复系统状态
  */
 void HandleQuinaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashPointer;
@@ -30491,9 +30493,9 @@ void HandleQuinaryContextException(uint8_t ExceptionContext, int64_t SystemConte
   // 获取资源哈希指针
   ResourceHashPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
   
-  // 重置资源分配和缓存模板
-  *ResourceHashPointer = &ResourceAllocationTemplate;
-  *ResourceHashPointer = &ResourceCacheTemplate;
+  // 重置资源分配和缓存模板以恢复系统状态
+  *ResourceHashPointer = ResourceAllocationTemplate;
+  *ResourceHashPointer = ResourceCacheTemplate;
   
   return;
 }
@@ -30501,19 +30503,19 @@ void HandleQuinaryContextException(uint8_t ExceptionContext, int64_t SystemConte
 
 
 /**
- * @brief 六级上下文异常处理器
+ * @brief 处理六级上下文异常
  * 
- * 该函数负责处理六级异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 该函数用于处理系统第六级上下文中的异常情况
+ * 主要处理资源缓存相关的异常，重置资源缓存模板
  * 
  * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
+ * @return void 无返回值
+ * @note 此函数重置资源缓存模板以恢复系统状态
  */
 void HandleSenaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  // 重置资源缓存模板
-  **(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
+  // 重置资源缓存模板以恢复系统状态
+  **(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset) = ResourceCacheTemplate;
   return;
 }
 
