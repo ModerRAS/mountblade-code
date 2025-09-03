@@ -1428,8 +1428,8 @@ NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, Network
  */
 NetworkHandle NetworkProcessConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
-  NetworkHandle ConnectionPacketProcessingStatus;
-  NetworkByte DecodedDataStreamBuffer [32];
+  NetworkHandle ConnectionPacketProcessingStatus;        // 连接数据包处理状态
+  NetworkByte DecodedDataStreamBuffer [32];             // 已解码数据流缓冲区
   
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < NetworkPacketStatusLimit) {
     ConnectionPacketProcessingStatus = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
