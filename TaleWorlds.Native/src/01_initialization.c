@@ -30,15 +30,15 @@
 // 系统节点相关常量
 #define SystemNodeActiveFlagOffset         0x19
 #define SystemIdentifierSize                 0x10
-#define SystemSystemNodeNextPointerOffset       2
-#define SystemSystemNodeHeadPointerOffset       0
-#define SystemSystemNodeAllocationExtraSize     0x20
+#define SystemNodeNextPointerOffset       2
+#define SystemNodeHeadPointerOffset       0
+#define SystemNodeAllocationExtraSize     0x20
 
 // 系统节点结构体字段索引
-#define SystemSystemNodeIdentifier1Index         6
-#define SystemSystemNodeIdentifier2Index         7
-#define SystemSystemNodeDataPointerIndex        8
-#define SystemSystemNodeFlagIndex                 9
+#define SystemNodeIdentifier1Index         6
+#define SystemNodeIdentifier2Index         7
+#define SystemNodeDataPointerIndex        8
+#define SystemNodeFlagIndex                 9
 #define SystemSystemNodeHandlerIndex            10
 #define GameCoreSystemIdentifier1             0x4fc124d23d41985f
 #define GameCoreSystemIdentifier2             0xe2f4a30d6e6ae482

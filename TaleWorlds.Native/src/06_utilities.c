@@ -5073,14 +5073,6 @@ uint8_t ValidateCharacterInput(char CharacterToValidate) {
  * 
  * @return void 无返回值
  */
-/**
- * @brief 初始化系统资源
- * 
- * 该函数负责初始化系统所需的各类资源
- * 为后续操作做准备，目前为空实现
- * 
- * @return void 无返回值
- */
 
 
 
@@ -5089,17 +5081,6 @@ uint8_t ValidateCharacterInput(char CharacterToValidate) {
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作。
  * 包括上下文验证、内存缓冲区检查和系统退出操作。
- * 
- * @param ObjectHandleToValidate 对象句柄，用于标识要验证的对象
- * @return uint8_t 返回验证结果，0表示成功，非0表示错误代码
- * @note 此函数在对象操作前调用，确保对象句柄的有效性
- * @warning 验证失败时会触发系统退出操作
- */
-/**
- * @brief 验证对象句柄有效性
- * 
- * 该函数用于验证对象句柄的有效性，确保对象可以安全使用
- * 通过上下文验证来检查对象的合法性和状态
  * 
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
