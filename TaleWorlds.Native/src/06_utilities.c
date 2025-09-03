@@ -4990,11 +4990,11 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandle(int64_t ObjectContext) {
-  uint8_t HandleValidationResult;
+  uint8_t ValidationStatus;
   int64_t ValidatedContextPointer;
   
-  HandleValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextPointer);
-  if ((int)HandleValidationResult == 0) {
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextPointer);
+  if ((int)ValidationStatus == 0) {
     if (ValidatedContextPointer == 0) {
       ValidatedContextPointer = 0;
     }
@@ -5004,9 +5004,9 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
     if (*(int64_t *)(ValidatedContextPointer + ObjectHandleOffset) != 0) {
             ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + ObjectHandleOffset), 1);
     }
-    HandleValidationResult = 0;
+    ValidationStatus = 0;
   }
-  return HandleValidationResult;
+  return ValidationStatus;
 }
 
 
@@ -5019,15 +5019,23 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * 
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
+/**
+ * @brief 释放对象句柄
+ * 
+ * 该函数用于释放系统对象的句柄，清理相关资源
+ * 主要用于对象生命周期的最后阶段，确保资源被正确释放
+ * 
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
 uint8_t ReleaseObjectHandle(void) {
-  int64_t ObjectHandleIdentifier = 0;
+  int64_t ObjectHandle = 0;
   int64_t ObjectMemoryAddress;
   
-  if (ObjectHandleIdentifier == 0) {
+  if (ObjectHandle == 0) {
     ObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryAddress = ObjectHandleIdentifier - 8;
+    ObjectMemoryAddress = ObjectHandle - 8;
   }
   if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
     ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
@@ -5048,8 +5056,17 @@ uint8_t ReleaseObjectHandle(void) {
  * @note 此函数用于字符输入的安全验证
  * @warning 如果字符无效，会触发系统退出操作
  */
-uint8_t ValidateCharacterInput(char CharacterToValidate) {
-  if (CharacterToValidate != '\0') {
+/**
+ * @brief 验证字符输入
+ * 
+ * 该函数用于验证输入的字符参数，确保字符输入的有效性
+ * 如果字符不为空字符，则执行系统退出操作以确保安全
+ * 
+ * @param InputCharacter 要验证的字符
+ * @return uint8_t 验证结果，0表示验证通过
+ */
+uint8_t ValidateCharacterInput(char InputCharacter) {
+  if (InputCharacter != '\0') {
     ExecuteSystemExitOperation();
   }
   return OperationSuccessCode;
@@ -5063,6 +5080,14 @@ uint8_t ValidateCharacterInput(char CharacterToValidate) {
  * 
  * 该函数负责初始化系统所需的资源，为后续操作做准备。
  * 目前为空实现，预留用于后续系统资源初始化逻辑。
+ * 
+ * @return void 无返回值
+ */
+/**
+ * @brief 初始化系统资源
+ * 
+ * 该函数负责初始化系统所需的各类资源
+ * 为后续操作做准备，目前为空实现
  * 
  * @return void 无返回值
  */
