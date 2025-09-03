@@ -12319,7 +12319,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
     *(float *)(ObjectContext + ObjectContextResourceDataOffset) = calculatedFloatValue;
     ResourceTablePointerPointer = 0;
     FifthMatrixElementResult = (float)*(uint *)(ObjectContext + ObjectContextMatrixScaleOffset) * CalculatedFloatValue;
-    if ((9.223372e+18 <= calculatedFloatValue) && (fifthFloatResult = calculatedFloatValue - 9.223372e+18, calculatedFloatValue < 9.223372e+18)) {
+    if ((9.223372e+18 <= calculatedFloatValue) && (FifthFloatResult = CalculatedFloatValue - 9.223372e+18, calculatedFloatValue < 9.223372e+18)) {
       ResourceTablePointerPointer = -0x8000000000000000;
     }
     LoopCounter = *(int64_t *)(ObjectContext + ObjectContextResourceTablePointerOffset);
@@ -12345,7 +12345,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       CalculationResult = StackParameterContextExtended;
       if (ResourceHashStatus != 0) goto HANDLE_CONTEXT_ERROR;
     }
-    if ((((SystemOperationStatus != '\0') && (ValidationStatusCode = *calculationResult, *calculationResult = ResourceHashStatus + 1, ResourceHashStatus < 10)) &&
+    if ((((SystemOperationStatus != '\0') && (ValidationStatusCode = *CalculationResult, *CalculationResult = ResourceHashStatus + 1, ResourceHashStatus < 10)) &&
         ((*(uint *)(SystemRegisterContext + 0x6c) >> 0x18 & 1) == 0)) &&
        (((*(uint *)(SystemRegisterContext + 0x6c) >> 0x19 & 1) != 0 && (OperationStatusCode == *(int *)(SystemRegisterContext + 0xb0)))))
     {
@@ -12782,7 +12782,7 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePoolId, int searchKey)
   HashTableSlotPointer = (int *)(*PoolHeaderPointer + (int64_t)HashTableIndex * 4);
   CurrentEntryIndex = *(int *)(*PoolHeaderPointer + (int64_t)HashTableIndex * 4);
   if (CurrentEntryIndex != -1) {
-    poolDataAddress = PoolHeaderPointer[2];
+    PoolDataAddress = PoolHeaderPointer[2];
     do {
       EntryOffset = (int64_t)CurrentEntryIndex;
       if (*(int *)(poolDataAddress + EntryOffset * 0x10) == searchKey) {
@@ -13553,7 +13553,7 @@ ErrorHandler:
   if (0 < *(int *)(ObjectContext + ObjectContextProcessingDataOffset)) {
     do {
       ResourceCount = (int)ResourceHashInitialValue + 1;
-      pencryptionShiftValue = (byte *)(ContextResourceHashStatus + 0xb + *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset));
+      PEncryptionShiftValue = (byte *)(ContextResourceHashStatus + 0xb + *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset));
       *pencryptionShiftValue = *pencryptionShiftValue & 0xfe;
       ContextValidationStatusCode = ContextResourceHashStatus + 0xc;
       ResourceHashInitialValue = (uint64_t)ResourceCount;
