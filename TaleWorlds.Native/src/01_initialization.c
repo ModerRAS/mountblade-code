@@ -20082,17 +20082,17 @@ void ProcessSystemThreeParameterData(long long sourceStringPointer,long long tar
   DataBuffer = TempDataBuffer;
   BufferLength = 0;
   TempDataBuffer[0] = 0;
-  StringSearchResult = strstr(*(void* *)(param1 + 8));
+  StringSearchResult = strstr(*(void* *)(sourceStringPointer + 8));
   if (StringSearchResult != 0) {
     SourceStringLength = -1;
     TargetStringLength = -1;
     do {
       TargetStringLength = TargetStringLength + 1;
-    } while (*(char *)(param2 + TargetStringLength) != '\0');
+    } while (*(char *)(targetStringPointer + TargetStringLength) != '\0');
     do {
       SourceStringLength = SourceStringLength + 1;
-    } while (*(char *)(SourceStringLength + param3) != '\0');
-      memcpy(DataBuffer,*(long long *)(param1 + 8),StringSearchResult - *(long long *)(param1 + 8));
+    } while (*(char *)(SourceStringLength + searchStringLength) != '\0');
+      memcpy(DataBuffer,*(long long *)(sourceStringPointer + 8),StringSearchResult - *(long long *)(sourceStringPointer + 8));
   }
   MemoryReference = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(ChecksumValue ^ (ulong long)StackSecurityBuffer);
