@@ -902,33 +902,33 @@ uint32_t NetworkConnectionProcessedCount;                  // 网络连接已处
  */
 void NetworkInitializeConnectionState(void)
 {
-  uint8_t *ConnectionStateBuffer;                  // 连接状态缓冲区指针
-  int32_t ConnectionInitializationStatus;        // 连接初始化状态标志
-  int64_t NetworkSystemContextData;              // 网络系统上下文数据
-  int32_t NetworkConnectionHandleId;             // 网络连接句柄ID
-  uint32_t NetworkStateFlags;                    // 网络状态标志位
-  int32_t NetworkSessionId;                      // 网络会话ID
-  uint64_t *NetworkStateData;                    // 网络状态数据指针
-  int64_t NetworkContextPointer;                 // 网络上下文指针
+  uint8_t *StateBuffer;                             // 状态缓冲区指针
+  int32_t InitializationStatus;                     // 初始化状态标志
+  int64_t SystemContextData;                        // 系统上下文数据
+  int32_t ConnectionHandleId;                       // 连接句柄ID
+  uint32_t StateFlags;                              // 状态标志位
+  int32_t SessionId;                                // 会话ID
+  uint64_t *StateData;                              // 状态数据指针
+  int64_t ContextPointer;                           // 上下文指针
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(NetworkStateFlags, NetworkConnectionHandleId) + ConnectionStateBufferOffset);
+  StateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + ConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
-  if (*(int *)(*(int64_t *)(NetworkSystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkSessionId) {
-    *ConnectionStateBuffer = 0;  // 重置状态缓冲区
+  if (*(int *)(*(int64_t *)(SystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == SessionId) {
+    *StateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CombineConnectionStateAndHandle(NetworkStateFlags, NetworkConnectionHandleId) + 8) = ((int)ConnectionStateBuffer - NetworkConnectionHandleId) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + 8) = ((int)StateBuffer - ConnectionHandleId) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
-    ConnectionInitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextPointer + NetworkContextSystemOffset));
-    if (ConnectionInitializationStatus == 0) {
-      *NetworkStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(NetworkStateFlags, NetworkConnectionHandleId) + ConnectionStateDataOffset);
+    InitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(ContextPointer + NetworkContextSystemOffset));
+    if (InitializationStatus == 0) {
+      *StateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + ConnectionStateDataOffset);
     }
     CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
-  CopyConnectionBuffer(ConnectionStateBuffer);
+  CopyConnectionBuffer(StateBuffer);
 }
 
 /**
