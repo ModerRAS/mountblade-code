@@ -268,7 +268,7 @@ uint32_t PerformSecureNetworkDataTransfer(int64_t SourceBuffer, uint32_t Transfe
  * @param HasPriorityFlag 是否具有优先级标志
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkHandlePriorityPacket(int64_t PacketBuffer, bool HasPriorityFlag);
+uint32_t HandlePriorityNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
 
 /**
  * @brief 创建网络迭代上下文
@@ -280,7 +280,7 @@ uint32_t NetworkHandlePriorityPacket(int64_t PacketBuffer, bool HasPriorityFlag)
  * @param IterationFlag 迭代标志
  * @return uint32_t 创建结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkCreateConnectionIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
+uint32_t CreateNetworkConnectionIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
 
 /**
  * @brief 处理网络堆栈数据
@@ -291,7 +291,7 @@ uint32_t NetworkCreateConnectionIterationContext(int64_t ConnectionContext, int6
  * @param ContextData 上下文数据
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkProcessProtocolStackData(int64_t *StackBuffer, int64_t ContextData);
+uint32_t ProcessNetworkProtocolStackData(int64_t *StackBuffer, int64_t ContextData);
 
 /**
  * @brief 验证网络连接句柄
@@ -302,7 +302,7 @@ uint32_t NetworkProcessProtocolStackData(int64_t *StackBuffer, int64_t ContextDa
  * @param PacketData 数据包数据句柄
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkVerifySecureConnectionHandle(NetworkHandle ConnectionContext, NetworkHandle PacketData);
+uint32_t VerifySecureNetworkConnectionHandle(NetworkHandle ConnectionContext, NetworkHandle PacketData);
 
 /**
  * @brief 获取网络连接句柄
