@@ -4717,7 +4717,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   int RegistrationIndex;
   int CalculatedRegistrationEntrySize;
   int RegistrationCount;
-  int CalculatedRegistrationSize;
+  int FinalRegistrationSize;
   
   // 获取注册上下文数据
   ValidationStatusCode = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationStackPointer);
@@ -4778,20 +4778,20 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
         RegistrationCount++;
         if (*(int *)(RegistrationData + RegistrationCapacityOffset) < RegistrationCount) {
           // 计算新的容量大小
-          NewRegistrationArraySize = (int)((float)*(int *)(RegistrationData + RegistrationCapacityOffset) * RegistrationArrayGrowthFactor);
-          CalculatedRegistrationSize = RegistrationCount;
-          if (RegistrationCount <= NewRegistrationArraySize) {
-            CalculatedRegistrationSize = NewRegistrationArraySize;
+          ExpandedRegistrationArraySize = (int)((float)*(int *)(RegistrationData + RegistrationCapacityOffset) * RegistrationArrayGrowthFactor);
+          FinalRegistrationSize = RegistrationCount;
+          if (RegistrationCount <= ExpandedRegistrationArraySize) {
+            FinalRegistrationSize = ExpandedRegistrationArraySize;
           }
-          if (CalculatedRegistrationSize < RegistrationArrayInitialSize) {
-            NewRegistrationArraySize = RegistrationArrayInitialSize;
+          if (FinalRegistrationSize < RegistrationArrayInitialSize) {
+            ExpandedRegistrationArraySize = RegistrationArrayInitialSize;
           }
-          else if (NewRegistrationArraySize < RegistrationCount) {
-            NewRegistrationArraySize = RegistrationCount;
+          else if (ExpandedRegistrationArraySize < RegistrationCount) {
+            ExpandedRegistrationArraySize = RegistrationCount;
           }
           
           // 执行数组扩容
-          RegistrationCount = ResizeRegistrationArray(RegistrationBasePointer, NewRegistrationArraySize);
+          RegistrationCount = ResizeRegistrationArray(RegistrationBasePointer, ExpandedRegistrationArraySize);
           if (RegistrationCount != 0) {
             return 0;
           }

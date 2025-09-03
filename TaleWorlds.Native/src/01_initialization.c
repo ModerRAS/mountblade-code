@@ -34312,7 +34312,7 @@ void ResetSystemResources(void* *SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针，包含需要验证的资源信息
  * 
- *FUN_180059730：ValidateSystemResourceCleanup
+ * 原始函数名：FUN_180059730
  */
 void ValidateSystemResourceCleanup(long long SystemResourceManager)
 
