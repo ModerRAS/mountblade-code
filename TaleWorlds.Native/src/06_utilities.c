@@ -103230,18 +103230,15 @@ void InitializeSystemDataStructureBK(void)
 
 
  /**
- * 初始化系统数据结构BL
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureBL(void)
-/**
- * 初始化系统数据结构BL
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构BL
+ * 
+ * 设置场景管理数据结构指针，用于系统初始化
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
 void InitializeSystemDataStructureBL(void)
 
 {
-  SystemDataPointer037 = &SystemDataStructure;
+  SystemDataPointerScene = &SystemDataStructure;
   return;
 }
 
@@ -103250,18 +103247,15 @@ void InitializeSystemDataStructureBL(void)
 
 
  /**
- * 初始化系统数据结构BM
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureBM(void)
-/**
- * 初始化系统数据结构BM
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构BM
+ * 
+ * 设置粒子系统数据结构指针，用于系统初始化
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
 void InitializeSystemDataStructureBM(void)
 
 {
-  SystemDataPointer038 = &SystemDataStructure;
+  SystemDataPointerParticle = &SystemDataStructure;
   return;
 }
 
