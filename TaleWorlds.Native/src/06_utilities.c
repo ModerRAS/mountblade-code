@@ -21007,7 +21007,7 @@ uint64_t ValidateAndProcessResourceDataIntegrity(int64_t ObjectContext,int64_t *
   uint64_t ContextResourceHashStatus;
   uint SecurityHashValue;
   uint64_t MemorySize;
-  char CharStackArray [8];
+  char CharacterStackBuffer [8];
   uint StackContextBuffer [2];
   uint8_t ResourceValidationBuffer [32];
   
@@ -30039,11 +30039,11 @@ void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t** ExceptionHandlerPointer;
+  int64_t** ExceptionHandlerFunctionTable;
   
-  ExceptionHandlerPointer = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
-  if (ExceptionHandlerPointer != (int64_t *)0x0) {
-    (**(code **)(*ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerFunctionTable = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
+  if (ExceptionHandlerFunctionTable != (int64_t *)0x0) {
+    (**(code **)(*ExceptionHandlerFunctionTable + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
