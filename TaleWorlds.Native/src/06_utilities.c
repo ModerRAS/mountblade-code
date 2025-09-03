@@ -10877,7 +10877,7 @@ uint8_t ValidateObjectContextAndProcessFloatValidation(int64_t ObjectContext, in
  * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithValidator(int64_t ObjectContext, int64_t ValidationContext, int dataLength)
+int ProcessDataWithValidator(int64_t ObjectContext, int64_t ValidationContext, int DataLengthParameter)
 
 {
   int ValidationStatusCode;
@@ -10886,10 +10886,10 @@ int ProcessDataWithValidator(int64_t ObjectContext, int64_t ValidationContext, i
   void* StringProcessingTemplate;
   
   // 验证数据格式
-  ValidationStatusCode = ValidateDataFormat(ValidationContext, dataLength, *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  ValidationStatusCode = ValidateDataFormat(ValidationContext, DataLengthParameter, *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
   
   // 处理字符串操作
-  StringProcessingResult = ProcessStringOperation(ValidationContext + ValidationStatusCode, dataLength - ValidationStatusCode, &StringProcessingTemplate);
+  StringProcessingResult = ProcessStringOperation(ValidationContext + ValidationStatusCode, DataLengthParameter - ValidationStatusCode, &StringProcessingTemplate);
   TotalProcessedBytes = ValidationStatusCode + StringProcessingResult;
   
   // 解析数据内容
@@ -60030,7 +60030,7 @@ void ExecuteResourceHandlerCallbackPrimary(uint8_t ObjectContext, int64_t Valida
  * @param ValidationContext 验证上下文指针，包含资源状态信息
  * @remark 原始函数名：Unwind_1809073a0
  */
-void ExecuteResourceHandlerCallbackOffset18(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteResourceHandlerCallbackQuaternary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t **resourceContext;
@@ -60079,7 +60079,7 @@ void ExecuteDualResourceHandlerCallbacks(uint8_t ObjectContext, int64_t Validati
  * @param ValidationContext 验证上下文指针，包含资源状态信息
  * @remark 原始函数名：Unwind_1809073c0
  */
-void ExecuteResourceHandlerCallbackOffset8810(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteResourceHandlerCallbackTertiary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t **resourceContext;
