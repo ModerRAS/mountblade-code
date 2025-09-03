@@ -8940,8 +8940,19 @@ void InitializeSystemModuleManager(void)
 
 
 
-// 函数: void InitializeSystemComponentManager(void)
-// 功能: 初始化系统组件管理器，负责系统组件的注册和管理
+/**
+ * @brief 初始化系统组件管理器
+ * 
+ * 该函数负责初始化系统的组件管理器，为系统组件的注册、管理和
+ * 协调提供基础支持。它会创建组件管理节点，设置组件注册回调函数，
+ * 并建立组件生命周期管理的机制。
+ * 
+ * 组件管理器是系统中用于管理各种功能模块的核心组件，通过统一
+ * 的接口来处理组件的初始化、更新和销毁等操作。
+ * 
+ * @return 无返回值
+ * @note 该函数在系统初始化阶段调用，确保组件管理系统的正常运行
+ */
 void InitializeSystemComponentManager(void)
 
 {
@@ -10998,7 +11009,19 @@ void InitializeSystemStringProcessorN(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorO(void)
+/**
+ * @brief 初始化系统字符串处理器O
+ * 
+ * 该函数负责初始化系统的字符串处理器组件O，为字符串处理操作
+ * 提供基础支持。它会创建字符串处理节点，设置字符串操作回调函数，
+ * 并建立字符串管理的标识符和指针。
+ * 
+ * 字符串处理器是系统中用于处理字符串操作的核心组件，包括字符串
+ * 的创建、修改、比较和销毁等功能。
+ * 
+ * @return 无返回值
+ * @note 该函数在系统初始化阶段调用，确保字符串处理系统的正常运行
+ */
 void InitializeSystemStringProcessorO(void)
 
 {
@@ -12016,7 +12039,19 @@ void InitializeSystemDataTableConfigurator(void)
 
 
 
-// 函数: void InitializeSystemMemoryManagerG(void)
+/**
+ * @brief 初始化系统内存管理器G
+ * 
+ * 该函数负责初始化系统的内存管理器组件G，为内存分配和管理
+ * 提供基础支持。它会创建内存管理节点，设置内存分配回调函数，
+ * 并建立内存管理的标识符和指针。
+ * 
+ * 内存管理器G是系统中用于处理特定类型内存操作的核心组件，
+ * 专注于高效的内存分配、回收和优化管理。
+ * 
+ * @return 无返回值
+ * @note 该函数在系统初始化阶段调用，确保内存管理系统的正常运行
+ */
 void InitializeSystemMemoryManagerG(void)
 
 {
@@ -14966,8 +15001,17 @@ void InitializeSystemResourceManagerI(void)
 
 
 /**
- * 初始化系统资源管理器J
- * 设置系统资源标识符和相关数据结构
+ * @brief 初始化系统资源管理器J
+ * 
+ * 该函数负责初始化系统的资源管理器组件J，为资源分配和管理
+ * 提供基础支持。它会创建资源管理节点，设置资源分配回调函数，
+ * 并建立资源管理的标识符和指针。
+ * 
+ * 资源管理器J是系统中用于处理特定类型资源操作的核心组件，
+ * 专注于高效的资源分配、回收和优化管理。
+ * 
+ * @return 无返回值
+ * @note 该函数在系统初始化阶段调用，确保资源管理系统的正常运行
  */
 void InitializeSystemResourceManagerJ(void)
 
@@ -15967,8 +16011,19 @@ void InitializeSystemLoggingComponent(void)
 
 
 
-// 函数: InitializeSystemPerformanceComponent
-// 初始化系统性能监控组件，负责性能分析
+/**
+ * @brief 初始化系统性能监控组件
+ * 
+ * 该函数负责初始化系统的性能监控组件，为系统性能分析、
+ * 监控和优化提供基础支持。它会创建性能监控节点，设置性能
+ * 数据收集回调函数，并建立性能管理的标识符和指针。
+ * 
+ * 性能监控组件是系统中用于跟踪和分析系统运行状态的核心组件，
+ * 通过收集性能指标来帮助优化系统运行效率。
+ * 
+ * @return 无返回值
+ * @note 该函数在系统初始化阶段调用，确保性能监控系统的正常运行
+ */
 void InitializeSystemPerformanceComponent(void)
 
 {
@@ -18866,14 +18921,18 @@ void TerminateSystem(void)
 
 
 /**
- * 设置默认系统指针
- * 设置系统默认的指针地址
+ * @brief 设置默认系统指针
  * 
- * @param SystemResourceManager 系统指针
+ * 该函数负责设置系统默认的指针地址，将系统指针指向内存分配器引用。
+ * 这是系统初始化过程中的重要步骤，确保系统指针的正确配置。
+ * 
+ * @param SystemPointer 系统指针，用于设置默认的指针地址
+ * @return 无返回值
+ * @note 该函数在系统初始化阶段调用，确保系统指针的正确配置
  */
-void SetDefaultSystemPointer(void** systemPointer)
+void SetDefaultSystemPointer(void** SystemPointer)
 {
-  *systemPointer = &SystemMemoryAllocatorReference;
+  *SystemPointer = &SystemMemoryAllocatorReference;
   return;
 }
 
@@ -18892,43 +18951,43 @@ void SetDefaultSystemPointer(void** systemPointer)
 void InitializeSystemInfoAndUserEnvironment(void)
 
 {
-  void** systemInfoPtr;
-  void* systemCallback;
-  long long systemHandle;
-  int operationResult;
-  void* systemAllocationFlags;
-  long long* controllerPtr;
-  uint8_t systemEncryptionBuffer[32];
-  void** systemConfigurationTemplatePointer;
-  void** systemStringTemplatePointer;
-  void** systemStringTemplatePointerSecondary;
-  long long* systemMemoryOffsetPointer;
-  uint32_t gameControllerStatusFlag;
-  void** systemGlobalDataReferencePointer;
-  void** systemFunctionPointer;
-  uint32_t systemInitFlag;
-  unsigned long long systemFlags;
-  void** systemGlobalDataReferencePointerSecondary;
-  void** systemFunctionPointerSecondary;
-  uint32_t systemDataProcessingFlag;
-  unsigned long long systemFlagsSecondary;
-  void** gameControllerPointer;
-  long long systemMemorySize;
-  uint32_t systemOperationFlags;
-  void* systemMemoryHandle;
-  long long* memorySystemPointer;
-  void** systemMemoryTemplatePointer;
-  void** systemDataBufferPointer;
-  uint32_t systemDataFlags;
-  void* systemDataArray[32];
-  long long** applicationPointerArray[3];
-  uint8_t systemDataProcessingBuffer[272];
-  uint8_t systemTemporaryBuffer[32];
-  unsigned long long systemEncryptionKey;
+  void** SystemInfoPtr;
+  void* SystemCallback;
+  long long SystemHandle;
+  int OperationResult;
+  void* SystemAllocationFlags;
+  long long* ControllerPtr;
+  uint8_t SystemEncryptionBuffer[32];
+  void** SystemConfigurationTemplatePointer;
+  void** SystemStringTemplatePointer;
+  void** SystemStringTemplatePointerSecondary;
+  long long* SystemMemoryOffsetPointer;
+  uint32_t GameControllerStatusFlag;
+  void** SystemGlobalDataReferencePointer;
+  void** SystemFunctionPointer;
+  uint32_t SystemInitFlag;
+  unsigned long long SystemFlags;
+  void** SystemGlobalDataReferencePointerSecondary;
+  void** SystemFunctionPointerSecondary;
+  uint32_t SystemDataProcessingFlag;
+  unsigned long long SystemFlagsSecondary;
+  void** GameControllerPointer;
+  long long SystemMemorySize;
+  uint32_t SystemOperationFlags;
+  void* SystemMemoryHandle;
+  long long* MemorySystemPointer;
+  void** SystemMemoryTemplatePointer;
+  void** SystemDataBufferPointer;
+  uint32_t SystemDataFlags;
+  void* SystemDataArray[32];
+  long long** ApplicationPointerArray[3];
+  uint8_t SystemDataProcessingBuffer[272];
+  uint8_t SystemTemporaryBuffer[32];
+  unsigned long long SystemEncryptionKey;
   
   SystemStackFlag = 0xfffffffffffffffe;
-  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (unsigned long long)systemEncryptionBuffer;
-  gameControllerStatusFlag = 0;
+  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (unsigned long long)SystemEncryptionBuffer;
+  GameControllerStatusFlag = 0;
   if (*(char *)(SystemContextManagerPointer + 0x18) == '\0') {
     InitializeGameController(&SystemGameControllerBuffer);
     (**(code **)(**(long long **)(SystemGlobalStatusFlags + 0x2b0) + 0x98))
@@ -28388,7 +28447,7 @@ void* SystemResourceManagerNodeHandler(void* SystemResourceManager,void* Configu
   if (ResourceCount == 0) {
 ResourceSizeCheck:
     OperationResult = 0;
-joined_r0x00018005430b:
+ResourceCleanupComplete:
     for (; ResourceNodePointer != ResourceEndPointer; ResourceNodePointer = ResourceNodePointer + 4) {
       (**(code **)*ResourceNodePointer)(ResourceNodePointer,0);
     }
@@ -28449,7 +28508,7 @@ ResourceCountCheck:
       SystemStackHandle = (ulong long)SystemStackHandle.HighPart << 0x20;
       StackBufferPtr = &SystemMemoryAllocatorReference;
       OperationResult = 1;
-      goto joined_r0x00018005430b;
+      goto ResourceCleanupComplete;
     }
   } while( true );
   StackBufferPtr = &SystemGlobalDataReference;
@@ -40025,9 +40084,9 @@ ulong long ProcessSystemResourceData(long long SystemResourceManager,long long *
       ResourceCreationFlags = SystemOperationFlags;
       if ((*(long long *)(SystemResourceManager + 0x40) == 0) ||
          (SystemOperationStatus5 = *(ulong long *)(*(long long *)(SystemResourceManager + 0x40) + 0x100), SystemOperationStatus4 = SystemOperationStatus8,
-         SystemOperationStatus5 == SystemOperationFlags)) goto joined_r0x00018005f6ef;
+         SystemOperationStatus5 == SystemOperationFlags)) goto SystemOperationComplete;
       do {
-        if (*(char *)(SystemOperationStatus5 + 0x110 + SystemOperationStatus4) == '\0') goto joined_r0x00018005f6ef;
+        if (*(char *)(SystemOperationStatus5 + 0x110 + SystemOperationStatus4) == '\0') goto SystemOperationComplete;
         SystemOperationStatus4 = SystemOperationStatus4 + 1;
       } while (SystemOperationStatus4 < 0x20);
       systemUnsignedFlag78 = systemUnsignedFlag78 + 0x20;
@@ -40091,7 +40150,7 @@ SystemHandleCheck:
   }
   *(ulong long *)(SystemResourceManager + 0x20) = SystemContextPointer;
   return CONCAT71((int7)(SystemOperationStatus3 >> 8),1);
-joined_r0x00018005f6ef:
+SystemOperationComplete:
   if (SystemThreadHandle4 == 0) goto SystemHandleCheck;
   SystemThreadHandle4 = SystemThreadHandle4 + -0x20;
   systemUnsignedFlag78 = systemUnsignedFlag78 + 0x20;
@@ -40266,7 +40325,7 @@ ResourceInitializationComplete:
   SystemStringTemplatePointer[1] = *(ulong long *)(SystemResourceManager + 0x40);
   *(ulong long *)(SystemResourceManager + 0x70) = *(long long *)(SystemResourceManager + 0x70) + 1U & *SystemLocalContextPointer - 1U;
   ResourceCreationFlags = SystemOperationStatus5;
-  goto joined_r0x00018005f6ef;
+  goto SystemOperationComplete;
 }
 
 
@@ -40354,7 +40413,7 @@ ulong long ProcessSystemResourceDataExtended(long long SystemResourceManager,lon
     OperationCode = ThreadContextFlag;
     if (((*(long long *)(SystemResourceManager + 0x28) - SystemOperationFlags) - 0x20 < 0x8000000000000001) ||
        (SystemLocalContextPointer = *(long long **)(SystemResourceManager + 0x60), SystemLocalContextPointer == (long long *)0x0))
-    goto joined_r0x00018005fdcd;
+    goto StringProcessingComplete;
     SystemOperationStatus4 = *SystemLocalContextPointer - 1U & SystemLocalContextPointer[1] + 1U;
     ResourceHashEntryPointer0 = *(ulong long **)(SystemLocalContextPointer[3] + SystemOperationStatus4 * 8);
     if ((*ResourceHashEntryPointer0 == 1) || (ResourceHashEntryPointer0[1] == 0)) {
@@ -40363,7 +40422,7 @@ ulong long ProcessSystemResourceDataExtended(long long SystemResourceManager,lon
     }
     else {
       charOutput = ExpandSystemResourceAllocator(SystemResourceManager);
-      if (charOutput == '\0') goto joined_r0x00018005fdcd;
+      if (charOutput == '\0') goto StringProcessingComplete;
       SystemLocalContextPointer = *(long long **)(SystemResourceManager + 0x60);
       SystemOperationStatus4 = *SystemLocalContextPointer - 1U & SystemLocalContextPointer[1] + 1U;
       ResourceHashEntryPointer0 = *(ulong long **)(SystemLocalContextPointer[3] + SystemOperationStatus4 * 8);
@@ -40468,7 +40527,7 @@ ResourceMemoryCheck:
   SystemLocalContextPointer = *(long long **)(SystemResourceManager + 0x60);
   SystemLocalContextPointer[1] = SystemLocalContextPointer[1] - 1U & *SystemLocalContextPointer - 1U;
   ResourceHashEntryPointer0[1] = 0;
-joined_r0x00018005fdcd:
+StringProcessingComplete:
   for (; OperationCode != 0; OperationCode = *(ulong long *)(OperationCode + 0x100)) {
     SystemOperationStatus8 = SystemOperationStatus8 + 0x20;
     SystemLocalContextPointer = *(long long **)(SystemResourceManager + 0x60);
@@ -51047,7 +51106,7 @@ void ManageSystemInitializationState(void)
   SystemCalculatedBufferAddress = *(long long **)(resourceDataIndex + 0xf0);
   do {
     if (SystemCalculatedBufferAddress == (long long *)(resourceDataIndex + 0xf0)) {
-LAB_18006f48d:
+MutexUnlockComplete:
       systemCounter = _Mtx_unlock(resourceDataIndex + 0x110);
       if (systemCounter != 0) {
         __Throw_C_error_std__YAXH_Z(systemCounter);
@@ -51393,7 +51452,7 @@ void ProcessSystemResourceQueue(long long* SystemResourceManager)
   SystemResourceOffsetPointer = (long long *)*SystemResourceManager;
   do {
     if (SystemResourceOffsetPointer == SystemResourceManager) {
-LAB_18006f48d:
+MutexUnlockComplete:
       systemResult = _Mtx_unlock(SystemResourceManager + 4);
       if (systemResult != 0) {
         __Throw_C_error_std__YAXH_Z(systemResult);
@@ -52069,7 +52128,7 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
     }
   }
   SystemOperationStatus1 = 0;
-LAB_180070230:
+SystemMemoryCheck:
   if (*(int *)(SystemMemoryBlockSecondary + 0x460) == 0) {
     if (SystemSilentMode == '\0') {
       if (isByteValid4) {
