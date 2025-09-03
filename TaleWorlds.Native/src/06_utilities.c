@@ -5278,7 +5278,7 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
   int64_t ResultBuffer[2];
   int64_t ContextBuffer[2];
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextBuffer);
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ContextBuffer);
   if ((int)ValidationStatus == 0) {
     if (ContextBuffer[0] == 0) {
       ContextBuffer[0] = 0;
@@ -5288,7 +5288,7 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
     }
     
     ResultBuffer[0] = 0;
-    ValidationStatus = ProcessSystemContextValidation(ContextBuffer[0], ObjectContext + ObjectContextValidationDataOffset, ResultBuffer);
+    ValidationStatus = ProcessSystemContextValidation(ContextBuffer[0], ObjectContext + ObjectContextValidationOffset, ResultBuffer);
     if ((int)ValidationStatus == 0) {
       if (ResultBuffer[0] != 0) {
         if (*(int64_t *)(ResultBuffer[0] + 8) == 0) {
@@ -73555,7 +73555,15 @@ void FinalizeResourceRegistrationAndExecuteCleanup(uint8_t ObjectContext,int64_t
 
 
 
-void Unwind_DestroyMutex9(void)
+/**
+ * @brief 销毁系统互斥锁
+ * 
+ * 该函数负责销毁系统中的互斥锁资源，释放相关的同步对象。
+ * 这是线程同步管理的重要清理函数。
+ * 
+ * @return void 无返回值
+ */
+void DestroySystemMutex(void)
 
 {
   MutexDestroyInPlace();
@@ -73564,7 +73572,19 @@ void Unwind_DestroyMutex9(void)
 
 
 
-void Unwind_ManageResourceTablePointerEntryWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 管理资源表指针条目并清理
+ * 
+ * 该函数负责管理资源表指针条目，执行相应的资源操作和清理。
+ * 这是资源表管理的核心函数，支持清理选项和标志的配置。
+ * 
+ * @param ObjectContext 对象上下文，包含资源管理信息
+ * @param ValidationContext 验证上下文，包含资源表指针信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @return void 无返回值
+ */
+void ManageResourceTablePointerEntryWithCleanup(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ManageResourceTablePointerEntry(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0xba8,
@@ -79630,7 +79650,17 @@ void Unwind_18090c490(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c4a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证上下文资源
+ * 
+ * 该函数负责清理验证上下文中的资源，包括方法指针、资源处理器模板
+ * 和扩展资源的清理操作。这是资源管理的重要清理函数。
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的对象信息
+ * @param ValidationContext 验证上下文，包含资源状态和清理信息
+ * @return void 无返回值
+ */
+void CleanupValidationContextResources(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextMethodPointerOffset8) != (int64_t *)0x0) {
@@ -79651,7 +79681,17 @@ void Unwind_18090c4a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c4b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统上下文资源清理
+ * 
+ * 该函数负责处理系统上下文中的资源清理操作，包括循环计数器管理、
+ * 系统回调处理和资源状态的清理。这是系统资源管理的核心清理函数。
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的对象信息
+ * @param ValidationContext 验证上下文，包含循环计数器和清理信息
+ * @return void 无返回值
+ */
+void ProcessSystemContextResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -79675,7 +79715,17 @@ void Unwind_18090c4b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c4c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化验证上下文数据结构
+ * 
+ * 该函数负责初始化验证上下文中的数据结构指针，将系统数据结构
+ * 指针设置为验证上下文的指定位置。这是数据结构初始化的基础函数。
+ * 
+ * @param ObjectContext 对象上下文，包含初始化信息
+ * @param ValidationContext 验证上下文，用于设置数据结构指针
+ * @return void 无返回值
+ */
+void InitializeValidationContextDataStructure(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x140) = &SystemDataStructure;
@@ -79684,7 +79734,17 @@ void Unwind_18090c4c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c4d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理扩展资源上下文清理
+ * 
+ * 该函数负责处理扩展资源上下文的清理操作，检查扩展资源指针
+ * 并执行相应的清理回调。这是资源管理的辅助清理函数。
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的对象信息
+ * @param ValidationContext 验证上下文，包含扩展资源指针信息
+ * @return void 无返回值
+ */
+void ProcessExtendedResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ResourceContextExtendedOffset) != (int64_t *)0x0) {
