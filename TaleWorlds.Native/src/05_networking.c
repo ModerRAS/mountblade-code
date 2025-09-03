@@ -1225,7 +1225,8 @@ NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    ConnectionStateArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkPacketDataSecondaryOffset);
+    NetworkStatus PrimaryConnectionState = *(NetworkStatus *)(ConnectionContext + NetworkPacketDataSecondaryOffset);
+    ConnectionStateArray[0] = PrimaryConnectionState;
     PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), ConnectionStateArray, 4);
     if ((int)PacketProcessingStatus != 0) {
@@ -1234,7 +1235,8 @@ NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffset2);
+    NetworkStatus SecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffset2);
+    ConnectionValidationArray[0] = SecondaryValidationStatus;
     PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), ConnectionValidationArray, 4);
     if ((int)PacketProcessingStatus != 0) {
@@ -1245,7 +1247,8 @@ NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffset3);
+    NetworkStatus TertiaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffset3);
+    ConnectionValidationArray[0] = TertiaryValidationStatus;
     PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), ConnectionValidationArray, 4);
     if ((int)PacketProcessingStatus != 0) {
