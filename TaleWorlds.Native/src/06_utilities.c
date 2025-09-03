@@ -30416,9 +30416,13 @@ void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemCo
 void HandleQuinaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashPointer;
   
+  // 获取资源哈希指针
   ResourceHashPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
+  
+  // 重置资源分配和缓存模板
   *ResourceHashPointer = &ResourceAllocationTemplate;
   *ResourceHashPointer = &ResourceCacheTemplate;
+  
   return;
 }
 
