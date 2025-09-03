@@ -15031,7 +15031,7 @@ void InitializeSystemResourceManagerN(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x14;
   strcpy_s(SystemProcessingBuffer,StringBufferSize,&SystemStringConstantE,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry018 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemUtilitiesMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
