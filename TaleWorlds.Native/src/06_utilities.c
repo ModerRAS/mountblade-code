@@ -1623,38 +1623,38 @@ void* ConditionVariableDataBuffer;             // 条件变量数据缓冲区
 // 屏障管理器缓冲区 - 缓存屏障管理器数据
 void* BarrierManagerBuffer;                     // 屏障管理器缓冲区
 void* MemoryPoolBuffer;                         // 内存池缓冲区
-void* TaskExecutionQueueBuffer;
-void* StackManagerDataBuffer;
-void* SystemLinkedListBuffer;
-void* SystemHashTableBuffer;
-void* SystemTreeStructureBuffer;
-void* SystemGraphDataBuffer;
-void* CacheManagerBuffer;
-void* SystemNetworkConfigurationBuffer;
-void* SystemResourceMetadataTable;
-void* SystemStatusDataTable;
-void* ConfigurationDataTable;
-void* SystemInstancePointerTable;
-void* SystemGraphicsSettingsBuffer;
-void* SystemAudioSettingsBuffer;
-void* SystemInputConfigurationBuffer;
-void* SystemFunctionPointerTable;
-void* SystemMemoryAllocationTable;
-void* SystemThreadControlTable;
-void* SystemEventDispatcherTable;
-void* SystemTimerReferenceTable;
-void* SystemSynchronizationTable;
+void* TaskExecutionQueueBuffer;                // 任务执行队列缓冲区
+void* StackManagerDataBuffer;                   // 栈管理器数据缓冲区
+void* SystemLinkedListBuffer;                  // 系统链表缓冲区
+void* SystemHashTableBuffer;                    // 系统哈希表缓冲区
+void* SystemTreeStructureBuffer;                // 系统树结构缓冲区
+void* SystemGraphDataBuffer;                    // 系统图数据缓冲区
+void* CacheManagerBuffer;                       // 缓存管理器缓冲区
+void* SystemNetworkConfigurationBuffer;        // 系统网络配置缓冲区
+void* SystemResourceMetadataTable;             // 系统资源元数据表
+void* SystemStatusDataTable;                    // 系统状态数据表
+void* ConfigurationDataTable;                   // 配置数据表
+void* SystemInstancePointerTable;               // 系统实例指针表
+void* SystemGraphicsSettingsBuffer;             // 系统图形设置缓冲区
+void* SystemAudioSettingsBuffer;                // 系统音频设置缓冲区
+void* SystemInputConfigurationBuffer;           // 系统输入配置缓冲区
+void* SystemFunctionPointerTable;               // 系统函数指针表
+void* SystemMemoryAllocationTable;             // 系统内存分配表
+void* SystemThreadControlTable;                // 系统线程控制表
+void* SystemEventDispatcherTable;               // 系统事件分发表
+void* SystemTimerReferenceTable;                // 系统定时器引用表
+void* SystemSynchronizationTable;             // 系统同步表
 // 锁管理器表 - 管理锁管理器数据表
-void* LockManagerTable;
-void* SystemSemaphoreControlTable;
-void* SystemMutexHandleTable;
+void* LockManagerTable;                         // 锁管理器表
+void* SystemSemaphoreControlTable;              // 系统信号量控制表
+void* SystemMutexHandleTable;                  // 系统互斥锁句柄表
 // 条件变量表 - 管理条件变量数据表
-void* ConditionVariableSystemTable;
+void* ConditionVariableSystemTable;             // 条件变量系统表
 // 屏障管理器表 - 管理屏障管理器数据表
-void* BarrierManagerTable;
-void* MemoryPoolTable;
-void* TaskManagementQueueTable;
-void* StackManagerTable;
+void* BarrierManagerTable;                     // 屏障管理器表
+void* MemoryPoolTable;                          // 内存池表
+void* TaskManagementQueueTable;                // 任务管理队列表
+void* StackManagerTable;                        // 栈管理器表
 void* SystemLinkedListTable;
 void* SystemHashTable;
 void* SystemTreeStructureTable;
