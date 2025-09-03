@@ -30350,32 +30350,21 @@ void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemCo
 
 
 /**
- * @brief 五级上下文异常处理器
- * 
- * 该函数负责处理五级异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
  * @brief 处理第五级上下文异常
  * 
  * 该函数用于处理系统第五级上下文中的异常情况
  * 主要处理资源分配和缓存相关的异常
  * 
- * @param ExceptionContext 异常上下文
- * @param SystemContext 系统上下文指针
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */
 void HandleFifthLevelContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  uint8_t *ResourceHashDataPointer;
+  uint8_t *ResourceHashPointer;
   
-  ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
-  *ResourceHashDataPointer = &ResourceAllocationTemplate;
-  *ResourceHashDataPointer = &ResourceCacheTemplate;
+  ResourceHashPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
+  *ResourceHashPointer = &ResourceAllocationTemplate;
+  *ResourceHashPointer = &ResourceCacheTemplate;
   return;
 }
 
