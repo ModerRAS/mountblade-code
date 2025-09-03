@@ -100095,14 +100095,14 @@ void ProcessSystemResourceCleanupUnwind(uint8_t ObjectContext, int64_t Validatio
 void ProcessSecondaryCounterResourceCleanupUnwind(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  int64_t LoopCounter;
+  int64_t SecondaryResourceCounter;
   
-  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
-  if (LoopCounter != 0) {
+  SecondaryResourceCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
+  if (SecondaryResourceCounter != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) = *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
   }
   return;
 }
