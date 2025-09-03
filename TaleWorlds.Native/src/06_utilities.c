@@ -223,6 +223,35 @@
 // 系统数据库地址宏定义
 #define SystemDataBaseAddress(context) (*(int64_t *)((int64_t)*(int *)(context + SystemContextOffset) * 8 + SystemDataBaseAddressConstant))
 
+// 系统寄存器上下文偏移常量
+#define SystemRegisterContextProcessCountOffset 0x1a0
+#define SystemRegisterContextLoopStride 0x30
+#define SystemRegisterContextResourceProperty1Offset 0x10
+#define SystemRegisterContextResourceProperty2Offset 0x1c
+#define SystemRegisterContextResourceProperty3Offset 0x28
+#define SystemRegisterContextResourceProperty4Offset 0x34
+#define SystemRegisterContextResourceHashOffset 400
+#define SystemRegisterContextPrimaryValidationOffset 0x194
+#define SystemRegisterContextSecondaryValidationOffset 0x198
+#define SystemRegisterContextTertiaryValidationOffset 0x19c
+#define SystemRegisterContextQuaternaryValidationOffset 0x1a4
+#define SystemRegisterContextExecutionPointerOffset 0x20
+
+// 资源哈希相关常量
+#define ResourceHashThreshold 0x8000
+#define ResourceHashMaskPreserve 0xffffc000
+#define ResourceHashFlagBit 0x4000
+#define ResourceHashValueMask 0x7fff
+
+// 验证上下文偏移常量
+#define ValidationContextPrimaryOffset 0xa0
+#define ValidationContextSecondaryOffset 0xa8
+#define ValidationContextCleanupFunctionOffset 0x10
+#define ValidationContextSecondaryCleanupOffset 0x38
+
+// 系统执行指针偏移常量
+#define SystemExecutionPointerResourceOffset 0x20
+
 // 校验和种子值常量
 #define ChecksumSeedValueFEFB 0x46464542
 #define ChecksumSeedValueBEFB 0x42464542
@@ -18938,10 +18967,10 @@ void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
   uint32_t ResourcePropertyQuinary;
   
   ProcessStatus = 0;
-  if (0 < *(int *)(SystemRegisterContext + 0x1a0)) {
+  if (0 < *(int *)(SystemRegisterContext + SystemRegisterContextProcessCountOffset)) {
     do {
-      LoopOffset = (int64_t)ProcessStatus * 0x30 + SystemRegisterContext;
-      ValidationStatusCode = GetResourceProperty(ObjectContext,LoopOffset + 0x10);
+      LoopOffset = (int64_t)ProcessStatus * SystemRegisterContextLoopStride + SystemRegisterContext;
+      ValidationStatusCode = GetResourceProperty(ObjectContext,LoopOffset + SystemRegisterContextResourceProperty1Offset);
       if (ResourceHashStatus != 0) {
         return;
       }
@@ -18959,7 +18988,7 @@ void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
       }
       ProcessStatus = ProcessStatus + 1;
       ObjectContext = FloatingPointResultThird;
-    } while (ProcessStatus < *(int *)(SystemRegisterContext + 0x1a0));
+    } while (ProcessStatus < *(int *)(SystemRegisterContext + SystemRegisterContextProcessCountOffset));
   }
   ResourceHash = *(uint *)(SystemRegisterContext + 400);
   ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
