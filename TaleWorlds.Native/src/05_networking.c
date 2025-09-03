@@ -998,19 +998,19 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
       return 0x1c;
     }
     ConnectionStateArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkPacketDataSecondaryOffset);
-    ValidationResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
+    ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), ConnectionStateArray, 4);
-    if ((int)ValidationResult != 0) {
-      return ValidationResult;
+    if ((int)ProcessingStatus != 0) {
+      return ProcessingStatus;
     }
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
     ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + 0x54);
-    ValidationResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
+    ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
-    if ((int)ValidationResult != 0) {
-      return ValidationResult;
+    if ((int)ProcessingStatus != 0) {
+      return ProcessingStatus;
     }
   }
   else {
@@ -1018,61 +1018,74 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
       return 0x1c;
     }
     ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + 0x78);
-    ValidationResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
+    ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
-    if ((int)ValidationResult != 0) {
-      return ValidationResult;
+    if ((int)ProcessingStatus != 0) {
+      return ProcessingStatus;
     }
   }
   if (*(int *)(PacketData[1] + 0x18) != 0) {
     return 0x1c;
   }
   ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + 0x58);
-  ValidationResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
+  if ((int)ProcessingStatus != 0) {
+    return ProcessingStatus;
   }
   if (*(int *)(PacketData[1] + 0x18) != 0) {
     return 0x1c;
   }
   ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + 0x5c);
-  ValidationResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
-  if ((int)ValidationResult == 0) {
+  ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
+  if ((int)ProcessingStatus == 0) {
     if (*(uint *)(PacketData + 8) < 0x53) {
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      ValidationResult = ConnectionContextValidator(*PacketData, ConnectionContext + 0x60);
-      if ((int)ValidationResult != 0) {
-        return ValidationResult;
+      ProcessingStatus = ConnectionContextValidator(*PacketData, ConnectionContext + 0x60);
+      if ((int)ProcessingStatus != 0) {
+        return ProcessingStatus;
       }
     }
     else {
-      ValidationResult = ValidateNetworkPacketData(PacketData, ConnectionContext + 0x70);
-      if ((int)ValidationResult != 0) {
-        return ValidationResult;
+      ProcessingStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + 0x70);
+      if ((int)ProcessingStatus != 0) {
+        return ProcessingStatus;
       }
-      ValidationResult = ValidateNetworkPacketData(PacketData, ConnectionContext + 0x74);
-      if ((int)ValidationResult != 0) {
-        return ValidationResult;
+      ProcessingStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + 0x74);
+      if ((int)ProcessingStatus != 0) {
+        return ProcessingStatus;
       }
     }
-    ValidationResult = FinalizePacket(PacketData, ConnectionContext + 0x7c, 0x7d);
-    return ValidationResult;
+    ProcessingStatus = FinalizePacket(PacketData, ConnectionContext + 0x7c, 0x7d);
+    return ProcessingStatus;
   }
-  return ValidationResult;
+  return ProcessingStatus;
 }
 
-// 验证连接网络数据包 - 验证连接数据包的格式和内容
-NetworkHandle ValidateConnectionNetworkPacket(long long ConnectionContext, NetworkHandle *PacketData)
+/**
+ * @brief 验证连接网络数据包的格式和内容
+ * 
+ * 该函数专门用于验证连接相关的网络数据包，确保数据包格式正确、
+ * 内容完整且符合连接协议的要求。它会进行多重验证，包括数据包解码、
+ * 头部验证和内容完整性检查。
+ * 
+ * @param ConnectionContext 连接上下文，包含连接状态和验证所需的信息
+ * @param PacketData 指向网络数据包的指针数组，包含待验证的连接数据包信息
+ * @return NetworkHandle 验证结果句柄，0表示验证成功，非0值表示验证失败的具体错误码
+ * 
+ * @note 此函数会进行严格的数据包验证，确保连接安全性
+ * @warning 验证过程中如果发现任何异常，会立即返回相应的错误码
+ */
+NetworkHandle ValidateConnectionNetworkPacket(int64_t ConnectionContext, NetworkHandle *PacketData)
 {
   NetworkHandle ValidationResult;
-  NetworkByte ValidationDataBuffer [32];
+  NetworkByte SecurityValidationBuffer [32];
   NetworkByte EncryptionDataBuffer [32];
   
   ValidationResult = DecodePacket(PacketData, EncryptionDataBuffer, 1, 0x5453494c, 0x54495645);
   if (((int)ValidationResult == 0) &&
-     (ValidationResult = DecodePacket(PacketData, ValidationDataBuffer, 0, 0x42495645, 0), (int)ValidationResult == 0)) {
+     (ValidationResult = DecodePacket(PacketData, SecurityValidationBuffer, 0, 0x42495645, 0), (int)ValidationResult == 0)) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -1082,20 +1095,33 @@ NetworkHandle ValidateConnectionNetworkPacket(long long ConnectionContext, Netwo
         return 0x1c;
       }
       ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + 0xd8);
-      if ((((int)ValidationResult == 0) && (ValidationResult = ValidateNetworkPacketData(PacketData, ConnectionContext + 0xf8), (int)ValidationResult == 0)) &&
+      if ((((int)ValidationResult == 0) && (ValidationResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + 0xf8), (int)ValidationResult == 0)) &&
          (ValidationResult = HandlePacketData(PacketData, ConnectionContext + 0xe8, 1, ConnectionContext), (int)ValidationResult == 0)) {
-          FinalizePacketProcessing(PacketData, ValidationDataBuffer);
+          FinalizePacketProcessing(PacketData, SecurityValidationBuffer);
       }
     }
   }
   return ValidationResult;
 }
 
-// 处理网络连接数据包 - 处理网络连接中的数据包
-NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, long long PacketData)
+/**
+ * @brief 处理网络连接数据包
+ * 
+ * 该函数负责处理网络连接中的数据包，根据数据包的类型和状态选择
+ * 不同的处理路径。它会验证数据包头部，解码数据流，并调用相应的
+ * 数据处理函数来完成数据包的处理工作。
+ * 
+ * @param ConnectionContext 连接上下文句柄，包含连接状态和处理所需的信息
+ * @param PacketData 数据包数据，包含待处理的数据包信息
+ * @return NetworkHandle 处理结果句柄，0表示处理成功，非0值表示处理失败的具体错误码
+ * 
+ * @note 此函数会根据数据包状态选择不同的处理策略
+ * @warning 处理过程中如果发现数据包格式错误，会立即返回相应的错误码
+ */
+NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   NetworkHandle PacketProcessingResult;
-  NetworkByte NetworkProcessingBuffer [32];
+  NetworkByte DataStreamBuffer [32];
   
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < 0x31) {
     PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, 0x544e5645);
@@ -1104,13 +1130,13 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, lo
     }
   }
   else {
-    PacketProcessingResult = DecodePacketDataStream(PacketData, NetworkProcessingBuffer, 1, 0x5453494c, 0x544e5645);
+    PacketProcessingResult = DecodePacketDataStream(PacketData, DataStreamBuffer, 1, 0x5453494c, 0x544e5645);
     if ((int)PacketProcessingResult == 0) {
       PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, 0x42545645);
       if ((int)PacketProcessingResult == 0) {
         NetworkHandle DataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
         if ((int)DataProcessingResult == 0) {
-            FinalizePacketProcessing(PacketData, NetworkProcessingBuffer);
+            FinalizePacketProcessing(PacketData, DataStreamBuffer);
         }
       }
     }
