@@ -197,6 +197,8 @@
 
 #define SystemTemporaryVariableInitialValue -0x8000000000000000
 #define SystemTemporarySecondaryVariableInitialValue -0x80000000
+#define FileResourceLockOffset 0x858
+#define FileResourceStatusOffset 0x868
 
 // Resource counter offset constants
 #define ResourceCounterOffset78 0x78
@@ -379,7 +381,7 @@ void ShutdownSystem(uint64_t TerminationSecurityToken);
  * @param StatusCheckType 状态检查类型 (0=基本检查, 1=详细检查)
  * @return 系统状态码，0表示正常，非0表示异常
  */
-uint32_t CheckSystemStatus(void* SystemContext, uint32_t StatusCheckType);
+uint32_t VerifySystemStatus(void* SystemContext, uint32_t StatusCheckType);
 
 /**
  * @brief 处理系统对象状态
@@ -390,7 +392,7 @@ uint32_t CheckSystemStatus(void* SystemContext, uint32_t StatusCheckType);
  * @param SystemObjectHandle 系统对象句柄
  * @return 处理结果状态码
  */
-uint32_t ProcessSystemObjectState(uint32_t SystemObjectHandle);
+uint32_t HandleSystemObjectState(uint32_t SystemObjectHandle);
 
 /**
  * @brief 执行系统退出操作（无参数版本）
@@ -400,7 +402,7 @@ uint32_t ProcessSystemObjectState(uint32_t SystemObjectHandle);
  * 
  * @return 无返回值
  */
-void ExecuteSystemExitOperation(void);
+void PerformSystemExit(void);
 
 /**
  * @brief 执行系统操作
@@ -412,7 +414,7 @@ void ExecuteSystemExitOperation(void);
  * @param ContextBuffer 上下文缓冲区
  * @return 操作结果状态码
  */
-uint32_t ExecuteSystemOperation(uint32_t OperationHandle, void* ContextBuffer);
+uint32_t PerformSystemOperation(uint32_t OperationHandle, void* ContextBuffer);
 
 /**
  * @brief 处理网络请求
@@ -427,7 +429,7 @@ uint32_t ExecuteSystemOperation(uint32_t OperationHandle, void* ContextBuffer);
  * @param Timeout 超时时间
  * @return 处理结果状态码
  */
-uint32_t ProcessNetworkRequest(void* NetworkContext, void* RequestTemplate, uint32_t RequestType, uint32_t Priority, uint32_t Timeout);
+uint32_t HandleNetworkRequest(void* NetworkContext, void* RequestTemplate, uint32_t RequestType, uint32_t Priority, uint32_t Timeout);
 
 /**
  * @brief 检查系统状态（无参数版本）
@@ -436,7 +438,7 @@ uint32_t ProcessNetworkRequest(void* NetworkContext, void* RequestTemplate, uint
  * 
  * @return 系统状态码，0表示正常，非0表示异常
  */
-uint32_t CheckSystemStatus(void);
+uint32_t GetSystemStatus(void);
 
 /**
  * @brief 处理系统对象操作
@@ -448,7 +450,7 @@ uint32_t CheckSystemStatus(void);
  * @param OperationType 操作类型
  * @return 操作结果状态码
  */
-uint32_t ProcessSystemObjectOperation(void* ObjectContext, uint32_t OperationType);
+uint32_t HandleSystemObjectOperation(void* ObjectContext, uint32_t OperationType);
 
 /**
  * @brief 处理系统上下文验证
@@ -459,7 +461,7 @@ uint32_t ProcessSystemObjectOperation(void* ObjectContext, uint32_t OperationTyp
  * @param SystemContext 系统上下文
  * @return 验证结果状态码
  */
-uint32_t ProcessSystemContextValidation(void* SystemContext);
+uint32_t ValidateSystemContext(void* SystemContext);
 
 /**
  * @brief 释放验证资源
@@ -470,7 +472,7 @@ uint32_t ProcessSystemContextValidation(void* SystemContext);
  * @param ResourceHandles 资源句柄数组
  * @return 释放结果状态码
  */
-uint32_t ReleaseValidationResources(void* ResourceHandles);
+uint32_t FreeValidationResources(void* ResourceHandles);
 
 #define SystemObjectContextSize 0x1000
 #define SystemDataStructureSize 0x1000
@@ -32022,16 +32024,16 @@ void ContextMutexDestroyHandler(uint8_t ObjectContext, int64_t ValidationContext
 void ResourceTablePointerValidationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
-  int64_t ResourceTablePointer;
+  int64_t *LocalContextPointer;
+  int64_t ResourceTableIterator;
   
-  pLocalContextPointer = *(int64_t **)(ValidationContext + ResourceContextSecondaryOffset);
-  for (ResourceTablePointer = *pLocalContextPointer; ResourceTablePointer != pLocalContextPointer[1]; ResourceTablePointer = ResourceTablePointer + 0x28) {
-    if (*(int64_t *)(ResourceTablePointer + 8) != 0) {
+  LocalContextPointer = *(int64_t **)(ValidationContext + ResourceContextSecondaryOffset);
+  for (ResourceTableIterator = *LocalContextPointer; ResourceTableIterator != LocalContextPointer[1]; ResourceTableIterator = ResourceTableIterator + 0x28) {
+    if (*(int64_t *)(ResourceTableIterator + 8) != 0) {
             ExecuteSystemEmergencyExit();
     }
   }
-  if (*pLocalContextPointer == 0) {
+  if (*LocalContextPointer == 0) {
     return;
   }
         ExecuteSystemEmergencyExit();
@@ -34070,32 +34072,32 @@ void CleanupSystemResourceHandlerB(uint8_t ObjectContext,int64_t ValidationConte
 void CleanupSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int32_t *ResourceTablePointerIndexPointer;
-  uint8_t *ResourceHashStatusAddress;
-  int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  int32_t *ResourceReferenceCountPointer;
+  uint8_t *ResourceHashStatusPointer;
+  int64_t ResourceEntryAddress;
+  uint64_t MemoryPageBase;
   
-  ValidationStatusCodeAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x48);
-  if (ResourceHashStatusAddress == (uint8_t *)0x0) {
+  ResourceHashStatusPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x48);
+  if (ResourceHashStatusPointer == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
-  if (MemoryAddressIncrement != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
-    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
-      *ResourceIndexPointer = *ResourceIndexPointer + -1;
-      if (*ResourceIndexPointer == 0) {
+  MemoryPageBase = (uint64_t)ResourceHashStatusPointer & 0xffffffffffc00000;
+  if (MemoryPageBase != 0) {
+    ResourceEntryAddress = MemoryPageBase + 0x80 + ((int64_t)ResourceHashStatusPointer - MemoryPageBase >> 0x10) * 0x50;
+    ResourceEntryAddress = ResourceEntryAddress - (uint64_t)*(uint *)(ResourceEntryAddress + 4);
+    if ((*(void ***)(MemoryPageBase + 0x70) == &ExceptionList) && (*(char *)(ResourceEntryAddress + 0xe) == '\0')) {
+      *ResourceHashStatusPointer = *(uint8_t *)(ResourceEntryAddress + 0x20);
+      *(uint8_t **)(ResourceEntryAddress + 0x20) = ResourceHashStatusPointer;
+      ResourceReferenceCountPointer = (int *)(ResourceEntryAddress + 0x18);
+      *ResourceReferenceCountPointer = *ResourceReferenceCountPointer + -1;
+      if (*ResourceReferenceCountPointer == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryPageBase,CONCAT71(0xff000000,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
+                          ResourceHashStatusPointer,MemoryPageBase,0xfffffffffffffffe);
     }
   }
   return;
@@ -35049,37 +35051,37 @@ void UnwindMemoryPoolInitializer(uint8_t ObjectContext,int64_t ValidationContext
 void UnwindProcessControllerSetup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int32_t *ResourceTablePointerIndexPointer;
-  uint8_t *ResourceHashStatusAddress;
-  int64_t ResourceIndex;
-  uint64_t *LoopProcessingPointer;
-  uint8_t *ByteDataPointer;
-  uint64_t ContextResourceHashStatus;
+  int32_t *ResourceReferenceCountPointer;
+  uint8_t *ResourceHashStatusPointer;
+  int64_t ResourceEntryAddress;
+  uint64_t *ProcessControllerPointer;
+  uint8_t *DataBufferPointer;
+  uint64_t MemoryPageBase;
   
-  LoopProcessingPointer = (uint64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x18);
-  ValidationStatusCodeAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x20);
-  for (ResourceDataAddress = (uint8_t *)*LoopProcessingPointer; ResourceDataAddress != ResourceHashStatusAddress; ResourceDataAddress = ResourceDataAddress + 0xe) {
-    *ResourceDataSecondaryPointer = &SystemDataStructure;
+  ProcessControllerPointer = (uint64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x18);
+  ResourceHashStatusPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x20);
+  for (DataBufferPointer = (uint8_t *)*ProcessControllerPointer; DataBufferPointer != ResourceHashStatusPointer; DataBufferPointer = DataBufferPointer + 0xe) {
+    *DataBufferPointer = &SystemDataStructure;
   }
-  ValidationStatusCodeAddress = (uint8_t *)*LoopProcessingPointer;
-  if (ValidationStatusCodeAddress != (uint8_t *)0x0) {
-    ContextValidationStatusCode = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
-    if (ContextResourceHashStatus != 0) {
-      ResourceIndex = ContextResourceHashStatus + 0x80 + ((int64_t)ResourceHashStatusAddress - ContextResourceHashStatus >> 0x10) * 0x50;
-      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-      if ((*(void ***)(ContextResourceHashStatus + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-        *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
-        *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-        ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
-        *ResourceIndexPointer = *ResourceIndexPointer + -1;
-        if (*ResourceIndexPointer == 0) {
+  ResourceHashStatusPointer = (uint8_t *)*ProcessControllerPointer;
+  if (ResourceHashStatusPointer != (uint8_t *)0x0) {
+    MemoryPageBase = (uint64_t)ResourceHashStatusPointer & 0xffffffffffc00000;
+    if (MemoryPageBase != 0) {
+      ResourceEntryAddress = MemoryPageBase + 0x80 + ((int64_t)ResourceHashStatusPointer - MemoryPageBase >> 0x10) * 0x50;
+      ResourceEntryAddress = ResourceEntryAddress - (uint64_t)*(uint *)(ResourceEntryAddress + 4);
+      if ((*(void ***)(MemoryPageBase + 0x70) == &ExceptionList) && (*(char *)(ResourceEntryAddress + 0xe) == '\0')) {
+        *ResourceHashStatusPointer = *(uint8_t *)(ResourceEntryAddress + 0x20);
+        *(uint8_t **)(ResourceEntryAddress + 0x20) = ResourceHashStatusPointer;
+        ResourceReferenceCountPointer = (int *)(ResourceEntryAddress + 0x18);
+        *ResourceReferenceCountPointer = *ResourceReferenceCountPointer + -1;
+        if (*ResourceReferenceCountPointer == 0) {
           SystemCleanupHandler();
           return;
         }
       }
       else {
-        ValidateMemoryAccess(ContextResourceHashStatus,CONCAT71(0xff000000,*(void ***)(ContextResourceHashStatus + 0x70) == &ExceptionList),
-                            ResourceHashStatusAddress,ContextResourceHashStatus,0xfffffffffffffffe);
+        ValidateMemoryAccess(MemoryPageBase,CONCAT71(0xff000000,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
+                            ResourceHashStatusPointer,MemoryPageBase,0xfffffffffffffffe);
       }
     }
     return;
@@ -35196,10 +35198,23 @@ void HandleSystemDataStructureException(uint8_t ExceptionContext, int64_t System
  * @note 此函数在文件系统操作完成后调用
  * @warning 调用此函数前必须确保锁资源已被正确获取
  */
+/**
+ * @brief 释放文件系统锁
+ * 
+ * 该函数负责释放文件系统相关的锁资源，确保文件系统操作的安全性和一致性
+ * 主要用于文件系统操作完成后的资源清理工作
+ * 
+ * @param FileSystemContext 文件系统上下文，包含文件系统的状态信息
+ * @param SystemContext 系统上下文，包含系统运行时状态数据
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的行为
+ * @note 此函数在文件系统操作完成后调用，确保锁资源正确释放
+ * @warning 调用此函数前必须确保相关资源已正确初始化
+ */
 void ReleaseFileSystemLock(uint8_t FileSystemContext, int64_t SystemContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
-  HandleResourceRequest(*(int64_t *)(SystemContext + SystemContextResourceOffset) + 0x858,
-                *(uint8_t *)(*(int64_t *)(SystemContext + SystemContextResourceOffset) + 0x868),CleanupOption,CleanupFlag,
-                0xfffffffffffffffe);
+  HandleResourceRequest(*(int64_t *)(SystemContext + SystemContextResourceOffset) + FileResourceLockOffset,
+                *(uint8_t *)(*(int64_t *)(SystemContext + SystemContextResourceOffset) + FileResourceStatusOffset), CleanupOption, CleanupFlag,
+                MemoryCleanupTriggerValue);
   return;
 }
 
@@ -36007,16 +36022,16 @@ void UnwindCriticalSectionHandler(uint8_t ObjectContext,int64_t ValidationContex
 void UnwindMutexHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
-  int64_t *ResourceTablePointerPointer;
-  int64_t ResourceIndex;
+  int64_t ResourceTableSize;
+  int64_t *ResourceTablePointer;
+  int64_t ResourceIterator;
   
-  ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x28);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x30);
-  for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x548) {
-    ReleaseResourceMemory(ResourceIndex);
+  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x28);
+  ResourceTableSize = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x30);
+  for (ResourceIterator = *ResourceTablePointer; ResourceIterator != SystemContextPointer; ResourceIterator = ResourceIterator + 0x548) {
+    ReleaseResourceMemory(ResourceIterator);
   }
-  if (*ResourceTablePointerPointer == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
         ExecuteSystemEmergencyExit();
@@ -52038,8 +52053,7 @@ void ResetResourceContextValidationState(uint8_t ObjectContext,int64_t Validatio
  * 
  * @remark 原始函数名：Unwind_180905c80
  */
-void ValidateResourceHashAndCleanupContext(uint8_t ObjectContext,int64_t ValidationContext)
-
+void ValidateResourceHashAndCleanupContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t LoopCounter;
   uint8_t *ResourceHashStatusAddress;
@@ -52047,25 +52061,25 @@ void ValidateResourceHashAndCleanupContext(uint8_t ObjectContext,int64_t Validat
   uint64_t MemoryAddressIncrement;
   uint64_t ResourceContextOffset;
   
-  ResourceIndex = *(int64_t *)(ValidationContext + 0x48);
-  MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  LoopCounter = *(int64_t *)(ResourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContext + ResourceContextHandleOffset);
+  MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + ResourceDataOffset);
+  LoopCounter = *(int64_t *)(ResourceIndex + ResourceReferenceOffset);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
       ResourceHashStatusAddress = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceHashStatusAddress != (uint8_t *)0x0) {
         *ResourceHashStatusAddress = &SystemDataStructure;
-              ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < MemoryAddressIncrement);
-    MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+    MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + ResourceDataOffset);
   }
-  *(uint8_t *)(ResourceIndex + 0x18) = 0;
-  if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-          ExecuteSystemEmergencyExit();
+  *(uint8_t *)(ResourceIndex + ResourceStatusOffset) = 0;
+  if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + ResourceReferenceOffset) != 0)) {
+    ExecuteSystemEmergencyExit();
   }
   return;
 }
@@ -52086,8 +52100,7 @@ void ValidateResourceHashAndCleanupContext(uint8_t ObjectContext,int64_t Validat
  * 
  * @remark 原始函数名：Unwind_180905c90
  */
-void ExecuteResourceIntegrityCheckAndUpdate(uint8_t ObjectContext,int64_t ValidationContext)
-
+void ExecuteResourceIntegrityCheckAndUpdate(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t LoopCounter;
   uint8_t *ResourceHashStatusAddress;
@@ -52095,25 +52108,25 @@ void ExecuteResourceIntegrityCheckAndUpdate(uint8_t ObjectContext,int64_t Valida
   uint64_t MemoryAddressIncrement;
   uint64_t ResourceContextOffset;
   
-  ResourceIndex = *(int64_t *)(ValidationContext + 0x48);
-  MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  LoopCounter = *(int64_t *)(ResourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContext + ResourceContextHandleOffset);
+  MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + ResourceDataOffset);
+  LoopCounter = *(int64_t *)(ResourceIndex + ResourceReferenceOffset);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
       ResourceHashStatusAddress = *(uint8_t **)(SystemContextPointer + ResourceContextOffset * 8);
       if (ResourceHashStatusAddress != (uint8_t *)0x0) {
         *ResourceHashStatusAddress = &SystemDataStructure;
-              ExecuteSystemEmergencyExit();
+        ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(SystemContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < MemoryAddressIncrement);
-    MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+    MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + ResourceDataOffset);
   }
-  *(uint8_t *)(ResourceIndex + 0x18) = 0;
-  if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
-          ExecuteSystemEmergencyExit();
+  *(uint8_t *)(ResourceIndex + ResourceStatusOffset) = 0;
+  if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + ResourceReferenceOffset) != 0)) {
+    ExecuteSystemEmergencyExit();
   }
   return;
 }
