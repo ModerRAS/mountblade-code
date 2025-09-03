@@ -8145,45 +8145,45 @@ void InitializeSystemEventProcessor(void)
 
 {
   char EventNodeFlag;
-  void* *eventSystemDataTable;
+  void** EventSystemDataTable;
   int NodeIdentifierCompareResult;
-  long long *eventMemoryPointer;
-  long long eventSystemTimeValue;
-  void* *eventRootNode;
-  void* *eventCurrentNode;
-  void* *eventNextNode;
-  void* *eventPreviousNode;
-  code *eventStackPointer;
+  long long* EventMemoryPointer;
+  long long EventSystemTimeValue;
+  void** EventRootNode;
+  void** EventCurrentNode;
+  void** EventNextNode;
+  void** EventPreviousNode;
+  code* EventStackPointer;
   
-  eventSystemDataTable = (long long*)GetSystemRootPointer();
-  eventRootNode = (void* *)*eventSystemDataTable;
-  EventNodeFlag = *(char*)((long long)eventRootNode[1] + SystemNodeActiveFlagOffset);
-  eventSearchFunctionPointer = GetSystemSearchFunctionD;
-  eventPreviousNode = eventRootNode;
-  eventCurrentNode = (void* *)eventRootNode[1];
+  EventSystemDataTable = (long long*)GetSystemRootPointer();
+  EventRootNode = (void**)*EventSystemDataTable;
+  EventNodeFlag = *(char*)((long long)EventRootNode[1] + SystemNodeActiveFlagOffset);
+  EventSearchFunctionPointer = GetSystemSearchFunctionD;
+  EventPreviousNode = EventRootNode;
+  EventCurrentNode = (void**)EventRootNode[1];
   while (EventNodeFlag == '\0') {
     NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (NodeIdentifierCompareResult < 0) {
-      eventNextNode = (void* *)eventCurrentNode[2];
-      eventCurrentNode = eventPreviousNode;
+      EventNextNode = (void**)EventCurrentNode[2];
+      EventCurrentNode = EventPreviousNode;
     }
     else {
-      eventNextNode = (void* *)*eventCurrentNode;
+      EventNextNode = (void**)*EventCurrentNode;
     }
-    eventPreviousNode = eventCurrentNode;
-    eventCurrentNode = eventNextNode;
-    EventNodeFlag = *(char*)((long long)eventNextNode + SystemNodeActiveFlagOffset);
+    EventPreviousNode = EventCurrentNode;
+    EventCurrentNode = EventNextNode;
+    EventNodeFlag = *(char*)((long long)EventNextNode + SystemNodeActiveFlagOffset);
   }
   if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateI,HashTableNode + 4,0x10), NodeIdentifierCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(eventSystemDataTable);
-    AllocateSystemMemory(eventSystemDataTable,&eventAllocatedNode,eventPreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    eventPreviousNode = eventAllocatedNode;
+    MemoryAllocationSize = GetSystemMemorySize(EventSystemDataTable);
+    AllocateSystemMemory(EventSystemDataTable,&EventAllocatedNode,EventPreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    EventPreviousNode = EventAllocatedNode;
   }
   HashTableNode[SystemNodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[SystemNodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[SystemNodeDataPointerIndex] = &SystemDataNodeF;
   HashTableNode[SystemNodeFlagIndex] = 4;
-  eventPreviousNode[10] = EventCallbackPointer;
+  EventPreviousNode[10] = EventCallbackPointer;
   return;
 }
 

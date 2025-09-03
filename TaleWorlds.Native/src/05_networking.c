@@ -839,7 +839,7 @@ void NetworkBindSocket(void)
   NetworkClientPortNumber = CLIENT_PORT_ANY;                   // 客户端端口初始化为0
   
   // 设置套接字绑定状态
-  NetworkSocketBindingStatus = 0x01;                   // 设置绑定标志为已绑定
+  NetworkSocketBindingStatus = SOCKET_BOUND;                   // 设置绑定标志为已绑定
   
   // 初始化网络协议配置
   NetworkConnectionProtocolType = 0x01;               // 设置协议类型为TCP
