@@ -7836,7 +7836,7 @@ uint8_t ValidateObjectAndProcessBufferContext(int64_t ObjectContext, int64_t Sys
     if (*(int64_t *)(ObjectContextBuffer + ObjectContextSecondaryDataOffset) == 0) {
       return ErrorInvalidResourceData;
     }
-    ProcessingStatusCode = ValidateBufferContext(*(uint8_t *)(*(int64_t *)(ObjectContextBuffer + 0x18) + 0xd0),
+    ProcessingStatusCode = ValidateBufferContext(*(uint8_t *)(*(int64_t *)(ObjectContextBuffer + ObjectContextSecondaryDataOffset) + BufferContextValidationOffset),
                                 ObjectContext + ObjectContextValidationDataOffset);
     if ((int)ProcessingStatusCode == 0) {
       ProcessingStatusCode = ProcessSystemObjectWithCleanup(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
@@ -7889,11 +7889,11 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
         if (BufferEntryPointer == 0) {
           return ErrorInvalidResourceData;
         }
-        if (*(int *)(BufferEntryPointer + 0x58) < 1) {
+        if (*(int *)(BufferEntryPointer + BufferEntryValidationOffset) < 1) {
           StringPointer = &ResourceHashTemplate;
         }
         else {
-          StringPointer = *(uint8_t **)(BufferEntryPointer + 0x50);
+          StringPointer = *(uint8_t **)(BufferEntryPointer + ResourceDataSizeOffset);
         }
         ComparisonResult = CompareStringWithContext(StringPointer,ObjectContext + ObjectContextHandleDataOffset);
         if (ComparisonResult == 0) {
@@ -7906,8 +7906,8 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
         }
         IterationCounter = (int)BufferIndex + 1;
         BufferIndex = (uint64_t)IterationCounter;
-        BufferEntryPosition = BufferEntryPosition + 0x18;
-      } while ((int)IterationCounter < *(int *)(BufferArrayOffset + 0x28));
+        BufferEntryPosition = BufferEntryPosition + ArrayElementSizeMultiplier;
+      } while ((int)IterationCounter < *(int *)(BufferArrayOffset + BufferArraySizeOffset));
     }
     ValidationStatus = SystemOperationErrorCode;
   }
@@ -7957,7 +7957,7 @@ uint64_t ValidateSystemDataBufferContext(void)
         StringPointer = &ResourceHashTemplate;
       }
       else {
-        StringPointer = *(uint8_t **)(ResourceDataAddress + 0x50);
+        StringPointer = *(uint8_t **)(ResourceDataAddress + ResourceDataSizeOffset);
       }
       ValidationStatusCode = CompareStringWithContext(StringPointer);
       if (ValidationStatusCode == 0) {
