@@ -29022,43 +29022,43 @@ void SystemResourceValidationHandler(void)
       goto SystemResourceCleanup;
     }
   }
-  else if ((InputParameterValue == 0x12) && (*(uint *)(ResourceContext + 8) < 0x40)) {
-    ResourceIndex = CalculateDataChecksum();
-    if (ResourceIndex != 0) {
+  else if ((InputParameterValue == 0x12) && (*(uint *)(ResourceContextPointer + 8) < 0x40)) {
+    ResourceValidationCode = CalculateDataChecksum();
+    if (ResourceValidationCode != 0) {
       return;
     }
-    ResourceIndex = SavedBasePointer;
-    if (*(int *)(ResourceContext[1] + 0x18) == 0) {
+    ResourceValidationCode = SavedContextPointer;
+    if (*(int *)(ResourceContextPointer[1] + 0x18) == 0) {
       ResourceOperationBuffer = 6;
-      ResourceIndex = (**(code **)**(uint8_t **)(*ResourceContext + 8))
-                        (*(uint8_t **)(*ResourceContext + 8),&ResourceOperationBuffer,4);
+      ResourceValidationCode = (**(code **)**(uint8_t **)(*ResourceContextPointer + 8))
+                        (*(uint8_t **)(*ResourceContextPointer + 8),&ResourceOperationBuffer,4);
     }
-    if (ResourceIndex != 0) {
+    if (ResourceValidationCode != 0) {
       return;
     }
-    ResourceIndex = 0;
+    ResourceValidationCode = 0;
     do {
-      OperationStatusCode = ValidateSystemConfiguration();
-      if (OperationResult != 0) {
+      ResourceValidationCode = ValidateSystemConfiguration();
+      if (ResourceOperationResult != 0) {
         return;
       }
-      ResourceIndex = ResourceIndex + 1;
-    } while (ResourceIndex < 6);
-    if (*(uint *)(ResourceContext + 8) < 0x6e) {
-      SavedBasePointer = 0;
+      ResourceValidationCode = ResourceValidationCode + 1;
+    } while (ResourceValidationCode < 6);
+    if (*(uint *)(ResourceContextPointer + 8) < 0x6e) {
+      SavedContextPointer = 0;
     }
-    else if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-      ResourceOperationBuffer = CONCAT31(ResourceOperationBuffer.ByteValue,*(uint8_t *)(SystemContext + 0x5c));
-      SavedBasePointer = (**(code **)**(uint8_t **)(*ResourceContext + 8))
-                            (*(uint8_t **)(*ResourceContext + 8),&ResourceOperationBuffer,1);
+    else if (*(int *)(ResourceContextPointer[1] + 0x18) == 0) {
+      ResourceOperationBuffer = CONCAT31(ResourceOperationBuffer.ByteValue,*(uint8_t *)(SystemContextHandle + 0x5c));
+      SavedContextPointer = (**(code **)**(uint8_t **)(*ResourceContextPointer + 8))
+                            (*(uint8_t **)(*ResourceContextPointer + 8),&ResourceOperationBuffer,1);
     }
-    if (SavedBasePointer != 0) {
+    if (SavedContextPointer != 0) {
       return;
     }
           CleanupResourceBuffer();
   }
-  ResourceIndex = GetSystemState();
-  if (ResourceIndex != 0) {
+  ResourceValidationCode = GetSystemState();
+  if (ResourceValidationCode != 0) {
     return;
   }
 SystemResourceCleanup:
