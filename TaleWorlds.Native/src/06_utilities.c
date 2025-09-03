@@ -30039,11 +30039,11 @@ void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCo
  * @return 无返回值
  */
 void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerPtr;
+  int64_t* ExceptionHandlerPointer;
   
-  ExceptionHandlerPtr = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
-  if (ExceptionHandlerPtr != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerPtr + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
+  if (ExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
