@@ -1319,6 +1319,14 @@ uint32_t NetworkConnectionParameters;                     // 网络连接参数
 uint32_t NetworkConnectionOptions;                        // 网络连接选项
 uint32_t NetworkConnectionConfig;                         // 网络连接配置
 uint32_t NetworkConnectionSettings;                       // 网络连接设置
+uint32_t NetworkConnectionContextHandle;                 // 网络连接上下文句柄
+uint32_t NetworkConnectionContextSize;                  // 网络连接上下文大小
+uint32_t NetworkConnectionContextData;                  // 网络连接上下文数据
+uint32_t NetworkConnectionContextConfig;                // 网络连接上下文配置
+uint32_t ConnectionValidationResultPointer;              // 连接验证结果指针
+uint32_t ConnectionValidationResultData;                // 连接验证结果数据
+uint32_t ConnectionValidationResultSize;                // 连接验证结果大小
+uint32_t ConnectionValidationStatusCode;                // 连接验证状态码
 
 /**
  * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
