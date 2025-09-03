@@ -1007,7 +1007,7 @@ void* ModuleDependencyPersistentStorage;                 // 系统模块依赖�
 void* ModuleDependencyCacheStorage;                      // 系统模块依赖缓存存储
 void* ModuleDependencyRuntimeBuffer;                    // 系统模块依赖运行时缓冲区
 uint32_t ModuleDependencySystemVersion;                  // 系统模块依赖系统版本
-uint32_t ModuleDependencyBuildNumber;                    // 系统模块依赖构建编号
+uint32_t ModuleDependencyBuildVersion;                    // 系统模块依赖构建版本
 uint32_t ModuleDependencyIntegrityChecksum;              // 系统模块依赖完整性校验和
 void* ModuleDependencySignature;                         // 系统模块依赖签名
 void* ModuleDependencyHandle;                            // 系统模块依赖句柄
