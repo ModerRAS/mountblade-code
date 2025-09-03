@@ -2041,11 +2041,11 @@ void* SystemTertiaryDiagnosticsConfiguration;
 void* SystemDebugConfiguration;
 void* SystemSecondaryMetricsConfiguration;
 void* SystemMonitorConfiguration;
-void* SystemEventConfigTableQuinary;
-void* SystemTaskConfigTableSecondary;
-void* SystemJobConfigTableSecondary;
-void* SystemWorkConfigTableSecondary;
-void* SystemQueueConfigTableSecondary;
+void* SystemQuinaryEventConfiguration;
+void* SystemSecondaryTaskConfiguration;
+void* SystemSecondaryJobConfiguration;
+void* SystemSecondaryWorkConfiguration;
+void* SystemSecondaryQueueConfiguration;
 void* MemoryAllocatorInstance;
 /**
  * @brief 初始化系统资源
@@ -2054,10 +2054,10 @@ void* MemoryAllocatorInstance;
  * 包括内存管理器、文件句柄和其他系统组件
  */
 void InitializeSystemResources(void);
-void* SystemPoolConfigTableSecondary;
-void* SystemCacheConfigTableSecondary;
-void* SystemDataBufferConfigTableSecondary;
-void* SystemMemoryConfigTableQuaternary;
+void* SystemSecondaryPoolConfiguration;
+void* SystemSecondaryCacheConfiguration;
+void* SystemSecondaryDataBufferConfiguration;
+void* SystemQuaternaryMemoryConfiguration;
 void* MemoryManagerInstance;
 
  /**
@@ -2068,7 +2068,7 @@ void* MemoryManagerInstance;
  * 
  * @return void* 内存管理器实例指针
  */
-void* CreateMemoryManagerInstance;
+void* MemoryManagerCreatorInstance;
 
 /**
  * @brief 设置内存分配器
@@ -2077,12 +2077,12 @@ void* CreateMemoryManagerInstance;
  * 配置内存分配策略和参数
  */
 void SetupMemoryAllocator(void);
-void* SystemResourceConfigTableSecondary;
-void* SystemFileSystemConfigTableSecondary;
-void* SystemThreadingConfigTableTertiary;
-void* SystemProcessConfigTableQuaternary;
+void* SystemSecondaryResourceConfiguration;
+void* SystemSecondaryFileSystemConfiguration;
+void* SystemTertiaryThreadingConfiguration;
+void* SystemQuaternaryProcessConfiguration;
 void* MemoryPoolManagerInstance;
-void* SystemEventConfigTableSenary;
+void* SystemSenaryEventConfiguration;
 
  /**
  * @brief 初始化内存跟踪
@@ -9391,26 +9391,26 @@ uint8_t GetObjectInvalidStatusConstant(void)
  * @param ObjectContext 对象上下文，包含对象的状态信息和配置数据
  * @param operationHandle 操作句柄，用于标识要执行的操作类型
  */
-void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t operationHandle)
+void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t OperationHandle)
 
 {
   int PackageValidationStatusCode;
   int64_t ObjectSize;
   uint64_t AllocationSize;
   bool IsZeroSize;
-  int64_t StackBuffer [3];
+  int64_t ValidationStackBuffer [3];
   int64_t ObjectPointer;
   uint8_t SecurityHandle;
   uint64_t SecurityToken;
   
-  SecurityToken = SecurityEncryptionKey ^ (uint64_t)StackBuffer;
-  SecurityHandle = operationHandle;
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), StackBuffer);
-  if (ValidationStatus == 0) {
-    IsZeroSize = StackBuffer[0] == 0;
-    StackBuffer[0] = StackBuffer[0] + -8;
+  SecurityToken = SecurityEncryptionKey ^ (uint64_t)ValidationStackBuffer;
+  SecurityHandle = OperationHandle;
+  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), ValidationStackBuffer);
+  if (PackageValidationStatusCode == 0) {
+    IsZeroSize = ValidationStackBuffer[0] == 0;
+    ValidationStackBuffer[0] = ValidationStackBuffer[0] + -8;
     if (IsZeroSize) {
-      StackBuffer[0] = 0;
+      ValidationStackBuffer[0] = 0;
     }
     ObjectSize = (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset);
     AllocationSize = ObjectSize * 4 + 0xf;
@@ -9420,7 +9420,7 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t ope
     }
           InitializeMemoryAllocation(ObjectSize, AllocationSize & MemoryAllocationAlignmentMask);
   }
-        FinalizeSecurityOperation(SecurityToken ^ (uint64_t)StackBuffer);
+        FinalizeSecurityOperation(SecurityToken ^ (uint64_t)ValidationStackBuffer);
 }
 
 
@@ -9442,8 +9442,8 @@ void UpdateSystemConfigurationAndExecute(int64_t ConfigObject, int64_t SystemCon
   int64_t ConfigOffset;
   uint8_t ConfigBuffer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ConfigObject + ObjectContextOffset));
-  if (ValidationStatus == 0) {
+  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ConfigObject + ObjectContextOffset));
+  if (PackageValidationStatusCode == 0) {
     if (ConfigBuffer == 0) {
       ConfigOffset = 0;
     }
@@ -30183,19 +30183,7 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
   }
   return;
 }
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @return 无返回值
- */
-void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerFunctionPointer;
-  
-  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
-  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
-  }
-  return;
-}
-
+ 
 
 
 /**
