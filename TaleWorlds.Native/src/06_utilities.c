@@ -35581,7 +35581,11 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  * @return 无返回值
  */
 void HandleSystemDataStructureException(uint8_t ExceptionContext, int64_t SystemContext) {
-  *(uint8_t **)(*(int64_t *)(SystemContext + SystemContextResourceOffset) + 0x438) = &SystemDataStructure;
+  int64_t SystemResourcePointer = *(int64_t *)(SystemContext + SystemContextResourceOffset);
+  int64_t DataStructurePointer = SystemResourcePointer + 0x438;
+  
+  // 设置系统数据结构指针
+  *(uint8_t **)DataStructurePointer = &SystemDataStructure;
   return;
 }
 
@@ -35601,9 +35605,13 @@ void HandleSystemDataStructureException(uint8_t ExceptionContext, int64_t System
  * @warning 调用此函数前必须确保相关资源已正确初始化
  */
 void ReleaseFileSystemLock(uint8_t FileSystemContext, int64_t SystemContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
-  HandleResourceRequest(*(int64_t *)(SystemContext + SystemContextResourceOffset) + FileResourceLockOffset,
-                *(uint8_t *)(*(int64_t *)(SystemContext + SystemContextResourceOffset) + FileResourceStatusOffset), CleanupOption, CleanupFlag,
-                MemoryCleanupTriggerValue);
+  int64_t SystemResourcePointer = *(int64_t *)(SystemContext + SystemContextResourceOffset);
+  int64_t FileResourceLockPointer = SystemResourcePointer + FileResourceLockOffset;
+  int64_t FileResourceStatusPointer = SystemResourcePointer + FileResourceStatusOffset;
+  uint8_t FileResourceStatus = *(uint8_t *)FileResourceStatusPointer;
+  
+  // 处理资源请求，释放文件系统锁
+  HandleResourceRequest(FileResourceLockPointer, FileResourceStatus, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
   return;
 }
 
