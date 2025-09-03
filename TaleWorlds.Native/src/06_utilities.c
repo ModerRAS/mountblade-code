@@ -30248,6 +30248,16 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @param SystemContext 系统上下文，包含系统状态和资源信息
  * @return void 无返回值
  */
+/**
+ * @brief 主上下文异常处理器
+ * 
+ * 该函数负责处理主上下文中的异常情况
+ * 主要用于系统级的异常处理和资源清理
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ * @return 无返回值
+ */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerAddress;
   
@@ -34928,7 +34938,7 @@ void MemoryPageManager(uint8_t ObjectContext,int64_t ValidationContext)
   ResourceTablePointer = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   *(int64_t *)(ResourceTablePointer + 0x15d8) =
-       *(int64_t *)(&SystemDataBufferC8ed30 + (int64_t)*(int *)(ResourceTablePointer + 0x15e0) * 8) + -100000;
+       *(int64_t *)(&SystemGlobalDataBuffer + (int64_t)*(int *)(ResourceTablePointer + 0x15e0) * 8) + -100000;
   SetupResourceTablePointerContext((int64_t *)(ResourceTablePointer + 0x8b0));
   *(uint32_t *)(ResourceTablePointer + 0x15e8) = 0;
   ResourceContext = *(int64_t **)(ResourceTablePointer + 0x15d0);
@@ -35426,6 +35436,16 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
+/**
+ * @brief 处理系统数据结构异常
+ * 
+ * 该函数负责处理系统数据结构相关的异常情况
+ * 主要用于数据结构损坏或异常时的恢复操作
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ * @return 无返回值
  */
 void HandleSystemDataStructureException(uint8_t ExceptionContext, int64_t SystemContext) {
   *(uint8_t **)(*(int64_t *)(SystemContext + SystemContextResourceOffset) + 0x438) = &SystemDataStructure;
@@ -65541,7 +65561,7 @@ void UnwindSystemContextInitialize(uint8_t ObjectContext,int64_t ValidationConte
   ResourceTablePointer = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   *(int64_t *)(ResourceTablePointer + 0x15d8) =
-       *(int64_t *)(&SystemDataBufferC8ed30 + (int64_t)*(int *)(ResourceTablePointer + 0x15e0) * 8) + -100000;
+       *(int64_t *)(&SystemGlobalDataBuffer + (int64_t)*(int *)(ResourceTablePointer + 0x15e0) * 8) + -100000;
   SetupResourceTablePointerContext((int64_t *)(ResourceTablePointer + 0x8b0));
   *(uint32_t *)(ResourceTablePointer + 0x15e8) = 0;
   ResourceContext = *(int64_t **)(ResourceTablePointer + 0x15d0);
