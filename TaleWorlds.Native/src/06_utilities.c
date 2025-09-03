@@ -75827,7 +75827,19 @@ void CleanupObjectContextResources(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_18090adb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证对象上下文完整性
+ * 
+ * 该函数负责验证对象上下文的完整性和有效性
+ * 确保对象处于有效状态并且可以进行后续操作
+ * 
+ * @param ObjectContext 对象上下文，包含需要验证的对象信息
+ * @param ValidationContext 验证上下文，包含验证规则和状态信息
+ * 
+ * @note 此函数是对象操作前的安全检查步骤
+ * @warning 验证失败时可能会抛出异常或返回错误码
+ */
+void ValidateObjectContextIntegrity(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
