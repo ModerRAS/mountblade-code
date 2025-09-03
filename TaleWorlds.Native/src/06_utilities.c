@@ -4938,6 +4938,15 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加指定对象的引用计数，确保对象在使用期间不会被意外释放
+ * 通过验证对象上下文来确保对象的有效性
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的内存地址和状态信息
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
@@ -6512,7 +6521,7 @@ void PerformNoOperationPrimary(void)
  * 根据配置数据初始化对象并设置相应的属性
  * 
  * @param ObjectPointer 对象指针，指向需要配置的对象数据结构
- * @param configData 配置数据，包含对象的配置信息
+ * @param ConfigData 配置数据，包含对象的配置信息
  * @return 无返回值
  * @note 此函数会根据配置数据初始化对象的属性
  */
@@ -6650,7 +6659,7 @@ int InitializeSystemManager(int64_t SystemManagerHandle)
  * 包括消息验证、队列管理和状态更新等功能
  * 
  * @param MessageQueueHandle 消息队列句柄，用于访问消息队列
- * @param ConfigurationData 配置数据，包含系统配置信息
+ * @param SystemConfigData 配置数据，包含系统配置信息
  * @return 无返回值
  * @note 此函数在系统消息处理循环中调用
  * @warning 验证失败时会跳过资源操作
