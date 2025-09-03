@@ -36119,7 +36119,7 @@ void InitializeSystemThread(void* SystemResourceManager,void* ConfigurationDataP
  * @param SystemResourceManager 系统资源指针，需要被初始化的资源指针
  * @return 初始化后的系统资源指针
  * 
- *FUN_18005c060：InitializeSystemResourceManager
+ * 原始函数名：FUN_18005c060
  */
 void* * InitializeSystemResourceManager(void* *SystemResourceManager)
 
