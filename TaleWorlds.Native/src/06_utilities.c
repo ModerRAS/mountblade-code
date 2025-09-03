@@ -11142,7 +11142,7 @@ int ProcessDataWithSimplifiedValidator(int64_t ObjectContext,int64_t ValidationC
  * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithBuffer(int64_t *ObjectContext,int64_t ValidationContext,int dataLength)
+int ProcessDataWithBuffer(int64_t *ObjectContext,int64_t ValidationContext,int DataLength)
 
 {
   int ProcessedDataOffset;
