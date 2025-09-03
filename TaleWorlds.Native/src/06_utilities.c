@@ -5040,10 +5040,6 @@ uint8_t ReleaseObjectHandle(void) {
  * @warning 如果字符无效，会触发系统退出操作
  */
 uint8_t ValidateCharacterInput(char CharacterToValidate) {
- * @note 此函数用于字符输入的安全验证
- * @warning 如果字符无效，会触发系统退出操作
- */
-uint8_t ValidateCharacterInput(char CharacterToValidate) {
   if (CharacterToValidate != '\0') {
     ExecuteSystemExitOperation();
   }
@@ -5166,14 +5162,6 @@ void CleanupSystemResources(void)
 
 
 /**
- * @brief 验证并处理对象句柄（版本2）
- * @param ObjectContext 对象上下文，包含要验证的对象句柄信息
- * @return uint8_t 返回操作结果，0表示成功，非0表示错误代码
- * 
- * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
- * 这是ValidateObjectHandle函数的另一个版本，提供了不同的验证逻辑
- */
-/**
  * @brief 验证并处理对象句柄
  * 
  * 该函数验证对象句柄的有效性，并在验证通过后执行相应的系统操作。
@@ -5241,12 +5229,6 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 
 
 /**
- * @brief 触发系统异常V2
- * 
- * 该函数负责触发系统级别的异常处理流程
- * 用于处理严重的系统错误或异常情况
- */
-/**
  * @brief 触发系统异常替代路径
  * 
  * 该函数负责触发系统异常处理的替代路径
@@ -5257,9 +5239,8 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
  * @warning 这是一个异常处理函数，调用后系统将退出
  */
 void ExecuteSystemExceptionAlternatePath(void)
-
 {
-        ExecuteSystemExitOperation();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -5272,20 +5253,12 @@ void ExecuteSystemExceptionAlternatePath(void)
  * 清理所有临时状态和资源，确保系统处于可控状态
  */
 void ResetSystemState(void)
-
 {
   return;
 }
 
 
 
-/**
- * @brief 处理复杂对象句柄验证和操作
- * @param ObjectContext 对象上下文指针
- * @return 返回操作结果，0表示成功，非0表示错误代码
- * 
- * 该函数执行复杂的对象句柄验证流程，包括句柄调整、子对象获取和验证
- */
 /**
  * @brief 处理复杂对象句柄
  * 
@@ -79903,7 +79876,18 @@ void ExecuteSecondaryResourceContextCleanup(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_18090c530(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证并清理资源哈希状态
+ * 
+ * 该函数负责验证资源哈希状态的完整性，并在必要时进行清理操作
+ * 处理资源引用计数和内存地址验证
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数是资源管理系统的核心验证函数之一
+ */
+void ValidateAndCleanupResourceHashStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -79940,7 +79924,18 @@ void Unwind_18090c530(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c540(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源表清理操作
+ * 
+ * 该函数负责处理系统资源表的清理操作，包括遍历资源表、
+ * 执行内存操作、处理资源状态等复杂操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数是资源管理系统中最复杂的清理函数之一
+ */
+void ProcessSystemResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -79985,7 +79980,18 @@ void Unwind_18090c540(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c550(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理图形资源表清理操作
+ * 
+ * 该函数负责处理图形资源表的清理操作，类似于ProcessSystemResourceTableCleanup
+ * 但专门处理图形相关的资源数据
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数是图形资源管理系统的重要清理函数
+ */
+void ProcessGraphicsResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -80029,7 +80035,18 @@ void Unwind_18090c550(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c560(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的特定偏移位置
+ * 用于系统状态恢复和数据结构初始化
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数是一个简单的设置操作，用于系统恢复过程
+ */
+void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x470) = &SystemDataStructure;
