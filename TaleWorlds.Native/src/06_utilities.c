@@ -19613,14 +19613,14 @@ uint8_t CalculateResourceDataHash(int64_t ResourceContext, uint8_t *ResourceData
   }
   else {
     ResourceHash = 4;
-    lengthBuffer[0] = (dataLength & 0xffffc000 | 0x4000) * 2 | dataLength & 0x7fff;
+    lengthBuffer[0] = (DataLength & 0xffffc000 | 0x4000) * 2 | DataLength & 0x7fff;
   }
   ResourceHash = (**(code **)**(uint8_t **)(ResourceContext + 8))
                     (*(uint8_t **)(ResourceContext + 8),lengthBuffer,ResourceHash);
   if ((int)ResourceHash == 0) {
-    if ((dataLength != 0) &&
+    if ((DataLength != 0) &&
        (ResourceHash = (**(code **)**(uint8_t **)(ResourceContext + 8))
-                          (*(uint8_t **)(ResourceContext + 8),*ResourceData,(int64_t)(int)dataLength),
+                          (*(uint8_t **)(ResourceContext + 8),*ResourceData,(int64_t)(int)DataLength),
        (int)ResourceHash != 0)) {
       return ResourceHash;
     }
