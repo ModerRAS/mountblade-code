@@ -1219,26 +1219,26 @@ NetworkHandle NetworkFinalizeConnectionSystem(void)
  */
 void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
 {
-  int32_t PrimaryConnectionStatus;                    // 主要连接状态
-  int32_t NetworkDataProcessingResult;                // 网络数据处理结果
-  NetworkByte NetworkCleanupBuffer [48];               // 网络清理缓冲区
-  int64_t ConnectionHandleStorage [2];                 // 连接句柄存储
-  NetworkHandle *ConnectionHandleBuffer [34];          // 连接句柄缓冲区
-  uint64_t NetworkValidationKey;                       // 网络验证密钥
+  int32_t ConnectionStatus;                            // 连接状态
+  int32_t DataProcessingResult;                       // 数据处理结果
+  NetworkByte CleanupBuffer [48];                     // 清理缓冲区
+  int64_t HandleStorage [2];                           // 句柄存储
+  NetworkHandle *HandleBuffer [34];                   // 句柄缓冲区
+  uint64_t ValidationKey;                              // 验证密钥
   
   // 清理连接状态和数据
-  PrimaryConnectionStatus = 0;
-  NetworkDataProcessingResult = 0;
+  ConnectionStatus = 0;
+  DataProcessingResult = 0;
   
   // 释放网络缓冲区
-  memset(NetworkCleanupBuffer, 0, sizeof(NetworkCleanupBuffer));
+  memset(CleanupBuffer, 0, sizeof(CleanupBuffer));
   
   // 清理句柄存储
-  memset(ConnectionHandleStorage, 0, sizeof(ConnectionHandleStorage));
-  memset(ConnectionHandleBuffer, 0, sizeof(ConnectionHandleBuffer));
+  memset(HandleStorage, 0, sizeof(HandleStorage));
+  memset(HandleBuffer, 0, sizeof(HandleBuffer));
   
   // 重置验证密钥
-  NetworkValidationKey = 0;
+  ValidationKey = 0;
 }
 
 /**
