@@ -4289,11 +4289,12 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  * @brief 验证系统对象集合
  * 
  * 该函数负责验证系统中所有对象的集合完整性和有效性
- * 通过遍历对象集合并对每个对象进行验证检查
+ * 通过遍历对象集合并对每个对象进行验证检查，确保系统对象的一致性
  * 
  * @return 无返回值
- * @note 此函数在系统维护期间调用
- * @warning 验证失败时可能会标记对象为无效状态
+ * @note 此函数在系统维护期间调用，用于批量验证系统对象状态
+ * @warning 验证失败时可能会标记对象为无效状态，影响系统正常运行
+ * @see ValidateSystemObject, HandleInvalidSystemObject, FetchSystemObjectCollection
  */
 void ValidateSystemObjectCollection(void)
 {
