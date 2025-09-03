@@ -4976,11 +4976,6 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
 
 
 /**
- * @brief 初始化对象句柄基础操作
- * 
- * 该函数负责处理对象句柄的基础初始化操作，包括句柄分配、
- * 状态检查和初始化设置等步骤。这是对象生命周期管理的第一步。
- * 
  * @brief 创建基础对象句柄
  * 
  * 该函数用于创建系统对象的基础句柄，包含对象验证和句柄初始化操作
@@ -30244,10 +30239,20 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数会在异常处理过程中自动调用
  * @warning 调用此函数可能会触发系统紧急退出
  */
+/**
+ * @brief 处理主要上下文异常
+ * 
+ * 该函数用于处理系统主要上下文的异常情况
+ * 通过调用异常处理函数来处理特定的异常
+ * 
+ * @param ExceptionContext 异常上下文，包含异常的类型和信息
+ * @param SystemContext 系统上下文，包含系统状态和资源信息
+ * @return void 无返回值
+ */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerFunctionAddress;
+  int64_t* ExceptionHandlerAddress;
   
-  ExceptionHandlerFunctionAddress = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  ExceptionHandlerAddress = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
   if (ExceptionHandlerFunctionAddress != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)ExceptionHandlerFunctionAddress + ExceptionHandlerFunctionPointerOffset))();
   }
