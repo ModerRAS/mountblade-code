@@ -4401,9 +4401,9 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   int CalculatedRegistrationSize;
   
   // 获取注册上下文数据
-  RegistrationValidationStatus = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationStackPointer);
-  if ((int)RegistrationValidationStatus != 0) {
-    return RegistrationValidationStatus;
+  ValidationStatusCode = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationStackPointer);
+  if ((int)ValidationStatusCode != 0) {
+    return ValidationStatusCode;
   }
   
   // 验证注册句柄
