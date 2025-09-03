@@ -103513,16 +103513,14 @@ void InitializeSystemDataStructureBP(void)
 
 
  /**
- * 初始化系统数据结构BQ
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构BQ
+ * 
+ * 该函数负责初始化系统数据结构BQ，设置全局系统数据结构指针
+ * 用于系统初始化过程中的数据结构设置
+ * 
+ * @return 无返回值
  */
 void InitializeSystemDataStructureBQ(void)
-/**
- * 初始化系统数据结构BQ
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureBQ(void)
-
 {
   SystemDataNonaryPointer = &SystemDataStructure;
   return;
@@ -103533,16 +103531,14 @@ void InitializeSystemDataStructureBQ(void)
 
 
  /**
- * 初始化系统数据结构BR
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构BR
+ * 
+ * 该函数负责初始化系统数据结构BR，设置全局系统数据结构指针
+ * 用于系统初始化过程中的数据结构设置
+ * 
+ * @return 无返回值
  */
 void InitializeSystemDataStructureBR(void)
-/**
- * 初始化系统数据结构BR
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureBR(void)
-
 {
   SystemDataStructurePrimaryReference = &SystemDataStructure;
   return;
