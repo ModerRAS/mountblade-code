@@ -74,6 +74,9 @@
 #define SineTableOffset8132                 0x8132
 #define TransformContextOffset218         0x218
 
+// 字符串处理相关常量
+#define SYSTEM_STRING_BUFFER_SIZE_DEFAULT   0xb
+
 // 系统标识符常量
 #define SystemEventNodeIdentifier1          0x45b8d074df27d12f
 #define SystemEventNodeIdentifier2          0x8d98f4c06880eda4
@@ -60110,23 +60113,23 @@ LAB_180077fcf:
         ScalingFactor = ConfigurationFlag[4];
         OffsetValue = ConfigurationFlag[5];
         RatioValue = ConfigurationFlag[6];
-        floatValue1 = *(float *)(SystemResourceManager + 0x120);
-        floatValue2 = *(float *)(SystemResourceManager + 0x128);
-        floatValue3 = *(float *)(SystemResourceManager + 0x134);
-        floatValue4 = *(float *)(SystemResourceManager + 0x144);
-        BaseValue = *(float *)(SystemResourceManager + 0x154);
+        TransformValueX = *(float *)(SystemResourceManager + 0x120);
+        TransformValueY = *(float *)(SystemResourceManager + 0x128);
+        TransformValueZ = *(float *)(SystemResourceManager + 0x134);
+        ScaleValueX = *(float *)(SystemResourceManager + 0x144);
+        BaseTransformValue = *(float *)(SystemResourceManager + 0x154);
         InterpolationFactorY = *ConfigurationFlag;
         InterpolationFactorZ = ConfigurationFlag[1];
         InterpolationFactorX = ConfigurationFlag[2];
         InterpolationFactorW = ConfigurationFlag[8];
         InterpolationFactorV = ConfigurationFlag[9];
         MagnitudeSquared = ConfigurationFlag[10];
-        floatValue6 = *(float *)(SystemResourceManager + 0x124);
-        floatValue7 = *(float *)(SystemResourceManager + 0x130);
-        unsignedStackFlag80._0_4_ = floatValue6 * RatioValue + floatValue1 * InterpolationFactorA + floatValue2 * MagnitudeSquared;
-        floatValue8 = *(float *)(SystemResourceManager + 0x138);
-        ScaleValue = *(float *)(SystemResourceManager + 0x140);
-        systemProcessFlags70._0_4_ = floatValue3 * RatioValue + floatValue7 * InterpolationFactorA + floatValue8 * MagnitudeSquared;
+        RotationValue = *(float *)(SystemResourceManager + 0x124);
+        TranslationValueZ = *(float *)(SystemResourceManager + 0x130);
+        unsignedStackFlag80._0_4_ = RotationValue * RatioValue + TransformValueX * InterpolationFactorA + TransformValueY * MagnitudeSquared;
+        UniformScaleValue = *(float *)(SystemResourceManager + 0x138);
+        ScaleValueY = *(float *)(SystemResourceManager + 0x140);
+        systemProcessFlags70._0_4_ = TransformValueZ * RatioValue + TranslationValueZ * InterpolationFactorA + UniformScaleValue * MagnitudeSquared;
         unsignedStackFlag88 = ConcatenatedValue44(floatValue6 * OffsetValue + floatValue1 * InterpolationFactorZ + floatValue2 * InterpolationFactorV,
                              floatValue6 * ScalingFactor + floatValue1 * InterpolationFactorY + floatValue2 * InterpolationFactorW);
         floatValue1 = *(float *)(SystemResourceManager + 0x148);
