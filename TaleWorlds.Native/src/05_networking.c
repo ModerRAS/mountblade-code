@@ -143,6 +143,68 @@ typedef uint32_t NetworkResourceHandle;
 #define NetworkFloatOne 0x3f800000             // 浮点数1.0的十六进制表示
 #define NetworkFloatNegativeOne 0xbf800000     // 浮点数-1.0的十六进制表示
 #define NetworkFloatMax 0x7f7fffff             // 最大浮点数值
+
+// 网络协议常量
+#define TCP_SOCKET_CATEGORY 0x01               // TCP套接字类别
+#define TCP_PROTOCOL 0x06                      // TCP协议类型
+#define IPV4_LOCALHOST 0x7F000001              // 本地回环地址127.0.0.1
+#define PORT_HTTP_ALT 0x1F90                   // 端口8080
+#define PORT_HTTPS_ALT 0x1FBB                  // 端口8091
+#define PORT_RANGE_END 0x270F                  // 端口9999
+
+// 网络缓冲区大小常量
+#define SOCKET_CONTEXT_SIZE 0x100              // 套接字上下文大小256字节
+#define SOCKET_SIZE 0x40                       // 套接字大小64字节
+#define SEND_BUFFER_SIZE 0x10000               // 发送缓冲区大小64KB
+#define RECEIVE_BUFFER_SIZE 0x10000            // 接收缓冲区大小64KB
+#define BUFFER_CAPACITY 0x20000                // 缓冲区容量128KB
+#define PACKET_QUEUE_SIZE 0x100                // 数据包队列大小256
+#define BUFFER_SIZE_4KB 0x1000                 // 4KB缓冲区大小
+#define CONTEXT_SIZE_256B 0x100                // 256字节上下文大小
+#define CONTEXT_SIZE_512B 0x200                // 512字节上下文大小
+
+// 网络超时常量
+#define TIMEOUT_1_SECOND 0x3E8                 // 1秒超时
+#define TIMEOUT_5_SECONDS 0x1388               // 5秒超时
+#define TIMEOUT_30_SECONDS 0x7530              // 30秒超时
+#define TIMEOUT_5_MINUTES 0x493E0              // 5分钟超时
+#define HEARTBEAT_30_SECONDS 0x1E              // 30秒心跳
+#define HEARTBEAT_60_SECONDS 0x3C              // 60秒心跳
+
+// 网络质量常量
+#define CONNECTION_QUALITY_GOOD 0x05            // 良好连接质量
+#define LATENCY_50MS 0x32                      // 50毫秒延迟
+#define BANDWIDTH_4KB 0x1000                   // 4KB带宽
+#define WINDOW_SCALE_16 0x10                   // 窗口缩放16
+
+// 网络安全常量
+#define SECURITY_LEVEL_HIGH 0x03               // 高安全级别
+#define AUTH_TYPE_PASSWORD 0x01                // 密码认证类型
+#define ENCRYPTION_AES 0x01                    // AES加密算法
+#define COMPRESSION_ZLIB 0x01                  // ZLIB压缩方法
+#define HASH_ALGORITHM_SHA256 0x01             // SHA-256哈希算法
+#define SIGNATURE_METHOD_RSA 0x01              // RSA签名方法
+#define ENCRYPTION_KEY_LENGTH_256B 0x100       // 256位加密密钥长度
+#define COMPRESSION_LEVEL_DEFAULT 0x06         // 默认压缩级别
+
+// 网络连接常量
+#define CONNECTION_MODE_CLIENT 0x01            // 客户端连接模式
+#define CONNECTION_PRIORITY_MEDIUM 0x05        // 中等连接优先级
+#define PROTOCOL_VERSION_1 0x01                // 协议版本1.0
+#define CONNECTION_POOL_SIZE 0x100             // 连接池大小256
+#define CONNECTION_SIZE_256B 0x100             // 连接大小256字节
+#define EVENT_SIZE_64B 0x40                    // 事件大小64字节
+#define CALLBACK_SIZE_64B 0x40                 // 回调大小64字节
+#define RETRY_COUNT_3 0x03                     // 重试次数3次
+#define BACKOFF_TIME_2S 0x07D0                 // 退避时间2秒
+
+// 网络数据包常量
+#define PACKET_HEADER_SIZE_32B 0x20            // 数据包头大小32字节
+#define PACKET_TRAILER_SIZE_16B 0x10           // 数据包尾大小16字节
+#define PACKET_PAYLOAD_1KB 0x400                // 数据包负载1KB
+#define MAX_PACKET_SIZE_2KB 0x800              // 最大数据包大小2KB
+#define PACKET_PROCESSING_SIZE_256B 0x100      // 数据包处理大小256字节
+#define VALIDATION_BUFFER_SIZE_39B 0x27       // 验证缓冲区大小39字节
 #define NetworkErrorInvalidPacket 0x1c         // 无效数据包错误码
 #define NetworkConnectionFinalizeValue 0x7d    // 连接完成状态值
 #define NetworkPacketSizeLimit 0x55            // 数据包大小限制（85字节）
@@ -634,22 +696,22 @@ void InitializeNetworkSocketHandle(void)
 {
   // 初始化套接字基本参数
   NetworkSocketDescriptor = 0xFFFFFFFF;        // 初始化文件描述符为无效值
-  NetworkSocketContextSize = 0x100;                // 设置套接字上下文大小为256字节
+  NetworkSocketContextSize = SOCKET_CONTEXT_SIZE;                // 设置套接字上下文大小为256字节
   NetworkSocketIndex = 0;                           // 重置套接字索引
-  NetworkSocketSize = 0x40;                         // 设置套接字大小为64字节
+  NetworkSocketSize = SOCKET_SIZE;                         // 设置套接字大小为64字节
   
   // 初始化套接字配置
-  NetworkSocketCategory = 0x01;                     // 设置套接字类别为TCP
-  NetworkSocketProtocolType = 0x06;                 // 设置协议类型为TCP协议
+  NetworkSocketCategory = TCP_SOCKET_CATEGORY;                     // 设置套接字类别为TCP
+  NetworkSocketProtocolType = TCP_PROTOCOL;                 // 设置协议类型为TCP协议
   
   // 初始化套接字数据缓冲区
   NetworkSocketData = 0;                            // 重置套接字数据指针
   NetworkSocketContext = 0;                         // 重置套接字上下文
   
   // 初始化网络配置
-  NetworkProtocolVersion = 0x01;                    // 设置协议版本为1.0
-  NetworkConnectionMode = 0x01;                      // 设置连接模式为客户端模式
-  NetworkConnectionPriority = 0x05;                 // 设置连接优先级为中等
+  NetworkProtocolVersion = PROTOCOL_VERSION_1;                    // 设置协议版本为1.0
+  NetworkConnectionMode = CONNECTION_MODE_CLIENT;                      // 设置连接模式为客户端模式
+  NetworkConnectionPriority = CONNECTION_PRIORITY_MEDIUM;                 // 设置连接优先级为中等
 }
 
 /**
@@ -667,8 +729,8 @@ void InitializeNetworkSocketHandle(void)
 void NetworkBindSocket(void)
 {
   // 设置网络地址和端口配置
-  NetworkServerIpAddress = 0x7F000001;               // 设置为127.0.0.1 (本地回环地址)
-  NetworkServerPortNumber = 0x1F90;                   // 设置端口为8080
+  NetworkServerIpAddress = IPV4_LOCALHOST;               // 设置为127.0.0.1 (本地回环地址)
+  NetworkServerPortNumber = PORT_HTTP_ALT;                   // 设置端口为8080
   NetworkClientIpAddress = 0x00000000;               // 客户端IP地址初始化为0.0.0.0
   NetworkClientPortNumber = 0x0000;                   // 客户端端口初始化为0
   
@@ -680,10 +742,10 @@ void NetworkBindSocket(void)
   NetworkConnectionProtocolVersion = 0x01;            // 设置协议版本为1.0
   
   // 初始化缓冲区配置
-  NetworkSendBufferSize = 0x10000;                    // 设置发送缓冲区大小为64KB
-  NetworkReceiveBufferSize = 0x10000;                 // 设置接收缓冲区大小为64KB
-  NetworkSendBufferCapacity = 0x20000;                // 设置发送缓冲区容量为128KB
-  NetworkReceiveBufferCapacity = 0x20000;              // 设置接收缓冲区容量为128KB
+  NetworkSendBufferSize = SEND_BUFFER_SIZE;                    // 设置发送缓冲区大小为64KB
+  NetworkReceiveBufferSize = RECEIVE_BUFFER_SIZE;                 // 设置接收缓冲区大小为64KB
+  NetworkSendBufferCapacity = BUFFER_CAPACITY;                // 设置发送缓冲区容量为128KB
+  NetworkReceiveBufferCapacity = BUFFER_CAPACITY;              // 设置接收缓冲区容量为128KB
 }
 
 // 网络套接字绑定状态标志

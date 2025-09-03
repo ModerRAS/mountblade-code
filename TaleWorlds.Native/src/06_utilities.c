@@ -78150,6 +78150,15 @@ void UnwindSystemResourceHandlerA(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
+/**
+ * @brief 处理资源清理操作A
+ * 
+ * 该函数用于处理系统资源的清理操作，从验证上下文中获取资源上下文，
+ * 并调用相应的清理回调函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文，包含资源信息
+ */
 void ProcessResourceCleanupHandlerA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -78164,7 +78173,7 @@ void ProcessResourceCleanupHandlerA(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_18090b9b0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceCleanupHandlerB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -78178,7 +78187,7 @@ void Unwind_18090b9b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b9d0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceCleanupHandlerC(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -78192,7 +78201,7 @@ void Unwind_18090b9d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b9f0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceCleanupHandlerD(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -78254,7 +78263,7 @@ void CleanupResourceContextProcessorB(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_18090ba50(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceCleanupHandlerE(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
