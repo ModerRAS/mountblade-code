@@ -14265,18 +14265,18 @@ void ProcessComplexResourceWithRegisters(void)
         }
         if (*(char *)(ResourceTablePointerPointer + 0x28) != '\0') {
           ValidationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateBuffer;
+          DataTypeTemplate = &SystemDataTypeTemplateBuffer;
           ExtendedValidationFlags = SystemContextFlags;
-          temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
-          finalResultFloat = calculatedSecondaryResult;
+          FinalResultFloat = CalculatedSecondaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
           ValidationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateCache;
+          DataTypeTemplate = &SystemDataTypeTemplateCache;
           ExtendedValidationFlags = SystemContextFlags;
-          temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
@@ -14313,23 +14313,23 @@ void ProcessComplexResourceWithRegisters(void)
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
-          finalResultFloat = calculatedTertiaryResult;
+          FinalResultFloat = CalculatedTertiaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x28) != '\0') {
           ValidationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateBuffer;
+          DataTypeTemplate = &SystemDataTypeTemplateBuffer;
           ExtendedValidationFlags = SystemContextFlags;
-          temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
-          finalResultFloat = calculatedQuaternaryResult;
+          FinalResultFloat = CalculatedQuaternaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
           ValidationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateCache;
+          DataTypeTemplate = &SystemDataTypeTemplateCache;
           ExtendedValidationFlags = SystemContextFlags;
-          temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
@@ -14371,18 +14371,18 @@ void ProcessComplexResourceWithRegisters(void)
         }
         if (*(char *)(ResourceTablePointerPointer + 0x28) != '\0') {
           ValidationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateBuffer;
+          DataTypeTemplate = &SystemDataTypeTemplateBuffer;
           ExtendedValidationFlags = SystemContextFlags;
-          temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
           finalResultFloat = CalculatedFloatResultFinal;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
           ValidationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateCache;
+          DataTypeTemplate = &SystemDataTypeTemplateCache;
           ExtendedValidationFlags = SystemContextFlags;
-          temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
@@ -14424,18 +14424,18 @@ void ProcessComplexResourceWithRegisters(void)
         }
         if (*(char *)(ResourceTablePointerPointer + 0x28) != '\0') {
           ValidationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateBuffer;
+          DataTypeTemplate = &SystemDataTypeTemplateBuffer;
           ExtendedValidationFlags = SystemContextFlags;
-          temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
           resultFloat = calculatedFloat7;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
           ValidationErrorCode = 0;
-          dataTypeTemplate = &SystemDataTypeTemplateCache;
+          DataTypeTemplate = &SystemDataTypeTemplateCache;
           ExtendedValidationFlags = SystemContextFlags;
-          temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
