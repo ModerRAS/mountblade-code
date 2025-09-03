@@ -5167,15 +5167,6 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
 /**
  * @brief 验证对象状态并处理
  * 
- * 该函数用于验证系统对象的状态，并根据状态进行相应的处理
- * 主要用于对象状态管理和错误处理
- * 
- * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- */
-/**
- * @brief 验证对象状态并处理
- * 
  * 该函数负责验证系统对象的状态，并根据状态进行相应的处理，包括：
  * - 验证对象上下文的有效性
  * - 处理验证栈缓冲区
@@ -5201,6 +5192,7 @@ uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
     else {
       ValidationStackBuffer[0] = ValidationStackBuffer[0] - 8;
     }
+    
     ResourceContextBuffer[0] = 0;
     ValidationResult = ValidateResourceContext(ValidationStackBuffer[0], ObjectContext + ObjectContextProcessingDataOffset, ResourceContextBuffer);
     if ((int)ValidationResult == 0) {
@@ -5208,8 +5200,10 @@ uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
         if (*(int64_t *)(ResourceContextBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
-        ValidationResult = ProcessResourceOperation(*(int64_t *)(ResourceContextBuffer[0] + 8), *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),
-                              *(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
+        
+        ValidationResult = ProcessResourceOperation(*(int64_t *)(ResourceContextBuffer[0] + 8), 
+                                              *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),
+                                              *(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
         if ((int)ValidationResult != 0) {
           return ValidationResult;
         }
@@ -30069,11 +30063,11 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  uint8_t *QuaternaryResourceHashDataPointer;
+  uint8_t *ResourceHashDataPointer;
   
-  QuaternaryResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
-  *QuaternaryResourceHashDataPointer = &ResourceHashTemplate;
-  *QuaternaryResourceHashDataPointer = &ResourceAllocationTemplate;
+  ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
+  *ResourceHashDataPointer = &ResourceHashTemplate;
+  *ResourceHashDataPointer = &ResourceAllocationTemplate;
   *ResourceHashPtr = &ResourceCacheTemplate;
   return;
 }
