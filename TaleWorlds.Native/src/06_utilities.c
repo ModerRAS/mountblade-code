@@ -10335,23 +10335,23 @@ void ProcessObjectContextFloatRangeValidationAndClamping(void)
   float MaximumValidRange;
   uint32_t StackParameter;
   
-  RangeMinValue = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister, ValidationRegister) + 0x38);
-  InputValue = *(float *)(ContextPointer + 0x18);
-  RangeMaxValue = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister, ValidationRegister) + 0x3c);
+  MinimumValidRange = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister, ValidationRegister) + 0x38);
+  OriginalValue = *(float *)(ObjectContextPointer + 0x18);
+  MaximumValidRange = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister, ValidationRegister) + 0x3c);
   
-  if ((RangeMinValue <= InputValue) && (InputValue <= RangeMaxValue)) {
-    RangeMinValue = InputValue;
+  if ((MinimumValidRange <= OriginalValue) && (OriginalValue <= MaximumValidRange)) {
+    MinimumValidRange = OriginalValue;
   }
-  else if (InputValue < RangeMinValue) {
-    RangeMinValue = RangeMinValue;
+  else if (OriginalValue < MinimumValidRange) {
+    MinimumValidRange = MinimumValidRange;
   }
   else {
-    RangeMinValue = RangeMaxValue;
+    MinimumValidRange = MaximumValidRange;
   }
-  *(float *)(ContextPointer + 0x18) = RangeMinValue;
-  PackageValidationStatusCode = ValidateResourceParameters(SystemPointer + ValidationContextHashOffset,StackParameter,RangeMinValue);
-  if (PackageValidationStatusCode == 0) {
-          ReleaseSystemContextResources(*(uint8_t *)(SystemPointer + 0x98));
+  *(float *)(ObjectContextPointer + 0x18) = MinimumValidRange;
+  ResourceValidationStatusCode = ValidateResourceParameters(SystemContextPointer + ValidationContextHashOffset, StackParameter, MinimumValidRange);
+  if (ResourceValidationStatusCode == 0) {
+          ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + 0x98));
   }
   return;
 }
@@ -30253,8 +30253,8 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
   int64_t* ExceptionHandlerAddress;
   
   ExceptionHandlerAddress = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
-  if (ExceptionHandlerFunctionAddress != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerFunctionAddress + ExceptionHandlerFunctionPointerOffset))();
+  if (ExceptionHandlerAddress != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerAddress + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
