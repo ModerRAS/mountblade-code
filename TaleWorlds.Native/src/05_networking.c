@@ -942,17 +942,17 @@ void NetworkInitializeConnectionState(void)
  */
 void NetworkResetConnectionPointer(void)
 {
-  uint8_t *ConnectionStateBuffer;                  // 连接状态缓冲区指针
-  int64_t NetworkConnectionContextData;            // 网络连接上下文数据
-  uint64_t *NetworkConnectionDataBufferPointer;   // 网络连接数据缓冲区指针
-  uint32_t NetworkStateFlags;                      // 网络状态标志位
-  int32_t NetworkConnectionHandleId;               // 网络连接句柄ID
+  uint8_t *StateBuffer;                             // 状态缓冲区指针
+  int64_t ConnectionContextData;                   // 连接上下文数据
+  uint64_t *DataBufferPointer;                      // 数据缓冲区指针
+  uint32_t StateFlags;                              // 状态标志位
+  int32_t ConnectionHandleId;                       // 连接句柄ID
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(NetworkStateFlags, NetworkConnectionHandleId) + ConnectionStateBufferOffset);
+  StateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + ConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
-  *NetworkConnectionDataBufferPointer = (uint64_t)*(uint *)(NetworkConnectionContextData + ConnectionStateDataOffset);
+  *DataBufferPointer = (uint64_t)*(uint *)(ConnectionContextData + ConnectionStateDataOffset);
   
   // 清理连接堆栈
   CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);

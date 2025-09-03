@@ -5179,26 +5179,26 @@ void CleanupSystemResources(void)
  */
 uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
 {
-  uint8_t ValidationStatus;
-  int64_t MemoryAddress;
+  uint8_t ObjectValidationStatus;
+  int64_t ValidatedMemoryAddress;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &MemoryAddress);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  ObjectValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &ValidatedMemoryAddress);
+  if ((int)ObjectValidationStatus != 0) {
+    return ObjectValidationStatus;
   }
   
-  if (MemoryAddress == 0) {
-    MemoryAddress = 0;
+  if (ValidatedMemoryAddress == 0) {
+    ValidatedMemoryAddress = 0;
   }
   else {
-    MemoryAddress = MemoryAddress - 8;
+    ValidatedMemoryAddress = ValidatedMemoryAddress - 8;
   }
   
-  if (*(int64_t *)(MemoryAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(MemoryAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset), 1);
   return 0;
 }
 
@@ -19746,21 +19746,21 @@ uint8_t ProcessResourceTablePointerEntry(int64_t ResourceContext, uint8_t *Resou
                 }
                 ResourceHash = CalculateResourceHash(*ValidationContext,dataContext + ResourceTableOffsetOctonary);
                 if ((int)ResourceHash == 0) {
-                  if (*(int *)(ResourceData[1] + 0x18) != 0) {
+                  if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
                     return ErrorInvalidObjectHandle;
                   }
-                  ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + 0x74);
+                  ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetNonary);
                   if ((int)ResourceHash == 0) {
                     if (*(int *)(ResourceData[1] + 0x18) != 0) {
                       return ErrorInvalidObjectHandle;
                     }
                     ResourceHash = CalculateResourceHash(*ValidationContext,dataContext + ResourceContextSecondaryOffset);
                     if ((int)ResourceHash == 0) {
-                      if (*(uint *)(ResourceData + 8) < 0x74) {
+                      if (*(uint *)(ResourceData + 8) < ResourceTableSizeLimit) {
                         ResourceHash = 0;
                       }
-                      else if (*(int *)(ResourceData[1] + 0x18) == 0) {
-                        ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + 0x5c);
+                      else if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) == 0) {
+                        ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetDenary);
                       }
                       else {
                         ResourceHash = ErrorInvalidObjectHandle;
