@@ -4772,31 +4772,26 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
-uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
+uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
-  uint8_t ValidationStatus;
+  uint8_t ValidationResult;
   int64_t ObjectValidationBuffer [4];
   
-  // 验证对象上下文的有效性
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationBuffer);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationBuffer);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
   
-  // 调整对象验证上下文指针
   if (ObjectValidationBuffer[0] != 0) {
     ObjectValidationBuffer[0] = ObjectValidationBuffer[0] - 8;
   }
   
-  // 获取验证后的对象内存指针
   ValidatedObjectMemoryAddress = *(int64_t *)(ObjectValidationBuffer[0] + ObjectHandleMemoryOffset);
   if (ValidatedObjectMemoryAddress != 0) {
-    // 增加对象引用计数
     *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
-    // 检查系统状态
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
-      return ValidationStatus;
+    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationResult = CheckSystemStatus(), (int)ValidationResult != 0)) {
+      return ValidationResult;
     }
     return 0;
   }
@@ -4814,24 +4809,24 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文参数，包含对象的初始化信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandleBasic(int64_t ObjectContext) {
-  uint8_t ValidationStatus;
-  int64_t SystemContextHandle;
+uint8_t InitializeBasicObjectHandle(int64_t ObjectContext) {
+  uint8_t ValidationResult;
+  int64_t SystemContextPointer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &SystemContextHandle);
-  if ((int)ValidationStatus == 0) {
-    if (SystemContextHandle == 0) {
-      SystemContextHandle = 0;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &SystemContextPointer);
+  if ((int)ValidationResult == 0) {
+    if (SystemContextPointer == 0) {
+      SystemContextPointer = 0;
     }
     else {
-      SystemContextHandle = SystemContextHandle - 8;
+      SystemContextPointer = SystemContextPointer - 8;
     }
-    if (*(int64_t *)(SystemContextHandle + ObjectHandleMemoryOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(SystemContextHandle + ObjectHandleMemoryOffset), 1);
+    if (*(int64_t *)(SystemContextPointer + ObjectHandleMemoryOffset) != 0) {
+            ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + ObjectHandleMemoryOffset), 1);
     }
-    ValidationStatus = 0;
+    ValidationResult = 0;
   }
-  return ValidationStatus;
+  return ValidationResult;
 }
 
 
@@ -4848,16 +4843,16 @@ uint8_t CleanupObjectHandle(void)
 
 {
   int64_t HandleIdentifier = 0;
-  int64_t MemoryPointer;
+  int64_t MemoryAddressPointer;
   
   if (HandleIdentifier == 0) {
-    MemoryPointer = 0;
+    MemoryAddressPointer = 0;
   }
   else {
-    MemoryPointer = HandleIdentifier - 8;
+    MemoryAddressPointer = HandleIdentifier - 8;
   }
-  if (*(int64_t *)(MemoryPointer + ObjectHandleMemoryOffset) != 0) {
-          ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + ObjectHandleMemoryOffset), 1);
+  if (*(int64_t *)(MemoryAddressPointer + ObjectHandleMemoryOffset) != 0) {
+          ExecuteSystemExitOperation(*(int64_t *)(MemoryAddressPointer + ObjectHandleMemoryOffset), 1);
   }
   return 0;
 }
@@ -4871,10 +4866,10 @@ uint8_t CleanupObjectHandle(void)
  * 
  * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作
  */
-uint8_t ValidateCharacterParameter(char CharacterToValidate)
+uint8_t ValidateCharacterParameter(char CharToValidate)
 
 {
-  if (CharacterToValidate != '\0') {
+  if (CharToValidate != '\0') {
           ExecuteSystemExitOperation();
   }
   return 0;
@@ -29964,11 +29959,11 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* PrimaryExceptionHandlerFunctionPointer;
+  int64_t* PrimaryExceptionHandlerPointer;
   
-  PrimaryExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
-  if (PrimaryExceptionHandlerFunctionPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)PrimaryExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
+  PrimaryExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  if (PrimaryExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)PrimaryExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -29987,11 +29982,11 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t** SecondaryExceptionHandlerFunctionPointer;
+  int64_t** SecondaryExceptionHandlerPointer;
   
-  SecondaryExceptionHandlerFunctionPointer = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
-  if (SecondaryExceptionHandlerFunctionPointer != (int64_t *)0x0) {
-    (**(code **)(*SecondaryExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
+  SecondaryExceptionHandlerPointer = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
+  if (SecondaryExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(code **)(*SecondaryExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
