@@ -35721,7 +35721,7 @@ void ExecuteSystemResourceOperation(long long systemResourcePointer, void* confi
  * @param systemResourcePointer 系统资源指针的指针
  * @return 返回系统资源指针的指针
  * 
- *FUN_18005b870：InitializeSystemResourceManager
+ *InitializeSystemResourceManagerSecondary
  */
 void** InitializeSystemResourceManager(void** systemResourcePointer)
 
