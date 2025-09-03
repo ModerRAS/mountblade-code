@@ -54075,7 +54075,7 @@ void UnwindReleaseSystemResourceAtMainOffset(uint8_t ObjectContext,int64_t Valid
 
 
 
-void UnwindReleaseSystemResourceAt200(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindReleaseSystemResourceAtPrimaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x44) & 1) != 0) {
