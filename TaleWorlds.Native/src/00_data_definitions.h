@@ -7,97 +7,98 @@
 #define DATA_DEFINITIONS_H
 
 // 全局系统数据指针
-void* SystemGlobalData;
+void* GlobalSystemData;
+
 // 系统字符串缓冲区 - 用于存储系统字符串数据
-void* SystemStringBufferMain;
-void* SystemStringBufferSecondary;
-void* SystemStringBufferTertiary;
-void* SystemStringBufferQuaternary;
-void* SystemStringBufferQuinary;
-void* SystemStringBufferSenary;
-void* SystemStringBufferSeptenary;
-void* SystemStringBufferOctonary;
-void* SystemStringBufferNonary;
-void* SystemStringBufferDenary;
-void* SystemStringBufferUndenary;
-void* SystemStringBufferDuodenary;
-void* SystemStringBufferTredecenary;
-void* SystemStringBufferQuattuordecenary;
-void* SystemStringBufferQuindecenary;
-void* SystemStringBufferSexdecenary;
-void* SystemStringBufferSeptendecenary;
-void* SystemStringBufferOctodecenary;
-void* SystemStringBufferNovemdecenary;
-void* SystemStringBufferVigesimal;
-void* SystemStringBufferUnvigesimal;
-void* SystemStringBufferDuovigesimal;
-void* SystemStringBufferTrevigesimal;
-void* SystemStringBufferQuattuorvigesimal;
-void* SystemStringBufferQuinvigesimal;
-void* SystemStringBufferSexvigesimal;
-void* SystemStringBufferSeptenvigesimal;
-void* SystemStringBufferOctovigesimal;
-void* SystemStringBufferNovemvigesimal;
-void* SystemStringBufferTrigesimal;
+void* PrimaryStringBuffer;
+void* SecondaryStringBuffer;
+void* TertiaryStringBuffer;
+void* QuaternaryStringBuffer;
+void* QuinaryStringBuffer;
+void* SenaryStringBuffer;
+void* SeptenaryStringBuffer;
+void* OctonaryStringBuffer;
+void* NonaryStringBuffer;
+void* DenaryStringBuffer;
+void* UndenaryStringBuffer;
+void* DuodenaryStringBuffer;
+void* TredecenaryStringBuffer;
+void* QuattuordecenaryStringBuffer;
+void* QuindecenaryStringBuffer;
+void* SexdecenaryStringBuffer;
+void* SeptendecenaryStringBuffer;
+void* OctodecenaryStringBuffer;
+void* NovemdecenaryStringBuffer;
+void* VigesimalStringBuffer;
+void* UnvigesimalStringBuffer;
+void* DuovigesimalStringBuffer;
+void* TrevigesimalStringBuffer;
+void* QuattuorvigesimalStringBuffer;
+void* QuinvigesimalStringBuffer;
+void* SexvigesimalStringBuffer;
+void* SeptenvigesimalStringBuffer;
+void* OctovigesimalStringBuffer;
+void* NovemvigesimalStringBuffer;
+void* TrigesimalStringBuffer;
 
 // 系统内存池 - 用于动态内存分配
-void* SystemMemoryPool;
+void* GlobalMemoryPool;
 
 // 系统内存配置缓冲区 - 用于存储内存配置数据
-void* SystemMemoryConfigBufferMain;
-void* SystemMemoryConfigBufferSecondary;
-void* SystemMemoryConfigBufferTertiary;
-void* SystemMemoryConfigBufferQuaternary;
-void* SystemMemoryConfigBufferQuinary;
-void* SystemMemoryConfigBufferSenary;
-void* SystemMemoryConfigBufferSeptenary;
-void* SystemMemoryConfigBufferOctonary;
-void* SystemMemoryConfigBufferNonary;
-void* SystemMemoryConfigBufferDenary;
-void* SystemMemoryConfigBufferUndenary;
-void* SystemMemoryConfigBufferDuodenary;
-void* SystemMemoryConfigBufferTredecenary;
-void* SystemMemoryConfigBufferQuattuordecenary;
-void* SystemMemoryConfigBufferQuindecenary;
-void* SystemMemoryConfigBufferSexdecenary;
-void* SystemMemoryConfigBufferSeptendecenary;
-void* SystemMemoryConfigBufferOctodecenary;
+void* PrimaryMemoryConfigBuffer;
+void* SecondaryMemoryConfigBuffer;
+void* TertiaryMemoryConfigBuffer;
+void* QuaternaryMemoryConfigBuffer;
+void* QuinaryMemoryConfigBuffer;
+void* SenaryMemoryConfigBuffer;
+void* SeptenaryMemoryConfigBuffer;
+void* OctonaryMemoryConfigBuffer;
+void* NonaryMemoryConfigBuffer;
+void* DenaryMemoryConfigBuffer;
+void* UndenaryMemoryConfigBuffer;
+void* DuodenaryMemoryConfigBuffer;
+void* TredecenaryMemoryConfigBuffer;
+void* QuattuordecenaryMemoryConfigBuffer;
+void* QuindecenaryMemoryConfigBuffer;
+void* SexdecenaryMemoryConfigBuffer;
+void* SeptendecenaryMemoryConfigBuffer;
+void* OctodecenaryMemoryConfigBuffer;
 
 // 系统内存池缓冲区 - 用于存储内存池数据
-void* SystemMemoryPoolBufferMain;
-void* SystemMemoryPoolBufferSecondary;
-void* SystemMemoryPoolBufferTertiary;
-void* SystemMemoryPoolBufferQuaternary;
+void* PrimaryMemoryPoolBuffer;
+void* SecondaryMemoryPoolBuffer;
+void* TertiaryMemoryPoolBuffer;
+void* QuaternaryMemoryPoolBuffer;
 
 // 系统字符串内存缓冲区 - 用于存储字符串内存数据
-void* SystemStringMemoryBufferMain;
-void* SystemStringMemoryBufferSecondary;
-void* SystemStringMemoryBufferTertiary;
-void* SystemStringMemoryBufferQuaternary;
+void* PrimaryStringMemoryBuffer;
+void* SecondaryStringMemoryBuffer;
+void* TertiaryStringMemoryBuffer;
+void* QuaternaryStringMemoryBuffer;
 
 // 系统状态标志 - 用于存储系统运行状态
-char SystemStatusFlagMain;
-char SystemStatusFlagSecondary;
+char PrimarySystemStatusFlag;
+char SecondarySystemStatusFlag;
 
 // 系统字符串数据缓冲区 - 用于存储字符串处理数据
-void* SystemStringDataBufferMain;
-void* SystemStringDataBufferSecondary;
-void* SystemStringDataBufferTertiary;
+void* PrimaryStringDataBuffer;
+void* SecondaryStringDataBuffer;
+void* TertiaryStringDataBuffer;
 
 // 系统字符串标志 - 用于存储字符串处理状态
-char SystemStringFlagMain;
-char SystemStringFlagSecondary;
-char SystemStringFlagTertiary;
+char PrimaryStringFlag;
+char SecondaryStringFlag;
+char TertiaryStringFlag;
 
 // 系统配置缓冲区 - 用于存储系统配置数据
-void* SystemConfigurationBufferMain;
-void* SystemConfigurationBufferSecondary;
+void* PrimarySystemConfigurationBuffer;
+void* SecondarySystemConfigurationBuffer;
 
 // 系统配置标志 - 用于存储系统配置状态
-char SystemConfigurationFlagMain;
+char PrimarySystemConfigurationFlag;
 
 // 系统常量字符串 - 用于存储系统常量字符串数据
-char* SystemConstantStringMain;
+char* PrimarySystemConstantString;
 
 // 网络配置参数 - 用于存储网络配置的各种参数数据
 
@@ -106,198 +107,198 @@ char* SystemConstantStringMain;
  * 
  * 用于指定网络连接的认证方式和类型
  */
-void* NetworkConfigAuthenticationType;
+void* NetworkAuthenticationType;
 
 /**
  * @brief 网络配置加密算法
  * 
  * 用于指定网络数据传输的加密算法类型
  */
-void* NetworkConfigEncryptionAlgorithm;
+void* NetworkEncryptionAlgorithm;
 
 /**
  * @brief 网络配置压缩方法
  * 
  * 用于指定网络数据压缩的方法和算法
  */
-void* NetworkConfigCompressionMethod;
+void* NetworkCompressionMethod;
 
 /**
  * @brief 网络配置连接超时
  * 
  * 用于设置网络连接的超时时间
  */
-void* NetworkConfigConnectionTimeout;
+void* NetworkConnectionTimeout;
 
 /**
  * @brief 网络配置最大重试次数
  * 
  * 用于设置网络连接失败后的最大重试次数
  */
-void* NetworkConfigMaxRetries;
+void* NetworkMaxRetries;
 
 /**
  * @brief 网络配置缓冲区大小
  * 
  * 用于设置网络数据传输的缓冲区大小
  */
-void* NetworkConfigBufferSize;
+void* NetworkBufferSize;
 
 /**
  * @brief 网络配置数据包大小
  * 
  * 用于设置网络数据包的大小限制
  */
-void* NetworkConfigPacketSize;
+void* NetworkPacketSize;
 
 // 网络配置验证参数组 - 用于存储网络配置的验证规则和数据
-void* NetworkConfigValidationParameterReserved1;
-void* NetworkConfigValidationParameterReserved2;
-void* NetworkConfigValidationParameterReserved3;
-void* NetworkConfigValidationParameterReserved4;
-void* NetworkConfigValidationParameterReserved5;
-void* NetworkConfigValidationParameterReserved6;
-void* NetworkConfigValidationParameterReserved7;
-void* NetworkConfigValidationParameterReserved8;
-void* NetworkConfigValidationParameterReserved9;
-void* NetworkConfigValidationParameterReserved10;
-void* NetworkConfigValidationParameterReserved11;
-void* NetworkConfigValidationParameterReserved12;
-void* NetworkConfigValidationParameterReserved13;
-void* NetworkConfigValidationParameterReserved14;
-void* NetworkConfigValidationParameterReserved15;
-void* NetworkConfigValidationParameterReserved16;
-void* NetworkConfigValidationParameterReserved17;
-void* NetworkConfigValidationParameterReserved18;
-void* NetworkConfigValidationParameterReserved19;
-void* NetworkConfigValidationParameterReserved20;
-void* NetworkConfigValidationParameterReserved21;
-void* NetworkConfigValidationParameterReserved22;
-void* NetworkConfigValidationParameterReserved23;
-void* NetworkConfigValidationParameterReserved24;
-void* NetworkConfigValidationParameterReserved25;
-void* NetworkConfigValidationParameterReserved26;
-void* NetworkConfigValidationParameterReserved27;
-void* NetworkConfigValidationParameterReserved28;
-void* NetworkConfigValidationParameterReserved29;
-void* NetworkConfigValidationParameterReserved30;
-void* NetworkConfigValidationParameterReserved31;
-void* NetworkConfigValidationParameterReserved32;
-void* NetworkConfigValidationParameterReserved33;
-void* NetworkConfigValidationParameterReserved34;
-void* NetworkConfigValidationParameterReserved35;
-void* NetworkConfigValidationParameterReserved36;
-void* NetworkConfigValidationParameterReserved37;
-void* NetworkConfigValidationParameterReserved38;
-void* NetworkConfigValidationParameterReserved39;
-void* NetworkConfigValidationParameterReserved40;
-void* NetworkConfigValidationParameterReserved41;
-void* NetworkConfigValidationParameterReserved42;
-void* NetworkConfigValidationParameterReserved43;
-void* NetworkConfigValidationParameterReserved44;
-void* NetworkConfigValidationParameterReserved45;
-void* NetworkConfigValidationParameterReserved46;
-void* NetworkConfigValidationParameterReserved47;
-void* NetworkConfigValidationParameterReserved48;
-void* NetworkConfigValidationParameterReserved49;
-void* NetworkConfigValidationParameterReserved50;
-void* NetworkConfigValidationParameterReserved51;
-void* NetworkConfigValidationParameterReserved52;
-void* NetworkConfigValidationParameterReserved53;
-void* NetworkConfigValidationParameterReserved54;
-void* NetworkConfigValidationParameterReserved55;
-void* NetworkConfigValidationParameterReserved56;
-void* NetworkConfigValidationParameterReserved57;
-void* NetworkConfigValidationParameterReserved58;
-void* NetworkConfigValidationParameterReserved59;
-void* NetworkConfigValidationParameterReserved60;
-void* NetworkConfigValidationParameterReserved61;
-void* NetworkConfigValidationParameterReserved62;
-void* NetworkConfigValidationParameterReserved63;
-void* NetworkConfigValidationParameterReserved64;
-void* NetworkConfigValidationParameterReserved65;
-void* NetworkConfigValidationParameterReserved66;
-void* NetworkConfigValidationParameterReserved67;
-void* NetworkConfigValidationParameterReserved68;
-void* NetworkConfigValidationParameterReserved69;
-void* NetworkConfigValidationParameterReserved70;
-void* NetworkConfigValidationParameterReserved71;
-void* NetworkConfigValidationParameterReserved72;
-void* NetworkConfigValidationParameterReserved73;
-void* NetworkConfigValidationParameterReserved74;
-void* NetworkConfigValidationParameterReserved75;
-void* NetworkConfigValidationParameterReserved76;
-void* NetworkConfigValidationParameterReserved77;
-void* NetworkConfigValidationParameterReserved78;
-void* NetworkConfigValidationParameterReserved79;
-void* NetworkConfigValidationParameterReserved80;
-void* NetworkConfigValidationParameterReserved81;
-void* NetworkConfigValidationParameterReserved82;
-void* NetworkConfigValidationParameterReserved83;
-void* NetworkConfigValidationParameterReserved84;
-void* NetworkConfigValidationParameterReserved85;
-void* NetworkConfigValidationParameterReserved86;
-void* NetworkConfigValidationParameterReserved87;
-void* NetworkConfigValidationParameterReserved88;
-void* NetworkConfigValidationParameterReserved89;
-void* NetworkConfigValidationParameterReserved90;
-void* NetworkConfigValidationParameterReserved91;
-void* NetworkConfigValidationParameterReserved92;
-void* NetworkConfigValidationParameterReserved93;
-void* NetworkConfigValidationParameterReserved94;
-void* NetworkConfigValidationParameterReserved95;
-void* NetworkConfigValidationParameterReserved96;
-void* NetworkConfigValidationParameterReserved97;
-void* NetworkConfigValidationParameterReserved98;
-void* NetworkConfigValidationParameterReserved99;
-void* NetworkConfigValidationParameterReserved100;
+void* NetworkValidationParameter1;
+void* NetworkValidationParameter2;
+void* NetworkValidationParameter3;
+void* NetworkValidationParameter4;
+void* NetworkValidationParameter5;
+void* NetworkValidationParameter6;
+void* NetworkValidationParameter7;
+void* NetworkValidationParameter8;
+void* NetworkValidationParameter9;
+void* NetworkValidationParameter10;
+void* NetworkValidationParameter11;
+void* NetworkValidationParameter12;
+void* NetworkValidationParameter13;
+void* NetworkValidationParameter14;
+void* NetworkValidationParameter15;
+void* NetworkValidationParameter16;
+void* NetworkValidationParameter17;
+void* NetworkValidationParameter18;
+void* NetworkValidationParameter19;
+void* NetworkValidationParameter20;
+void* NetworkValidationParameter21;
+void* NetworkValidationParameter22;
+void* NetworkValidationParameter23;
+void* NetworkValidationParameter24;
+void* NetworkValidationParameter25;
+void* NetworkValidationParameter26;
+void* NetworkValidationParameter27;
+void* NetworkValidationParameter28;
+void* NetworkValidationParameter29;
+void* NetworkValidationParameter30;
+void* NetworkValidationParameter31;
+void* NetworkValidationParameter32;
+void* NetworkValidationParameter33;
+void* NetworkValidationParameter34;
+void* NetworkValidationParameter35;
+void* NetworkValidationParameter36;
+void* NetworkValidationParameter37;
+void* NetworkValidationParameter38;
+void* NetworkValidationParameter39;
+void* NetworkValidationParameter40;
+void* NetworkValidationParameter41;
+void* NetworkValidationParameter42;
+void* NetworkValidationParameter43;
+void* NetworkValidationParameter44;
+void* NetworkValidationParameter45;
+void* NetworkValidationParameter46;
+void* NetworkValidationParameter47;
+void* NetworkValidationParameter48;
+void* NetworkValidationParameter49;
+void* NetworkValidationParameter50;
+void* NetworkValidationParameter51;
+void* NetworkValidationParameter52;
+void* NetworkValidationParameter53;
+void* NetworkValidationParameter54;
+void* NetworkValidationParameter55;
+void* NetworkValidationParameter56;
+void* NetworkValidationParameter57;
+void* NetworkValidationParameter58;
+void* NetworkValidationParameter59;
+void* NetworkValidationParameter60;
+void* NetworkValidationParameter61;
+void* NetworkValidationParameter62;
+void* NetworkValidationParameter63;
+void* NetworkValidationParameter64;
+void* NetworkValidationParameter65;
+void* NetworkValidationParameter66;
+void* NetworkValidationParameter67;
+void* NetworkValidationParameter68;
+void* NetworkValidationParameter69;
+void* NetworkValidationParameter70;
+void* NetworkValidationParameter71;
+void* NetworkValidationParameter72;
+void* NetworkValidationParameter73;
+void* NetworkValidationParameter74;
+void* NetworkValidationParameter75;
+void* NetworkValidationParameter76;
+void* NetworkValidationParameter77;
+void* NetworkValidationParameter78;
+void* NetworkValidationParameter79;
+void* NetworkValidationParameter80;
+void* NetworkValidationParameter81;
+void* NetworkValidationParameter82;
+void* NetworkValidationParameter83;
+void* NetworkValidationParameter84;
+void* NetworkValidationParameter85;
+void* NetworkValidationParameter86;
+void* NetworkValidationParameter87;
+void* NetworkValidationParameter88;
+void* NetworkValidationParameter89;
+void* NetworkValidationParameter90;
+void* NetworkValidationParameter91;
+void* NetworkValidationParameter92;
+void* NetworkValidationParameter93;
+void* NetworkValidationParameter94;
+void* NetworkValidationParameter95;
+void* NetworkValidationParameter96;
+void* NetworkValidationParameter97;
+void* NetworkValidationParameter98;
+void* NetworkValidationParameter99;
+void* NetworkValidationParameter100;
 
 // 系统配置数据缓冲区大小参数
-void* SystemConfigBufferSizeParameter;
+void* SystemConfigurationBufferSizeParameter;
 
 // 系统配置数据验证参数组 - 用于验证系统配置数据的完整性和有效性
-void* SystemConfigDataValidationReserved1;
-void* SystemConfigDataValidationReserved2;
-void* SystemConfigDataValidationReserved3;
-void* SystemConfigDataValidationReserved4;
-void* SystemConfigDataValidationReserved5;
-void* SystemConfigDataValidationReserved6;
-void* SystemConfigDataValidationReserved7;
-void* SystemConfigDataValidationReserved8;
-void* SystemConfigDataValidationReserved9;
-void* SystemConfigDataValidationReserved10;
-void* SystemConfigDataValidationReserved11;
-void* SystemConfigDataValidationReserved12;
-void* SystemConfigDataValidationReserved13;
-void* SystemConfigDataValidationReserved14;
-void* SystemConfigDataValidationReserved15;
-void* SystemConfigDataValidationReserved16;
-void* SystemConfigDataValidationReserved17;
-void* SystemConfigDataValidationReserved18;
-void* SystemConfigDataValidationReserved19;
-void* SystemConfigDataValidationReserved20;
-void* SystemConfigDataValidationReserved21;
-void* SystemConfigDataValidationReserved22;
-void* SystemConfigDataValidationReserved23;
-void* SystemConfigDataValidationReserved24;
-void* SystemConfigDataValidationReserved25;
-void* SystemConfigDataValidationReserved26;
-void* SystemConfigDataValidationReserved27;
-void* SystemConfigDataValidationReserved28;
-void* SystemConfigDataValidationReserved29;
-void* SystemConfigDataValidationReserved30;
-void* SystemConfigDataValidationReserved31;
-void* SystemConfigDataValidationReserved32;
-void* SystemConfigDataValidationReserved33;
-void* SystemConfigDataValidationReserved34;
-void* SystemConfigDataValidationReserved35;
-void* SystemConfigDataValidationReserved36;
-void* SystemConfigDataValidationReserved37;
-void* SystemConfigDataValidationReserved38;
-void* SystemConfigDataValidationReserved39;
-void* SystemConfigDataValidationReserved40;
-void* SystemConfigDataValidationReserved41;
-void* SystemConfigDataValidationReserved42;
+void* SystemConfigurationValidationParameter1;
+void* SystemConfigurationValidationParameter2;
+void* SystemConfigurationValidationParameter3;
+void* SystemConfigurationValidationParameter4;
+void* SystemConfigurationValidationParameter5;
+void* SystemConfigurationValidationParameter6;
+void* SystemConfigurationValidationParameter7;
+void* SystemConfigurationValidationParameter8;
+void* SystemConfigurationValidationParameter9;
+void* SystemConfigurationValidationParameter10;
+void* SystemConfigurationValidationParameter11;
+void* SystemConfigurationValidationParameter12;
+void* SystemConfigurationValidationParameter13;
+void* SystemConfigurationValidationParameter14;
+void* SystemConfigurationValidationParameter15;
+void* SystemConfigurationValidationParameter16;
+void* SystemConfigurationValidationParameter17;
+void* SystemConfigurationValidationParameter18;
+void* SystemConfigurationValidationParameter19;
+void* SystemConfigurationValidationParameter20;
+void* SystemConfigurationValidationParameter21;
+void* SystemConfigurationValidationParameter22;
+void* SystemConfigurationValidationParameter23;
+void* SystemConfigurationValidationParameter24;
+void* SystemConfigurationValidationParameter25;
+void* SystemConfigurationValidationParameter26;
+void* SystemConfigurationValidationParameter27;
+void* SystemConfigurationValidationParameter28;
+void* SystemConfigurationValidationParameter29;
+void* SystemConfigurationValidationParameter30;
+void* SystemConfigurationValidationParameter31;
+void* SystemConfigurationValidationParameter32;
+void* SystemConfigurationValidationParameter33;
+void* SystemConfigurationValidationParameter34;
+void* SystemConfigurationValidationParameter35;
+void* SystemConfigurationValidationParameter36;
+void* SystemConfigurationValidationParameter37;
+void* SystemConfigurationValidationParameter38;
+void* SystemConfigurationValidationParameter39;
+void* SystemConfigurationValidationParameter40;
+void* SystemConfigurationValidationParameter41;
+void* SystemConfigurationValidationParameter42;
 
 // 系统配置数据扩展参数组 - 用于扩展系统配置数据和存储额外配置信息
 void* SystemConfigDataExtendedReserved1;
@@ -2819,22 +2820,22 @@ int ProcessSystemEvent(uint64_t SystemId,uint64_t EventType,uint64_t EventData,u
 }
   SystemStringBufferAH = 0;
   SystemInitializationStatus = 7;
-  strcpy_s(&SystemStringBufferAH,128,&UnknownDataPointer180a0f5b8,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&SystemStringBufferAH,128,&SystemStringDataPointer,StringProcessorFlags,SystemMutexFlags);
   SystemMemoryConfigReference = &SystemMemoryConfigTemplate;
   SystemStringBufferReference = &SystemStringBufferAI;
   SystemStringBufferAI = 0;
   SystemBufferSizeParameter = 9;
-  strcpy_s(&SystemStringBufferAI,128,&UnknownDataPointer180a0f190);
+  strcpy_s(&SystemStringBufferAI,128,&SystemStringDataSecondaryPointer);
   SystemMemoryConfigInstance = &SystemMemoryConfigTemplate;
   SystemPathBufferReference = &SystemPathBufferA;
   SystemPathBufferA = 0;
   SystemInitializationFlagPrimary = 0xb;
-  strcpy_s(&SystemPathBufferA,128,&UnknownDataPointer180a0f168);
+  strcpy_s(&SystemPathBufferA,128,&SystemPathDataPrimaryPointer);
   SystemMemoryConfigPointerPrimary = &SystemMemoryConfigTemplate;
   SystemPathBufferInstanceA = &SystemPathBufferB;
   SystemPathBufferB = 0;
   SystemInitializationFlagSecondary = 7;
-  strcpy_s(&SystemPathBufferB,128,&UnknownDataPointer180a0f188);
+  strcpy_s(&SystemPathBufferB,128,&SystemPathDataSecondaryPointer);
   SystemMemoryConfigPointerSecondary = &SystemMemoryConfigTemplate;
   SystemMemoryConfigPointerTertiary = &SystemMemoryDataBufferPrimary;
   SystemMemoryDataBufferPrimary = 0;
@@ -2844,12 +2845,12 @@ int ProcessSystemEvent(uint64_t SystemId,uint64_t EventType,uint64_t EventData,u
   SystemMemoryConfigPointerQuinary = &SystemMemoryDataBufferSecondary;
   SystemMemoryDataBufferSecondary = 0;
   SystemMemoryBufferSizeSecondary = 9;
-  strcpy_s(&SystemMemoryDataBufferSecondary,128,&UnknownDataPointer180a24c50);
+  strcpy_s(&SystemMemoryDataBufferSecondary,128,&SystemMemoryDataPrimaryPointer);
   SystemMemoryConfigPointerSenary = &SystemMemoryConfigTemplate;
   SystemMemoryConfigPointerSeptenary = &SystemMemoryDataBufferTertiary;
   SystemMemoryDataBufferTertiary = 0;
   SystemMemoryBufferSizeTertiary = 0xc;
-  strcpy_s(&SystemMemoryDataBufferTertiary,128,&UnknownDataPointer180a24c60);
+  strcpy_s(&SystemMemoryDataBufferTertiary,128,&SystemMemoryDataSecondaryPointer);
   ModuleInitializationResult = RegisterSystemModule(&SystemModuleEntryPointC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -3625,7 +3626,7 @@ Label_EncryptionSpaceFound:
                   if (UnsignedIndex < StackValidationLimit2) {
                     StringPointer = (char *)(StackStringData3 + BufferSize8);
                     do {
-                      if (*StringPointer == ' ') goto Label_18004dc6a;
+                      if (*StringPointer == ' ') goto Label_StringSpaceFound;
                       BufferSize6 = (int)BufferSize8 + 1;
                       BufferSize8 = (ulonglong)BufferSize6;
                       StringPointer = StringPointer + 1;
