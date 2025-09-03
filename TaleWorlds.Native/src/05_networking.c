@@ -422,63 +422,74 @@ uint32_t NetworkMaxPacketSize;                            // 网络最大数据�
 uint32_t NetworkEncryptionKey;                            // 网络加密密钥
 uint32_t NetworkCompressionLevel;                         // 网络压缩级别
 
-void *NetworkConnectionInitializationConfigDataPointer;
-void *NetworkConnectionAlternateConfigDataPointer;
-void *NetworkConnectionHeaderConfigDataPointer;
-void *NetworkConnectionDataConfigDataPointer;
-void *NetworkConnectionRequestConfigDataPointer;
-void *NetworkConnectionFirstProcessingConfigDataPointer;
-void *NetworkConnectionSecondaryProcessingConfigDataPointer;
-void *NetworkConnectionTertiaryProcessingConfigDataPointer;
-void *NetworkConnectionQuaternaryProcessingConfigDataPointer;
-void *NetworkConnectionQuinaryProcessingConfigDataPointer;
+// 网络连接配置数据指针
+void *NetworkConnectionInitializationConfigDataPointer;    // 网络连接初始化配置数据指针
+void *NetworkConnectionAlternateConfigDataPointer;         // 网络连接备用配置数据指针
+void *NetworkConnectionHeaderConfigDataPointer;            // 网络连接头部配置数据指针
+void *NetworkConnectionDataConfigDataPointer;              // 网络连接数据配置数据指针
+void *NetworkConnectionRequestConfigDataPointer;           // 网络连接请求配置数据指针
+void *NetworkConnectionFirstProcessingConfigDataPointer;   // 网络连接第一处理配置数据指针
+void *NetworkConnectionSecondaryProcessingConfigDataPointer;// 网络连接第二处理配置数据指针
+void *NetworkConnectionTertiaryProcessingConfigDataPointer;// 网络连接第三处理配置数据指针
+void *NetworkConnectionQuaternaryProcessingConfigDataPointer;// 网络连接第四处理配置数据指针
+void *NetworkConnectionQuinaryProcessingConfigDataPointer;  // 网络连接第五处理配置数据指针
 
-uint32_t NetworkConnectionContextData;
-uint32_t NetworkConnectionSecurityContext;
-uint32_t NetworkConnectionBufferPool;
-uint32_t NetworkConnectionRequestData;
-uint32_t NetworkConnectionResponseData;
-uint32_t NetworkConnectionErrorData;
-uint32_t NetworkConnectionStatusData;
-uint32_t NetworkConnectionTimeoutData;
-uint32_t NetworkConnectionValidationData;
-uint32_t NetworkConnectionEncryptionData;
-uint32_t NetworkSecurityContextData;
-uint32_t NetworkConnectionCompressionData;
+// 网络连接上下文和数据变量
+uint32_t NetworkConnectionContextData;                      // 网络连接上下文数据
+uint32_t NetworkConnectionSecurityContext;                 // 网络连接安全上下文
+uint32_t NetworkConnectionBufferPool;                      // 网络连接缓冲池
+uint32_t NetworkConnectionRequestData;                     // 网络连接请求数据
+uint32_t NetworkConnectionResponseData;                    // 网络连接响应数据
+uint32_t NetworkConnectionErrorData;                       // 网络连接错误数据
+uint32_t NetworkConnectionStatusData;                      // 网络连接状态数据
+uint32_t NetworkConnectionTimeoutData;                     // 网络连接超时数据
+uint32_t NetworkConnectionValidationData;                   // 网络连接验证数据
+uint32_t NetworkConnectionEncryptionData;                   // 网络连接加密数据
+uint32_t NetworkConnectionCompressionData;                 // 网络连接压缩数据
 
-uint32_t NetworkValidationBufferPool;
-uint32_t NetworkPacketEncryptionBuffer;
-uint32_t NetworkPacketCompressionBuffer;
-uint32_t NetworkPacketRoutingBuffer;
-uint32_t NetworkPacketQueueBuffer;
-uint32_t NetworkPacketCacheBuffer;
-uint32_t NetworkPacketFilterBuffer;
+// 网络缓冲区管理变量
+uint32_t NetworkValidationBufferPool;                      // 网络验证缓冲池
+uint32_t NetworkPacketEncryptionBuffer;                    // 网络数据包加密缓冲区
+uint32_t NetworkPacketCompressionBuffer;                   // 网络数据包压缩缓冲区
+uint32_t NetworkPacketRoutingBuffer;                       // 网络数据包路由缓冲区
+uint32_t NetworkPacketQueueBuffer;                         // 网络数据包队列缓冲区
+uint32_t NetworkPacketCacheBuffer;                         // 网络数据包缓存缓冲区
+uint32_t NetworkPacketFilterBuffer;                        // 网络数据包过滤缓冲区
 
-uint32_t NetworkSecurityContextDataPrimary;
-uint32_t NetworkSecurityValidationData;
-uint32_t NetworkSecurityEncryptionData;
-uint32_t NetworkSecurityAuthenticationData;
-uint32_t NetworkSecurityAuthorizationData;
-uint32_t NetworkSecurityAuditData;
-uint32_t NetworkSecurityPolicyData;
-uint32_t NetworkSecurityCertificateData;
+// 网络安全相关变量
+uint32_t NetworkSecurityContextDataPrimary;                // 网络安全上下文主要数据
+uint32_t NetworkSecurityValidationData;                    // 网络安全验证数据
+uint32_t NetworkSecurityEncryptionData;                    // 网络安全加密数据
+uint32_t NetworkSecurityAuthenticationData;                 // 网络安全认证数据
+uint32_t NetworkSecurityAuthorizationData;                  // 网络安全授权数据
+uint32_t NetworkSecurityAuditData;                         // 网络安全审计数据
+uint32_t NetworkSecurityPolicyData;                        // 网络安全策略数据
+uint32_t NetworkSecurityCertificateData;                   // 网络安全证书数据
 
-uint32_t NetworkConnectionPoolData;
-uint32_t NetworkConnectionPoolMetadata;
-uint32_t NetworkConnectionPoolStatistics;
-uint32_t NetworkConnectionPoolConfiguration;
-uint32_t NetworkConnectionPoolHealthStatus;
-uint32_t NetworkConnectionPoolPerformanceMetrics;
-uint32_t NetworkConnectionPoolAllocationCount;
-uint32_t NetworkConnectionPoolDeallocationCount;
+// 网络连接池管理变量
+uint32_t NetworkConnectionPoolData;                        // 网络连接池数据
+uint32_t NetworkConnectionPoolMetadata;                    // 网络连接池元数据
+uint32_t NetworkConnectionPoolStatistics;                  // 网络连接池统计信息
+uint32_t NetworkConnectionPoolConfiguration;                // 网络连接池配置
+uint32_t NetworkConnectionPoolHealthStatus;                 // 网络连接池健康状态
+uint32_t NetworkConnectionPoolPerformanceMetrics;           // 网络连接池性能指标
+uint32_t NetworkConnectionPoolAllocationCount;              // 网络连接池分配计数
+uint32_t NetworkConnectionPoolDeallocationCount;            // 网络连接池释放计数
+
+// =============================================================================
+// 网络连接池和套接字管理函数
+// =============================================================================
 
 /**
- * 初始化网络连接池 - 初始化网络连接池
- * 此函数负责初始化网络连接池，为后续连接做准备
+ * @brief 初始化网络连接池
+ * 
+ * 初始化网络连接池，为后续连接做准备
+ * 
  * @note 此函数会在系统启动时调用，确保连接池可用
  */
 void InitializeNetworkConnectionPool(void);
 
+// 网络连接配置数据结构指针
 void *NetworkConnectionContextTemplate = &NetworkConnectionContextDataStructure;
 void *NetworkConnectionPrimaryConfigData = &NetworkConnectionPrimaryConfigDataStructure;
 void *NetworkConnectionSecondaryConfigData = &NetworkConnectionSecondaryConfigDataStructure;
@@ -492,176 +503,228 @@ void *NetworkConnectionRoutingConfigDataTertiary = &NetworkConnectionRoutingConf
 void *NetworkConnectionRoutingConfigDataQuaternary = &NetworkConnectionRoutingConfigDataStructureD;
 
 /**
- * 初始化网络套接字句柄 - 初始化网络套接字句柄
- * 此函数负责初始化网络套接字句柄，为网络通信做准备
+ * @brief 初始化网络套接字句柄
+ * 
+ * 初始化网络套接字句柄，为网络通信做准备
+ * 
  * @note 此函数会在网络连接建立前调用
  */
 void InitializeNetworkSocketHandle(void);
 
 /**
- * 绑定网络套接字 - 绑定网络套接字
- * 此函数负责绑定网络套接字到指定的地址和端口
+ * @brief 绑定网络套接字
+ * 
+ * 绑定网络套接字到指定的地址和端口
+ * 
  * @note 此函数使用全局配置中的IP地址和端口号
  */
 void BindNetworkSocket(void);
 
+// 网络套接字绑定信息
 uint32_t NetworkSocketBindingInfo;
 
 /**
- * 监听网络连接 - 监听网络连接
- * 此函数负责监听网络连接请求，等待客户端连接
+ * @brief 监听网络连接
+ * 
+ * 监听网络连接请求，等待客户端连接
+ * 
  * @note 此函数会使套接字进入监听状态
  */
 void ListenNetworkConnections(void);
 
 /**
- * 接受网络连接 - 接受网络连接
- * 此函数负责接受网络连接请求，建立新的客户端连接
+ * @brief 接受网络连接
+ * 
+ * 接受网络连接请求，建立新的客户端连接
+ * 
  * @note 此函数会为新的连接分配资源并初始化连接状态
  */
 void AcceptNetworkConnection(void);
 
 /**
- * 关闭网络连接 - 关闭网络连接
- * 此函数负责关闭网络连接，释放相关资源
+ * @brief 关闭网络连接
+ * 
+ * 关闭网络连接，释放相关资源
+ * 
  * @note 此函数会清理连接状态并释放分配的资源
  */
 void CloseNetworkConnection(void);
 
+// =============================================================================
+// 网络安全和验证函数
+// =============================================================================
+
 /**
- * 验证网络连接ID - 验证网络连接的ID
- * 此函数负责验证网络连接的ID是否有效
+ * @brief 验证网络连接ID
+ * 
+ * 验证网络连接的ID是否有效和安全
+ * 
  * @param ConnectionContext 连接上下文
  * @param PacketData 数据包数据
  * @param ValidationResult 验证结果
- * @return 验证结果，0表示成功，其他值表示错误码
+ * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
 int32_t ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
 
 /**
- * 网络安全守卫检查 - 网络安全守卫检查
- * 此函数负责进行网络安全守卫检查
+ * @brief 网络安全守卫检查
+ * 
+ * 进行网络安全守卫检查，确保网络连接的安全性
+ * 
  * @param SecurityValue 安全值
  */
 void NetworkSecurityGuardCheck(uint64_t SecurityValue);
 
 /**
- * 清理网络连接上下文 - 清理网络连接的上下文
- * 此函数负责清理网络连接的上下文数据
+ * @brief 清理网络连接上下文
+ * 
+ * 清理网络连接的上下文数据，释放相关资源
+ * 
  * @param ConnectionContext 连接上下文
- * @return 清理结果，0表示成功，其他值表示错误码
+ * @return int32_t 清理结果，0表示成功，其他值表示错误码
  */
 int32_t CleanupNetworkConnectionContext(int64_t ConnectionContext);
 
 /**
- * 验证缓冲区超时 - 验证缓冲区的超时时间
- * 此函数负责验证缓冲区的超时时间
+ * @brief 验证缓冲区超时
+ * 
+ * 验证缓冲区的超时时间，确保连接的时效性
+ * 
  * @param BufferData 缓冲区数据
  * @param TimeoutValue 超时值
  * @param ValidationResult 验证结果
- * @return 验证结果，0表示成功，其他值表示错误码
+ * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
 int32_t ValidateBufferTimeout(int64_t BufferData, int32_t TimeoutValue, int64_t ValidationResult);
 
 /**
- * 使用加密处理缓冲区 - 使用加密处理缓冲区
- * 此函数负责使用加密处理缓冲区数据
+ * @brief 使用加密处理缓冲区
+ * 
+ * 使用加密处理缓冲区数据，确保数据传输的安全性
+ * 
  * @param EncryptedBuffer 加密缓冲区
  * @param BufferSize 缓冲区大小
  * @param EncryptionKey 加密密钥
- * @return 处理结果，0表示成功，其他值表示错误码
+ * @return int32_t 处理结果，0表示成功，其他值表示错误码
  */
 int32_t ProcessBufferWithEncryption(int64_t EncryptedBuffer, int32_t BufferSize, int64_t EncryptionKey);
 
 /**
- * 管理网络句柄 - 管理网络句柄
- * 此函数负责管理网络句柄
+ * @brief 管理网络句柄
+ * 
+ * 管理网络句柄，确保句柄的有效性和安全性
+ * 
  * @param ConnectionHandle 连接句柄
  * @param HandleSize 句柄大小
  * @param HandleContext 句柄上下文
- * @return 管理结果，0表示成功，其他值表示错误码
+ * @return int32_t 管理结果，0表示成功，其他值表示错误码
  */
 int32_t ManageNetworkHandle(int64_t ConnectionHandle, int32_t HandleSize, int64_t HandleContext);
 
 /**
- * 网络加密数据包数据 - 网络加密数据包数据
- * 此函数负责对网络数据包数据进行加密
+ * @brief 网络加密数据包数据
+ * 
+ * 对网络数据包数据进行加密，确保数据传输的安全性
+ * 
  * @param PacketData 数据包数据
  * @param PacketSize 数据包大小
  * @param EncryptionKey 加密密钥
- * @return 加密结果，0表示成功，其他值表示错误码
+ * @return int32_t 加密结果，0表示成功，其他值表示错误码
  */
 int32_t NetworkEncryptPacketData(int64_t PacketData, int32_t PacketSize, int64_t EncryptionKey);
 
 /**
- * 网络处理安全上下文 - 网络处理安全上下文
- * 此函数负责处理网络安全上下文
+ * @brief 网络处理安全上下文
+ * 
+ * 处理网络安全上下文，确保网络连接的安全性
+ * 
  * @param SecurityContext 安全上下文
  * @param ContextSize 上下文大小
  * @param ContextData 上下文数据
- * @return 处理结果，0表示成功，其他值表示错误码
+ * @return int32_t 处理结果，0表示成功，其他值表示错误码
  */
 int32_t NetworkProcessSecurityContext(int64_t SecurityContext, int32_t ContextSize, int64_t ContextData);
 
 /**
- * 网络获取连接数量 - 网络获取连接数量
- * 此函数负责获取网络连接的数量
+ * @brief 网络获取连接数量
+ * 
+ * 获取网络连接的数量，用于连接管理
+ * 
  * @param ConnectionContext 连接上下文
- * @return 连接数量
+ * @return int32_t 连接数量
  */
 int32_t NetworkGetConnectionCount(int64_t ConnectionContext);
 
 /**
- * 网络通过索引获取连接 - 网络通过索引获取连接
- * 此函数负责通过索引获取网络连接
+ * @brief 网络通过索引获取连接
+ * 
+ * 通过索引获取网络连接，用于连接访问和管理
+ * 
  * @param ConnectionContext 连接上下文
  * @param ConnectionIndex 连接索引
- * @return 连接句柄
+ * @return int64_t 连接句柄
  */
 int64_t NetworkGetConnectionByIndex(int64_t ConnectionContext, int32_t ConnectionIndex);
 
 /**
- * 网络验证连接协议 - 网络验证连接协议
- * 此函数负责验证网络连接的协议
+ * @brief 网络验证连接协议
+ * 
+ * 验证网络连接的协议，确保协议的兼容性和安全性
+ * 
  * @param NetworkData 网络数据
  * @param PacketData 数据包数据
- * @return 验证结果，0表示成功，其他值表示错误码
+ * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
 int32_t NetworkValidateConnectionProtocol(int64_t NetworkData, int64_t PacketData);
 
+// 网络连接事件处理器
 uint32_t NetworkConnectionEventHandler;
 
+// =============================================================================
+// 网络数据传输和处理函数
+// =============================================================================
+
 /**
- * 传输数据 - 传输数据
- * 此函数负责通过网络连接传输数据
+ * @brief 传输数据
+ * 
+ * 通过网络连接传输数据，处理数据分包和重传机制
+ * 
  * @note 此函数会处理数据分包和重传机制
  */
 void TransmitData(void);
 
 /**
- * 检索网络数据 - 检索网络数据
- * 此函数负责从网络连接中检索接收到的数据
+ * @brief 检索网络数据
+ * 
+ * 从网络连接中检索接收到的数据，处理数据包的重组和验证
+ * 
  * @note 此函数会处理数据包的重组和验证
  */
 void RetrieveNetworkData(void);
 
 /**
- * 验证网络数据包真实性 - 验证网络数据包的真实性
- * 此函数负责验证网络数据包的真实性和完整性
+ * @brief 验证网络数据包真实性
+ * 
+ * 验证网络数据包的真实性和完整性，检查数据包的签名和校验和
+ * 
  * @note 此函数会检查数据包的签名和校验和
  */
 void ValidateNetworkPacketAuthenticity(void);
 
 /**
- * 处理网络数据包处理 - 处理网络数据包处理
- * 此函数负责处理网络数据包的接收和发送逻辑
+ * @brief 处理网络数据包处理
+ * 
+ * 处理网络数据包的接收和发送逻辑，根据数据包类型调用相应的处理函数
+ * 
  * @note 此函数会根据数据包类型调用相应的处理函数
  */
 void ProcessNetworkPacketHandling(void);
 
 /**
- * 管理网络错误处理 - 管理网络错误处理
- * 此函数负责管理网络错误的处理和恢复
+ * @brief 管理网络错误处理
+ * 
+ * 管理网络错误的处理和恢复，记录错误并尝试自动恢复
+ * 
  * @note 此函数会记录错误并尝试自动恢复
  */
 void ManageNetworkErrorHandling(void);
@@ -1005,15 +1068,15 @@ NetworkHandle ProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t P
   if (OperationFlag == 0) {
 NETWORK_PROCESSING_LOOP:
     if ((0 < *(int *)((long long)OperationStatusPointer + 0xc)) && (*OperationStatusPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0), *OperationStatusPointer, &SecurityValidationData, 0x100, 1);
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *OperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
     *OperationStatusPointer = (long long)ProcessedConnectionHandlePacket;
     *(int *)((long long)OperationStatusPointer + 0xc) = OperationFlag;
     return 0;
   }
-  if (PacketData * 0x14 - 1U < 0x3fffffff) {
+  if (PacketData * ConnectionEntrySize - 1U < 0x3fffffff) {
     StatusPointer = (NetworkStatus *)
-             ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0), PacketData * 0x14, &SecurityValidationData,
+             ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &SecurityValidationData,
                            0xf4, 0);
     if (StatusPointer != (NetworkStatus *)0x0) {
       PacketProcessingResult = (int)OperationStatusPointer[1];
@@ -1090,9 +1153,9 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
   NetworkByte PacketValidationBuffer [32];
   NetworkByte SecurityEncryptionBuffer [32];
   
-  ValidationResult = DecodePacket(PacketData, SecurityEncryptionBuffer, 1, 0x5453494c, 0x54494645);
+  ValidationResult = DecodePacket(PacketData, SecurityEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
   if (((int)ValidationResult == 0) &&
-     (ValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, 0x42494645, 0), (int)ValidationResult == 0)) {
+     (ValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDeadFood), (int)ValidationResult == 0)) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -1220,7 +1283,7 @@ NetworkHandle ValidateConnectionNetworkPacket(int64_t ConnectionContext, Network
   NetworkByte SecurityValidationBuffer [32];
   NetworkByte EncryptionDataBuffer [32];
   
-  ValidationResult = DecodePacket(PacketData, EncryptionDataBuffer, 1, 0x5453494c, 0x54495645);
+  ValidationResult = DecodePacket(PacketData, EncryptionDataBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
   if (((int)ValidationResult == 0) &&
      (ValidationResult = DecodePacket(PacketData, SecurityValidationBuffer, 0, 0x42495645, 0), (int)ValidationResult == 0)) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
@@ -1261,15 +1324,15 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
   NetworkByte DecodedDataStreamBuffer [32];
   
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < 0x31) {
-    PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, 0x544e5645);
+    PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
     if ((int)PacketProcessingResult == 0) {
       PacketProcessingResult = 0;
     }
   }
   else {
-    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, 0x5453494c, 0x544e5645);
+    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTnvel);
     if ((int)PacketProcessingResult == 0) {
-      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, 0x42545645);
+      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBtvel);
       if ((int)PacketProcessingResult == 0) {
         NetworkHandle ConnectionDataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
         if ((int)ConnectionDataProcessingResult == 0) {

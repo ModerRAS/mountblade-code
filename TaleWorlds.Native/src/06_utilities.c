@@ -6170,29 +6170,30 @@ void ExecuteSystemEmergencyExit(void)
 /**
  * @brief 验证对象指针并执行退出操作
  * 
- * 该函数验证传入的对象指针，获取相关的栈信息
+ * 该函数验证传入的对象指针，获取相关的对象上下文信息
  * 如果验证通过则执行系统退出操作
  * 
  * @param ObjectPointer 要验证的对象指针
- * @return 状态码，0x1c表示验证失败
+ * @return uint64_t 状态码，0表示成功，ErrorInvalidObjectHandle表示验证失败
+ * @note 此函数会执行系统退出操作，调用后不会返回
  */
 uint64_t ValidateObjectPointerAndExecuteExit(int64_t ObjectPointer)
-
 {
-  uint64_t ResourceHashStatus;
-  int64_t StackOffset;
+  uint64_t ValidationResult;
+  int64_t ObjectContextPointer;
   
-  ResourceHashStatus = ValidateObjectContext(*(uint32_t *)(ObjectPointer + ObjectContextValidationOffset), &StackOffset);
-  if ((int)ResourceHashStatus != 0) {
-    return ResourceHashStatus;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectPointer + ObjectContextValidationOffset), &ObjectContextPointer);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
-  if (StackOffset != 0) {
-    StackOffset = StackOffset + -8;
+  if (ObjectContextPointer != 0) {
+    ObjectContextPointer = ObjectContextPointer + -8;
   }
-  if (*(int64_t *)(StackOffset + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ObjectContextPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ObjectContextPointer + ObjectContextOffset), 1);
+  return 0;
 }
 
 
