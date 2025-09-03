@@ -1045,24 +1045,24 @@ uint32_t FreeValidationResources(void* ResourceHandles);
  */
 void InitializeModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
 // 系统模块依赖全局变量
-void* GlobalModuleDependencyRegistry;                    // 系统模块依赖全局注册表
-uint32_t ModuleDependencyEntryCount;                     // 系统模块依赖条目计数
-uint32_t ModuleDependencyConfigurationFlags;             // 系统模块依赖配置标志
-uint32_t ModuleDependencyInitializationStatus;           // 系统模块依赖初始化状态
-void* ModuleDependencyAccessLock;                        // 系统模块依赖访问锁
-void* ModuleDependencySyncMutex;                         // 系统模块依赖同步互斥锁
-bool ModuleDependencyInitializationComplete;             // 系统模块依赖初始化完成标志
-void* ModuleDependencyExecutionContext;                  // 系统模块依赖执行上下文
-void* ModuleDependencySystemConfig;                      // 系统模块依赖系统配置
-bool ModuleDependencySystemEnabled;                      // 系统模块依赖系统启用标志
-void* ModuleDependencyPersistentStorage;                 // 系统模块依赖持久化存储
-void* ModuleDependencyCacheStorage;                      // 系统模块依赖缓存存储
-void* ModuleDependencyRuntimeDataBuffer;                    // 系统模块依赖运行时缓冲区
-uint32_t ModuleDependencySystemVersion;                  // 系统模块依赖系统版本
-uint32_t ModuleDependencyBuildVersion;                    // 系统模块依赖构建版本
-uint32_t ModuleDependencyIntegrityChecksum;              // 系统模块依赖完整性校验和
-void* ModuleDependencySignature;                         // 系统模块依赖签名
-void* ModuleDependencyHandle;                            // 系统模块依赖句柄
+void* GlobalModuleDependencyRegistry;                    // 全局模块依赖注册表
+uint32_t ModuleDependencyEntryCount;                     // 模块依赖条目数量
+uint32_t ModuleDependencyConfigurationFlags;             // 模块依赖配置标志
+uint32_t ModuleDependencyInitializationStatus;           // 模块依赖初始化状态
+void* ModuleDependencyAccessLock;                        // 模块依赖访问锁
+void* ModuleDependencySyncMutex;                         // 模块依赖同步互斥锁
+bool ModuleDependencyInitializationComplete;             // 模块依赖初始化完成标志
+void* ModuleDependencyExecutionContext;                  // 模块依赖执行上下文
+void* ModuleDependencySystemConfig;                      // 模块依赖系统配置
+bool ModuleDependencySystemEnabled;                      // 模块依赖系统启用标志
+void* ModuleDependencyPersistentStorage;                 // 模块依赖持久化存储
+void* ModuleDependencyCacheStorage;                      // 模块依赖缓存存储
+void* ModuleDependencyRuntimeDataBuffer;                 // 模块依赖运行时数据缓冲区
+uint32_t ModuleDependencySystemVersion;                  // 模块依赖系统版本
+uint32_t ModuleDependencyBuildVersion;                   // 模块依赖构建版本
+uint32_t ModuleDependencyIntegrityChecksum;              // 模块依赖完整性校验和
+void* ModuleDependencySignature;                         // 模块依赖签名
+void* ModuleDependencyHandle;                            // 模块依赖句柄
 
 // 系统运行时全局变量
 int64_t GlobalSystemInputParameter;                        // 系统输入参数值
