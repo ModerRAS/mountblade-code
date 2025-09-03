@@ -4828,9 +4828,9 @@ uint8_t InitializeBasicObjectHandle(int64_t ObjectContext) {
     if (*(int64_t *)(SystemContextPointer + ObjectHandleMemoryOffset) != 0) {
             ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + ObjectHandleMemoryOffset), 1);
     }
-    ValidationResult = 0;
+    ObjectValidationResult = 0;
   }
-  return ValidationResult;
+  return ObjectValidationResult;
 }
 
 
@@ -8344,12 +8344,12 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer,int64_t Conte
 void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, int64_t SystemContext)
 
 {
-  int PackageValidationStatusCode;
+  int PackageValidationStatus;
   int64_t ObjectPropertyPointer;
   uint8_t StackBuffer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  if (ValidationStatus == 0) {
+  int ObjectValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  if (ObjectValidationStatus == 0) {
     if (StackBuffer == 0) {
       ObjectPropertyPointer = 0;
     }
@@ -8388,7 +8388,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
 {
   float ProcessedFloatValue;
   int64_t ResourceDataPointer;
-  uint8_t ValidationStatusCode;
+  uint8_t ObjectValidationStatus;
   float MinimumRangeValue;
   float MaximumRangeValue;
   int64_t ResourceContext;
@@ -8401,8 +8401,8 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
   }
   
   // 验证对象上下文
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), ValidationBuffer);
-  if (ValidationStatusCode == 0) {
+  ObjectValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), ValidationBuffer);
+  if (ObjectValidationStatus == 0) {
     // 调整上下文指针
     if (ValidationBuffer[0] == 0) {
       ValidationBuffer[0] = 0;
@@ -8412,8 +8412,8 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
     
     // 验证资源上下文
     ResourceContext = 0;
-    ValidationStatusCode = ValidateResourceContext(ValidationBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContext);
-    if (ValidationStatusCode == 0) {
+    ObjectValidationStatus = ValidateResourceContext(ValidationBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContext);
+    if (ObjectValidationStatus == 0) {
       if (ResourceContext == 0) {
         return 0x4a;
       }
@@ -75383,7 +75383,7 @@ void ProcessSystemResourceOperationF(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_18090ac20(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceOperationG(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
