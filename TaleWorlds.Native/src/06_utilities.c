@@ -5037,11 +5037,23 @@ uint8_t ReleaseObjectHandle(void) {
  * @param CharacterToValidate 输入的字符参数，需要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
+/**
+ * @brief 验证字符输入
+ * 
+ * 该函数用于验证输入的字符是否有效
+ * 如果字符不为空字符，则执行系统退出操作
+ * 主要用于输入验证和安全检查
+ * 
+ * @param CharacterToValidate 要验证的字符
+ * @return uint8_t 验证结果，0表示验证通过
+ * @note 此函数用于字符输入的安全验证
+ * @warning 如果字符无效，会触发系统退出操作
+ */
 uint8_t ValidateCharacterInput(char CharacterToValidate) {
   if (CharacterToValidate != '\0') {
     ExecuteSystemExitOperation();
   }
-  return 0;
+  return OperationSuccessCode;
 }
 
 
@@ -8546,7 +8558,7 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, int64_t Sys
     else {
       ObjectPropertyPointer = StackBuffer + -8;
     }
-    *(uint32_t *)(ObjectPropertyPointer + 0x88) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
+    *(uint32_t *)(ObjectPropertyPointer + ObjectPropertyDataOffset) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
           ProcessObjectOperation(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
   }
   return;
@@ -79818,7 +79830,18 @@ void Unwind_18090c4f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c500(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理操作
+ * 
+ * 该函数负责清理资源上下文，调用资源清理回调函数
+ * 用于系统异常处理时的资源回收
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数是异常处理机制的一部分
+ */
+void ExecuteResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -79832,7 +79855,18 @@ void Unwind_18090c500(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c510(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统资源处理器状态
+ * 
+ * 该函数负责重置系统资源处理器的状态，清除相关标志位
+ * 并恢复系统数据结构的默认状态
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会检查资源上下文状态，必要时执行紧急退出
+ */
+void ResetSystemResourceHandlerState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
