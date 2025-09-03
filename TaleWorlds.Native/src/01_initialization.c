@@ -2730,45 +2730,45 @@ void InitializeSystemMemoryNode(void)
 void InitializeSystemDataTableStructureA(void)
 
 {
-  char DataTypeFlag;
+  char NodeActiveFlag;
   void** DataTablePointer;
   int NodeIdentifierCompareResult;
   long long *SystemRootPointer;
-  long long CurrentThreadId;
+  long long MemoryAllocationSize;
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
-  void* *NewNodePointer;
+  void** AllocatedNodePointer;
   void** SystemDataReference;
   
   SystemRootPointer = (long long*)GetSystemRootPointer();
-  DataTablePointer = (void* *)*SystemRootPointer;
-  DataTypeFlag = *(char*)((long long)DataTablePointer[1] + SystemNodeActiveFlagOffset);
-  SystemDataReference = &SystemDataNodeJ;
+  DataTablePointer = (void**)*SystemRootPointer;
+  NodeActiveFlag = *(char*)((long long)DataTablePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  SystemDataReference = &SystemDataNodeSecondaryRoot;
   PreviousNode = DataTablePointer;
-  CurrentNode = (void* *)DataTablePointer[1];
-  while (DataTypeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
+  CurrentNode = (void**)DataTablePointer[1];
+  while (NodeActiveFlag == '\0') {
+    NodeIdentifierCompareResult = memcmp(CurrentNode + 4,&SYSTEM_DATA_COMPARISON_TEMPLATE_M,SYSTEM_IDENTIFIER_SIZE);
     if (NodeIdentifierCompareResult < 0) {
-      NextNode = (void* *)CurrentNode[2];
+      NextNode = (void**)CurrentNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
       CurrentNode = PreviousNode;
     }
     else {
-      NextNode = (void* *)*CurrentNode;
+      NextNode = (void**)*CurrentNode;
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    DataTypeFlag = *(char*)((long long)NextNode + SystemNodeActiveFlagOffset);
+    NodeActiveFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((PreviousNode == DataTablePointer) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateM,PreviousNode + 4,0x10), NodeIdentifierCompareResult < 0)) {
-    CurrentThreadId = GetSystemMemorySize(SystemRootPointer);
-    AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,CurrentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,CurrentThreadId);
-    PreviousNode = NewNodePointer;
+  if ((PreviousNode == DataTablePointer) || (NodeIdentifierCompareResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_M,PreviousNode + 4,SYSTEM_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemRootPointer);
+    AllocateSystemMemory(SystemRootPointer,&AllocatedNodePointer,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    PreviousNode = AllocatedNodePointer;
   }
-  PreviousNode[SystemNodeIdentifier1Index] = 0x4384dcc4b6d3f417;
-  PreviousNode[SystemNodeIdentifier2Index] = 0x92a15d52fe2679bd;
-  PreviousNode[SystemNodeDataPointerIndex] = &SystemDataNodeK;
-  PreviousNode[SystemNodeFlagIndex] = 0;
+  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_M_ID1;
+  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_M_ID2;
+  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeTertiaryRoot;
+  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
   PreviousNode[10] = SystemDataReference;
   return;
 }
