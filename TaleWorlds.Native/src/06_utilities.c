@@ -5295,17 +5295,17 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
           return ErrorInvalidObjectHandle;
         }
         
-        ValidationStatus = ProcessResourceOperation(*(int64_t *)(ResultBuffer[0] + 8), 
+        ValidationStatusCode = ProcessResourceOperation(*(int64_t *)(OperationResultBuffer[0] + 8), 
                                                   *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset),
                                                   *(uint8_t *)(ObjectContext + ObjectContextStatusDataOffset));
-        if ((int)ValidationStatus != 0) {
-          return ValidationStatus;
+        if ((int)ValidationStatusCode != 0) {
+          return ValidationStatusCode;
         }
       }
-      ValidationStatus = 0;
+      ValidationStatusCode = 0;
     }
   }
-  return ValidationStatus;
+  return ValidationStatusCode;
 }
 
 
@@ -5313,7 +5313,7 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
 /**
  * @brief 验证对象状态并处理
  * 
- * 该函数负责验证系统对象的状态，并根据状态进行相应的处理，包括：
+ * 验证系统对象的状态，并根据状态进行相应的处理，包括：
  * - 验证对象上下文的有效性
  * - 处理验证栈缓冲区
  * - 验证资源上下文
@@ -5326,12 +5326,12 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
  */
 uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
 {
-  uint8_t ValidationResult;
+  uint8_t ValidationStatusCode;
   int64_t ResourceContextBuffer[2];
   int64_t ValidationStackBuffer[2];
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ValidationStackBuffer);
-  if ((int)ValidationResult == 0) {
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ValidationStackBuffer);
+  if ((int)ValidationStatusCode == 0) {
     if (ValidationStackBuffer[0] == 0) {
       ValidationStackBuffer[0] = 0;
     }
@@ -5340,8 +5340,8 @@ uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
     }
     
     ResourceContextBuffer[0] = 0;
-    ValidationResult = ValidateResourceContext(ValidationStackBuffer[0], ObjectContext + ObjectContextProcessingDataOffset, ResourceContextBuffer);
-    if ((int)ValidationResult == 0) {
+    ValidationStatusCode = ValidateResourceContext(ValidationStackBuffer[0], ObjectContext + ObjectContextProcessingDataOffset, ResourceContextBuffer);
+    if ((int)ValidationStatusCode == 0) {
       if (ResourceContextBuffer[0] != 0) {
         if (*(int64_t *)(ResourceContextBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
