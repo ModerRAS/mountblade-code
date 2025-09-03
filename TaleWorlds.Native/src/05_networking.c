@@ -465,10 +465,14 @@ LabelNetworkValidationStart:
   return NetworkErrorConnectionFailed;
 }
 
-// 初始化连接处理器 - 初始化网络连接处理器
+/**
+ * 初始化连接处理器 - 初始化网络连接处理器
+ * 此函数负责初始化网络连接处理器，为后续的连接操作做准备
+ * @return 初始化结果句柄
+ */
 NetworkHandle InitializeConnectionHandler(void)
 {
-  return 0x26;
+  return NetworkErrorConnectionFailed;
 }
 
 // 处理网络连接数据 - 处理连接数据包和状态更新
