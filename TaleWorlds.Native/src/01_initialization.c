@@ -19420,10 +19420,10 @@ void ProcessSystemMemoryCopy(long long SystemResourceManager,void* SourceDataPoi
 
 {
   if (BytesToCopy + 1 < 0x1000) {
-      memcpy(*(uint8_t **)(SystemResourceManager + 8),SourceDataPointer,(long long)BytesToCopy);
+      memcpy(*(uint8_t **)(SystemResourceManager + RESOURCE_DATA_OFFSET),SourceDataPointer,(long long)BytesToCopy);
   }
-  **(uint8_t **)(SystemResourceManager + 8) = 0;
-  *(uint32_t *)(SystemResourceManager + 0x10) = 0;
+  **(uint8_t **)(SystemResourceManager + RESOURCE_DATA_OFFSET) = 0;
+  *(uint32_t *)(SystemResourceManager + RESOURCE_LENGTH_OFFSET) = 0;
   return;
 }
 
