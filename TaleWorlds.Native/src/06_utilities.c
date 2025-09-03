@@ -15759,7 +15759,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *ObjectContext,int64_t Validati
   uint64_t EncryptedValue;
   
   EncryptedValue = SecurityEncryptionKey ^ (uint64_t)SecurityEncryptionBuffer;
-  int ResultCounter = 0;
+  int ProcessingResultCounter = 0;
   int LoopIndex = 0;
   do {
     if ((LoopIndex < 0) || (*(int *)(ValidationContext + ValidationContextLoopBoundOffset) <= LoopIndex)) goto LoopExit;
@@ -15776,7 +15776,7 @@ LoopExit:
       uint32_t ThirdDataSegment = *(uint32_t *)(SystemResourceContext + 0x18);
       uint32_t FourthDataSegment = *(uint32_t *)(SystemResourceContext + 0x1c);
       uint32_t OperationFlag = 0;
-      int NextResultIndex = ResultCounter + 1;
+      int NextResultIndex = ProcessingResultCounter + 1;
       MemoryOperationTemplate = &SystemMemoryTemplateA;
       uint32_t ChecksumValue = DataChecksumBuffer[0];
       uint32_t EncryptionParam = encryptionFlag;
