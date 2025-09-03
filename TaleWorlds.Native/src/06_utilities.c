@@ -3808,17 +3808,17 @@ uint8_t EventHandlerSlotNumberNinetyOne;
 // 事件处理器槽九十二 - 第九十二号事件处理器槽
 uint8_t EventHandlerSlotNumberNinetyTwo;
 // 事件处理器槽九十三 - 第九十三号事件处理器槽
-uint8_t EventHandlerSlotNinetyThree;
-uint8_t EventHandlerSlotNinetyFour;
-uint8_t EventHandlerSlotNinetyFive;
-uint8_t EventHandlerSlotNinetySix;
-uint8_t EventHandlerSlotNinetySeven;
-uint8_t EventHandlerSlotNinetyEight;
-uint8_t EventHandlerSlotNinetyNine;
-uint8_t EventHandlerSlotOneHundred;
-uint8_t SystemEventManagerInputSlot;
-uint8_t SystemEventManagerOutputSlot;
-uint8_t SystemEventManagerEventSlot;
+uint8_t EventHandlerSlotNumberNinetyThree;
+uint8_t EventHandlerSlotNumberNinetyFour;
+uint8_t EventHandlerSlotNumberNinetyFive;
+uint8_t EventHandlerSlotNumberNinetySix;
+uint8_t EventHandlerSlotNumberNinetySeven;
+uint8_t EventHandlerSlotNumberNinetyEight;
+uint8_t EventHandlerSlotNumberNinetyNine;
+uint8_t EventHandlerSlotNumberOneHundred;
+uint8_t SystemEventManagerInputEventSlot;
+uint8_t SystemEventManagerOutputEventSlot;
+uint8_t SystemEventManagerMainEventSlot;
 // 事件处理器槽 - 管理事件处理槽位
 uint8_t EventHandlerSlot;
 uint8_t SystemEventCallbackSlot;

@@ -430,35 +430,35 @@ void* TertiaryStringProcessorConfigBuffer;
 char TertiaryStringProcessorConfigBuffer[64];
 uint32_t TertiaryStringProcessorConfigSize;
 
-void* StringProcessingSystemQuaternary_MemoryPool;
-void* StringProcessingSystemQuaternary_ConfigBuffer;
-char StringProcessingSystemQuaternary_ConfigBuffer[64];
-uint32_t StringProcessingSystemQuaternary_ConfigSize;
+void* QuaternaryStringProcessorMemoryPool;
+void* QuaternaryStringProcessorConfigBuffer;
+char QuaternaryStringProcessorConfigBuffer[64];
+uint32_t QuaternaryStringProcessorConfigSize;
 
-void* StringProcessingSystemQuinary_MemoryPool;
-void* StringProcessingSystemQuinary_ConfigBuffer;
-char StringProcessingSystemQuinary_ConfigBuffer[64];
-uint32_t StringProcessingSystemQuinary_ConfigSize;
+void* QuinaryStringProcessorMemoryPool;
+void* QuinaryStringProcessorConfigBuffer;
+char QuinaryStringProcessorConfigBuffer[64];
+uint32_t QuinaryStringProcessorConfigSize;
 
-void* StringProcessingSystemSenary_MemoryPool;
-void* StringProcessingSystemSenary_ConfigBuffer;
-char StringProcessingSystemSenary_ConfigBuffer[64];
-uint32_t StringProcessingSystemSenary_ConfigSize;
+void* SenaryStringProcessorMemoryPool;
+void* SenaryStringProcessorConfigBuffer;
+char SenaryStringProcessorConfigBuffer[64];
+uint32_t SenaryStringProcessorConfigSize;
 
-void* StringProcessingSystemSeptenary_MemoryPool;
-void* StringProcessingSystemSeptenary_ConfigBuffer;
-char StringProcessingSystemSeptenary_ConfigBuffer[64];
-uint32_t StringProcessingSystemSeptenary_ConfigSize;
+void* SeptenaryStringProcessorMemoryPool;
+void* SeptenaryStringProcessorConfigBuffer;
+char SeptenaryStringProcessorConfigBuffer[64];
+uint32_t SeptenaryStringProcessorConfigSize;
 
-void* StringProcessingSystemOctonary_MemoryPool;
-void* StringProcessingSystemOctonary_ConfigBuffer;
-char StringProcessingSystemOctonary_ConfigBuffer[64];
-uint32_t StringProcessingSystemOctonary_ConfigSize;
+void* OctonaryStringProcessorMemoryPool;
+void* OctonaryStringProcessorConfigBuffer;
+char OctonaryStringProcessorConfigBuffer[64];
+uint32_t OctonaryStringProcessorConfigSize;
 
-void* StringProcessingSystemNonary_MemoryPool;
-void* StringProcessingSystemNonary_ConfigBuffer;
-char StringProcessingSystemNonary_ConfigBuffer[64];
-uint32_t StringProcessingSystemNonary_ConfigSize;
+void* NonaryStringProcessorMemoryPool;
+void* NonaryStringProcessorConfigBuffer;
+char NonaryStringProcessorConfigBuffer[64];
+uint32_t NonaryStringProcessorConfigSize;
 
 // 系统内存配置模板 - 用于内存配置操作
 void* SystemMemoryConfigTemplate;
