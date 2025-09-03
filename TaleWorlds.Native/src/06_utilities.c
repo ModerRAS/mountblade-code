@@ -4550,7 +4550,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
           if (ObjectValidationStatus != RegistrationStatusSuccess) {
                   HandleInvalidObject(CurrentObjectState, 1);
           }
-          ProcessedObjectCounter++;
+          ProcessedObjectCount++;
           ObjectCollectionIterator += ResourceEntrySizeBytes;
         } while (ProcessedObjectCounter < TotalObjectsCount);
       }
