@@ -27644,7 +27644,7 @@ SecurityValidationLoop:
         pSecurityHashValue = *(uint32_t **)(SystemExecutionPointer + -0x29);
         for (ResourceHashStartPointer = pSecurityHashValue; (pSecurityHashValue <= ResourceHashStartPointer && (ResourceHashStartPointer < pSecurityHashValue + ProcessStatus));
             ResourceHashStartPointer = ResourceHashStartPointer + 1) {
-          SystemDataPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),0x28,&MemoryBlockTemplate,0xc1c,0)
+          ResourceHashMemoryPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),0x28,&MemoryBlockTemplate,0xc1c,0)
           ;
           if (SystemDataPointer == 0) {
             ResourceCount = 0x26;
