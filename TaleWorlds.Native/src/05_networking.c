@@ -977,25 +977,25 @@ uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameter
  */
 NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
-  long long NetworkContextData;
-  long long *ConnectionValidationStatusPointer;
-  int ConnectionValidationFlag;
+  long long NetworkConnectionContextData;
+  long long *ConnectionValidationResultPointer;
+  int ConnectionValidationStatus;
   
-  NetworkContextData = 0;
-  if (ConnectionValidationFlag == 0) {
-LabelNetworkValidationStart:
-    if ((0 < *(int *)((long long)ConnectionValidationStatusPointer + 0xc)) && (*ConnectionValidationStatusPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *ConnectionValidationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
+  NetworkConnectionContextData = 0;
+  if (ConnectionValidationStatus == 0) {
+LabelNetworkValidationProcessing:
+    if ((0 < *(int *)((long long)ConnectionValidationResultPointer + 0xc)) && (*ConnectionValidationResultPointer != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *ConnectionValidationResultPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *ConnectionValidationStatusPointer = NetworkContextData;
-    *(int *)((long long)ConnectionValidationStatusPointer + 0xc) = ConnectionValidationFlag;
+    *ConnectionValidationResultPointer = NetworkConnectionContextData;
+    *(int *)((long long)ConnectionValidationResultPointer + 0xc) = ConnectionValidationStatus;
     return 0;
   }
   if ((int)PacketData - 1U < 0x3fffffff) {
-    NetworkContextData = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
-    if (NetworkContextData != 0) {
-      if ((int)ConnectionValidationStatusPointer[1] != 0) {
-          memcpy(NetworkContextData, *ConnectionValidationStatusPointer, (long long)(int)ConnectionValidationStatusPointer[1]);
+    NetworkConnectionContextData = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
+    if (NetworkConnectionContextData != 0) {
+      if ((int)ConnectionValidationResultPointer[1] != 0) {
+          memcpy(NetworkConnectionContextData, *ConnectionValidationResultPointer, (long long)(int)ConnectionValidationResultPointer[1]);
       }
       goto NETWORK_PROCESSING_CONTINUE;
     }
@@ -1028,15 +1028,15 @@ NetworkHandle NetworkInitializeConnectionHandler(void)
  */
 NetworkHandle NetworkProcessConnectionDataHandler(int64_t *ConnectionContext, int32_t PacketData)
 {
-  NetworkStatus *ConnectionStatusData;
-  int32_t ConnectionCount;
-  int64_t ConnectionBasePointer;
+  NetworkStatus *ConnectionStatusInformation;
+  int32_t ActiveConnectionCount;
+  int64_t ConnectionBaseAddress;
   NetworkStatus PacketProcessingResult;
-  NetworkStatus ProcessingStatus;
-  NetworkStatus ValidationResult;
-  NetworkStatus *StatusBuffer;
-  int64_t ProcessingCounter;
-  NetworkStatus *PacketBuffer;
+  NetworkStatus DataProcessingStatus;
+  NetworkStatus ConnectionValidationResult;
+  NetworkStatus *NetworkStatusBuffer;
+  int64_t ProcessingIterationCounter;
+  NetworkStatus *NetworkPacketBuffer;
   
   if (PacketData < (int)ConnectionContext[1]) {
     return NetworkConnectionNotFound;
@@ -1095,50 +1095,50 @@ NETWORK_PROCESSING_LOOP:
  */
 NetworkHandle NetworkProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
-  NetworkStatus *ContextArray;
-  int32_t PacketProcessingResult;
-  int64_t NetworkContext;
-  NetworkStatus ValidationStatus;
-  NetworkStatus TimeoutStatus;
-  NetworkStatus SecondaryProcessingResult;
-  NetworkStatus *StatusPointer;
-  int64_t ConnectionIterator;
-  NetworkStatus *PacketFlagsPointer;
+  NetworkStatus *NetworkContextArray;
+  int32_t NetworkPacketProcessingResult;
+  int64_t NetworkConnectionContext;
+  NetworkStatus ConnectionValidationStatus;
+  NetworkStatus ConnectionTimeoutStatus;
+  NetworkStatus SecondaryNetworkProcessingResult;
+  NetworkStatus *NetworkStatusPointer;
+  int64_t ConnectionProcessingIterator;
+  NetworkStatus *NetworkPacketFlagsPointer;
   int64_t *NetworkOperationStatusPointer;
-  int32_t OperationFlag;
+  int32_t NetworkOperationFlag;
   
-  StatusPointer = (NetworkStatus *)0x0;
-  if (OperationFlag == 0) {
+  NetworkStatusPointer = (NetworkStatus *)0x0;
+  if (NetworkOperationFlag == 0) {
 NETWORK_PROCESSING_LOOP:
     if ((0 < *(int *)((long long)NetworkOperationStatusPointer + 0xc)) && (*NetworkOperationStatusPointer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *NetworkOperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
     *NetworkOperationStatusPointer = (long long)ProcessedConnectionHandlePacket;
-    *(int *)((long long)NetworkOperationStatusPointer + 0xc) = OperationFlag;
+    *(int *)((long long)NetworkOperationStatusPointer + 0xc) = NetworkOperationFlag;
     return 0;
   }
   if (PacketData * ConnectionEntrySize - 1U < 0x3fffffff) {
-    StatusPointer = (NetworkStatus *)
+    NetworkStatusPointer = (NetworkStatus *)
              ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &SecurityValidationData,
                            0xf4, 0);
-    if (StatusPointer != (NetworkStatus *)0x0) {
-      PacketProcessingResult = (int)NetworkOperationStatusPointer[1];
-      ConnectionIterator = (long long)PacketProcessingResult;
-      if ((PacketProcessingResult != 0) && (NetworkContext = *NetworkOperationStatusPointer, 0 < PacketProcessingResult)) {
-        PacketFlagsPointer = StatusPointer;
+    if (NetworkStatusPointer != (NetworkStatus *)0x0) {
+      NetworkPacketProcessingResult = (int)NetworkOperationStatusPointer[1];
+      ConnectionProcessingIterator = (long long)NetworkPacketProcessingResult;
+      if ((NetworkPacketProcessingResult != 0) && (NetworkConnectionContext = *NetworkOperationStatusPointer, 0 < NetworkPacketProcessingResult)) {
+        NetworkPacketFlagsPointer = NetworkStatusPointer;
         do {
-          ContextArray = (NetworkStatus *)((NetworkContext - (long long)StatusPointer) + (long long)PacketFlagsPointer);
-          NetworkStatus ContextValidationStatus = ContextArray[1];
-          NetworkStatus ContextTimeoutStatus = ContextArray[2];
-          NetworkStatus ContextSecondaryResult = ContextArray[3];
-          *PacketFlagsPointer = *ContextArray;
-          PacketFlagsPointer[1] = ContextValidationStatus;
-          PacketFlagsPointer[2] = ContextTimeoutStatus;
-          PacketFlagsPointer[3] = ContextSecondaryResult;
-          PacketFlagsPointer[4] = *(NetworkStatus *)((NetworkContext - (long long)StatusPointer) + -4 + (long long)(PacketFlagsPointer + 5));
-          ConnectionIterator = ConnectionIterator + -1;
-          PacketFlagsPointer = PacketFlagsPointer + 5;
-        } while (ConnectionIterator != 0);
+          NetworkContextArray = (NetworkStatus *)((NetworkConnectionContext - (long long)NetworkStatusPointer) + (long long)NetworkPacketFlagsPointer);
+          NetworkStatus ContextValidationStatus = NetworkContextArray[1];
+          NetworkStatus ContextTimeoutStatus = NetworkContextArray[2];
+          NetworkStatus ContextSecondaryResult = NetworkContextArray[3];
+          *NetworkPacketFlagsPointer = *NetworkContextArray;
+          NetworkPacketFlagsPointer[1] = ContextValidationStatus;
+          NetworkPacketFlagsPointer[2] = ContextTimeoutStatus;
+          NetworkPacketFlagsPointer[3] = ContextSecondaryResult;
+          NetworkPacketFlagsPointer[4] = *(NetworkStatus *)((NetworkConnectionContext - (long long)NetworkStatusPointer) + -4 + (long long)(NetworkPacketFlagsPointer + 5));
+          ConnectionProcessingIterator = ConnectionProcessingIterator + -1;
+          NetworkPacketFlagsPointer = NetworkPacketFlagsPointer + 5;
+        } while (ConnectionProcessingIterator != 0);
       }
       goto NETWORK_PROCESSING_LOOP;
     }
@@ -1176,26 +1176,26 @@ NetworkHandle NetworkFinalizeConnectionHandler(void)
  */
 void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
 {
-  int32_t ConnectionPrimaryStatus;
-  int32_t DataProcessingResult;
-  NetworkByte NetworkBuffer [48];
-  int64_t HandleStorage [2];
-  NetworkHandle *HandleBuffer [34];
-  uint64_t ValidationKey;
+  int32_t PrimaryConnectionStatus;
+  int32_t NetworkDataProcessingResult;
+  NetworkByte NetworkCleanupBuffer [48];
+  int64_t ConnectionHandleStorage [2];
+  NetworkHandle *ConnectionHandleBuffer [34];
+  uint64_t NetworkValidationKey;
   
   // 清理连接状态和数据
-  ConnectionPrimaryStatus = 0;
-  DataProcessingResult = 0;
+  PrimaryConnectionStatus = 0;
+  NetworkDataProcessingResult = 0;
   
   // 释放网络缓冲区
-  memset(NetworkBuffer, 0, sizeof(NetworkBuffer));
+  memset(NetworkCleanupBuffer, 0, sizeof(NetworkCleanupBuffer));
   
   // 清理句柄存储
-  memset(HandleStorage, 0, sizeof(HandleStorage));
-  memset(HandleBuffer, 0, sizeof(HandleBuffer));
+  memset(ConnectionHandleStorage, 0, sizeof(ConnectionHandleStorage));
+  memset(ConnectionHandleBuffer, 0, sizeof(ConnectionHandleBuffer));
   
   // 重置验证密钥
-  ValidationKey = 0;
+  NetworkValidationKey = 0;
 }
 
 /**
