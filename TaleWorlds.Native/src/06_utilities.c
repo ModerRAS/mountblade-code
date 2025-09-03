@@ -4495,38 +4495,38 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 void ValidateSystemObjectCollection(void)
 {
   uint8_t CurrentObjectIdParameter;
-  int SystemObjectValidationResult;
+  int SystemObjectValidationStatus;
   int64_t SystemObjectContextHandle;
   int64_t SystemRuntimeContext;
-  int64_t CollectionBufferPosition;
+  int64_t CollectionBufferIndex;
   int ValidatedObjectCount;
-  uint8_t *SystemObjectCollectionBuffer;
+  uint8_t *SystemObjectDataBuffer;
   int TotalRetrievedObjects;
   uint32_t MaximumCollectionSize;
   uint64_t SecurityValidationKey;
   
   // 检查系统对象上下文是否有效
   if (*(int64_t *)(SystemObjectContextHandle + ObjectHandleSecondaryOffset) != 0) {
-    SystemObjectCollectionBuffer = ProcessingWorkspace;
+    SystemObjectDataBuffer = ProcessingWorkspace;
     ValidatedObjectCount = 0;
     TotalRetrievedObjects = 0;
     MaximumCollectionSize = MaximumCapacityLimit;
     
     // 获取系统对象集合
-    SystemObjectValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeContext + SystemContextSecondaryDataOffset), *(int64_t *)(SystemObjectContextHandle + ObjectHandleSecondaryOffset),
+    SystemObjectValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeContext + SystemContextSecondaryDataOffset), *(int64_t *)(SystemObjectContextHandle + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (SystemObjectValidationResult == 0) {
+    if (SystemObjectValidationStatus == 0) {
       TotalRetrievedObjects = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
       if (0 < TotalRetrievedObjects) {
-        CollectionBufferPosition = PointerSizeBytes;
+        CollectionBufferIndex = PointerSizeBytes;
         do {
-          CurrentObjectIdParameter = *(uint8_t *)(SystemObjectCollectionBuffer + CollectionBufferPosition);
-          SystemObjectValidationResult = ValidateSystemObject(CurrentObjectIdParameter);
-          if (SystemObjectValidationResult != 2) {
+          CurrentObjectIdParameter = *(uint8_t *)(SystemObjectDataBuffer + CollectionBufferIndex);
+          SystemObjectValidationStatus = ValidateSystemObject(CurrentObjectIdParameter);
+          if (SystemObjectValidationStatus != 2) {
                   HandleInvalidSystemObject(CurrentObjectIdParameter, 1);
           }
           ValidatedObjectCount++;
-          CollectionBufferPosition += 8;
+          CollectionBufferIndex += 8;
         } while (ValidatedObjectCount < TotalRetrievedObjects);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
