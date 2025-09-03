@@ -951,33 +951,39 @@ uint32_t ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
 }
 
 /**
- * 处理连接请求 - 处理网络连接请求和验证
- * 此函数负责处理网络连接请求，验证连接参数，并建立安全连接
- * @param ConnectionContext 连接上下文句柄
- * @param PacketData 数据包数据句柄
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @brief 处理网络连接请求
+ * 
+ * 该函数负责处理网络连接请求，验证连接参数，并建立安全连接。
+ * 它会检查连接的有效性，进行安全验证，并根据验证结果建立或拒绝连接。
+ * 
+ * @param ConnectionContext 连接上下文句柄，包含连接状态和验证所需的信息
+ * @param PacketData 数据包数据句柄，包含连接请求的详细信息
+ * @return NetworkHandle 处理结果句柄，0表示成功，非0值表示具体的错误码
+ * 
+ * @note 此函数会进行严格的安全验证，确保只有合法的连接请求能够通过
+ * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
  */
 NetworkHandle ProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   long long NetworkContextData;
-  long long *ValidationStatusPointer;
+  long long *ConnectionValidationStatusPointer;
   int ConnectionValidationFlag;
   
   NetworkContextData = 0;
   if (ConnectionValidationFlag == 0) {
 LabelNetworkValidationStart:
-    if ((0 < *(int *)((long long)ValidationStatusPointer + 0xc)) && (*ValidationStatusPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *ValidationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)((long long)ConnectionValidationStatusPointer + 0xc)) && (*ConnectionValidationStatusPointer != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *ConnectionValidationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *ValidationStatusPointer = NetworkContextData;
-    *(int *)((long long)ValidationStatusPointer + 0xc) = ConnectionValidationFlag;
+    *ConnectionValidationStatusPointer = NetworkContextData;
+    *(int *)((long long)ConnectionValidationStatusPointer + 0xc) = ConnectionValidationFlag;
     return 0;
   }
   if ((int)PacketData - 1U < 0x3fffffff) {
     NetworkContextData = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
     if (NetworkContextData != 0) {
-      if ((int)ValidationStatusPointer[1] != 0) {
-          memcpy(NetworkContextData, *ValidationStatusPointer, (long long)(int)ValidationStatusPointer[1]);
+      if ((int)ConnectionValidationStatusPointer[1] != 0) {
+          memcpy(NetworkContextData, *ConnectionValidationStatusPointer, (long long)(int)ConnectionValidationStatusPointer[1]);
       }
       goto NETWORK_PROCESSING_CONTINUE;
     }
@@ -986,9 +992,13 @@ LabelNetworkValidationStart:
 }
 
 /**
- * 初始化连接处理器 - 初始化网络连接处理器和相关资源
- * 此函数负责初始化网络连接处理器，为后续的连接操作做准备
+ * @brief 初始化网络连接处理器
+ * 
+ * 该函数负责初始化网络连接处理器和相关资源，为后续的连接操作做准备。
+ * 它会设置必要的内存缓冲区，初始化连接表，并准备网络协议栈。
+ * 
  * @return NetworkHandle 初始化结果句柄，成功时返回有效句柄，失败时返回NetworkErrorConnectionFailed
+ * 
  * @note 此函数在网络系统启动时调用，确保所有连接处理资源正确初始化
  * @warning 如果初始化失败，系统将无法建立新的网络连接
  */
@@ -1078,17 +1088,17 @@ NetworkHandle ProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t P
   NetworkStatus *StatusPointer;
   int64_t ConnectionIterator;
   NetworkStatus *PacketFlagsPointer;
-  int64_t *OperationStatusPointer;
+  int64_t *NetworkOperationStatusPointer;
   int32_t OperationFlag;
   
   StatusPointer = (NetworkStatus *)0x0;
   if (OperationFlag == 0) {
 NETWORK_PROCESSING_LOOP:
-    if ((0 < *(int *)((long long)OperationStatusPointer + 0xc)) && (*OperationStatusPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *OperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)((long long)NetworkOperationStatusPointer + 0xc)) && (*NetworkOperationStatusPointer != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *NetworkOperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *OperationStatusPointer = (long long)ProcessedConnectionHandlePacket;
-    *(int *)((long long)OperationStatusPointer + 0xc) = OperationFlag;
+    *NetworkOperationStatusPointer = (long long)ProcessedConnectionHandlePacket;
+    *(int *)((long long)NetworkOperationStatusPointer + 0xc) = OperationFlag;
     return 0;
   }
   if (PacketData * ConnectionEntrySize - 1U < 0x3fffffff) {
@@ -1096,9 +1106,9 @@ NETWORK_PROCESSING_LOOP:
              ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &SecurityValidationData,
                            0xf4, 0);
     if (StatusPointer != (NetworkStatus *)0x0) {
-      PacketProcessingResult = (int)OperationStatusPointer[1];
+      PacketProcessingResult = (int)NetworkOperationStatusPointer[1];
       ConnectionIterator = (long long)PacketProcessingResult;
-      if ((PacketProcessingResult != 0) && (NetworkContext = *OperationStatusPointer, 0 < PacketProcessingResult)) {
+      if ((PacketProcessingResult != 0) && (NetworkContext = *NetworkOperationStatusPointer, 0 < PacketProcessingResult)) {
         PacketFlagsPointer = StatusPointer;
         do {
           ContextArray = (NetworkStatus *)((NetworkContext - (long long)StatusPointer) + (long long)PacketFlagsPointer);
