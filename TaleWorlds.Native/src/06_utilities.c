@@ -4952,6 +4952,15 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针
  * @return uint8_t 操作结果状态码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，确保对象在内存中的生命周期
+ * 主要用于对象引用管理和内存回收机制
+ * 
+ * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
@@ -5012,24 +5021,16 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
 
 
 /**
- * @brief 清理对象句柄
- * 
- * 该函数用于清理系统对象的句柄，释放相关资源。
- * 主要用于内存管理和资源清理操作，确保系统资源被正确释放。
- * 
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- */
-/**
  * @brief 释放对象句柄
  * 
- * 该函数用于释放系统对象的句柄，清理相关资源
- * 主要用于对象生命周期的最后阶段，确保资源被正确释放
+ * 该函数用于释放系统对象的句柄，清理相关资源。
+ * 主要用于对象生命周期的最后阶段，确保资源被正确释放。
  * 
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t ReleaseObjectHandle(void) {
   int64_t ObjectHandle = 0;
-  int64_t ObjectMemoryAddress;
+  int64_t ObjectMemoryLocation;
   
   if (ObjectHandle == 0) {
     ObjectMemoryAddress = 0;
@@ -6173,8 +6174,7 @@ uint32_t ValidateAndProcessCurrentObjectHandle(void)
 
 
 
- void TerminateSystem(void)
-/**
+ /**
  * @brief 执行系统终止
  * 
  * 该函数负责执行系统的终止操作，清理系统资源
@@ -8024,11 +8024,11 @@ void ExecuteDualValidationObjectProcessing(int64_t ObjectContext, int64_t System
 uint8_t ValidateAndProcessObjectAttributeSetting(int64_t ObjectContext, int64_t SystemContext)
 
 {
-  uint8_t ProcessingResult;
+  uint8_t AttributeProcessingResult;
   int64_t ObjectContextBuffer;
   
-  ProcessingStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ObjectContextBuffer);
-  if ((int)ProcessingStatusCode == 0) {
+  AttributeProcessingResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ObjectContextBuffer);
+  if ((int)AttributeProcessingResult == 0) {
     if (ObjectContextBuffer != 0) {
       ObjectContextBuffer = ObjectContextBuffer + -8;
     }
@@ -8037,9 +8037,9 @@ uint8_t ValidateAndProcessObjectAttributeSetting(int64_t ObjectContext, int64_t 
     }
     *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset) =
          *(uint8_t *)(*(int64_t *)(*(int64_t *)(ObjectContextBuffer + ObjectContextPointerOffset) + ResourceTablePointerOffset) + ResourceDataOffset);
-    ProcessingStatusCode = ProcessSystemObjectWithCleanup(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
+    AttributeProcessingResult = ProcessSystemObjectWithCleanup(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
   }
-  return ProcessingResult;
+  return AttributeProcessingResult;
 }
 
 
@@ -72865,7 +72865,7 @@ void RegisterResourceHandlerAtOffsetC08(uint8_t ObjectContext, int64_t Validatio
  * @param ObjectContext 对象上下文，用于标识需要处理的资源对象
  * @param ValidationContext 验证上下文，包含系统资源和状态信息
  */
-void Unwind_ProcessResourceContextAtOffsetC58(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_ProcessResourceContextAtOffsetValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
