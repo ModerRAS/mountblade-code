@@ -19659,6 +19659,15 @@ uint64_t ValidateResourceHash(int64_t ResourceContext, uint8_t *ResourceData)
 
 
 
+/**
+ * @brief 处理资源验证
+ * 
+ * 该函数负责处理系统资源的验证操作，包括寄存器验证、
+ * 资源表访问和状态检查等功能。这是资源管理系统的核心验证函数。
+ * 
+ * @return uint64_t 验证结果，0表示成功，非0表示失败或错误码
+ * @note 此函数涉及多个系统级别的资源验证操作
+ */
 uint64_t ProcessResourceValidation(void)
 
 {
@@ -19668,7 +19677,7 @@ uint64_t ProcessResourceValidation(void)
   int RegisterValidationCounter;
   int64_t SystemContext;
   uint *SystemRegisterContext;
-  uint8_t RegisterValueNine;
+  uint8_t RegisterValidationValue;
   uint32_t FloatingPointCalculationResult;
   uint PrimaryStackStorage;
   uint SecondaryStackParameter;
@@ -19695,9 +19704,9 @@ uint64_t ProcessResourceValidation(void)
       default:
         return ErrorInvalidObjectHandle;
       case 0x10:
-        RegisterStorageSeptenary = SystemRegisterContext[1];
+        SecondaryStackParameter = SystemRegisterContext[1];
         ResourceHash = (**(code **)**(uint8_t **)(SystemContext + 8))
-                          (*(uint8_t **)(SystemContext + 8),&ResourceDataBuffer,4);
+                          (*(uint8_t **)(SystemContext + 8),&SecondaryStackParameter,4);
         if ((int)ResourceHash != 0) {
           return ResourceHash;
         }
@@ -19720,18 +19729,18 @@ uint64_t ProcessResourceValidation(void)
           return ResourceHash;
         }
         ResourceHash = (**(code **)**(uint8_t **)(SystemContext + 8))
-                          (*(uint8_t **)(SystemContext + 8),&ResourceOperationBuffer,4,ResourceRegisterValue,SystemRegisterContext[2]);
+                          (*(uint8_t **)(SystemContext + 8),&ResourceOperationBuffer,4,RegisterValidationValue,SystemRegisterContext[2]);
         if ((int)ResourceHash != 0) {
           return ResourceHash;
         }
         ResourceTablePointer = 0xc;
         ValidationStatusCode = -0xc;
       }
-      ResourceIterationIndex = ResourceIterationIndex + ResourceHashStatus;
+      RegisterValidationCounter = RegisterValidationCounter + ResourceHashStatus;
       SystemRegisterContext = (uint *)((int64_t)SystemRegisterContext + ResourceTablePointer);
-    } while (0 < ResourceIterationIndex);
+    } while (0 < RegisterValidationCounter);
   }
-  return (uint64_t)(-(uint)(ResourceIterationIndex != 0) & 0x1c);
+  return (uint64_t)(-(uint)(RegisterValidationCounter != 0) & 0x1c);
 }
 
 
