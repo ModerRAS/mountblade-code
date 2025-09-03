@@ -9804,11 +9804,11 @@ Label_18060a500:
                     if (NetworkRequestStatus != '\0') goto Label_1806091a3;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationAudioSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060ae39;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ba0);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationInputSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060ae57;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b88);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationControlSettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060ae75;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39bd8);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationDisplaySettings);
                     if (NetworkRequestStatus != '\0') goto Label_18060ae93;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39bc0);
                     if (NetworkRequestStatus != '\0') goto Label_18060aeb1;

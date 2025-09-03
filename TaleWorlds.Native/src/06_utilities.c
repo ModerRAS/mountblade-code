@@ -4778,12 +4778,12 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  */
 uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
-  uint8_t ValidationResult;
+  uint8_t ObjectValidationResult;
   int64_t ObjectValidationBuffer [4];
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationBuffer);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationBuffer);
+  if ((int)ObjectValidationResult != 0) {
+    return ObjectValidationResult;
   }
   
   if (ObjectValidationBuffer[0] != 0) {
@@ -4794,8 +4794,8 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   if (ValidatedObjectMemoryAddress != 0) {
     *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationResult = CheckSystemStatus(), (int)ValidationResult != 0)) {
-      return ValidationResult;
+    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusFlagsOffset) != '\0') && (ObjectValidationResult = CheckSystemStatus(), (int)ObjectValidationResult != 0)) {
+      return ObjectValidationResult;
     }
     return 0;
   }
@@ -75327,7 +75327,7 @@ void ProcessSystemResourceOperationB(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_18090abe0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceOperationC(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75341,7 +75341,7 @@ void Unwind_18090abe0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090abf0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceOperationD(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75355,7 +75355,7 @@ void Unwind_18090abf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ac00(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceOperationE(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75369,7 +75369,7 @@ void Unwind_18090ac00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ac10(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceOperationF(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
