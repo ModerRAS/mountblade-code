@@ -106,7 +106,7 @@
 #define NetworkConnectionReportSize 0xf
 #define NetworkPacketReportSize 0xc
 
-// 函数声明
+/* 函数声明 */
 /**
  * 比较网络连接时间戳 - 比较两个网络连接的时间戳
  * 此函数用于比较两个网络连接的时间戳，确定连接的先后顺序
@@ -314,7 +314,7 @@ uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayInde
  */
 uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
 
-// 全局变量声明
+/* 全局变量声明 */
 uint32_t NetworkConnectionTableHandle;                    // 网络连接表句柄
 uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志
 uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时持续时间
@@ -898,7 +898,15 @@ NETWORK_PROCESSING_LOOP:
   return 0;
 }
 
-// 处理连接状态 - 处理网络连接状态变化
+/**
+ * 处理连接状态 - 处理网络连接状态变化
+ * 此函数负责处理网络连接状态的变化，包括连接建立、断开、重连等状态转换
+ * @param ConnectionContext 连接上下文句柄，包含当前连接的状态信息
+ * @param PacketData 数据包数据，包含状态更新的相关信息
+ * @return NetworkHandle 处理结果句柄，0表示成功，其他值表示错误码
+ * @note 此函数会根据数据包内容更新连接状态，并触发相应的状态转换操作
+ * @warning 如果状态转换失败，系统会记录错误日志并尝试恢复到安全状态
+ */
 NetworkHandle ProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   NetworkStatus *ContextArray;
