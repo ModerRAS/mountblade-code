@@ -925,7 +925,7 @@ void NetworkInitializeConnectionState(void)
  * 此函数负责重置网络连接的数据指针，清理连接状态，并释放相关资源
  * @note 此函数通常在连接断开或重置时调用
  */
-void ResetNetworkConnectionPointer(void)
+void NetworkResetConnectionPointer(void)
 {
   int64_t NetworkConnectionContextData;          // 网络连接上下文数据
   uint64_t *NetworkConnectionDataBufferPointer; // 网络连接数据缓冲区指针
@@ -944,7 +944,7 @@ void ResetNetworkConnectionPointer(void)
  * @return 验证结果，0表示验证成功，非0值表示验证失败的具体错误码
  * @note 此函数是连接建立前的安全检查步骤
  */
-uint32_t ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
+uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameters)
 {
   // 函数实现省略，保持原有逻辑
   return 0;

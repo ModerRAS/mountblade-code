@@ -76098,7 +76098,17 @@ void ProcessSystemContextCleanup(uint8_t ObjectContext, int64_t ValidationContex
 
 
 
-void Unwind_18090af70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表循环清理操作
+ * 
+ * 该函数在异常处理过程中循环清理资源表，确保所有资源正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态信息
+ * 
+ * @note 此函数通过循环遍历资源表来清理资源
+ */
+void ProcessResourceTableLoopCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -76134,7 +76144,17 @@ void Unwind_18090af70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090af90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源释放操作
+ * 
+ * 该函数在异常处理过程中释放系统资源，确保资源正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态信息
+ * 
+ * @note 此函数通常在异常处理时调用，用于清理0x2d0偏移处的资源
+ */
+void ProcessSystemResourceRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
