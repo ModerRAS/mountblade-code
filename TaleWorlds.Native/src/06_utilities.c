@@ -207,7 +207,6 @@
 #define ResourceCounterOffsetA0 0xa0
 #define GlobalUnwindCounterOffset 0x3a8
 
-// System pointer constants
 #define SystemContextPrimaryPointer SystemContextPointer
 #define SystemResourceSecondaryPointer SystemSecondaryResourcePointer
 
