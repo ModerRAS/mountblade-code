@@ -100980,7 +100980,7 @@ void InitializeSystemDataStructureStatisticsManager(void)
 void InitializeSystemDataStructureTaskManager(void)
 
 {
-  SystemDataPointer010 = &SystemDataStructure;
+  SystemDataStructureTaskManager = &SystemDataStructure;
   return;
 }
 
