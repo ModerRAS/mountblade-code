@@ -202,9 +202,39 @@ uint ValidateNetworkConnectionHandle(NetworkHandle ConnectionContext, NetworkHan
  * @return 连接句柄
  */
 NetworkHandle GetConnectionHandle(int64_t *ConnectionContext);
+/**
+ * 验证网络连接条目 - 验证网络连接表中的条目
+ * 此函数负责验证网络连接表中的条目是否有效
+ * @param ConnectionContext 连接上下文
+ * @param NetworkFlags 网络标志
+ * @return 验证结果句柄，0表示成功，其他值表示错误码
+ */
 uint ValidateNetworkConnectionEntry(int64_t ConnectionContext, uint NetworkFlags);
+
+/**
+ * 初始化网络上下文 - 初始化网络连接的上下文
+ * 此函数负责初始化网络连接的上下文数据
+ * @param NetworkContext 网络上下文
+ * @return 初始化结果句柄，0表示成功，其他值表示错误码
+ */
 uint InitializeNetworkContext(int64_t NetworkContext);
+
+/**
+ * 处理网络上下文条目 - 处理网络上下文中的条目
+ * 此函数负责处理网络上下文中的条目数据
+ * @param NetworkContextEntry 网络上下文条目
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 uint ProcessNetworkContextEntry(int64_t NetworkContextEntry);
+
+/**
+ * 处理网络连接数据 - 处理网络连接的数据传输
+ * 此函数负责处理网络连接中的数据传输
+ * @param NetworkContextEntry 网络上下文条目
+ * @param NetworkContextArray 网络上下文数组
+ * @param ConnectionContext 连接上下文
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 uint HandleNetworkConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
 uint ProcessSecondaryConnectionData(int64_t ConnectionContext, int64_t ConnectionData);
 uint ValidateNetworkContextEntry(int64_t NetworkContextEntry);
@@ -218,32 +248,32 @@ uint ProcessNetworkArrayData(int64_t NetworkContextArray, uint ArrayIndex);
 uint CloseNetworkConnection(int64_t *NetworkConnectionContext, uint ConnectionFlags);
 
 // 全局变量声明
-uint32_t NetworkConnectionTableHandle;
-uint32_t NetworkConnectionStatusFlags;
-uint32_t NetworkConnectionTimeoutDuration;
-uint32_t NetworkPacketBufferPointer;
-uint32_t NetworkPacketHeaderPointer;
-uint32_t NetworkMaximumConnectionsLimit;
-uint32_t NetworkConnectionAttributeFlags;
-uint32_t NetworkConnectionProtocolType;
-uint32_t NetworkConnectionProtocolVersion;
-uint32_t NetworkServerIpAddress;
-uint32_t NetworkServerPortNumber;
-uint32_t NetworkClientIpAddress;
-uint32_t NetworkClientPortNumber;
-uint32_t NetworkSocketFileDescriptor;
-uint32_t NetworkSocketCategory;
-uint32_t NetworkSocketProtocolType;
-uint32_t NetworkConnectionPoolSize;
-uint32_t NetworkSendBufferSize;
-uint32_t NetworkReceiveBufferSize;
-uint32_t NetworkSendBufferCapacity;
-uint32_t NetworkReceiveBufferCapacity;
-uint32_t NetworkPacketPayloadSize;
-uint32_t NetworkMaxPacketSize;
-uint32_t NetworkEncryptionKey;
-uint32_t NetworkCompressionLevel;
-uint32_t NetworkConnectionStateFlags;
+uint32_t NetworkConnectionTableHandle;                    // 网络连接表句柄
+uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志
+uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时持续时间
+uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针
+uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针
+uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制
+uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志
+uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型
+uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本
+uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址
+uint32_t NetworkServerPortNumber;                         // 网络服务器端口号
+uint32_t NetworkClientIpAddress;                          // 网络客户端IP地址
+uint32_t NetworkClientPortNumber;                         // 网络客户端端口号
+uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符
+uint32_t NetworkSocketCategory;                           // 网络套接字类别
+uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型
+uint32_t NetworkConnectionPoolSize;                       // 网络连接池大小
+uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小
+uint32_t NetworkReceiveBufferSize;                        // 网络接收缓冲区大小
+uint32_t NetworkSendBufferCapacity;                       // 网络发送缓冲区容量
+uint32_t NetworkReceiveBufferCapacity;                    // 网络接收缓冲区容量
+uint32_t NetworkPacketPayloadSize;                        // 网络数据包负载大小
+uint32_t NetworkMaxPacketSize;                            // 网络最大数据包大小
+uint32_t NetworkEncryptionKey;                            // 网络加密密钥
+uint32_t NetworkCompressionLevel;                         // 网络压缩级别
+uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志
 
 void *NetworkConnectionInitializationConfigDataPointer;
 void *NetworkConnectionAlternateConfigDataPointer;

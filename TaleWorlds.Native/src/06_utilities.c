@@ -10564,7 +10564,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandlingNoParams(void)
 uint64_t ProcessFloatDataValidation(void)
 
 {
-  float CalculatedFloatResult;
+  float InputFloatValue;
   uint8_t ResourceHashStatus;
   uint8_t *ResourceHashStatusAddress;
   int64_t ResourceContext;
@@ -10573,19 +10573,19 @@ uint64_t ProcessFloatDataValidation(void)
   uint32_t ValidationParameterValueBuffer;
   
   ResourceHashStatus = ValidateObjectContextAndProcessData();
-  if ((int)ValidationStatusCode == 0) {
-    CalculatedFloatValue = *(float *)(SystemRegisterContext + 0x10);
+  if ((int)ResourceHashStatus == 0) {
+    InputFloatValue = *(float *)(ResourceContext + 0x10);
     if ((InputFloatValue < *(float *)(ResourceContext + 0x38)) ||
        (*(float *)(ResourceContext + 0x3c) <= InputFloatValue && InputFloatValue != *(float *)(ResourceContext + 0x3c))) {
-      ValidationStatusCode = ErrorInvalidObjectHandle;
+      ResourceHashStatus = ErrorInvalidObjectHandle;
     }
     else {
-      ValidationStatusCode = ValidateResourceParameters(ResourceRegisterPointer + 0x60,ValidationParameterValueBuffer);
-      if ((int)ValidationStatusCode == 0) {
-        PackageValidationStatusCodePointer = (uint8_t *)
-                 GetResourcePointer(ResourceRegisterPointer + 0x60,&ObjectSecondaryBuffer,ValidationParameterValueBuffer);
-        *(uint8_t *)(SystemRegisterContext + 0x18) = *ResourceHashStatusAddress;
-              ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + 0x98));
+      ResourceHashStatus = ValidateResourceParameters(ResourceRegisterPointer + 0x60, ValidationParameterValueBuffer);
+      if ((int)ResourceHashStatus == 0) {
+        ResourceHashStatusAddress = (uint8_t *)
+                 GetResourcePointer(ResourceRegisterPointer + 0x60, &ResourceContext, ValidationParameterValueBuffer);
+        *(uint8_t *)(ResourceContext + 0x18) = *ResourceHashStatusAddress;
+              ReleaseSystemContextResources(*(uint8_t *)(ResourceContext + 0x98));
       }
     }
   }
@@ -10606,20 +10606,20 @@ uint64_t ProcessFloatDataValidation(void)
  * @param ObjectContext 数据上下文指针，包含数据的基本信息
  * @param ValidationContext 系统上下文指针，用于系统级操作
  */
-void ProcessSystemContextAndDataOperation(int64_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemContextAndDataOperation(int64_t ObjectContext, int64_t ValidationContext)
 
 {
-  uint8_t EncryptionBuffer [8];
+  uint8_t DataEncryptionBuffer[8];
   int64_t ValidationContextOffset;
   int64_t ResourceHandleValue;
   int64_t ValidationContextPtr;
-  uint64_t EncryptedValue;
+  uint64_t EncryptedResult;
   
-  EncryptedValue = SecurityEncryptionKey ^ (uint64_t)EncryptionBuffer;
+  EncryptedResult = SecurityEncryptionKey ^ (uint64_t)DataEncryptionBuffer;
   ValidationContextOffset = ValidationContext + ValidationContextDataOffset;
   ResourceHandleValue = ObjectContext + ObjectContextValidationDataOffset + (int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * 8;
   ValidationContextPtr = ValidationContext;
-        InitializeMemoryAllocation();
+  InitializeMemoryAllocation();
 }
 
 
@@ -10634,21 +10634,21 @@ void ProcessSystemContextAndDataOperation(int64_t ObjectContext,int64_t Validati
  * @param ValidationContext 系统上下文参数，用于系统级操作
  * @return uint8_t 验证结果状态码，0表示成功，非0表示错误
  */
-uint8_t ValidateObjectContextAndProcessFloatValidation(int64_t ObjectContext,int64_t ValidationContext)
+uint8_t ValidateObjectContextAndProcessFloatValidation(int64_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t ResourceHash;
-  uint ValidationContext;
-  uint32_t ValidationParameterValue;
+  uint FloatValue;
+  uint32_t ValidationParameter;
   
-  ValidationContext = *(uint *)(ObjectContext + ObjectContextValidationDataOffset);
-  if ((ValidationContext & FloatInfinityMask) == FloatInfinityMask) {
+  FloatValue = *(uint *)(ObjectContext + ObjectContextValidationDataOffset);
+  if ((FloatValue & FloatInfinityMask) == FloatInfinityMask) {
     return ErrorFloatValidationFailure;
   }
-  ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&ValidationContext);
+  ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &FloatValue);
   if ((int)ResourceHash == 0) {
-    *(uint32_t *)(CombineFloatAndInt(ValidationContextParam,ValidationContext) + 0x18) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-          ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
+    *(uint32_t *)(CombineFloatAndInt(ValidationParameter, FloatValue) + 0x18) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
+    ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset), ObjectContext);
   }
   return ResourceHash;
 }
