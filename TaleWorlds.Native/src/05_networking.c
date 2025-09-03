@@ -396,7 +396,7 @@ uint32_t InitializeConnection(NetworkHandle ConnectionHandle);
  * @param ConnectionHandle 连接句柄
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkVerifyConnectionStatus(NetworkHandle ConnectionHandle);
+uint32_t VerifyConnectionStatus(NetworkHandle ConnectionHandle);
 
 /**
  * @brief 重置网络连接状态
