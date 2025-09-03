@@ -83,13 +83,13 @@
 
 // 网络连接相关偏移量
 #define NetworkConnectionHeaderOffset 0x10
-#define NetworkConnectionValidationOffset1 0xd8
-#define NetworkConnectionValidationOffset2 0x54
-#define NetworkConnectionValidationOffset3 0x78
-#define NetworkConnectionValidationOffset4 0x58
-#define NetworkConnectionDataOffset1 0x5c
+#define NetworkConnectionValidationOffsetFirst 0xd8
+#define NetworkConnectionValidationOffsetSecond 0x54
+#define NetworkConnectionValidationOffsetThird 0x78
+#define NetworkConnectionValidationOffsetFourth 0x58
+#define NetworkConnectionDataOffsetFirst 0x5c
 #define NetworkConnectionValidatorOffset 0x60
-#define NetworkConnectionIntegrityOffset1 0x70
+#define NetworkConnectionIntegrityOffsetFirst 0x70
 #define NetworkConnectionIntegrityOffset2 0x74
 #define NetworkConnectionFinalizeOffset 0x7c
 #define NetworkConnectionSecurityOffset 0xf8
