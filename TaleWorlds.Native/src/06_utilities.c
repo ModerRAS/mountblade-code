@@ -8462,15 +8462,15 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, in
 {
   float ComparisonValue;
   int64_t ResourceDataPointer;
-  uint8_t ValidationStatusCode;
+  uint8_t ObjectValidationStatus;
   int64_t ResourceContext;
   int64_t ValidationBuffer[2];
   float MinimumRangeValue;
   float MaximumRangeValue;
   
   // 验证对象上下文
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), ValidationBuffer);
-  if (ValidationStatusCode == 0) {
+  ObjectValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), ValidationBuffer);
+  if (ObjectValidationStatus == 0) {
     // 调整上下文指针
     if (ValidationBuffer[0] == 0) {
       ValidationBuffer[0] = 0;
@@ -8480,8 +8480,8 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, in
     
     // 验证资源上下文
     ResourceContext = 0;
-    ValidationStatusCode = ValidateResourceContext(ValidationBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContext);
-    if (ValidationStatusCode == 0) {
+    ObjectValidationStatus = ValidateResourceContext(ValidationBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContext);
+    if (ObjectValidationStatus == 0) {
       if (ResourceContext == 0) {
         return 0x4a;
       }
@@ -75299,6 +75299,16 @@ void CleanupSystemOperationProcessorB(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
+/**
+ * @brief 处理系统资源操作A
+ * 
+ * 该函数负责处理系统资源的特定操作
+ * 从验证上下文中提取资源上下文并执行相应的处理逻辑
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置和状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @note 原始函数名：Unwind_18090abc0
+ */
 void ProcessSystemResourceOperationA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -75313,6 +75323,16 @@ void ProcessSystemResourceOperationA(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
+/**
+ * @brief 处理系统资源操作B
+ * 
+ * 该函数负责处理系统资源的特定操作
+ * 从验证上下文中提取资源上下文并执行相应的处理逻辑
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置和状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @note 原始函数名：Unwind_18090abd0
+ */
 void ProcessSystemResourceOperationB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
