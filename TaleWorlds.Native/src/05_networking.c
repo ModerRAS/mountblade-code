@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-/* 网络系统偏移量常量定义 */
 #define NetworkContextSystemOffset 0x98
 #define NetworkSessionDataOffset 0x200
 #define ConnectionStateBufferOffset 0x28
@@ -13,28 +12,23 @@
 #define NetworkPacketHeaderSize 0x18
 #define NetworkStatusFieldOffset 2
 
-/* 网络状态标志位定义 */
 #define NetworkStatusActiveFlag 0x1
 #define NetworkStatusSecureFlag 0x2
 #define NetworkStatusConnectedFlag 0x4
 
-/* 网络错误代码定义 */
 #define NetworkErrorInvalidHandle 0xFFFFFFFF
 #define NetworkErrorConnectionFailed 0xFFFFFFFE
 #define NetworkErrorTimeout 0xFFFFFFFD
 #define NetworkErrorSecurity 0xFFFFFFFC
 #define NetworkErrorInitializationFailed 0x1f
 
-/* 网络连接类型定义 */
 #define NetworkConnectionTypeBase 0x20200
 #define NetworkConnectionTypeRange 0x100
 #define NetworkConnectionTypePrimary 0x20214
 
-/* 网络系统标志位定义 */
 #define NetworkSystemDebugFlag 0x80
 #define NetworkSystemStatusOffset 0x10
 
-/* 网络连接上下文偏移量定义 */
 #define NetworkConnectionContextOffset 0x78
 #define NetworkConnectionValidationOffset 0x24
 #define NetworkConnectionStatusOffset 0x98
@@ -63,33 +57,28 @@
 #define NetworkSecurityContextOffset 0x44
 #define NetworkEncryptionKeyOffset 0x50
 
-/* 网络数据表偏移量定义 */
 #define NetworkPacketTableIndexOffset 0x88
 #define NetworkPacketTableDataOffset 0x80
 #define NetworkPacketEntrySize 0x10
 #define NetworkPacketProcessorOffset 0x270
 
-/* 网络数据包状态偏移量定义 */
 #define NetworkPacketStatusPrimaryOffset 0x38
 #define NetworkPacketStatusSecondaryOffset 0x3c
 #define NetworkPacketStatusTertiaryOffset 0x40
 #define NetworkPacketStatusQuaternaryOffset 0x44
 
-/* 网络数据包魔数定义 */
 #define NetworkPacketMagicSilive 0x5453494c
 #define NetworkPacketMagicTivel 0x54495645
 #define NetworkPacketMagicBivel 0x42495645
 #define NetworkPacketMagicTnvel 0x544e5645
 #define NetworkPacketMagicBtvel 0x42545645
 
-/* 网络状态字符常量定义 */
 #define NetworkStatusActive 0x01
 #define NetworkStatusInactive 0x00
 #define NetworkStatusReserved 0x02
 #define NetworkStatusSpecial 0x03
 #define NetworkStatusTerminator 0x06
 
-/* 网络魔数常量定义 */
 #define NetworkMagicDeadFood 0xdeadf00d
 #define NetworkMaxIntValue 0x7fffffff
 #define NetworkFloatOne 0x3f800000

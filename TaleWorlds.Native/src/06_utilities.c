@@ -5003,45 +5003,47 @@ void CleanupSystemResources(void)
 
 /**
  * @brief 验证并处理对象句柄（版本2）
- * @param ObjectHandleToValidate 对象句柄
- * @return 返回操作结果，0表示成功，非0表示错误代码
+ * @param ObjectContext 对象上下文，包含要验证的对象句柄信息
+ * @return uint8_t 返回操作结果，0表示成功，非0表示错误代码
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
- * 这是validateObjectHandle函数的另一个版本
+ * 这是ValidateObjectHandle函数的另一个版本，提供了不同的验证逻辑
  */
-uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleToValidate)
-
+uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
 {
-  uint8_t ValidationStatusCode;
-  int64_t HandleMemoryBuffer;
+  uint8_t ValidationResult;
+  int64_t HandleMemoryPointer;
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectContextValidationOffset), &HandleMemoryBuffer);
-  if ((int)ValidationStatusCode != 0) {
-    return ValidationStatusCode;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &HandleMemoryPointer);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
-  if (HandleMemoryBuffer == 0) {
-    HandleMemoryBuffer = 0;
+  
+  if (HandleMemoryPointer == 0) {
+    HandleMemoryPointer = 0;
   }
   else {
-    HandleMemoryBuffer = HandleMemoryBuffer + -8;
+    HandleMemoryPointer = HandleMemoryPointer - 8;
   }
-  if (*(int64_t *)(HandleMemoryBuffer + HandleMemoryBufferHeaderOffset) == 0) {
+  
+  if (*(int64_t *)(HandleMemoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + HandleMemoryBufferHeaderOffset), 1);
+  
+  ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryPointer + HandleMemoryBufferHeaderOffset), 1);
+  return 0;
 }
 
 
 
 /**
  * @brief 从寄存器验证对象句柄（版本2）
- * @return 返回验证结果，0表示成功，0x1c表示错误
+ * @return uint32_t 返回验证结果，0表示成功，0x1c表示错误
  * 
  * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
- * 这是validateObjectHandleFromRegister函数的另一个版本
+ * 这是ValidateObjectHandleFromRegister函数的另一个版本，提供了替代的验证逻辑
  */
 uint32_t ValidateObjectHandleFromRegisterAlternative(void)
-
 {
   int64_t RegisterContext;
   int64_t MemoryPointer;
@@ -5050,12 +5052,15 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
     MemoryPointer = 0;
   }
   else {
-    MemoryPointer = RegisterContext + -8;
+    MemoryPointer = RegisterContext - 8;
   }
+  
   if (*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset), 1);
+  
+  ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + HandleMemoryBufferHeaderOffset), 1);
+  return 0;
 }
 
 
