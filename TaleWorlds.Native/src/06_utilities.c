@@ -8457,6 +8457,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
   int64_t ContextBuffer;
   uint8_t SystemProcessingBuffer [40];
   uint64_t SecurityToken;
+  int SystemValidationResult;
   
   SecurityToken = SecurityEncryptionKey ^ (uint64_t)SystemSecurityBuffer;
   SystemValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ContextBuffer);
