@@ -75299,7 +75299,7 @@ void CleanupSystemOperationProcessorB(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_18090abc0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceOperationA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75313,7 +75313,7 @@ void Unwind_18090abc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090abd0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceOperationB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
