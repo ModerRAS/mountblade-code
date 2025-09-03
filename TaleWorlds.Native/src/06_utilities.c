@@ -14372,7 +14372,7 @@ void SystemStatusProcessorPrimary(void)
   int64_t *SystemRegisterContext;
   uint64_t StackParameterSecurityKey;
   
-  if ((SavedIndexLow == '\0') && (ResourceIndex = (**(code **)(*SystemRegisterContext + 0x18))(), ResourceIndex == 0)) {
+  if ((SystemStatusFlag == '\0') && (ResourceIndex = (**(code **)(*SystemRegisterContext + 0x18))(), ResourceIndex == 0)) {
     *(uint8_t *)(SystemRegisterContext + 4) = 0;
   }
         FinalizeSecurityOperation(StackParameterSecurityKey ^ (uint64_t)&SystemSecurityValidationBuffer);

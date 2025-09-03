@@ -1042,9 +1042,9 @@ NetworkHandle NetworkProcessConnectionDataHandler(int64_t *ConnectionContext, in
           PacketBuffer = StatusBuffer;
           do {
             ConnectionStatusData = (NetworkStatus *)((ConnectionBasePointer - (long long)StatusBuffer) + (long long)PacketBuffer);
-            PacketProcessingResult = ConnectionStatusData[1];
-            ProcessingStatus = ConnectionStatusData[2];
-            ValidationResult = ConnectionStatusData[3];
+            NetworkStatus PacketProcessingResult = ConnectionStatusData[1];
+            NetworkStatus ProcessingStatus = ConnectionStatusData[2];
+            NetworkStatus ValidationResult = ConnectionStatusData[3];
             *PacketBuffer = *ConnectionStatusData;
             PacketBuffer[1] = PacketProcessingResult;
             PacketBuffer[2] = ProcessingStatus;
@@ -1112,13 +1112,13 @@ NETWORK_PROCESSING_LOOP:
         PacketFlagsPointer = StatusPointer;
         do {
           ContextArray = (NetworkStatus *)((NetworkContext - (long long)StatusPointer) + (long long)PacketFlagsPointer);
-          ValidationStatus = ContextArray[1];
-          TimeoutStatus = ContextArray[2];
-          SecondaryProcessingResult = ContextArray[3];
+          NetworkStatus ContextValidationStatus = ContextArray[1];
+          NetworkStatus ContextTimeoutStatus = ContextArray[2];
+          NetworkStatus ContextSecondaryResult = ContextArray[3];
           *PacketFlagsPointer = *ContextArray;
-          PacketFlagsPointer[1] = ValidationStatus;
-          PacketFlagsPointer[2] = TimeoutStatus;
-          PacketFlagsPointer[3] = SecondaryProcessingResult;
+          PacketFlagsPointer[1] = ContextValidationStatus;
+          PacketFlagsPointer[2] = ContextTimeoutStatus;
+          PacketFlagsPointer[3] = ContextSecondaryResult;
           PacketFlagsPointer[4] = *(NetworkStatus *)((NetworkContext - (long long)StatusPointer) + -4 + (long long)(PacketFlagsPointer + 5));
           ConnectionIterator = ConnectionIterator + -1;
           PacketFlagsPointer = PacketFlagsPointer + 5;
