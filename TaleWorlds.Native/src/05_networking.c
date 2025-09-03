@@ -1183,7 +1183,20 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
   NetworkHandle *HandleBuffer [34];
   uint64_t ValidationKey;
   
-  }
+  // 清理连接状态和数据
+  ConnectionPrimaryStatus = 0;
+  DataProcessingResult = 0;
+  
+  // 释放网络缓冲区
+  memset(NetworkBuffer, 0, sizeof(NetworkBuffer));
+  
+  // 清理句柄存储
+  memset(HandleStorage, 0, sizeof(HandleStorage));
+  memset(HandleBuffer, 0, sizeof(HandleBuffer));
+  
+  // 重置验证密钥
+  ValidationKey = 0;
+}
 
 /**
  * @brief 验证网络数据包的完整性和安全性
@@ -1294,7 +1307,7 @@ NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t
   }
   NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffset1);
   ConnectionDataArray[0] = PrimaryDataStatus;
-  ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
+  PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
   if ((int)ProcessingStatus == 0) {
     if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[1] + 0x18) != 0) {
