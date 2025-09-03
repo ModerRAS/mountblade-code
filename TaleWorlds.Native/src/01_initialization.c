@@ -1509,6 +1509,9 @@ void InitializeSystemDataTableBaseAllocator(void)
  * 
  * @note 该函数在系统初始化过程中调用，确保数据表的分配功能
  * 正常工作。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemDataTableAllocator(void)
 {
@@ -1572,6 +1575,9 @@ void InitializeSystemDataTableAllocator(void)
  * 重要步骤。
  * 
  * @note 该函数在系统启动时调用，确保所有核心配置都正确设置。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemCoreConfig(void)
 {
@@ -1887,6 +1893,9 @@ void InitializeSystemResourceManager(void)
  * 
  * @note 该函数在系统初始化过程中调用，确保核心数据结构正确设置。
  * @note 函数使用SystemDataComparisonTemplateA进行系统识别。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemCoreData(void)
 
@@ -2044,7 +2053,8 @@ int InitializeSystemGlobalVariables(void)
  * @note 函数负责设置引擎的全局状态和配置参数
  * @note 这是系统启动的主要入口点之一
  * 
- * @return 无返回值
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeCoreEngine(void)
 
@@ -62598,18 +62608,18 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
   OffsetValue = *(float *)(ResourceDataIndex + 0x388);
   RatioValue = *(float *)(ResourceDataIndex + 0x390);
   InterpolationFactorY = *(float *)(ResourceDataIndex + 0x398);
-  *ConfigurationFlag = BaseValue * floatValue24 + floatValue6 * ResultValue2 + floatValue7 * InterpolationFactorW;
-  ConfigurationFlag[1] = BaseValue * floatValue25 + floatValue6 * floatValue21 + floatValue7 * InterpolationFactorV;
-  ConfigurationFlag[2] = BaseValue * floatValue26 + floatValue6 * floatValue22 + floatValue7 * MagnitudeSquared;
-  ConfigurationFlag[3] = BaseValue * floatValue27 + floatValue6 * floatValue23 + floatValue7 * ResultValue1;
-  ConfigurationFlag[4] = floatValue8 * floatValue24 + ScalingFactor * ResultValue2 + OffsetValue * InterpolationFactorW;
-  ConfigurationFlag[5] = floatValue8 * floatValue25 + ScalingFactor * floatValue21 + OffsetValue * InterpolationFactorV;
-  ConfigurationFlag[6] = floatValue8 * floatValue26 + ScalingFactor * floatValue22 + OffsetValue * MagnitudeSquared;
-  ConfigurationFlag[7] = floatValue8 * floatValue27 + ScalingFactor * floatValue23 + OffsetValue * ResultValue1;
-  ConfigurationFlag[8] = ScaleValue * floatValue24 + RatioValue * ResultValue2 + InterpolationFactorY * InterpolationFactorW;
-  ConfigurationFlag[9] = ScaleValue * floatValue25 + RatioValue * floatValue21 + InterpolationFactorY * InterpolationFactorV;
-  ConfigurationFlag[10] = ScaleValue * floatValue26 + RatioValue * floatValue22 + InterpolationFactorY * MagnitudeSquared;
-  ConfigurationFlag[0xb] = ScaleValue * floatValue27 + RatioValue * floatValue23 + InterpolationFactorY * ResultValue1;
+  *ConfigurationFlag = BaseValue * MatrixValue4 + SecondaryValue * ResultValue2 + TertiaryValue * InterpolationFactorW;
+  ConfigurationFlag[1] = BaseValue * MatrixValue5 + SecondaryValue * MatrixValue1 + TertiaryValue * InterpolationFactorV;
+  ConfigurationFlag[2] = BaseValue * MatrixValue6 + SecondaryValue * MatrixValue2 + TertiaryValue * MagnitudeSquared;
+  ConfigurationFlag[3] = BaseValue * MatrixValue7 + SecondaryValue * MatrixValue3 + TertiaryValue * ResultValue1;
+  ConfigurationFlag[4] = QuaternaryValue * MatrixValue4 + ScalingFactor * ResultValue2 + OffsetValue * InterpolationFactorW;
+  ConfigurationFlag[5] = QuaternaryValue * MatrixValue5 + ScalingFactor * MatrixValue1 + OffsetValue * InterpolationFactorV;
+  ConfigurationFlag[6] = QuaternaryValue * MatrixValue6 + ScalingFactor * MatrixValue2 + OffsetValue * MagnitudeSquared;
+  ConfigurationFlag[7] = QuaternaryValue * MatrixValue7 + ScalingFactor * MatrixValue3 + OffsetValue * ResultValue1;
+  ConfigurationFlag[8] = ScaleValue * MatrixValue4 + RatioValue * ResultValue2 + InterpolationFactorY * InterpolationFactorW;
+  ConfigurationFlag[9] = ScaleValue * MatrixValue5 + RatioValue * MatrixValue1 + InterpolationFactorY * InterpolationFactorV;
+  ConfigurationFlag[10] = ScaleValue * MatrixValue6 + RatioValue * MatrixValue2 + InterpolationFactorY * MagnitudeSquared;
+  ConfigurationFlag[0xb] = ScaleValue * MatrixValue7 + RatioValue * MatrixValue3 + InterpolationFactorY * ResultValue1;
   resourceDataIndex5 = *(long long *)(memoryBlockAddress + 600);
   if (*(int *)(resourceDataIndex5 + 0x28) != *(int *)(SystemGlobalStatusFlags + 0x224)) {
     systemCounter9 = *(int *)(resourceDataIndex5 + 0x1c) + *(int *)(resourceDataIndex5 + 0x18);
