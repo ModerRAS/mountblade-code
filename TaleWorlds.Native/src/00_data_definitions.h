@@ -7495,13 +7495,13 @@ uint8_t SystemModuleInitializeComplete(void)
   uint8_t UnassignedSil;  // 未分配的SIL寄存器值
   return UnassignedSil;
 }
-  MemoryAllocationCounter = MemoryAllocationCounter + unaff_BL;
+  MemoryAllocationCounter = MemoryAllocationCounter + UnassignedBl;  // 未分配的BL寄存器值
   MemoryAllocationResult = in(StringProcessingResult);
-  pNetworkRequestStatus = (char *)((ulonglong)MemoryAllocationResult + 0x1c0042ed);
-  *pNetworkRequestStatus = *pNetworkRequestStatus + (char)unaff_RDI + '\x04';
+  NetworkRequestStatusPointer = (char *)((ulonglong)MemoryAllocationResult + 0x1c0042ed);
+  *NetworkRequestStatusPointer = *NetworkRequestStatusPointer + (char)UnassignedRdi + '\x04';
   out(StringProcessingResult,(char)MemoryAllocationResult);
-  pNetworkRequestStatus = (char *)((ulonglong)MemoryAllocationResult - 0x12);
-  *pNetworkRequestStatus = *pNetworkRequestStatus + (char)SystemSecondaryParameter;
+  NetworkRequestStatusPointer = (char *)((ulonglong)MemoryAllocationResult - 0x12);
+  *NetworkRequestStatusPointer = *NetworkRequestStatusPointer + (char)SystemSecondaryParameter;
   pBooleanCheck = (code *)swi(3);
   (*pBooleanCheck)();
   return;
