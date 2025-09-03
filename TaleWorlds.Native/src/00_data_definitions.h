@@ -3800,7 +3800,7 @@ Label_StringSpaceFound:
                   if (StackStringBufferTertiary != 0) {
                     SystemBufferValidate(StackStringBufferTertiary,BufferSize1);
                   }
-                  StackStringData3 = 0;
+                  StackStringBufferTertiary = 0;
                   StackProcessCounter = 0;
                   StackBufferPointer9 = &SystemBufferTemplate;
                 }
@@ -4450,7 +4450,7 @@ Label_18005122d:
   pModuleInitializationResult4 = SystemModuleContext;
   StackCounter48 = SystemModuleContext;
   SystemModuleContext = (longlong *)*pUnsignedValue;
-  auStack_2a8[0] = 0;
+  StackGameSessionBuffer[0] = 0;
   plStack_2f8 = alStack_90;
   MemoryAddress1 = 0;
   alStack_90[0] = 0;
