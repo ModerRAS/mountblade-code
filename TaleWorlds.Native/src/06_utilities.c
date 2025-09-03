@@ -338,7 +338,7 @@
  * @param ValidationParameter 验证参数值低7位
  * @return 合并后的64位值
  */
-uint64_t MergeSystemContextWithValidation(uint64_t SystemContext, uint8_t ValidationParameter);
+uint64_t CombineSystemContextWithValidationParameter(uint64_t SystemContext, uint8_t ValidationParameter);
 
 /**
  * @brief 计算数据校验和
@@ -352,7 +352,7 @@ uint64_t MergeSystemContextWithValidation(uint64_t SystemContext, uint8_t Valida
  * @param ChecksumSeed 校验种子值
  * @return 计算得到的校验和值
  */
-uint64_t CalculateDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
+uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
 
 /**
  * @brief 计算数据校验和(扩展版)
@@ -367,7 +367,7 @@ uint64_t CalculateDataChecksum(uint64_t SystemContext, void* DataBuffer, int Alg
  * @param ExtendedParameter 扩展参数
  * @return 计算得到的校验和值
  */
-uint64_t CalculateExtendedDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed, uint32_t ExtendedParameter);
+uint64_t ComputeExtendedDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed, uint32_t ExtendedParameter);
 
 /**
  * @brief 验证内存访问
@@ -4446,8 +4446,8 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
     }
     
     // 验证状态一致性
-    if ((char)RegistrationValidationStatus == (char)registrationStatusResult) {
-      if (ObjectName[0] == (char)registrationStatusResult) {
+    if ((char)RegistrationValidationStatus == (char)RegistrationStatusResult) {
+      if (ObjectName[0] == (char)RegistrationStatusResult) {
         // 搜索现有注册项
         RegistrationBasePointer = (int64_t *)(RegistrationData + RegistrationArrayOffset);
         RegistrationIterator = 0;

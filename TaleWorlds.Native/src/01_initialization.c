@@ -6242,7 +6242,7 @@ void InitializeSystemStorageManager(void)
   void** SystemDataTableReference;
   int NodeIdentifierCompareResult;
   long long *SystemMemoryAllocationPointer;
-  long long systemTimestamp;
+  long long SystemTimestamp;
   void** SystemRootStorageNode;
   void** SystemCurrentStorageNode;
   void** SystemNextStorageNode;
@@ -6301,7 +6301,7 @@ void InitializeSystemMemoryManagerNode(void)
   void** SystemDataTableReference;
   int NodeIdentifierCompareResult;
   long long *SystemMemoryAllocationPointer;
-  long long systemTimestamp;
+  long long SystemTimestamp;
   void** SystemRootMemoryNode;
   void** SystemCurrentMemoryNode;
   void* *SystemNextMemoryNode;
@@ -18977,7 +18977,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   uint8_t* MemoryAllocationFlag;
   char *searchPathPointer;
   void* *stackPointer;
-  ulong long systemTimestamp;
+  ulong long SystemTimestamp;
   uint stackFlags;
   char ThreadState;
   long long *threadLocalData;
@@ -20617,7 +20617,7 @@ void InitializeSystemCoreEngine(void)
   void* *SystemCallbackPointer;
   uint8_t *systemEventBuffer;
   uint systemEventCounter;
-  ulong long systemTimestamp;
+  ulong long SystemTimestamp;
   uint32_t systemOperationFlag;
   long long ***systemMemoryPool;
   long long **systemMemoryTable;
@@ -26565,7 +26565,7 @@ void InitializeSystemDataStructures(void)
   long long **systemDoublePointer;
   void*2 *systemTypedPointer;
   uint systemIndex;
-  ulong long systemTimestamp;
+  ulong long SystemTimestamp;
   float systemFloatValue;
   double systemDoubleValue1;
   double systemDoubleValue2;
