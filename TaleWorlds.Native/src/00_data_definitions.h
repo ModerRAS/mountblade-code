@@ -3633,7 +3633,7 @@ Label_EncryptionSpaceFound:
                     } while (BufferSize6 < StackValidationLimit2);
                   }
                   BufferSize8 = 0xffffffff;
-Label_18004dc6a:
+Label_StringSpaceFound:
                   if ((int)BufferSize1 != -1) {
                     SystemDataProcess(&StackBufferPointer9,&StackBufferPointer10,UnsignedIndex,BufferSize8);
                     SystemBufferInitialize(&StackBufferPointer10,1);

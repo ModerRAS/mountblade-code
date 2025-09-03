@@ -50056,30 +50056,30 @@ InitializeSystemMemoryAllocatorWithHashNodes(long long* SystemResourceManager,vo
       ConfigurationFlag[1] = ConfigurationFlag + 3;
       *(uint32_t *)(ConfigurationFlag + 2) = 0;
       *(uint8_t *)(ConfigurationFlag + 3) = 0;
-      *(uint32_t *)(ConfigurationFlag + 2) = *(uint32_t *)(SystemHashNodeData + -0x29);
-      presourceAddress = &SystemStringTemplate;
-      if ((void* *)SystemHashNodeData[-0x2a] != (void* *)0x0) {
-        presourceAddress = (void* *)SystemHashNodeData[-0x2a];
+      *(uint32_t *)(ConfigurationFlag + 2) = *(uint32_t *)(HashNodeIterator + -0x29);
+      ResourceTemplateAddress = &SystemStringTemplate;
+      if ((void* *)HashNodeIterator[-0x2a] != (void* *)0x0) {
+        ResourceTemplateAddress = (void* *)HashNodeIterator[-0x2a];
       }
-      strcpy_s(ConfigurationFlag[1],0x100,presourceAddress);
-      ConfigurationFlag[0x23] = SystemHashNodeData[-8];
-      ConfigurationFlag[0x24] = SystemHashNodeData[-7];
-      ConfigurationFlag[0x25] = SystemHashNodeData[-6];
-      ConfigurationFlag[0x26] = SystemHashNodeData[-5];
-      ConfigurationFlag[0x27] = SystemHashNodeData[-4];
-      *(uint8_t *)(ConfigurationFlag + 0x28) = *(uint8_t *)(SystemHashNodeData + -3);
+      strcpy_s(ConfigurationFlag[1],0x100,ResourceTemplateAddress);
+      ConfigurationFlag[0x23] = HashNodeIterator[-8];
+      ConfigurationFlag[0x24] = HashNodeIterator[-7];
+      ConfigurationFlag[0x25] = HashNodeIterator[-6];
+      ConfigurationFlag[0x26] = HashNodeIterator[-5];
+      ConfigurationFlag[0x27] = HashNodeIterator[-4];
+      *(uint8_t *)(ConfigurationFlag + 0x28) = *(uint8_t *)(HashNodeIterator + -3);
       ConfigurationFlag[0x2b] = 0;
       ConfigurationFlag[0x2c] = _guard_check_icall;
-      if (ConfigurationFlag + 0x29 != SystemHashNodeData + -2) {
-        pSystemOperationResult = (code *)*SystemHashNodeData;
+      if (ConfigurationFlag + 0x29 != HashNodeIterator + -2) {
+        SystemOperationCallback = (code *)*HashNodeIterator;
         if (SystemStringPointer != (code *)0x0) {
-          (*pSystemOperationResult)(ConfigurationFlag + 0x29,SystemHashNodeData + -2,2);
-          pSystemOperationResult = (code *)*SystemHashNodeData;
+          (*SystemOperationCallback)(ConfigurationFlag + 0x29,HashNodeIterator + -2,2);
+          SystemOperationCallback = (code *)*HashNodeIterator;
         }
-        ConfigurationFlag[0x2b] = pSystemOperationResult;
-        ConfigurationFlag[0x2c] = SystemHashNodeData[1];
-        *SystemHashNodeData = 0;
-        SystemHashNodeData[1] = _guard_check_icall;
+        ConfigurationFlag[0x2b] = SystemOperationCallback;
+        ConfigurationFlag[0x2c] = HashNodeIterator[1];
+        *HashNodeIterator = 0;
+        HashNodeIterator[1] = _guard_check_icall;
       }
       ConfigurationFlag[0x2f] = 0;
       ConfigurationFlag[0x30] = _guard_check_icall;
