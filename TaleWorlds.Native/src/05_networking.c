@@ -1390,7 +1390,7 @@ NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, Network
  */
 NetworkHandle NetworkProcessConnectionPacketHandler(NetworkHandle ConnectionContext, int64_t PacketData)
 {
-  NetworkHandle ProcessingResult;
+  NetworkHandle ConnectionPacketProcessingStatus;
   NetworkByte DecodedDataStreamBuffer [32];
   
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < NetworkPacketStatusLimit) {

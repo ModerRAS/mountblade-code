@@ -1,5 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 内存管理相关常量
 #define MemoryAddressAlignmentMask 0xffffffffffc00000
 #define MemoryResourceTablePointerOffset 0x70
 #define MemoryResourceDataOffset 0x80
@@ -9,13 +10,25 @@
 #define MemoryResourceValueOffset 0x20
 #define MemoryResourceReferenceOffset 4
 #define MemoryCleanupTriggerValue 0xfffffffffffffffe
+#define AllocatedMemoryPointerOffset 0x58
+#define MemoryAllocationTrailerSize 0x60
+#define MemoryAlignmentMask 0xfffffff0
+#define MemoryAlignment16Bytes 0xf
+#define MemoryAllocationOverflowMask 0xffffffffffffff0
+#define MemoryAllocationAlignmentMask 0xfffffffffffffff0
+
+// 对象上下文相关常量
 #define ObjectContextOffset 0x10
 #define ObjectContextSecondaryDataOffset 0x18
 #define ObjectContextExtendedDataOffset 0x30
+#define ObjectContextValidationOffset 0x10
+#define ObjectContextHandleDataOffset 0x18
+#define ObjectContextConfigDataOffset 0x1c
+#define ObjectContextStatusOffset 8
 #define ObjectVirtualMethodTableOffset 800
 #define ObjectContextMatrixRotationDataOffset 0x2f0
-#define AllocatedMemoryPointerOffset 0x58
-#define MemoryAllocationTrailerSize 0x60
+
+// 注册管理相关常量
 #define RegistrationHandleOffset 0x48
 #define RegistrationDataOffset 0x38
 #define RegistrationStatusOffset 0xe4
@@ -24,16 +37,40 @@
 #define RegistrationCapacityOffset 0x4e8
 #define RegistrationCountOffset 0x4e0
 #define RegistrationValidationDataOffset 0x368
-#define ThreadLocalStorageDataOffset 0x18
-#define ThreadResourceStateOffset 0x20
-#define ThreadResourceCountOffset 0x30
-#define ResourceManagementStateOffset 0x4
-#define ResourceManagementCleanupOffset 0x5
-#define ResourceManagementStatusOffset 0x7
 #define InvalidRegistrationStatus -1
 #define RegistrationStatusSuccess 2
 #define RegistrationArrayInitialSize 8
 #define RegistrationArrayGrowthFactor 1.5
+
+// 线程本地存储相关常量
+#define ThreadLocalStorageDataOffset 0x18
+#define ThreadResourceStateOffset 0x20
+#define ThreadResourceCountOffset 0x30
+
+// 资源管理相关常量
+#define ResourceManagementStateOffset 0x4
+#define ResourceManagementCleanupOffset 0x5
+#define ResourceManagementStatusOffset 0x7
+#define ResourceTablePointerIndexMultiplier 8
+#define ResourceEntrySizeMultiplier 12
+#define ResourceEntrySizeBytes 0xc
+#define ResourceEntrySize 0xc
+#define ResourceSizeLimit 0x3fffffff
+#define ResourceHandleMask 0xffffffff
+#define ResourceHashMask 0xffff7fff
+#define ResourceHashShiftMask 0xffffc000
+#define ResourceHashReservedBit 0x4000
+#define ResourceHashValueMask 0x7fff
+#define ResourceDataOffset 4
+#define ResourcePoolEntrySize 4
+#define ResourcePoolSecondaryOffset 4
+#define ResourceContextOffsetStandard 0x48
+#define ResourceContextOffsetExtended 0x90
+#define ResourceContextOffsetSecondary 0xb0
+#define ResourceContextOffsetTertiary 0xb4
+#define ResourceContextOffsetAlternate 0x6c
+#define ResourceContextOffsetHandle 0xf8
+// 错误码常量定义
 #define ErrorInvalidObjectHandle 0x1c
 #define ErrorInvalidRegistrationData 0x1d
 #define ErrorInvalidResourceData 0x1e
@@ -42,30 +79,28 @@
 #define ErrorPointerCheckFailure 0x4c
 #define ErrorStatusCheckFailure 0x4e
 #define ErrorFloatValidationFailure 0x1d
+#define SystemOperationErrorCode 0x4a
+#define SystemStatusConstant 0x1c
+
+// 系统限制常量
 #define MaximumProcessableItemsLimit 0xffffffc0
 #define MaximumCapacityLimit 0xffffffc0
+#define SystemMaxIntValue 0x7fffffff
+#define ValidationSizeLimit 0x3fffffff
+#define ResourceSizeLimit 0x3fffffff
+
+// 浮点数相关常量
 #define FloatInfinityMask 0x7f800000
-#define FloatValidationErrorCode 0x1d
 #define FloatNegativeInfinity 0xbf800000
 #define FloatOneValue 0x3f800000
+#define SystemFloatMaxValue 256.0
+
+// 整数范围常量
 #define Int32MinimumValue -0x80000000
 #define UInt32MaximumValue 0xffffffff
 #define UInt64MaximumValue 0xffffffffffffffff
-#define MemoryAlignmentMask 0xfffffff0
-#define MemoryAlignment16Bytes 0xf
-#define ResourceTablePointerIndexMultiplier 8
-#define ResourceEntrySizeMultiplier 12
-#define ResourceEntrySizeBytes 0xc
-#define ResourceSizeLimit 0x3fffffff
-#define ResourceHandleMask 0xffffffff
-#define ResourceHashMask 0xffff7fff
-#define ResourceHashShiftMask 0xffffc000
-#define ResourceHashReservedBit 0x4000
-#define ResourceHashValueMask 0x7fff
-#define ValidationContextShift 3
-#define PackageValidationStatusBit 1
-#define ValidationArraySizeMultiplier 3
-#define ValidationSizeLimit 0x3fffffff
+
+// 系统上下文相关常量
 #define SystemContextOffset 0x17c
 #define SystemContextBaseOffset 800
 #define SystemContextMethodOffset 600
@@ -73,17 +108,42 @@
 #define SystemContextOperationFlagOffset 0x200
 #define SystemContextArraySizeOffset 0x17c
 #define SystemContextErrorDataOffset 0x1a0
+#define SystemContextStatusFlag1Offset 0x180
+#define SystemContextStatusFlag2Offset 0x184
+#define SystemContextSecondaryDataOffset 0x18
+#define SystemContextPrimaryDataOffset 0x20
+#define SystemContextResourceManagerOffset 0x50
+#define SystemContextCallbackPointerOffset 0x58
+#define SystemContextMethodPointerOffset 0x10
+#define SystemContextValidationDataSizeOffset 0x104
+#define SystemContextValidationFloatDataOffset 0x84
+#define SystemContextResourceIndexOffset 0x18
+
+// 验证相关常量
+#define ValidationContextShift 3
+#define PackageValidationStatusBit 1
+#define ValidationArraySizeMultiplier 3
+#define ValidationSizeLimit 0x3fffffff
 #define ValidationContextLoopCounterOffset 0x98
-#define SystemSecurityContextBaseAddress 0x180c4f450
-#define SystemOperationErrorCode 0x4a
+#define ValidationContextMethodPointerOffset 0x10
+#define ValidationContextSecondaryResourceOffset 0x14
+#define ValidationContextValidationDataOffset 0x220
+#define ValidationContextEntrySize 0xc
+#define ValidationBitIndex 3
+#define ValidationBitMask (1 << ValidationBitIndex)
+
+// 系统状态常量
 #define SystemStatusFlagMask 0xf
 #define SystemStatusFlagMaskClear 0xfffffff0
-#define ObjectContextStatusOffset 8
+#define SystemStatusFlagActive '\x01'
+#define SystemStatusFlagInactive '\x02'
+#define SystemStatusFlagProcessing '\x06'
+#define SystemExecutionStatusOffset 0x98
+#define SystemStatusConstant 0x1c
+
+// 范围检查相关常量
 #define RangeLowerBoundOffset 0x38
 #define RangeUpperBoundOffset 0x3c
-#define SystemExecutionStatusOffset 0x98
-#define ResourceDataOffset 4
-#define SystemStatusConstant 0x1c
 
 // 数据验证和处理相关常量
 #define DataValidationStatusOffset 0xc
