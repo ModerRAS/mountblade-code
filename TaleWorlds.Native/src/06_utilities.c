@@ -49107,7 +49107,7 @@ void ValidateSystemStatusAndEmergencyExitB(uint8_t ObjectContext, int64_t Valida
  * @note 此函数会初始化系统资源处理器模板
  * @warning 如果系统状态异常，可能会触发紧急退出
  */
-void InitializeSystemResourceHandlerTemplateAtOffset90(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemResourceHandlerTemplateAtSystemObjectOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x90) = &SystemResourceHandlerTemplate;
