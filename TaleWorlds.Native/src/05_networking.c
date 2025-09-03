@@ -152,7 +152,7 @@
  * @param SecondTimestamp 第二个时间戳指针
  * @return uint32_t 比较结果：0表示相等，正数表示第一个大于第二个，负数表示第一个小于第二个
  */
-uint32_t NetworkCompareTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
+uint32_t NetworkCompareConnectionTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
 
 /**
  * @brief 处理网络连接数据包数据
