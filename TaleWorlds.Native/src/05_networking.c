@@ -1736,21 +1736,21 @@ NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t C
  */
 NetworkHandle NetworkProcessValidatedPacket(int64_t ConnectionContext, int64_t *PacketData)
 {
-  NetworkHandle ProcessingResult;                        // 处理结果
-  NetworkStatus StateDataArray [6];                      // 状态数据数组
-  NetworkStatus ValidationDataArray [4];                 // 验证数据数组
-  NetworkStatus ProcessingDataArray [4];                 // 处理数据数组
+  NetworkHandle PacketProcessingResult;                        // 数据包处理结果
+  NetworkStatus ConnectionStateArray [6];                      // 连接状态数组
+  NetworkStatus ValidationStatusArray [4];                 // 验证状态数组
+  NetworkStatus ProcessingStatusArray [4];                 // 处理状态数组
   
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
     NetworkStatus PrimaryState = *(NetworkStatus *)(ConnectionContext + NetworkPacketDataSecondaryOffset);
-    StateDataArray[0] = PrimaryState;
-    ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
-                      (*(NetworkHandle **)(*PacketData + 8), StateDataArray, 4);
-    if ((int)ProcessingResult != 0) {
-      return ProcessingResult;
+    ConnectionStateArray[0] = PrimaryState;
+    PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
+                      (*(NetworkHandle **)(*PacketData + 8), ConnectionStateArray, 4);
+    if ((int)PacketProcessingResult != 0) {
+      return PacketProcessingResult;
     }
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;

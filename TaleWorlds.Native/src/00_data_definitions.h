@@ -10695,8 +10695,8 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   StackCounter3 = SystemMutexFlags;
   plStack_120 = SystemFifthParameter;
   lStack_d0 = SystemSixthParameter;
-  uStack_d8 = param_7;
-  StackPointerBuffer = param_8;
+  uStack_d8 = SystemSeventhParameter;
+  StackPointerBuffer = SystemEighthParameter;
   piStack_78 = param_9;
   StackDataPointer = SystemParameterPointer0;
   pStackParameter1 = SystemParameterPointer0;
@@ -10779,7 +10779,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
       if (puStack_138 != (void *)0x0) {
         pMemoryAddress3 = puStack_138;
       }
-      HandleMemoryOperation(pMemoryAddress3,LongCounter1,(longlong)IntegerCounter * 0x20 + param_7);
+      HandleMemoryOperation(pMemoryAddress3,LongCounter1,(longlong)IntegerCounter * 0x20 + SystemSeventhParameter);
       puStack_140 = &SystemNullPointer;
       if (pNetworkRequestResult != (void *)0x0) {
         SystemBufferValidate(pNetworkRequestResult);
@@ -10790,7 +10790,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
       LongOffset = LongOffset + 0x20;
       IntegerCounter = *piStack_78 + 1;
       *piStack_78 = IntegerCounter;
-      param_7 = uStack_d8;
+      SystemSeventhParameter = uStack_d8;
       SystemTertiaryParameter = pcStack_70;
       SystemSixthParameter = lStack_d0;
       param_9 = piStack_78;
@@ -11013,10 +11013,10 @@ char * SystemStringProcessBuffer(uint64_t SystemContextPointer,uint64_t BufferSi
   uint64_t *StackBufferPointer2;
   uint64_t *puStack_40;
   StackParameter1 = SystemMutexFlags;
-  puStack_40 = param_7;
+  puStack_40 = SystemSeventhParameter;
   pNetworkRequestStatus4 = (char *)0x0;
   StackBufferPointer2 = SystemTertiaryParameter;
-  LongLoop = InitializeSystemComponents(param_7,&puStack_d0);
+  LongLoop = InitializeSystemComponents(SystemSeventhParameter,&puStack_d0);
   pMemoryAddress0 = &SystemConstantStringPrimary;
   if (*(void **)(LongLoop + 8) != (void *)0x0) {
     pMemoryAddress0 = *(void **)(LongLoop + 8);
@@ -11175,13 +11175,13 @@ Label_18062eece:
   SystemTertiaryParameter[1] = 0;
   *(uint32_t *)(SystemTertiaryParameter + 3) = 0;
   *SystemTertiaryParameter = &SystemBufferTemplate;
-  *param_7 = &SystemNullPointer;
-  if (param_7[1] != 0) {
+  *SystemSeventhParameter = &SystemNullPointer;
+  if (SystemSeventhParameter[1] != 0) {
     CleanupSystemResources();
   }
-  param_7[1] = 0;
-  *(uint32_t *)(param_7 + 3) = 0;
-  *param_7 = &SystemBufferTemplate;
+  SystemSeventhParameter[1] = 0;
+  *(uint32_t *)(SystemSeventhParameter + 3) = 0;
+  *SystemSeventhParameter = &SystemBufferTemplate;
   return pNetworkRequestStatus4;
 }
 longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong AlignmentParameter,uint32_t AllocationFlags,longlong ContextPointer)
@@ -12209,14 +12209,14 @@ longlong SystemMemoryFree(longlong *memoryPtr)
       }
       if (((SystemParameterPointer2 == '\0') || ((NetworkRequestResult & 1) != 0)) &&
          (NetworkRequestStatus = CalculateSystemValue((double)((float)(int)NetworkRequestResult * 0.19634955),SUB84((double)SystemSixthParameter,0),
-                                (double)param_7), NetworkRequestStatus != '\0')) {
+                                (double)SystemSeventhParameter), NetworkRequestStatus != '\0')) {
         fStack_370 = *(float *)(&uStack_2e0 + SystemStateValue * 2) - *(float *)(&uStack_2e0 + LongData * 2);
         uStack_378 = CONCAT44(afStack_2e8[SystemStateValue * 4 + 1] - afStack_2e8[LongData * 4 + 1],
                               afStack_2e8[SystemStateValue * 4] - afStack_2e8[LongData * 4]);
         uStack_36c = 0x7f7fffff;
         uStack_380 = 0;
         uStack_388 = CONCAT31(uStack_388._1_3_,SystemParameterPointer1);
-        ProcessSystemValidation(SystemParameterPointer,afStack_2e8 + LongData * 4,&uStack_378,param_8);
+        ProcessSystemValidation(SystemParameterPointer,afStack_2e8 + LongData * 4,&uStack_378,SystemEighthParameter);
       }
       NetworkRequestResult = NetworkRequestResult + 1;
       LongData = LongData + 1;
