@@ -1037,7 +1037,24 @@ NetworkValidationProcessingContinue:
  */
 NetworkHandle NetworkInitializeConnectionHandler(void)
 {
-  return NetworkErrorConnectionFailed;
+  // 初始化网络连接表
+  if (NetworkConnectionTable == 0) {
+    return NetworkErrorConnectionFailed;
+  }
+  
+  // 初始化连接状态标志
+  NetworkConnectionStatusFlags = NetworkStatusActiveFlag;
+  
+  // 设置连接超时时间
+  NetworkConnectionTimeoutDuration = 30000;  // 30秒
+  
+  // 初始化最大连接数
+  NetworkMaximumConnectionsLimit = 100;
+  
+  // 这里可以添加更多的初始化逻辑
+  // 例如：初始化套接字、设置协议栈、分配缓冲区等
+  
+  return 0;  // 初始化成功
 }
 
 /**
