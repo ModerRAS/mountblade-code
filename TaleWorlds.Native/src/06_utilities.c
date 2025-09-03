@@ -9588,10 +9588,10 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, in
   *(uint32_t *)(ResourceTablePointer + ResourceTableEntryOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * ResourceTableEntrySize) =
        *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
   ResourceTablePointer = *(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset);
-  if ((*(int *)(ResourceTablePointer + 0x180) != 0) || (*(int *)(ResourceTablePointer + 0x184) != 0)) {
+  if ((*(int *)(ResourceTablePointer + SystemResourcePrimaryStatusOffset) != 0) || (*(int *)(ResourceTablePointer + SystemResourceSecondaryStatusOffset) != 0)) {
     StackContextPointer = 0;
     InitializeSecurityContext(&StackContextPointer);
-    if (StackContextPointer == *(int64_t *)((int64_t)*(int *)(ResourceTablePointer + 0x17c) * 8 + 0x180c4f450)) {
+    if (StackContextPointer == *(int64_t *)((int64_t)*(int *)(ResourceTablePointer + SystemResourceTableIndexOffset) * 8 + SystemSecurityContextBaseAddress)) {
       ResourceHash = ProcessResourceValidation(ResourceTablePointer,ObjectContext);
       if ((int)ResourceHash == 0) {
         return 0;

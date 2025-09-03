@@ -99,6 +99,9 @@
 
 // 网络状态常量
 #define NetworkStatusActive 0x01
+#define NetworkMaximumSignedInt32Value 0x7fffffff   // 最大32位有符号整数值
+#define NetworkPacketAlternativeSizeLimit 0x53      // 替代数据包大小限制（83字节）
+#define NetworkPacketStatusSizeLimit 0x31           // 数据包状态限制（49字节）
 #define NetworkStatusInactive 0x00
 #define NetworkStatusReserved 0x02
 #define NetworkStatusSpecial 0x03
@@ -106,15 +109,15 @@
 
 // 网络系统常量
 #define NetworkMagicDebugFood 0xdeadf00d       // 调试魔数，用于内存检查
-#define NetworkMaxIntValue 0x7fffffff          // 最大32位有符号整数值
+#define NetworkMaxIntValue NetworkMaximumSignedInt32Value  // 兼容性别名
 #define NetworkFloatOne 0x3f800000             // 浮点数1.0的十六进制表示
 #define NetworkFloatNegativeOne 0xbf800000     // 浮点数-1.0的十六进制表示
 #define NetworkFloatMax 0x7f7fffff             // 最大浮点数值
 #define NetworkErrorInvalidPacket 0x1c         // 无效数据包错误码
 #define NetworkConnectionFinalizeValue 0x7d    // 连接完成状态值
 #define NetworkPacketSizeLimit 0x55            // 数据包大小限制（85字节）
-#define NetworkPacketSizeAlternative 0x53      // 替代数据包大小限制（83字节）
-#define NetworkPacketStatusLimit 0x31           // 数据包状态限制（49字节）
+#define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名
+#define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名
 
 // 网络缓冲区对齐和大小常量
 #define NetworkBufferAlignmentMask 0xfffffffc
