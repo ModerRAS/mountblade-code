@@ -1232,8 +1232,19 @@ uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓
  * 初始化网络连接的状态缓冲区，设置连接参数，并准备连接上下文。
  * 此函数会在连接建立前调用，确保所有状态数据正确初始化。
  * 
+ * @details 该函数执行以下关键操作：
+ * - 计算连接状态缓冲区的内存位置
+ * - 验证网络会话ID的有效性
+ * - 重置状态缓冲区数据
+ * - 计算并对齐连接状态数据
+ * - 初始化连接上下文
+ * - 清理连接堆栈资源
+ * 
  * @note 此函数使用全局配置数据来设置连接状态
  * @warning 初始化失败可能导致连接无法建立
+ * @see NetworkResetConnectionState, NetworkCleanupConnectionResources
+ * 
+ * @return void 无返回值
  */
 void NetworkInitializeConnectionState(void)
 {

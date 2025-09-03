@@ -40015,26 +40015,26 @@ void CleanupSystemResourceHandlerPhaseFour(uint8_t ObjectContext, int64_t Valida
 void CleanupSystemResourceHandlerPhaseFive(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  int64_t LoopCounter;
+  int64_t ResourceCleanupIterationCounter;
   
-  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
-  if (*(code **)(SystemContextPointer + 0x8b0) != (code *)0x0) {
-    (**(code **)(SystemContextPointer + 0x8b0))(SystemContextPointer + 0x8a0,0,0,CleanupFlag,0xfffffffffffffffe);
+  ResourceCleanupIterationCounter = *(int64_t *)(ValidationContext + MemoryResourceTablePointerOffset);
+  if (*(code **)(SystemContextPointer + SystemCleanupHandlerOffset) != (code *)0x0) {
+    (**(code **)(SystemContextPointer + SystemCleanupHandlerOffset))(SystemContextPointer + SystemCleanupDataOffset,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(SystemContextPointer + 0x878) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(SystemContextPointer + 0x880) != 0) {
+  *(uint8_t *)(SystemContextPointer + SystemResourceTemplatePointerOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + SystemCleanupStatusOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(SystemContextPointer + 0x880) = 0;
-  *(uint32_t *)(SystemContextPointer + 0x890) = 0;
-  *(uint8_t *)(SystemContextPointer + 0x878) = &SystemDataStructure;
-  *(uint8_t *)(SystemContextPointer + 0x858) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(SystemContextPointer + 0x860) != 0) {
+  *(uint8_t *)(SystemContextPointer + SystemCleanupStatusOffset) = 0;
+  *(uint32_t *)(SystemContextPointer + SystemCleanupCounterOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + SystemResourceTemplatePointerOffset) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + SystemSecondaryResourceOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + SystemSecondaryCleanupStatusOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(SystemContextPointer + 0x860) = 0;
-  *(uint32_t *)(SystemContextPointer + 0x870) = 0;
-  *(uint8_t *)(SystemContextPointer + 0x858) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + SystemSecondaryCleanupStatusOffset) = 0;
+  *(uint32_t *)(SystemContextPointer + SystemSecondaryCleanupCounterOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + SystemSecondaryResourceOffset) = &SystemDataStructure;
   return;
 }
 
