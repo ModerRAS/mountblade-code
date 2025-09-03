@@ -98056,17 +98056,29 @@ void Unwind_180911ad0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180911b00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 处理系统资源计数器清理
+ * 
+ * 该函数负责处理系统资源计数器的清理操作，包括计数器检查和资源操作执行。
+ * 主要用于系统资源管理中的计数器递减和资源释放。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文指针
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @note 此函数会检查资源计数器并执行相应的清理操作
+ * @warning 清理操作不可逆，请确保在正确的时机调用
+ */
+void ProcessResourceCounterCleanup(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
-  int64_t LoopCounter;
+  int64_t ResourceCounter;
   
-  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8);
-  if (LoopCounter != 0) {
+  ResourceCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8);
+  if (ResourceCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
