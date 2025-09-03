@@ -27008,20 +27008,20 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
     *(uint8_t *)(systemResourcePointer + 0x3c8) = 0;
     UNLOCK();
   }
-  localDataIndex = SystemMemoryManagerPointer;
+  resourceDataIndex = SystemMemoryManagerPointer;
   *(void* *)(SystemMemoryManagerPointer + 4) = 0;
-  *(void* *)(localDataIndex + 0xc) = 0;
-  *(void* *)(localDataIndex + 0x14) = 0;
-  InitializeMemoryBlock(localDataIndex + 0x20);
-  InitializeMemoryBlock(localDataIndex + 0x50);
+  *(void* *)(resourceDataIndex + 0xc) = 0;
+  *(void* *)(resourceDataIndex + 0x14) = 0;
+  InitializeMemoryBlock(resourceDataIndex + 0x20);
+  InitializeMemoryBlock(resourceDataIndex + 0x50);
   LOCK();
-  *(uint32_t *)(localDataIndex + 0x80) = 0;
+  *(uint32_t *)(resourceDataIndex + 0x80) = 0;
   UNLOCK();
   LOCK();
-  *(uint32_t *)(localDataIndex + 0x84) = 0;
+  *(uint32_t *)(resourceDataIndex + 0x84) = 0;
   UNLOCK();
   LOCK();
-  *(uint32_t *)(localDataIndex + 0x88) = 0;
+  *(uint32_t *)(resourceDataIndex + 0x88) = 0;
   UNLOCK();
   localDataIndex = SystemPerformancePreviousStorage;
   if (SystemPerformancePreviousStorage == 0) {
