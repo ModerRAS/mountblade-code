@@ -4552,7 +4552,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
           }
           ProcessedObjectCount++;
           ObjectCollectionIterator += ResourceEntrySizeBytes;
-        } while (ProcessedObjectCounter < TotalObjectsCount);
+        } while (ProcessedObjectCount < TotalObjectsCount);
       }
       FreeObjectListMemory(&ObjectListBuffer);
     }
