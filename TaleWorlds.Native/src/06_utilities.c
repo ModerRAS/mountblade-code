@@ -1483,11 +1483,11 @@ void* MemoryDebuggerInstance;                 // 内存调试器实例
  * 设置脚本引擎、编译器和虚拟机等相关组件
  */
 void* InitializeScriptingSystem(void);
-void* ScriptingContextInstance;
-void* ScriptingEngineInstance;
-void* ScriptCompilerInstance;
-void* ScriptVirtualMachineInstance;
-void* ScriptDebuggerInstance;
+void* ScriptingContextInstance;               // 脚本上下文实例
+void* ScriptingEngineInstance;                // 脚本引擎实例
+void* ScriptCompilerInstance;                 // 脚本编译器实例
+void* ScriptVirtualMachineInstance;           // 脚本虚拟机实例
+void* ScriptDebuggerInstance;                 // 脚本调试器实例
 
  /**
  * @brief 初始化文件系统
