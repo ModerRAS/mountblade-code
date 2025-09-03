@@ -222,7 +222,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
  * @param PacketBuffer 数据包缓冲区
  * @return uint32_t 发送结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t TransmitNetworkConnectionPacket(int64_t SocketDescriptor, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
+uint32_t TransmitNetworkPacket(int64_t SocketDescriptor, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
 
 /**
  * @brief 验证网络数据包完整性
@@ -233,7 +233,7 @@ uint32_t TransmitNetworkConnectionPacket(int64_t SocketDescriptor, NetworkHandle
  * @param ConnectionContext 连接上下文
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ValidateNetworkPacketDataIntegrity(int64_t PacketData, int64_t ConnectionContext);
+uint32_t ValidatePacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
 
 /**
  * @brief 处理网络连接请求

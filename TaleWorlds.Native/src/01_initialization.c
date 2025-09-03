@@ -68294,8 +68294,8 @@ void UpdateSystemState(long long SystemState)
 void CleanupSystemResourceEncryption(char *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  long long resourceDataIndex;
-  long long *resourcePoolPointer;
+  long long ResourceDataIndex;
+  long long *ResourcePoolPointer;
   long long *SystemResourceOffsetPointer;
   long long SystemBufferAddress;
   void* CurrentThreadId;
