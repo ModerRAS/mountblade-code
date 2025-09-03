@@ -1959,7 +1959,8 @@ void InitializeSystemCoreData(void)
  * @note 函数依赖GetSystemRootPointer和GetSystemMemorySize等辅助函数
  * @note 函数会设置SystemNodeLinkPointerB相关配置
  * 
- * @return 无返回值
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemDataTable(void)
 {
