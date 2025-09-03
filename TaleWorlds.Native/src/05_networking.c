@@ -1455,30 +1455,50 @@ NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int
   int64_t ProcessingIterationCounter;               // 处理迭代计数器
   NetworkStatus *NetworkPacketBufferPointer;         // 网络数据包缓冲区指针
   
+  // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[1]) {
     return NetworkConnectionNotFound;
   }
+  
+  // 初始化状态缓冲区指针
   NetworkStatusBufferPointer = (NetworkStatus *)0x0;
+  
+  // 处理有效的数据包
   if (PacketData != 0) {
+    // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
+      // 处理连接请求并获取状态缓冲区
       NetworkStatusBufferPointer = (NetworkStatus *)
                ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                              NetworkConnectionFinalizeValue, 0, 0, 1);
+      
+      // 如果状态缓冲区有效，处理连接数据
       if (NetworkStatusBufferPointer != (NetworkStatus *)0x0) {
         ActiveConnectionCount = (int)ConnectionContext[1];
         ProcessingIterationCounter = (long long)ActiveConnectionCount;
+        
+        // 如果有活跃连接，处理连接数据
         if ((ActiveConnectionCount != 0) && (ConnectionBaseAddressPointer = *ConnectionContext, 0 < ActiveConnectionCount)) {
           NetworkPacketBufferPointer = NetworkStatusBufferPointer;
+          
+          // 循环处理所有连接数据
           do {
+            // 计算连接上下文数据位置
             NetworkConnectionContextDataArray = (NetworkStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + (long long)NetworkPacketBufferPointer);
+            
+            // 提取连接状态信息
             NetworkStatus PacketProcessingResult = NetworkConnectionContextDataArray[1];
             NetworkStatus DataProcessingStatus = NetworkConnectionContextDataArray[2];
             NetworkStatus ConnectionValidationResult = NetworkConnectionContextDataArray[3];
+            
+            // 更新数据包缓冲区状态
             *NetworkPacketBufferPointer = *NetworkConnectionContextDataArray;
             NetworkPacketBufferPointer[1] = PacketProcessingResult;
             NetworkPacketBufferPointer[2] = DataProcessingStatus;
             NetworkPacketBufferPointer[3] = ConnectionValidationResult;
             NetworkPacketBufferPointer[4] = *(NetworkStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + -4 + (long long)(NetworkPacketBufferPointer + 5));
+            
+            // 更新迭代计数器
             ProcessingIterationCounter = ProcessingIterationCounter + -1;
             NetworkPacketBufferPointer = NetworkPacketBufferPointer + 5;
           } while (ProcessingIterationCounter != 0);
@@ -1489,12 +1509,16 @@ NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int
     return NetworkErrorConnectionFailed;
   }
 NetworkMainProcessingLoop:
+  // 验证连接安全性
   if ((0 < *(int *)((long long)ConnectionContext + ConnectionParameterOffset)) && (*ConnectionContext != 0)) {
       ValidateConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
   }
+  
+  // 更新连接上下文和参数
   *ConnectionContext = (long long)ProcessedNetworkConnectionPacketHandle;
   *(int *)((long long)ConnectionContext + ConnectionParameterOffset) = PacketData;
-  return 0;
+  
+  return 0;  // 处理成功
 }
 
 /**
@@ -1813,23 +1837,30 @@ NetworkHandle NetworkProcessConnectionPacket(NetworkHandle ConnectionContext, in
   NetworkHandle PacketProcessingResult;                    // 数据包处理结果
   NetworkByte DecodedDataStreamBuffer [32];             // 已解码数据流缓冲区
   
+  // 根据数据包状态选择不同的处理路径
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < NetworkPacketStatusLimit) {
+    // 处理状态限制内的数据包
     PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
     if ((int)PacketProcessingResult == 0) {
-      PacketProcessingResult = 0;
+      PacketProcessingResult = 0;  // 验证成功
     }
   }
   else {
+    // 处理状态限制外的数据包，需要解码处理
     PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTnvel);
     if ((int)PacketProcessingResult == 0) {
+      // 验证数据包头部
       PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBtvel);
       if ((int)PacketProcessingResult == 0) {
+        // 处理连接数据
         NetworkHandle DataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
         if ((int)DataProcessingResult == 0) {
+            // 完成数据包处理
             FinalizePacketProcessing(PacketData, DecodedDataStreamBuffer);
         }
       }
     }
   }
-  return PacketProcessingResult;
+  
+  return PacketProcessingResult;  // 返回处理结果
 }
