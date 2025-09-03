@@ -76,6 +76,9 @@
 
 // 字符串处理相关常量
 #define SYSTEM_STRING_BUFFER_SIZE_DEFAULT   0xb
+#define SYSTEM_STRING_BUFFER_SIZE_SHORT     0x7
+#define SYSTEM_DATA_BUFFER_SIZE_DEFAULT     0x8
+#define SYSTEM_MESSAGE_CONFIG_BUFFER_SIZE   0xa
 
 // 系统标识符常量
 #define SystemEventNodeIdentifier1          0x45b8d074df27d12f
@@ -2374,7 +2377,7 @@ void InitializeSystemStringHandler(void)
   StringProcessorCallback = &SystemStringProcessorNode;
   StringBufferPtr = StringBuffer;
   StringBuffer[0] = 0;
-  StringBufferSize = 7;
+  StringBufferSize = SYSTEM_STRING_BUFFER_SIZE_SHORT;
   strcpy_s(StringBuffer, StringBufferSize, &SystemStringProcessorTemplate, StringProcessorParam, InvalidHandleValue);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessorCallback);
   return;
@@ -4963,7 +4966,7 @@ void InitializeSystemStringProcessor(void)
   CallbackPointer = &SystemStringProcessorNode;
   DataBufferPointer = DataBuffer;
   DataBuffer[0] = 0;
-  BufferSize = 8;
+  BufferSize = SYSTEM_DATA_BUFFER_SIZE_DEFAULT;
   strcpy_s(DataBuffer,StringBufferSize,&SystemStringProcessorTemplate,StringParameter,InvalidHandleValue);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&CallbackPointer);
   return;
@@ -6080,7 +6083,7 @@ void InitializeSystemMessageProcessor(void)
   messageProcessorReference = &SystemMessageProcessorNode;
   MessageConfigurationBuffer = MessageConfigurationBuffer;
   MessageConfigurationBuffer[0] = 0;
-  ConfigurationBufferSize = 10;
+  ConfigurationBufferSize = SYSTEM_MESSAGE_CONFIG_BUFFER_SIZE;
   strcpy_s(MessageConfigurationBuffer,StringBufferSize,&SystemMessageProcessorTemplate,SystemContextParameter,InvalidHandleValue);
   SystemMessageProcessorHandle = InitializeMessageProcessorCallback(&messageProcessorReference);
   return;
