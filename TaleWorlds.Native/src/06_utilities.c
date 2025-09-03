@@ -8530,15 +8530,15 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer, int64_t Cont
       MatrixContextPointer = MatrixValidationBuffer[0] + -8;
     }
     uint8_t MatrixConfigurationType;
-    *(uint8_t *)(MatrixContextPointer + 0x38) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
-    *(uint8_t *)(MatrixContextPointer + 0x40) = MatrixConfigurationType;
+    *(uint8_t *)(MatrixContextPointer + MatrixContextDataOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
+    *(uint8_t *)(MatrixContextPointer + MatrixContextConfigOffset) = MatrixConfigurationType;
     
     uint32_t MatrixRotationFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixFlagsOffset);
     uint32_t MatrixScaleFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixScaleOffset);
     uint32_t MatrixTranslationFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixTranslationOffset);
-    *(uint32_t *)(MatrixContextPointer + 0x48) = *(uint32_t *)(ObjectContext + ObjectContextRangeDataOffset);
-    *(uint32_t *)(MatrixContextPointer + 0x4c) = MatrixRotationFlags;
-    *(uint32_t *)(MatrixContextPointer + 0x50) = MatrixScaleFlags;
+    *(uint32_t *)(MatrixContextPointer + MatrixContextRangeDataOffset) = *(uint32_t *)(ObjectContext + ObjectContextRangeDataOffset);
+    *(uint32_t *)(MatrixContextPointer + MatrixContextRotationFlagsOffset) = MatrixRotationFlags;
+    *(uint32_t *)(MatrixContextPointer + MatrixContextScaleFlagsOffset) = MatrixScaleFlags;
     *(uint32_t *)(MatrixContextPointer + MatrixTranslationFlagsOffset) = MatrixTranslationFlags;
     
     uint32_t MatrixProjectionFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixWComponentOffset);

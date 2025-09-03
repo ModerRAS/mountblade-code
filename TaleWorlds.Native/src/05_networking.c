@@ -444,11 +444,11 @@ uint32_t ConnectionTableHandle;                    // 网络连接表管理句�
 uint32_t ConnectionStatusFlags;                    // 网络连接状态标志位
 uint32_t ConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
 uint32_t ConnectionMaxLimit;                  // 网络最大连接数限制
-uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志位
-uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志位
+uint32_t ConnectionAttributeFlags;                // 网络连接属性标志位
+uint32_t ConnectionStateFlags;                     // 网络连接状态标志位
 
 // 网络协议和地址配置
-uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型
+uint32_t ConnectionProtocolType;                   // 网络连接协议类型
 uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址
 uint32_t NetworkServerPortNumber;                         // 网络服务器端口号
