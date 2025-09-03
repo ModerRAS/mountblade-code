@@ -163,7 +163,7 @@ void ProcessSystemMemoryPage(long long MemoryAddress);
  * 
  * @return 无返回值
  */
-void ReleaseSystemResource(void);
+void FreeSystemResources(void);
 
 /**
  * @brief 初始化系统内存缓冲区
@@ -260,7 +260,7 @@ void ConfigureSystemData(void* BufferAddress, void* ConfigData, void* ContextPoi
  * @param ResourcePointer 资源指针，指定要释放的系统资源
  * @return 无返回值
  */
-void ReleaseSystemResources(void* ResourcePointer);
+void FreeSystemResourcesByPointer(void* ResourcePointer);
 
 /**
  * @brief 初始化系统缓冲区
@@ -33802,8 +33802,7 @@ long long CopySystemResourceData(long long SystemResourceManager,long long Confi
  * @param AdditionalParameter 额外参数，用于控制处理行为
  * @return 返回处理后的额外参数指针
  * 
- * 原始函数名：FUN_18005926c
- */
+  */
 long long ProcessSystemResourceDataInternal(long long SystemResourceManager,void* ConfigurationDataPointer,long long AdditionalParameter)
 
 {
@@ -33882,8 +33881,7 @@ long long CreateSystemObjectsBatch(long long SystemResourceManager,long long Con
  * @param ConfigurationDataPointer 配置数据指针（用作结束地址）
  * @param AdditionalParameter 目标参数指针
  * 
- * 原始函数名：FUN_180059350
- */
+  */
 void MoveSystemResourceData(long long SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter)
 
 {
@@ -51858,7 +51856,6 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
  * @return ulong long 系统状态码，0表示成功，非0表示错误状态
  * 
  * @note 该函数会检查调试器状态、初始化系统组件、配置系统管理器
- * @note 原始函数名：FUN_18006ff80
  */
 ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* ConfigurationDataPointer,char AdditionalParameter)
 
@@ -53767,8 +53764,7 @@ void ProcessSystemResourceInitializationConfiguration(void* SystemResourceManage
  * @param ConfigurationDataPointer 配置数据指针的指针
  * @return 初始化成功返回true，失败返回false
  * 
- * 原始函数名：FUN_180072f00
- */
+  */
 bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* *ConfigurationDataPointer)
 
 {
@@ -56670,8 +56666,7 @@ void* ReleaseSystemResourcesAndCleanupMemory(void* SystemResourceManager, unsign
  * @param ConfigurationFlag 配置标志
  * @return 操作状态码，成功返回0，失败返回非0值
  * 
- * 原始函数名：FUN_1800755c0
- */
+  */
 uint8_t ProcessSystemResourceAndManageStatus(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
@@ -57534,8 +57529,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
  * @param ConfigurationDataPointer 配置数据指针
  * @return 配置完成后的配置数据指针
  * 
- * 原始函数名：FUN_1800763c0
- */
+  */
 long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
@@ -57990,8 +57984,7 @@ void ManageSystemResourceReferenceCount(long long SystemResourceManager)
  * @param SystemResourceManager 系统资源管理器指针
  * @return 资源有效返回1，无效返回0
  * 
- * 原始函数名：FUN_180076b90
- */
+  */
 void* SystemResourceStatusValidator(long long SystemResourceManager)
 
 {
@@ -58039,8 +58032,7 @@ void* SystemResourceStatusValidator(long long SystemResourceManager)
  * @param ConfigurationDataPointer 配置数据指针
  * @return 配置处理结果状态码
  * 
- * 原始函数名：FUN_180076c50
- */
+  */
 int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
