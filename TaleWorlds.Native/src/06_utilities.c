@@ -701,7 +701,7 @@ uint32_t GetSystemStatus(void);
  * @param OperationType 操作类型
  * @return 操作结果状态码
  */
-uint32_t HandleSystemObjectOperation(void* ObjectContext, uint32_t OperationType);
+uint32_t ExecuteSystemObjectOperation(void* ObjectContext, uint32_t OperationType);
 
 /**
  * @brief 处理系统上下文验证
@@ -712,7 +712,7 @@ uint32_t HandleSystemObjectOperation(void* ObjectContext, uint32_t OperationType
  * @param SystemContext 系统上下文
  * @return 验证结果状态码
  */
-uint32_t ValidateSystemContext(void* SystemContext);
+uint32_t VerifySystemContext(void* SystemContext);
 
 /**
  * @brief 释放验证资源
