@@ -4781,26 +4781,35 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针
  * @return 操作结果状态码，0表示成功，非0表示失败
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，这是对象生命周期管理的重要部分。
+ * 当对象被引用时，需要增加其引用计数以确保对象不会被提前释放。
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的引用信息
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ValidatedObjectMemoryAddress;
-  uint8_t ObjectValidationResult;
-  int64_t ObjectValidationBuffer [4];
+  int64_t ValidatedMemoryAddress;
+  uint8_t ValidationResult;
+  int64_t ValidationBuffer [4];
   
-  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationBuffer);
-  if ((int)ObjectValidationResult != 0) {
-    return ObjectValidationResult;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ValidationBuffer);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
   
-  if (ObjectValidationBuffer[0] != 0) {
-    ObjectValidationBuffer[0] = ObjectValidationBuffer[0] - 8;
+  if (ValidationBuffer[0] != 0) {
+    ValidationBuffer[0] = ValidationBuffer[0] - 8;
   }
   
-  ValidatedObjectMemoryAddress = *(int64_t *)(ObjectValidationBuffer[0] + ObjectHandleMemoryOffset);
-  if (ValidatedObjectMemoryAddress != 0) {
-    *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
+  ValidatedMemoryAddress = *(int64_t *)(ValidationBuffer[0] + ObjectHandleMemoryOffset);
+  if (ValidatedMemoryAddress != 0) {
+    *(int *)(ValidatedMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedMemoryAddress + ObjectReferenceCountOffset) + 1;
     
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusFlagsOffset) != '\0') && (ObjectValidationResult = CheckSystemStatus(), (int)ObjectValidationResult != 0)) {
-      return ObjectValidationResult;
+    if ((*(char *)(ValidatedMemoryAddress + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationResult = CheckSystemStatus(), (int)ValidationResult != 0)) {
+      return ValidationResult;
     }
     return 0;
   }
@@ -45286,9 +45295,9 @@ void ReleaseSystemResourceIndexExtended(uint8_t ObjectContext,int64_t Validation
   int *ResourceCountPointer;
   char *statusFlagPointer;
   uint8_t *ValidationStatusCodeAddress;
-  int64_t loopIterationData;
-  int64_t memoryRegion;
-  uint64_t contextResourceHashStatus;
+  int64_t LoopIterationData;
+  int64_t MemoryRegion;
+  uint64_t ContextResourceHashStatus;
   
   ResourceTablePointerPointer = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   PackageValidationStatusCodePointer = *(uint8_t **)(ResourceTablePointerPointer + 0x2e0);

@@ -803,10 +803,10 @@ LabelNetworkValidationStart:
     return 0;
   }
   if ((int)PacketData - 1U < 0x3fffffff) {
-    NetworkContextArray = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
-    if (NetworkContextArray != 0) {
+    NetworkContextData = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
+    if (NetworkContextData != 0) {
       if ((int)NetworkOperationStatusPointer[1] != 0) {
-          memcpy(NetworkContextArray, *NetworkOperationStatusPointer, (long long)(int)NetworkOperationStatusPointer[1]);
+          memcpy(NetworkContextData, *NetworkOperationStatusPointer, (long long)(int)NetworkOperationStatusPointer[1]);
       }
       goto NETWORK_PROCESSING_CONTINUE;
     }
