@@ -4763,18 +4763,6 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数用于安全地增加系统对象的引用计数
- * 在增加计数前会验证对象的有效性和系统状态
- * 主要用于内存管理和对象生命周期控制
- * 
- * @param ObjectContext 对象上下文，包含对象的管理信息
- * @return uint8_t 操作状态码，0表示成功，非0表示错误代码
- * @note 此函数在对象被引用时调用，确保对象不会被意外释放
- * @warning 调用此函数前必须确保对象上下文有效
- */
-/**
- * @brief 增加对象引用计数
- * 
  * 该函数负责增加指定对象的引用计数，这是对象生命周期管理的重要部分。
  * 函数会先验证对象上下文的有效性，然后安全地增加对象的引用计数。
  * 
@@ -4783,7 +4771,7 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
-uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
+uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ObjectValidationResult;
   int64_t ObjectValidationBuffer [4];
@@ -12245,7 +12233,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContext, int ValidationContext, u
  * @param validationFlags 验证标志，控制验证过程的选项
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext, int operationType, uint *validationFlags)
+uint64_t ProcessParameterizedDataValidationAndOperation(int64_t DataContext, int OperationType, uint *ValidationFlags)
 {
   uint ResourceHashValue;
   int64_t ResourceTablePointerPointer;
@@ -12254,14 +12242,14 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext, int
   int TableEntryIndex;
   uint32_t ResourceHashStatus;
   
-  if (validationFlags != (uint *)0x0) {
-    ResourceHashValue = *validationFlags;
+  if (ValidationFlags != (uint *)0x0) {
+    ResourceHashValue = *ValidationFlags;
     if (ResourceHashValue != 0) {
-      if (((*(int *)(dataContext + 0x94) != 0) && (*(int *)(dataContext + ResourceContextSecondaryOffset) != 0)) &&
-         (TableEntryIndex = *(int *)(*(int64_t *)(dataContext + 0x70) +
-                          (int64_t)(int)(*(int *)(dataContext + ResourceContextSecondaryOffset) - 1U & ResourceHashValue) * 4), TableEntryIndex != -1))
+      if (((*(int *)(DataContext + 0x94) != 0) && (*(int *)(DataContext + ResourceContextSecondaryOffset) != 0)) &&
+         (TableEntryIndex = *(int *)(*(int64_t *)(DataContext + 0x70) +
+                          (int64_t)(int)(*(int *)(DataContext + ResourceContextSecondaryOffset) - 1U & ResourceHashValue) * 4), TableEntryIndex != -1))
       {
-        ResourceTablePointerPointer = *(int64_t *)(dataContext + 0x80);
+        ResourceTablePointerPointer = *(int64_t *)(DataContext + 0x80);
         do {
           ResourceIndex = (int64_t)TableEntryIndex;
           if (*(uint *)(ResourceTablePointerPointer + ResourceIndex * HashTableEntrySize) == ResourceHashValue) {
@@ -22461,12 +22449,12 @@ uint8_t * GetResourceDataAddressA(void)
     return ResourceHashAddress;
   }
   ResourceHashSecondaryPointer = (uint32_t *)AllocateMemoryBlock();
-  ResourceHashPtr = (uint8_t *)0x0;
-  ValidationCounter = *(uint *)(SystemRegisterContext + 8);
+  ResourceHashDataPointer = (uint8_t *)0x0;
+  ResourceValidationCounter = *(uint *)(SystemRegisterContext + 8);
   ResourceHashStatusPrimary = *ResourceHashSecondaryPointer;
-  ValidationStatusCode = ResourceHashSecondaryPointer[1];
-  ValidationStatusCode = ResourceHashSecondaryPointer[2];
-  LoopIncrement = ResourceHashSecondaryPointer[3];
+  ResourceHashStatusSecondary = ResourceHashSecondaryPointer[1];
+  ResourceHashStatusTertiary = ResourceHashSecondaryPointer[2];
+  ResourceLoopIncrement = ResourceHashSecondaryPointer[3];
   *(uint32_t *)(SystemExecutionPointer + -0x19) = ResourceHashStatusPrimary;
   *(uint32_t *)(SystemExecutionPointer + -0x15) = ResourceHashStatus;
   *(uint32_t *)(SystemExecutionPointer + -0x11) = ResourceHashStatus;
@@ -29982,7 +29970,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会执行相应的异常处理逻辑
  */
-void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* PrimaryExceptionHandlerPointer;
   
   PrimaryExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
@@ -30005,7 +29993,7 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** SecondaryExceptionHandlerPointer;
   
   SecondaryExceptionHandlerPointer = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
