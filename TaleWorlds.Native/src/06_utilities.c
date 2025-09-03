@@ -379,7 +379,7 @@ uint64_t ComputeExtendedDataChecksum(uint64_t SystemContext, void* DataBuffer, i
  * @param AccessValidationFlag 访问验证标志
  * @return 验证结果
  */
-uint32_t VerifyMemoryAccess(void* MemoryAddress, uint64_t AccessValidationFlag);
+uint32_t ValidateMemoryAccessSafety(void* MemoryAddress, uint64_t AccessValidationFlag);
 
 /**
  * @brief 终止系统进程
