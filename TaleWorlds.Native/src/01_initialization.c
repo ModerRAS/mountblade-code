@@ -1682,7 +1682,7 @@ void InitializeSystemMemoryPool(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,hashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
@@ -9774,7 +9774,7 @@ void InitializeSystemPhysicsNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,hashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
@@ -12066,7 +12066,7 @@ void InitializeSystemMemoryManagerI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,hashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
@@ -12689,7 +12689,7 @@ void InitializeSystemMemoryAllocatorNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,hashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
@@ -14653,7 +14653,7 @@ void InitializeSystemResourceManagerE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,hashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
@@ -15408,7 +15408,7 @@ void InitializeSystemAllocatorComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,hashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
@@ -17703,7 +17703,7 @@ void SystemAllocatorNodeInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,hashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTableNode + 4,System_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;

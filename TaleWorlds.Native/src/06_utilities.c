@@ -53978,7 +53978,7 @@ void UnwindResourceContextFromPrimaryOffset(uint8_t ObjectContext, int64_t Valid
  * @note 此函数会检查验证上下文中指定偏移量的资源上下文
  * @warning 如果资源上下文不存在，函数将直接返回
  */
-void UnwindResourceContextFromValidationOffset40(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindResourceContextFromSystemOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
