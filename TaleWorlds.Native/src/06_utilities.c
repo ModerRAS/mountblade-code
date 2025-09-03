@@ -8488,127 +8488,127 @@ void CleanupSecurityTokenFunction(void)
  */
 uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer, int64_t ContextPointer)
 {
-    uint8_t ValidationResult;
-    int FirstRowInfinityCheck;
-    int SecondRowInfinityCheck;
-    int ThirdRowInfinityCheck;
-    int OverallInfinityCheck;
-    int FirstRowValidationResult;
-    int SecondRowValidationResult;
-    int ThirdRowValidationResult;
-    int InfinityValidationFlag;
-    int64_t TransformContext;
-    int64_t MatrixValidationBuffer[2];
-    uint MatrixProcessingFlags;
-    float MatrixScaleValue;
-    int64_t MatrixContextPointer;
+    uint8_t FinalValidationResult;
+    int PrimaryRowInfinityStatus;
+    int SecondaryRowInfinityStatus;
+    int TertiaryRowInfinityStatus;
+    int CombinedInfinityStatus;
+    int PrimaryRowValidationStatus;
+    int SecondaryRowValidationStatus;
+    int TertiaryRowValidationStatus;
+    int FinalInfinityValidationStatus;
+    int64_t MatrixTransformContext;
+    int64_t MatrixValidationStorage[2];
+    uint MatrixProcessingConfiguration;
+    float MatrixScalingFactor;
+    int64_t MatrixContextAddress;
   
-  MatrixContextPointer = 0;
-  FirstRowInfinityCheck = 0;
-  SecondRowInfinityCheck = FirstRowInfinityCheck;
+  MatrixContextAddress = 0;
+  PrimaryRowInfinityStatus = 0;
+  SecondaryRowInfinityStatus = PrimaryRowInfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextProcessingDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    SecondRowInfinityCheck = ErrorFloatValidationFailure;
+    SecondaryRowInfinityStatus = ErrorFloatValidationFailure;
   }
-  ThirdRowInfinityCheck = FirstRowInfinityCheck;
+  TertiaryRowInfinityStatus = PrimaryRowInfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextHandleDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    ThirdRowInfinityCheck = ErrorFloatValidationFailure;
+    TertiaryRowInfinityStatus = ErrorFloatValidationFailure;
   }
-  OverallInfinityCheck = FirstRowInfinityCheck;
+  CombinedInfinityStatus = PrimaryRowInfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextValidationDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    OverallInfinityCheck = ErrorFloatValidationFailure;
+    CombinedInfinityStatus = ErrorFloatValidationFailure;
   }
-  if ((SecondRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || OverallInfinityCheck != 0) {
+  if ((SecondaryRowInfinityStatus != 0 || TertiaryRowInfinityStatus != 0) || CombinedInfinityStatus != 0) {
     return ErrorResourceValidationFailed;
   }
   
-  FirstRowValidationResult = 0;
+  PrimaryRowValidationStatus = 0;
   if ((*(uint *)(ObjectContext + ObjectContextMatrixFlagsOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    FirstRowValidationResult = ErrorFloatValidationFailure;
+    PrimaryRowValidationStatus = ErrorFloatValidationFailure;
   }
-  ThirdRowValidationResult = FirstRowValidationResult;
+  TertiaryRowValidationStatus = PrimaryRowValidationStatus;
   if ((*(uint *)(ObjectContext + ObjectContextRangeDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    ThirdRowValidationResult = ErrorFloatValidationFailure;
+    TertiaryRowValidationStatus = ErrorFloatValidationFailure;
   }
-  InfinityValidationFlag = FirstRowValidationResult;
+  FinalInfinityValidationStatus = PrimaryRowValidationStatus;
   if ((*(uint *)(ObjectContext + ObjectContextStatusDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    InfinityValidationFlag = ErrorFloatValidationFailure;
+    FinalInfinityValidationStatus = ErrorFloatValidationFailure;
   }
-  if ((FirstRowValidationResult != 0 || ThirdRowValidationResult != 0) || InfinityValidationFlag != 0) {
+  if ((PrimaryRowValidationStatus != 0 || TertiaryRowValidationStatus != 0) || FinalInfinityValidationStatus != 0) {
     return ErrorResourceValidationFailed;
   }
   
-  FirstRowValidationResult = 0;
+  PrimaryRowValidationStatus = 0;
   if ((*(uint *)(ObjectContext + ObjectContextFloatValueOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    FirstRowValidationResult = ErrorFloatValidationFailure;
+    PrimaryRowValidationStatus = ErrorFloatValidationFailure;
   }
-  ThirdRowValidationResult = FirstRowValidationResult;
+  TertiaryRowValidationStatus = PrimaryRowValidationStatus;
   if ((*(uint *)(ObjectContext + ObjectContextMatrixTranslationOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    ThirdRowValidationResult = ErrorFloatValidationFailure;
+    TertiaryRowValidationStatus = ErrorFloatValidationFailure;
   }
   if (((uint)*(float *)(ObjectContext + ObjectContextMatrixScaleOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    SecondRowInfinityCheck = ErrorFloatValidationFailure;
+    SecondaryRowInfinityStatus = ErrorFloatValidationFailure;
   }
-  if ((FirstRowValidationResult != 0 || ThirdRowValidationResult != 0) || SecondRowInfinityCheck != 0) {
+  if ((PrimaryRowValidationStatus != 0 || TertiaryRowValidationStatus != 0) || SecondaryRowInfinityStatus != 0) {
     return ErrorResourceValidationFailed;
   }
-  float MatrixElementX = *(float *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
-  FirstRowValidationResult = 0;
-  uint32_t SecurityValidationData = *(uint *)(ObjectContext + ObjectContextSecurityContextOffset);
-  float MatrixElementW = *(float *)(ObjectContext + ObjectContextMatrixWComponentOffset);
-  MatrixValidationBuffer[0] = CombineFloatAndInt(MatrixValidationBuffer[0].VectorComponent, MatrixElementX);
-  SecondRowValidationResult = FirstRowValidationResult;
-  if (((uint)MatrixElementX & FloatInfinityMask) == FloatInfinityMask) {
-    SecondRowValidationResult = ErrorFloatValidationFailure;
+  float MatrixCoordinateX = *(float *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
+  PrimaryRowValidationStatus = 0;
+  uint32_t SecurityContextData = *(uint *)(ObjectContext + ObjectContextSecurityContextOffset);
+  float MatrixHomogeneousW = *(float *)(ObjectContext + ObjectContextMatrixWComponentOffset);
+  MatrixValidationStorage[0] = CombineFloatAndInt(MatrixValidationStorage[0].VectorComponent, MatrixCoordinateX);
+  SecondaryRowValidationStatus = PrimaryRowValidationStatus;
+  if (((uint)MatrixCoordinateX & FloatInfinityMask) == FloatInfinityMask) {
+    SecondaryRowValidationStatus = ErrorFloatValidationFailure;
   }
-  ThirdRowValidationResult = FirstRowValidationResult;
-  if ((SecurityValidationData & FloatInfinityMask) == FloatInfinityMask) {
-    ThirdRowValidationResult = ErrorFloatValidationFailure;
+  TertiaryRowValidationStatus = PrimaryRowValidationStatus;
+  if ((SecurityContextData & FloatInfinityMask) == FloatInfinityMask) {
+    TertiaryRowValidationStatus = ErrorFloatValidationFailure;
   }
-  if (((uint)MatrixElementW & FloatInfinityMask) == FloatInfinityMask) {
-    FirstRowValidationResult = ErrorFloatValidationFailure;
+  if (((uint)MatrixHomogeneousW & FloatInfinityMask) == FloatInfinityMask) {
+    PrimaryRowValidationStatus = ErrorFloatValidationFailure;
   }
-  if ((SecondRowValidationResult == 0 && ThirdRowValidationResult == 0) && FirstRowValidationResult == 0) {
+  if ((SecondaryRowValidationStatus == 0 && TertiaryRowValidationStatus == 0) && PrimaryRowValidationStatus == 0) {
     if (((*(float *)(ObjectContext + ObjectContextMatrixScaleOffset) == 0.0) && (*(float *)(ObjectContext + ObjectContextMatrixTranslationOffset) == 0.0)) &&
        (*(float *)(ObjectContext + ObjectContextFloatValueOffset) == 0.0)) {
       return ErrorResourceValidationFailed;
     }
-    if (((MatrixElementW == 0.0) && (*(float *)(ObjectContext + ObjectContextSecurityContextOffset) == 0.0)) && (MatrixElementX == 0.0)) {
+    if (((MatrixHomogeneousW == 0.0) && (*(float *)(ObjectContext + ObjectContextSecurityContextOffset) == 0.0)) && (MatrixCoordinateX == 0.0)) {
       return ErrorResourceValidationFailed;
     }
     
-    uint32_t ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), MatrixValidationBuffer);
+    uint32_t ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), MatrixValidationStorage);
     if ((int)ContextValidationStatus != 0) {
       return ContextValidationStatus;
     }
-    if (MatrixValidationBuffer[0] != 0) {
-      MatrixContextPointer = MatrixValidationBuffer[0] + -8;
+    if (MatrixValidationStorage[0] != 0) {
+      MatrixContextAddress = MatrixValidationStorage[0] + -8;
     }
     uint8_t MatrixConfigurationType;
-    *(uint8_t *)(MatrixContextPointer + MatrixContextDataOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
-    *(uint8_t *)(MatrixContextPointer + MatrixContextConfigOffset) = MatrixConfigurationType;
+    *(uint8_t *)(MatrixContextAddress + MatrixContextDataOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
+    *(uint8_t *)(MatrixContextAddress + MatrixContextConfigOffset) = MatrixConfigurationType;
     
     uint32_t MatrixRotationState = *(uint32_t *)(ObjectContext + ObjectContextMatrixFlagsOffset);
     uint32_t MatrixScaleState = *(uint32_t *)(ObjectContext + ObjectContextMatrixScaleOffset);
     uint32_t MatrixTranslationState = *(uint32_t *)(ObjectContext + ObjectContextMatrixTranslationOffset);
-    *(uint32_t *)(MatrixContextPointer + MatrixContextRangeDataOffset) = *(uint32_t *)(ObjectContext + ObjectContextRangeDataOffset);
-    *(uint32_t *)(MatrixContextPointer + MatrixContextRotationFlagsOffset) = MatrixRotationFlags;
-    *(uint32_t *)(MatrixContextPointer + MatrixContextScaleFlagsOffset) = MatrixScaleFlags;
-    *(uint32_t *)(MatrixContextPointer + MatrixTranslationFlagsOffset) = MatrixTranslationFlags;
+    *(uint32_t *)(MatrixContextAddress + MatrixContextRangeDataOffset) = *(uint32_t *)(ObjectContext + ObjectContextRangeDataOffset);
+    *(uint32_t *)(MatrixContextAddress + MatrixContextRotationFlagsOffset) = MatrixRotationState;
+    *(uint32_t *)(MatrixContextAddress + MatrixContextScaleFlagsOffset) = MatrixScaleState;
+    *(uint32_t *)(MatrixContextAddress + MatrixTranslationFlagsOffset) = MatrixTranslationState;
     
     uint32_t MatrixProjectionFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixWComponentOffset);
     uint32_t MatrixViewFlags = *(uint32_t *)(ObjectContext + ObjectContextSecurityContextOffset);
     uint32_t MatrixWorldFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
-    *(uint32_t *)(MatrixContextPointer + MatrixContextFloatValueOffset) = *(uint32_t *)(ObjectContext + ObjectContextFloatValueOffset);
-    *(uint32_t *)(MatrixContextPointer + MatrixProjectionDataOffset) = MatrixProjectionFlags;
-    *(uint32_t *)(MatrixContextPointer + MatrixViewDataOffset) = MatrixViewFlags;
-    *(uint32_t *)(MatrixContextPointer + MatrixWorldDataOffset) = MatrixWorldFlags;
+    *(uint32_t *)(MatrixContextAddress + MatrixContextFloatValueOffset) = *(uint32_t *)(ObjectContext + ObjectContextFloatValueOffset);
+    *(uint32_t *)(MatrixContextAddress + MatrixProjectionDataOffset) = MatrixProjectionFlags;
+    *(uint32_t *)(MatrixContextAddress + MatrixViewDataOffset) = MatrixViewFlags;
+    *(uint32_t *)(MatrixContextAddress + MatrixWorldDataOffset) = MatrixWorldFlags;
     
-    MatrixContextPointer = *(int64_t *)(SystemContext + SystemContextMatrixPointerOffset);
-    if ((*(int *)(MatrixContextPointer + SystemContextStatusFlag1Offset) != 0) || (*(int *)(MatrixContextPointer + SystemContextStatusFlag2Offset) != 0)) {
-      MatrixValidationBuffer[0] = 0;
-      InitializeSecurityContext(MatrixValidationBuffer);
-      if (MatrixValidationBuffer[0] == SystemDataBaseAddress(MatrixContextPointer)) {
-        uint32_t ResourceValidationResultCode = ProcessResourceValidation(MatrixContextPointer, ObjectContext);
+    MatrixContextAddress = *(int64_t *)(SystemContext + SystemContextMatrixPointerOffset);
+    if ((*(int *)(MatrixContextAddress + SystemContextStatusFlag1Offset) != 0) || (*(int *)(MatrixContextAddress + SystemContextStatusFlag2Offset) != 0)) {
+      MatrixValidationStorage[0] = 0;
+      InitializeSecurityContext(MatrixValidationStorage);
+      if (MatrixValidationStorage[0] == SystemDataBaseAddress(MatrixContextAddress)) {
+        uint32_t ResourceValidationResultCode = ProcessResourceValidation(MatrixContextAddress, ObjectContext);
         if ((int)ResourceValidationResultCode == 0) {
           return 0;
         }
@@ -8617,7 +8617,7 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer, int64_t Cont
     }
     
     *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
-    uint32_t SystemOperationStatus = ExecuteSystemOperation(*(uint8_t *)(MatrixContextPointer + SystemOperationContextOffset));
+    uint32_t SystemOperationStatus = ExecuteSystemOperation(*(uint8_t *)(MatrixContextAddress + SystemOperationContextOffset));
     if ((int)SystemOperationStatus == 0) {
       return 0;
     }
