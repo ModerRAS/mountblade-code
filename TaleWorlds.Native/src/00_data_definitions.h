@@ -13233,6 +13233,18 @@ longlong SystemGetTimeCounter(void)
   MemoryAddress = timeGetTime();
   return (ulonglong)MemoryAddress * 1000;
 }
+/**
+ * @brief 处理系统定时器
+ * 
+ * 该函数负责处理系统定时器的各种操作，包括定时器事件的触发、
+ * 定时器状态的管理和定时器数据的处理
+ * 
+ * @param TimerContextPointer 定时器上下文指针，包含定时器的状态信息
+ * @param TimerIntervalParameter 定时器间隔参数，指定定时器的时间间隔
+ * @param TimerFlagsParameter 定时器标志参数，控制定时器的行为
+ * @param TimerModeParameter 定时器模式参数，指定定时器的工作模式
+ * @return uint 返回处理结果，成功返回0，失败返回错误码
+ */
 uint SystemProcessTimer(longlong TimerContextPointer,int TimerIntervalParameter,int TimerFlagsParameter,char TimerModeParameter)
 {
   ulonglong MemoryAddress;
