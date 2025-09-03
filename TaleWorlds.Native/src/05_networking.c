@@ -2251,20 +2251,20 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    DataValidationResult = 0x01;  // 数据验证通过
+    DataValidationResultCode = 0x01;  // 数据验证通过
   }
   
   // 清理处理缓冲区
   if (ProcessingBuffer) {
     memset(ProcessingBuffer, 0, 32);
-    BufferCleanupResult = 0x01;  // 缓冲区清理成功
+    BufferCleanupResultCode = 0x01;  // 缓冲区清理成功
   }
   
   // 综合完成状态
-  FinalizationStatus = DataValidationResult & BufferCleanupResult;
+  FinalizationStatusCode = DataValidationResultCode & BufferCleanupResultCode;
   
   // 如果完成成功，更新处理状态
-  if (FinalizationStatus == 0x01) {
+  if (FinalizationStatusCode == 0x01) {
     // 这里可以添加更多的完成处理逻辑
     // 例如：更新统计信息、通知回调函数等
   }
