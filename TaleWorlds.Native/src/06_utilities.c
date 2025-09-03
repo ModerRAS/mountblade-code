@@ -4499,7 +4499,7 @@ void ValidateSystemObjectCollection(void)
   int64_t SystemObjectContext;
   int64_t SystemRuntimeData;
   int64_t CollectionBufferIndex;
-  int ValidatedObjectCount;
+  int ValidatedObjectTotal;
   uint8_t *SystemObjectDataBuffer;
   int RetrievedObjectCount;
   uint32_t MaximumCollectionLimit;
@@ -4508,7 +4508,7 @@ void ValidateSystemObjectCollection(void)
   // 检查系统对象上下文是否有效
   if (*(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset) != 0) {
     SystemObjectDataBuffer = ProcessingWorkspace;
-    ValidatedObjectCount = 0;
+    ValidatedObjectTotal = 0;
     RetrievedObjectCount = 0;
     MaximumCollectionLimit = MaximumCapacityLimit;
     
@@ -4525,9 +4525,9 @@ void ValidateSystemObjectCollection(void)
           if (SystemObjectValidationStatus != 2) {
                   HandleInvalidSystemObject(CurrentObjectId, 1);
           }
-          ValidatedObjectCount++;
+          ValidatedObjectTotal++;
           CollectionBufferIndex += 8;
-        } while (ValidatedObjectCount < RetrievedObjectCount);
+        } while (ValidatedObjectTotal < RetrievedObjectCount);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
