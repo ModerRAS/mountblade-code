@@ -1847,13 +1847,13 @@ NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, Network
         return NetworkErrorInvalidPacket;
       }
       PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
-      if ((((int)ValidationStatusCode == 0) && (ValidationStatusCode = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)ValidationStatusCode == 0)) &&
-         (ValidationStatusCode = HandlePacketData(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)ValidationStatusCode == 0)) {
-          FinalizePacketProcessing(PacketData, SecurityValidationBuffer);
+      if ((((int)PacketValidationStatusCode == 0) && (PacketValidationStatusCode = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)PacketValidationStatusCode == 0)) &&
+         (PacketValidationStatusCode = HandlePacketData(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)PacketValidationStatusCode == 0)) {
+          FinalizePacketProcessing(PacketData, ConnectionSecurityBuffer);
       }
     }
   }
-  return ValidationStatusCode;
+  return PacketValidationStatusCode;
 }
 
 /**
