@@ -636,7 +636,7 @@ int32_t NetworkProcessBufferWithEncryption(int64_t EncryptedBuffer, int32_t Buff
  * @param HandleContext 句柄上下文
  * @return int32_t 管理结果，0表示成功，其他值表示错误码
  */
-int32_t ManageNetworkHandle(int64_t ConnectionHandle, int32_t HandleSize, int64_t HandleContext);
+int32_t NetworkManageHandle(int64_t ConnectionHandle, int32_t HandleSize, int64_t HandleContext);
 
 /**
  * @brief 网络加密数据包数据
@@ -648,7 +648,7 @@ int32_t ManageNetworkHandle(int64_t ConnectionHandle, int32_t HandleSize, int64_
  * @param EncryptionKey 加密密钥
  * @return int32_t 加密结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkEncryptPacketData(int64_t PacketData, int32_t PacketSize, int64_t EncryptionKey);
+int32_t NetworkEncryptPacket(int64_t PacketData, int32_t PacketSize, int64_t EncryptionKey);
 
 /**
  * @brief 网络处理安全上下文
