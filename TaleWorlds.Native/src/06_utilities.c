@@ -4600,6 +4600,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
   if (PackageValidationStatusCode == 0) {
     return 0;
   }
+  OperationStatusCode = ErrorInvalidObjectHandle;
   return OperationStatusCode;
 }
 
@@ -4668,6 +4669,7 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
   uint64_t StatusUpdateResult;
   int64_t *ObjectCollectionIterator;
   int64_t SystemContextPointers[4];
+  uint32_t *ObjectStatusFlagsPointer;
   
   StatusUpdateResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextPointers);
   if ((int)StatusUpdateResult == 0) {
@@ -8396,7 +8398,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
   // 检查浮点数是否为有效值（非NaN/Infinity）
   ProcessedFloatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
   if ((*(uint *)(ObjectContext + ObjectContextProcessingDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    return ErrorFloatValidationFailure; // ErrorInvalidFloatValue
+    return ErrorFloatValidationFailure;
   }
   
   // 验证对象上下文
