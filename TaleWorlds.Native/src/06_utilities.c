@@ -29936,12 +29936,12 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindPrimaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* HandlerFunctionPointer;
+void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+  int64_t* ExceptionHandlerFunctionPointer;
   
-  HandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
-  if (HandlerFunctionPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)HandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -29960,7 +29960,7 @@ void UnwindPrimaryContextExceptionHandler(uint8_t ExceptionContext, int64_t Syst
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindSecondaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** SecondaryExceptionHandlerFunctionPointer;
   
   SecondaryExceptionHandlerFunctionPointer = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
@@ -29984,7 +29984,7 @@ void UnwindSecondaryContextExceptionHandler(uint8_t ExceptionContext, int64_t Sy
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindTertiaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* TertiaryExceptionHandlerFunctionPointer;
   
   TertiaryExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
