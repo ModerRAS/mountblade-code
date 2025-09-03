@@ -403,7 +403,7 @@ uint32_t VerifyConnectionStatus(NetworkHandle ConnectionHandle);
  * 
  * 重置网络连接的状态，清理连接数据
  */
-void NetworkResetConnectionState(void);
+void ResetConnectionState(void);
 
 /**
  * @brief 处理网络验证队列
@@ -413,14 +413,14 @@ void NetworkResetConnectionState(void);
  * @param ValidationContext 验证上下文
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkProcessValidationQueue(int64_t ValidationContext);
+uint32_t ProcessValidationQueue(int64_t ValidationContext);
 
 /**
  * @brief 清理网络连接缓存
  * 
  * 清理网络连接的缓存数据，释放内存资源
  */
-void NetworkClearConnectionCache(void);
+void ClearConnectionCache(void);
 
 /**
  * @brief 初始化网络缓冲区
@@ -430,7 +430,7 @@ void NetworkClearConnectionCache(void);
  * @param BufferPointer 缓冲区指针
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkInitializeBuffer(int64_t BufferPointer);
+uint32_t InitializeBuffer(int64_t BufferPointer);
 
 /**
  * @brief 处理网络数组数据
@@ -441,7 +441,7 @@ uint32_t NetworkInitializeBuffer(int64_t BufferPointer);
  * @param ArrayIndex 数组索引
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkProcessArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex);
+uint32_t ProcessArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex);
 
 /**
  * @brief 关闭网络连接
@@ -452,22 +452,22 @@ uint32_t NetworkProcessArrayData(int64_t NetworkContextArray, uint32_t ArrayInde
  * @param ConnectionFlags 连接标志
  * @return uint32_t 关闭结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkCloseConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
+uint32_t CloseConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
 
 // =============================================================================
 // 网络系统全局变量
 // =============================================================================
 
 // 网络连接基础配置变量
-uint32_t NetworkConnectionTableHandle;                    // 网络连接表管理句柄
-uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志位
-uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
-uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制
-uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志位
-uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志位
+uint32_t ConnectionTableHandle;                    // 网络连接表管理句柄
+uint32_t ConnectionStatusFlags;                    // 网络连接状态标志位
+uint32_t ConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
+uint32_t MaximumConnectionsLimit;                  // 网络最大连接数限制
+uint32_t ConnectionAttributeFlags;                // 网络连接属性标志位
+uint32_t ConnectionStateFlags;                     // 网络连接状态标志位
 
 // 网络协议和地址配置
-uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型
+uint32_t ConnectionProtocolType;                   // 网络连接协议类型
 uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址
 uint32_t NetworkServerPortNumber;                         // 网络服务器端口号
