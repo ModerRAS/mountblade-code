@@ -4665,20 +4665,20 @@ void TerminateSystemProcess(void)
  */
 void CheckSystemFlags(void)
 {
-  int64_t SystemRuntimeData;
-  uint64_t SystemFlagValidationToken;
-  void* ObjectResourceBuffer;
+  int64_t SystemRuntimeContext;
+  uint64_t SystemSecurityToken;
+  void* SystemResourceBuffer;
   
   // 生成安全验证令牌
-  SystemFlagValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)&SystemSecurityValidationBuffer;
+  SystemSecurityToken = SystemSecurityValidationKeySeed ^ (uint64_t)&SystemSecurityValidationBuffer;
   
   // 检查系统标志位状态
-  if ((*(uint *)(SystemRuntimeData + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
+  if ((*(uint *)(SystemRuntimeContext + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
           TriggerSystemFlagHandler();
   }
   // 释放标志检查资源并执行清理
-  ReleaseFlagCheckResources(&ObjectResourceBuffer);
-  ExecuteFlagCheckCleanup(SystemFlagValidationToken);
+  ReleaseFlagCheckResources(&SystemResourceBuffer);
+  ExecuteFlagCheckCleanup(SystemSecurityToken);
 }
 
 
@@ -4830,21 +4830,21 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
  */
 uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t SystemContext)
 {
-  int64_t *ResultPointer;
-  int64_t *ResourceTablePointer;
-  int64_t *ResourceIndexCounter;
-  int ObjectValidationResult;
-  uint SystemProcessResult;
+  int64_t *OperationResultPointer;
+  int64_t *ResourceTable;
+  int64_t *ResourceIndex;
+  int ObjectValidationStatus;
+  uint SystemProcessingResult;
   uint64_t OperationResult;
-  int64_t *ResourceDataPointer;
-  int64_t *ContextDataPointer;
-  int64_t *CleanupDataPointer;
-  int64_t *NullDataPointer;
-  int64_t MemoryContextHandle;
-  int64_t ValidationContext;
-  int PackageValidationStatusCode;
-  int64_t *ResourceTablePointerPointer;
-  int SystemOperationStatus;
+  int64_t *ResourceData;
+  int64_t *ContextData;
+  int64_t *CleanupData;
+  int64_t *NullPointer;
+  int64_t MemoryContext;
+  int64_t ValidationData;
+  int PackageValidationStatus;
+  int64_t *ResourceTablePointer;
+  int SystemStatus;
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterSecondaryOffset),&ValidationContext);
   ObjectValidationResult = (int)OperationResult;

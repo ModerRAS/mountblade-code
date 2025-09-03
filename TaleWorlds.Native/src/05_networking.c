@@ -672,8 +672,8 @@ void NetworkBindSocket(void)
   NetworkClientIpAddress = 0x00000000;               // 客户端IP地址初始化为0.0.0.0
   NetworkClientPortNumber = 0x0000;                   // 客户端端口初始化为0
   
-  // 设置套接字绑定信息
-  NetworkSocketBindingInfo = 0x01;                   // 设置绑定标志为已绑定
+  // 设置套接字绑定状态
+  NetworkSocketBindingStatus = 0x01;                   // 设置绑定标志为已绑定
   
   // 初始化网络协议配置
   NetworkConnectionProtocolType = 0x01;               // 设置协议类型为TCP
@@ -686,8 +686,8 @@ void NetworkBindSocket(void)
   NetworkReceiveBufferCapacity = 0x20000;              // 设置接收缓冲区容量为128KB
 }
 
-// 网络套接字绑定信息
-uint32_t NetworkSocketBindingInfo;
+// 网络套接字绑定状态标志
+uint32_t NetworkSocketBindingStatus;
 
 /**
  * @brief 监听网络连接
@@ -705,14 +705,14 @@ void NetworkListenConnections(void)
 {
   // 设置监听队列参数
   NetworkConnectionRequestQueue = 0x01;                // 初始化连接请求队列
-  NetworkPendingRequestsCount = 0;                    // 重置待处理请求数量
+  NetworkPendingRequestCount = 0;                     // 重置待处理请求数量
   
   // 设置连接限制参数
   NetworkMaximumConnectionsLimit = 100;                // 设置最大连接数为100
   NetworkActiveConnectionsCount = 0;                   // 重置活跃连接计数
   
-  // 初始化连接状态控制器
-  NetworkConnectionStateController = 0x01;            // 设置状态控制器为启用状态
+  // 初始化连接状态管理器
+  NetworkConnectionStateManager = 0x01;               // 设置状态管理器为启用状态
   
   // 初始化事件处理系统
   NetworkEventQueue = 0x01;                           // 初始化事件队列
@@ -1240,7 +1240,7 @@ uint32_t PacketCompressionLevel;                         // 数据包压缩级�
 uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算法类型
 
 uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列
-uint32_t NetworkPendingRequestsCount;               // 待处理网络请求数量
+uint32_t NetworkPendingRequestCount;                // 待处理网络请求数量
 uint32_t NetworkConnectionManager;                            // 连接管理器
 uint32_t NetworkConnectionData;                              // 连接数据
 uint32_t NetworkConnectionSize;                              // 连接大小
