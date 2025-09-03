@@ -36195,7 +36195,7 @@ ProcessSystemDataOperation(void* SystemResourceManager,void* ConfigurationDataPo
  * @param ConfigurationFlag 配置标志，控制配置行为
  * @return 配置后的系统资源指针
  * 
- *FUN_18005c210：ConfigureSystemResourceMemoryTemplate
+ * 原始函数名：FUN_18005c210
  */
 void* * ConfigureSystemResourceMemoryTemplate(void* *SystemResourceManager,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
