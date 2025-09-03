@@ -1394,16 +1394,16 @@ NetworkHandle NetworkProcessConnectionPacketHandler(NetworkHandle ConnectionCont
   NetworkByte DecodedDataStreamBuffer [32];
   
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < NetworkPacketStatusLimit) {
-    ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
-    if ((int)ProcessingResult == 0) {
-      ProcessingResult = 0;
+    ConnectionPacketProcessingStatus = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
+    if ((int)ConnectionPacketProcessingStatus == 0) {
+      ConnectionPacketProcessingStatus = 0;
     }
   }
   else {
-    ProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTnvel);
-    if ((int)ProcessingResult == 0) {
-      ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBtvel);
-      if ((int)ProcessingResult == 0) {
+    ConnectionPacketProcessingStatus = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTnvel);
+    if ((int)ConnectionPacketProcessingStatus == 0) {
+      ConnectionPacketProcessingStatus = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBtvel);
+      if ((int)ConnectionPacketProcessingStatus == 0) {
         NetworkHandle ConnectionDataResult = ProcessConnectionData(ConnectionContext, PacketData);
         if ((int)ConnectionDataResult == 0) {
             FinalizePacketProcessing(PacketData, DecodedDataStreamBuffer);
@@ -1411,5 +1411,5 @@ NetworkHandle NetworkProcessConnectionPacketHandler(NetworkHandle ConnectionCont
       }
     }
   }
-  return ProcessingResult;
+  return ConnectionPacketProcessingStatus;
 }
