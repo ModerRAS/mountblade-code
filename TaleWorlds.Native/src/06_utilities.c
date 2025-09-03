@@ -5034,18 +5034,12 @@ uint8_t ReleaseObjectHandle(void) {
  * 验证输入的字符参数，如果字符不为空字符则执行系统退出操作。
  * 此函数用于系统安全检查，防止无效字符输入导致系统异常。
  * 
- * @param CharacterToValidate 输入的字符参数，需要验证的字符
- * @return uint8_t 验证结果，0表示成功，非0表示失败
- */
-/**
- * @brief 验证字符输入
- * 
- * 该函数用于验证输入的字符是否有效
- * 如果字符不为空字符，则执行系统退出操作
- * 主要用于输入验证和安全检查
- * 
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示验证通过
+ * @note 此函数用于字符输入的安全验证
+ * @warning 如果字符无效，会触发系统退出操作
+ */
+uint8_t ValidateCharacterInput(char CharacterToValidate) {
  * @note 此函数用于字符输入的安全验证
  * @warning 如果字符无效，会触发系统退出操作
  */
@@ -11142,11 +11136,11 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* Validation
   uint32_t ResourceSecurityMidHighByte;
   uint32_t ResourceSecurityMidByte;
   uint32_t ResourceSecurityLowByte;
-  uint32_t ResourceAccessControlWord;
+  uint32_t ResourceAccessControlValue;
   void* SecurityOperationData;
   uint64_t SecurityEncryptionKey;
   
-  PrimaryOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
+  uint64_t EncryptedOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
   ResourceContext = *(int64_t **)(ObjectContext + ObjectResourceContextOffset);
   if (ResourceContext != (int64_t *)0x0) {
     ResourceSecurityFlag = *ValidationContext;
@@ -11164,7 +11158,7 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* Validation
       ResourceSecurityMidHighByte = ResourceValidationByteSecond >> 0x10 & 0xff;
       ResourceSecurityMidByte = ResourceValidationByteSecond >> 8 & 0xff;
       ResourceSecurityLowByte = ResourceValidationByteSecond & 0xff;
-      ResourceAccessControlWord = ResourceValidationByteFirst & 0xffff;
+      ResourceAccessControlValue = ResourceValidationByteFirst & 0xffff;
       ExecuteSecurityOperation(ResourceChecksumData, 0x27, &SecurityOperationData, ResourceSecurityFlag);
     }
     if (((*(byte *)(ResourceIndex + 0xc4) & 1) != 0) &&
@@ -11173,7 +11167,7 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* Validation
       *ResourceIndexOutput = ResourceHandleBackup;
     }
   }
-        FinalizeSecurityOperation(PrimaryOperationParameter ^ (uint64_t)SecurityDataBuffer);
+        FinalizeSecurityOperation(EncryptedOperationParameter ^ (uint64_t)SecurityDataBuffer);
 }
 
 
