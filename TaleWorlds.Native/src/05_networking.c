@@ -159,10 +159,48 @@ uint ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *Reques
  * @return 传输结果句柄，0表示成功，其他值表示错误码
  */
 uint ExecuteNetworkDataTransfer(int64_t SourceBuffer, uint TransferSize, int64_t *DestinationBuffer, uint TransferFlags);
+/**
+ * 处理网络数据包 - 处理网络数据包的接收和发送
+ * 此函数负责处理网络数据包，包括优先级处理
+ * @param PacketBuffer 数据包缓冲区
+ * @param HasPriorityFlag 是否具有优先级标志
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 uint ProcessNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
+/**
+ * 创建网络迭代上下文 - 创建网络连接处理的迭代上下文
+ * 此函数负责创建用于网络连接处理的迭代上下文
+ * @param ConnectionContext 连接上下文
+ * @param ValidationResult 验证结果
+ * @param IterationFlag 迭代标志
+ * @return 创建结果句柄，0表示成功，其他值表示错误码
+ */
 uint CreateNetworkIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint IterationFlag);
+
+/**
+ * 处理网络堆栈数据 - 处理网络协议栈的数据
+ * 此函数负责处理网络协议栈中的数据
+ * @param StackBuffer 堆栈缓冲区指针
+ * @param ContextData 上下文数据
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 uint ProcessNetworkStackData(int64_t *StackBuffer, int64_t ContextData);
+
+/**
+ * 验证网络连接句柄 - 验证网络连接句柄的有效性
+ * 此函数负责验证网络连接句柄是否有效
+ * @param ConnectionContext 连接上下文句柄
+ * @param PacketData 数据包数据句柄
+ * @return 验证结果句柄，0表示成功，其他值表示错误码
+ */
 uint ValidateNetworkConnectionHandle(NetworkHandle ConnectionContext, NetworkHandle PacketData);
+
+/**
+ * 获取连接句柄 - 获取网络连接的句柄
+ * 此函数负责获取网络连接的句柄
+ * @param ConnectionContext 连接上下文指针
+ * @return 连接句柄
+ */
 NetworkHandle GetConnectionHandle(int64_t *ConnectionContext);
 uint ValidateNetworkConnectionEntry(int64_t ConnectionContext, uint NetworkFlags);
 uint InitializeNetworkContext(int64_t NetworkContext);
