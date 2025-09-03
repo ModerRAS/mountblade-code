@@ -48244,21 +48244,21 @@ void ProcessResourceHashValidationAndUpdateIndex(uint8_t ObjectContext, int64_t 
   
   AlignedMemoryAddress = (uint64_t)ResourceHashStatusAddress & MemoryAddressAlignmentMask;
   if (MemoryAddressMask != 0) {
-    ResourceIndex = MemoryAddressIncrement + MemoryResourceDataOffset + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * MemoryResourceEntrySize;
+    ResourceIndex = AlignedMemoryAddress + MemoryResourceDataOffset + ((int64_t)ResourceHashStatusAddress - AlignedMemoryAddress >> 0x10) * MemoryResourceEntrySize;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+    if ((*(void ***)(AlignedMemoryAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-      int *ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
-      *ResourceIndexPointer = *ResourceIndexPointer + -1;
-      if (*ResourceIndexPointer == 0) {
+      int *ResourceReferenceCount = (int *)(ResourceIndex + 0x18);
+      *ResourceReferenceCount = *ResourceReferenceCount + -1;
+      if (*ResourceReferenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(AddressIncrement, CONCAT71(0xff000000,*(void ***)(AddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashStatusAddress, AddressIncrement, 0xfffffffffffffffe);
+      ValidateMemoryAccess(AlignedMemoryAddress, CONCAT71(0xff000000,*(void ***)(AlignedMemoryAddress + 0x70) == &ExceptionList),
+                          ResourceHashStatusAddress, AlignedMemoryAddress, 0xfffffffffffffffe);
     }
   }
   return;
