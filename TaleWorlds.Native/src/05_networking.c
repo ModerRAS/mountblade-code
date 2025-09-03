@@ -585,17 +585,17 @@ void InitializeNetworkConnectionPool(void)
 }
 
 // 网络连接配置数据结构指针
-void *NetworkConnectionContextTemplate = &NetworkConnectionContextDataStructure;
-void *NetworkConnectionPrimaryConfig = &NetworkConnectionPrimaryConfigDataStructure;
-void *NetworkConnectionSecondaryConfig = &NetworkConnectionSecondaryConfigDataStructure;
-void *NetworkConnectionProcessingConfig = &NetworkConnectionProcessingConfigDataStructure;
-void *NetworkConnectionTransportConfig = &NetworkConnectionTransportConfigDataStructure;
-void *NetworkConnectionProtocolConfig = &NetworkConnectionProtocolConfigDataStructure;
-void *NetworkConnectionValidationConfig = &NetworkConnectionValidationConfigStructure;
-void *NetworkConnectionRoutingConfigPrimary = &NetworkConnectionRoutingConfigDataStructureA;
-void *NetworkConnectionRoutingConfigSecondary = &NetworkConnectionRoutingConfigDataStructureB;
-void *NetworkConnectionRoutingConfigTertiary = &NetworkConnectionRoutingConfigDataStructureC;
-void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfigDataStructureD;
+void *NetworkConnectionContextTemplate = &NetworkConnectionContextTemplateData;
+void *NetworkConnectionPrimaryConfig = &NetworkConnectionPrimaryConfigData;
+void *NetworkConnectionSecondaryConfig = &NetworkConnectionSecondaryConfigData;
+void *NetworkConnectionProcessingConfig = &NetworkConnectionProcessingConfigData;
+void *NetworkConnectionTransportConfig = &NetworkConnectionTransportConfigData;
+void *NetworkConnectionProtocolConfig = &NetworkConnectionProtocolConfigData;
+void *NetworkConnectionValidationConfig = &NetworkConnectionValidationConfigData;
+void *NetworkConnectionRoutingConfigPrimary = &NetworkConnectionRoutingConfigPrimaryData;
+void *NetworkConnectionRoutingConfigSecondary = &NetworkConnectionRoutingConfigSecondaryData;
+void *NetworkConnectionRoutingConfigTertiary = &NetworkConnectionRoutingConfigTertiaryData;
+void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfigQuaternaryData;
 
 /**
  * @brief 初始化网络套接字句柄
