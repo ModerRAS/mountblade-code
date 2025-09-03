@@ -124,7 +124,22 @@ uint CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *Second
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint ProcessNetworkConnectionData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
+/**
+ * 发送网络数据包数据 - 通过网络发送数据包
+ * 此函数负责通过网络连接发送数据包数据
+ * @param SocketContext 套接字上下文
+ * @param ConnectionHandle 连接句柄
+ * @param PacketBuffer 数据包缓冲区
+ * @return 发送结果句柄，0表示成功，其他值表示错误码
+ */
 uint SendNetworkPacketData(int64_t SocketContext, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
+/**
+ * 验证网络数据包 - 验证网络数据包的完整性和有效性
+ * 此函数负责验证网络数据包的格式和内容是否有效
+ * @param PacketData 数据包数据
+ * @param ConnectionContext 连接上下文
+ * @return 验证结果句柄，0表示成功，其他值表示错误码
+ */
 uint ValidateNetworkPacket(int64_t PacketData, int64_t ConnectionContext);
 uint ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
 uint ExecuteNetworkDataTransfer(int64_t SourceBuffer, uint TransferSize, int64_t *DestinationBuffer, uint TransferFlags);
