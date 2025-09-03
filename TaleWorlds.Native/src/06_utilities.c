@@ -100110,27 +100110,49 @@ void ProcessSecondaryCounterResourceCleanupUnwind(uint8_t ObjectContext, int64_t
 
 
 
-void Unwind_1809125c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源表计数器清理的展开函数
+ * 
+ * 该函数负责处理基于资源表计数器的清理操作。
+ * 它会检查验证上下文中资源表的计数器，如果计数器不为零，
+ * 则执行资源清理操作，并更新全局展开上下文。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源表和清理所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，指示是否执行强制清理
+ */
+void ProcessResourceTableCounterCleanupUnwind(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  int64_t LoopCounter;
+  int64_t ResourceTableCounter;
   
-  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextResourceTableOffset) + 8);
-  if (LoopCounter != 0) {
+  ResourceTableCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextResourceTableOffset) + ResourceTableSecondaryOffset);
+  if (ResourceTableCounter != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) = *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
   }
   return;
 }
 
 
 
-void Unwind_1809125d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行控制流_guard检查的展开函数
+ * 
+ * 该函数负责执行控制流完整性检查，使用_guard_check_icall
+ * 来验证间接调用的安全性。它会检查验证上下文中的
+ * 不同偏移量位置的指针，确保调用的安全性。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含需要检查的指针和验证数据
+ */
+void ExecuteControlFlowGuardCheckUnwind(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  _guard_check_icall(*(uint8_t *)(ValidationContext + ResourceContextTertiaryOffset),**(uint8_t **)(ValidationContext + 0x28),
+  _guard_check_icall(*(uint8_t *)(ValidationContext + ResourceContextTertiaryOffset), **(uint8_t **)(ValidationContext + ResourceContextSecondaryOffset),
                      *(uint8_t *)(ValidationContext + ResourceContextExtendedOffset));
   return;
 }
