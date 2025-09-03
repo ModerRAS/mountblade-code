@@ -4517,7 +4517,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int ObjectValidationStatus;
   int64_t ObjectCollectionIterator;
-  int ProcessedObjectCounter;
+  int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
   int64_t ObjectHandleArray[2];
   uint8_t *ObjectListBuffer;
