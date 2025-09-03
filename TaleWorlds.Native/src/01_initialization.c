@@ -25297,7 +25297,7 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   long long SystemBufferAddress;
   uint32_t *SystemThreadContext;
   void** SystemRootNode;
-  long long *plocalDataIndex;
+  long long *systemDataPointer;
   uint32_t *SystemThreadStorage;
   uint32_t *systemResourceCounter;
   long long SystemAllocationFlags;
@@ -25351,11 +25351,11 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   SystemResourceManager[0x33] = SystemResourceManager + 0x35;
   *(uint32_t *)(SystemResourceManager + 0x34) = 0;
   *(uint8_t *)(SystemResourceManager + 0x35) = 0;
-  plocalDataIndex = SystemResourceManager + 0x39;
-  *plocalDataIndex = (long long)&SystemMemoryAllocatorReference;
+  systemDataPointer = SystemResourceManager + 0x39;
+  *systemDataPointer = (long long)&SystemMemoryAllocatorReference;
   SystemResourceManager[0x3a] = 0;
   *(uint32_t *)(SystemResourceManager + 0x3b) = 0;
-  *plocalDataIndex = (long long)&SystemGlobalDataReference;
+  *systemDataPointer = (long long)&SystemGlobalDataReference;
   SystemResourceManager[0x3c] = 0;
   SystemResourceManager[0x3a] = 0;
   *(uint32_t *)(SystemResourceManager + 0x3b) = 0;
@@ -25412,8 +25412,8 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 4) = 0;
   *SystemResourceManager = 0;
   *(uint32_t *)(SystemResourceManager + 99) = 0;
-  (**(code **)(*plocalDataIndex + 0x10))
-            (plocalDataIndex,&SystemResourceTemplateSeptenary,&SystemGlobalDataReference,&SystemMemoryAllocatorReference,InvalidHandleValue);
+  (**(code **)(*systemDataPointer + 0x10))
+            (systemDataPointer,&SystemResourceTemplateSeptenary,&SystemGlobalDataReference,&SystemMemoryAllocatorReference,InvalidHandleValue);
   *(uint32_t *)(SystemResourceManager + 0x3d) = 0;
   *(uint32_t *)((long long)SystemResourceManager + 0x1ed) = 0x1000001;
   SystemResourceManager[0x62] = 0;
