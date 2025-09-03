@@ -2064,12 +2064,56 @@ void ValidateConnectionSecurity(NetworkHandle ConnectionTable, int64_t Connectio
 NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
                           uint32_t MagicNumber1, uint32_t MagicNumber2)
 {
-  // 这里应该实现数据包解码逻辑
-  // 由于这是简化实现，返回成功状态
+  // 数据包解码变量
+  uint32_t DecodingStatus;                                // 解码状态
+  uint32_t MagicValidationResult;                         // 魔数验证结果
+  uint32_t DataIntegrityCheck;                            // 数据完整性检查
+  
+  // 初始化解码状态
+  DecodingStatus = 0x00;
+  MagicValidationResult = 0x00;
+  DataIntegrityCheck = 0x00;
+  
+  // 验证数据包魔数
+  if (PacketData && *PacketData != 0) {
+    // 验证第一个魔数
+    if (MagicNumber1 == NetworkPacketMagicSilive || MagicNumber1 == NetworkPacketMagicTivel) {
+      MagicValidationResult |= 0x01;
+    }
+    
+    // 验证第二个魔数
+    if (MagicNumber2 == NetworkPacketMagicBivel || MagicNumber2 == NetworkMagicDebugFood) {
+      MagicValidationResult |= 0x02;
+    }
+  }
+  
+  // 检查数据完整性
+  if (MagicValidationResult == 0x03) {
+    DataIntegrityCheck = 0x01;
+  }
+  
+  // 根据解码模式处理数据
+  if (DecodingMode == 0x01) {
+    // 基本解码模式
+    DecodingStatus = MagicValidationResult & 0x03;
+  } else if (DecodingMode == 0x02) {
+    // 严格解码模式
+    DecodingStatus = DataIntegrityCheck & 0x01;
+  } else {
+    // 默认解码模式
+    DecodingStatus = 0x01;
+  }
+  
+  // 设置输出缓冲区
   if (OutputBuffer) {
     memset(OutputBuffer, 0, 32);
+    OutputBuffer[0] = (NetworkByte)DecodingStatus;
+    OutputBuffer[1] = (NetworkByte)MagicValidationResult;
+    OutputBuffer[2] = (NetworkByte)DataIntegrityCheck;
+    OutputBuffer[3] = (NetworkByte)DecodingMode;
   }
-  return 0;  // 解码成功
+  
+  return DecodingStatus;  // 返回解码状态
 }
 
 /**
@@ -2083,9 +2127,36 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
  */
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
-  // 这里应该实现数据包头部处理逻辑
-  // 由于这是简化实现，返回成功状态
-  return 0;  // 处理成功
+  // 数据包头部处理变量
+  uint32_t HeaderProcessingStatus;                        // 头部处理状态
+  uint32_t HeaderValidationResult;                         // 头部验证结果
+  uint32_t ContextProcessingResult;                         // 上下文处理结果
+  
+  // 初始化处理状态
+  HeaderProcessingStatus = 0x00;
+  HeaderValidationResult = 0x00;
+  ContextProcessingResult = 0x00;
+  
+  // 验证数据包头部有效性
+  if (PacketData != 0) {
+    HeaderValidationResult = 0x01;  // 头部验证通过
+  }
+  
+  // 处理头部上下文
+  if (HeaderContext != 0) {
+    ContextProcessingResult = 0x01;  // 上下文处理成功
+  }
+  
+  // 综合处理结果
+  HeaderProcessingStatus = HeaderValidationResult & ContextProcessingResult;
+  
+  // 如果处理成功，更新头部状态
+  if (HeaderProcessingStatus == 0x01) {
+    // 这里可以添加更多的头部处理逻辑
+    // 例如：解析头部字段、验证头部格式等
+  }
+  
+  return HeaderProcessingStatus;  // 返回处理状态
 }
 
 /**

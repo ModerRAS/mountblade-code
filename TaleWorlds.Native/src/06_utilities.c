@@ -30245,7 +30245,7 @@ void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCon
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */
-void ProcessTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerFunctionPointer;
   
   ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
