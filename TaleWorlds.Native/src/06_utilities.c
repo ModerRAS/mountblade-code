@@ -4431,51 +4431,51 @@ uint8_t SystemMemoryFlagKernel;
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int ObjectValidationStatus;
-  int64_t ObjectCollectionIterator;
+  int64_t ObjectCollectionIndex;
   int ProcessedObjectsCount;
-  uint8_t ObjectMetadataWorkspace[32];
+  uint8_t ObjectMetadataBuffer[32];
   int64_t ObjectHandleArray[2];
-  uint8_t *ObjectListBuffer;
+  uint8_t *ObjectListDataBuffer;
   int TotalObjectCount;
   uint32_t MaximumObjectProcessingLimit;
-  uint8_t ObjectProcessingWorkspace[512];
-  uint64_t SecurityValidationToken;
+  uint8_t ObjectProcessingBuffer[512];
+  uint64_t SecurityValidationKey;
   
   // 生成安全验证令牌
-  SecurityValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetadataWorkspace;
+  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetadataBuffer;
   
   // 获取上下文句柄
   ObjectValidationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleArray);
   if ((ObjectValidationStatus == 0) && (*(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset) != 0)) {
-    ObjectListBuffer = ObjectProcessingWorkspace;
+    ObjectListDataBuffer = ObjectProcessingBuffer;
     ProcessedObjectCount = 0;
     TotalObjectCount = 0;
     MaximumObjectProcessingLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
     ObjectValidationStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset),
-                          &ObjectListBuffer);
+                          &ObjectListDataBuffer);
     if (ObjectValidationStatus == 0) {
       if (0 < TotalObjectCount) {
-        ObjectCollectionIterator = 0;
+        ObjectCollectionIndex = 0;
         do {
-          uint8_t CurrentObjectStatus = *(uint8_t *)(ObjectListBuffer + ObjectCollectionIterator);
+          uint8_t CurrentObjectStatus = *(uint8_t *)(ObjectListDataBuffer + ObjectCollectionIndex);
           ObjectValidationStatus = ValidateObjectStatus(CurrentObjectStatus);
           if (ObjectValidationStatus != RegistrationStatusSuccess) {
                   HandleInvalidObject(CurrentObjectStatus, 1);
           }
           ProcessedObjectCount++;
-          ObjectCollectionIterator += ResourceEntrySizeBytes;
+          ObjectCollectionIndex += ResourceEntrySizeBytes;
         } while (ProcessedObjectCount < TotalObjectCount);
       }
-      FreeObjectListMemory(&ObjectListBuffer);
+      FreeObjectListMemory(&ObjectListDataBuffer);
     }
     else {
-      FreeObjectListMemory(&ObjectListBuffer);
+      FreeObjectListMemory(&ObjectListDataBuffer);
     }
   }
   // 执行安全验证
-  PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)ObjectMetadataWorkspace);
+  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetadataBuffer);
 }
 
 
@@ -4503,7 +4503,7 @@ void ValidateSystemObjectCollection(void)
   uint8_t *SystemObjectCollectionBuffer;
   int TotalRetrievedObjects;
   uint32_t MaximumCollectionSize;
-  uint64_t SecurityValidationToken;
+  uint64_t SecurityValidationKey;
   
   // 检查系统对象上下文是否有效
   if (*(int64_t *)(SystemObjectContextHandle + ObjectHandleSecondaryOffset) != 0) {
@@ -4536,7 +4536,7 @@ void ValidateSystemObjectCollection(void)
     }
   }
   // 执行安全验证
-  PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)ProcessingWorkspace);
+  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ProcessingWorkspace);
 }
 
 
@@ -4892,17 +4892,17 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
   uint64_t *SystemStatusFlagsBuffer;
   int64_t ObjectInstancePointer;
   uint64_t StatusUpdateResult;
-  int64_t *ObjectCollectionIterator;
+  int64_t *ObjectCollectionIndex;
   int64_t SystemContextPointerArray[4];
   uint32_t *ObjectStatusFlagsBuffer;
   
   StatusUpdateResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextPointerArray);
   if ((int)StatusUpdateResult == 0) {
-    ObjectCollectionIterator = *(int64_t **)(SystemContextPointerArray[0] + ContextHandlesIteratorOffset);
-    while ((*(int64_t **)(SystemContextPointerArray[0] + ContextHandlesIteratorOffset) <= ObjectCollectionIterator &&
-           (ObjectCollectionIterator < *(int64_t **)(SystemContextPointerArray[0] + ContextHandlesIteratorOffset) + *(int *)(SystemContextPointerArray[0] + ContextHandlesCapacityOffset)))) {
-      ObjectInstancePointer = *ObjectCollectionIterator;
-      ObjectCollectionIterator = ObjectCollectionIterator + 1;
+    ObjectCollectionIndex = *(int64_t **)(SystemContextPointerArray[0] + ContextHandlesIteratorOffset);
+    while ((*(int64_t **)(SystemContextPointerArray[0] + ContextHandlesIteratorOffset) <= ObjectCollectionIndex &&
+           (ObjectCollectionIndex < *(int64_t **)(SystemContextPointerArray[0] + ContextHandlesIteratorOffset) + *(int *)(SystemContextPointerArray[0] + ContextHandlesCapacityOffset)))) {
+      ObjectInstancePointer = *ObjectCollectionIndex;
+      ObjectCollectionIndex = ObjectCollectionIndex + 1;
       if ((*(int64_t *)(ObjectInstancePointer + ObjectContextValidationDataOffset) == *(int64_t *)(SystemContextPointerArray[0] + ObjectHandleSecondaryOffset)) &&
          (ObjectInstancePointer = *(int64_t *)(ObjectInstancePointer + ObjectContextOffset), ObjectInstancePointer != 0)) {
         ObjectStatusFlagsBuffer = (uint32_t *)(ObjectInstancePointer + SystemContextFlagCheckOffset);
