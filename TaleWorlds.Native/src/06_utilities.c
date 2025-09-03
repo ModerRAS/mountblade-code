@@ -6071,22 +6071,22 @@ void ReturnNoOperationPrimary(void)
 uint64_t HandleResourceOperation(int64_t ResourceHandle)
 
 {
-  uint8_t ValidationStatus;
-  int64_t ResourcePointer;
-  int64_t ValidatedResourceAddress;
+  uint8_t ValidationResult;
+  int64_t ResourceMemoryPointer;
+  int64_t ValidatedResourceMemoryAddress;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextOffset),&ValidatedResourceAddress);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextOffset),&ValidatedResourceMemoryAddress);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
-  ResourcePointer = ValidatedResourceAddress - 8;
-  if (ValidatedResourceAddress == 0) {
-    ResourcePointer = 0;
+  ResourceMemoryPointer = ValidatedResourceMemoryAddress - 8;
+  if (ValidatedResourceMemoryAddress == 0) {
+    ResourceMemoryPointer = 0;
   }
-  if (*(int64_t *)(ResourcePointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ResourceMemoryPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ResourcePointer + ObjectContextOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ResourceMemoryPointer + ObjectContextOffset),1);
 }
 
 
@@ -6102,18 +6102,18 @@ uint64_t HandleResourceOperation(int64_t ResourceHandle)
  */
 uint32_t ProcessResourceTask(void)
 {
-  int64_t TaskHandle;
-  int64_t TaskContext;
+  int64_t TaskInputParameter;
+  int64_t CalculatedTaskContext;
   
-  TaskHandle = InputParameter;
-  TaskContext = TaskHandle - 8;
-  if (TaskHandle == 0) {
-    TaskContext = 0;
+  TaskInputParameter = InputParameter;
+  CalculatedTaskContext = TaskInputParameter - 8;
+  if (TaskInputParameter == 0) {
+    CalculatedTaskContext = 0;
   }
-  if (*(int64_t *)(TaskContext + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(CalculatedTaskContext + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(TaskContext + ObjectContextOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(CalculatedTaskContext + ObjectContextOffset),1);
 }
 
 
