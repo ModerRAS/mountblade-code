@@ -276,6 +276,18 @@
 #define FileResourceStatusOffset 0x868
 #define FileResourceTableOffset 0x888
 #define FileResourceHashEndOffset 0x890
+#define DirectoryResourceTableOffset 0x8a8
+#define DirectoryResourceHashEndOffset 0x8b0
+
+// 系统资源状态相关常量
+#define SystemResourcePrimaryStatusOffset 0x180
+#define SystemResourceSecondaryStatusOffset 0x184
+#define SystemResourceTableIndexOffset 0x17c
+#define SystemSecurityContextBaseAddress 0x180c4f450
+
+// 内存对齐相关常量
+#define MemoryAlignment16Bytes 0xf
+#define MemoryAlignmentMask 0xfffffff0
 
 // 资源计数器相关常量
 #define ResourceCounterOffset78 0x78
@@ -7653,7 +7665,7 @@ void ProcessDynamicBufferReallocation(void)
   *(uint8_t *)(*(int64_t *)(ResourceContext + ResourceContextDataOffset) + (int64_t)*(int *)(ResourceContext + ResourceContextSizeOffset) * 8) =
        StackParameterContext;
   *(int *)(ResourceContext + ResourceContextSizeOffset) = *(int *)(ResourceContext + ResourceContextSizeOffset) + 1;
-MemoryErrorHandler:
+MemoryManagementErrorHandler:
         ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + SystemContextResourceManagerOffset));
 }
 

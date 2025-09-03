@@ -80,6 +80,7 @@
 #define NetworkPacketMagicBivel 0x42495645    // "EVIB" - 表示二进制数据
 #define NetworkPacketMagicTnvel 0x544e5645    // "EVNT" - 表示事件数据
 #define NetworkPacketMagicBtvel 0x42545645    // "EVBT" - 表示批处理数据
+#define NetworkPacketMagicInvalid 0x464f4f44   // "FOOD" - 表示无效数据包
 
 // 网络连接相关偏移量
 #define NetworkConnectionHeaderOffset 0x10
