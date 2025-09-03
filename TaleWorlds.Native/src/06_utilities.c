@@ -26431,7 +26431,7 @@ uint64_t ValidateAndAllocateResourceData(void)
               ResourceHash = *ResourceContext;
               ValidationStatusCode = CalculateResourceHash(ResourceHash,&SecurityValidationStack);
               if ((int)ValidationStatusCode == 0) {
-                ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationBuffer94);
+                ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationSecondaryBuffer);
               }
             }
           }
@@ -26518,7 +26518,7 @@ uint64_t ProcessResourceReadAndValidation(void)
             ResourceHash = *ResourceContext;
             ValidationStatusCode = CalculateResourceHash(ResourceHash,&SecurityValidationStack);
             if ((int)ValidationStatusCode == 0) {
-              ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationBuffer94);
+              ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationSecondaryBuffer);
             }
           }
         }
@@ -26598,7 +26598,7 @@ uint64_t ProcessResourceValidationAndAllocation(void)
             ResourceHash = *ResourceContext;
             ValidationStatusCode = CalculateResourceHash(ResourceHash,&SecurityValidationStack);
             if ((int)ValidationStatusCode == 0) {
-              ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationBuffer94);
+              ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationSecondaryBuffer);
             }
           }
         }
@@ -26663,7 +26663,7 @@ uint64_t ValidateResourceDataIntegrity(void)
   ResourceHash = *ResourceContext;
   ValidationStatusCode = CalculateResourceHash(ResourceHash,&SecurityValidationStack);
   if ((int)ValidationStatusCode == 0) {
-    ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationBuffer94);
+    ValidationStatusCode = CalculateResourceHash(ResourceHash,&ResourceValidationSecondaryBuffer);
   }
   if ((int)ValidationStatusCode == 0) {
     if (*(uint *)(ResourceContext + 8) < 0x39) {
@@ -65432,7 +65432,7 @@ void RegisterSystemResourceReleaseHandlerExtended5(uint8_t ObjectContext,int64_t
  * 
  * @return 无返回值
  */
-void InitializeSystemDataPointer(void)
+void InitializeSystemDataStructureReference(void)
 
 {
   SystemDataNonaryPointer = &SystemDataStructure;
@@ -77904,7 +77904,19 @@ void ProcessSystemResourceCleanupSixth(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_18090b8d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理回调函数A
+ * 
+ * 该函数负责调用系统资源管理器的回调函数，处理资源相关的操作。
+ * 主要用于资源生命周期管理中的回调处理。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含验证相关的状态信息
+ * @return 无返回值
+ * @note 此函数是系统资源管理的重要组成部分
+ * @warning 原始函数名：Unwind_18090b8d0
+ */
+void ExecuteSystemResourceProcessingCallbackA(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -77918,7 +77930,19 @@ void Unwind_18090b8d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b8f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理回调函数B
+ * 
+ * 该函数负责调用系统资源管理器的回调函数，处理资源相关的操作。
+ * 主要用于资源生命周期管理中的回调处理，处理不同的资源偏移量。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含验证相关的状态信息
+ * @return 无返回值
+ * @note 此函数是系统资源管理的重要组成部分
+ * @warning 原始函数名：Unwind_18090b8f0
+ */
+void ExecuteSystemResourceProcessingCallbackB(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -77932,7 +77956,19 @@ void Unwind_18090b8f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b910(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理回调函数C
+ * 
+ * 该函数负责调用系统资源管理器的回调函数，处理资源相关的操作。
+ * 主要用于资源生命周期管理中的回调处理，处理800偏移量的资源。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含验证相关的状态信息
+ * @return 无返回值
+ * @note 此函数是系统资源管理的重要组成部分
+ * @warning 原始函数名：Unwind_18090b910
+ */
+void ExecuteSystemResourceProcessingCallbackC(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -102910,7 +102946,7 @@ void InitializeMemoryStatisticsTable(void)
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataPointerSecondary(void)
+void InitializeSystemDataStructureReferenceSecondary(void)
 
 {
   SystemDataPointerSecondary = &SystemDataStructure;
