@@ -9407,14 +9407,14 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t ope
  * @param configObject 配置对象，包含系统配置信息
  * @param SystemContext 系统上下文，用于执行系统操作
  */
-void UpdateSystemConfigurationAndExecute(int64_t configObject, int64_t SystemContext)
+void UpdateSystemConfigurationAndExecute(int64_t ConfigObject, int64_t SystemContext)
 
 {
   int PackageValidationStatusCode;
   int64_t ConfigOffset;
   uint8_t ConfigBuffer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(configObject + 0x10));
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ConfigObject + ObjectContextOffset));
   if (ValidationStatus == 0) {
     if (ConfigBuffer == 0) {
       ConfigOffset = 0;
@@ -9422,8 +9422,8 @@ void UpdateSystemConfigurationAndExecute(int64_t configObject, int64_t SystemCon
     else {
       ConfigOffset = ConfigBuffer + -8;
     }
-    *(uint8_t *)(ConfigOffset + ResourceContextConfigOffset) = *(uint8_t *)(configObject + 0x18);
-          ExecuteSystemOperation(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), configObject);
+    *(uint8_t *)(ConfigOffset + ResourceContextConfigOffset) = *(uint8_t *)(ConfigObject + ObjectContextSecondaryDataOffset);
+          ExecuteSystemOperation(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ConfigObject);
   }
   return;
 }
@@ -10757,18 +10757,18 @@ uint64_t ProcessFloatDataValidation(void)
   
   ResourceHashStatus = ValidateObjectContextAndProcessData();
   if ((int)ResourceHashStatus == 0) {
-    InputFloatValue = *(float *)(ResourceContext + 0x10);
-    if ((InputFloatValue < *(float *)(ResourceContext + 0x38)) ||
-       (*(float *)(ResourceContext + 0x3c) <= InputFloatValue && InputFloatValue != *(float *)(ResourceContext + 0x3c))) {
+    InputFloatValue = *(float *)(ResourceContext + ObjectContextValidationDataOffset);
+    if ((InputFloatValue < *(float *)(ResourceContext + ResourceContextExtendedDataOffset)) ||
+       (*(float *)(ResourceContext + ResourceContextAlternateOffset) <= InputFloatValue && InputFloatValue != *(float *)(ResourceContext + ResourceContextAlternateOffset))) {
       ResourceHashStatus = ErrorInvalidObjectHandle;
     }
     else {
-      ResourceHashStatus = ValidateResourceParameters(ResourceRegisterPointer + 0x60, ValidationParameterValueBuffer);
+      ResourceHashStatus = ValidateResourceParameters(ResourceRegisterPointer + ResourceContextTertiaryOffset, ValidationParameterValueBuffer);
       if ((int)ResourceHashStatus == 0) {
         ResourceHashStatusAddress = (uint8_t *)
-                 GetResourcePointer(ResourceRegisterPointer + 0x60, &ResourceContext, ValidationParameterValueBuffer);
-        *(uint8_t *)(ResourceContext + 0x18) = *ResourceHashStatusAddress;
-              ReleaseSystemContextResources(*(uint8_t *)(ResourceContext + 0x98));
+                 GetResourcePointer(ResourceRegisterPointer + ResourceContextTertiaryOffset, &ResourceContext, ValidationParameterValueBuffer);
+        *(uint8_t *)(ResourceContext + ObjectContextStatusOffset) = *ResourceHashStatusAddress;
+              ReleaseSystemContextResources(*(uint8_t *)(ResourceContext + SystemContextCallbackPointerOffset));
       }
     }
   }
