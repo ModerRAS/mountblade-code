@@ -8188,7 +8188,7 @@ uint64_t ValidateSystemDataBufferContext(void)
     SystemContextOffset = StackParameter - 8;
   }
   ArrayIterationIndex = 0;
-  if (0 < *(int *)(SystemContextOffset + 0x28)) {
+  if (0 < *(int *)(SystemContextOffset + BufferArrayEntryCountOffset)) {
     do {
       ContextPointer = *(int64_t *)(SystemContextOffset + DataBufferOffset) + ArrayIterationIndex;
       ResourceDataAddress = *(int64_t *)(ContextPointer + ObjectContextOffset);
@@ -8352,7 +8352,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
     if (ContextBuffer != 0) {
       ContextBuffer = ContextBuffer + -8;
     }
-    if (*(int64_t *)(ContextBuffer + 0x18) != 0) {
+    if (*(int64_t *)(ContextBuffer + SystemContextSecondaryDataOffset) != 0) {
       ObjectDataPointer = *(int64_t *)(ContextBuffer + ObjectContextSecondaryDataOffset) + ObjectContextExtendedDataOffset;
       AllocatedMemory = (**(code **)(**(int64_t **)(SystemContext + ObjectVirtualMethodTableOffset) + ObjectContextMatrixRotationDataOffset))
                         (*(int64_t **)(SystemContext + ObjectVirtualMethodTableOffset), ObjectDataPointer, 1);
@@ -35416,20 +35416,6 @@ void HandleSystemDataStructureException(uint8_t ExceptionContext, int64_t System
 
 
 
-/**
- * @brief 释放文件系统锁
- * 
- * 该函数负责释放文件系统中的锁资源，确保文件访问的安全性
- * 主要用于多线程环境下的文件系统同步操作
- * 
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
- * @param CleanupOption 清理选项，指定清理的方式
- * @param CleanupFlag 清理标志，控制清理过程的行为
- * @return 无返回值
- * @note 此函数在文件系统操作完成后调用
- * @warning 调用此函数前必须确保锁资源已被正确获取
- */
 /**
  * @brief 释放文件系统锁
  * 

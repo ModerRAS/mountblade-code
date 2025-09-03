@@ -440,10 +440,10 @@ uint32_t NetworkCloseConnection(int64_t *NetworkConnectionContext, uint32_t Conn
 // =============================================================================
 
 // 网络连接基础配置变量
-uint32_t NetworkConnectionTableHandle;                    // 网络连接表管理句柄
-uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志位
-uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
-uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制
+uint32_t ConnectionTableHandle;                    // 网络连接表管理句柄
+uint32_t ConnectionStatusFlags;                    // 网络连接状态标志位
+uint32_t ConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
+uint32_t ConnectionMaxLimit;                  // 网络最大连接数限制
 uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志位
 uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志位
 
@@ -1193,10 +1193,10 @@ uint32_t NetworkConnectionStatistics;               // 网络连接统计信息
 uint32_t NetworkSessionEncryptionKey;               // 网络会话加密密钥
 uint32_t NetworkConnectionReliability;              // 网络连接可靠性
 uint32_t NetworkConnectionPerformance;              // 网络连接性能
-uint32_t NetworkConnectionTableIndex;               // 网络连接表索引
-uint32_t NetworkConnectionTableSize;                 // 网络连接表大小
-uint32_t NetworkPacketQueue;                        // 网络数据包队列
-uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大小
+uint32_t ConnectionTableIndex;               // 网络连接表索引
+uint32_t ConnectionTableSize;                 // 网络连接表大小
+uint32_t PacketQueue;                        // 网络数据包队列
+uint32_t PacketQueueSize;                     // 网络数据包队列大小
 uint32_t NetworkEncryptionContext;                   // 网络加密上下文
 uint32_t NetworkCompressionContext;                  // 网络压缩上下文
 uint32_t NetworkAuthenticationContext;               // 网络认证上下文
