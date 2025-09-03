@@ -307,6 +307,15 @@
 #define SystemCombineResourceWithChecksum CombineResourceWithChecksum
 #define SystemCombineMemoryWithExceptionCheck CombineMemoryWithExceptionCheck
 #define SystemCombineLoopControlWithException CombineLoopControlWithException
+
+// Object data structure offset constants
+#define ObjectDataArraySizeOffset 4
+#define ObjectDataHandleSecondaryOffset 8
+#define RegistrationHandleSecondaryOffset 8
+
+// Memory alignment and size constants
+#define PointerSizeBytes 8
+#define IntSizeBytes 4
 #define SystemCombineMemoryAlignmentWithCheck CombineMemoryAlignmentWithCheck
 
 /**
@@ -4308,9 +4317,9 @@ void ValidateSystemObjectCollection(void)
     ValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
     if (ValidationStatus == 0) {
-      RetrievedObjectCount = *(int *)(ProcessingWorkspace + 4);
+      RetrievedObjectCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
       if (0 < RetrievedObjectCount) {
-        CurrentPosition = 8;
+        CurrentPosition = PointerSizeBytes;
         do {
           SystemObjectId = *(uint8_t *)(CollectionBuffer + CurrentPosition);
           ValidationStatus = ValidateSystemObject(SystemObjectId);
@@ -4411,7 +4420,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   }
   
   // 验证注册句柄
-  RegistrationHandle = *(int64_t *)(RegistrationStackPointer + 8);
+  RegistrationHandle = *(int64_t *)(RegistrationStackPointer + RegistrationHandleSecondaryOffset);
   if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + RegistrationHandleOffset) != RegistrationStackPointer)) {
     return ErrorInvalidObjectHandle;
   }
@@ -13983,14 +13992,14 @@ void ProcessComplexResourceWithRegisters(void)
   int SystemValidationRegister;
   int64_t SystemOperationRegister;
   char SystemValidationFlag;
-  float calculatedPrimaryResult;
-  float calculatedSecondaryResult;
-  float calculatedTertiaryResult;
-  float calculatedQuaternaryResult;
-  float calculatedQuinaryResult;
-  float calculatedSenaryResult;
-  float calculatedSeptenaryResult;
-  float finalResultFloat;
+  float CalculatedPrimaryResult;
+  float CalculatedSecondaryResult;
+  float CalculatedTertiaryResult;
+  float CalculatedQuaternaryResult;
+  float CalculatedQuinaryResult;
+  float CalculatedSenaryResult;
+  float CalculatedSeptenaryResult;
+  float FinalResultFloat;
   uint32_t systemContextFlags;
   float resourceFloatValue;
   uint8_t *dataTypeTemplate;
