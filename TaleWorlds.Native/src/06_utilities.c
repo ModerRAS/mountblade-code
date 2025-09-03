@@ -4860,11 +4860,11 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
   if (*(int *)(ObjectValidationBuffer[0] + ResourceTertiaryCounterOffset) + *(int *)(ObjectValidationBuffer[0] + ResourceSecondaryCounterOffset) +
       *(int *)(ObjectValidationBuffer[0] + ResourceCountOffset) == 1) {
     ObjectValidationBuffer[0] = 0;
-    SystemValidationStatusCode = ValidateSystemObjectConfiguration(ObjectValidationBuffer);
-    if (SystemValidationStatusCode == 0) {
-      SystemValidationStatusCode = ProcessSystemObjectValidation(SystemObjectHandle,*(uint8_t *)(SystemObjectHandle + 8),*(uint8_t *)(SystemContextParameters + SystemContextSecondaryDataOffset),
+    SystemValidationResultCode = ValidateSystemObjectConfiguration(ObjectValidationBuffer);
+    if (SystemValidationResultCode == 0) {
+      SystemValidationResultCode = ProcessSystemObjectValidation(SystemObjectHandle,*(uint8_t *)(SystemObjectHandle + 8),*(uint8_t *)(SystemContextParameters + SystemContextSecondaryDataOffset),
                             *(uint8_t *)(SystemContextParameters + 800));
-      if (SystemValidationStatusCode == 0) {
+      if (SystemValidationResultCode == 0) {
               ReleaseValidationResources(ObjectValidationBuffer);
       }
     }
@@ -4947,12 +4947,12 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
     return 0;
   }
   ResourceValidationContext[0] = 0;
-  int SystemValidationStatus = ValidateSystemObjectConfiguration(ResourceValidationContext);
-  if (SystemValidationStatus == 0) {
-    SystemValidationStatus = ProcessSystemObjectOperation(ValidatedSystemContext,0);
-    if (SystemValidationStatus == 0) {
-      SystemValidationStatus = ProcessSystemContextValidation(SystemContext);
-      if (SystemValidationStatus == 0) {
+  int SystemValidationResult = ValidateSystemObjectConfiguration(ResourceValidationContext);
+  if (SystemValidationResult == 0) {
+    SystemValidationResult = ProcessSystemObjectOperation(ValidatedSystemContext,0);
+    if (SystemValidationResult == 0) {
+      SystemValidationResult = ProcessSystemContextValidation(SystemContext);
+      if (SystemValidationResult == 0) {
               ReleaseValidationResources(ResourceValidationContext);
       }
     }
@@ -5444,7 +5444,7 @@ uint8_t InitializeObjectHandleEnhanced(int64_t ObjectContext)
   float ProcessedFloatValue;
   uint8_t ResourceMetadata[16];
   int64_t ValidatedContextHandle;
-  uint SystemValidationStatus;
+  uint SystemValidationResult;
   
   ContextResourceHashStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset), &ValidatedContextHandle);
   if ((int)ContextResourceHashStatus != 0) {
@@ -5464,8 +5464,8 @@ uint8_t InitializeObjectHandleEnhanced(int64_t ObjectContext)
     if ((*(char *)(ValidatedContextHandle + ContextHandleSystemFlagsOffset) == '\0') ||
        ((*(uint *)(*(int64_t *)(ValidatedContextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset) >> 1 & 1) == 0)) {
       uint SystemConfigurationFlags = *(uint *)(*(int64_t *)(ValidatedContextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset);
-      SystemValidationStatus = SystemConfigurationFlags >> SystemConfigurationValidationShift;
-      if ((SystemValidationStatus & 1) == 0) {
+      SystemValidationResult = SystemConfigurationFlags >> SystemConfigurationValidationShift;
+      if ((SystemValidationResult & 1) == 0) {
         if ((((SystemConfigurationFlags >> SystemConfigurationFloatCheckShift & 1) != 0) && (FloatConversionResult = (int)ProcessedFloatValue, FloatConversionResult != Int32MinimumValue)) &&
            ((float)FloatConversionResult != ProcessedFloatValue)) {
           union {
@@ -5478,7 +5478,7 @@ uint8_t InitializeObjectHandleEnhanced(int64_t ObjectContext)
           } FloatUnion;
           FloatUnion.ProcessedFloatParameter = ProcessedFloatValue;
           FloatUnion.Parts.HighPart = 0;
-          ResourceOperationHash = movmskps(SystemValidationStatus, FloatUnion.FullValue);
+          ResourceOperationHash = movmskps(SystemValidationResult, FloatUnion.FullValue);
           ProcessedFloatValue = (float)(int)(FloatConversionResult - (ResourceOperationHash & 1));
         }
         ProcessedFloatValue = (float)CalculateFloatValue(*(int64_t *)(ValidatedContextHandle + ExecutionContextSecondaryOffset), ProcessedFloatValue);
@@ -8347,8 +8347,8 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
   uint64_t SecurityToken;
   
   SecurityToken = SecurityEncryptionKey ^ (uint64_t)SystemSecurityBuffer;
-  SystemValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ContextBuffer);
-  if (SystemValidationStatus == 0) {
+  SystemValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ContextBuffer);
+  if (SystemValidationResult == 0) {
     if (ContextBuffer != 0) {
       ContextBuffer = ContextBuffer + -8;
     }
