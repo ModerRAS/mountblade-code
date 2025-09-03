@@ -4974,32 +4974,14 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数用于增加指定对象的引用计数，确保对象在内存中的正确管理。
- * 通过验证对象上下文，获取对象内存地址，并递增其引用计数。
- * 
- * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- * @note 成功时对象的引用计数会增加1
- * @warning 如果对象句柄无效，返回ErrorInvalidObjectHandle错误码
- */
-/**
- * @brief 增加对象引用计数
- * 
  * 该函数用于增加系统对象的引用计数，用于对象生命周期管理。
  * 通过验证对象上下文，找到对象实例并增加其引用计数。
  * 同时检查系统状态以确保操作的安全性。
  * 
  * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数用于增加系统对象的引用计数，用于对象生命周期管理。
- * 当对象被引用时，需要增加其引用计数以确保对象不会被过早释放。
- * 
- * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ * @note 成功时对象的引用计数会增加1
+ * @warning 如果对象句柄无效，返回ErrorInvalidObjectHandle错误码
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
@@ -5065,15 +5047,6 @@ uint8_t SetupObjectHandle(int64_t ObjectContext) {
  * 主要用于对象生命周期的最后阶段，确保资源被正确释放。
  * 
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
- */
-/**
- * @brief 释放对象句柄
- * 
- * 该函数用于释放系统对象句柄，执行清理操作。
- * 通过验证对象句柄的有效性，执行系统退出操作来释放资源。
- * 
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- * @note 此函数会触发系统退出操作来释放对象资源
  */
 uint8_t FreeObjectHandle(void) {
   int64_t ObjectHandle = 0;
