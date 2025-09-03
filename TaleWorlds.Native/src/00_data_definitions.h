@@ -6077,19 +6077,19 @@ Label_180203fb6:
     ModuleInitializationResult0 = lStackX_20;
   } while( true );
 }
-      SystemOperationCounter = uVar6;
+      SystemOperationCounter = 0;
       return;
     }
     LongValue = *(longlong *)(LongLoop + SystemStateDataTable);
     if ((*(int *)(LongValue + 0xe0) == 2) && (*(int *)(LongValue + 0xd8) == 0)) {
       LOCK();
-      bVar8 = *(int *)(LongValue + 0xd8) == 0;
-      if (bVar8) {
+      IsResourceAvailable = *(int *)(LongValue + 0xd8) == 0;
+      if (IsResourceAvailable) {
         *(int *)(LongValue + 0xd8) = -1;
       }
       UNLOCK();
-      if (bVar8) {
-        *(uint8_t *)(LongValue + 0xdc) = uVar6;
+      if (IsResourceAvailable) {
+        *(uint8_t *)(LongValue + 0xdc) = 0;
         ProcessSystemMemoryValidation(LongValue + 0xe8);
         StringProcessingResult = *(uint64_t *)(LongValue + 0x88);
         StringIndex = *(int *)(LongValue + 0x80);
@@ -6116,7 +6116,7 @@ Label_180203fb6:
     LongLoop = LongLoop + -0x10;
     unaff_EDI = unaff_EDI + -1;
   } while (-1 < unaff_EDI);
-  SystemOperationCounter = uVar6;
+  SystemOperationCounter = 0;
   return;
 }
   SystemOperationCounter = unaff_BPL;

@@ -11024,22 +11024,22 @@ int ProcessDataWithSimplifiedValidator(int64_t ObjectContext,int64_t ValidationC
 int ProcessDataWithBuffer(int64_t *ObjectContext,int64_t ValidationContext,int dataLength)
 
 {
-  int DataProcessingOffset;
-  int StringProcessingResult;
-  int TotalDataLength;
-  void* SystemStringBuffer;
+  int ProcessedDataOffset;
+  int StringOperationResult;
+  int DataBufferSize;
+  void* StringBuffer;
   void* StringProcessingTemplate;
   
-  TotalDataLength = dataLength;
-  DataProcessingOffset = ProcessStringOperation(ValidationContext,TotalDataLength,&SystemStringBuffer);
-  StringProcessingResult = ProcessStringOperation(ValidationContext + DataProcessingOffset,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
-  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
-  StringProcessingResult = ParseDataContent(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,(int)ObjectContext[3] * 8 + 0x20);
-  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
-  StringProcessingResult = ProcessStringOperation(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
-  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
-  StringProcessingResult = (**(code **)(*ObjectContext + 8))(ObjectContext,DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset);
-  return StringProcessingResult + DataProcessingOffset;
+  DataBufferSize = dataLength;
+  ProcessedDataOffset = ProcessStringOperation(ValidationContext,DataBufferSize,&StringBuffer);
+  StringOperationResult = ProcessStringOperation(ValidationContext + ProcessedDataOffset,DataBufferSize - ProcessedDataOffset,&StringProcessingTemplate);
+  ProcessedDataOffset = ProcessedDataOffset + StringOperationResult;
+  StringOperationResult = ParseDataContent(ProcessedDataOffset + ValidationContext,DataBufferSize - ProcessedDataOffset,(int)ObjectContext[3] * 8 + 0x20);
+  ProcessedDataOffset = ProcessedDataOffset + StringOperationResult;
+  StringOperationResult = ProcessStringOperation(ProcessedDataOffset + ValidationContext,DataBufferSize - ProcessedDataOffset,&StringProcessingTemplate);
+  ProcessedDataOffset = ProcessedDataOffset + StringOperationResult;
+  StringOperationResult = (**(code **)(*ObjectContext + 8))(ObjectContext,ProcessedDataOffset + ValidationContext,DataBufferSize - ProcessedDataOffset);
+  return StringOperationResult + ProcessedDataOffset;
 }
 
 
@@ -11058,23 +11058,23 @@ int ProcessDataWithBuffer(int64_t *ObjectContext,int64_t ValidationContext,int d
 int ProcessDataWithQueue(int64_t *ObjectContext,int64_t ValidationContext,int dataLength)
 
 {
-  int ResourceIndex;
-  int OperationStatusCode;
-  int OperationResultValue;
-  int ProcessedDataLength;
-  void* SystemStringBuffer;
+  int DataOffset;
+  int QueueStatus;
+  int ProcessingResult;
+  int DataBufferSize;
+  void* QueueBuffer;
   void* StringProcessingTemplate;
   
-  ProcessedDataLength = dataLength;
-  ResourceIndex = ProcessStringOperation(ValidationContext,ProcessedDataLength,&SystemStringBuffer);
-  OperationResultValue = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationResultValue = ParseDataContent(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,(int)ObjectContext[3] * 0xc + 0x20);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationResultValue = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationResultValue = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex);
-  return OperationResultValue + ResourceIndex;
+  DataBufferSize = dataLength;
+  DataOffset = ProcessStringOperation(ValidationContext,DataBufferSize,&QueueBuffer);
+  ProcessingResult = ProcessStringOperation(ValidationContext + DataOffset,DataBufferSize - DataOffset,&StringProcessingTemplate);
+  DataOffset = DataOffset + ProcessingResult;
+  ProcessingResult = ParseDataContent(DataOffset + ValidationContext,DataBufferSize - DataOffset,(int)ObjectContext[3] * 0xc + 0x20);
+  DataOffset = DataOffset + ProcessingResult;
+  ProcessingResult = ProcessStringOperation(DataOffset + ValidationContext,DataBufferSize - DataOffset,&StringProcessingTemplate);
+  DataOffset = DataOffset + ProcessingResult;
+  ProcessingResult = (**(code **)(*ObjectContext + 8))(ObjectContext,DataOffset + ValidationContext,DataBufferSize - DataOffset);
+  return ProcessingResult + DataOffset;
 }
 
 
