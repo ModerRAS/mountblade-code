@@ -7017,15 +7017,6 @@ uint8_t ValidateSystemDataIntegrity(int64_t DataBuffer, int64_t ValidationConfig
  * @brief 处理系统对象队列
  * 
  * 该函数负责处理系统中的对象队列，遍历队列中的每个对象
- * 并执行相应的处理逻辑。使用链表结构来管理队列中的对象。
- * 
- * @param objectHandle 对象句柄，用于标识要处理的对象
- * @param queueContext 队列上下文，包含队列的状态和管理信息
- */
-/**
- * @brief 处理系统对象队列
- * 
- * 该函数负责处理系统中的对象队列，遍历队列中的每个对象
  * 并执行相应的队列操作。函数会验证队列上下文，初始化处理队列
  * 然后遍历队列节点，处理每个节点的操作
  * 

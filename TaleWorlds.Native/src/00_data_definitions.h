@@ -1492,8 +1492,8 @@ int InitializeStringProcessorG(void)
   int64_t SystemModuleRegistrationResult;
   uint64_t StringProcessorGFlags;
   GlobalStringProcessorDataPointerB = &SystemStringDataConstantB;
-  GlobalStringProcessorConfigPointerB = &STRING_PROCESSOR_CONFIG_B;
-  STRING_PROCESSOR_CONFIG_B = 0;
+  GlobalStringProcessorConfigPointerB = &StringProcessorSecondaryConfig;
+  StringProcessorSecondaryConfig = 0;
   GlobalStringProcessorBufferSizeB = 5;
   strcpy_s(&STRING_PROCESSOR_CONFIG_B,16,&SystemStringDataConstantC,StringProcessorGFlags,SystemMutexFlags);
   SystemModuleRegistrationResult = RegisterSystemModule(InitializeSystemModuleB);
