@@ -830,13 +830,13 @@ void* SystemGlobalDataPointerProcessor;
 void* GlobalSystemDataPointer;
 
 // 全局输入系统数据指针 - 用于存储输入系统相关的数据
-void* GlobalUnknownInputDataPointer;
+void* GlobalInputSystemDataPointer;
 
 // 全局网络系统数据指针 - 用于存储网络系统相关的数据
-void* GlobalUnknownNetworkDataPointer;
+void* GlobalNetworkSystemDataPointer;
 
 // 全局字符串处理数据库 - 用于存储字符串处理相关的数据
-void* GlobalUnknownDataBase;
+void* GlobalStringProcessingDatabase;
 
 // 系统未知数据常量 - 用于存储系统配置和处理的未知数据
 char SystemConfigurationTemplateData1[] = "SystemConfigurationData1";
