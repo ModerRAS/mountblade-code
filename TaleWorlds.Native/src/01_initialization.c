@@ -1460,7 +1460,7 @@ void InitializeGameCoreSystem(void)
   previousNodePointer[SYSTEM_NODE_IDENTIFIER2_INDEX] = GAME_CORE_SYSTEM_IDENTIFIER2;
   previousNodePointer[SYSTEM_NODE_DATA_POINTER_INDEX] = &GAME_CORE_SYSTEM_NODE_DATA;
   previousNodePointer[SYSTEM_NODE_FLAG_INDEX] = 0;
-  previousNodePointer[SYSTEM_NODE_HANDLER_INDEX] = initializationHandler;
+  previousNodePointer[SYSTEM_NODE_HANDLER_INDEX] = gameCoreInitializationHandler;
   return;
 }
 
@@ -1525,7 +1525,7 @@ void InitializeSystemDataTableBaseAllocator(void)
   previousNodePointer[SYSTEM_NODE_IDENTIFIER2_INDEX] = BASE_ALLOCATOR_SYSTEM_IDENTIFIER2;
   previousNodePointer[SYSTEM_NODE_DATA_POINTER_INDEX] = &BASE_ALLOCATOR_SYSTEM_NODE_DATA;
   previousNodePointer[SYSTEM_NODE_FLAG_INDEX] = BASE_ALLOCATOR_SYSTEM_FLAG;
-  previousNodePointer[SYSTEM_NODE_HANDLER_INDEX] = initializationHandler;
+  previousNodePointer[SYSTEM_NODE_HANDLER_INDEX] = baseAllocatorInitializationHandler;
   return;
 }
 

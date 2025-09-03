@@ -1226,23 +1226,23 @@ void NetworkInitializeConnectionState(void)
   int64_t NetworkContextPointer;                    // 网络上下文指针
   
   // 计算连接状态缓冲区位置
-  StateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + ConnectionStateBufferOffset);
+  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
-  if (*(int *)(*(int64_t *)(SystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == SessionId) {
-    *StateBuffer = 0;  // 重置状态缓冲区
+  if (*(int *)(*(int64_t *)(NetworkSystemContext + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkSessionId) {
+    *ConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + 8) = ((int)StateBuffer - ConnectionHandleId) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + 8) = ((int)ConnectionStateBuffer - ConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
-    InitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(ContextPointer + NetworkContextSystemOffset));
-    if (InitializationStatus == 0) {
-      *StateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + ConnectionStateDataOffset);
+    InitializationResult = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextPointer + NetworkContextSystemOffset));
+    if (InitializationResult == 0) {
+      *ConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateDataOffset);
     }
     CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
-  CopyConnectionBuffer(StateBuffer);
+  CopyConnectionBuffer(ConnectionStateBuffer);
 }
 
 /**
@@ -1256,17 +1256,18 @@ void NetworkInitializeConnectionState(void)
  */
 void NetworkResetConnectionPointer(void)
 {
-  uint8_t *StateBuffer;                             // 状态缓冲区指针
-  int64_t ConnectionContextData;                   // 连接上下文数据
-  uint64_t *DataBufferPointer;                      // 数据缓冲区指针
-  uint32_t StateFlags;                              // 状态标志位
-  int32_t ConnectionHandleId;                       // 连接句柄ID
+  // 连接指针重置变量
+  uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
+  int64_t NetworkContextData;                       // 网络上下文数据
+  uint64_t *NetworkDataBuffer;                      // 网络数据缓冲区指针
+  uint32_t ConnectionStateFlags;                    // 连接状态标志位
+  int32_t ConnectionIdentifier;                     // 连接标识符
   
   // 计算连接状态缓冲区位置
-  StateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + ConnectionStateBufferOffset);
+  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
-  *DataBufferPointer = (uint64_t)*(uint *)(ConnectionContextData + ConnectionStateDataOffset);
+  *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + ConnectionStateDataOffset);
   
   // 清理连接堆栈
   CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
