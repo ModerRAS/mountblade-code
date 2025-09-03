@@ -4880,7 +4880,7 @@ uint8_t ReleaseObjectHandle(void) {
  * 该函数用于验证输入的字符参数，如果字符不为空字符则执行相应的系统退出操作。
  * 主要用于系统安全检查和参数验证。
  * 
- * @param CharacterToValidate 输入的字符参数，需要验证的字符
+ * @param CharacterParameter 输入的字符参数，需要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
 uint8_t VerifyCharacterParameter(char CharacterParameter) {
