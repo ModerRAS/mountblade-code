@@ -1352,9 +1352,9 @@ void* AudioStreamManager;                    // 音频流管理器
  */
 void InitializePhysicsEngine(void);
 void* PhysicsEngineInstance;                // 物理引擎实例
-void* PhysicsWorldHandle;                   // 物理世界句柄
-void* CollisionSystemHandle;                 // 碰撞系统句柄
-void* RigidBodyManager;                      // 刚体管理器
+void* PhysicsWorldInstance;                  // 物理世界实例
+void* CollisionSystemInstance;               // 碰撞系统实例
+void* RigidBodyManagerInstance;              // 刚体管理器实例
 void* PhysicsSolverInstance;                 // 物理求解器实例
 
  /**
@@ -1378,9 +1378,9 @@ void* InputEventQueue;                      // 输入事件队列
  * 设置网络连接、数据传输和通信协议
  */
 void InitializeNetworkManager(void);
-void* NetworkSystem;
+void* NetworkSystemInstance;
 void* NetworkConnectionManager;
-void* PacketHandler;
+void* NetworkPacketHandler;
 void* NetworkProtocolManager;
 void* NetworkEventDispatcher;
 
@@ -1391,10 +1391,10 @@ void* NetworkEventDispatcher;
  * 设置图形设备、着色器和渲染队列等相关组件
  */
 void* InitializeRenderingSystem(void);
-void* GraphicsDeviceHandle;
-void* ShaderManager;
-void* RenderQueueManager;
-void* GraphicsMemoryPool;
+void* GraphicsDeviceInstance;
+void* ShaderManagerInstance;
+void* RenderQueueManagerInstance;
+void* GraphicsMemoryPoolInstance;
 
  /**
  * @brief 初始化动画系统
@@ -1404,10 +1404,10 @@ void* GraphicsMemoryPool;
  */
 void* InitializeAnimationSystem(void);
 void* AnimationEngineInstance;
-void* SkeletonManager;
-void* AnimationClipManager;
-void* BoneTransformManager;
-void* AnimationStateController;
+void* SkeletonManagerInstance;
+void* AnimationClipManagerInstance;
+void* BoneTransformManagerInstance;
+void* AnimationStateControllerInstance;
 
  /**
  * @brief 初始化内存管理器
@@ -1417,10 +1417,10 @@ void* AnimationStateController;
  */
 void* InitializeMemoryManager(void);
 void* MemoryManagerInstance;
-void* HeapAllocator;
-void* MemoryPoolManager;
-void* GarbageCollector;
-void* MemoryDebugger;
+void* HeapAllocatorInstance;
+void* MemoryPoolManagerInstance;
+void* GarbageCollectorInstance;
+void* MemoryDebuggerInstance;
 
  /**
  * @brief 初始化脚本系统
@@ -1429,11 +1429,11 @@ void* MemoryDebugger;
  * 设置脚本引擎、编译器和虚拟机等相关组件
  */
 void* InitializeScriptingSystem(void);
-void* ScriptingContext;
+void* ScriptingContextInstance;
 void* ScriptingEngineInstance;
-void* ScriptCompiler;
-void* ScriptVirtualMachine;
-void* ScriptDebugger;
+void* ScriptCompilerInstance;
+void* ScriptVirtualMachineInstance;
+void* ScriptDebuggerInstance;
 
  /**
  * @brief 初始化文件系统
@@ -6505,15 +6505,6 @@ void PerformNoOperationPrimary(void)
 
 
  /**
- * @brief 处理对象配置和初始化
- * 
- * 该函数处理对象的配置参数，并根据条件执行初始化操作
- * 从对象结构中提取配置信息并调用相应的处理函数
- * 
- * @param ObjectPointer 对象指针，包含配置信息
- * @param configData 配置数据，用于对象初始化
- */
-/**
  * @brief 处理对象配置数据
  * 
  * 该函数负责处理传入的对象配置数据，读取对象的配置参数和标志位
@@ -6535,10 +6526,10 @@ void ProcessObjectConfiguration(int64_t ObjectPointer, uint8_t ConfigData)
   
   ObjectConfiguration = *(uint8_t *)(ObjectPointer + ObjectContextValidationOffset);
   ObjectFlags = *(uint32_t *)(ObjectPointer + ObjectContextHandleDataOffset);
-  ConfigurationParameters[0] = 2;
-  ProcessResult = ProcessConfigurationData(configData, ConfigurationParameters, *(uint32_t *)(ObjectPointer + ObjectContextConfigDataOffset), TemporaryBuffer);
+  SystemConfigurationParameters[0] = 2;
+  ProcessResult = ProcessConfigurationData(ConfigData, SystemConfigurationParameters, *(uint32_t *)(ObjectPointer + ObjectContextConfigDataOffset), TemporaryProcessingBuffer);
   if (ProcessResult == 0) {
-    InitializeObjectWithConfig(configData, TemporaryBuffer[0]);
+    InitializeObjectWithConfig(ConfigData, TemporaryProcessingBuffer[0]);
   }
   return;
 }
@@ -6825,7 +6816,7 @@ uint8_t GetSystemVersionInfo(void)
 void ProcessSystemPacketTransmission(int64_t SystemPacketHandle, int64_t SystemTransmissionConfig)
 
 {
-  int SystemTransmissionStatusCode;
+  int TransmissionStatusCode;
   
   SystemResourceIndex = ProcessResourceRequest(*(uint8_t *)(ValidationContext + ValidationContextPrimaryDataOffset),*(uint32_t *)(ObjectContext + ObjectHandleMemoryOffset),
                         ObjectContext + ObjectHandleSecondaryOffset,ObjectContext + ObjectContextProcessingDataOffset,ObjectContext + ObjectContextMatrixFlagsOffset,ObjectContext + ObjectContextMatrixRotationDataOffset);
@@ -7229,7 +7220,7 @@ void ResetObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t SchedulerCo
   InitializationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&PropertyBuffer);
   if (InitializationStatus == 0) {
     *(uint32_t *)(PropertyBuffer + PropertyBufferSizeOffset) = 0;
-          ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + SchedulerContextObjectOffset),ObjectContext);
+          ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + SchedulerContextObjectOffset),ObjectContext);
   }
   return;
 }
