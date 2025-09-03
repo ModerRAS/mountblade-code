@@ -28068,7 +28068,6 @@ ResourceAccessCheck:
         ValidationSuccess = ValidationStatusCode == 0;
         if (ValidationSuccess) {
           MemorySizeCheck = ResourceChecksumData[0] != '\0';
-          ValidationSuccess = true;
         }
       }
       else {

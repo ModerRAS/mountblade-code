@@ -36262,7 +36262,7 @@ CreateMemoryAllocationHandle(void* *SystemResourceManager,void* *ConfigurationDa
  * 
  * @param SystemResourceManager 系统资源指针，指向系统资源数据结构
  * 
- *FUN_18005c380：InitializeSystemDataReference
+ * 原始函数名：FUN_18005c380
  */
 void InitializeSystemDataReference(long long SystemResourceManager)
 
@@ -36288,7 +36288,7 @@ void InitializeSystemDataReference(long long SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针，指向需要清理的资源数据结构
  * 
- *FUN_18005c3d0：CleanupSystemResourceManager
+ * 原始函数名：FUN_18005c3d0
  */
 void CleanupSystemResourceManager(long long* SystemResourceManager)
 
