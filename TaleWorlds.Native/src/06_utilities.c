@@ -15265,8 +15265,8 @@ void CalculateFloatValueAndValidateResources(void)
     }
     ResourceIndexTertiary = ValidateResourceTablePointer(ResourceHashValidationTertiary,(int64_t)&StackBufferSecondary + 4,0);
     if (ResourceIndexTertiary == 0) {
-      RegisterStoragePrimary = xmm6RegisterA;
-      RegisterStorageSecondary = xmm6RegisterC;
+      RegisterStoragePrimary = Xmm6RegisterA;
+      RegisterStorageSecondary = Xmm6RegisterC;
       if (StackParameterContextExtended.FloatValue != 1.0) {
         floatResourceValue = StackParameterContextExtended.FloatValue;
         resourceTemplatePointer = &SystemResourceTemplateFile;
@@ -15725,7 +15725,7 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContext)
       ValidationStatusCode = ErrorInvalidObjectHandle;
     }
     else {
-      ValidationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkValidationTemplate);
+      ValidationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkSecurityValidationTemplate);
       if ((int)ValidationStatusCode == 0) {
         LoopIncrement = 0x14;
         ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&ResourceConfigTable,2,2,0x14);
@@ -15742,17 +15742,17 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContext)
           ResourceCount = *(uint32_t *)(SystemContextPointer + 0x11624);
           SecurityHashValue = *(uint32_t *)(SystemContextPointer + 0x11620);
           ContextValidationStatusCode = *(uint32_t *)(SystemContextPointer + 0x1161c);
-          ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&NetworkRequestTemplate2,*(uint32_t *)(SystemContextPointer + 0x1160c),
+          ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&NetworkRequestTemplateSecondary,*(uint32_t *)(SystemContextPointer + 0x1160c),
                                 *(uint32_t *)(SystemContextPointer + 0x11610),*(uint32_t *)(SystemContextPointer + 0x11614),
                                 *(uint32_t *)(SystemContextPointer + 0x11618),ContextResourceHashStatus,SecurityHashValue,ResourceCount,LoopIncrement);
           if (((int)ValidationStatusCode == 0) &&
-             (ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&NetworkConfigTemplate,*(uint32_t *)(SystemContextPointer + 0x11628),
+             (ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&NetworkConfigurationTemplate,*(uint32_t *)(SystemContextPointer + 0x11628),
                                     (double)*(float *)(SystemContextPointer + 0x11640),
                                     *(uint32_t *)(SystemContextPointer + 0x11644),
                                     *(uint32_t *)(SystemContextPointer + 0x1164c),ContextResourceHashStatus,SecurityHashValue,ResourceCount,LoopIncrement),
              (int)ValidationStatusCode == 0)) {
             ContextValidationStatusCode = *(uint32_t *)(SystemContextPointer + 0x11660);
-            ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&NetworkDataTemplate,(double)*(float *)(SystemContextPointer + 0x11650),
+            ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&NetworkDataStreamTemplate,(double)*(float *)(SystemContextPointer + 0x11650),
                                   *(uint32_t *)(SystemContextPointer + 0x11654),*(uint32_t *)(SystemContextPointer + 0x11658),
                                   *(uint32_t *)(SystemContextPointer + 0x1165c),ContextResourceHashStatus,SecurityHashValue,ResourceCount,LoopIncrement);
             if ((int)ValidationStatusCode == 0) {
@@ -15765,7 +15765,7 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContext)
                                          *(uint32_t *)(ObjectContext[1] + 0x20),
                                          *(uint32_t *)(SystemContextPointer + ResourceContextSecondaryOffset),ResourceContextOffset,ContextResourceHashStatus,SecurityHashValue,ResourceCount,LoopIncrement
                                         ), (int)ValidationStatusCode == 0)) &&
-                 ((ValidationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkValidationTemplate), (int)ValidationStatusCode == 0 &&
+                 ((ValidationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkSecurityValidationTemplate), (int)ValidationStatusCode == 0 &&
                   (((*(uint *)(ObjectContext + 3) & 2) != 0 ||
                    (ValidationStatusCode = ValidateNetworkConnection(ObjectContext), (int)ValidationStatusCode == 0)))))) {
                 ValidationStatusCode = 0;
@@ -16141,7 +16141,7 @@ ResourceSearchSuccess:
 ResourceValidationComplete:
         } while (ValidationFloatBuffer[0] != -NAN);
       }
-      (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkDataTemplate);
+      (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkDataStreamTemplate);
       ProcessStatus = (**(code **)(*ObjectContext + ObjectContextValidationDataOffset))(ObjectContext);
       if (ProcessStatus == 0) {
         *(uint8_t *)(ObjectContext + 4) = 0;
