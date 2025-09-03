@@ -25736,7 +25736,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   ThreadLocalStorage = (uint8_t *)0x0;
   MemoryAllocationSize = 0;
   LongValue260 = SystemGlobalStatusFlags;
-  systemStatusFlag338 = '\0';
+  SystemStatusFlag338 = '\0';
   SystemStringTemplatePointer = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
     SystemStringTemplatePointer = *(void* **)(ConfigurationDataPointer + 8);
@@ -25764,8 +25764,8 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
       if ((SystemCharacterValue & 0xdf) == 0) {
         SystemThreadIndex = SystemThreadHandle4 + 0x2e0;
         resourceCounter = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x40,*(uint8_t *)(SystemThreadHandle4 + 0x308));
-        ProcessResourcePointerOperation(resourceCounter + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,&pointerUnsigned310);
-        SystemAllocationFlags = SystemResourceAllocator(SystemThreadIndex,&systemStatusFlag337,resourceCounter + 0x20);
+        ProcessResourcePointerOperation(resourceCounter + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,&PointerUnsigned310);
+        SystemAllocationFlags = SystemResourceAllocator(SystemThreadIndex,&SystemStatusFlag337,resourceCounter + 0x20);
         if (systemStatusFlag337 != '\0') {
           if (SystemAllocationFlags == SystemThreadIndex) goto ResourceAllocationCheck;
           if (*(int *)(SystemAllocationFlags + 0x30) == 0) goto AllocationFlagCheck;
