@@ -30154,55 +30154,7 @@ void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemCont
     (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
-} 
- * 该函数负责处理主要的异常情况，进行资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
- * @brief 主上下文异常处理器
- * 
- * 该函数负责处理主上下文中的异常情况，执行异常处理逻辑。
- * 主要用于处理程序运行时出现的主要异常事件。
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会执行相应的异常处理逻辑
- */
-/**
- * @brief 主上下文异常处理器
- * 
- * 该函数负责处理主异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @return 无返回值
- * @note 此函数会在异常处理过程中自动调用
- * @warning 调用此函数可能会触发系统紧急退出
- */
-/**
- * @brief 处理主要上下文异常
- * 
- * 该函数用于处理系统主要上下文的异常情况
- * 通过调用异常处理函数来处理特定的异常
- * 
- * @param ExceptionContext 异常上下文，包含异常的类型和信息
- * @param SystemContext 系统上下文，包含系统状态和资源信息
- * @return void 无返回值
- */
-/**
- * @brief 主上下文异常处理器
- * 
- * 该函数负责处理主上下文中的异常情况
- * 主要用于系统级的异常处理和资源清理
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+}
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */

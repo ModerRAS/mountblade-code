@@ -52655,7 +52655,7 @@ ThreadCreationComplete:
         SystemMemoryOffset = ConcatenatedSystemValue(SystemMemoryOffset.HighPart,ThreadContextFlag);
         CurrentThreadId = StackValue2;
       }
-LAB_180070e64:
+ThreadHandleValidation:
       StackValue2 = CurrentThreadId;
         memcpy(SystemMemoryContext + StackValue2,ConfigurationDataPointer,(long long)((int)ResourceDataIndex + 2));
     }
@@ -52664,7 +52664,7 @@ LAB_180070e64:
     StackValue2 = ResourceHash;
     SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
     *SystemMemoryContext = 0;
-LAB_180070ee8:
+ThreadConfigurationComplete:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = ConcatenatedSystemValue(SystemMemoryOffset.HighPart,ThreadContextFlag);
   }
