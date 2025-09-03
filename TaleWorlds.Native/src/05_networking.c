@@ -2197,35 +2197,35 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 数据包头部处理变量
-  uint32_t HeaderProcessingStatus;                        // 头部处理状态
-  uint32_t HeaderValidationResult;                         // 头部验证结果
-  uint32_t ContextProcessingResult;                         // 上下文处理结果
+  uint32_t HeaderProcessingStatusCode;                      // 头部处理状态码
+  uint32_t HeaderValidationResultCode;                      // 头部验证结果码
+  uint32_t ContextProcessingResultCode;                     // 上下文处理结果码
   
   // 初始化处理状态
-  HeaderProcessingStatus = 0x00;
-  HeaderValidationResult = 0x00;
-  ContextProcessingResult = 0x00;
+  HeaderProcessingStatusCode = 0x00;
+  HeaderValidationResultCode = 0x00;
+  ContextProcessingResultCode = 0x00;
   
   // 验证数据包头部有效性
   if (PacketData != 0) {
-    HeaderValidationResult = 0x01;  // 头部验证通过
+    HeaderValidationResultCode = 0x01;  // 头部验证通过
   }
   
   // 处理头部上下文
   if (HeaderContext != 0) {
-    ContextProcessingResult = 0x01;  // 上下文处理成功
+    ContextProcessingResultCode = 0x01;  // 上下文处理成功
   }
   
   // 综合处理结果
-  HeaderProcessingStatus = HeaderValidationResult & ContextProcessingResult;
+  HeaderProcessingStatusCode = HeaderValidationResultCode & ContextProcessingResultCode;
   
   // 如果处理成功，更新头部状态
-  if (HeaderProcessingStatus == 0x01) {
+  if (HeaderProcessingStatusCode == 0x01) {
     // 这里可以添加更多的头部处理逻辑
     // 例如：解析头部字段、验证头部格式等
   }
   
-  return HeaderProcessingStatus;  // 返回处理状态
+  return HeaderProcessingStatusCode;  // 返回处理状态
 }
 
 /**
@@ -2240,14 +2240,14 @@ NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContex
 void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *ProcessingBuffer)
 {
   // 数据包处理完成变量
-  uint32_t FinalizationStatus;                            // 完成状态
-  uint32_t BufferCleanupResult;                           // 缓冲区清理结果
-  uint32_t DataValidationResult;                          // 数据验证结果
+  uint32_t FinalizationStatusCode;                        // 完成状态码
+  uint32_t BufferCleanupResultCode;                       // 缓冲区清理结果码
+  uint32_t DataValidationResultCode;                      // 数据验证结果码
   
   // 初始化完成状态
-  FinalizationStatus = 0x00;
-  BufferCleanupResult = 0x00;
-  DataValidationResult = 0x00;
+  FinalizationStatusCode = 0x00;
+  BufferCleanupResultCode = 0x00;
+  DataValidationResultCode = 0x00;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
