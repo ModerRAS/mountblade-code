@@ -605,7 +605,6 @@ long long ResourceSystemLastUpdateTime;
  */
 void* ResourceMemoryRegionHotfix;
 
-// 函数: 系统初始化函数D - 数据表管理器初始化
 void* GameDataTableManagerInitializer;
 /**
  * @brief 系统内存区域扩展A
@@ -1035,7 +1034,6 @@ void* SystemSemaphoreInstance;            // 系统信号量实例
  */
 void* SystemMemoryAllocatorFunction;
 
-// 函数: 系统数据初始化器 - 负责初始化系统核心数据结构
 /**
  * @brief 系统数据初始化器函数
  * 
