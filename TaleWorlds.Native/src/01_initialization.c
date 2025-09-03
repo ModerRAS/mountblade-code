@@ -28,32 +28,32 @@
 #define SYSTEM_RESOURCE_MEMORY_POOL_OFFSET     5
 
 // 系统节点相关常量
-#define SYSTEM_NODE_ACTIVE_FLAG_OFFSET         0x19
-#define SYSTEM_IDENTIFIER_SIZE                 0x10
-#define SYSTEM_NODE_NEXT_POINTER_OFFSET       2
-#define SYSTEM_NODE_HEAD_POINTER_OFFSET       0
-#define SYSTEM_NODE_ALLOCATION_EXTRA_SIZE     0x20
+#define NodeActiveFlagOffset         0x19
+#define SystemIdentifierSize                 0x10
+#define NodeNextPointerOffset       2
+#define NodeHeadPointerOffset       0
+#define NodeAllocationExtraSize     0x20
 
 // 系统节点结构体字段索引
-#define SYSTEM_NODE_IDENTIFIER1_INDEX         6
-#define SYSTEM_NODE_IDENTIFIER2_INDEX         7
-#define SYSTEM_NODE_DATA_POINTER_INDEX        8
-#define SYSTEM_NODE_FLAG_INDEX                 9
-#define SYSTEM_NODE_HANDLER_INDEX            10
-#define GAME_CORE_NODE_IDENTIFIER1             0x4fc124d23d41985f
-#define GAME_CORE_NODE_IDENTIFIER2             0xe2f4a30d6e6ae482
-#define BASE_ALLOCATOR_NODE_IDENTIFIER1       0x4770584fbb1df897
-#define BASE_ALLOCATOR_NODE_IDENTIFIER2       0x47f249e43f66f2ab
-#define BASE_ALLOCATOR_NODE_FLAG              1
-#define SYSTEM_DATA_TABLE_NODE_IDENTIFIER1     0x544e41445441424c
-#define SYSTEM_DATA_TABLE_NODE_IDENTIFIER2     0x4552455345525441
-#define SYSTEM_DATA_TABLE_NODE_FLAG           2
-#define SYSTEM_MEMORY_NODE_IDENTIFIER1         0x46ecbd4daf41613e
-#define SYSTEM_MEMORY_NODE_IDENTIFIER2         0xdc42c056bbde8482
-#define SYSTEM_MEMORY_NODE_FLAG               0
-#define SYSTEM_ALLOCATOR_NODE_IDENTIFIER1      0x4c868a42644030f6
-#define SYSTEM_ALLOCATOR_NODE_IDENTIFIER2      0xc29193aa9d9b35b9
-#define SYSTEM_ALLOCATOR_NODE_FLAG            0
+#define NodeIdentifier1Index         6
+#define NodeIdentifier2Index         7
+#define NodeDataPointerIndex        8
+#define NodeFlagIndex                 9
+#define NodeHandlerIndex            10
+#define GameCoreNodeIdentifier1             0x4fc124d23d41985f
+#define GameCoreNodeIdentifier2             0xe2f4a30d6e6ae482
+#define BaseAllocatorNodeIdentifier1       0x4770584fbb1df897
+#define BaseAllocatorNodeIdentifier2       0x47f249e43f66f2ab
+#define BaseAllocatorNodeFlag              1
+#define SystemDataTableNodeIdentifier1     0x544e41445441424c
+#define SystemDataTableNodeIdentifier2     0x4552455345525441
+#define SystemDataTableNodeFlag           2
+#define SystemMemoryNodeIdentifier1         0x46ecbd4daf41613e
+#define SystemMemoryNodeIdentifier2         0xdc42c056bbde8482
+#define SystemMemoryNodeFlag               0
+#define SystemAllocatorNodeIdentifier1      0x4c868a42644030f6
+#define SystemAllocatorNodeIdentifier2      0xc29193aa9d9b35b9
+#define SystemAllocatorNodeFlag            0
 #define SYSTEM_CONFIGURATION_NODE_IDENTIFIER1  0x40ea3a798283cbbb
 #define SYSTEM_CONFIGURATION_NODE_IDENTIFIER2  0x7f74eb2c5a7fadae
 #define SYSTEM_CONFIGURATION_NODE_FLAG        3
