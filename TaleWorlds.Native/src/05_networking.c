@@ -1308,30 +1308,30 @@ NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t
   NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffset1);
   ConnectionDataArray[0] = PrimaryDataStatus;
   PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
-  if ((int)ProcessingStatus == 0) {
+  if ((int)PacketProcessingStatus == 0) {
     if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      ProcessingStatus = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
-      if ((int)ProcessingStatus != 0) {
-        return ProcessingStatus;
+      PacketProcessingStatus = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
+      if ((int)PacketProcessingStatus != 0) {
+        return PacketProcessingStatus;
       }
     }
     else {
-      ProcessingStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffset1);
-      if ((int)ProcessingStatus != 0) {
-        return ProcessingStatus;
+      PacketProcessingStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffset1);
+      if ((int)PacketProcessingStatus != 0) {
+        return PacketProcessingStatus;
       }
-      ProcessingStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffset2);
-      if ((int)ProcessingStatus != 0) {
-        return ProcessingStatus;
+      PacketProcessingStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffset2);
+      if ((int)PacketProcessingStatus != 0) {
+        return PacketProcessingStatus;
       }
     }
-    ProcessingStatus = FinalizePacket(PacketData, ConnectionContext + NetworkConnectionFinalizeOffset, NetworkConnectionFinalizeValue);
-    return ProcessingStatus;
+    PacketProcessingStatus = FinalizePacket(PacketData, ConnectionContext + NetworkConnectionFinalizeOffset, NetworkConnectionFinalizeValue);
+    return PacketProcessingStatus;
   }
-  return ProcessingStatus;
+  return PacketProcessingStatus;
 }
 
 /**
@@ -1378,9 +1378,8 @@ NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, Network
 /**
  * @brief 处理网络连接数据包
  * 
- * 该函数负责处理网络连接中的数据包，根据数据包的类型和状态选择
- * 不同的处理路径。它会验证数据包头部，解码数据流，并调用相应的
- * 数据处理函数来完成数据包的处理工作。
+ * 处理网络连接中的数据包，根据数据包的类型和状态选择不同的处理路径。
+ * 此函数会验证数据包头部，解码数据流，并调用相应的数据处理函数来完成数据包的处理工作。
  * 
  * @param ConnectionContext 连接上下文句柄，包含连接状态和处理所需的信息
  * @param PacketData 数据包数据，包含待处理的数据包信息
