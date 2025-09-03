@@ -5036,7 +5036,7 @@ void InitializeSystemNetworkManager(void)
   void* *dataTable;
   int NodeIdentifierCompareResult;
   long long *memoryPointer;
-  long long timeValue;
+  long long TimeValue;
   void* *rootNode;
   void** CurrentNode;
   void** NextNode;
@@ -23158,7 +23158,7 @@ bool SystemNodeCheckStatus(void)
   int systemIndex;
   bool SystemNodeStatus;
   void* SystemEncryptionKey;
-  long long longValue40;
+  long long LongValue40;
   void* *pointerUnsigned30;
   void* *pEncryptionKeyValue;
   uint StringOffsetValue;
@@ -23519,7 +23519,7 @@ void* InitializeSystemResourceValidation(char SystemResourceManager)
   int systemValue;
   void* ResourceHash;
   void* SystemEncryptionKey;
-  long long longValue40;
+  long long LongValue40;
   void* *pointerUnsigned30;
   void* *pEncryptionKeyValue;
   uint StringOffsetValue;
@@ -24816,7 +24816,7 @@ void SystemResourceAllocate(long long SystemResourceManager)
   void* systemProcessFlags58;
   uint32_t ConcatenatedSystemValue;
   void* *pSystemEncryptionKey;
-  long long longValue40;
+  long long LongValue40;
   uint32_t SystemResourceStatusFlag;
   void* EncryptionKeyValue;
   
@@ -25685,14 +25685,14 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint32_t SystemMemoryOffset;
   void* MemorySystemPointer;
   void* SystemDataMemoryContext;
-  long long longValue260;
+  long long LongValue260;
   void* *pointerUnsigned258;
-  long long longValue250;
+  long long LongValue250;
   uint SystemDataBufferOffset;
   uint32_t SystemThreadStackSize;
   uint32_t SystemResourceCounter;
   void* *pointerUnsigned238;
-  long long longValue230;
+  long long LongValue230;
   uint SystemMemoryAlignment;
   uint32_t SystemAllocationSize;
   void* *SystemStringTemplatePtr;

@@ -4998,8 +4998,8 @@ uint8_t FreeObjectHandle(void) {
   else {
     ObjectMemoryAddressPointer = ObjectHandleIdentifier - 8;
   }
-  if (*(int64_t *)(ObjectMemoryAddressPointer + ObjectHandleMemoryOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddressPointer + ObjectHandleMemoryOffset), 1);
+  if (*(int64_t *)(ObjectMemoryAddressPointer + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddressPointer + ObjectHandleOffset), 1);
   }
   return 0;
 }
@@ -5055,7 +5055,7 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
   uint8_t ObjectValidationResult;
   int64_t ValidatedObjectContextPointer;
   
-  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &ValidatedObjectContextPointer);
+  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedObjectContextPointer);
   if ((int)ObjectValidationResult != 0) {
     return ObjectValidationResult;
   }
@@ -5065,10 +5065,10 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
   else {
     ValidatedObjectContextPointer = ValidatedObjectContextPointer + -8;
   }
-  if (*(int64_t *)(ValidatedObjectContextPointer + ObjectHandleMemoryOffset) == 0) {
+  if (*(int64_t *)(ValidatedObjectContextPointer + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedObjectContextPointer + ObjectHandleMemoryOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedObjectContextPointer + ObjectHandleOffset), 1);
   return 0;
 }
 
