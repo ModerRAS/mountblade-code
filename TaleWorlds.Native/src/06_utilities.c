@@ -5196,6 +5196,17 @@ uint8_t FreeObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示验证通过
  */
+/**
+ * @brief 验证字符安全性（简化实现）
+ * 
+ * 该函数验证输入字符的安全性，如果字符不为空则执行系统退出操作。
+ * 这是一个简化的安全验证函数，用于基本的字符安全检查。
+ * 
+ * @param CharacterToValidate 要验证的字符
+ * @return uint8_t 验证结果，0表示成功
+ * @note 这是一个简化实现，仅检查空字符
+ * @warning 如果字符不为空，将触发系统退出操作
+ */
 uint8_t ValidateCharacterSafety(char CharacterToValidate) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
   if (CharacterToValidate != '\0') {
@@ -6138,10 +6149,14 @@ void TerminateSystem(void)
 
  void ReturnNoOperationPrimary(void)
 /**
- * @brief 空操作返回函数
+ * @brief 空操作返回函数（简化实现）
  * 
- * 该函数是一个空操作函数，直接返回
- * 用作无操作时的占位符
+ * 该函数是一个空操作函数，直接返回而不执行任何操作。
+ * 这是一个简化的占位符函数，用于系统架构中的占位操作。
+ * 
+ * @return 无返回值
+ * @note 这是一个简化实现，仅执行返回操作
+ * @warning 此函数为空实现，仅用于占位
  */
 void ReturnNoOperationPrimary(void)
 
@@ -14596,7 +14611,7 @@ void ProcessComplexResourceWithRegisters(void)
           ExtendedValidationFlags = SystemContextFlags;
           TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
-          ResultFloatValue = calculatedFloat7;
+          ResultFloatValue = calculatedFloatValue;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
@@ -14634,7 +14649,7 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x5c) = PrimaryResourceHash;
         *(uint32_t *)(executionContext + -0x58) = SecondaryResourceHash;
         TemporaryIndex = GetAndValidateResourceData(PrimaryValidationStatus,executionContext + -0x80);
-        if ((TemporaryIndex != 0) || (TemporaryIndex = SearchResourceTablePointer(ResourceTablePointerPointer,&stackFloatValue1,0), TemporaryIndex != 0)) break;
+        if ((TemporaryIndex != 0) || (TemporaryIndex = SearchResourceTablePointer(ResourceTablePointerPointer,&stackFloatValue,0), TemporaryIndex != 0)) break;
         if (resourceFloatValue != 1.0) {
           TemporaryResourceValue = ResourceFloatValue;
           dataTypeTemplate = &SystemDataTypeTemplateDatabase;
@@ -19668,7 +19683,7 @@ uint64_t ValidateResourceHash(int64_t ResourceContext, uint8_t *ResourceData)
   int64_t ResourceTablePointer;
   int PackageValidationStatusCode;
   int ResultRecordIndex;
-  uint *ResourceDataSecondaryPointer6;
+  uint *ResourceDataSecondaryPointer;
   int SystemCommandArray [2];
   uint CommandParameters [2];
   uint ResourceValidationBuffer [2];
@@ -61135,7 +61150,7 @@ void SetResourceHashAddressToCacheTemplate(uint8_t ObjectContext, int64_t Valida
  * 
  * @note 该函数用于资源清理操作，设置资源哈希表指针到哈希表003
  */
-void ExecuteResourceCleanupCallbackOffset38(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallbackAtOffset38(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x38) = &TertiaryResourceHashTable;
@@ -61156,7 +61171,7 @@ void ExecuteResourceCleanupCallbackOffset38(uint8_t ObjectContext,int64_t Valida
  * 
  * @note 该函数用于资源清理操作，检查ValidationContext + ValidationContextDataOffset + 0x8位置的值
  */
-void ExecuteResourceCleanupCallbackOffset68(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallbackAtOffset68(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 8) != 0) {
@@ -61179,7 +61194,7 @@ void ExecuteResourceCleanupCallbackOffset68(uint8_t ObjectContext,int64_t Valida
  * 
  * @note 该函数用于资源清理操作，检查ValidationContext + ValidationContextDataOffset + 0x30位置的值
  */
-void ExecuteResourceCleanupCallbackOffset78(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallbackAtOffset78(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x30) != 0) {
@@ -61202,7 +61217,7 @@ void ExecuteResourceCleanupCallbackOffset78(uint8_t ObjectContext,int64_t Valida
  * 
  * @note 该函数用于资源清理操作，检查ValidationContext + 0x40 + 0x8位置的值
  */
-void ExecuteResourceCleanupCallbackOffset48(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallbackAtOffset48(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8) != 0) {
@@ -61225,7 +61240,7 @@ void ExecuteResourceCleanupCallbackOffset48(uint8_t ObjectContext,int64_t Valida
  * 
  * @note 该函数用于资源清理操作，检查ValidationContext + 0x40 + 0x30位置的值
  */
-void ExecuteResourceCleanupCallbackOffset58(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallbackAtOffset58(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x30) != 0) {
@@ -61248,7 +61263,7 @@ void ExecuteResourceCleanupCallbackOffset58(uint8_t ObjectContext,int64_t Valida
  * @note 此函数会设置系统资源处理器模板
  * @warning 如果系统状态异常，会触发紧急退出
  */
-void InitializeSystemResourceHandlerExtended1(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemResourceHandlerExtendedVersion1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t SystemInitializationCounter;
@@ -61278,7 +61293,7 @@ void InitializeSystemResourceHandlerExtended1(uint8_t ObjectContext,int64_t Vali
  * @note 此函数会设置资源验证表和处理器模板
  * @warning 如果资源状态异常，会触发紧急退出
  */
-void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemResourceHandlerExtendedVersion2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
@@ -61326,7 +61341,7 @@ void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t Vali
  * @note 此函数会执行资源上下文的回调函数
  * @warning 回调函数的执行可能会导致系统状态的变化
  */
-void ExecuteResourceContextCallbackExtended1(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceContextCallbackExtendedVersion1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ProcessPointer;
@@ -61352,7 +61367,7 @@ void ExecuteResourceContextCallbackExtended1(uint8_t ObjectContext,int64_t Valid
  * @note 此函数会设置资源验证表和处理器模板
  * @warning 如果资源状态异常，会触发紧急退出
  */
-void InitializeSystemResourceHandlerExtended3(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemResourceHandlerExtendedVersion3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
@@ -61532,7 +61547,7 @@ void InitializeSystemDataStructureTertiaryReference(void)
  * 
  * 该函数负责清理系统数据指针，释放相关资源
  */
-void CleanupSystemDataPointerType1(void)
+void CleanupSystemDataPointerTypeVersion1(void)
 
 {
   SystemDataSeptenaryPointer = &SystemDataStructure;
@@ -61547,7 +61562,7 @@ void CleanupSystemDataPointerType1(void)
  * 
  * 该函数负责清理系统数据指针，释放相关资源
  */
-void CleanupSystemDataPointerType2(void)
+void CleanupSystemDataPointerTypeVersion2(void)
 
 {
   SystemDataOctonaryPointer = &SystemDataStructure;
@@ -63489,7 +63504,7 @@ void SetSystemDataStructurePointerAtPrimaryOffset(uint8_t ObjectContext,int64_t 
  * @return 无返回值
  * @note 此函数主要用于资源数据标志位的清理
  */
-void CleanupResourceDataFlagBit1(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceDataFlagBitVersion1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -63512,7 +63527,7 @@ void CleanupResourceDataFlagBit1(uint8_t ObjectContext,int64_t ValidationContext
  * @return 无返回值
  * @note 此函数主要用于资源数据标志位的清理
  */
-void CleanupResourceDataFlagBit2(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceDataFlagBitVersion2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
@@ -63575,7 +63590,7 @@ void SetSystemDataStructurePointerAtOffset1C0(uint8_t ObjectContext,int64_t Vali
  * @return 无返回值
  * @note 此函数主要用于资源数据标志位的清理
  */
-void CleanupResourceDataFlagBit4(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceDataFlagBitVersion4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 4) != 0) {
@@ -64265,7 +64280,7 @@ void ResetSystemResourceHandlerTemplateAlternate(uint8_t ObjectContext,int64_t V
  * @param ValidationContext 验证上下文，包含验证所需的数据和参数
  * @return 无返回值
  */
-void CleanupResourceDataFlagBit1(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceDataFlagBitVersion1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -68576,7 +68591,7 @@ void InitializeSystemDataTable(uint8_t ObjectContext, int64_t ValidationContext)
   uint8_t *DataTablePointer;
   
   DataTablePointer = *(uint8_t **)(ValidationContext + 0x20);
-  *DataTablePointer = &SystemDataTable001;
+  *DataTablePointer = &SystemDataTable;
   DestroyStdExceptionObject(DataTablePointer + 1);
   return;
 }
@@ -68599,7 +68614,7 @@ void InitializeSystemDataTableExtended(uint8_t ObjectContext, int64_t Validation
   uint8_t *DataTablePointer;
   
   DataTablePointer = *(uint8_t **)(ValidationContext + 0x40);
-  *DataTablePointer = &SystemDataTable001;
+  *DataTablePointer = &SystemDataTable;
   DestroyStdExceptionObject(DataTablePointer + 1);
   return;
 }
