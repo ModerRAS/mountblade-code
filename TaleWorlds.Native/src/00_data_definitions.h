@@ -343,8 +343,8 @@ char* SystemModuleAudioBuffer;
 char* SystemModuleGraphicsBuffer;
 
 // 字符串处理器标志 - 用于字符串处理操作
-uint32_t StringProcessorFlags;
-uint32_t SystemMutexFlags;
+uint32_t StringProcessingFlags;
+uint32_t SystemMutexStatusFlags;
 
 // 字符串处理系统实例的配置变量
 void* PrimaryStringProcessorMemoryPool;
