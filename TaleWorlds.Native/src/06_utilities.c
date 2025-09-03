@@ -3820,8 +3820,8 @@ uint8_t SystemEventManagerInputEventSlot;
 uint8_t SystemEventManagerOutputEventSlot;
 uint8_t SystemEventManagerMainEventSlot;
 // 事件处理器槽 - 管理事件处理槽位
-uint8_t EventHandlerSlot;
-uint8_t SystemEventCallbackSlot;
+uint8_t EventHandlerSlotMain;
+uint8_t SystemEventCallbackFunctionSlot;
 uint8_t SystemEventManagerSlotSix;
 uint8_t SystemEventManagerSlotSeven;
 uint8_t SystemEventManagerSlotEight;
