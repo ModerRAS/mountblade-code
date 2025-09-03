@@ -99002,7 +99002,7 @@ void Unwind_180911d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180911d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceOperationFirst(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -99020,7 +99020,7 @@ void Unwind_180911d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180911d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceOperationSecond(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -99038,7 +99038,7 @@ void Unwind_180911d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180911d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceOperationThird(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
