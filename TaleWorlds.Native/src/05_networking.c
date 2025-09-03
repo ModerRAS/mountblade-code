@@ -661,9 +661,14 @@ void NetworkListenConnections(void)
 /**
  * @brief 接受网络连接
  * 
- * 接受网络连接请求，建立新的客户端连接
+ * 接受网络连接请求，建立新的客户端连接。此函数负责分配新的连接资源、
+ * 设置连接参数、初始化安全参数、会话参数等。接受连接后会更新连接
+ * 统计信息，使新的连接可以开始进行数据传输。
  * 
  * @note 此函数会为新的连接分配资源并初始化连接状态
+ * @warning 如果接受连接失败，可能会导致资源泄漏或连接异常
+ * 
+ * @return void 无返回值
  */
 void NetworkAcceptConnection(void)
 {
