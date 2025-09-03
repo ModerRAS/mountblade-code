@@ -76561,7 +76561,19 @@ void ExecuteSecondaryResourceContextCallback(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_18090b1d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行三级资源上下文回调函数
+ * 
+ * 从验证上下文中获取三级资源上下文，并执行其中的回调函数。
+ * 此函数是资源上下文回调处理的三级版本，使用不同的偏移量。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含三级资源上下文指针和验证信息
+ * 
+ * @remark 原始函数名：Unwind_18090b1d0
+ * @note 此函数通过偏移量0x368获取资源上下文，并调用偏移量0x38处的回调函数
+ */
+void ExecuteTertiaryResourceContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -76575,7 +76587,19 @@ void Unwind_18090b1d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b1f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行四级资源上下文回调函数
+ * 
+ * 从验证上下文中获取四级资源上下文，并执行其中的回调函数。
+ * 此函数是资源上下文回调处理的四级版本，使用不同的偏移量。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含四级资源上下文指针和验证信息
+ * 
+ * @remark 原始函数名：Unwind_18090b1f0
+ * @note 此函数通过偏移量0x370获取资源上下文，并调用偏移量0x38处的回调函数
+ */
+void ExecuteQuaternaryResourceContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
