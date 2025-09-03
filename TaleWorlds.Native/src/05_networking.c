@@ -868,22 +868,23 @@ uint32_t NetworkCallbackData;
 uint32_t NetworkCallbackSize;
 uint32_t NetworkCallbackIndex;
 
-uint32_t ProcessedConnectionHandlePacket;
-uint32_t NetworkConnectionTable;
-uint32_t SecurityValidationData;
-uint32_t NetworkBufferTemplate;
-uint32_t NetworkConnectionDataDefault;
-uint32_t NetworkConnectionSourceAddress;
-uint32_t NetworkConnectionArrayIndex;
-uint32_t NetworkPacketArrayPointer;
-uint32_t NetworkConnectionPrimaryPointer;
-uint32_t NetworkPacketEntryPointer;
-uint32_t NetworkConnectionTargetAddress;
-uint32_t NetworkConnectionIndexCounter;
-uint32_t NetworkConnectionLoopCounter;
-uint32_t NetworkConnectionStateFlag;
-uint32_t ConnectionProcessingResult;
-uint32_t NetworkConnectionProcessedCount;
+// 网络连接处理变量
+uint32_t ProcessedConnectionHandlePacket;          // 已处理的连接句柄数据包
+uint32_t NetworkConnectionTable;                    // 网络连接表
+uint32_t SecurityValidationData;                    // 安全验证数据
+uint32_t NetworkBufferTemplate;                     // 网络缓冲区模板
+uint32_t NetworkConnectionDataDefault;              // 网络连接默认数据
+uint32_t NetworkConnectionSourceAddress;            // 网络连接源地址
+uint32_t NetworkConnectionArrayIndex;               // 网络连接数组索引
+uint32_t NetworkPacketArrayPointer;                 // 网络数据包数组指针
+uint32_t NetworkConnectionPrimaryPointer;          // 网络连接主指针
+uint32_t NetworkPacketEntryPointer;                 // 网络数据包条目指针
+uint32_t NetworkConnectionTargetAddress;            // 网络连接目标地址
+uint32_t NetworkConnectionIndexCounter;             // 网络连接索引计数器
+uint32_t NetworkConnectionLoopCounter;              // 网络连接循环计数器
+uint32_t NetworkConnectionStateFlag;                // 网络连接状态标志
+uint32_t ConnectionProcessingResult;                // 连接处理结果
+uint32_t NetworkConnectionProcessedCount;           // 网络连接已处理数量
 
 /**
  * @brief 初始化网络连接状态
@@ -896,14 +897,14 @@ uint32_t NetworkConnectionProcessedCount;
  */
 void NetworkInitializeConnectionState(void)
 {
-  uint8_t *ConnectionStateBuffer;          // 连接状态缓冲区指针
-  int32_t ConnectionInitializationStatus;  // 连接初始化状态标志
-  int64_t NetworkSystemContextData;        // 网络系统上下文数据
-  int32_t NetworkConnectionHandleId;       // 网络连接句柄ID
-  uint32_t NetworkStateFlags;              // 网络状态标志位
-  int32_t NetworkSessionId;                // 网络会话ID
-  uint64_t *NetworkStateData;              // 网络状态数据指针
-  int64_t NetworkContextPointer;           // 网络上下文指针
+  uint8_t *ConnectionStateBuffer;                  // 连接状态缓冲区指针
+  int32_t ConnectionInitializationStatus;        // 连接初始化状态标志
+  int64_t NetworkSystemContextData;              // 网络系统上下文数据
+  int32_t NetworkConnectionHandleId;             // 网络连接句柄ID
+  uint32_t NetworkStateFlags;                    // 网络状态标志位
+  int32_t NetworkSessionId;                      // 网络会话ID
+  uint64_t *NetworkStateData;                    // 网络状态数据指针
+  int64_t NetworkContextPointer;                 // 网络上下文指针
   
   // 计算连接状态缓冲区位置
   ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(NetworkStateFlags, NetworkConnectionHandleId) + ConnectionStateBufferOffset);
