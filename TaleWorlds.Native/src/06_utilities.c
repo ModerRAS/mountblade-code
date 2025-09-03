@@ -50045,7 +50045,7 @@ void ExecuteResourceHashTableCleanup(uint8_t ObjectContext,int64_t ValidationCon
   ResourceTablePointerPointer = *(int64_t **)(ValidationContext + ResourceTablePointerOffset);
   LoopIncrement = 0xfffffffffffffffe;
   ResourceHashPtr = (uint8_t *)ResourceTablePointerPointer[1];
-  for (HashEntryPointer = (uint8_t *)*ResourceTablePointerPointer; HashEntryPointer != ResourceHashAddress; HashEntryPointer = HashEntryPointer + ResourceHashEntrySize) {
+  for (HashEntryPointer = (uint8_t *)*ResourceTablePointerPointer; HashEntryPointer != ResourceHashAddress; HashEntryPointer = HashEntryPointer + ResourceEntrySize) {
     (**(code **)*HashEntryPointer)(HashEntryPointer,0,CleanupOption,CleanupFlag,LoopIncrement);
   }
   if (*ResourceTablePointerPointer == 0) {
