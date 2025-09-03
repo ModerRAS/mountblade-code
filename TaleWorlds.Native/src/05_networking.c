@@ -708,7 +708,7 @@ uint32_t NetworkConnectionEventHandler;
  * 
  * @note 此函数会处理数据分包和重传机制
  */
-void TransmitData(void);
+void NetworkTransmitData(void);
 
 /**
  * @brief 检索网络数据
@@ -717,7 +717,7 @@ void TransmitData(void);
  * 
  * @note 此函数会处理数据包的重组和验证
  */
-void RetrieveNetworkData(void);
+void NetworkRetrieveData(void);
 
 /**
  * @brief 验证网络数据包真实性
@@ -726,7 +726,7 @@ void RetrieveNetworkData(void);
  * 
  * @note 此函数会检查数据包的签名和校验和
  */
-void ValidateNetworkPacketAuthenticity(void);
+void NetworkValidatePacketAuthenticity(void);
 
 /**
  * @brief 处理网络数据包处理
