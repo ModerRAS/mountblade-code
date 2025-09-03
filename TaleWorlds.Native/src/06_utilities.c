@@ -75801,7 +75801,19 @@ void CleanupDatabaseResourceContext(uint8_t ObjectContext, int64_t ValidationCon
 
 
 
-void Unwind_18090ad90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理对象上下文资源
+ * 
+ * 该函数负责清理对象上下文相关的资源，释放内存和重置状态
+ * 主要用于系统资源管理和内存清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含需要清理的对象信息
+ * @param ValidationContext 验证上下文，包含验证状态和清理所需的信息
+ * 
+ * @note 此函数会调用资源清理函数进行实际的资源释放
+ * @warning 清理操作不可逆，调用前请确保相关资源不再需要
+ */
+void CleanupObjectContextResources(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;

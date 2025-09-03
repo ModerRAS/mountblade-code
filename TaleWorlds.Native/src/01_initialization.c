@@ -9605,7 +9605,6 @@ void InitializeSystemNetworkNode(void)
  * @note 该函数使用内存分配和节点比较操作来确保音频节点的正确初始化
  * @note 节点标识符为 0x4666df49b97e0f10 和 0x4e4b0d63a6ad1d8f
  * 
- *FUN_18005926c：InitializeSystemAudioNode
  */
 void InitializeSystemAudioNode(void)
 
@@ -9668,7 +9667,6 @@ void InitializeSystemAudioNode(void)
  * @note 该函数使用内存分配和节点比较操作来确保输入节点的正确初始化
  * @note 节点标识符为 0x46ecbd4daf41613e 和 0xdc42c056bbde8482
  * 
- *FUN_180059350：InitializeSystemInputNode
  */
 void InitializeSystemInputNode(void)
 
@@ -25835,7 +25833,7 @@ void UpdateSystemRenderManager(long long SystemResourceManager)
         CurrentThreadId = 0;
       }
       ProcessSystemResourceData(*(long long *)(SystemResourceManager + 8),*(uint32_t *)(SystemResourceManager + 0x3cc),*SystemIntegerPointer,CurrentThreadId);
-      isSystemInitialized = systemCounter == 2;
+      isSystemInitialized = SystemCounter == 2;
       goto ErrorHandler;
     }
     if (!isTextureUpdateRequired) {
