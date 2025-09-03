@@ -200,6 +200,21 @@
 #define BufferOffsetTertiary 0x88
 #define BufferOffsetQuaternary 0x94
 #define BufferOffsetHandle 0xb8
+#define BufferArrayEntryCountOffset 0x28
+#define BufferArrayDataOffset 0x20
+#define SystemContextSecondaryDataOffset 0x18
+#define SystemContextTertiaryDataOffset 0x20
+#define SystemContextValidationFlagsOffset 0x34
+#define MatrixContextDataOffset 0x38
+#define MatrixContextConfigOffset 0x40
+#define MatrixContextRangeDataOffset 0x48
+#define MatrixContextRotationFlagsOffset 0x4c
+#define MatrixContextScaleFlagsOffset 0x50
+#define MatrixContextFloatValueOffset 0x58
+#define ResourceHashTablePointerOffset 0x20
+#define ResourceHashEntrySize 0x18
+#define ResourceHashTablePrimaryOffset 0x90
+#define ResourceHashSecondaryOffset 0x98
 
 // 位掩码常量
 #define CleanupBitMask 0xfdffffff
