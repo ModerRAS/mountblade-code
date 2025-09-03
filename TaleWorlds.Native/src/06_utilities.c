@@ -7948,8 +7948,8 @@ uint64_t ValidateSystemDataBufferContext(void)
   ArrayIterationIndex = 0;
   if (0 < *(int *)(SystemContextOffset + 0x28)) {
     do {
-      ContextPointer = *(int64_t *)(SystemContextOffset + 0x20) + ArrayIterationIndex;
-      ResourceDataAddress = *(int64_t *)(ContextPointer + 0x10);
+      ContextPointer = *(int64_t *)(SystemContextOffset + DataBufferOffset) + ArrayIterationIndex;
+      ResourceDataAddress = *(int64_t *)(ContextPointer + ObjectContextOffset);
       if (ResourceDataAddress == 0) {
         return ErrorInvalidResourceData;
       }
@@ -7970,8 +7970,8 @@ uint64_t ValidateSystemDataBufferContext(void)
       }
       IterationCounter = (int)ArrayIterationIndex + 1;
       ArrayIterationIndex = (uint64_t)IterationCounter;
-      ArrayIterationIndex = ArrayIterationIndex + 0x18;
-    } while ((int)IterationCounter < *(int *)(SystemContextOffset + 0x28));
+      ArrayIterationIndex = ArrayIterationIndex + ArrayElementSizeMultiplier;
+    } while ((int)IterationCounter < *(int *)(SystemContextOffset + BufferArraySizeOffset));
   }
   return ErrorInvalidResourceData;
 }
