@@ -4457,8 +4457,8 @@ Label_18005122d:
   alStack_90[1] = 0;
   alStack_90[2] = 0;
   StackParameter4 = 3;
-  InitializeGameSession(auStack_2a8);
-  ProcessGameData((longlong)SystemFrameCounter * 0x238 + GameEngineDataAddress + 0x1598,auStack_2a8);
+  InitializeGameSession(StackGameSessionBuffer);
+  ProcessGameData((longlong)SystemFrameCounter * 0x238 + GameEngineDataAddress + 0x1598,StackGameSessionBuffer);
   plStack_2f8 = alStack_90;
   if (alStack_90[0] != 0) {
     CleanupSystemResources();
