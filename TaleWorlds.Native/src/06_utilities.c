@@ -4252,10 +4252,10 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
       if (0 < CurrentPosition) {
         CurrentObjectIndex = 0;
         do {
-          uint8_t ObjectState = *(uint8_t *)(BufferData + CurrentObjectIndex);
-          ProcessingStatus = ValidateObjectStatus(ObjectState);
+          uint8_t ObjectStatus = *(uint8_t *)(BufferData + CurrentObjectIndex);
+          ProcessingStatus = ValidateObjectStatus(ObjectStatus);
           if (ProcessingStatus != RegistrationStatusSuccess) {
-                  HandleInvalidObject(ObjectState, 1);
+                  HandleInvalidObject(ObjectStatus, 1);
           }
           ProcessedObjectCount++;
           CurrentObjectIndex += ResourceEntrySizeBytes;
@@ -10037,16 +10037,16 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext, int64_t V
  */
 uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uint8_t ValidationContext)
 {
-  float InputFloatValue;
-  uint8_t ResourceHashStatus = 0;
-  int64_t ResourceIndex = 0;
-  int64_t ResourceContext = 0;
-  int64_t SystemContext = 0;
-  float RangeMinValue = 0.0f;
-  float RangeMaxValue = 0.0f;
-  float ClampedFloatValue = 0.0f;
-  uint32_t SecurityValidationBuffer = 0;
-  int ProcessingStatusCode = 0;
+  float InputFloatParameter;
+  uint8_t ResourceValidationStatus = 0;
+  int64_t ResourceHandleIndex = 0;
+  int64_t ResourceDataPointer = 0;
+  int64_t SystemContextHandle = 0;
+  float MinimumRangeValue = 0.0f;
+  float MaximumRangeValue = 0.0f;
+  float ClampedResultValue = 0.0f;
+  uint32_t SecurityValidationToken = 0;
+  int OperationStatus = 0;
   
   SecurityValidationBuffer = 0;
   ProcessingStatusCode = ProcessDataHashing(SystemContext + ValidationContextHashOffset, ValidationContext, &SecurityValidationBuffer);
@@ -35193,14 +35193,14 @@ void ProcessFileHandleCleanup(uint8_t ObjectContext,int64_t ValidationContext,ui
   int64_t *ResourceTablePointerPointer;
   uint8_t *ResourceHashStatusPointer;
   uint8_t *PackageValidationStatusCodePointer;
-  int64_t LoopStepValue;
-  uint8_t LoopTerminationFlag;
+  int64_t ResourceCleanupStepValue;
+  uint8_t ResourceCleanupCompleteFlag;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x888);
-  LoopStepValue = 0xfffffffffffffffe;
+  ResourceCleanupStepValue = 0xfffffffffffffffe;
   ResourceHashPtr = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x890);
   for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointerPointer; ResourceHashStatusPointer != ResourceHashPtr; PackageValidationStatusCodePointer = ResourceHashStatusPointer + 4) {
-    (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer,0,CleanupOption,CleanupFlag,LoopStepValue);
+    (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer,0,CleanupOption,CleanupFlag,ResourceCleanupStepValue);
   }
   if (*ResourceTablePointerPointer == 0) {
     return;
@@ -35231,14 +35231,14 @@ void ProcessDirectoryHandleCleanup(uint8_t ObjectContext,int64_t ValidationConte
   int64_t *ResourceTablePointerPointer;
   uint8_t *ResourceHashStatusPointer;
   uint8_t *PackageValidationStatusCodePointer;
-  int64_t LoopStepValue;
-  uint8_t LoopTerminationFlag;
+  int64_t ResourceCleanupStepValue;
+  uint8_t ResourceCleanupCompleteFlag;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8a8);
-  LoopStepValue = 0xfffffffffffffffe;
+  ResourceCleanupStepValue = 0xfffffffffffffffe;
   ResourceHashPtr = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8b0);
   for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointerPointer; ResourceHashStatusPointer != ResourceHashPtr; PackageValidationStatusCodePointer = ResourceHashStatusPointer + 4) {
-    (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer,0,CleanupOption,CleanupFlag,LoopStepValue);
+    (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer,0,CleanupOption,CleanupFlag,ResourceCleanupStepValue);
   }
   if (*ResourceTablePointerPointer == 0) {
     return;
@@ -101789,7 +101789,7 @@ void InitializeSystemDataStructureBD(void)
 void InitializeSystemDataStructureBD(void)
 
 {
-  SystemDataPointer029 = &SystemDataStructure;
+  SystemDataPointerBD = &SystemDataStructure;
   return;
 }
 
