@@ -2285,41 +2285,66 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
 /**
  * @brief 验证网络数据包头部
  * 
- * 验证网络数据包的头部格式和有效性
+ * 验证网络数据包的头部格式和有效性，确保数据包符合协议规范
  * 
- * @param ConnectionContext 连接上下文
- * @param PacketData 数据包数据
- * @param MagicNumber 魔数
- * @return NetworkHandle 验证结果句柄
+ * @param ConnectionContext 连接上下文，包含连接的状态信息
+ * @param PacketData 数据包数据，包含待验证的数据包内容
+ * @param MagicNumber 魔数，用于验证数据包的有效性
+ * @return NetworkHandle 验证结果句柄，返回验证状态码
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的头部验证逻辑
+ * @warning 简化实现仅返回成功状态，不进行实际的验证工作
  */
 NetworkHandle ValidateNetworkPacketHeader(int64_t ConnectionContext, int64_t PacketData, uint32_t MagicNumber)
 {
-  // 这里应该实现数据包头部验证逻辑
-  // 由于这是简化实现，返回成功状态
-  return 0;  // 验证成功
+  // 简化实现：直接返回成功状态
+  // 实际实现应该包括：
+  // 1. 验证数据包头部的魔数匹配
+  // 2. 检查头部格式的有效性
+  // 3. 验证版本兼容性
+  // 4. 检查数据包长度是否合理
+  // 5. 验证协议类型支持
+  // 6. 检查时间戳和序列号
+  // 7. 验证校验和和CRC
+  
+  return 0;  // 验证成功（简化实现）
 }
 
 /**
  * @brief 解码数据包数据流
  * 
- * 解码网络数据包的数据流，提取有效负载数据
+ * 解码网络数据包的数据流，提取有效负载数据并进行格式转换
  * 
- * @param PacketData 数据包数据
- * @param OutputBuffer 输出缓冲区
- * @param DecodingMode 解码模式
- * @param MagicNumber1 魔数1
- * @param MagicNumber2 魔数2
- * @return NetworkHandle 解码结果句柄
+ * @param PacketData 数据包数据，包含待解码的数据流
+ * @param OutputBuffer 输出缓冲区，用于存储解码后的数据
+ * @param DecodingMode 解码模式，指定解码算法和参数
+ * @param MagicNumber1 魔数1，用于数据流验证
+ * @param MagicNumber2 魔数2，用于额外的数据流验证
+ * @return NetworkHandle 解码结果句柄，返回解码状态码
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的数据流解码逻辑
+ * @warning 简化实现仅执行基本的缓冲区初始化，不进行实际的解码工作
  */
 NetworkHandle DecodePacketDataStream(int64_t PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
                                    uint32_t MagicNumber1, uint32_t MagicNumber2)
 {
-  // 这里应该实现数据流解码逻辑
-  // 由于这是简化实现，返回成功状态
+  // 简化实现：仅初始化输出缓冲区
+  // 实际实现应该包括：
+  // 1. 验证数据流的完整性和有效性
+  // 2. 解析数据流的头部信息
+  // 3. 根据解码模式选择合适的解码算法
+  // 4. 执行数据解压缩和解密操作
+  // 5. 验证魔数和数据格式
+  // 6. 提取有效负载数据
+  // 7. 处理数据格式转换
+  // 8. 填充输出缓冲区
+  
   if (OutputBuffer) {
     memset(OutputBuffer, 0, 32);
+    // 在实际实现中，这里应该填充解码后的数据
+    // 包括：有效负载数据、元数据、状态信息等
   }
-  return 0;  // 解码成功
+  return 0;  // 解码成功（简化实现）
 }
 
 /**

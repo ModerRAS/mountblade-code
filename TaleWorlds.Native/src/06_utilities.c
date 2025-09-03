@@ -10368,45 +10368,55 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext, int64_t V
  * @param ValidationContext 系统上下文指针，用于系统级操作和验证
  * @return uint8_t 操作状态码，0表示成功，非0表示错误
  */
+/**
+ * @brief 处理浮点数据验证和转换（无参数版本）
+ * 
+ * 该函数用于验证和转换浮点数据，无参数版本
+ * 支持浮点数范围检查和限制
+ * 
+ * @param DataContext 数据上下文
+ * @param ValidationContext 验证上下文
+ * @return 处理结果状态码
+ */
 uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uint8_t ValidationContext)
 {
   float OriginalFloatValue;
-  uint8_t ResourceValidationResult = 0;
-  int64_t ResourceIndexPointer = 0;
-  int64_t ResourceDataBuffer = 0;
-  int64_t SystemContextPointer = 0;
+  uint8_t ValidationResult = 0;
+  int64_t ResourceIndexPtr = 0;
+  int64_t ResourceDataPtr = 0;
+  int64_t SystemContextPtr = 0;
   float MinimumValidRange = 0.0f;
   float MaximumValidRange = 0.0f;
-  float ClampedFloatResult = 0.0f;
+  float ClampedResult = 0.0f;
   uint32_t ValidationToken = 0;
-  int OperationStatus = 0;
+  int ProcessingStatus = 0;
   
   ValidationationToken = 0;
-  OperationStatus = ProcessDataHashing(SystemContextPointer + ValidationContextHashOffset, ValidationContext, &ValidationationToken);
-  if ((int)OperationStatus == 0) {
-    ResourceIndexPointer = LookupResourceIndexPointer(SystemContextPointer + ValidationContextHashOffset, ValidationToken);
-    if ((*(uint *)(ResourceIndexPointer + 0x34) >> 4 & 1) != 0) {
+  ProcessingStatus = ProcessDataHashing(SystemContextPtr + ValidationContextHashOffset, ValidationContext, &ValidationationToken);
+  if ((int)ProcessingStatus == 0) {
+    ResourceIndexPtr = LookupResourceIndexPointer(SystemContextPtr + ValidationContextHashOffset, ValidationToken);
+    if ((*(uint *)(ResourceIndexPtr + 0x34) >> 4 & 1) != 0) {
       return ErrorResourceValidationFailed;
     }
-    OriginalFloatValue = *(float *)(ResourceDataBuffer + 0x18);
-    MinimumValidRange = *(float *)(ResourceIndexPointer + ValidationContextSecondaryCleanupOffset);
-    MaximumValidRange = *(float *)(ResourceIndexPointer + 0x3c);
+    OriginalFloatValue = *(float *)(ResourceDataPtr + 0x18);
+    MinimumValidRange = *(float *)(ResourceIndexPtr + ValidationContextSecondaryCleanupOffset);
+    MaximumValidRange = *(float *)(ResourceIndexPtr + 0x3c);
     if ((MinimumValidRange <= OriginalFloatValue) && (OriginalFloatValue <= MaximumValidRange)) {
-      ClampedFloatResult = OriginalFloatValue;
+      ClampedResult = OriginalFloatValue;
     }
     else if (OriginalFloatValue < MinimumValidRange) {
-      ClampedFloatResult = MinimumValidRange;
+      ClampedResult = MinimumValidRange;
     }
     else {
-      ClampedFloatResult = MaximumValidRange;
+      ClampedResult = MaximumValidRange;
     }
-    *(float *)(ResourceDataBuffer + 0x18) = ClampedFloatResult;
-    OperationStatus = ValidateResourceParameters(SystemContextPointer + ValidationContextHashOffset, ValidationToken, ClampedFloatResult);
-    if ((int)OperationStatus == 0) {
-      ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + SystemResourceManagerOffset));
+    *(float *)(ResourceDataPtr + 0x18) = ClampedResult;
+    ProcessingStatus = ValidateResourceParameters(SystemContextPtr + ValidationContextHashOffset, ValidationToken, ClampedResult);
+    if ((int)ProcessingStatus == 0) {
+      ReleaseSystemContextResources(*(uint8_t *)(SystemContextPtr + SystemResourceManagerOffset));
     }
   }
-  return OperationStatus;
+  return ProcessingStatus;
 }
 
 
