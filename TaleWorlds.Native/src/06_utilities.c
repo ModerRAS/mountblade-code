@@ -12124,7 +12124,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
     }
     *(float *)(ObjectContext + ObjectContextResourceDataOffset) = calculatedFloatValue;
     ResourceTablePointerPointer = 0;
-    fifthFloatResult = (float)*(uint *)(ObjectContext + ObjectContextMatrixScaleOffset) * calculatedFloatValue;
+    fifthMatrixElementResult = (float)*(uint *)(ObjectContext + ObjectContextMatrixScaleOffset) * calculatedFloatValue;
     if ((9.223372e+18 <= calculatedFloatValue) && (fifthFloatResult = calculatedFloatValue - 9.223372e+18, calculatedFloatValue < 9.223372e+18)) {
       ResourceTablePointerPointer = -0x8000000000000000;
     }
