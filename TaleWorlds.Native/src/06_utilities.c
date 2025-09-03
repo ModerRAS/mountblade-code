@@ -5051,6 +5051,15 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的内存地址和状态信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示错误码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加指定对象的引用计数，确保对象在引用期间不会被意外释放。
+ * 包含对象上下文验证、内存地址检查和引用计数更新操作。
+ * 
+ * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
 uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
@@ -5095,16 +5104,20 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
   uint8_t ContextValidationResult;
   int64_t ValidatedContextMemoryAddress;
   
+  // 验证对象上下文并获取内存地址
   ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextMemoryAddress);
   if ((int)ContextValidationResult == 0) {
+    // 调整验证后的内存地址
     if (ValidatedContextMemoryAddress == 0) {
       ValidatedContextMemoryAddress = 0;
     }
     else {
       ValidatedContextMemoryAddress = ValidatedContextMemoryAddress - 8;
     }
+    
+    // 检查对象句柄是否有效，如果有效则执行系统退出操作
     if (*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset), 1);
+      ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset), 1);
     }
     ContextValidationResult = OperationSuccessCode;
   }
@@ -5142,18 +5155,10 @@ uint8_t FreeObjectHandle(void) {
  * 
  * 该函数用于验证输入的字符参数，确保字符输入的有效性。
  * 如果字符不为空字符，则执行系统退出操作以确保安全。
+ * 主要用于系统安全检查和输入验证。
  * 
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示验证通过
- */
-/**
- * @brief 验证字符安全性
- * 
- * 该函数用于验证输入的字符参数，确保字符输入的有效性
- * 主要用于系统安全检查和输入验证
- * 
- * @param CharacterToValidate 要验证的字符参数
- * @return uint8_t 操作结果状态码，0表示成功，非0表示错误码
  */
 uint8_t ValidateCharacterSafety(char CharacterToValidate) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
