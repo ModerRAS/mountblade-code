@@ -16496,7 +16496,7 @@ uint8_t FindResourceHashTableEntry(int64_t *ObjectContext,char *ValidationContex
         ResourceValidationResultCode = ProcessResourceData(ResourceValidationResultCode);
         ResourceDataValidationResultCode = ProcessResourceData(*ResourceDataAddress);
         if (ResourceValidationResultCode != ResourceDataValidationResultCode) break;
-        CharacterPointer = ValidationContext + 1;
+        CallbackFunctionPointer = ValidationContext + 1;
         ValidationContext = ValidationContext + 1;
         ResourceDataAddress = ResourceDataAddress + 1;
         ResourceValidationResultCode = *CharacterPointer;
@@ -38979,8 +38979,8 @@ void ValidateContextTertiary(uint8_t ObjectContext, int64_t ValidationContext, u
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x88) + 0x60);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x88) + 0x60);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x88) + 0x50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -39007,8 +39007,8 @@ void ValidateContextQuaternary(uint8_t ObjectContext, int64_t ValidationContext,
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x90) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x90) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x90),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -39599,8 +39599,8 @@ void CleanupSystemResourceHandlerSeptenary(uint8_t ObjectContext,int64_t Validat
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextResourceOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -39686,8 +39686,8 @@ void CleanupCharacterPointerResources(uint8_t ObjectContext,int64_t ValidationCo
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x68);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x68);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x58,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -39714,8 +39714,8 @@ void CleanupValidationContextResources(uint8_t ObjectContext,int64_t ValidationC
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -40380,8 +40380,8 @@ void CleanupMemoryManagerResources(uint8_t ObjectContext, int64_t ValidationCont
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x88) + 0x68);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x88) + 0x68);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x88) + 0x58,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -42120,8 +42120,8 @@ void CleanupSystemResourceHandlerSocketSet(uint8_t ObjectContext,int64_t Validat
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + 0x60);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + 0x60);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x20) + 0x50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -42148,8 +42148,8 @@ void CleanupSystemResourceHandlerStreamSet(uint8_t ObjectContext,int64_t Validat
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x28) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x28) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x28),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -42198,8 +42198,8 @@ void CleanupObjectContextWithFlags(uint8_t ObjectContext,int64_t ValidationConte
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x60);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x60);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -42378,8 +42378,8 @@ void CleanupCharacterPointer(uint8_t ObjectContext, int64_t ValidationContext, u
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + 0xb0);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + 0xb0);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x20) + 0xa0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -42436,8 +42436,8 @@ void CleanupValidationContextCharacterPointer(uint8_t ObjectContext, int64_t Val
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0xb0);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0xb0);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0xa0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -44610,8 +44610,8 @@ void ExecuteSystemResourceCleanupCallback(uint8_t ObjectContext,int64_t Validati
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xd0);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xd0);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -44640,8 +44640,8 @@ void ExecuteSystemResourceCleanupCallback(uint8_t ObjectContext,int64_t Validati
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -44742,8 +44742,8 @@ void ExecuteSystemResourceCleanupCallbackWithExtendedParams(uint8_t ObjectContex
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -44790,8 +44790,8 @@ void ExecuteSystemResourceCleanupCallbackAdvanced(uint8_t ObjectContext,int64_t 
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x20),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -45527,7 +45527,7 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext,int64_t ValidationContext)
   }
   LoopOffset = *(int64_t *)(ResourceTablePointerPointer + 0xa0);
   while (LoopOffset != 0) {
-    StatusCharacterPointer = (char *)(LoopOffset + 0x141);
+    StatusCallbackFunctionPointer = (char *)(LoopOffset + 0x141);
     LoopOffset = *(int64_t *)(LoopOffset + 0x138);
     if (*StatusCharacterPointer != '\0') {
             ExecuteSystemEmergencyExit();
@@ -49947,8 +49947,8 @@ void ExecuteCharacterProcessingCallback(uint8_t ObjectContext,int64_t Validation
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + 0x158);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + 0x158);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x20) + 0x148,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -49974,8 +49974,8 @@ void ExecuteDataValidationCallback(uint8_t ObjectContext,int64_t ValidationConte
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + 0x178);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x20) + 0x178);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x20) + 0x168,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -50043,8 +50043,8 @@ void ExecuteIndirectCleanupCallback(uint8_t ObjectContext,int64_t ValidationCont
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x158);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x158);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x148,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -50071,8 +50071,8 @@ void ExecuteIndirectExtendedCleanupCallback(uint8_t ObjectContext,int64_t Valida
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x178);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x178);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x168,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -51369,8 +51369,8 @@ void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationCont
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextTertiaryResourceManagerOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextTertiaryResourceManagerOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextTertiaryResourceManagerOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -53028,8 +53028,8 @@ void ExecuteSystemCleanupCallback(uint8_t ObjectContext, int64_t ValidationConte
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x158);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x158);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x148,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -53056,8 +53056,8 @@ void ExecuteSystemCleanupCallbackSecondary(uint8_t ObjectContext, int64_t Valida
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x178);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x178);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x168,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -53084,8 +53084,8 @@ void ExecuteSystemCleanupCallbackTertiary(uint8_t ObjectContext, int64_t Validat
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -58616,8 +58616,8 @@ void ExecuteResourceContextCleanupCallbackA(uint8_t ObjectContext,int64_t Valida
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x170) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x170) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x170),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -62723,8 +62723,8 @@ void SystemUnwindHandlerG(uint8_t ObjectContext,int64_t ValidationContext,uint8_
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x50);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x50);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -64089,8 +64089,8 @@ void ExecuteSystemCleanupCallback3(uint8_t ObjectContext,int64_t ValidationConte
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x18);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x18);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -65060,8 +65060,8 @@ void ResetBufferState(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x18);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x18);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -69735,8 +69735,8 @@ void ExecuteSystemResourceCleanupOperation(uint8_t ObjectContext,int64_t Validat
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -69757,8 +69757,8 @@ void ExecuteSystemResourceCleanupOperationExtended(uint8_t ObjectContext,int64_t
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -69969,8 +69969,8 @@ void CleanupResourceHashStatusAddressOffset30(uint8_t ObjectContext,int64_t Vali
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x48) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x48) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x48),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -84758,8 +84758,8 @@ void Unwind_18090d320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset8) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset8) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -84772,8 +84772,8 @@ void Unwind_18090d330(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset8) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset8) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -84786,8 +84786,8 @@ void Unwind_18090d340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset0) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset0) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset0),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -84800,8 +84800,8 @@ void Unwind_18090d350(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset0) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset0) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset0),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -85762,8 +85762,8 @@ void Unwind_18090d500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x28) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x28) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x28),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -85790,8 +85790,8 @@ void Unwind_18090d510(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0xe8) + 0xd0);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0xe8) + 0xd0);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0xe8) + 0xc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89128,8 +89128,8 @@ void Unwind_18090ed00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x80) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x80) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x80),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89142,8 +89142,8 @@ void Unwind_18090ed10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x80) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x80) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x80),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89283,8 +89283,8 @@ void Unwind_18090ed90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x178) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x178) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x178),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89297,8 +89297,8 @@ void Unwind_18090eda0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ResourceSecurityProcessingOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ResourceSecurityProcessingOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ResourceSecurityProcessingOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89347,8 +89347,8 @@ void Unwind_18090ede0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x88) + 0x30);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x88) + 0x30);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x88) + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89397,8 +89397,8 @@ void Unwind_18090ee20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ResourceSecurityProcessingOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ResourceSecurityProcessingOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ResourceSecurityProcessingOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89425,8 +89425,8 @@ void Unwind_18090ee40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset) + 0x30);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset) + 0x30);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset) + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89475,8 +89475,8 @@ void Unwind_18090ee80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0xe8) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0xe8) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0xe8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89489,8 +89489,8 @@ void Unwind_18090ee90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + 0x178) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x178) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + 0x178),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -89793,8 +89793,8 @@ void Unwind_18090ef80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + ValidationContextCleanupFunctionOffset);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
@@ -90153,8 +90153,8 @@ void Unwind_18090f0e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   code *CallbackFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x68);
-  if (CharacterPointer != (code *)0x0) {
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x68);
+  if (CallbackFunctionPointer != (code *)0x0) {
     (*CharacterPointer)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x58,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
