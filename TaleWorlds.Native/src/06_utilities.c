@@ -3048,9 +3048,9 @@ uint8_t LogMessageHandlerManager;
 uint8_t LogSystemTimestampManager;
 uint8_t LogMemoryPoolManager;
 uint8_t LogSystemThreadManager;
-int64_t SystemPerformanceCounter;
+int64_t SystemPerformanceTickCount;
 uint SystemConfigurationVersion;
-double SystemTimingData;
+double SystemElapsedTime;
 double SystemFrequencyData;
 int SystemStatusFlags;
 double SystemPerformanceMetrics;
@@ -4527,12 +4527,16 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
  * @return 处理结果，成功返回0，失败返回错误码
  * 
  * @note 该函数是系统请求处理的核心入口点，确保所有请求都经过适当的验证和处理
+ * 
+ * @warning 该函数包含复杂的资源管理和内存操作，需要谨慎处理
+ * 
+ * @see ValidateObjectContext, ProcessSystemObjectValidation, InitializeMemoryContext
  */
-uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
+uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t SystemContext)
 {
   int64_t *ResultPointer;
   int64_t *ResourceTablePointer;
-  int64_t *ResourceIterator;
+  int64_t *ResourceIndexCounter;
   int ObjectValidationStatusCode;
   uint SystemProcessResult;
   uint64_t OperationResult;
@@ -4575,7 +4579,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
         ResourceDataPointer = NullDataPointer;
       }
       ContextDataPointer = NullDataPointer;
-      ResourceIterator = NullDataPointer;
+      ResourceIndexCounter = NullDataPointer;
       if (ResourceDataPointer != (int64_t *)0x0) {
         ContextDataPointer = ResourceDataPointer + ResourcePointerOffset;
       }
@@ -4590,7 +4594,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
           }
           return SystemOperationStatusCode;
         }
-        if ((int)CleanupDataPointer[5] <= (int)ResourceIterator) {
+        if ((int)CleanupDataPointer[5] <= (int)ResourceIndexCounter) {
           return ErrorInvalidObjectHandle;
         }
         ResourceDataPointer = ContextDataPointer + ResourceDataEntryOffset;
@@ -4608,7 +4612,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
           ContextDataPointer = ResourceDataPointer + ResourcePointerOffset;
         }
         ResourceTablePointerPointer = ResourceTablePointerPointer + ResourcePointerOffset;
-        ResourceIterator++;
+        ResourceIndexCounter++;
       }
       return ErrorInvalidObjectHandle;
     }
@@ -4689,12 +4693,12 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
   
   StatusUpdateResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextPointerArray);
   if ((int)StatusUpdateResult == 0) {
-    ObjectCollectionIterator = *(int64_t **)(SystemContextPointers[0] + ContextHandlesIteratorOffset);
-    while ((*(int64_t **)(SystemContextPointers[0] + ContextHandlesIteratorOffset) <= ObjectCollectionIterator &&
-           (ObjectCollectionIterator < *(int64_t **)(SystemContextPointers[0] + ContextHandlesIteratorOffset) + *(int *)(SystemContextPointers[0] + ContextHandlesCapacityOffset)))) {
+    ObjectCollectionIterator = *(int64_t **)(SystemContextPointerArray[0] + ContextHandlesIteratorOffset);
+    while ((*(int64_t **)(SystemContextPointerArray[0] + ContextHandlesIteratorOffset) <= ObjectCollectionIterator &&
+           (ObjectCollectionIterator < *(int64_t **)(SystemContextPointerArray[0] + ContextHandlesIteratorOffset) + *(int *)(SystemContextPointerArray[0] + ContextHandlesCapacityOffset)))) {
       ObjectInstancePointer = *ObjectCollectionIterator;
       ObjectCollectionIterator = ObjectCollectionIterator + 1;
-      if ((*(int64_t *)(ObjectInstancePointer + ObjectContextValidationDataOffset) == *(int64_t *)(SystemContextPointers[0] + ObjectHandleSecondaryOffset)) &&
+      if ((*(int64_t *)(ObjectInstancePointer + ObjectContextValidationDataOffset) == *(int64_t *)(SystemContextPointerArray[0] + ObjectHandleSecondaryOffset)) &&
          (ObjectInstancePointer = *(int64_t *)(ObjectInstancePointer + ObjectContextOffset), ObjectInstancePointer != 0)) {
         ObjectStatusFlagsPointer = (uint *)(ObjectInstancePointer + SystemContextFlagCheckOffset);
         *ObjectStatusFlagsPointer = *ObjectStatusFlagsPointer | 4;
@@ -4754,17 +4758,6 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 
 
 
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数负责增加指定对象的引用计数，用于对象生命周期管理
- * 当对象被引用时，调用此函数来增加引用计数，确保对象不会被意外释放
- * 包含对象上下文验证和系统状态检查
- * 
- * @param ObjectContext 对象上下文指针，包含对象的引用信息和状态数据
- * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
- * @note 如果对象句柄无效，返回ErrorInvalidObjectHandle
- */
 /**
  * @brief 增加对象引用计数
  * 
