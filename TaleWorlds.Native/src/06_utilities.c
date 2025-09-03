@@ -8537,7 +8537,7 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer, int64_t Cont
       return ErrorResourceValidationFailed;
     }
     
-    uint32_t ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), MatrixValidationBuffer);
+    uint32_t ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), MatrixValidationBuffer);
     if ((int)ContextValidationResult != 0) {
       return ContextValidationResult;
     }
@@ -22694,12 +22694,14 @@ ResourceProcessingMain:
 
 
 /**
- * @brief 获取资源数据指针A
+ * @brief 获取资源数据地址并进行验证
  * 
- * 该函数负责获取系统的资源数据指针A
- * 用于访问和操作资源数据
+ * 该函数负责获取系统的资源数据地址，并进行完整性验证
+ * 通过多层验证确保资源数据的正确性和安全性
  * 
- * @return 返回资源数据指针
+ * @return uint8_t* 返回资源数据指针，如果验证失败则返回错误代码
+ * @note 该函数会进行资源哈希验证、状态检查和数据完整性验证
+ * @warning 返回的指针需要在使用后进行适当的内存管理
  */
 uint8_t * GetResourceDataAddressWithValidation(void)
 
@@ -22735,6 +22737,15 @@ uint8_t * GetResourceDataAddressWithValidation(void)
   float SecondaryFloatResult;
   float ResourceHashValidationValue;
   float CalculatedFloatResult;
+  uint8_t *ResourceHashPointer;
+  uint8_t *ResourceHashAddress;
+  uint32_t *ResourceHashSecondaryPointer;
+  uint8_t *ResourceHashDataPointer;
+  uint32_t ResourceValidationCounter;
+  uint32_t ResourceHashStatusSecondary;
+  uint32_t ResourceHashStatusTertiary;
+  uint32_t ResourceLoopIncrement;
+  uint32_t ResourceProcessingCount;
   
   if (*(int *)(InputParameter + 0x18) != 0) {
     return (uint8_t *)0x1c;
