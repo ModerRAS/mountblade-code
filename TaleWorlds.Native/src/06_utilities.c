@@ -5030,7 +5030,7 @@ uint8_t ValidateCharacterInput(char CharacterParameter) {
  * 
  * @return void 无返回值
  */
-void SetupSystemResources(void) {
+void InitializeSystemResources(void) {
   // 预留系统资源初始化逻辑
   return;
 }
@@ -5048,7 +5048,7 @@ void SetupSystemResources(void) {
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  * @warning 验证失败时会触发系统退出操作
  */
-uint8_t VerifyObjectHandle(int64_t ObjectHandleToValidate) {
+uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
   uint8_t ObjectValidationResult;
   int64_t ValidatedObjectContextPointer;
   
