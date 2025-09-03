@@ -766,10 +766,10 @@ uint32_t NetworkBandwidthUsage;                     // 网络带宽使用量
 uint32_t NetworkLatency;                            // 网络延迟
 uint32_t NetworkPacketLoss;                         // 网络数据包丢失率
 uint32_t NetworkPacketRetransmissionCount;          // 网络数据包重传次数
-uint32_t NetworkActiveConnectionCount;             // 活跃网络连接数量
+uint32_t NetworkActiveConnectionsCount;             // 活跃网络连接数量
 
 uint32_t NetworkConnectionRequestQueue;
-uint32_t NetworkPendingRequestCount;
+uint32_t NetworkPendingRequestsCount;
 uint32_t NetworkSecurityConfigurationFlags;
 uint32_t NetworkAuthenticationSecurityLevel;
 uint32_t NetworkEncryptionAlgorithmType;
@@ -777,8 +777,8 @@ uint32_t NetworkCompressionAlgorithmType;
 uint32_t NetworkConnectionStatistics;
 uint32_t NetworkSessionEncryptionKey;
 uint32_t NetworkSessionTimeoutDuration;
-uint32_t NetworkPortRangeStart;
-uint32_t NetworkPortRangeEnd;
+uint32_t NetworkPortRangeStartValue;
+uint32_t NetworkPortRangeEndValue;
 uint32_t NetworkConnectionExtendedFlags;
 uint32_t NetworkRetryInterval;
 uint32_t NetworkTimeoutInterval;
@@ -841,7 +841,7 @@ uint32_t NetworkConnectionContextSize;
 uint32_t NetworkConnectionPoolManager;
 uint32_t NetworkConnectionPoolData;
 uint32_t NetworkConnectionPoolIndex;
-uint32_t NetworkConnectionPoolMaxCapacity;
+uint32_t NetworkConnectionPoolCapacity;
 uint32_t NetworkSocketContext;
 uint32_t NetworkSocketContextSize;
 uint32_t NetworkSocketData;
@@ -875,14 +875,13 @@ uint32_t NetworkCallbackIndex;
 
 // 网络连接处理变量
 uint32_t ProcessedNetworkConnectionPacketHandle;          // 已处理的网络连接数据包句柄
-uint32_t NetworkConnectionTableHandle;                    // 网络连接表句柄
 uint32_t NetworkSecurityValidationData;                    // 网络安全验证数据
-uint32_t NetworkBufferTemplate;                     // 网络缓冲区模板
+uint32_t NetworkBufferTemplatePointer;                     // 网络缓冲区模板指针
 uint32_t NetworkConnectionDefaultData;                    // 网络连接默认数据
 uint32_t NetworkConnectionSourceAddress;                   // 网络连接源地址
 uint32_t NetworkConnectionArrayIndex;                      // 网络连接数组索引
 uint32_t NetworkPacketArrayPointer;                        // 网络数据包数组指针
-uint32_t NetworkConnectionPrimaryContext;           // 网络连接主上下文
+uint32_t NetworkConnectionPrimaryContextPointer;           // 网络连接主上下文指针
 uint32_t NetworkPacketEntryPointer;                        // 网络数据包条目指针
 uint32_t NetworkConnectionTargetAddress;                   // 网络连接目标地址
 uint32_t NetworkConnectionIndexCounter;                    // 网络连接索引计数器
