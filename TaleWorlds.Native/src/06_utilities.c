@@ -7702,12 +7702,12 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
     if (OperationResult < 8) {
       OperationStatusCode = 8;
     }
-    if (OperationResult < ObjectContext) goto SystemErrorHandler;
+    if (OperationResult < ObjectContext) goto SystemOperationErrorHandler;
     if (OperationResult != 0) {
-      if (0x3ffffffe < OperationResult * 8 - 1U) goto SystemErrorHandler;
+      if (0x3ffffffe < OperationResult * 8 - 1U) goto SystemOperationErrorHandler;
       SystemContext = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),OperationResult * 8,&ResourceAllocationTemplate,
                                 0xf4);
-      if (SystemContext == 0) goto SystemErrorHandler;
+      if (SystemContext == 0) goto SystemOperationErrorHandler;
       if (*(int *)(ResourceContext + ResourceCountOffset) != 0) {
               memcpy(SystemContext,*(uint8_t *)(ResourceContext + ResourceDataPointerOffset),(int64_t)*(int *)(ResourceContext + ResourceCountOffset) << 3
               );
