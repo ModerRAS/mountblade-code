@@ -54409,40 +54409,51 @@ void SetSystemManagerParameters(void* SystemResourceManager,uint32_t Configurati
  * @param AdditionalParameter 回调函数参数3
  * @param ConfigurationFlag 回调函数参数4
  */
+/**
+ * @brief 系统回调函数管理器
+ * 
+ * 该函数负责管理系统回调函数的初始化和设置，处理系统全局数据引用。
+ * 它会调用其他相关函数来完成回调函数的配置和清理工作。
+ * 
+ * @param SystemResourceManager 回调函数参数1
+ * @param ConfigurationDataPointer 回调函数参数2  
+ * @param AdditionalParameter 回调函数参数3
+ * @param ConfigurationFlag 回调函数参数4
+ */
 void SystemCallbackManager(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *pointerToUnsignedStackFlag88;
-  void* SystemFlagTertiary;
-  uint32_t SystemUnsignedFlagSecondary;
-  void* SystemProcessFlagsSecondary;
+  void* systemFlagTertiary;
+  uint32_t systemUnsignedFlagSecondary;
+  void* systemProcessFlagsSecondary;
   void* encryptionValue68;
-  void* ThreadContextFlag;
+  void* threadContextFlag;
   void* systemProcessFlags58;
-  uint32_t ConcatenatedSystemValue;
-  void* SystemEncryptionKey;
-  void* SystemOperationCounter;
-  void*2 SystemContextValue;
-  void* stackPointer36;
-  void* stackPointer2E;
-  void*2 SystemPointerValue;
-  void* ConcatenatedSystemValue;
+  uint32_t concatenatedSystemValue;
+  void* systemEncryptionKey;
+  void* systemOperationCounter;
+  void* systemContextValue;
+  void* systemStackPointer36;
+  uint32_t systemStackValue2E;
+  void* systemPointerValue;
+  void* systemControlValue;
   
-  ConcatenatedSystemValue = 0xfffffffffffffffe;
+  concatenatedSystemValue = 0xfffffffffffffffe;
   pointerToUnsignedStackFlag88 = &SystemGlobalDataReference;
-  SystemProcessFlagsSecondary = 0;
-  SystemFlagTertiary = 0;
-  SystemUnsignedFlagSecondary = 0;
+  systemProcessFlagsSecondary = 0;
+  systemFlagTertiary = 0;
+  systemUnsignedFlagSecondary = 0;
   encryptionValue68 = 0;
   SystemThreadContext = 0;
   systemProcessFlags58 = 0;
-  ThreadContextFlag = 3;
-  SystemContextValue = 0;
-  SystemEncryptionKey = 0;
-  SystemOperationCounter = 0;
-  SystemPointerValue = 0;
-  SystemControlValue = 0;
-  uStack_2e = 0;
+  threadContextFlag = 3;
+  systemContextValue = 0;
+  systemEncryptionKey = 0;
+  systemOperationCounter = 0;
+  systemPointerValue = 0;
+  systemControlValue = 0;
+  systemStackValue2E = 0;
   ProcessSystemResourceAllocation(&pointerToUnsignedStackFlag88,SystemResourceManager,AdditionalParameter,ConfigurationFlag,&encryptionValue68);
   CleanupSystemResourceData(&pointerToUnsignedStackFlag88,AdditionalParameter);
   ResetResourceManager(&pointerToUnsignedStackFlag88);

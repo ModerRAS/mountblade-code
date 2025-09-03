@@ -5226,13 +5226,13 @@ uint8_t ValidateCharacterSafety(char CharacterToValidate) {
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
 uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
-  uint8_t ValidationResult;
+  uint8_t HandleValidationStatus;
   int64_t ValidatedContextMemoryAddress;
   
   // 验证对象上下文并获取内存地址
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedContextMemoryAddress);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  HandleValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedContextMemoryAddress);
+  if ((int)HandleValidationStatus != 0) {
+    return HandleValidationStatus;
   }
   
   // 调整验证后的内存地址
