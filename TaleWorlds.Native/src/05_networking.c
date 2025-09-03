@@ -216,7 +216,7 @@ uint32_t NetworkPerformDataTransfer(int64_t SourceBuffer, uint32_t TransferSize,
  * @param HasPriorityFlag 是否具有优先级标志
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t HandleNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
+uint32_t NetworkHandlePacket(int64_t PacketBuffer, bool HasPriorityFlag);
 
 /**
  * @brief 创建网络迭代上下文
