@@ -4228,21 +4228,21 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int ProcessingStatus;
+  int OperationResult;
   int64_t CurrentObjectIndex;
   int ProcessedObjectCount;
-  uint8_t MetaDataBuffer[32];
+  uint8_t ObjectMetaDataBuffer[32];
   int64_t ObjectHandleBuffer[2];
-  uint8_t *BufferData;
+  uint8_t *DataBufferPointer;
   int CurrentPosition;
   uint32_t MaximumProcessableObjects;
   uint8_t ProcessingWorkspace[512];
   uint64_t SecurityValidationKey;
   
-  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)MetaDataBuffer;
-  ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleBuffer);
-  if ((ProcessingStatus == 0) && (*(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
-    BufferData = ProcessingWorkspace;
+  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetaDataBuffer;
+  OperationResult = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleBuffer);
+  if ((OperationResult == 0) && (*(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
+    DataBufferPointer = ProcessingWorkspace;
     ProcessedObjectCount = 0;
     CurrentPosition = 0;
     MaximumProcessableObjects = MaximumProcessableItemsLimit;
