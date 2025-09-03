@@ -4189,7 +4189,7 @@ Label_18004e088:
   SystemDataConfigure(SystemDataPointer + 0x20,&puStack_148);
   StringSearchResult = CalculateGameLogic(LongAddress,acStack_336,SystemDataPointer + 0x20);
   if (acStack_336[0] == '\0') {
-    ProcessGamePhysics(extraout_XMM0_Da_00,SystemDataPointer);
+    ProcessGamePhysics(PhysicsProcessorOutput,SystemDataPointer);
     goto Label_18004e088;
   }
   if (StringSearchResult != LongAddress) {
@@ -5353,10 +5353,10 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
   uint64_t *pMemoryAddress;
   longlong LongCounter;
   uint64_t *StringProcessingResultPointer;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
+  longlong StackFramePointer;
+  longlong LoopCounterRegister;
   param_3 = param_3 - param_2;
-  LongCounter = unaff_RDI * -0x20;
+  LongCounter = LoopCounterRegister * -0x20;
   StringProcessingResultPointer = (uint64_t *)(param_2 + 8);
   do {
     pMemoryAddress = StringProcessingResultPointer + -4;
@@ -5364,7 +5364,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       CleanupSystemResources();
     }
     *(uint64_t *)(param_3 + 0x10 + (longlong)pMemoryAddress) = 0;
-    unaff_RDI = unaff_RDI + -1;
+    LoopCounterRegister = LoopCounterRegister + -1;
     *(uint64_t *)(param_3 + (longlong)pMemoryAddress) = 0;
     *(uint32_t *)(param_3 + 8 + (longlong)pMemoryAddress) = 0;
     *(uint32_t *)(param_3 + 8 + (longlong)pMemoryAddress) = *(uint32_t *)(StringProcessingResultPointer + -3);
@@ -5375,8 +5375,8 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
     *pMemoryAddress = 0;
     StringProcessingResultPointer[-2] = 0;
     StringProcessingResultPointer = pMemoryAddress;
-  } while (0 < unaff_RDI);
-  return unaff_RBP + LongCounter;
+  } while (0 < LoopCounterRegister);
+  return StackFramePointer + LongCounter;
 }
       SystemMemoryInitialized = SystemMemoryInitialized == '\0';
     }
@@ -6885,18 +6885,18 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
       } while (ColorRemainingElements != 0);
     }
     
-    // 处理0x21格式的剩余元素标准化
-    if (format_21_loop_counter < format_21_total_elements) {
-      format_21_output_buffer = format_21_output_buffer + 2;
-      uint64_t format_21_remaining_elements = (ulonglong)(uint)(format_21_total_elements - format_21_loop_counter);
+    // 处理颜色校正格式的剩余元素标准化
+    if (ColorCorrectionLoopCounter < ColorTotalElements) {
+      ColorOutputBuffer = ColorOutputBuffer + 2;
+      uint64_t ColorRemainingElements = (ulonglong)(uint)(ColorTotalElements - ColorCorrectionLoopCounter);
       
       do {
-        format_21_output_buffer[-2] = (float)((double)format_21_output_buffer[-2] * format_21_luminance_sum);
-        format_21_output_buffer[-1] = (float)((double)format_21_output_buffer[-1] * format_21_luminance_sum);
-        *format_21_output_buffer = (float)((double)*format_21_output_buffer * format_21_luminance_sum);
-        format_21_output_buffer = format_21_output_buffer + 4;
-        format_21_remaining_elements = format_21_remaining_elements - 1;
-      } while (format_21_remaining_elements != 0);
+        ColorOutputBuffer[-2] = (float)((double)ColorOutputBuffer[-2] * ColorLuminanceSum);
+        ColorOutputBuffer[-1] = (float)((double)ColorOutputBuffer[-1] * ColorLuminanceSum);
+        *ColorOutputBuffer = (float)((double)*ColorOutputBuffer * ColorLuminanceSum);
+        ColorOutputBuffer = ColorOutputBuffer + 4;
+        ColorRemainingElements = ColorRemainingElements - 1;
+      } while (ColorRemainingElements != 0);
     }
   }
   return 1;
@@ -12301,7 +12301,7 @@ uint64_t SystemDataInitialize(int initFlags)
   int LoopCounter8;
   float ColorComponentR;
   uint64_t BufferSize0;
-  uint64_t extraout_XMM0_Qb;
+  uint64_t VectorCalculationResult;
   float ColorComponentG;
   uint8_t in_XMM2 [16];
   uint8_t aBufferSize1 [16];
@@ -12341,8 +12341,8 @@ uint64_t SystemDataInitialize(int initFlags)
         BufferSize0 = GetUIRenderState();
         aBufferSize5._0_4_ = (float)BufferSize0 * 2.0;
         aBufferSize5._4_4_ = (float)((ulonglong)BufferSize0 >> 0x20) * 2.0;
-        aBufferSize5._8_4_ = (float)extraout_XMM0_Qb * 2.0;
-        aBufferSize5._12_4_ = (float)((ulonglong)extraout_XMM0_Qb >> 0x20) * 2.0;
+        aBufferSize5._8_4_ = (float)VectorCalculationResult * 2.0;
+        aBufferSize5._12_4_ = (float)((ulonglong)VectorCalculationResult >> 0x20) * 2.0;
         UnsignedIndex = (int)UnsignedSize + 4;
         UnsignedSize = (ulonglong)UnsignedIndex;
         aBufferSize1 = rcpps(in_XMM2,aBufferSize5);
