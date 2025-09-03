@@ -4945,19 +4945,19 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandle)
 uint32_t ValidateObjectHandleFromRegister(void)
 
 {
-  int64_t RegisterValue = 0;
-  int64_t MemoryPointer;
+  int64_t RegisterContent = 0;
+  int64_t MemoryAddressPointer;
   
-  if (RegisterValue == 0) {
-    MemoryPointer = 0;
+  if (RegisterContent == 0) {
+    MemoryAddressPointer = 0;
   }
   else {
-    MemoryPointer = RegisterValue + -8;
+    MemoryAddressPointer = RegisterContent + -8;
   }
-  if (*(int64_t *)(MemoryPointer + ObjectContextValidationOffset) == 0) {
+  if (*(int64_t *)(MemoryAddressPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + ObjectContextValidationOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(MemoryAddressPointer + ObjectContextValidationOffset), 1);
 }
 
 
@@ -29955,6 +29955,17 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @brief 主要上下文异常处理器
  * 
  * 该函数负责处理主要异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
+/**
+ * @brief 主要上下文异常处理器
+ * 
+ * 该函数负责处理主要的异常情况，进行资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
  * 
  * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
@@ -103056,12 +103067,12 @@ void InitializeSystemResourceProcessor(void)
  * 初始化系统数据结构CQ
  * 设置全局系统数据结构指针，用于系统初始化
  */
-void InitializeSystemDataStructureCQ(void)
+void InitializeSystemQueryProcessor(void)
 /**
  * 初始化系统数据结构CQ
  * 设置全局系统数据结构指针，用于系统初始化
  */
-void InitializeSystemDataStructureCQ(void)
+void InitializeSystemQueryProcessor(void)
 
 {
   return;
@@ -103077,7 +103088,7 @@ void InitializeSystemDataStructureCQ(void)
  * 该函数负责初始化系统数据结构CR
  * 设置全局系统数据结构指针，用于系统初始化
  */
-void InitializeSystemDataStructureCR(void)
+void InitializeResourceCleanupHandler(void)
 
 {
   int64_t LoopCounter;
