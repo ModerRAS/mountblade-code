@@ -5915,26 +5915,35 @@ void ExecuteNullOperation(void)
  * @param resourceHandle 资源句柄，用于标识要处理的资源
  * @return 处理结果，0表示成功，非0表示错误码
  */
+/**
+ * @brief 处理资源句柄
+ * 
+ * 该函数负责处理资源句柄，执行相关操作
+ * 根据句柄状态决定是否触发系统操作
+ * 
+ * @param ResourceHandleIdentifier 资源句柄，用于标识要处理的资源
+ * @return 处理结果，0表示成功，非0表示错误码
+ */
 uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 
 {
-  uint8_t ContextValidationStatus;
-  int64_t ValidatedResourcePointer;
+  uint8_t ValidationStatus;
+  int64_t ResourceMemoryAddress;
   
-  ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandleIdentifier + ObjectContextDataArrayOffset),&ValidatedResourcePointer);
-  if ((int)ContextValidationStatus != 0) {
-    return ContextValidationStatus;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandleIdentifier + ObjectContextDataArrayOffset),&ResourceMemoryAddress);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  if (ValidatedResourcePointer == 0) {
-    ValidatedResourcePointer = 0;
+  if (ResourceMemoryAddress == 0) {
+    ResourceMemoryAddress = 0;
   }
   else {
-    ValidatedResourcePointer = ValidatedResourcePointer - 8;
+    ResourceMemoryAddress = ResourceMemoryAddress - 8;
   }
-  if (*(int64_t *)(ValidatedResourcePointer + ObjectContextValidationDataOffset) == 0) {
+  if (*(int64_t *)(ResourceMemoryAddress + ObjectContextValidationDataOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ValidatedResourcePointer + ObjectContextValidationDataOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ResourceMemoryAddress + ObjectContextValidationDataOffset),1);
 }
 
 
