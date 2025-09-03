@@ -1098,7 +1098,7 @@ NETWORK_PROCESSING_LOOP:
  */
 NetworkHandle NetworkProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
-  NetworkStatus *NetworkContextDataArray;
+  NetworkStatus *NetworkConnectionContextData;
   int32_t NetworkPacketProcessingStatus;
   int64_t NetworkConnectionContextHandle;
   NetworkStatus ConnectionValidationStatus;
@@ -1113,11 +1113,11 @@ NetworkHandle NetworkProcessConnectionStatus(NetworkHandle ConnectionContext, in
   NetworkStatusBuffer = (NetworkStatus *)0x0;
   if (NetworkOperationCode == 0) {
 NETWORK_PROCESSING_LOOP:
-    if ((0 < *(int *)((long long)NetworkOperationStatusBuffer + 0xc)) && (*NetworkOperationStatusBuffer != 0)) {
+    if ((0 < *(int *)((long long)NetworkOperationStatusBuffer + ConnectionParameterOffset)) && (*NetworkOperationStatusBuffer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *NetworkOperationStatusBuffer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
     *NetworkOperationStatusBuffer = (long long)ProcessedConnectionHandlePacket;
-    *(int *)((long long)NetworkOperationStatusBuffer + 0xc) = NetworkOperationCode;
+    *(int *)((long long)NetworkOperationStatusBuffer + ConnectionParameterOffset) = NetworkOperationCode;
     return 0;
   }
   if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
