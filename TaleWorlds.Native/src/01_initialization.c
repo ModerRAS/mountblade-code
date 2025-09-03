@@ -18817,43 +18817,43 @@ void SetDefaultSystemPointer(void** systemPointer)
 void InitializeSystemInfoAndUserEnvironment(void)
 
 {
-  void* *systemInfoPtr;
-  code *systemCallback;
-  long long SystemHandle;
+  void** systemInfoPtr;
+  void* systemCallback;
+  long long systemHandle;
   int operationResult;
-  void* SystemAllocationFlags;
-  long long *controllerPtr;
-  uint8_t SystemEncryptionBuffer [32];
-  void* *SystemConfigurationTemplatePointer;
-  void* *SystemStringTemplatePointer;
-  void* *SystemStringTemplatePointerSecondary;
-  long long *SystemMemoryOffsetPointer;
-  uint32_t GameControllerStatusFlag;
-  void* *SystemGlobalDataReferencePointer;
-  void* *SystemFunctionPointer;
-  uint32_t SystemInitFlag;
-  ulong long SystemFlags;
-  void* *SystemGlobalDataReferencePointerSecondary;
-  void* *SystemFunctionPointerSecondary;
-  uint32_t SystemDataProcessingFlag;
-  ulong long SystemFlags2;
-  void* *GameControllerPointer;
-  long long SystemMemorySize;
-  uint32_t SystemOperationFlags;
-  void* SystemMemoryHandle;
-  long long *MemorySystemPointer;
-  void* *SystemMemoryTemplatePointer;
-  void* *SystemDataBufferPointer;
-  uint32_t SystemDataFlags;
-  void* SystemDataArray [32];
-  long long **ApplicationPointerArray [3];
-  uint8_t SystemDataProcessingBuffer [272];
-  uint8_t SystemTemporaryBuffer [32];
-  ulong long SystemEncryptionKey;
+  void* systemAllocationFlags;
+  long long* controllerPtr;
+  uint8_t systemEncryptionBuffer[32];
+  void** systemConfigurationTemplatePointer;
+  void** systemStringTemplatePointer;
+  void** systemStringTemplatePointerSecondary;
+  long long* systemMemoryOffsetPointer;
+  uint32_t gameControllerStatusFlag;
+  void** systemGlobalDataReferencePointer;
+  void** systemFunctionPointer;
+  uint32_t systemInitFlag;
+  unsigned long long systemFlags;
+  void** systemGlobalDataReferencePointerSecondary;
+  void** systemFunctionPointerSecondary;
+  uint32_t systemDataProcessingFlag;
+  unsigned long long systemFlags2;
+  void** gameControllerPointer;
+  long long systemMemorySize;
+  uint32_t systemOperationFlags;
+  void* systemMemoryHandle;
+  long long* memorySystemPointer;
+  void** systemMemoryTemplatePointer;
+  void** systemDataBufferPointer;
+  uint32_t systemDataFlags;
+  void* systemDataArray[32];
+  long long** applicationPointerArray[3];
+  uint8_t systemDataProcessingBuffer[272];
+  uint8_t systemTemporaryBuffer[32];
+  unsigned long long systemEncryptionKey;
   
   SystemStackFlag = 0xfffffffffffffffe;
-  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemEncryptionBuffer;
-  GameControllerStatusFlag = 0;
+  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (unsigned long long)systemEncryptionBuffer;
+  gameControllerStatusFlag = 0;
   if (*(char *)(SystemContextManagerPointer + 0x18) == '\0') {
     InitializeGameController(&SystemGameControllerBuffer);
     (**(code **)(**(long long **)(SystemGlobalStatusFlags + 0x2b0) + 0x98))
@@ -19931,13 +19931,22 @@ void UpdateSystemConfigurationParameter(uint64_t ConfigHandle, uint32_t ConfigVa
  * @param freeParameter2 释放参数2
  * @return 返回处理后的资源指针
  */
-void*
-ReleaseSystemMemoryResource(void* resourcePointer, uint64_t freeFlags, uint64_t freeParameter1, uint64_t freeParameter2)
-
+/**
+ * @brief 释放系统内存资源
+ * 
+ * 该函数负责释放系统内存资源，根据释放标志来决定是否彻底释放内存。
+ * 
+ * @param resourcePointer 资源指针的指针
+ * @param freeFlags 释放标志，指定释放的方式和选项
+ * @param freeParameter1 释放参数1
+ * @param freeParameter2 释放参数2
+ * @return 资源指针
+ */
+void* ReleaseSystemMemoryResource(void** resourcePointer, uint64_t freeFlags, uint64_t freeParameter1, uint64_t freeParameter2)
 {
   *resourcePointer = &SystemMemoryResourceTemplate;
   if ((freeFlags & 1) != 0) {
-    free(resourcePointer,0x38,freeParameter1,freeParameter2,InvalidHandleValue);
+    free(resourcePointer, 0x38, freeParameter1, freeParameter2, InvalidHandleValue);
   }
   return resourcePointer;
 }
@@ -20186,17 +20195,27 @@ void InitializeSystemReferencePointers(void* *SystemReferencePointer)
 
 
 
-void* *
-InitializeSystemReferencePointersWithCleanup(void* *SystemReferencePointer,ulong long CleanupFlags,void* CleanupParameter1,void* CleanupParameter2)
-
+/**
+ * @brief 初始化系统引用指针并支持清理
+ * 
+ * 该函数负责初始化系统引用指针，设置默认的内存模板引用。
+ * 同时支持根据清理标志来释放相关资源。
+ * 
+ * @param systemReferencePointer 系统引用指针的指针
+ * @param cleanupFlags 清理标志，指定是否需要释放资源
+ * @param cleanupParameter1 清理参数1
+ * @param cleanupParameter2 清理参数2
+ * @return 系统引用指针
+ */
+void* InitializeSystemReferencePointersWithCleanup(void** systemReferencePointer, unsigned long long cleanupFlags, void* cleanupParameter1, void* cleanupParameter2)
 {
-  *SystemReferencePointer = &SystemMemoryTemplateC;
-  *SystemReferencePointer = &SystemMemoryTemplateB;
-  *SystemReferencePointer = &SystemMemoryTemplateA;
-  if ((CleanupFlags & 1) != 0) {
-    free(SystemReferencePointer,0x20,CleanupParameter1,CleanupParameter2,InvalidHandleValue);
+  *systemReferencePointer = &SystemMemoryTemplateC;
+  *systemReferencePointer = &SystemMemoryTemplateB;
+  *systemReferencePointer = &SystemMemoryTemplateA;
+  if ((cleanupFlags & 1) != 0) {
+    free(systemReferencePointer, 0x20, cleanupParameter1, cleanupParameter2, InvalidHandleValue);
   }
-  return SystemReferencePointer;
+  return systemReferencePointer;
 }
 
 
