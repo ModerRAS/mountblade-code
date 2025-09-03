@@ -5223,6 +5223,15 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * @return void 无返回值
  * @warning 此函数会立即终止系统运行，只在严重错误时使用
  */
+/**
+ * @brief 触发系统异常
+ * 
+ * 该函数用于触发系统级别的异常处理，通过调用系统退出操作来
+ * 处理不可恢复的系统错误。通常在遇到严重错误时调用。
+ * 
+ * @return void 无返回值
+ * @note 此函数会立即终止当前进程的执行
+ */
 void RaiseSystemException(void) {
   ExecuteSystemExitOperation();
 }
