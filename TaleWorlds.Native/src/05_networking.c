@@ -146,7 +146,7 @@
  * @param SecondTimestamp 第二个时间戳指针
  * @return uint32_t 比较结果：0表示相等，正数表示第一个大于第二个，负数表示第一个小于第二个
  */
-uint32_t CompareNetworkTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
+uint32_t NetworkCompareTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
 
 /**
  * @brief 处理网络连接数据包数据
@@ -158,7 +158,7 @@ uint32_t CompareNetworkTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimest
  * @param BufferSize 缓冲区大小指针
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
+uint32_t NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
 
 /**
  * @brief 发送网络数据包

@@ -67666,7 +67666,18 @@ void ProcessSystemResourceManagerThread(long long SystemResourceManager,long lon
 
 
 
-// 函数: void InitializeSystemResourceManagerData(void)
+/**
+ * @brief 初始化系统资源管理器数据
+ * 
+ * 该函数负责初始化系统资源管理器的数据结构，包括哈希表、内存块和
+ * 资源计数器。它会设置资源管理器的基本数据结构，为后续的资源
+ * 管理操作提供基础支持。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保资源管理器数据结构正确初始化。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void InitializeSystemResourceManagerData(void)
 
 {
