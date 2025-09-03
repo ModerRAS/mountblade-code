@@ -192,7 +192,7 @@ uint32_t NetworkValidatePacketIntegrity(int64_t PacketData, int64_t ConnectionCo
  * @param RequestBuffer 请求缓冲区指针
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t HandleNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
+uint32_t NetworkHandleConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
 
 /**
  * @brief 执行网络数据传输
@@ -205,7 +205,7 @@ uint32_t HandleNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *Req
  * @param TransferFlags 传输标志
  * @return uint32_t 传输结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t PerformNetworkDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
+uint32_t NetworkPerformDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
 
 /**
  * @brief 处理网络数据包

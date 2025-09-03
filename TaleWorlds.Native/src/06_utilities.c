@@ -450,7 +450,7 @@ uint32_t ExecuteSystemCommand(uint32_t OperationHandle, void* ContextBuffer);
  * @param Timeout 超时时间
  * @return 处理结果状态码
  */
-uint32_t HandleNetworkRequest(void* NetworkContext, void* RequestTemplate, uint32_t RequestType, uint32_t Priority, uint32_t Timeout);
+uint32_t ProcessNetworkRequest(void* NetworkContext, void* RequestTemplate, uint32_t RequestType, uint32_t Priority, uint32_t Timeout);
 
 /**
  * @brief 检查系统状态（无参数版本）
@@ -6997,22 +6997,33 @@ void ValidateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t Schedule
  * @param ObjectContext 对象上下文指针，包含对象的状态信息
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  */
+/**
+ * @brief 验证对象状态并分派处理（版本B）
+ * 
+ * 该函数验证对象状态并在验证通过后执行相应的资源释放操作。
+ * 主要用于对象状态检查和调度器资源的清理工作。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的标识符和状态信息
+ * @param SchedulerContext 调度器上下文，包含调度相关的配置信息
+ * @return void 无返回值
+ * @note 此函数会根据对象状态决定是否释放系统上下文资源
+ */
 void ValidateObjectStateAndDispatchB(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
-  int PackageValidationStatusCode;
-  uint8_t ValidationBuffer;
+  int ValidationStatusCode;
+  uint8_t BufferContext;
   
   if (*(int *)(ObjectContext + ObjectContextMatrixFlagsOffset) == 0) {
-    PackageValidationStatusCode = ProcessSchedulerFinalization(schedulerContext,ObjectContext + ObjectContextHandleDataOffset,&ValidationBuffer);
-    if (PackageValidationStatusCode == 0) {
-      PackageValidationStatusCode = ValidateBufferContext(ValidationBuffer,ObjectContext + ObjectContextMatrixFlagsOffset);
-      if (PackageValidationStatusCode == 0) goto ValidationCompleteLabel;
+    ValidationStatusCode = ProcessSchedulerFinalization(SchedulerContext, ObjectContext + ObjectContextHandleDataOffset, &BufferContext);
+    if (ValidationStatusCode == 0) {
+      ValidationStatusCode = ValidateBufferContext(BufferContext, ObjectContext + ObjectContextMatrixFlagsOffset);
+      if (ValidationStatusCode == 0) goto ValidationCompleteLabel;
     }
     return;
   }
 ValidationCompleteLabel:
-        ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + SchedulerContextObjectOffset),ObjectContext);
+        ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + SchedulerContextObjectOffset), ObjectContext);
 }
 
 
