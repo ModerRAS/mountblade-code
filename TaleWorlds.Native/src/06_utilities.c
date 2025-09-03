@@ -74377,8 +74377,12 @@ void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationCon
  * @note 此函数访问偏移量0x90处的互斥锁句柄
  * @note 如果解锁失败会抛出C标准错误
  */
-void Unwind_SystemMutexUnlockHandler(uint8_t ObjectContext, int64_t ValidationContext)
-
+/**
+ * @brief 系统互斥锁解锁处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SystemMutexUnlockHandler(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int UnlockResult;
   
