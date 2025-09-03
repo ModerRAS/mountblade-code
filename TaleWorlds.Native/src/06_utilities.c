@@ -10985,27 +10985,27 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
 int ProcessDataWithSimplifiedValidator(int64_t ObjectContext,int64_t ValidationContext,int dataLength)
 
 {
-  int DataProcessingOffset;
-  int StringProcessingResult;
-  int TotalDataLength;
+  int ProcessedDataOffset;
+  int StringOperationResult;
+  int DataBufferSize;
   void* StringProcessingTemplate;
   
-  TotalDataLength = dataLength;
-  DataProcessingOffset = ParseDataContent(ValidationContext,TotalDataLength,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  StringProcessingResult = ProcessStringOperation(ValidationContext + DataProcessingOffset,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
-  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
-  StringProcessingResult = ProcessStringValidation(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,ObjectContext + ObjectContextValidationDataOffset,
+  DataBufferSize = dataLength;
+  ProcessedDataOffset = ParseDataContent(ValidationContext,DataBufferSize,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  StringOperationResult = ProcessStringOperation(ValidationContext + ProcessedDataOffset,DataBufferSize - ProcessedDataOffset,&StringProcessingTemplate);
+  ProcessedDataOffset = ProcessedDataOffset + StringOperationResult;
+  StringOperationResult = ProcessStringValidation(ProcessedDataOffset + ValidationContext,DataBufferSize - ProcessedDataOffset,ObjectContext + ObjectContextValidationDataOffset,
                         *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
-  StringProcessingResult = ProcessStringOperation(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
-  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
-  StringProcessingResult = ProcessResourceData(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,
+  ProcessedDataOffset = ProcessedDataOffset + StringOperationResult;
+  StringOperationResult = ProcessStringOperation(ProcessedDataOffset + ValidationContext,DataBufferSize - ProcessedDataOffset,&StringProcessingTemplate);
+  ProcessedDataOffset = ProcessedDataOffset + StringOperationResult;
+  StringOperationResult = ProcessResourceData(ProcessedDataOffset + ValidationContext,DataBufferSize - ProcessedDataOffset,
                         ObjectContext + ObjectContextValidationDataOffset + (int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * 8);
-  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
-  StringProcessingResult = ProcessStringOperation(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
-  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
-  StringProcessingResult = ValidateResourceFormat(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,*(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  return StringProcessingResult + DataProcessingOffset;
+  ProcessedDataOffset = ProcessedDataOffset + StringOperationResult;
+  StringOperationResult = ProcessStringOperation(ProcessedDataOffset + ValidationContext,DataBufferSize - ProcessedDataOffset,&StringProcessingTemplate);
+  ProcessedDataOffset = ProcessedDataOffset + StringOperationResult;
+  StringOperationResult = ValidateResourceFormat(ProcessedDataOffset + ValidationContext,DataBufferSize - ProcessedDataOffset,*(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  return StringOperationResult + ProcessedDataOffset;
 }
 
 
