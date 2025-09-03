@@ -1612,11 +1612,11 @@ void InitializeSystemDataTableAllocator(void)
     previousSystemNode = allocatedSystemNode;
   }
   
-  previousSystemNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_TABLE_SYSTEM_IDENTIFIER1;
-  previousSystemNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_TABLE_SYSTEM_IDENTIFIER2;
-  previousSystemNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SYSTEM_DATA_TABLE_SYSTEM_NODE_DATA;
-  previousSystemNode[SYSTEM_NODE_FLAG_INDEX] = SYSTEM_DATA_TABLE_SYSTEM_FLAG;
-  previousSystemNode[SYSTEM_NODE_HANDLER_INDEX] = ResourceInitializationCallback;
+  previousSystemNode[SystemNodeIdentifier1Index] = SystemDataTableSystemIdentifier1;
+  previousSystemNode[SystemNodeIdentifier2Index] = SystemDataTableSystemIdentifier2;
+  previousSystemNode[SystemNodeDataPointerIndex] = &SystemDataTableSystemNodeData;
+  previousSystemNode[SystemNodeFlagIndex] = SystemDataTableSystemFlag;
+  previousSystemNode[SystemNodeHandlerIndex] = ResourceInitializationCallback;
   return;
 }
 

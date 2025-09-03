@@ -1315,6 +1315,10 @@ uint32_t NetworkContextPointer;                            // 网络上下文指
 uint32_t NetworkContextData;                               // 网络上下文数据
 uint32_t NetworkConnectionIdentifier;                     // 网络连接标识符
 uint32_t NetworkConnectionState;                           // 网络连接状态
+uint32_t NetworkConnectionParameters;                     // 网络连接参数
+uint32_t NetworkConnectionOptions;                        // 网络连接选项
+uint32_t NetworkConnectionConfig;                         // 网络连接配置
+uint32_t NetworkConnectionSettings;                       // 网络连接设置
 
 /**
  * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
