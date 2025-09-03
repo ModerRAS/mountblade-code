@@ -52483,7 +52483,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   SystemContextPointer = (ulong long)ResourceHash;
   CurrentThreadId = 0;
   if (*(long long *)(resourceCounter + 8) == 0) {
-LAB_180070a3f:
+ResourceAllocationComplete:
     SystemOperationStatus4 = CurrentThreadId;
     if (ResourceHash != 0) {
         memcpy(SystemDataPointer0,*(void* *)(resourceCounter + 8),SystemContextPointer);
@@ -52532,7 +52532,7 @@ LAB_180070a3f:
         pUnsignedStackFlag110 = SystemDataPointer0;
         EncryptionOffset2._0_4_ = StartSystemThread(SystemDataPointer0);
       }
-LAB_180070b00:
+MemoryPoolInitialized:
         memcpy(SystemDataPointer0 + SystemContextPointer,ConfigurationDataPointer,(long long)((int)resourceDataIndex5 + 2));
     }
   }
@@ -52613,7 +52613,7 @@ LAB_180070b00:
     StackValue2 = 1;
     SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
     *SystemMemoryContext = 0;
-LAB_180070db8:
+ThreadCreationComplete:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = ConcatenatedSystemValue(SystemMemoryOffset.HighPart,ThreadContextFlag);
   }

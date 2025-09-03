@@ -30136,55 +30136,25 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 /**
- * @brief 异常处理函数：解卷主上下文异常处理器
+ * @brief 处理主上下文异常
  * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理一级异常情况的资源清理工作
- * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
- * @brief 异常处理函数：解卷主上下文异常处理器
- * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理主级异常情况的资源清理工作
- * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
- * @brief 异常处理函数：解卷主上下文异常处理器
- * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理主异常情况的资源清理工作
+ * 该函数负责处理主上下文中的异常情况，通过调用注册的异常处理器
+ * 来处理异常情况，确保系统能够正常恢复或优雅退出
  * 
  * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
+ * @warning 调用此函数会触发异常处理流程
  */
-/**
- * @brief 主要上下文异常处理器
- * 
- * 该函数负责处理主要异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
- * @brief 主要上下文异常处理器
- * 
+void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+  int64_t* ExceptionHandlerFunctionPointer;
+  
+  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
+  }
+  return;
+} 
  * 该函数负责处理主要的异常情况，进行资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
  * 
