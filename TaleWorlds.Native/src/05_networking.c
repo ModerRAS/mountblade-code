@@ -176,7 +176,7 @@ uint32_t NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int64_t 
  * @param PacketBuffer 数据包缓冲区
  * @return uint32_t 发送结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkTransmitPacket(int64_t SocketDescriptor, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
+uint32_t NetworkTransmitConnectionPacket(int64_t SocketDescriptor, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
 
 /**
  * @brief 验证网络数据包完整性
@@ -187,7 +187,7 @@ uint32_t NetworkTransmitPacket(int64_t SocketDescriptor, NetworkHandle Connectio
  * @param ConnectionContext 连接上下文
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkValidatePacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
+uint32_t NetworkValidatePacketDataIntegrity(int64_t PacketData, int64_t ConnectionContext);
 
 /**
  * @brief 处理网络连接请求
@@ -211,7 +211,7 @@ uint32_t NetworkHandleConnectionRequest(int64_t *ConnectionContext, int64_t *Req
  * @param TransferFlags 传输标志
  * @return uint32_t 传输结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkPerformDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
+uint32_t NetworkPerformSecureDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
 
 /**
  * @brief 处理网络数据包
@@ -222,7 +222,7 @@ uint32_t NetworkPerformDataTransfer(int64_t SourceBuffer, uint32_t TransferSize,
  * @param HasPriorityFlag 是否具有优先级标志
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkHandlePacket(int64_t PacketBuffer, bool HasPriorityFlag);
+uint32_t NetworkHandlePriorityPacket(int64_t PacketBuffer, bool HasPriorityFlag);
 
 /**
  * @brief 创建网络迭代上下文
@@ -234,7 +234,7 @@ uint32_t NetworkHandlePacket(int64_t PacketBuffer, bool HasPriorityFlag);
  * @param IterationFlag 迭代标志
  * @return uint32_t 创建结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkCreateIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
+uint32_t NetworkCreateConnectionIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
 
 /**
  * @brief 处理网络堆栈数据
