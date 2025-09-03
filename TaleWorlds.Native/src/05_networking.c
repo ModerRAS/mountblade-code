@@ -117,8 +117,8 @@
 #define NetworkErrorInvalidPacket 0x1c         // 无效数据包错误码
 #define NetworkConnectionFinalizeValue 0x7d    // 连接完成状态值
 #define NetworkPacketSizeLimit 0x55            // 数据包大小限制（85字节）
-#define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名
-#define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名
+#define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
+#define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
 
 // 网络缓冲区对齐和大小常量
 #define NetworkBufferAlignmentMask 0xfffffffc
