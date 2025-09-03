@@ -1564,6 +1564,19 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  * @note 此函数会进行多层验证，包括数据包解码、头部验证和完整性检查
  * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
  */
+/**
+ * @brief 验证网络数据包安全性
+ * 
+ * 验证网络数据包的安全性和完整性，包括数据包格式验证、加密验证和完整性检查。
+ * 此函数会进行多层安全验证，确保数据包的来源可信且内容未被篡改。
+ * 
+ * @param PacketData 数据包数据指针，包含待验证的数据包信息
+ * @param ConnectionContext 连接上下文，包含连接状态和安全配置信息
+ * @return NetworkHandle 验证结果句柄，0表示验证成功，非0值表示验证失败的具体错误码
+ * 
+ * @note 此函数会进行严格的安全验证，包括魔数验证、头部验证和完整性检查
+ * @warning 验证过程中如果发现任何异常，会立即返回相应的错误码
+ */
 NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
   NetworkHandle ValidationResult;                        // 验证结果
