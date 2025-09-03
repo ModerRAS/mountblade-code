@@ -104646,7 +104646,7 @@ void InitializeSystemDataStructureCU(void)
 void InitializeSystemDataStructureCV(void)
 
 {
-  int64_t LoopCounter;
+  int64_t IterationCounter;
   
   SystemContextPointer = ResourceHandlerContextPointer;
   if (SystemDataStructureCVFlag != '\0') {
@@ -104658,7 +104658,7 @@ void InitializeSystemDataStructureCV(void)
       RegisterResourceHandler(ResourceHandlerContextPointer + 0x360,0xcc8,8,ResourceTypeHandlerCC8,0xfffffffffffffffe);
       MutexDestroyInPlace();
       _Cnd_destroy_in_situ();
-      SystemContextPointerr(SystemContextPointer + 0x60);
+      SystemContextPointer(SystemContextPointer + 0x60);
       SystemContextFinalizer();
             ReleaseResourceHandle(SystemContextPointer);
     }
@@ -105002,7 +105002,7 @@ void InitializeSystemContext(uint8_t ContextPtr, uint8_t SetupParam, uint8_t Con
 {
   uint8_t *SystemContextPointer;
   
-  SystemContextPointer = SystemContextPointer;
+  SystemContextPointer = &ContextPtr;
   if (SystemContextPointer != (uint8_t *)0x0) {
     InitializeContextData(&SystemContextData, *SystemContextPointer, ConfigParam, FlagsParam, 0xfffffffffffffffe);
     SetupSystemHandler(SystemContextPointer + ResourceManagementCleanupOffset);
