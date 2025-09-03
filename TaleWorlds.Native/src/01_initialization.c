@@ -44948,10 +44948,10 @@ void EmptyOperation(void)
 void InitializeSystemResourceManager(long long* SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  long long resourceDataIndex;
+  long long ResourceDataIndex;
   void** SystemDataTable;
   long long ResourceMemoryOffset;
-  void* *ResourceAddressPointer;
+  void** ResourceAddressPointer;
   void* SystemThreadContext;
   long long SystemThreadFlags;
   
