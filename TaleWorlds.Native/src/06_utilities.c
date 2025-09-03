@@ -5056,22 +5056,13 @@ uint8_t FreeObjectHandle(void) {
 }
 
 /**
- * @brief 验证字符输入
+ * @brief 验证字符安全性
  * 
  * 该函数用于验证输入的字符参数，确保字符输入的有效性。
  * 如果字符不为空字符，则执行系统退出操作以确保安全。
  * 
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示验证通过
- */
-/**
- * @brief 检查字符有效性
- * 
- * 检查传入字符的有效性，如果字符不为空则执行系统退出操作。
- * 主要用于输入验证和安全性检查。
- * 
- * @param CharacterToValidate 要验证的字符
- * @return uint8_t 验证结果，0表示成功
  */
 uint8_t ValidateCharacterSafety(char CharacterToValidate) {
   if (CharacterToValidate != '\0') {
