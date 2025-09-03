@@ -151,14 +151,18 @@
 #define ResourceIndexMinimum 0
 #define NullPointerValue 0
 #define ValidationStatusSuccess 0
-#define ResourceEntrySize 0xc
 #define ResourceAllocationSize 0x100
 #define ResourceAllocationFlag 1
 #define ResourceChecksumMinimum 1
 #define OperationSuccessCode 0
 
+// 系统基础地址常量
 #define SystemResourceBaseAddress 0x180985054
+#define SystemSecurityContextBaseAddress 0x180c4f450
+#define SystemContextResourceBaseAddress 0x180985054
+#define SystemContextSecurityValidationAddress 0x180c4f450
 
+// 系统互斥锁和同步相关常量
 #define SystemPrimaryMutexAddress 0x180c4f450
 #define SystemCriticalSectionAddress 0x180c4f458
 #define SystemSecurityFunctionAddress 0x180c4f460
@@ -175,42 +179,37 @@
 #define SystemNonaryMutexAddress 0x180c4f4b8
 #define SystemDenaryMutexAddress 0x180c4f4c0
 #define SystemMemoryCleanupAddress 0x180c4f4c8
-#define SystemContextStatusFlag1Offset 0x180
-#define SystemContextStatusFlag2Offset 0x184
-#define SystemFloatMaxValue 256.0
-#define SystemResourceSizeLimit 0x8e
-#define SystemMaxIntValue 0x7fffffff
-#define SecurityOperationType 0x27
-#define SecurityContextMask 0xffffffff
-#define SecurityValidationFlag 0x10000000
-#define ResourcePoolEntrySize 4
-#define ResourcePoolSecondaryOffset 4
-#define ResourceContextOffsetStandard 0x48
-#define ResourceContextOffsetExtended 0x90
-#define ResourceContextOffsetSecondary 0xb0
-#define ResourceContextOffsetTertiary 0xb4
-#define ResourceContextOffsetAlternate 0x6c
-#define ResourceContextOffsetHandle 0xf8
+
+// 缓冲区偏移常量
 #define BufferOffsetPrimary 0x70
 #define BufferOffsetSecondary 0x80
 #define BufferOffsetTertiary 0x88
 #define BufferOffsetQuaternary 0x94
 #define BufferOffsetHandle 0xb8
-#define ValidationBitIndex 3
-#define ValidationBitMask (1 << ValidationBitIndex)
+
+// 位掩码常量
 #define CleanupBitMask 0xfdffffff
 #define ResetBitMask 0xfbffffff
 #define ByteAlignmentMask 0xffffff00
-#define MemoryAllocationOverflowMask 0xffffffffffffff0
-#define MemoryAllocationAlignmentMask 0xfffffffffffffff0
-#define SystemDataBaseAddress(context) (*(int64_t *)((int64_t)*(int *)(context + SystemContextOffset) * 8 + SystemDataBaseAddressConstant))
+
+// 系统回调相关常量
 #define SystemCallbackTableOffset 0x18
 #define SystemCallbackBaseOffset 8
 #define SystemCallbackEntrySize 0xc
+
+// 哈希表相关常量
 #define HashTableCapacityOffset 0x1c
 #define HashTableEntrySize 0x10
 #define HashTableDataOffset 4
 #define HashTableGrowthFactor 1.5
+#define HashTableEntryNextOffset 4
+#define HashTableShiftValue 0x20
+#define HashTableCleanupOffset 0x10
+
+// 系统数据库地址宏定义
+#define SystemDataBaseAddress(context) (*(int64_t *)((int64_t)*(int *)(context + SystemContextOffset) * 8 + SystemDataBaseAddressConstant))
+
+// 校验和种子值常量
 #define ChecksumSeedValueFEFB 0x46464542
 #define ChecksumSeedValueBEFB 0x42464542
 #define ChecksumSeedValueCTRL 0x4c525443
@@ -232,17 +231,9 @@
 #define ChecksumSeedValueFCS 0x46464353
 #define ChecksumSeedValueEFCS 0x46454353
 #define ChecksumSeedValuePANS 0x50414e53
-#define ObjectContextValidationOffset 0x10
-#define ObjectContextHandleDataOffset 0x18
-#define ObjectContextConfigDataOffset 0x1c
-#define HandleMemoryBufferHeaderOffset 0x10
-#define HandleMemoryBufferAdjustment -8
-#define ContextPrimaryDataOffset 0x20
-#define ContextSecondaryDataOffset 0x18
 #define ChecksumSeedValueBPANS 0x42414e53
 #define ChecksumSeedValueSPRP 0x53505250
 #define ChecksumSeedValuePORP 0x504f5250
-#define SystemExitOperationParameter 1
 #define ChecksumSeedValueNLMT 0x4e4c4d54
 #define ChecksumSeedValueBNLMT 0x424e4c54
 #define ChecksumSeedValueNART 0x4e415254
@@ -250,13 +241,101 @@
 #define ChecksumSeedValueTIW 0x54494157
 #define ChecksumSeedValueBTIW 0x42494157
 
+// 系统安全相关常量
+#define SystemSecurityValidationKeySeed 0x12345678
 #define SystemContextValidationMask -0x565dff77
-#define SystemContextResourceBaseAddress 0x180985054
-#define SystemContextSecurityValidationAddress 0x180c4f450
+#define SecurityOperationType 0x27
+#define SecurityContextMask 0xffffffff
+#define SecurityValidationFlag 0x10000000
+#define SecurityOperationTypeValidation 0x27
 
-#define SystemStatusFlagActive '\x01'
-#define SystemStatusFlagInactive '\x02'
-#define SystemStatusFlagProcessing '\x06'
+// 系统操作参数常量
+#define SystemExitOperationParameter 1
+
+// 数组元素相关常量
+#define ArrayElementPointerOffset 0x10
+#define ArrayElementSizeMultiplier 0x18
+
+// 资源表相关常量
+#define ResourceTableEntrySize 4
+#define ResourceTableEntryOffset 0x94
+
+// 数据缓冲区相关常量
+#define DataBufferOffset 0x20
+
+// 字节操作相关常量
+#define ByteShift16Bits 0x10
+#define ByteMask8Bits 0xff
+
+// 系统临时变量常量
+#define SystemTemporaryVariableInitialValue -0x8000000000000000
+#define SystemTemporarySecondaryVariableInitialValue -0x80000000
+
+// 文件资源相关常量
+#define FileResourceLockOffset 0x858
+#define FileResourceStatusOffset 0x868
+#define FileResourceTableOffset 0x888
+#define FileResourceHashEndOffset 0x890
+
+// 资源计数器相关常量
+#define ResourceCounterOffset78 0x78
+#define ResourceCounterOffset88 0x88
+#define ResourceCounterOffsetA0 0xa0
+#define GlobalUnwindCounterOffset 0x3a8
+
+// 系统指针别名定义
+#define SystemContextPrimaryPointer SystemContextPointer
+#define SystemResourceSecondaryPointer SystemSecondaryResourcePointer
+
+// 通用内存偏移常量
+#define ContextBufferStatusOffset 0x2c
+#define SystemContextStatusOffset 0x98
+#define SystemStatusValidationOffset 0x18
+#define BufferContextValidationOffset 0xd0
+#define BufferArraySizeOffset 0x28
+#define SystemResourceManagerOffset 0x98
+#define SystemResourceHandlerOffset 0x980
+#define SystemResourceHandlerFlagOffset 0x988
+#define SystemResourceMethodTableOffset 0x990
+
+// 系统调度器上下文相关常量
+#define SystemSchedulerContextObjectOffset 0x98
+#define SystemProcessContextObjectOffset 0x98
+#define SystemSchedulerContextProcessingOffset 0x50
+
+// 对象数据偏移常量
+#define ObjectContextDataOffset1 0x84
+#define ObjectContextDataOffset2 0x88
+#define ObjectContextDataOffset3 0x98
+#define ObjectContextDataOffset4 0xb0
+#define ObjectContextDataOffset5 0xb4
+#define ObjectContextDataOffset6 0xb8
+#define ObjectContextDataOffset7 0xc0
+#define ObjectContextDataOffset8 0xdc
+#define ObjectContextDataOffset9 0xe0
+#define ObjectContextDataOffset10 0xe4
+#define ObjectContextDataOffset11 0xe8
+#define ObjectContextDataOffset12 0xec
+#define ObjectContextDataOffset13 0xf0
+#define ObjectContextDataOffset14 0xf4
+#define ObjectContextDataOffset15 0xf8
+#define ObjectContextDataOffset16 0x210
+#define ObjectContextDataOffset17 0x218
+#define ObjectContextDataOffset18 0x21c
+#define ObjectContextDataOffset19 0x2f4
+
+// 资源验证相关常量
+#define ResourceValidationFlagsOffset 0x34
+#define ResourceFloatValue1Offset 0x38
+#define ResourceFloatValue2Offset 0x3c
+#define ResourceCleanupOffset 0x40
+#define ContextReferenceCountOffset 0x84
+#define ContextStatusFlagOffset 0xbd
+
+// 系统组合操作宏定义
+#define SystemCombineValidationContextAndParam CombineValidationContextAndParameter
+#define SystemCombineParameterAndValidationRegisters CombineParameterAndValidationRegisters
+#define SystemCombineInputRegisters CombineInputRegisters
 
 #define SystemSecurityValidationKeySeed 0x12345678
 #define ArrayElementPointerOffset 0x10
@@ -102301,10 +102380,10 @@ void InitializeSystemDataPointer016(void)
  * 该函数负责初始化系统的数据结构AE
  * 将全局变量 SystemDataPointer017 设置为指向 SystemDataStructure
  */
-void InitializeSystemDataPointer017(void)
+void InitializeSystemDataPrimaryPointer(void)
 
 {
-  SystemDataPointer017 = &SystemDataStructure;
+  SystemDataPrimaryPointer = &SystemDataStructure;
   return;
 }
 
