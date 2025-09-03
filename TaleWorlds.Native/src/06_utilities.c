@@ -3822,11 +3822,11 @@ uint8_t SystemEventManagerMainEventSlot;
 // 事件处理器槽 - 管理事件处理槽位
 uint8_t EventHandlerSlotMain;
 uint8_t SystemEventCallbackFunctionSlot;
-uint8_t SystemEventManagerSlotSix;
-uint8_t SystemEventManagerSlotSeven;
-uint8_t SystemEventManagerSlotEight;
-uint8_t SystemEventManagerSlotNine;
-uint8_t SystemEventManagerSlotTen;
+uint8_t SystemEventManagerSlotNumberSix;
+uint8_t SystemEventManagerSlotNumberSeven;
+uint8_t SystemEventManagerSlotNumberEight;
+uint8_t SystemEventManagerSlotNumberNine;
+uint8_t SystemEventManagerSlotNumberTen;
 uint8_t SystemEventManagerSlotEleven;
 uint8_t SystemEventManagerSlotTwelve;
 uint8_t SystemEventManagerSlotThirteen;
