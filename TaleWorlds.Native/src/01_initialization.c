@@ -201,11 +201,11 @@ void* InitializeSystemMemoryAllocator(long long MemoryHandle, void* BufferContex
  * 初始化系统数据，设置数据结构和属性。
  * 用于系统数据的配置和准备工作。
  * 
- * @param dataContext 数据上下文，包含要初始化的数据相关信息
- * @param templateContext 模板上下文，包含数据模板的相关信息
+ * @param DataContext 数据上下文，包含要初始化的数据相关信息
+ * @param TemplateContext 模板上下文，包含数据模板的相关信息
  * @return 无返回值
  */
-void InitializeSystemData(void* dataContext, void* templateContext);
+void InitializeSystemData(void* DataContext, void* TemplateContext);
 
 /**
  * @brief 验证系统配置
@@ -213,11 +213,11 @@ void InitializeSystemData(void* dataContext, void* templateContext);
  * 验证系统配置的有效性和完整性。
  * 用于系统配置的安全检查和验证。
  * 
- * @param configFlags 配置标志，指定要验证的配置项
- * @param configContext 配置上下文，包含配置的相关信息
+ * @param ConfigFlags 配置标志，指定要验证的配置项
+ * @param ConfigContext 配置上下文，包含配置的相关信息
  * @return 验证结果，返回0表示成功，非0表示失败
  */
-int ValidateSystemConfiguration(long long configFlags, void* configContext);
+int ValidateSystemConfiguration(long long ConfigFlags, void* ConfigContext);
 
 /**
  * @brief 获取系统状态标志
