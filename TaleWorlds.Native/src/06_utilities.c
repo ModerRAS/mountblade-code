@@ -4945,19 +4945,19 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
 uint32_t ValidateObjectHandleFromRegister(void)
 
 {
-  int64_t RegisterContent = 0;
-  int64_t MemoryAddressPointer;
+  int64_t RegisterContext = 0;
+  int64_t MemoryPointer;
   
-  if (RegisterContent == 0) {
-    MemoryAddressPointer = 0;
+  if (RegisterContext == 0) {
+    MemoryPointer = 0;
   }
   else {
-    MemoryAddressPointer = RegisterContent + -8;
+    MemoryPointer = RegisterContext + -8;
   }
-  if (*(int64_t *)(MemoryAddressPointer + ObjectContextValidationOffset) == 0) {
+  if (*(int64_t *)(MemoryPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(MemoryAddressPointer + ObjectContextValidationOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + ObjectContextValidationOffset), 1);
 }
 
 
@@ -15469,18 +15469,18 @@ LoopExit:
  */
 void ProcessResourceDataValidationOperation(int64_t *ObjectContext,uint8_t ValidationContext,uint8_t ResourceDataParam,uint8_t validationFlagsParam)
 {
-  uint8_t securityValidationContext;
-  uint8_t validationFlags;
-  uint8_t securityBuffer [32];
-  uint8_t DataBuffer [1024];
+  uint8_t SecurityValidationContext;
+  uint8_t ValidationFlags;
+  uint8_t SecurityBuffer[32];
+  uint8_t DataBuffer[1024];
   uint64_t OperationParameter;
   
-  SecurityOperationParameter = SecurityEncryptionKey ^ (uint64_t)securityBuffer;
-  securityValidationContext = ResourceDataParam;
-  validationFlags = validationFlagsParam;
-  ProcessDataBuffer(DataBuffer,0x400,ValidationContext,&securityValidationContext);
+  SecurityOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityBuffer;
+  SecurityValidationContext = ResourceDataParam;
+  ValidationFlags = validationFlagsParam;
+  ProcessDataBuffer(DataBuffer,0x400,ValidationContext,&SecurityValidationContext);
   (**(code **)(*ObjectContext + 8))(ObjectContext,DataBuffer);
-        FinalizeSecurityOperation(SecurityOperationParameter ^ (uint64_t)securityBuffer);
+        FinalizeSecurityOperation(SecurityOperationParameter ^ (uint64_t)SecurityBuffer);
 }
 
 
