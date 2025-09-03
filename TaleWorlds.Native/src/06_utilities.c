@@ -6266,20 +6266,20 @@ void ExecuteSystemForcedTermination(void)
 uint8_t ValidateObjectPointer(int64_t ObjectPointer)
 
 {
-  uint8_t ResourceHashStatus;
-  int64_t StackOffset;
+  uint8_t ValidationResult;
+  int64_t ContextPointer;
   
-  ResourceHashStatus = ValidateObjectContext(*(uint32_t *)(ObjectPointer + ObjectContextValidationOffset), &StackOffset);
-  if ((int)ResourceHashStatus != 0) {
-    return ResourceHashStatus;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectPointer + ObjectContextValidationOffset), &ContextPointer);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
-  if (StackOffset != 0) {
-    StackOffset = StackOffset + -8;
+  if (ContextPointer != 0) {
+    ContextPointer = ContextPointer + -8;
   }
-  if (*(int64_t *)(StackOffset + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ContextPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackOffset + ObjectContextOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ContextPointer + ObjectContextOffset), 1);
 }
 
 
@@ -6294,16 +6294,16 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
 uint32_t ValidateStackObject(void)
 
 {
-  int64_t ObjectStackPointer;
+  int64_t StackObjectPointer;
   
-  ObjectStackPointer = InputParameter;
-  if (ObjectStackPointer != 0) {
-    ObjectStackPointer = ObjectStackPointer + -8;
+  StackObjectPointer = InputParameter;
+  if (StackObjectPointer != 0) {
+    StackObjectPointer = StackObjectPointer + -8;
   }
-  if (*(int64_t *)(ObjectStackPointer + ObjectContextValidationOffset) == 0) {
+  if (*(int64_t *)(StackObjectPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ObjectStackPointer + ObjectContextValidationOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(StackObjectPointer + ObjectContextValidationOffset), 1);
 }
 
 

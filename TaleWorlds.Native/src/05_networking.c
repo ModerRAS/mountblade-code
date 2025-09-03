@@ -933,16 +933,29 @@ void CleanupConnectionResources(NetworkHandle ConnectionContext)
   // 函数实现省略，保持原有逻辑
 }
 
-// 验证网络数据包 - 验证网络数据包的完整性和有效性
-NetworkHandle ValidateNetworkPacketData(NetworkHandle *PacketData, long long ConnectionContext)
+/**
+ * @brief 验证网络数据包的完整性和安全性
+ * 
+ * 该函数负责验证网络数据包的完整性和安全性，包括数据包解码、
+ * 头部处理和最终验证。确保数据包在传输过程中没有被篡改，
+ * 并且符合网络协议的规范要求。
+ * 
+ * @param PacketData 指向网络数据包的指针数组，包含待验证的数据包信息
+ * @param ConnectionContext 连接上下文，包含连接状态和验证所需的信息
+ * @return NetworkHandle 验证结果句柄，0表示验证成功，非0值表示验证失败的具体错误码
+ * 
+ * @note 此函数会进行多层验证，包括数据包解码、头部验证和完整性检查
+ * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
+ */
+NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
   NetworkHandle ValidationResult;
-  NetworkByte ValidationDataBuffer [32];
-  NetworkByte EncryptionDataBuffer [32];
+  NetworkByte PacketValidationBuffer [32];
+  NetworkByte SecurityEncryptionBuffer [32];
   
-  ValidationResult = DecodePacket(PacketData, EncryptionDataBuffer, 1, 0x5453494c, 0x54494645);
+  ValidationResult = DecodePacket(PacketData, SecurityEncryptionBuffer, 1, 0x5453494c, 0x54494645);
   if (((int)ValidationResult == 0) &&
-     (ValidationResult = DecodePacket(PacketData, ValidationDataBuffer, 0, 0x42494645, 0), (int)ValidationResult == 0)) {
+     (ValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, 0x42494645, 0), (int)ValidationResult == 0)) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -953,15 +966,28 @@ NetworkHandle ValidateNetworkPacketData(NetworkHandle *PacketData, long long Con
       }
       ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + 0xd8);
       if ((int)ValidationResult == 0) {
-          FinalizePacketProcessing(PacketData, ValidationDataBuffer);
+          FinalizePacketProcessing(PacketData, PacketValidationBuffer);
       }
     }
   }
   return ValidationResult;
 }
 
-// 验证并处理网络数据包 - 验证数据包并执行相应处理
-NetworkHandle ValidateAndProcessNetworkPacket(long long ConnectionContext, long long *PacketData)
+/**
+ * @brief 验证并处理网络数据包
+ * 
+ * 该函数负责验证网络数据包的有效性，并根据验证结果执行相应的处理逻辑。
+ * 它会检查数据包的类型、状态和内容，然后调用相应的处理函数来完成
+ * 数据包的解析和处理工作。
+ * 
+ * @param ConnectionContext 连接上下文，包含连接状态和处理所需的信息
+ * @param PacketData 指向数据包数据的指针数组，包含待处理的数据包信息
+ * @return NetworkHandle 处理结果句柄，0表示处理成功，非0值表示处理失败的具体错误码
+ * 
+ * @note 此函数会根据数据包类型选择不同的处理路径
+ * @warning 处理过程中如果发现数据包损坏或格式错误，会立即返回错误码
+ */
+NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t *PacketData)
 {
   NetworkHandle ProcessingStatus;
   NetworkStatus ConnectionStateArray [6];

@@ -533,41 +533,41 @@ void* SystemModuleDataPointerRenderCore;
 void* SystemModuleDataPointerRenderEngine;
 
 // 字符串处理系统实例变量声明 - 用于字符串处理系统的数据管理
-void* StringProcessingSystemMain_BasePointer;
-void* StringProcessingSystemMain_BufferPointer;
-void* StringProcessingSystemMain_DataBuffer;
-uint32_t StringProcessingSystemMain_BufferSize;
-void* StringProcessingSystemMain_Template;
+void* MainStringProcessorBasePointer;
+void* MainStringProcessorBufferPointer;
+void* MainStringProcessorDataBuffer;
+uint32_t MainStringProcessorBufferSize;
+void* MainStringProcessorTemplate;
 
-void* StringProcessingSystemAlternate_BasePointer;
-void* StringProcessingSystemAlternate_BufferPointer;
-void* StringProcessingSystemAlternate_DataBuffer;
-uint32_t StringProcessingSystemAlternate_BufferSize;
-void* StringProcessingSystemAlternate_Template;
+void* AlternateStringProcessorBasePointer;
+void* AlternateStringProcessorBufferPointer;
+void* AlternateStringProcessorDataBuffer;
+uint32_t AlternateStringProcessorBufferSize;
+void* AlternateStringProcessorTemplate;
 
-void* StringProcessingSystemReserve_BasePointer;
-void* StringProcessingSystemReserve_BufferPointer;
-void* StringProcessingSystemReserve_DataBuffer;
-uint32_t StringProcessingSystemReserve_BufferSize;
-void* StringProcessingSystemReserve_Template;
+void* ReserveStringProcessorBasePointer;
+void* ReserveStringProcessorBufferPointer;
+void* ReserveStringProcessorDataBuffer;
+uint32_t ReserveStringProcessorBufferSize;
+void* ReserveStringProcessorTemplate;
 
-void* StringProcessingSystemStandby_BasePointer;
-void* StringProcessingSystemStandby_BufferPointer;
-void* StringProcessingSystemStandby_DataBuffer;
-uint32_t StringProcessingSystemStandby_BufferSize;
-void* StringProcessingSystemStandby_Template;
+void* StandbyStringProcessorBasePointer;
+void* StandbyStringProcessorBufferPointer;
+void* StandbyStringProcessorDataBuffer;
+uint32_t StandbyStringProcessorBufferSize;
+void* StandbyStringProcessorTemplate;
 
-void* StringProcessingSystemBackup_BasePointer;
-void* StringProcessingSystemBackup_BufferPointer;
-void* StringProcessingSystemBackup_DataBuffer;
-uint32_t StringProcessingSystemBackup_BufferSize;
-void* StringProcessingSystemBackup_Template;
+void* BackupStringProcessorBasePointer;
+void* BackupStringProcessorBufferPointer;
+void* BackupStringProcessorDataBuffer;
+uint32_t BackupStringProcessorBufferSize;
+void* BackupStringProcessorTemplate;
 
-void* StringProcessingSystemTemporary_BasePointer;
-void* StringProcessingSystemTemporary_BufferPointer;
-void* StringProcessingSystemTemporary_DataBuffer;
-uint32_t StringProcessingSystemTemporary_BufferSize;
-void* StringProcessingSystemTemporary_Template;
+void* TemporaryStringProcessorBasePointer;
+void* TemporaryStringProcessorBufferPointer;
+void* TemporaryStringProcessorDataBuffer;
+uint32_t TemporaryStringProcessorBufferSize;
+void* TemporaryStringProcessorTemplate;
 
 // 系统配置数据指针 - 用于存储系统配置信息
 void* SystemConfigDataPointerAudio;
