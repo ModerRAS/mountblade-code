@@ -1013,7 +1013,7 @@ void* ModuleDependencySignature;                         // 系统模块依赖�
 void* ModuleDependencyHandle;                            // 系统模块依赖句柄
 
 // 系统运行时全局变量
-int64_t GlobalInputParameterValue;                        // 系统输入参数值
+int64_t GlobalSystemInputParameter;                        // 系统输入参数值
 int32_t SystemOperationStatusCode;                       // 系统操作状态码
 void* SystemRegisterContext;                              // 系统寄存器上下文数据
 void* SystemObjectContext;                                // 系统对象上下文缓冲区
@@ -5079,7 +5079,7 @@ uint8_t FreeObjectHandle(void) {
  * @return uint8_t 验证结果，0表示成功
  */
 uint8_t ValidateCharacterSafety(char CharacterToValidate) {
-  if (CharacterToCheck != '\0') {
+  if (CharacterToValidate != '\0') {
     ExecuteSystemExitOperation();
   }
   return OperationSuccessCode;
@@ -5097,11 +5097,11 @@ uint8_t ValidateCharacterSafety(char CharacterToValidate) {
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t ValidateObjectHandle(int64_t ObjectHandleToVerify) {
+uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
   uint8_t ValidationResult;
   int64_t ValidatedContextMemoryAddress;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToVerify + ObjectHandleOffset), &ValidatedContextMemoryAddress);
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedContextMemoryAddress);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
