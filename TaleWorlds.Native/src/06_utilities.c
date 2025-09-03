@@ -4962,25 +4962,25 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @warning 如果对象句柄无效，返回ErrorInvalidObjectHandle错误码
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ValidatedObjectMemoryAddress;
-  uint8_t ContextValidationResult;
-  int64_t ObjectValidationData [4];
+  int64_t ValidatedObjectMemoryLocation;
+  uint8_t ObjectValidationResult;
+  int64_t ObjectContextValidationBuffer [4];
   
-  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationData);
-  if ((int)ContextValidationResult != 0) {
-    return ContextValidationResult;
+  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectContextValidationBuffer);
+  if ((int)ObjectValidationResult != 0) {
+    return ObjectValidationResult;
   }
   
-  if (ObjectValidationData[0] != 0) {
-    ObjectValidationData[0] = ObjectValidationData[0] - 8;
+  if (ObjectContextValidationBuffer[0] != 0) {
+    ObjectContextValidationBuffer[0] = ObjectContextValidationBuffer[0] - 8;
   }
   
-  ValidatedObjectMemoryAddress = *(int64_t *)(ObjectValidationData[0] + ObjectHandleOffset);
-  if (ValidatedObjectMemoryAddress != 0) {
-    *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
+  ValidatedObjectMemoryLocation = *(int64_t *)(ObjectContextValidationBuffer[0] + ObjectHandleOffset);
+  if (ValidatedObjectMemoryLocation != 0) {
+    *(int *)(ValidatedObjectMemoryLocation + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryLocation + ObjectReferenceCountOffset) + 1;
     
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ContextValidationResult = CheckSystemStatus(), (int)ContextValidationResult != 0)) {
-      return ContextValidationResult;
+    if ((*(char *)(ValidatedObjectMemoryLocation + ObjectSystemStatusOffset) != '\0') && (ObjectValidationResult = CheckSystemStatus(), (int)ObjectValidationResult != 0)) {
+      return ObjectValidationResult;
     }
     return OperationSuccessCode;
   }
@@ -4997,23 +4997,23 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t SetupObjectHandle(int64_t ObjectContext) {
-  uint8_t ValidationResult;
-  int64_t ValidatedContextAddress;
+  uint8_t ContextValidationResult;
+  int64_t ValidatedContextMemoryAddress;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextAddress);
-  if ((int)ValidationResult == 0) {
-    if (ValidatedContextAddress == 0) {
-      ValidatedContextAddress = 0;
+  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextMemoryAddress);
+  if ((int)ContextValidationResult == 0) {
+    if (ValidatedContextMemoryAddress == 0) {
+      ValidatedContextMemoryAddress = 0;
     }
     else {
-      ValidatedContextAddress = ValidatedContextAddress - 8;
+      ValidatedContextMemoryAddress = ValidatedContextMemoryAddress - 8;
     }
-    if (*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset), 1);
+    if (*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset) != 0) {
+            ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset), 1);
     }
-    ValidationResult = OperationSuccessCode;
+    ContextValidationResult = OperationSuccessCode;
   }
-  return ValidationResult;
+  return ContextValidationResult;
 }
 
 
@@ -5027,17 +5027,17 @@ uint8_t SetupObjectHandle(int64_t ObjectContext) {
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t FreeObjectHandle(void) {
-  int64_t ObjectHandle = 0;
-  int64_t ObjectMemoryLocation;
+  int64_t ObjectHandleValue = 0;
+  int64_t ObjectMemoryAddress;
   
-  if (ObjectHandle == 0) {
-    ObjectMemoryLocation = 0;
+  if (ObjectHandleValue == 0) {
+    ObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryLocation = ObjectHandle - 8;
+    ObjectMemoryAddress = ObjectHandleValue - 8;
   }
-  if (*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset), 1);
+  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
   }
   return OperationSuccessCode;
 }
@@ -5071,23 +5071,23 @@ uint8_t CheckCharacterValidity(char CharacterToCheck) {
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
 uint8_t VerifyObjectHandle(int64_t ObjectHandleToVerify) {
-  uint8_t ValidationStatus;
-  int64_t ValidatedContextAddress;
+  uint8_t ValidationResult;
+  int64_t ValidatedContextMemoryAddress;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandleToVerify + ObjectHandleOffset), &ValidatedContextAddress);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToVerify + ObjectHandleOffset), &ValidatedContextMemoryAddress);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
-  if (ValidatedContextAddress == 0) {
-    ValidatedContextAddress = 0;
+  if (ValidatedContextMemoryAddress == 0) {
+    ValidatedContextMemoryAddress = 0;
   }
   else {
-    ValidatedContextAddress = ValidatedContextAddress + -8;
+    ValidatedContextMemoryAddress = ValidatedContextMemoryAddress + -8;
   }
-  if (*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
 
@@ -5112,19 +5112,19 @@ uint8_t VerifyObjectHandle(int64_t ObjectHandleToVerify) {
  * @return uint32_t 验证结果，0表示成功，非0表示失败
  */
 uint32_t VerifyObjectHandleFromRegister(void) {
-  int64_t SystemRegister = 0;
-  int64_t ObjectMemoryAddress;
+  int64_t SystemRegisterValue = 0;
+  int64_t ObjectMemoryLocation;
   
-  if (SystemRegister == 0) {
-    ObjectMemoryAddress = 0;
+  if (SystemRegisterValue == 0) {
+    ObjectMemoryLocation = 0;
   }
   else {
-    ObjectMemoryAddress = SystemRegister - 8;
+    ObjectMemoryLocation = SystemRegisterValue - 8;
   }
-  if (*(int64_t *)(ObjectMemoryAddress + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ObjectMemoryLocation + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectContextOffset), 1);
   return OperationSuccessCode;
 }
 
