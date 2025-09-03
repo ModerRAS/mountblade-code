@@ -62348,9 +62348,9 @@ void InitializeSystemResourcePool(void)
   ResourceAllocationContextSecondary = ResourceAllocationContext >> QUADRANT_SHIFT_BITS;
   ResourceDataIndex = *(long long *)(SystemBufferAddress + 8 + (ulong long)ResourceAllocationContextSecondary * 8);
   ResourceMemoryOffset = (ulong long)(ResourceAllocationContext + ResourceAllocationContextSecondary * -0x2000) * 0x40;
-  resourceCreationFlags9 = ((void* *)(resourceDataIndex6 + ResourceMemoryOffset1))[1];
-  *(void* *)pInterpolationFactorX = *(void* *)(resourceDataIndex6 + ResourceMemoryOffset1);
-  *(void* *)(pInterpolationFactorA + 2) = resourceCreationFlags9;
+  ResourceCreationFlags = ((void* *)(ResourceDataIndex + ResourceMemoryOffset))[1];
+  *(void* *)InterpolationFactorXPointer = *(void* *)(ResourceDataIndex + ResourceMemoryOffset);
+  *(void* *)(InterpolationFactorXPointer + 2) = ResourceCreationFlags;
   presourceAddress = (void* *)(resourceDataIndex6 + 0x10 + ResourceMemoryOffset1);
   resourceCreationFlags9 = presourceAddress[1];
   *(void* *)(pInterpolationFactorA + 4) = *presourceAddress;
