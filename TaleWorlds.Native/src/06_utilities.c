@@ -180,6 +180,27 @@
 #define ResourceChecksumMinimum 1
 #define OperationSuccessCode 0
 
+// 对象上下文偏移常量
+#define ObjectContextDataOffset 0x70
+#define ObjectContextResourceDataOffset 0x80
+#define ObjectContextSecondaryDataOffset 0x94
+#define ObjectContextRangeDataOffset 0x70
+#define ObjectContextValidationDataOffset 0x38
+#define ObjectContextHandleOffset 0x38
+#define ObjectContextSecondaryHandleOffset 0x38
+#define ObjectContextResourceCountOffset 0x38
+#define ObjectContextValidationParamOffset 0xc
+#define SystemManagerContextOffset 0x38
+#define ObjectContextMemoryAllocationOffset 0x38
+
+// 系统上下文偏移常量
+#define SystemContextAllocationOffset 0x38
+
+// 资源分配常量
+#define ResourceAllocationSize 0x100
+#define ResourceAllocationFlag 1
+#define ResourceEntrySize 0xc
+
 // 系统基础地址常量
 #define SystemResourceBaseAddress 0x180985054
 #define SystemSecurityContextBaseAddress 0x180c4f450
@@ -9998,17 +10019,26 @@ void ProcessBufferContextValidationAndCleanup(int64_t ObjectContext,int64_t Vali
  * @param ObjectContext 缓冲区上下文参数，包含缓冲区的基本信息
  * @param ValidationContext 系统上下文参数，用于系统级操作
  */
-void ProcessBufferContextValidationAndSystemExit(int64_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 处理缓冲区上下文验证和系统退出操作
+ * 
+ * 该函数验证缓冲区上下文的有效性，并根据验证结果执行相应的系统操作
+ * 主要用于缓冲区管理和系统资源清理
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象的基本信息
+ * @param ValidationContext 验证上下文参数，用于验证操作
+ * @return void 无返回值
+ */
+void ProcessBufferContextValidationAndSystemExit(int64_t ObjectContext, int64_t ValidationContext)
 {
   int ValidationProcessingResult;
-  uint8_t ValidationContext;
+  uint8_t LocalValidationContext;
   
-  ResourceIndex = ProcessSchedulerFinalization(ValidationContext,ObjectContext + ObjectContextValidationDataOffset,&ValidationContext);
+  int ResourceIndex = ProcessSchedulerFinalization(ValidationContext, ObjectContext + ObjectContextValidationDataOffset, &LocalValidationContext);
   if (ResourceIndex == 0) {
-    ResourceIndex = ValidateBufferContext(ValidationContext,ObjectContext + ObjectContextProcessingDataOffset);
+    ResourceIndex = ValidateBufferContext(ValidationContext, ObjectContext + ObjectContextProcessingDataOffset);
     if (ResourceIndex == 0) {
-            ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset), ObjectContext);
     }
   }
   return;
@@ -11862,8 +11892,8 @@ uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
   
   InitializeConfigurationContext();
   FreeMemoryResource((void *)(ObjectContext + ObjectContextMemoryAllocationOffset));
-  OperationStatus = ProcessDataContextOperations((void *)(DataContext + 0x70));
-  if ((OperationStatus == 0) && (OperationStatus = FindEntryInResourcePool((void *)(DataContext + 0x80)), OperationStatus == 0)) {
+  OperationStatus = ProcessDataContextOperations((void *)(DataContext + ObjectContextDataOffset));
+  if ((OperationStatus == 0) && (OperationStatus = FindEntryInResourcePool((void *)(DataContext + ObjectContextResourceDataOffset)), OperationStatus == 0)) {
     *(uint32_t *)(ObjectContext + ObjectContextResourceCountOffset) = 0xffffffff;
     *(uint32_t *)(DataContext + 0x94) = 0;
   }
