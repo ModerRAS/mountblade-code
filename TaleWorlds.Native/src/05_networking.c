@@ -229,6 +229,110 @@ typedef uint32_t NetworkResourceHandle;
 #define NetworkConnectionReportSize 0xf          // 网络连接报告大小（15字节）
 #define NetworkPacketReportSize 0xc               // 网络数据包报告大小（12字节）
 
+// 网络连接配置常量
+#define CONNECTION_POOL_CAPACITY 1000              // 连接池容量
+#define HEALTH_STATUS_NORMAL 0x01                    // 正常健康状态
+#define MANAGER_HANDLE_INVALID 0xFFFFFFFF            // 无效管理器句柄
+#define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF         // 无效套接字描述符
+#define CLIENT_IP_ANY 0x00000000                     // 任意客户端IP地址
+#define CLIENT_PORT_ANY 0x0000                       // 任意客户端端口
+#define SOCKET_BOUND 0x01                            // 套接字已绑定标志
+#define ACTIVE_CONNECTIONS_MAX 100                  // 最大活跃连接数
+#define PENDING_REQUESTS_INITIAL 0                   // 初始待处理请求数
+#define QUEUE_INITIALIZED 0x01                      // 队列已初始化
+#define CALLBACK_INVALID 0xFFFFFFFF                  // 无效回调句柄
+#define TIMEOUT_INVALID 0xFFFFFFFF                   // 无效超时句柄
+#define CONTEXT_INITIALIZED 0x01                     // 上下文已初始化
+#define RELIABILITY_HIGH 0x01                        // 高可靠性
+#define ENCRYPTION_KEY_DEMO 0x12345678               // 演示加密密钥
+#define FLAGS_RESET 0x00                             // 重置标志
+#define CONTEXT_RELEASED 0x00                        // 上下文已释放
+#define SIZE_RESET 0x00                              // 大小重置
+#define POOL_RELEASED 0x00                          // 连接池已释放
+#define SECURITY_RESET 0x00                         // 安全重置
+#define AUTH_RESET 0x00                              // 认证重置
+#define ENCRYPTION_RESET 0x00                        // 加密重置
+#define COMPRESSION_RESET 0x00                      // 压缩重置
+#define SOCKET_RESET 0x00                            // 套接字重置
+#define SOCKET_DATA_RESET 0x00                      // 套接字数据重置
+#define EVENT_RESET 0x00                             // 事件重置
+#define CALLBACK_RESET 0x00                          // 回调重置
+#define QUEUE_RESET 0x00                             // 队列重置
+#define HANDLER_RESET 0x00                           // 处理器重置
+#define STATS_RESET 0x00                             // 统计重置
+#define CONNECTION_TIME_RESET 0x00                  // 连接时间重置
+#define ACTIVITY_RESET 0x00                          // 活动重置
+
+// 网络数据传输常量
+#define SEQUENCE_INITIAL 0x01                        // 初始序列号
+#define ACK_INITIAL 0x01                             // 初始确认号
+#define BYTES_RESET 0x00                             // 字节重置
+#define PACKETS_RESET 0x00                           // 数据包重置
+#define RETRANSMIT_COUNT_RESET 0x00                 // 重传计数重置
+#define LOSS_RATE_RESET 0x00                         // 丢包率重置
+#define MONITOR_ENABLED 0x01                        // 监控器启用
+#define ROUND_TRIP_TIME_RESET 0x00                  // 往返时间重置
+#define QUEUE_ENABLED 0x01                          // 队列启用
+#define BUFFER_ENABLED 0x01                         // 缓冲区启用
+#define INDEX_RESET 0x00                            // 索引重置
+#define PACKET_INDEX_RESET 0x00                     // 数据包索引重置
+#define ERROR_RATE_RESET 0x00                       // 错误率重置
+#define HEALTH_GOOD 0x01                             // 健康状态良好
+#define STABILITY_HIGH 0x01                          // 稳定性高
+#define PERFORMANCE_GOOD 0x01                        // 性能良好
+
+// 网络数据包验证常量
+#define VALIDATION_POOL_ENABLED 0x01                // 验证池启用
+#define SECURITY_DATA_ENABLED 0x01                  // 安全数据启用
+#define ENCRYPTION_ENABLED 0x01                     // 加密启用
+#define COMPRESSION_ENABLED 0x01                    // 压缩启用
+#define AUDIT_ENABLED 0x01                          // 审计启用
+#define POLICY_ENABLED 0x01                         // 策略启用
+#define CERTIFICATE_ENABLED 0x01                    // 证书启用
+
+// 网络连接管理常量
+#define TABLE_INDEX_RESET 0x00                      // 表索引重置
+#define CONNECTION_MANAGER_ENABLED 0x01              // 连接管理器启用
+#define CONNECTION_DATA_ENABLED 0x01                // 连接数据启用
+#define ROUTING_ENABLED 0x01                        // 路由启用
+#define QUEUE_BUFFER_ENABLED 0x01                   // 队列缓冲区启用
+#define CACHE_ENABLED 0x01                          // 缓存启用
+#define FILTER_ENABLED 0x01                         // 过滤器启用
+#define BANDWIDTH_RESET 0x00                        // 带宽重置
+#define LATENCY_RESET 0x00                          // 延迟重置
+#define PACKET_LOSS_RESET 0x00                      // 数据包丢失重置
+
+// 网络错误处理常量
+#define ERROR_PROCESSOR_ENABLED 0x01                 // 错误处理器启用
+#define ERROR_COUNT_RESET 0x00                      // 错误计数重置
+#define REPORT_SIZE_11B 0x0B                        // 11字节报告大小
+#define REPORT_SIZE_13B 0x0D                        // 13字节报告大小
+#define REPORT_SIZE_15B 0x0F                        // 15字节报告大小
+#define REPORT_SIZE_12B 0x0C                        // 12字节报告大小
+
+// 网络连接状态常量
+#define PROCESSING_STATUS_ACTIVE 0x01                // 处理状态活跃
+#define CONNECTION_ID_MASK 0xFFFF                   // 连接ID掩码
+#define SECURITY_VALIDATION_PENDING 0x00            // 安全验证待处理
+#define SECURITY_VALIDATION_SUCCESS 0x01            // 安全验证成功
+#define VALIDATION_BASIC 0x01                       // 基本验证模式
+#define VALIDATION_STRICT 0x02                      // 严格验证模式
+#define VALIDATION_DEFAULT 0x01                     // 默认验证模式
+#define DECODING_BASIC 0x01                         // 基本解码模式
+#define DECODING_STRICT 0x02                        // 严格解码模式
+#define DECODING_DEFAULT 0x01                       // 默认解码模式
+#define MAGIC_VALID_FIRST 0x01                       // 第一个魔数验证通过
+#define MAGIC_VALID_SECOND 0x02                      // 第二个魔数验证通过
+#define MAGIC_VALID_BOTH 0x03                        // 两个魔数都验证通过
+#define INTEGRITY_CHECK_PASS 0x01                   // 完整性检查通过
+#define COMPLIANCE_CHECK_PASS 0x01                  // 合规检查通过
+#define HEADER_VALID_PASS 0x01                      // 头部验证通过
+#define CONTEXT_PROCESS_PASS 0x01                    // 上下文处理通过
+#define FINALIZATION_PASS 0x01                      // 完成处理通过
+#define BUFFER_CLEANUP_PASS 0x01                    // 缓冲区清理通过
+#define DATA_VALID_PASS 0x01                        // 数据验证通过
+#define NULL_POINTER 0x0                            // 空指针
+
 // =============================================================================
 // 网络系统函数声明
 // =============================================================================
