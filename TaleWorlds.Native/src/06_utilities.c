@@ -100179,10 +100179,20 @@ void ExecuteAlternativeControlFlowGuardCheckUnwind(uint8_t ObjectContext, int64_
 
 
 
-void Unwind_180912630(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统对象控制流_guard检查的展开函数
+ * 
+ * 该函数负责执行针对系统对象的控制流完整性检查，
+ * 使用_guard_check_icall来验证间接调用的安全性。
+ * 它检查验证上下文中系统对象相关位置的指针，确保调用的安全性。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含需要检查的系统对象指针和验证数据
+ */
+void ExecuteSystemObjectControlFlowGuardCheckUnwind(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  _guard_check_icall(*(uint8_t *)(ValidationContext + 0xa8),**(uint8_t **)(ValidationContext + 0xa0),
+  _guard_check_icall(*(uint8_t *)(ValidationContext + ResourceContextExtendedOffset), **(uint8_t **)(ValidationContext + ResourceContextAlternateOffset),
                      *(uint8_t *)(ValidationContext + ValidationContextSystemObjectOffset));
   return;
 }
