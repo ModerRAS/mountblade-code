@@ -75,31 +75,31 @@
 #define TransformContextOffset218         0x218
 
 // 系统标识符常量
-#define SYSTEM_EVENT_NODE_IDENTIFIER1          0x45b8d074df27d12f
-#define SYSTEM_EVENT_NODE_IDENTIFIER2          0x8d98f4c06880eda4
-#define SYSTEM_RESOURCE_NODE_IDENTIFIER1       0x42d293584c8cf3e5
-#define SYSTEM_RESOURCE_NODE_IDENTIFIER2       0x355ffeb2d29e668a
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1   0x421c3cedd07d816d
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2   0xbec25de793b7afa6
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID1   0x4c22bb0c326587ce
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID2   0x5e3cf00ce2978287
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID1   0x4b2d79e470ee4e2c
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID2   0x9c552acd3ed5548d
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID1   0x49086ba08ab981a7
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID2   0xa9191d34ad910696
+#define SystemEventNodeIdentifier1          0x45b8d074df27d12f
+#define SystemEventNodeIdentifier2          0x8d98f4c06880eda4
+#define SystemResourceNodeIdentifier1       0x42d293584c8cf3e5
+#define SystemResourceNodeIdentifier2       0x355ffeb2d29e668a
+#define SystemDataComparisonTemplateAId1   0x421c3cedd07d816d
+#define SystemDataComparisonTemplateAId2   0xbec25de793b7afa6
+#define SystemDataComparisonTemplateBId1   0x4c22bb0c326587ce
+#define SystemDataComparisonTemplateBId2   0x5e3cf00ce2978287
+#define SystemDataComparisonTemplateJId1   0x4b2d79e470ee4e2c
+#define SystemDataComparisonTemplateJId2   0x9c552acd3ed5548d
+#define SystemDataComparisonTemplateKId1   0x49086ba08ab981a7
+#define SystemDataComparisonTemplateKId2   0xa9191d34ad910696
 
 // 数据比较模板标识符
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID1   0x406be72011d07d37
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID2   0x71876af946c867ab
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_E_ID1   0x449bafe9b77ddd3c
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_E_ID2   0xc160408bde99e59f
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_F_ID1   0x45425dc186a5d575
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_F_ID2   0xfab48faa65382fa5
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_G_ID1   0x40afa5469b6ac06d
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_G_ID2   0x2f4bab01d34055a5
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1   0x43330a43fcdb3653
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2   0xdcfdc333a769ec93
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID1   0x431d7c8d7c475be2
+#define SystemDataComparisonTemplateDId1   0x406be72011d07d37
+#define SystemDataComparisonTemplateDId2   0x71876af946c867ab
+#define SystemDataComparisonTemplateEId1   0x449bafe9b77ddd3c
+#define SystemDataComparisonTemplateEId2   0xc160408bde99e59f
+#define SystemDataComparisonTemplateFId1   0x45425dc186a5d575
+#define SystemDataComparisonTemplateFId2   0xfab48faa65382fa5
+#define SystemDataComparisonTemplateGId1   0x40afa5469b6ac06d
+#define SystemDataComparisonTemplateGId2   0x2f4bab01d34055a5
+#define SystemDataComparisonTemplateHId1   0x43330a43fcdb3653
+#define SystemDataComparisonTemplateHId2   0xdcfdc333a769ec93
+#define SystemDataComparisonTemplateIId1   0x431d7c8d7c475be2
 
 // 资源数据偏移量常量
 #define RESOURCE_DATA_TRANSFORM_X_OFFSET        0x130
@@ -1398,6 +1398,19 @@ void* GetSystemInitializationFunction;
  * @note 该函数在系统初始化的早期阶段调用，用于建立游戏核心
  * 系统的基础架构。
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括创建系统节点、分配内存空间
+ * 和设置游戏系统的基本参数。它会遍历系统节点树，找到合适的位置
+ * 来创建游戏核心系统节点，并设置相关的标识符和处理器。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保游戏核心系统能够正确配置
+ * 和运行。函数会创建新的系统节点或使用现有节点来存储游戏核心配置。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsNodeActive;
@@ -1409,7 +1422,7 @@ void InitializeGameCoreSystem(void)
   void** PreviousSystemNode;
   void** NextSystemNode;
   void** AllocatedSystemNode;
-  void* SystemInitializationHandler;
+  void* GameCoreInitializationHandler;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   SystemRootNodePointer = (void**)*SystemDataTablePointer;

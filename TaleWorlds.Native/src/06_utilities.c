@@ -4246,28 +4246,28 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     ProcessedObjectCount = 0;
     CurrentPosition = 0;
     MaximumProcessableObjects = MaximumProcessableItemsLimit;
-    ProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset),
-                          &BufferData);
-    if (ProcessingStatus == 0) {
+    OperationResult = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset),
+                          &DataBufferPointer);
+    if (OperationResult == 0) {
       if (0 < CurrentPosition) {
         CurrentObjectIndex = 0;
         do {
-          uint8_t ObjectStatus = *(uint8_t *)(BufferData + CurrentObjectIndex);
-          ProcessingStatus = ValidateObjectStatus(ObjectStatus);
-          if (ProcessingStatus != RegistrationStatusSuccess) {
+          uint8_t ObjectStatus = *(uint8_t *)(DataBufferPointer + CurrentObjectIndex);
+          OperationResult = ValidateObjectStatus(ObjectStatus);
+          if (OperationResult != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectStatus, 1);
           }
           ProcessedObjectCount++;
           CurrentObjectIndex += ResourceEntrySizeBytes;
         } while (ProcessedObjectCount < CurrentPosition);
       }
-      FreeObjectListMemory(&BufferData);
+      FreeObjectListMemory(&DataBufferPointer);
     }
     else {
-      FreeObjectListMemory(&BufferData);
+      FreeObjectListMemory(&DataBufferPointer);
     }
   }
-        PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)MetaDataBuffer);
+        PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetaDataBuffer);
 }
 
 
@@ -100282,12 +100282,12 @@ uint32_t SystemConfigurationFlag;
 void ProcessSystemStateReset(uint8_t SystemHandle, int64_t ContextPointer)
 
 {
-  char systemState;
-  int systemStatus;
+  char SystemStateFlag;
+  int SystemStatusCode;
   
-  systemState = *(char *)(ContextPointer + 0x40);
-  systemStatus = GetSystemStatus();
-  if ((systemStatus != 0) && (systemState == '\0')) {
+  SystemStateFlag = *(char *)(ContextPointer + 0x40);
+  SystemStatusCode = GetSystemStatus();
+  if ((SystemStatusCode != 0) && (SystemStateFlag == '\0')) {
     LOCK();
     void* SystemDataStructurePointer;
     UNLOCK();
