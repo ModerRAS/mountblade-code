@@ -7,23 +7,23 @@
 /**
  * @brief 网络状态类型
  * 
- * 用于表示网络连接和数据包的状态信息
+ * 用于表示网络连接和数据包的状态信息，包括连接状态、传输状态、错误状态等
  */
-typedef uint32_t NetworkStatus;
+typedef uint32_t NetworkConnectionStatus;
 
 /**
  * @brief 网络字节数据类型
  * 
- * 用于表示网络传输中的字节数据
+ * 用于表示网络传输中的字节数据，支持网络协议中的基本数据单元
  */
-typedef uint8_t NetworkByte;
+typedef uint8_t NetworkDataByte;
 
 /**
  * @brief 网络句柄类型
  * 
- * 用于表示网络连接、数据包等资源的句柄
+ * 用于表示网络连接、数据包等资源的句柄，提供统一的资源管理接口
  */
-typedef uint32_t NetworkHandle;
+typedef uint32_t NetworkResourceHandle;
 
 // =============================================================================
 // 网络系统常量定义
@@ -180,7 +180,7 @@ typedef uint32_t NetworkHandle;
  * @param SecondTimestamp 第二个时间戳指针
  * @return uint32_t 比较结果：0表示相等，正数表示第一个大于第二个，负数表示第一个小于第二个
  */
-uint32_t NetworkCompareConnectionTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
+uint32_t CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
 
 /**
  * @brief 处理网络连接数据包数据
@@ -189,10 +189,9 @@ uint32_t NetworkCompareConnectionTimestamps(int64_t *FirstTimestamp, int64_t *Se
  * 
  * @param ConnectionContext 连接上下文指针
  * @param PacketData 数据包数据
- * @param OutputBufferSize 输出缓冲区大小指针
- * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
+ * @return NetworkHandle 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int64_t PacketData, int64_t *OutputBufferSize);
+NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData);
 
 /**
  * @brief 发送网络数据包
@@ -441,12 +440,12 @@ uint32_t NetworkCloseConnection(int64_t *NetworkConnectionContext, uint32_t Conn
 // =============================================================================
 
 // 网络连接基础配置变量
-uint32_t NetworkConnectionTableHandle;                    // 网络连接表句柄
-uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志
-uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时持续时间
+uint32_t NetworkConnectionTableHandle;                    // 网络连接表管理句柄
+uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志位
+uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
 uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制
-uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志
-uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志
+uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志位
+uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志位
 
 // 网络协议和地址配置
 uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型
@@ -547,8 +546,10 @@ uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引
 
 /**
  * @brief 网络连接表变量 - 管理网络连接的表结构和索引
+ * 
+ * 该变量维护所有活跃网络连接的表结构，包括连接索引、状态信息和资源引用
  */
-uint32_t NetworkConnectionTable;                       // 网络连接表
+uint32_t NetworkConnectionTable;                       // 网络连接表管理器
 
 // =============================================================================
 // 网络连接池和套接字管理函数
@@ -566,7 +567,7 @@ uint32_t NetworkConnectionTable;                       // 网络连接表
  * 
  * @return void 无返回值
  */
-void NetworkInitializeConnectionPool(void)
+void InitializeNetworkConnectionPool(void)
 {
   // 初始化连接池配置参数
   NetworkConnectionPoolCapacity = 1000;           // 设置连接池最大容量
@@ -608,7 +609,7 @@ void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfig
  * 
  * @return void 无返回值
  */
-void NetworkInitializeSocketHandle(void)
+void InitializeNetworkSocketHandle(void)
 {
   // 初始化套接字基本参数
   NetworkSocketFileDescriptor = 0xFFFFFFFF;        // 初始化文件描述符为无效值
@@ -1216,7 +1217,7 @@ uint32_t NetworkPacketEntryPointer;                        // 网络数据包条
 uint32_t NetworkConnectionTargetAddress;                   // 网络连接目标地址
 uint32_t NetworkConnectionIndexCounter;                    // 网络连接索引计数器
 uint32_t NetworkConnectionLoopCounter;                     // 网络连接循环计数器
-uint32_t NetworkConnectionStateFlags;                       // 网络连接状态标志
+uint32_t NetworkConnectionExtendedFlags;                       // 网络连接扩展标志
 uint32_t NetworkConnectionProcessingResults;               // 网络连接处理结果
 uint32_t NetworkConnectionProcessedCounts;                  // 网络连接已处理数量
 
@@ -1412,18 +1413,18 @@ NetworkHandle NetworkInitializeConnectionSystem(void)
  * @note 此函数会进行数据包验证、状态更新和连接管理
  * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
  */
-NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
+NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
-  NetworkStatus *ConnectionContextDataArray;  // 网络连接上下文数据数组
+  NetworkConnectionStatus *ConnectionContextDataArray;  // 网络连接上下文数据数组
   int32_t ActiveConnectionCount;                    // 活跃连接数量
   int64_t ConnectionBaseAddressPointer;             // 连接基地址指针
-  NetworkStatus PacketProcessingResult;              // 数据包处理结果
-  NetworkStatus DataProcessingStatus;                // 数据处理状态
-  NetworkStatus ConnectionValidationResult;          // 连接验证结果
-  NetworkStatus *StatusBufferPointer;          // 网络状态缓冲区指针
+  NetworkConnectionStatus PacketProcessingResult;              // 数据包处理结果
+  NetworkConnectionStatus DataProcessingStatus;                // 数据处理状态
+  NetworkConnectionStatus ConnectionValidationResult;          // 连接验证结果
+  NetworkConnectionStatus *StatusBufferPointer;          // 网络状态缓冲区指针
   int64_t ProcessingIterationCounter;               // 处理迭代计数器
-  NetworkStatus *PacketBufferPointer;         // 网络数据包缓冲区指针
+  NetworkConnectionStatus *PacketBufferPointer;         // 网络数据包缓冲区指针
   
   // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[1]) {
@@ -1431,42 +1432,42 @@ NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkStatus *NetworkStatusBufferPointer = (NetworkStatus *)0x0;
+  NetworkConnectionStatus *NetworkStatusBufferPointer = (NetworkConnectionStatus *)0x0;
   
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
-      NetworkStatusBufferPointer = (NetworkStatus *)
-               ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
+      NetworkStatusBufferPointer = (NetworkConnectionStatus *)
+               ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                              NetworkConnectionFinalizeValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (NetworkStatusBufferPointer != (NetworkStatus *)0x0) {
+      if (NetworkStatusBufferPointer != (NetworkConnectionStatus *)0x0) {
         int32_t ActiveConnectionCount = (int)ConnectionContext[1];
         int64_t ConnectionProcessingCounter = (long long)ActiveConnectionCount;
         
         // 如果有活跃连接，处理连接数据
         if ((ActiveConnectionCount != 0) && (ConnectionBaseAddressPointer = *ConnectionContext, 0 < ActiveConnectionCount)) {
-          NetworkStatus *PacketStatusBufferPointer = NetworkStatusBufferPointer;
+          NetworkConnectionStatus *PacketStatusBufferPointer = NetworkStatusBufferPointer;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkStatus *ConnectionContextDataArray = (NetworkStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + (long long)PacketStatusBufferPointer);
+            NetworkConnectionStatus *ConnectionContextDataArray = (NetworkConnectionStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + (long long)PacketStatusBufferPointer);
             
             // 提取连接状态信息
-            NetworkStatus CurrentPacketStatus = ConnectionContextDataArray[1];
-            NetworkStatus CurrentDataStatus = ConnectionContextDataArray[2];
-            NetworkStatus CurrentValidationResult = ConnectionContextDataArray[3];
+            NetworkConnectionStatus CurrentPacketStatus = ConnectionContextDataArray[1];
+            NetworkConnectionStatus CurrentDataStatus = ConnectionContextDataArray[2];
+            NetworkConnectionStatus CurrentValidationResult = ConnectionContextDataArray[3];
             
             // 更新数据包缓冲区状态
             *PacketStatusBufferPointer = *ConnectionContextDataArray;
             PacketStatusBufferPointer[1] = CurrentPacketStatus;
             PacketStatusBufferPointer[2] = CurrentDataStatus;
             PacketStatusBufferPointer[3] = CurrentValidationResult;
-            PacketStatusBufferPointer[4] = *(NetworkStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + -4 + (long long)(PacketStatusBufferPointer + 5));
+            PacketStatusBufferPointer[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + -4 + (long long)(PacketStatusBufferPointer + 5));
             
             // 更新迭代计数器
             ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
@@ -1481,7 +1482,7 @@ NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int
 NetworkMainProcessingLoop:
   // 验证连接安全性
   if ((0 < *(int *)((long long)ConnectionContext + ConnectionParameterOffset)) && (*ConnectionContext != 0)) {
-      ValidateConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
+      ValidateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
   }
   
   // 更新连接上下文和参数
@@ -1866,7 +1867,7 @@ uint64_t CombineConnectionStateAndHandle(uint32_t ConnectionStateFlags, uint32_t
  * @param ProcessingMode 处理模式
  * @return void* 处理结果指针
  */
-void* ProcessConnectionRequest(NetworkHandle ConnectionTable, int64_t RequestData, void* SecurityValidationData, 
+void* HandleNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int64_t RequestData, void* SecurityValidationData, 
                              uint32_t FinalizeValue, uint32_t ProcessingFlags, uint32_t ValidationFlags, uint32_t ProcessingMode)
 {
   // 连接请求处理变量

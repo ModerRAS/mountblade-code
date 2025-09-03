@@ -252,6 +252,12 @@
 // 系统执行指针偏移常量
 #define SystemExecutionPointerResourceOffset 0x20
 
+// 系统寄存器上下文验证偏移常量
+#define SystemRegisterContextValidationOffset1 0x1a8
+#define SystemRegisterContextValidationOffset2 0x1ac
+#define SystemRegisterContextValidationOffset3 0x1b4
+#define SystemRegisterContextValidationOffset4 0x1b8
+
 // 校验和种子值常量
 #define ChecksumSeedValueFEFB 0x46464542
 #define ChecksumSeedValueBEFB 0x42464542
