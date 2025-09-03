@@ -10340,39 +10340,39 @@ uint64_t ExecuteSystemRuntimeValidation(void)
   int64_t SystemContext;
   
   // 初始化变量
-  SystemRegisterContext = 0;
-  ResourceContext = 0;
-  ResourceContextSecondary = 0;
-  SystemRuntimeInputValue = 0.0f;
-  SystemRuntimeResultValue = 0.0f;
+  SystemContext = 0;
+  ResourceHandle = 0;
+  SecondaryResourceHandle = 0;
+  InputParameterValue = 0.0f;
+  ResultValue = 0.0f;
   
-  ResourceTablePointerPointer = LookupResourceIndexPointer();
-  if ((*(uint *)(ResourceTablePointerPointer + ResourceValidationFlagsOffset) >> 4 & 1) != 0) {
+  ResourceTablePointer = LookupResourceIndexPointer();
+  if ((*(uint *)(ResourceTablePointer + ResourceValidationFlagsOffset) >> 4 & 1) != 0) {
     return ErrorResourceValidationFailed;
   }
   
-  // 检查ResourceContext是否有效
-  if (ResourceContext != 0) {
-    SystemRuntimeCalculatedValue = *(float *)(ResourceContext + 0x10);
-    SystemRuntimeLowerBoundValue = *(float *)(ResourceTablePointerPointer + ResourceFloatValue1Offset);
-    if ((*(float *)(ResourceTablePointerPointer + ResourceFloatValue1Offset) <= SystemRuntimeInputValue) &&
-       (SystemRuntimeLowerBoundValue = *(float *)(ResourceTablePointerPointer + ResourceFloatValue2Offset), SystemRuntimeInputValue <= *(float *)(ResourceTablePointerPointer + ResourceFloatValue2Offset))) {
-      SystemRuntimeLowerBoundValue = SystemRuntimeInputValue;
+  // 检查ResourceHandle是否有效
+  if (ResourceHandle != 0) {
+    CalculatedResourceValue = *(float *)(ResourceHandle + 0x10);
+    LowerValidationBound = *(float *)(ResourceTablePointer + ResourceFloatValue1Offset);
+    if ((*(float *)(ResourceTablePointer + ResourceFloatValue1Offset) <= InputParameterValue) &&
+       (LowerValidationBound = *(float *)(ResourceTablePointer + ResourceFloatValue2Offset), InputParameterValue <= *(float *)(ResourceTablePointer + ResourceFloatValue2Offset))) {
+      LowerValidationBound = InputParameterValue;
     }
-    *(float *)(ResourceContext + 0x10) = SystemRuntimeResultValue;
-    ValidationStatusCode = ValidateResourceParameters(SystemRegisterContext + ValidationContextHashOffset,ResourceContextSecondary,SystemRuntimeResultValue);
-    if ((int)ValidationStatusCode == 0) {
-      LoopProcessingPointer = (uint8_t *)GetResourcePointer(SystemRegisterContext + ValidationContextHashOffset,&ObjectResourceBuffer,ResourceContextSecondary);
-      if (ResourceContext != 0 && LoopProcessingPointer != NULL) {
-        *(uint8_t *)(ResourceContext + 0x18) = *LoopProcessingPointer;
+    *(float *)(ResourceHandle + 0x10) = ResultValue;
+    StatusCode = ValidateResourceParameters(SystemContext + ValidationContextHashOffset,SecondaryResourceHandle,ResultValue);
+    if ((int)StatusCode == 0) {
+      ProcessingBufferPointer = (uint8_t *)GetResourcePointer(SystemContext + ValidationContextHashOffset,&ObjectBuffer,SecondaryResourceHandle);
+      if (ResourceHandle != 0 && ProcessingBufferPointer != NULL) {
+        *(uint8_t *)(ResourceHandle + 0x18) = *ProcessingBufferPointer;
       }
-      ReleaseSystemContextResources(*(uint8_t *)(SystemRegisterContext + 0x98));
+      ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98));
     }
   } else {
-    ValidationStatusCode = ErrorInvalidResourceData;
+    StatusCode = ErrorInvalidResourceData;
   }
   
-  return ValidationStatusCode;
+  return StatusCode;
 }
 
 
