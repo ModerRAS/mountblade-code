@@ -5081,15 +5081,24 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，用于对象生命周期管理。
+ * 主要用于内存管理和对象跟踪系统，确保对象在使用期间不会被意外释放。
+ * 
+ * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
 uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
-  uint8_t ContextValidationResult;
+  uint8_t ObjectValidationStatus;
   int64_t ObjectValidationBuffer [4];
   
   // 验证对象上下文的有效性
-  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationBuffer);
-  if ((int)ContextValidationResult != 0) {
-    return ContextValidationResult;
+  ObjectValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationBuffer);
+  if ((int)ObjectValidationStatus != 0) {
+    return ObjectValidationStatus;
   }
   
   // 调整对象验证缓冲区地址
@@ -5104,8 +5113,8 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
     *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ContextValidationResult = CheckSystemStatus(), (int)ContextValidationResult != 0)) {
-      return ContextValidationResult;
+    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ObjectValidationStatus = CheckSystemStatus(), (int)ObjectValidationStatus != 0)) {
+      return ObjectValidationStatus;
     }
     return OperationSuccessCode;
   }
@@ -5154,19 +5163,25 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * 主要用于对象生命周期的最后阶段，确保资源被正确释放。
  * 
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ * @note 此函数从全局状态获取当前对象句柄进行释放操作
  */
 uint8_t FreeObjectHandle(void) {
-  int64_t ObjectHandle = 0;
-  int64_t ObjectMemoryPtr;
+  int64_t CurrentObjectHandle = 0;
+  int64_t ObjectMemoryAddress;
   
-  if (ObjectHandle == 0) {
-    ObjectMemoryPtr = 0;
+  // 获取当前对象句柄（这里从系统状态中获取）
+  CurrentObjectHandle = GetCurrentObjectHandle();
+  
+  if (CurrentObjectHandle == 0) {
+    ObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryPtr = ObjectHandle - 8;
+    ObjectMemoryAddress = CurrentObjectHandle - 8;
   }
-  if (*(int64_t *)(ObjectMemoryPtr + ObjectHandleOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryPtr + ObjectHandleOffset), 1);
+  
+  // 如果对象内存地址有效，执行释放操作
+  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
   }
   return OperationSuccessCode;
 }

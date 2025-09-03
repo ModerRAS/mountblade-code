@@ -57317,49 +57317,61 @@ long long CalculateSystemResourceManagerHandle(long long SystemResourceManager)
  * 
  *FUN_180075b70：ProcessSystemResourceManagerFloat
  */
+/**
+ * @brief 处理系统资源管理器浮点数操作
+ * 
+ * 该函数负责处理系统资源管理器中的浮点数操作，包括浮点数比较、
+ * 缩放因子计算和系统状态管理。用于系统资源管理器的浮点数处理。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含浮点数操作所需的数据
+ * @return 返回处理后的浮点数指针
+ * 
+ * @note 该函数包含复杂的浮点数运算和系统状态管理
+ * @note 函数会处理多种浮点数操作场景，包括边界值检查
+ */
 float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
 
 {
   float *primaryFloatPointer;
   byte isSystemActive;
   long long *SystemResourceOffsetPointer;
-  float *pfloatValue4;
-  char operationStatusFlag;
-  float *pfloatValue6;
-  uint SystemLoopCounter;
-  ulong long OperationCode;
+  float *secondaryFloatPointer;
+  char systemStatusFlag;
+  float *systemFloatReference;
+  uint systemLoopCounter;
+  ulong long operationCode;
   bool isSystemBusy;
-  float ScalingFactor;
-  float OffsetValue;
-  float fStack_b8;
-  float fStack_b4;
-  float fStack_b0;
-  uint32_t StackUnsignedValueAC;
-  float fStack_a8;
-  float fStack_a4;
-  float fStack_a0;
-  uint32_t StackUnsignedValue9C;
-  float *SystemFloatPointer;
-  uint32_t SystemConfigurationValue;
-  long long SystemConfigurationData;
-  void* SystemUnsignedFlagSecondary;
-  void* SystemProcessFlagsSecondary;
+  float scalingFactor;
+  float offsetValue;
+  float minimumFloatValueB8;
+  float minimumFloatValueB4;
+  float minimumFloatValueB0;
+  uint32_t systemUnsignedValueAC;
+  float maximumFloatValueA8;
+  float maximumFloatValueA4;
+  float maximumFloatValueA0;
+  uint32_t systemUnsignedValue9C;
+  float *systemFloatPointer;
+  uint32_t systemConfigurationValue;
+  long long systemConfigurationData;
+  void* systemUnsignedFlagSecondary;
+  void* systemProcessFlagsSecondary;
   void* encryptionValue68;
-  void* ThreadContextFlag;
-  float SystemFloatValue1;
-  float SystemFloatValue2;
-  float SystemFloatValue3;
-  float fStack_4c;
-  void* SystemEncryptionKey;
-  void* SystemOperationCounter;
-  void* SystemContextValue;
+  void* threadContextFlag;
+  float systemFloatValue1;
+  float systemFloatValue2;
+  float systemFloatValue3;
+  float systemFloatValue4C;
+  void* systemEncryptionKey;
+  void* systemOperationCounter;
+  void* systemContextValue;
   
-  SystemContextValue = 0xfffffffffffffffe;
-  pfloatValue6 = SystemResourceManager;
+  systemContextValue = 0xfffffffffffffffe;
+  systemFloatReference = SystemResourceManager;
   if ((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x20) == 0) {
-    pfloatValue6 = (float *)GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x6c));
+    systemFloatReference = (float *)GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x6c));
   }
-  if ((*(long long *)(pfloatValue6 + 0x84) != 0) && (((uint)SystemResourceManager[0x40] & 0x80) == 0)) {
+  if ((*(long long *)(systemFloatReference + 0x84) != 0) && (((uint)SystemResourceManager[0x40] & 0x80) == 0)) {
     primaryFloatPointer = SystemResourceManager + 0x9d;
     primaryFloatPointer[0] = 1e+08;
     primaryFloatPointer[1] = 1e+08;
@@ -57369,92 +57381,92 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
     SystemResourceManager[0xa2] = -1e+08;
     SystemResourceManager[0xa3] = -1e+08;
     SystemResourceManager[0xa4] = 3.4028235e+38;
-    ThreadContextFlag = 0;
+    threadContextFlag = 0;
     SystemResourceManager[0xa9] = 0.0;
     SystemResourceManager[0xa5] = 0.0;
     SystemResourceManager[0xa6] = 0.0;
     SystemResourceManager[0xa7] = 0.0;
     SystemResourceManager[0xa8] = 3.4028235e+38;
-    SystemConfigurationValue = 0;
-    SystemFloatPointer = pfloatValue6;
-    ProcessFloatValue(&SystemFloatPointer);
-    if (*(int *)(SystemConfigurationData + 0x10) != 0) {
+    systemConfigurationValue = 0;
+    systemFloatPointer = systemFloatReference;
+    ProcessFloatValue(&systemFloatPointer);
+    if (*(int *)(systemConfigurationData + 0x10) != 0) {
       do {
-        pfloatValue6 = (float *)((long long)(int)ThreadContextFlag * 0x10 + *(long long *)(SystemConfigurationData + 0x18));
-        fStack_a8 = *pfloatValue6;
-        if (*primaryFloatPointer < fStack_a8) {
-          fStack_a8 = *primaryFloatPointer;
+        systemFloatReference = (float *)((long long)(int)threadContextFlag * 0x10 + *(long long *)(systemConfigurationData + 0x18));
+        maximumFloatValueA8 = *systemFloatReference;
+        if (*primaryFloatPointer < maximumFloatValueA8) {
+          maximumFloatValueA8 = *primaryFloatPointer;
         }
-        fStack_a4 = pfloatValue6[1];
-        if (SystemResourceManager[0x9e] < fStack_a4) {
-          fStack_a4 = SystemResourceManager[0x9e];
+        maximumFloatValueA4 = systemFloatReference[1];
+        if (SystemResourceManager[0x9e] < maximumFloatValueA4) {
+          maximumFloatValueA4 = SystemResourceManager[0x9e];
         }
-        fStack_a0 = pfloatValue6[2];
-        if (SystemResourceManager[0x9f] < fStack_a0) {
-          fStack_a0 = SystemResourceManager[0x9f];
+        maximumFloatValueA0 = systemFloatReference[2];
+        if (SystemResourceManager[0x9f] < maximumFloatValueA0) {
+          maximumFloatValueA0 = SystemResourceManager[0x9f];
         }
-        *(ulong long *)primaryFloatPointer = ConcatenatedSystemValue(fStack_a4,fStack_a8);
-        *(ulong long *)(SystemResourceManager + 0x9f) = ConcatenatedSystemValue(uStack_9c,fStack_a0);
-        fStack_b8 = *pfloatValue6;
-        if (fStack_b8 < SystemResourceManager[0xa1]) {
-          fStack_b8 = SystemResourceManager[0xa1];
+        *(ulong long *)primaryFloatPointer = ConcatenatedSystemValue(maximumFloatValueA4,maximumFloatValueA8);
+        *(ulong long *)(SystemResourceManager + 0x9f) = ConcatenatedSystemValue(systemUnsignedValue9C,maximumFloatValueA0);
+        minimumFloatValueB8 = *systemFloatReference;
+        if (minimumFloatValueB8 < SystemResourceManager[0xa1]) {
+          minimumFloatValueB8 = SystemResourceManager[0xa1];
         }
-        fStack_b4 = pfloatValue6[1];
-        if (fStack_b4 < SystemResourceManager[0xa2]) {
-          fStack_b4 = SystemResourceManager[0xa2];
+        minimumFloatValueB4 = systemFloatReference[1];
+        if (minimumFloatValueB4 < SystemResourceManager[0xa2]) {
+          minimumFloatValueB4 = SystemResourceManager[0xa2];
         }
-        fStack_b0 = pfloatValue6[2];
-        if (fStack_b0 < SystemResourceManager[0xa3]) {
-          fStack_b0 = SystemResourceManager[0xa3];
+        minimumFloatValueB0 = systemFloatReference[2];
+        if (minimumFloatValueB0 < SystemResourceManager[0xa3]) {
+          minimumFloatValueB0 = SystemResourceManager[0xa3];
         }
-        *(ulong long *)(SystemResourceManager + 0xa1) = ConcatenatedSystemValue(fStack_b4,fStack_b8);
-        *(ulong long *)(SystemResourceManager + 0xa3) = ConcatenatedSystemValue(uStack_ac,fStack_b0);
-        ThreadContextFlag = ThreadContextFlag + 1;
-      } while (ThreadContextFlag < *(uint *)(SystemConfigurationData + 0x10));
+        *(ulong long *)(SystemResourceManager + 0xa1) = ConcatenatedSystemValue(minimumFloatValueB4,minimumFloatValueB8);
+        *(ulong long *)(SystemResourceManager + 0xa3) = ConcatenatedSystemValue(systemUnsignedValueAC,minimumFloatValueB0);
+        threadContextFlag = threadContextFlag + 1;
+      } while (threadContextFlag < *(uint *)(systemConfigurationData + 0x10));
     }
-    pfloatValue6 = *(float **)(SystemResourceManager + 0x6e);
-    if ((pfloatValue6 != (float *)0x0) && (((uint)pfloatValue6[0x4e] & 0x3000) != 0)) {
-      SystemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
-      SystemProcessFlagsSecondary = *(void* *)(SystemResourceManager + 0x4a);
+    systemFloatReference = *(float **)(SystemResourceManager + 0x6e);
+    if ((systemFloatReference != (float *)0x0) && (((uint)systemFloatReference[0x4e] & 0x3000) != 0)) {
+      systemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
+      systemProcessFlagsSecondary = *(void* *)(SystemResourceManager + 0x4a);
       encryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
       SystemThreadContext = *(void* *)(SystemResourceManager + 0x4e);
-      SystemFloatValue1 = SystemResourceManager[0x50];
-      SystemFloatValue2 = SystemResourceManager[0x51];
-      SystemFloatValue3 = SystemResourceManager[0x52];
-      fStack_4c = SystemResourceManager[0x53];
-      SystemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
-      SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
-      ProcessSystemUnsignedFlagInitialization(&SystemUnsignedFlagSecondary);
-      ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlagSecondary);
-      pfloatValue6 = *(float **)(SystemResourceManager + 0x6e);
-      if (((uint)pfloatValue6[0x4e] & 0x3000) == 0x2000) {
-        SystemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
-        SystemProcessFlagsSecondary = *(void* *)(SystemResourceManager + 0x4a);
+      systemFloatValue1 = SystemResourceManager[0x50];
+      systemFloatValue2 = SystemResourceManager[0x51];
+      systemFloatValue3 = SystemResourceManager[0x52];
+      systemFloatValue4C = SystemResourceManager[0x53];
+      systemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
+      systemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
+      ProcessSystemUnsignedFlagInitialization(&systemUnsignedFlagSecondary);
+      ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&systemUnsignedFlagSecondary);
+      systemFloatReference = *(float **)(SystemResourceManager + 0x6e);
+      if (((uint)systemFloatReference[0x4e] & 0x3000) == 0x2000) {
+        systemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
+        systemProcessFlagsSecondary = *(void* *)(SystemResourceManager + 0x4a);
         encryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
         SystemThreadContext = *(void* *)(SystemResourceManager + 0x4e);
-        SystemFloatValue1 = SystemResourceManager[0x50];
-        SystemFloatValue2 = SystemResourceManager[0x51];
-        SystemFloatValue3 = SystemResourceManager[0x52];
-        fStack_4c = SystemResourceManager[0x53];
-        SystemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
-        SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
-        ProcessSystemUnsignedFlagWithFloatingValue(&SystemUnsignedFlagSecondary,0x3fc90fdb);
-        ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlagSecondary);
-        SystemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
-        SystemProcessFlagsSecondary = *(void* *)(SystemResourceManager + 0x4a);
+        systemFloatValue1 = SystemResourceManager[0x50];
+        systemFloatValue2 = SystemResourceManager[0x51];
+        systemFloatValue3 = SystemResourceManager[0x52];
+        systemFloatValue4C = SystemResourceManager[0x53];
+        systemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
+        systemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
+        ProcessSystemUnsignedFlagWithFloatingValue(&systemUnsignedFlagSecondary,0x3fc90fdb);
+        ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&systemUnsignedFlagSecondary);
+        systemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
+        systemProcessFlagsSecondary = *(void* *)(SystemResourceManager + 0x4a);
         encryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
         SystemThreadContext = *(void* *)(SystemResourceManager + 0x4e);
-        SystemFloatValue1 = SystemResourceManager[0x50];
-        SystemFloatValue2 = SystemResourceManager[0x51];
-        SystemFloatValue3 = SystemResourceManager[0x52];
-        fStack_4c = SystemResourceManager[0x53];
-        SystemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
-        SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
-        ResetSystemUnsignedFlag(&SystemUnsignedFlagSecondary);
-        pfloatValue6 = (float *)ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlagSecondary);
+        systemFloatValue1 = SystemResourceManager[0x50];
+        systemFloatValue2 = SystemResourceManager[0x51];
+        systemFloatValue3 = SystemResourceManager[0x52];
+        systemFloatValue4C = SystemResourceManager[0x53];
+        systemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
+        systemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
+        ResetSystemUnsignedFlag(&systemUnsignedFlagSecondary);
+        systemFloatReference = (float *)ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&systemUnsignedFlagSecondary);
       }
     }
-    pfloatValue4 = SystemFloatPointer;
+    secondaryFloatPointer = systemFloatPointer;
     if (SystemResourceManager[0xa1] < *primaryFloatPointer) {
       SystemResourceManager[0xa9] = 0.0;
       primaryFloatPointer[0] = 0.0;
@@ -57475,70 +57487,70 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       SystemResourceManager[0xa6] = (SystemResourceManager[0xa2] + SystemResourceManager[0x9e]) * 0.5;
       SystemResourceManager[0xa7] = (SystemResourceManager[0xa3] + SystemResourceManager[0x9f]) * 0.5;
       SystemResourceManager[0xa8] = 3.4028235e+38;
-      ScalingFactor = 0.0;
-      OperationCode = (ulong long)*(uint *)(SystemConfigurationData + 0x10);
-      if (0 < (int)*(uint *)(SystemConfigurationData + 0x10)) {
-        pfloatValue6 = *(float **)(SystemConfigurationData + 0x18);
-        OffsetValue = ScalingFactor;
+      scalingFactor = 0.0;
+      operationCode = (ulong long)*(uint *)(systemConfigurationData + 0x10);
+      if (0 < (int)*(uint *)(systemConfigurationData + 0x10)) {
+        systemFloatReference = *(float **)(systemConfigurationData + 0x18);
+        offsetValue = scalingFactor;
         do {
-          ScalingFactor = (*pfloatValue6 - SystemResourceManager[0xa5]) * (*pfloatValue6 - SystemResourceManager[0xa5]) +
-                   (pfloatValue6[1] - SystemResourceManager[0xa6]) * (pfloatValue6[1] - SystemResourceManager[0xa6]) +
-                   (pfloatValue6[2] - SystemResourceManager[0xa7]) * (pfloatValue6[2] - SystemResourceManager[0xa7]);
-          if (ScalingFactor <= OffsetValue) {
-            ScalingFactor = OffsetValue;
+          scalingFactor = (*systemFloatReference - SystemResourceManager[0xa5]) * (*systemFloatReference - SystemResourceManager[0xa5]) +
+                   (systemFloatReference[1] - SystemResourceManager[0xa6]) * (systemFloatReference[1] - SystemResourceManager[0xa6]) +
+                   (systemFloatReference[2] - SystemResourceManager[0xa7]) * (systemFloatReference[2] - SystemResourceManager[0xa7]);
+          if (scalingFactor <= offsetValue) {
+            scalingFactor = offsetValue;
           }
-          pfloatValue6 = pfloatValue6 + 4;
-          OperationCode = OperationCode - 1;
-          OffsetValue = ScalingFactor;
-        } while (OperationCode != 0);
+          systemFloatReference = systemFloatReference + 4;
+          operationCode = operationCode - 1;
+          offsetValue = scalingFactor;
+        } while (operationCode != 0);
       }
-      SystemResourceManager[0xa9] = SQRT(ScalingFactor);
+      SystemResourceManager[0xa9] = SQRT(scalingFactor);
     }
-    if (SystemFloatPointer != (float *)0x0) {
+    if (systemFloatPointer != (float *)0x0) {
       while( true ) {
         LOCK();
-        systemStatusFlag = *(char *)(pfloatValue4 + 0x3b);
+        systemStatusFlag = *(char *)(secondaryFloatPointer + 0x3b);
         isSystemBusy = systemStatusFlag == '\0';
         if (isSystemBusy) {
-          *(char *)(pfloatValue4 + 0x3b) = '\x01';
+          *(char *)(secondaryFloatPointer + 0x3b) = '\x01';
           systemStatusFlag = '\0';
         }
         UNLOCK();
         if (isSystemBusy) break;
-        ScalingFactor = (float)_Thrd_id();
-        if ((pfloatValue4[0x3c] == ScalingFactor) || (pfloatValue4[0x3c] != 0.0)) goto LAB_180075f4f;
+        scalingFactor = (float)_Thrd_id();
+        if ((secondaryFloatPointer[0x3c] == scalingFactor) || (secondaryFloatPointer[0x3c] != 0.0)) goto LAB_180075f4f;
         Sleep();
       }
       systemStatusFlag = '\0';
 LAB_180075f4f:
       LOCK();
-      primaryFloatPointer = pfloatValue4 + 0x3a;
-      ScalingFactor = *primaryFloatPointer;
-      pfloatValue6 = (float *)(ulong long)(uint)ScalingFactor;
+      primaryFloatPointer = secondaryFloatPointer + 0x3a;
+      scalingFactor = *primaryFloatPointer;
+      systemFloatReference = (float *)(ulong long)(uint)scalingFactor;
       *primaryFloatPointer = (float)((int)*primaryFloatPointer + -1);
       UNLOCK();
       if (systemStatusFlag == '\0') {
-        if ((((ScalingFactor == 1.4013e-45) && (*(long long *)(SystemFloatPointer + 0x84) != 0)) &&
-            (pfloatValue6 = SystemFloatPointer, ValidateSystemString(SystemFloatPointer), *(char *)(pfloatValue6 + 0x3f) == '\0')) &&
-           ((*(char *)(pfloatValue6 + 0x3d) == '\0' &&
-            (((*(byte *)((long long)pfloatValue6 + 0xfd) & 0x20) == 0 ||
-             ((*(byte *)((long long)pfloatValue6 + 0xfe) & 1) == 0)))))) {
-          SystemResourceOffsetPointer = *(long long **)(pfloatValue6 + 0x84);
-          pfloatValue6[0x84] = 0.0;
-          pfloatValue6[0x85] = 0.0;
+        if ((((scalingFactor == 1.4013e-45) && (*(long long *)(systemFloatPointer + 0x84) != 0)) &&
+            (systemFloatReference = systemFloatPointer, ValidateSystemString(systemFloatPointer), *(char *)(systemFloatReference + 0x3f) == '\0')) &&
+           ((*(char *)(systemFloatReference + 0x3d) == '\0' &&
+            (((*(byte *)((long long)systemFloatReference + 0xfd) & 0x20) == 0 ||
+             ((*(byte *)((long long)systemFloatReference + 0xfe) & 1) == 0)))))) {
+          SystemResourceOffsetPointer = *(long long **)(systemFloatReference + 0x84);
+          systemFloatReference[0x84] = 0.0;
+          systemFloatReference[0x85] = 0.0;
           if (SystemResourceOffsetPointer != (long long *)0x0) {
             (**(code **)(*SystemResourceOffsetPointer + 0x38))();
           }
         }
         LOCK();
-        isSystemActive = *(byte *)(pfloatValue4 + 0x3b);
-        *(byte *)(pfloatValue4 + 0x3b) = 0;
-        pfloatValue6 = (float *)(ulong long)isSystemActive;
+        isSystemActive = *(byte *)(secondaryFloatPointer + 0x3b);
+        *(byte *)(secondaryFloatPointer + 0x3b) = 0;
+        systemFloatReference = (float *)(ulong long)isSystemActive;
         UNLOCK();
       }
     }
   }
-  return pfloatValue6;
+  return systemFloatReference;
 }
 
 
