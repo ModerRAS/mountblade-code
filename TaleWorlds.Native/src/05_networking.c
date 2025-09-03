@@ -1650,12 +1650,27 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  * 头部处理和最终验证。确保数据包在传输过程中没有被篡改，
  * 并且符合网络协议的规范要求。
  * 
+ * @details 该函数执行以下关键验证步骤：
+ * - 使用魔数验证数据包的真实性
+ * - 解码数据包数据到缓冲区
+ * - 验证数据包头部信息的有效性
+ * - 检查数据包完整性校验和
+ * - 处理数据包头部和验证偏移量
+ * - 完成数据包处理并清理资源
+ * 
  * @param PacketData 指向网络数据包的指针数组，包含待验证的数据包信息
  * @param ConnectionContext 连接上下文，包含连接状态和验证所需的信息
  * @return NetworkHandle 验证结果句柄，0表示验证成功，非0值表示验证失败的具体错误码
  * 
+ * @retval 0 验证成功
+ * @retval NetworkErrorInvalidPacket 数据包格式无效
+ * @retval 其他错误码 具体验证失败类型
+ * 
  * @note 此函数会进行多层验证，包括数据包解码、头部验证和完整性检查
  * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
+ * @see NetworkProcessValidatedPacket, NetworkValidateConnectionPacket
+ * 
+ * @security 该函数使用多层安全验证机制，包括魔数验证、头部验证和数据完整性检查
  */
 NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
