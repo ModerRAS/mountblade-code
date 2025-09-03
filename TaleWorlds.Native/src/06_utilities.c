@@ -2877,7 +2877,7 @@ uint8_t SystemMemoryRecoveryPoolQuaternary;
  * 设置内存错误恢复和数据修复机制
  */
 void ConfigureMemoryRecovery(void);
-uint8_t SystemDataBufferPointer;
+uint8_t SystemDataPrimaryReferencePointer;
 uint8_t SystemMemoryConfigDataTemplate;
 uint8_t SystemMemoryConfigDataTable;
 uint8_t SystemMemoryConfigDataCache;
@@ -13361,7 +13361,7 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
   int64_t *DataHandlerContextPointer;
   uint64_t ResourceHandlerParam;
   int ResourceHandlerArray [2];
-  uint8_t *SystemDataBufferPointer;
+  uint8_t *SystemDataPrimaryReferencePointer;
   uint32_t SystemDataBufferOffset;
   uint32_t SystemDataBufferFlags;
   uint8_t *CompressionContextPointer;
@@ -13413,8 +13413,8 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
               do {
                 SystemDataBufferFlags = *(uint32_t *)(ResourceTablePointerPointer + 0xc + SystemContextPointerBuffer * 0x10);
                 SystemDataBufferOffset = 0;
-                SystemDataBufferPointer = &PrimaryDataBuffer;
-                ParseDataStructure(&SystemDataBufferPointer,*(uint8_t *)(ObjectContext + ObjectContextQuinaryHandleOffset));
+                SystemDataPrimaryReferencePointer = &PrimaryDataBuffer;
+                ParseDataStructure(&SystemDataPrimaryReferencePointer,*(uint8_t *)(ObjectContext + ObjectContextQuinaryHandleOffset));
                 OperationStatus = ValidateTableEntry(ResourceHashStatus);
               } while (0 < OperationResult);
               ContextValidationStatusCode = (uint64_t)CommandParameters[0];
@@ -61383,9 +61383,9 @@ void InitializeSystemDataQuaternaryPointer001(void)
  * 
  * 该函数负责初始化系统数据指针002，指向系统数据结构
  */
-void InitializeSystemDataPointer002(void)
+void InitializeSystemDataStructureReference002(void)
 {
-  SystemDataQuinaryPointer = &SystemDataStructure;
+  SystemDataSecondaryReferencePointer = &SystemDataStructure;
   return;
 }
 
@@ -61397,9 +61397,9 @@ void InitializeSystemDataPointer002(void)
  * 
  * 该函数负责初始化系统数据指针003，指向系统数据结构
  */
-void InitializeSystemDataPointer003(void)
+void InitializeSystemDataStructureReference003(void)
 {
-  SystemDataSenaryPointer = &SystemDataStructure;
+  SystemDataTertiaryReferencePointer = &SystemDataStructure;
   return;
 }
 
@@ -68598,7 +68598,7 @@ uint8_t * HandleIOException(uint8_t ObjectContext,int64_t ValidationContext)
   SetBasicIOStreamState
             ((int64_t)*(int *)(**(int64_t **)(ValidationContext + 0x70) + 4) +
              (int64_t)*(int64_t **)(ValidationContext + 0x70),4,1);
-  return &SystemDataPointer002;
+  return &SystemDataStructureReference002;
 }
 
 
@@ -68728,7 +68728,7 @@ uint8_t * HandleStreamException(uint8_t ObjectContext,int64_t ValidationContext)
   SetBasicIOStreamState
             ((int64_t)*(int *)(**(int64_t **)(ValidationContext + 0x70) + 4) +
              (int64_t)*(int64_t **)(ValidationContext + 0x70),4,1);
-  return &SystemDataPointer003;
+  return &SystemDataStructureReference003;
 }
 
 
@@ -68857,7 +68857,7 @@ void InitializeResourceHashAndTableStructure(uint8_t ObjectContext, int64_t Vali
   uint8_t *ResourceHashStatusAddress;
   
   PackageValidationStatusCodePointer = (uint8_t *)(ValidationContext + 0x88);
-  *PackageValidationStatusCodePointer = &SystemDataPointer001;
+  *PackageValidationStatusCodePointer = &SystemDataStructureReference001;
   if ((*(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset8) != 0) && (**(int64_t **)(ValidationContext + ValidationContextPrimaryOffset) == ValidationContext + 0xf8))
   {
     ResourceHash = *(uint8_t *)(ValidationContext + 0x118);
@@ -69508,7 +69508,7 @@ void UnwindSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationContex
   uint64_t ContextResourceHashStatus;
   
   PackageValidationStatusCodePointer = *(uint8_t **)(ValidationContext + 0x80);
-  *PackageValidationStatusCodePointer = &SystemDataPointer004;
+  *PackageValidationStatusCodePointer = &SystemDataStructureReference004;
   if ((int64_t *)ResourceHashStatusAddress[0x1049] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)ResourceHashStatusAddress[0x1049] + 0x38))();
   }
@@ -69708,7 +69708,7 @@ void ProcessSystemResourceHashValidationCleanup(uint8_t ObjectContext,int64_t Va
   uint64_t ContextResourceHashStatus;
   
   PackageValidationStatusCodePointer = *(uint8_t **)(ValidationContext + 0x90);
-  *PackageValidationStatusCodePointer = &SystemDataPointer004;
+  *PackageValidationStatusCodePointer = &SystemDataStructureReference004;
   if ((int64_t *)ResourceHashStatusAddress[0x1049] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)ResourceHashStatusAddress[0x1049] + 0x38))();
   }
@@ -70984,7 +70984,7 @@ void UnwindSystemResourceProcessingF(uint8_t ObjectContext,int64_t ValidationCon
   uint64_t ContextResourceHashStatus;
   
   PackageValidationStatusCodePointer = *(uint8_t **)(ValidationContext + 0x40);
-  *PackageValidationStatusCodePointer = &SystemDataPointer004;
+  *PackageValidationStatusCodePointer = &SystemDataStructureReference004;
   if ((int64_t *)ResourceHashStatusAddress[0x1049] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)ResourceHashStatusAddress[0x1049] + 0x38))();
   }
@@ -79295,7 +79295,7 @@ void Unwind_18090c200(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   LoopProcessingPointer = (uint8_t *)(ResourceIndex + -0xa0);
-  *LoopProcessingPointer = &SystemDataPointer001;
+  *LoopProcessingPointer = &SystemDataStructureReference001;
   if ((*(int64_t *)(ResourceIndex + -0x20) != 0) && (**(int64_t **)(ResourceIndex + -0x88) == ResourceIndex + -0x30)) {
     ResourceHash = *(uint8_t *)(ResourceIndex + -0x10);
     ResourceTablePointer = *(int64_t *)(ResourceIndex + -0x18);
@@ -79333,7 +79333,7 @@ void Unwind_18090c240(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   LoopProcessingPointer = (uint8_t *)(ResourceIndex + -0xa0);
-  *LoopProcessingPointer = &SystemDataPointer001;
+  *LoopProcessingPointer = &SystemDataStructureReference001;
   if ((*(int64_t *)(ResourceIndex + -0x20) != 0) && (**(int64_t **)(ResourceIndex + -0x88) == ResourceIndex + -0x30)) {
     ResourceHash = *(uint8_t *)(ResourceIndex + -0x10);
     ResourceTablePointer = *(int64_t *)(ResourceIndex + -0x18);
@@ -79590,7 +79590,7 @@ void Unwind_18090c380(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   LoopProcessingPointer = (uint8_t *)(ResourceIndex + 0x18);
-  *LoopProcessingPointer = &SystemDataPointer001;
+  *LoopProcessingPointer = &SystemDataStructureReference001;
   if ((*(int64_t *)(ResourceIndex + 0x98) != 0) && (**(int64_t **)(ResourceIndex + 0x30) == ResourceIndex + 0x88)) {
     ResourceHash = *(uint8_t *)(ResourceIndex + ResourceIndexHashOffset);
     ResourceTablePointer = *(int64_t *)(ResourceIndex + ResourceIndexTableOffset);
@@ -93806,7 +93806,7 @@ void Unwind_180910580(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset);
   LoopProcessingPointer = (uint8_t *)(ResourceIndex + ValidationContextCleanupFunctionOffset);
-  *LoopProcessingPointer = &SystemDataPointer001;
+  *LoopProcessingPointer = &SystemDataStructureReference001;
   if ((*(int64_t *)(ResourceIndex + 0x90) != 0) && (**(int64_t **)(ResourceIndex + 0x28) == ResourceIndex + 0x80)) {
     ResourceHash = *(uint8_t *)(ResourceIndex + ResourceIndexTableOffset);
     ResourceTablePointer = *(int64_t *)(ResourceIndex + 0x98);
@@ -94012,7 +94012,7 @@ void Unwind_1809106a0(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   LoopProcessingPointer = (uint8_t *)(ResourceIndex + -0xa0);
-  *LoopProcessingPointer = &SystemDataPointer001;
+  *LoopProcessingPointer = &SystemDataStructureReference001;
   if ((*(int64_t *)(ResourceIndex + -0x20) != 0) && (**(int64_t **)(ResourceIndex + -0x88) == ResourceIndex + -0x30)) {
     ResourceHash = *(uint8_t *)(ResourceIndex + -0x10);
     ResourceTablePointer = *(int64_t *)(ResourceIndex + -0x18);
@@ -102127,7 +102127,7 @@ void InitializeSystemDataStructureN(void)
 void InitializeSystemDataStructureBackupManager(void)
 
 {
-  SystemDataQuinaryPointer = &SystemDataStructure;
+  SystemDataSecondaryReferencePointer = &SystemDataStructure;
   return;
 }
 
@@ -102144,7 +102144,7 @@ void InitializeSystemDataStructureBackupManager(void)
 void InitializeSystemDataStructureCacheManager(void)
 
 {
-  SystemDataSenaryPointer = &SystemDataStructure;
+  SystemDataTertiaryReferencePointer = &SystemDataStructure;
   return;
 }
 
@@ -102755,16 +102755,16 @@ void InitializeQuinarySystemDataPointer(void)
  * @brief 初始化系统数据结构AN
  * 
  * 该函数负责初始化系统数据结构的缓冲区指针
- * 将 SystemDataBufferPointer 设置为指向 SystemCoreDataStructure
+ * 将 SystemDataPrimaryReferencePointer 设置为指向 SystemCoreDataStructure
  * 用于建立系统数据结构的缓冲区引用关系
  * 
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataBufferPointer(void)
+void InitializeSystemDataPrimaryReferencePointer(void)
 
 {
-  SystemDataBufferPointer = &SystemDataStructure;
+  SystemDataPrimaryReferencePointer = &SystemDataStructure;
   return;
 }
 
@@ -102797,16 +102797,16 @@ void InitializeSystemDataCachePointer(void)
  * @brief 初始化系统数据结构AP
  * 
  * 该函数负责初始化系统数据结构的第16号指针
- * 将 SystemDataPointer016 设置为指向 SystemDataStructure
+ * 将 SystemDataStructureReference016 设置为指向 SystemDataStructure
  * 用于建立系统数据结构的第16级引用关系
  * 
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataPointer016(void)
+void InitializeSystemDataStructureReference016(void)
 
 {
-  SystemDataBufferPointer = &SystemDataStructure;
+  SystemDataPrimaryReferencePointer = &SystemDataStructure;
   return;
 }
 
@@ -103329,7 +103329,7 @@ void InitializeSystemDataStructureBN(void)
 void InitializeSystemDataStructureBN(void)
 
 {
-  SystemDataSenaryPointer = &SystemDataStructure;
+  SystemDataTertiaryReferencePointer = &SystemDataStructure;
   return;
 }
 
@@ -103409,7 +103409,7 @@ void InitializeSystemDataStructureBR(void)
 void InitializeSystemDataStructureBR(void)
 
 {
-  SystemDataPointer010 = &SystemDataStructure;
+  SystemDataStructureReference010 = &SystemDataStructure;
   return;
 }
 
@@ -103529,7 +103529,7 @@ void InitializeSystemDataStructureBX(void)
 void InitializeSystemDataStructureBX(void)
 
 {
-  SystemDataBufferPointer = &SystemDataStructure;
+  SystemDataPrimaryReferencePointer = &SystemDataStructure;
   return;
 }
 
