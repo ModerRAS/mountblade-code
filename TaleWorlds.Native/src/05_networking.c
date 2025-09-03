@@ -1383,16 +1383,16 @@ NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, N
   // 连接请求处理变量
   int64_t NetworkConnectionContextHandle;              // 网络连接上下文句柄
   int64_t *ConnectionValidationResultPointer;          // 连接验证结果指针
-  int32_t ConnectionValidationStatusCode;               // 连接验证状态码
+  int32_t ConnectionValidationStatus;                  // 连接验证状态码
   
   NetworkConnectionContextHandle = 0;
-  if (ConnectionValidationStatusCode == 0) {
+  if (ConnectionValidationStatus == 0) {
 NetworkValidationProcessingContinue:
     if ((0 < *(int *)((long long)ConnectionValidationResultPointer + ConnectionParameterOffset)) && (*ConnectionValidationResultPointer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ConnectionValidationResultPointer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
     }
     *ConnectionValidationResultPointer = NetworkConnectionContextHandle;
-    *(int *)((long long)ConnectionValidationResultPointer + ConnectionParameterOffset) = ConnectionValidationStatusCode;
+    *(int *)((long long)ConnectionValidationResultPointer + ConnectionParameterOffset) = ConnectionValidationStatus;
     return 0;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
