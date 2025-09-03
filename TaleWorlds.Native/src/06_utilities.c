@@ -30166,7 +30166,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数会在异常处理过程中自动调用
  * @warning 调用此函数可能会触发系统紧急退出
  */
-void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerFunctionAddress;
   
   ExceptionHandlerFunctionAddress = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
@@ -30189,7 +30189,7 @@ void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** ExceptionHandlerFunctionTable;
   
   ExceptionHandlerFunctionTable = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
