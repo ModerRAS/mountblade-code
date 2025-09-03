@@ -4297,15 +4297,15 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  */
 void ValidateSystemObjectCollection(void)
 {
-  uint8_t SystemObjectId;
-  int ValidationResult;
-  int64_t ObjectContext;
-  int64_t SystemContext;
-  int64_t CurrentPosition;
-  int ProcessedObjectCount;
-  uint8_t *CollectionBuffer;
-  int RetrievedObjectCount;
-  uint32_t MaximumCapacity;
+  uint8_t CurrentSystemObjectId;
+  int ObjectValidationResult;
+  int64_t SystemObjectContext;
+  int64_t SystemContextPointer;
+  int64_t BufferPosition;
+  int ValidatedObjectCount;
+  uint8_t *ObjectCollectionBuffer;
+  int RetrievedObjectTotal;
+  uint32_t MaximumCollectionCapacity;
   uint64_t SecurityValidationHash;
   
   if (*(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset) != 0) {
