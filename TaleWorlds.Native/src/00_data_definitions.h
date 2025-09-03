@@ -6844,45 +6844,45 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
       ColorElementCount = ColorElementCount + ColorRemainingElements;
       
       do {
-        float *format_21_red_component = format_21_input_buffer + -1;
-        float *format_21_green_component = format_21_input_buffer + -2;
-        float format_21_temp_value = *format_21_input_buffer;
-        format_21_input_buffer = format_21_input_buffer + 4;
+        float *ColorRedComponent = ColorInputBuffer + -1;
+        float *ColorGreenComponent = ColorInputBuffer + -2;
+        float ColorTempValue = *ColorInputBuffer;
+        ColorInputBuffer = ColorInputBuffer + 4;
         
-        format_21_luminance_sum = format_21_luminance_sum + 
-                                  (double)*format_21_red_component * 0.7152 + 
-                                  (double)*format_21_green_component * 0.2126 +
-                                  (double)format_21_temp_value * 0.0722;
+        ColorLuminanceSum = ColorLuminanceSum + 
+                                  (double)*ColorRedComponent * 0.7152 + 
+                                  (double)*ColorGreenComponent * 0.2126 +
+                                  (double)ColorTempValue * 0.0722;
                                   
-        format_21_remaining_elements = format_21_remaining_elements - 1;
-      } while (format_21_remaining_elements != 0);
+        ColorRemainingElements = ColorRemainingElements - 1;
+      } while (ColorRemainingElements != 0);
     }
     
     // 计算标准化系数
-    format_21_luminance_sum = 1.0 / (format_21_luminance_sum / (double)format_21_element_count);
+    ColorLuminanceSum = 1.0 / (ColorLuminanceSum / (double)ColorElementCount);
     
-    // 应用标准化系数到0x21格式的输出缓冲区
-    if (3 < format_21_total_elements) {
-      uint32_t format_21_batch_counter = (format_21_total_elements - 4U >> 2) + 1;
-      uint64_t format_21_remaining_elements = (ulonglong)format_21_batch_counter;
-      format_21_loop_counter = format_21_batch_counter * 4;
+    // 应用标准化系数到颜色校正格式的输出缓冲区
+    if (3 < ColorTotalElements) {
+      uint32_t ColorBatchCounter = (ColorTotalElements - 4U >> 2) + 1;
+      uint64_t ColorRemainingElements = (ulonglong)ColorBatchCounter;
+      ColorCorrectionLoopCounter = ColorBatchCounter * 4;
       
       do {
-        *format_21_output_buffer = (float)((double)*format_21_output_buffer * format_21_luminance_sum);
-        format_21_output_buffer[1] = (float)((double)format_21_output_buffer[1] * format_21_luminance_sum);
-        format_21_output_buffer[2] = (float)((double)format_21_output_buffer[2] * format_21_luminance_sum);
-        format_21_output_buffer[4] = (float)((double)format_21_output_buffer[4] * format_21_luminance_sum);
-        format_21_output_buffer[5] = (float)((double)format_21_output_buffer[5] * format_21_luminance_sum);
-        format_21_output_buffer[6] = (float)((double)format_21_output_buffer[6] * format_21_luminance_sum);
-        format_21_output_buffer[8] = (float)((double)format_21_output_buffer[8] * format_21_luminance_sum);
-        format_21_output_buffer[9] = (float)((double)format_21_output_buffer[9] * format_21_luminance_sum);
-        format_21_output_buffer[10] = (float)((double)format_21_output_buffer[10] * format_21_luminance_sum);
-        format_21_output_buffer[0xc] = (float)((double)format_21_output_buffer[0xc] * format_21_luminance_sum);
-        format_21_output_buffer[0xd] = (float)((double)format_21_output_buffer[0xd] * format_21_luminance_sum);
-        format_21_output_buffer[0xe] = (float)((double)format_21_output_buffer[0xe] * format_21_luminance_sum);
-        format_21_output_buffer = format_21_output_buffer + 0x10;
-        format_21_remaining_elements = format_21_remaining_elements - 1;
-      } while (format_21_remaining_elements != 0);
+        *ColorOutputBuffer = (float)((double)*ColorOutputBuffer * ColorLuminanceSum);
+        ColorOutputBuffer[1] = (float)((double)ColorOutputBuffer[1] * ColorLuminanceSum);
+        ColorOutputBuffer[2] = (float)((double)ColorOutputBuffer[2] * ColorLuminanceSum);
+        ColorOutputBuffer[4] = (float)((double)ColorOutputBuffer[4] * ColorLuminanceSum);
+        ColorOutputBuffer[5] = (float)((double)ColorOutputBuffer[5] * ColorLuminanceSum);
+        ColorOutputBuffer[6] = (float)((double)ColorOutputBuffer[6] * ColorLuminanceSum);
+        ColorOutputBuffer[8] = (float)((double)ColorOutputBuffer[8] * ColorLuminanceSum);
+        ColorOutputBuffer[9] = (float)((double)ColorOutputBuffer[9] * ColorLuminanceSum);
+        ColorOutputBuffer[10] = (float)((double)ColorOutputBuffer[10] * ColorLuminanceSum);
+        ColorOutputBuffer[0xc] = (float)((double)ColorOutputBuffer[0xc] * ColorLuminanceSum);
+        ColorOutputBuffer[0xd] = (float)((double)ColorOutputBuffer[0xd] * ColorLuminanceSum);
+        ColorOutputBuffer[0xe] = (float)((double)ColorOutputBuffer[0xe] * ColorLuminanceSum);
+        ColorOutputBuffer = ColorOutputBuffer + 0x10;
+        ColorRemainingElements = ColorRemainingElements - 1;
+      } while (ColorRemainingElements != 0);
     }
     
     // 处理0x21格式的剩余元素标准化

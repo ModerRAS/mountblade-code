@@ -66206,7 +66206,7 @@ void InitializeResourceHashTableTemplates(uint8_t ObjectContext, int64_t Validat
  * @return 无返回值
  * @note 此函数通常在资源系统初始化时调用
  */
-void SetResourceHashTable003(uint8_t ObjectContext, int64_t ValidationContext)
+void SetTertiaryResourceHashTable(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x28) = &TertiaryResourceHashTable;
