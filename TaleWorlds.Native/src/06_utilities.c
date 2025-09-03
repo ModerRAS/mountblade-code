@@ -10313,31 +10313,31 @@ uint8_t ProcessDataValidationAndSystemOperation(int64_t ObjectContext,int64_t Va
 
 
 /**
- * @brief 获取系统运行状态信息
+ * @brief 执行系统运行时状态验证和处理
  * 
- * 该函数用于获取系统的当前运行状态信息
- * 包括系统性能指标、资源使用情况等数据
+ * 该函数负责验证和处理系统运行时状态，包括资源验证、浮点数比较和状态更新
+ * 主要用于系统运行时的状态管理和数据验证
  * 
- * @return uint64_t 系统状态信息，包含各种运行时数据
+ * @return uint64_t 处理结果状态码，0表示成功，非0表示错误
  */
-uint64_t GetSystemRuntimeStatus(void)
+uint64_t ExecuteSystemRuntimeValidation(void)
 
 {
-  float SystemRuntimeCalculatedValue;
-  int64_t ResourceTablePointerPointer;
-  uint8_t ResourceHashStatus;
-  uint8_t *LoopProcessingPointer;
-  int64_t ResourceContext;
-  int64_t SavedRegisterValue;
-  float SystemRuntimeUpperBoundValue;
-  uint32_t ResourceContextSecondary;
-  float SystemRuntimeCalculatedValue2;
-  float SystemRuntimeLowerBoundValue;
-  float SystemRuntimeInputValue;
-  float SystemRuntimeResultValue;
-  uint8_t ValidationStatusCode;
-  int64_t ObjectResourceBuffer;
-  int64_t SystemRegisterContext;
+  float CalculatedResourceValue;
+  int64_t ResourceTablePointer;
+  uint8_t ResourceValidationStatus;
+  uint8_t *ProcessingBufferPointer;
+  int64_t ResourceHandle;
+  int64_t SavedContextRegister;
+  float UpperValidationBound;
+  uint32_t SecondaryResourceHandle;
+  float SecondaryCalculatedValue;
+  float LowerValidationBound;
+  float InputParameterValue;
+  float ResultValue;
+  uint8_t StatusCode;
+  int64_t ObjectBuffer;
+  int64_t SystemContext;
   
   // 初始化变量
   SystemRegisterContext = 0;
