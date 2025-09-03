@@ -5213,21 +5213,21 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
  */
 uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 {
-  int64_t RegisterContext;
-  int64_t ObjectMemoryAddress;
+  int64_t SystemRegisterContext;
+  int64_t ValidatedObjectMemoryAddress;
   
-  if (RegisterContext == 0) {
-    ObjectMemoryAddress = 0;
+  if (SystemRegisterContext == 0) {
+    ValidatedObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryAddress = RegisterContext - 8;
+    ValidatedObjectMemoryAddress = SystemRegisterContext - 8;
   }
   
-  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ValidatedObjectMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedObjectMemoryAddress + ObjectHandleOffset), 1);
   return 0;
 }
 
@@ -19694,12 +19694,17 @@ void ProcessObjectContextValidation(int64_t ObjectContext,int *ValidationContext
 /**
  * @brief 处理资源表条目
  * 
- * 该函数负责处理资源表中的条目，验证和处理资源数据
- * 检查资源状态并执行相应的处理操作
+ * 该函数负责处理资源表中的条目，通过多个偏移位置验证资源数据的有效性。
+ * 函数会依次检查不同的资源表位置，直到找到有效的资源或确定资源无效。
+ * 使用多级验证机制确保资源的完整性和正确性。
  * 
- * @param ResourceContext 资源上下文，包含资源处理的环境信息
- * @param ResourceData 资源数据指针，指向需要处理的资源数据
- * @return uint8_t 返回处理结果状态码
+ * @param ResourceContext 资源上下文，包含资源处理的环境信息和多个资源表偏移位置
+ * @param ResourceData 资源数据指针，指向需要处理的资源数据和元数据信息
+ * @return uint8_t 返回处理结果状态码：
+ *         - 0: 成功找到并验证了资源
+ *         - ErrorInvalidObjectHandle: 资源无效或验证失败
+ * @note 该函数使用多个预定义的偏移常量来检查不同的资源表位置
+ * @warning 资源验证失败时会返回错误状态码，调用者需要处理错误情况
  */
 uint8_t ProcessResourceTablePointerEntry(int64_t ResourceContext, uint8_t *ResourceData)
 
