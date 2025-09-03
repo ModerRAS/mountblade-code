@@ -19618,14 +19618,14 @@ void GuardCheckICall(void)
  * @param MemoryFreeParam2 内存释放参数2
  * @return 返回内存分配器引用指针
  */
-void** SystemMemoryAllocatorReferenceManager(void** SystemResourceManager, unsigned long long MemoryFlags, void* MemoryFreeParam1, void* MemoryFreeParam2)
+void** SystemMemoryAllocatorReferenceManager(void** systemResourceManager, unsigned long long memoryFlags, void* memoryFreeParam1, void* memoryFreeParam2)
 
 {
-  *SystemResourceManager = &SystemMemoryAllocatorReference;
-  if ((MemoryFlags & 1) != 0) {
-    free(SystemResourceManager, 0x418, MemoryFreeParam1, MemoryFreeParam2, InvalidHandleValue);
+  *systemResourceManager = &SystemMemoryAllocatorReference;
+  if ((memoryFlags & 1) != 0) {
+    free(systemResourceManager, 0x418, memoryFreeParam1, memoryFreeParam2, InvalidHandleValue);
   }
-  return SystemResourceManager;
+  return systemResourceManager;
 }
 
 
@@ -19690,14 +19690,14 @@ void ProcessSystemStringCopy(long long targetBuffer, long long sourceString)
  * @param sourceData 源数据指针
  * @param copyLength 复制长度
  */
-void ProcessSystemMemoryCopy(long long SystemResourceManager,void* SourceDataPointer,int BytesToCopy)
+void ProcessSystemMemoryCopy(long long systemResourceManager,void* sourceDataPointer,int bytesToCopy)
 
 {
-  if (BytesToCopy + 1 < 0x400) {
-      memcpy(*(uint8_t **)(SystemResourceManager + 8),SourceDataPointer,(long long)BytesToCopy);
+  if (bytesToCopy + 1 < 0x400) {
+      memcpy(*(uint8_t **)(systemResourceManager + 8),sourceDataPointer,(long long)bytesToCopy);
   }
-  **(uint8_t **)(SystemResourceManager + 8) = 0;
-  *(uint32_t *)(SystemResourceManager + 0x10) = 0;
+  **(uint8_t **)(systemResourceManager + 8) = 0;
+  *(uint32_t *)(systemResourceManager + 0x10) = 0;
   return;
 }
 
@@ -19727,14 +19727,14 @@ void ExecuteSystemMemoryCopyOperation(void)
  * 
  * @param bufferPointer 缓冲区指针
  */
-void ResetSystemBuffer(uint8_t *BufferPointer)
+void ResetSystemBuffer(uint8_t *bufferPointer)
 
 {
-  long long BufferOffset;
+  long long bufferOffset;
   
-  *BufferPointer = 0;
-  BufferOffset = (long long)BufferPointer;
-  *(uint32_t *)(BufferOffset + 0x10) = 0;
+  *bufferPointer = 0;
+  bufferOffset = (long long)bufferPointer;
+  *(uint32_t *)(bufferOffset + 0x10) = 0;
   return;
 }
 

@@ -11638,17 +11638,17 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t 
     return ErrorResourceValidationFailed;
   }
   ResourceEntryCount = 0;
-  ResourceHashValidationCode = *(uint *)(SystemContext + 0x20);
+  ResourceHashValidationCode = *(uint *)(SystemContext + SystemContextPrimaryDataOffset);
   ChecksumValidationBuffer[0] = 0;
   SystemInitializationStatusCode = InitializeProcessingQueue(ChecksumValidationBuffer, SystemContext);
   if (SystemInitializationStatusCode == 0) {
     SystemCallStackSize = 0;
-    PackageValidationState = ValidationFlags | 0x10000000;
+    PackageValidationState = ValidationFlags | SecurityValidationFlag;
     if ((ResourceHashValidationCode & 1) == 0) {
       PackageValidationState = ValidationFlags;
     }
     SystemProcessingStatusCode = ProcessConfigurationData(SystemContext, ConfigurationData, ResourceHashValidationCode, &SystemCallStackSize);
-    if ((SystemProcessingStatusCode == 0) && (SystemResourceManagerContext = (int64_t *)(ResultBuffer + 8)) && (SystemResourceManagerContext != (int64_t *)0x0)) {
+    if ((SystemProcessingStatusCode == 0) && (SystemResourceManagerContext = (int64_t *)(ResultBuffer + DataBufferOffset)) && (SystemResourceManagerContext != (int64_t *)NullPointerValue)) {
       ResourceLinkNode = (int64_t *)*SystemResourceManagerContext;
       if (ResourceLinkNode != SystemResourceManagerContext) {
         do {
@@ -11657,10 +11657,10 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t 
         } while (ResourceLinkNode != SystemResourceManagerContext);
         if (ResourceEntryCount != 0) goto CleanupHandler;
       }
-      *(uint8_t *)(ResultBuffer + 0x10) = *(uint8_t *)(SystemContext + 0x58);
-      *SystemResourceManagerContext = SystemContext + 0x50;
-      *(int64_t **)(SystemContext + 0x58) = SystemResourceManagerContext;
-      **(int64_t **)(ResultBuffer + 0x10) = (int64_t)SystemResourceManagerContext;
+      *(uint8_t *)(ResultBuffer + ResourceContextSecondaryOffset) = *(uint8_t *)(SystemContext + SystemContextCallbackPointerOffset);
+      *SystemResourceManagerContext = SystemContext + SystemContextResourceManagerOffset;
+      *(int64_t **)(SystemContext + SystemContextCallbackPointerOffset) = SystemResourceManagerContext;
+      **(int64_t **)(ResultBuffer + ResourceContextSecondaryOffset) = (int64_t)SystemResourceManagerContext;
       ExecuteSystemOperation(ResultBuffer, SystemCallStackSize);
       ProcessDataBlockOperation(SystemContext, SystemCallStackSize);
     }
