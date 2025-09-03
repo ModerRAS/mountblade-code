@@ -34,53 +34,54 @@
 #define NetworkSystemDebugFlag 0x80
 #define NetworkSystemStatusOffset 0x10
 
-// 网络连接相关偏移量
-#define NetworkConnectionContextOffset 0x78
-#define NetworkConnectionValidationOffset 0x24
-#define NetworkConnectionStatusOffset 0x98
-#define NetworkPacketProcessingSize 0x20
-#define NetworkConnectionCompressionOffset 0x1c
-#define NetworkConnectionEncryptionOffset 0x20
-#define NetworkConnectionValidationStatusOffset 0x24
-#define NetworkConnectionTransferOffset 0x28
-#define NetworkPacketValidationOffset 0x2c
-#define NetworkConnectionDataOffset 0x18
-#define NetworkConnectionBufferOffset 0x10
-#define NetworkConnectionExtendedOffset 0x60
-#define NetworkTimeoutValueOffset 0x30
-#define NetworkRetryCountOffset 0x34
-#define ConnectionTimeoutFlagsOffset 0x38
-#define ConnectionRetryFlagsOffset 0x3c
-#define ConnectionTransferFlagsOffset 0x40
-#define ConnectionValidationFlagsOffset 0x44
-#define NetworkProcessingStepOffset 0x25
-#define NetworkSecondaryProcessingOffset 0x28
-#define NetworkExtendedProcessingOffset 0xa8
-#define NetworkConnectionKeyOffset 0x14
-#define NetworkPrimaryStatusOffset 0x4c
-#define NetworkSecondaryStatusOffset 0x48
-#define NetworkQuaternaryHandleOffset 0x40
-#define NetworkSecurityContextOffset 0x44
-#define NetworkEncryptionKeyOffset 0x50
+// 网络连接相关偏移量 - 连接上下文和状态管理
+#define NetworkConnectionContextOffset 0x78           // 网络连接上下文偏移量
+#define NetworkConnectionValidationOffset 0x24        // 网络连接验证偏移量
+#define NetworkConnectionStatusOffset 0x98            // 网络连接状态偏移量
+#define NetworkPacketProcessingSize 0x20               // 网络数据包处理大小
+#define NetworkConnectionCompressionOffset 0x1c       // 网络连接压缩偏移量
+#define NetworkConnectionEncryptionOffset 0x20        // 网络连接加密偏移量
+#define NetworkConnectionValidationStatusOffset 0x24  // 网络连接验证状态偏移量
+#define NetworkConnectionTransferOffset 0x28           // 网络连接传输偏移量
+#define NetworkPacketValidationOffset 0x2c             // 网络数据包验证偏移量
+#define NetworkConnectionDataOffset 0x18               // 网络连接数据偏移量
+#define NetworkConnectionBufferOffset 0x10             // 网络连接缓冲区偏移量
+#define NetworkConnectionExtendedOffset 0x60           // 网络连接扩展偏移量
+#define NetworkTimeoutValueOffset 0x30                 // 网络超时值偏移量
+#define NetworkRetryCountOffset 0x34                   // 网络重试计数偏移量
+#define ConnectionTimeoutFlagsOffset 0x38             // 连接超时标志偏移量
+#define ConnectionRetryFlagsOffset 0x3c                // 连接重试标志偏移量
+#define ConnectionTransferFlagsOffset 0x40             // 连接传输标志偏移量
+#define ConnectionValidationFlagsOffset 0x44           // 连接验证标志偏移量
+#define NetworkProcessingStepOffset 0x25               // 网络处理步骤偏移量
+#define NetworkSecondaryProcessingOffset 0x28          // 网络次级处理偏移量
+#define NetworkExtendedProcessingOffset 0xa8           // 网络扩展处理偏移量
+#define NetworkConnectionKeyOffset 0x14                // 网络连接密钥偏移量
+#define NetworkPrimaryStatusOffset 0x4c                // 网络主状态偏移量
+#define NetworkSecondaryStatusOffset 0x48               // 网络次级状态偏移量
+#define NetworkQuaternaryHandleOffset 0x40             // 网络第四级句柄偏移量
+#define NetworkSecurityContextOffset 0x44               // 网络安全上下文偏移量
+#define NetworkEncryptionKeyOffset 0x50                // 网络加密密钥偏移量
 
-// 网络数据包相关偏移量
-#define NetworkPacketTableIndexOffset 0x88
-#define NetworkPacketTableDataOffset 0x80
-#define NetworkPacketEntrySize 0x10
-#define NetworkPacketProcessorOffset 0x270
+// 网络数据包相关偏移量 - 数据包表和状态管理
+#define NetworkPacketTableIndexOffset 0x88               // 网络数据包表索引偏移量
+#define NetworkPacketTableDataOffset 0x80               // 网络数据包表数据偏移量
+#define NetworkPacketEntrySize 0x10                      // 网络数据包条目大小
+#define NetworkPacketProcessorOffset 0x270               // 网络数据包处理器偏移量
 
-#define NetworkPacketStatusPrimaryOffset 0x38
-#define NetworkPacketStatusSecondaryOffset 0x3c
-#define NetworkPacketStatusTertiaryOffset 0x40
-#define NetworkPacketStatusQuaternaryOffset 0x44
+// 网络数据包状态偏移量 - 各级状态信息
+#define NetworkPacketStatusPrimaryOffset 0x38            // 网络数据包主状态偏移量
+#define NetworkPacketStatusSecondaryOffset 0x3c          // 网络数据包次级状态偏移量
+#define NetworkPacketStatusTertiaryOffset 0x40           // 网络数据包第三级状态偏移量
+#define NetworkPacketStatusQuaternaryOffset 0x44         // 网络数据包第四级状态偏移量
 
-// 网络数据包魔数
-#define NetworkPacketMagicSilive 0x5453494c    // "LIVE" - 表示活跃连接
-#define NetworkPacketMagicTivel 0x54495645    // "EVIT" - 表示数据包验证
-#define NetworkPacketMagicBivel 0x42495645    // "EVIB" - 表示二进制数据
-#define NetworkPacketMagicTnvel 0x544e5645    // "EVNT" - 表示事件数据
-#define NetworkPacketMagicBtvel 0x42545645    // "EVBT" - 表示批处理数据
-#define NetworkPacketMagicInvalid 0x464f4f44   // "FOOD" - 表示无效数据包
+// 网络数据包魔数 - 用于数据包类型识别和验证
+#define NetworkPacketMagicSilive 0x5453494c    // "LIVE" - 表示活跃连接魔数
+#define NetworkPacketMagicTivel 0x54495645    // "EVIT" - 表示数据包验证魔数
+#define NetworkPacketMagicBivel 0x42495645    // "EVIB" - 表示二进制数据魔数
+#define NetworkPacketMagicTnvel 0x544e5645    // "EVNT" - 表示事件数据魔数
+#define NetworkPacketMagicBtvel 0x42545645    // "EVBT" - 表示批处理数据魔数
+#define NetworkPacketMagicInvalid 0x464f4f44   // "FOOD" - 表示无效数据包魔数
 
 // 网络连接相关偏移量
 #define NetworkConnectionHeaderOffset 0x10
