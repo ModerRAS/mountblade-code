@@ -568,7 +568,7 @@
  * @param ValidationParameter 验证参数值低7位
  * @return 合并后的64位值
  */
-uint64_t MergeSystemContextWithValidationParameter(uint64_t SystemContext, uint8_t ValidationParameter);
+uint64_t CombineSystemContextWithValidationParam(uint64_t SystemContext, uint8_t ValidationParameter);
 
 /**
  * @brief 计算数据校验和
@@ -582,7 +582,7 @@ uint64_t MergeSystemContextWithValidationParameter(uint64_t SystemContext, uint8
  * @param ChecksumSeed 校验种子值
  * @return 计算得到的校验和值
  */
-uint64_t CalculateDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
+uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
 
 /**
  * @brief 计算数据校验和(扩展版)
@@ -5309,6 +5309,7 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * @note 此函数会立即终止当前进程的执行
  */
 void RaiseSystemException(void) {
+  // 执行系统退出操作，触发异常处理流程
   ExecuteSystemExitOperation();
 }
 
