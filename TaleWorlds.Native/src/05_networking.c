@@ -460,6 +460,15 @@ uint32_t NetworkClientPortNumber;                         // 网络客户端端�
 uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符
 uint32_t NetworkSocketCategory;                           // 网络套接字类别
 uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型
+uint32_t NetworkSocketIndex;                              // 网络套接字索引
+uint32_t NetworkSocketData;                                // 网络套接字数据
+uint32_t NetworkSocketContext;                              // 网络套接字上下文
+uint32_t NetworkSocketSize;                                  // 网络套接字大小
+uint32_t NetworkProtocolVersion;                              // 网络协议版本
+uint32_t NetworkConnectionMode;                               // 网络连接模式
+uint32_t NetworkConnectionPriority;                           // 网络连接优先级
+uint32_t NetworkConnectionContextSize;                         // 网络连接上下文大小
+uint32_t NetworkConnectionQuality;                             // 网络连接质量
 uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针
 uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针
 uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小
@@ -526,6 +535,8 @@ uint32_t NetworkConnectionPoolHealthStatus;             // 网络连接池健康
 uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能指标
 uint32_t NetworkConnectionPoolAllocationCount;         // 网络连接池分配计数
 uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放计数
+uint32_t NetworkConnectionPoolCapacity;                 // 网络连接池容量
+uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引
 
 /**
  * @brief 网络连接表变量 - 管理网络连接的表结构和索引
@@ -1172,56 +1183,6 @@ uint32_t NetworkEncryptionAlgorithmType;            // 网络加密算法类型
 uint32_t NetworkCompressionAlgorithmType;           // 网络压缩算法类型
 uint32_t NetworkConnectionStatistics;               // 网络连接统计信息
 uint32_t NetworkSessionEncryptionKey;               // 网络会话加密密钥
-uint32_t NetworkSessionTimeoutDuration;             // 网络会话超时持续时间
-uint32_t NetworkPortRangeStartValue;                // 网络端口范围起始值
-uint32_t NetworkPortRangeEndValue;                  // 网络端口范围结束值
-uint32_t NetworkConnectionExtendedFlags;            // 网络连接扩展标志
-uint32_t NetworkRetryInterval;                      // 网络重试间隔
-uint32_t NetworkTimeoutInterval;                    // 网络超时间隔
-uint32_t NetworkHandshakeTimeout;                   // 网络握手超时时间
-uint32_t NetworkConnectionStateController;          // 网络连接状态控制器
-uint32_t NetworkProtocolVersion;                    // 网络协议版本
-uint32_t NetworkEventQueue;                         // 网络事件队列
-uint32_t NetworkCallbackHandler;                    // 网络回调处理器
-uint32_t NetworkTimeoutProcessor;                   // 网络超时处理器
-uint32_t NetworkConnectionMode;                     // 网络连接模式
-uint32_t NetworkConnectionPriority;                 // 网络连接优先级
-uint32_t NetworkConnectionQuality;                  // 网络连接质量
-uint32_t NetworkConnectionBandwidth;                // 网络连接带宽
-uint32_t NetworkConnectionLatency;                  // 网络连接延迟
-uint32_t NetworkEncryptionAlgorithm;                // 网络加密算法
-uint32_t NetworkCompressionMethod;                 // 网络压缩方法
-uint32_t NetworkAuthenticationType;                 // 网络认证类型
-uint32_t NetworkSecurityLevel;                      // 网络安全级别
-uint32_t NetworkPacketSequence;                     // 网络数据包序列号
-uint32_t NetworkAcknowledgeNumber;                  // 网络确认号
-uint32_t NetworkWindowScale;                        // 网络窗口缩放
-uint32_t NetworkRetransmitTimer;                    // 网络重传计时器
-uint32_t NetworkKeepAliveTime;                      // 网络保持连接时间
-uint32_t NetworkHeartbeatTimeout;                   // 网络心跳超时时间
-uint32_t NetworkConnectionPoolCapacity;              // 网络连接池容量
-uint32_t NetworkReceiveBufferCapacity;               // 网络接收缓冲区容量
-uint32_t NetworkSendBufferCapacity;                  // 网络发送缓冲区容量
-uint32_t NetworkPacketLossRate;                     // 网络数据包丢失率
-uint32_t NetworkRoundTripTime;                      // 网络往返时间
-uint32_t NetworkConnectionTimeout;                  // 网络连接超时时间
-uint32_t NetworkHandshakeTimeout;                   // 网络握手超时时间
-uint32_t NetworkAuthenticationTimeout;               // 网络认证超时时间
-uint32_t NetworkEncryptionTimeout;                  // 网络加密超时时间
-uint32_t NetworkDataCompressionLevel;               // 网络数据压缩级别
-uint32_t NetworkEncryptionKeyLength;                // 网络加密密钥长度
-uint32_t NetworkHashAlgorithm;                      // 网络哈希算法
-uint32_t NetworkSignatureMethod;                    // 网络签名方法
-uint32_t NetworkConnectionRetryCount;               // 网络连接重试次数
-uint32_t NetworkConnectionBackoffTime;               // 网络连接退避时间
-uint32_t NetworkConnectionJitterBuffer;              // 网络连接抖动缓冲区
-uint32_t NetworkConnectionErrorRate;                 // 网络连接错误率
-uint32_t NetworkThroughputMonitor;                  // 网络吞吐量监控器
-uint32_t NetworkLatencyMonitor;                     // 网络延迟监控器
-uint32_t NetworkBandwidthMonitor;                    // 网络带宽监控器
-uint32_t NetworkPacketMonitor;                       // 网络数据包监控器
-uint32_t NetworkConnectionHealth;                    // 网络连接健康状态
-uint32_t NetworkConnectionStability;                // 网络连接稳定性
 uint32_t NetworkConnectionReliability;              // 网络连接可靠性
 uint32_t NetworkConnectionPerformance;              // 网络连接性能
 uint32_t NetworkConnectionTableIndex;               // 网络连接表索引
@@ -1232,42 +1193,6 @@ uint32_t NetworkEncryptionContext;                   // 网络加密上下文
 uint32_t NetworkCompressionContext;                  // 网络压缩上下文
 uint32_t NetworkAuthenticationContext;               // 网络认证上下文
 uint32_t NetworkSecurityContext;                     // 网络安全上下文
-uint32_t NetworkConnectionContext;                  // 网络连接上下文
-uint32_t NetworkConnectionContextSize;               // 网络连接上下文大小
-uint32_t NetworkConnectionPoolManager;               // 网络连接池管理器
-uint32_t NetworkConnectionPoolData;                  // 网络连接池数据
-uint32_t NetworkConnectionPoolIndex;                 // 网络连接池索引
-uint32_t NetworkConnectionPoolMaxCapacity;           // 网络连接池最大容量
-uint32_t NetworkSocketContext;                       // 网络套接字上下文
-uint32_t NetworkSocketContextSize;                   // 网络套接字上下文大小
-uint32_t NetworkSocketData;                          // 网络套接字数据
-uint32_t NetworkSocketIndex;                         // 网络套接字索引
-uint32_t NetworkSocketSize;                          // 网络套接字大小
-uint32_t NetworkPacketContext;                       // 网络数据包上下文
-uint32_t NetworkPacketContextSize;                   // 网络数据包上下文大小
-uint32_t NetworkPacketData;                          // 网络数据包数据
-uint32_t NetworkPacketIndex;                         // 网络数据包索引
-uint32_t NetworkPacketPayloadSize;                   // 网络数据包负载大小
-uint32_t NetworkPacketHeaderData;                    // 网络数据包头数据
-uint32_t NetworkPacketHeaderSize;                    // 网络数据包头大小
-uint32_t NetworkPacketTrailerData;                   // 网络数据包尾数据
-uint32_t NetworkPacketTrailerSize;                   // 网络数据包尾大小
-uint32_t NetworkBufferManager;                       // 网络缓冲区管理器
-uint32_t NetworkBufferData;                          // 网络缓冲区数据
-uint32_t NetworkBufferSize;                          // 网络缓冲区大小
-uint32_t NetworkBufferIndex;                         // 网络缓冲区索引
-uint32_t NetworkConnectionManager;                   // 网络连接管理器
-uint32_t NetworkConnectionData;                      // 网络连接数据
-uint32_t NetworkConnectionSize;                      // 网络连接大小
-uint32_t NetworkConnectionIndex;                     // 网络连接索引
-uint32_t NetworkEventContext;                        // 网络事件上下文
-uint32_t NetworkEventData;                           // 网络事件数据
-uint32_t NetworkEventSize;                           // 网络事件大小
-uint32_t NetworkEventIndex;                          // 网络事件索引
-uint32_t NetworkCallbackContext;                     // 网络回调上下文
-uint32_t NetworkCallbackData;                        // 网络回调数据
-uint32_t NetworkCallbackSize;                        // 网络回调大小
-uint32_t NetworkCallbackIndex;                       // 网络回调索引
 
 /**
  * @brief 网络连接处理变量 - 记录连接处理相关的状态和数据
