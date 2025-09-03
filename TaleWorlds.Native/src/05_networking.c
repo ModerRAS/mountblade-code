@@ -912,7 +912,7 @@ void NetworkInitializeConnectionState(void)
     *ConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + 8) = ((int)ConnectionStateBuffer - ConnectionHandleId) + 4U & 0xfffffffc;
+    *(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + 8) = ((int)ConnectionStateBuffer - ConnectionHandleId) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
     InitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(ContextPointer + NetworkContextSystemOffset));
