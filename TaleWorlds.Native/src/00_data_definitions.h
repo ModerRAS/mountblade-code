@@ -13229,9 +13229,9 @@ uint SystemProcessTimer(longlong TimerContextPointer,int TimerIntervalParameter,
   int IntegerCounter;
   int IntegerResult;
   uint MemoryAllocationResult;
-  uint uVar6;
+  uint BitMask;
   MemoryAllocationResult = 0;
-  uVar6 = 0;
+  BitMask = 0;
   IntegerCounter = 0;
   IntegerResult = IntegerCounter;
   if (0 < SystemTertiaryParameter) {
@@ -13243,19 +13243,19 @@ uint SystemProcessTimer(longlong TimerContextPointer,int TimerIntervalParameter,
         ValidationStatusByte = ValidationStatusByte - 8;
       }
       SystemSecondaryParameter = SystemSecondaryParameter + 1;
-      uVar6 = *(byte *)((IntegerResult >> 3) + SystemParameterPointer) >> (ValidationStatusByte & 0x1f) & 1;
+      BitMask = *(byte *)((IntegerResult >> 3) + SystemParameterPointer) >> (ValidationStatusByte & 0x1f) & 1;
       IntegerResult = IntegerCounter + 1;
-      MemoryAllocationResult = MemoryAllocationResult | uVar6 << ((byte)IntegerCounter & 0x1f);
+      MemoryAllocationResult = MemoryAllocationResult | BitMask << ((byte)IntegerCounter & 0x1f);
       IntegerCounter = IntegerResult;
     } while (IntegerResult < SystemTertiaryParameter);
   }
-  if (((SystemQuaternaryParameter != '\0') && (uVar6 != 0)) && (IntegerResult < 0x20)) {
+  if (((SystemQuaternaryParameter != '\0') && (BitMask != 0)) && (IntegerResult < 0x20)) {
     ValidationStatusByte = (byte)IntegerResult & 0x1f;
-    uVar6 = 1 << ValidationStatusByte | 1U >> 0x20 - ValidationStatusByte;
+    BitMask = 1 << ValidationStatusByte | 1U >> 0x20 - ValidationStatusByte;
     MemoryAddress = (ulonglong)(0x20 - IntegerResult);
     do {
-      MemoryAllocationResult = MemoryAllocationResult | uVar6;
-      uVar6 = uVar6 << 1 | (uint)((int)uVar6 < 0);
+      MemoryAllocationResult = MemoryAllocationResult | BitMask;
+      BitMask = BitMask << 1 | (uint)((int)BitMask < 0);
       MemoryAddress = MemoryAddress - 1;
     } while (MemoryAddress != 0);
   }
