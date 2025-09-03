@@ -77122,7 +77122,7 @@ void ExecuteResourceCleanupOperation430(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_18090b450(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupOperation450(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -77136,7 +77136,7 @@ void Unwind_18090b450(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b470(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupOperation470(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
