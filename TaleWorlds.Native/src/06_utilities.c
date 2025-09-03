@@ -30004,39 +30004,52 @@ uint8_t ValidateResourceId(int64_t ObjectContext,int64_t *ValidationContext)
 /**
  * @brief 处理资源标识符列表
  * 
- * 该函数负责处理资源标识符列表
- * 对多个资源标识符进行批量验证和处理
+ * 该函数负责处理资源标识符列表，对多个资源标识符进行批量验证和处理。
+ * 通过计算校验和来验证数据完整性，并执行资源条目的验证和清理操作。
  * 
- * @param ObjectContext 参数1，包含资源相关数据
- * @param ValidationContext 参数2，包含资源标识符列表
- * @return uint8_t 处理结果，0表示成功，非0表示失败
+ * @param ObjectContext 对象上下文，包含资源相关数据和内存分配信息
+ * @param ValidationContext 验证上下文指针，包含待验证的资源标识符列表
+ * @return uint8_t 处理结果状态码，0表示成功，非0表示失败
+ * @note 函数会进行两次校验和计算以确保数据完整性
+ * @warning 如果资源数据无效，函数会提前返回错误状态
  */
-uint8_t ProcessResourceIdList(int64_t ObjectContext,uint8_t *ValidationContext)
-
+uint8_t ProcessResourceIdentifierList(int64_t ObjectContext, uint8_t *ValidationContext)
 {
-  uint8_t ResourceHash;
-  uint8_t ResourceValidationBuffer [32];
-  uint8_t DataChecksumBuffer [32];
+  uint8_t ResourceValidationResult;
+  uint8_t ResourceValidationBuffer[32];
+  uint8_t DataIntegrityBuffer[32];
   
-  ResourceHash = CalculateDataChecksum(ValidationContext,DataChecksumBuffer,1,0x5453494c,0x54495645);
-  if (((int)ResourceHash == 0) &&
-     (ResourceHash = CalculateDataChecksum(ValidationContext,ResourceValidationBuffer,0,0x42495645,0), (int)ResourceHash == 0)) {
+  // 执行第一次数据完整性校验
+  ResourceValidationResult = CalculateDataChecksum(ValidationContext, DataIntegrityBuffer, 1, 0x5453494c, 0x54495645);
+  if (((int)ResourceValidationResult == 0) &&
+     (ResourceValidationResult = CalculateDataChecksum(ValidationContext, ResourceValidationBuffer, 0, 0x42495645, 0), (int)ResourceValidationResult == 0)) {
+    
+    // 验证资源数据的有效性
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
       return ErrorInvalidObjectHandle;
     }
-    ResourceHash = GetResourceEntry(*ValidationContext,ObjectContext + ObjectContextValidationDataOffset);
-    if ((int)ResourceHash == 0) {
+    
+    // 获取资源条目并进行验证
+    ResourceValidationResult = GetResourceEntry(*ValidationContext, ObjectContext + ObjectContextValidationDataOffset);
+    if ((int)ResourceValidationResult == 0) {
+      
+      // 二次验证资源数据
       if (*(int *)(ResourceData[1] + 0x18) != 0) {
         return ErrorInvalidObjectHandle;
       }
-      ResourceHash = GetResourceEntry(*ValidationContext,ObjectContext + ObjectContextMemoryAllocationOffset);
-      if ((((int)ResourceHash == 0) && (ResourceHash = ValidateResourceMetadata(ValidationContext,ObjectContext + 0xf8), (int)ResourceHash == 0)) &&
-         (ResourceHash = HandleSystemResource(ValidationContext,ObjectContext + 0xe8,1,ObjectContext), (int)ResourceHash == 0)) {
-              CleanupResourceBuffer(ValidationContext,ResourceValidationBuffer);
+      
+      // 获取内存分配相关的资源条目
+      ResourceValidationResult = GetResourceEntry(*ValidationContext, ObjectContext + ObjectContextMemoryAllocationOffset);
+      if ((((int)ResourceValidationResult == 0) && 
+           (ResourceValidationResult = ValidateResourceMetadata(ValidationContext, ObjectContext + 0xf8), (int)ResourceValidationResult == 0)) &&
+          (ResourceValidationResult = HandleSystemResource(ValidationContext, ObjectContext + 0xe8, 1, ObjectContext), (int)ResourceValidationResult == 0)) {
+        
+        // 清理资源缓冲区
+        CleanupResourceBuffer(ValidationContext, ResourceValidationBuffer);
       }
     }
   }
-  return ResourceHash;
+  return ResourceValidationResult;
 }
 
 
