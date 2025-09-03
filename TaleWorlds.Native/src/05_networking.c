@@ -886,9 +886,9 @@ uint32_t NetworkPacketEntryPointer;                        // 网络数据包条
 uint32_t NetworkConnectionTargetAddress;                   // 网络连接目标地址
 uint32_t NetworkConnectionIndexCounter;                    // 网络连接索引计数器
 uint32_t NetworkConnectionLoopCounter;                     // 网络连接循环计数器
-uint32_t NetworkConnectionStateFlag;                       // 网络连接状态标志
-uint32_t NetworkConnectionProcessingResult;                // 网络连接处理结果
-uint32_t NetworkConnectionProcessedCount;                  // 网络连接已处理数量
+uint32_t NetworkConnectionStateFlags;                       // 网络连接状态标志
+uint32_t NetworkConnectionProcessingResults;               // 网络连接处理结果
+uint32_t NetworkConnectionProcessedCounts;                  // 网络连接已处理数量
 
 /**
  * @brief 初始化网络连接状态
