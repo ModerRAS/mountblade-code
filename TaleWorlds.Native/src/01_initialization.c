@@ -19687,10 +19687,10 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
   uint8_t* SystemBufferPointer;
   uint32_t SystemBufferLength;
   uint8_t SystemDataBuffer [1032];
-  ulong long SystemChecksumValue;
+  unsigned long long SystemChecksumValue;
   
   SystemSecurityFlag = 0xfffffffffffffffe;
-  SystemChecksumValue = SystemEncryptionKeyTemplate ^ (ulong long)StackSecurityBuffer;
+  SystemChecksumValue = SystemEncryptionKeyTemplate ^ (unsigned long long)StackSecurityBuffer;
   SystemMemoryReference = &SystemMemoryTemplateF;
   SystemBufferPointer = SystemDataBuffer;
   SystemBufferLength = 0;

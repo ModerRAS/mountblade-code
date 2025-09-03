@@ -8594,15 +8594,15 @@ uint8_t ProcessFloatComparisonOperation(void)
  */
 uint8_t ProcessBufferedFloatComparison(void)
 {
-  float FloatValueToCompare;
-  int64_t ResourceDataAddress;
-  uint8_t OperationStatusCode;
+  float ComparisonValue;
+  int64_t ResourceDataPointer;
+  uint8_t ValidationStatusCode;
   int64_t BufferContext;
   int64_t SystemContext;
   int64_t ObjectContext;
   int64_t StackBuffer;
-  float MinRangeValue;
-  float MaxRangeValue;
+  float MinimumRangeValue;
+  float MaximumRangeValue;
   
   // 从缓冲区获取资源数据指针
   ResourceDataAddress = *(int64_t *)(BufferContext + BufferDataOffset);
