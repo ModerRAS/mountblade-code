@@ -6860,7 +6860,7 @@ void ProcessMessageQueue(int64_t MessageQueueHandle, uint8_t ConfigurationParame
   ProcessingResult[0] = ValidateObjectContext(*(uint32_t *)(MessageQueueHandle + MessageQueueContextOffset), &ValidationContext);
   if (ProcessingResult[0] == 0) {
     MessageDataOffset = MessageQueueHandle + MessageQueueDataOffset;
-    ProcessResourceOperationEx(SystemConfigData, ProcessingResult, *(uint32_t *)(MessageQueueHandle + MessageQueueSizeOffset), ValidationContext);
+    ProcessResourceOperationEx(ConfigurationParameter, ProcessingResult, *(uint32_t *)(MessageQueueHandle + MessageQueueSizeOffset), ValidationContext);
   }
   return;
 }
