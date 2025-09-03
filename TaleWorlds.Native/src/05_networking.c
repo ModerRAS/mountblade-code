@@ -110,7 +110,7 @@
 // 网络系统常量
 #define NetworkMagicDebugFood 0xdeadf00d       // 调试魔数，用于内存检查
 #define NetworkPacketMagicInvalid 0x464f4f44   // 兼容性别名，"FOOD" - 表示无效数据包
-#define NetworkMaxIntValue NetworkMaximumSignedInt32Value  // 兼容性别名
+#define NetworkMaxIntValue NetworkMaximumSignedInt32Value  // 兼容性别名 - 最大32位有符号整数值
 #define NetworkFloatOne 0x3f800000             // 浮点数1.0的十六进制表示
 #define NetworkFloatNegativeOne 0xbf800000     // 浮点数-1.0的十六进制表示
 #define NetworkFloatMax 0x7f7fffff             // 最大浮点数值
