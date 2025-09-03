@@ -30260,11 +30260,11 @@ void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t** ExceptionHandlerFunctionTable;
+  int64_t** ExceptionHandlerFunctionPointerTable;
   
-  ExceptionHandlerFunctionTable = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
-  if (ExceptionHandlerFunctionTable != (int64_t *)0x0) {
-    (**(code **)(*ExceptionHandlerFunctionTable + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerFunctionPointerTable = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
+  if (ExceptionHandlerFunctionPointerTable != (int64_t *)0x0) {
+    (**(code **)(*ExceptionHandlerFunctionPointerTable + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
