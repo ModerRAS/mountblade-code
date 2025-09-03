@@ -1513,7 +1513,7 @@ int InitializeStringProcessorH(void)
   GlobalStringProcessorConfigPointerC = &StringProcessorTertiaryConfig;
   StringProcessorTertiaryConfig = 0;
   GlobalStringProcessorBufferSizeC = 0xd;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_C,32,&SystemStringDataConstantD,StringProcessorHFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessorTertiaryConfig,32,&SystemStringDataConstantD,StringProcessorHFlags,SystemMutexFlags);
   SystemModuleRegistrationResult = RegisterSystemModule(InitializeStringProcessorModule);
   return (SystemModuleRegistrationResult != 0) - 1;
 }
@@ -1528,10 +1528,10 @@ int InitializeStringProcessorI(void)
   int64_t SystemModuleRegistrationResult;
   uint64_t StringProcessorIFlags;
   GlobalStringProcessorDataPointerD = &SystemStringMemoryTemplate;
-  GlobalStringProcessorConfigPointerD = &STRING_PROCESSOR_CONFIG_D;
-  STRING_PROCESSOR_CONFIG_D = 0;
+  GlobalStringProcessorConfigPointerD = &StringProcessorQuaternaryConfig;
+  StringProcessorQuaternaryConfig = 0;
   GlobalStringProcessorBufferSizeD = 9;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_D,32,&SystemStringDataConstantE,StringProcessorIFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessorQuaternaryConfig,32,&SystemStringDataConstantE,StringProcessorIFlags,SystemMutexFlags);
   SystemModuleRegistrationResult = RegisterSystemModule(InitializeNetworkModule);
   return (SystemModuleRegistrationResult != 0) - 1;
 }
@@ -2115,11 +2115,11 @@ int InitializeStringProcessorAF(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorOperationFlags;
-  g_stringProcessorAF_Base = &StringProcessorAFDataTemplate;
-  g_stringProcessorAF_BufferPtr = &g_stringProcessorAF_Buffer;
-  g_stringProcessorAF_Buffer = 0;
-  g_stringProcessorAF_Length = 0x12;
-  strcpy_s(&g_stringProcessorAF_Buffer,64,&StringProcessorAFTemplate,stringProcessorOperationFlags,SystemMutexFlags);
+  GlobalStringProcessorAF_Base = &StringProcessorAFDataTemplate;
+  GlobalStringProcessorAF_BufferPtr = &GlobalStringProcessorAF_Buffer;
+  GlobalStringProcessorAF_Buffer = 0;
+  GlobalStringProcessorAF_Length = 0x12;
+  strcpy_s(&GlobalStringProcessorAF_Buffer,64,&StringProcessorAFTemplate,stringProcessorOperationFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAF_Callback);
   return (CallbackResult != 0) - 1;
 }
