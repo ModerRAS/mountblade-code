@@ -2072,12 +2072,12 @@ int InitializeMultiStringProcessorSystem(void)
 int InitializeStringProcessorAD(void)
 {
   int64_t CallbackResult;
-  uint64_t stringProcessorADFlags;
+  uint64_t stringProcessorOperationFlags;
   GlobalStringProcessorAD_Base = &StringProcessorADDataTemplate;
   GlobalStringProcessorAD_BufferPtr = &GlobalStringProcessorAD_Buffer;
   GlobalStringProcessorAD_Buffer = 0;
   GlobalStringProcessorAD_Length = 9;
-  strcpy_s(&GlobalStringProcessorAD_Buffer,32,&StringProcessorADTemplate,stringProcessorADFlags,SystemMutexFlags);
+  strcpy_s(&GlobalStringProcessorAD_Buffer,32,&StringProcessorADTemplate,stringProcessorOperationFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAD_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -2096,12 +2096,12 @@ int InitializeStringProcessorAD(void)
 int InitializeStringProcessorAE(void)
 {
   int64_t CallbackResult;
-  uint64_t stringProcessorAEFlags;
+  uint64_t stringProcessorOperationFlags;
   GlobalStringProcessorAE_Base = &StringProcessorAEDataTemplate;
   GlobalStringProcessorAE_BufferPtr = &GlobalStringProcessorAE_Buffer;
   GlobalStringProcessorAE_Buffer = 0;
   GlobalStringProcessorAE_Length = 0x13;
-  strcpy_s(&GlobalStringProcessorAE_Buffer,64,&StringProcessorAETemplate,stringProcessorAEFlags,SystemMutexFlags);
+  strcpy_s(&GlobalStringProcessorAE_Buffer,64,&StringProcessorAETemplate,stringProcessorOperationFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAE_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -2114,12 +2114,12 @@ int InitializeStringProcessorAE(void)
 int InitializeStringProcessorAF(void)
 {
   int64_t CallbackResult;
-  uint64_t stringProcessorAFFlags;
+  uint64_t stringProcessorOperationFlags;
   g_stringProcessorAF_Base = &StringProcessorAFDataTemplate;
   g_stringProcessorAF_BufferPtr = &g_stringProcessorAF_Buffer;
   g_stringProcessorAF_Buffer = 0;
   g_stringProcessorAF_Length = 0x12;
-  strcpy_s(&g_stringProcessorAF_Buffer,64,&StringProcessorAFTemplate,stringProcessorAFFlags,SystemMutexFlags);
+  strcpy_s(&g_stringProcessorAF_Buffer,64,&StringProcessorAFTemplate,stringProcessorOperationFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAF_Callback);
   return (CallbackResult != 0) - 1;
 }
