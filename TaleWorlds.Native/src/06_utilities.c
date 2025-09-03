@@ -6516,20 +6516,20 @@ void ExecuteSystemForcedTermination(void)
 uint8_t ValidateObjectPointer(int64_t ObjectPointer)
 
 {
-  uint8_t ValidationResult;
-  int64_t ContextPointer;
+  uint8_t ValidationStatus;
+  int64_t ValidatedContextAddress;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectPointer + ObjectContextValidationOffset), &ContextPointer);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectPointer + ObjectContextValidationOffset), &ValidatedContextAddress);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  if (ContextPointer != 0) {
-    ContextPointer = ContextPointer + -8;
+  if (ValidatedContextAddress != 0) {
+    ValidatedContextAddress = ValidatedContextAddress + -8;
   }
-  if (*(int64_t *)(ContextPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ValidatedContextAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ContextPointer + ObjectContextOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectContextOffset), 1);
 }
 
 
