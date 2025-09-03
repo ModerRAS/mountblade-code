@@ -7488,12 +7488,12 @@ uint8_t SystemModuleInitializeFinal(void)
     LongIndex = LongIndex + 4;
     NetworkRequestResult = NetworkRequestResult - 1;
   } while (NetworkRequestResult != 0);
-  return unaff_SIL;
+  return UnassignedSil;
 }
 uint8_t SystemModuleInitializeComplete(void)
 {
-  uint8_t unaff_SIL;
-  return unaff_SIL;
+  uint8_t UnassignedSil;  // 未分配的SIL寄存器值
+  return UnassignedSil;
 }
   MemoryAllocationCounter = MemoryAllocationCounter + unaff_BL;
   MemoryAllocationResult = in(StringProcessingResult);

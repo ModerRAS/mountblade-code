@@ -9010,10 +9010,11 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t ComparisonParameter)
  * 
  * 该函数处理简化的参数化浮点数比较操作，直接进行范围检查
  * 根据传入的参数和上下文信息，检查浮点数是否在指定范围内
+ * 这是一个简化实现，原始函数包含复杂的浮点运算和资源验证逻辑
  * 
  * @param SimplifiedComparisonParameter 简化的比较参数
  * @return uint8_t 比较结果，0表示成功，非0表示错误码
- * @note 此函数使用硬编码的偏移量进行内存访问
+ * @note 这是一个简化版本的函数，适用于基本的浮点数比较需求
  * @warning 函数中使用了魔法数字，应该替换为有意义的常量
  */
 uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t SimplifiedComparisonParameter)
