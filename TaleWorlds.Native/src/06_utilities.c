@@ -30050,7 +30050,7 @@ void HandleFifthLevelContextException(uint8_t ExceptionContext, int64_t SystemCo
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void HandleSenaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleSixthLevelContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   **(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
   return;
 }
