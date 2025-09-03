@@ -8538,8 +8538,8 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer, int64_t Cont
     }
     
     uint32_t ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), MatrixValidationBuffer);
-    if ((int)ContextValidationResult != 0) {
-      return ContextValidationResult;
+    if ((int)ContextValidationStatus != 0) {
+      return ContextValidationStatus;
     }
     if (MatrixValidationBuffer[0] != 0) {
       MatrixContextPointer = MatrixValidationBuffer[0] + -8;
