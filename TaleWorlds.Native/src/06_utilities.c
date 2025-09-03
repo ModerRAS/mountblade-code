@@ -13464,12 +13464,12 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
                   ResourceCount = -ResourceValidationFlag.HighPart;
                 }
                 ResourceTablePointerPointer = (int64_t)(int)ResourceValidationFlag;
-                ValidationCounter = ResourceValidationFlag.Field44;
+                ValidationCounter = ResourceValidationFlag.HighPart;
                 if ((int)ResourceCount < 0) {
                   if (0 < (int)ResourceValidationFlag) {
                     return ContextResourceHashStatus;
                   }
-                  if ((0 < (int)ResourceValidationFlag.Field44) && (ResourceAllocationFlag != 0)) {
+                  if ((0 < (int)ResourceValidationFlag.HighPart) && (ResourceAllocationFlag != 0)) {
                           ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),ResourceAllocationFlag,&ResourceAllocationTemplate,
                                   0x100,1);
                   }
