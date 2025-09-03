@@ -15780,10 +15780,10 @@ LoopExit:
       MemoryOperationTemplate = &SystemMemoryTemplateA;
       uint32_t ChecksumValue = DataChecksumBuffer[0];
       uint32_t EncryptionParam = encryptionFlag;
-      int ResultIndex = ResultCounter;
+      int ResultIndex = ProcessingResultCounter;
       int ResourceValidationResult = GetAndValidateResourceData(ObjectContext,&SecurityContextPointer);
       if (ResourceHashStatus != 0) goto LoopExit;
-      int ProcessingCounter = 0;
+      int ResourceProcessingCounter = 0;
       int TableEntryIndex = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
       int ValidationLoopCounter = NextResultIndex;
       if (0 < TableEntryIndex) {
@@ -15803,7 +15803,7 @@ LoopExit:
             if (SecondaryOperationResult != 0) goto LoopExit;
             *(uint8_t *)(ObjectContext + 4) = 0;
           }
-          ProcessingCounter = ProcessingCounter + 1;
+          ResourceProcessingCounter = ResourceProcessingCounter + 1;
           int TableValidationStatus = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
         } while (ProcessingCounter < tableResourceHashStatus);
       }
