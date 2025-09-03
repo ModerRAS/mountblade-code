@@ -2158,15 +2158,15 @@ void InitializeRenderingSystemConfig(void)
   void* RendererHandler;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
-  SystemRootNode = (void* *)*SystemDataTable;
-  SystemNodeActiveFlag = *(char*)((long long)SystemRootNode[1] + SystemNodeActiveFlagOffset);
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeActiveFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   RendererHandler = 0;
   PreviousNode = SystemRootNode;
-  CurrentNode = (void* *)SystemRootNode[1];
+  CurrentNode = (void**)SystemRootNode[1];
   while (!SystemNodeActiveFlag) {
-    NodeIdentifierCompareResult = memcmp(CurrentNode + 4, &RenderingConfigTemplateIdentifier, SystemIdentifierSize);
+    NodeIdentifierCompareResult = memcmp(CurrentNode + 4, &RENDERING_CONFIG_TEMPLATE_IDENTIFIER, SYSTEM_IDENTIFIER_SIZE);
     if (NodeIdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNode[SystemNodeNextPointerOffset];
+      NextNode = (void**)CurrentNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
       CurrentNode = PreviousNode;
     }
     else {
@@ -2174,18 +2174,18 @@ void InitializeRenderingSystemConfig(void)
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    SystemNodeActiveFlag = *(char*)((long long)NextNode + SystemNodeActiveFlagOffset);
+    SystemNodeActiveFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((PreviousNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&RenderingConfigTemplateIdentifier, PreviousNode + 4, SystemIdentifierSize), NodeIdentifierCompareResult < 0)) {
+  if ((PreviousNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&RENDERING_CONFIG_TEMPLATE_IDENTIFIER, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
     RequiredMemorySize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedNode, PreviousNode, RequiredMemorySize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, RequiredMemorySize);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SystemNodeIdentifier1Index] = RENDERING_CONFIG_NODE_IDENTIFIER1;
-  PreviousNode[SystemNodeIdentifier2Index] = RENDERING_CONFIG_NODE_IDENTIFIER2;
-  PreviousNode[SystemNodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
-  PreviousNode[SystemNodeFlagIndex] = 0;
-  PreviousNode[SystemNodeHandlerIndex] = RendererHandler;
+  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = RENDERING_CONFIG_NODE_IDENTIFIER1;
+  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = RENDERING_CONFIG_NODE_IDENTIFIER2;
+  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeSecondaryRoot;
+  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = RendererHandler;
   return;
 }
 
