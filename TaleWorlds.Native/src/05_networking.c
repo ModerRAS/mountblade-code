@@ -107,7 +107,22 @@
 #define NetworkPacketReportSize 0xc
 
 // 函数声明
+/**
+ * 比较网络连接时间戳 - 比较两个网络连接的时间戳
+ * 此函数用于比较两个网络连接的时间戳，确定连接的先后顺序
+ * @param FirstTimestamp 第一个时间戳指针
+ * @param SecondTimestamp 第二个时间戳指针
+ * @return 比较结果，0表示相等，正数表示第一个大于第二个，负数表示第一个小于第二个
+ */
 uint CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
+/**
+ * 处理网络连接数据 - 处理网络连接中的数据包
+ * 此函数负责处理网络连接中的数据包，包括数据验证和状态更新
+ * @param ConnectionContext 连接上下文指针
+ * @param PacketData 数据包数据
+ * @param BufferSize 缓冲区大小指针
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 uint ProcessNetworkConnectionData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
 uint SendNetworkPacketData(int64_t SocketContext, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
 uint ValidateNetworkPacket(int64_t PacketData, int64_t ConnectionContext);
