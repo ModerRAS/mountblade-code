@@ -3997,7 +3997,7 @@ Label_18004e2b6:
                           BufferSize7 = uStack_158;
                           BufferSize6 = StackParameter15;
                           if (UnsignedIndex <= StringProcessingResult0) break;
-                          BufferSize = pStackCounter48[SystemDataPointer];
+                          BufferSize = StackProcessingBuffer[SystemDataPointer];
                           LoopCounterValue = (int)BufferSize1;
                           BufferSize3 = LoopCounterValue + 1;
                           BufferSize1 = (ulonglong)BufferSize3;
@@ -4042,7 +4042,7 @@ Label_18004e56d:
                       StackBufferPointer = (uint8_t *)0x0;
                       StackProcessId = StackProcessId & 0xffffffff00000000;
                       StackSystemPointer = &SystemBufferTemplate;
-                      pMemoryAddress1 = pStackCounter48;
+                      pMemoryAddress1 = StackProcessingBuffer;
                       pMemoryAddress7 = puStack_268;
                     }
                     else {
@@ -4075,11 +4075,11 @@ LabelSystemOperationExit:
       }
       else {
         SystemBufferCopy(&puStack_310,UnsignedIndex + 1);
-        pStackCounter48[StackCounter40] = CharValue;
+        StackProcessingBuffer[StackCounter40] = CharValue;
         StackCounter40 = StackCounter40 + 1;
         pMemoryAddress4 = (uint8_t *)(ulonglong)StackCounter40;
-        pMemoryAddress4[(longlong)pStackCounter48] = 0;
-        pMemoryAddress1 = pStackCounter48;
+        pMemoryAddress4[(longlong)StackProcessingBuffer] = 0;
+        pMemoryAddress1 = StackProcessingBuffer;
       }
       uStack_2f0 = uStack_2f0 + 1;
     } while (uStack_2f0 < uStack_150);
@@ -4100,7 +4100,7 @@ LabelSystemOperationExit:
   if (pMemoryAddress1 != (uint8_t *)0x0) {
     SystemBufferValidate(pMemoryAddress1);
   }
-  pStackCounter48 = (uint8_t *)0x0;
+  StackProcessingBuffer = (uint8_t *)0x0;
   uStack_2f8 = uStack_2f8 & 0xffffffff00000000;
   puStack_310 = &SystemBufferTemplate;
   SystemSecurityCheck(uStack_38 ^ (ulonglong)auStack_368);

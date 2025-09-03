@@ -5318,6 +5318,8 @@ void ExecuteSystemExceptionAlternatePath(void)
  * 
  * 该函数负责重置系统状态，将系统恢复到初始状态
  * 清理所有临时状态和资源，确保系统处于可控状态
+ * 
+ * @return void 无返回值
  */
 void ResetSystemState(void)
 {
@@ -5340,7 +5342,7 @@ void ResetSystemState(void)
  * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
+uint8_t HandleComplexObject(int64_t ObjectContext)
 {
   uint8_t ObjectValidationStatus;
   int64_t ProcessingResultBuffer[2];
