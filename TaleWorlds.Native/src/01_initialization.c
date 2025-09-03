@@ -14953,7 +14953,7 @@ void InitializeSystemResourceManagerK(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x10;
   strcpy_s(SystemProcessingBuffer,StringBufferSize,&SystemStringTemplateD,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry015 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemInputMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -14979,7 +14979,7 @@ void InitializeSystemResourceManagerL(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0xf;
   strcpy_s(SystemProcessingBuffer,StringBufferSize,&SystemStringConstantC,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry016 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemPhysicsMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -15005,7 +15005,7 @@ void InitializeSystemResourceManagerM(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x19;
   strcpy_s(SystemProcessingBuffer,StringBufferSize,&SystemStringConstantD,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry017 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemUIMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 

@@ -1209,7 +1209,7 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
   NetworkStatus ConnectionStateArray [6];
   NetworkStatus ConnectionValidationArray [4];
   
-  if (*(uint *)(PacketData + 8) < 0x55) {
+  if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return NetworkErrorInvalidPacket;
     }
@@ -1254,7 +1254,7 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
   ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffset1);
   ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
   if ((int)ProcessingStatus == 0) {
-    if (*(uint *)(PacketData + 8) < 0x53) {
+    if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return NetworkErrorInvalidPacket;
       }
@@ -1339,7 +1339,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
   NetworkHandle PacketProcessingResult;
   NetworkByte DecodedDataStreamBuffer [32];
   
-  if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < 0x31) {
+  if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < NetworkPacketStatusLimit) {
     PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
     if ((int)PacketProcessingResult == 0) {
       PacketProcessingResult = 0;
