@@ -11175,8 +11175,8 @@ void InitializeSystemStringProcessorQ(void)
   void** HashTableNodePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
-  SystemRootNode = (void**)*SystemDataTable;
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SystemNodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
   HashTableNode = SystemRootNode;
