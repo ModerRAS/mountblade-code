@@ -1350,8 +1350,8 @@ NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t
  */
 NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, NetworkHandle *PacketData)
 {
-  NetworkHandle ValidationStatus;
-  NetworkByte SecurityValidationBuffer [32];
+  NetworkHandle PacketValidationStatus;
+  NetworkByte SecurityValidationDataBuffer [32];
   NetworkByte EncryptionDataBuffer [32];
   
   ValidationStatus = DecodePacket(PacketData, EncryptionDataBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
