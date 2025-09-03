@@ -30000,11 +30000,11 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @return 无返回值
  */
 void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* PrimaryExceptionHandlerPointer;
+  int64_t* ExceptionHandlerPtr;
   
-  PrimaryExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
-  if (PrimaryExceptionHandlerPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)PrimaryExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerPtr = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  if (ExceptionHandlerPtr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerPtr + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
