@@ -19826,30 +19826,30 @@ uint64_t WaitForSystemNodeReady(long long SystemNodePointer, uint64_t TimeoutPar
  * @param parameterBuffer 参数缓冲区
  * @return 返回处理结果状态码
  */
-long long ProcessSystemNodeConfiguration(uint32_t* nodeConfigPointer, uint32_t* parameterBuffer)
+long long ProcessSystemNodeConfiguration(uint32_t* NodeConfigPointer, uint32_t* ParameterBuffer)
 
 {
-  uint32_t configValue;
+  uint32_t ConfigValue;
   char CallbackResult;
-  void* errorStringPointer;
+  void* ErrorStringPointer;
   
-  if (*(long long *)(nodeConfigPointer + 0x18) != 0) {
-    CallbackResult = (**(code **)(nodeConfigPointer + 0x1a))(parameterBuffer,nodeConfigPointer + 0x14);
+  if (*(long long *)(NodeConfigPointer + 0x18) != 0) {
+    CallbackResult = (**(code **)(NodeConfigPointer + 0x1a))(ParameterBuffer,NodeConfigPointer + 0x14);
     if (CallbackResult == '\0') {
       if (SystemDebugModeEnabled == '\0') {
-        errorStringPointer = &SystemErrorMessageTemplate;
-        if (*(void **)(nodeConfigPointer + 4) != (void *)0x0) {
-          errorStringPointer = *(void **)(nodeConfigPointer + 4);
+        ErrorStringPointer = &SystemErrorMessageTemplate;
+        if (*(void **)(NodeConfigPointer + 4) != (void *)0x0) {
+          ErrorStringPointer = *(void **)(NodeConfigPointer + 4);
         }
-        LogSystemErrorMessage(&SystemErrorLogBuffer,errorStringPointer);
+        LogSystemErrorMessage(&SystemErrorLogBuffer,ErrorStringPointer);
       }
-      *nodeConfigPointer = nodeConfigPointer[0x12];
-      return (ulong long)(uint3)((uint)nodeConfigPointer[0x12] >> 8) << 8;
+      *NodeConfigPointer = NodeConfigPointer[0x12];
+      return (unsigned long long)(uint3)((uint)NodeConfigPointer[0x12] >> 8) << 8;
     }
   }
-  configValue = *parameterBuffer;
-  *nodeConfigPointer = configValue;
-  return CONCAT71((uint7)(uint3)((uint)configValue >> 8),1);
+  ConfigValue = *ParameterBuffer;
+  *NodeConfigPointer = ConfigValue;
+  return CONCAT71((uint7)(uint3)((uint)ConfigValue >> 8),1);
 }
 
 
