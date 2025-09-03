@@ -40818,7 +40818,7 @@ ResourceValidationCheck:
   localDataIndex = SystemResourceManager[8];
   if (resourceCounter == localDataIndex) goto code_r0x000180060327;
   goto ResourceProcessingLoop;
-code_r0x000180060327:
+ResourceCounterCheck:
   if (localDataIndex != 0) {
     do {
       SystemResourceDataIndex = *(long long *)(localDataIndex + 0x100);
@@ -42659,7 +42659,7 @@ void DispatchSystemResourcesAndCreateThreads(long long SystemResourceManager)
         } while (-1 < SystemThreadFlags);
       }
       systemCode = -1;
-code_r0x0001800630e9:
+SystemThreadFlagCheck:
       ExecuteSystemCodeOperation(SystemResourceManager + 0x30,systemCode,&SystemProcessFlagsPointer);
       SystemProcessFlagsPointer = &SystemGlobalDataReference;
         SystemCleanupFunction(SystemThreadContext);

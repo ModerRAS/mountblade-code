@@ -13862,7 +13862,7 @@ uint8_t ValidateAndGetBufferContext(int64_t ObjectContext,uint8_t ValidationCont
   if (CleanupOption != 0) {
     ValidationStatusCode = *(int *)(ValidationContext + 0x220);
     if (ValidationStatusCode == 0) {
-      SecurityContextBuffer = &SecurityValidationTemplate1;
+      SecurityContextBuffer = &SecurityValidationTemplatePrimary;
       ResourceOperationCounter = 0;
       ResourceProcessingStatus = 0;
       ResourceCleanupMode = CleanupOption;
@@ -13874,7 +13874,7 @@ ResourceProcessingHandler:
     else {
       GraphicsDataIndex = 0;
       if (1 < ResourceHashStatus - 1U) {
-        GraphicsDataBuffer = &GraphicsProcessingTemplate2;
+        GraphicsDataBuffer = &GraphicsProcessingTemplateSecondary;
         ContextPackageValidationStatusCodePointer = &GraphicsDataPointer;
         GraphicsSeptenaryOperationFlag = 0;
         GraphicsPrimaryOperationFlag = 0;
