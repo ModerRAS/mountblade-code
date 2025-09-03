@@ -32846,7 +32846,7 @@ void UnwindMemoryManagerBase(uint8_t ObjectContext,int64_t ValidationContext)
   int32_t *ObjectReferenceCountPointer;
   uint8_t *ResourceHashStatus;
   int64_t ResourceIndex;
-  uint64_t memoryAddress;
+  uint64_t MemoryAddress;
   
   ValidationStatusCode = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x18);
   if (ResourceHashStatus == (uint8_t *)0x0) {
@@ -61852,7 +61852,7 @@ void ProcessResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext)
   int32_t *ObjectReferenceCountPointer;
   uint8_t *ResourceHashStatus;
   int64_t ResourceIndex;
-  uint64_t memoryAddress;
+  uint64_t MemoryAddress;
   
   ValidationStatusCode = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x180);
   if (ResourceHashStatus == (uint8_t *)0x0) {
