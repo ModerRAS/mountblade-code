@@ -4841,7 +4841,7 @@ uint8_t CreateBasicObjectHandle(int64_t ObjectContext) {
  * 
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t CleanupObjectHandle(void) {
+uint8_t ReleaseObjectHandle(void) {
   int64_t ObjectHandleIdentifier = 0;
   int64_t ObjectMemoryAddressPointer;
   
@@ -5081,7 +5081,7 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
  * @note 此函数会执行系统退出操作
  * @warning 这是一个异常处理函数，调用后系统将退出
  */
-void TriggerSystemExceptionAlternatePath(void)
+void ExecuteSystemExceptionAlternatePath(void)
 
 {
         ExecuteSystemExitOperation();
