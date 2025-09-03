@@ -77683,7 +77683,7 @@ void ExecuteResourceCleanupOperation7f0(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_18090b810(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupFirst(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -77697,7 +77697,7 @@ void Unwind_18090b810(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b830(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupSecond(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -77711,7 +77711,7 @@ void Unwind_18090b830(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b850(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupThird(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -77725,7 +77725,7 @@ void Unwind_18090b850(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b870(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupFourth(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -98568,7 +98568,7 @@ void ProcessResourceCounterCleanup(uint8_t ObjectContext, int64_t ValidationCont
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -98586,7 +98586,7 @@ void Unwind_180911b10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98604,7 +98604,7 @@ void Unwind_180911b20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98622,7 +98622,7 @@ void Unwind_180911b30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98843,7 +98843,7 @@ void Unwind_180911c30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98861,14 +98861,14 @@ void Unwind_180911c40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1608);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98886,7 +98886,7 @@ void Unwind_180911c60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98904,7 +98904,7 @@ void Unwind_180911c80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98922,7 +98922,7 @@ void Unwind_180911ca0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98940,7 +98940,7 @@ void Unwind_180911cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98958,7 +98958,7 @@ void Unwind_180911ce0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98976,7 +98976,7 @@ void Unwind_180911d00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -98994,7 +98994,7 @@ void Unwind_180911d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99012,7 +99012,7 @@ void CleanupResourceOperationFirst(uint8_t ObjectContext,int64_t ValidationConte
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99030,7 +99030,7 @@ void CleanupResourceOperationSecond(uint8_t ObjectContext,int64_t ValidationCont
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99048,7 +99048,7 @@ void CleanupResourceOperationThird(uint8_t ObjectContext,int64_t ValidationConte
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99066,7 +99066,7 @@ void Unwind_180911da0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99084,7 +99084,7 @@ void Unwind_180911dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99116,7 +99116,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
         if (GlobalUnwindContext != 0) {
           *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
         }
-              ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+              ProcessResourceOperation(ResourceIndex,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
       }
       ContextValidationStatusCode = (int)SecurityHashValue + 1;
       ResourceContextOffset = ResourceContextOffset + 0x10;
@@ -99130,7 +99130,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(ResourceIndex,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   ResourceIndex = *(int64_t *)(LoopOffset + ErrorInvalidResourceData68);
   if (ResourceIndex == 0) {
@@ -99140,7 +99140,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       if (GlobalUnwindContext != 0) {
         *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
       }
-            ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+            ProcessResourceOperation(ResourceIndex,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     }
     LoopOffset = *(int64_t *)(LoopOffset + ErrorInvalidResourceData68);
     if (LoopOffset == 0) {
@@ -99149,13 +99149,13 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(LoopOffset,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(LoopOffset,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(LoopOffset + ErrorInvalidResourceData60) = 0;
   if (GlobalUnwindContext != 0) {
     *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
   }
-        ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+        ProcessResourceOperation(ResourceIndex,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
 }
 
 
@@ -99171,7 +99171,7 @@ void Unwind_180911e00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99189,7 +99189,7 @@ void Unwind_180911e20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99209,21 +99209,21 @@ void Unwind_180911e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + ErrorInvalidResourceDatac8);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + ErrorInvalidResourceDatab8);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99246,21 +99246,21 @@ void Unwind_180911e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x2d58);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x2d48);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   return;
 }
@@ -99278,7 +99278,7 @@ void Unwind_180911e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99296,7 +99296,7 @@ void Unwind_180911ea0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99314,7 +99314,7 @@ void Unwind_180911ec0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99332,7 +99332,7 @@ void Unwind_180911ee0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99350,7 +99350,7 @@ void Unwind_180911f00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99378,7 +99378,7 @@ void Unwind_180911f50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99396,7 +99396,7 @@ void Unwind_180911f70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99414,7 +99414,7 @@ void Unwind_180911f90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99432,7 +99432,7 @@ void Unwind_180911fa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99450,7 +99450,7 @@ void Unwind_180911fb0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99468,7 +99468,7 @@ void Unwind_180911fc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99486,7 +99486,7 @@ void Unwind_180911fd0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99504,7 +99504,7 @@ void Unwind_180911fe0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99522,7 +99522,7 @@ void ExecuteSystemResourceCleanupPrimaryBatch(uint8_t ObjectContext, int64_t Val
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99540,7 +99540,7 @@ void ExecuteSystemResourceCleanupSecondaryBatch(uint8_t ObjectContext, int64_t V
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99558,7 +99558,7 @@ void Unwind_180912010(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99576,7 +99576,7 @@ void Unwind_180912020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99594,7 +99594,7 @@ void Unwind_180912040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99612,7 +99612,7 @@ void Unwind_180912060(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99630,7 +99630,7 @@ void Unwind_180912080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99648,7 +99648,7 @@ void Unwind_180912090(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99666,7 +99666,7 @@ void Unwind_1809120a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99684,7 +99684,7 @@ void Unwind_1809120b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99702,7 +99702,7 @@ void Unwind_1809120d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99720,7 +99720,7 @@ void Unwind_1809120f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99738,7 +99738,7 @@ void Unwind_180912110(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99756,7 +99756,7 @@ void Unwind_180912130(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99774,7 +99774,7 @@ void Unwind_180912150(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99792,7 +99792,7 @@ void Unwind_180912170(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99812,35 +99812,35 @@ void Unwind_180912180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + SystemOperationContextOffset);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x1d0);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x1c0);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 400);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99858,7 +99858,7 @@ void Unwind_1809121a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99876,7 +99876,7 @@ void Unwind_1809121c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99894,7 +99894,7 @@ void Unwind_1809121e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -99917,49 +99917,49 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x378);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x368);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x358);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x318);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x308);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x2f8);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   return;
 }
@@ -99977,7 +99977,7 @@ void Unwind_180912220(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100001,7 +100001,7 @@ void CleanupResourceTableAtOffsetC0(uint8_t ObjectContext, int64_t ValidationCon
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -100025,7 +100025,7 @@ void CleanupResourceTableAtOffsetD0(uint8_t ObjectContext, int64_t ValidationCon
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -100049,7 +100049,7 @@ void CleanupResourceTableAtOffsetF0(uint8_t ObjectContext, int64_t ValidationCon
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -100077,7 +100077,7 @@ void CleanupMultipleResourceTableOffsets(uint8_t ObjectContext, int64_t Validati
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   
   // 清理系统操作上下文偏移量
@@ -100086,7 +100086,7 @@ void CleanupMultipleResourceTableOffsets(uint8_t ObjectContext, int64_t Validati
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   
   // 清理1D0偏移量
@@ -100095,7 +100095,7 @@ void CleanupMultipleResourceTableOffsets(uint8_t ObjectContext, int64_t Validati
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   
   // 清理1C0偏移量
@@ -100104,7 +100104,7 @@ void CleanupMultipleResourceTableOffsets(uint8_t ObjectContext, int64_t Validati
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   
   // 清理400偏移量
@@ -100113,7 +100113,7 @@ void CleanupMultipleResourceTableOffsets(uint8_t ObjectContext, int64_t Validati
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -100137,7 +100137,7 @@ void CleanupResourceTableAtOffset220(uint8_t ObjectContext, int64_t ValidationCo
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -100161,7 +100161,7 @@ void CleanupResourceTableAtOffset2C0(uint8_t ObjectContext, int64_t ValidationCo
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
@@ -100179,7 +100179,7 @@ void Unwind_180912300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100202,49 +100202,49 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x378);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x368);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x358);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x318);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x308);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   LoopCounter = *(int64_t *)(ResourceTablePointer + 0x2f8);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   return;
 }
@@ -100262,7 +100262,7 @@ void Unwind_180912340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100280,7 +100280,7 @@ void Unwind_180912350(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100298,7 +100298,7 @@ void Unwind_180912360(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100346,7 +100346,7 @@ void Unwind_180912400(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100364,7 +100364,7 @@ void Unwind_180912410(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100382,7 +100382,7 @@ void Unwind_180912420(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100400,7 +100400,7 @@ void Unwind_180912430(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100418,7 +100418,7 @@ void Unwind_180912440(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100436,7 +100436,7 @@ void Unwind_180912450(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100454,7 +100454,7 @@ void Unwind_180912460(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100492,7 +100492,7 @@ void Unwind_1809124d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100510,7 +100510,7 @@ void Unwind_1809124e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100535,7 +100535,7 @@ void Unwind_1809124f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   return;
 }
@@ -100553,7 +100553,7 @@ void Unwind_180912500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100571,7 +100571,7 @@ void Unwind_180912510(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100589,7 +100589,7 @@ void Unwind_180912520(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100607,7 +100607,7 @@ void Unwind_180912530(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100625,7 +100625,7 @@ void Unwind_180912540(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100675,7 +100675,7 @@ void ProcessPrimaryResourceCleanup(uint8_t ObjectContext, int64_t ValidationCont
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100694,7 +100694,7 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   LoopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (LoopCounter != 0) {
@@ -100702,7 +100702,7 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint32_t *)(ValidationContext + ValidationContextDataOffset) = 0;
   LoopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
@@ -100710,14 +100710,14 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   LoopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100747,7 +100747,7 @@ void ProcessSystemResourceCleanupUnwind(uint8_t ObjectContext, int64_t Validatio
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) = *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
   }
   return;
 }
@@ -100777,7 +100777,7 @@ void ProcessSecondaryCounterResourceCleanupUnwind(uint8_t ObjectContext, int64_t
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) = *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
   }
   return;
 }
@@ -100807,7 +100807,7 @@ void ProcessResourceTableCounterCleanupUnwind(uint8_t ObjectContext, int64_t Val
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) = *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) - 1;
     }
-    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
+    ProcessResourceOperation(SystemContextPointer, SystemResourceSecondaryPointer, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
   }
   return;
 }
@@ -100885,7 +100885,7 @@ void Unwind_180912660(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100913,7 +100913,7 @@ void Unwind_1809126a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100970,7 +100970,7 @@ void Unwind_180912770(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -100994,7 +100994,7 @@ void Unwind_180912780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   return;
 }
@@ -101018,7 +101018,7 @@ void Unwind_180912790(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   return;
 }
@@ -101042,7 +101042,7 @@ void Unwind_1809127a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   return;
 }
@@ -101066,7 +101066,7 @@ void Unwind_1809127b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   return;
 }
@@ -101091,7 +101091,7 @@ void Unwind_1809127c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   return;
 }
@@ -101131,7 +101131,7 @@ void Unwind_1809127e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -101149,7 +101149,7 @@ void Unwind_1809127f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -101167,7 +101167,7 @@ void Unwind_180912800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+          ProcessResourceOperation(SystemContextPointer,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
