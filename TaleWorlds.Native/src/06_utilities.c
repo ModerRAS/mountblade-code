@@ -6878,7 +6878,7 @@ void ProcessMessageQueue(int64_t MessageQueueHandle, uint8_t ConfigurationParame
  * @param operationFlag 操作标志，指定要执行的操作类型
  * @return 处理结果，成功返回0，失败返回错误码
  */
-uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t SystemOperationFlag)
+uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t OperationFlag)
 
 {
   uint ResourceHash;
@@ -6904,7 +6904,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t SystemO
         ResourceHandleValue = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
         ResourceOperationBuffer[0] = 2;
       }
-      ResourceHash = ProcessResourceOperationEx(SystemOperationFlag,ResourceOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
+      ResourceHash = ProcessResourceOperationEx(OperationFlag,ResourceOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
       ResourceHashResult = (uint64_t)ResourceHash;
       if (ResourceHash == 0) {
         ResourceHashResult = 0;
