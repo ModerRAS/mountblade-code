@@ -9501,7 +9501,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int6
   ContextPointer = *(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset);
   if ((*(int *)(ContextPointer + SystemContextStatusFlag1Offset) != 0) || (*(int *)(ContextPointer + SystemContextStatusFlag2Offset) != 0)) {
     ValidationContextBuffer = 0;
-    InitializeSecurityContext(&ValidationContextBuffer,ObjectContext,securityFlags,operationMode,SecurityContextParameter);
+    InitializeSecurityContext(&ValidationContextBuffer,ObjectContext,SecurityFlags,OperationMode,SecurityContextParameter);
     if (ValidationContextBuffer == SystemDataBaseAddress(ContextPointer)) {
       ValidationStatusCode = ProcessResourceValidation(ContextPointer,ObjectContext);
       if ((int)ValidationStatusCode == 0) {
