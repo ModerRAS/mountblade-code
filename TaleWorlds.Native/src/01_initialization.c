@@ -60089,13 +60089,13 @@ ulong long ProcessSystemResourceInitialization(long long SystemResourceManager,v
     if ((*(byte *)(SystemResourceManager + 0x100) & 4) != 0) {
 LAB_180077fcf:
       SystemThreadHandle2 = *(long long *)(SystemResourceManager + 0x1b8);
-      charStatus9 = *(char *)(SystemThreadHandle2 + 0x38c);
-      if (charStatus9 == '\t') {
-        charStatus9 = CheckSystemStatus();
-        *(char *)(SystemThreadHandle2 + 0x38c) = charStatus9;
+      SystemThreadStatus = *(char *)(SystemThreadHandle2 + 0x38c);
+      if (SystemThreadStatus == '\t') {
+        SystemThreadStatus = CheckSystemStatus();
+        *(char *)(SystemThreadHandle2 + 0x38c) = SystemThreadStatus;
       }
-      charStatus9 = ValidateSystemResourceStatus(SystemResourceManager,SystemResourceManager + 0x1e8,charStatus9,1);
-      if (charStatus9 == '\0') {
+      SystemThreadStatus = ValidateSystemResourceStatus(SystemResourceManager,SystemResourceManager + 0x1e8,SystemThreadStatus,1);
+      if (SystemThreadStatus == '\0') {
         *(byte *)(SystemResourceManager + 0xfe) = *(byte *)(SystemResourceManager + 0xfe) & 0xfb;
       }
       if ((*(uint *)(SystemResourceManager + 0x100) & 0x4000000) == 0) {
