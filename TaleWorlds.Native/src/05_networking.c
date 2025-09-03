@@ -498,6 +498,9 @@ uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能�
 uint32_t NetworkConnectionPoolAllocationCount;         // 网络连接池分配计数
 uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放计数
 
+// 网络连接表变量
+uint32_t NetworkConnectionTable;                       // 网络连接表
+
 // =============================================================================
 // 网络连接池和套接字管理函数
 // =============================================================================
@@ -841,6 +844,9 @@ int32_t NetworkValidateProtocol(int64_t NetworkData, int64_t PacketData);
 
 // 网络连接事件处理器
 uint32_t NetworkConnectionEventHandler;
+
+// 网络连接状态常量
+#define NetworkConnectionNotFound 0xFFFFFFFF
 
 // =============================================================================
 // 网络数据传输和处理函数
