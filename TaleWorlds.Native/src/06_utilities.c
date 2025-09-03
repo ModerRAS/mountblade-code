@@ -33633,15 +33633,15 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContext, int64_t ValidationCo
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
-      ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);
+      ResourceTablePointer = *(int64_t *)(SystemContextPointer + ResourceProcessingIndex * 8);
       if (ResourceTablePointer != 0) {
         if (*(int64_t **)(ResourceTablePointer + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTablePointer + 0x10) + 0x38))();
         }
               ReleaseResourceHandle(ResourceTablePointer);
       }
-      *(uint8_t *)(SystemContextPointer + resourceProcessingIndex * 8) = 0;
-      resourceProcessingIndex = resourceProcessingIndex + 1;
+      *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
+      ResourceProcessingIndex = ResourceProcessingIndex + 1;
     } while (resourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
@@ -33682,15 +33682,15 @@ void UnwindResourceTablePointerCleanup(uint8_t ObjectContext, int64_t Validation
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
-      ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);
+      ResourceTablePointer = *(int64_t *)(SystemContextPointer + ResourceProcessingIndex * 8);
       if (ResourceTablePointer != 0) {
         if (*(int64_t **)(ResourceTablePointer + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTablePointer + 0x10) + 0x38))();
         }
               ReleaseResourceHandle(ResourceTablePointer);
       }
-      *(uint8_t *)(SystemContextPointer + resourceProcessingIndex * 8) = 0;
-      resourceProcessingIndex = resourceProcessingIndex + 1;
+      *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
+      ResourceProcessingIndex = ResourceProcessingIndex + 1;
     } while (resourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
@@ -33731,15 +33731,15 @@ void UnwindBatchResourceRelease(uint8_t ObjectContext, int64_t ValidationContext
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
-      ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);
+      ResourceTablePointer = *(int64_t *)(SystemContextPointer + ResourceProcessingIndex * 8);
       if (ResourceTablePointer != 0) {
         if (*(int64_t **)(ResourceTablePointer + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTablePointer + 0x10) + 0x38))();
         }
               ReleaseResourceHandle(ResourceTablePointer);
       }
-      *(uint8_t *)(SystemContextPointer + resourceProcessingIndex * 8) = 0;
-      resourceProcessingIndex = resourceProcessingIndex + 1;
+      *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
+      ResourceProcessingIndex = ResourceProcessingIndex + 1;
     } while (resourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
@@ -33968,15 +33968,15 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContext,int64_t ValidationC
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
-      ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);
+      ResourceTablePointer = *(int64_t *)(SystemContextPointer + ResourceProcessingIndex * 8);
       if (ResourceTablePointer != 0) {
         if (*(int64_t **)(ResourceTablePointer + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTablePointer + 0x10) + 0x38))();
         }
               ReleaseResourceHandle(ResourceTablePointer);
       }
-      *(uint8_t *)(SystemContextPointer + resourceProcessingIndex * 8) = 0;
-      resourceProcessingIndex = resourceProcessingIndex + 1;
+      *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
+      ResourceProcessingIndex = ResourceProcessingIndex + 1;
     } while (resourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
@@ -34016,15 +34016,15 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContext,int64_t ValidationC
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
-      ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);
+      ResourceTablePointer = *(int64_t *)(SystemContextPointer + ResourceProcessingIndex * 8);
       if (ResourceTablePointer != 0) {
         if (*(int64_t **)(ResourceTablePointer + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(ResourceTablePointer + 0x10) + 0x38))();
         }
               ReleaseResourceHandle(ResourceTablePointer);
       }
-      *(uint8_t *)(SystemContextPointer + resourceProcessingIndex * 8) = 0;
-      resourceProcessingIndex = resourceProcessingIndex + 1;
+      *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
+      ResourceProcessingIndex = ResourceProcessingIndex + 1;
     } while (resourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
