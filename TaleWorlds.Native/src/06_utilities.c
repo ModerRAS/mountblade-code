@@ -78334,7 +78334,7 @@ void Unwind_18090bd20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bd30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteResourceCleanupWithFlagsOperationD30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + ValidationContextSecondaryCountOffset) != (code *)0x0) {
@@ -78345,7 +78345,7 @@ void Unwind_18090bd30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090bd40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteResourceCleanupWithFlagsOperationD40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + ValidationContextSecondaryCountOffset) != (code *)0x0) {
