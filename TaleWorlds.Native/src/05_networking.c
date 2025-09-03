@@ -114,7 +114,7 @@
  * @param SecondTimestamp 第二个时间戳指针
  * @return 比较结果，0表示相等，正数表示第一个大于第二个，负数表示第一个小于第二个
  */
-uint32_t CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
+uint32_t CompareNetworkTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
 /**
  * 处理网络连接数据 - 处理网络连接中的数据包
  * 此函数负责处理网络连接中的数据包，包括数据验证和状态更新
@@ -123,7 +123,7 @@ uint32_t CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *Se
  * @param BufferSize 缓冲区大小指针
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessNetworkConnectionData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
+uint32_t ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
 /**
  * 发送网络数据包数据 - 通过网络发送数据包
  * 此函数负责通过网络连接发送数据包数据
@@ -132,7 +132,7 @@ uint32_t ProcessNetworkConnectionData(int64_t *ConnectionContext, int64_t Packet
  * @param PacketBuffer 数据包缓冲区
  * @return 发送结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t SendNetworkPacketData(int64_t SocketContext, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
+uint32_t TransmitNetworkPacket(int64_t SocketContext, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
 /**
  * 验证网络数据包 - 验证网络数据包的完整性和有效性
  * 此函数负责验证网络数据包的格式和内容是否有效
@@ -140,7 +140,7 @@ uint32_t SendNetworkPacketData(int64_t SocketContext, NetworkHandle ConnectionHa
  * @param ConnectionContext 连接上下文
  * @return 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ValidateNetworkPacket(int64_t PacketData, int64_t ConnectionContext);
+uint32_t ValidateNetworkPacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
 /**
  * 处理网络连接请求 - 处理网络连接请求和验证
  * 此函数负责处理网络连接请求，验证连接参数，并建立安全连接
@@ -148,7 +148,7 @@ uint32_t ValidateNetworkPacket(int64_t PacketData, int64_t ConnectionContext);
  * @param RequestBuffer 请求缓冲区指针
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
+uint32_t HandleNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
 /**
  * 执行网络数据传输 - 执行网络数据传输操作
  * 此函数负责在网络连接之间传输数据
@@ -158,7 +158,7 @@ uint32_t ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *Re
  * @param TransferFlags 传输标志
  * @return 传输结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ExecuteNetworkDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
+uint32_t PerformNetworkDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
 /**
  * 处理网络数据包 - 处理网络数据包的接收和发送
  * 此函数负责处理网络数据包，包括优先级处理
@@ -166,7 +166,7 @@ uint32_t ExecuteNetworkDataTransfer(int64_t SourceBuffer, uint32_t TransferSize,
  * @param HasPriorityFlag 是否具有优先级标志
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint ProcessNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
+uint32_t HandleNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
 /**
  * 创建网络迭代上下文 - 创建网络连接处理的迭代上下文
  * 此函数负责创建用于网络连接处理的迭代上下文
@@ -175,7 +175,7 @@ uint ProcessNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
  * @param IterationFlag 迭代标志
  * @return 创建结果句柄，0表示成功，其他值表示错误码
  */
-uint CreateNetworkIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint IterationFlag);
+uint32_t CreateNetworkIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
 
 /**
  * 处理网络堆栈数据 - 处理网络协议栈的数据
@@ -184,7 +184,7 @@ uint CreateNetworkIterationContext(int64_t ConnectionContext, int64_t Validation
  * @param ContextData 上下文数据
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint ProcessNetworkStackData(int64_t *StackBuffer, int64_t ContextData);
+uint32_t HandleNetworkStackData(int64_t *StackBuffer, int64_t ContextData);
 
 /**
  * 验证网络连接句柄 - 验证网络连接句柄的有效性
@@ -193,7 +193,7 @@ uint ProcessNetworkStackData(int64_t *StackBuffer, int64_t ContextData);
  * @param PacketData 数据包数据句柄
  * @return 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint ValidateNetworkConnectionHandle(NetworkHandle ConnectionContext, NetworkHandle PacketData);
+uint32_t VerifyNetworkConnectionHandle(NetworkHandle ConnectionContext, NetworkHandle PacketData);
 
 /**
  * 获取连接句柄 - 获取网络连接的句柄
@@ -209,7 +209,7 @@ NetworkHandle GetConnectionHandle(int64_t *ConnectionContext);
  * @param NetworkFlags 网络标志
  * @return 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint ValidateNetworkConnectionEntry(int64_t ConnectionContext, uint NetworkFlags);
+uint32_t VerifyNetworkConnectionEntry(int64_t ConnectionContext, uint32_t NetworkFlags);
 
 /**
  * 初始化网络上下文 - 初始化网络连接的上下文
@@ -217,7 +217,7 @@ uint ValidateNetworkConnectionEntry(int64_t ConnectionContext, uint NetworkFlags
  * @param NetworkContext 网络上下文
  * @return 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint InitializeNetworkContext(int64_t NetworkContext);
+uint32_t InitializeNetworkContext(int64_t NetworkContext);
 
 /**
  * 处理网络上下文条目 - 处理网络上下文中的条目
@@ -225,7 +225,7 @@ uint InitializeNetworkContext(int64_t NetworkContext);
  * @param NetworkContextEntry 网络上下文条目
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint ProcessNetworkContextEntry(int64_t NetworkContextEntry);
+uint32_t HandleNetworkContextEntry(int64_t NetworkContextEntry);
 
 /**
  * 处理网络连接数据 - 处理网络连接的数据传输
@@ -235,7 +235,7 @@ uint ProcessNetworkContextEntry(int64_t NetworkContextEntry);
  * @param ConnectionContext 连接上下文
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint HandleNetworkConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
+uint32_t HandleNetworkConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
 /**
  * 处理辅助连接数据 - 处理网络连接的辅助数据
  * 此函数负责处理网络连接中的辅助数据传输
@@ -243,14 +243,14 @@ uint HandleNetworkConnectionData(int64_t NetworkContextEntry, int64_t NetworkCon
  * @param ConnectionData 连接数据
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint ProcessSecondaryConnectionData(int64_t ConnectionContext, int64_t ConnectionData);
+uint32_t HandleSecondaryConnectionData(int64_t ConnectionContext, int64_t ConnectionData);
 /**
  * 验证网络上下文条目 - 验证网络上下文条目的有效性
  * 此函数负责验证网络上下文条目是否有效
  * @param NetworkContextEntry 网络上下文条目
  * @return 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint ValidateNetworkContextEntry(int64_t NetworkContextEntry);
+uint32_t VerifyNetworkContextEntry(int64_t NetworkContextEntry);
 
 /**
  * 初始化网络连接 - 初始化网络连接
@@ -266,7 +266,7 @@ uint InitializeNetworkConnection(NetworkHandle ConnectionHandle);
  * @param ConnectionHandle 连接句柄
  * @return 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint ValidateNetworkConnectionStatus(NetworkHandle ConnectionHandle);
+uint VerifyNetworkConnectionStatus(NetworkHandle ConnectionHandle);
 
 /**
  * 重置网络连接状态 - 重置网络连接的状态
