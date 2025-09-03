@@ -861,7 +861,6 @@ void* SystemMemoryRegionExtendedTwoHundred;
 void* SystemMemoryRegionExtendedTwoHundredOne;
 void* SystemMemoryRegionExtendedTwoHundredTwo;
 
-// 函数: 系统初始化入口点F
 /**
  * @brief 系统初始化入口点F
  * 
@@ -1068,7 +1067,6 @@ void* SystemDataBufferPrimarySeventh;   // 主要数据缓冲区第七个
 void* SystemDataBufferPrimaryEighth;    // 主要数据缓冲区第八个
 void* SystemDataBufferPrimaryNinth;     // 主要数据缓冲区第九个
 
-// 函数: 系统配置加载器 - 负责加载系统配置参数
 // 系统配置管理器
 void* SystemConfigurationManager;
 void* SystemDataBufferConfigurationPrimary;
@@ -1349,10 +1347,8 @@ void* SystemInputContextA;                 // 系统输入上下文A
 void* SystemInputContextB;                 // 系统输入上下文B
 void* SystemNetworkContextA;                // 系统网络上下文A
 
-// 函数: 系统启动验证器 - 负责验证系统启动条件
 void* SystemStartupValidator;
 
-// 函数: 获取系统根指针 - 获取系统根节点指针
 void* GetSystemRootPointer;
 
 // 函数: 获取系统初始化函数 - 获取系统初始化相关函数

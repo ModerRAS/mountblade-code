@@ -101829,7 +101829,7 @@ void InitializeSystemDataStructureBF(void)
 void InitializeSystemDataStructureBF(void)
 
 {
-  SystemDataPointer031 = &SystemDataStructure;
+  SystemDataPointerBF = &SystemDataStructure;
   return;
 }
 
