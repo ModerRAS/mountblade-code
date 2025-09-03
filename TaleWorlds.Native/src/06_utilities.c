@@ -11151,7 +11151,7 @@ int ProcessDataWithBuffer(int64_t *ObjectContext,int64_t ValidationContext,int D
   void* StringBuffer;
   void* StringProcessingTemplate;
   
-  DataBufferSize = dataLength;
+  DataBufferSize = DataLength;
   ProcessedDataOffset = ProcessStringOperation(ValidationContext,DataBufferSize,&StringBuffer);
   StringOperationStatus = ProcessStringOperation(ValidationContext + ProcessedDataOffset,DataBufferSize - ProcessedDataOffset,&StringProcessingTemplate);
   ProcessedDataOffset = ProcessedDataOffset + StringOperationStatus;
