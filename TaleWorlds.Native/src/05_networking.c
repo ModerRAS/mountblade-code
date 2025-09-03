@@ -475,7 +475,13 @@ NetworkHandle InitializeConnectionHandler(void)
   return NetworkErrorConnectionFailed;
 }
 
-// 处理网络连接数据 - 处理连接数据包和状态更新
+/**
+ * 处理网络连接数据 - 处理连接数据包和状态更新
+ * 此函数负责处理网络连接中的数据包，并更新相应的连接状态
+ * @param ConnectionContext 连接上下文指针
+ * @param PacketData 数据包数据
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 NetworkHandle ProcessNetworkConnectionData(long long *ConnectionContext, int PacketData)
 {
   NetworkStatus *NetworkConnectionStatusData;
@@ -489,13 +495,13 @@ NetworkHandle ProcessNetworkConnectionData(long long *ConnectionContext, int Pac
   NetworkStatus *NetworkPacketBuffer;
   
   if (PacketData < (int)ConnectionContext[1]) {
-    return 0x1c;
+    return NetworkConnectionNotFound;
   }
   NetworkConnectionStatusBuffer = (NetworkStatus *)0x0;
   if (PacketData != 0) {
-    if (PacketData * 0x14 - 1U < 0x3fffffff) {
+    if (PacketData * ConnectionEntrySize - 1U < 0x3fffffff) {
       NetworkConnectionStatusBuffer = (NetworkStatus *)
-               ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0), PacketData * 0x14, &SecurityValidationData,
+               ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &SecurityValidationData,
                              0xf4, 0, 0, 1);
       if (NetworkConnectionStatusBuffer != (NetworkStatus *)0x0) {
         ConnectionCount = (int)ConnectionContext[1];
@@ -519,11 +525,11 @@ NetworkHandle ProcessNetworkConnectionData(long long *ConnectionContext, int Pac
         goto NETWORK_PROCESSING_LOOP;
       }
     }
-    return 0x26;
+    return NetworkErrorConnectionFailed;
   }
 NETWORK_PROCESSING_LOOP:
   if ((0 < *(int *)((long long)ConnectionContext + 0xc)) && (*ConnectionContext != 0)) {
-      ValidateConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + 0x1a0), *ConnectionContext, &SecurityValidationData, 0x100, 1);
+      ValidateConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *ConnectionContext, &SecurityValidationData, SecurityValidationBufferSize, 1);
   }
   *ConnectionContext = (long long)pConnectionHandlePacket;
   *(int *)((long long)ConnectionContext + 0xc) = PacketData;
