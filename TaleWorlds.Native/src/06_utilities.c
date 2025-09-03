@@ -6635,26 +6635,26 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t ParameterObject)
         return ProcessingResult;
       }
     }
-    if ((*(char *)(SystemDataContext + SystemDataContextConfigFlagOffset) == '\0') ||
-       ((*(uint *)(*(int64_t *)(SystemDataContext + SystemContextValidationDataOffset) + SystemDataContextConfigFlagOffset) >> 1 & 1) == 0)) {
-      SystemStatusFlags = *(uint *)(*(int64_t *)(SystemDataContext + SystemContextValidationDataOffset) + SystemDataContextConfigFlagOffset);
-      StatusFlagHighBits = SystemStatusFlags >> 4;
-      if ((StatusFlagHighBits & 1) == 0) {
-        if ((((SystemStatusFlags >> 3 & 1) != 0) && (IntegerConversionValue = (int)ParameterFloatValue, IntegerConversionValue != -0x80000000)) &&
-           ((float)IntegerConversionValue != ParameterFloatValue)) {
-          VectorComponents[1] = ParameterFloatValue;
-          VectorComponents[0] = ParameterFloatValue;
-          VectorComponents[2] = 0;
-          SystemStatusFlags = movmskps(StatusFlagHighBits, VectorComponents);
-          ParameterFloatValue = (float)(int)(IntegerConversionValue - (SystemStatusFlags & 1));
+    if ((*(char *)(SystemDataHandlerContext + SystemDataContextConfigFlagOffset) == '\0') ||
+       ((*(uint *)(*(int64_t *)(SystemDataHandlerContext + SystemContextValidationDataOffset) + SystemDataContextConfigFlagOffset) >> 1 & 1) == 0)) {
+      SystemConfigurationFlags = *(uint *)(*(int64_t *)(SystemDataHandlerContext + SystemContextValidationDataOffset) + SystemDataContextConfigFlagOffset);
+      ConfigurationFlagHighBits = SystemConfigurationFlags >> 4;
+      if ((ConfigurationFlagHighBits & 1) == 0) {
+        if ((((SystemConfigurationFlags >> 3 & 1) != 0) && (ConvertedIntegerValue = (int)InputParameterValue, ConvertedIntegerValue != -0x80000000)) &&
+           ((float)ConvertedIntegerValue != InputParameterValue)) {
+          CalculationVector[1] = InputParameterValue;
+          CalculationVector[0] = InputParameterValue;
+          CalculationVector[2] = 0;
+          SystemConfigurationFlags = movmskps(ConfigurationFlagHighBits, CalculationVector);
+          InputParameterValue = (float)(int)(ConvertedIntegerValue - (SystemConfigurationFlags & 1));
         }
-        ParameterFloatValue = (float)CalculateFloatValue(*(int64_t *)(SystemDataContext + SystemContextValidationDataOffset), ParameterFloatValue);
-        if (((*(char *)(SystemDataContext + SystemDataContextConfigFlagOffset) == '\0') ||
-            ((*(uint *)(*(int64_t *)(SystemDataContext + SystemContextValidationDataOffset) + SystemDataContextConfigFlagOffset) >> 1 & 1) == 0)) &&
-           (ParameterFloatValue != *(float *)(SystemDataContext + SystemDataContextFloatValueOffset))) {
-          *(float *)(SystemDataContext + SystemDataContextFloatValueOffset) = ParameterFloatValue;
-          UpdateSystemData(SystemDataContext);
-          *(uint8_t *)(SystemDataContext + SystemDataContextConfigStatusOffset) = 0;
+        InputParameterValue = (float)CalculateFloatValue(*(int64_t *)(SystemDataHandlerContext + SystemContextValidationDataOffset), InputParameterValue);
+        if (((*(char *)(SystemDataHandlerContext + SystemDataContextConfigFlagOffset) == '\0') ||
+            ((*(uint *)(*(int64_t *)(SystemDataHandlerContext + SystemContextValidationDataOffset) + SystemDataContextConfigFlagOffset) >> 1 & 1) == 0)) &&
+           (InputParameterValue != *(float *)(SystemDataHandlerContext + SystemDataContextFloatValueOffset))) {
+          *(float *)(SystemDataHandlerContext + SystemDataContextFloatValueOffset) = InputParameterValue;
+          UpdateSystemData(SystemDataHandlerContext);
+          *(uint8_t *)(SystemDataHandlerContext + SystemDataContextConfigStatusOffset) = 0;
         }
       }
     }
