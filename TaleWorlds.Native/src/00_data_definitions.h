@@ -1474,10 +1474,10 @@ int InitializeModuleConfigurationA(void)
   int64_t ModuleInitializationResult;
   uint64_t ModuleConfigurationFlags;
   GlobalStringProcessorDataPointerA = &SystemStringDataConstantB;
-  GlobalStringProcessorConfigPointerA = &STRING_PROCESSOR_CONFIG_A;
-  STRING_PROCESSOR_CONFIG_A = 0;
+  GlobalStringProcessorConfigPointerA = &StringProcessorPrimaryConfig;
+  StringProcessorPrimaryConfig = 0;
   GlobalStringProcessorBufferSizeA = 5;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_A,16,&SystemStringDataConstantA,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessorPrimaryConfig,16,&SystemStringDataConstantA,StringProcessorFlags,SystemMutexFlags);
   int64_t systemModuleRegistrationResult = RegisterSystemModule(InitializeSystemModuleA);
   return (systemModuleRegistrationResult != 0) - 1;
 }
