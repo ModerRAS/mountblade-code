@@ -29999,6 +29999,18 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @param SystemContext 系统上下文指针
  * @return 无返回值
  */
+/**
+ * @brief 主上下文异常处理器
+ * 
+ * 该函数负责处理主异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ * @return 无返回值
+ * @note 此函数会在异常处理过程中自动调用
+ * @warning 调用此函数可能会触发系统紧急退出
+ */
 void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerPtr;
   
@@ -30045,28 +30057,6 @@ void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCo
 
 
 /**
- * @brief 三级上下文异常处理器
- * 
- * 该函数负责处理三级异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
- * @brief 三级上下文异常处理器
- * 
- * 该函数负责处理三级上下文中的异常情况，执行异常处理逻辑。
- * 主要用于处理程序运行时出现的三级异常事件。
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会执行相应的异常处理逻辑
- */
-/**
  * @brief 处理第三级上下文异常
  * 
  * 该函数用于处理系统第三级上下文中的异常情况
@@ -30077,11 +30067,11 @@ void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCo
  * @return 无返回值
  */
 void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* TertiaryExceptionHandlerFunctionPointer;
+  int64_t* ExceptionHandlerPtr;
   
-  TertiaryExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
-  if (TertiaryExceptionHandlerFunctionPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)TertiaryExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerPtr = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
+  if (ExceptionHandlerPtr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerPtr + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
