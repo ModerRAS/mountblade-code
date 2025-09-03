@@ -1212,6 +1212,9 @@ uint32_t NetworkEncryptionAlgorithmType;            // 网络加密算法类型
 uint32_t NetworkCompressionAlgorithmType;           // 网络压缩算法类型
 uint32_t NetworkConnectionStatistics;               // 网络连接统计信息
 uint32_t NetworkSessionEncryptionKey;               // 网络会话加密密钥
+uint32_t NetworkHandshakeTimeout;                    // 网络握手超时时间
+uint32_t NetworkAuthenticationTimeout;              // 网络认证超时时间
+uint32_t NetworkEncryptionTimeout;                   // 网络加密超时时间
 uint32_t NetworkConnectionReliability;              // 网络连接可靠性
 uint32_t NetworkConnectionPerformance;              // 网络连接性能
 uint32_t ConnectionTableIndex;               // 网络连接表索引
@@ -1222,6 +1225,12 @@ uint32_t NetworkEncryptionContext;                   // 网络加密上下文
 uint32_t NetworkCompressionContext;                  // 网络压缩上下文
 uint32_t NetworkAuthenticationContext;               // 网络认证上下文
 uint32_t NetworkSecurityContext;                     // 网络安全上下文
+uint32_t NetworkEventContext;                        // 网络事件上下文
+uint32_t NetworkCallbackContext;                      // 网络回调上下文
+uint32_t NetworkConnectionStateController;            // 网络连接状态控制器
+uint32_t NetworkEventQueue;                            // 网络事件队列
+uint32_t NetworkCallbackHandler;                        // 网络回调处理器
+uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
 
 /**
  * @brief 网络连接处理变量 - 记录连接处理相关的状态和数据

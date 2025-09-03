@@ -5931,20 +5931,20 @@ uint8_t ValidateResourceHandle(int64_t ResourceHandle)
 uint32_t ValidateRegisterPointer(void)
 
 {
-  int64_t RegisterValue;
-  int64_t AdjustedRegisterValue;
+  int64_t RegisterContentValue;
+  int64_t AdjustedRegisterPointer;
   
-  if (RegisterValue == 0) {
-    AdjustedRegisterValue = 0;
+  if (RegisterContentValue == 0) {
+    AdjustedRegisterPointer = 0;
   }
   else {
-    AdjustedRegisterValue = RegisterValue - 8;
+    AdjustedRegisterPointer = RegisterContentValue - 8;
   }
-  if (*(int64_t *)(AdjustedRegisterValue + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(AdjustedRegisterPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   // 调用处理函数，该函数不会返回
-  HandlePointerOperation(*(int64_t *)(AdjustedRegisterValue + ObjectContextOffset), 1);
+  HandlePointerOperation(*(int64_t *)(AdjustedRegisterPointer + ObjectContextOffset), 1);
 }
 
 
@@ -11897,10 +11897,10 @@ uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
     *(uint32_t *)(ObjectContext + ObjectContextResourceCountOffset) = 0xffffffff;
     *(uint32_t *)(DataContext + 0x94) = 0;
   }
-  FindEntryInResourcePool((void *)(DataContext + 0x80));
-  ProcessDataContextOperations((void *)(DataContext + 0x70));
+  FindEntryInResourcePool((void *)(DataContext + ObjectContextResourceDataOffset));
+  ProcessDataContextOperations((void *)(DataContext + ObjectContextDataOffset));
   OperationStatus = ProcessDataContextOperations((void *)(ObjectContext + ObjectContextRangeDataOffset));
-  if ((OperationStatus == 0) && (OperationStatus = ValidateResourceEntryIntegrity((void *)(ObjectContext + 0x38)), OperationStatus == 0)) {
+  if ((OperationStatus == 0) && (OperationStatus = ValidateResourceEntryIntegrity((void *)(ObjectContext + ObjectContextValidationDataOffset)), OperationStatus == 0)) {
     *(uint32_t *)(ObjectContext + ObjectContextHandleOffset) = 0xffffffff;
     *(uint32_t *)(ObjectContext + ObjectContextSecondaryHandleOffset) = 0;
   }
