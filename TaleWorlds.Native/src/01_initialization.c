@@ -67366,7 +67366,7 @@ void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int Co
   int CalculationFlags;
   uint SystemLoopCounter;
   long long memoryBlockAddress;
-  int unaff_EBP;
+  int resourceIndex;
   long long SystemMemoryAddress;
   ulong long ThreadContextFlag;
   void* *SystemDataPointer0;
@@ -67375,7 +67375,7 @@ void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int Co
   long long resourceDataIndex3;
   
   if (ConfigurationDataPointer < 1) {
-    if (AdditionalParameter == unaff_EBP + -1) {
+    if (AdditionalParameter == resourceIndex + -1) {
       currentThreadId = *(int *)(SystemDataMemoryContext + 0x9c8) + 1U & 0x80000001;
       if ((int)currentThreadId < 0) {
         currentThreadId = (currentThreadId - 1 | 0xfffffffe) + 1;
@@ -67416,7 +67416,7 @@ void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int Co
           } while (SystemOutputStatus != 0);
         }
         *(int *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x18) = CalculationFlags;
-        *(int *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0xc) = unaff_EBP;
+        *(int *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0xc) = resourceIndex;
       }
     }
     else {
@@ -67449,7 +67449,7 @@ void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int Co
     *(uint32_t *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x14) =
          *(uint32_t *)(*(long long *)(memoryBlockAddress + 0x2d0) + 8);
     *(uint *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x18) = resourceAddress;
-    *(int *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0xc) = unaff_EBP;
+    *(int *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0xc) = resourceIndex;
   }
   return;
 }
@@ -67469,7 +67469,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager,l
   uint ResourceHash;
   uint SystemLoopCounter;
   long long memoryBlockAddress;
-  uint32_t unaff_EBP;
+  uint32_t resourceIndex;
   ulong long OperationCode;
   ulong long ThreadContextFlag;
   long long SystemAllocationFlags;
@@ -67514,7 +67514,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager,l
       } while (currentThreadId != 0);
     }
     *(int *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x18) = systemIndex;
-    *(uint32_t *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0xc) = unaff_EBP;
+    *(uint32_t *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0xc) = resourceIndex;
   }
   return;
 }
@@ -68708,7 +68708,7 @@ void ConfigureSystemResourceManagerExtended(void* SystemResourceManager,long lon
   ulong long SystemOutputStatus;
   char *systemFunctionPointer3;
   uint *SystemThreadLocalStoragePointer;
-  uint32_t unaff_ESI;
+  uint32_t resourceIdentifier;
   uint SystemOperationStatus5;
   long long systemDataIndexPtr;
   int SystemOperationStatusFlags;
@@ -68721,7 +68721,7 @@ void ConfigureSystemResourceManagerExtended(void* SystemResourceManager,long lon
   bool isSystemActive3;
   
   ConfigurationDataPointer = (long long)*(int *)(ConfigurationDataPointer + 0x250) * 0x128 + ConfigurationDataPointer;
-  currentThreadId = AcquireResourceHandle(ConfigurationDataPointer,unaff_ESI);
+  currentThreadId = AcquireResourceHandle(ConfigurationDataPointer,resourceIdentifier);
   *(uint32_t *)(systemDataIndexPtr + 0x30) = currentThreadId;
   ReleaseResourceHandle(ConfigurationDataPointer,currentThreadId);
   if (*(long long *)(systemDataIndexPtr + 0x10) == 0) {
