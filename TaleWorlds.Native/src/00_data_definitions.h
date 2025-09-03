@@ -7421,9 +7421,9 @@ ValidateNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRequ
   longlong LongIndex;
   longlong LongValue;
   longlong LongLoop;
-  uint64_t uVar6;
+  uint64_t UnsignedVariable6;  // 无符号变量6，用于存储计算结果
   uint *pUnsignedValue;
-  uVar6 = 0;
+  UnsignedVariable6 = 0;
   MemoryAddress = NetworkRequestArrayPointer[1] - *NetworkRequestArrayPointer >> 2;
   if ((int)MemoryAddress != 0) {
     LongLoop = 0;
