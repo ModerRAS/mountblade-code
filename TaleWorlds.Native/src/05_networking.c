@@ -445,16 +445,16 @@ uint32_t NetworkEncryptionKey;                            // 网络加密密钥
 uint32_t NetworkCompressionLevel;                         // 网络压缩级别
 
 // 网络连接配置数据指针
-void *NetworkConnectionInitializationConfigDataPointer;    // 网络连接初始化配置数据指针
-void *NetworkConnectionAlternateConfigDataPointer;         // 网络连接备用配置数据指针
-void *NetworkConnectionHeaderConfigDataPointer;            // 网络连接头部配置数据指针
-void *NetworkConnectionDataConfigDataPointer;              // 网络连接数据配置数据指针
-void *NetworkConnectionRequestConfigDataPointer;           // 网络连接请求配置数据指针
-void *NetworkConnectionPrimaryProcessingConfigDataPointer;   // 网络连接主要处理配置数据指针
-void *NetworkConnectionSecondaryProcessingConfigDataPointer;// 网络连接次要处理配置数据指针
-void *NetworkConnectionTertiaryProcessingConfigDataPointer;// 网络连接第三处理配置数据指针
-void *NetworkConnectionQuaternaryProcessingConfigDataPointer;// 网络连接第四处理配置数据指针
-void *NetworkConnectionQuinaryProcessingConfigDataPointer;  // 网络连接第五处理配置数据指针
+void *NetworkConnectionInitializationConfig;    // 网络连接初始化配置数据
+void *NetworkConnectionAlternateConfig;         // 网络连接备用配置数据
+void *NetworkConnectionHeaderConfig;            // 网络连接头部配置数据
+void *NetworkConnectionDataConfig;              // 网络连接数据配置数据
+void *NetworkConnectionRequestConfig;           // 网络连接请求配置数据
+void *NetworkConnectionPrimaryProcessingConfig;   // 网络连接主要处理配置数据
+void *NetworkConnectionSecondaryProcessingConfig;// 网络连接次要处理配置数据
+void *NetworkConnectionTertiaryProcessingConfig;// 网络连接第三处理配置数据
+void *NetworkConnectionQuaternaryProcessingConfig;// 网络连接第四处理配置数据
+void *NetworkConnectionQuinaryProcessingConfig;  // 网络连接第五处理配置数据
 
 // 网络连接上下文和数据变量
 uint32_t NetworkConnectionContextData;                      // 网络连接上下文数据
@@ -513,16 +513,16 @@ void NetworkInitializeConnectionPool(void);
 
 // 网络连接配置数据结构指针
 void *NetworkConnectionContextTemplate = &NetworkConnectionContextDataStructure;
-void *NetworkConnectionPrimaryConfigData = &NetworkConnectionPrimaryConfigDataStructure;
-void *NetworkConnectionSecondaryConfigData = &NetworkConnectionSecondaryConfigDataStructure;
-void *NetworkConnectionProcessingConfigData = &NetworkConnectionProcessingConfigDataStructure;
-void *NetworkConnectionTransportConfigData = &NetworkConnectionTransportConfigDataStructure;
-void *NetworkConnectionProtocolConfigData = &NetworkConnectionProtocolConfigDataStructure;
+void *NetworkConnectionPrimaryConfig = &NetworkConnectionPrimaryConfigDataStructure;
+void *NetworkConnectionSecondaryConfig = &NetworkConnectionSecondaryConfigDataStructure;
+void *NetworkConnectionProcessingConfig = &NetworkConnectionProcessingConfigDataStructure;
+void *NetworkConnectionTransportConfig = &NetworkConnectionTransportConfigDataStructure;
+void *NetworkConnectionProtocolConfig = &NetworkConnectionProtocolConfigDataStructure;
 void *NetworkConnectionValidationConfig = &NetworkConnectionValidationConfigStructure;
-void *NetworkConnectionRoutingConfigDataPrimary = &NetworkConnectionRoutingConfigDataStructureA;
-void *NetworkConnectionRoutingConfigDataSecondary = &NetworkConnectionRoutingConfigDataStructureB;
-void *NetworkConnectionRoutingConfigDataTertiary = &NetworkConnectionRoutingConfigDataStructureC;
-void *NetworkConnectionRoutingConfigDataQuaternary = &NetworkConnectionRoutingConfigDataStructureD;
+void *NetworkConnectionRoutingConfigPrimary = &NetworkConnectionRoutingConfigDataStructureA;
+void *NetworkConnectionRoutingConfigSecondary = &NetworkConnectionRoutingConfigDataStructureB;
+void *NetworkConnectionRoutingConfigTertiary = &NetworkConnectionRoutingConfigDataStructureC;
+void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfigDataStructureD;
 
 /**
  * @brief 初始化网络套接字句柄
@@ -766,10 +766,10 @@ uint32_t NetworkBandwidthUsage;                     // 网络带宽使用量
 uint32_t NetworkLatency;                            // 网络延迟
 uint32_t NetworkPacketLoss;                         // 网络数据包丢失率
 uint32_t NetworkPacketRetransmissionCount;          // 网络数据包重传次数
-uint32_t ActiveNetworkConnectionsCount;             // 活跃网络连接数量
+uint32_t NetworkActiveConnectionCount;             // 活跃网络连接数量
 
 uint32_t NetworkConnectionRequestQueue;
-uint32_t PendingNetworkRequestsCount;
+uint32_t NetworkPendingRequestCount;
 uint32_t NetworkSecurityConfigurationFlags;
 uint32_t NetworkAuthenticationSecurityLevel;
 uint32_t NetworkEncryptionAlgorithmType;
@@ -777,12 +777,12 @@ uint32_t NetworkCompressionAlgorithmType;
 uint32_t NetworkConnectionStatistics;
 uint32_t NetworkSessionEncryptionKey;
 uint32_t NetworkSessionTimeoutDuration;
-uint32_t NetworkPortRangeStartValue;
-uint32_t NetworkPortRangeEndValue;
+uint32_t NetworkPortRangeStart;
+uint32_t NetworkPortRangeEnd;
 uint32_t NetworkConnectionExtendedFlags;
 uint32_t NetworkRetryInterval;
 uint32_t NetworkTimeoutInterval;
-uint32_t NetworkHandshakeTimeLimit;
+uint32_t NetworkHandshakeTimeout;
 uint32_t NetworkConnectionStateController;
 uint32_t NetworkProtocolVersion;
 uint32_t NetworkEventQueue;
@@ -841,7 +841,7 @@ uint32_t NetworkConnectionContextSize;
 uint32_t NetworkConnectionPoolManager;
 uint32_t NetworkConnectionPoolData;
 uint32_t NetworkConnectionPoolIndex;
-uint32_t NetworkConnectionPoolCapacity;
+uint32_t NetworkConnectionPoolMaxCapacity;
 uint32_t NetworkSocketContext;
 uint32_t NetworkSocketContextSize;
 uint32_t NetworkSocketData;
@@ -877,12 +877,12 @@ uint32_t NetworkCallbackIndex;
 uint32_t ProcessedNetworkConnectionPacketHandle;          // 已处理的网络连接数据包句柄
 uint32_t NetworkConnectionTableHandle;                    // 网络连接表句柄
 uint32_t NetworkSecurityValidationData;                    // 网络安全验证数据
-uint32_t NetworkBufferTemplatePointer;                     // 网络缓冲区模板指针
+uint32_t NetworkBufferTemplate;                     // 网络缓冲区模板
 uint32_t NetworkConnectionDefaultData;                    // 网络连接默认数据
 uint32_t NetworkConnectionSourceAddress;                   // 网络连接源地址
 uint32_t NetworkConnectionArrayIndex;                      // 网络连接数组索引
 uint32_t NetworkPacketArrayPointer;                        // 网络数据包数组指针
-uint32_t NetworkConnectionPrimaryContextPointer;           // 网络连接主上下文指针
+uint32_t NetworkConnectionPrimaryContext;           // 网络连接主上下文
 uint32_t NetworkPacketEntryPointer;                        // 网络数据包条目指针
 uint32_t NetworkConnectionTargetAddress;                   // 网络连接目标地址
 uint32_t NetworkConnectionIndexCounter;                    // 网络连接索引计数器
