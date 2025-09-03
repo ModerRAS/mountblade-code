@@ -4909,7 +4909,7 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
-uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
+uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
   int64_t ObjectValidationData [4];
@@ -4955,7 +4955,7 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文，包含要创建句柄的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t CreateBasicObjectHandle(int64_t ObjectContext) {
+uint8_t InitializeObjectHandle(int64_t ObjectContext) {
   uint8_t HandleValidationResult;
   int64_t ValidatedContextPointer;
   
@@ -4985,7 +4985,7 @@ uint8_t CreateBasicObjectHandle(int64_t ObjectContext) {
  * 
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t ReleaseObjectHandle(void) {
+uint8_t FreeObjectHandle(void) {
   int64_t ObjectHandleIdentifier = 0;
   int64_t ObjectMemoryAddressPointer;
   
@@ -5012,7 +5012,7 @@ uint8_t ReleaseObjectHandle(void) {
  * @param CharacterParameter 输入的字符参数，需要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t VerifyCharacterParameter(char CharacterParameter) {
+uint8_t ValidateCharacterInput(char CharacterParameter) {
   if (CharacterParameter != '\0') {
     ExecuteSystemExitOperation();
   }

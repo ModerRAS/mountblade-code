@@ -1056,11 +1056,11 @@ NetworkHandle NetworkProcessConnectionDataHandler(int64_t *ConnectionContext, in
         if ((ActiveConnectionCount != 0) && (ConnectionBaseAddress = *ConnectionContext, 0 < ActiveConnectionCount)) {
           NetworkPacketBuffer = NetworkStatusBuffer;
           do {
-            ConnectionStatusInformation = (NetworkStatus *)((ConnectionBaseAddress - (long long)NetworkStatusBuffer) + (long long)NetworkPacketBuffer);
-            NetworkStatus PacketProcessingResult = ConnectionStatusInformation[1];
-            NetworkStatus DataProcessingStatus = ConnectionStatusInformation[2];
-            NetworkStatus ConnectionValidationResult = ConnectionStatusInformation[3];
-            *NetworkPacketBuffer = *ConnectionStatusInformation;
+            NetworkConnectionContextData = (NetworkStatus *)((ConnectionBaseAddress - (long long)NetworkStatusBuffer) + (long long)NetworkPacketBuffer);
+            NetworkStatus PacketProcessingResult = NetworkConnectionContextData[1];
+            NetworkStatus DataProcessingStatus = NetworkConnectionContextData[2];
+            NetworkStatus ConnectionValidationResult = NetworkConnectionContextData[3];
+            *NetworkPacketBuffer = *NetworkConnectionContextData;
             NetworkPacketBuffer[1] = PacketProcessingResult;
             NetworkPacketBuffer[2] = DataProcessingStatus;
             NetworkPacketBuffer[3] = ConnectionValidationResult;
