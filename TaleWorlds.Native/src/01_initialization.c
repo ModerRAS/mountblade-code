@@ -22434,25 +22434,25 @@ void DestroySystemMutexAndConditionVariable(void* conditionVariable)
  * @note 这是系统初始化的重要函数，确保同步对象正确初始化
  */
 void* *
-InitializeSystemSyncObject(void* *syncObject,void* SyncContextParameter,void* SyncConfigurationParameter,void* SyncSecurityParameter)
+InitializeSystemSyncObject(void* *SyncObject,void* SyncContextParameter,void* SyncConfigurationParameter,void* SyncSecurityParameter)
 
 {
-  void* systemErrorFlag;
+  void* SystemErrorFlag;
   
-  systemErrorFlag = 0xfffffffffffffffe;
-  *syncObject = &SystemMemoryRegionTemplateA;
-  *syncObject = &SystemMemoryRegionTemplateB;
-  *(uint32_t *)(syncObject + 1) = 0;
-  *syncObject = &SystemMemoryAllocatorReference;
+  SystemErrorFlag = 0xfffffffffffffffe;
+  *SyncObject = &SystemMemoryRegionTemplateA;
+  *SyncObject = &SystemMemoryRegionTemplateB;
+  *(uint32_t *)(SyncObject + 1) = 0;
+  *SyncObject = &SystemMemoryAllocatorReference;
   LOCK();
-  *(uint8_t *)(syncObject + 2) = 0;
+  *(uint8_t *)(SyncObject + 2) = 0;
   UNLOCK();
-  syncObject[3] = 0xffffffffffffffff;
-  *syncObject = &SystemMutexTemplate;
-  _Cnd_init_in_situ(syncObject + 4);
-  _Mtx_init_in_situ(syncObject + 0xd,2,SyncConfigurationParameter,SyncSecurityParameter,systemErrorFlag);
-  *(uint8_t *)(syncObject + 0x17) = 0;
-  return syncObject;
+  SyncObject[3] = 0xffffffffffffffff;
+  *SyncObject = &SystemMutexTemplate;
+  _Cnd_init_in_situ(SyncObject + 4);
+  _Mtx_init_in_situ(SyncObject + 0xd,2,SyncConfigurationParameter,SyncSecurityParameter,SystemErrorFlag);
+  *(uint8_t *)(SyncObject + 0x17) = 0;
+  return SyncObject;
 }
 
 
@@ -22473,14 +22473,14 @@ InitializeSystemSyncObject(void* *syncObject,void* SyncContextParameter,void* Sy
  * @note 这是内存管理的重要函数，确保内存正确释放和分配器设置
  */
 void* *
-FreeMemoryAndSetAllocator(void* *memoryBlock,ulong long memoryFlags,void* SyncContextParameter,void* SyncConfigurationParameter)
+FreeMemoryAndSetAllocator(void* *MemoryBlock,ulong long MemoryFlags,void* SyncContextParameter,void* SyncConfigurationParameter)
 
 {
-  *memoryBlock = &SystemMemoryAllocatorReference;
-  if ((memoryFlags & 1) != 0) {
-    free(memoryBlock,0x98,SyncContextParameter,SyncConfigurationParameter,InvalidHandleValue);
+  *MemoryBlock = &SystemMemoryAllocatorReference;
+  if ((MemoryFlags & 1) != 0) {
+    free(MemoryBlock,0x98,SyncContextParameter,SyncConfigurationParameter,InvalidHandleValue);
   }
-  return memoryBlock;
+  return MemoryBlock;
 }
 
 
@@ -22870,27 +22870,27 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
 
 
 void* *
-InitializeStringBufferWithBackup(void* *stringBuffer,long long stringLength,void* reservedParam3,void* reservedParam4)
+InitializeStringBufferWithBackup(void* *StringBuffer,long long StringLength,void* ReservedParam3,void* ReservedParam4)
 
 {
-  long long characterIndex;
+  long long CharacterIndex;
   
-  *stringBuffer = &SystemMemoryAllocatorReference;
-  stringBuffer[1] = 0;
-  *(uint32_t *)(stringBuffer + 2) = 0;
-  *stringBuffer = &SystemDataBufferBackupTemplateB;
-  stringBuffer[1] = stringBuffer + 3;
-  *(uint32_t *)(stringBuffer + 2) = 0;
-  *(uint8_t *)(stringBuffer + 3) = 0;
-  if (stringLength != 0) {
-    characterIndex = -1;
+  *StringBuffer = &SystemMemoryAllocatorReference;
+  StringBuffer[1] = 0;
+  *(uint32_t *)(StringBuffer + 2) = 0;
+  *StringBuffer = &SystemDataBufferBackupTemplateB;
+  StringBuffer[1] = StringBuffer + 3;
+  *(uint32_t *)(StringBuffer + 2) = 0;
+  *(uint8_t *)(StringBuffer + 3) = 0;
+  if (StringLength != 0) {
+    CharacterIndex = -1;
     do {
-      characterIndex = characterIndex + 1;
-    } while (*(char *)(stringLength + characterIndex) != '\0');
-    *(int *)(stringBuffer + 2) = (int)characterIndex;
-    strcpy_s(stringBuffer[1],0x40,stringLength,reservedParam4,InvalidHandleValue);
+      CharacterIndex = CharacterIndex + 1;
+    } while (*(char *)(StringLength + CharacterIndex) != '\0');
+    *(int *)(StringBuffer + 2) = (int)CharacterIndex;
+    strcpy_s(StringBuffer[1],0x40,StringLength,ReservedParam4,InvalidHandleValue);
   }
-  return stringBuffer;
+  return StringBuffer;
 }
 
 
@@ -66408,7 +66408,7 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
     break;
   case 8:
     if (*(int *)(ConfigurationDataPointer + 200) < 1) {
-code_r0x00018007db1b:
+SystemResourceFinalize:
         memset(pResultValue2,0,(long long)(systemResult * 4));
     }
     SystemThreadHandle5 = SystemThreadHandle1;

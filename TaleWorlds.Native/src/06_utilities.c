@@ -13887,7 +13887,7 @@ ResourceProcessingHandler:
         GraphicsOctonaryOperationFlag = CleanupOption;
         goto ResourceProcessingHandler;
       }
-      GraphicsDataBuffer = &GraphicsProcessingTemplate3;
+      GraphicsDataBuffer = &GraphicsProcessingTemplateTertiary;
       GraphicsContextOffset = (uint64_t)CleanupOption << 0x20;
       GraphicsPrimaryOperationFlag = *(uint8_t *)(ValidationContext + ValidationContextSecurityDataOffset);
       GraphicsSecondaryOperationFlag = (uint64_t)CONCAT14(ResourceHashStatus != 1,*(uint32_t *)(ValidationContext + ValidationContextGraphicsDataOffset));
@@ -13899,7 +13899,7 @@ ResourceProcessingHandler:
     ResourceOffset = *(int *)(ValidationContext + ValidationContextResourceOffset);
     ResourceType = *(uint32_t *)(ValidationContext + ValidationContextResourceTypeOffset);
     SecondaryGraphicsDataIndex = 0;
-    SecondaryGraphicsDataBuffer = &GraphicsProcessingTemplate4;
+    SecondaryGraphicsDataBuffer = &GraphicsProcessingTemplateQuaternary;
     ValidationFlags = 0;
     CleanupOperation = CleanupOption;
     ValidationStatusCode = GetAndValidateResourceData(ObjectContext,&GraphicsDataSecondaryPointer);
@@ -13909,7 +13909,7 @@ ResourceProcessingHandler:
     if (0 < ResourceHashStatus) {
       do {
         GraphicsDataIndex = 0;
-        GraphicsDataBuffer = &GraphicsProcessingTemplate5;
+        GraphicsDataBuffer = &GraphicsProcessingTemplateQuinary;
         GraphicsPrimaryOperationFlag = CONCAT44(GraphicsPrimaryOperationFlag.High28Bits,CleanupOption);
         OperationStatusCode = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
         if (OperationResult != 0) goto ResourceErrorHandler;
@@ -13930,7 +13930,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate6;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSenary;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
@@ -13977,7 +13977,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate6;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSenary;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
@@ -14024,7 +14024,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate6;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSenary;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
@@ -14071,7 +14071,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate6;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSenary;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
@@ -14121,7 +14121,7 @@ ResourceProcessingHandler:
         ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
-        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplate7;
+        GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSeptenary;
         OperationStatusCode = TableEntryIndex + 1;
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataSecondaryIndex = ResourceCount;
@@ -14348,7 +14348,7 @@ void ProcessComplexResourceWithRegisters(void)
           extendedValidationFlags = systemContextFlags;
           temporaryResourceValue = (float)CONCAT31(temporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectResourceBuffer);
-          finalResultFloat = CalculatedFloatResult6;
+          finalResultFloat = CalculatedFloatResultFinal;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
@@ -14392,7 +14392,7 @@ void ProcessComplexResourceWithRegisters(void)
           extendedValidationFlags = systemContextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
-          finalResultFloat = CalculatedFloatResult6;
+          finalResultFloat = CalculatedFloatResultFinal;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x28) != '\0') {
@@ -14997,8 +14997,8 @@ void SystemInitializerPrimary(void)
         }
         ResourceIndexTertiary = ValidateResourceTablePointer(ResourceHashValidationQuaternary,(int64_t)&StackBufferSecondary + 4,0);
         if (ResourceIndexTertiary == 0) {
-          SystemXmm6RegisterPrimary = xmm6RegisterPrimary;
-          SystemXmm6RegisterSecondary = xmm6RegisterSecondary;
+          SystemXmmRegisterPrimary = Xmm6RegisterPrimary;
+          SystemXmmRegisterSecondary = Xmm6RegisterSecondary;
           if (primaryTemporaryFloatValue != 1.0) {
             floatResourceValue = primaryTemporaryFloatValue;
             resourceTemplatePointer = &SystemResourceTemplateFile;
