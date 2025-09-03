@@ -62345,9 +62345,9 @@ void InitializeSystemResourcePool(void)
   ResourceAllocationContext = (int)*(char *)(SystemDataIndexPointer + 0xd) + *(int *)(SystemDataIndexPointer + 0x18);
   InterpolationFactorXPointer = (float *)**(long long **)(MemoryBlockAddress + 600);
   SystemBufferAddress = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
-  resourceAllocationContext3 = resourceAllocationContext5 >> QUADRANT_SHIFT_BITS;
-  resourceDataIndex6 = *(long long *)(SystemBufferAddress3 + 8 + (ulong long)resourceAllocationContext3 * 8);
-  ResourceMemoryOffset1 = (ulong long)(resourceAllocationContext5 + resourceAllocationContext3 * -0x2000) * 0x40;
+  ResourceAllocationContextSecondary = ResourceAllocationContext >> QUADRANT_SHIFT_BITS;
+  ResourceDataIndex = *(long long *)(SystemBufferAddress + 8 + (ulong long)ResourceAllocationContextSecondary * 8);
+  ResourceMemoryOffset = (ulong long)(ResourceAllocationContext + ResourceAllocationContextSecondary * -0x2000) * 0x40;
   resourceCreationFlags9 = ((void* *)(resourceDataIndex6 + ResourceMemoryOffset1))[1];
   *(void* *)pInterpolationFactorX = *(void* *)(resourceDataIndex6 + ResourceMemoryOffset1);
   *(void* *)(pInterpolationFactorA + 2) = resourceCreationFlags9;
