@@ -76006,7 +76006,16 @@ void ExecuteResourceContextCall280(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_18090af10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源上下文调用0x288
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * 
+ * 该函数从系统上下文中获取0x288偏移处的资源上下文，
+ * 并执行相应的资源处理操作。
+ * @remark 原始函数名：Unwind_18090af10
+ */
+void ExecuteResourceContextCall288(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -100056,14 +100065,14 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 void ProcessSystemResourceCleanupUnwind(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  int64_t LoopCounter;
+  int64_t ResourceCleanupCounter;
   
-  LoopCounter = *(int64_t *)(ValidationContext + 0x48);
-  if (LoopCounter != 0) {
+  ResourceCleanupCounter = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset);
+  if (ResourceCleanupCounter != 0) {
     if (GlobalUnwindContext != 0) {
-      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
+      *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) = *(int *)(GlobalUnwindContext + GlobalUnwindCounterOffset) - 1;
     }
-          ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(SystemContextPointer, SystemResourcePointer002, CleanupOption, CleanupFlag, MemoryCleanupTriggerValue);
   }
   return;
 }
@@ -100071,7 +100080,19 @@ void ProcessSystemResourceCleanupUnwind(uint8_t ObjectContext, int64_t Validatio
 
 
 
-void Unwind_1809125b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理次要计数器资源清理的展开函数
+ * 
+ * 该函数负责处理基于次要计数器的资源清理操作。
+ * 它会检查验证上下文中的次要计数器，如果计数器不为零，
+ * 则执行资源清理操作，并更新全局展开上下文。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含次要计数器和资源清理所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，指示是否执行强制清理
+ */
+void ProcessSecondaryCounterResourceCleanupUnwind(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
