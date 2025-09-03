@@ -19690,14 +19690,14 @@ void ProcessSystemStringCopy(long long targetBuffer, long long sourceString)
  * @param sourceData 源数据指针
  * @param copyLength 复制长度
  */
-void ProcessSystemMemoryCopy(long long TargetBuffer,void* SourceData,int CopyLength)
+void ProcessSystemMemoryCopy(long long SystemResourceManager,void* SourceDataPointer,int BytesToCopy)
 
 {
-  if (CopyLength + 1 < 0x400) {
-      memcpy(*(uint8_t **)(TargetBuffer + 8),SourceData,(long long)CopyLength);
+  if (BytesToCopy + 1 < 0x400) {
+      memcpy(*(uint8_t **)(SystemResourceManager + 8),SourceDataPointer,(long long)BytesToCopy);
   }
-  **(uint8_t **)(TargetBuffer + 8) = 0;
-  *(uint32_t *)(TargetBuffer + 0x10) = 0;
+  **(uint8_t **)(SystemResourceManager + 8) = 0;
+  *(uint32_t *)(SystemResourceManager + 0x10) = 0;
   return;
 }
 
@@ -19730,10 +19730,11 @@ void ExecuteSystemMemoryCopyOperation(void)
 void ResetSystemBuffer(uint8_t *BufferPointer)
 
 {
-  long long SystemRegister;
+  long long BufferOffset;
   
   *BufferPointer = 0;
-  *(uint32_t *)(SystemRegister + 0x10) = 0;
+  BufferOffset = (long long)BufferPointer;
+  *(uint32_t *)(BufferOffset + 0x10) = 0;
   return;
 }
 
