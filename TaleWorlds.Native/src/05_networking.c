@@ -228,7 +228,7 @@ uint32_t NetworkHandlePacket(int64_t PacketBuffer, bool HasPriorityFlag);
  * @param IterationFlag 迭代标志
  * @return uint32_t 创建结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t CreateNetworkIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
+uint32_t NetworkCreateIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
 
 /**
  * @brief 处理网络堆栈数据
