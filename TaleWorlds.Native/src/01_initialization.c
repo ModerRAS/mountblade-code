@@ -35506,7 +35506,7 @@ void InitializeSystemResourceA(long long SystemResourceManager,void* Configurati
  * @param AdditionalParameter 额外参数，用于扩展功能
  * @param ConfigurationFlag 配置标志，用于控制配置行为
  * 
- *FUN_18005ac00：InitializeSystemResourceB
+ *InitializeSystemResourceB
  */
 void InitializeSystemResourceB(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -35551,7 +35551,7 @@ void InitializeSystemResourceB(void* SystemResourceManager,void* ConfigurationDa
  * @param configurationDataPointer 配置数据指针
  * @return 返回系统资源指针
  * 
- *FUN_18005b520：ManageSystemResource
+ *ManageSystemResource
  */
 void* ManageSystemResource(void* systemResourcePointer, unsigned long long configurationDataPointer)
 
@@ -35577,7 +35577,7 @@ void* ManageSystemResource(void* systemResourcePointer, unsigned long long confi
  * @param additionalParameter 额外参数
  * @param configurationFlag 配置标志
  * 
- *FUN_18005b560：CleanupSystemResource
+ *CleanupSystemResource
  */
 void CleanupSystemResource(void** systemResourcePointer, void* configurationDataPointer, void* additionalParameter, void* configurationFlag)
 
@@ -35685,7 +35685,7 @@ long long InitializeSystemResourceManagerStructure(long long SystemResourceManag
  * @param additionalParameter 额外参数
  * @param configurationFlag 配置标志
  * 
- *FUN_18005b7c0：ExecuteSystemResourceOperation
+ *ExecuteSystemResourceOperation
  */
 void ExecuteSystemResourceOperation(long long systemResourcePointer, void* configurationDataPointer, void* additionalParameter, void* configurationFlag)
 
