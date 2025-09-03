@@ -100,6 +100,20 @@
 #define UInt32MaximumValue 0xffffffff
 #define UInt64MaximumValue 0xffffffffffffffff
 
+// 资源表偏移常量
+#define ResourceTableOffsetPrimary 0x50
+#define ResourceTableOffsetSecondary 0x54
+#define ResourceTableOffsetTertiary 0x58
+#define ResourceTableOffsetQuaternary 0x60
+#define ResourceTableOffsetQuinary 100
+#define ResourceTableOffsetSenary 0x68
+#define ResourceTableOffsetSeptenary 0x6c
+#define ResourceTableOffsetOctonary 0x70
+#define ResourceTableOffsetNonary 0x74
+#define ResourceTableOffsetDenary 0x5c
+#define ResourceTableSizeLimit 0x74
+#define ResourceTableHeaderValidationOffset 0x18
+
 // 系统上下文相关常量
 #define SystemContextOffset 0x17c
 #define SystemContextBaseOffset 800
@@ -11795,17 +11809,19 @@ uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
  * 它会检查资源池的状态，清理所有资源项，
  * 并重置资源池的状态标志。
  * 
- * @param ObjectContext 资源池指针，指向要清理的资源池
+ * @param ResourcePoolContext 资源池上下文指针，包含资源池的状态和数据信息
  * @return uint8_t 清理结果状态码，0表示成功，非0表示错误
+ * @note 该函数会执行完整的资源清理流程
+ * @warning 如果资源池验证失败，会返回相应的错误代码
  */
-uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ObjectContext)
+uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolContext)
 
 {
-  int ResourcePoolStatusCode;
-  uint8_t ResourceHashValidationCode;
-  uint ResourcePoolValue;
+  int ResourcePoolStatus;
+  uint8_t ResourceValidationCode;
+  uint ResourcePoolFlags;
   
-  ResourcePoolStatusCode = *(uint *)((int64_t)ObjectContext + 0xc);
+  ResourcePoolStatus = *(uint *)((int64_t)ResourcePoolContext + DataValidationStatusOffset);
   if ((int)((ResourceHashValidationCode ^ (int)ResourceHashValidationCode >> ErrorResourceValidationFailed) - ((int)ResourceHashValidationCode >> ErrorResourceValidationFailed)) < 0) {
     if (0 < (int)ObjectContext[1]) {
       return ErrorInvalidObjectHandle;
@@ -19690,25 +19706,25 @@ uint8_t ProcessResourceTablePointerEntry(int64_t ResourceContext, uint8_t *Resou
 {
   uint8_t ResourceHash;
   
-  if (*(int *)(ResourceMetadataTable[1] + 0x18) != 0) {
+  if (*(int *)(ResourceMetadataTable[1] + ResourceTableHeaderValidationOffset) != 0) {
     return ErrorInvalidObjectHandle;
   }
-  ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + 0x50);
+  ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetPrimary);
   if ((int)ResourceHash == 0) {
-    if (*(int *)(ResourceData[1] + 0x18) != 0) {
+    if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
       return ErrorInvalidObjectHandle;
     }
-    ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + 0x54);
+    ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetSecondary);
     if ((int)ResourceHash == 0) {
-      if (*(int *)(ResourceData[1] + 0x18) != 0) {
+      if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
         return ErrorInvalidObjectHandle;
       }
-      ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + 0x58);
+      ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetTertiary);
       if ((int)ResourceHash == 0) {
-        if (*(int *)(ResourceData[1] + 0x18) != 0) {
+        if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
           return ErrorInvalidObjectHandle;
         }
-        ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + 0x60);
+        ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetQuaternary);
         if ((int)ResourceHash == 0) {
           if (*(int *)(ResourceData[1] + 0x18) != 0) {
             return ErrorInvalidObjectHandle;
