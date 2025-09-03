@@ -1110,11 +1110,11 @@ NetworkHandle NetworkProcessConnectionStatus(NetworkHandle ConnectionContext, in
   NetworkStatusBuffer = (NetworkStatus *)0x0;
   if (NetworkOperationCode == 0) {
 NETWORK_PROCESSING_LOOP:
-    if ((0 < *(int *)((long long)NetworkOperationStatusPointer + 0xc)) && (*NetworkOperationStatusPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *NetworkOperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)((long long)NetworkOperationStatusBuffer + 0xc)) && (*NetworkOperationStatusBuffer != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *NetworkOperationStatusBuffer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *NetworkOperationStatusPointer = (long long)ProcessedConnectionHandlePacket;
-    *(int *)((long long)NetworkOperationStatusPointer + 0xc) = NetworkOperationFlag;
+    *NetworkOperationStatusBuffer = (long long)ProcessedConnectionHandlePacket;
+    *(int *)((long long)NetworkOperationStatusBuffer + 0xc) = NetworkOperationCode;
     return 0;
   }
   if (PacketData * ConnectionEntrySize - 1U < 0x3fffffff) {
