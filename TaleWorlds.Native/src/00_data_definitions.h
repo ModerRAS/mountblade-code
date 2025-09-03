@@ -12669,15 +12669,15 @@ uint64_t SystemConfigureParameters(uint64_t *ConfigurationArrayPointer,longlong 
   uint *StringProcessingResultPointer;
   uint64_t NetworkRequestResult;
   uint8_t MemoryAllocationResult;
-  ulonglong uStackX_10;
-  uint auStack_28 [2];
-  ulonglong uStack_20;
-  if (*(int *)(param_2 + 0x18) < *(int *)(*(longlong *)(param_2 + 0x10) + 0xb4)) {
+  ulonglong StackVariable10;
+  uint StackBuffer28 [2];
+  ulonglong StackVariable20;
+  if (*(int *)(ConfigurationIndex + 0x18) < *(int *)(*(longlong *)(ConfigurationIndex + 0x10) + 0xb4)) {
 Label_1808c72a7:
     MemoryAllocationResult = 0;
   }
   else {
-    LoopCounter = *(int *)(*(longlong *)(param_2 + 0x10) + 0xbc);
+    LoopCounter = *(int *)(*(longlong *)(ConfigurationIndex + 0x10) + 0xbc);
     if (LoopCounter == 0) {
       return 0;
     }
@@ -12685,44 +12685,44 @@ Label_1808c72a7:
     MemoryAllocationResult = 1;
   }
   StringProcessingResultPointer = (uint *)GetStringProcessingResult();
-  uStack_20 = 0;
-  uStackX_10 = uStackX_10 & 0xffffffffffffff00;
-  auStack_28[0] = *StringProcessingResultPointer;
-  NetworkRequestResult = ProcessNetworkRequest(param_1,*(uint64_t *)(param_2 + 0x10),auStack_28,&uStack_20,&uStackX_10);
+  StackVariable20 = 0;
+  StackVariable10 = StackVariable10 & 0xffffffffffffff00;
+  StackBuffer28[0] = *StringProcessingResultPointer;
+  NetworkRequestResult = ProcessNetworkRequest(ConfigurationArrayPointer,*(uint64_t *)(ConfigurationIndex + 0x10),StackBuffer28,&StackVariable20,&StackVariable10);
   if ((int)NetworkRequestResult != 0) {
     return NetworkRequestResult;
   }
-  if ((char)uStackX_10 == (char)NetworkRequestResult) {
+  if ((char)StackVariable10 == (char)NetworkRequestResult) {
     return 0;
   }
-  uStackX_10 = 0;
+  StackVariable10 = 0;
   StringProcessingResultPointer = (uint *)GetStringProcessingResult();
-  BufferSize = *(uint *)((longlong)param_1 + 0xc);
-  if (((BufferSize != *StringProcessingResultPointer) && (*(uint *)(param_1 + 4) <= BufferSize)) &&
-     (BufferSize < *(uint *)((longlong)param_1 + 0x24))) {
-    if (BufferSize == auStack_28[0]) {
+  BufferSize = *(uint *)((longlong)ConfigurationArrayPointer + 0xc);
+  if (((BufferSize != *StringProcessingResultPointer) && (*(uint *)(ConfigurationArrayPointer + 4) <= BufferSize)) &&
+     (BufferSize < *(uint *)((longlong)ConfigurationArrayPointer + 0x24))) {
+    if (BufferSize == StackBuffer28[0]) {
       return 0x1c;
     }
-    BufferSize = CalculateBufferSize(*param_1,BufferSize - *(int *)(param_1 + 1));
-    uStackX_10 = BufferSize + uStack_20;
-    if (uStackX_10 == uStack_20) {
-      uStackX_10 = uStack_20 + 1;
+    BufferSize = CalculateBufferSize(*ConfigurationArrayPointer,BufferSize - *(int *)(ConfigurationArrayPointer + 1));
+    StackVariable10 = BufferSize + StackVariable20;
+    if (StackVariable10 == StackVariable20) {
+      StackVariable10 = StackVariable20 + 1;
     }
   }
   GetStringProcessingResult();
-  if (param_3 != '\0') {
-    NetworkRequestResult = HandleNetworkOperation(param_1,param_2,param_2 + 0x20,&uStack_20,&uStackX_10,MemoryAllocationResult,0);
+  if (ConfigurationFlag1 != '\0') {
+    NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x20,&StackVariable20,&StackVariable10,MemoryAllocationResult,0);
     if ((int)NetworkRequestResult != 0) {
       return NetworkRequestResult;
     }
-    *(int *)(param_2 + 0x18) = *(int *)(param_2 + 0x18) + 1;
+    *(int *)(ConfigurationIndex + 0x18) = *(int *)(ConfigurationIndex + 0x18) + 1;
   }
-  if (param_4 == '\0') {
+  if (ConfigurationFlag2 == '\0') {
     return 0;
   }
-  if (param_3 != '\0') {
-    if (*(int *)(*(longlong *)(param_2 + 0x10) + 0xb4) <= *(int *)(param_2 + 0x18)) {
-      LoopCounter = *(int *)(*(longlong *)(param_2 + 0x10) + 0xbc);
+  if (ConfigurationFlag1 != '\0') {
+    if (*(int *)(*(longlong *)(ConfigurationIndex + 0x10) + 0xb4) <= *(int *)(ConfigurationIndex + 0x18)) {
+      LoopCounter = *(int *)(*(longlong *)(ConfigurationIndex + 0x10) + 0xbc);
       if (LoopCounter == 0) {
         return 0;
       }
@@ -12734,9 +12734,9 @@ Label_1808c72a7:
     MemoryAllocationResult = 0;
   }
 Label_1808c73b4:
-  NetworkRequestResult = HandleNetworkOperation(param_1,param_2,param_2 + 0x28,&uStack_20,&uStackX_10,MemoryAllocationResult,1);
+  NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x28,&StackVariable20,&StackVariable10,MemoryAllocationResult,1);
   if ((int)NetworkRequestResult == 0) {
-    *(int *)(param_2 + 0x18) = *(int *)(param_2 + 0x18) + 1;
+    *(int *)(ConfigurationIndex + 0x18) = *(int *)(ConfigurationIndex + 0x18) + 1;
     return 0;
   }
   return NetworkRequestResult;
