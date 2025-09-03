@@ -17334,6 +17334,14 @@ void InitializeSystemMemoryManager(void)
  * 该函数负责初始化系统数据节点M，在系统数据表中创建和配置
  * 特定的数据节点结构，用于存储系统运行时数据
  */
+/**
+ * @brief 系统数据节点初始化器M
+ * 
+ * 该函数负责初始化系统数据节点，设置节点标识符和数据结构。
+ * 用于系统数据管理的前期准备工作。
+ * 
+ * @note 这是系统数据节点初始化的重要组成部分
+ */
 void SystemDataNodeInitializerM(void)
 
 {
