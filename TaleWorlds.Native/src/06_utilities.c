@@ -73181,7 +73181,17 @@ void DestroyTertiaryMutex(void)
 
 
 
-void Unwind_DestroyMutex4(void)
+/**
+ * @brief 销毁系统互斥锁4
+ * 
+ * 该函数负责销毁系统中的第4个互斥锁
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会调用MutexDestroyInPlace来销毁互斥锁
+ * @warning 调用此函数后，互斥锁将不再可用
+ */
+void DestroySystemMutex4(void)
 
 {
   MutexDestroyInPlace();
@@ -73190,7 +73200,17 @@ void Unwind_DestroyMutex4(void)
 
 
 
-void Unwind_DestroyMutex5(void)
+/**
+ * @brief 销毁系统互斥锁5
+ * 
+ * 该函数负责销毁系统中的第5个互斥锁
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会调用MutexDestroyInPlace来销毁互斥锁
+ * @warning 调用此函数后，互斥锁将不再可用
+ */
+void DestroySystemMutex5(void)
 
 {
   MutexDestroyInPlace();
@@ -73199,7 +73219,17 @@ void Unwind_DestroyMutex5(void)
 
 
 
-void Unwind_DestroyMutex6(void)
+/**
+ * @brief 销毁系统互斥锁6
+ * 
+ * 该函数负责销毁系统中的第6个互斥锁
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会调用MutexDestroyInPlace来销毁互斥锁
+ * @warning 调用此函数后，互斥锁将不再可用
+ */
+void DestroySystemMutex6(void)
 
 {
   MutexDestroyInPlace();
@@ -73208,7 +73238,17 @@ void Unwind_DestroyMutex6(void)
 
 
 
-void Unwind_DestroyMutex7(void)
+/**
+ * @brief 销毁系统互斥锁7
+ * 
+ * 该函数负责销毁系统中的第7个互斥锁
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会调用MutexDestroyInPlace来销毁互斥锁
+ * @warning 调用此函数后，互斥锁将不再可用
+ */
+void DestroySystemMutex7(void)
 
 {
   MutexDestroyInPlace();
@@ -73217,7 +73257,17 @@ void Unwind_DestroyMutex7(void)
 
 
 
-void Unwind_DestroyMutex8(void)
+/**
+ * @brief 销毁系统互斥锁8
+ * 
+ * 该函数负责销毁系统中的第8个互斥锁
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会调用MutexDestroyInPlace来销毁互斥锁
+ * @warning 调用此函数后，互斥锁将不再可用
+ */
+void DestroySystemMutex8(void)
 
 {
   MutexDestroyInPlace();
@@ -73257,7 +73307,19 @@ void Unwind_ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_FinalizeResourceRegistrationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 完成资源注册并执行清理操作
+ * 
+ * 该函数负责完成系统资源的注册过程，并执行相应的清理操作
+ * 它会验证资源状态，处理内存地址计算，并在必要时执行系统清理
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数执行复杂的资源管理操作，包括地址计算和引用计数管理
+ * @warning 此函数涉及系统级资源管理，调用时需谨慎
+ */
+void FinalizeResourceRegistrationAndExecuteCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
