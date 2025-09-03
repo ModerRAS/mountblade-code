@@ -7922,16 +7922,15 @@ void PerformNoOperationPrimary(void)
  * @param SystemContext 系统上下文，包含系统运行环境信息
  */
 void ProcessObjectContextRelease(int64_t ObjectHandle, int64_t SystemContext)
-void ProcessObjectContextRelease(int64_t ObjectHandle, int64_t SystemContext)
 
 {
   int PackageValidationStatusCode;
   uint8_t ContextBuffer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandle + ObjectContextValidationOffset), &ContextBuffer);
-  if (ValidationStatus == 0) {
-    ValidationStatus = ProcessSystemValidation(ContextBuffer);
-    if (ValidationStatus == 0) {
+  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandle + ObjectContextValidationOffset), &ContextBuffer);
+  if (PackageValidationStatusCode == 0) {
+    PackageValidationStatusCode = ProcessSystemValidation(ContextBuffer);
+    if (PackageValidationStatusCode == 0) {
             ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectHandle);
     }
   }
@@ -7956,8 +7955,8 @@ void ValidateAndProcessObjectContext(int64_t ObjectContext, int64_t SystemContex
   int PackageValidationStatusCode;
   uint8_t SystemValidationBuffer [8];
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), SystemValidationBuffer);
-  if (ValidationStatus == 0) {
+  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), SystemValidationBuffer);
+  if (PackageValidationStatusCode == 0) {
           ProcessSystemObject(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
   }
   return;
@@ -55477,13 +55476,13 @@ void ExecuteResourceHashCleanup(uint8_t ObjectContext, int64_t ValidationContext
   uint8_t *ResourceHashPtr;
   int64_t *ResourceTablePointerPointer;
   uint8_t *ValidationStatusCodeAddress;
-  uint8_t cleanupIteration;
+  uint8_t CleanupIterationParameter;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + 0xa0) + 0x218);
-  cleanupIteration = 0xfffffffffffffffe;
+  CleanupIterationParameter = 0xfffffffffffffffe;
   ResourceHashPtr = *(uint8_t **)(*(int64_t *)(ValidationContext + 0xa0) + 0x220);
   for (ValidationStatusCodeAddress = (uint8_t *)*ResourceTablePointerPointer; ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ValidationStatusCodeAddress + 4) {
-    (**(code **)*ValidationStatusCodeAddress)(ValidationStatusCodeAddress, 0, CleanupOption, CleanupFlag, cleanupIteration);
+    (**(code **)*ValidationStatusCodeAddress)(ValidationStatusCodeAddress, 0, CleanupOption, CleanupFlag, CleanupIterationParameter);
   }
   if (*ResourceTablePointerPointer == 0) {
     return;
@@ -65015,7 +65014,7 @@ void ExecuteSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContex
   uint8_t *ResourceHashPtr;
   int64_t *ResourceTablePointerPointer;
   uint8_t *ResourceHashStatusAddress;
-  uint8_t cleanupLoopCondition;
+  uint8_t CleanupLoopConditionParameter;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + 0x80) + 0x388);
   LoopIncrement = 0xfffffffffffffffe;
@@ -65159,7 +65158,7 @@ void ExecuteSystemResourceCleanupExtended(uint8_t ObjectContext,int64_t Validati
   uint8_t *ResourceHashPtr;
   int64_t *ResourceTablePointerPointer;
   uint8_t *ResourceHashStatusAddress;
-  uint8_t cleanupLoopCondition;
+  uint8_t CleanupLoopConditionParameter;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x388);
   LoopIncrement = 0xfffffffffffffffe;
