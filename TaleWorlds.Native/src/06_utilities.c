@@ -1707,13 +1707,13 @@ void* SystemScriptingSettingsBuffer;
  * 设置权限验证、数据加密和安全检查等相关组件
  */
 void InitializeSecurityManager(void);
-void* SecurityManagerInstance;
-void* SecurityContext;
-void* SecurityPermissionTable;
-void* SecurityEncryptionKey;
-uint32_t SystemSecurityValidationFlags;     // 系统安全验证标志
-void* SecurityAuditLog;
-void* SecurityAccessControl;
+void* SecurityManagerInstance;                // 安全管理器实例
+void* SecurityContext;                        // 安全上下文
+void* SecurityPermissionTable;                // 安全权限表
+void* SecurityEncryptionKey;                   // 安全加密密钥
+uint32_t SystemSecurityValidationFlags;       // 系统安全验证标志
+void* SecurityAuditLog;                        // 安全审计日志
+void* SecurityAccessControl;                  // 安全访问控制
 
  /**
  * @brief 初始化日志系统
@@ -3515,7 +3515,7 @@ uint8_t SystemMemoryManagerPrimary;
 uint8_t SystemMemoryManagerSecondary;
 uint8_t SystemMemoryManagerTertiary;
 uint8_t SystemMemoryManagerQuaternary;
-uint8_t SystemMemoryManager;
+uint8_t SystemMemoryManagerMain;
 uint8_t SystemDataStructure;
 uint8_t SystemDataManagerPointer;
 uint8_t SystemMemoryManagerQuinary;
@@ -3538,7 +3538,7 @@ uint8_t AnimationEventTable;
 uint8_t AnimationLayerTable;
 uint8_t AnimationMixerTable;
 // 资源跟踪器主版本 - 用于跟踪系统资源使用情况
-uint8_t ResourceTracker;
+uint8_t ResourceTrackerMain;
 uint32_t SystemResourceFlags;
 uint32_t SystemResourceState;
 uint8_t SystemResourceHandler;
@@ -3593,7 +3593,7 @@ uint8_t ResourceAnalyzer;
 // 资源性能分析器 - 用于分析系统资源性能
 uint8_t ResourceProfiler;
 // 资源跟踪器副本 - 用于跟踪系统资源使用情况
-uint8_t ResourceTrackerBackup;
+uint8_t ResourceTrackerSecondary;
 // 资源日志记录器 - 用于记录系统资源使用日志
 uint8_t ResourceLogger;
 void* ResourceNetworkManager;
