@@ -4532,13 +4532,13 @@ Label_18005122d:
     initializationFlag = 0x40000000;
     auStack_2c8[0] = 0x3f800000;
     StackParameter14 = 0x20000;
-    pStackParameter13 = &SystemRegistrationBuffer;
+    StackParameterPointer = &SystemRegistrationBuffer;
     pplStack_328 = (longlong **)&uStack_2f0;
     RegisterSystemComponent(&SystemConstantEE,4,SystemConfigurationData + 0x167c,auStack_2c8);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x40000000);
     StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x3f800000);
     StackParameter14 = 0x20000;
-    pStackParameter13 = &SystemRegistrationBuffer;
+    StackParameterPointer = &SystemRegistrationBuffer;
     pplStack_328 = &plStack_2f8;
     RegisterSystemComponent(&SystemConstantFF,4,SystemConfigurationData + 0x1680,&StackCounter48);
     FinalizeSystemComponent();
@@ -4561,7 +4561,7 @@ Label_18005122d:
     StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x40000000);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     StackParameter14 = 0x20000;
-    pStackParameter13 = &SystemRegistrationBuffer;
+    StackParameterPointer = &SystemRegistrationBuffer;
     pplStack_328 = (longlong **)&StackCounter48;
     RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,SystemConfigurationData + 0x1688,&plStack_2f8);
     FinalizeSystemComponent();
@@ -4584,7 +4584,7 @@ Label_18005122d:
     StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x40000000);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     StackParameter14 = 0x20000;
-    pStackParameter13 = &SystemRegistrationBuffer;
+    StackParameterPointer = &SystemRegistrationBuffer;
     pplStack_328 = (longlong **)&StackCounter48;
     RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,SystemConfigurationData + 0x168c,&plStack_2f8);
     if (*(float *)(SystemConfigurationData + 0x168c) == 0.0) {
