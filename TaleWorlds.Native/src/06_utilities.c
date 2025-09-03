@@ -5984,15 +5984,6 @@ void ExecuteNullOperation(void)
  * 该函数负责处理资源句柄，执行相关操作
  * 根据句柄状态决定是否触发系统操作
  * 
- * @param resourceHandle 资源句柄，用于标识要处理的资源
- * @return 处理结果，0表示成功，非0表示错误码
- */
-/**
- * @brief 处理资源句柄
- * 
- * 该函数负责处理资源句柄，执行相关操作
- * 根据句柄状态决定是否触发系统操作
- * 
  * @param ResourceHandleIdentifier 资源句柄，用于标识要处理的资源
  * @return 处理结果，0表示成功，非0表示错误码
  */
