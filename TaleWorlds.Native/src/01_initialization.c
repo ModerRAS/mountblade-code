@@ -1584,18 +1584,18 @@ void InitializeSystemDataTableBaseAllocator(void)
  */
 void InitializeSystemDataTableAllocator(void)
 {
-  bool IsSystemNodeActive;
-  void** SystemDataTablePointer;
-  int SystemIdentifierComparisonResult;
-  long long* SystemMemoryPointer;
-  long long SystemTimestampValue;
-  void** SystemRootNodePointer;
-  void** CurrentSystemNodePointer;
-  void** NextSystemNodePointer;
-  void** PreviousSystemNodePointer;
-  void** AllocatedSystemNodePointer;
-  uint64_t SystemInitializationFlag;
-  long long SystemMemoryAllocationSize;
+  bool IsNodeActive;
+  void** DataTablePointer;
+  int IdentifierComparisonResult;
+  long long* MemoryPointer;
+  long long TimestampValue;
+  void** RootNodePointer;
+  void** CurrentNodePointer;
+  void** NextNodePointer;
+  void** PreviousNodePointer;
+  void** AllocatedNodePointer;
+  uint64_t InitializationFlag;
+  long long MemoryAllocationSize;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   SystemRootNodePointer = (void**)*SystemDataTablePointer;
