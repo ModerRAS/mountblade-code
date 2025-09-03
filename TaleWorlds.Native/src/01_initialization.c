@@ -23147,7 +23147,7 @@ bool SystemNodeCheckStatus(void)
   uint32_t *SystemHashEntryPointer;
   void* *SystemHashNodeData;
   int systemIndex;
-  bool systemNodeStatus;
+  bool SystemNodeStatus;
   void* SystemEncryptionKey;
   long long longValue40;
   void* *pointerUnsigned30;
@@ -25640,7 +25640,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   ulong long resourceCreationFlags8;
   ulong long resourceCreationFlags9;
   uint resourceAllocationContext0;
-  bool isSystemResourceMatch;
+  bool IsSystemResourceMatch;
   uint32_t SystemRegisterValue2;
   uint32_t SystemRegisterValue;
   uint8_t SystemByteArray [32];
@@ -25802,9 +25802,9 @@ void UpdateSystemRenderManager(long long SystemResourceManager)
   int* SystemIntegerPointer;
   uint32_t resourceCreationFlags;
   int NodeIdentifierCompareResult;
-  bool isTextureUpdateRequired;
+  bool IsTextureUpdateRequired;
   void* CurrentThreadId;
-  bool isSystemInitialized;
+  bool IsSystemInitialized;
   
   SystemIntegerPointer = (int *)(SystemResourceManager + 0x3d0);
   if (((int)*(float *)(SystemRenderManagerPointer + 0x17ec) == *(int *)(SystemResourceManager + 0x3cc)) &&
@@ -27190,7 +27190,7 @@ bool SystemResourceValidator(long long SystemResourceManager)
 {
   void** SystemDataPointer;
   byte byteValue;
-  bool isValidOperation;
+  bool IsValidOperation;
   byte *stringPointer;
   uint CurrentThreadId;
   int CalculationFlags;
@@ -27524,7 +27524,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   uint renderStatus3;
   uint renderStatus4;
   uint renderStatus5;
-  bool isSystemConfigured;
+  bool IsSystemConfigured;
   float scaleFactorX;
   float scaleFactorY;
   float InterpolationFactor1;
@@ -29373,7 +29373,7 @@ void ProcessSystemNodeResource(long long SystemResourceManager)
   int SystemOperationStatus7;
   ulong long SystemOperationStatus8;
   int SystemContextPointer;
-  bool isConfigurationInitialized;
+  bool IsConfigurationInitialized;
   
   SystemOperationFlags = 0;
   resourceCounter = *(long long *)(SystemResourceManager + 0x50);
@@ -31883,7 +31883,7 @@ void* * SearchSystemResourceNode(void* *resourcePointer,void* *configDataPointer
 
 {
   byte comparisonByte;
-  bool isMatchFound;
+  bool IsMatchFound;
   byte *dataBuffer;
   uint comparisonValue;
   int comparisonResult;
