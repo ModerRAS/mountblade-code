@@ -3808,7 +3808,7 @@ uint8_t EventHandlerSlotNumberNinety;
 // 事件处理器槽九十一 - 第九十一号事件处理器槽
 uint8_t EventHandlerSlotNumberNinetyOne;
 // 事件处理器槽九十二 - 第九十二号事件处理器槽
-uint8_t EventHandlerSlotNinetyTwo;
+uint8_t EventHandlerSlotNumberNinetyTwo;
 // 事件处理器槽九十三 - 第九十三号事件处理器槽
 uint8_t EventHandlerSlotNinetyThree;
 uint8_t EventHandlerSlotNinetyFour;
@@ -75426,7 +75426,7 @@ void ProcessSystemResourceOperationG(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_18090ac30(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceContextAtOffset70(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75440,7 +75440,7 @@ void Unwind_18090ac30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ac40(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceContextAtOffset78(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75454,7 +75454,7 @@ void Unwind_18090ac40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ac50(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceContextAtOffset80(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;

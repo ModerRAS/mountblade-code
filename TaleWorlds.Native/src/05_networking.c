@@ -236,6 +236,13 @@ uint ProcessNetworkContextEntry(int64_t NetworkContextEntry);
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint HandleNetworkConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
+/**
+ * 处理辅助连接数据 - 处理网络连接的辅助数据
+ * 此函数负责处理网络连接中的辅助数据传输
+ * @param ConnectionContext 连接上下文
+ * @param ConnectionData 连接数据
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 uint ProcessSecondaryConnectionData(int64_t ConnectionContext, int64_t ConnectionData);
 uint ValidateNetworkContextEntry(int64_t NetworkContextEntry);
 uint InitializeNetworkConnection(NetworkHandle ConnectionHandle);
