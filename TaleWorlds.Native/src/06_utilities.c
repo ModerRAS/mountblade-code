@@ -29982,6 +29982,15 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
+/**
+ * @brief 主上下文异常处理器
+ * 
+ * 该函数负责处理主上下文中的异常情况，调用主异常处理程序
+ * 主要用于系统级别的异常处理和资源清理
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* PrimaryExceptionHandlerPointer;
   
