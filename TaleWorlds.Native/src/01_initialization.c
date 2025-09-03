@@ -9000,7 +9000,7 @@ void InitializeSystemConfigurationManager(void)
 int InitializeSystemModuleLoader(void)
 
 {
-  long long systemModuleStatus;
+  long long SystemModuleStatus;
   void* SystemModuleConfig;
   
   SystemModuleLoaderPrimary = &SystemModuleLoaderConfig;
@@ -12414,7 +12414,7 @@ void InitializeSystemStringProcessor(void)
 int InitializeSystemServiceManager(void)
 
 {
-  long long systemServiceStatus;
+  long long SystemServiceStatus;
   void* systemServiceConfig;
   
   SystemServiceManagerPrimary = &SystemServiceManagerConfig;
@@ -16515,7 +16515,7 @@ void InitializeSystemSubcomponentH(void)
 int InitializeSystemSynchronizationMechanism(void)
 
 {
-  long long systemInitializationResult;
+  long long SystemInitializationResult;
   
   InitializeSystemSynchronizationData(&SystemSynchronizationDataPrimary,8,5,&SystemSynchronizationCallback,InitializeSystemSynchronizationHandler);
   InitializeSystemSynchronizationData(&SystemSynchronizationDataSecondary,8,5,&SystemSynchronizationCallback,InitializeSystemSynchronizationHandler);
@@ -16552,7 +16552,7 @@ int InitializeSystemSynchronizationMechanism(void)
 int InitializeSystemPerformanceMonitor(void)
 
 {
-  long long systemInitializationResult;
+  long long SystemInitializationResult;
   void* SystemParameter;
   
   SystemPerformanceMonitorData = &SystemPerformanceMonitorConfiguration;
@@ -16805,7 +16805,7 @@ void InitializeSystemSubcomponentM(void)
 int InitializeSystemMutex(void* MutexIdentifier,void* MutexType,void* SyncParameter1,void* SyncParameter2)
 
 {
-  long long initializationResult;
+  long long InitializationResult;
   
   _Mtx_init_in_situ(SYSTEM_MUTEX_PRIMARY_ADDRESS,2,SyncParameter1,SyncParameter2,InvalidHandleValue);
   initializationResult = InitializeSystemSyncMechanism(SystemSyncCallbackFunction);
@@ -18804,7 +18804,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
 {
   void* *systemInfoPtr;
   code *systemCallback;
-  long long systemHandle;
+  long long SystemHandle;
   int operationResult;
   void* SystemAllocationFlags;
   long long *controllerPtr;
@@ -18970,7 +18970,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   uint32_t SymbolOptions;
   void* systemHandle;
   long long *libraryHandle;
-  long long performanceFrequency;
+  long long PerformanceFrequency;
   void* *symbolNextNode;
   void* *debugContextPointer;
   void* *threadContextPointer;
@@ -18982,7 +18982,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   char ThreadState;
   long long *threadLocalData;
   long long **threadManagerPointer;
-  long long performanceCounter;
+  long long PerformanceCounter;
   void* *StackBufferLarge1;
   void* *StackBufferLarge2;
   uint32_t SystemResourceHandle;
@@ -27720,7 +27720,7 @@ SystemFlagHandler:
 void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,void* ResourceData,void* RenderConfig,uint8_t OperationFlags)
 {
   int SystemOperationStatusValue;
-  long long systemHandle;
+  long long SystemHandle;
   long long renderManagerOffset;
   void* memoryAllocationHandle;
   long long *systemResourcePointer;
@@ -28086,7 +28086,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
 
 {
   long long memoryBufferPointer;
-  long long systemHandle;
+  long long SystemHandle;
   uint32_t processId;
   int bufferSize;
   uint threadId;
@@ -38421,7 +38421,7 @@ void ReleaseSystemResourceSemaphore(long long SystemResourceManager,long long *C
 
 {
   int SystemOperationStatus;
-  long long systemHandle;
+  long long SystemHandle;
   void* systemConfigurationFlag;
   
   systemConfigurationFlag = 0xfffffffffffffffe;
@@ -64932,7 +64932,7 @@ void ProcessSystemResourceAllocation(long long* SystemResourceManager)
   long long **ppStackValue1;
   void* resourceAllocationContext;
   uint8_t StackBuffer40 [8];
-  long long longValue38;
+  long long LongValue38;
   uint32_t SystemResourceStatusFlag;
   long long *pLocalMemoryAddress;
   
@@ -67082,7 +67082,7 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
   long long SystemThreadHandle;
   long long *SystemResourceOffsetPointer;
   uint8_t StackBuffer40 [8];
-  long long longValue38;
+  long long LongValue38;
   uint32_t SystemResourceStatusFlag;
   long long *pLocalMemoryAddress;
   

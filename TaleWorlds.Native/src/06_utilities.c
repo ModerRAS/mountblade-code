@@ -833,8 +833,8 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define ValidationContextGraphicsDataOffset 0x230
 #define SystemContextCleanupOffset 0x98
 #define ObjectReferenceCountOffset 500
-#define ObjectSystemStatusFlagsOffset 0x204
-#define ObjectHandleMemoryOffset 0x10
+#define ObjectSystemStatusOffset 0x204
+#define ObjectHandleOffset 0x10
 #define ResourceDataArrayOffset 0x48
 #define ResourceDataSizeOffset 0x50
 #define ResourceDataIteratorOffset 0x2c
@@ -857,8 +857,8 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define ObjectStatusFlagsOffset 0x204
 
 // 对象上下文偏移量常量
-#define ObjectContextDataArrayOffset 0x10
-#define ObjectContextValidationDataOffset 0x18
+#define ObjectContextOffset 0x10
+#define ObjectContextValidationOffset 0x18
 #define ObjectContextProcessingDataOffset 0x20
 #define ObjectContextStatusDataOffset 0x24
 #define ObjectContextHandleDataOffset 0x1c
@@ -5172,11 +5172,11 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
     MemoryAddress = MemoryAddress - 8;
   }
   
-  if (*(int64_t *)(MemoryAddress + HandleMemoryBufferHeaderOffset) == 0) {
+  if (*(int64_t *)(MemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(MemoryAddress + HandleMemoryBufferHeaderOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(MemoryAddress + ObjectHandleOffset), 1);
   return 0;
 }
 
@@ -5201,11 +5201,11 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
     ObjectMemoryAddress = RegisterContext - 8;
   }
   
-  if (*(int64_t *)(ObjectMemoryAddress + HandleMemoryBufferHeaderOffset) == 0) {
+  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + HandleMemoryBufferHeaderOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
   return 0;
 }
 
