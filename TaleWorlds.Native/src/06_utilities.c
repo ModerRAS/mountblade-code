@@ -4938,15 +4938,6 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数用于增加系统对象的引用计数，确保对象在内存中的生命周期
- * 主要用于对象引用管理和内存回收机制
- * 
- * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- */
-/**
- * @brief 增加对象引用计数
- * 
  * 该函数用于增加系统对象的引用计数，确保对象在引用期间不会被释放。
  * 在对象生命周期管理中起到关键作用。
  * 
