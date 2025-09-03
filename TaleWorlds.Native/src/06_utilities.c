@@ -55468,7 +55468,7 @@ void ConfigureSystemDataStructure(uint8_t ObjectContext,int64_t ValidationContex
  * @note 此函数用于初始化资源哈希表003的配置
  * @warning 调用此函数前必须确保验证上下文有效
  */
-void SetupResourceHashTable003(uint8_t ObjectContext, int64_t ValidationContext)
+void SetupResourceHashTableThree(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0xa0) = &ResourceHashTable003;
@@ -56155,7 +56155,7 @@ void CleanupValidationContextPrimaryResourceHandler(uint8_t ObjectContext,int64_
 
 
 
-void ExecuteSystemCallbackAtOffsetA8(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemCallbackAtOffset168(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xa8) != (int64_t *)0x0) {
