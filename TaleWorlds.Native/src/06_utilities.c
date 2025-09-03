@@ -11176,7 +11176,7 @@ int ProcessDataWithBuffer(int64_t *ObjectContext,int64_t ValidationContext,int D
  * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithQueue(int64_t *ObjectContext,int64_t ValidationContext,int dataLength)
+int ProcessDataWithQueue(int64_t *ObjectContext,int64_t ValidationContext,int DataLength)
 
 {
   int DataOffset;
@@ -11186,7 +11186,7 @@ int ProcessDataWithQueue(int64_t *ObjectContext,int64_t ValidationContext,int da
   void* QueueBuffer;
   void* StringProcessingTemplate;
   
-  DataBufferSize = dataLength;
+  DataBufferSize = DataLength;
   DataOffset = ProcessStringOperation(ValidationContext,DataBufferSize,&QueueBuffer);
   ProcessingResult = ProcessStringOperation(ValidationContext + DataOffset,DataBufferSize - DataOffset,&StringProcessingTemplate);
   DataOffset = DataOffset + ProcessingResult;
