@@ -4515,6 +4515,7 @@ void CheckSystemFlags(void)
 {
   int64_t SystemRuntimeContext;
   uint64_t SystemFlagValidationToken;
+  void* ObjectResourceBuffer;
   
   // 检查系统标志位状态
   if ((*(uint *)(SystemRuntimeContext + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
@@ -4554,6 +4555,8 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   char SystemObjectNameBuffer[16];
   int RegistrationIterationCounter;
   int CalculatedRegistrationEntrySize;
+  int RegistrationCount;
+  int CalculatedRegistrationSize;
   
   // 获取注册上下文数据
   ValidationStatusCode = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationStackPointer);
@@ -4611,24 +4614,24 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
         }
         
         // 检查是否需要扩容
-        RegistrationCounter++;
-        if (*(int *)(RegistrationData + RegistrationCapacityOffset) < RegistrationCounter) {
+        RegistrationCount++;
+        if (*(int *)(RegistrationData + RegistrationCapacityOffset) < RegistrationCount) {
           // 计算新的容量大小
           NewRegistrationArraySize = (int)((float)*(int *)(RegistrationData + RegistrationCapacityOffset) * RegistrationArrayGrowthFactor);
-          CalculatedRegistrationSize = RegistrationCounter;
-          if (RegistrationCounter <= NewRegistrationArraySize) {
+          CalculatedRegistrationSize = RegistrationCount;
+          if (RegistrationCount <= NewRegistrationArraySize) {
             CalculatedRegistrationSize = NewRegistrationArraySize;
           }
           if (CalculatedRegistrationSize < RegistrationArrayInitialSize) {
             NewRegistrationArraySize = RegistrationArrayInitialSize;
           }
-          else if (NewRegistrationArraySize < RegistrationCounter) {
-            NewRegistrationArraySize = RegistrationCounter;
+          else if (NewRegistrationArraySize < RegistrationCount) {
+            NewRegistrationArraySize = RegistrationCount;
           }
           
           // 执行数组扩容
-          RegistrationCounter = ResizeRegistrationArray(RegistrationBasePointer, NewRegistrationArraySize);
-          if (RegistrationCounter != 0) {
+          RegistrationCount = ResizeRegistrationArray(RegistrationBasePointer, NewRegistrationArraySize);
+          if (RegistrationCount != 0) {
             return 0;
           }
         }
@@ -8836,8 +8839,8 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t ComparisonParameter)
   ComparisonResult = ValidateObjectContextAndProcessData(ComparisonParameter,ObjectValidationBuffer + ObjectValidationBufferFlagOffset,ObjectValidationBuffer + ObjectContextProcessingDataOffset);
   if ((int)ComparisonResult == 0) {
     ProcessedFloatValue = *(float *)(ObjectValidationBuffer + ObjectContextProcessingDataOffset);
-    if ((*(float *)(ValidationDataPointer + 0x38) <= ProcessedFloatValue) &&
-       (ProcessedFloatValue < *(float *)(ValidationDataPointer + 0x3c) || ProcessedFloatValue == *(float *)(ValidationDataPointer + 0x3c))) {
+    if ((*(float *)(ValidationDataPointer + RangeDataMinOffset) <= ProcessedFloatValue) &&
+       (ProcessedFloatValue < *(float *)(ValidationDataPointer + RangeDataMaxOffset) || ProcessedFloatValue == *(float *)(ValidationDataPointer + RangeDataMaxOffset))) {
       ComparisonResult = *(uint8_t *)(SystemValidationContext + ValidationContextSystemObjectOffset);
       *(float *)(ResultStackBuffer + 4) = ProcessedFloatValue;
             ReleaseSystemContextResources(ComparisonResult);
@@ -9032,8 +9035,8 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
         return ValidationStatus;
       }
       FloatValueToValidate = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
-      if ((*(float *)(ElementPointer + 0x38) <= FloatValueToValidate) &&
-         (FloatValueToValidate < *(float *)(ElementPointer + 0x3c) || FloatValueToValidate == *(float *)(ElementPointer + 0x3c))) {
+      if ((*(float *)(ElementPointer + RangeDataMinOffset) <= FloatValueToValidate) &&
+         (FloatValueToValidate < *(float *)(ElementPointer + RangeDataMaxOffset) || FloatValueToValidate == *(float *)(ElementPointer + RangeDataMaxOffset))) {
         ArrayPointer = *(int64_t *)(ArrayPointer + 0x90);
         *(float *)(ContextPointer + 4 + ArrayIterationIndex * 0x18) = FloatValueToValidate;
         *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(ArrayPointer + (int64_t)IndexBuffer[0] * 8);
@@ -9084,15 +9087,15 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
     ResourceTablePointerAdjustedContext = SystemStackContextData + -8;
   }
   ArrayIterationIndex = *(int *)(ObjectContext + ObjectContextValidationDataOffset);
-  if ((ArrayIterationIndex < 0) || (*(int *)(ResourceTablePointerAdjustedContext + 0x28) <= ArrayIterationIndex)) {
+  if ((ArrayIterationIndex < 0) || (*(int *)(ResourceTablePointerAdjustedContext + ResourceContextSizeOffset) <= ArrayIterationIndex)) {
     return ErrorResourceValidationFailed;
   }
-  ResourceTablePointerDataPointer = *(int64_t *)(ResourceTablePointerAdjustedContext + 0x20) + (int64_t)OperationResult * 0x18;
-  ResourceHandle = *(int64_t *)(ResourceTablePointerDataPointer + 0x10);
+  ResourceTablePointerDataPointer = *(int64_t *)(ResourceTablePointerAdjustedContext + ResourceContextDataOffset) + (int64_t)OperationResult * 0x18;
+  ResourceHandle = *(int64_t *)(ResourceTablePointerDataPointer + ObjectEntryHeaderOffset);
   if (ResourceHandle == 0) {
     return ErrorInvalidResourceData;
   }
-  if ((*(byte *)(ResourceHandle + 0x34) & 0x11) == 0) {
+  if ((*(byte *)(ResourceHandle + ResourceValidationFlagsOffset) & 0x11) == 0) {
     CalculatedFloatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
     FourthFloatResult = *(float *)(ResourceHandle + 0x38);
     if ((*(float *)(ResourceHandle + 0x38) <= InputFloatValue) &&
