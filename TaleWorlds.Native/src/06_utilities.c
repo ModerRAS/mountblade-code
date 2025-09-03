@@ -563,7 +563,7 @@ uint32_t HandleSystemObjectState(uint32_t SystemObjectHandle);
  * 
  * @return 无返回值
  */
-void PerformSystemShutdown(void);
+void ExecuteSystemShutdown(void);
 
 /**
  * @brief 执行系统操作
@@ -1198,7 +1198,7 @@ void* ThreadSynchronizationExecutionContext;          // 线程同步执行上�
  * @note 此函数会释放所有系统句柄占用的资源
  * @warning 调用此函数后，所有系统句柄将失效
  */
-void CloseSystemHandle(void);
+void ReleaseSystemHandle(void);
 
  /**
  * @brief 清理线程资源
