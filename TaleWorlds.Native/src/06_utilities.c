@@ -48312,13 +48312,13 @@ void ValidateResourceContextAndProcessHash(uint8_t ObjectContext,int64_t Validat
   int32_t *ResourceTablePointerIndexPointer;
   uint8_t *ResourceHashStatusAddress;
   int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  uint64_t AlignedMemoryAddress;
   
-  ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x208);
+  ResourceHashStatusAddress = *(uint8_t **)(ValidationContext + 0x208);
   if (ResourceHashStatusAddress == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
+  AlignedMemoryAddress = (uint64_t)ResourceHashStatusAddress & MemoryAddressAlignmentMask;
   if (MemoryAddressMask != 0) {
     ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
