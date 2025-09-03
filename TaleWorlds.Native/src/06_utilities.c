@@ -4440,9 +4440,9 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
     }
     
     // 验证对象状态
-    registrationStatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
-    if ((int)registrationStatusResult != 0) {
-      return registrationStatusResult;
+    RegistrationStatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
+    if ((int)RegistrationStatusResult != 0) {
+      return RegistrationStatusResult;
     }
     
     // 验证状态一致性

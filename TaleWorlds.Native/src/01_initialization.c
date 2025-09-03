@@ -6150,17 +6150,17 @@ void InitializeSystemSecurityMonitor(void)
 
 {
   void* SystemContextParameter;
-  void* *securityMonitorReference;
+  void* *SecurityMonitorReference;
   uint8_t *SecurityConfigurationBuffer;
   uint32_t ConfigurationBufferSize;
   uint8_t SecurityConfigurationBuffer [136];
   
-  securityMonitorReference = &SystemSecurityMonitorNode;
+  SecurityMonitorReference = &SystemSecurityMonitorNode;
   SecurityConfigurationBuffer = SecurityConfigurationBuffer;
   SecurityConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 0xc;
   strcpy_s(SecurityConfigurationBuffer,StringBufferSize,&SystemSecurityMonitorTemplate,SystemContextParameter,InvalidHandleValue);
-  SystemSecurityMonitorHandle = InitializeSecurityMonitorCallback(&securityMonitorReference);
+  SystemSecurityMonitorHandle = InitializeSecurityMonitorCallback(&SecurityMonitorReference);
   return;
 }
 
@@ -6180,17 +6180,17 @@ void InitializeSystemResourceManager(void)
 
 {
   void* SystemContextParameter;
-  void* *resourceManagerReference;
+  void* *ResourceManagerReference;
   uint8_t *ResourceConfigurationBuffer;
   uint32_t ConfigurationBufferSize;
   uint8_t ResourceConfigurationBuffer [136];
   
-  resourceManagerReference = &SystemResourceManagerNode;
+  ResourceManagerReference = &SystemResourceManagerNode;
   ResourceConfigurationBuffer = ResourceConfigurationBuffer;
   ResourceConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 7;
   strcpy_s(ResourceConfigurationBuffer,StringBufferSize,&SystemResourceManagerTemplate,SystemContextParameter,InvalidHandleValue);
-  SystemResourceManagerHandle = InitializeResourceManagerCallback(&resourceManagerReference);
+  SystemResourceManagerHandle = InitializeResourceManagerCallback(&ResourceManagerReference);
   return;
 }
 

@@ -1307,29 +1307,29 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
  */
 NetworkHandle ValidateConnectionNetworkPacket(int64_t ConnectionContext, NetworkHandle *PacketData)
 {
-  NetworkHandle ValidationResult;
+  NetworkHandle ValidationStatus;
   NetworkByte SecurityValidationBuffer [32];
   NetworkByte EncryptionDataBuffer [32];
   
-  ValidationResult = DecodePacket(PacketData, EncryptionDataBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
-  if (((int)ValidationResult == 0) &&
-     (ValidationResult = DecodePacket(PacketData, SecurityValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDeadFood), (int)ValidationResult == 0)) {
+  ValidationStatus = DecodePacket(PacketData, EncryptionDataBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
+  if (((int)ValidationStatus == 0) &&
+     (ValidationStatus = DecodePacket(PacketData, SecurityValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDeadFood), (int)ValidationStatus == 0)) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
-    if ((int)ValidationResult == 0) {
+    ValidationStatus = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    if ((int)ValidationStatus == 0) {
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffset1);
-      if ((((int)ValidationResult == 0) && (ValidationResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityOffset), (int)ValidationResult == 0)) &&
-         (ValidationResult = HandlePacketData(PacketData, ConnectionContext + NetworkConnectionHandleOffset, 1, ConnectionContext), (int)ValidationResult == 0)) {
+      ValidationStatus = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffset1);
+      if ((((int)ValidationStatus == 0) && (ValidationStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityOffset), (int)ValidationStatus == 0)) &&
+         (ValidationStatus = HandlePacketData(PacketData, ConnectionContext + NetworkConnectionHandleOffset, 1, ConnectionContext), (int)ValidationStatus == 0)) {
           FinalizePacketProcessing(PacketData, SecurityValidationBuffer);
       }
     }
   }
-  return ValidationResult;
+  return ValidationStatus;
 }
 
 /**
