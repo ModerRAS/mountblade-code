@@ -20999,10 +20999,10 @@ void ExecuteSystemBackup(void)
 uint64_t ValidateAndProcessResourceDataIntegrity(int64_t ObjectContext,int64_t *ValidationContext)
 
 {
-  int64_t *ProcessPointer;
+  int64_t *ProcessDataPointer;
   int64_t ResourceTablePointer;
-  uint UnsignedLoopControl;
-  uint ArrayIterationIndex;
+  uint LoopControlCounter;
+  uint ArrayIndexCounter;
   uint64_t ResourceContextOffset;
   uint64_t ContextResourceHashStatus;
   uint SecurityHashValue;
@@ -21052,7 +21052,7 @@ uint64_t ValidateAndProcessResourceDataIntegrity(int64_t ObjectContext,int64_t *
       LoopIncrement = 0x1c;
     }
     else if (ResourceContext[2] == 0) {
-ResourceValidationLoop:
+ResourceHashValidationLoop:
       LoopIncrement = CalculateResourceHash(*ResourceContext,CharStackArray,1,1,0);
     }
     else {
@@ -21223,7 +21223,7 @@ uint64_t ProcessResourceDataB(void)
       LoopIncrement = 0x1c;
     }
     else if (ResourceContext[2] == 0) {
-ResourceValidationLoop:
+ResourceHashValidationLoop:
       LoopIncrement = CalculateResourceHash(*ResourceContext,&SecurityValidationStack,1,1,0);
     }
     else {
@@ -21376,7 +21376,7 @@ uint64_t ProcessResourceDataC(void)
       LoopIncrement = 0x1c;
     }
     else if (ResourceContext[2] == 0) {
-ResourceValidationLoop:
+ResourceHashValidationLoop:
       LoopIncrement = CalculateResourceHash(*ResourceContext,&SecurityValidationStack,1,1,0);
     }
     else {
@@ -21525,7 +21525,7 @@ uint64_t ProcessResourceDataD(void)
       ValidationStatusCode = ErrorInvalidObjectHandle;
     }
     else if (ResourceContext[2] == 0) {
-ResourceValidationLoop:
+ResourceHashValidationLoop:
       ValidationStatusCode = CalculateResourceHash(*ResourceContext,&SecurityValidationStack,1,1,0);
     }
     else {
@@ -30016,11 +30016,11 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @warning 调用此函数可能会触发系统紧急退出
  */
 void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerPointer;
+  int64_t* ExceptionHandlerFunctionAddress;
   
-  ExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
-  if (ExceptionHandlerPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerFunctionAddress = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  if (ExceptionHandlerFunctionAddress != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerFunctionAddress + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -30071,11 +30071,11 @@ void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCo
  * @return 无返回值
  */
 void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerPointer;
+  int64_t* ExceptionHandlerFunctionAddress;
   
-  ExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
-  if (ExceptionHandlerPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerFunctionAddress = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
+  if (ExceptionHandlerFunctionAddress != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerFunctionAddress + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
