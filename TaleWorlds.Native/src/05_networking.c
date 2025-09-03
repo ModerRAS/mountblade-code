@@ -445,8 +445,8 @@ void *NetworkConnectionAlternateConfigDataPointer;         // 网络连接备用
 void *NetworkConnectionHeaderConfigDataPointer;            // 网络连接头部配置数据指针
 void *NetworkConnectionDataConfigDataPointer;              // 网络连接数据配置数据指针
 void *NetworkConnectionRequestConfigDataPointer;           // 网络连接请求配置数据指针
-void *NetworkConnectionFirstProcessingConfigDataPointer;   // 网络连接第一处理配置数据指针
-void *NetworkConnectionSecondaryProcessingConfigDataPointer;// 网络连接第二处理配置数据指针
+void *NetworkConnectionPrimaryProcessingConfigDataPointer;   // 网络连接主要处理配置数据指针
+void *NetworkConnectionSecondaryProcessingConfigDataPointer;// 网络连接次要处理配置数据指针
 void *NetworkConnectionTertiaryProcessingConfigDataPointer;// 网络连接第三处理配置数据指针
 void *NetworkConnectionQuaternaryProcessingConfigDataPointer;// 网络连接第四处理配置数据指针
 void *NetworkConnectionQuinaryProcessingConfigDataPointer;  // 网络连接第五处理配置数据指针
