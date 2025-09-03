@@ -1323,11 +1323,11 @@ uint32_t NetworkConnectionContextHandle;                 // 网络连接上下�
 uint32_t NetworkConnectionContextSize;                  // 网络连接上下文大小
 uint32_t NetworkConnectionContextData;                  // 网络连接上下文数据
 uint32_t NetworkConnectionContextConfig;                // 网络连接上下文配置
-uint32_t ConnectionValidationResultPointer;              // 连接验证结果指针
-uint32_t ConnectionValidationResultData;                // 连接验证结果数据
-uint32_t ConnectionValidationResultSize;                // 连接验证结果大小
-uint32_t ConnectionValidationStatusCode;                // 连接验证状态码
-uint32_t ConnectionBaseAddressPointer;                  // 连接基地址指针
+uint32_t ValidationResultPointer;              // 连接验证结果指针
+uint32_t ValidationResultData;                // 连接验证结果数据
+uint32_t ValidationResultSize;                // 连接验证结果大小
+uint32_t ValidationStatusCode;                // 连接验证状态码
+uint32_t NetworkConnectionBaseAddressPointer;                  // 连接基地址指针
 uint32_t ConnectionContextDataArray;                     // 连接上下文数据数组
 uint32_t ConnectionContextDataSize;                      // 连接上下文数据大小
 uint32_t ConnectionContextDataIndex;                     // 连接上下文数据索引
