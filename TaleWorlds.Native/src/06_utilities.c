@@ -4304,37 +4304,40 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  */
 void ValidateSystemObjectCollection(void)
 {
-  uint8_t CurrentSystemObjectId;
-  int ObjectValidationResult;
-  int64_t SystemObjectContext;
-  int64_t SystemContextPointer;
-  int64_t BufferPosition;
-  int ValidatedObjectCount;
-  uint8_t *ObjectCollectionBuffer;
-  int RetrievedObjectTotal;
-  uint32_t MaximumCollectionCapacity;
-  uint64_t SecurityValidationHash;
+  uint8_t CurrentObjectId;
+  int SystemObjectValidationResult;
+  int64_t SystemObjectContextHandle;
+  int64_t SystemRuntimeContext;
+  int64_t CollectionBufferPosition;
+  int SuccessfullyValidatedCount;
+  uint8_t *SystemObjectCollectionBuffer;
+  int TotalRetrievedObjects;
+  uint32_t MaximumCollectionSize;
+  uint64_t SecurityValidationToken;
   
-  if (*(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset) != 0) {
-    ObjectCollectionBuffer = ProcessingWorkspace;
-    ValidatedObjectCount = 0;
-    RetrievedObjectTotal = 0;
-    MaximumCollectionCapacity = MaximumCapacityLimit;
-    ObjectValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemContextPointer + SystemContextSecondaryDataOffset), *(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset),
+  // 检查系统对象上下文是否有效
+  if (*(int64_t *)(SystemObjectContextHandle + ObjectHandleSecondaryOffset) != 0) {
+    SystemObjectCollectionBuffer = ProcessingWorkspace;
+    SuccessfullyValidatedCount = 0;
+    TotalRetrievedObjects = 0;
+    MaximumCollectionSize = MaximumCapacityLimit;
+    
+    // 获取系统对象集合
+    SystemObjectValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeContext + SystemContextSecondaryDataOffset), *(int64_t *)(SystemObjectContextHandle + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (ObjectValidationResult == 0) {
-      RetrievedObjectTotal = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
-      if (0 < RetrievedObjectTotal) {
-        BufferPosition = PointerSizeBytes;
+    if (SystemObjectValidationResult == 0) {
+      TotalRetrievedObjects = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
+      if (0 < TotalRetrievedObjects) {
+        CollectionBufferPosition = PointerSizeBytes;
         do {
-          CurrentSystemObjectId = *(uint8_t *)(ObjectCollectionBuffer + BufferPosition);
-          ObjectValidationResult = ValidateSystemObject(CurrentSystemObjectId);
-          if (ObjectValidationResult != 2) {
-                  HandleInvalidSystemObject(CurrentSystemObjectId, 1);
+          CurrentObjectId = *(uint8_t *)(SystemObjectCollectionBuffer + CollectionBufferPosition);
+          SystemObjectValidationResult = ValidateSystemObject(CurrentObjectId);
+          if (SystemObjectValidationResult != 2) {
+                  HandleInvalidSystemObject(CurrentObjectId, 1);
           }
-          ValidatedObjectCount++;
-          BufferPosition += 8;
-        } while (ValidatedObjectCount < RetrievedObjectTotal);
+          SuccessfullyValidatedCount++;
+          CollectionBufferPosition += 8;
+        } while (SuccessfullyValidatedCount < TotalRetrievedObjects);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
@@ -4342,7 +4345,8 @@ void ValidateSystemObjectCollection(void)
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
   }
-        PerformSecurityValidation(SecurityValidationHash ^ (uint64_t)ProcessingWorkspace);
+  // 执行安全验证
+  PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)ProcessingWorkspace);
 }
 
 
@@ -4360,9 +4364,11 @@ void ValidateSystemObjectCollection(void)
  */
 void TerminateSystemProcess(void)
 {
-  uint64_t SystemShutdownToken;
+  uint64_t SystemShutdownSecurityToken;
   
-        terminateSystem(SystemShutdownToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+  // 生成系统关闭安全令牌并执行系统关闭
+  SystemShutdownSecurityToken = SystemSecurityValidationKeySeed ^ (uint64_t)&SystemSecurityValidationBuffer;
+  terminateSystem(SystemShutdownSecurityToken);
 }
 
 
@@ -4380,14 +4386,17 @@ void TerminateSystemProcess(void)
  */
 void CheckSystemFlags(void)
 {
-  int64_t SystemContext;
-  uint64_t FlagValidationToken;
+  int64_t SystemRuntimeContext;
+  uint64_t SystemFlagValidationToken;
   
-  if ((*(uint *)(SystemContext + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
+  // 检查系统标志位状态
+  if ((*(uint *)(SystemRuntimeContext + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
           TriggerSystemFlagHandler();
   }
+  // 释放标志检查资源并执行清理
   ReleaseFlagCheckResources(&ObjectResourceBuffer);
-        ExecuteFlagCheckCleanup(FlagValidationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+  SystemFlagValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)&SystemSecurityValidationBuffer;
+  ExecuteFlagCheckCleanup(SystemFlagValidationToken);
 }
 
 
