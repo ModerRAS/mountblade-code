@@ -716,11 +716,11 @@ uint32_t NetworkConnectionProcessedCount;
 void InitializeConnectionState(void)
 {
   uint8_t *ConnectionStateBuffer;
-  int InitializationStatus;
+  int32_t InitializationStatus;
   int64_t SystemContextData;
-  int ConnectionHandleId;
+  int32_t ConnectionHandleId;
   uint32_t StateFlags;
-  int SessionId;
+  int32_t SessionId;
   uint64_t *StateData;
   int64_t ContextPointer;
   

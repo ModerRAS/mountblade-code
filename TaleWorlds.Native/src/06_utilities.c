@@ -4635,16 +4635,16 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
   int64_t SystemObjectHandle;
   int SystemValidationStatusCode;
   uint8_t AccessValidationStatusCode;
-  int64_t ObjectValidationContext [2];
+  int64_t ObjectValidationBuffer [2];
   
-  AccessValidationStatusCode = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + ObjectHandleMemoryOffset), ObjectValidationContext);
-  SystemObjectHandle = ObjectValidationContext[0];
+  AccessValidationStatusCode = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + ObjectHandleMemoryOffset), ObjectValidationBuffer);
+  SystemObjectHandle = ObjectValidationBuffer[0];
   if ((int)AccessValidationStatusCode != 0) {
     return AccessValidationStatusCode;
   }
-  (*(int *)(ObjectValidationContext[0] + ResourceCountOffset))++;
-  if (*(int *)(ObjectValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(ObjectValidationContext[0] + ResourceSecondaryCounterOffset) +
-      *(int *)(ObjectValidationContext[0] + ResourceCountOffset) == 1) {
+  (*(int *)(ObjectValidationBuffer[0] + ResourceCountOffset))++;
+  if (*(int *)(ObjectValidationBuffer[0] + ResourceTertiaryCounterOffset) + *(int *)(ObjectValidationBuffer[0] + ResourceSecondaryCounterOffset) +
+      *(int *)(ObjectValidationBuffer[0] + ResourceCountOffset) == 1) {
     ObjectValidationContext[0] = 0;
     SystemValidationStatusCode = ValidateSystemObjectConfiguration(ObjectValidationContext);
     if (SystemValidationStatusCode == 0) {
