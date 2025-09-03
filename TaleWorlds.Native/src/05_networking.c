@@ -735,7 +735,7 @@ void NetworkValidatePacketAuthenticity(void);
  * 
  * @note 此函数会根据数据包类型调用相应的处理函数
  */
-void ProcessNetworkPacketHandling(void);
+void NetworkProcessPacketHandling(void);
 
 /**
  * @brief 管理网络错误处理
@@ -744,7 +744,7 @@ void ProcessNetworkPacketHandling(void);
  * 
  * @note 此函数会记录错误并尝试自动恢复
  */
-void ManageNetworkErrorHandling(void);
+void NetworkManageErrorHandling(void);
 
 uint32_t NetworkErrorProcessor;
 uint32_t NetworkErrorCounter;
@@ -963,7 +963,7 @@ uint32_t ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
  * @note 此函数会进行严格的安全验证，确保只有合法的连接请求能够通过
  * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
  */
-NetworkHandle ProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
+NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   long long NetworkContextData;
   long long *ConnectionValidationStatusPointer;
