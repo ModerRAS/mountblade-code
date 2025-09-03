@@ -6414,8 +6414,7 @@ void FatalErrorHandler(void)
 
 
 
- void SystemCleanupHandler(void)
-/**
+ /**
  * @brief 系统清理处理器
  * 
  * 该函数负责处理系统清理工作，执行资源释放和清理操作
@@ -8450,7 +8449,6 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
 
 {
   int64_t ObjectDataPointer;
-  int PackageValidationStatusCode;
   int64_t AllocatedMemory;
   int64_t *PointerReference;
   uint8_t SystemSecurityBuffer [32];
