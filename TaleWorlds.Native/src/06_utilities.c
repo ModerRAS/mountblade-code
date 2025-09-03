@@ -105204,9 +105204,9 @@ void InitializeSystemContext(uint8_t ContextPtr, uint8_t SetupParam, uint8_t Con
 void ResetThreadLocalStorage(void)
 
 {
-  int64_t ThreadContext;
+  int64_t ThreadLocalStorageContext;
   
-  ThreadContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  ThreadLocalStorageContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   *(uint8_t *)(ThreadContext + ThreadLocalStorageDataOffset) = &ThreadResourcePointer;
   if (*(int64_t *)(ThreadContext + ThreadResourceStateOffset) != 0) {
     CleanupThreadResources();
