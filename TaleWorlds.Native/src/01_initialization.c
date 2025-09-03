@@ -48,35 +48,35 @@
 #define BASE_ALLOCATOR_SYSTEM_IDENTIFIER2       0x47f249e43f66f2ab
 #define BASE_ALLOCATOR_SYSTEM_FLAG              1
 #define BASE_ALLOCATOR_SYSTEM_NODE_DATA              0
-#define SystemDataTableSystemIdentifier1     0x544e41445441424c
-#define SystemDataTableSystemIdentifier2     0x4552455345525441
-#define SystemDataTableSystemFlag           2
-#define SystemMemorySystemIdentifier1         0x46ecbd4daf41613e
-#define SystemMemorySystemIdentifier2         0xdc42c056bbde8482
-#define SystemMemorySystemFlag               0
-#define SystemAllocatorSystemIdentifier1      0x4c868a42644030f6
-#define SystemAllocatorSystemIdentifier2      0xc29193aa9d9b35b9
-#define SystemAllocatorSystemFlag            0
-#define SystemConfigurationSystemIdentifier1  0x40ea3a798283cbbb
-#define SystemConfigurationSystemIdentifier2  0x7f74eb2c5a7fadae
-#define SystemConfigurationSystemFlag        3
+#define SYSTEM_DATA_TABLE_SYSTEM_IDENTIFIER1     0x544e41445441424c
+#define SYSTEM_DATA_TABLE_SYSTEM_IDENTIFIER2     0x4552455345525441
+#define SYSTEM_DATA_TABLE_SYSTEM_FLAG           2
+#define SYSTEM_MEMORY_SYSTEM_IDENTIFIER1         0x46ecbd4daf41613e
+#define SYSTEM_MEMORY_SYSTEM_IDENTIFIER2         0xdc42c056bbde8482
+#define SYSTEM_MEMORY_SYSTEM_FLAG               0
+#define SYSTEM_ALLOCATOR_SYSTEM_IDENTIFIER1      0x4c868a42644030f6
+#define SYSTEM_ALLOCATOR_SYSTEM_IDENTIFIER2      0xc29193aa9d9b35b9
+#define SYSTEM_ALLOCATOR_SYSTEM_FLAG            0
+#define SYSTEM_CONFIGURATION_SYSTEM_IDENTIFIER1  0x40ea3a798283cbbb
+#define SYSTEM_CONFIGURATION_SYSTEM_IDENTIFIER2  0x7f74eb2c5a7fadae
+#define SYSTEM_CONFIGURATION_SYSTEM_FLAG        3
 
 // 位操作和数学计算相关常量
-#define SystemBitMask32Bit                        0x1f
-#define SystemMaxUnsigned32Bit                   0xffffffff
-#define SystemSineLookupTableSize                0x7fff
-#define SystemQuadrantShiftBits                   0xd
-#define SystemSineTableOffset4CC                  0x4cc
-#define SystemSineTableOffset4132                 0x4132
-#define SystemSineTableOffsetFB34                0xfb34
-#define SystemSineTableOffset8132                 0x8132
-#define SystemTransformContextOffset218         0x218
+#define SYSTEM_BIT_MASK_32_BIT                        0x1f
+#define SYSTEM_MAX_UNSIGNED_32_BIT                   0xffffffff
+#define SYSTEM_SINE_LOOKUP_TABLE_SIZE                0x7fff
+#define SYSTEM_QUADRANT_SHIFT_BITS                   0xd
+#define SYSTEM_SINE_TABLE_OFFSET_4CC                  0x4cc
+#define SYSTEM_SINE_TABLE_OFFSET_4132                 0x4132
+#define SYSTEM_SINE_TABLE_OFFSET_FB34                0xfb34
+#define SYSTEM_SINE_TABLE_OFFSET_8132                 0x8132
+#define SYSTEM_TRANSFORM_CONTEXT_OFFSET_218         0x218
 
 // 字符串处理相关常量
-#define SystemStringBufferSizeDefault   0xb
-#define SystemStringBufferSizeShort     0x7
-#define SystemDataBufferSizeDefault     0x8
-#define SystemMessageConfigBufferSize   0xa
+#define SYSTEM_STRING_BUFFER_SIZE_DEFAULT   0xb
+#define SYSTEM_STRING_BUFFER_SIZE_SHORT     0x7
+#define SYSTEM_DATA_BUFFER_SIZE_DEFAULT     0x8
+#define SYSTEM_MESSAGE_CONFIG_BUFFER_SIZE   0xa
 
 // 系统标识符常量
 #define SystemEventSystemIdentifier1          0x45b8d074df27d12f
@@ -1024,6 +1024,8 @@ uint32_t SystemInitializationResourceStatus; // 系统初始化资源状态
 // 系统内存状态标志变量
 uint32_t SystemMemoryStatusFlagPrimary;      // 系统内存状态标志主标志
 uint32_t SystemMemoryStatusFlagSecondary;      // 系统内存状态标志次标志
+uint32_t SystemMemoryStatusFlagTertiary;      // 系统内存状态标志第三标志
+uint32_t SystemMemoryStatusFlagQuaternary;    // 系统内存状态标志第四标志
 
 // 系统回调函数指针
 void* SystemEventNotificationHandler;     // SystemEventNotificationHandler
@@ -1038,6 +1040,8 @@ void* SystemGlobalDataManager;      // SystemGlobalDataManager
 void* SystemGlobalDataReference;        // SystemGlobalDataReference
 void* SystemGlobalDataSecondary;        // SystemGlobalDataSecondary
 void* SystemGlobalDataTertiary;        // SystemGlobalDataTertiary
+void* SystemGlobalDataQuaternary;        // SystemGlobalDataQuaternary
+void* SystemGlobalDataQuinary;        // SystemGlobalDataQuinary
 
 // 系统配置数据指针
 void* SystemConfigDataPrimary;        // 主要系统配置数据
@@ -1046,6 +1050,8 @@ void* SystemConfigDataTertiary;        // 第三系统配置数据
 void* SystemConfigDataQuaternary;        // 第四系统配置数据
 void* SystemConfigDataQuinary;        // 第五系统配置数据
 void* SystemConfigDataSenary;        // 第六系统配置数据
+void* SystemConfigDataSeptenary;        // 第七系统配置数据
+void* SystemConfigDataOctonary;        // 第八系统配置数据
 void* SystemSemaphoreInstance;            // 系统信号量实例
 /**
  * @brief 系统内存分配器函数
@@ -2053,16 +2059,16 @@ int InitializeSystemGlobalVariables(void)
   
   SystemInitializationStatusCode = 0;
   SystemInitializationProgress = 0;
-  SystemMemoryStatusFlagA = 0;
+  SystemMemoryStatusFlagTertiary = 0;
   SystemInitializationErrorFlag = 3;
   SystemInitializationMemoryStatus = 0;
   SystemInitializationThreadStatus = 0;
-  SystemMemoryStatusFlagB = 0;
+  SystemMemoryStatusFlagQuaternary = 0;
   SystemInitializationResourceStatus = 3;
-  SystemConfigDataPointerA = &SystemGlobalDataPointerA;
-  SystemConfigDataPointerB = 0;
-  SystemConfigDataPointerC = 0;
-  SystemConfigDataPointerD = 0;
+  SystemConfigDataPrimary = &SystemGlobalDataReference;
+  SystemConfigDataSecondary = 0;
+  SystemConfigDataTertiary = 0;
+  SystemConfigDataQuaternary = 0;
   
   InitializationStatus = 0;
   return InitializationStatus;
@@ -5015,8 +5021,8 @@ int InitializeSystemDataManager(void)
   long long SystemDataOffset;
   void* SystemParameter;
   
-  SystemConfigDataPointerE = &SystemGlobalDataPointerB;
-  SystemConfigDataPointerG = &SystemConfigDataPointerH;
+  SystemConfigDataQuinary = &SystemGlobalDataSecondary;
+  SystemConfigDataSeptenary = &SystemConfigDataOctonary;
 
 // 函数: void InitializeSystemEventManager(void)
 /**
@@ -5677,7 +5683,7 @@ void InitializeSystemStringConfigurationManager(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0xb;
@@ -6132,7 +6138,7 @@ int InitializeSystemDebugManager(void)
   long long DebugManagerStatus;
   void* SystemRegisterValue;
   
-  SystemConfigDataPointerF = &SystemGlobalDataPointerB;
+  SystemConfigDataSenary = &SystemGlobalDataSecondary;
   SystemGlobalDataReferenceA = &SystemGlobalDataBufferA;
 
 /**
@@ -9033,7 +9039,7 @@ void InitializeSystemConfigurationManager(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0xc;
@@ -9074,7 +9080,7 @@ void InitializeSystemExtensionManager(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x16;
@@ -9098,7 +9104,7 @@ void InitializeSystemLibraryManager(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x16;
@@ -9549,7 +9555,7 @@ void InitializeSystemPerformanceNode(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x1c;
@@ -10229,7 +10235,7 @@ void InitializeSystemDebugInfoManager(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 9;
@@ -10260,7 +10266,7 @@ void InitializeSystemLogManager(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 8;
@@ -10376,7 +10382,7 @@ void InitializeSystemStringProcessorA(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x15;
@@ -10399,7 +10405,7 @@ void InitializeSystemStringProcessorB(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0xe;
@@ -10429,7 +10435,7 @@ void InitializeSystemStringProcessorC(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x1a;
@@ -10459,7 +10465,7 @@ void InitializeSystemStringProcessorD(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x13;
@@ -13064,7 +13070,7 @@ void InitializeSystemMemoryNodeManager(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x12;
@@ -13093,7 +13099,7 @@ void InitializeSystemDeviceNodeManager(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 8;
@@ -14373,7 +14379,7 @@ void InitializeSystemEventManagerN(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x1b;
@@ -15005,7 +15011,7 @@ void InitializeSystemResourceManagerK(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x10;
@@ -15031,7 +15037,7 @@ void InitializeSystemResourceManagerL(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0xf;
@@ -15057,7 +15063,7 @@ void InitializeSystemResourceManagerM(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x19;
@@ -15083,7 +15089,7 @@ void InitializeSystemResourceManagerN(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x14;
@@ -16836,7 +16842,7 @@ void InitializeSystemSubcomponentM(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0xd;
@@ -18081,7 +18087,7 @@ void SystemPerformanceMonitorInitializer(void)
   uint32_t SystemConfigurationValue;
   uint8_t SystemProcessingBuffer[136];
   
-  SystemDataPointer = &SystemGlobalDataPointerC;
+  SystemDataPointer = &SystemGlobalDataTertiary;
   SystemBufferPointer = SystemProcessingBuffer;
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x1b;
