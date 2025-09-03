@@ -106,41 +106,41 @@
 #define SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID1   0x431d7c8d7c475be2
 
 // 资源数据偏移量常量
-#define ResourceDataTransformXOffset        0x130
-#define ResourceDataTransformYOffset        0x134
-#define ResourceDataTransformZOffset        0x138
-#define ResourceDataScaleXOffset            0x140
-#define ResourceDataScaleYOffset            0x144
-#define ResourceDataScaleZOffset            0x148
-#define ResourceDataRotationOffset           0x120
-#define ResourceDataTranslationXOffset      0x150
-#define ResourceDataTranslationYOffset      0x154
-#define ResourceDataTranslationZOffset      0x158
-#define ResourceDataMatrixOffset             0x234
-#define ResourceDataUniformScaleOffset      0x238
-#define ResourceDataBoneTransformOffset     0x294
-#define ResourceDataBoneRotationOffset      0x298
-#define ResourceDataBoneScaleOffset         0x29c
-#define ResourceDataFinalScaleOffset        0x2a4
-#define SystemDataComparisonTemplateIId2   0xb97f048d2153e1b0
-#define SystemDataComparisonTemplateLId1   0x402feffe4481676e
-#define SystemDataComparisonTemplateLId2   0xd4c2151109de93a0
-#define SystemDataComparisonTemplateMId1   0x4384dcc4b6d3f417
-#define SystemDataComparisonTemplateMId2   0x92a15d52fe2679bd
-#define SystemDataComparisonTemplateNId1   0x4140994454d56503
-#define SystemDataComparisonTemplateNId2   0x399eced9bb5517ad
-#define SystemDataComparisonTemplateOId1   0x40db4257e97d3df8
-#define SystemDataComparisonTemplateOId2   0x81d539e33614429f
-#define SystemMemoryComparisonTemplateId1   0x4e33c4803e67a08f
-#define SystemMemoryComparisonTemplateId2   0x703a29a844ce399
+#define RESOURCE_DATA_TRANSFORM_X_OFFSET        0x130
+#define RESOURCE_DATA_TRANSFORM_Y_OFFSET        0x134
+#define RESOURCE_DATA_TRANSFORM_Z_OFFSET        0x138
+#define RESOURCE_DATA_SCALE_X_OFFSET            0x140
+#define RESOURCE_DATA_SCALE_Y_OFFSET            0x144
+#define RESOURCE_DATA_SCALE_Z_OFFSET            0x148
+#define RESOURCE_DATA_ROTATION_OFFSET           0x120
+#define RESOURCE_DATA_TRANSLATION_X_OFFSET      0x150
+#define RESOURCE_DATA_TRANSLATION_Y_OFFSET      0x154
+#define RESOURCE_DATA_TRANSLATION_Z_OFFSET      0x158
+#define RESOURCE_DATA_MATRIX_OFFSET             0x234
+#define RESOURCE_DATA_UNIFORM_SCALE_OFFSET      0x238
+#define RESOURCE_DATA_BONE_TRANSFORM_OFFSET     0x294
+#define RESOURCE_DATA_BONE_ROTATION_OFFSET      0x298
+#define RESOURCE_DATA_BONE_SCALE_OFFSET         0x29c
+#define RESOURCE_DATA_FINAL_SCALE_OFFSET        0x2a4
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID2   0xb97f048d2153e1b0
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_L_ID1   0x402feffe4481676e
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_L_ID2   0xd4c2151109de93a0
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_M_ID1   0x4384dcc4b6d3f417
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_M_ID2   0x92a15d52fe2679bd
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_N_ID1   0x4140994454d56503
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_N_ID2   0x399eced9bb5517ad
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_O_ID1   0x40db4257e97d3df8
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_O_ID2   0x81d539e33614429f
+#define SYSTEM_MEMORY_COMPARISON_TEMPLATE_ID1   0x4e33c4803e67a08f
+#define SYSTEM_MEMORY_COMPARISON_TEMPLATE_ID2   0x703a29a844ce399
 
 // 系统参数常量
-#define SystemMaxSemaphoreCount                    0x7fffffff
-#define SystemStringBufferSize                     0x80
-#define SystemInvalidHandleValue                    0xfffffffffffffffe
-#define SystemSemaphoreMaxCount              0x7fffffff
-#define SystemEventHandlerSize               0x20
-#define SystemEventHandlerCapacity          8
+#define SYSTEM_MAX_SEMAPHORE_COUNT                    0x7fffffff
+#define SYSTEM_STRING_BUFFER_SIZE                     0x80
+#define SYSTEM_INVALID_HANDLE_VALUE                    0xfffffffffffffffe
+#define SYSTEM_SEMAPHORE_MAX_COUNT              0x7fffffff
+#define SYSTEM_EVENT_HANDLER_SIZE               0x20
+#define SYSTEM_EVENT_HANDLER_CAPACITY          8
 
 /**
  * @brief 处理系统内存页面
