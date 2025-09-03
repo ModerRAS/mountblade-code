@@ -4684,10 +4684,10 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
   int64_t ObjectInstancePointer;
   uint64_t StatusUpdateResult;
   int64_t *ObjectCollectionIteratorPointer;
-  int64_t SystemContextPointers[4];
+  int64_t SystemContextPointerArray[4];
   uint32_t *ObjectStatusFlagsBuffer;
   
-  StatusUpdateResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextPointers);
+  StatusUpdateResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextPointerArray);
   if ((int)StatusUpdateResult == 0) {
     ObjectCollectionIterator = *(int64_t **)(SystemContextPointers[0] + ContextHandlesIteratorOffset);
     while ((*(int64_t **)(SystemContextPointers[0] + ContextHandlesIteratorOffset) <= ObjectCollectionIterator &&
