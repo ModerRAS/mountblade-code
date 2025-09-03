@@ -7534,7 +7534,7 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
        StackParameterContext;
   *(int *)(ResourceContext + ResourceCountOffset) = *(int *)(ResourceContext + ResourceCountOffset) + 1;
 SystemErrorHandler:
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + ValidationContextLoopCounterOffset));
 }
 
 
@@ -7665,7 +7665,7 @@ void ValidateAndProcessSystemStatusData(void)
       }
     }
   }
-  UpdateSystemStatus(*(uint8_t *)(SystemBasePointer + 0x98));
+  UpdateSystemStatus(*(uint8_t *)(SystemBasePointer + ValidationContextLoopCounterOffset));
   return;
 }
 
