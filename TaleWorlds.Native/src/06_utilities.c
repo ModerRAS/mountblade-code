@@ -13554,7 +13554,7 @@ ErrorHandler:
     do {
       ResourceCount = (int)ResourceHashInitialValue + 1;
       PEncryptionShiftValue = (byte *)(ContextResourceHashStatus + 0xb + *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset));
-      *pencryptionShiftValue = *pencryptionShiftValue & 0xfe;
+      *PEncryptionShiftValue = *PEncryptionShiftValue & 0xfe;
       ContextValidationStatusCode = ContextResourceHashStatus + 0xc;
       ResourceHashInitialValue = (uint64_t)ResourceCount;
     } while ((int)ResourceCount < *(int *)(ObjectContext + ObjectContextProcessingDataOffset));
@@ -14253,14 +14253,14 @@ void ProcessComplexResourceWithRegisters(void)
         ValidationErrorCode = GetAndValidateResourceData(PrimaryValidationStatus,executionContext + -0x80);
         if ((ValidationErrorCode != 0) || (ValidationErrorCode = FindResourceEntry(ResourceTablePointerPointer,&resourceFloatValue), ValidationErrorCode != 0))
         goto ValidationErrorHandler;
-        finalResultFloat = resourceFloatValue;
+        FinalResultFloat = ResourceFloatValue;
         if (resourceFloatValue != 1.0) {
-          temporaryResourceValue = resourceFloatValue;
-          dataTypeTemplate = &SystemDataTypeTemplateActive;
+          TemporaryResourceValue = ResourceFloatValue;
+          DataTypeTemplate = &SystemDataTypeTemplateActive;
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
-          finalResultFloat = calculatedPrimaryResult;
+          FinalResultFloat = CalculatedPrimaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x28) != '\0') {
@@ -14306,10 +14306,10 @@ void ProcessComplexResourceWithRegisters(void)
         ValidationErrorCode = GetAndValidateResourceData(PrimaryValidationStatus,executionContext + -0x80);
         if ((ValidationErrorCode != 0) || (ValidationErrorCode = FindResourceEntry(ResourceTablePointerPointer,&resourceFloatValue), ValidationErrorCode != 0))
         goto ValidationErrorHandler;
-        finalResultFloat = resourceFloatValue;
+        FinalResultFloat = ResourceFloatValue;
         if (resourceFloatValue != 1.0) {
-          temporaryResourceValue = resourceFloatValue;
-          dataTypeTemplate = &SystemDataTypeTemplateActive;
+          TemporaryResourceValue = ResourceFloatValue;
+          DataTypeTemplate = &SystemDataTypeTemplateActive;
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
@@ -14359,10 +14359,10 @@ void ProcessComplexResourceWithRegisters(void)
         ValidationErrorCode = GetAndValidateResourceData(PrimaryValidationStatus,executionContext + -0x80);
         if ((ValidationErrorCode != 0) || (ValidationErrorCode = FindResourceEntry(ResourceTablePointerPointer,&resourceFloatValue), ValidationErrorCode != 0))
         goto ValidationErrorHandler;
-        finalResultFloat = resourceFloatValue;
+        FinalResultFloat = ResourceFloatValue;
         if (resourceFloatValue != 1.0) {
-          temporaryResourceValue = resourceFloatValue;
-          dataTypeTemplate = &SystemDataTypeTemplateActive;
+          TemporaryResourceValue = ResourceFloatValue;
+          DataTypeTemplate = &SystemDataTypeTemplateActive;
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
@@ -14412,10 +14412,10 @@ void ProcessComplexResourceWithRegisters(void)
         ValidationErrorCode = GetAndValidateResourceData(PrimaryValidationStatus,executionContext + -0x80);
         if ((ValidationErrorCode != 0) || (ValidationErrorCode = FindResourceEntry(ResourceTablePointerPointer,&resourceFloatValue), ValidationErrorCode != 0))
         goto ValidationErrorHandler;
-        finalResultFloat = resourceFloatValue;
+        FinalResultFloat = ResourceFloatValue;
         if (resourceFloatValue != 1.0) {
-          temporaryResourceValue = resourceFloatValue;
-          dataTypeTemplate = &SystemDataTypeTemplateActive;
+          TemporaryResourceValue = ResourceFloatValue;
+          DataTypeTemplate = &SystemDataTypeTemplateActive;
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
@@ -14468,7 +14468,7 @@ void ProcessComplexResourceWithRegisters(void)
         TemporaryIndex = GetAndValidateResourceData(PrimaryValidationStatus,executionContext + -0x80);
         if ((TemporaryIndex != 0) || (TemporaryIndex = SearchResourceTablePointer(ResourceTablePointerPointer,&stackFloatValue1,0), TemporaryIndex != 0)) break;
         if (resourceFloatValue != 1.0) {
-          temporaryResourceValue = resourceFloatValue;
+          TemporaryResourceValue = ResourceFloatValue;
           dataTypeTemplate = &SystemDataTypeTemplateDatabase;
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = TemporaryIndex;
