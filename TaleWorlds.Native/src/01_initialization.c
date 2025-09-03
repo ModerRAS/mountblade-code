@@ -68301,29 +68301,29 @@ void CleanupSystemResourceEncryption(char *SystemResourceManager,void* Configura
   void* CurrentThreadId;
   
   CurrentThreadId = 0xfffffffffffffffe;
-  resourceDataIndex = *(long long *)(SystemResourceManager + 8);
-  if (resourceDataIndex != 0) {
-    resourcePoolPointer = *(long long **)(SystemResourceManager + 0x18);
-    if (resourcePoolPointer != (long long *)0x0) {
-      (**(code **)(*resourcePoolPointer + 0x28))(resourcePoolPointer);
+  ResourceDataIndex = *(long long *)(SystemResourceManager + 8);
+  if (ResourceDataIndex != 0) {
+    ResourcePoolPointer = *(long long **)(SystemResourceManager + 0x18);
+    if (ResourcePoolPointer != (long long *)0x0) {
+      (**(code **)(*ResourcePoolPointer + 0x28))(ResourcePoolPointer);
     }
-    SystemResourceOffsetPointer = *(long long **)(resourceDataIndex + 0x210);
-    *(long long **)(resourceDataIndex + 0x210) = resourcePoolPointer;
+    SystemResourceOffsetPointer = *(long long **)(ResourceDataIndex + 0x210);
+    *(long long **)(ResourceDataIndex + 0x210) = ResourcePoolPointer;
     if (SystemResourceOffsetPointer != (long long *)0x0) {
       (**(code **)(*SystemResourceOffsetPointer + 0x38))();
     }
-    resourceDataIndex = *(long long *)(SystemResourceManager + 8);
+    ResourceDataIndex = *(long long *)(SystemResourceManager + 8);
     if (*SystemResourceManager != '\0') {
-      SystemBufferAddress = resourceDataIndex;
+      SystemBufferAddress = ResourceDataIndex;
       if ((SystemResourceManager[0x10] & 2U) == 0) {
-        ExecuteSystemOperation(resourceDataIndex);
+        ExecuteSystemOperation(ResourceDataIndex);
         ExecuteSystemOperation(*(void* *)(SystemResourceManager + 8));
         SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
       }
       ProcessSystemDataBuffer(SystemBufferAddress,1,AdditionalParameter,ConfigurationFlag,CurrentThreadId);
-      *(uint32_t *)(resourceDataIndex + 0xf0) = 0;
+      *(uint32_t *)(ResourceDataIndex + 0xf0) = 0;
       LOCK();
-      *(uint8_t *)(resourceDataIndex + 0xec) = 0;
+      *(uint8_t *)(ResourceDataIndex + 0xec) = 0;
       UNLOCK();
     }
   }

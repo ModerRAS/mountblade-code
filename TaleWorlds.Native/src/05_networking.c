@@ -244,7 +244,7 @@ uint32_t ValidatePacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
  * @param RequestData 请求数据指针
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t HandleNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestData);
+uint32_t HandleConnectionRequest(int64_t *ConnectionContext, int64_t *RequestData);
 
 /**
  * @brief 执行网络数据传输
@@ -302,7 +302,7 @@ uint32_t ProcessNetworkProtocolStackData(int64_t *StackBuffer, int64_t ContextDa
  * @param PacketData 数据包数据句柄
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t VerifySecureNetworkConnectionHandle(NetworkHandle ConnectionContext, NetworkHandle PacketData);
+uint32_t VerifySecureConnectionHandle(NetworkHandle ConnectionContext, NetworkHandle PacketData);
 
 /**
  * @brief 获取网络连接句柄
@@ -312,7 +312,7 @@ uint32_t VerifySecureNetworkConnectionHandle(NetworkHandle ConnectionContext, Ne
  * @param ConnectionContext 连接上下文指针
  * @return NetworkHandle 连接句柄
  */
-NetworkHandle NetworkGetConnectionHandle(int64_t *ConnectionContext);
+NetworkHandle GetConnectionHandle(int64_t *ConnectionContext);
 
 /**
  * @brief 验证网络连接条目
@@ -323,7 +323,7 @@ NetworkHandle NetworkGetConnectionHandle(int64_t *ConnectionContext);
  * @param NetworkFlags 网络标志
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkVerifyConnectionEntry(int64_t ConnectionContext, uint32_t NetworkFlags);
+uint32_t VerifyConnectionEntry(int64_t ConnectionContext, uint32_t NetworkFlags);
 
 /**
  * @brief 初始化网络上下文
@@ -333,7 +333,7 @@ uint32_t NetworkVerifyConnectionEntry(int64_t ConnectionContext, uint32_t Networ
  * @param NetworkContext 网络上下文
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkInitializeContext(int64_t NetworkContext);
+uint32_t InitializeContext(int64_t NetworkContext);
 
 /**
  * @brief 处理网络上下文条目
