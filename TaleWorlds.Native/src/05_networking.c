@@ -81,6 +81,20 @@
 #define NetworkPacketMagicTnvel 0x544e5645
 #define NetworkPacketMagicBtvel 0x42545645
 
+// 网络连接相关偏移量
+#define NetworkConnectionHeaderOffset 0x10
+#define NetworkConnectionValidationOffset1 0xd8
+#define NetworkConnectionValidationOffset2 0x54
+#define NetworkConnectionValidationOffset3 0x78
+#define NetworkConnectionValidationOffset4 0x58
+#define NetworkConnectionDataOffset1 0x5c
+#define NetworkConnectionValidatorOffset 0x60
+#define NetworkConnectionIntegrityOffset1 0x70
+#define NetworkConnectionIntegrityOffset2 0x74
+#define NetworkConnectionFinalizeOffset 0x7c
+#define NetworkConnectionSecurityOffset 0xf8
+#define NetworkConnectionHandleOffset 0xe8
+
 // 网络状态常量
 #define NetworkStatusActive 0x01
 #define NetworkStatusInactive 0x00
@@ -1159,7 +1173,7 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + 0x10);
+    ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
     if ((int)ValidationResult == 0) {
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return 0x1c;
@@ -1289,7 +1303,7 @@ NetworkHandle ValidateConnectionNetworkPacket(int64_t ConnectionContext, Network
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + 0x10);
+    ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
     if ((int)ValidationResult == 0) {
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return 0x1c;

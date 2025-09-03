@@ -20709,10 +20709,10 @@ void InitializeSystemCoreEngine(void)
   strcpy_s(DataBuffer4D0,0x40,&SystemDataBufferTemplateJ);
   InitializeResourceManager(SystemSystemResourceManager,&SystemDataBufferPointer,&LocalStackConfigurationPointer);
   SystemDataBufferPointer = &SystemMemoryAllocatorReference;
-  pSystemEncryptionKey8 = &SystemDataBufferTemplateB;
-  DataBufferPtr480 = DataBuffer470;
-  DataBuffer470[0] = 0;
-  configurationFlags478 = 0xb;
+  SystemEncryptionKeyPointer = &SystemDataBufferTemplateB;
+  DataBufferPointer = DataBufferArray;
+  DataBufferArray[0] = 0;
+  ConfigurationFlags = 0xb;
   strcpy_s(DataBuffer470,0x40,&SystemDataBufferTemplateK);
   InitializeResourceManager(SystemSystemResourceManager,&pSystemEncryptionKey8,&LocalStackConfigurationPointer);
   pSystemEncryptionKey8 = &SystemMemoryAllocatorReference;
