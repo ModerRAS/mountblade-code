@@ -1448,18 +1448,23 @@ void* GetSystemInitializationFunction;
  * 
  * @return 无返回值
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 负责初始化游戏核心系统节点，包括系统节点查找、内存分配和初始化处理
+ */
 void InitializeGameCoreSystem(void)
 {
-  bool IsSystemNodeActive;
-  void** SystemRootNodePointer;
-  int SystemIdentifierComparisonResult;
-  long long* SystemDataTablePointer;
-  long long SystemMemoryAllocationSize;
-  void** CurrentSystemNodePointer;
-  void** PreviousSystemNodePointer;
-  void** NextSystemNodePointer;
-  void** AllocatedSystemNodePointer;
-  void* GameCoreInitializationHandler;
+  bool IsNodeActive;
+  void** RootNodePointer;
+  int IdentifierComparisonResult;
+  long long* DataTablePointer;
+  long long MemoryAllocationSize;
+  void** CurrentNodePointer;
+  void** PreviousNodePointer;
+  void** NextNodePointer;
+  void** AllocatedNodePointer;
+  void* InitializationHandler;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   SystemRootNodePointer = (void**)*SystemDataTablePointer;
