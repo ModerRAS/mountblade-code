@@ -206,7 +206,7 @@
 
 // System pointer constants
 #define SystemContextPrimaryPointer SystemContextPointer
-#define SystemResourceSecondaryPointer SystemResourcePointer002
+#define SystemResourceSecondaryPointer SystemSecondaryResourcePointer
 
 // Common memory offset constants
 #define ContextBufferStatusOffset 0x2c
@@ -280,30 +280,30 @@
 
 #define SystemProcessContextObjectOffset 0x98
 
-#define SystemCombineValidationContextAndParam CONCAT44
-#define SystemCombineParameterAndValidationRegisters CONCAT44
-#define SystemCombineInputRegisters CONCAT44
-#define SystemCombineSavedRegisterAndIndex CONCAT44
-#define SystemCombineResourceValidationAndCommand CONCAT44
-#define SystemCombineGraphicsOperationFlags CONCAT44
+#define SystemCombineValidationContextAndParam CombineValidationContextAndParameter
+#define SystemCombineParameterAndValidationRegisters CombineParameterAndValidationRegisters
+#define SystemCombineInputRegisters CombineInputRegisters
+#define SystemCombineSavedRegisterAndIndex CombineSavedRegisterAndIndex
+#define SystemCombineResourceValidationAndCommand CombineResourceValidationAndCommand
+#define SystemCombineGraphicsOperationFlags CombineGraphicsOperationFlags
 #define SystemCombineFloatWithHighBits CombineFloatWithHighBits
-#define SystemCombineValidationContextWithResource CONCAT44
-#define SystemCombineValidationContextWithHash CONCAT44
-#define SystemCombineSystemArrayWithByte CONCAT11
-#define SystemCombineSystemArrayWithShort CONCAT22
+#define SystemCombineValidationContextWithResource CombineValidationContextAndResource
+#define SystemCombineValidationContextWithHash CombineValidationContextAndHash
+#define SystemCombineSystemArrayWithByte CombineSystemArrayWithByte
+#define SystemCombineSystemArrayWithShort CombineSystemArrayWithShort
 #define SystemCombineSystemArrayWithInt CombineSystemArrayWithInt
 #define SystemCombineSystemContextWithValidation CONCAT71
-#define SystemCombineRegisterWithLoopCounter CONCAT44
-#define SystemCombineValidationContextWithChar CONCAT62
-#define SystemCombineResourceHashWithFormat CONCAT22
-#define SystemCombineResourceCountWithOffset CONCAT22
+#define SystemCombineRegisterWithLoopCounter CombineRegisterWithLoopCounter
+#define SystemCombineValidationContextWithChar CombineValidationContextWithChar
+#define SystemCombineResourceHashWithFormat CombineResourceHashWithFormat
+#define SystemCombineResourceCountWithOffset CombineResourceCountWithOffset
 #define SystemCombineHashWithStatus CombineHashWithStatus
-#define SystemCombineRegisterStorageValues CONCAT44
-#define SystemCombineHashWithCharacterCheck CONCAT71
+#define SystemCombineRegisterStorageValues CombineRegisterStorageValues
+#define SystemCombineHashWithCharacterCheck CombineHashWithCharacterCheck
 #define SystemCombineResourceWithChecksum CombineResourceWithChecksum
-#define SystemCombineMemoryWithExceptionCheck CONCAT71
-#define SystemCombineLoopControlWithException CONCAT71
-#define SystemCombineMemoryAlignmentWithCheck CONCAT71
+#define SystemCombineMemoryWithExceptionCheck CombineMemoryWithExceptionCheck
+#define SystemCombineLoopControlWithException CombineLoopControlWithException
+#define SystemCombineMemoryAlignmentWithCheck CombineMemoryAlignmentWithCheck
 
 /**
  * @brief 合并系统上下文与验证参数
@@ -11495,24 +11495,34 @@ CleanupHandler:
  * @note 该函数会处理资源分配和内存清理操作
  * @warning 如果数据容器验证失败，会返回相应的错误代码
  */
+/**
+ * @brief 验证并处理数据容器
+ * 
+ * 该函数负责验证和处理数据容器，确保数据完整性和正确性
+ * 主要用于数据容器的生命周期管理和资源清理
+ * 
+ * @param DataContainerPointer 数据容器指针，指向要处理的数据容器
+ * @return 验证结果状态码，0表示成功，非0表示失败
+ * @note 此函数在数据处理完成后调用，确保资源正确释放
+ * @warning 调用此函数前必须确保数据容器已正确初始化
+ */
 uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
-
 {
-  int ContainerValidationStatus;
-  uint ResourceChecksumHash;
-  uint SystemOperationStatusCode;
+  int DataValidationStatus;
+  uint ResourceChecksumValue;
+  uint SystemOperationResultCode;
   
-  ContainerValidationStatus = *(uint *)((int64_t)DataContainerPointer + 0xc);
-  SystemOperationStatusCode = ResourceChecksumHash ^ (int)ResourceChecksumHash >> ErrorResourceValidationFailed;
-  if ((int)(ResourceChecksumHash - ((int)ResourceChecksumHash >> ErrorResourceValidationFailed)) < 0) {
+  DataValidationStatus = *(uint *)((int64_t)DataContainerPointer + 0xc);
+  SystemOperationResultCode = ResourceChecksumValue ^ (int)ResourceChecksumValue >> ErrorResourceValidationFailed;
+  if ((int)(ResourceChecksumValue - ((int)ResourceChecksumValue >> ErrorResourceValidationFailed)) < 0) {
     if (0 < (int)DataContainerPointer[1]) {
-      return ResourceChecksumHash;
+      return ResourceChecksumValue;
     }
-    if ((0 < (int)ResourceChecksumHash) && (*DataContainerPointer != 0)) {
+    if ((0 < (int)ResourceChecksumValue) && (*DataContainerPointer != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*DataContainerPointer,&ResourceAllocationTemplate,0x100,1);
     }
     *DataContainerPointer = 0;
-    ContainerValidationStatus = 0;
+    DataValidationStatus = 0;
     *(uint32_t *)((int64_t)DataContainerPointer + 0xc) = 0;
   }
   int ResourcePoolIndex = (int)DataContainerPointer[1];
@@ -11522,9 +11532,9 @@ uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
     }
   }
   *(uint32_t *)(DataContainerPointer + 1) = 0;
-  ContainerValidationStatus = (ResourceChecksumHash ^ (int)ResourceChecksumHash >> ErrorResourceValidationFailed) - ((int)ResourceChecksumHash >> ErrorResourceValidationFailed);
-  if ((int)ResourceChecksumHash < 1) {
-    return ResourceChecksumHash;
+  DataValidationStatus = (ResourceChecksumValue ^ (int)ResourceChecksumValue >> ErrorResourceValidationFailed) - ((int)ResourceChecksumValue >> ErrorResourceValidationFailed);
+  if ((int)ResourceChecksumValue < 1) {
+    return ResourceChecksumValue;
   }
   if (0 < (int)DataContainerPointer[1]) {
     return ErrorInvalidObjectHandle;
@@ -29936,18 +29946,40 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
+/**
+ * @brief 主要上下文异常处理器
+ * 
+ * 该函数负责处理主要异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerFunctionPointer;
+  int64_t* PrimaryExceptionHandlerFunctionPointer;
   
-  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
-  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
+  PrimaryExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  if (PrimaryExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)PrimaryExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
 
 
 
+/**
+ * @brief 次级上下文异常处理器
+ * 
+ * 该函数负责处理次级异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
 /**
  * @brief 次级上下文异常处理器
  * 
