@@ -799,25 +799,25 @@ uint32_t ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
  */
 NetworkHandle ProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
-  long long ContextData;
-  long long *OperationStatusPointer;
-  int OperationFlag;
+  long long NetworkContextData;
+  long long *ValidationStatusPointer;
+  int ConnectionValidationFlag;
   
-  ContextData = 0;
-  if (OperationFlag == 0) {
+  NetworkContextData = 0;
+  if (ConnectionValidationFlag == 0) {
 LabelNetworkValidationStart:
-    if ((0 < *(int *)((long long)OperationStatusPointer + 0xc)) && (*OperationStatusPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *OperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)((long long)ValidationStatusPointer + 0xc)) && (*ValidationStatusPointer != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *ValidationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *OperationStatusPointer = ContextData;
-    *(int *)((long long)OperationStatusPointer + 0xc) = OperationFlag;
+    *ValidationStatusPointer = NetworkContextData;
+    *(int *)((long long)ValidationStatusPointer + 0xc) = ConnectionValidationFlag;
     return 0;
   }
   if ((int)PacketData - 1U < 0x3fffffff) {
-    ContextData = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
-    if (ContextData != 0) {
-      if ((int)OperationStatusPointer[1] != 0) {
-          memcpy(ContextData, *OperationStatusPointer, (long long)(int)OperationStatusPointer[1]);
+    NetworkContextData = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), PacketData, &SecurityValidationData, 0xf4, 0);
+    if (NetworkContextData != 0) {
+      if ((int)ValidationStatusPointer[1] != 0) {
+          memcpy(NetworkContextData, *ValidationStatusPointer, (long long)(int)ValidationStatusPointer[1]);
       }
       goto NETWORK_PROCESSING_CONTINUE;
     }
@@ -1157,7 +1157,7 @@ NetworkHandle ValidateConnectionNetworkPacket(int64_t ConnectionContext, Network
 NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   NetworkHandle PacketProcessingResult;
-  NetworkByte DataStreamBuffer [32];
+  NetworkByte DecodedDataStreamBuffer [32];
   
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < 0x31) {
     PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, 0x544e5645);
@@ -1166,13 +1166,13 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
     }
   }
   else {
-    PacketProcessingResult = DecodePacketDataStream(PacketData, DataStreamBuffer, 1, 0x5453494c, 0x544e5645);
+    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, 0x5453494c, 0x544e5645);
     if ((int)PacketProcessingResult == 0) {
       PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, 0x42545645);
       if ((int)PacketProcessingResult == 0) {
-        NetworkHandle DataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
-        if ((int)DataProcessingResult == 0) {
-            FinalizePacketProcessing(PacketData, DataStreamBuffer);
+        NetworkHandle ConnectionDataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
+        if ((int)ConnectionDataProcessingResult == 0) {
+            FinalizePacketProcessing(PacketData, DecodedDataStreamBuffer);
         }
       }
     }
