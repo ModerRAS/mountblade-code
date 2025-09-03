@@ -27655,8 +27655,8 @@ SecurityValidationLoop:
           *(int64_t *)(ResourceHashMemoryPointer + 8) = ResourceHashMemoryPointer;
           *(uint32_t *)(ResourceHashMemoryPointer + 0x10) = PrimaryResourceHash;
           *(uint8_t *)(ResourceHashMemoryPointer + 0x18) = 0;
-          *(uint32_t *)(SystemDataPointer + 0x20) = 0;
-          ResourceContextOffset = VerifyResourceIntegrity(SystemContextRegister + 0x58,SystemDataPointer);
+          *(uint32_t *)(ResourceHashMemoryPointer + 0x20) = 0;
+          ResourceContextOffset = VerifyResourceIntegrity(SystemContextRegister + 0x58,ResourceHashMemoryPointer);
           ResourceCount = (uint64_t)ResourceContextOffset;
           if (ResourceContextOffset != 0) goto SecurityValidationLoop;
           ProcessStatus = *(int *)(SystemExecutionPointer + -0x21);
@@ -46453,10 +46453,11 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t SecurityHashValue;
   uint64_t MemorySize;
   int64_t ResourceHandle;
+  int64_t ExceptionMemoryPointer;
   
   ResourceCount = *(uint64_t *)(ValidationContext + 0x20);
   LoopCounter = *(int64_t *)(ValidationContext + 0x90);
-  SystemDataPointer = *(int64_t *)(SystemContextPointer + 0x40);
+  ExceptionMemoryPointer = *(int64_t *)(SystemContextPointer + 0x40);
   LoopIncrement = *(uint64_t *)(ValidationContext + ResourceContextTertiaryOffset);
   ResourceTablePointer = *(int64_t *)(ValidationContext + ValidationContextPrimaryOffset);
   ResourceEntryPointer = *(int64_t *)(ValidationContext + ValidationContextSecondaryOffset);
