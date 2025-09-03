@@ -885,9 +885,13 @@ uint32_t ConnectionProcessingResult;
 uint32_t NetworkConnectionProcessedCount;
 
 /**
- * 初始化网络连接状态 - 设置网络连接的初始状态
- * 此函数负责初始化网络连接的状态缓冲区，设置连接参数，并准备连接上下文
- * @note 此函数会在连接建立前调用，确保所有状态数据正确初始化
+ * @brief 初始化网络连接状态
+ * 
+ * 初始化网络连接的状态缓冲区，设置连接参数，并准备连接上下文。
+ * 此函数会在连接建立前调用，确保所有状态数据正确初始化。
+ * 
+ * @note 此函数使用全局配置数据来设置连接状态
+ * @warning 初始化失败可能导致连接无法建立
  */
 void NetworkInitializeConnectionState(void)
 {
@@ -921,9 +925,13 @@ void NetworkInitializeConnectionState(void)
 }
 
 /**
- * 重置网络连接指针 - 清理连接数据和状态
- * 此函数负责重置网络连接的数据指针，清理连接状态，并释放相关资源
- * @note 此函数通常在连接断开或重置时调用
+ * @brief 重置网络连接指针
+ * 
+ * 重置网络连接的数据指针，清理连接状态，并释放相关资源。
+ * 此函数通常在连接断开或重置时调用，确保所有连接数据被正确清理。
+ * 
+ * @note 此函数会重置所有连接相关的指针和数据结构
+ * @warning 清理过程中如果遇到错误，系统会记录错误日志
  */
 void NetworkResetConnectionPointer(void)
 {
