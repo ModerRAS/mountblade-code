@@ -101282,18 +101282,17 @@ void InitializeMemoryPoolManager(void)
 
 
  /**
- * 初始化系统数据结构AF
+ * @brief 销毁系统互斥锁
+ * 
  * 销毁位于 SystemMutexTertiaryAddress 的互斥锁
  * 
  * 注意：此函数包含间接跳转，被编译器识别为调用
  * 主要功能是清理和销毁系统数据结构中的互斥锁
  */
-void InitializeSystemDataStructureAF(void)
-void InitializeSystemDataStructureAF(void)
+void DestroySystemMutex(void)
+void DestroySystemMutex(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180941db8. Too many branches
-                    // WARNING: Treating indirect jump as call
   MutexDestroyInPlace(SystemMutexTertiaryAddress);
   return;
 }
@@ -101303,12 +101302,13 @@ void InitializeSystemDataStructureAF(void)
 
 
  /**
- * 初始化系统数据结构AG
- * 将全局变量 SystemMemoryRegionManager 设置为指向 SystemDataStructure001
+ * @brief 初始化内存区域管理器
+ * 
+ * 将全局变量 SystemMemoryRegionManager 设置为指向 SystemDataStructure
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
-void InitializeSystemDataStructureAG(void)
-void InitializeSystemDataStructureAG(void)
+void InitializeMemoryRegionManager(void)
+void InitializeMemoryRegionManager(void)
 
 {
   SystemMemoryRegionManager = &SystemDataStructure;
