@@ -25696,15 +25696,15 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint SystemMemoryAlignment;
   uint32_t SystemAllocationSize;
   void* *SystemStringTemplatePtr;
-  long long longValue210;
+  long long LongValue210;
   uint SystemMaxOperationCount8;
   uint32_t StackValue200;
   void* *SystemGlobalDataReferencePtr2;
-  long long longValue1f0;
+  long long LongValue1F0;
   uint StackValue1e8;
   uint32_t GlobalDataFlags2;
   void* *SystemGlobalDataReferencePtr;
-  long long longValue1d0;
+  long long LongValue1D0;
   uint SystemThreadStackSize;
   uint32_t GlobalDataFlags;
   void* *pointerUnsigned1b8;
@@ -25716,7 +25716,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   int intValue188;
   uint32_t ConcatenatedSystemValue0;
   void* *pCalculationFlags178;
-  long long longValue170;
+  long long LongValue170;
   uint32_t encryptionKeySize;
   void* threadLocalStoragePointer;
   ulong long resourceCreationFlagsLength;
@@ -52262,7 +52262,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   void* *SystemResourcePointerF0;
   uint32_t SystemConfigurationFlag;
   void* *systemDataPointer;
-  long long longStackD0;
+  long long LongStackD0;
   uint32_t UnsignedStackFlagC0;
   uint32_t secondarySystemDataBuffer;
   uint32_t StackUnsignedValue94;
@@ -63482,7 +63482,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   int stackVariable1E8;
   uint8_t (*paGlobalDataFlags2) [16];
   ulong long SystemTimeFlag1d8;
-  long long longValue1d0;
+  long long LongValue1D0;
   uint SystemThreadStackSize;
   uint GlobalDataFlags;
   uint32_t StackUnsignedValue1BC;
@@ -63496,7 +63496,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   void* ConcatenatedSystemValue0;
   float fStack_178;
   float fStack_174;
-  long long longValue170;
+  long long LongValue170;
   long long *pSystemMemoryOffset168;
   long long *pSystemMemoryOffset160;
   uint32_t SystemConfigurationId;
