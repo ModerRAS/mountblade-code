@@ -49925,9 +49925,9 @@ void ExecuteResourceHashTableCleanup(uint8_t ObjectContext,int64_t ValidationCon
 void ReleaseSystemResourceHandleAndUnlock(uint8_t ObjectContext,uint *ValidationContext)
 
 {
-  if ((*ValidationContext & 1) != 0) {
-    *ValidationContext = *ValidationContext & 0xfffffffe;
-    ReleaseResourceHandle(*(uint8_t *)(ValidationContext + 10));
+  if ((*ValidationContext & ResourceHandleActiveFlag) != 0) {
+    *ValidationContext = *ValidationContext & ResourceHandleReleaseMask;
+    ReleaseResourceHandle(*(uint8_t *)(ValidationContext + ResourceHandleReleaseOffset));
   }
   return;
 }
@@ -69396,9 +69396,9 @@ void DestroyMutexByValidationContext(uint8_t ObjectContext,int64_t ValidationCon
 void ReleaseResourceHandleByValidation(uint8_t ObjectContext,uint *ValidationContext)
 
 {
-  if ((*ValidationContext & 1) != 0) {
-    *ValidationContext = *ValidationContext & 0xfffffffe;
-    ReleaseResourceHandle(*(uint8_t *)(ValidationContext + 10));
+  if ((*ValidationContext & ResourceHandleActiveFlag) != 0) {
+    *ValidationContext = *ValidationContext & ResourceHandleReleaseMask;
+    ReleaseResourceHandle(*(uint8_t *)(ValidationContext + ResourceHandleReleaseOffset));
   }
   return;
 }
