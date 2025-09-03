@@ -5029,15 +5029,15 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
  * 主要用于资源管理和内存分配跟踪
  * 
  * @param SystemContext 系统上下文指针，包含系统资源管理信息
- * @param resourceHandle 资源句柄，标识要管理的特定资源
- * @return uint8_t 操作状态码，0表示成功，0x1c表示错误
+ * @param ResourceHandle 资源句柄，标识要管理的特定资源
+ * @return uint64_t 操作状态码，0表示成功，非0表示失败
  */
 uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHandle)
 {
-  int64_t ValidatedContext;
-  uint64_t ResourceOperationResult;
-  int ActiveResourcesCount;
-  int64_t ResourceValidationData[2];
+  int64_t ValidatedSystemContext;
+  uint64_t ResourceManagementResult;
+  int ActiveResourceCount;
+  int64_t ResourceValidationContext[2];
   
   ResourceManagementResult = ValidateObjectContext(*(uint32_t *)(SystemContext + ObjectContextOffset), ResourceValidationContext);
   ValidatedSystemContext = ResourceValidationContext[0];
