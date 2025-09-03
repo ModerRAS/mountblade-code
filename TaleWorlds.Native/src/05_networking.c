@@ -760,10 +760,10 @@ void InitializeNetworkConnectionPool(void)
   NetworkConnectionPoolCapacity = CONNECTION_POOL_CAPACITY;           // 设置连接池最大容量
   NetworkConnectionPoolAllocationCount = 0;        // 重置分配计数器
   NetworkConnectionPoolDeallocationCount = 0;      // 重置释放计数器
-  NetworkConnectionPoolHealthStatus = 0x01;         // 设置健康状态为正常
+  NetworkConnectionPoolHealthStatus = HEALTH_STATUS_NORMAL;         // 设置健康状态为正常
   
   // 初始化连接池管理器
-  NetworkConnectionPoolManager = 0xFFFFFFFF;      // 初始化管理器句柄
+  NetworkConnectionPoolManager = MANAGER_HANDLE_INVALID;      // 初始化管理器句柄
   NetworkConnectionPoolIndex = 0;                  // 重置索引
   
   // 初始化性能监控
