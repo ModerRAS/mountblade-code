@@ -105207,13 +105207,13 @@ void ResetThreadLocalStorage(void)
   int64_t ThreadLocalStorageContext;
   
   ThreadLocalStorageContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  *(uint8_t *)(ThreadContext + ThreadLocalStorageDataOffset) = &ThreadResourcePointer;
-  if (*(int64_t *)(ThreadContext + ThreadResourceStateOffset) != 0) {
+  *(uint8_t *)(ThreadLocalStorageContext + ThreadLocalStorageDataOffset) = &ThreadResourcePointer;
+  if (*(int64_t *)(ThreadLocalStorageContext + ThreadResourceStateOffset) != 0) {
     CleanupThreadResources();
   }
-  *(uint8_t *)(ThreadContext + ThreadResourceStateOffset) = 0;
-  *(uint32_t *)(ThreadContext + ThreadResourceCountOffset) = 0;
-  *(uint8_t *)(ThreadContext + ThreadLocalStorageDataOffset) = &DefaultThreadResource;
+  *(uint8_t *)(ThreadLocalStorageContext + ThreadResourceStateOffset) = 0;
+  *(uint32_t *)(ThreadLocalStorageContext + ThreadResourceCountOffset) = 0;
+  *(uint8_t *)(ThreadLocalStorageContext + ThreadLocalStorageDataOffset) = &DefaultThreadResource;
   return;
 }
 
