@@ -76926,7 +76926,20 @@ void DestroyMutexInValidationContext(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090b4f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源表中的资源句柄
+ * 
+ * 该函数用于清理系统资源表中的所有资源句柄，遍历资源表并释放每个有效的资源句柄。
+ * 这是系统资源清理和异常处理的重要组成部分，确保系统资源正确释放。
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含资源清理所需的上下文信息
+ * @return void 无返回值
+ * 
+ * @note 此函数会遍历整个资源表，对每个有效资源执行清理操作
+ * @warning 如果资源清理过程中发现异常，会触发系统紧急退出
+ */
+void CleanupSystemResourceTable(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
