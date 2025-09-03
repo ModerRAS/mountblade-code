@@ -77167,7 +77167,7 @@ void DestroyBasicMutex(void)
 
 
 
-void Unwind_18090b4b0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupOperation4b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -77203,7 +77203,7 @@ void Unwind_18090b4b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b4c0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupOperation4c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
