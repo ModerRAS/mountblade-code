@@ -103549,7 +103549,7 @@ void InitializeSystemDataStructureBY(void)
 void InitializeSystemDataStructureBY(void)
 
 {
-  SystemDataPointer017 = &SystemDataStructure;
+  SystemDataStructureReference017 = &SystemDataStructure;
   return;
 }
 
