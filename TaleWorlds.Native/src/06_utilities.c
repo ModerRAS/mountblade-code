@@ -5180,23 +5180,39 @@ uint8_t ValidateCharacterSafety(char CharacterToValidate) {
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
+/**
+ * @brief 验证对象句柄安全性
+ * 
+ * 该函数验证对象句柄的有效性，并执行相应的资源管理操作。
+ * 包括上下文验证、内存缓冲区检查和系统退出操作。
+ * 
+ * @param ObjectHandleToValidate 要验证的对象句柄
+ * @return uint8_t 验证结果，0表示成功，非0表示失败
+ */
 uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
   uint8_t ValidationResult;
   int64_t ValidatedContextMemoryAddress;
   
+  // 验证对象上下文并获取内存地址
   ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedContextMemoryAddress);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
+  
+  // 调整验证后的内存地址
   if (ValidatedContextMemoryAddress == 0) {
     ValidatedContextMemoryAddress = 0;
   }
   else {
-    ValidatedContextMemoryAddress = ValidatedContextMemoryAddress + -8;
+    ValidatedContextMemoryAddress = ValidatedContextMemoryAddress - 8;
   }
+  
+  // 检查对象句柄是否有效
   if (*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
+  
+  // 执行系统退出操作
   ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
@@ -30295,8 +30311,12 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerFunctionPointer;
   
+  // 获取异常处理函数指针
   ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  
+  // 检查异常处理函数指针是否有效
   if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+    // 调用异常处理函数
     (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
