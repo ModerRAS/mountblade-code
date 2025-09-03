@@ -19376,29 +19376,29 @@ void ExecuteSystemCallback(long long *callbackParameter)
  * @param sourceString 源字符串指针
  * @note 这是系统字符串处理的重要组成部分，确保字符串复制的安全性
  */
-void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
+void ProcessSystemStringCopy(long long TargetBuffer,long long SourceString)
 
 {
-  long long stringLength;
+  long long StringLength;
   
-  if (sourceString == 0) {
-    *(uint32_t *)(targetBuffer + 0x10) = 0;
-    **(uint8_t **)(targetBuffer + 8) = 0;
+  if (SourceString == 0) {
+    *(uint32_t *)(TargetBuffer + STRING_LENGTH_OFFSET) = 0;
+    **(uint8_t **)(TargetBuffer + STRING_DATA_OFFSET) = 0;
     return;
   }
-  stringLength = -1;
+  StringLength = -1;
   do {
-    stringLength = stringLength + 1;
-  } while (*(char *)(sourceString + stringLength) != '\0');
-  if ((int)stringLength < 0x1000) {
-    *(int *)(targetBuffer + 0x10) = (int)stringLength;
+    StringLength = StringLength + 1;
+  } while (*(char *)(SourceString + StringLength) != '\0');
+  if ((int)StringLength < 0x1000) {
+    *(int *)(TargetBuffer + STRING_LENGTH_OFFSET) = (int)StringLength;
                     000180045b59. Too many branches
                         strcpy_s(*(void* *)(SystemResourceManager + 8),0x1000);
     return;
   }
   ProcessSystemStringAllocation(&SystemMemoryTemplateG,0x1000,ConfigurationDataPointer);
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
-  **(uint8_t **)(targetBuffer + 8) = 0;
+  *(uint32_t *)(TargetBuffer + STRING_LENGTH_OFFSET) = 0;
+  **(uint8_t **)(TargetBuffer + STRING_DATA_OFFSET) = 0;
   return;
 }
 
