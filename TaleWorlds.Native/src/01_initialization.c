@@ -5390,12 +5390,12 @@ void InitializeSystemNodeManager(void)
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** HashTableNode;
-  void* nodeManagerCallbackPointer;
+  void* NodeManagerCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  nodeManagerCallbackPointer = SystemNodeManagerCallback;
+  NodeManagerCallbackPointer = SystemNodeManagerCallback;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -6043,17 +6043,17 @@ void InitializeSystemMessageProcessor(void)
 
 {
   void* SystemContextParameter;
-  void* *messageProcessorReference;
+  void* *MessageProcessorReference;
   uint8_t *MessageConfigurationBuffer;
   uint32_t ConfigurationBufferSize;
   uint8_t MessageConfigurationBuffer [136];
   
-  messageProcessorReference = &SystemMessageProcessorNode;
+  MessageProcessorReference = &SystemMessageProcessorNode;
   MessageConfigurationBuffer = MessageConfigurationBuffer;
   MessageConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = SYSTEM_MESSAGE_CONFIG_BUFFER_SIZE;
   strcpy_s(MessageConfigurationBuffer,StringBufferSize,&SystemMessageProcessorTemplate,SystemContextParameter,InvalidHandleValue);
-  SystemMessageProcessorHandle = InitializeMessageProcessorCallback(&messageProcessorReference);
+  SystemMessageProcessorHandle = InitializeMessageProcessorCallback(&MessageProcessorReference);
   return;
 }
 
@@ -6090,17 +6090,17 @@ void InitializeSystemLogManager(void)
 
 {
   void* SystemContextParameter;
-  void* *logManagerReference;
+  void* *LogManagerReference;
   uint8_t *LogConfigurationBuffer;
   uint32_t ConfigurationBufferSize;
   uint8_t LogConfigurationBuffer [136];
   
-  logManagerReference = &SystemLogManagerNode;
+  LogManagerReference = &SystemLogManagerNode;
   LogConfigurationBuffer = LogConfigurationBuffer;
   LogConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 9;
   strcpy_s(LogConfigurationBuffer,StringBufferSize,&SystemLogManagerTemplate,SystemContextParameter,InvalidHandleValue);
-  SystemLogManagerHandle = InitializeLogManagerCallback(&logManagerReference);
+  SystemLogManagerHandle = InitializeLogManagerCallback(&LogManagerReference);
   return;
 }
 
@@ -6120,17 +6120,17 @@ void InitializeSystemPerformanceMonitor(void)
 
 {
   void* SystemContextParameter;
-  void* *performanceMonitorReference;
+  void* *PerformanceMonitorReference;
   uint8_t *PerformanceConfigurationBuffer;
   uint32_t ConfigurationBufferSize;
   uint8_t PerformanceConfigurationBuffer [136];
   
-  performanceMonitorReference = &SystemPerformanceMonitorNode;
+  PerformanceMonitorReference = &SystemPerformanceMonitorNode;
   PerformanceConfigurationBuffer = PerformanceConfigurationBuffer;
   PerformanceConfigurationBuffer[0] = 0;
   ConfigurationBufferSize = 0xf;
   strcpy_s(PerformanceConfigurationBuffer,StringBufferSize,&SystemPerformanceMonitorTemplate,SystemContextParameter,InvalidHandleValue);
-  SystemPerformanceMonitorHandle = InitializePerformanceMonitorCallback(&performanceMonitorReference);
+  SystemPerformanceMonitorHandle = InitializePerformanceMonitorCallback(&PerformanceMonitorReference);
   return;
 }
 
