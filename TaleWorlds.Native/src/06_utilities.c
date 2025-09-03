@@ -21638,7 +21638,7 @@ void ValidateAndProcessResourceData(int64_t ObjectContext, uint8_t *ValidationCo
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   uint ResourceDataLength;
-  int checksumResourceHashStatus;
+  int ChecksumValidationStatus;
   int ResourceTablePointerEntry;
   uint ConfigurationFlags;
   uint ResourceCount;
