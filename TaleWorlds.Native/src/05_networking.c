@@ -468,7 +468,7 @@ uint32_t ConnectionStateFlags;                     // 网络连接状态标志�
 
 // 网络协议和地址配置
 uint32_t ConnectionProtocolType;                   // 网络连接协议类型
-uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本
+uint32_t ConnectionProtocolVersion;                // 网络连接协议版本
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址
 uint32_t NetworkServerPortNumber;                         // 网络服务器端口号
 uint32_t NetworkClientIpAddress;                          // 网络客户端IP地址
