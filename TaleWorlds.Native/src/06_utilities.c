@@ -1065,12 +1065,12 @@ void* ModuleDependencySignature;                         // 模块依赖签名
 void* ModuleDependencyHandle;                            // 模块依赖句柄
 
 // 系统运行时全局变量
-int64_t GlobalSystemInputParameter;                        // 系统输入参数值
-int32_t SystemOperationStatus;                       // 系统操作状态码
-void* SystemRegisterData;                              // 系统寄存器上下文数据
-void* SystemObjectContextBuffer;                                // 系统对象上下文缓冲区
-uint8_t SystemResourceAllocationTemplate;                 // 系统资源分配模板
-uint8_t ProcessingWorkspace[1024];                         // 系统处理工作空间缓冲区
+int64_t GlobalSystemInputParameter;                     // 全局系统输入参数
+int32_t SystemOperationStatus;                           // 系统操作状态码
+void* SystemRegisterData;                               // 系统寄存器数据
+void* SystemObjectContextBuffer;                         // 系统对象上下文缓冲区
+uint8_t SystemResourceAllocationTemplate;                // 系统资源分配模板
+uint8_t ProcessingWorkspace[1024];                       // 处理工作空间缓冲区
 
 /**
  * @brief 初始化核心引擎模块
@@ -1087,7 +1087,7 @@ void InitializeCoreEngineModule(void);
 // 核心引擎模块全局变量
 void* CoreEngineInstance;                                // 核心引擎实例
 void* CoreEngineConfiguration;                           // 核心引擎配置
-uint32_t CoreEngineInitializationStatus;                // 核心引擎初始化状态
+uint32_t CoreEngineInitializationStatus;                 // 核心引擎初始化状态
 void* CoreEngineHandle;                                  // 核心引擎句柄
 
  /**
