@@ -10697,7 +10697,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   lStack_d0 = SystemSixthParameter;
   uStack_d8 = SystemSeventhParameter;
   StackPointerBuffer = SystemEighthParameter;
-  piStack_78 = param_9;
+  piStack_78 = SystemNinthParameter;
   StackDataPointer = SystemParameterPointer0;
   pStackParameter1 = SystemParameterPointer0;
   puStack_118 = &SystemNullPointer;
@@ -10726,7 +10726,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
     pMemoryAddress3 = puStack_110;
   }
   AllocateSystemMemory(&SystemMemoryAllocationBuffer,pMemoryAddress3);
-  *param_9 = 0;
+  *SystemNinthParameter = 0;
   LongOffset = *SystemFifthParameter;
   IntegerCounter = 0;
   if (LongOffset != SystemFifthParameter[1]) {
@@ -10739,7 +10739,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
         pMemoryAddress3 = *(void **)(LongOffset + 8);
       }
       AllocateSystemMemory(&SystemMemorySecondaryBuffer,pMemoryAddress3);
-      IntegerCounter = *param_9;
+      IntegerCounter = *SystemNinthParameter;
       LongCounter1 = (longlong)IntegerCounter * 0x3088 + lStack_d0;
       pMemoryAddress3 = &SystemConstantStringPrimary;
       if (*(void **)(LongOffset + 8) != (void *)0x0) {
@@ -10793,7 +10793,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
       SystemSeventhParameter = uStack_d8;
       SystemTertiaryParameter = pcStack_70;
       SystemSixthParameter = lStack_d0;
-      param_9 = piStack_78;
+      SystemNinthParameter = piStack_78;
     } while (LongOffset != SystemFifthParameter[1]);
   }
   pBooleanCheck2 = (char *)0x0;
@@ -10959,7 +10959,7 @@ Label_18062e8bc:
       SystemSixthParameter = SystemSixthParameter + 0x3088;
       SystemTertiaryParameter = pcStack_70;
       lStack_d0 = SystemSixthParameter;
-    } while (IntegerCounter < *param_9);
+    } while (IntegerCounter < *SystemNinthParameter);
   }
   puStack_118 = &SystemNullPointer;
   if (pStackCounter2 != (void *)0x0) {
