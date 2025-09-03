@@ -4883,8 +4883,8 @@ uint8_t ReleaseObjectHandle(void) {
  * @param CharacterToValidate 输入的字符参数，需要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t VerifyCharacterParameter(char CharacterToValidate) {
-  if (CharacterToValidate != '\0') {
+uint8_t VerifyCharacterParameter(char CharacterParameter) {
+  if (CharacterParameter != '\0') {
     ExecuteSystemExitOperation();
   }
   return 0;
@@ -76613,10 +76613,20 @@ void ExecuteQuaternaryResourceContextCallback(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090b210(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源上下文回调函数1
+ * 
+ * 该函数从验证上下文中获取资源上下文，并执行相应的回调函数
+ * 使用偏移量0x378来定位资源上下文
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090b210
+ */
+void ExecuteResourceContextCallback1(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int64_t *processPointer;
+  int64_t *ResourceContext;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x378);
   if (ResourceContext != (int64_t *)0x0) {
