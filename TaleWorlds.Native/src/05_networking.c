@@ -1807,7 +1807,7 @@ NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t C
  * @note 此函数会根据数据包类型选择不同的处理路径
  * @warning 处理过程中如果发现数据包损坏或格式错误，会立即返回错误码
  */
-NetworkHandle NetworkProcessValidatedPacket(int64_t ConnectionContext, int64_t *PacketData)
+NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int64_t *PacketData)
 {
   NetworkHandle PacketProcessingResult;                        // 数据包处理结果
   NetworkStatus ConnectionStatusArray [6];                      // 连接状态数组
