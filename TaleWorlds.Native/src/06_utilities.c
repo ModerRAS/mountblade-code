@@ -3000,27 +3000,27 @@ uint8_t SystemMemoryConfigAlternate;      // 备用配置
  * @warning 验证失败时可能触发系统安全机制
  */
 void VerifyDataIntegrity(void);
-uint8_t EnvironmentConfigActive;
-uint8_t EnvironmentConfigStandby;
-uint8_t ConfigurationCache;
-// 配置数据 - 存储系统配置信息
-uint8_t ConfigurationData;
-uint8_t ConfigurationExtra;
-uint8_t CoreConfigData;
-uint8_t EngineConfigData;
-uint8_t NetworkMainDataStream;
-uint8_t NetworkSecondaryDataStream;
-uint8_t NetworkTertiaryDataStream;
-uint8_t NetworkQuaternaryDataStream;
-uint8_t NetworkDataStreamPriority;
-uint8_t NetworkDataStreamConfigMain;
-uint8_t SystemNetworkConfigMain;
-uint8_t TertiaryConfigData;
-uint8_t QuaternaryConfigData;
-uint8_t NetworkConfigSecondary;
-uint8_t NetworkConfigTertiary;
-uint8_t QuinaryConfigData;
-uint8_t AdditionalConfigData;
+uint8_t SystemEnvironmentConfigActive;                      // 系统环境配置激活状态
+uint8_t SystemEnvironmentConfigStandby;                     // 系统环境配置备用状态
+uint8_t SystemConfigurationCache;                           // 系统配置缓存
+// 系统配置数据 - 存储系统配置信息
+uint8_t SystemConfigurationData;                           // 系统配置数据
+uint8_t SystemConfigurationExtra;                          // 系统配置扩展数据
+uint8_t SystemCoreConfigurationData;                       // 系统核心配置数据
+uint8_t SystemEngineConfigurationData;                     // 系统引擎配置数据
+uint8_t SystemNetworkMainDataStream;                        // 系统网络主要数据流
+uint8_t SystemNetworkSecondaryDataStream;                    // 系统网络次要数据流
+uint8_t SystemNetworkTertiaryDataStream;                     // 系统网络第三数据流
+uint8_t SystemNetworkQuaternaryDataStream;                   // 系统网络第四数据流
+uint8_t SystemNetworkDataStreamPriority;                     // 系统网络数据流优先级
+uint8_t SystemNetworkDataStreamConfigMain;                   // 系统网络数据流主配置
+uint8_t SystemNetworkConfigurationMain;                      // 系统网络主配置
+uint8_t SystemTertiaryConfigurationData;                   // 系统第三级配置数据
+uint8_t SystemQuaternaryConfigurationData;                 // 系统第四级配置数据
+uint8_t SystemNetworkConfigurationSecondary;               // 系统网络配置次要项
+uint8_t SystemNetworkConfigurationTertiary;                // 系统网络配置第三项
+uint8_t SystemQuinaryConfigurationData;                    // 系统第五级配置数据
+uint8_t SystemAdditionalConfigurationData;                 // 系统附加配置数据
 bool SystemCoreStatusFlag;                  // 系统核心状态标志
 bool SystemEngineStatusFlag;                 // 系统引擎状态标志
 uint8_t SystemGraphicsStatusFlag;            // 系统图形状态标志
