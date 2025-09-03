@@ -22040,17 +22040,17 @@ void ValidateAndProcessResourceData(int64_t ObjectContext, uint8_t *ValidationCo
   uint ConfigurationFlags;
   uint ResourceCount;
   uint ResourceIdentifierBuffer [2];
-  uint resourceResourceOperationBuffer [2];
+  uint ResourceOperationBuffer [2];
   uint8_t ResourceValidationBuffer [32];
   
   checksumValidationStatusCode = ComputeDataChecksum(ValidationContext,ResourceValidationBuffer,0,0x2050414d);
   if ((checksumValidationStatusCode == 0) && (checksumValidationStatusCode = ValidateResourceHash(ValidationContext,ObjectContext + ObjectContextValidationDataOffset), checksumValidationStatusCode == 0)) {
-    resourceResourceOperationBuffer[0] = 0;
-    checksumValidationStatusCode = LoadResourceData(*ValidationContext,resourceResourceOperationBuffer);
-    ResourceDataLength = resourceResourceOperationBuffer[0];
+    ResourceOperationBuffer[0] = 0;
+    checksumValidationStatusCode = LoadResourceData(*ValidationContext,ResourceOperationBuffer);
+    ResourceDataLength = ResourceOperationBuffer[0];
     if (checksumValidationStatusCode == 0) {
-      configurationFlags = resourceResourceOperationBuffer[0] & 1;
-      ResourceCount = resourceResourceOperationBuffer[0] >> 1;
+      configurationFlags = ResourceOperationBuffer[0] & 1;
+      ResourceCount = ResourceOperationBuffer[0] >> 1;
       checksumValidationStatusCode = ProcessResourceEntry((int64_t *)(ObjectContext + ObjectContextProcessingDataOffset),ResourceCount);
       if (checksumValidationStatusCode == 0) {
         ResourceIdentifierBuffer[0] = 0;
