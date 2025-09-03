@@ -4992,6 +4992,15 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，用于对象生命周期管理。
+ * 当对象被引用时，需要增加其引用计数以确保对象不会被过早释放。
+ * 
+ * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
@@ -30263,7 +30272,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */
-void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerAddress;
   
   ExceptionHandlerAddress = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
@@ -30286,7 +30295,7 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** ExceptionHandlerFunctionTable;
   
   ExceptionHandlerFunctionTable = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
@@ -30308,7 +30317,7 @@ void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCon
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */
-void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerFunctionPointer;
   
   ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
