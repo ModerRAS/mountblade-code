@@ -4047,24 +4047,42 @@ uint8_t EventHandlerExtendedSlotFiftyFour;
 uint8_t EventHandlerExtendedSlotFiftyFive;
 // 事件处理器扩展槽五十六 - 第五十六号扩展事件处理器槽
 uint8_t EventHandlerExtendedSlotFiftySix;
-uint8_t SystemEventHandlerCustomReserved57;
-uint8_t SystemEventHandlerCustomReserved58;
-uint8_t SystemEventHandlerCustomReserved59;
-uint8_t SystemEventHandlerCustomReserved60;
-uint8_t SystemEventHandlerCustomReserved61;
-uint8_t SystemEventHandlerCustomReserved62;
-uint8_t SystemEventHandlerCustomReserved63;
-uint8_t SystemEventHandlerCustomReserved64;
-uint8_t SystemEventHandlerCustomReserved65;
-uint8_t SystemEventHandlerCustomReserved66;
-uint8_t SystemEventHandlerCustomReserved67;
-uint8_t SystemEventHandlerCustomReserved68;
-uint8_t SystemEventHandlerCustomReserved69;
-uint8_t SystemEventHandlerCustomReserved70;
-uint8_t SystemEventHandlerCustomReserved71;
-uint8_t SystemEventHandlerCustomReserved72;
-uint8_t SystemEventHandlerCustomReserved73;
-uint8_t SystemEventHandlerCustomReserved74;
+// 事件处理器扩展槽五十七 - 第五十七号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotFiftySeven;
+// 事件处理器扩展槽五十八 - 第五十八号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotFiftyEight;
+// 事件处理器扩展槽五十九 - 第五十九号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotFiftyNine;
+// 事件处理器扩展槽六十 - 第六十号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixty;
+// 事件处理器扩展槽六十一 - 第六十一号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixtyOne;
+// 事件处理器扩展槽六十二 - 第六十二号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixtyTwo;
+// 事件处理器扩展槽六十三 - 第六十三号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixtyThree;
+// 事件处理器扩展槽六十四 - 第六十四号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixtyFour;
+// 事件处理器扩展槽六十五 - 第六十五号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixtyFive;
+// 事件处理器扩展槽六十六 - 第六十六号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixtySix;
+// 事件处理器扩展槽六十七 - 第六十七号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixtySeven;
+// 事件处理器扩展槽六十八 - 第六十八号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixtyEight;
+// 事件处理器扩展槽六十九 - 第六十九号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSixtyNine;
+// 事件处理器扩展槽七十 - 第七十号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSeventy;
+// 事件处理器扩展槽七十一 - 第七十一号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSeventyOne;
+// 事件处理器扩展槽七十二 - 第七十二号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSeventyTwo;
+// 事件处理器扩展槽七十三 - 第七十三号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSeventyThree;
+// 事件处理器扩展槽七十四 - 第七十四号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSeventyFour;
 uint8_t SystemEventHandlerCustomReserved75;
 // 事件处理器槽九十 - 第九十号事件处理器槽
 uint8_t EventHandlerSlotNumberNinety;

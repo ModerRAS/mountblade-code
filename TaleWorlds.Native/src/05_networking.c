@@ -1538,15 +1538,15 @@ NetworkHandle NetworkInitializeConnectionSystem(void)
 NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
-  NetworkConnectionStatus *ConnectionContextDataArray;  // 网络连接上下文数据数组
-  int32_t ActiveConnectionCount;                    // 活跃连接数量
-  int64_t ConnectionBaseAddressPointer;             // 连接基地址指针
-  NetworkConnectionStatus PacketProcessingResult;              // 数据包处理结果
-  NetworkConnectionStatus DataProcessingStatus;                // 数据处理状态
-  NetworkConnectionStatus ConnectionValidationResult;          // 连接验证结果
-  NetworkConnectionStatus *StatusBufferPointer;          // 网络状态缓冲区指针
-  int64_t ProcessingIterationCounter;               // 处理迭代计数器
-  NetworkConnectionStatus *PacketBufferPointer;         // 网络数据包缓冲区指针
+  NetworkConnectionStatus *NetworkConnectionContextArray;  // 网络连接上下文数据数组
+  int32_t ActiveNetworkConnectionCount;                    // 活跃连接数量
+  int64_t NetworkConnectionBaseAddress;             // 连接基地址
+  NetworkConnectionStatus NetworkPacketProcessingResult;              // 数据包处理结果
+  NetworkConnectionStatus NetworkDataProcessingStatus;                // 数据处理状态
+  NetworkConnectionStatus NetworkConnectionValidationResult;          // 连接验证结果
+  NetworkConnectionStatus *NetworkStatusBuffer;          // 网络状态缓冲区指针
+  int64_t NetworkProcessingIterationCount;               // 处理迭代计数器
+  NetworkConnectionStatus *NetworkPacketBuffer;         // 网络数据包缓冲区指针
   
   // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[1]) {
@@ -1554,42 +1554,42 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *NetworkStatusBufferPointer = (NetworkConnectionStatus *)0x0;
+  NetworkConnectionStatus *NetworkStatusBuffer = (NetworkConnectionStatus *)0x0;
   
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
-      NetworkStatusBufferPointer = (NetworkConnectionStatus *)
+      NetworkStatusBuffer = (NetworkConnectionStatus *)
                ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                              NetworkConnectionFinalizeValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (NetworkStatusBufferPointer != (NetworkConnectionStatus *)0x0) {
-        int32_t ActiveConnectionCount = (int)ConnectionContext[1];
-        int64_t ConnectionProcessingCounter = (long long)ActiveConnectionCount;
+      if (NetworkStatusBuffer != (NetworkConnectionStatus *)0x0) {
+        int32_t ActiveNetworkConnectionCount = (int)ConnectionContext[1];
+        int64_t NetworkConnectionProcessingCounter = (long long)ActiveNetworkConnectionCount;
         
         // 如果有活跃连接，处理连接数据
-        if ((ActiveConnectionCount != 0) && (ConnectionBaseAddressPointer = *ConnectionContext, 0 < ActiveConnectionCount)) {
-          NetworkConnectionStatus *PacketStatusBufferPointer = NetworkStatusBufferPointer;
+        if ((ActiveNetworkConnectionCount != 0) && (NetworkConnectionBaseAddress = *ConnectionContext, 0 < ActiveNetworkConnectionCount)) {
+          NetworkConnectionStatus *NetworkPacketStatusBuffer = NetworkStatusBuffer;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ConnectionContextDataArray = (NetworkConnectionStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + (long long)PacketStatusBufferPointer);
+            NetworkConnectionStatus *NetworkConnectionContextArray = (NetworkConnectionStatus *)((NetworkConnectionBaseAddress - (long long)NetworkStatusBuffer) + (long long)NetworkPacketStatusBuffer);
             
             // 提取连接状态信息
-            NetworkConnectionStatus CurrentPacketStatus = ConnectionContextDataArray[1];
-            NetworkConnectionStatus CurrentDataStatus = ConnectionContextDataArray[2];
-            NetworkConnectionStatus CurrentValidationResult = ConnectionContextDataArray[3];
+            NetworkConnectionStatus CurrentNetworkPacketStatus = NetworkConnectionContextArray[1];
+            NetworkConnectionStatus CurrentNetworkDataStatus = NetworkConnectionContextArray[2];
+            NetworkConnectionStatus CurrentNetworkValidationResult = NetworkConnectionContextArray[3];
             
             // 更新数据包缓冲区状态
-            *PacketStatusBufferPointer = *ConnectionContextDataArray;
-            PacketStatusBufferPointer[1] = CurrentPacketStatus;
-            PacketStatusBufferPointer[2] = CurrentDataStatus;
-            PacketStatusBufferPointer[3] = CurrentValidationResult;
-            PacketStatusBufferPointer[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + -4 + (long long)(PacketStatusBufferPointer + 5));
+            *NetworkPacketStatusBuffer = *NetworkConnectionContextArray;
+            NetworkPacketStatusBuffer[1] = CurrentNetworkPacketStatus;
+            NetworkPacketStatusBuffer[2] = CurrentNetworkDataStatus;
+            NetworkPacketStatusBuffer[3] = CurrentNetworkValidationResult;
+            NetworkPacketStatusBuffer[4] = *(NetworkConnectionStatus *)((NetworkConnectionBaseAddress - (long long)NetworkStatusBuffer) + -4 + (long long)(NetworkPacketStatusBuffer + 5));
             
             // 更新迭代计数器
             ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
