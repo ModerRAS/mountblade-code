@@ -82319,7 +82319,19 @@ void Unwind_18090d0f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d100(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源哈希状态（主函数）
+ * 
+ * 该函数负责清理系统资源哈希状态，释放相关资源
+ * 主要用于系统资源管理和内存清理操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源清理过程中调用
+ * @warning 如果清理过程中出现错误，可能会引发系统异常
+ */
+void CleanupSystemResourceHashStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -82355,7 +82367,19 @@ void Unwind_18090d100(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d110(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源哈希状态（次级函数）
+ * 
+ * 该函数负责清理系统资源哈希状态，释放相关资源
+ * 主要用于系统资源管理和内存清理操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源清理过程中调用
+ * @warning 如果清理过程中出现错误，可能会引发系统异常
+ */
+void CleanupSecondaryResourceHashStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -82391,7 +82415,19 @@ void Unwind_18090d110(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d120(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源哈希状态（三级函数）
+ * 
+ * 该函数负责清理系统资源哈希状态，释放相关资源
+ * 主要用于系统资源管理和内存清理操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源清理过程中调用
+ * @warning 如果清理过程中出现错误，可能会引发系统异常
+ */
+void CleanupTertiaryResourceHashStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -82463,7 +82499,19 @@ void CleanupExtendedResourceHashStatus(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_18090d140(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源哈希状态（四级函数）
+ * 
+ * 该函数负责清理系统资源哈希状态，释放相关资源
+ * 主要用于系统资源管理和内存清理操作
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源清理过程中调用
+ * @warning 如果清理过程中出现错误，可能会引发系统异常
+ */
+void CleanupQuaternaryResourceHashStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
