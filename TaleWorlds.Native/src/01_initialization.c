@@ -18964,9 +18964,9 @@ HandleMemoryBufferOverflow:
     if (AlternateStringBuffer2 != (void* *)0x0) {
       SystemStringTemplatePtr = AlternateStringBuffer2;
     }
-    SystemStringTemplatePtr2 = &SystemStringTemplate;
+    SystemStringTemplatePtrSecondary = &SystemStringTemplate;
     if (AlternateStringBuffer != (void* *)0x0) {
-      SystemStringTemplatePtr2 = AlternateStringBuffer;
+      SystemStringTemplatePtrSecondary = AlternateStringBuffer;
     }
     SystemConfigurationTemplatePtr = &SystemConfigurationTemplatePrimary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
@@ -18976,9 +18976,9 @@ HandleMemoryBufferOverflow:
     SystemTemporaryBuffer[0] = 0;
     GameControllerStatusFlag = 2;
     InitializeGameSettings(&SystemMemoryTemplatePtr,&SystemDataBufferTemplateI,0x130a7);
-    SystemStringTemplatePtr2 = &SystemStringTemplate;
+    SystemStringTemplatePtrSecondary = &SystemStringTemplate;
     if (LocalStackBuffer != (void* *)0x0) {
-      SystemStringTemplatePtr2 = LocalStackBuffer;
+      SystemStringTemplatePtrSecondary = LocalStackBuffer;
     }
     SystemConfigurationTemplatePtr = &SystemConfigurationTemplateSecondary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
@@ -18990,7 +18990,7 @@ HandleMemoryBufferOverflow:
     }
     AlternateStringBufferSecondary = (void* *)0x0;
     GlobalDataFlagsSecondary = GlobalDataFlagsSecondary & MAX_UNSIGNED_32_BIT00000000;
-    SystemGlobalDataReferencePtr2 = &SystemMemoryAllocatorReference;
+    SystemGlobalDataReferencePtrSecondary = &SystemMemoryAllocatorReference;
     SystemGlobalDataReferencePtr = &SystemGlobalDataReference;
     if (AlternateStringBuffer != (void* *)0x0) {
         SystemCleanupFunction();
@@ -19139,9 +19139,9 @@ SymbolInitializationCleanup:
 SkipLibraryHandleInitialization:
   void* AllocatedMemoryBlock1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
   *AllocatedMemoryBlock1 = 0;
-  void* AllocatedMemoryBlock2 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
+  void* AllocatedMemoryBlockSecondary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
   *AllocatedMemoryBlock1 = &SystemDebugDataBufferA;
-  *AllocatedMemoryBlock2 = &SystemDebugDataBufferB;
+  *AllocatedMemoryBlockSecondary = &SystemDebugDataBufferB;
   void* AllocatedMemoryBlock3 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
   uint8_t* AllocatedMemoryBlock4 = (uint8_t *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
   *AllocatedMemoryBlock4 = 0;
@@ -19336,7 +19336,7 @@ uint32_t FinalSystemInitialization(void)
     }
     SystemResourceTriplePointer = (long long ***)(SystemMemoryPageBase + 0x4267c);
     _Mtx_destroy_in_situ();
-    SystemResourceTriplePointer2 = (long long ***)(SystemMemoryPageBase + 0x40070);
+    SystemResourceTriplePointerSecondary = (long long ***)(SystemMemoryPageBase + 0x40070);
     _Mtx_destroy_in_situ();
     ConfigureSystemBuffer(SystemMemoryPageBase);
     if (MemoryAllocationFlags != 0) {
@@ -20895,7 +20895,7 @@ void InitializeSystemCoreEngine(void)
   }
   SystemGlobalDataReferenceTertiary = &SystemGlobalDataReference;
   SystemDataProcessingFlag1 = 0;
-  SystemDataProcessingFlag2 = 0;
+  SystemDataProcessingFlagSecondary = 0;
   SystemDataProcessingFlag3 = 0;
   SystemGlobalDataReferenceQuaternary = &SystemGlobalDataReference;
   SystemBufferProcessingFlag = 0;
@@ -24122,7 +24122,7 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
   void* StackParameter2;
   
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer;
-  StackParameter2 = AdditionalParameter;
+  StackParameterSecondary = AdditionalParameter;
   StackParameter1 = ConfigurationFlag;
   SystemHashNodeData = (ulong long *)SystemGlobalDataAllocate();
   systemProcessFlags58 = 0;
@@ -26701,7 +26701,7 @@ void InitializeSystemDataStructures(void)
   } while (systemCounter != 0);
   ReleaseGraphicsContext(SystemGraphicsContextPointer + 0x48);
   SystemPerformanceCounter1 = 0;
-  SystemPerformanceCounter2 = 0;
+  SystemPerformanceCounterSecondary = 0;
   if (SystemDebugFlag != '\0') {
     PrimaryResourcePointer = *(long long **)(SystemThreadFlags + 8);
     ppresourceCounter = (long long **)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x48,8,3);
@@ -26829,7 +26829,7 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
   } while (localDataIndex != 0);
   ReleaseGraphicsContext(SystemGraphicsContextPointer + 0x48);
   SystemPerformanceCounter1 = 0;
-  SystemPerformanceCounter2 = 0;
+  SystemPerformanceCounterSecondary = 0;
   if (SystemDebugFlag != '\0') {
     primaryResourcePointer = *(long long **)(systemResourcePointer + 8);
     memoryAllocationPointer = (long long **)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x48,8,3);
@@ -48844,7 +48844,7 @@ StackCheckPoint5:
       }
     }
     ppSystemDataBufferOffset = &SystemGlobalDataReferencePtr2;
-    SystemGlobalDataReferencePtr2 = &SystemMemoryAllocatorReference;
+    SystemGlobalDataReferencePtrSecondary = &SystemMemoryAllocatorReference;
     charOutput = *(char *)(*(long long *)(SystemResourceManager + 1000) + 0x58);
   } while( true );
 }
