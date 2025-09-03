@@ -5127,38 +5127,38 @@ void ResetSystemState(void)
  */
 uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
 {
-  uint8_t ValidationResult;
-  int64_t OperationResultBuffer[2];
-  int64_t ContextHandleBuffer[2];
+  uint8_t ValidationStatusCode;
+  int64_t ProcessingResultBuffer[2];
+  int64_t ContextDataBuffer[2];
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandleBuffer);
-  if ((int)ValidationResult == 0) {
-    if (ContextHandleBuffer[0] == 0) {
-      ContextHandleBuffer[0] = 0;
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextDataBuffer);
+  if ((int)ValidationStatusCode == 0) {
+    if (ContextDataBuffer[0] == 0) {
+      ContextDataBuffer[0] = 0;
     }
     else {
-      ContextHandleBuffer[0] = ContextHandleBuffer[0] - 8;
+      ContextDataBuffer[0] = ContextDataBuffer[0] - 8;
     }
     
-    OperationResultBuffer[0] = 0;
-    ValidationResult = ProcessSystemContextValidation(ContextHandleBuffer[0], ObjectContext + ObjectContextValidationDataOffset, OperationResultBuffer);
-    if ((int)ValidationResult == 0) {
-      if (OperationResultBuffer[0] != 0) {
-        if (*(int64_t *)(OperationResultBuffer[0] + 8) == 0) {
+    ProcessingResultBuffer[0] = 0;
+    ValidationStatusCode = ProcessSystemContextValidation(ContextDataBuffer[0], ObjectContext + ObjectContextValidationDataOffset, ProcessingResultBuffer);
+    if ((int)ValidationStatusCode == 0) {
+      if (ProcessingResultBuffer[0] != 0) {
+        if (*(int64_t *)(ProcessingResultBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
         
-        ValidationResult = ProcessResourceOperation(*(int64_t *)(OperationResultBuffer[0] + 8), 
+        ValidationStatusCode = ProcessResourceOperation(*(int64_t *)(ProcessingResultBuffer[0] + 8), 
                                                   *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset),
                                                   *(uint8_t *)(ObjectContext + ObjectContextStatusDataOffset));
-        if ((int)ValidationResult != 0) {
-          return ValidationResult;
+        if ((int)ValidationStatusCode != 0) {
+          return ValidationStatusCode;
         }
       }
-      ValidationResult = 0;
+      ValidationStatusCode = 0;
     }
   }
-  return ValidationResult;
+  return ValidationStatusCode;
 }
 
 

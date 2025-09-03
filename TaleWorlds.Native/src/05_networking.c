@@ -581,7 +581,7 @@ void NetworkCloseConnectionHandler(void);
  * @param ValidationResult 验证结果
  * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
-int32_t ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
+int32_t NetworkValidateConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
 
 /**
  * @brief 网络安全守卫检查
@@ -600,7 +600,7 @@ void NetworkSecurityGuardCheck(uint64_t SecurityValue);
  * @param ConnectionContext 连接上下文
  * @return int32_t 清理结果，0表示成功，其他值表示错误码
  */
-int32_t CleanupNetworkConnectionContext(int64_t ConnectionContext);
+int32_t NetworkCleanupConnectionContext(int64_t ConnectionContext);
 
 /**
  * @brief 验证缓冲区超时
@@ -612,7 +612,7 @@ int32_t CleanupNetworkConnectionContext(int64_t ConnectionContext);
  * @param ValidationResult 验证结果
  * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
-int32_t ValidateBufferTimeout(int64_t BufferData, int32_t TimeoutValue, int64_t ValidationResult);
+int32_t NetworkValidateBufferTimeout(int64_t BufferData, int32_t TimeoutValue, int64_t ValidationResult);
 
 /**
  * @brief 使用加密处理缓冲区
@@ -624,7 +624,7 @@ int32_t ValidateBufferTimeout(int64_t BufferData, int32_t TimeoutValue, int64_t 
  * @param EncryptionKey 加密密钥
  * @return int32_t 处理结果，0表示成功，其他值表示错误码
  */
-int32_t ProcessBufferWithEncryption(int64_t EncryptedBuffer, int32_t BufferSize, int64_t EncryptionKey);
+int32_t NetworkProcessBufferWithEncryption(int64_t EncryptedBuffer, int32_t BufferSize, int64_t EncryptionKey);
 
 /**
  * @brief 管理网络句柄
