@@ -10377,7 +10377,7 @@ void InitializeSystemStringProcessorC(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x1a;
   strcpy_s(SystemProcessingBuffer,StringBufferSize,&SystemFileSystemStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry009 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemFileSystemMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -10407,7 +10407,7 @@ void InitializeSystemStringProcessorD(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x13;
   strcpy_s(SystemProcessingBuffer,StringBufferSize,&SystemNetworkStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntry010 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemNetworkMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
