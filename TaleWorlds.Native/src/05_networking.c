@@ -94,6 +94,7 @@
 #define NetworkConnectionFinalizeOffset 0x7c
 #define NetworkConnectionSecurityOffset 0xf8
 #define NetworkConnectionHandleOffset 0xe8
+#define NetworkPacketDataSecondaryOffset 0x44
 
 // 网络状态常量
 #define NetworkStatusActive 0x01
@@ -1208,6 +1209,7 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
   NetworkHandle PacketProcessingStatus;
   NetworkStatus ConnectionStateArray [6];
   NetworkStatus ConnectionValidationArray [4];
+  NetworkStatus ConnectionDataArray [4];
   
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
