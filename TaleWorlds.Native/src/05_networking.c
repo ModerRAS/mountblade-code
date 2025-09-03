@@ -703,9 +703,14 @@ void NetworkAcceptConnection(void)
 /**
  * @brief 关闭网络连接处理器
  * 
- * 关闭网络连接处理器，释放相关资源
+ * 关闭网络连接处理器，释放相关资源。此函数负责清理连接状态、释放连接资源、
+ * 清理安全资源、网络资源、事件和回调资源等。关闭后会重置所有统计信息，
+ * 确保所有资源被正确释放，避免内存泄漏。
  * 
  * @note 此函数会清理连接状态并释放分配的资源
+ * @warning 如果资源释放不完全，可能会导致内存泄漏
+ * 
+ * @return void 无返回值
  */
 void NetworkCloseConnectionHandler(void)
 {
@@ -883,9 +888,14 @@ uint32_t NetworkConnectionEventHandler;
 /**
  * @brief 传输数据
  * 
- * 通过网络连接传输数据，处理数据分包和重传机制
+ * 通过网络连接传输数据，处理数据分包和重传机制。此函数负责初始化数据包参数、
+ * 数据包缓冲区、传输统计、性能监控等。传输系统会自动处理数据分包、
+ * 重传机制、流量控制和拥塞控制等。
  * 
  * @note 此函数会处理数据分包和重传机制
+ * @warning 如果传输失败，系统会自动进行重传或报告错误
+ * 
+ * @return void 无返回值
  */
 void NetworkTransmitData(void)
 {
