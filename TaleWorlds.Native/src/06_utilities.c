@@ -15645,7 +15645,7 @@ LoopExit:
             *(uint8_t *)(ObjectContext + 4) = 0;
           }
           ProcessingCounter = ProcessingCounter + 1;
-          int TableValidationStatusCode = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
+          int TableValidationStatus = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
         } while (ProcessingCounter < tableResourceHashStatus);
       }
     }
