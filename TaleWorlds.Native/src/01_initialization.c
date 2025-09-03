@@ -39,7 +39,7 @@
 #define SystemNodeIdentifier2Index         7
 #define SystemNodeDataPointerIndex        8
 #define SystemNodeFlagIndex                 9
-#define SystemSystemNodeHandlerIndex            10
+#define SystemNodeHandlerIndex            10
 #define GameCoreSystemIdentifier1             0x4fc124d23d41985f
 #define GameCoreSystemIdentifier2             0xe2f4a30d6e6ae482
 #define GameCoreSystemId                    0x4fc124d23d41985f
@@ -18886,7 +18886,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
   void** systemGlobalDataReferencePointerSecondary;
   void** systemFunctionPointerSecondary;
   uint32_t systemDataProcessingFlag;
-  unsigned long long systemFlags2;
+  unsigned long long systemFlagsSecondary;
   void** gameControllerPointer;
   long long systemMemorySize;
   uint32_t systemOperationFlags;

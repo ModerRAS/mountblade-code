@@ -4961,6 +4961,17 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加指定对象的引用计数，确保对象在内存中的正确管理。
+ * 通过验证对象上下文，获取对象内存地址，并递增其引用计数。
+ * 
+ * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ * @note 成功时对象的引用计数会增加1
+ * @warning 如果对象句柄无效，返回ErrorInvalidObjectHandle错误码
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
@@ -4987,15 +4998,13 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   return ErrorInvalidObjectHandle;
 }
 
-
-
 /**
- * @brief 创建基础对象句柄
+ * @brief 初始化对象句柄
  * 
- * 该函数用于创建系统对象的基础句柄，包含对象验证和句柄初始化操作
- * 主要用于对象管理系统的基础功能实现
+ * 该函数用于初始化系统对象句柄，包含对象验证和句柄初始化操作。
+ * 主要用于对象管理系统的基础功能实现。
  * 
- * @param ObjectContext 对象上下文，包含要创建句柄的对象信息
+ * @param ObjectContext 对象上下文，包含要初始化句柄的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandle(int64_t ObjectContext) {
@@ -5028,6 +5037,15 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * 
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
+/**
+ * @brief 释放对象句柄
+ * 
+ * 该函数用于释放系统对象句柄，执行清理操作。
+ * 通过验证对象句柄的有效性，执行系统退出操作来释放资源。
+ * 
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ * @note 此函数会触发系统退出操作来释放对象资源
+ */
 uint8_t ReleaseObjectHandle(void) {
   int64_t ObjectHandle = 0;
   int64_t ObjectMemoryLocation;
@@ -5044,13 +5062,11 @@ uint8_t ReleaseObjectHandle(void) {
   return 0;
 }
 
-
-
 /**
  * @brief 验证字符输入
  * 
- * 该函数用于验证输入的字符参数，确保字符输入的有效性
- * 如果字符不为空字符，则执行系统退出操作以确保安全
+ * 该函数用于验证输入的字符参数，确保字符输入的有效性。
+ * 如果字符不为空字符，则执行系统退出操作以确保安全。
  * 
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示验证通过
