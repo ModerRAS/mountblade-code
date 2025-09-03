@@ -30364,8 +30364,12 @@ void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCon
 void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerFunctionPointer;
   
+  // 获取第三级异常处理函数指针
   ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerTertiaryContextOffset);
+  
+  // 检查异常处理函数指针是否有效
   if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+    // 调用第三级异常处理函数
     (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
@@ -30373,27 +30377,6 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
 
 
 
-/**
- * @brief 四级上下文异常处理器
- * 
- * 该函数负责处理四级异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
- * @brief 处理第四级上下文异常
- * 
- * 该函数用于处理系统第四级上下文中的异常情况
- * 主要处理资源哈希相关的异常，包括资源分配和缓存
- * 
- * @param ExceptionContext 异常上下文
- * @param SystemContext 系统上下文指针
- * @return 无返回值
- */
 /**
  * @brief 处理第四级上下文异常
  * 
@@ -30407,10 +30390,14 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
 void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashDataPointer;
   
+  // 获取资源哈希数据指针
   ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
+  
+  // 重置资源哈希模板
   *ResourceHashDataPointer = &ResourceHashTemplate;
   *ResourceHashDataPointer = &ResourceAllocationTemplate;
   *ResourceHashDataPointer = &ResourceCacheTemplate;
+  
   return;
 }
 
