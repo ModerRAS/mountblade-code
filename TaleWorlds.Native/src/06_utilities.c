@@ -8411,18 +8411,18 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
     ValidationStatusCode = ValidateResourceContext(ValidationBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContext);
     if (ValidationStatusCode == 0) {
       if (ResourceContext == 0) {
-        return 0x4a; // ErrorInvalidResourceContext
+        return 0x4a;
       }
       
       // 获取资源数据指针
       ResourceDataPointer = *(int64_t *)(ResourceContext + 0x10);
       if (ResourceDataPointer == 0) {
-        return ErrorInvalidResourceData; // ErrorInvalidResourceData
+        return ErrorInvalidResourceData;
       }
       
       // 检查资源状态标志
       if ((*(byte *)(ResourceDataPointer + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
-        return ErrorResourceValidationFailed; // ErrorResourceValidationFailed
+        return ErrorResourceValidationFailed;
       }
       
       // 获取范围值并验证
@@ -8479,18 +8479,18 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, in
     ValidationStatusCode = ValidateResourceContext(ValidationBuffer[0], ObjectContext + ObjectContextValidationDataOffset, &ResourceContext);
     if (ValidationStatusCode == 0) {
       if (ResourceContext == 0) {
-        return 0x4a; // ErrorInvalidResourceContext
+        return 0x4a;
       }
       
       // 获取资源数据指针
       ResourceDataPointer = *(int64_t *)(ResourceContext + 0x10);
       if (ResourceDataPointer == 0) {
-        return ErrorInvalidResourceData; // ErrorInvalidResourceData
+        return ErrorInvalidResourceData;
       }
       
       // 检查资源状态标志
       if ((*(byte *)(ResourceDataPointer + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
-        return ErrorResourceValidationFailed; // ErrorResourceValidationFailed
+        return ErrorResourceValidationFailed;
       }
       
       // 处理对象上下文数据
@@ -8542,18 +8542,18 @@ uint8_t ProcessFloatComparisonOperation(void)
   
   // 检查堆栈缓冲区是否有效
   if (StackBuffer == 0) {
-    return 0x4a; // ErrorInvalidStackBuffer
+    return 0x4a;
   }
   
   // 获取资源数据指针
   ResourceDataPointer = *(int64_t *)(StackBuffer + StackBufferDataOffset);
   if (ResourceDataPointer == 0) {
-    return ErrorInvalidResourceData; // ErrorInvalidResourceData
+    return ErrorInvalidResourceData;
   }
   
   // 检查资源状态标志
   if ((*(byte *)(ResourceDataPointer + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
-    return ErrorResourceValidationFailed; // ErrorResourceValidationFailed
+    return ErrorResourceValidationFailed;
   }
   
   // 处理对象上下文数据
@@ -8605,12 +8605,12 @@ uint8_t ProcessBufferedFloatComparison(void)
   // 从缓冲区获取资源数据指针
   ResourceDataAddress = *(int64_t *)(BufferContext + BufferDataOffset);
   if (ResourceDataAddress == 0) {
-    return ErrorInvalidResourceData; // ErrorInvalidResourceData
+    return ErrorInvalidResourceData;
   }
   
   // 检查资源状态标志
   if ((*(byte *)(ResourceDataAddress + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
-    return ErrorResourceValidationFailed; // ErrorResourceValidationFailed
+    return ErrorResourceValidationFailed;
   }
   
   // 处理对象上下文数据

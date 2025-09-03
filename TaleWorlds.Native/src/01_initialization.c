@@ -1440,10 +1440,10 @@ void InitializeGameCoreSystem(void)
   }
   
   PreviousSystemNode[NodeIdentifier1Index] = GameCoreNodeIdentifier1;
-  PreviousSystemNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = GAME_CORE_NODE_IDENTIFIER2;
-  PreviousSystemNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &GAME_CORE_NODE_DATA;
-  PreviousSystemNode[SYSTEM_NODE_FLAG_INDEX] = 0;
-  PreviousSystemNode[SYSTEM_NODE_HANDLER_INDEX] = SystemInitializationHandler;
+  PreviousSystemNode[NodeIdentifier2Index] = GameCoreNodeIdentifier2;
+  PreviousSystemNode[NodeDataPointerIndex] = &GameCoreNodeData;
+  PreviousSystemNode[NodeFlagIndex] = 0;
+  PreviousSystemNode[NodeHandlerIndex] = SystemInitializationHandler;
   return;
 }
 
@@ -2017,7 +2017,7 @@ void InitializeSystemDataTable(void)
   PreviousSystemNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID2;
   PreviousSystemNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemNodeLinkPointerB;
   PreviousSystemNode[SYSTEM_NODE_FLAG_INDEX] = 1;
-  PreviousSystemNode[SYSTEM_NODE_HANDLER_INDEX] = SystemInitializationHandler;
+  PreviousSystemNode[NodeHandlerIndex] = SystemInitializationHandler;
   return;
 }
 
