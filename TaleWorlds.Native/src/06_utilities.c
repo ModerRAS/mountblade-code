@@ -8495,24 +8495,26 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer, int64_t Cont
     *(uint32_t *)(MatrixContextPointer + MatrixProjectionDataOffset) = MatrixProjectionFlags;
     *(uint32_t *)(MatrixContextPointer + MatrixViewDataOffset) = MatrixViewFlags;
     *(uint32_t *)(MatrixContextPointer + MatrixWorldDataOffset) = MatrixWorldFlags;
+    
     MatrixContextPointer = *(int64_t *)(SystemContext + SystemContextMatrixPointerOffset);
     if ((*(int *)(MatrixContextPointer + SystemContextStatusFlag1Offset) != 0) || (*(int *)(MatrixContextPointer + SystemContextStatusFlag2Offset) != 0)) {
-      ResourceValidationBuffer[0] = 0;
-      InitializeSecurityContext(ResourceValidationBuffer);
-      if (ResourceValidationBuffer[0] == SystemDataBaseAddress(MatrixContextPointer)) {
-        uint32_t ResourceValidationStatusCode = ProcessResourceValidation(MatrixContextPointer,ObjectContext);
+      MatrixValidationBuffer[0] = 0;
+      InitializeSecurityContext(MatrixValidationBuffer);
+      if (MatrixValidationBuffer[0] == SystemDataBaseAddress(MatrixContextPointer)) {
+        uint32_t ResourceValidationStatusCode = ProcessResourceValidation(MatrixContextPointer, ObjectContext);
         if ((int)ResourceValidationStatusCode == 0) {
           return 0;
         }
         return ResourceValidationStatusCode;
       }
     }
+    
     *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
     uint32_t SystemOperationStatusCode = ExecuteSystemOperation(*(uint8_t *)(MatrixContextPointer + SystemOperationContextOffset));
     if ((int)SystemOperationStatusCode == 0) {
       return 0;
     }
-    return SystemOperationResult;
+    return SystemOperationStatusCode;
   }
   return ErrorResourceValidationFailed;
 }
