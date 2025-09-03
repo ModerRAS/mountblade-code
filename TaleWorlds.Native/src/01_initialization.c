@@ -11033,16 +11033,16 @@ void InitializeSystemStringProcessorN(void)
 void InitializeSystemStringProcessorO(void)
 
 {
-  char SystemNodeFlag;
-  void** SystemDataTable;
+  char SystemNodeActiveFlag;
+  void** SystemDataTablePointer;
   int NodeIdentifierCompareResult;
-  long long* MemorySystemPointer;
-  long long SystemTimeValue;
-  void** SystemRootNode;
-  void** SystemCurrentNode;
-  void** SystemNextNode;
-  void** HashTableNode;
-  void* SystemCallbackPointer;
+  long long* MemorySystemManagerPointer;
+  long long SystemTimestampValue;
+  void** SystemRootNodePointer;
+  void** SystemCurrentNodePointer;
+  void** SystemNextNodePointer;
+  void** HashTableNodePointer;
+  void* SystemCallbackFunctionPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
