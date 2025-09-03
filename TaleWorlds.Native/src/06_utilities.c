@@ -304,9 +304,9 @@
 #define MemoryAlignmentMask 0xfffffff0
 
 // 资源计数器相关常量
-#define ResourceCounterOffset78 0x78
-#define ResourceCounterOffset88 0x88
-#define ResourceCounterOffsetA0 0xa0
+#define ResourceCounterOffsetPrimary 0x78
+#define ResourceCounterOffsetSecondary 0x88
+#define ResourceCounterOffsetTertiary 0xa0
 #define GlobalUnwindCounterOffset 0x3a8
 
 // 系统指针别名定义
