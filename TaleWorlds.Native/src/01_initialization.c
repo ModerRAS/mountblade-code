@@ -28,63 +28,63 @@
 #define SYSTEM_RESOURCE_MEMORY_POOL_OFFSET     5
 
 // 系统节点相关常量
-#define NodeActiveFlagOffset         0x19
+#define SystemNodeActiveFlagOffset         0x19
 #define SystemIdentifierSize                 0x10
-#define NodeNextPointerOffset       2
-#define NodeHeadPointerOffset       0
-#define NodeAllocationExtraSize     0x20
+#define SystemNodeNextPointerOffset       2
+#define SystemNodeHeadPointerOffset       0
+#define SystemNodeAllocationExtraSize     0x20
 
 // 系统节点结构体字段索引
-#define NodeIdentifier1Index         6
-#define NodeIdentifier2Index         7
-#define NodeDataPointerIndex        8
-#define NodeFlagIndex                 9
-#define NodeHandlerIndex            10
-#define GameCoreNodeIdentifier1             0x4fc124d23d41985f
-#define GameCoreNodeIdentifier2             0xe2f4a30d6e6ae482
+#define SystemNodeIdentifier1Index         6
+#define SystemNodeIdentifier2Index         7
+#define SystemNodeDataPointerIndex        8
+#define SystemNodeFlagIndex                 9
+#define SystemNodeHandlerIndex            10
+#define GameCoreSystemIdentifier1             0x4fc124d23d41985f
+#define GameCoreSystemIdentifier2             0xe2f4a30d6e6ae482
 #define GameCoreSystemId                    0x4fc124d23d41985f
-#define GameCoreNodeData                    0
-#define BaseAllocatorNodeIdentifier1       0x4770584fbb1df897
-#define BaseAllocatorNodeIdentifier2       0x47f249e43f66f2ab
-#define BaseAllocatorNodeFlag              1
-#define BaseAllocatorNodeData              0
-#define BaseAllocatorIdentifier1           0x4770584fbb1df897
-#define BaseAllocatorIdentifier2           0x47f249e43f66f2ab
-#define SystemDataTableNodeIdentifier1     0x544e41445441424c
-#define SystemDataTableNodeIdentifier2     0x4552455345525441
-#define SystemDataTableNodeFlag           2
-#define SystemMemoryNodeIdentifier1         0x46ecbd4daf41613e
-#define SystemMemoryNodeIdentifier2         0xdc42c056bbde8482
-#define SystemMemoryNodeFlag               0
-#define SystemAllocatorNodeIdentifier1      0x4c868a42644030f6
-#define SystemAllocatorNodeIdentifier2      0xc29193aa9d9b35b9
-#define SystemAllocatorNodeFlag            0
-#define SystemConfigurationNodeIdentifier1  0x40ea3a798283cbbb
-#define SystemConfigurationNodeIdentifier2  0x7f74eb2c5a7fadae
-#define SystemConfigurationNodeFlag        3
+#define GameCoreSystemNodeData                    0
+#define BaseAllocatorSystemIdentifier1       0x4770584fbb1df897
+#define BaseAllocatorSystemIdentifier2       0x47f249e43f66f2ab
+#define BaseAllocatorSystemFlag              1
+#define BaseAllocatorSystemNodeData              0
+#define BaseAllocatorSystemIdentifier1           0x4770584fbb1df897
+#define BaseAllocatorSystemIdentifier2           0x47f249e43f66f2ab
+#define SystemDataTableSystemIdentifier1     0x544e41445441424c
+#define SystemDataTableSystemIdentifier2     0x4552455345525441
+#define SystemDataTableSystemFlag           2
+#define SystemMemorySystemIdentifier1         0x46ecbd4daf41613e
+#define SystemMemorySystemIdentifier2         0xdc42c056bbde8482
+#define SystemMemorySystemFlag               0
+#define SystemAllocatorSystemIdentifier1      0x4c868a42644030f6
+#define SystemAllocatorSystemIdentifier2      0xc29193aa9d9b35b9
+#define SystemAllocatorSystemFlag            0
+#define SystemConfigurationSystemIdentifier1  0x40ea3a798283cbbb
+#define SystemConfigurationSystemIdentifier2  0x7f74eb2c5a7fadae
+#define SystemConfigurationSystemFlag        3
 
 // 位操作和数学计算相关常量
-#define BitMask32Bit                        0x1f
-#define MaxUnsigned32Bit                   0xffffffff
-#define SineLookupTableSize                0x7fff
-#define QuadrantShiftBits                   0xd
-#define SineTableOffset4CC                  0x4cc
-#define SineTableOffset4132                 0x4132
-#define SineTableOffsetFB34                0xfb34
-#define SineTableOffset8132                 0x8132
-#define TransformContextOffset218         0x218
+#define SystemBitMask32Bit                        0x1f
+#define SystemMaxUnsigned32Bit                   0xffffffff
+#define SystemSineLookupTableSize                0x7fff
+#define SystemQuadrantShiftBits                   0xd
+#define SystemSineTableOffset4CC                  0x4cc
+#define SystemSineTableOffset4132                 0x4132
+#define SystemSineTableOffsetFB34                0xfb34
+#define SystemSineTableOffset8132                 0x8132
+#define SystemTransformContextOffset218         0x218
 
 // 字符串处理相关常量
-#define SYSTEM_STRING_BUFFER_SIZE_DEFAULT   0xb
-#define SYSTEM_STRING_BUFFER_SIZE_SHORT     0x7
-#define SYSTEM_DATA_BUFFER_SIZE_DEFAULT     0x8
-#define SYSTEM_MESSAGE_CONFIG_BUFFER_SIZE   0xa
+#define SystemStringBufferSizeDefault   0xb
+#define SystemStringBufferSizeShort     0x7
+#define SystemDataBufferSizeDefault     0x8
+#define SystemMessageConfigBufferSize   0xa
 
 // 系统标识符常量
-#define SystemEventNodeIdentifier1          0x45b8d074df27d12f
-#define SystemEventNodeIdentifier2          0x8d98f4c06880eda4
-#define SystemResourceNodeIdentifier1       0x42d293584c8cf3e5
-#define SystemResourceNodeIdentifier2       0x355ffeb2d29e668a
+#define SystemEventSystemIdentifier1          0x45b8d074df27d12f
+#define SystemEventSystemIdentifier2          0x8d98f4c06880eda4
+#define SystemResourceSystemIdentifier1       0x42d293584c8cf3e5
+#define SystemResourceSystemIdentifier2       0x355ffeb2d29e668a
 #define SystemDataComparisonTemplateAId1   0x421c3cedd07d816d
 #define SystemDataComparisonTemplateAId2   0xbec25de793b7afa6
 #define SystemDataComparisonTemplateBId1   0x4c22bb0c326587ce
@@ -108,38 +108,38 @@
 #define SystemDataComparisonTemplateIId1   0x431d7c8d7c475be2
 
 // 资源数据偏移量常量
-#define RESOURCE_DATA_TRANSFORM_X_OFFSET        0x130
-#define RESOURCE_DATA_TRANSFORM_Y_OFFSET        0x134
-#define RESOURCE_DATA_TRANSFORM_Z_OFFSET        0x138
-#define RESOURCE_DATA_SCALE_X_OFFSET            0x140
-#define RESOURCE_DATA_SCALE_Y_OFFSET            0x144
-#define RESOURCE_DATA_SCALE_Z_OFFSET            0x148
-#define RESOURCE_DATA_ROTATION_OFFSET           0x120
-#define RESOURCE_DATA_TRANSLATION_X_OFFSET      0x150
-#define RESOURCE_DATA_TRANSLATION_Y_OFFSET      0x154
-#define RESOURCE_DATA_TRANSLATION_Z_OFFSET      0x158
-#define RESOURCE_DATA_MATRIX_OFFSET             0x234
-#define RESOURCE_DATA_UNIFORM_SCALE_OFFSET      0x238
-#define RESOURCE_DATA_BONE_TRANSFORM_OFFSET     0x294
-#define RESOURCE_DATA_BONE_ROTATION_OFFSET      0x298
-#define RESOURCE_DATA_BONE_SCALE_OFFSET         0x29c
-#define RESOURCE_DATA_FINAL_SCALE_OFFSET        0x2a4
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID2   0xb97f048d2153e1b0
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_L_ID1   0x402feffe4481676e
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_L_ID2   0xd4c2151109de93a0
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_M_ID1   0x4384dcc4b6d3f417
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_M_ID2   0x92a15d52fe2679bd
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_N_ID1   0x4140994454d56503
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_N_ID2   0x399eced9bb5517ad
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_O_ID1   0x40db4257e97d3df8
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_O_ID2   0x81d539e33614429f
-#define SYSTEM_MEMORY_COMPARISON_TEMPLATE_ID1   0x4e33c4803e67a08f
-#define SYSTEM_MEMORY_COMPARISON_TEMPLATE_ID2   0x703a29a844ce399
+#define ResourceDataTransformXOffset        0x130
+#define ResourceDataTransformYOffset        0x134
+#define ResourceDataTransformZOffset        0x138
+#define ResourceDataScaleXOffset            0x140
+#define ResourceDataScaleYOffset            0x144
+#define ResourceDataScaleZOffset            0x148
+#define ResourceDataRotationOffset           0x120
+#define ResourceDataTranslationXOffset      0x150
+#define ResourceDataTranslationYOffset      0x154
+#define ResourceDataTranslationZOffset      0x158
+#define ResourceDataMatrixOffset             0x234
+#define ResourceDataUniformScaleOffset      0x238
+#define ResourceDataBoneTransformOffset     0x294
+#define ResourceDataBoneRotationOffset      0x298
+#define ResourceDataBoneScaleOffset         0x29c
+#define ResourceDataFinalScaleOffset        0x2a4
+#define SystemDataComparisonTemplateIId2   0xb97f048d2153e1b0
+#define SystemDataComparisonTemplateLId1   0x402feffe4481676e
+#define SystemDataComparisonTemplateLId2   0xd4c2151109de93a0
+#define SystemDataComparisonTemplateMId1   0x4384dcc4b6d3f417
+#define SystemDataComparisonTemplateMId2   0x92a15d52fe2679bd
+#define SystemDataComparisonTemplateNId1   0x4140994454d56503
+#define SystemDataComparisonTemplateNId2   0x399eced9bb5517ad
+#define SystemDataComparisonTemplateOId1   0x40db4257e97d3df8
+#define SystemDataComparisonTemplateOId2   0x81d539e33614429f
+#define SystemMemoryComparisonTemplateId1   0x4e33c4803e67a08f
+#define SystemMemoryComparisonTemplateId2   0x703a29a844ce399
 
 // 系统参数常量
-#define MaxSemaphoreCount                    0x7fffffff
-#define StringBufferSize                     0x80
-#define InvalidHandleValue                    0xfffffffffffffffe
+#define SystemMaxSemaphoreCount                    0x7fffffff
+#define SystemStringBufferSize                     0x80
+#define SystemInvalidHandleValue                    0xfffffffffffffffe
 #define SystemSemaphoreMaxCount              0x7fffffff
 #define SystemEventHandlerSize               0x20
 #define SystemEventHandlerCapacity          8
@@ -10000,46 +10000,46 @@ void InitializeSystemConfigurationManager(void)
 void InitializeSystemConfigurationManager(void)
 
 {
-  char SystemNodeFlag;
-  void** SystemDataTable;
-  int NodeIdentifierCompareResult;
-  long long* MemorySystemPointer;
-  long long SystemTimeValue;
-  void** SystemRootNode;
-  void** SystemCurrentNode;
-  void** SystemNextNode;
-  void** HashTableNode;
-  void* SystemCallbackPointer;
+  char SystemNodeActiveFlag;
+  void** SystemDataTablePointer;
+  int SystemNodeIdentifierCompareResult;
+  long long* SystemMemoryManagerPointer;
+  long long SystemCurrentTimestamp;
+  void** SystemRootNodePointer;
+  void** SystemCurrentNodePointer;
+  void** SystemNextNodePointer;
+  void** SystemHashTableNodePointer;
+  void* SystemEventCallbackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
-  SystemRootNode = (void**)*SystemDataTable;
-  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  SystemCallbackPointer = SystemCallbackManager;
-  HashTableNode = SystemRootNode;
-  SystemCurrentNode = (void**)SystemRootNode[1];
-  while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
-    if (NodeIdentifierCompareResult < 0) {
-      SystemNextNode = (void**)SystemCurrentNode[2];
-      SystemCurrentNode = HashTableNode;
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
+  SystemNodeActiveFlag = *(char*)((long long)SystemRootNodePointer[1] + SystemNodeActiveFlagOffset);
+  SystemEventCallbackPointer = SystemCallbackManager;
+  SystemHashTableNodePointer = SystemRootNodePointer;
+  SystemCurrentNodePointer = (void**)SystemRootNodePointer[1];
+  while (SystemNodeActiveFlag == '\0') {
+    SystemNodeIdentifierCompareResult = memcmp(SystemCurrentNodePointer + 4,&SystemDataComparisonTemplateA,0x10);
+    if (SystemNodeIdentifierCompareResult < 0) {
+      SystemNextNodePointer = (void**)SystemCurrentNodePointer[2];
+      SystemCurrentNodePointer = SystemHashTableNodePointer;
     }
     else {
-      SystemNextNode = (void**)*SystemCurrentNode;
+      SystemNextNodePointer = (void**)*SystemCurrentNodePointer;
     }
-    HashTableNode = SystemCurrentNode;
-    SystemCurrentNode = SystemNextNode;
-    SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    SystemHashTableNodePointer = SystemCurrentNodePointer;
+    SystemCurrentNodePointer = SystemNextNodePointer;
+    SystemNodeActiveFlag = *(char*)((long long)SystemNextNodePointer + SystemNodeActiveFlagOffset);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateR,hashTableNode + 4,0x10), NodeIdentifierCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTableNode = AllocatedMemoryNode;
+  if ((SystemHashTableNodePointer == SystemRootNodePointer) || (SystemNodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemHashTableNodePointer + 4,0x10), SystemNodeIdentifierCompareResult < 0)) {
+    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedMemoryNode,SystemHashTableNodePointer,SystemMemoryAllocationSize + SystemNodeAllocationExtraSize,SystemMemoryAllocationSize);
+    SystemHashTableNodePointer = SystemAllocatedMemoryNode;
   }
-  HashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
-  HashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
-  HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
-  HashTableNode[NodeFlagIndex] = 0;
-  HashTableNode[10] = EventCallbackPointer;
+  SystemHashTableNodePointer[SystemNodeIdentifier1Index] = 0x421c3cedd07d816d;
+  SystemHashTableNodePointer[SystemNodeIdentifier2Index] = 0xbec25de793b7afa6;
+  SystemHashTableNodePointer[SystemNodeDataPointerIndex] = &SystemResourceNodeTemplateD;
+  SystemHashTableNodePointer[SystemNodeFlagIndex] = 0;
+  SystemHashTableNodePointer[10] = SystemEventCallbackPointer;
   return;
 }
 
@@ -10059,46 +10059,46 @@ void InitializeSystemConfigurationManager(void)
 void InitializeSystemNetworkConfigurationManager(void)
 
 {
-  char SystemNodeFlag;
-  void** SystemDataTable;
-  int NodeIdentifierCompareResult;
-  long long* MemorySystemPointer;
-  long long SystemTimeValue;
-  void** SystemRootNode;
-  void** SystemCurrentNode;
-  void** SystemNextNode;
-  void** HashTableNode;
-  uint64_t SystemInitFlag;
+  char SystemNodeActiveFlag;
+  void** SystemDataTablePointer;
+  int SystemNodeIdentifierCompareResult;
+  long long* SystemMemoryManagerPointer;
+  long long SystemCurrentTimestamp;
+  void** SystemRootNodePointer;
+  void** SystemCurrentNodePointer;
+  void** SystemNextNodePointer;
+  void** SystemHashTableNodePointer;
+  uint64_t SystemInitializationFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
-  SystemRootNode = (void**)*SystemDataTable;
-  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  SystemInitFlag = 0;
-  HashTableNode = SystemRootNode;
-  SystemCurrentNode = (void**)SystemRootNode[1];
-  while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
-    if (NodeIdentifierCompareResult < 0) {
-      SystemNextNode = (void**)SystemCurrentNode[2];
-      SystemCurrentNode = HashTableNode;
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
+  SystemNodeActiveFlag = *(char*)((long long)SystemRootNodePointer[1] + SystemNodeActiveFlagOffset);
+  SystemInitializationFlag = 0;
+  SystemHashTableNodePointer = SystemRootNodePointer;
+  SystemCurrentNodePointer = (void**)SystemRootNodePointer[1];
+  while (SystemNodeActiveFlag == '\0') {
+    SystemNodeIdentifierCompareResult = memcmp(SystemCurrentNodePointer + 4,&SystemDataComparisonTemplateB,0x10);
+    if (SystemNodeIdentifierCompareResult < 0) {
+      SystemNextNodePointer = (void**)SystemCurrentNodePointer[2];
+      SystemCurrentNodePointer = SystemHashTableNodePointer;
     }
     else {
-      SystemNextNode = (void**)*SystemCurrentNode;
+      SystemNextNodePointer = (void**)*SystemCurrentNodePointer;
     }
-    HashTableNode = SystemCurrentNode;
-    SystemCurrentNode = SystemNextNode;
-    SystemNodeFlag = *(char*)((long long)SystemNextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    SystemHashTableNodePointer = SystemCurrentNodePointer;
+    SystemCurrentNodePointer = SystemNextNodePointer;
+    SystemNodeActiveFlag = *(char*)((long long)SystemNextNodePointer + SystemNodeActiveFlagOffset);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateB,hashTableNode + 4,0x10), NodeIdentifierCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTableNode = AllocatedMemoryNode;
+  if ((SystemHashTableNodePointer == SystemRootNodePointer) || (SystemNodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemHashTableNodePointer + 4,0x10), SystemNodeIdentifierCompareResult < 0)) {
+    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedMemoryNode,SystemHashTableNodePointer,SystemMemoryAllocationSize + SystemNodeAllocationExtraSize,SystemMemoryAllocationSize);
+    SystemHashTableNodePointer = SystemAllocatedMemoryNode;
   }
-  HashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
-  HashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
-  HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
-  HashTableNode[NodeFlagIndex] = 1;
-  HashTableNode[10] = ResourceInitializationCallback;
+  SystemHashTableNodePointer[SystemNodeIdentifier1Index] = 0x4c22bb0c326587ce;
+  SystemHashTableNodePointer[SystemNodeIdentifier2Index] = 0x5e3cf00ce2978287;
+  SystemHashTableNodePointer[SystemNodeDataPointerIndex] = &SystemResourceNodeTemplateE;
+  SystemHashTableNodePointer[SystemNodeFlagIndex] = 1;
+  SystemHashTableNodePointer[10] = ResourceInitializationCallback;
   return;
 }
 
