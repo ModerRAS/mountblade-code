@@ -79878,7 +79878,18 @@ void ResetSystemResourceHandlerState(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_18090c520(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行辅助资源上下文清理操作
+ * 
+ * 该函数负责清理辅助资源上下文，调用相应的清理回调函数
+ * 用于系统异常处理时的辅助资源回收
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数与ExecuteResourceContextCleanup类似，但处理不同的资源上下文
+ */
+void ExecuteSecondaryResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
