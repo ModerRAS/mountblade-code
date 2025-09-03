@@ -48240,13 +48240,9 @@ void ProcessResourceHashValidationAndUpdateIndex(uint8_t ObjectContext, int64_t 
   int32_t *ResourceTablePointerIndexPointer;
   uint8_t *ResourceHashStatusAddress;
   int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  uint64_t AlignedMemoryAddress;
   
-  uint8_t *ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x148);
-  if (ResourceHashStatusAddress == (uint8_t *)0x0) {
-    return;
-  }
-  uint64_t MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & MemoryAddressAlignmentMask;
+  AlignedMemoryAddress = (uint64_t)ResourceHashStatusAddress & MemoryAddressAlignmentMask;
   if (MemoryAddressMask != 0) {
     ResourceIndex = MemoryAddressIncrement + MemoryResourceDataOffset + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * MemoryResourceEntrySize;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
