@@ -36475,7 +36475,7 @@ InitializeSystemDataTableManager(void* *SystemResourceManager,void* *Configurati
  * 
  * @param SystemResourceManager 系统资源指针
  * 
- *FUN_18005c650：ProcessSystemResourceData
+ * 原始函数名：FUN_18005c650
  */
 void ProcessSystemResourceData(long long* SystemResourceManager)
 
@@ -36713,7 +36713,7 @@ void ProcessNodeManagerOperation(long long SystemResourceManager,uint32_t Config
  * @param ConfigurationDataPointer 配置数据指针，包含配置信息
  * @return 配置后的系统资源指针
  * 
- *FUN_18005caa0：ConfigureSystemResources
+ * 原始函数名：FUN_18005caa0
  */
 void* * ConfigureSystemResources(void* *SystemResourceManager,long long ConfigurationDataPointer)
 
