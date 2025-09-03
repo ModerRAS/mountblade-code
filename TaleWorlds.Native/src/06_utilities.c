@@ -9019,25 +9019,31 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t ComparisonParameter)
 uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t SimplifiedComparisonParameter)
 
 {
-  float SimplifiedProcessedFloatValue;
-  uint8_t SimplifiedComparisonResult;
-  int64_t SimplifiedDataPointer;
-  int64_t SimplifiedSystemContext;
-  int64_t SimplifiedObjectContext;
-  int64_t SimplifiedStackBuffer;
+  float ProcessedFloatValue;
+  uint8_t ComparisonResult;
+  int64_t DataPointer;
+  int64_t SystemContext;
+  int64_t ObjectContext;
+  int64_t StackBuffer;
   
-  SimplifiedComparisonResult = ValidateObjectContextAndProcessData(SimplifiedObjectContext,SimplifiedProcessingContext + RangeDataMinOffset,SimplifiedProcessingContext + RangeDataMaxOffset);
-  if ((int)SimplifiedComparisonResult == 0) {
-    SimplifiedProcessedFloatValue = *(float *)(SimplifiedProcessingContext + RangeDataMaxOffset);
-    if ((*(float *)(SimplifiedResourceContext + RangeLowerBoundOffset) <= SimplifiedProcessedFloatValue) &&
-       (SimplifiedProcessedFloatValue < *(float *)(SimplifiedResourceContext + RangeUpperBoundOffset) || SimplifiedProcessedFloatValue == *(float *)(SimplifiedResourceContext + RangeUpperBoundOffset))) {
-      SimplifiedComparisonResult = *(uint8_t *)(SimplifiedSystemExecutionPointer + SystemExecutionStatusOffset);
-      *(float *)(SimplifiedResourceContextSecondary + ResourceDataOffset) = SimplifiedProcessedFloatValue;
-            ReleaseSystemContextResources(SimplifiedComparisonResult);
+  // 初始化变量以确保内存安全
+  DataPointer = 0;
+  SystemContext = 0;
+  ObjectContext = 0;
+  StackBuffer = 0;
+  
+  ComparisonResult = ValidateObjectContextAndProcessData(ObjectContext,SimplifiedProcessingContext + RangeDataMinOffset,SimplifiedProcessingContext + RangeDataMaxOffset);
+  if ((int)ComparisonResult == 0) {
+    ProcessedFloatValue = *(float *)(SimplifiedProcessingContext + RangeDataMaxOffset);
+    if ((*(float *)(SimplifiedResourceContext + RangeLowerBoundOffset) <= ProcessedFloatValue) &&
+       (ProcessedFloatValue < *(float *)(SimplifiedResourceContext + RangeUpperBoundOffset) || ProcessedFloatValue == *(float *)(SimplifiedResourceContext + RangeUpperBoundOffset))) {
+      ComparisonResult = *(uint8_t *)(SimplifiedSystemExecutionPointer + SystemExecutionStatusOffset);
+      *(float *)(SimplifiedResourceContextSecondary + ResourceDataOffset) = ProcessedFloatValue;
+      ReleaseSystemContextResources(ComparisonResult);
     }
-    SimplifiedComparisonResult = SystemStatusConstant;
+    ComparisonResult = SystemStatusConstant;
   }
-  return SimplifiedComparisonResult;
+  return ComparisonResult;
 }
 
 

@@ -7466,24 +7466,24 @@ uint8_t SystemModuleInitializeFinal(void)
   longlong *UnassignedR15;  // 未分配的R15寄存器指针
   uint StackParameter70;  // 栈参数70，用于存储无符号整数参数
   LongIndex = 0;
-  NetworkRequestResult = (ulonglong)in_EAX;
+  NetworkRequestResult = (ulonglong)RegisterEax;
   do {
-    pMemoryAllocationResult = (uint *)*unaff_R14;
-    ModuleInitializationResult = (longlong)unaff_R14[1] - (longlong)pMemoryAllocationResult >> 2;
+    MemoryAllocationPointer = (uint *)*UnassignedR14;
+    ModuleInitializationResult = (longlong)UnassignedR14[1] - (longlong)MemoryAllocationPointer >> 2;
     if (0 < ModuleInitializationResult) {
       do {
         LongCounter = ModuleInitializationResult >> 1;
-        if (pMemoryAllocationResult[LongCounter] < *(uint *)(*unaff_R15 + LongIndex)) {
-          pMemoryAllocationResult = pMemoryAllocationResult + LongCounter + 1;
+        if (MemoryAllocationPointer[LongCounter] < *(uint *)(*UnassignedR15 + LongIndex)) {
+          MemoryAllocationPointer = MemoryAllocationPointer + LongCounter + 1;
           LongCounter = ModuleInitializationResult + (-1 - LongCounter);
         }
         ModuleInitializationResult = LongCounter;
       } while (0 < LongCounter);
     }
-    if ((pMemoryAllocationResult == (uint *)unaff_R14[1]) || (*(uint *)(*unaff_R15 + LongIndex) < *pMemoryAllocationResult)) {
+    if ((MemoryAllocationPointer == (uint *)UnassignedR14[1]) || (*(uint *)(*UnassignedR15 + LongIndex) < *MemoryAllocationPointer)) {
       ModuleInitializationResult = GetNetworkRequestConfiguration();
-      unaff_SIL = 1;
-      *(uint *)(ModuleInitializationResult + 8) = *(uint *)(ModuleInitializationResult + 8) | in_stack_00000070;
+      UnassignedSil = 1;
+      *(uint *)(ModuleInitializationResult + 8) = *(uint *)(ModuleInitializationResult + 8) | StackParameter70;
     }
     LongIndex = LongIndex + 4;
     NetworkRequestResult = NetworkRequestResult - 1;
