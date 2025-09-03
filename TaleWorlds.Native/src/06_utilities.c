@@ -5094,10 +5094,10 @@ uint32_t ValidateObjectHandleFromRegister(void) {
   else {
     ObjectPointer = RegisterContext + -8;
   }
-  if (*(int64_t *)(ObjectPointer + ObjectContextValidationOffset) == 0) {
+  if (*(int64_t *)(ObjectPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(ObjectPointer + ObjectContextValidationOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ObjectPointer + ObjectContextOffset), 1);
   return 0;
 }
 
