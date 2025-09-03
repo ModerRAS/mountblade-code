@@ -60055,7 +60055,7 @@ ulong long ProcessSystemResourceInitialization(long long SystemResourceManager,v
   float InterpolationFactorW;
   float InterpolationFactorV;
   float MagnitudeSquared;
-  char CharacterVariable19;
+  char SystemInitializationFlag;
   ulong long in_RAX;
   long long SystemThreadIndex;
   ulong long ThreadCreationFlags;
@@ -60130,19 +60130,19 @@ LAB_180077fcf:
         UniformScaleValue = *(float *)(SystemResourceManager + 0x138);
         ScaleValueY = *(float *)(SystemResourceManager + 0x140);
         systemProcessFlags70._0_4_ = TransformValueZ * RatioValue + TranslationValueZ * InterpolationFactorA + UniformScaleValue * MagnitudeSquared;
-        unsignedStackFlag88 = ConcatenatedValue44(floatValue6 * OffsetValue + floatValue1 * InterpolationFactorZ + floatValue2 * InterpolationFactorV,
-                             floatValue6 * ScalingFactor + floatValue1 * InterpolationFactorY + floatValue2 * InterpolationFactorW);
-        floatValue1 = *(float *)(SystemResourceManager + 0x148);
-        floatValue2 = *(float *)(SystemResourceManager + 0x150);
-        SystemThreadContext.PrimaryField = floatValue4 * RatioValue + ScaleValue * InterpolationFactorA + floatValue1 * MagnitudeSquared;
-        floatValue6 = *(float *)(SystemResourceManager + 0x158);
-        systemUnsignedFlag78 = ConcatenatedValue44(floatValue3 * OffsetValue + floatValue7 * InterpolationFactorZ + floatValue8 * InterpolationFactorV,
-                             floatValue3 * ScalingFactor + floatValue7 * InterpolationFactorY + floatValue8 * InterpolationFactorW);
-        encryptionValue68 = ConcatenatedValue44(floatValue4 * OffsetValue + ScaleValue * InterpolationFactorZ + floatValue1 * InterpolationFactorV,
-                             floatValue4 * ScalingFactor + ScaleValue * InterpolationFactorY + floatValue1 * InterpolationFactorW);
-        SystemFloatValue1 = BaseValue * ScalingFactor + floatValue2 * InterpolationFactorY + floatValue6 * InterpolationFactorW + ConfigurationFlag[0xc];
-        SystemFloatValue2 = BaseValue * OffsetValue + floatValue2 * InterpolationFactorZ + floatValue6 * InterpolationFactorV + ConfigurationFlag[0xd];
-        SystemFloatValue3 = BaseValue * RatioValue + floatValue2 * InterpolationFactorA + floatValue6 * MagnitudeSquared + ConfigurationFlag[0xe];
+        unsignedStackFlag88 = ConcatenatedValue44(RotationValue * OffsetValue + TransformValueX * InterpolationFactorZ + TransformValueY * InterpolationFactorV,
+                             RotationValue * ScalingFactor + TransformValueX * InterpolationFactorY + TransformValueY * InterpolationFactorW);
+        TranslationValueX = *(float *)(SystemResourceManager + 0x148);
+        TranslationValueY = *(float *)(SystemResourceManager + 0x150);
+        SystemThreadContext.PrimaryField = ScaleValueX * RatioValue + ScaleValueY * InterpolationFactorA + TranslationValueX * MagnitudeSquared;
+        TranslationValueW = *(float *)(SystemResourceManager + 0x158);
+        systemUnsignedFlag78 = ConcatenatedValue44(TransformValueZ * OffsetValue + TranslationValueZ * InterpolationFactorZ + UniformScaleValue * InterpolationFactorV,
+                             TransformValueZ * ScalingFactor + TranslationValueZ * InterpolationFactorY + UniformScaleValue * InterpolationFactorW);
+        encryptionValue68 = ConcatenatedValue44(ScaleValueX * OffsetValue + ScaleValueY * InterpolationFactorZ + TranslationValueX * InterpolationFactorV,
+                             ScaleValueX * ScalingFactor + ScaleValueY * InterpolationFactorY + TranslationValueX * InterpolationFactorW);
+        SystemFloatValue1 = BaseTransformValue * ScalingFactor + TranslationValueY * InterpolationFactorY + TranslationValueW * InterpolationFactorW + ConfigurationFlag[0xc];
+        SystemFloatValue2 = BaseTransformValue * OffsetValue + TranslationValueY * InterpolationFactorZ + TranslationValueW * InterpolationFactorV + ConfigurationFlag[0xd];
+        SystemFloatValue3 = BaseTransformValue * RatioValue + TranslationValueY * InterpolationFactorA + TranslationValueW * MagnitudeSquared + ConfigurationFlag[0xe];
       }
       SystemFloatValue = 0x3f800000;
       SystemThreadContext = (ulong long)(uint)(float)SystemThreadContext;
