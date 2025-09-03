@@ -30095,7 +30095,7 @@ void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemCo
   ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
   *ResourceHashDataPointer = &ResourceHashTemplate;
   *ResourceHashDataPointer = &ResourceAllocationTemplate;
-  *ResourceHashPtr = &ResourceCacheTemplate;
+  *ResourceHashDataPointer = &ResourceCacheTemplate;
   return;
 }
 
@@ -75619,7 +75619,18 @@ void ProcessResourceContextAtOffset88(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_18090ac90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源上下文处理函数
+ * 
+ * 该函数负责清理和释放资源上下文相关的内存和资源
+ * 执行必要的清理操作以确保系统资源正确释放
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ * @note 此函数在系统清理过程中被调用
+ */
+void CleanupResourceContextHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75633,7 +75644,18 @@ void Unwind_18090ac90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090acb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理扩展资源上下文处理函数
+ * 
+ * 该函数负责清理扩展资源上下文，处理更复杂的资源释放逻辑
+ * 确保所有相关资源都被正确清理
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ * @note 此函数处理扩展资源的清理工作
+ */
+void CleanupExtendedResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75647,7 +75669,18 @@ void Unwind_18090acb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090acd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证资源上下文处理函数
+ * 
+ * 该函数负责清理验证相关的资源上下文
+ * 执行验证后的资源清理工作
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ * @note 此函数在验证完成后进行资源清理
+ */
+void CleanupValidationResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
