@@ -85,6 +85,18 @@
 #define ResourceDataOffset 4
 #define SystemStatusConstant 0x1c
 
+// 数据验证和处理相关常量
+#define DataValidationStatusOffset 0xc
+#define ResourcePoolIndexOffset 1
+#define ResourceIndexMinimum 0
+#define NullPointerValue 0
+#define ValidationStatusSuccess 0
+#define ResourceEntrySize 0xc
+#define ResourceAllocationSize 0x100
+#define ResourceAllocationFlag 1
+#define ResourceChecksumMinimum 1
+#define OperationSuccessCode 0
+
 #define SystemResourceBaseAddress 0x180985054
 
 #define SystemPrimaryMutexAddress 0x180c4f450
@@ -4239,7 +4251,7 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int OperationResult;
+  int ProcessingResult;
   int64_t CurrentObjectIndex;
   int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];

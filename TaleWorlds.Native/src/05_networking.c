@@ -806,7 +806,7 @@ NetworkHandle InitializeConnectionHandler(void)
  * @param PacketData 数据包数据
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-NetworkHandle ProcessNetworkConnectionData(long long *ConnectionContext, int PacketData)
+NetworkHandle ProcessNetworkConnectionData(int64_t *ConnectionContext, int32_t PacketData)
 {
   NetworkStatus *NetworkConnectionStatusData;
   int ConnectionCount;
