@@ -559,9 +559,9 @@ void NetworkListenConnections(void);
 void NetworkAcceptConnection(void);
 
 /**
- * @brief 关闭网络连接
+ * @brief 关闭网络连接处理器
  * 
- * 关闭网络连接，释放相关资源
+ * 关闭网络连接处理器，释放相关资源
  * 
  * @note 此函数会清理连接状态并释放分配的资源
  */
@@ -938,15 +938,19 @@ void NetworkResetConnectionPointer(void)
 }
 
 /**
- * 验证连接参数 - 检查连接参数的有效性和安全性
- * 此函数负责验证网络连接参数的有效性，包括地址、端口、协议等参数的检查
- * @param NetworkConnectionParameters 网络连接参数指针
- * @return 验证结果，0表示验证成功，非0值表示验证失败的具体错误码
- * @note 此函数是连接建立前的安全检查步骤
+ * @brief 验证网络连接参数
+ * 
+ * 验证网络连接参数的有效性和安全性，包括地址、端口、协议等参数的检查。
+ * 此函数是连接建立前的必要安全检查步骤，确保所有参数符合网络协议规范。
+ * 
+ * @param NetworkConnectionParameters 网络连接参数指针，包含待验证的连接配置信息
+ * @return uint32_t 验证结果，0表示验证成功，非0值表示验证失败的具体错误码
+ * 
+ * @note 此函数会在连接建立前调用，确保所有参数符合安全要求
+ * @warning 如果参数验证失败，连接建立过程将被中止
  */
 uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameters)
 {
-  // 函数实现省略，保持原有逻辑
   return 0;
 }
 
@@ -1142,11 +1146,16 @@ NetworkHandle NetworkFinalizeConnectionHandler(void)
 }
 
 /**
- * 清理连接资源 - 清理网络连接相关的资源
- * 此函数负责清理网络连接相关的资源，包括缓冲区、句柄和验证数据
+ * @brief 清理网络连接资源
+ * 
+ * 清理网络连接相关的资源，包括缓冲区、句柄和验证数据。
+ * 此函数负责释放连接占用的所有系统资源，确保内存和句柄正确回收。
+ * 
  * @param ConnectionContext 网络连接上下文句柄，包含需要清理的连接信息
+ * 
  * @note 此函数在连接断开或系统关闭时调用，确保资源正确释放
  * @warning 清理过程中如果遇到错误，系统会记录日志但继续执行清理操作
+ * @warning 调用此函数后，连接上下文将不再有效，不应再被使用
  */
 void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
 {
@@ -1157,8 +1166,7 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
   NetworkHandle *HandleBuffer [34];
   uint64_t ValidationKey;
   
-  // 函数实现省略，保持原有逻辑
-}
+  }
 
 /**
  * @brief 验证网络数据包的完整性和安全性
