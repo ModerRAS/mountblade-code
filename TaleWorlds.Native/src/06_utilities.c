@@ -315,7 +315,7 @@
  * @param ValidationParameter 验证参数值低7位
  * @return 合并后的64位值
  */
-uint64_t CombineSystemContextWithValidation(uint64_t SystemContext, uint8_t ValidationParameter);
+uint64_t MergeSystemContextWithValidation(uint64_t SystemContext, uint8_t ValidationParameter);
 
 /**
  * @brief 计算数据校验和
@@ -329,7 +329,7 @@ uint64_t CombineSystemContextWithValidation(uint64_t SystemContext, uint8_t Vali
  * @param ChecksumSeed 校验种子值
  * @return 计算得到的校验和值
  */
-uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
+uint64_t CalculateDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
 
 /**
  * @brief 计算数据校验和(扩展版)
@@ -344,7 +344,7 @@ uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int Algor
  * @param ExtendedParameter 扩展参数
  * @return 计算得到的校验和值
  */
-uint64_t CalculateDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed, uint32_t ExtendedParameter);
+uint64_t CalculateExtendedDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed, uint32_t ExtendedParameter);
 
 /**
  * @brief 验证内存访问
@@ -356,7 +356,7 @@ uint64_t CalculateDataChecksum(uint64_t SystemContext, void* DataBuffer, int Alg
  * @param AccessValidationFlag 访问验证标志
  * @return 验证结果
  */
-uint32_t ValidateMemoryAccess(void* MemoryAddress, uint64_t AccessValidationFlag);
+uint32_t VerifyMemoryAccess(void* MemoryAddress, uint64_t AccessValidationFlag);
 
 /**
  * @brief 终止系统进程
@@ -367,7 +367,7 @@ uint32_t ValidateMemoryAccess(void* MemoryAddress, uint64_t AccessValidationFlag
  * @param TerminationSecurityToken 终止安全令牌，用于验证终止操作的合法性
  * @return 无返回值，函数不会返回
  */
-void TerminateSystem(uint64_t TerminationSecurityToken);
+void ShutdownSystem(uint64_t TerminationSecurityToken);
 
 /**
  * @brief 检查系统状态
