@@ -1470,18 +1470,18 @@ NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, N
   NetworkConnectionContext = 0;
   if (ValidationStatusCode == 0) {
 NetworkValidationProcessingContinue:
-    if ((0 < *(int *)((long long)ConnectionValidationResultPointer + ConnectionParameterOffset)) && (*ConnectionValidationResultPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ConnectionValidationResultPointer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)((long long)ValidationResultPointer + ConnectionParameterOffset)) && (*ValidationResultPointer != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ValidationResultPointer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *ConnectionValidationResultPointer = NetworkConnectionContextHandle;
-    *(int *)((long long)ConnectionValidationResultPointer + ConnectionParameterOffset) = ConnectionValidationStatusCode;
+    *ValidationResultPointer = NetworkConnectionContext;
+    *(int *)((long long)ValidationResultPointer + ConnectionParameterOffset) = ValidationStatusCode;
     return 0;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
-    NetworkConnectionContextHandle = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationData, NetworkConnectionFinalizeValue, 0);
-    if (NetworkConnectionContextHandle != 0) {
-      if ((int)ConnectionValidationResultPointer[1] != 0) {
-          memcpy(NetworkConnectionContextHandle, *ConnectionValidationResultPointer, (long long)(int)ConnectionValidationResultPointer[1]);
+    NetworkConnectionContext = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationData, NetworkConnectionFinalizeValue, 0);
+    if (NetworkConnectionContext != 0) {
+      if ((int)ValidationResultPointer[1] != 0) {
+          memcpy(NetworkConnectionContext, *ValidationResultPointer, (long long)(int)ValidationResultPointer[1]);
       }
       goto NetworkProcessingSuccess;
     }
