@@ -5188,6 +5188,14 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * @return void 无返回值
  * @warning 此函数会立即终止系统运行，只在严重错误时使用
  */
+/**
+ * @brief 触发系统异常
+ * 
+ * 该函数用于触发系统异常处理机制
+ * 主要用于处理系统级的错误和异常情况
+ * 
+ * @return void 无返回值
+ */
 void TriggerSystemException(void) {
   ExecuteSystemExitOperation();
 }
@@ -6784,7 +6792,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t SystemO
  * 该函数验证系统配置参数的有效性，检查参数是否符合系统要求
  * 执行相应的验证逻辑并返回验证结果
  * 
- * @param configParameter 配置参数，包含要验证的配置信息
+ * @param SystemConfigParameter 配置参数，包含要验证的配置信息
  * @return 验证结果，0表示验证成功，非0表示验证失败
  */
 int ValidateSystemConfigurationParameter(uint32_t SystemConfigParameter)
@@ -10252,22 +10260,27 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext, int64_t V
 
 /**
  * @brief 处理浮点数数据验证和转换操作（无参数版本）
- * @param DataContext 数据上下文指针
- * @param ValidationContext 系统上下文指针，用于系统级操作
- * @return 操作状态码，0表示成功，非0表示错误
+ * 
+ * 该函数用于处理浮点数数据的验证和转换，包括数据范围检查、
+ * 数值限制和系统资源管理。主要包含数据哈希验证、资源索引查找、
+ * 浮点数范围限制和资源参数验证等功能。
+ * 
+ * @param DataContext 数据上下文指针，包含待处理的数据信息
+ * @param ValidationContext 系统上下文指针，用于系统级操作和验证
+ * @return uint8_t 操作状态码，0表示成功，非0表示错误
  */
 uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uint8_t ValidationContext)
 {
-  float InputFloatParameter;
+  float OriginalFloatValue;
   uint8_t ResourceValidationStatus = 0;
-  int64_t ResourceHandleIndex = 0;
-  int64_t ResourceDataPointer = 0;
-  int64_t SystemContextHandle = 0;
-  float MinimumRangeValue = 0.0f;
-  float MaximumRangeValue = 0.0f;
-  float ClampedResultValue = 0.0f;
-  uint32_t SecurityValidationToken = 0;
-  int OperationStatus = 0;
+  int64_t ResourceIndexPointer = 0;
+  int64_t ResourceDataBuffer = 0;
+  int64_t SystemContextPointer = 0;
+  float MinimumValidRange = 0.0f;
+  float MaximumValidRange = 0.0f;
+  float ClampedFloatResult = 0.0f;
+  uint32_t ValidationToken = 0;
+  int OperationStatusCode = 0;
   
   SecurityValidationToken = 0;
   OperationStatus = ProcessDataHashing(SystemContextHandle + ValidationContextHashOffset, ValidationContext, &SecurityValidationToken);
