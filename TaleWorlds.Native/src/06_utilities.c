@@ -10048,32 +10048,32 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uin
   uint32_t SecurityValidationToken = 0;
   int OperationStatus = 0;
   
-  SecurityValidationBuffer = 0;
-  ProcessingStatusCode = ProcessDataHashing(SystemContext + ValidationContextHashOffset, ValidationContext, &SecurityValidationBuffer);
-  if ((int)ProcessingStatusCode == 0) {
-    ResourceIndex = LookupResourceIndexPointer(SystemContext + ValidationContextHashOffset, SecurityValidationBuffer);
-    if ((*(uint *)(ResourceIndex + 0x34) >> 4 & 1) != 0) {
+  SecurityValidationToken = 0;
+  OperationStatus = ProcessDataHashing(SystemContextHandle + ValidationContextHashOffset, ValidationContext, &SecurityValidationToken);
+  if ((int)OperationStatus == 0) {
+    ResourceHandleIndex = LookupResourceIndexPointer(SystemContextHandle + ValidationContextHashOffset, SecurityValidationToken);
+    if ((*(uint *)(ResourceHandleIndex + 0x34) >> 4 & 1) != 0) {
       return ErrorResourceValidationFailed;
     }
-    InputFloatValue = *(float *)(ResourceContext + 0x18);
-    RangeMinValue = *(float *)(ResourceIndex + 0x38);
-    RangeMaxValue = *(float *)(ResourceIndex + 0x3c);
-    if ((RangeMinValue <= InputFloatValue) && (InputFloatValue <= RangeMaxValue)) {
-      ClampedFloatValue = InputFloatValue;
+    InputFloatParameter = *(float *)(ResourceDataPointer + 0x18);
+    MinimumRangeValue = *(float *)(ResourceHandleIndex + 0x38);
+    MaximumRangeValue = *(float *)(ResourceHandleIndex + 0x3c);
+    if ((MinimumRangeValue <= InputFloatParameter) && (InputFloatParameter <= MaximumRangeValue)) {
+      ClampedResultValue = InputFloatParameter;
     }
-    else if (InputFloatValue < RangeMinValue) {
-      ClampedFloatValue = RangeMinValue;
+    else if (InputFloatParameter < MinimumRangeValue) {
+      ClampedResultValue = MinimumRangeValue;
     }
     else {
-      ClampedFloatValue = RangeMaxValue;
+      ClampedResultValue = MaximumRangeValue;
     }
-    *(float *)(ResourceContext + 0x18) = ClampedFloatValue;
-    ProcessingStatusCode = ValidateResourceParameters(SystemContext + ValidationContextHashOffset, SecurityValidationBuffer, ClampedFloatValue);
-    if ((int)ProcessingStatusCode == 0) {
-      ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset));
+    *(float *)(ResourceDataPointer + 0x18) = ClampedResultValue;
+    OperationStatus = ValidateResourceParameters(SystemContextHandle + ValidationContextHashOffset, SecurityValidationToken, ClampedResultValue);
+    if ((int)OperationStatus == 0) {
+      ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + SystemResourceManagerOffset));
     }
   }
-  return ProcessingStatusCode;
+  return OperationStatus;
 }
 
 

@@ -809,7 +809,6 @@ void* SystemMemoryBlockArchiveV;
 void* SystemMemoryBlockArchiveW;
 void* SystemFunctionPointerEmergency;
 
-// 函数: 系统初始化入口点A
 /**
  * @brief 系统初始化入口点A
  * 
@@ -825,7 +824,6 @@ void* SystemMemoryRegionReservedDelta;
 void* SystemMemoryRegionReservedEpsilon;
 void* SystemDataTableEntryFirmware;
 
-// 函数: 系统初始化入口点B
 /**
  * @brief 系统初始化入口点B
  * 
@@ -835,7 +833,6 @@ void* SystemDataTableEntryFirmware;
 void* SystemInitializationEntryPointBeta;
 void* SystemMemoryRegionExtendedSix;
 
-// 函数: 系统初始化入口点C
 /**
  * @brief 系统初始化入口点C
  * 
