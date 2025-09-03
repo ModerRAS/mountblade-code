@@ -463,19 +463,19 @@ uint32_t NetworkConnectionTableHandle;                    // 网络连接表管�
 uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志位
 uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
 uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制
-uint32_t ConnectionAttributeFlags;                // 网络连接属性标志位
-uint32_t ConnectionStateFlags;                     // 网络连接状态标志位
+uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志位
+uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志位
 
 // 网络协议和地址配置
-uint32_t ConnectionProtocolType;                   // 网络连接协议类型
-uint32_t ConnectionProtocolVersion;                // 网络连接协议版本
+uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型
+uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址
 uint32_t NetworkServerPortNumber;                         // 网络服务器端口号
 uint32_t NetworkClientIpAddress;                          // 网络客户端IP地址
 uint32_t NetworkClientPortNumber;                         // 网络客户端端口号
 
 // 网络套接字和缓冲区配置
-uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符
+uint32_t NetworkSocketDescriptor;                     // 网络套接字文件描述符
 uint32_t NetworkSocketCategory;                           // 网络套接字类别
 uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型
 uint32_t NetworkSocketIndex;                              // 网络套接字索引
@@ -633,7 +633,7 @@ void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfig
 void InitializeNetworkSocketHandle(void)
 {
   // 初始化套接字基本参数
-  NetworkSocketFileDescriptor = 0xFFFFFFFF;        // 初始化文件描述符为无效值
+  NetworkSocketDescriptor = 0xFFFFFFFF;        // 初始化文件描述符为无效值
   NetworkSocketContextSize = 0x100;                // 设置套接字上下文大小为256字节
   NetworkSocketIndex = 0;                           // 重置套接字索引
   NetworkSocketSize = 0x40;                         // 设置套接字大小为64字节
