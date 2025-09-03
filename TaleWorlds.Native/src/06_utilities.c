@@ -5228,7 +5228,7 @@ void CleanupSystemResources(void)
  * @return uint8_t 返回验证结果，0表示成功，非0表示错误代码
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  */
-uint8_t VerifyAndProcessObjectHandle(int64_t ObjectContext)
+uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
 {
   uint8_t ObjectValidationStatus;
   int64_t ValidatedMemoryAddress;
