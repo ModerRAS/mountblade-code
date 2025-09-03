@@ -4392,7 +4392,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int ObjectValidationStatusCode;
   int64_t ObjectCollectionIterator;
-  int ProcessedObjectsTotal;
+  int ProcessedObjectsCount;
   uint8_t ObjectMetadataWorkspace[32];
   int64_t ObjectHandleArray[2];
   uint8_t *ObjectListBuffer;
@@ -4408,7 +4408,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   ObjectValidationStatusCode = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleArray);
   if ((ObjectValidationStatusCode == 0) && (*(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset) != 0)) {
     ObjectListBuffer = ObjectProcessingWorkspace;
-    ProcessedObjectsTotal = 0;
+    ProcessedObjectsCount = 0;
     TotalObjectCount = 0;
     MaximumObjectProcessingLimit = MaximumProcessableItemsLimit;
     
@@ -4424,9 +4424,9 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
           if (ObjectValidationStatusCode != RegistrationStatusSuccess) {
                   HandleInvalidObject(CurrentObjectStatus, 1);
           }
-          ProcessedObjectsTotal++;
+          ProcessedObjectsCount++;
           ObjectCollectionIterator += ResourceEntrySizeBytes;
-        } while (ProcessedObjectsTotal < TotalObjectCount);
+        } while (ProcessedObjectsCount < TotalObjectCount);
       }
       FreeObjectListMemory(&ObjectListBuffer);
     }
@@ -4459,7 +4459,7 @@ void ValidateSystemObjectCollection(void)
   int64_t SystemObjectContextHandle;
   int64_t SystemRuntimeContext;
   int64_t CollectionBufferPosition;
-  int SuccessfullyValidatedCount;
+  int ValidatedObjectCount;
   uint8_t *SystemObjectCollectionBuffer;
   int TotalRetrievedObjects;
   uint32_t MaximumCollectionSize;
@@ -4468,7 +4468,7 @@ void ValidateSystemObjectCollection(void)
   // 检查系统对象上下文是否有效
   if (*(int64_t *)(SystemObjectContextHandle + ObjectHandleSecondaryOffset) != 0) {
     SystemObjectCollectionBuffer = ProcessingWorkspace;
-    SuccessfullyValidatedCount = 0;
+    ValidatedObjectCount = 0;
     TotalRetrievedObjects = 0;
     MaximumCollectionSize = MaximumCapacityLimit;
     
@@ -4485,9 +4485,9 @@ void ValidateSystemObjectCollection(void)
           if (SystemObjectValidationResult != 2) {
                   HandleInvalidSystemObject(CurrentObjectId, 1);
           }
-          SuccessfullyValidatedCount++;
+          ValidatedObjectCount++;
           CollectionBufferPosition += 8;
-        } while (SuccessfullyValidatedCount < TotalRetrievedObjects);
+        } while (ValidatedObjectCount < TotalRetrievedObjects);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
@@ -4576,7 +4576,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   int64_t *RegistrationBasePointer;
   int64_t RegistrationStackPointer;
   char SystemObjectNameBuffer[16];
-  int RegistrationIterationCounter;
+  int RegistrationIndex;
   int CalculatedRegistrationEntrySize;
   int RegistrationCount;
   int CalculatedRegistrationSize;
@@ -5006,7 +5006,7 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
     }
     ValidationResult = 0;
   }
-  return ValidationStatus;
+  return ValidationResult;
 }
 
 
@@ -5091,10 +5091,6 @@ uint8_t ValidateCharacterInput(char InputCharacter) {
  * 
  * @return void 无返回值
  */
-void InitializeSystemResources(void) {
-  // 预留系统资源初始化逻辑
-  return;
-}
 
 
 

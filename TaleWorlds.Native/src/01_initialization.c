@@ -19377,19 +19377,19 @@ void ExecuteSystemCallback(long long *callbackParameter)
 void ProcessSystemStringCopy(long long TargetBuffer,long long SourceString)
 
 {
-  long long StringLength;
+  long long SourceStringLength;
   
   if (SourceString == 0) {
     *(uint32_t *)(TargetBuffer + STRING_LENGTH_OFFSET) = 0;
     **(uint8_t **)(TargetBuffer + STRING_DATA_OFFSET) = 0;
     return;
   }
-  StringLength = -1;
+  SourceStringLength = -1;
   do {
-    StringLength = StringLength + 1;
-  } while (*(char *)(SourceString + StringLength) != '\0');
-  if ((int)StringLength < 0x1000) {
-    *(int *)(TargetBuffer + STRING_LENGTH_OFFSET) = (int)StringLength;
+    SourceStringLength = SourceStringLength + 1;
+  } while (*(char *)(SourceString + SourceStringLength) != '\0');
+  if ((int)SourceStringLength < 0x1000) {
+    *(int *)(TargetBuffer + STRING_LENGTH_OFFSET) = (int)SourceStringLength;
                     000180045b59. Too many branches
                         strcpy_s(*(void* *)(SystemResourceManager + 8),0x1000);
     return;
