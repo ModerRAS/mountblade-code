@@ -1592,9 +1592,9 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkPacketStatusBuffer[4] = *(NetworkConnectionStatus *)((NetworkConnectionBaseAddress - (long long)NetworkStatusBuffer) + -4 + (long long)(NetworkPacketStatusBuffer + 5));
             
             // 更新迭代计数器
-            ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
-            PacketStatusBufferPointer = PacketStatusBufferPointer + 5;
-          } while (ConnectionProcessingCounter != 0);
+            NetworkConnectionProcessingCounter = NetworkConnectionProcessingCounter - 1;
+            NetworkPacketStatusBuffer = NetworkPacketStatusBuffer + 5;
+          } while (NetworkConnectionProcessingCounter != 0);
         }
         goto NetworkProcessingLoop;
       }
@@ -1630,17 +1630,17 @@ NetworkMainProcessingLoop:
 NetworkHandle NetworkUpdateConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   // 连接状态处理变量
-  NetworkStatus *ConnectionContextData;                // 连接上下文数据指针
-  int32_t PacketProcessingStatus;                       // 数据包处理状态
-  int64_t ConnectionContextHandle;                      // 连接上下文句柄
-  NetworkStatus ValidationStatus;                       // 验证状态
-  NetworkStatus TimeoutStatus;                          // 超时状态
-  NetworkStatus SecondaryProcessingStatus;              // 次级处理状态
-  NetworkStatus *StatusBuffer;                          // 状态缓冲区
-  int64_t ProcessingCounter;                            // 处理计数器
-  NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
-  int64_t *OperationStatusBuffer;                      // 操作状态缓冲区
-  int32_t OperationCode;                                // 操作代码
+  NetworkStatus *NetworkConnectionContextData;                // 连接上下文数据指针
+  int32_t NetworkPacketProcessingStatus;                       // 数据包处理状态
+  int64_t NetworkConnectionContextHandle;                      // 连接上下文句柄
+  NetworkStatus NetworkValidationStatus;                       // 验证状态
+  NetworkStatus NetworkTimeoutStatus;                          // 超时状态
+  NetworkStatus NetworkSecondaryProcessingStatus;              // 次级处理状态
+  NetworkStatus *NetworkStatusBuffer;                          // 状态缓冲区
+  int64_t NetworkProcessingCounter;                            // 处理计数器
+  NetworkStatus *NetworkPacketFlagsBuffer;                     // 数据包标志缓冲区
+  int64_t *NetworkOperationStatusBuffer;                      // 操作状态缓冲区
+  int32_t NetworkOperationCode;                                // 操作代码
   
   StatusBuffer = (NetworkStatus *)0x0;
   if (OperationCode == 0) {
