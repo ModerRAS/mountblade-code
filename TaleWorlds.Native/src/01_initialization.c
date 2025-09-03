@@ -79,31 +79,31 @@
 #define SYSTEM_MESSAGE_CONFIG_BUFFER_SIZE   0xa
 
 // 系统标识符常量
-#define SystemEventSystemIdentifier1          0x45b8d074df27d12f
-#define SystemEventSystemIdentifier2          0x8d98f4c06880eda4
-#define SystemResourceSystemIdentifier1       0x42d293584c8cf3e5
-#define SystemResourceSystemIdentifier2       0x355ffeb2d29e668a
-#define SystemDataComparisonTemplateAId1   0x421c3cedd07d816d
-#define SystemDataComparisonTemplateAId2   0xbec25de793b7afa6
-#define SystemDataComparisonTemplateBId1   0x4c22bb0c326587ce
-#define SystemDataComparisonTemplateBId2   0x5e3cf00ce2978287
-#define SystemDataComparisonTemplateJId1   0x4b2d79e470ee4e2c
-#define SystemDataComparisonTemplateJId2   0x9c552acd3ed5548d
-#define SystemDataComparisonTemplateKId1   0x49086ba08ab981a7
-#define SystemDataComparisonTemplateKId2   0xa9191d34ad910696
+#define SYSTEM_EVENT_SYSTEM_IDENTIFIER1          0x45b8d074df27d12f
+#define SYSTEM_EVENT_SYSTEM_IDENTIFIER2          0x8d98f4c06880eda4
+#define SYSTEM_RESOURCE_SYSTEM_IDENTIFIER1       0x42d293584c8cf3e5
+#define SYSTEM_RESOURCE_SYSTEM_IDENTIFIER2       0x355ffeb2d29e668a
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1   0x421c3cedd07d816d
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2   0xbec25de793b7afa6
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID1   0x4c22bb0c326587ce
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID2   0x5e3cf00ce2978287
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID1   0x4b2d79e470ee4e2c
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID2   0x9c552acd3ed5548d
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID1   0x49086ba08ab981a7
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID2   0xa9191d34ad910696
 
 // 数据比较模板标识符
-#define SystemDataComparisonTemplateDId1   0x406be72011d07d37
-#define SystemDataComparisonTemplateDId2   0x71876af946c867ab
-#define SystemDataComparisonTemplateEId1   0x449bafe9b77ddd3c
-#define SystemDataComparisonTemplateEId2   0xc160408bde99e59f
-#define SystemDataComparisonTemplateFId1   0x45425dc186a5d575
-#define SystemDataComparisonTemplateFId2   0xfab48faa65382fa5
-#define SystemDataComparisonTemplateGId1   0x40afa5469b6ac06d
-#define SystemDataComparisonTemplateGId2   0x2f4bab01d34055a5
-#define SystemDataComparisonTemplateHId1   0x43330a43fcdb3653
-#define SystemDataComparisonTemplateHId2   0xdcfdc333a769ec93
-#define SystemDataComparisonTemplateIId1   0x431d7c8d7c475be2
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID1   0x406be72011d07d37
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID2   0x71876af946c867ab
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_E_ID1   0x449bafe9b77ddd3c
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_E_ID2   0xc160408bde99e59f
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_F_ID1   0x45425dc186a5d575
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_F_ID2   0xfab48faa65382fa5
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_G_ID1   0x40afa5469b6ac06d
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_G_ID2   0x2f4bab01d34055a5
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1   0x43330a43fcdb3653
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2   0xdcfdc333a769ec93
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID1   0x431d7c8d7c475be2
 
 // 资源数据偏移量常量
 #define ResourceDataTransformXOffset        0x130
