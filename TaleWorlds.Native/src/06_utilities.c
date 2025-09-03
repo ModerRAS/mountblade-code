@@ -4226,18 +4226,6 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数会进行安全验证，确保只有有效的对象被处理
  * @warning 调用此函数前必须确保游戏上下文和系统上下文已正确初始化
  */
-/**
- * @brief 处理游戏对象集合
- * 
- * 该函数负责处理和验证游戏中的对象集合，确保所有对象的有效性和完整性
- * 通过获取对象列表并逐个验证每个对象的状态
- * 
- * @param GameContext 游戏上下文指针，包含游戏相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时的状态信息
- * @return 无返回值
- * @note 此函数在游戏循环中定期调用以维护对象集合的完整性
- * @warning 验证失败的对象将被标记为无效状态并可能被移除
- */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int ObjectValidationStatusCode;
@@ -4834,6 +4822,15 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
  * 
  * @param ObjectContext 对象上下文参数，包含对象的初始化信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
+ */
+/**
+ * @brief 创建基础对象句柄
+ * 
+ * 该函数用于创建系统对象的基础句柄，包含对象验证和句柄初始化操作
+ * 主要用于对象管理系统的基础功能实现
+ * 
+ * @param ObjectContext 对象上下文，包含要创建句柄的对象信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t CreateBasicObjectHandle(int64_t ObjectContext) {
   uint8_t HandleValidationResult;
@@ -30078,6 +30075,16 @@ void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCo
  * @param SystemContext 系统上下文指针
  * @return 无返回值
  */
+/**
+ * @brief 处理第三级上下文异常
+ * 
+ * 该函数用于处理系统第三级上下文中的异常情况
+ * 通过调用注册的第三级异常处理器来处理异常
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ * @return 无返回值
+ */
 void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerPointer;
   
@@ -30109,6 +30116,16 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * 
  * @param ExceptionContext 异常上下文
  * @param SystemContext 系统上下文指针
+ * @return 无返回值
+ */
+/**
+ * @brief 处理第四级上下文异常
+ * 
+ * 该函数用于处理系统第四级上下文中的异常情况
+ * 主要处理资源哈希相关的异常，包括资源分配和缓存
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */
 void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
