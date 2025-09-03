@@ -11300,7 +11300,7 @@ int ValidateResourceTableAccess(uint64_t ResourceHandle)
   ResourceTablePointerPointer = (**(code **)(InputParameter + 0x288))();
   if (ResourceTablePointerPointer == 0) {
           ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,ResourceObjectContextPointer & 0xffffffff,
-                  ResourceObjectContextPointer.Field42);
+                  ResourceObjectContextPointer.SecurityValidationField);
   }
   if (**(int **)(ResourceTablePointerPointer + ResourceTablePointerValidationOffset) == 0) {
     int ResourceAvailabilityStatus = CheckResourceAvailability(*(uint32_t *)(SystemRegisterContext + SystemRegisterContextIdentifierOffset));
@@ -12203,7 +12203,7 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *Val
   if (OperationResult < *(int *)(ObjectContext + ObjectContextProcessingDataOffset)) {
     ObjectContextDataOffset = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
     SecurityContextIndex = ArrayIterationIndex * 3;
-    int64_t SystemDataPointer = (int64_t)*(int *)(ObjectContextDataOffset + ArrayIterationIndex * ResourceEntrySize) + *(int64_t *)(ObjectContext + ObjectContextHandleDataOffset);
+    int64_t ObjectDataMemoryPointer = (int64_t)*(int *)(ObjectContextDataOffset + ArrayIterationIndex * ResourceEntrySize) + *(int64_t *)(ObjectContext + ObjectContextHandleDataOffset);
     char SystemOperationStatus = *(char *)(ObjectContextDataOffset + ResourceCleanupOffset + ArrayIterationIndex * ResourceEntrySize);
     if (SystemOperationStatus == '\x01') {
       int MaximumOperationCount = *(int *)(ObjectContext + ObjectContextResourceCountOffset);
@@ -16076,7 +16076,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
           LocalContextHandle = LookupResourceIndexPointer(LocalContextPointer,ResourceContextEnd);
           ResourceValidationStatusCode = CheckResourceIndex(LocalContextHandle,0);
           if ((ResourceValidationStatusCode == '\0') && (ValidationFloatBuffer[0] != *(float *)(LocalContextHandle + 0x4c))) {
-            GraphicsOperationFlagSecondary = AudioProcessingBuffer.UIntField0;
+            GraphicsOperationFlagSecondary = AudioProcessingBuffer.AudioFormatField;
             GraphicsOperationFlagPrimary = AudioProcessingBuffer.FloatField;
             FloatProcessingStatusCode = ValidationFloatBuffer[0];
             GraphicsOperationFlagTertiary = 0;
@@ -102970,7 +102970,7 @@ void InitializeSystemDataStructureAX(void)
 void InitializeSystemDataStructureAX(void)
 
 {
-  SystemDataPointer024 = &SystemDataStructure;
+  SystemDataPointerGameWorld = &SystemDataStructure;
   return;
 }
 
@@ -102990,7 +102990,7 @@ void InitializeSystemDataStructureAY(void)
 void InitializeSystemDataStructureAY(void)
 
 {
-  SystemDataPointer025 = &SystemDataStructure;
+  SystemDataPointerGameState = &SystemDataStructure;
   return;
 }
 
@@ -103010,7 +103010,7 @@ void InitializeSystemDataStructureAZ(void)
 void InitializeSystemDataStructureAZ(void)
 
 {
-  SystemDataPointer026 = &SystemDataStructure;
+  SystemDataPointerGameEntity = &SystemDataStructure;
   return;
 }
 
@@ -103030,7 +103030,7 @@ void InitializeSystemDataStructureBA(void)
 void InitializeSystemDataStructureBA(void)
 
 {
-  SystemDataPointer027 = &SystemDataStructure;
+  SystemDataPointerGamePhysics = &SystemDataStructure;
   return;
 }
 
@@ -103050,7 +103050,7 @@ void InitializeSystemDataStructureBB(void)
 void InitializeSystemDataStructureBB(void)
 
 {
-  SystemDataPointer028 = &SystemDataStructure;
+  SystemDataPointerGameRender = &SystemDataStructure;
   return;
 }
 
@@ -103150,7 +103150,7 @@ void InitializeSystemDataStructureBG(void)
 void InitializeSystemDataStructureBG(void)
 
 {
-  SystemDataPointer032 = &SystemDataStructure;
+  SystemDataPointerGameAudio = &SystemDataStructure;
   return;
 }
 
@@ -103170,7 +103170,7 @@ void InitializeSystemDataStructureBH(void)
 void InitializeSystemDataStructureBH(void)
 
 {
-  SystemDataPointer033 = &SystemDataStructure;
+  SystemDataPointerGameNetwork = &SystemDataStructure;
   return;
 }
 
@@ -103179,18 +103179,15 @@ void InitializeSystemDataStructureBH(void)
 
 
  /**
- * 初始化系统数据结构BI
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureBI(void)
-/**
- * 初始化系统数据结构BI
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构BI
+ * 
+ * 设置输入系统数据结构指针，用于系统初始化
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
 void InitializeSystemDataStructureBI(void)
 
 {
-  SystemDataPointer034 = &SystemDataStructure;
+  SystemDataPointerInput = &SystemDataStructure;
   return;
 }
 
@@ -103199,18 +103196,15 @@ void InitializeSystemDataStructureBI(void)
 
 
  /**
- * 初始化系统数据结构BJ
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureBJ(void)
-/**
- * 初始化系统数据结构BJ
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构BJ
+ * 
+ * 设置用户界面系统数据结构指针，用于系统初始化
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
 void InitializeSystemDataStructureBJ(void)
 
 {
-  SystemDataPointer035 = &SystemDataStructure;
+  SystemDataPointerUI = &SystemDataStructure;
   return;
 }
 
@@ -103219,18 +103213,15 @@ void InitializeSystemDataStructureBJ(void)
 
 
  /**
- * 初始化系统数据结构BK
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureBK(void)
-/**
- * 初始化系统数据结构BK
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构BK
+ * 
+ * 设置动画系统数据结构指针，用于系统初始化
+ * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
 void InitializeSystemDataStructureBK(void)
 
 {
-  SystemDataPointer036 = &SystemDataStructure;
+  SystemDataPointerAnimation = &SystemDataStructure;
   return;
 }
 
