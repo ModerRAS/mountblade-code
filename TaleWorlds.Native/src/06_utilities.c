@@ -102750,16 +102750,16 @@ void InitializeMemoryStatisticsTable(void)
  * @brief 初始化系统数据结构AQ
  * 
  * 该函数负责初始化系统数据结构的第18号指针
- * 将 SystemDataPointer018 设置为指向 SystemDataStructure
+ * 将 SystemDataPointerSecondary 设置为指向 SystemDataStructure
  * 用于建立系统数据结构的第18级引用关系
  * 
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataPointer018(void)
+void InitializeSystemDataPointerSecondary(void)
 
 {
-  SystemDataPointer018 = &SystemDataStructure;
+  SystemDataPointerSecondary = &SystemDataStructure;
   return;
 }
 
@@ -102779,7 +102779,7 @@ void InitializeSystemDataStructureAR(void)
 void InitializeSystemDataStructureAR(void)
 
 {
-  SystemDataPointer018 = &SystemDataStructure;
+  SystemDataPointerSecondary = &SystemDataStructure;
   return;
 }
 
@@ -102799,7 +102799,7 @@ void InitializeSystemDataStructureAS(void)
 void InitializeSystemDataStructureAS(void)
 
 {
-  SystemDataPointer019 = &SystemDataStructure;
+  SystemDataPointerTertiary = &SystemDataStructure;
   return;
 }
 
@@ -102819,7 +102819,7 @@ void InitializeSystemDataStructureAT(void)
 void InitializeSystemDataStructureAT(void)
 
 {
-  SystemDataPointer020 = &SystemDataStructure;
+  SystemDataPointerQuaternary = &SystemDataStructure;
   return;
 }
 
@@ -102839,7 +102839,7 @@ void InitializeSystemDataStructureAU(void)
 void InitializeSystemDataStructureAU(void)
 
 {
-  SystemDataPointer021 = &SystemDataStructure;
+  SystemDataPointerQuinary = &SystemDataStructure;
   return;
 }
 
@@ -103459,7 +103459,7 @@ void InitializeSystemDataStructureBZ(void)
 void InitializeSystemDataStructureBZ(void)
 
 {
-  SystemDataPointer018 = &SystemDataStructure;
+  SystemDataPointerSecondary = &SystemDataStructure;
   return;
 }
 
@@ -103493,14 +103493,14 @@ void ProcessSystemOperationA(uint8_t ObjectContext,uint8_t ValidationContext,uin
   
   ResourceHashPtr = SystemDataHashPrimaryPointer;
   ValidationStatusCode = 0xfffffffffffffffe;
-  ValidationStatusCodeAddress = SystemDataValidationPointer001;
-  if (SystemDataValidationPointer001 != SystemDataHashPrimaryPointer) {
+  ValidationStatusCodeAddress = SystemDataValidationPointerPrimary;
+  if (SystemDataValidationPointerPrimary != SystemDataHashPrimaryPointer) {
     do {
       (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
       ValidationStatusCodeAddress = ResourceHashStatusAddress + ResourceHashStatusOffset;
     } while (ValidationStatusCodeAddress != ResourceHashAddress);
   }
-  if (SystemDataValidationPointer001 == (uint8_t *)0x0) {
+  if (SystemDataValidationPointerPrimary == (uint8_t *)0x0) {
     return;
   }
         ExecuteSystemEmergencyExit();
@@ -103536,14 +103536,14 @@ void ProcessSystemOperationB(uint8_t ObjectContext,uint8_t ValidationContext,uin
   
   ResourceHashPtr = SystemDataHashPointer002;
   ValidationStatusCode = 0xfffffffffffffffe;
-  ValidationStatusCodeAddress = SystemDataValidationPointer002;
-  if (SystemDataValidationPointer002 != SystemDataHashPointer002) {
+  ValidationStatusCodeAddress = SystemDataValidationPointerSecondary;
+  if (SystemDataValidationPointerSecondary != SystemDataHashPointer002) {
     do {
       (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
       ValidationStatusCodeAddress = ResourceHashStatusAddress + ResourceHashStatusOffset;
     } while (ValidationStatusCodeAddress != ResourceHashAddress);
   }
-  if (SystemDataValidationPointer002 == (uint8_t *)0x0) {
+  if (SystemDataValidationPointerSecondary == (uint8_t *)0x0) {
     return;
   }
         ExecuteSystemEmergencyExit();
@@ -103579,14 +103579,14 @@ void ProcessSystemOperationC(uint8_t ObjectContext,uint8_t ValidationContext,uin
   
   ResourceHashPtr = SystemDataHashPointer003;
   ValidationStatusCode = 0xfffffffffffffffe;
-  ValidationStatusCodeAddress = SystemDataValidationPointer003;
-  if (SystemDataValidationPointer003 != SystemDataHashPointer003) {
+  ValidationStatusCodeAddress = SystemDataValidationPointerTertiary;
+  if (SystemDataValidationPointerTertiary != SystemDataHashPointer003) {
     do {
       (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
       ValidationStatusCodeAddress = ResourceHashStatusAddress + ResourceHashStatusOffset;
     } while (ValidationStatusCodeAddress != ResourceHashAddress);
   }
-  if (SystemDataValidationPointer003 == (uint8_t *)0x0) {
+  if (SystemDataValidationPointerTertiary == (uint8_t *)0x0) {
     return;
   }
         ExecuteSystemEmergencyExit();
@@ -103819,7 +103819,7 @@ void InitializeSystemDataStructureCF(void)
 void InitializeSystemDataStructureCF(void)
 
 {
-  SystemDataPointer019 = &SystemDataStructure;
+  SystemDataPointerTertiary = &SystemDataStructure;
                     // WARNING: Could not recover jumptable at 0x0001809427c7. Too many branches
                     // WARNING: Treating indirect jump as call
   MutexDestroyInPlace();
@@ -103882,7 +103882,7 @@ void InitializeSystemDataStructureCI(void)
 void InitializeSystemDataStructureCI(void)
 
 {
-  SystemDataPointer020 = &SystemDataStructure;
+  SystemDataPointerQuaternary = &SystemDataStructure;
   return;
 }
 
@@ -103901,7 +103901,7 @@ void InitializeSystemDataStructureCI(void)
 void InitializeSystemDataStructureCJ(void)
 
 {
-  SystemConfigurationPointer001 = &SystemDataStructure;
+  SystemConfigurationPointerPrimary = &SystemDataStructure;
   return;
 }
 
@@ -103920,7 +103920,7 @@ void InitializeSystemDataStructureCJ(void)
 void InitializeSystemDataStructureCK(void)
 
 {
-  SystemDataPointer021 = &SystemDataStructure;
+  SystemDataPointerQuinary = &SystemDataStructure;
   return;
 }
 
