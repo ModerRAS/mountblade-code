@@ -388,9 +388,7 @@ uint32_t NetworkConnectionStateFlag;
 uint32_t ConnectionProcessingResult;
 uint32_t NetworkConnectionProcessedCount;
 
-// 函数实现
-
-// 初始化连接状态 - 设置连接状态缓冲区和系统上下文
+// 初始化连接状态 - 设置网络连接的初始状态
 void InitializeConnectionState(void)
 {
   uint8_t *ConnectionStateBuffer;
