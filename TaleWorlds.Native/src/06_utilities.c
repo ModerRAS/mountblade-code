@@ -19204,7 +19204,7 @@ void ClearSystemCache(void)
  * @param hashPointer 哈希值指针，指向要处理的资源哈希值
  * @return 无返回值
  */
-void ProcessResourceHash(int64_t ResourceContext, uint *hashPointer)
+void ProcessResourceHash(int64_t ResourceContext, uint *ResourceHashPointer)
 
 {
   uint ResourceHash;
@@ -19212,19 +19212,19 @@ void ProcessResourceHash(int64_t ResourceContext, uint *hashPointer)
   uint8_t HashType;
   uint32_t formattedHash;
   
-  ResourceHash = *hashPointer;
+  ResourceHash = *ResourceHashPointer;
   if (ResourceHash + 0x4000 < 0x8000) {
     formattedHash = CONCAT22(formattedHash.ShortValue,(short)ResourceHash) & 0xffff7fff;
-    hashType = 2;
+    HashType = 2;
   }
   else {
     formattedHash = (ResourceHash & 0xffffc000 | 0x4000) * 2 | ResourceHash & 0x7fff;
-    hashType = 4;
+    HashType = 4;
   }
-  processResult = (**(code **)**(uint8_t **)(ResourceContext + 8))
-                    (*(uint8_t **)(ResourceContext + 8),&formattedHash,hashType);
-  if (processResult == 0) {
-    CheckResourceAvailability(ResourceContext,hashPointer + 1);
+  ProcessResult = (**(code **)**(uint8_t **)(ResourceContext + 8))
+                    (*(uint8_t **)(ResourceContext + 8),&formattedHash,HashType);
+  if (ProcessResult == 0) {
+    CheckResourceAvailability(ResourceContext,ResourceHashPointer + 1);
   }
   return;
 }
