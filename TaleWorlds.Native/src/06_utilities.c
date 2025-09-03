@@ -9511,7 +9511,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
 
 {
   float CalculatedFloatResult;
-  uint8_t ResourceHashStatus;
+  uint8_t ResourceValidationStatus;
   int64_t ResourceIndex;
   int64_t StackContextPointer;
   float FloatValueToValidate;
@@ -9543,9 +9543,9 @@ ValidationContinueLabel:
     }
   }
 ValidationCompleteLabel:
-  ResourceHashStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  if ((int)ResourceHashStatus != 0) {
-    return ResourceHashStatus;
+  ResourceValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  if ((int)ResourceValidationStatus != 0) {
+    return ResourceValidationStatus;
   }
   if (StackContextPointer == 0) {
     ResourceIndex = 0;
@@ -9564,7 +9564,7 @@ ValidationCompleteLabel:
       if ((int)ValidationStatusCode == 0) {
         return 0;
       }
-      return ResourceHashStatus;
+      return ResourceValidationStatus;
     }
   }
   *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
@@ -9572,7 +9572,7 @@ ValidationCompleteLabel:
   if ((int)ValidationStatusCode == 0) {
     return 0;
   }
-  return ResourceHashStatus;
+  return ResourceValidationStatus;
 }
 
 
@@ -12044,33 +12044,33 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
   uint64_t AllocationSize;
   
   if (DataIndexRegister == InputParameterValue) {
-    ResourceCount = DataIndexRegister * 2;
-    if (ResourceCount < 4) {
-      ResourceCount = 4;
+    uint32_t NewResourceCount = DataIndexRegister * 2;
+    if (NewResourceCount < 4) {
+      NewResourceCount = 4;
     }
-    if (((ResourceCount <= InputParameterValue) || ((int)ResourceContext[3] != InputParameterValue)) || ((int)ResourceContext[4] != -1)) {
+    if (((NewResourceCount <= InputParameterValue) || ((int)ResourceContext[3] != InputParameterValue)) || ((int)ResourceContext[4] != -1)) {
       return ErrorInvalidObjectHandle;
     }
     ResourceContextOffset = (int)*(uint *)((int64_t)ResourceContext + 0x1c) >> ErrorResourceValidationFailed;
-    if (((int)((*(uint *)((int64_t)ResourceContext + 0x1c) ^ ResourceContextOffset) - ResourceContextOffset) < ResourceCount) &&
-       (ValidationStatusCode = ResourcePoolOperation(ResourceContext + 2,ResourceCount), (int)ValidationStatusCode != 0)) {
+    if (((int)((*(uint *)((int64_t)ResourceContext + 0x1c) ^ ResourceContextOffset) - ResourceContextOffset) < NewResourceCount) &&
+       (ValidationStatusCode = ResourcePoolOperation(ResourceContext + 2, NewResourceCount), (int)ValidationStatusCode != 0)) {
       return ResourceHashStatus;
     }
     ValidationStatusCode = InitializeResourcePool();
     if ((int)ResourceHashStatus != 0) {
       return ResourceHashStatus;
     }
-    ResourceCount = 0;
-    ValidationStatusCode = ResourceCount;
-    if (0 < ResourceCount) {
+    uint32_t ResourceIndex = 0;
+    ValidationStatusCode = ResourceIndex;
+    if (0 < ResourceIndex) {
       do {
         *(uint32_t *)(*ResourceContext + ResourceHashStatus * 4) = 0xffffffff;
         ValidationStatusCode = ResourceHashStatus + 1;
-      } while ((int64_t)ResourceHashStatus < (int64_t)ResourceCount);
+      } while ((int64_t)ResourceHashStatus < (int64_t)ResourceIndex);
     }
     SystemContextPointer = ResourceContext[3];
-    ValidationStatusCode = ResourceCount;
-    ValidationCounter = ResourceCount;
+    ValidationStatusCode = ResourceIndex;
+    uint32_t ValidationCounter = ResourceIndex;
     if (0 < (int)SystemContextPointer) {
       do {
         if ((int)ResourceContext[1] == 0) {
@@ -12078,14 +12078,14 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
         }
         LoopOffset = (int64_t)(int)(*(uint *)(ResourceHashStatus + ResourceContext[2]) & (int)ResourceContext[1] - 1U);
         ResourceDataAddress = (int *)(*ResourceContext + LoopOffset * 4);
-        ResourceCount = *(int *)(*ResourceContext + LoopOffset * 4);
-        while (ResourceCount != -1) {
-          ResourceDataAddress = (int *)(ResourceContext[2] + 4 + (int64_t)ResourceCount * 0x10);
-          ResourceCount = *ResourceDataAddress;
+        uint32_t CurrentResourceCount = *(int *)(*ResourceContext + LoopOffset * 4);
+        while (CurrentResourceCount != -1) {
+          ResourceDataAddress = (int *)(ResourceContext[2] + 4 + (int64_t)CurrentResourceCount * 0x10);
+          CurrentResourceCount = *ResourceDataAddress;
         }
-        *ResourceDataAddress = (int)ResourceCount;
+        *ResourceDataAddress = (int)CurrentResourceCount;
         ValidationCounter = ValidationCounter + 1;
-        ResourceCount = (uint64_t)((int)ResourceCount + 1);
+        CurrentResourceCount = (uint64_t)((int)CurrentResourceCount + 1);
         *(uint32_t *)(ResourceContext[2] + 4 + ResourceHashStatus) = 0xffffffff;
         ValidationStatusCode = ResourceHashStatus + 0x10;
       } while ((int64_t)ValidationCounter < (int64_t)(int)SystemContextPointer);
