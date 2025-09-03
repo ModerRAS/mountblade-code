@@ -141,7 +141,23 @@ uint SendNetworkPacketData(int64_t SocketContext, NetworkHandle ConnectionHandle
  * @return 验证结果句柄，0表示成功，其他值表示错误码
  */
 uint ValidateNetworkPacket(int64_t PacketData, int64_t ConnectionContext);
+/**
+ * 处理网络连接请求 - 处理网络连接请求和验证
+ * 此函数负责处理网络连接请求，验证连接参数，并建立安全连接
+ * @param ConnectionContext 连接上下文指针
+ * @param RequestBuffer 请求缓冲区指针
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 uint ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
+/**
+ * 执行网络数据传输 - 执行网络数据传输操作
+ * 此函数负责在网络连接之间传输数据
+ * @param SourceBuffer 源缓冲区
+ * @param TransferSize 传输大小
+ * @param DestinationBuffer 目标缓冲区指针
+ * @param TransferFlags 传输标志
+ * @return 传输结果句柄，0表示成功，其他值表示错误码
+ */
 uint ExecuteNetworkDataTransfer(int64_t SourceBuffer, uint TransferSize, int64_t *DestinationBuffer, uint TransferFlags);
 uint ProcessNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
 uint CreateNetworkIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint IterationFlag);

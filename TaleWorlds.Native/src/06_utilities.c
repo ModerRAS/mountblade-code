@@ -11040,16 +11040,6 @@ void FinalizeSecurityOperationWrapper(void)
  /**
  * @brief 验证资源表访问权限
  * 
- * 该函数负责验证对资源表的访问权限
- * 执行安全检查并确保资源可用性
- * 
- * @param resource_handle 资源句柄，用于标识要访问的资源
- * @return int 返回操作结果代码
- * @note 返回0表示成功，非0表示失败
- */
-/**
- * @brief 验证资源表访问权限
- * 
  * 该函数验证对资源表的访问权限，确保调用者有权限访问请求的资源
  * 包括安全检查、资源可用性验证和访问权限确认
  * 
@@ -11058,8 +11048,7 @@ void FinalizeSecurityOperationWrapper(void)
  * @note 此函数执行安全验证，失败时会触发安全操作
  * @warning 验证失败时可能触发安全终结操作
  */
-int ValidateResourceTablePointerAccess(uint64_t ResourceHandle)
-
+int ValidateResourceTableAccess(uint64_t ResourceHandle)
 {
   int ResourcePackageValidationStatus;
   int64_t ResourceObjectContextPointer;
@@ -11220,7 +11209,7 @@ void ExecuteSecurityOperationHandler(void)
  * @note 此函数不会返回，会直接调用终结操作
  * @warning 调用此函数将触发安全清理操作，程序不会继续执行
  */
-void FinalizeSecurityOperationHandler(void)
+void TerminateSecurityOperation(void)
 
 {
   int32_t OperationStatus;
