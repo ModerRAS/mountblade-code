@@ -33642,7 +33642,7 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContext, int64_t ValidationCo
       }
       *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
       ResourceProcessingIndex = ResourceProcessingIndex + 1;
-    } while (resourceProcessingIndex < ResourceCount);
+    } while (ResourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
@@ -33691,7 +33691,7 @@ void UnwindResourceTablePointerCleanup(uint8_t ObjectContext, int64_t Validation
       }
       *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
       ResourceProcessingIndex = ResourceProcessingIndex + 1;
-    } while (resourceProcessingIndex < ResourceCount);
+    } while (ResourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
@@ -33740,7 +33740,7 @@ void UnwindBatchResourceRelease(uint8_t ObjectContext, int64_t ValidationContext
       }
       *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
       ResourceProcessingIndex = ResourceProcessingIndex + 1;
-    } while (resourceProcessingIndex < ResourceCount);
+    } while (ResourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
@@ -33977,7 +33977,7 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContext,int64_t ValidationC
       }
       *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
       ResourceProcessingIndex = ResourceProcessingIndex + 1;
-    } while (resourceProcessingIndex < ResourceCount);
+    } while (ResourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
@@ -34025,7 +34025,7 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContext,int64_t ValidationC
       }
       *(uint8_t *)(SystemContextPointer + ResourceProcessingIndex * 8) = 0;
       ResourceProcessingIndex = ResourceProcessingIndex + 1;
-    } while (resourceProcessingIndex < ResourceCount);
+    } while (ResourceProcessingIndex < ResourceCount);
     ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
