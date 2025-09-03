@@ -1102,9 +1102,9 @@ void NetworkRetrieveData(void)
   
   // 初始化数据包处理
   NetworkPacketHeaderData = 0x01;                       // 初始化数据包头数据
-  NetworkPacketHeaderSize = 0x20;                       // 设置数据包头大小为32字节
+  NetworkPacketHeaderSize = PACKET_HEADER_SIZE_32B;                       // 设置数据包头大小为32字节
   NetworkPacketTrailerData = 0x01;                      // 初始化数据包尾数据
-  NetworkPacketTrailerSize = 0x10;                      // 设置数据包尾大小为16字节
+  NetworkPacketTrailerSize = PACKET_TRAILER_SIZE_16B;                      // 设置数据包尾大小为16字节
   
   // 初始化抖动缓冲区
   NetworkConnectionJitterBuffer = 0x01;                // 初始化抖动缓冲区
