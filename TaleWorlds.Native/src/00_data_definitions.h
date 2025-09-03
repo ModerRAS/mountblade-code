@@ -6,8 +6,8 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-// 全局系统数据指针
-void* GlobalSystemData;
+// 系统数据指针
+void* SystemGlobalData;
 
 // 系统字符串缓冲区 - 用于存储系统字符串数据
 void* PrimaryStringBuffer;
@@ -10067,19 +10067,19 @@ Label_18060965b:
               StringProcessingResult = 0x2b;
               goto Label_18060bbae;
             }
-            NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39600,1);
+            NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAI,1);
             if (NetworkRequestStatus != '\0') goto Label_18060ae39;
-            NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a395e0,1);
+            NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAJ,1);
             if (NetworkRequestStatus != '\0') {
               StringProcessingResult = 0x2d;
               goto Label_18060bbae;
             }
-            NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39518,1);
+            NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAK,1);
             if (NetworkRequestStatus != '\0') {
               StringProcessingResult = 0x2e;
               goto Label_18060bbae;
             }
-            NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39500,1);
+            NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAL,1);
             if (NetworkRequestStatus != '\0') {
               StringProcessingResult = 0x2f;
               goto Label_18060bbae;
@@ -10088,7 +10088,7 @@ Label_18060965b:
         }
       }
       else {
-        NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a391b8,1);
+        NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAM,1);
         if (NetworkRequestStatus == '\0') {
           NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39188,1);
           if (NetworkRequestStatus != '\0') {
