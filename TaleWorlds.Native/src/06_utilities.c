@@ -56155,6 +56155,18 @@ void CleanupValidationContextPrimaryResourceHandler(uint8_t ObjectContext,int64_
 
 
 
+/**
+ * @brief 在偏移量168处执行系统回调
+ * 
+ * 该函数负责在系统上下文的偏移量168处执行回调函数
+ * 主要用于系统级别的回调操作和事件处理
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含回调执行所需的验证信息
+ * @return 无返回值
+ * @note 此函数在偏移量0xA8处执行回调
+ * @warning 调用前必须确保验证上下文有效
+ */
 void ExecuteSystemCallbackAtOffset168(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -56425,7 +56437,7 @@ void ExecuteValidationContextCleanupWithFlags(uint8_t ObjectContext,int64_t Vali
  * @return 无返回值
  * @note 此函数用于资源哈希验证和完整性检查
  */
-void ValidateResourceHashAtOffsetB4(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateResourceHashAtOffset180(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
