@@ -208,7 +208,7 @@ uint32_t CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *Se
  * 
  * @note 此函数会进行数据包验证、状态更新和连接管理
  * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
- * @see NetworkValidateConnectionPacket, NetworkProcessConnectionPacket
+ * @see ValidateNetworkConnectionPacket, ProcessNetworkConnectionPacket
  */
 NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData);
 
