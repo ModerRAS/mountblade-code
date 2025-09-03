@@ -63,9 +63,6 @@
 // 位操作和数学计算相关常量
 #define BitMask32Bit                        0x1f
 #define MaxUnsigned32Bit                   0xffffffff
-#define SystemIdentifierSize               0x10
-#define NodeActiveFlagOffset                0x19
-#define NodeAllocationExtraSize             0x20
 #define SineLookupTableSize                0x7fff
 #define QuadrantShiftBits                   0xd
 #define SineTableOffset4CC                  0x4cc
@@ -1515,7 +1512,7 @@ void InitializeSystemDataTableBaseAllocator(void)
   CurrentNodePointer = (void**)RootNodePointer[1];
   
   while (!IsNodeActive) {
-    IdentifierComparisonResult = memcmp(CurrentNodePointer + 4, &BASE_ALLOCATOR_ID, SYSTEM_IDENTIFIER_SIZE);
+    IdentifierComparisonResult = memcmp(CurrentNodePointer + 4, &BASE_ALLOCATOR_ID, SystemIdentifierSize);
     if (IdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;
@@ -1529,17 +1526,17 @@ void InitializeSystemDataTableBaseAllocator(void)
   }
   
   if ((PreviousNodePointer == RootNodePointer) || 
-      (IdentifierComparisonResult = memcmp(&BASE_ALLOCATOR_ID, PreviousNodePointer + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierComparisonResult < 0)) {
+      (IdentifierComparisonResult = memcmp(&BASE_ALLOCATOR_ID, PreviousNodePointer + 4, SystemIdentifierSize), IdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
     AllocateSystemMemory(DataTablePointer, &AllocatedNodePointer, PreviousNodePointer, MemoryAllocationSize + NodeAllocationExtraSize, MemoryAllocationSize);
     PreviousNodePointer = AllocatedNodePointer;
   }
   
-  PreviousNodePointer[SYSTEM_NODE_IDENTIFIER1_INDEX] = BASE_ALLOCATOR_NODE_IDENTIFIER1;
-  PreviousNodePointer[SYSTEM_NODE_IDENTIFIER2_INDEX] = BASE_ALLOCATOR_NODE_IDENTIFIER2;
-  PreviousNodePointer[SYSTEM_NODE_DATA_POINTER_INDEX] = &BaseAllocatorNodeData;
-  PreviousNodePointer[SYSTEM_NODE_FLAG_INDEX] = BASE_ALLOCATOR_NODE_FLAG;
-  PreviousNodePointer[SYSTEM_NODE_HANDLER_INDEX] = BaseAllocatorInitializationHandler;
+  PreviousNodePointer[NodeIdentifier1Index] = BASE_ALLOCATOR_NODE_IDENTIFIER1;
+  PreviousNodePointer[NodeIdentifier2Index] = BASE_ALLOCATOR_NODE_IDENTIFIER2;
+  PreviousNodePointer[NodeDataPointerIndex] = &BaseAllocatorNodeData;
+  PreviousNodePointer[NodeFlagIndex] = BASE_ALLOCATOR_NODE_FLAG;
+  PreviousNodePointer[NodeHandlerIndex] = BaseAllocatorInitializationHandler;
   return;
 }
 
@@ -1579,7 +1576,7 @@ void InitializeSystemDataTableAllocator(void)
   CurrentNode = (void**)RootNodePointer[1];
   
   while (IsNodeActive == '\0') {
-    IdentifierComparisonResult = memcmp(CurrentNode + 4, &SystemDataTableIdentifier, SYSTEM_IDENTIFIER_SIZE);
+    IdentifierComparisonResult = memcmp(CurrentNode + 4, &SystemDataTableIdentifier, SystemIdentifierSize);
     if (IdentifierComparisonResult < 0) {
       NextNode = (void**)CurrentNode[NodeNextPointerOffset];
       CurrentNode = PreviousNode;
@@ -1593,17 +1590,17 @@ void InitializeSystemDataTableAllocator(void)
   }
   
   if ((PreviousNode == RootNodePointer) || 
-      (IdentifierComparisonResult = memcmp(&SystemDataTableIdentifier, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierComparisonResult < 0)) {
+      (IdentifierComparisonResult = memcmp(&SystemDataTableIdentifier, PreviousNode + 4, SystemIdentifierSize), IdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
     AllocateSystemMemory(DataTablePointer, &AllocatedNode, PreviousNode, MemoryAllocationSize + NodeAllocationExtraSize, MemoryAllocationSize);
     PreviousNode = AllocatedNode;
   }
   
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_TABLE_NODE_IDENTIFIER1;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_TABLE_NODE_IDENTIFIER2;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemNodeIdentifier;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = SYSTEM_DATA_TABLE_NODE_FLAG;
-  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = ResourceInitializationCallback;
+  PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_TABLE_NODE_IDENTIFIER1;
+  PreviousNode[NodeIdentifier2Index] = SYSTEM_DATA_TABLE_NODE_IDENTIFIER2;
+  PreviousNode[NodeDataPointerIndex] = &SystemNodeIdentifier;
+  PreviousNode[NodeFlagIndex] = SYSTEM_DATA_TABLE_NODE_FLAG;
+  PreviousNode[NodeHandlerIndex] = ResourceInitializationCallback;
   return;
 }
 
@@ -1642,7 +1639,7 @@ void InitializeSystemCoreConfig(void)
   CurrentNode = (void**)RootNodePointer[1];
   
   while (IsNodeActive == '\0') {
-    IdentifierComparisonResult = memcmp(CurrentNode + 4, &MEMORY_IDENTIFIER, SYSTEM_IDENTIFIER_SIZE);
+    IdentifierComparisonResult = memcmp(CurrentNode + 4, &MEMORY_IDENTIFIER, SystemIdentifierSize);
     if (IdentifierComparisonResult < 0) {
       NextNode = (void**)CurrentNode[NodeNextPointerOffset];
       CurrentNode = PreviousNode;
@@ -1656,17 +1653,17 @@ void InitializeSystemCoreConfig(void)
   }
   
   if ((PreviousNode == RootNodePointer) || 
-      (IdentifierComparisonResult = memcmp(&MEMORY_IDENTIFIER, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierComparisonResult < 0)) {
+      (IdentifierComparisonResult = memcmp(&MEMORY_IDENTIFIER, PreviousNode + 4, SystemIdentifierSize), IdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
     AllocateSystemMemory(DataTablePointer, &AllocatedNode, PreviousNode, MemoryAllocationSize + NodeAllocationExtraSize, MemoryAllocationSize);
     PreviousNode = AllocatedNode;
   }
   
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_MEMORY_NODE_IDENTIFIER1;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_MEMORY_NODE_IDENTIFIER2;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &MemoryNodeId;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = SYSTEM_MEMORY_NODE_FLAG;
-  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = InitializationHandler;
+  PreviousNode[NodeIdentifier1Index] = SYSTEM_MEMORY_NODE_IDENTIFIER1;
+  PreviousNode[NodeIdentifier2Index] = SYSTEM_MEMORY_NODE_IDENTIFIER2;
+  PreviousNode[NodeDataPointerIndex] = &MemoryNodeId;
+  PreviousNode[NodeFlagIndex] = SYSTEM_MEMORY_NODE_FLAG;
+  PreviousNode[NodeHandlerIndex] = InitializationHandler;
   return;
 }
 
@@ -1680,6 +1677,17 @@ void InitializeSystemCoreConfig(void)
  * 它会设置内存池的大小、分配策略和管理机制。
  * 
  * @note 该函数在系统初始化过程中调用，确保内存池功能正常工作。
+ */
+/**
+ * @brief 初始化系统内存池
+ * 
+ * 该函数负责初始化系统的内存池，为系统内存管理提供基础支持。
+ * 它会遍历系统节点树，查找合适的位置来初始化内存池功能。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保内存池能够正确配置和管理。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemMemoryPool(void)
 
@@ -1705,7 +1713,7 @@ void InitializeSystemMemoryPool(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -1722,10 +1730,10 @@ void InitializeSystemMemoryPool(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_ALLOCATOR_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_ALLOCATOR_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemAllocatorNodeId;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = SYSTEM_ALLOCATOR_NODE_FLAG;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_ALLOCATOR_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_ALLOCATOR_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
+  hashTableNode[NodeFlagIndex] = SYSTEM_ALLOCATOR_NODE_FLAG;
   hashTableNode[10] = ResourceInitializationCallback;
   return;
 }
@@ -1765,7 +1773,7 @@ void InitializeSystemThreadPool(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -1782,10 +1790,10 @@ void InitializeSystemThreadPool(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemConfigurationData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = SYSTEM_CONFIGURATION_NODE_FLAG;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
+  hashTableNode[NodeFlagIndex] = SYSTEM_CONFIGURATION_NODE_FLAG;
   hashTableNode[10] = ResourceInitializationCallback;
   return;
 }
@@ -1825,7 +1833,7 @@ void InitializeSystemEventManager(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -1842,10 +1850,10 @@ void InitializeSystemEventManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemEventData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemEventData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = ResourceInitializationCallback;
   return;
 }
@@ -1886,7 +1894,7 @@ void InitializeSystemResourceManager(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -1903,10 +1911,10 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemRootNode;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemRootNode;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = ResourceInitializationCallback;
   return;
 }
@@ -1961,11 +1969,11 @@ void InitializeSystemCoreData(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedNode,PreviousNode,RequiredMemorySize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,RequiredMemorySize);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemNodeLinkPointerA;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
-  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = SystemInitializationCallback;
+  PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1;
+  PreviousNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2;
+  PreviousNode[NodeDataPointerIndex] = &SystemNodeLinkPointerA;
+  PreviousNode[NodeFlagIndex] = 0;
+  PreviousNode[NodeHandlerIndex] = SystemInitializationCallback;
   return;
 }
 
@@ -2008,7 +2016,7 @@ void InitializeSystemDataTable(void)
   CurrentSystemNode = (void**)SystemRootPointer[1];
   
   while (!IsNodeActive) {
-    IdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SystemDataComparisonTemplateB, SYSTEM_IDENTIFIER_SIZE);
+    IdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SystemDataComparisonTemplateB, SystemIdentifierSize);
     if (IdentifierComparisonResult < 0) {
       NextSystemNode = (void**)CurrentSystemNode[NodeNextPointerOffset];
       CurrentSystemNode = PreviousSystemNode;
@@ -2022,16 +2030,16 @@ void InitializeSystemDataTable(void)
   }
   
   if ((PreviousSystemNode == SystemRootPointer) || 
-      (IdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateB, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierComparisonResult < 0)) {
+      (IdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateB, PreviousSystemNode + 4, SystemIdentifierSize), IdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
     AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + NodeAllocationExtraSize, MemoryAllocationSize);
     PreviousSystemNode = AllocatedSystemNode;
   }
   
-  PreviousSystemNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID1;
-  PreviousSystemNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID2;
-  PreviousSystemNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemNodeLinkPointerB;
-  PreviousSystemNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  PreviousSystemNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID1;
+  PreviousSystemNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID2;
+  PreviousSystemNode[NodeDataPointerIndex] = &SystemNodeLinkPointerB;
+  PreviousSystemNode[NodeFlagIndex] = 1;
   PreviousSystemNode[NodeHandlerIndex] = SystemInitializationHandler;
   return;
 }
@@ -2117,9 +2125,9 @@ void InitializeRenderingSystemConfig(void)
   PreviousNode = SystemRootNode;
   CurrentNode = (void* *)SystemRootNode[1];
   while (!SystemNodeActiveFlag) {
-    NodeIdentifierCompareResult = memcmp(CurrentNode + 4, &RENDERING_CONFIG_TEMPLATE_ID, SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(CurrentNode + 4, &RENDERING_CONFIG_TEMPLATE_ID, SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
+      NextNode = (void**)CurrentNode[NodeNextPointerOffset];
       CurrentNode = PreviousNode;
     }
     else {
@@ -2129,16 +2137,16 @@ void InitializeRenderingSystemConfig(void)
     CurrentNode = NextNode;
     SystemNodeActiveFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((PreviousNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&RENDERING_CONFIG_TEMPLATE_ID, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+  if ((PreviousNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&RENDERING_CONFIG_TEMPLATE_ID, PreviousNode + 4, SystemIdentifierSize), NodeIdentifierCompareResult < 0)) {
     RequiredMemorySize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedNode, PreviousNode, RequiredMemorySize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, RequiredMemorySize);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = RENDERING_CONFIG_NODE_IDENTIFIER1;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = RENDERING_CONFIG_NODE_IDENTIFIER2;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeSecondaryRoot;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
-  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = RendererHandler;
+  PreviousNode[NodeIdentifier1Index] = RENDERING_CONFIG_NODE_IDENTIFIER1;
+  PreviousNode[NodeIdentifier2Index] = RENDERING_CONFIG_NODE_IDENTIFIER2;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
+  PreviousNode[NodeFlagIndex] = 0;
+  PreviousNode[NodeHandlerIndex] = RendererHandler;
   return;
 }
 
@@ -2239,7 +2247,7 @@ void InitializeSystemMemoryManager(void)
   HashTableNode = SystemRootNode;
   CurrentNode = (void**)SystemRootNode[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNode + 4, &SystemDataComparisonTemplateD, SYSTEM_IDENTIFIER_SIZE);
+    IdentifierCompareResult = memcmp(CurrentNode + 4, &SystemDataComparisonTemplateD, SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNode = (void**)CurrentNode[2];
       CurrentNode = HashTableNode;
@@ -2251,15 +2259,15 @@ void InitializeSystemMemoryManager(void)
     CurrentNode = NextNode;
     NodeActiveFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((HashTableNode == SystemRootNode) || (IdentifierCompareResult = memcmp(&SystemDataComparisonTemplateD, HashTableNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierCompareResult < 0)) {
+  if ((HashTableNode == SystemRootNode) || (IdentifierCompareResult = memcmp(&SystemDataComparisonTemplateD, HashTableNode + 4, SystemIdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNode = AllocatedMemoryNode;
   }
-  HashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID1;
-  HashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID2;
-  HashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeTertiaryRoot;
-  HashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID1;
+  HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID2;
+  HashTableNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
+  HashTableNode[NodeFlagIndex] = 0;
   HashTableNode[10] = SystemEventCallback;
   return;
 }
@@ -2301,9 +2309,9 @@ void InitializeSystemMemoryAllocator(void)
   PreviousNode = SystemRootNode;
   CurrentNode = (void**)SystemRootNode[1];
   while (!NodeActiveFlag) {
-    IdentifierCompareResult = memcmp(CurrentNode + 4, &MEMORY_ALLOCATOR_TEMPLATE_ID, SYSTEM_IDENTIFIER_SIZE);
+    IdentifierCompareResult = memcmp(CurrentNode + 4, &MEMORY_ALLOCATOR_TEMPLATE_ID, SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
+      NextNode = (void**)CurrentNode[NodeNextPointerOffset];
       CurrentNode = PreviousNode;
     }
     else {
@@ -2313,16 +2321,16 @@ void InitializeSystemMemoryAllocator(void)
     CurrentNode = NextNode;
     NodeActiveFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
-  if ((PreviousNode == SystemRootNode) || (IdentifierCompareResult = memcmp(&MEMORY_ALLOCATOR_TEMPLATE_ID, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierCompareResult < 0)) {
+  if ((PreviousNode == SystemRootNode) || (IdentifierCompareResult = memcmp(&MEMORY_ALLOCATOR_TEMPLATE_ID, PreviousNode + 4, SystemIdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, PreviousNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     PreviousNode = AllocatedMemoryNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = MEMORY_ALLOCATOR_NODE_IDENTIFIER1;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = MEMORY_ALLOCATOR_NODE_IDENTIFIER2;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuaternaryRoot;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 3;
-  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = MemoryAllocatorCallback;
+  PreviousNode[NodeIdentifier1Index] = MEMORY_ALLOCATOR_NODE_IDENTIFIER1;
+  PreviousNode[NodeIdentifier2Index] = MEMORY_ALLOCATOR_NODE_IDENTIFIER2;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
+  PreviousNode[NodeFlagIndex] = 3;
+  PreviousNode[NodeHandlerIndex] = MemoryAllocatorCallback;
   return;
 }
 
@@ -2439,10 +2447,10 @@ void InitializeSystemThreadManager(void)
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNode = AllocatedMemoryNode;
   }
-  HashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x43330a43fcdb3653;
-  HashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xdcfdc333a769ec93;
-  HashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  HashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  HashTableNode[NodeIdentifier1Index] = 0x43330a43fcdb3653;
+  HashTableNode[NodeIdentifier2Index] = 0xdcfdc333a769ec93;
+  HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  HashTableNode[NodeFlagIndex] = 1;
   HashTableNode[10] = SystemEventCallback;
   return;
 }
@@ -2494,10 +2502,10 @@ void InitializeSystemEventManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -2550,10 +2558,10 @@ void InitializeSystemConfigurationNode(void)
     AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID1;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID2;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID1;
+  PreviousNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID2;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  PreviousNode[NodeFlagIndex] = 0;
   PreviousNode[10] = InitializationFlag;
   return;
 }
@@ -2606,10 +2614,10 @@ void InitializeSystemResourceNode(void)
     AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID1;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID2;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID1;
+  PreviousNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID2;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  PreviousNode[NodeFlagIndex] = 0;
   PreviousNode[10] = InitializationCallback;
   return;
 }
@@ -2662,10 +2670,10 @@ void InitializeSystemMemoryNode(void)
     AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  PreviousNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  PreviousNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  PreviousNode[NodeFlagIndex] = 0;
   PreviousNode[10] = InitializationFlag;
   return;
 }
@@ -2718,10 +2726,10 @@ void InitializeSystemDataTableStructureA(void)
     AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
     PreviousNode = NewNodePointer;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  PreviousNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  PreviousNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  PreviousNode[NodeFlagIndex] = 0;
   PreviousNode[10] = systemDataReference;
   return;
 }
@@ -2774,10 +2782,10 @@ void InitializeSystemDataTableStructureB(void)
     AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
     PreviousNode = NewNodePointer;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  PreviousNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  PreviousNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  PreviousNode[NodeFlagIndex] = 0;
   PreviousNode[10] = InitializationFlag;
   return;
 }
@@ -2830,10 +2838,10 @@ void InitializeSystemDataTableStructureC(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x449bafe9b77ddd3c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc160408bde99e59f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
+  hashTableNode[NodeIdentifier2Index] = 0xc160408bde99e59f;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -2886,10 +2894,10 @@ void InitializeSystemDataTableStructureD(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x45425dc186a5d575;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xfab48faa65382fa5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeM;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
+  hashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -2942,10 +2950,10 @@ void InitializeSystemDataTableStructureE(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x406be72011d07d37;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x71876af946c867ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeTertiaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x406be72011d07d37;
+  hashTableNode[NodeIdentifier2Index] = 0x71876af946c867ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -2998,10 +3006,10 @@ void InitializeSystemDataTableStructureF(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40afa5469b6ac06d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x2f4bab01d34055a5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuaternaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
+  hashTableNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -3054,10 +3062,10 @@ void InitializeSystemDataTableStructureG(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x42bea5b911d9c4bf;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x1aa83fc0020dc1b6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
+  hashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -3110,10 +3118,10 @@ void InitializeSystemDataTableStructureH(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40db4257e97d3df8;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x81d539e33614429f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeN;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x40db4257e97d3df8;
+  hashTableNode[NodeIdentifier2Index] = 0x81d539e33614429f;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeN;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -3166,10 +3174,10 @@ void InitializeSystemDataTableStructureI(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4e33c4803e67a08f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x703a29a844ce399;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeO;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x4e33c4803e67a08f;
+  hashTableNode[NodeIdentifier2Index] = 0x703a29a844ce399;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeO;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -3272,10 +3280,10 @@ void InitializeSystemMemoryManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -3329,10 +3337,10 @@ void InitializeSystemDataStructure(void)
     AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID1;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID2;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID1;
+  PreviousNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID2;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  PreviousNode[NodeFlagIndex] = 4;
   PreviousNode[10] = initializationFunction;
   return;
 }
@@ -3380,10 +3388,10 @@ void InitializeSystemDataTable(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -3431,10 +3439,10 @@ void InitializeSystemNodeTree(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -3482,10 +3490,10 @@ void InitializeMemoryAllocator(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -3533,10 +3541,10 @@ void InitializeResourcePool(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -3584,10 +3592,10 @@ void InitializeConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -3635,10 +3643,10 @@ void InitializeEventSystem(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x45425dc186a5d575;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xfab48faa65382fa5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeM;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
+  hashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -3690,10 +3698,10 @@ void InitializeSystemMemoryManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -3745,10 +3753,10 @@ void InitializeSystemThreadPoolManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -3800,10 +3808,10 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -3857,10 +3865,10 @@ void InitializeSystemNodeTree(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -3914,10 +3922,10 @@ void InitializeSystemDataTable(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -3969,10 +3977,10 @@ void InitializeSystemEventHandler(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -4024,10 +4032,10 @@ void InitializeSystemNetworkManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -4079,10 +4087,10 @@ void InitializeSystemSecurityManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -4134,10 +4142,10 @@ void InitializeSystemPerformanceMonitor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -4189,10 +4197,10 @@ void InitializeSystemDebugManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -4246,10 +4254,10 @@ void InitializeSystemMemoryAllocator(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -4303,10 +4311,10 @@ void InitializeSystemResourcePool(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -4360,10 +4368,10 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -4417,10 +4425,10 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -4474,10 +4482,10 @@ void InitializeSystemPerformanceMonitor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x42bea5b911d9c4bf;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x1aa83fc0020dc1b6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
+  hashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -4531,10 +4539,10 @@ void InitializeSystemDebugManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x45425dc186a5d575;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xfab48faa65382fa5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeM;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
+  hashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -4588,10 +4596,10 @@ void InitializeSystemEventHandler(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -4645,10 +4653,10 @@ void InitializeSystemNetworkManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -4702,10 +4710,10 @@ void InitializeSystemSecurityManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -4759,10 +4767,10 @@ void InitializeSystemDataTableStructureA(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -4818,10 +4826,10 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -4877,10 +4885,10 @@ void InitializeSystemPerformanceMonitor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = systemPerformanceCallback;
   return;
 }
@@ -4936,10 +4944,10 @@ void InitializeSystemDebugManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -5045,10 +5053,10 @@ void InitializeSystemEventManager(void)
     AllocateSystemMemory(DataTable,&AllocatedMemoryNode,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     PreviousNode = AllocatedMemoryNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x406be72011d07d37;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x71876af946c867ab;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeTertiaryRoot;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  PreviousNode[NodeIdentifier1Index] = 0x406be72011d07d37;
+  PreviousNode[NodeIdentifier2Index] = 0x71876af946c867ab;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
+  PreviousNode[NodeFlagIndex] = 0;
   PreviousNode[10] = eventCallbackPointer;
   return;
 }
@@ -5104,11 +5112,11 @@ void InitializeSystemNetworkManager(void)
     AllocateSystemMemory(dataTable,&AllocatedNode,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40afa5469b6ac06d;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x2f4bab01d34055a5;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuaternaryRoot;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 3;
-  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = networkCallbackPointer;
+  PreviousNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
+  PreviousNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
+  PreviousNode[NodeFlagIndex] = 3;
+  PreviousNode[NodeHandlerIndex] = networkCallbackPointer;
   return;
 }
 
@@ -5163,11 +5171,11 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedNode,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x406be72011d07d37;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x71876af946c867ab;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &ConfigurationManagerNodeData;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 0;
-  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = ConfigurationManagerInitializationFunction;
+  PreviousNode[NodeIdentifier1Index] = 0x406be72011d07d37;
+  PreviousNode[NodeIdentifier2Index] = 0x71876af946c867ab;
+  PreviousNode[NodeDataPointerIndex] = &ConfigurationManagerNodeData;
+  PreviousNode[NodeFlagIndex] = 0;
+  PreviousNode[NodeHandlerIndex] = ConfigurationManagerInitializationFunction;
   return;
 }
 
@@ -5222,10 +5230,10 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(dataTable,&AllocatedNode,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40afa5469b6ac06d;
-  PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x2f4bab01d34055a5;
-  PreviousNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &ResourceManagerNodeData;
-  PreviousNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  PreviousNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
+  PreviousNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
+  PreviousNode[NodeDataPointerIndex] = &ResourceManagerNodeData;
+  PreviousNode[NodeFlagIndex] = 3;
   PreviousNode[10] = initializationFunction;
   return;
 }
@@ -5279,10 +5287,10 @@ void InitializeSystemEventManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &EventManagerNodeData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &EventManagerNodeData;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -5336,10 +5344,10 @@ void InitializeSystemDataManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &DataManagerNodeData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &DataManagerNodeData;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -5393,10 +5401,10 @@ void InitializeSystemResourceNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &ResourceNodeData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &ResourceNodeData;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -5451,10 +5459,10 @@ void InitializeSystemNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -5509,10 +5517,10 @@ void InitializeSystemDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -5567,10 +5575,10 @@ void InitializeSystemResourceNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -5625,10 +5633,10 @@ void InitializeSystemMemoryNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -5713,10 +5721,10 @@ void InitializeSystemConfigurationNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -5770,10 +5778,10 @@ void InitializeSystemEventNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -5827,10 +5835,10 @@ void InitializeSystemResourceNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  SystemCurrentNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  SystemCurrentNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  SystemCurrentNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  SystemCurrentNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  SystemCurrentNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  SystemCurrentNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   SystemCurrentNode[10] = resourceInitializationCallback;
   return;
 }
@@ -5884,10 +5892,10 @@ void InitializeSystemEventNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  SystemCurrentNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  SystemCurrentNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  SystemCurrentNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  SystemCurrentNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  SystemCurrentNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  SystemCurrentNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -5941,10 +5949,10 @@ void InitializeSystemMemoryNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  SystemCurrentNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  SystemCurrentNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  SystemCurrentNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  SystemCurrentNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  SystemCurrentNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  SystemCurrentNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   SystemCurrentNode[10] = resourceInitializationCallback;
   return;
 }
@@ -5997,10 +6005,10 @@ void InitializeRenderingSystem(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -6054,10 +6062,10 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -6426,10 +6434,10 @@ void InitializeSystemDataTableNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -6484,10 +6492,10 @@ void InitializeSystemConfigurationNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -6542,10 +6550,10 @@ void InitializeSystemEventNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -6600,10 +6608,10 @@ void InitializeSystemNodeTreeProcessor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -6658,10 +6666,10 @@ void InitializeSystemMemoryPoolManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -6716,10 +6724,10 @@ void InitializeSystemServiceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -6774,10 +6782,10 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -6832,10 +6840,10 @@ void InitializeSystemEventHandler(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -6890,10 +6898,10 @@ void InitializeSystemTaskManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -6948,10 +6956,10 @@ void InitializeSystemDataProcessor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -7006,10 +7014,10 @@ void InitializeSystemCommunicationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -7064,10 +7072,10 @@ void InitializeSystemMemoryManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -7122,10 +7130,10 @@ void InitializeSystemThreadManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -7180,10 +7188,10 @@ void InitializeSystemResourceInitializer(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -7302,10 +7310,10 @@ void InitializeSystemEventManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x45425dc186a5d575;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xfab48faa65382fa5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeM;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
+  hashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -7360,10 +7368,10 @@ void InitializeSystemSearchManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x449bafe9b77ddd3c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc160408bde99e59f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
+  hashTableNode[NodeIdentifier2Index] = 0xc160408bde99e59f;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -7418,10 +7426,10 @@ void InitializeSystemIndexManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x406be72011d07d37;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x71876af946c867ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeTertiaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x406be72011d07d37;
+  hashTableNode[NodeIdentifier2Index] = 0x71876af946c867ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -7476,10 +7484,10 @@ void InitializeSystemCacheManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40afa5469b6ac06d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x2f4bab01d34055a5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuaternaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
+  hashTableNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -7534,10 +7542,10 @@ void InitializeSystemLogManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -7592,10 +7600,10 @@ void InitializeSystemPerformanceMonitor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -7650,10 +7658,10 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -7708,10 +7716,10 @@ void InitializeSystemEventDispatcher(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -7766,10 +7774,10 @@ void InitializeSystemSecurityManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -7824,10 +7832,10 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -7882,10 +7890,10 @@ void InitializeSystemNetworkManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -7940,10 +7948,10 @@ void InitializeSystemStorageManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40db4257e97d3df8;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x81d539e33614429f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeN;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x40db4257e97d3df8;
+  hashTableNode[NodeIdentifier2Index] = 0x81d539e33614429f;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeN;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -7998,10 +8006,10 @@ void InitializeSystemProcessManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4e33c4803e67a08f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x703a29a844ce399;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeO;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x4e33c4803e67a08f;
+  hashTableNode[NodeIdentifier2Index] = 0x703a29a844ce399;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeO;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8056,10 +8064,10 @@ void InitializeSystemThreadManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8108,10 +8116,10 @@ void InitializeSystemEventProcessor(void)
     AllocateSystemMemory(eventSystemDataTable,&eventAllocatedNode,eventPreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     eventPreviousNode = eventAllocatedNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   eventPreviousNode[10] = eventCallbackPointer;
   return;
 }
@@ -8159,10 +8167,10 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -8210,10 +8218,10 @@ void InitializeSystemMemoryManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8261,10 +8269,10 @@ void InitializeSystemLogManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -8312,10 +8320,10 @@ void InitializeSystemPerformanceMonitor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -8363,10 +8371,10 @@ void InitializeSystemSecurityMonitor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -8414,10 +8422,10 @@ void InitializeSystemNetworkManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x449bafe9b77ddd3c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc160408bde99e59f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
+  hashTableNode[NodeIdentifier2Index] = 0xc160408bde99e59f;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8465,10 +8473,10 @@ void InitializeSystemStorageManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x45425dc186a5d575;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xfab48faa65382fa5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeM;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
+  hashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8516,10 +8524,10 @@ void InitializeSystemMemoryManagerNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40db4257e97d3df8;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x81d539e33614429f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeN;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x40db4257e97d3df8;
+  hashTableNode[NodeIdentifier2Index] = 0x81d539e33614429f;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeN;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8567,10 +8575,10 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4e33c4803e67a08f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x703a29a844ce399;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeO;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x4e33c4803e67a08f;
+  hashTableNode[NodeIdentifier2Index] = 0x703a29a844ce399;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeO;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8618,10 +8626,10 @@ void InitializeSystemThreadManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x42bea5b911d9c4bf;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x1aa83fc0020dc1b6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
+  hashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -8669,10 +8677,10 @@ void InitializeSystemProcessManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8720,10 +8728,10 @@ void InitializeSystemDeviceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8771,10 +8779,10 @@ void InitializeSystemServiceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -8822,10 +8830,10 @@ void InitializeSystemDriverManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -8880,10 +8888,10 @@ void InitializeSystemModuleManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -8931,10 +8939,10 @@ void InitializeSystemComponentManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -8982,10 +8990,10 @@ void InitializeSystemPluginManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9128,10 +9136,10 @@ void InitializeSystemFrameworkManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -9168,7 +9176,7 @@ void InitializeSystemSearchManagerD(void)
   currentSystemNode = (void**)SystemRootNode[1];
   
   while (SystemNodeActiveFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(currentSystemNode + 4, &SystemDataComparisonTemplateI, SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(currentSystemNode + 4, &SystemDataComparisonTemplateI, SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       nextSystemNode = (void**)currentSystemNode[2];
       currentSystemNode = previousSystemNode;
@@ -9182,7 +9190,7 @@ void InitializeSystemSearchManagerD(void)
   }
   
   if ((previousSystemNode == SystemRootNode) || 
-      (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateI, previousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), NodeIdentifierCompareResult < 0)) {
+      (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateI, previousSystemNode + 4, SystemIdentifierSize), NodeIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &allocatedSystemNode, previousSystemNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     previousSystemNode = allocatedSystemNode;
@@ -9243,10 +9251,10 @@ void InitializeSystemResourceNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9297,10 +9305,10 @@ void InitializeSystemMemoryNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -9351,10 +9359,10 @@ void InitializeSystemDataTableNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9405,10 +9413,10 @@ void InitializeSystemConfigurationNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = systemConfigurationData;
   return;
 }
@@ -9455,10 +9463,10 @@ void InitializeSystemEventNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9505,10 +9513,10 @@ void InitializeSystemThreadNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x42bea5b911d9c4bf;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x1aa83fc0020dc1b6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
+  hashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9578,10 +9586,10 @@ void InitializeSystemSecurityNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4fc124d23d41985f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xe2f4a30d6e6ae482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &GAME_CORE_NODE_DATA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
+  hashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  hashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -9628,10 +9636,10 @@ void InitializeSystemNetworkNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4770584fbb1df897;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x47f249e43f66f2ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
+  hashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9691,10 +9699,10 @@ void InitializeSystemAudioNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4666df49b97e0f10;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x4e4b0d63a6ad1d8f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateB;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
+  hashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9754,10 +9762,10 @@ void InitializeSystemInputNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46ecbd4daf41613e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xdc42c056bbde8482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
+  hashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9800,7 +9808,7 @@ void InitializeSystemPhysicsNode(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -9817,10 +9825,10 @@ void InitializeSystemPhysicsNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c868a42644030f6;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc29193aa9d9b35b9;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemAllocatorNodeId;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
+  hashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  hashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9863,7 +9871,7 @@ void InitializeSystemFileSystemNode(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -9880,10 +9888,10 @@ void InitializeSystemFileSystemNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40ea3a798283cbbb;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x7f74eb2c5a7fadae;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemConfigurationData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
+  hashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
+  hashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9926,7 +9934,7 @@ void InitializeSystemDatabaseNode(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -9943,10 +9951,10 @@ void InitializeSystemDatabaseNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemEventData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemEventData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -9985,7 +9993,7 @@ void InitializeSystemConfigurationManager(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -10002,10 +10010,10 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemRootNode;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemRootNode;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -10065,10 +10073,10 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x421c3cedd07d816d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xbec25de793b7afa6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
+  hashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -10124,10 +10132,10 @@ void InitializeSystemNetworkConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c22bb0c326587ce;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x5e3cf00ce2978287;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateE;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
+  hashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -10183,10 +10191,10 @@ void InitializeSystemSearchConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x45425dc186a5d575;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xfab48faa65382fa5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeM;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
+  hashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -10494,10 +10502,10 @@ void InitializeSystemStringProcessorE(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -10544,10 +10552,10 @@ void InitializeSystemStringProcessorF(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -10594,10 +10602,10 @@ void InitializeSystemStringProcessorG(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -10644,10 +10652,10 @@ void InitializeSystemStringProcessorH(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -10694,10 +10702,10 @@ void InitializeSystemStringProcessorI(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -10744,10 +10752,10 @@ void InitializeSystemStringProcessorJ(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -10794,10 +10802,10 @@ void InitializeSystemStringProcessorK(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -10844,10 +10852,10 @@ void InitializeSystemStringProcessorL(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -10894,10 +10902,10 @@ void InitializeSystemStringProcessorM(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -10944,10 +10952,10 @@ void InitializeSystemStringProcessorN(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -10994,10 +11002,10 @@ void InitializeSystemStringProcessorO(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -11044,10 +11052,10 @@ void InitializeSystemStringProcessorP(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -11094,10 +11102,10 @@ void InitializeSystemStringProcessorQ(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -11144,10 +11152,10 @@ void InitializeSystemStringProcessorR(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -11194,10 +11202,10 @@ void InitializeSystemStringProcessorS(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -11244,10 +11252,10 @@ void InitializeSystemStringProcessorT(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -11294,10 +11302,10 @@ void InitializeSystemStringProcessorU(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -11344,10 +11352,10 @@ void InitializeSystemStringProcessorV(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -11394,10 +11402,10 @@ void InitializeSystemStringProcessorW(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -11444,10 +11452,10 @@ void InitializeSystemStringProcessorX(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -11494,10 +11502,10 @@ void InitializeSystemStringProcessorY(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -11552,10 +11560,10 @@ void InitializeSystemStringProcessorZ(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -11602,10 +11610,10 @@ void InitializeSystemMemoryManagerA(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -11652,10 +11660,10 @@ void InitializeSystemMemoryManagerB(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -11702,10 +11710,10 @@ void InitializeSystemMemoryManagerC(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -11752,10 +11760,10 @@ void InitializeSystemMemoryManagerD(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -11802,10 +11810,10 @@ void InitializeSystemMemoryManagerE(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -11852,10 +11860,10 @@ void InitializeSystemMemoryManagerF(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -11907,10 +11915,10 @@ void InitializeSystemMemoryAllocatorSetup(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4fc124d23d41985f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xe2f4a30d6e6ae482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &GAME_CORE_NODE_DATA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
+  hashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  hashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -11962,10 +11970,10 @@ void InitializeSystemDataTableConfigurator(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4770584fbb1df897;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x47f249e43f66f2ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
+  hashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12012,10 +12020,10 @@ void InitializeSystemMemoryManagerG(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4666df49b97e0f10;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x4e4b0d63a6ad1d8f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateB;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
+  hashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12062,10 +12070,10 @@ void InitializeSystemMemoryManagerH(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46ecbd4daf41613e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xdc42c056bbde8482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
+  hashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12095,7 +12103,7 @@ void InitializeSystemMemoryManagerI(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -12112,10 +12120,10 @@ void InitializeSystemMemoryManagerI(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c868a42644030f6;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc29193aa9d9b35b9;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemAllocatorNodeId;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
+  hashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  hashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12153,7 +12161,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -12170,10 +12178,10 @@ void InitializeSystemConfigurationDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40ea3a798283cbbb;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x7f74eb2c5a7fadae;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemConfigurationData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
+  hashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
+  hashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12211,7 +12219,7 @@ void InitializeSystemEventDataNodeManager(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -12228,10 +12236,10 @@ void InitializeSystemEventDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemEventData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemEventData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12269,7 +12277,7 @@ void InitializeSystemResourceNode(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -12286,10 +12294,10 @@ void InitializeSystemResourceNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemRootNode;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemRootNode;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12344,10 +12352,10 @@ void InitializeSystemMemoryNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x421c3cedd07d816d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xbec25de793b7afa6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
+  hashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -12402,10 +12410,10 @@ void InitializeSystemDeviceNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c22bb0c326587ce;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x5e3cf00ce2978287;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateE;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
+  hashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12507,10 +12515,10 @@ void InitializeSystemMemoryNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4fc124d23d41985f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xe2f4a30d6e6ae482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &GAME_CORE_NODE_DATA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
+  hashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  hashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -12564,10 +12572,10 @@ void InitializeSystemDeviceNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4770584fbb1df897;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x47f249e43f66f2ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
+  hashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12621,10 +12629,10 @@ void InitializeSystemConfigurationDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4666df49b97e0f10;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x4e4b0d63a6ad1d8f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateB;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
+  hashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12678,10 +12686,10 @@ void InitializeSystemEventDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46ecbd4daf41613e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xdc42c056bbde8482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
+  hashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12718,7 +12726,7 @@ void InitializeSystemMemoryAllocatorNode(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -12735,10 +12743,10 @@ void InitializeSystemMemoryAllocatorNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c868a42644030f6;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc29193aa9d9b35b9;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemAllocatorNodeId;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
+  hashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  hashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12775,7 +12783,7 @@ void InitializeSystemConfigurationNode(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -12792,10 +12800,10 @@ void InitializeSystemConfigurationNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40ea3a798283cbbb;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x7f74eb2c5a7fadae;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemConfigurationData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
+  hashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
+  hashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12832,7 +12840,7 @@ void InitializeSystemEventNode(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -12849,10 +12857,10 @@ void InitializeSystemEventNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemEventData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemEventData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12889,7 +12897,7 @@ void InitializeSystemResourceNode(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -12906,10 +12914,10 @@ void InitializeSystemResourceNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemRootNode;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemRootNode;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -12963,10 +12971,10 @@ void InitializeSystemDataNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x421c3cedd07d816d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xbec25de793b7afa6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
+  hashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -13020,10 +13028,10 @@ void InitializeSystemStringProcessor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c22bb0c326587ce;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x5e3cf00ce2978287;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateE;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
+  hashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -13135,10 +13143,10 @@ void InitializeSystemConfigurationDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -13192,10 +13200,10 @@ void InitializeSystemEventDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -13249,10 +13257,10 @@ void InitializeSystemResourceDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -13306,10 +13314,10 @@ void InitializeSystemDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -13363,10 +13371,10 @@ void InitializeSystemStringDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -13420,10 +13428,10 @@ void InitializeSystemMemoryDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -13477,10 +13485,10 @@ void InitializeSystemDeviceDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -13552,10 +13560,10 @@ void InitializeSystemSearchNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x45425dc186a5d575;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xfab48faa65382fa5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeM;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
+  hashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -13609,10 +13617,10 @@ void InitializeSystemDebugNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -13666,10 +13674,10 @@ void InitializeSystemLoggingNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -13723,10 +13731,10 @@ void InitializeSystemPerformanceNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -13780,10 +13788,10 @@ void InitializeSystemSecurityNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -13837,10 +13845,10 @@ void InitializeSystemNetworkNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -13894,10 +13902,10 @@ void InitializeSystemThreadNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -13951,10 +13959,10 @@ void InitializeSystemProcessNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14009,10 +14017,10 @@ void InitializeSystemEventManagerG(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -14067,10 +14075,10 @@ void InitializeSystemEventManagerH(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -14125,10 +14133,10 @@ void InitializeSystemEventManagerI(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14177,10 +14185,10 @@ void InitializeSystemEventManagerJ(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -14229,10 +14237,10 @@ void InitializeSystemEventManagerK(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14281,10 +14289,10 @@ void InitializeSystemEventManagerL(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -14333,10 +14341,10 @@ void InitializeSystemEventManagerM(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14491,10 +14499,10 @@ void InitializeSystemResourceManagerA(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4fc124d23d41985f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xe2f4a30d6e6ae482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &GAME_CORE_NODE_DATA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
+  hashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  hashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -14543,10 +14551,10 @@ void InitializeSystemResourceManagerB(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4770584fbb1df897;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x47f249e43f66f2ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
+  hashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14595,10 +14603,10 @@ void InitializeSystemResourceManagerC(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4666df49b97e0f10;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x4e4b0d63a6ad1d8f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateB;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
+  hashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14647,10 +14655,10 @@ void InitializeSystemResourceManagerD(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46ecbd4daf41613e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xdc42c056bbde8482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
+  hashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14682,7 +14690,7 @@ void InitializeSystemResourceManagerE(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -14699,10 +14707,10 @@ void InitializeSystemResourceManagerE(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c868a42644030f6;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc29193aa9d9b35b9;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemAllocatorNodeId;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
+  hashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  hashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14735,7 +14743,7 @@ void InitializeSystemResourceManagerF(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -14752,10 +14760,10 @@ void InitializeSystemResourceManagerF(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40ea3a798283cbbb;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x7f74eb2c5a7fadae;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemConfigurationData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
+  hashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
+  hashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14788,7 +14796,7 @@ void InitializeSystemResourceManagerG(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -14805,10 +14813,10 @@ void InitializeSystemResourceManagerG(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemEventData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemEventData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14841,7 +14849,7 @@ void InitializeSystemResourceManagerH(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -14858,10 +14866,10 @@ void InitializeSystemResourceManagerH(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemRootNode;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemRootNode;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -14911,10 +14919,10 @@ void InitializeSystemResourceManagerI(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x421c3cedd07d816d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xbec25de793b7afa6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
+  hashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -14964,10 +14972,10 @@ void InitializeSystemResourceManagerJ(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c22bb0c326587ce;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x5e3cf00ce2978287;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateE;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
+  hashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15130,10 +15138,10 @@ void InitializeSystemDebugManagerA(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46c54bc98fc3fc2a;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x727b256e3af32585;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
+  hashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15183,10 +15191,10 @@ void InitializeSystemDebugManagerB(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x41ffd0b76c1e136f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x25db30365f277abb;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
+  hashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15236,10 +15244,10 @@ void InitializeSystemDebugManagerC(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4fc124d23d41985f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xe2f4a30d6e6ae482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &GAME_CORE_NODE_DATA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
+  hashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  hashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -15294,10 +15302,10 @@ void InitializeSystemResourceAllocator(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4770584fbb1df897;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x47f249e43f66f2ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
+  hashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15352,10 +15360,10 @@ void InitializeSystemDataTableAllocator(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4666df49b97e0f10;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x4e4b0d63a6ad1d8f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateB;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
+  hashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15403,10 +15411,10 @@ void InitializeSystemResourceComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46ecbd4daf41613e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xdc42c056bbde8482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
+  hashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15437,7 +15445,7 @@ void InitializeSystemAllocatorComponent(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -15454,10 +15462,10 @@ void InitializeSystemAllocatorComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c868a42644030f6;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc29193aa9d9b35b9;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemAllocatorNodeId;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
+  hashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  hashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15488,7 +15496,7 @@ void InitializeSystemConfigurationComponent(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -15505,10 +15513,10 @@ void InitializeSystemConfigurationComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40ea3a798283cbbb;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x7f74eb2c5a7fadae;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemConfigurationData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
+  hashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
+  hashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15539,7 +15547,7 @@ void InitializeSystemCoreComponent(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -15556,10 +15564,10 @@ void InitializeSystemCoreComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemEventData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemEventData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15590,7 +15598,7 @@ void InitializeSystemMemoryComponent(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -15607,10 +15615,10 @@ void InitializeSystemMemoryComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemRootNode;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemRootNode;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15658,10 +15666,10 @@ void InitializeSystemThreadComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x421c3cedd07d816d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xbec25de793b7afa6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
+  hashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -15709,10 +15717,10 @@ void InitializeSystemEventComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c22bb0c326587ce;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x5e3cf00ce2978287;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateE;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
+  hashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15760,10 +15768,10 @@ void InitializeSystemSecurityComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46c54bc98fc3fc2a;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x727b256e3af32585;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
+  hashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15811,10 +15819,10 @@ void InitializeSystemNetworkComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x41ffd0b76c1e136f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x25db30365f277abb;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
+  hashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -15862,10 +15870,10 @@ void InitializeSystemDatabaseComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x45425dc186a5d575;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xfab48faa65382fa5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeM;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
+  hashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -15913,10 +15921,10 @@ void InitializeSystemLoggingComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x449bafe9b77ddd3c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc160408bde99e59f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
+  hashTableNode[NodeIdentifier2Index] = 0xc160408bde99e59f;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -15964,10 +15972,10 @@ void InitializeSystemPerformanceComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x406be72011d07d37;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x71876af946c867ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeTertiaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x406be72011d07d37;
+  hashTableNode[NodeIdentifier2Index] = 0x71876af946c867ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -16015,10 +16023,10 @@ void InitializeSystemDiagnosticComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40afa5469b6ac06d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x2f4bab01d34055a5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuaternaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
+  hashTableNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -16066,10 +16074,10 @@ void InitializeSystemDebugComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -16117,10 +16125,10 @@ void InitializeSystemPluginComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -16169,10 +16177,10 @@ void InitializeSystemSubcomponentA(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16221,10 +16229,10 @@ void InitializeSystemSubcomponentB(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -16273,10 +16281,10 @@ void InitializeSystemSubcomponentC(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16325,10 +16333,10 @@ void InitializeSystemSubcomponentD(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -16377,10 +16385,10 @@ void InitializeSystemSubcomponentE(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16429,10 +16437,10 @@ void InitializeSystemSubcomponentF(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x42bea5b911d9c4bf;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x1aa83fc0020dc1b6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
+  hashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16481,10 +16489,10 @@ void InitializeSystemSubcomponentG(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46c54bc98fc3fc2a;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x727b256e3af32585;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
+  hashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16533,10 +16541,10 @@ void InitializeSystemSubcomponentH(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x41ffd0b76c1e136f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x25db30365f277abb;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
+  hashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16640,10 +16648,10 @@ void InitializeSystemSubcomponentI(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46c54bc98fc3fc2a;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x727b256e3af32585;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
+  hashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16692,10 +16700,10 @@ void InitializeSystemSubcomponentJ(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x41ffd0b76c1e136f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x25db30365f277abb;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
+  hashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16744,10 +16752,10 @@ void InitializeSystemSubcomponentK(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46c54bc98fc3fc2a;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x727b256e3af32585;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
+  hashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16796,10 +16804,10 @@ void InitializeSystemSubcomponentL(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x41ffd0b76c1e136f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x25db30365f277abb;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
+  hashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16897,10 +16905,10 @@ void InitializeSystemSubcomponentN(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46c54bc98fc3fc2a;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x727b256e3af32585;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
+  hashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -16953,10 +16961,10 @@ void InitializeSystemNodeManagerPrimary(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x41ffd0b76c1e136f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x25db30365f277abb;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 2;
+  hashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
+  hashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 2;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17009,10 +17017,10 @@ void InitializeSystemSearchManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x406be72011d07d37;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x71876af946c867ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeTertiaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x406be72011d07d37;
+  hashTableNode[NodeIdentifier2Index] = 0x71876af946c867ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -17066,10 +17074,10 @@ void InitializeSystemNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40afa5469b6ac06d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x2f4bab01d34055a5;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuaternaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
+  hashTableNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -17125,10 +17133,10 @@ void InitializeSystemSearchManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -17183,10 +17191,10 @@ void InitializeSystemEventManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x431d7c8d7c475be2;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xb97f048d2153e1b0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemEventNodeF;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 4;
+  hashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
+  hashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
+  hashTableNode[NodeDataPointerIndex] = &SystemEventNodeF;
+  hashTableNode[NodeFlagIndex] = 4;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -17241,10 +17249,10 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4b2d79e470ee4e2c;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x9c552acd3ed5548d;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeG;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
+  hashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeG;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17299,10 +17307,10 @@ void InitializeSystemDeviceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x49086ba08ab981a7;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xa9191d34ad910696;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDeviceNodeH;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
+  hashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  hashTableNode[NodeDataPointerIndex] = &SystemDeviceNodeH;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = deviceSystemEventCallback;
   return;
 }
@@ -17357,10 +17365,10 @@ void InitializeSystemMemoryManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x402feffe4481676e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xd4c2151109de93a0;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemMemoryNodeI;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
+  hashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  hashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeI;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = memoryInitializationCallback;
   return;
 }
@@ -17413,10 +17421,10 @@ void SystemDataNodeInitializerM(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4384dcc4b6d3f417;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x92a15d52fe2679bd;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeK;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
+  hashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = SystemStackPointer;
   return;
 }
@@ -17469,10 +17477,10 @@ void InitializeSystemResourceInitializationNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4140994454d56503;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x399eced9bb5517ad;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemDataNodeL;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
+  hashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  hashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17525,10 +17533,10 @@ void InitializeGameCoreSystemNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4fc124d23d41985f;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xe2f4a30d6e6ae482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &GAME_CORE_NODE_DATA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
+  hashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  hashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -17581,10 +17589,10 @@ void InitializeBaseAllocatorNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4770584fbb1df897;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x47f249e43f66f2ab;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateA;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
+  hashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17637,10 +17645,10 @@ void InitializeSystemDataTableNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4666df49b97e0f10;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x4e4b0d63a6ad1d8f;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateB;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
+  hashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17693,10 +17701,10 @@ void ResourceInitializationCallbackSetter(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x46ecbd4daf41613e;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xdc42c056bbde8482;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateC;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
+  hashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17732,7 +17740,7 @@ void SystemAllocatorNodeInitializer(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -17749,10 +17757,10 @@ void SystemAllocatorNodeInitializer(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c868a42644030f6;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xc29193aa9d9b35b9;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemAllocatorNodeId;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
+  hashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  hashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17788,7 +17796,7 @@ void SystemConfigurationNodeInitializer(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -17805,10 +17813,10 @@ void SystemConfigurationNodeInitializer(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x40ea3a798283cbbb;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x7f74eb2c5a7fadae;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemConfigurationData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
+  hashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
+  hashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17844,7 +17852,7 @@ void SystemEventNodeInitializer(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -17861,10 +17869,10 @@ void SystemEventNodeInitializer(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_EVENT_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemEventData;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 3;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemEventData;
+  hashTableNode[NodeFlagIndex] = 3;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17900,7 +17908,7 @@ void SystemMemoryManagementNodeInitializer(void)
   hashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SYSTEM_IDENTIFIER_SIZE);
+    NodeIdentifierCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,SystemIdentifierSize);
     if (NodeIdentifierCompareResult < 0) {
       SystemNextNode = (void**)SystemCurrentNode[2];
       SystemCurrentNode = hashTableNode;
@@ -17917,10 +17925,10 @@ void SystemMemoryManagementNodeInitializer(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemRootNode;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
+  hashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
+  hashTableNode[NodeDataPointerIndex] = &SystemRootNode;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -17973,10 +17981,10 @@ void SystemThreadManagerInitializer(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x421c3cedd07d816d;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0xbec25de793b7afa6;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateD;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 0;
+  hashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
+  hashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
+  hashTableNode[NodeFlagIndex] = 0;
   hashTableNode[10] = eventCallbackPointer;
   return;
 }
@@ -18029,10 +18037,10 @@ void SystemResourceTrackerInitializer(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,hashTableNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     hashTableNode = AllocatedMemoryNode;
   }
-  hashTableNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = 0x4c22bb0c326587ce;
-  hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0x5e3cf00ce2978287;
-  hashTableNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SystemResourceNodeTemplateE;
-  hashTableNode[SYSTEM_NODE_FLAG_INDEX] = 1;
+  hashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
+  hashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
+  hashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
+  hashTableNode[NodeFlagIndex] = 1;
   hashTableNode[10] = resourceInitializationCallback;
   return;
 }
@@ -28449,16 +28457,16 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   uint32_t UnsignedStackFlag118;
   uint32_t StackVariable114;
   uint32_t UnsignedStackFlag110;
-  uint32_t SystemEncryptionOffsetc;
-  uint8_t EncryptionOffset1;
-  uint32_t SystemEncryptionOffset7;
-  uint32_t SystemEncryptionOffset3;
+  uint32_t SystemEncryptionKeyC;
+  uint8_t EncryptionKeyA;
+  uint32_t SystemEncryptionKeyG;
+  uint32_t SystemEncryptionKeyD;
   void* MemoryBufferAddress;
-  void* **StackDoublePointerF0;
-  void* *pointerUnsignedE8;
-  uint8_t *DataBufferPtrE0;
+  void* **SystemDoublePointerF0;
+  void* *SystemResourcePointerE8;
+  uint8_t *SystemDataBufferE0;
   uint32_t SystemMemoryAllocatorStatus;
-  uint8_t DataBufferD0 [136];
+  uint8_t SystemDataBufferD0 [136];
   ulong long SystemEncryptionKey;
   
   MemoryBufferAddress = 0xfffffffffffffffe;
@@ -28500,12 +28508,12 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   UnsignedStackFlag118 = 0;
   StackVariable114 = 0;
   UnsignedStackFlag110 = 0;
-  SystemEncryptionOffsetc = 0x3f800000;
-  SystemEncryptionOffset7 = 0x1010101;
-  SystemEncryptionOffset3 = 1;
-  EncryptionOffset1 = 1;
-  pointerUnsignedE8 = &SystemResourceTemplatePrimary;
-  DataBufferPtrE0 = DataBufferD0;
+  SystemEncryptionKeyC = 0x3f800000;
+  SystemEncryptionKeyG = 0x1010101;
+  SystemEncryptionKeyD = 1;
+  EncryptionKeyA = 1;
+  SystemResourcePointerE8 = &SystemResourceTemplatePrimary;
+  SystemDataBufferE0 = SystemDataBufferD0;
   DataBufferD0[0] = 0;
   SystemMemoryAllocatorStatus = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   SystemThreadContext = &SystemStringTemplate;
@@ -28513,8 +28521,8 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
     SystemThreadContext = *(void* **)(ConfigurationDataPointer + 8);
   }
   strcpy_s(DataBufferD0,0x80,SystemThreadContext);
-  InitializeSystemData(&pointerUnsigned190,&pointerUnsignedE8);
-  pointerUnsignedE8 = &SystemMemoryAllocatorReference;
+  InitializeSystemData(&pointerUnsigned190,&SystemResourcePointerE8);
+  SystemResourcePointerE8 = &SystemMemoryAllocatorReference;
   pGlobalDataFlags2 = &SystemGlobalDataReference;
   SystemDataProcessingFlag = 0;
   LongStackVariable1d8 = 0;
@@ -28537,35 +28545,35 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   else {
     SystemThreadFlags = (long long)systemResult * 0x20 + SystemThreadFlags;
   }
-  SystemUnsignedValue208 = &SystemGlobalDataReference;
-  SystemVariable1f0 = 0;
-  SystemVariable200 = 0;
-  SystemVariable1f8 = 0;
+  SystemGlobalReference208 = &SystemGlobalDataReference;
+  SystemResourceOffset1f0 = 0;
+  SystemMemoryOffset200 = 0;
+  SystemOperationOffset1f8 = 0;
   StackValue1e8 = 1;
   SystemOperationStatus = *(uint *)(SystemThreadFlags + 0x10);
   ThreadContextFlag = (ulong long)SystemOperationStatus;
   if (*(long long *)(SystemThreadFlags + 8) != 0) {
-    ExecuteSystemCommand(&SystemUnsignedValue208,ThreadContextFlag);
+    ExecuteSystemCommand(&SystemGlobalReference208,ThreadContextFlag);
   }
   if (SystemOperationStatus != 0) {
-      memcpy(SystemVariable200,*(void* *)(SystemThreadFlags + 8),ThreadContextFlag);
+      memcpy(SystemMemoryOffset200,*(void* *)(SystemThreadFlags + 8),ThreadContextFlag);
   }
-  if (SystemVariable200 != 0) {
-    *(uint8_t *)(ThreadContextFlag + SystemVariable200) = 0;
+  if (SystemMemoryOffset200 != 0) {
+    *(uint8_t *)(ThreadContextFlag + SystemMemoryOffset200) = 0;
   }
-  SystemVariable1f0 = ConcatenatedValue44(*(uint *)(SystemThreadFlags + 0x1c),(uint32_t)SystemVariable1f0);
+  SystemResourceOffset1f0 = ConcatenatedValue44(*(uint *)(SystemThreadFlags + 0x1c),(uint32_t)SystemResourceOffset1f0);
   if (0 < SystemInteger180) {
-    SystemVariable1f8 = SystemOperationStatus;
-    ExecuteSystemCommand(&SystemUnsignedValue208,SystemInteger180);
-      memcpy((ulong long)SystemVariable1f8 + SystemVariable200,SystemVariable188,(long long)(SystemInteger180 + 1));
+    SystemOperationOffset1f8 = SystemOperationStatus;
+    ExecuteSystemCommand(&SystemGlobalReference208,SystemInteger180);
+      memcpy((ulong long)SystemOperationOffset1f8 + SystemMemoryOffset200,SystemVariable188,(long long)(SystemInteger180 + 1));
   }
-  LongStackVariable1d8 = SystemVariable200;
-  SystemThreadStackSize.PrimaryField = (uint32_t)SystemVariable1f0;
-  SystemVariable1f8 = 0;
+  LongStackVariable1d8 = SystemMemoryOffset200;
+  SystemThreadStackSize.PrimaryField = (uint32_t)SystemResourceOffset1f0;
+  SystemOperationOffset1f8 = 0;
   SystemInitFlag = 0;
-  SystemVariable200 = 0;
-  SystemVariable1f0 = 0;
-  SystemUnsignedValue208 = &SystemMemoryAllocatorReference;
+  SystemMemoryOffset200 = 0;
+  SystemResourceOffset1f0 = 0;
+  SystemGlobalReference208 = &SystemMemoryAllocatorReference;
   StackVariable218 = 0xffffffff;
   StackVariable1d0 = SystemOperationStatus;
   SystemThreadStackSize.SecondaryField = *(uint *)(SystemThreadFlags + 0x1c);
@@ -60385,7 +60393,7 @@ LAB_SystemStatusSet:
     *(uint32_t *)(hashTableNode + 9) = 0xffffffff;
     *hashTableNode = 0;
     hashTableNode[2] = 0;
-    hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0;
+    hashTableNode[NodeIdentifier2Index] = 0;
     *(uint32_t *)(hashTableNode + 5) = 0xffffffff;
     *(uint32_t *)(hashTableNode + 4) = 0xffffffff;
     hashTableNode[3] = 0;
@@ -60495,7 +60503,7 @@ LAB_SystemStatusSet:
     *(uint32_t *)(hashTableNode + 9) = 0xffffffff;
     *hashTableNode = 0;
     hashTableNode[2] = 0;
-    hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0;
+    hashTableNode[NodeIdentifier2Index] = 0;
     *(uint32_t *)(hashTableNode + 5) = 0xffffffff;
     *(uint32_t *)(hashTableNode + 4) = 0xffffffff;
     hashTableNode[3] = 0;
@@ -60609,7 +60617,7 @@ LAB_SystemStatusSet:
     *(uint32_t *)(hashTableNode + 9) = 0xffffffff;
     *hashTableNode = 0;
     hashTableNode[2] = 0;
-    hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0;
+    hashTableNode[NodeIdentifier2Index] = 0;
     *(uint32_t *)(hashTableNode + 5) = 0xffffffff;
     *(uint32_t *)(hashTableNode + 4) = 0xffffffff;
     hashTableNode[3] = 0;
@@ -60711,7 +60719,7 @@ LAB_SystemStatusSet:
     *(uint32_t *)(hashTableNode + 9) = 0xffffffff;
     *hashTableNode = 0;
     hashTableNode[2] = 0;
-    hashTableNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = 0;
+    hashTableNode[NodeIdentifier2Index] = 0;
     *(uint32_t *)(hashTableNode + 5) = 0xffffffff;
     *(uint32_t *)(hashTableNode + 4) = 0xffffffff;
     hashTableNode[3] = 0;
