@@ -503,7 +503,7 @@ uint32_t NetworkReceiveBufferCapacity;                    // 网络接收缓冲�
 
 // 网络数据包和安全配置
 uint32_t NetworkPacketPayloadSize;                        // 网络数据包负载大小
-uint32_t NetworkMaxPacketSize;                            // 网络最大数据包大小
+uint32_t NetworkMaximumPacketSize;                            // 网络最大数据包大小
 uint32_t NetworkEncryptionKey;                            // 网络加密密钥
 uint32_t NetworkCompressionLevel;                         // 网络压缩级别
 
@@ -1221,8 +1221,8 @@ uint32_t NetworkPacketHeaderData;                        // 网络数据包头�
 uint32_t NetworkPacketHeaderSize;                        // 网络数据包头大小
 uint32_t NetworkPacketTrailerData;                       // 网络数据包尾数据
 uint32_t NetworkPacketTrailerSize;                       // 网络数据包尾大小
-uint32_t PacketHashAlgorithm;                            // 数据包哈希算法
-uint32_t PacketSignatureMethod;                         // 数据包签名方法
+uint32_t NetworkPacketHashAlgorithm;                            // 数据包哈希算法
+uint32_t NetworkPacketSignatureMethod;                         // 数据包签名方法
 uint32_t PacketEncryptionKeyLength;                     // 数据包加密密钥长度
 uint32_t PacketValidationBufferPool;                     // 数据包验证缓冲池
 uint32_t PacketValidationBufferSize;                     // 数据包验证缓冲区大小
