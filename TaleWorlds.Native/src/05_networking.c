@@ -109,7 +109,7 @@
 
 // 网络系统常量
 #define NetworkMagicDebugFood 0xdeadf00d       // 调试魔数，用于内存检查
-#define NetworkMagicDeadFood 0xdeadf00d        // 兼容性别名，调试魔数
+#define NetworkPacketMagicInvalid 0x464f4f44   // 兼容性别名，"FOOD" - 表示无效数据包
 #define NetworkMaxIntValue NetworkMaximumSignedInt32Value  // 兼容性别名
 #define NetworkFloatOne 0x3f800000             // 浮点数1.0的十六进制表示
 #define NetworkFloatNegativeOne 0xbf800000     // 浮点数-1.0的十六进制表示
@@ -1138,17 +1138,17 @@ NetworkMainProcessingLoop:
  */
 NetworkHandle NetworkUpdateConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
-  NetworkStatus *NetworkConnectionContextData;        // 网络连接上下文数据
-  int32_t NetworkPacketProcessingStatus;              // 网络数据包处理状态
-  int64_t NetworkConnectionContextHandle;              // 网络连接上下文句柄
-  NetworkStatus ConnectionValidationStatus;            // 连接验证状态
-  NetworkStatus ConnectionTimeoutStatus;               // 连接超时状态
-  NetworkStatus SecondaryNetworkProcessingStatus;      // 次级网络处理状态
-  NetworkStatus *NetworkStatusBuffer;                  // 网络状态缓冲区
-  int64_t ConnectionProcessingCounter;                 // 连接处理计数器
-  NetworkStatus *NetworkPacketFlagsBuffer;              // 网络数据包标志缓冲区
-  int64_t *NetworkOperationStatusBuffer;               // 网络操作状态缓冲区
-  int32_t NetworkOperationCode;                        // 网络操作代码
+  NetworkStatus *ConnectionContextData;                // 连接上下文数据指针
+  int32_t PacketProcessingStatus;                       // 数据包处理状态
+  int64_t ConnectionContextHandle;                      // 连接上下文句柄
+  NetworkStatus ValidationStatus;                       // 验证状态
+  NetworkStatus TimeoutStatus;                          // 超时状态
+  NetworkStatus SecondaryProcessingStatus;              // 次级处理状态
+  NetworkStatus *StatusBuffer;                          // 状态缓冲区
+  int64_t ProcessingCounter;                            // 处理计数器
+  NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
+  int64_t *OperationStatusBuffer;                      // 操作状态缓冲区
+  int32_t OperationCode;                                // 操作代码
   
   NetworkStatusBuffer = (NetworkStatus *)0x0;
   if (NetworkOperationCode == 0) {

@@ -4958,10 +4958,6 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * 该函数负责处理对象句柄的基础初始化操作，包括句柄分配、
  * 状态检查和初始化设置等步骤。这是对象生命周期管理的第一步。
  * 
- * @param ObjectContext 对象上下文参数，包含对象的初始化信息
- * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
- */
-/**
  * @brief 创建基础对象句柄
  * 
  * 该函数用于创建系统对象的基础句柄，包含对象验证和句柄初始化操作
@@ -13317,7 +13313,7 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
               CompressionDataPointer = &CompressionTemplate;
               CompressionResourceValue = *(uint32_t *)(ResourceTablePointerPointer + 0xc + ResourceIndexOffset * 0x10);
               CompressionFlags = 0;
-              CompressionScaleFactor = 0x3f800000;
+              CompressionScaleFactor = FloatOneValue;
               CompressData(&CompressionDataPointer,*(uint8_t *)(ObjectContext + ObjectContextQuinaryHandleOffset));
               ResourcePrimaryFlagPointer = &DecompressionTemplate;
               ResourceTertiaryFlag = *(uint32_t *)(ResourceTablePointerPointer + 0xc + ResourceIndexOffset * 0x10);
@@ -13343,7 +13339,7 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
               TransformationDataPointer = &TransformationTemplate;
               TransformationResourceValue = *(uint32_t *)(ResourceTablePointerPointer + 0xc + LocalContextPointer * 0x10);
               TransformationFlags = 0;
-              TransformationScaleFactor = 0x3f800000;
+              TransformationScaleFactor = FloatOneValue;
               TransformData(&TransformationDataPointer,*(uint8_t *)(ObjectContext + ObjectContextQuinaryHandleOffset));
               ResourceContextSecondary = DataHandlerContextPointer;
             }
