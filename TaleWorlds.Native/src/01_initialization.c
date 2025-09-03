@@ -35996,7 +35996,7 @@ void** InitializeSystemResourceManager(void** systemResourcePointer)
  * @param AdditionalParameter 额外参数
  * @param ConfigurationFlag 配置标志
  * 
- *FUN_18005b960：InitializeSystemResourceManager
+ * 原始函数名：FUN_18005b960
  */
 void InitializeSystemResourceManager(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -36069,7 +36069,7 @@ void InitializeSystemResourceManager(void* *SystemResourceManager,void* Configur
  * @param AdditionalParameter 额外参数
  * @param ConfigurationFlag 配置标志
  * 
- *FUN_18005ba80：InitializeSystemThread
+ * 原始函数名：FUN_18005ba80
  */
 void InitializeSystemThread(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 

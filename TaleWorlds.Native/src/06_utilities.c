@@ -2952,29 +2952,37 @@ uint8_t SystemEnvironmentDataTemplatePrimary;
 void InitializeSystemResourceManager(void);
 
 void InitializeThreadManager(void);
-uint8_t AggressiveMemoryConfiguration;
-uint8_t SecureMemoryConfiguration;
-uint8_t BalancedMemoryConfiguration;
-uint8_t ConservativeMemoryConfiguration;
-uint8_t DynamicMemoryConfiguration;
-uint8_t EfficientMemoryConfiguration;
-uint8_t FastMemoryConfiguration;
-uint8_t GeneralSystemMemoryConfiguration;
-uint8_t HighPerformanceMemoryConfiguration;
-uint8_t IntelligentMemoryConfiguration;
-uint8_t JustInTimeMemoryConfiguration;
-uint8_t KernelOptimizedMemoryConfiguration;
+
+// 内存配置模式枚举
+uint8_t AggressiveMemoryConfiguration;     // 激进内存配置模式
+uint8_t SecureMemoryConfiguration;        // 安全内存配置模式
+uint8_t BalancedMemoryConfiguration;      // 平衡内存配置模式
+uint8_t ConservativeMemoryConfiguration;  // 保守内存配置模式
+uint8_t DynamicMemoryConfiguration;       // 动态内存配置模式
+uint8_t EfficientMemoryConfiguration;     // 高效内存配置模式
+uint8_t FastMemoryConfiguration;          // 快速内存配置模式
+uint8_t GeneralSystemMemoryConfiguration; // 通用系统内存配置模式
+uint8_t HighPerformanceMemoryConfiguration; // 高性能内存配置模式
+uint8_t IntelligentMemoryConfiguration;   // 智能内存配置模式
+uint8_t JustInTimeMemoryConfiguration;   // 即时内存配置模式
+uint8_t KernelOptimizedMemoryConfiguration; // 内核优化内存配置模式
 
 /**
  * @brief 初始化系统线程管理器
  * 
  * 该函数负责初始化系统的线程管理组件
  * 设置线程创建、调度和同步的机制
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
+ * @warning 初始化失败会导致多线程功能不可用
  */
-uint8_t DataStructureReference;
-uint8_t DataTableInstance;
-uint8_t DataBufferStorage;
-uint8_t DataCacheMemory;
+
+// 数据结构管理相关变量
+uint8_t DataStructureReference;     // 数据结构引用计数
+uint8_t DataTableInstance;          // 数据表实例标识
+uint8_t DataBufferStorage;          // 数据缓冲区存储标识
+uint8_t DataCacheMemory;            // 数据缓存内存标识
 
  /**
  * @brief 清理内存块
