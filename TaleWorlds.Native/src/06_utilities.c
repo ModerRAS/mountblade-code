@@ -14459,7 +14459,7 @@ void ProcessComplexResourceWithRegisters(void)
           ExtendedValidationFlags = SystemContextFlags;
           TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
-          resultFloat = calculatedFloat7;
+          ResultFloatValue = calculatedFloat7;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
