@@ -30338,8 +30338,12 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
 void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** ExceptionHandlerFunctionPointerTable;
   
+  // 获取次级异常处理函数指针表
   ExceptionHandlerFunctionPointerTable = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
+  
+  // 检查异常处理函数指针表是否有效
   if (ExceptionHandlerFunctionPointerTable != (int64_t *)0x0) {
+    // 调用次级异常处理函数
     (**(code **)(*ExceptionHandlerFunctionPointerTable + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
