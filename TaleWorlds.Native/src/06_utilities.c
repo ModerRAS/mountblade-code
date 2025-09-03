@@ -78008,7 +78008,19 @@ void ExecuteSystemResourceProcessingCallbackD(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090b950(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理回调函数E
+ * 
+ * 该函数负责调用系统资源管理器的回调函数，处理资源相关的操作。
+ * 主要用于资源生命周期管理中的回调处理，处理0x330偏移量的资源。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含验证相关的状态信息
+ * @return 无返回值
+ * @note 此函数是系统资源管理的重要组成部分
+ * @warning 原始函数名：Unwind_18090b950
+ */
+void ExecuteSystemResourceProcessingCallbackE(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
