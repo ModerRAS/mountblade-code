@@ -20207,15 +20207,24 @@ void ProcessSystemMemoryRange(long long *MemoryRangePointer)
 
 
 
-// 函数: void InitializeSystemDataPointers(long long* SystemResourceManager)
+/**
+ * @brief 初始化系统数据指针
+ * 
+ * 该函数负责初始化系统资源管理器中的数据指针。它会遍历资源哈希表，
+ * 为每个资源条目设置正确的数据指针和内存分配器引用。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含需要初始化的资源信息
+ * 
+ * 初始化系统数据指针
+ */
 void InitializeSystemDataPointers(long long* SystemResourceManager)
 
 {
-  void** SystemDataPointer;
+  void** DataEndPointer;
   void** SystemDataTable;
   
-  SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
-  for (ResourceHashEntryPointer = (void* *)*SystemResourceManager; ResourceHashEntryPointer != SystemDataPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 5) {
+  DataEndPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
+  for (void** ResourceHashEntryPointer = (void* *)*SystemResourceManager; ResourceHashEntryPointer != DataEndPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 5) {
     *ResourceHashEntryPointer = &SystemGlobalDataReference;
     if (ResourceHashEntryPointer[1] != 0) {
         SystemCleanupFunction();
@@ -20242,32 +20251,32 @@ void InitializeSystemDataPointers(long long* SystemResourceManager)
 void ReleaseMemoryBlockReference(ulong long* SystemResourceManager)
 
 {
-  int* SystemIntegerPointer;
+  int* ReferenceCountPointer;
   void** SystemDataTable;
   long long ResourceMemoryOffset;
-  ulong long resourceAddress;
+  ulong long MemoryPageBase;
   
-  ResourceHashEntryPointer = (void* *)*SystemResourceManager;
+  void** ResourceHashEntryPointer = (void* *)*SystemResourceManager;
   if (ResourceHashEntryPointer == (void* *)0x0) {
     return;
   }
-  SystemMemoryPageBase = (ulong long)ResourceHashEntryPointer & MAX_UNSIGNED_32_BITffc00000;
-  if (SystemMemoryPageBase != 0) {
-    ResourceMemoryOffset = SystemMemoryPageBase + 0x80 + ((long long)ResourceHashEntryPointer - SystemMemoryPageBase >> 0x10) * 0x50;
+  MemoryPageBase = (ulong long)ResourceHashEntryPointer & MAX_UNSIGNED_32_BITffc00000;
+  if (MemoryPageBase != 0) {
+    ResourceMemoryOffset = MemoryPageBase + 0x80 + ((long long)ResourceHashEntryPointer - MemoryPageBase >> 0x10) * 0x50;
     ResourceMemoryOffset = ResourceMemoryOffset - (ulong long)*(uint *)(ResourceMemoryOffset + 4);
-    if ((*(void ***)(resourceAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + 0xe) == '\0')) {
+    if ((*(void ***)(MemoryPageBase + 0x70) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + 0xe) == '\0')) {
       *ResourceHashEntryPointer = *(void* *)(ResourceMemoryOffset + 0x20);
       *(void* **)(ResourceMemoryOffset + 0x20) = ResourceHashEntryPointer;
-      SystemIntegerPointer = (int *)(ResourceMemoryOffset + 0x18);
-      *SystemIntegerPointer = *SystemIntegerPointer + -1;
-      if (*SystemIntegerPointer == 0) {
+      ReferenceCountPointer = (int *)(ResourceMemoryOffset + 0x18);
+      *ReferenceCountPointer = *ReferenceCountPointer + -1;
+      if (*ReferenceCountPointer == 0) {
         ReleaseSystemResource();
         return;
       }
     }
     else {
-      SystemExceptionCheck(resourceAddress,CONCAT71(0xff000000,*(void ***)(resourceAddress + 0x70) == &ExceptionList),
-                          ResourceHashEntryPointer,resourceAddress,InvalidHandleValue);
+      SystemExceptionCheck(MemoryPageBase,CONCAT71(0xff000000,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
+                          ResourceHashEntryPointer,MemoryPageBase,InvalidHandleValue);
     }
   }
   return;
