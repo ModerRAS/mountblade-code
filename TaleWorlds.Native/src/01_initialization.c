@@ -19096,29 +19096,29 @@ SymbolInitializationCleanup:
     __Throw_C_error_std__YAXH_Z(MutexUnlockResult);
   }
 SkipLibraryHandleInitialization:
-  void* allocatedMemoryBlock1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
-  *allocatedMemoryBlock1 = 0;
-  void* allocatedMemoryBlock2 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
-  *allocatedMemoryBlock1 = &SystemDebugDataBufferA;
-  *allocatedMemoryBlock2 = &SystemDebugDataBufferB;
-  void* allocatedMemoryBlock3 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
-  uint8_t* allocatedMemoryBlock4 = (uint8_t *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
-  *allocatedMemoryBlock4 = 0;
-  allocatedMemoryBlock3[2] = allocatedMemoryBlock4;
-  SystemMemoryBlockStorage = allocatedMemoryBlock3;
-  *allocatedMemoryBlock3 = allocatedMemoryBlock2;
-  allocatedMemoryBlock3[1] = allocatedMemoryBlock1;
-  allocatedMemoryBlock3[3] = timerMemoryBlock;
+  void* AllocatedMemoryBlock1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
+  *AllocatedMemoryBlock1 = 0;
+  void* AllocatedMemoryBlock2 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
+  *AllocatedMemoryBlock1 = &SystemDebugDataBufferA;
+  *AllocatedMemoryBlock2 = &SystemDebugDataBufferB;
+  void* AllocatedMemoryBlock3 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
+  uint8_t* AllocatedMemoryBlock4 = (uint8_t *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
+  *AllocatedMemoryBlock4 = 0;
+  AllocatedMemoryBlock3[2] = AllocatedMemoryBlock4;
+  SystemMemoryBlockStorage = AllocatedMemoryBlock3;
+  *AllocatedMemoryBlock3 = AllocatedMemoryBlock2;
+  AllocatedMemoryBlock3[1] = AllocatedMemoryBlock1;
+  AllocatedMemoryBlock3[3] = timerMemoryBlock;
   timerMemoryBlock = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x198,8,3);
   SystemTimerStoragePointer = CreateSystemTimer(timerMemoryBlock);
   counterMemoryBlock = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xa8,8,3);
   SystemCounterStoragePointer = CreateSystemCounter(counterMemoryBlock);
   SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
-  int performanceQueryResult = QueryPerformanceFrequency(&performanceFrequencyData);
-  if (performanceQueryResult == 0) {
+  int PerformanceQueryResult = QueryPerformanceFrequency(&PerformanceFrequencyData);
+  if (PerformanceQueryResult == 0) {
     InitializeSystemSemaphores(&SystemSemaphoreTemplate);
   }
-  SystemPerformanceFrequencyStorage = 1.0 / (double)(long long)performanceFrequencyData;
+  SystemPerformanceFrequencyStorage = 1.0 / (double)(long long)PerformanceFrequencyData;
   timeBeginPeriod(1);
   QueryPerformanceCounter(&performanceCounterData);
   if (SystemPerformanceTimerEnabled != '\0') {
@@ -70461,8 +70461,8 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
   ulong long bitValue;
   ulong long maxBits;
   uint bitIndexValue;
-  uint reversedBits;
-  long long rowIndex;
+  uint ReversedBits;
+  long long RowIndex;
   int columnIndex;
   int chunkIndexValue;
   uint elementIndexValue;
@@ -70483,76 +70483,76 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
   halfRangeValue = bitMaskValue / 2;
   if (0 < (int)rotationBits) {
     do {
-      int rowIndex = 0;
+      int RowIndex = 0;
       if (0 < (int)loopCounterValue) {
         ulong long columnCount = (ulong long)loopCounter;
         do {
-          ulong long normalizedIndex = (long long)rowIndex / (long long)(int)halfRange & MAX_UNSIGNED_32_BIT;
-          uint reversedBits = 0;
-          uint bitCount = rotationBits;
+          ulong long normalizedIndex = (long long)RowIndex / (long long)(int)halfRange & MAX_UNSIGNED_32_BIT;
+          uint ReversedBits = 0;
+          uint BitCount = rotationBits;
           if (rotationBits != 0) {
             do {
-              uint currentBit = (uint)normalizedIndex;
+              uint CurrentBit = (uint)normalizedIndex;
               normalizedIndex = normalizedIndex >> 1;
-              reversedBits = reversedBits * 2 | currentBit & 1;
-              bitCount = bitCount - 1;
-            } while (bitCount != 0);
+              ReversedBits = ReversedBits * 2 | CurrentBit & 1;
+              BitCount = BitCount - 1;
+            } while (BitCount != 0);
           }
-          float angleValue = (float)(int)reversedBits * (1.0 / (float)bitMaskValue);
-          uint lookupIndex = (uint)(angleValue * 32768.0);
-          if ((int)lookupIndex < 0) {
-            lookupIndex = -lookupIndex;
+          float angleValue = (float)(int)ReversedBits * (1.0 / (float)bitMaskValue);
+          uint LookupIndex = (uint)(angleValue * 32768.0);
+          if ((int)LookupIndex < 0) {
+            LookupIndex = -LookupIndex;
           }
-          lookupIndex = lookupIndex & SINE_LOOKUP_TABLE_SIZE;
-          ulong long sineLookupIndex = (ulong long)lookupIndex;
-          uint quadrant = lookupIndex >> QUADRANT_SHIFT_BITS;
+          LookupIndex = LookupIndex & SINE_LOOKUP_TABLE_SIZE;
+          ulong long sineLookupIndex = (ulong long)LookupIndex;
+          uint Quadrant = LookupIndex >> QUADRANT_SHIFT_BITS;
           float sineValue;
-          if (lookupIndex >> QUADRANT_SHIFT_BITS == 0) {
+          if (LookupIndex >> QUADRANT_SHIFT_BITS == 0) {
             sineValue = *(float *)(transformContext + 0x4cc + sineLookupIndex * 4);
           }
-          else if (quadrant == 1) {
-            sineValue = -*(float *)(transformContext + (0x4132 - (ulong long)lookupIndex) * 4);
+          else if (Quadrant == 1) {
+            sineValue = -*(float *)(transformContext + (0x4132 - (ulong long)LookupIndex) * 4);
           }
-          else if (quadrant == 2) {
+          else if (Quadrant == 2) {
             sineValue = -*(float *)(transformContext + -0xfb34 + sineLookupIndex * 4);
           }
-          else if (quadrant == 3) {
+          else if (Quadrant == 3) {
             sineValue = *(float *)(transformContext + (0x8132 - sineLookupIndex) * 4);
           }
           else {
             sineValue = 0.0;
           }
-          lookupIndex = (uint)((angleValue - 0.25) * 32768.0);
-          if ((int)lookupIndex < 0) {
-            lookupIndex = -lookupIndex;
+          LookupIndex = (uint)((angleValue - 0.25) * 32768.0);
+          if ((int)LookupIndex < 0) {
+            LookupIndex = -LookupIndex;
           }
-          lookupIndex = lookupIndex & SINE_LOOKUP_TABLE_SIZE;
-          sineLookupIndex = (ulong long)lookupIndex;
-          quadrant = lookupIndex >> QUADRANT_SHIFT_BITS;
+          LookupIndex = LookupIndex & SINE_LOOKUP_TABLE_SIZE;
+          sineLookupIndex = (ulong long)LookupIndex;
+          Quadrant = LookupIndex >> QUADRANT_SHIFT_BITS;
           float cosineValue;
-          if (lookupIndex >> QUADRANT_SHIFT_BITS == 0) {
+          if (LookupIndex >> QUADRANT_SHIFT_BITS == 0) {
             cosineValue = *(float *)(transformContext + 0x4cc + sineLookupIndex * 4);
           }
-          else if (quadrant == 1) {
-            cosineValue = -*(float *)(transformContext + (0x4132 - (ulong long)lookupIndex) * 4);
+          else if (Quadrant == 1) {
+            cosineValue = -*(float *)(transformContext + (0x4132 - (ulong long)LookupIndex) * 4);
           }
-          else if (quadrant == 2) {
+          else if (Quadrant == 2) {
             cosineValue = -*(float *)(transformContext + -0xfb34 + sineLookupIndex * 4);
           }
-          else if (quadrant == 3) {
+          else if (Quadrant == 3) {
             cosineValue = *(float *)(transformContext + (0x8132 - sineLookupIndex) * 4);
           }
           else {
             cosineValue = 0.0;
           }
-          long long startRow = (long long)rowIndex;
-          long long endRow = (long long)(int)(rowIndex + halfRangeValue);
+          long long startRow = (long long)RowIndex;
+          long long endRow = (long long)(int)(RowIndex + halfRangeValue);
           cosineValue = -cosineValue;
           if (startRow < endRow) {
-            int currentRow = rowIndex;
+            int CurrentRow = RowIndex;
             if (3 < endRow - startRow) {
-              uint targetRow = rowIndex + halfRange + 3;
-              currentRow = rowIndex + ((int)(((endRow + -3) - startRow) - 1U >> 2) + 1) * 4;
+              uint targetRow = RowIndex + halfRange + 3;
+              CurrentRow = RowIndex + ((int)(((endRow + -3) - startRow) - 1U >> 2) + 1) * 4;
               do {
                 ulong long fourthRowOffset = (ulong long)targetRow;
                 long long matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
@@ -70608,7 +70608,7 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
               } while (startRow < endRow + -3);
             }
             if (startRow < endRow) {
-              targetRow = currentRow + halfRange;
+              targetRow = CurrentRow + halfRange;
               do {
                 ulong long targetRowIndex = (ulong long)targetRow;
                 matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
@@ -70627,7 +70627,7 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
               } while (startRow < endRow);
             }
           }
-          rowIndex = rowIndex + halfRange * 2;
+          RowIndex = RowIndex + halfRange * 2;
           columnCount = columnCount - 1;
         } while (columnCount != 0);
       }
@@ -70661,17 +70661,17 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
   long long matrixPointer;
   ulong long bitValue;
   ulong long maxBits;
-  uint reversedBits;
-  uint currentBit;
+  uint ReversedBits;
+  uint CurrentBit;
   long long endRow;
-  int currentRow;
-  int rowIndex;
-  uint lookupIndex;
+  int CurrentRow;
+  int RowIndex;
+  uint LookupIndex;
   ulong long targetRow;
   long long startRowValue;
   long long contextData;
   ulong long targetIndex;
-  uint bitCount;
+  uint BitCount;
   uint halfRangeValue;
   ulong long fourthRow;
   float sineValue;
