@@ -105020,7 +105020,7 @@ void ResourceIntegrityValidator(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943058. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(SystemMutexSeptenaryAddress);
+  MutexDestroyInPlace(SystemValidationMutexAddress);
   return;
 }
 
@@ -105038,7 +105038,7 @@ void DestroyMutexResource(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943088. Too many branches
                     // WARNING: Treating indirect jump as call
-  MutexDestroyInPlace(SystemMutexOctonaryAddress);
+  MutexDestroyInPlace(SystemCleanupMutexAddress);
   return;
 }
 
@@ -105059,7 +105059,7 @@ void DestroyMutexResource(void)
 void ExecuteResourceCleanup(void)
 
 {
-  ResourceCleanupDataPointer = &SystemDataStructure;
+  ResourceCleanupManagerPointer = &SystemDataStructure;
   return;
 }
 
