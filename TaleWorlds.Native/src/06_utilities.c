@@ -20067,12 +20067,12 @@ ResourceOperationExit:
 int SetSystemStatusFlagToActive(void)
 
 {
-  int64_t SystemExecutionPointer;
-  int SystemStatusRegister;
+  int64_t SystemExecutionContextPointer;
+  int SystemStatusRegisterValue;
   
-  *(uint32_t *)(SystemExecutionPointer + 0xd4) = 7;
-  if (SystemStatusRegister != 0) {
-    return SystemStatusRegister;
+  *(uint32_t *)(SystemExecutionContextPointer + 0xd4) = 7;
+  if (SystemStatusRegisterValue != 0) {
+    return SystemStatusRegisterValue;
   }
         CleanupResourceData();
 }
@@ -20091,13 +20091,13 @@ int SetSystemStatusFlagToActive(void)
 int GetSystemStatusFlagValue(void)
 
 {
-  int64_t SystemExecutionPointer;
-  uint32_t StatusIndexRegister;
-  int SystemStatusRegister;
+  int64_t SystemExecutionContextPointer;
+  uint32_t StatusIndexRegisterValue;
+  int SystemStatusRegisterValue;
   
-  *(uint32_t *)(SystemExecutionPointer + 0xd4) = StatusIndexRegister;
-  if (SystemStatusRegister != 0) {
-    return SystemStatusRegister;
+  *(uint32_t *)(SystemExecutionContextPointer + 0xd4) = StatusIndexRegisterValue;
+  if (SystemStatusRegisterValue != 0) {
+    return SystemStatusRegisterValue;
   }
         CleanupResourceData();
 }
@@ -101320,7 +101320,8 @@ void InitializeMemoryRegionManager(void)
 
 
  /**
- * 初始化系统数据结构AH
+ * @brief 初始化系统核心数据结构
+ * 
  * 初始化系统数据结构并进行完整性检查
  * 
  * 功能：
@@ -101328,10 +101329,10 @@ void InitializeMemoryRegionManager(void)
  * 2. 检查 SystemValidationManager 是否为0，如果不为0则调用错误处理函数
  * 3. 检查 SystemInitializationStatusFlag 是否为0，如果不为0则调用错误处理函数
  * 4. 调用 SecondaryDataStructureInitializer 初始化位于 SystemSecondaryDataStructureAddress 的数据结构
- * 5. 将 PrimarySystemDataPointer 设置为指向 SystemCoreDataStructure
+ * 5. 将 PrimarySystemDataPointer 设置为指向 SystemDataStructure
  */
-void InitializeSystemDataStructureAH(void)
-void InitializeSystemDataStructureAH(void)
+void InitializeSystemCoreDataStructure(void)
+void InitializeSystemCoreDataStructure(void)
 
 {
   SystemDataStructureInitializer(SystemDataStructureAddress);
@@ -101351,7 +101352,8 @@ void InitializeSystemDataStructureAH(void)
 
 
  /**
- * 初始化系统数据结构AI
+ * @brief 清理和释放内存池资源
+ * 
  * 清理和释放内存池资源
  * 
  * 功能：
@@ -101363,10 +101365,10 @@ void InitializeSystemDataStructureAH(void)
  * 参数说明：
  * - 使用全局变量 MemoryPoolStartAddress 作为内存池起始地址
  * - 使用全局变量 MemoryPoolEndAddress 作为内存池结束地址
- * - 使用全局变量 uRam0000000180c91f20 作为内存池计数器
+ * - 使用全局变量 MemoryPoolCounter 作为内存池计数器
  */
-void InitializeSystemDataStructureAI(void)
-void InitializeSystemDataStructureAI(void)
+void CleanupMemoryPoolResources(void)
+void CleanupMemoryPoolResources(void)
 
 {
   int64_t LoopCounter;
@@ -101395,16 +101397,16 @@ void InitializeSystemDataStructureAI(void)
 
 
  /**
- * @brief 初始化系统数据结构AJ
+ * @brief 初始化次级系统数据结构
  * 
  * 该函数负责初始化系统数据结构的辅助指针
- * 将 SecondarySystemDataPointer 设置为指向 SystemCoreDataStructure
+ * 将 SecondarySystemDataPointer 设置为指向 SystemDataStructure
  * 用于建立系统数据结构的引用关系
  * 
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureAJ(void)
+void InitializeSecondarySystemDataStructure(void)
 
 {
   SecondarySystemDataPointer = &SystemDataStructure;
