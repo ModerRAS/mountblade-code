@@ -75694,7 +75694,18 @@ void CleanupValidationResourceContext(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_18090acf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理内存资源上下文处理函数
+ * 
+ * 该函数负责清理内存相关的资源上下文
+ * 释放已分配的内存资源
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ * @note 此函数专门处理内存资源的清理
+ */
+void CleanupMemoryResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
