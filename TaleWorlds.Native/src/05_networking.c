@@ -985,9 +985,9 @@ uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameter
  */
 NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
-  long long NetworkConnectionContext;                  // 网络连接上下文
-  long long *ConnectionValidationResult;                // 连接验证结果指针
-  int ConnectionValidationCode;                         // 连接验证代码
+  int64_t NetworkConnectionContext;                  // 网络连接上下文
+  int64_t *ConnectionValidationResult;                // 连接验证结果指针
+  int32_t ConnectionValidationCode;                    // 连接验证代码
   
   NetworkConnectionContext = 0;
   if (ConnectionValidationCode == 0) {
@@ -1036,15 +1036,15 @@ NetworkHandle NetworkInitializeConnectionHandler(void)
  */
 NetworkHandle NetworkProcessConnectionDataHandler(int64_t *ConnectionContext, int32_t PacketData)
 {
-  NetworkStatus *NetworkConnectionContextData;
-  int32_t ActiveConnectionCount;
-  int64_t ConnectionBaseAddress;
-  NetworkStatus PacketProcessingResult;
-  NetworkStatus DataProcessingStatus;
-  NetworkStatus ConnectionValidationResult;
-  NetworkStatus *NetworkStatusBuffer;
-  int64_t ProcessingIterationCounter;
-  NetworkStatus *NetworkPacketBuffer;
+  NetworkStatus *NetworkConnectionContextData;      // 网络连接上下文数据
+  int32_t ActiveConnectionCount;                    // 活跃连接数量
+  int64_t ConnectionBaseAddress;                    // 连接基地址
+  NetworkStatus PacketProcessingResult;              // 数据包处理结果
+  NetworkStatus DataProcessingStatus;                // 数据处理状态
+  NetworkStatus ConnectionValidationResult;          // 连接验证结果
+  NetworkStatus *NetworkStatusBuffer;                // 网络状态缓冲区
+  int64_t ProcessingIterationCounter;               // 处理迭代计数器
+  NetworkStatus *NetworkPacketBuffer;                // 网络数据包缓冲区
   
   if (PacketData < (int)ConnectionContext[1]) {
     return NetworkConnectionNotFound;
@@ -1103,17 +1103,17 @@ NetworkMainProcessingLoop:
  */
 NetworkHandle NetworkProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
-  NetworkStatus *NetworkConnectionContextData;
-  int32_t NetworkPacketProcessingStatus;
-  int64_t NetworkConnectionContextHandle;
-  NetworkStatus ConnectionValidationStatus;
-  NetworkStatus ConnectionTimeoutStatus;
-  NetworkStatus SecondaryNetworkProcessingStatus;
-  NetworkStatus *NetworkStatusBuffer;
-  int64_t ConnectionProcessingCounter;
-  NetworkStatus *NetworkPacketFlagsBuffer;
-  int64_t *NetworkOperationStatusBuffer;
-  int32_t NetworkOperationCode;
+  NetworkStatus *NetworkConnectionContextData;        // 网络连接上下文数据
+  int32_t NetworkPacketProcessingStatus;              // 网络数据包处理状态
+  int64_t NetworkConnectionContextHandle;              // 网络连接上下文句柄
+  NetworkStatus ConnectionValidationStatus;            // 连接验证状态
+  NetworkStatus ConnectionTimeoutStatus;               // 连接超时状态
+  NetworkStatus SecondaryNetworkProcessingStatus;      // 次级网络处理状态
+  NetworkStatus *NetworkStatusBuffer;                  // 网络状态缓冲区
+  int64_t ConnectionProcessingCounter;                 // 连接处理计数器
+  NetworkStatus *NetworkPacketFlagsBuffer;              // 网络数据包标志缓冲区
+  int64_t *NetworkOperationStatusBuffer;               // 网络操作状态缓冲区
+  int32_t NetworkOperationCode;                        // 网络操作代码
   
   NetworkStatusBuffer = (NetworkStatus *)0x0;
   if (NetworkOperationCode == 0) {
@@ -1184,12 +1184,12 @@ NetworkHandle NetworkFinalizeConnectionHandler(void)
  */
 void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
 {
-  int32_t PrimaryConnectionStatus;
-  int32_t NetworkDataProcessingResult;
-  NetworkByte NetworkCleanupBuffer [48];
-  int64_t ConnectionHandleStorage [2];
-  NetworkHandle *ConnectionHandleBuffer [34];
-  uint64_t NetworkValidationKey;
+  int32_t PrimaryConnectionStatus;                    // 主要连接状态
+  int32_t NetworkDataProcessingResult;                // 网络数据处理结果
+  NetworkByte NetworkCleanupBuffer [48];               // 网络清理缓冲区
+  int64_t ConnectionHandleStorage [2];                 // 连接句柄存储
+  NetworkHandle *ConnectionHandleBuffer [34];          // 连接句柄缓冲区
+  uint64_t NetworkValidationKey;                       // 网络验证密钥
   
   // 清理连接状态和数据
   PrimaryConnectionStatus = 0;
@@ -1222,9 +1222,9 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  */
 NetworkHandle NetworkValidatePacketIntegrityHandler(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
-  NetworkHandle PacketValidationResult;
-  NetworkByte PacketValidationDataBuffer [32];
-  NetworkByte SecurityEncryptionDataBuffer [32];
+  NetworkHandle PacketValidationResult;              // 数据包验证结果
+  NetworkByte PacketValidationDataBuffer [32];       // 数据包验证数据缓冲区
+  NetworkByte SecurityEncryptionDataBuffer [32];     // 安全加密数据缓冲区
   
   PacketValidationResult = DecodePacket(PacketData, SecurityEncryptionDataBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
   if (((int)PacketValidationResult == 0) &&
@@ -1262,10 +1262,10 @@ NetworkHandle NetworkValidatePacketIntegrityHandler(NetworkHandle *PacketData, i
  */
 NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t *PacketData)
 {
-  NetworkHandle NetworkPacketValidationStatus;
-  NetworkStatus ConnectionStateDataArray [6];
-  NetworkStatus ConnectionValidationDataArray [4];
-  NetworkStatus ConnectionProcessingDataArray [4];
+  NetworkHandle NetworkPacketValidationStatus;          // 网络数据包验证状态
+  NetworkStatus ConnectionStateDataArray [6];          // 连接状态数据数组
+  NetworkStatus ConnectionValidationDataArray [4];      // 连接验证数据数组
+  NetworkStatus ConnectionProcessingDataArray [4];      // 连接处理数据数组
   
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
