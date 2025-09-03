@@ -985,9 +985,9 @@ uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameter
  */
 NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
-  long long NetworkConnectionContext;
-  long long *ConnectionValidationResult;
-  int ConnectionValidationCode;
+  long long NetworkConnectionContext;                  // 网络连接上下文
+  long long *ConnectionValidationResult;                // 连接验证结果指针
+  int ConnectionValidationCode;                         // 连接验证代码
   
   NetworkConnectionContext = 0;
   if (ConnectionValidationCode == 0) {
