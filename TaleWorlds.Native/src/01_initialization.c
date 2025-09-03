@@ -1472,16 +1472,9 @@ void InitializeGameCoreSystem(void)
  * 
  * @note 该函数在系统初始化过程中调用，确保数据表的基础
  * 分配功能正常工作。
- */
-/**
- * @brief 初始化系统数据表基础分配器
  * 
- * 该函数负责初始化系统数据表的基础分配器，为数据表的内存分配
- * 和管理提供基础支持。它会遍历系统节点树，查找合适的位置
- * 来初始化基础分配器功能。
- * 
- * @note 该函数在系统初始化过程中调用，确保数据表的基础
- * 分配功能正常工作。
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemDataTableBaseAllocator(void)
 {
