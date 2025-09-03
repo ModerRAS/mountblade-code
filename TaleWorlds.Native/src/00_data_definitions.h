@@ -3797,8 +3797,8 @@ Label_StringSpaceFound:
                     BufferSize1 = 0;
                   }
                   StackBufferPointer9 = &SystemNullPointer;
-                  if (StackStringData3 != 0) {
-                    SystemBufferValidate(StackStringData3,BufferSize1);
+                  if (StackStringBufferTertiary != 0) {
+                    SystemBufferValidate(StackStringBufferTertiary,BufferSize1);
                   }
                   StackStringData3 = 0;
                   StackProcessCounter = 0;
