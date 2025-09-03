@@ -1327,6 +1327,10 @@ uint32_t ConnectionValidationResultPointer;              // 连接验证结果�
 uint32_t ConnectionValidationResultData;                // 连接验证结果数据
 uint32_t ConnectionValidationResultSize;                // 连接验证结果大小
 uint32_t ConnectionValidationStatusCode;                // 连接验证状态码
+uint32_t ConnectionBaseAddressPointer;                  // 连接基地址指针
+uint32_t ConnectionContextDataArray;                     // 连接上下文数据数组
+uint32_t ConnectionContextDataSize;                      // 连接上下文数据大小
+uint32_t ConnectionContextDataIndex;                     // 连接上下文数据索引
 
 /**
  * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
