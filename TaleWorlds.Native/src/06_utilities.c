@@ -6019,22 +6019,22 @@ void ReturnNoOperationPrimary(void)
 uint64_t HandleResourceOperation(int64_t ResourceHandle)
 
 {
-  uint8_t ContextValidationStatus;
-  int64_t ResourceContextPointer;
-  int64_t ValidatedResourcePointer;
+  uint8_t ValidationStatus;
+  int64_t ResourcePointer;
+  int64_t ValidatedResourceAddress;
   
-  ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextOffset),&ValidatedResourcePointer);
-  if ((int)ContextValidationStatus != 0) {
-    return ContextValidationStatus;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextOffset),&ValidatedResourceAddress);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  ResourceContextPointer = ValidatedResourcePointer - 8;
-  if (ValidatedResourcePointer == 0) {
-    ResourceContextPointer = 0;
+  ResourcePointer = ValidatedResourceAddress - 8;
+  if (ValidatedResourceAddress == 0) {
+    ResourcePointer = 0;
   }
-  if (*(int64_t *)(ResourceContextPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ResourcePointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ResourceContextPointer + ObjectContextOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ResourcePointer + ObjectContextOffset),1);
 }
 
 
@@ -6050,19 +6050,18 @@ uint64_t HandleResourceOperation(int64_t ResourceHandle)
  */
 uint32_t ProcessResourceTask(void)
 {
-  int64_t SystemTaskHandle;
-  int64_t TaskProcessingCounter;
-  int64_t SystemTaskContext;
+  int64_t TaskHandle;
+  int64_t TaskContext;
   
-  SystemTaskHandle = InputParameter;
-  SystemTaskContext = SystemTaskHandle - 8;
-  if (SystemTaskHandle == 0) {
-    SystemTaskContext = 0;
+  TaskHandle = InputParameter;
+  TaskContext = TaskHandle - 8;
+  if (TaskHandle == 0) {
+    TaskContext = 0;
   }
-  if (*(int64_t *)(SystemTaskContext + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(TaskContext + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(SystemTaskContext + ObjectContextOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(TaskContext + ObjectContextOffset),1);
 }
 
 
@@ -6112,23 +6111,23 @@ void PerformNoOperationPrimary(void)
 uint64_t ValidateAndProcessObjectHandle(uint64_t ObjectHandleIdentifier)
 
 {
-  uint64_t ObjectValidationStatusCode;
-  int64_t ValidatedObjectContext;
+  uint64_t ValidationStatus;
+  int64_t ObjectContext;
   
-  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleIdentifier + ObjectContextValidationOffset), &ValidatedObjectContext);
-  if ((int)ObjectValidationStatusCode != 0) {
-    return ObjectValidationStatusCode;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandleIdentifier + ObjectContextValidationOffset), &ObjectContext);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  if (ValidatedObjectContext == 0) {
-    ValidatedObjectContext = 0;
+  if (ObjectContext == 0) {
+    ObjectContext = 0;
   }
   else {
-    ValidatedObjectContext = ValidatedObjectContext + -8;
+    ObjectContext = ObjectContext + -8;
   }
-  if (*(int64_t *)(ValidatedObjectContext + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ObjectContext + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ValidatedObjectContext + ObjectContextOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ObjectContext + ObjectContextOffset), 1);
 }
 
 
@@ -6144,20 +6143,20 @@ uint64_t ValidateAndProcessObjectHandle(uint64_t ObjectHandleIdentifier)
 uint32_t ValidateAndProcessCurrentObjectHandle(void)
 
 {
-  int64_t RegisterObjectContext;
-  int64_t ValidatedObjectPointer;
+  int64_t ObjectHandle;
+  int64_t ObjectContext;
   
-  RegisterObjectContext = InputParameter;
-  if (RegisterObjectContext == 0) {
-    ValidatedObjectPointer = 0;
+  ObjectHandle = InputParameter;
+  if (ObjectHandle == 0) {
+    ObjectContext = 0;
   }
   else {
-    ValidatedObjectPointer = RegisterObjectContext + -8;
+    ObjectContext = ObjectHandle + -8;
   }
-  if (*(int64_t *)(ValidatedObjectPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ObjectContext + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ValidatedObjectPointer + ObjectContextOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ObjectContext + ObjectContextOffset), 1);
 }
 
 
