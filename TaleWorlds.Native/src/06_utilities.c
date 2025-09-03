@@ -101809,7 +101809,7 @@ void InitializeSystemDataStructureBE(void)
 void InitializeSystemDataStructureBE(void)
 
 {
-  SystemDataPointer030 = &SystemDataStructure;
+  SystemDataPointerBE = &SystemDataStructure;
   return;
 }
 
