@@ -330,25 +330,25 @@
 #define SystemSchedulerContextProcessingOffset 0x50
 
 // 对象数据偏移常量
-#define ObjectContextDataOffset1 0x84
-#define ObjectContextDataOffset2 0x88
-#define ObjectContextDataOffset3 0x98
-#define ObjectContextDataOffset4 0xb0
-#define ObjectContextDataOffset5 0xb4
-#define ObjectContextDataOffset6 0xb8
-#define ObjectContextDataOffset7 0xc0
-#define ObjectContextDataOffset8 0xdc
-#define ObjectContextDataOffset9 0xe0
-#define ObjectContextDataOffset10 0xe4
-#define ObjectContextDataOffset11 0xe8
-#define ObjectContextDataOffset12 0xec
-#define ObjectContextDataOffset13 0xf0
-#define ObjectContextDataOffset14 0xf4
-#define ObjectContextDataOffset15 0xf8
-#define ObjectContextDataOffset16 0x210
-#define ObjectContextDataOffset17 0x218
-#define ObjectContextDataOffset18 0x21c
-#define ObjectContextDataOffset19 0x2f4
+#define ObjectContextDataOffsetPrimary 0x84
+#define ObjectContextDataOffsetSecondary 0x88
+#define ObjectContextDataOffsetTertiary 0x98
+#define ObjectContextDataOffsetQuaternary 0xb0
+#define ObjectContextDataOffsetQuinary 0xb4
+#define ObjectContextDataOffsetSenary 0xb8
+#define ObjectContextDataOffsetSeptenary 0xc0
+#define ObjectContextDataOffsetOctonary 0xdc
+#define ObjectContextDataOffsetNonary 0xe0
+#define ObjectContextDataOffsetDenary 0xe4
+#define ObjectContextDataOffsetUndenary 0xe8
+#define ObjectContextDataOffsetDuodenary 0xec
+#define ObjectContextDataOffsetTerdenary 0xf0
+#define ObjectContextDataOffsetQuattuordenary 0xf4
+#define ObjectContextDataOffsetQuindenary 0xf8
+#define ObjectContextDataOffsetSexdenary 0x210
+#define ObjectContextDataOffsetSeptendenary 0x218
+#define ObjectContextDataOffsetOctodecenary 0x21c
+#define ObjectContextDataOffsetNovemdenary 0x2f4
 
 // 资源验证相关常量
 #define ResourceValidationFlagsOffset 0x34
@@ -376,9 +376,6 @@
 #define FileResourceTableOffset 0x888
 #define FileResourceHashEndOffset 0x890
 
-#define ResourceCounterOffset78 0x78
-#define ResourceCounterOffset88 0x88
-#define ResourceCounterOffsetA0 0xa0
 #define GlobalUnwindCounterOffset 0x3a8
 
 #define SystemContextPrimaryPointer SystemContextPointer
@@ -419,25 +416,6 @@
 #define ObjectContextQuinaryHandleOffset 0x5c
 #define ObjectContextSenaryHandleOffset 0x60
 #define ObjectContextSeptenaryHandleOffset 0x74
-#define ObjectContextDataOffset1 0x84
-#define ObjectContextDataOffset2 0x88
-#define ObjectContextDataOffset3 0x98
-#define ObjectContextDataOffset4 0xb0
-#define ObjectContextDataOffset5 0xb4
-#define ObjectContextDataOffset6 0xb8
-#define ObjectContextDataOffset7 0xc0
-#define ObjectContextDataOffset8 0xdc
-#define ObjectContextDataOffset9 0xe0
-#define ObjectContextDataOffset10 0xe4
-#define ObjectContextDataOffset11 0xe8
-#define ObjectContextDataOffset12 0xec
-#define ObjectContextDataOffset13 0xf0
-#define ObjectContextDataOffset14 0xf4
-#define ObjectContextDataOffset15 0xf8
-#define ObjectContextDataOffset16 0x210
-#define ObjectContextDataOffset17 0x218
-#define ObjectContextDataOffset18 0x21c
-#define ObjectContextDataOffset19 0x2f4
 #define SystemSchedulerContextProcessingOffset 0x50
 
 // System property buffer related constants
@@ -54396,7 +54374,7 @@ void UnwindReleaseSystemResourceAtExtendedOffset(uint8_t ObjectContext, int64_t 
  * @note 此函数会检查资源数据中的标志位来决定是否释放资源
  * @warning 调用此函数会修改资源数据中的标志位状态
  */
-void UnwindReleaseSystemResourceAtOffset112(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindReleaseSystemResourceAtAlternateOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x6c) & 4) != 0) {
@@ -54624,7 +54602,7 @@ void ExecuteResourceCleanupHandlers(uint8_t ObjectContext,int64_t ValidationCont
  * @note 此函数处理偏移量152处的资源释放
  * @remark 原始函数名：Unwind_180906470
  */
-void ReleaseSystemResourceAtOffset338(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemResourceAtExtendedOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -56371,7 +56349,7 @@ void CleanupValidationContextPrimaryResourceHandler(uint8_t ObjectContext,int64_
  * @note 此函数在偏移量0xA8处执行回调
  * @warning 调用前必须确保验证上下文有效
  */
-void ExecuteSystemCallbackAtOffset168(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemCallbackAtPrimaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xa8) != (int64_t *)0x0) {
@@ -56641,7 +56619,7 @@ void ExecuteValidationContextCleanupWithFlags(uint8_t ObjectContext,int64_t Vali
  * @return 无返回值
  * @note 此函数用于资源哈希验证和完整性检查
  */
-void ValidateResourceHashAtOffset180(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateResourceHashAtSecondaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
