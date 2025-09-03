@@ -60112,11 +60112,11 @@ void ExecuteResourceHandlerCallbackOffset8818(uint8_t ObjectContext, int64_t Val
 void ReleaseResourceContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ResourceContextPointer;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10);
+  if (ResourceContextPointer != (int64_t *)0x0) {
+    (**(code **)(*ResourceContextPointer + 0x38))();
   }
   return;
 }
@@ -60138,11 +60138,11 @@ void ReleaseResourceContextHandler(uint8_t ObjectContext,int64_t ValidationConte
 void ReleaseResourceContextHandlerExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ExtendedResourceContextPointer;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x18);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  ExtendedResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x18);
+  if (ExtendedResourceContextPointer != (int64_t *)0x0) {
+    (**(code **)(*ExtendedResourceContextPointer + 0x38))();
   }
   return;
 }
