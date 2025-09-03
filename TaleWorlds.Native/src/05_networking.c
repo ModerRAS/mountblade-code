@@ -1328,9 +1328,9 @@ uint32_t ValidationResultData;                // 连接验证结果数据
 uint32_t ValidationResultSize;                // 连接验证结果大小
 uint32_t ValidationStatusCode;                // 连接验证状态码
 uint32_t NetworkConnectionBaseAddressPointer;                  // 连接基地址指针
-uint32_t ConnectionContextDataArray;                     // 连接上下文数据数组
-uint32_t ConnectionContextDataSize;                      // 连接上下文数据大小
-uint32_t ConnectionContextDataIndex;                     // 连接上下文数据索引
+uint32_t NetworkConnectionContextDataArray;                     // 连接上下文数据数组
+uint32_t NetworkConnectionContextDataSize;                      // 连接上下文数据大小
+uint32_t NetworkConnectionContextDataIndex;                     // 连接上下文数据索引
 
 /**
  * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
