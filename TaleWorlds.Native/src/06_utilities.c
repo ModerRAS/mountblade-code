@@ -6721,8 +6721,8 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t SystemO
   int64_t ResourceHandleValue;
   int ResourceCount;
   
-  ResourceHashStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextSecurityResourceOffset),&ValidationContext);
-  if ((int)ResourceHashStatus == 0) {
+  ResourceValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextSecurityResourceOffset),&ValidationContext);
+  if ((int)ResourceValidationStatus == 0) {
     ResourceCount = *(int *)(ResourceHandle + ObjectContextResourceCountOffset);
     if ((0 < ResourceCount) && (*(uint *)(ResourceHandle + ObjectStatusFlagsOffset) < 2)) {
       ResourceIndex = 0;
