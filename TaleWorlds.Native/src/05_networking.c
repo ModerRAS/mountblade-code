@@ -989,7 +989,7 @@ NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, N
   
   NetworkConnectionContext = 0;
   if (ConnectionValidationCode == 0) {
-LabelNetworkValidationProcessing:
+NetworkValidationProcessingContinue:
     if ((0 < *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset)) && (*ConnectionValidationResult != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *ConnectionValidationResult, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
@@ -1003,7 +1003,7 @@ LabelNetworkValidationProcessing:
       if ((int)ConnectionValidationResult[1] != 0) {
           memcpy(NetworkConnectionContext, *ConnectionValidationResult, (long long)(int)ConnectionValidationResult[1]);
       }
-      goto NETWORK_PROCESSING_CONTINUE;
+      goto NetworkProcessingContinue;
     }
   }
   return NetworkErrorConnectionFailed;
@@ -1072,7 +1072,7 @@ NetworkHandle NetworkProcessConnectionDataHandler(int64_t *ConnectionContext, in
             NetworkPacketBuffer = NetworkPacketBuffer + 5;
           } while (ProcessingIterationCounter != 0);
         }
-        goto NETWORK_PROCESSING_LOOP;
+        goto NetworkProcessingLoop;
       }
     }
     return NetworkErrorConnectionFailed;
@@ -1146,7 +1146,7 @@ NETWORK_PROCESSING_LOOP:
           NetworkPacketFlagsBuffer = NetworkPacketFlagsBuffer + 5;
         } while (ConnectionProcessingCounter != 0);
       }
-      goto NETWORK_PROCESSING_LOOP;
+      goto NetworkProcessingLoop;
     }
   }
   return NetworkConnectionFinalizeValue;
