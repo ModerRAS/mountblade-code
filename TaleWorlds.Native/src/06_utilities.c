@@ -10965,13 +10965,13 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
   int FormatValidationStatus = ValidateDataFormat(ValidationContext,dataLength,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
   int StringOperationStatus = ProcessStringOperation(ValidationContext + FormatValidationStatus,dataLength - FormatValidationStatus,&StringProcessingTemplate);
   int ProcessedByteCount = FormatValidationStatus + StringOperationStatus;
-  int DataContentResult = ParseDataContent(ProcessedByteCount + ValidationContext,dataLength - ProcessedByteCount,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  ProcessedByteCount = ProcessedByteCount + DataContentResult;
-  int StringValidationResult = ProcessStringOperation(ProcessedByteCount + ValidationContext,dataLength - ProcessedByteCount,&StringProcessingTemplate);
-  ProcessedByteCount = ProcessedByteCount + StringValidationResult;
-  int StringExtendedValidationResult = ProcessStringValidation(ProcessedByteCount + ValidationContext,dataLength - ProcessedByteCount,ObjectContext + ObjectContextProcessingDataOffset,
+  int DataContentStatus = ParseDataContent(ProcessedByteCount + ValidationContext,dataLength - ProcessedByteCount,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  ProcessedByteCount = ProcessedByteCount + DataContentStatus;
+  int StringValidationStatus = ProcessStringOperation(ProcessedByteCount + ValidationContext,dataLength - ProcessedByteCount,&StringProcessingTemplate);
+  ProcessedByteCount = ProcessedByteCount + StringValidationStatus;
+  int StringExtendedValidationStatus = ProcessStringValidation(ProcessedByteCount + ValidationContext,dataLength - ProcessedByteCount,ObjectContext + ObjectContextProcessingDataOffset,
                         *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  ProcessedByteCount = ProcessedByteCount + StringExtendedValidationResult;
+  ProcessedByteCount = ProcessedByteCount + StringExtendedValidationStatus;
   int AdditionalStringResult = ProcessStringOperation(ProcessedByteCount + ValidationContext,dataLength - ProcessedByteCount,&StringProcessingTemplate);
   ProcessedByteCount = ProcessedByteCount + AdditionalStringResult;
   int ResourceProcessingResult = ProcessResourceData(ProcessedByteCount + ValidationContext,dataLength - ProcessedByteCount,
