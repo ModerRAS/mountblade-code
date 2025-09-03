@@ -76661,10 +76661,20 @@ void ExecuteResourceContextCallback2(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090b250(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源上下文回调函数3
+ * 
+ * 该函数从验证上下文中获取资源上下文，并执行相应的回调函数
+ * 使用偏移量0x388来定位资源上下文
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090b250
+ */
+void ExecuteResourceContextCallback3(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int64_t *processPointer;
+  int64_t *ResourceContext;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x388);
   if (ResourceContext != (int64_t *)0x0) {
