@@ -799,7 +799,7 @@ void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfig
 void InitializeNetworkSocketHandle(void)
 {
   // 初始化套接字基本参数
-  NetworkSocketDescriptor = 0xFFFFFFFF;        // 初始化文件描述符为无效值
+  NetworkSocketDescriptor = SOCKET_DESCRIPTOR_INVALID;        // 初始化文件描述符为无效值
   NetworkSocketContextSize = SOCKET_CONTEXT_SIZE;                // 设置套接字上下文大小为256字节
   NetworkSocketIndex = 0;                           // 重置套接字索引
   NetworkSocketSize = SOCKET_SIZE;                         // 设置套接字大小为64字节
@@ -835,8 +835,8 @@ void NetworkBindSocket(void)
   // 设置网络地址和端口配置
   NetworkServerIpAddress = IPV4_LOCALHOST;               // 设置为127.0.0.1 (本地回环地址)
   NetworkServerPortNumber = PORT_HTTP_ALT;                   // 设置端口为8080
-  NetworkClientIpAddress = 0x00000000;               // 客户端IP地址初始化为0.0.0.0
-  NetworkClientPortNumber = 0x0000;                   // 客户端端口初始化为0
+  NetworkClientIpAddress = CLIENT_IP_ANY;               // 客户端IP地址初始化为0.0.0.0
+  NetworkClientPortNumber = CLIENT_PORT_ANY;                   // 客户端端口初始化为0
   
   // 设置套接字绑定状态
   NetworkSocketBindingStatus = 0x01;                   // 设置绑定标志为已绑定
