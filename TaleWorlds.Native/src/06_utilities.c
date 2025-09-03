@@ -402,7 +402,7 @@ void TerminateSystemProcess(uint64_t TerminationSecurityToken);
  * @param StatusCheckType 状态检查类型 (0=基本检查, 1=详细检查)
  * @return 系统状态码，0表示正常，非0表示异常
  */
-uint32_t VerifySystemStatus(void* SystemContext, uint32_t StatusCheckType);
+uint32_t CheckSystemHealthStatus(void* SystemContext, uint32_t StatusCheckType);
 
 /**
  * @brief 处理系统对象状态
@@ -413,7 +413,7 @@ uint32_t VerifySystemStatus(void* SystemContext, uint32_t StatusCheckType);
  * @param SystemObjectHandle 系统对象句柄
  * @return 处理结果状态码
  */
-uint32_t HandleSystemObjectState(uint32_t SystemObjectHandle);
+uint32_t ProcessSystemObjectState(uint32_t SystemObjectHandle);
 
 /**
  * @brief 执行系统退出操作（无参数版本）
@@ -423,7 +423,7 @@ uint32_t HandleSystemObjectState(uint32_t SystemObjectHandle);
  * 
  * @return 无返回值
  */
-void PerformSystemExit(void);
+void ExecuteSystemShutdown(void);
 
 /**
  * @brief 执行系统操作
@@ -435,7 +435,7 @@ void PerformSystemExit(void);
  * @param ContextBuffer 上下文缓冲区
  * @return 操作结果状态码
  */
-uint32_t PerformSystemOperation(uint32_t OperationHandle, void* ContextBuffer);
+uint32_t ExecuteSystemCommand(uint32_t OperationHandle, void* ContextBuffer);
 
 /**
  * @brief 处理网络请求
