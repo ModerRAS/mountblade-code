@@ -4501,7 +4501,7 @@ void ValidateSystemObjectCollection(void)
   int64_t CollectionBufferIndex;
   int ValidatedObjectCount;
   uint8_t *SystemObjectDataBuffer;
-  int TotalRetrievedObjects;
+  int RetrievedObjectCount;
   uint32_t MaximumCollectionLimit;
   uint64_t SecurityValidationKey;
   
@@ -4509,15 +4509,15 @@ void ValidateSystemObjectCollection(void)
   if (*(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset) != 0) {
     SystemObjectDataBuffer = ProcessingWorkspace;
     ValidatedObjectCount = 0;
-    TotalRetrievedObjects = 0;
+    RetrievedObjectCount = 0;
     MaximumCollectionLimit = MaximumCapacityLimit;
     
     // 获取系统对象集合
     SystemObjectValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
     if (SystemObjectValidationStatus == 0) {
-      TotalRetrievedObjects = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
-      if (0 < TotalRetrievedObjects) {
+      RetrievedObjectCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
+      if (0 < RetrievedObjectCount) {
         CollectionBufferIndex = PointerSizeBytes;
         do {
           CurrentObjectId = *(uint8_t *)(SystemObjectDataBuffer + CollectionBufferIndex);
@@ -4527,7 +4527,7 @@ void ValidateSystemObjectCollection(void)
           }
           ValidatedObjectCount++;
           CollectionBufferIndex += 8;
-        } while (ValidatedObjectCount < TotalRetrievedObjects);
+        } while (ValidatedObjectCount < RetrievedObjectCount);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
