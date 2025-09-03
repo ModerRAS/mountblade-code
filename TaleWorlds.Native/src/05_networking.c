@@ -1612,9 +1612,9 @@ NetworkMainProcessingLoop:
           NetworkStatus CurrentTimeoutStatus = ConnectionContextData[2];
           NetworkStatus CurrentSecondaryStatus = ConnectionContextData[3];
           *PacketFlagsBuffer = *ConnectionContextData;
-          PacketFlagsBuffer[1] = ValidationStatus;
-          PacketFlagsBuffer[2] = TimeoutStatus;
-          PacketFlagsBuffer[3] = SecondaryProcessingStatus;
+          PacketFlagsBuffer[1] = CurrentValidationStatus;
+          PacketFlagsBuffer[2] = CurrentTimeoutStatus;
+          PacketFlagsBuffer[3] = CurrentSecondaryStatus;
           PacketFlagsBuffer[4] = *(NetworkStatus *)((ConnectionContextHandle - (long long)StatusBuffer) + -4 + (long long)(PacketFlagsBuffer + 5));
           ProcessingCounter = ProcessingCounter + -1;
           PacketFlagsBuffer = PacketFlagsBuffer + 5;
@@ -1696,7 +1696,7 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  */
 NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
-  NetworkHandle ValidationResult;                        // 验证结果
+  NetworkHandle SecurityValidationResult;                        // 安全验证结果
   NetworkByte ValidationBuffer [32];                    // 验证缓冲区
   NetworkByte EncryptionBuffer [32];                    // 加密缓冲区
   

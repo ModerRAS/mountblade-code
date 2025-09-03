@@ -5176,7 +5176,16 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * @return void 无返回值
  * @warning 此函数会立即终止系统运行，只在严重错误时使用
  */
-void RaiseSystemException(void) {
+/**
+ * @brief 触发系统异常处理
+ * 
+ * 触发系统异常处理流程，通常在遇到严重错误时调用。
+ * 此函数用于系统错误处理和异常情况的处理。
+ * 
+ * @return void 无返回值
+ * @warning 此函数会立即终止系统运行，只在严重错误时使用
+ */
+void TriggerSystemException(void) {
   ExecuteSystemExitOperation();
 }
 
@@ -5192,7 +5201,16 @@ void RaiseSystemException(void) {
  * @return void 无返回值
  * @note 此函数通常在系统关闭或资源回收时调用
  */
-void ClearSystemResources(void)
+/**
+ * @brief 清理系统资源
+ * 
+ * 清理系统资源，释放不再使用的内存和对象。
+ * 目前为空实现，预留用于后续系统资源清理逻辑。
+ * 
+ * @return void 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ */
+void CleanupSystemResources(void)
 {
   // 预留系统资源清理逻辑
   return;
