@@ -14762,7 +14762,7 @@ void SystemInitializerPrimary(void)
           FloatRegisterValue = 0.0;
           ResourceHashValidationTertiary = ResourceHashValidationTertiary + 1;
           ResourceHashStatusPrimary = ResourceHashStatusPrimary + 0x18;
-          ResourceRegisterPointer = StackParameter68;
+          ResourceRegisterPointer = StackParameterContext;
         } while ((int64_t)ResourceHashValidationTertiary < StackParameterContext);
       }
       ResourceHashValueTertiary = *(uint8_t *)(*(int64_t *)(SystemContext + 8) + 800);
@@ -15219,10 +15219,10 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
   int64_t SystemContextRegister;
   float FloatingPointCalculationResult;
   uint32_t PrimaryValidationStatusCode;
-  uint32_t tertiaryFloatValidationResult;
+  uint32_t TertiaryFloatValidationResult;
   uint32_t FloatingPointResultThird;
-  uint32_t secondaryFloatValidationResult;
-  uint32_t resourceHashValidationCode;
+  uint32_t SecondaryFloatValidationResult;
+  uint32_t ResourceHashValidationCode;
   uint32_t ContextResourceHashStatus;
   uint32_t StackContextBuffer;
   uint8_t *StackResourcePointer;
@@ -16058,7 +16058,7 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *ObjectContext,char Validatio
   uint8_t ValidationContextStatus;
   int64_t validationStackBuffer [2];
   uint8_t *networkDataPointer;
-  uint32_t networkPort;
+  uint32_t NetworkPort;
   uint64_t PrimaryOperationParameter;
   
   *(uint8_t *)(ObjectContext + 4) = 1;
@@ -17984,10 +17984,10 @@ uint8_t ProcessResourceRegistry(uint8_t *ObjectContext, uint8_t ValidationContex
   uint64_t MemorySize;
   uint32_t FloatingPointCalculationResult;
   uint32_t PrimaryValidationStatusCode;
-  uint32_t tertiaryFloatValidationResult;
+  uint32_t TertiaryFloatValidationResult;
   uint32_t FloatingPointResultThird;
-  uint32_t secondaryFloatValidationResult;
-  uint32_t resourceHashValidationCode;
+  uint32_t SecondaryFloatValidationResult;
+  uint32_t ResourceHashValidationCode;
   uint32_t ObjectContextPointer;
   uint32_t ValidationCounter;
   
@@ -18150,7 +18150,7 @@ void ProcessResourceHashValidation(uint8_t *ObjectContext)
   int64_t BufferPointer;
   uint32_t FloatingPointCalculationResult;
   uint32_t PrimaryValidationStatusCode;
-  uint32_t tertiaryFloatValidationResult;
+  uint32_t TertiaryFloatValidationResult;
   uint32_t ResourceCount;
   
   ValidationStatusCode = (**(code **)*ObjectContext)();
@@ -27325,11 +27325,11 @@ uint64_t ProcessResourceHashCalculationAndValidation(void)
   int64_t SystemContextRegister;
   uint32_t FloatingPointCalculationResult;
   uint32_t PrimaryValidationStatusCode;
-  uint32_t tertiaryFloatValidationResult;
+  uint32_t TertiaryFloatValidationResult;
   uint32_t FloatingPointResultThird;
   uint32_t PrimaryResourceHash;
-  uint32_t secondaryFloatValidationResult;
-  uint32_t resourceHashValidationCode;
+  uint32_t SecondaryFloatValidationResult;
+  uint32_t ResourceHashValidationCode;
   
   SecurityHashValuePointer = (uint32_t *)AllocateMemoryBlock();
   ResourceCount = 0;
