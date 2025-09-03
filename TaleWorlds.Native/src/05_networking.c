@@ -498,7 +498,9 @@ uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能�
 uint32_t NetworkConnectionPoolAllocationCount;         // 网络连接池分配计数
 uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放计数
 
-// 网络连接表变量
+/**
+ * @brief 网络连接表变量 - 管理网络连接的表结构和索引
+ */
 uint32_t NetworkConnectionTable;                       // 网络连接表
 
 // =============================================================================
@@ -1197,7 +1199,9 @@ uint32_t NetworkConnectionStateFlags;                       // 网络连接状�
 uint32_t NetworkConnectionProcessingResults;               // 网络连接处理结果
 uint32_t NetworkConnectionProcessedCounts;                  // 网络连接已处理数量
 
-// 网络连接缓冲区管理
+/**
+ * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
+ */
 uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓冲区
 
 /**
@@ -1211,14 +1215,15 @@ uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓
  */
 void NetworkInitializeConnectionState(void)
 {
-  uint8_t *StateBuffer;                             // 状态缓冲区指针
-  int32_t InitializationStatus;                     // 初始化状态标志
-  int64_t SystemContextData;                        // 系统上下文数据
-  int32_t ConnectionHandleId;                       // 连接句柄ID
-  uint32_t StateFlags;                              // 状态标志位
-  int32_t SessionId;                                // 会话ID
-  uint64_t *StateData;                              // 状态数据指针
-  int64_t ContextPointer;                           // 上下文指针
+  // 连接状态初始化变量
+  uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
+  int32_t InitializationResult;                     // 初始化结果状态
+  int64_t NetworkSystemContext;                     // 网络系统上下文数据
+  int32_t ConnectionIdentifier;                     // 连接标识符
+  uint32_t ConnectionStateFlags;                    // 连接状态标志位
+  int32_t NetworkSessionId;                         // 网络会话ID
+  uint64_t *ConnectionStateData;                     // 连接状态数据指针
+  int64_t NetworkContextPointer;                    // 网络上下文指针
   
   // 计算连接状态缓冲区位置
   StateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + ConnectionStateBufferOffset);
@@ -1312,6 +1317,7 @@ uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameter
  */
 NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
+  // 连接请求处理变量
   int64_t NetworkConnectionContextHandle;              // 网络连接上下文句柄
   int64_t *ConnectionValidationResultPointer;          // 连接验证结果指针
   int32_t ConnectionValidationStatusCode;               // 连接验证状态码
@@ -1373,13 +1379,20 @@ NetworkHandle NetworkInitializeConnectionSystem(void)
 
 /**
  * @brief 处理网络连接数据 - 处理连接数据包和状态更新
- * 此函数负责处理网络连接中的数据包，并更新相应的连接状态
- * @param ConnectionContext 连接上下文指针
- * @param PacketData 数据包数据
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * 
+ * 此函数负责处理网络连接中的数据包，并更新相应的连接状态。
+ * 它会验证数据包的完整性，处理连接状态变化，并确保数据传输的安全性。
+ * 
+ * @param ConnectionContext 连接上下文指针，包含连接的状态信息和配置参数
+ * @param PacketData 数据包数据，包含需要处理的网络数据包信息
+ * @return NetworkHandle 处理结果句柄，0表示成功，其他值表示错误码
+ * 
+ * @note 此函数会进行数据包验证、状态更新和连接管理
+ * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
  */
 NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
+  // 数据包处理变量
   NetworkStatus *NetworkConnectionContextDataArray;  // 网络连接上下文数据数组
   int32_t ActiveConnectionCount;                    // 活跃连接数量
   int64_t ConnectionBaseAddressPointer;             // 连接基地址指针
@@ -1447,6 +1460,7 @@ NetworkMainProcessingLoop:
  */
 NetworkHandle NetworkUpdateConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
+  // 连接状态处理变量
   NetworkStatus *ConnectionContextData;                // 连接上下文数据指针
   int32_t PacketProcessingStatus;                       // 数据包处理状态
   int64_t ConnectionContextHandle;                      // 连接上下文句柄
