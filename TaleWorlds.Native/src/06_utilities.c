@@ -30319,15 +30319,15 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @warning 调用此函数会触发异常处理流程
  */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerFunctionPointer;
+  int64_t* ExceptionHandlerPointer;
   
   // 获取异常处理函数指针
-  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  ExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
   
   // 检查异常处理函数指针是否有效
-  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+  if (ExceptionHandlerPointer != (int64_t *)0x0) {
     // 调用异常处理函数
-    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
+    (**(code **)(*(int64_t *)ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -34758,11 +34758,11 @@ void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,
 void ReleaseSystemResourceLock(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  code *CharacterPointer;
+  code *CleanupFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
-    (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextDataOffset),0,0,CleanupFlag,0xfffffffffffffffe);
+  CleanupFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + ValidationContextCleanupFunctionOffset);
+  if (CleanupFunctionPointer != (code *)0x0) {
+    (*CleanupFunctionPointer)(*(int64_t *)(ValidationContext + ValidationContextDataOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -34772,11 +34772,11 @@ void ReleaseSystemResourceLock(uint8_t ObjectContext,int64_t ValidationContext,u
 void ReleaseKernelResourceLock(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  code *CharacterPointer;
+  code *CleanupFunctionPointer;
   
-  CharacterPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + ValidationContextCleanupFunctionOffset);
-  if (CharacterPointer != (code *)0x0) {
-    (*CharacterPointer)(*(int64_t *)(ValidationContext + ValidationContextDataOffset),0,0,CleanupFlag,0xfffffffffffffffe);
+  CleanupFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + ValidationContextCleanupFunctionOffset);
+  if (CleanupFunctionPointer != (code *)0x0) {
+    (*CleanupFunctionPointer)(*(int64_t *)(ValidationContext + ValidationContextDataOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
