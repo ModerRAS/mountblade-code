@@ -1245,6 +1245,21 @@ uint32_t ConnectionManager;                            // 连接管理器
 uint32_t ConnectionData;                              // 连接数据
 uint32_t ConnectionSize;                              // 连接大小
 uint32_t ConnectionIndex;                              // 连接索引
+uint32_t NetworkThroughputMonitor;                     // 网络吞吐量监控器
+uint32_t NetworkLatencyMonitor;                         // 网络延迟监控器
+uint32_t NetworkBandwidthMonitor;                        // 网络带宽监控器
+uint32_t NetworkPacketMonitor;                           // 网络数据包监控器
+uint32_t NetworkRetryInterval;                           // 网络重试间隔
+uint32_t NetworkTimeoutInterval;                          // 网络超时间隔
+uint32_t ConnectionRetryCount;                            // 连接重试次数
+uint32_t ConnectionBackoffTime;                           // 连接退避时间
+uint32_t NetworkEventSize;                                // 网络事件大小
+uint32_t NetworkEventIndex;                               // 网络事件索引
+uint32_t NetworkCallbackSize;                              // 网络回调大小
+uint32_t NetworkCallbackIndex;                             // 网络回调索引
+uint32_t NetworkPortRangeStart;                            // 网络端口范围起始值
+uint32_t NetworkPortRangeEnd;                              // 网络端口范围结束值
+uint32_t NetworkConnectionTimeout;                          // 网络连接超时时间
 uint32_t NetworkSecurityConfigurationFlags;          // 网络安全配置标志
 uint32_t NetworkAuthenticationSecurityLevel;       // 网络认证安全级别
 uint32_t NetworkEncryptionAlgorithmType;            // 网络加密算法类型
@@ -1293,6 +1308,13 @@ uint32_t NetworkConnectionJitterBuffer;                     // 网络连接抖�
 uint32_t NetworkConnectionErrorRate;                        // 网络连接错误率
 uint32_t NetworkConnectionHealth;                           // 网络连接健康状态
 uint32_t NetworkConnectionStability;                        // 网络连接稳定性
+uint32_t NetworkInitializationResult;                     // 网络初始化结果
+uint32_t NetworkSystemContext;                             // 网络系统上下文
+uint32_t NetworkSessionIdentifier;                         // 网络会话标识符
+uint32_t NetworkContextPointer;                            // 网络上下文指针
+uint32_t NetworkContextData;                               // 网络上下文数据
+uint32_t NetworkConnectionIdentifier;                     // 网络连接标识符
+uint32_t NetworkConnectionState;                           // 网络连接状态
 
 /**
  * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
