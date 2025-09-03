@@ -78080,7 +78080,18 @@ void ExecuteSystemResourceProcessingCallbackE(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090b970(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解包系统资源处理器A
+ * 
+ * 该函数用于解包系统资源处理器，释放相关资源并恢复系统状态
+ * 主要用于异常处理和资源清理过程中
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于系统状态验证
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
+void UnwindSystemResourceHandlerA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;

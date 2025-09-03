@@ -1558,30 +1558,30 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *NetworkStatusBuffer = (NetworkConnectionStatus *)0x0;
+  NetworkConnectionStatus *NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)0x0;
   
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
-      NetworkStatusBuffer = (NetworkConnectionStatus *)
+      NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)
                ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                              NetworkConnectionFinalizeValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (NetworkStatusBuffer != (NetworkConnectionStatus *)0x0) {
+      if (NetworkConnectionStatusBuffer != (NetworkConnectionStatus *)0x0) {
         int32_t ActiveNetworkConnectionCount = (int)ConnectionContext[1];
         int64_t NetworkConnectionProcessingCounter = (long long)ActiveNetworkConnectionCount;
         
         // 如果有活跃连接，处理连接数据
         if ((ActiveNetworkConnectionCount != 0) && (NetworkConnectionBaseAddress = *ConnectionContext, 0 < ActiveNetworkConnectionCount)) {
-          NetworkConnectionStatus *NetworkPacketStatusBuffer = NetworkStatusBuffer;
+          NetworkConnectionStatus *NetworkPacketStatusBuffer = NetworkConnectionStatusBuffer;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *NetworkConnectionContextArray = (NetworkConnectionStatus *)((NetworkConnectionBaseAddress - (long long)NetworkStatusBuffer) + (long long)NetworkPacketStatusBuffer);
+            NetworkConnectionStatus *NetworkConnectionContextArray = (NetworkConnectionStatus *)((NetworkConnectionBaseAddress - (long long)NetworkConnectionStatusBuffer) + (long long)NetworkPacketStatusBuffer);
             
             // 提取连接状态信息
             NetworkConnectionStatus CurrentNetworkPacketStatus = NetworkConnectionContextArray[1];
@@ -1593,7 +1593,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkPacketStatusBuffer[1] = CurrentNetworkPacketStatus;
             NetworkPacketStatusBuffer[2] = CurrentNetworkDataStatus;
             NetworkPacketStatusBuffer[3] = CurrentNetworkValidationResult;
-            NetworkPacketStatusBuffer[4] = *(NetworkConnectionStatus *)((NetworkConnectionBaseAddress - (long long)NetworkStatusBuffer) + -4 + (long long)(NetworkPacketStatusBuffer + 5));
+            NetworkPacketStatusBuffer[4] = *(NetworkConnectionStatus *)((NetworkConnectionBaseAddress - (long long)NetworkConnectionStatusBuffer) + -4 + (long long)(NetworkPacketStatusBuffer + 5));
             
             // 更新迭代计数器
             NetworkConnectionProcessingCounter = NetworkConnectionProcessingCounter - 1;
@@ -1640,13 +1640,13 @@ NetworkHandle NetworkUpdateConnectionStatus(NetworkHandle ConnectionContext, int
   NetworkStatus NetworkValidationStatus;                       // 验证状态
   NetworkStatus NetworkTimeoutStatus;                          // 超时状态
   NetworkStatus NetworkSecondaryProcessingStatus;              // 次级处理状态
-  NetworkStatus *NetworkStatusBuffer;                          // 状态缓冲区
+  NetworkStatus *NetworkConnectionStatusBuffer;                // 连接状态缓冲区
   int64_t NetworkProcessingCounter;                            // 处理计数器
   NetworkStatus *NetworkPacketFlagsBuffer;                     // 数据包标志缓冲区
   int64_t *NetworkOperationStatusBuffer;                      // 操作状态缓冲区
   int32_t NetworkOperationCode;                                // 操作代码
   
-  NetworkStatusBuffer = (NetworkStatus *)0x0;
+  NetworkConnectionStatusBuffer = (NetworkStatus *)0x0;
   if (NetworkOperationCode == 0) {
 NetworkMainProcessingLoop:
     if ((0 < *(int *)((long long)NetworkOperationStatusBuffer + ConnectionParameterOffset)) && (*NetworkOperationStatusBuffer != 0)) {
