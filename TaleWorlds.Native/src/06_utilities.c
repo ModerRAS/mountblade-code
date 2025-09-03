@@ -18264,7 +18264,7 @@ uint8_t ProcessResourceRegistry(uint8_t *ObjectContext, uint8_t ValidationContex
         if (0 < ResourceHashStatus) {
           do {
             ResourceHashPtr = *(uint8_t **)(ResourceContext + 8);
-            *(uint32_t *)(SystemExecutionPointer + 0x20) =
+            *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) =
                  *(uint32_t *)(*(int64_t *)(ResourceRegisterPointer + 0x40) + ResourceContextOffset * 4);
             OperationStatusCode = (**(code **)*ResourceHashPtr)(ResourceHashAddress,SystemExecutionPointer + 0x20,4);
             if (OperationResult != 0) {
@@ -18322,13 +18322,13 @@ uint8_t ProcessResourceRegistry(uint8_t *ObjectContext, uint8_t ValidationContex
                 do {
                   ResourceEntryPointer = *(int64_t *)(ResourceRegisterPointer + 0x70);
                   ResourceHashPtr = *(uint8_t **)(ResourceContext + 8);
-                  *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(ResourceEntryPointer + SecurityHashValue * 8);
+                  *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(ResourceEntryPointer + SecurityHashValue * 8);
                   OperationStatusCode = (**(code **)*ResourceHashPtr)(ResourceHashAddress,SystemExecutionPointer + 0x20,4);
                   if (OperationResult != 0) {
                     return;
                   }
                   ResourceHashPtr = *(uint8_t **)(ResourceContext + 8);
-                  *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(ResourceEntryPointer + 4 + SecurityHashValue * 8);
+                  *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(ResourceEntryPointer + 4 + SecurityHashValue * 8);
                   OperationStatusCode = (**(code **)*ResourceHashPtr)(ResourceHashAddress,SystemExecutionPointer + 0x20,4);
                   if (OperationResult != 0) {
                     return;
@@ -18337,7 +18337,7 @@ uint8_t ProcessResourceRegistry(uint8_t *ObjectContext, uint8_t ValidationContex
                 } while ((int64_t)SecurityHashValue < (int64_t)ResourceHashStatus);
               }
               ResourceHashPtr = *(uint8_t **)(ResourceContext + 8);
-              *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(ResourceRegisterPointer + 0x80);
+              *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(ResourceRegisterPointer + 0x80);
               (**(code **)*ResourceHashPtr)(ResourceHashAddress,SystemExecutionPointer + 0x20,4);
             }
           }
@@ -18426,13 +18426,13 @@ void ProcessResourceHashValidation(uint8_t *ObjectContext)
           do {
             ResourceEntryPointer = *(int64_t *)(ResourceRegisterPointer + 0x70);
             ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-            *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(ResourceEntryPointer + SystemRegisterContext * 8);
+            *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(ResourceEntryPointer + SystemRegisterContext * 8);
             OperationStatusCode = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
             if (OperationResult != 0) {
               return;
             }
             ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-            *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(ResourceEntryPointer + 4 + SystemRegisterContext * 8);
+            *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(ResourceEntryPointer + 4 + SystemRegisterContext * 8);
             OperationStatusCode = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
             if (OperationResult != 0) {
               return;
@@ -18441,7 +18441,7 @@ void ProcessResourceHashValidation(uint8_t *ObjectContext)
           } while (SystemRegisterContext < ResourceHashStatus);
         }
         ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-        *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(ResourceRegisterPointer + 0x80);
+        *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(ResourceRegisterPointer + 0x80);
         (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
       }
     }
@@ -19006,40 +19006,40 @@ void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
     ResourceContextOffset = 4;
     *(uint *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = (ResourceHash & ResourceHashMaskPreserve | ResourceHashFlagBit) * 2 | ResourceHash & ResourceHashValueMask;
   }
-  ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,ResourceContextOffset);
+  ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,ResourceContextOffset);
   if (ProcessStatus == 0) {
     ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-    *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x194);
-    ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
-    if (((ProcessStatus == 0) && (ProcessStatus = CheckResourceAvailability(secondaryFloatResult,SystemRegisterContext + 0x198), ProcessStatus == 0))
-       && (ProcessStatus = CheckResourceAvailability(resourceHashValidationValue,SystemRegisterContext + 0x19c), ProcessStatus == 0)) {
+    *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + SystemRegisterContextPrimaryValidationOffset);
+    ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
+    if (((ProcessStatus == 0) && (ProcessStatus = CheckResourceAvailability(secondaryFloatResult,SystemRegisterContext + SystemRegisterContextSecondaryValidationOffset), ProcessStatus == 0))
+       && (ProcessStatus = CheckResourceAvailability(resourceHashValidationValue,SystemRegisterContext + SystemRegisterContextTertiaryValidationOffset), ProcessStatus == 0)) {
       ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-      *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x1a4);
-      ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
+      *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1a4);
+      ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
       if (ProcessStatus == 0) {
         ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-        *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x1a8);
-        ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
+        *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1a8);
+        ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
         if (ProcessStatus == 0) {
           ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-          *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x1ac);
-          ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
+          *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1ac);
+          ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
           if (ProcessStatus == 0) {
             ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-            *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x1b4);
-            ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
+            *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1b4);
+            ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
             if (ProcessStatus == 0) {
               ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-              *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x1b8);
-              ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
+              *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1b8);
+              ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
               if (ProcessStatus == 0) {
                 ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-                *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x1b0);
-                ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
+                *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1b0);
+                ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
                 if (ProcessStatus == 0) {
                   ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-                  *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x1bc);
-                  ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
+                  *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1bc);
+                  ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
                   if (ProcessStatus == 0) {
                     ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
                     *(uint8_t *)(SystemExecutionPointer + 0x20) = *(uint8_t *)(SystemRegisterContext + 0x1c0);
@@ -19054,15 +19054,15 @@ void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
                         ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,8);
                         if (ProcessStatus == 0) {
                           ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-                          *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x1dc);
-                          ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
+                          *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1dc);
+                          ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
                           if (ProcessStatus == 0) {
                             ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-                            *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + 0x1d8);
-                            ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
+                            *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1d8);
+                            ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
                             if (ProcessStatus == 0) {
                               ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-                              *(uint32_t *)(SystemExecutionPointer + 0x20) = *(uint32_t *)(SystemRegisterContext + SystemOperationContextOffset)
+                              *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + SystemOperationContextOffset)
                               ;
                               (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,4);
                             }
