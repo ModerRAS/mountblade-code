@@ -1427,7 +1427,7 @@ void InitializeGameCoreSystem(void)
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   SystemRootNodePointer = (void**)*SystemDataTablePointer;
   IsNodeActive = *(bool*)((long long)SystemRootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitializationHandler = GetGameCoreSystemInitializationFunction;
+  GameCoreInitializationHandler = GetGameCoreSystemInitializationFunction;
   PreviousSystemNode = SystemRootNodePointer;
   CurrentSystemNode = (void**)SystemRootNodePointer[1];
   
@@ -1456,7 +1456,7 @@ void InitializeGameCoreSystem(void)
   PreviousSystemNode[NodeIdentifier2Index] = GameCoreNodeIdentifier2;
   PreviousSystemNode[NodeDataPointerIndex] = &GameCoreNodeData;
   PreviousSystemNode[NodeFlagIndex] = 0;
-  PreviousSystemNode[NodeHandlerIndex] = SystemInitializationHandler;
+  PreviousSystemNode[NodeHandlerIndex] = GameCoreInitializationHandler;
   return;
 }
 
