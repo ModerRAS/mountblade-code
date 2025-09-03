@@ -258,7 +258,7 @@ uint32_t VerifyNetworkContextEntry(int64_t NetworkContextEntry);
  * @param ConnectionHandle 连接句柄
  * @return 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint InitializeNetworkConnection(NetworkHandle ConnectionHandle);
+uint32_t InitializeNetworkConnection(NetworkHandle ConnectionHandle);
 
 /**
  * 验证网络连接状态 - 验证网络连接的状态
@@ -266,7 +266,7 @@ uint InitializeNetworkConnection(NetworkHandle ConnectionHandle);
  * @param ConnectionHandle 连接句柄
  * @return 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint VerifyNetworkConnectionStatus(NetworkHandle ConnectionHandle);
+uint32_t VerifyNetworkConnectionStatus(NetworkHandle ConnectionHandle);
 
 /**
  * 重置网络连接状态 - 重置网络连接的状态
@@ -280,7 +280,7 @@ void ResetNetworkConnectionState(void);
  * @param ValidationContext 验证上下文
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint ProcessNetworkValidationQueue(int64_t ValidationContext);
+uint32_t ProcessNetworkValidationQueue(int64_t ValidationContext);
 
 /**
  * 清理网络连接缓存 - 清理网络连接的缓存
@@ -294,7 +294,7 @@ void ClearNetworkConnectionCache(void);
  * @param BufferPointer 缓冲区指针
  * @return 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint InitializeNetworkBuffer(int64_t BufferPointer);
+uint32_t InitializeNetworkBuffer(int64_t BufferPointer);
 
 /**
  * 处理网络数组数据 - 处理网络数组数据
@@ -303,7 +303,7 @@ uint InitializeNetworkBuffer(int64_t BufferPointer);
  * @param ArrayIndex 数组索引
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint ProcessNetworkArrayData(int64_t NetworkContextArray, uint ArrayIndex);
+uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex);
 
 /**
  * 关闭网络连接 - 关闭网络连接
@@ -312,7 +312,7 @@ uint ProcessNetworkArrayData(int64_t NetworkContextArray, uint ArrayIndex);
  * @param ConnectionFlags 连接标志
  * @return 关闭结果句柄，0表示成功，其他值表示错误码
  */
-uint CloseNetworkConnection(int64_t *NetworkConnectionContext, uint ConnectionFlags);
+uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
 
 // 全局变量声明
 uint32_t NetworkConnectionTableHandle;                    // 网络连接表句柄
@@ -450,7 +450,7 @@ void CloseNetworkConnection(void);
  * @param ValidationResult 验证结果
  * @return 验证结果，0表示成功，其他值表示错误码
  */
-int ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
+int32_t ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
 
 /**
  * 网络安全守卫检查 - 网络安全守卫检查
@@ -748,7 +748,7 @@ void ResetNetworkConnectionPointer(void)
 }
 
 // 验证连接参数 - 检查连接参数的有效性和安全性
-uint ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
+uint32_t ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
 {
   // 函数实现省略，保持原有逻辑
   return 0;
