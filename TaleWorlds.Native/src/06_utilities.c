@@ -4594,6 +4594,10 @@ void ValidateSystemObjectCollection(void)
   // 生成安全验证令牌
   SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ProcessingWorkspace;
   
+  // 初始化系统上下文
+  SystemObjectContext = GetSystemContextHandle();
+  SystemRuntimeData = GetSystemRuntimeData();
+  
   // 检查系统对象上下文是否有效
   if (*(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset) != 0) {
     SystemObjectDataBuffer = ProcessingWorkspace;

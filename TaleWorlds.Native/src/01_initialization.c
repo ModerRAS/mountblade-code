@@ -1210,8 +1210,8 @@ void* SystemDataBufferStandardDenary;
 // 系统数据缓冲区 - 标准化命名
 void* SystemDataBufferStandardUndenary;
 void* SystemDataBufferStandardDozen;
-void* SystemDataBufferStandard13;
-void* SystemDataBufferStandard14;
+void* SystemDataBufferStandardTredecenary;
+void* SystemDataBufferStandardQuattuordecenary;
 void* SystemDataBufferStandard15;
 void* SystemDataBufferStandard16;
 void* SystemDataBufferStandard17;
