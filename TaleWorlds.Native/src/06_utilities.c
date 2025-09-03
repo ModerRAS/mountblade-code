@@ -9097,9 +9097,9 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
   }
   if ((*(byte *)(ResourceHandle + ResourceValidationFlagsOffset) & 0x11) == 0) {
     CalculatedFloatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
-    FourthFloatResult = *(float *)(ResourceHandle + 0x38);
-    if ((*(float *)(ResourceHandle + 0x38) <= InputFloatValue) &&
-       (FourthFloatResult = *(float *)(ResourceHandle + 0x3c), InputFloatValue <= *(float *)(ResourceHandle + 0x3c))) {
+    FourthFloatResult = *(float *)(ResourceHandle + ResourceFloatValue1Offset);
+    if ((*(float *)(ResourceHandle + ResourceFloatValue1Offset) <= InputFloatValue) &&
+       (FourthFloatResult = *(float *)(ResourceHandle + ResourceFloatValue2Offset), InputFloatValue <= *(float *)(ResourceHandle + ResourceFloatValue2Offset))) {
       FourthFloatResult = InputFloatValue;
     }
     *(float *)(ObjectContext + ObjectContextProcessingDataOffset) = TemporaryFloatValue;
