@@ -7651,7 +7651,7 @@ void ValidateAndProcessSystemStatusData(void)
   ValidationStatus = ValidateSystemParameter(SystemParameter);
   if (ValidationStatus < 1) {
     ValidationStatus = ValidateSystemContext(SystemParameter);
-    *(uint *)(SystemStatusPointer + 0x18) = (uint)(ValidationStatus < 1);
+    *(uint *)(SystemStatusPointer + SystemStatusValidationOffset) = (uint)(ValidationStatus < 1);
   }
   else {
     ValidationStatus = ValidateSystemContext(SystemParameter);
