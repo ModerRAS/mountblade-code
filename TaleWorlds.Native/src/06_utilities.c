@@ -19014,11 +19014,11 @@ void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
     if (((ProcessStatus == 0) && (ProcessStatus = CheckResourceAvailability(secondaryFloatResult,SystemRegisterContext + SystemRegisterContextSecondaryValidationOffset), ProcessStatus == 0))
        && (ProcessStatus = CheckResourceAvailability(resourceHashValidationValue,SystemRegisterContext + SystemRegisterContextTertiaryValidationOffset), ProcessStatus == 0)) {
       ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-      *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1a4);
+      *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + SystemRegisterContextQuaternaryValidationOffset);
       ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
       if (ProcessStatus == 0) {
         ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-        *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + 0x1a8);
+        *(uint32_t *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = *(uint32_t *)(SystemRegisterContext + SystemRegisterContextValidationOffset1);
         ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + SystemExecutionPointerResourceOffset,4);
         if (ProcessStatus == 0) {
           ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);

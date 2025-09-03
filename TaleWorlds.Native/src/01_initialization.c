@@ -1,53 +1,54 @@
 #include "TaleWorlds.Native.Split.h"
 
-#define SYSTEM_EVENT_HANDLER_PRIMARY_ADDRESS    0x180c91700
-#define SYSTEM_EVENT_HANDLER_SECONDARY_ADDRESS  0x180c91800
-#define SYSTEM_FLOAT_TABLE_START_ADDRESS       0x180c8aa70
-#define SYSTEM_FLOAT_TABLE_END_ADDRESS         0x180c8ea71
-#define SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS 0x180c8eb70
-#define SYSTEM_SECURITY_CONTEXT_ADDRESS        0x180d49d50
-#define SYSTEM_MUTEX_PRIMARY_ADDRESS           0x180c96690
-#define SYSTEM_MUTEX_SECONDARY_ADDRESS         0x180c966f0
-#define SYSTEM_MUTEX_TERTIARY_ADDRESS          0x180c96740
-#define SYSTEM_MEMORY_MANAGER_ADDRESS          0x180c0c340
-#define SYSTEM_VTABLE_POINTER_ADDRESS          0x180c35590
-#define SYSTEM_DATABASE_ADDRESS                0x180c4f510
-#define SYSTEM_MUTEX_QUATERNARY_ADDRESS        0x180c82170
-#define SYSTEM_CONTROLLER_ADDRESS               0x180c91060
-#define SYSTEM_MUTEX_UNLOCK_ADDRESS            0x180c91970
-#define SYSTEM_MUTEX_LOCK_ADDRESS              0x180c91288
-#define SYSTEM_RESOURCE_STRING_ADDRESS         0x180d48d24
-#define SYSTEM_STRING_OFFSET_ADDRESS           0x180c84871
-#define SYSTEM_MUTEX_SECURITY_ADDRESS          0x180c91910
-#define SYSTEM_DATA_CHECK_ADDRESS             0x180d49150
+// 系统核心地址常量定义
+#define SystemEventHandlerPrimaryAddress    0x180c91700
+#define SystemEventHandlerSecondaryAddress  0x180c91800
+#define SystemFloatTableStartAddress       0x180c8aa70
+#define SystemFloatTableEndAddress         0x180c8ea71
+#define SystemFloatTableSecondStartAddress 0x180c8eb70
+#define SystemSecurityContextAddress        0x180d49d50
+#define SystemMutexPrimaryAddress           0x180c96690
+#define SystemMutexSecondaryAddress         0x180c966f0
+#define SystemMutexTertiaryAddress          0x180c96740
+#define SystemMemoryManagerAddress          0x180c0c340
+#define SystemVirtualTablePointerAddress          0x180c35590
+#define SystemDatabaseAddress                0x180c4f510
+#define SystemMutexQuaternaryAddress        0x180c82170
+#define SystemControllerAddress               0x180c91060
+#define SystemMutexUnlockAddress            0x180c91970
+#define SystemMutexLockAddress              0x180c91288
+#define SystemResourceStringAddress         0x180d48d24
+#define SystemStringOffsetAddress           0x180c84871
+#define SystemMutexSecurityAddress          0x180c91910
+#define SystemDataCheckAddress             0x180d49150
 
 // SystemResourceManager结构体字段偏移量
-#define SYSTEM_RESOURCE_DATA_POINTER_OFFSET    1
-#define SYSTEM_RESOURCE_HASH_TABLE_OFFSET     2
-#define SYSTEM_RESOURCE_FLAGS_OFFSET          4
-#define SYSTEM_RESOURCE_MEMORY_POOL_OFFSET     5
+#define SystemResourceDataPointerOffset    1
+#define SystemResourceHashTableOffset     2
+#define SystemResourceFlagsOffset          4
+#define SystemResourceMemoryPoolOffset     5
 
 // 系统节点相关常量
-#define SYSTEM_NODE_ACTIVE_FLAG_OFFSET         0x19
-#define SYSTEM_IDENTIFIER_SIZE                 0x10
-#define SYSTEM_NODE_NEXT_POINTER_OFFSET       2
-#define SYSTEM_NODE_HEAD_POINTER_OFFSET       0
-#define SYSTEM_NODE_ALLOCATION_EXTRA_SIZE     0x20
+#define SystemNodeActiveFlagOffset         0x19
+#define SystemIdentifierSize                 0x10
+#define SystemNodeNextPointerOffset       2
+#define SystemNodeHeadPointerOffset       0
+#define SystemNodeAllocationExtraSize     0x20
 
 // 系统节点结构体字段索引
-#define SYSTEM_NODE_IDENTIFIER1_INDEX         6
-#define SYSTEM_NODE_IDENTIFIER2_INDEX         7
-#define SYSTEM_NODE_DATA_POINTER_INDEX        8
-#define SYSTEM_NODE_FLAG_INDEX                 9
-#define SYSTEM_NODE_HANDLER_INDEX            10
-#define GAME_CORE_SYSTEM_IDENTIFIER1             0x4fc124d23d41985f
-#define GAME_CORE_SYSTEM_IDENTIFIER2             0xe2f4a30d6e6ae482
-#define GAME_CORE_SYSTEM_ID                    0x4fc124d23d41985f
-#define GAME_CORE_SYSTEM_NODE_DATA                    0
-#define BASE_ALLOCATOR_SYSTEM_IDENTIFIER1       0x4770584fbb1df897
-#define BASE_ALLOCATOR_SYSTEM_IDENTIFIER2       0x47f249e43f66f2ab
-#define BASE_ALLOCATOR_SYSTEM_FLAG              1
-#define BASE_ALLOCATOR_SYSTEM_NODE_DATA              0
+#define SystemNodeIdentifier1Index         6
+#define SystemNodeIdentifier2Index         7
+#define SystemNodeDataPointerIndex        8
+#define SystemNodeFlagIndex                 9
+#define SystemNodeHandlerIndex            10
+#define GameCoreSystemIdentifier1             0x4fc124d23d41985f
+#define GameCoreSystemIdentifier2             0xe2f4a30d6e6ae482
+#define GameCoreSystemId                    0x4fc124d23d41985f
+#define GameCoreSystemNodeData                    0
+#define BaseAllocatorSystemIdentifier1       0x4770584fbb1df897
+#define BaseAllocatorSystemIdentifier2       0x47f249e43f66f2ab
+#define BaseAllocatorSystemFlag              1
+#define BaseAllocatorSystemNodeData              0
 #define SYSTEM_DATA_TABLE_SYSTEM_IDENTIFIER1     0x544e41445441424c
 #define SYSTEM_DATA_TABLE_SYSTEM_IDENTIFIER2     0x4552455345525441
 #define SYSTEM_DATA_TABLE_SYSTEM_FLAG           2
