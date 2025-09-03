@@ -25735,7 +25735,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   EncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)ArrayUnsigned368;
   ThreadLocalStorage = (uint8_t *)0x0;
   MemoryAllocationSize = 0;
-  longValue260 = SystemGlobalStatusFlags;
+  LongValue260 = SystemGlobalStatusFlags;
   systemStatusFlag338 = '\0';
   SystemStringTemplatePointer = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
