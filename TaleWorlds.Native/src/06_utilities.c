@@ -10943,25 +10943,25 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
 {
   void* StringProcessingTemplate;
     
-  int DataFormatValidationResult = ValidateDataFormat(ValidationContext,dataLength,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  int StringProcessingResult = ProcessStringOperation(ValidationContext + DataFormatValidationStatusCode,dataLength - DataFormatValidationStatusCode,&StringProcessingTemplate);
-  int TotalProcessedBytes = DataFormatValidationStatusCode + StringProcessingResult;
+  int FormatValidationResult = ValidateDataFormat(ValidationContext,dataLength,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  int StringOperationResult = ProcessStringOperation(ValidationContext + FormatValidationResult,dataLength - FormatValidationResult,&StringProcessingTemplate);
+  int TotalProcessedBytes = FormatValidationResult + StringOperationResult;
   int DataContentResult = ParseDataContent(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
   TotalProcessedBytes = TotalProcessedBytes + DataContentResult;
-  int StringValidationStatusCode = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
-  TotalProcessedBytes = TotalProcessedBytes + StringValidationStatusCode;
-  int StringProcessingValidationStatusCode = ProcessStringValidation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,ObjectContext + ObjectContextProcessingDataOffset,
+  int StringValidationResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
+  TotalProcessedBytes = TotalProcessedBytes + StringValidationResult;
+  int StringExtendedValidationResult = ProcessStringValidation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,ObjectContext + ObjectContextProcessingDataOffset,
                         *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  TotalProcessedBytes = TotalProcessedBytes + StringProcessingValidationStatusCode;
-  int SecondStringProcessingResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
-  TotalProcessedBytes = TotalProcessedBytes + SecondStringProcessingResult;
+  TotalProcessedBytes = TotalProcessedBytes + StringExtendedValidationResult;
+  int AdditionalStringResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
+  TotalProcessedBytes = TotalProcessedBytes + AdditionalStringResult;
   int ResourceProcessingResult = ProcessResourceData(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,
                         ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 8);
   TotalProcessedBytes = TotalProcessedBytes + ResourceProcessingResult;
-  int FinalStringProcessingResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
-  TotalProcessedBytes = TotalProcessedBytes + FinalStringProcessingResult;
-  int ResourceFormatValidationStatusCode = ValidateResourceFormat(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,*(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
-  return TotalProcessedBytes + ResourceFormatValidationStatusCode;
+  int FinalStringResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
+  TotalProcessedBytes = TotalProcessedBytes + FinalStringResult;
+  int ResourceValidationResult = ValidateResourceFormat(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,*(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
+  return TotalProcessedBytes + ResourceValidationResult;
 }
 
 
@@ -56947,7 +56947,7 @@ void InitializeSystemDataTablePointer(void)
  * @return 无返回值
  * @note 此函数通常在异常处理或资源清理时调用
  */
-void CleanupValidationContextTransactionResourceHandlerAtOffset60(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupValidationContextTransactionResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -56970,7 +56970,7 @@ void CleanupValidationContextTransactionResourceHandlerAtOffset60(uint8_t Object
  * @return 无返回值
  * @note 此函数通常在异常处理或资源清理时调用
  */
-void CleanupValidationContextResourceHandlerAtOffset60(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupValidationContextResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextDataOffset) != (int64_t *)0x0) {
@@ -60018,7 +60018,7 @@ void ResourceContextValidationHandler(uint8_t ObjectContext, int64_t ValidationC
  * @param ValidationContext 验证上下文指针，包含资源状态信息
  * @remark 原始函数名：Unwind_180907390
  */
-void ExecuteResourceHandlerCallbackOffset10(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteResourceHandlerCallbackPrimary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t **resourceContext;
