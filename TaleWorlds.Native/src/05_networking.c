@@ -1025,48 +1025,48 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
  */
 NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t *PacketData)
 {
-  NetworkHandle ProcessingStatus;
+  NetworkHandle PacketProcessingStatus;
   NetworkStatus ConnectionStateArray [6];
-  NetworkStatus ConnectionDataArray [4];
+  NetworkStatus ConnectionValidationArray [4];
   
   if (*(uint *)(PacketData + 8) < 0x55) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
     ConnectionStateArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkPacketDataSecondaryOffset);
-    ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
+    PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), ConnectionStateArray, 4);
-    if ((int)ProcessingStatus != 0) {
-      return ProcessingStatus;
+    if ((int)PacketProcessingStatus != 0) {
+      return PacketProcessingStatus;
     }
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + 0x54);
-    ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
-                      (*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
-    if ((int)ProcessingStatus != 0) {
-      return ProcessingStatus;
+    ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + 0x54);
+    PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
+                      (*(NetworkHandle **)(*PacketData + 8), ConnectionValidationArray, 4);
+    if ((int)PacketProcessingStatus != 0) {
+      return PacketProcessingStatus;
     }
   }
   else {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + 0x78);
-    ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
-                      (*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
-    if ((int)ProcessingStatus != 0) {
-      return ProcessingStatus;
+    ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + 0x78);
+    PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
+                      (*(NetworkHandle **)(*PacketData + 8), ConnectionValidationArray, 4);
+    if ((int)PacketProcessingStatus != 0) {
+      return PacketProcessingStatus;
     }
   }
   if (*(int *)(PacketData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + 0x58);
-  ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
-  if ((int)ProcessingStatus != 0) {
-    return ProcessingStatus;
+  ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + 0x58);
+  PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionValidationArray, 4);
+  if ((int)PacketProcessingStatus != 0) {
+    return PacketProcessingStatus;
   }
   if (*(int *)(PacketData[1] + 0x18) != 0) {
     return 0x1c;

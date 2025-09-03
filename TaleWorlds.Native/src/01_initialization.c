@@ -9729,7 +9729,6 @@ void InitializeSystemInputNode(void)
  * @note 该函数使用内存分配和节点比较操作来确保物理节点的正确初始化
  * @note 节点标识符为 0x4c868a42644030f6 和 0xc29193aa9d9b35b9
  * 
- *FUN_1800593b0：InitializeSystemPhysicsNode
  */
 void InitializeSystemPhysicsNode(void)
 
@@ -9792,7 +9791,6 @@ void InitializeSystemPhysicsNode(void)
  * @note 该函数使用内存分配和节点比较操作来确保文件系统节点的正确初始化
  * @note 节点标识符为 0x40ea3a798283cbbb 和 0x7f74eb2c5a7fadae
  * 
- *FUN_180059400：InitializeSystemFileSystemNode
  */
 void InitializeSystemFileSystemNode(void)
 
@@ -9855,7 +9853,6 @@ void InitializeSystemFileSystemNode(void)
  * @note 该函数使用内存分配和节点比较操作来确保数据库节点的正确初始化
  * @note 节点标识符为 SYSTEM_EVENT_NODE_IDENTIFIER1 和 SYSTEM_EVENT_NODE_IDENTIFIER2
  * 
- *FUN_180059450：InitializeSystemDatabaseNode
  */
 void InitializeSystemDatabaseNode(void)
 
@@ -9977,7 +9974,6 @@ void InitializeSystemConfigurationManager(void)
  * @note 该函数使用内存分配和节点比较操作来确保配置节点的正确初始化
  * @note 节点标识符为 SYSTEM_RESOURCE_NODE_IDENTIFIER1 和 SYSTEM_RESOURCE_NODE_IDENTIFIER2
  * 
- *FUN_1800594a0：InitializeSystemConfigurationManager
  */
 void InitializeSystemConfigurationManager(void)
 
@@ -20279,7 +20275,6 @@ void ReleaseMemoryBlockReference(ulong long* SystemResourceManager)
  * @param InitializationFlags 初始化标志，控制初始化过程的不同阶段
  * @return 初始化结果状态码，成功返回0，失败返回错误码
  * 
- * 原始函数名可能为类似FUN_xxxxx的形式：InitializeSystemCoreComponents
  */
 /**
  * @brief 初始化系统核心组件

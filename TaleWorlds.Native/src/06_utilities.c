@@ -29005,18 +29005,18 @@ uint8_t ResourceValidationService(void)
  */
 void SystemResourceValidationHandler(void)
 {
-  int32_t InputRegisterResult;
-  int32_t ProcessingResult;
-  int32_t OperationResult;
-  int64_t *ResourceContext;
-  int32_t SavedBasePointer;
-  int64_t SystemContext;
-  uint32_t ValidationStatusCode;
+  int32_t InputValidationResult;
+  int32_t SystemProcessingResult;
+  int32_t ResourceOperationResult;
+  int64_t *ResourceContextPointer;
+  int32_t SavedContextPointer;
+  int64_t SystemContextHandle;
+  uint32_t ResourceValidationCode;
   
   if (InputParameterValue == 0x1b) {
-    if (*(uint *)(ResourceContext + 8) < 0x3b) {
-      ResourceIndex = CheckSystemStatus();
-      if (ResourceIndex != 0) {
+    if (*(uint *)(ResourceContextPointer + 8) < 0x3b) {
+      ResourceValidationCode = CheckSystemStatus();
+      if (ResourceValidationCode != 0) {
         return;
       }
       goto SystemResourceCleanup;
@@ -75921,7 +75921,19 @@ void FreeObjectContextMemory(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_18090ae70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证对象上下文安全性
+ * 
+ * 该函数负责验证对象上下文的安全性，检查是否存在安全风险
+ * 确保对象操作不会导致系统安全问题
+ * 
+ * @param ObjectContext 对象上下文，包含需要验证安全性的对象信息
+ * @param ValidationContext 验证上下文，包含安全验证规则和信息
+ * 
+ * @note 此函数是系统安全检查的重要组成部分
+ * @warning 安全验证失败可能会导致操作被拒绝
+ */
+void ValidateObjectContextSecurity(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + ErrorResourceValidationFailed0,8,0x10,ProcessResourceOperation);
