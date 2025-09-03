@@ -944,7 +944,7 @@ int64_t NetworkGetConnectionByIndex(int64_t ConnectionContext, int32_t Connectio
 int32_t NetworkValidateProtocol(int64_t NetworkData, int64_t PacketData);
 
 // 网络连接事件处理器
-uint32_t NetworkConnectionEventHandler;
+uint32_t NetworkConnectionEventProcessor;
 
 // 网络连接状态常量
 #define NetworkConnectionNotFound 0xFFFFFFFF
@@ -1111,20 +1111,20 @@ void NetworkValidatePacketAuthenticity(void)
 void NetworkProcessPacketHandling(void)
 {
   // 初始化处理参数
-  ConnectionTableIndex = 0x00;                 // 重置连接表索引
-  ConnectionTableSize = 0x100;                  // 设置连接表大小为256
+  NetworkConnectionTableIndex = 0x00;          // 重置连接表索引
+  NetworkConnectionTableSize = 0x100;           // 设置连接表大小为256
   
   // 初始化连接管理
-  ConnectionManager = 0x01;                      // 初始化连接管理器
-  ConnectionData = 0x01;                        // 初始化连接数据
-  ConnectionSize = 0x100;                       // 设置连接大小为256字节
-  ConnectionIndex = 0x00;                       // 重置连接索引
+  NetworkConnectionManager = 0x01;             // 初始化连接管理器
+  NetworkConnectionData = 0x01;                 // 初始化连接数据
+  NetworkConnectionSize = 0x100;                // 设置连接大小为256字节
+  NetworkConnectionIndex = 0x00;               // 重置连接索引
   
   // 初始化路由和过滤缓冲区
-  PacketRoutingBuffer = 0x01;                   // 初始化数据包路由缓冲区
-  PacketQueueBuffer = 0x01;                     // 初始化数据包队列缓冲区
-  PacketCacheBuffer = 0x01;                     // 初始化数据包缓存缓冲区
-  PacketFilterBuffer = 0x01;                    // 初始化数据包过滤缓冲区
+  NetworkPacketRoutingBuffer = 0x01;            // 初始化数据包路由缓冲区
+  NetworkPacketQueueBuffer = 0x01;              // 初始化数据包队列缓冲区
+  NetworkPacketCacheBuffer = 0x01;              // 初始化数据包缓存缓冲区
+  NetworkPacketFilterBuffer = 0x01;             // 初始化数据包过滤缓冲区
   
   // 初始化网络统计
   NetworkBandwidthUsage = 0x00;                         // 重置带宽使用量
@@ -1134,8 +1134,8 @@ void NetworkProcessPacketHandling(void)
   // 初始化重试机制
   NetworkRetryInterval = 0x03E8;                        // 设置重试间隔为1秒
   NetworkTimeoutInterval = 0x1388;                     // 设置超时间隔为5秒
-  ConnectionRetryCount = 0x03;                  // 设置连接重试次数为3次
-  ConnectionBackoffTime = 0x07D0;                // 设置连接退避时间为2秒
+  NetworkConnectionRetryCount = 0x03;             // 设置连接重试次数为3次
+  NetworkConnectionBackoffTime = 0x07D0;           // 设置连接退避时间为2秒
   
   // 初始化事件处理
   NetworkEventSize = 0x40;                              // 设置事件大小为64字节
@@ -1251,8 +1251,8 @@ uint32_t NetworkBandwidthMonitor;                        // 网络带宽监控�
 uint32_t NetworkPacketMonitor;                           // 网络数据包监控器
 uint32_t NetworkRetryInterval;                           // 网络重试间隔
 uint32_t NetworkTimeoutInterval;                          // 网络超时间隔
-uint32_t ConnectionRetryCount;                            // 连接重试次数
-uint32_t ConnectionBackoffTime;                           // 连接退避时间
+uint32_t NetworkConnectionRetryCount;                    // 网络连接重试次数
+uint32_t NetworkConnectionBackoffTime;                   // 网络连接退避时间
 uint32_t NetworkEventSize;                                // 网络事件大小
 uint32_t NetworkEventIndex;                               // 网络事件索引
 uint32_t NetworkCallbackSize;                              // 网络回调大小
@@ -1273,6 +1273,10 @@ uint32_t NetworkConnectionReliability;              // 网络连接可靠性
 uint32_t NetworkConnectionPerformance;              // 网络连接性能
 uint32_t NetworkConnectionTableIndex;               // 网络连接表索引
 uint32_t NetworkConnectionTableSize;                 // 网络连接表大小
+uint32_t NetworkPacketRoutingBuffer;                  // 网络数据包路由缓冲区
+uint32_t NetworkPacketQueueBuffer;                    // 网络数据包队列缓冲区
+uint32_t NetworkPacketCacheBuffer;                    // 网络数据包缓存缓冲区
+uint32_t NetworkPacketFilterBuffer;                   // 网络数据包过滤缓冲区
 uint32_t NetworkPacketQueue;                        // 网络数据包队列
 uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大小
 uint32_t NetworkEncryptionContext;                   // 网络加密上下文
@@ -1281,7 +1285,7 @@ uint32_t NetworkAuthenticationContext;               // 网络认证上下文
 uint32_t NetworkSecurityContext;                     // 网络安全上下文
 uint32_t NetworkEventContext;                        // 网络事件上下文
 uint32_t NetworkCallbackContext;                      // 网络回调上下文
-uint32_t NetworkConnectionStateController;            // 网络连接状态控制器
+uint32_t NetworkConnectionStateManager;               // 网络连接状态管理器
 uint32_t NetworkEventQueue;                            // 网络事件队列
 uint32_t NetworkCallbackHandler;                        // 网络回调处理器
 uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
