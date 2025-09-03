@@ -7368,10 +7368,10 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
   ulonglong in_RAX;
   ulonglong StringProcessingResult;
   longlong LongValue;
-  uint unaff_EDI;
-  uint8_t in_R10B;
-  longlong *unaff_R13;
-  uint unaff_R14D;
+  uint UnassignedEdi;  // 未分配的EDI寄存器值
+  uint8_t RegisterR10B;  // R10B寄存器的字节值
+  longlong *UnassignedR13;  // 未分配的R13寄存器指针
+  uint UnassignedR14D;  // 未分配的R14D寄存器值
   ulonglong MemoryAllocationResult;
   longlong *StackParameter60;  // 栈参数60，用于存储参数数据
   char StackParameter70;  // 栈参数70，用于存储字符参数
