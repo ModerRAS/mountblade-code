@@ -1178,7 +1178,7 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + 0xd8);
+      ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffset1);
       if ((int)ValidationResult == 0) {
           FinalizePacketProcessing(PacketData, PacketValidationBuffer);
       }
@@ -1220,7 +1220,7 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + 0x54);
+    ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffset2);
     PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), ConnectionValidationArray, 4);
     if ((int)PacketProcessingStatus != 0) {
@@ -1231,7 +1231,7 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + 0x78);
+    ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffset3);
     PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), ConnectionValidationArray, 4);
     if ((int)PacketProcessingStatus != 0) {
@@ -1241,7 +1241,7 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
   if (*(int *)(PacketData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + 0x58);
+  ConnectionValidationArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffset4);
   PacketProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionValidationArray, 4);
   if ((int)PacketProcessingStatus != 0) {
     return PacketProcessingStatus;
@@ -1249,14 +1249,14 @@ NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t
   if (*(int *)(PacketData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + 0x5c);
+  ConnectionDataArray[0] = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffset1);
   ProcessingStatus = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ConnectionDataArray, 4);
   if ((int)ProcessingStatus == 0) {
     if (*(uint *)(PacketData + 8) < 0x53) {
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      ProcessingStatus = ConnectionContextValidator(*PacketData, ConnectionContext + 0x60);
+      ProcessingStatus = ConnectionContextValidator(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
       if ((int)ProcessingStatus != 0) {
         return ProcessingStatus;
       }
@@ -1308,7 +1308,7 @@ NetworkHandle ValidateConnectionNetworkPacket(int64_t ConnectionContext, Network
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + 0xd8);
+      ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffset1);
       if ((((int)ValidationResult == 0) && (ValidationResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + 0xf8), (int)ValidationResult == 0)) &&
          (ValidationResult = HandlePacketData(PacketData, ConnectionContext + 0xe8, 1, ConnectionContext), (int)ValidationResult == 0)) {
           FinalizePacketProcessing(PacketData, SecurityValidationBuffer);
