@@ -1131,13 +1131,13 @@ void NetworkRetrieveData(void)
 void NetworkValidatePacketAuthenticity(void)
 {
   // 初始化验证参数
-  PacketHashAlgorithm = 0x01;                         // 设置哈希算法为SHA-256
-  PacketSignatureMethod = 0x01;                        // 设置签名方法为RSA
-  PacketEncryptionKeyLength = 0x100;                   // 设置加密密钥长度为256位
+  PacketHashAlgorithm = HASH_ALGORITHM_SHA256;                         // 设置哈希算法为SHA-256
+  PacketSignatureMethod = SIGNATURE_METHOD_RSA;                        // 设置签名方法为RSA
+  PacketEncryptionKeyLength = ENCRYPTION_KEY_LENGTH_256B;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
   PacketValidationBufferPool = 0x01;                   // 初始化验证缓冲池
-  PacketValidationBufferSize = 0x27;                   // 设置验证缓冲区大小为39字节
+  PacketValidationBufferSize = VALIDATION_BUFFER_SIZE_39B;                   // 设置验证缓冲区大小为39字节
   
   // 初始化安全验证
   PacketSecurityValidationData = 0x01;                 // 初始化安全验证数据
@@ -1153,9 +1153,9 @@ void NetworkValidatePacketAuthenticity(void)
   PacketCompressionBuffer = 0x01;                // 初始化数据包压缩缓冲区
   
   // 初始化压缩参数
-  PacketDataCompressionLevel = 0x06;                  // 设置压缩级别为6（默认级别）
-  PacketCompressionLevel = 0x06;                       // 设置压缩级别为6
-  PacketCompressionAlgorithmType = 0x01;               // 设置压缩算法类型为ZLIB
+  PacketDataCompressionLevel = COMPRESSION_LEVEL_DEFAULT;                  // 设置压缩级别为6（默认级别）
+  PacketCompressionLevel = COMPRESSION_LEVEL_DEFAULT;                       // 设置压缩级别为6
+  PacketCompressionAlgorithmType = COMPRESSION_ZLIB;               // 设置压缩算法类型为ZLIB
 }
 
 /**
@@ -1174,12 +1174,12 @@ void NetworkProcessPacketHandling(void)
 {
   // 初始化处理参数
   NetworkConnectionTableIndex = 0x00;          // 重置连接表索引
-  NetworkConnectionTableSize = 0x100;           // 设置连接表大小为256
+  NetworkConnectionTableSize = CONNECTION_POOL_SIZE;           // 设置连接表大小为256
   
   // 初始化连接管理
   NetworkConnectionManager = 0x01;             // 初始化连接管理器
   NetworkConnectionData = 0x01;                 // 初始化连接数据
-  NetworkConnectionSize = 0x100;                // 设置连接大小为256字节
+  NetworkConnectionSize = CONNECTION_SIZE_256B;                // 设置连接大小为256字节
   NetworkConnectionIndex = 0x00;               // 重置连接索引
   
   // 初始化路由和过滤缓冲区
@@ -1194,15 +1194,15 @@ void NetworkProcessPacketHandling(void)
   NetworkPacketLoss = 0x00;                             // 重置数据包丢失率
   
   // 初始化重试机制
-  NetworkRetryInterval = 0x03E8;                        // 设置重试间隔为1秒
-  NetworkTimeoutInterval = 0x1388;                     // 设置超时间隔为5秒
-  NetworkConnectionRetryCount = 0x03;             // 设置连接重试次数为3次
-  NetworkConnectionBackoffTime = 0x07D0;           // 设置连接退避时间为2秒
+  NetworkRetryInterval = TIMEOUT_1_SECOND;                        // 设置重试间隔为1秒
+  NetworkTimeoutInterval = TIMEOUT_5_SECONDS;                     // 设置超时间隔为5秒
+  NetworkConnectionRetryCount = RETRY_COUNT_3;             // 设置连接重试次数为3次
+  NetworkConnectionBackoffTime = BACKOFF_TIME_2S;           // 设置连接退避时间为2秒
   
   // 初始化事件处理
-  NetworkEventSize = 0x40;                              // 设置事件大小为64字节
+  NetworkEventSize = EVENT_SIZE_64B;                              // 设置事件大小为64字节
   NetworkEventIndex = 0x00;                            // 重置事件索引
-  NetworkCallbackSize = 0x40;                           // 设置回调大小为64字节
+  NetworkCallbackSize = CALLBACK_SIZE_64B;                           // 设置回调大小为64字节
   NetworkCallbackIndex = 0x00;                          // 重置回调索引
 }
 
@@ -1231,14 +1231,14 @@ void NetworkManageErrorHandling(void)
   NetworkHandleStorageSize = 0x30;                      // 设置句柄存储大小为48字节
   
   // 初始化处理缓冲区
-  PacketProcessingSize = 0x100;                  // 设置数据包处理大小为256字节
+  PacketProcessingSize = PACKET_PROCESSING_SIZE_256B;                  // 设置数据包处理大小为256字节
   
   // 初始化端口范围
-  NetworkPortRangeStart = 0x1F90;                  // 设置端口范围起始值为8080
-  NetworkPortRangeEnd = 0x270F;                    // 设置端口范围结束值为9999
+  NetworkPortRangeStart = PORT_HTTP_ALT;                  // 设置端口范围起始值为8080
+  NetworkPortRangeEnd = PORT_RANGE_END;                    // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
-  NetworkConnectionTimeout = 0x7530;                   // 设置连接超时时间为30秒
+  NetworkConnectionTimeout = TIMEOUT_30_SECONDS;                   // 设置连接超时时间为30秒
   NetworkTimeoutValueOffset = 0x30;                     // 设置超时值偏移量
   NetworkRetryCountOffset = 0x34;                       // 设置重试计数偏移量
   

@@ -74,7 +74,7 @@
 #define ErrorInvalidObjectHandle 0x1c
 #define ErrorInvalidRegistrationData 0x1d
 #define ErrorInvalidResourceData 0x1e
-#define ErrorResourceValidationFailed 0x1f
+#define ResourceValidationError 0x1f
 #define ErrorFlagCheckFailure 0x2e
 #define ErrorPointerCheckFailure 0x4c
 #define ErrorStatusCheckFailure 0x4e
@@ -1011,7 +1011,7 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
 
 // 系统状态码常量
 #define SystemInitializationStatusCode ErrorInvalidResourceData
-#define SystemVersionInfoStatusCode ErrorResourceValidationFailed
+#define SystemVersionInfoStatusCode ResourceValidationError
 #define SystemObjectValidationResult ErrorInvalidResourceData
 #define SystemResourceProcessingStatusCode ErrorResourceValidationFailed
 #define SystemMemoryAllocationStatusCode ErrorInvalidResourceData
