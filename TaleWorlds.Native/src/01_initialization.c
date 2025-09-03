@@ -19168,26 +19168,26 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   void* systemHandle;
   long long *libraryHandle;
   long long PerformanceFrequency;
-  void* *symbolNextNode;
-  void* *debugContextPointer;
-  void* *threadContextPointer;
+  void** symbolNextNode;
+  void** debugContextPointer;
+  void** threadContextPointer;
   uint8_t* MemoryAllocationFlag;
   char *searchPathPointer;
-  void* *stackPointer;
-  ulong long SystemTimestamp;
+  void** stackPointer;
+  unsigned long long SystemTimestamp;
   uint stackFlags;
   char ThreadState;
   long long *threadLocalData;
   long long **threadManagerPointer;
   long long PerformanceCounter;
-  void* *StackBufferLarge1;
-  void* *StackBufferLarge2;
+  void** StackBufferLarge1;
+  void** StackBufferLarge2;
   uint32_t SystemResourceHandle;
-  void* *StackBufferMedium1;
+  void** StackBufferMedium1;
   long long SystemMemorySize;
   uint SystemOperationFlag;
-  void* *StackBufferSmall1;
-  void* *StackBufferSmall2;
+  void** StackBufferSmall1;
+  void** StackBufferSmall2;
   uint32_t SystemConfigurationFlag;
   void* StackParameter5;
   long long **mutexPointer;
@@ -19203,7 +19203,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   InitializeMutex(symbolTablePointer,2);
   libraryHandle[0xb] = 0;
   libraryHandle[0xc] = 0;
-  *(void*2 *)libraryHandle = 0;
+  *(void**)libraryHandle = 0;
   SystemLibraryHandleStorage = libraryHandle;
   if ((char)*libraryHandle != '\0') goto SkipLibraryHandleInitialization;
   mutexPointer = symbolTablePointer;
@@ -20543,9 +20543,9 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   long long LocalSystemFlags;               // 本地系统标志
   long long DataIndex;                     // 数据索引
   ulong long MemoryAddress;                // 内存地址
-  void* ****SystemResourceTablePointer;
-  void* ***EncryptionContextPointer;
-  void* *SystemMemoryContextPointer;
+  void**** SystemResourceTablePointer;
+  void*** EncryptionContextPointer;
+  void** SystemMemoryContextPointer;
   long long LocalMemoryBufferHandle;
   uint32_t ResourceAllocationFlags;
   void* SystemContextPrimary;
@@ -20570,8 +20570,8 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   void* MemoryBufferSeptendecenary;
   void* MemoryBufferOctodecenary;
   void* MemoryBufferNovemdecenary;
-  void* ***ResourceEncryptionContext;
-  void* ***SystemResourceManagerContext;
+  void*** ResourceEncryptionContext;
+  void*** SystemResourceManagerContext;
   void* MemoryBufferVigesimal;
   void* MemoryBufferUnvigesimal;
   void* EncryptionKeyValue;
