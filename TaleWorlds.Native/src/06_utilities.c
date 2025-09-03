@@ -12402,10 +12402,10 @@ VALIDATION_FAILURE_HANDLER:
     }
     else {
       if ((SystemOperationStatus != '\x02') || ((*(byte *)(ObjectContext + ObjectContextEncryptionOffset) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
-      ResourceContextSecondary.Field44 = *(uint32_t *)(ResourceContextDataPointer + 0x20);
+      ResourceContextSecondary.HighPart = *(uint32_t *)(ResourceContextDataPointer + 0x20);
       OperationStatusCode = ProcessDataWithContext(ObjectContext,ResourceIterationIndex,(int64_t)&ObjectSecondaryBuffer + 4);
       if (OperationResult != 0) goto HANDLE_CONTEXT_ERROR;
-      OperationStatusCode = ValidateObjectContext(ResourceContextSecondary.Field44,SystemExecutionPointer + -0x78);
+      OperationStatusCode = ValidateObjectContext(ResourceContextSecondary.HighPart,SystemExecutionPointer + -0x78);
       if ((OperationResult != 0) || (*(int *)(*(int64_t *)(SystemExecutionPointer + -0x78) + 0x30) != 2))
       goto HANDLE_VALIDATION_FAILED;
     }
@@ -13502,7 +13502,7 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
             }
             CommandParameters[0] = ResourceCapacityIndex + 1;
             ContextValidationStatusCode = (uint64_t)CommandParameters[0];
-            ResourceValidationFlag = CONCAT44(ResourceValidationFlag.Field44,CommandParameters[0]);
+            ResourceValidationFlag = CONCAT44(ResourceValidationFlag.HighPart,CommandParameters[0]);
             *(uint32_t *)(ResourceAllocationFlag + (int64_t)ResourceCapacityIndex * 4) = ResourceHashStatus;
             ResourceContextSecondary = DataHandlerContextPointer;
           }
