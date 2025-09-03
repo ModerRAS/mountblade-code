@@ -5180,7 +5180,7 @@ uint32_t VerifyObjectHandleFromRegister(void) {
  * @return void 无返回值
  * @warning 此函数会立即终止系统运行，只在严重错误时使用
  */
-void TriggerSystemException(void) {
+void RaiseSystemException(void) {
   ExecuteSystemExitOperation();
 }
 

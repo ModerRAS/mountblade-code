@@ -1499,17 +1499,6 @@ NetworkProcessingLoop:
 }
 
 /**
- * @brief 完成网络连接处理器
- * 
- * 完成网络连接处理器的最终化操作，释放相关资源。
- * 此函数在网络连接处理完成后调用，确保所有资源正确释放。
- * 
- * @return NetworkHandle 完成结果句柄，NetworkConnectionFinalizeValue表示成功完成
- * 
- * @note 此函数是连接处理流程的最后一步
- * @warning 确保在调用此函数前所有连接操作已经完成
- */
-/**
  * @brief 完成网络连接系统
  * 
  * 完成网络连接系统的初始化和配置过程，返回系统完成状态。
