@@ -5196,7 +5196,7 @@ void RaiseSystemException(void) {
  * @return void 无返回值
  * @note 此函数通常在系统关闭或资源回收时调用
  */
-void CleanupSystemResources(void)
+void ClearSystemResources(void)
 {
   // 预留系统资源清理逻辑
   return;
@@ -5214,7 +5214,7 @@ void CleanupSystemResources(void)
  * @return uint8_t 返回验证结果，0表示成功，非0表示错误代码
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  */
-uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
+uint8_t VerifyAndProcessObjectHandle(int64_t ObjectContext)
 {
   uint8_t ObjectValidationStatus;
   int64_t ValidatedMemoryAddress;
@@ -5236,7 +5236,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
   }
   
   ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset), 1);
-  return 0;
+  return OperationSuccessCode;
 }
 
 

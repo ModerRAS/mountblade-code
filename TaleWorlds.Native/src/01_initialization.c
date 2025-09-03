@@ -44791,22 +44791,33 @@ SystemStatusCheckPoint:
 
 
 
-// 函数: void ConfigureSystemDataProcessing(void* SystemResourceManager,void* ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag,
-void ConfigureSystemDataProcessing(void* SystemResourceManager,void* ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag,
+/**
+ * @brief 配置系统数据处理
+ * 
+ * 该函数负责配置系统数据处理，包括初始化系统计数器、创建线程对象、
+ * 处理系统资源配置操作等。用于系统数据处理的配置和管理工作。
+ * 
+ * @param ResourceManager 资源管理器指针，用于管理系统资源
+ * @param ConfigurationDataPointer 配置数据指针，包含配置信息
+ * @param AdditionalParameter 额外参数，用于额外的配置选项
+ * @param ConfigurationFlag 配置标志，指定配置的方式和选项
+ * @param SystemProcessingContext 系统处理上下文，包含处理相关信息
+ */
+void ConfigureSystemDataProcessing(void* ResourceManager, void* ConfigurationDataPointer, char AdditionalParameter, void* ConfigurationFlag,
                   void* SystemProcessingContext)
 
 {
-  long long resourceDataIndex;
-  char validationStatusFlag;
+  long long ResourceDataIndex;
+  char ValidationStatusFlag;
   int NodeIdentifierCompareResult;
-  uint32_t resourceAddress;
+  uint32_t ResourceAddress;
   void* SystemThreadContext;
   int CalculationFlags;
-  long long localDataIndex;
+  long long LocalDataIndex;
   void** SystemDataPointer;
-  void* *stackParameterB;
+  void** StackParameterB;
   uint32_t SystemConfigurationValue;
-  void* systemFlag88;
+  void* SystemFlag88;
   uint8_t SystemCounterBuffer80 [72];
   
   SystemOperationResult = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
