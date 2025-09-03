@@ -47827,7 +47827,7 @@ void CleanupResourceHandlersAtStandardOffset(uint8_t ObjectContext,int64_t Valid
  * @note 此函数在系统重置时调用
  * @warning 调用此函数前必须确保资源处理器已停止工作
  */
-void ResetSystemResourceHandlerAtOffset0xc8(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetSystemResourceHandlerAtResourceContextOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 200) = &SystemResourceHandlerTemplate;
@@ -47854,7 +47854,7 @@ void ResetSystemResourceHandlerAtOffset0xc8(uint8_t ObjectContext,int64_t Valida
  * @note 此函数在系统重置时调用
  * @warning 调用此函数前必须确保资源处理器已停止工作
  */
-void ResetSystemResourceHandlerAtOffset0xd0(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetSystemResourceHandlerAtExtendedContextOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x1c8) = &SystemResourceHandlerTemplate;
