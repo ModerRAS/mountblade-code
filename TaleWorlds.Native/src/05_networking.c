@@ -185,11 +185,30 @@ uint32_t CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *Se
 /**
  * @brief 处理网络连接数据包数据
  * 
- * 处理网络连接中的数据包，包括数据验证、状态更新和错误处理
+ * 处理网络连接中的数据包，包括数据验证、状态更新和错误处理。
+ * 此函数是网络数据包处理的核心函数，负责验证数据包的有效性，
+ * 更新连接状态，并处理各种网络异常情况。
  * 
- * @param ConnectionContext 连接上下文指针
- * @param PacketData 数据包数据
- * @return NetworkHandle 处理结果句柄，0表示成功，其他值表示错误码
+ * @details 该函数执行以下关键操作：
+ * - 验证数据包参数的有效性
+ * - 检查数据包大小是否在有效范围内
+ * - 处理连接请求并获取状态缓冲区
+ * - 循环处理所有连接数据
+ * - 提取和更新连接状态信息
+ * - 验证连接安全性
+ * - 更新连接上下文和参数
+ * 
+ * @param ConnectionContext 连接上下文指针，包含连接的状态信息和配置参数
+ * @param PacketData 数据包数据，包含待处理的网络数据包信息
+ * @return NetworkHandle 处理结果句柄，0表示成功，非0值表示错误码
+ * 
+ * @retval 0 处理成功
+ * @retval NetworkConnectionNotFound 连接未找到
+ * @retval NetworkErrorConnectionFailed 连接处理失败
+ * 
+ * @note 此函数会进行数据包验证、状态更新和连接管理
+ * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
+ * @see NetworkValidateConnectionPacket, NetworkProcessConnectionPacket
  */
 NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData);
 

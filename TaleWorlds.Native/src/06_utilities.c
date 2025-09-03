@@ -1432,11 +1432,11 @@ void* InputEventQueueInstance;               // 输入事件队列实例
  * 设置网络连接、数据传输和通信协议
  */
 void InitializeNetworkManager(void);
-void* NetworkSystemInstance;
-void* NetworkConnectionManager;
-void* NetworkPacketHandler;
-void* NetworkProtocolManager;
-void* NetworkEventDispatcher;
+void* NetworkSystemInstance;                // 网络系统实例
+void* NetworkConnectionManager;             // 网络连接管理器
+void* NetworkPacketHandler;                  // 网络数据包处理器
+void* NetworkProtocolManager;               // 网络协议管理器
+void* NetworkEventDispatcher;                // 网络事件分发器
 
  /**
  * @brief 初始化渲染系统
@@ -1445,10 +1445,10 @@ void* NetworkEventDispatcher;
  * 设置图形设备、着色器和渲染队列等相关组件
  */
 void* InitializeRenderingSystem(void);
-void* GraphicsDeviceInstance;
-void* ShaderManagerInstance;
-void* RenderQueueManagerInstance;
-void* GraphicsMemoryPoolInstance;
+void* GraphicsDeviceInstance;                // 图形设备实例
+void* ShaderManagerInstance;                  // 着色器管理器实例
+void* RenderQueueManagerInstance;             // 渲染队列管理器实例
+void* GraphicsMemoryPoolInstance;             // 图形内存池实例
 
  /**
  * @brief 初始化动画系统
@@ -1457,11 +1457,11 @@ void* GraphicsMemoryPoolInstance;
  * 设置骨骼管理、动画剪辑和状态控制等相关组件
  */
 void* InitializeAnimationSystem(void);
-void* AnimationEngineInstance;
-void* SkeletonManagerInstance;
-void* AnimationClipManagerInstance;
-void* BoneTransformManagerInstance;
-void* AnimationStateControllerInstance;
+void* AnimationEngineInstance;               // 动画引擎实例
+void* SkeletonManagerInstance;               // 骨骼管理器实例
+void* AnimationClipManagerInstance;           // 动画剪辑管理器实例
+void* BoneTransformManagerInstance;           // 骨骼变换管理器实例
+void* AnimationStateControllerInstance;      // 动画状态控制器实例
 
  /**
  * @brief 初始化内存管理器
@@ -1470,11 +1470,11 @@ void* AnimationStateControllerInstance;
  * 设置堆分配器、内存池和垃圾回收等相关组件
  */
 void* InitializeMemoryManager(void);
-void* MemoryManagerInstance;
-void* HeapAllocatorInstance;
-void* MemoryPoolManagerInstance;
-void* GarbageCollectorInstance;
-void* MemoryDebuggerInstance;
+void* MemoryManagerInstance;                 // 内存管理器实例
+void* HeapAllocatorInstance;                 // 堆分配器实例
+void* MemoryPoolManagerInstance;             // 内存池管理器实例
+void* GarbageCollectorInstance;              // 垃圾回收器实例
+void* MemoryDebuggerInstance;                 // 内存调试器实例
 
  /**
  * @brief 初始化脚本系统
