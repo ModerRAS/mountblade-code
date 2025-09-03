@@ -5135,17 +5135,17 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t FreeObjectHandle(void) {
-  int64_t ObjectHandleValue = 0;
-  int64_t ObjectMemoryAddress;
+  int64_t ObjectHandle = 0;
+  int64_t ObjectMemoryPtr;
   
-  if (ObjectHandleValue == 0) {
-    ObjectMemoryAddress = 0;
+  if (ObjectHandle == 0) {
+    ObjectMemoryPtr = 0;
   }
   else {
-    ObjectMemoryAddress = ObjectHandleValue - 8;
+    ObjectMemoryPtr = ObjectHandle - 8;
   }
-  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
+  if (*(int64_t *)(ObjectMemoryPtr + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryPtr + ObjectHandleOffset), 1);
   }
   return OperationSuccessCode;
 }
