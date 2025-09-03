@@ -7953,7 +7953,7 @@ uint64_t ValidateSystemDataBufferContext(void)
       if (ResourceDataAddress == 0) {
         return ErrorInvalidResourceData;
       }
-      if (*(int *)(ResourceDataAddress + 0x58) < 1) {
+      if (*(int *)(ResourceDataAddress + BufferEntryValidationOffset) < 1) {
         StringPointer = &ResourceHashTemplate;
       }
       else {
