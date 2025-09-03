@@ -4814,11 +4814,11 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeBasicObjectHandle(int64_t ObjectContext) {
-  uint8_t ValidationResult;
+  uint8_t ObjectValidationResult;
   int64_t SystemContextPointer;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &SystemContextPointer);
-  if ((int)ValidationResult == 0) {
+  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &SystemContextPointer);
+  if ((int)ObjectValidationResult == 0) {
     if (SystemContextPointer == 0) {
       SystemContextPointer = 0;
     }
