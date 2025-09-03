@@ -7373,8 +7373,8 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
   longlong *unaff_R13;
   uint unaff_R14D;
   ulonglong MemoryAllocationResult;
-  longlong *in_stack_00000060;
-  char in_stack_00000070;
+  longlong *StackParameter60;  // 栈参数60，用于存储参数数据
+  char StackParameter70;  // 栈参数70，用于存储字符参数
   LongValue = 0;
   MemoryAllocationResult = in_RAX & 0xffffffff;
   do {
@@ -7389,7 +7389,7 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
     }
     ModuleInitializationResult = *(longlong *)(LongValue + *unaff_R13);
     *(uint *)(ModuleInitializationResult + 0x10) = *(uint *)(ModuleInitializationResult + 0x10) | unaff_R14D;
-    if (((in_stack_00000070 != '\0') && (*(int *)(ModuleInitializationResult + 0x8c) == 2)) &&
+    if (((StackParameter70 != '\0') && (*(int *)(ModuleInitializationResult + 0x8c) == 2)) &&
        (StringProcessingResult = *(longlong *)(ModuleInitializationResult + 0xc0) - *(longlong *)(ModuleInitializationResult + 0xb8) >> 3, (int)StringProcessingResult != 0)) {
       StringProcessingResult = StringProcessingResult & 0xffffffff;
       do {
@@ -7401,7 +7401,7 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
 Label_18032bf87:
     LongValue = LongValue + 8;
     MemoryAllocationResult = MemoryAllocationResult - 1;
-    SystemTertiaryParameter = in_stack_00000060;
+    SystemTertiaryParameter = StackParameter60;
     if (MemoryAllocationResult == 0) {
       return in_R10B;
     }
@@ -7464,7 +7464,7 @@ uint8_t SystemModuleInitializeFinal(void)
   uint *pMemoryAllocationResult;
   uint64_t *unaff_R14;
   longlong *unaff_R15;
-  uint in_stack_00000070;
+  uint StackParameter70;  // 栈参数70，用于存储无符号整数参数
   LongIndex = 0;
   NetworkRequestResult = (ulonglong)in_EAX;
   do {
