@@ -368,9 +368,6 @@
 #define ArrayElementSizeMultiplier 0x18
 #define ResourceTableEntrySize 4
 #define ResourceTableEntryOffset 0x94
-#define DataBufferOffset 0x20
-#define ByteShift16Bits 0x10
-#define ByteMask8Bits 0xff
 
 #define SystemTemporaryVariableInitialValue -0x8000000000000000
 #define SystemTemporarySecondaryVariableInitialValue -0x80000000
@@ -6601,32 +6598,41 @@ void ProcessObjectConfiguration(int64_t ObjectPointer, uint8_t ConfigData)
  * @param parameterObject 参数对象，包含浮点数值和配置信息
  * @return 处理结果状态码，0表示成功，0x1c表示失败
  */
+/**
+ * @brief 处理浮点参数并更新系统状态
+ * 
+ * 该函数处理浮点参数对象，验证其有效性，然后根据参数值更新系统状态。
+ * 包含参数验证、数据处理和系统状态更新等操作。
+ * 
+ * @param ParameterObject 参数对象，包含要处理的浮点参数
+ * @return 处理结果，0表示成功，非0表示失败
+ */
 uint64_t ProcessFloatParameterAndUpdateSystem(int64_t ParameterObject)
 
 {
-  int64_t SystemDataContext;
-  uint32_t SystemStatusFlags;
-  uint32_t StatusFlagHighBits;
-  uint64_t ProcessResult;
-  uint8_t *DataElementPointer;
-  int32_t IntegerConversionValue;
-  float ParameterFloatValue;
-  float VectorComponents[4];
-  int64_t ValidationContext;
+  int64_t SystemDataHandlerContext;
+  uint32_t SystemConfigurationFlags;
+  uint32_t ConfigurationFlagHighBits;
+  uint64_t ProcessingResult;
+  uint8_t *DataElementIterator;
+  int32_t ConvertedIntegerValue;
+  float InputParameterValue;
+  float CalculationVector[4];
+  int64_t ObjectValidationContext;
   
-  ProcessResult = ValidateObjectContext(*(uint32_t *)(ParameterObject + ObjectContextOffset),&ValidationContext);
-  if ((int)ProcessResult != 0) {
-    return ProcessResult;
+  ProcessingResult = ValidateObjectContext(*(uint32_t *)(ParameterObject + ObjectContextOffset),&ObjectValidationContext);
+  if ((int)ProcessingResult != 0) {
+    return ProcessingResult;
   }
-  SystemDataContext = *(int64_t *)(ValidationContext + 8);
-  if (SystemDataContext != 0) {
-    ParameterFloatValue = *(float *)(ParameterObject + ObjectContextValidationDataOffset);
-    for (DataElementPointer = *(uint8_t **)(SystemDataContext + RegistrationHandleOffset);
-        (*(uint8_t **)(SystemDataContext + RegistrationHandleOffset) <= DataElementPointer &&
-        (DataElementPointer < *(uint8_t **)(SystemDataContext + RegistrationHandleOffset) + *(int *)(SystemDataContext + ResourceContextArraySizeOffset))); DataElementPointer = DataElementPointer + 1) {
-      ProcessResult = ProcessDataElement(*DataElementPointer, ParameterFloatValue, 0);
-      if ((int)ProcessResult != 0) {
-        return ProcessResult;
+  SystemDataHandlerContext = *(int64_t *)(ObjectValidationContext + 8);
+  if (SystemDataHandlerContext != 0) {
+    InputParameterValue = *(float *)(ParameterObject + ObjectContextValidationDataOffset);
+    for (DataElementIterator = *(uint8_t **)(SystemDataHandlerContext + RegistrationHandleOffset);
+        (*(uint8_t **)(SystemDataHandlerContext + RegistrationHandleOffset) <= DataElementIterator &&
+        (DataElementIterator < *(uint8_t **)(SystemDataHandlerContext + RegistrationHandleOffset) + *(int *)(SystemDataHandlerContext + ResourceContextArraySizeOffset))); DataElementIterator = DataElementIterator + 1) {
+      ProcessingResult = ProcessDataElement(*DataElementIterator, InputParameterValue, 0);
+      if ((int)ProcessingResult != 0) {
+        return ProcessingResult;
       }
     }
     if ((*(char *)(SystemDataContext + SystemDataContextConfigFlagOffset) == '\0') ||
