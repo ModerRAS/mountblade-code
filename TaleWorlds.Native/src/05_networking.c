@@ -826,9 +826,11 @@ LabelNetworkValidationStart:
 }
 
 /**
- * 初始化连接处理器 - 初始化网络连接处理器
+ * 初始化连接处理器 - 初始化网络连接处理器和相关资源
  * 此函数负责初始化网络连接处理器，为后续的连接操作做准备
- * @return 初始化结果句柄
+ * @return NetworkHandle 初始化结果句柄，成功时返回有效句柄，失败时返回NetworkErrorConnectionFailed
+ * @note 此函数在网络系统启动时调用，确保所有连接处理资源正确初始化
+ * @warning 如果初始化失败，系统将无法建立新的网络连接
  */
 NetworkHandle InitializeConnectionHandler(void)
 {

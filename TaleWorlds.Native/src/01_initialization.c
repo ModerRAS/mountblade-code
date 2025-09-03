@@ -19538,14 +19538,14 @@ void GuardCheckICall(void)
  * @param MemoryFreeParam2 内存释放参数2
  * @return 返回内存分配器引用指针
  */
-void** SystemMemoryAllocatorReferenceManager(void** systemResourceManager, unsigned long long memoryFlags, void* memoryFreeParam1, void* memoryFreeParam2)
+void** SystemMemoryAllocatorReferenceManager(void** SystemResourceManager, unsigned long long MemoryFlags, void* MemoryFreeParam1, void* MemoryFreeParam2)
 
 {
-  *systemResourceManager = &SystemMemoryAllocatorReference;
-  if ((memoryFlags & 1) != 0) {
-    free(systemResourceManager, 0x418, memoryFreeParam1, memoryFreeParam2, InvalidHandleValue);
+  *SystemResourceManager = &SystemMemoryAllocatorReference;
+  if ((MemoryFlags & 1) != 0) {
+    free(SystemResourceManager, 0x418, MemoryFreeParam1, MemoryFreeParam2, InvalidHandleValue);
   }
-  return systemResourceManager;
+  return SystemResourceManager;
 }
 
 
