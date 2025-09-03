@@ -1374,50 +1374,50 @@ void* GetSystemInitializationFunction;
  */
 void InitializeGameCoreSystem(void)
 {
-  bool IsNodeActive;
-  void** RootNodePointer;
-  int IdentifierComparisonResult;
-  long long* DataTablePointer;
-  long long MemoryAllocationSize;
-  void** CurrentNodePointer;
-  void** PreviousNodePointer;
-  void** NextNodePointer;
-  void** AllocatedNodePointer;
-  void* CoreInitializationHandler;
+  bool IsGameCoreNodeActive;
+  void** GameCoreRootNodePointer;
+  int GameCoreIdentifierComparisonResult;
+  long long* GameCoreDataTablePointer;
+  long long GameCoreMemoryAllocationSize;
+  void** GameCoreCurrentNodePointer;
+  void** GameCorePreviousNodePointer;
+  void** GameCoreNextNodePointer;
+  void** GameCoreAllocatedNodePointer;
+  void* GameCoreInitializationHandler;
   
-  DataTablePointer = (long long*)GetSystemRootPointer();
-  RootNodePointer = (void**)*DataTablePointer;
-  IsNodeActive = *(bool*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  CoreInitializationHandler = GetGameCoreSystemInitializationFunction;
-  PreviousNodePointer = RootNodePointer;
-  CurrentNodePointer = (void**)RootNodePointer[1];
+  GameCoreDataTablePointer = (long long*)GetSystemRootPointer();
+  GameCoreRootNodePointer = (void**)*GameCoreDataTablePointer;
+  IsGameCoreNodeActive = *(bool*)((long long)GameCoreRootNodePointer[1] + NodeActiveFlagOffset);
+  GameCoreInitializationHandler = GetGameCoreSystemInitializationFunction;
+  GameCorePreviousNodePointer = GameCoreRootNodePointer;
+  GameCoreCurrentNodePointer = (void**)GameCoreRootNodePointer[1];
   
-  while (!IsNodeActive) {
-    IdentifierComparisonResult = memcmp(CurrentNodePointer + 4, &GameCoreSystemId, SystemIdentifierSize);
-    if (IdentifierComparisonResult < 0) {
-      NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
-      CurrentNodePointer = PreviousNodePointer;
+  while (!IsGameCoreNodeActive) {
+    GameCoreIdentifierComparisonResult = memcmp(GameCoreCurrentNodePointer + 4, &GameCoreSystemId, SystemIdentifierSize);
+    if (GameCoreIdentifierComparisonResult < 0) {
+      GameCoreNextNodePointer = (void**)GameCoreCurrentNodePointer[NodeNextPointerOffset];
+      GameCoreCurrentNodePointer = GameCorePreviousNodePointer;
     }
     else {
-      NextNodePointer = (void**)CurrentNodePointer[NodeHeadPointerOffset];
+      GameCoreNextNodePointer = (void**)GameCoreCurrentNodePointer[NodeHeadPointerOffset];
     }
-    PreviousNodePointer = CurrentNodePointer;
-    CurrentNodePointer = NextNodePointer;
-    IsNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    GameCorePreviousNodePointer = GameCoreCurrentNodePointer;
+    GameCoreCurrentNodePointer = GameCoreNextNodePointer;
+    IsGameCoreNodeActive = *(bool*)((long long)GameCoreNextNodePointer + NodeActiveFlagOffset);
   }
   
-  if ((PreviousNodePointer == RootNodePointer) || 
-      (IdentifierComparisonResult = memcmp(&GameCoreSystemId, PreviousNodePointer + 4, SystemIdentifierSize), IdentifierComparisonResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
-    AllocateSystemMemory(DataTablePointer, &AllocatedNodePointer, PreviousNodePointer, MemoryAllocationSize + NodeAllocationExtraSize, MemoryAllocationSize);
-    PreviousNodePointer = AllocatedNodePointer;
+  if ((GameCorePreviousNodePointer == GameCoreRootNodePointer) || 
+      (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemId, GameCorePreviousNodePointer + 4, SystemIdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
+    GameCoreMemoryAllocationSize = GetSystemMemorySize(GameCoreDataTablePointer);
+    AllocateSystemMemory(GameCoreDataTablePointer, &GameCoreAllocatedNodePointer, GameCorePreviousNodePointer, GameCoreMemoryAllocationSize + NodeAllocationExtraSize, GameCoreMemoryAllocationSize);
+    GameCorePreviousNodePointer = GameCoreAllocatedNodePointer;
   }
   
-  PreviousNodePointer[NodeIdentifier1Index] = GameCoreNodeIdentifier1;
-  PreviousNodePointer[NodeIdentifier2Index] = GameCoreNodeIdentifier2;
-  PreviousNodePointer[NodeDataPointerIndex] = &GameCoreNodeData;
-  PreviousNodePointer[NodeFlagIndex] = 0;
-  PreviousNodePointer[NodeHandlerIndex] = CoreInitializationHandler;
+  GameCorePreviousNodePointer[NodeIdentifier1Index] = GameCoreNodeIdentifier1;
+  GameCorePreviousNodePointer[NodeIdentifier2Index] = GameCoreNodeIdentifier2;
+  GameCorePreviousNodePointer[NodeDataPointerIndex] = &GameCoreNodeData;
+  GameCorePreviousNodePointer[NodeFlagIndex] = 0;
+  GameCorePreviousNodePointer[NodeHandlerIndex] = GameCoreInitializationHandler;
   return;
 }
 
@@ -19865,29 +19865,29 @@ long long ProcessSystemNodeConfiguration(uint32_t* NodeConfigPointer, uint32_t* 
  * @param configHandle 配置句柄
  * @param configValue 配置值
  */
-void UpdateSystemConfigurationParameter(uint64_t configHandle, uint32_t configValue)
+void UpdateSystemConfigurationParameter(uint64_t ConfigHandle, uint32_t ConfigValue)
 
 {
-  long long systemConfigBase;
+  long long SystemConfigBase;
   char ValidationResult;
-  void* errorMessagePointer;
-  uint32_t parameterStack [6];
+  void* ErrorMessagePointer;
+  uint32_t ParameterStack [6];
   
-  systemConfigBase = SystemConfigurationDataBase;
+  SystemConfigBase = SystemConfigurationDataBase;
   if ((*(long long *)(SystemConfigurationDataBase + 0x22f0) != 0) &&
-     (parameterStack[0] = configValue, ValidationResult = (**(code **)(SystemConfigurationDataBase + 0x22f8))(parameterStack),
-     configValue = parameterStack[0], ValidationResult == '\0')) {
+     (ParameterStack[0] = ConfigValue, ValidationResult = (**(code **)(SystemConfigurationDataBase + 0x22f8))(ParameterStack),
+     ConfigValue = ParameterStack[0], ValidationResult == '\0')) {
     if (SystemDebugModeEnabled == '\0') {
-      errorMessagePointer = &SystemErrorMessageTemplate;
-      if (*(void **)(systemConfigBase + 0x22a0) != (void *)0x0) {
-        errorMessagePointer = *(void **)(systemConfigBase + 0x22a0);
+      ErrorMessagePointer = &SystemErrorMessageTemplate;
+      if (*(void **)(SystemConfigBase + 0x22a0) != (void *)0x0) {
+        ErrorMessagePointer = *(void **)(SystemConfigBase + 0x22a0);
       }
-      LogSystemErrorMessage(&SystemErrorLogBuffer,errorMessagePointer);
+      LogSystemErrorMessage(&SystemErrorLogBuffer,ErrorMessagePointer);
     }
-    *(uint32_t *)(systemConfigBase + 0x2290) = *(uint32_t *)(systemConfigBase + 0x22d8);
+    *(uint32_t *)(SystemConfigBase + 0x2290) = *(uint32_t *)(SystemConfigBase + 0x22d8);
     return;
   }
-  *(uint32_t *)(systemConfigBase + 0x2290) = configValue;
+  *(uint32_t *)(SystemConfigBase + 0x2290) = ConfigValue;
   return;
 }
 
@@ -68269,11 +68269,11 @@ uint8_t GetSystemOperationStatus(void)
 
 {
   uint8_t SystemOperationStatus;
-  int in_EAX;
+  int inputParameter;
   long long memoryBlockAddress;
   void* *StringIteratorPointer;
   
-  if (in_EAX == 1) {
+  if (inputParameter == 1) {
     ProcessSystemDataBuffer(*StringIteratorPointer,0);
   }
   LOCK();
