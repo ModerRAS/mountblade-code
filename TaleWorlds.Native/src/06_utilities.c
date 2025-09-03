@@ -19736,15 +19736,15 @@ uint8_t ProcessResourceTablePointerEntry(int64_t ResourceContext, uint8_t *Resou
             }
             ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetSenary);
             if ((int)ResourceHash == 0) {
-              if (*(int *)(ResourceData[1] + 0x18) != 0) {
+              if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
                 return ErrorInvalidObjectHandle;
               }
-              ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + 0x6c);
+              ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetSeptenary);
               if ((int)ResourceHash == 0) {
-                if (*(int *)(ResourceData[1] + 0x18) != 0) {
+                if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
                   return ErrorInvalidObjectHandle;
                 }
-                ResourceHash = CalculateResourceHash(*ValidationContext,dataContext + 0x70);
+                ResourceHash = CalculateResourceHash(*ValidationContext,dataContext + ResourceTableOffsetOctonary);
                 if ((int)ResourceHash == 0) {
                   if (*(int *)(ResourceData[1] + 0x18) != 0) {
                     return ErrorInvalidObjectHandle;
