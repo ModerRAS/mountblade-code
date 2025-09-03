@@ -244,14 +244,74 @@ uint HandleNetworkConnectionData(int64_t NetworkContextEntry, int64_t NetworkCon
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint ProcessSecondaryConnectionData(int64_t ConnectionContext, int64_t ConnectionData);
+/**
+ * 验证网络上下文条目 - 验证网络上下文条目的有效性
+ * 此函数负责验证网络上下文条目是否有效
+ * @param NetworkContextEntry 网络上下文条目
+ * @return 验证结果句柄，0表示成功，其他值表示错误码
+ */
 uint ValidateNetworkContextEntry(int64_t NetworkContextEntry);
+
+/**
+ * 初始化网络连接 - 初始化网络连接
+ * 此函数负责初始化网络连接
+ * @param ConnectionHandle 连接句柄
+ * @return 初始化结果句柄，0表示成功，其他值表示错误码
+ */
 uint InitializeNetworkConnection(NetworkHandle ConnectionHandle);
+
+/**
+ * 验证网络连接状态 - 验证网络连接的状态
+ * 此函数负责验证网络连接的状态是否有效
+ * @param ConnectionHandle 连接句柄
+ * @return 验证结果句柄，0表示成功，其他值表示错误码
+ */
 uint ValidateNetworkConnectionStatus(NetworkHandle ConnectionHandle);
+
+/**
+ * 重置网络连接状态 - 重置网络连接的状态
+ * 此函数负责重置网络连接的状态
+ */
 void ResetNetworkConnectionState(void);
+
+/**
+ * 处理网络验证队列 - 处理网络验证队列
+ * 此函数负责处理网络验证队列中的项目
+ * @param ValidationContext 验证上下文
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 uint ProcessNetworkValidationQueue(int64_t ValidationContext);
+
+/**
+ * 清理网络连接缓存 - 清理网络连接的缓存
+ * 此函数负责清理网络连接的缓存数据
+ */
 void ClearNetworkConnectionCache(void);
+
+/**
+ * 初始化网络缓冲区 - 初始化网络缓冲区
+ * 此函数负责初始化网络缓冲区
+ * @param BufferPointer 缓冲区指针
+ * @return 初始化结果句柄，0表示成功，其他值表示错误码
+ */
 uint InitializeNetworkBuffer(int64_t BufferPointer);
+
+/**
+ * 处理网络数组数据 - 处理网络数组数据
+ * 此函数负责处理网络数组数据
+ * @param NetworkContextArray 网络上下文数组
+ * @param ArrayIndex 数组索引
+ * @return 处理结果句柄，0表示成功，其他值表示错误码
+ */
 uint ProcessNetworkArrayData(int64_t NetworkContextArray, uint ArrayIndex);
+
+/**
+ * 关闭网络连接 - 关闭网络连接
+ * 此函数负责关闭网络连接
+ * @param NetworkConnectionContext 网络连接上下文指针
+ * @param ConnectionFlags 连接标志
+ * @return 关闭结果句柄，0表示成功，其他值表示错误码
+ */
 uint CloseNetworkConnection(int64_t *NetworkConnectionContext, uint ConnectionFlags);
 
 // 全局变量声明
@@ -332,6 +392,10 @@ uint32_t NetworkConnectionPoolPerformanceMetrics;
 uint32_t NetworkConnectionPoolAllocationCount;
 uint32_t NetworkConnectionPoolDeallocationCount;
 
+/**
+ * 初始化网络连接池 - 初始化网络连接池
+ * 此函数负责初始化网络连接池，为后续连接做准备
+ */
 void InitializeNetworkConnectionPool(void);
 
 void *NetworkConnectionContextTemplate = &NetworkConnectionContextDataStructure;
@@ -346,11 +410,36 @@ void *NetworkConnectionRoutingConfigDataB = &NetworkConnectionRoutingConfigDataS
 void *NetworkConnectionRoutingConfigDataC = &NetworkConnectionRoutingConfigDataStructureC;
 void *NetworkConnectionRoutingConfigDataD = &NetworkConnectionRoutingConfigDataStructureD;
 
+/**
+ * 初始化网络套接字句柄 - 初始化网络套接字句柄
+ * 此函数负责初始化网络套接字句柄
+ */
 void InitializeNetworkSocketHandle(void);
+
+/**
+ * 绑定网络套接字 - 绑定网络套接字
+ * 此函数负责绑定网络套接字到指定的地址和端口
+ */
 void BindNetworkSocket(void);
+
 uint32_t NetworkSocketBindingInfo;
+
+/**
+ * 监听网络连接 - 监听网络连接
+ * 此函数负责监听网络连接请求
+ */
 void ListenNetworkConnections(void);
+
+/**
+ * 接受网络连接 - 接受网络连接
+ * 此函数负责接受网络连接请求
+ */
 void AcceptNetworkConnection(void);
+
+/**
+ * 关闭网络连接 - 关闭网络连接
+ * 此函数负责关闭网络连接
+ */
 void CloseNetworkConnection(void);
 
 int ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);

@@ -29982,6 +29982,17 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  */
+/**
+ * @brief 主上下文异常处理器
+ * 
+ * 该函数负责处理主上下文中的异常情况，执行异常处理逻辑。
+ * 主要用于处理程序运行时出现的主要异常事件。
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会执行相应的异常处理逻辑
+ */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* PrimaryExceptionHandlerPointer;
   
@@ -75426,6 +75437,15 @@ void ProcessSystemResourceOperationG(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
+/**
+ * @brief 处理偏移量0x70处的资源上下文
+ * 
+ * 该函数从验证上下文的指定偏移量获取资源上下文
+ * 并调用资源上下文中的方法处理相关操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
 void ProcessResourceContextAtOffset70(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -75468,7 +75488,7 @@ void ProcessResourceContextAtOffset80(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_18090ac70(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceContextAtOffset88(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
