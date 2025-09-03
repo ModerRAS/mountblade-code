@@ -61239,7 +61239,7 @@ void CompleteSystemCleanup(void)
  * 
  * @note 此函数会设置 SystemDataPrimaryPointer 到 SystemDataStructure
  */
-void InitializeSystemDataPrimaryPointer001(void)
+void InitializeSystemDataPrimaryPointer(void)
 
 {
   SystemDataPrimaryPointer = &SystemDataStructure;
