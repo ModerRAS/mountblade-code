@@ -12408,7 +12408,7 @@ HandleSystemError:
 void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int* StatusPointer)
 {
   int64_t LoopCounter;
-  char CharacterFlag;
+  char CharacterValidationFlag;
   int ValidationStatusCode;
   int ResultRecordIndex;
   int64_t InputParameterValue;
@@ -29552,7 +29552,7 @@ uint64_t ValidateResourceDataIntegrityInternal(void)
   uint64_t ResourceHashStatus;
   uint8_t *ResourceContext;
   int64_t SystemExecutionPointer;
-  char CharacterFlag;
+  char CharacterValidationFlag;
   
   ValidationStatusCode = CalculateDataChecksum();
   if ((int)ValidationStatusCode == 0) {
@@ -34750,7 +34750,7 @@ void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,
 
 {
   uint8_t *ResourceHashPtr;
-  char CharacterFlag;
+  char CharacterValidationFlag;
   uint8_t ResourceHashStatus;
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ValidationContextSecondaryCleanupOffset);
@@ -46407,7 +46407,7 @@ void ProcessResourceHashOperations(uint8_t ObjectContext,int64_t ValidationConte
 
 {
   uint8_t *ResourceHashPtr;
-  char CharacterFlag;
+  char CharacterValidationFlag;
   uint8_t OperationStatus;
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x50);
@@ -68695,7 +68695,7 @@ void ProcessSystemExceptionStatusAndResourceCleanup(uint8_t ObjectContext, int64
 
 {
   int64_t *processPointer;
-  char CharacterFlag;
+  char CharacterValidationFlag;
   
   StatusCharacter = _uncaught_exception_std__YA_NXZ();
   if (StatusCharacter == '\0') {
