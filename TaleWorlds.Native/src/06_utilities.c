@@ -14696,6 +14696,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
   uint8_t StackBufferOffsetSecondary;
   uint8_t SecurityDataArray[136];
   uint64_t ResourceSecurityFlag;
+  int64_t ResourceDataMemoryPointer;
   
   ResourceSecurityFlag = SecurityEncryptionKey ^ (uint64_t)StackArrayBuffer;
   ResourceTablePointer = *(int64_t *)(ValidationContext + ValidationContextPrimaryResourceOffset);
@@ -14724,17 +14725,17 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
         ResourceDataOffset = LocalContextBuffer;
         if (0 < ResourceValidationBuffer) {
           do {
-            SystemDataPointer = *(int64_t *)(ResourceTablePointer + 0x20);
-            ResourceIndex = *(int64_t *)(LocalContextBuffer + 0x10 + SystemDataPointer);
-            LoopOffset = *(int64_t *)(LocalContextBuffer + ResourceCleanupOffset + SystemDataPointer);
+            ResourceDataMemoryPointer = *(int64_t *)(ResourceTablePointer + 0x20);
+            ResourceIndex = *(int64_t *)(LocalContextBuffer + 0x10 + ResourceDataMemoryPointer);
+            LoopOffset = *(int64_t *)(LocalContextBuffer + ResourceCleanupOffset + ResourceDataMemoryPointer);
             ResourceValidationStatusCode = CheckResourceIndex(ResourceIndex,1);
             ResourceHashStackPointer = ResourceHashStackPointer;
             if ((ResourceValidationStatusCode == '\0') && (*(float *)(ResourceIndex + 0x4c) != *(float *)(LoopOffset + 0x28))) {
-              PrimaryStackData = *(uint32_t *)(LocalContextBuffer + 4 + SystemDataPointer);
+              PrimaryStackData = *(uint32_t *)(LocalContextBuffer + 4 + ResourceDataMemoryPointer);
               ResourceOperationParameter = &SystemResourceTemplateDatabase;
               ResourceDataLength = BufferContextSize;
               ResourceHandlerParam = 0;
-              SystemDataPointer = (**(code **)*ResourceHashStackPointer)(ResourceHashStackPointer);
+              ResourceDataMemoryPointer = (**(code **)*ResourceHashStackPointer)(ResourceHashStackPointer);
               ResourceValidationStatus = *(uint8_t *)(*(int64_t *)(SystemDataPointer + 0x90) + ResourceContextDataPointer * 8);
               ResourceValidationFlag = 0;
               if (*(int *)(ResourceIndex + 0x58) < 1) {
