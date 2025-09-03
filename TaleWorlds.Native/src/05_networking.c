@@ -1035,7 +1035,7 @@ NetworkValidationProcessingContinue:
  * @note 此函数在网络系统启动时调用，确保所有连接处理资源正确初始化
  * @warning 如果初始化失败，系统将无法建立新的网络连接
  */
-NetworkHandle NetworkInitializeConnectionHandler(void)
+NetworkHandle NetworkInitializeConnectionSystem(void)
 {
   // 初始化网络连接表
   if (NetworkConnectionTable == 0) {
@@ -1131,7 +1131,7 @@ NetworkMainProcessingLoop:
  * @note 此函数使用状态机模式处理连接状态转换
  * @warning 如果状态转换失败，系统会记录错误日志并尝试恢复到安全状态
  */
-NetworkHandle NetworkProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
+NetworkHandle NetworkUpdateConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   NetworkStatus *NetworkConnectionContextData;        // 网络连接上下文数据
   int32_t NetworkPacketProcessingStatus;              // 网络数据包处理状态
@@ -1195,7 +1195,7 @@ NetworkMainProcessingLoop:
  * @note 此函数是连接处理流程的最后一步
  * @warning 确保在调用此函数前所有连接操作已经完成
  */
-NetworkHandle NetworkFinalizeConnectionHandler(void)
+NetworkHandle NetworkFinalizeConnectionSystem(void)
 {
   return NetworkConnectionFinalizeValue;
 }
@@ -1250,7 +1250,7 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  * @note 此函数会进行多层验证，包括数据包解码、头部验证和完整性检查
  * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
  */
-NetworkHandle NetworkValidatePacketIntegrityHandler(NetworkHandle *PacketData, int64_t ConnectionContext)
+NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
   NetworkHandle PacketValidationResult;              // 数据包验证结果
   NetworkByte PacketValidationDataBuffer [32];       // 数据包验证数据缓冲区
@@ -1290,7 +1290,7 @@ NetworkHandle NetworkValidatePacketIntegrityHandler(NetworkHandle *PacketData, i
  * @note 此函数会根据数据包类型选择不同的处理路径
  * @warning 处理过程中如果发现数据包损坏或格式错误，会立即返回错误码
  */
-NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t *PacketData)
+NetworkHandle NetworkProcessValidatedPacket(int64_t ConnectionContext, int64_t *PacketData)
 {
   NetworkHandle NetworkPacketValidationStatus;          // 网络数据包验证状态
   NetworkStatus ConnectionStateDataArray [6];          // 连接状态数据数组
@@ -1426,7 +1426,7 @@ NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, Network
  * @note 此函数会根据数据包状态选择不同的处理策略
  * @warning 处理过程中如果发现数据包格式错误，会立即返回相应的错误码
  */
-NetworkHandle NetworkProcessConnectionPacketHandler(NetworkHandle ConnectionContext, int64_t PacketData)
+NetworkHandle NetworkProcessConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   NetworkHandle ConnectionPacketProcessingStatus;
   NetworkByte DecodedDataStreamBuffer [32];

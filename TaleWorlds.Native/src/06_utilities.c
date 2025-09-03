@@ -4988,18 +4988,18 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * 
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t FreeObjectHandle(void) {
+uint8_t ReleaseObjectHandle(void) {
   int64_t ObjectHandleIdentifier = 0;
-  int64_t ObjectMemoryAddressPointer;
+  int64_t ObjectMemoryAddress;
   
   if (ObjectHandleIdentifier == 0) {
-    ObjectMemoryAddressPointer = 0;
+    ObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryAddressPointer = ObjectHandleIdentifier - 8;
+    ObjectMemoryAddress = ObjectHandleIdentifier - 8;
   }
-  if (*(int64_t *)(ObjectMemoryAddressPointer + ObjectHandleOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddressPointer + ObjectHandleOffset), 1);
+  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
   }
   return 0;
 }
@@ -5007,16 +5007,16 @@ uint8_t FreeObjectHandle(void) {
 
 
 /**
- * @brief 验证字符参数并执行相应操作
+ * @brief 验证字符输入参数
  * 
- * 该函数用于验证输入的字符参数，如果字符不为空字符则执行相应的系统退出操作。
- * 主要用于系统安全检查和参数验证。
+ * 验证输入的字符参数，如果字符不为空字符则执行系统退出操作。
+ * 此函数用于系统安全检查，防止无效字符输入导致系统异常。
  * 
- * @param CharacterParameter 输入的字符参数，需要验证的字符
+ * @param CharacterToValidate 输入的字符参数，需要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t ValidateCharacterInput(char InputCharacter) {
-  if (InputCharacter != '\0') {
+uint8_t ValidateCharacterInput(char CharacterToValidate) {
+  if (CharacterToValidate != '\0') {
     ExecuteSystemExitOperation();
   }
   return 0;
@@ -5077,8 +5077,8 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
 /**
  * @brief 从寄存器验证对象句柄
  * 
- * 该函数从系统寄存器获取对象指针，验证其有效性并执行相应操作。
- * 主要用于系统级别的对象句柄验证，通常在底层操作中使用。
+ * 从系统寄存器获取对象指针，验证其有效性并执行相应操作。
+ * 此函数用于系统级别的对象句柄验证，通常在底层操作中使用。
  * 
  * @return uint32_t 验证结果，0表示成功，ErrorInvalidObjectHandle表示错误
  * @note 此函数直接从寄存器读取对象指针，需要确保寄存器状态正确
@@ -5086,18 +5086,18 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
  */
 uint32_t ValidateObjectHandleFromRegister(void) {
   int64_t RegisterContext = 0;
-  int64_t ObjectPointer;
+  int64_t ObjectMemoryAddress;
   
   if (RegisterContext == 0) {
-    ObjectPointer = 0;
+    ObjectMemoryAddress = 0;
   }
   else {
-    ObjectPointer = RegisterContext + -8;
+    ObjectMemoryAddress = RegisterContext + -8;
   }
-  if (*(int64_t *)(ObjectPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ObjectMemoryAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(ObjectPointer + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectContextOffset), 1);
   return 0;
 }
 
@@ -5107,8 +5107,8 @@ uint32_t ValidateObjectHandleFromRegister(void) {
 /**
  * @brief 触发系统异常处理
  * 
- * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用。
- * 主要用于系统错误处理和异常情况的处理。
+ * 触发系统异常处理流程，通常在遇到严重错误时调用。
+ * 此函数用于系统错误处理和异常情况的处理。
  * 
  * @return void 无返回值
  * @warning 此函数会立即终止系统运行，只在严重错误时使用
@@ -5123,7 +5123,7 @@ void TriggerSystemException(void) {
 /**
  * @brief 清理系统资源
  * 
- * 该函数负责清理系统资源，释放不再使用的内存和对象。
+ * 清理系统资源，释放不再使用的内存和对象。
  * 目前为空实现，预留用于后续系统资源清理逻辑。
  * 
  * @return void 无返回值
