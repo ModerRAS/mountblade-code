@@ -4437,7 +4437,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   int64_t ObjectHandleArray[2];
   uint8_t *ObjectListDataBuffer;
   int TotalObjectCount;
-  uint32_t MaximumObjectProcessingLimit;
+  uint32_t MaximumProcessingLimit;
   uint8_t ObjectProcessingBuffer[512];
   uint64_t SecurityValidationKey;
   
@@ -4450,7 +4450,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     ObjectListDataBuffer = ObjectProcessingBuffer;
     ProcessedObjectCount = 0;
     TotalObjectCount = 0;
-    MaximumObjectProcessingLimit = MaximumProcessableItemsLimit;
+    MaximumProcessingLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
     ObjectValidationStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset),
