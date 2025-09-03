@@ -39984,7 +39984,7 @@ void* * ExpandSystemResourceAllocator(long long SystemResourceManager)
     *(void* **)(SystemResourceManager + 0x60) = ResourceAddressPointer;
     *(long long *)(SystemResourceManager + 0x58) = *(long long *)(SystemResourceManager + 0x58) << 1;
   }
-  return SystemDataPointer0;
+  return SystemDataPointer;
 }
 
 
