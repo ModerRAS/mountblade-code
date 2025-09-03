@@ -80020,8 +80020,16 @@ void CleanupSystemDataStructure0x7f0(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090c800(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 系统数据结构初始化函数0x800
+ * 
+ * 该函数负责初始化系统数据结构在偏移量0x7f0位置的相关资源。
+ * 这是系统资源管理的一部分，用于确保系统资源被正确初始化。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void InitializeSystemDataStructure0x800(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + 0x7f0) = &SystemDataStructure;
   return;
