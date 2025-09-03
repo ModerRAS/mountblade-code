@@ -6072,7 +6072,7 @@ Label_180203fb6:
       SystemStateDataTable = pSystemStateValue;
       SystemStateDataEndPointer = pSystemStateValue + 2;
     }
-    cVar6 = GetSystemMemoryConfiguration(0x180c919f0,&lStackX_20);
+    MemoryConfigurationResult = GetSystemMemoryConfiguration(0x180c919f0,&lStackX_20);
     pSystemStateValue = SystemStateDataEndPointer;
     ModuleInitializationResult0 = lStackX_20;
   } while( true );
