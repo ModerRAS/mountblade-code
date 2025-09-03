@@ -18679,9 +18679,9 @@ void InitializeMainSystemController(long long systemParameter)
       IsControllerActive = (bool)SystemGlobalControllerPointer[2] != false;
     }
     else {
-      IsActiveFlag = (**(code **)((void* )SystemGlobalControllerPointer + 0x68))();
+      IsControllerActive = (**(code **)((void* )SystemGlobalControllerPointer + 0x68))();
     }
-    if (!IsActiveFlag) goto SkipControllerInitialization;
+    if (!IsControllerActive) goto SkipControllerInitialization;
   }
   ControllerPointer = (long long )SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xc0,8,3,SystemAllocationFlags);
   SystemControllerPointer = ControllerPointer;

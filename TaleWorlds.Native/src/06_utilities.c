@@ -4944,6 +4944,14 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的内存地址和状态信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数增加指定对象的引用计数，用于对象生命周期管理。
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @return uint8_t 操作结果状态码
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
@@ -4982,21 +4990,21 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandle(int64_t ObjectContext) {
-  uint8_t ValidationStatus;
-  int64_t ValidatedContextPointer;
+  uint8_t ValidationResult;
+  int64_t ValidatedContextAddress;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextPointer);
-  if ((int)ValidationStatus == 0) {
-    if (ValidatedContextPointer == 0) {
-      ValidatedContextPointer = 0;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextAddress);
+  if ((int)ValidationResult == 0) {
+    if (ValidatedContextAddress == 0) {
+      ValidatedContextAddress = 0;
     }
     else {
-      ValidatedContextPointer = ValidatedContextPointer - 8;
+      ValidatedContextAddress = ValidatedContextAddress - 8;
     }
-    if (*(int64_t *)(ValidatedContextPointer + ObjectHandleOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + ObjectHandleOffset), 1);
+    if (*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset) != 0) {
+            ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset), 1);
     }
-    ValidationStatus = 0;
+    ValidationResult = 0;
   }
   return ValidationStatus;
 }
