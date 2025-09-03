@@ -19647,13 +19647,13 @@ void ExecuteSystemMemoryCopyOperation(void)
  * 
  * @param bufferPointer 缓冲区指针
  */
-void ResetSystemBuffer(uint8_t *bufferPointer)
+void ResetSystemBuffer(uint8_t *BufferPointer)
 
 {
-  long long systemRegister;
+  long long SystemRegister;
   
-  *bufferPointer = 0;
-  *(uint32_t *)(systemRegister + 0x10) = 0;
+  *BufferPointer = 0;
+  *(uint32_t *)(SystemRegister + 0x10) = 0;
   return;
 }
 

@@ -29984,11 +29984,11 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @warning 调用此函数可能会触发系统紧急退出
  */
 void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerPtr;
+  int64_t* ExceptionHandlerPointer;
   
-  ExceptionHandlerPtr = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
-  if (ExceptionHandlerPtr != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ExceptionHandlerPtr + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  if (ExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -30017,11 +30017,11 @@ void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @return 无返回值
  */
 void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t** ExceptionHandlerPtr;
+  int64_t** ExceptionHandlerPointer;
   
-  ExceptionHandlerPtr = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
-  if (ExceptionHandlerPtr != (int64_t *)0x0) {
-    (**(code **)(*ExceptionHandlerPtr + ExceptionHandlerFunctionPointerOffset))();
+  ExceptionHandlerPointer = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
+  if (ExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(code **)(*ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }

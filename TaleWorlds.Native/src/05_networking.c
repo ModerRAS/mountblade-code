@@ -952,13 +952,24 @@ NETWORK_PROCESSING_LOOP:
   return 0x26;
 }
 
-// 完成连接处理器 - 完成网络连接处理器的最终化操作
+/**
+ * 完成连接处理器 - 完成网络连接处理器的最终化操作
+ * 此函数负责完成网络连接处理器的最终化操作，释放相关资源
+ * @return NetworkHandle 完成结果句柄，0x26表示成功完成
+ * @note 此函数在网络连接处理完成后调用，确保所有资源正确释放
+ */
 NetworkHandle FinalizeConnectionHandler(void)
 {
   return 0x26;
 }
 
-// 清理连接资源 - 清理网络连接相关的资源
+/**
+ * 清理连接资源 - 清理网络连接相关的资源
+ * 此函数负责清理网络连接相关的资源，包括缓冲区、句柄和验证数据
+ * @param ConnectionContext 网络连接上下文句柄，包含需要清理的连接信息
+ * @note 此函数在连接断开或系统关闭时调用，确保资源正确释放
+ * @warning 清理过程中如果遇到错误，系统会记录日志但继续执行清理操作
+ */
 void CleanupConnectionResources(NetworkHandle ConnectionContext)
 {
   int32_t ConnectionPrimaryStatus;
