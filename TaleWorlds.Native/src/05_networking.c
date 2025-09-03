@@ -1042,10 +1042,10 @@ void NetworkTransmitData(void)
   // 初始化数据包参数
   NetworkPacketSequence = 0x01;                         // 初始化数据包序列号
   NetworkAcknowledgeNumber = 0x01;                      // 初始化确认号
-  NetworkWindowScale = 0x10;                            // 设置窗口缩放为16
-  NetworkRetransmitTimer = 0x1388;                       // 设置重传计时器为5秒
-  NetworkKeepAliveTime = 0x1E;                          // 设置保持连接时间为30秒
-  NetworkHeartbeatTimeout = 0x3C;                      // 设置心跳超时时间为60秒
+  NetworkWindowScale = WINDOW_SCALE_16;                            // 设置窗口缩放为16
+  NetworkRetransmitTimer = TIMEOUT_5_SECONDS;                       // 设置重传计时器为5秒
+  NetworkKeepAliveTime = HEARTBEAT_30_SECONDS;                          // 设置保持连接时间为30秒
+  NetworkHeartbeatTimeout = HEARTBEAT_60_SECONDS;                      // 设置心跳超时时间为60秒
   
   // 初始化数据包缓冲区
   NetworkPacketBufferPointer = 0x01;                     // 初始化数据包缓冲区指针

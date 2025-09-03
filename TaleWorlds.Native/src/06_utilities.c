@@ -1025,13 +1025,13 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
 
 // 系统错误码常量
 #define SystemInvalidObjectStatusCode ErrorInvalidResourceData
-#define SystemInvalidResourceStatusCode ErrorResourceValidationFailed
+#define SystemInvalidResourceStatusCode ResourceValidationError
 #define SystemInvalidContextStatusCode 0x4a
 #define SystemInvalidDataStatusCode 0x4f
-#define SystemValidationFailureCode ErrorResourceValidationFailed
+#define SystemValidationFailureCode ResourceValidationError
 #define SystemSecurityErrorCode 0x4a
-#define SystemMemoryErrorCode ErrorResourceValidationFailed
-#define SystemOperationFailureCode ErrorResourceValidationFailed
+#define SystemMemoryErrorCode ResourceValidationError
+#define SystemOperationFailureCode ResourceValidationError
 
 // 位操作常量
 #define SignBitMask ErrorResourceValidationFailed
