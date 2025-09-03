@@ -46479,13 +46479,13 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
       } while (ResourceContextOffset != SecurityHashValue);
       *(uint64_t *)(ValidationContext + 0x20) = ResourceContextOffset;
     }
-    if (ResourceEntryPointer == SystemDataPointer) break;
+    if (ResourceEntryPointer == ExceptionMemoryPointer) break;
     ResourceEntryPointer = *(int64_t *)(ResourceEntryPointer + 0x100);
     LoopIncrement = ResourceContextOffset;
   }
   ResourceCount = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) - 1U & 0xffffffffffffffe0;
   *(uint64_t *)(ValidationContext + 0x20) = ResourceCount;
-  SystemDataPointer = ResourceTablePointer;
+  ExceptionMemoryPointer = ResourceTablePointer;
   if (ResourceTablePointer != 0) {
     while( true ) {
       *(uint64_t *)(ValidationContext + 0x20) = ResourceCount + 0x20;
