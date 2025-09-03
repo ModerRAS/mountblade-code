@@ -67554,10 +67554,10 @@ void ResetValidationContextSystemDataPointer1(uint8_t ObjectContext,int64_t Vali
 void ExecuteSystemContextResourceManagerCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t contextLoopCounter;
+  int64_t systemContextIterationCount;
   
-  // 获取上下文循环计数器
-  contextLoopCounter = *(int64_t *)(ValidationContext + 0x1b8);
+  // 获取系统上下文迭代计数器
+  systemContextIterationCount = *(int64_t *)(ValidationContext + 0x1b8);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
