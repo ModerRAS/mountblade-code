@@ -19608,7 +19608,7 @@ uint8_t CalculateResourceDataHash(int64_t ResourceContext, uint8_t *ResourceData
     DataLength = 0;
   }
   if (DataLength < 0x8000) {
-    lengthBuffer[0] = CONCAT22(lengthBuffer[0].ShortValue,(short)dataLength);
+    lengthBuffer[0] = CONCAT22(lengthBuffer[0].ShortValue,(short)DataLength);
     ResourceHash = 2;
   }
   else {
