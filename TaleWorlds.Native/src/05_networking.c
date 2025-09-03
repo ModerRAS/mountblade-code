@@ -222,7 +222,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
  * @param PacketBuffer 数据包缓冲区
  * @return uint32_t 发送结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkTransmitConnectionPacket(int64_t SocketDescriptor, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
+uint32_t TransmitNetworkConnectionPacket(int64_t SocketDescriptor, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
 
 /**
  * @brief 验证网络数据包完整性
@@ -233,7 +233,7 @@ uint32_t NetworkTransmitConnectionPacket(int64_t SocketDescriptor, NetworkHandle
  * @param ConnectionContext 连接上下文
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkValidatePacketDataIntegrity(int64_t PacketData, int64_t ConnectionContext);
+uint32_t ValidateNetworkPacketDataIntegrity(int64_t PacketData, int64_t ConnectionContext);
 
 /**
  * @brief 处理网络连接请求
@@ -244,7 +244,7 @@ uint32_t NetworkValidatePacketDataIntegrity(int64_t PacketData, int64_t Connecti
  * @param RequestData 请求数据指针
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkHandleConnectionRequest(int64_t *ConnectionContext, int64_t *RequestData);
+uint32_t HandleNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestData);
 
 /**
  * @brief 执行网络数据传输
@@ -257,7 +257,7 @@ uint32_t NetworkHandleConnectionRequest(int64_t *ConnectionContext, int64_t *Req
  * @param TransferFlags 传输标志
  * @return uint32_t 传输结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkPerformSecureDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
+uint32_t PerformSecureNetworkDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
 
 /**
  * @brief 处理网络数据包
@@ -1464,28 +1464,28 @@ uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameter
  * @note 此函数会进行严格的安全验证，确保只有合法的连接请求能够通过
  * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
  */
-NetworkHandle NetworkProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
+NetworkHandle ProcessNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 连接请求处理变量
   int64_t NetworkConnectionContext;              // 网络连接上下文句柄
-  int64_t *ValidationResultPointer;          // 连接验证结果指针
+  int64_t *ConnectionValidationResult;          // 连接验证结果指针
   int32_t ValidationStatusCode;               // 连接验证状态码
   
   NetworkConnectionContext = 0;
   if (ValidationStatusCode == 0) {
 NetworkValidationProcessingContinue:
-    if ((0 < *(int *)((long long)ValidationResultPointer + ConnectionParameterOffset)) && (*ValidationResultPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ValidationResultPointer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset)) && (*ConnectionValidationResult != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ConnectionValidationResult, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *ValidationResultPointer = NetworkConnectionContext;
-    *(int *)((long long)ValidationResultPointer + ConnectionParameterOffset) = ValidationStatusCode;
+    *ConnectionValidationResult = NetworkConnectionContext;
+    *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset) = ValidationStatusCode;
     return 0;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
     NetworkConnectionContext = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationData, NetworkConnectionFinalizeValue, 0);
     if (NetworkConnectionContext != 0) {
-      if ((int)ValidationResultPointer[1] != 0) {
-          memcpy(NetworkConnectionContext, *ValidationResultPointer, (long long)(int)ValidationResultPointer[1]);
+      if ((int)ConnectionValidationResult[1] != 0) {
+          memcpy(NetworkConnectionContext, *ConnectionValidationResult, (long long)(int)ConnectionValidationResult[1]);
       }
       goto NetworkProcessingSuccess;
     }
@@ -1504,7 +1504,7 @@ NetworkValidationProcessingContinue:
  * @note 此函数在网络系统启动时调用，确保所有连接处理资源正确初始化
  * @warning 如果初始化失败，系统将无法建立新的网络连接
  */
-NetworkHandle NetworkInitializeConnectionSystem(void)
+NetworkHandle InitializeNetworkConnectionSystem(void)
 {
   // 初始化网络连接表
   if (NetworkConnectionTable == 0) {
@@ -1631,7 +1631,7 @@ NetworkMainProcessingLoop:
  * @note 此函数使用状态机模式处理连接状态转换
  * @warning 如果状态转换失败，系统会记录错误日志并尝试恢复到安全状态
  */
-NetworkHandle NetworkUpdateConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
+NetworkHandle UpdateNetworkConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   // 连接状态处理变量
   NetworkStatus *NetworkConnectionContextData;                // 连接上下文数据指针
@@ -1698,7 +1698,7 @@ NetworkProcessingLoop:
  * @note 此函数应在所有网络连接组件初始化完成后调用
  * @warning 返回的句柄应被妥善保存，用于后续的网络连接管理操作
  */
-NetworkHandle NetworkFinalizeConnectionSystem(void)
+NetworkHandle FinalizeNetworkConnectionSystem(void)
 {
   return NetworkConnectionFinalizeValue;
 }
@@ -1768,7 +1768,7 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  * 
  * @security 该函数使用多层安全验证机制，包括魔数验证、头部验证和数据完整性检查
  */
-NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
+NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
   NetworkByte PacketValidationBuffer [32];                    // 数据包验证缓冲区
   NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区
@@ -1903,7 +1903,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
  * @note 此函数会进行严格的数据包验证，确保连接安全性
  * @warning 验证过程中如果发现任何异常，会立即返回相应的错误码
  */
-NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, NetworkHandle *PacketData)
+NetworkHandle ValidateNetworkConnectionPacket(int64_t ConnectionContext, NetworkHandle *PacketData)
 {
   NetworkHandle PacketValidationStatusCode;                     // 数据包验证状态码
   NetworkByte ConnectionSecurityBuffer [32];            // 连接安全验证缓冲区
@@ -1943,7 +1943,7 @@ NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, Network
  * @note 此函数会根据数据包状态选择不同的处理策略
  * @warning 处理过程中如果发现数据包格式错误，会立即返回相应的错误码
  */
-NetworkHandle NetworkProcessConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
+NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   NetworkHandle PacketProcessingResult;                    // 数据包处理结果
   NetworkByte DecodedDataStreamBuffer [32];             // 已解码数据流缓冲区
