@@ -44821,87 +44821,87 @@ void ConfigureSystemDataProcessing(void* ResourceManager, void* ConfigurationDat
   uint8_t SystemCounterBuffer80 [72];
   
   SystemOperationResult = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-  if (validationStatusFlag == '\0') {
+  if (ValidationStatusFlag == '\0') {
     if ((SystemVerboseFlagPtr == '\0') && (*(int *)(SystemMemoryManagerPointer + 0x10e0) != 1)) {
-      systemCounter = 0;
+      SystemCounter = 0;
       if ((AdditionalParameter != '\0') || (SystemDebugFlag != '\0')) {
 SystemCounterCheckPoint:
         InitializeSystemCounter(SystemCounterBuffer80);
-        stackParameterA = &SystemGlobalDataReference;
-        systemFlag88 = 0;
-        stackParameterB = (void* *)0x0;
+        StackParameterA = &SystemGlobalDataReference;
+        SystemFlag88 = 0;
+        StackParameterB = (void**)0x0;
         SystemConfigurationValue = 0;
-        SystemThreadContext = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
+        SystemThreadContext = (void*)CreateSystemThreadObject(SystemMemoryPoolTemplate, 0x10, 0x13);
         *(uint8_t *)SystemThreadContext = 0;
-        stackParameterB = SystemThreadContext;
-        resourceAddress = StartSystemThread(SystemThreadContext);
-        systemFlag88 = ConcatenatedSystemValue(systemFlag88._4_4_,resourceAddress);
+        StackParameterB = SystemThreadContext;
+        ResourceAddress = StartSystemThread(SystemThreadContext);
+        SystemFlag88 = ConcatenatedSystemValue(SystemFlag88._4_4_, ResourceAddress);
         *SystemThreadContext = 0x73656873617263;
         SystemConfigurationValue = 7;
-        GetSystemCounter(SystemCounterBuffer80,&SystemParameterPointerA);
-        stackParameterA = &SystemGlobalDataReference;
-          SystemCleanupFunction(SystemThreadContext);
+        GetSystemCounter(SystemCounterBuffer80, &SystemParameterPointerA);
+        StackParameterA = &SystemGlobalDataReference;
+        SystemCleanupFunction(SystemThreadContext);
       }
       if (((SystemInitFlag == '\0') || (CalculationFlags = IsDebuggerPresent(), CalculationFlags != 0)) &&
          (SystemSilentMode == '\0')) {
-        resourceAddress = MessageBoxA(0,&SystemMessageTitle,&SystemMessageText,0x40004);
-        switch(resourceAddress) {
+        ResourceAddress = MessageBoxA(0, &SystemMessageTitle, &SystemMessageText, 0x40004);
+        switch(ResourceAddress) {
         case 1:
           break;
         default:
-          systemCounter = 1;
+          SystemCounter = 1;
           break;
         case 4:
-          systemCounter = 2;
+          SystemCounter = 2;
           break;
         case 5:
-          systemCounter = 3;
+          SystemCounter = 3;
           break;
         case 6:
-          systemCounter = 4;
+          SystemCounter = 4;
           break;
         case 7:
-          systemCounter = 5;
+          SystemCounter = 5;
         }
-        if (systemCounter == 4) goto SystemCounterCheckPoint;
+        if (SystemCounter == 4) goto SystemCounterCheckPoint;
       }
       else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
-        SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&SystemStackDataTemplate1,&SystemMessageText,
+        SystemManagerSetFlags(SystemContextManagerPointer, 3, 0xffffffff00000000, 0xd, &SystemStackDataTemplate1, &SystemMessageText,
                       &SystemMessageTitle);
       }
-      ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemContextParam1);
+      ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer, 5, 3, &SystemContextParam1);
     }
     else {
-      ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer,5,3,&SystemConfigParam5);
+      ProcessSystemResourceConfigurationOperation(SystemContextManagerPointer, 5, 3, &SystemConfigParam5);
       InitializeSystemManager();
     }
   }
   else {
-    stackParameterA = &SystemGlobalDataReference;
-    systemFlag88 = 0;
-    stackParameterB = (void* *)0x0;
+    StackParameterA = &SystemGlobalDataReference;
+    SystemFlag88 = 0;
+    StackParameterB = (void**)0x0;
     SystemConfigurationValue = 0;
-    resourceDataIndex = -1;
+    ResourceDataIndex = -1;
     do {
-      localDataIndex = resourceDataIndex;
-      resourceDataIndex = localDataIndex + 1;
-    } while (*(char *)(localDataIndex + 0x180c84871) != '\0');
-    if ((int)(localDataIndex + 1) != 0) {
-      CalculationFlags = (int)localDataIndex + 2;
-      systemCounter = CalculationFlags;
+      LocalDataIndex = ResourceDataIndex;
+      ResourceDataIndex = LocalDataIndex + 1;
+    } while (*(char *)(LocalDataIndex + 0x180c84871) != '\0');
+    if ((int)(LocalDataIndex + 1) != 0) {
+      CalculationFlags = (int)LocalDataIndex + 2;
+      SystemCounter = CalculationFlags;
       if (CalculationFlags < 0x10) {
-        systemCounter = 0x10;
+        SystemCounter = 0x10;
       }
-      stackParameterB = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)systemCounter,0x13);
-      *(uint8_t *)stackParameterB = 0;
-      resourceAddress = StartSystemThread(stackParameterB);
-      systemFlag88 = ConcatenatedSystemValue(systemFlag88._4_4_,resourceAddress);
-        memcpy(stackParameterB,&SystemStringBuffer,CalculationFlags);
+      StackParameterB = (void**)CreateSystemThreadObject(SystemMemoryPoolTemplate, (long long)SystemCounter, 0x13);
+      *(uint8_t *)StackParameterB = 0;
+      ResourceAddress = StartSystemThread(StackParameterB);
+      SystemFlag88 = ConcatenatedSystemValue(SystemFlag88._4_4_, ResourceAddress);
+      memcpy(StackParameterB, &SystemStringBuffer, CalculationFlags);
     }
     SystemConfigurationValue = 0;
-    InitializeSystemResourceObject(&SystemParameterPointerA,SystemParameter);
-    stackParameterA = &SystemGlobalDataReference;
-    if (stackParameterB != (void* *)0x0) {
+    InitializeSystemResourceObject(&SystemParameterPointerA, SystemParameter);
+    StackParameterA = &SystemGlobalDataReference;
+    if (StackParameterB != (void**)0x0) {
         SystemCleanupFunction();
     }
   }
