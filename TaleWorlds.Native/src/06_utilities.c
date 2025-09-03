@@ -4240,38 +4240,38 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int ProcessingResult;
-  int64_t CurrentObjectIndex;
+  int ValidationStatusCode;
+  int64_t ObjectIterator;
   int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
   int64_t ObjectHandleBuffer[2];
   uint8_t *DataBufferPointer;
-  int CurrentPosition;
+  int ObjectListSize;
   uint32_t MaximumProcessableObjects;
   uint8_t ProcessingWorkspace[512];
-  uint64_t SecurityValidationKey;
+  uint64_t SecurityValidationToken;
   
-  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetadataBuffer;
-  OperationResult = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleBuffer);
-  if ((OperationResult == 0) && (*(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
+  SecurityValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetadataBuffer;
+  ValidationStatusCode = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleBuffer);
+  if ((ValidationStatusCode == 0) && (*(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
     DataBufferPointer = ProcessingWorkspace;
     ProcessedObjectCount = 0;
-    CurrentPosition = 0;
+    ObjectListSize = 0;
     MaximumProcessableObjects = MaximumProcessableItemsLimit;
-    OperationResult = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset),
+    ValidationStatusCode = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset),
                           &DataBufferPointer);
-    if (OperationResult == 0) {
-      if (0 < CurrentPosition) {
-        CurrentObjectIndex = 0;
+    if (ValidationStatusCode == 0) {
+      if (0 < ObjectListSize) {
+        ObjectIterator = 0;
         do {
-          uint8_t ObjectStatus = *(uint8_t *)(DataBufferPointer + CurrentObjectIndex);
-          OperationResult = ValidateObjectStatus(ObjectStatus);
-          if (OperationResult != RegistrationStatusSuccess) {
+          uint8_t ObjectStatus = *(uint8_t *)(DataBufferPointer + ObjectIterator);
+          ValidationStatusCode = ValidateObjectStatus(ObjectStatus);
+          if (ValidationStatusCode != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectStatus, 1);
           }
           ProcessedObjectCount++;
-          CurrentObjectIndex += ResourceEntrySizeBytes;
-        } while (ProcessedObjectCount < CurrentPosition);
+          ObjectIterator += ResourceEntrySizeBytes;
+        } while (ProcessedObjectCount < ObjectListSize);
       }
       FreeObjectListMemory(&DataBufferPointer);
     }
@@ -4279,7 +4279,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
       FreeObjectListMemory(&DataBufferPointer);
     }
   }
-        PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetaDataBuffer);
+        PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)ObjectMetadataBuffer);
 }
 
 
@@ -4529,11 +4529,11 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
 {
   int64_t *ResultPointer;
   int64_t *ResourceTablePointer;
-  int64_t *ResourceIndexPointer;
-  int ValidationStatusCode;
-  uint ProcessResult;
+  int64_t *ResourceIterator;
+  int ObjectValidationStatusCode;
+  uint SystemProcessResult;
   uint64_t OperationResult;
-  int64_t *ResourceDataAddress;
+  int64_t *ResourceDataPointer;
   int64_t *ContextDataPointer;
   int64_t *CleanupDataPointer;
   int64_t *NullDataPointer;
@@ -4541,7 +4541,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
   int64_t ValidationContext;
   int PackageValidationStatusCode;
   int64_t *ResourceTablePointerPointer;
-  int OperationStatusCode;
+  int SystemOperationStatusCode;
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterSecondaryOffset),&ValidationContext);
   ValidationStatusCode = (int)OperationResult;
@@ -8605,38 +8605,38 @@ uint8_t ProcessBufferedFloatComparison(void)
   float MaximumRangeValue;
   
   // 从缓冲区获取资源数据指针
-  ResourceDataAddress = *(int64_t *)(BufferContext + BufferDataOffset);
-  if (ResourceDataAddress == 0) {
+  ResourceDataPointer = *(int64_t *)(BufferContext + BufferDataOffset);
+  if (ResourceDataPointer == 0) {
     return ErrorInvalidResourceData;
   }
   
   // 检查资源状态标志
-  if ((*(byte *)(ResourceDataAddress + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
+  if ((*(byte *)(ResourceDataPointer + ResourceStatusFlagsOffset) & ResourceStatusActiveMask) != 0) {
     return ErrorResourceValidationFailed;
   }
   
   // 处理对象上下文数据
-  OperationStatusCode = ValidateObjectContextAndProcessData(ResourceDataAddress, ObjectContext + ObjectContextValidationDataOffset, ObjectContext + ObjectContextProcessingDataOffset);
-  if (OperationStatusCode == 0) {
+  ValidationStatusCode = ValidateObjectContextAndProcessData(ResourceDataPointer, ObjectContext + ObjectContextValidationDataOffset, ObjectContext + ObjectContextProcessingDataOffset);
+  if (ValidationStatusCode == 0) {
     // 获取要比较的浮点数值
-    FloatValueToCompare = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
+    ComparisonValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
     
     // 获取范围值
-    MinRangeValue = *(float *)(ResourceDataAddress + ResourceMinRangeOffset);
-    MaxRangeValue = *(float *)(ResourceDataAddress + ResourceMaxRangeOffset);
+    MinimumRangeValue = *(float *)(ResourceDataPointer + ResourceMinRangeOffset);
+    MaximumRangeValue = *(float *)(ResourceDataPointer + ResourceMaxRangeOffset);
     
     // 检查是否在范围内（包含边界值）
-    if ((MinRangeValue <= FloatValueToCompare) && (FloatValueToCompare <= MaxRangeValue)) {
+    if ((MinimumRangeValue <= ComparisonValue) && (ComparisonValue <= MaximumRangeValue)) {
       // 在范围内，更新状态并释放资源
-      OperationStatusCode = *(uint8_t *)(SystemContext + SystemResourceManagerOffset);
-      *(float *)(StackBuffer + 4) = FloatValueToCompare;
+      ValidationStatusCode = *(uint8_t *)(SystemContext + SystemResourceManagerOffset);
+      *(float *)(StackBuffer + 4) = ComparisonValue;
       
       // 释放系统上下文资源
-      ReleaseSystemContextResources(OperationStatusCode);
+      ReleaseSystemContextResources(ValidationStatusCode);
     }
-    OperationStatusCode = 0x1c; // ErrorValueOutOfRange
+    ValidationStatusCode = 0x1c; // ErrorValueOutOfRange
   }
-  return OperationStatusCode;
+  return ValidationStatusCode;
 }
 
 

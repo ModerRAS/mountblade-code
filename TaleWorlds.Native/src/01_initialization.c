@@ -19780,36 +19780,36 @@ void UnlockSystemMutex(void* *MutexHandle)
  * @param syncFlag 同步标志
  * @return 成功返回1，失败返回错误代码
  */
-uint64_t WaitForSystemNodeReady(long long systemNodePointer, uint64_t timeoutParameter, uint64_t conditionVariable, uint64_t syncFlag)
+uint64_t WaitForSystemNodeReady(long long SystemNodePointer, uint64_t TimeoutParameter, uint64_t ConditionVariable, uint64_t SyncFlag)
 
 {
-  bool systemNodeReady;
-  int mutexLockResult;
-  long long mutexHandle;
-  uint64_t waitTimeout;
-  bool waitFlag;
+  bool SystemNodeReady;
+  int MutexLockResult;
+  long long MutexHandle;
+  uint64_t WaitTimeout;
+  bool WaitFlag;
   
-  waitTimeout = 0xfffffffffffffffe;
-  mutexHandle = systemNodePointer + 0x48;
-  mutexLockResult = _Mtx_lock();
-  if (mutexLockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexLockResult);
+  WaitTimeout = 0xfffffffffffffffe;
+  MutexHandle = SystemNodePointer + 0x48;
+  MutexLockResult = _Mtx_lock();
+  if (MutexLockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(MutexLockResult);
   }
-  waitFlag = true;
-  if (*(char *)(systemNodePointer + 0x98) != '\x01') {
-    char NodeStatus = *(char *)(systemNodePointer + 0x98);
-    while (systemNodeReady == false) {
-      mutexLockResult = _Cnd_wait(systemNodePointer,mutexHandle,conditionVariable,syncFlag,waitTimeout,mutexHandle,waitFlag);
-      if (mutexLockResult != 0) {
-        __Throw_C_error_std__YAXH_Z(mutexLockResult);
+  WaitFlag = true;
+  if (*(char *)(SystemNodePointer + 0x98) != '\x01') {
+    char NodeStatus = *(char *)(SystemNodePointer + 0x98);
+    while (SystemNodeReady == false) {
+      MutexLockResult = _Cnd_wait(SystemNodePointer,MutexHandle,ConditionVariable,SyncFlag,WaitTimeout,MutexHandle,WaitFlag);
+      if (MutexLockResult != 0) {
+        __Throw_C_error_std__YAXH_Z(MutexLockResult);
       }
-      NodeStatus = *(char *)(systemNodePointer + 0x98);
+      NodeStatus = *(char *)(SystemNodePointer + 0x98);
     }
   }
-  *(char *)(systemNodePointer + 0x98) = 0;
-  mutexLockResult = _Mtx_unlock(mutexHandle);
-  if (mutexLockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexLockResult);
+  *(char *)(SystemNodePointer + 0x98) = 0;
+  MutexLockResult = _Mtx_unlock(MutexHandle);
+  if (MutexLockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(MutexLockResult);
   }
   return 1;
 }
