@@ -1130,11 +1130,11 @@ NETWORK_PROCESSING_LOOP:
       if ((NetworkPacketProcessingStatus != 0) && (NetworkConnectionContextHandle = *NetworkOperationStatusBuffer, 0 < NetworkPacketProcessingStatus)) {
         NetworkPacketFlagsBuffer = NetworkStatusBuffer;
         do {
-          NetworkContextDataArray = (NetworkStatus *)((NetworkConnectionContextHandle - (long long)NetworkStatusBuffer) + (long long)NetworkPacketFlagsBuffer);
-          NetworkStatus ConnectionValidationStatus = NetworkContextDataArray[1];
-          NetworkStatus ConnectionTimeoutStatus = NetworkContextDataArray[2];
-          NetworkStatus SecondaryNetworkProcessingStatus = NetworkContextDataArray[3];
-          *NetworkPacketFlagsBuffer = *NetworkContextDataArray;
+          NetworkConnectionContextData = (NetworkStatus *)((NetworkConnectionContextHandle - (long long)NetworkStatusBuffer) + (long long)NetworkPacketFlagsBuffer);
+          NetworkStatus ConnectionValidationStatus = NetworkConnectionContextData[1];
+          NetworkStatus ConnectionTimeoutStatus = NetworkConnectionContextData[2];
+          NetworkStatus SecondaryNetworkProcessingStatus = NetworkConnectionContextData[3];
+          *NetworkPacketFlagsBuffer = *NetworkConnectionContextData;
           NetworkPacketFlagsBuffer[1] = ConnectionValidationStatus;
           NetworkPacketFlagsBuffer[2] = ConnectionTimeoutStatus;
           NetworkPacketFlagsBuffer[3] = SecondaryNetworkProcessingStatus;
