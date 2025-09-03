@@ -5180,15 +5180,6 @@ void TriggerSystemException(void) {
  * @return void 无返回值
  * @note 此函数通常在系统关闭或资源回收时调用
  */
-/**
- * @brief 清理系统资源
- * 
- * 清理系统资源，释放不再使用的内存和对象。
- * 目前为空实现，预留用于后续系统资源清理逻辑。
- * 
- * @return void 无返回值
- * @note 此函数通常在系统关闭或资源回收时调用
- */
 void CleanupSystemResources(void)
 {
   // 预留系统资源清理逻辑

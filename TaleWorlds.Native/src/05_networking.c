@@ -1788,32 +1788,32 @@ NetworkHandle NetworkProcessValidatedPacket(int64_t ConnectionContext, int64_t *
     return NetworkErrorInvalidPacket;
   }
   NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffsetFirst);
-  ProcessingDataArray[0] = PrimaryDataStatus;
-  ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ProcessingDataArray, 4);
-  if ((int)ProcessingResult == 0) {
+  ProcessingStatusArray[0] = PrimaryDataStatus;
+  PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ProcessingStatusArray, 4);
+  if ((int)PacketProcessingResult == 0) {
     if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      ProcessingResult = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
-      if ((int)ProcessingResult != 0) {
-        return ProcessingResult;
+      PacketProcessingResult = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
+      if ((int)PacketProcessingResult != 0) {
+        return PacketProcessingResult;
       }
     }
     else {
-      ProcessingResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetFirst);
-      if ((int)ProcessingResult != 0) {
-        return ProcessingResult;
+      PacketProcessingResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetFirst);
+      if ((int)PacketProcessingResult != 0) {
+        return PacketProcessingResult;
       }
-      ProcessingResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetSecond);
-      if ((int)ProcessingResult != 0) {
-        return ProcessingResult;
+      PacketProcessingResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetSecond);
+      if ((int)PacketProcessingResult != 0) {
+        return PacketProcessingResult;
       }
     }
-    ProcessingResult = FinalizePacket(PacketData, ConnectionContext + NetworkConnectionFinalizeOffset, NetworkConnectionFinalizeValue);
-    return ProcessingResult;
+    PacketProcessingResult = FinalizePacket(PacketData, ConnectionContext + NetworkConnectionFinalizeOffset, NetworkConnectionFinalizeValue);
+    return PacketProcessingResult;
   }
-  return ProcessingResult;
+  return PacketProcessingResult;
 }
 
 /**
