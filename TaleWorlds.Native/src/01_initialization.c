@@ -25732,7 +25732,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   
   SystemThreadHandle4 = SystemGlobalStatusFlags;
   systemSemaphore = 0xfffffffffffffffe;
-  encryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)arrayUnsigned368;
+  EncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)ArrayUnsigned368;
   ThreadLocalStorage = (uint8_t *)0x0;
   MemoryAllocationSize = 0;
   longValue260 = SystemGlobalStatusFlags;

@@ -4836,14 +4836,12 @@ uint8_t InitializeBasicObjectHandle(int64_t ObjectContext) {
 /**
  * @brief 清理对象句柄
  * 
- * 该函数用于清理系统对象的句柄，释放相关资源
- * 主要用于内存管理和资源清理
+ * 该函数用于清理系统对象的句柄，释放相关资源。
+ * 主要用于内存管理和资源清理操作，确保系统资源被正确释放。
  * 
- * @return uint8_t 操作状态码，0表示成功
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t CleanupObjectHandle(void)
-
-{
+uint8_t CleanupObjectHandle(void) {
   int64_t HandleIdentifier = 0;
   int64_t MemoryAddressPointer;
   
@@ -4854,7 +4852,7 @@ uint8_t CleanupObjectHandle(void)
     MemoryAddressPointer = HandleIdentifier - 8;
   }
   if (*(int64_t *)(MemoryAddressPointer + ObjectHandleMemoryOffset) != 0) {
-          ExecuteSystemExitOperation(*(int64_t *)(MemoryAddressPointer + ObjectHandleMemoryOffset), 1);
+    ExecuteSystemExitOperation(*(int64_t *)(MemoryAddressPointer + ObjectHandleMemoryOffset), 1);
   }
   return 0;
 }
