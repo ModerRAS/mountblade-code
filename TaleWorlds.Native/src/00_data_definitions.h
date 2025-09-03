@@ -7257,7 +7257,7 @@ ProcessSystemModuleConfiguration(uint64_t SystemId, longlong *DataBuffer, uint64
       }
       if ((pUnsignedValue == (uint *)SystemTertiaryParameter[1]) || (*(uint *)(ModuleInitializationResult + LongData) < *pUnsignedValue)) {
         NetworkRequestResult = CreateNetworkRequestContext(SystemParameterPointer,*(uint32_t *)(ModuleInitializationResult + LongData),SystemQuaternaryParameter);
-        ProcessNetworkRequestConfiguration(SystemParameterPointer,NetworkRequestResult,param_5,SystemQuaternaryParameter,param_6);
+        ProcessNetworkRequestConfiguration(SystemParameterPointer,NetworkRequestResult,SystemFifthParameter,SystemQuaternaryParameter,SystemSixthParameter);
         NetworkRequestResult = 1;
       }
       LongData = LongData + 4;
@@ -10693,8 +10693,8 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   uint64_t *pStackParameter1;
   ulonglong MemoryAddress7;
   StackCounter3 = SystemMutexFlags;
-  plStack_120 = param_5;
-  lStack_d0 = param_6;
+  plStack_120 = SystemFifthParameter;
+  lStack_d0 = SystemSixthParameter;
   uStack_d8 = param_7;
   StackPointerBuffer = param_8;
   piStack_78 = param_9;
@@ -10706,7 +10706,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   uStack_108 = 0;
   pcStack_70 = SystemTertiaryParameter;
   StackCounter1 = SystemSecondaryParameter;
-  LongOffset = ProcessNetworkRequest(&puStack_f8,SystemQuaternaryParameter,SystemParameterPointer,param_5);
+  LongOffset = ProcessNetworkRequest(&puStack_f8,SystemQuaternaryParameter,SystemParameterPointer,SystemFifthParameter);
   uStack_108 = *(uint32_t *)(LongOffset + 0x10);
   puStack_110 = *(void **)(LongOffset + 8);
   uStack_100 = *(ulonglong *)(LongOffset + 0x18);
@@ -10727,9 +10727,9 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   }
   AllocateSystemMemory(&SystemMemoryAllocationBuffer,pMemoryAddress3);
   *param_9 = 0;
-  LongOffset = *param_5;
+  LongOffset = *SystemFifthParameter;
   IntegerCounter = 0;
-  if (LongOffset != param_5[1]) {
+  if (LongOffset != SystemFifthParameter[1]) {
     do {
       if (0xf < IntegerCounter) {
         InitializeSystemMemory(&SystemMemoryInitializationBuffer,0x10);
@@ -10769,7 +10769,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
           MemoryAddress7 = MemoryAddress6;
           MemoryAddress6 = MemoryAddress7 + 1;
         } while (pMemoryAddress3[MemoryAddress6] != '\0');
-        param_5 = plStack_120;
+        SystemFifthParameter = plStack_120;
         if (0 < (int)MemoryAddress6) {
           SystemBufferCopy(&puStack_140,MemoryAddress6 & 0xffffffff);
           memcpy(puStack_138 + uStack_130,pMemoryAddress3,(longlong)((int)MemoryAddress7 + 2));
@@ -10792,9 +10792,9 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
       *piStack_78 = IntegerCounter;
       param_7 = uStack_d8;
       SystemTertiaryParameter = pcStack_70;
-      param_6 = lStack_d0;
+      SystemSixthParameter = lStack_d0;
       param_9 = piStack_78;
-    } while (LongOffset != param_5[1]);
+    } while (LongOffset != SystemFifthParameter[1]);
   }
   pBooleanCheck2 = (char *)0x0;
   uStack_d8 = uStack_d8 & 0xffffffff00000000;
@@ -10807,7 +10807,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
         pBooleanCheck0 = pNetworkRequestStatus9;
         pNetworkRequestStatus9 = pBooleanCheck0 + 1;
       } while (*pNetworkRequestStatus9 != '\0');
-      for (pNetworkRequestStatus9 = *(char **)(param_6 + 0x30); pNetworkRequestStatus8 = pBooleanCheck2, pNetworkRequestStatus9 != (char *)0x0;
+      for (pNetworkRequestStatus9 = *(char **)(SystemSixthParameter + 0x30); pNetworkRequestStatus8 = pBooleanCheck2, pNetworkRequestStatus9 != (char *)0x0;
           pNetworkRequestStatus9 = *(char **)(pNetworkRequestStatus9 + 0x58)) {
         pNetworkRequestStatus4 = *(char **)pNetworkRequestStatus9;
         if (pNetworkRequestStatus4 == (char *)0x0) {
@@ -10956,9 +10956,9 @@ Label_18062e8bc:
       }
       IntegerCounter = (int)plStack_120 + 1;
       plStack_120 = (longlong *)CONCAT44(plStack_120._4_4_,IntegerCounter);
-      param_6 = param_6 + 0x3088;
+      SystemSixthParameter = SystemSixthParameter + 0x3088;
       SystemTertiaryParameter = pcStack_70;
-      lStack_d0 = param_6;
+      lStack_d0 = SystemSixthParameter;
     } while (IntegerCounter < *param_9);
   }
   puStack_118 = &SystemNullPointer;
@@ -11021,7 +11021,7 @@ char * SystemStringProcessBuffer(uint64_t SystemContextPointer,uint64_t BufferSi
   if (*(void **)(LongLoop + 8) != (void *)0x0) {
     pMemoryAddress0 = *(void **)(LongLoop + 8);
   }
-  HandleMemoryOperation(pMemoryAddress0,SystemQuaternaryParameter,param_5);
+  HandleMemoryOperation(pMemoryAddress0,SystemQuaternaryParameter,SystemFifthParameter);
   puStack_d0 = &SystemNullPointer;
   if (StackDataPointer != (uint32_t *)0x0) {
     CleanupSystemResources();
@@ -11056,7 +11056,7 @@ char * SystemStringProcessBuffer(uint64_t SystemContextPointer,uint64_t BufferSi
     }
   }
 Label_18062ee56:
-  *param_6 = pNetworkRequestStatus1;
+  *SystemSixthParameter = pNetworkRequestStatus1;
   if (pNetworkRequestStatus1 != (char *)0x0) {
     StringPointer = "decal_textures";
     do {
@@ -11085,7 +11085,7 @@ Label_18062ee56:
       }
     }
 Label_18062eece:
-    *param_6 = pNetworkRequestStatus1;
+    *SystemSixthParameter = pNetworkRequestStatus1;
     if (pNetworkRequestStatus1 == (char *)0x0) {
       puStack_90 = &SystemNullPointer;
       StackParameter4 = 0;
@@ -12096,9 +12096,9 @@ longlong SystemMemoryFree(longlong *memoryPtr)
     LongAddress = 32;
     SystemStateValue = 32;
     do {
-      fVar28 = param_5 * *(float *)(LongData + 0x180d4a0a8);
-      ColorComponentA = param_5 * *(float *)(LongData + 0x180d4a0a4);
-      fVar30 = param_5 * *(float *)(LongData + 0x180d4a0a0);
+      fVar28 = SystemFifthParameter * *(float *)(LongData + 0x180d4a0a8);
+      ColorComponentA = SystemFifthParameter * *(float *)(LongData + 0x180d4a0a4);
+      fVar30 = SystemFifthParameter * *(float *)(LongData + 0x180d4a0a0);
       fVar20 = fVar30 * *SystemTertiaryParameter + ColorComponentA * SystemTertiaryParameter[4] + fVar28 * SystemTertiaryParameter[8] + SystemTertiaryParameter[0xc];
       fVar21 = fVar30 * SystemTertiaryParameter[1] + ColorComponentA * SystemTertiaryParameter[5] + fVar28 * SystemTertiaryParameter[9] + SystemTertiaryParameter[0xd];
       ColorComponentG = fVar30 * SystemTertiaryParameter[2] + ColorComponentA * SystemTertiaryParameter[6] + fVar28 * SystemTertiaryParameter[10] + SystemTertiaryParameter[0xe];
@@ -12157,9 +12157,9 @@ longlong SystemMemoryFree(longlong *memoryPtr)
       aMemoryAddress3 = rsqrtss(ZEXT416((uint)ColorComponentB),ZEXT416((uint)ColorComponentB));
       fVar25 = aMemoryAddress3._0_4_;
       fVar25 = fVar25 * 0.5 * (3.0 - ColorComponentB * fVar25 * fVar25);
-      fStack_370 = fVar25 * fVar26 * param_5 + fVar20;
-      ColorComponentB = fVar25 * fVar27 * param_5 + fVar21;
-      fVar25 = fVar25 * fVar29 * param_5 + ColorComponentG;
+      fStack_370 = fVar25 * fVar26 * SystemFifthParameter + fVar20;
+      ColorComponentB = fVar25 * fVar27 * SystemFifthParameter + fVar21;
+      fVar25 = fVar25 * fVar29 * SystemFifthParameter + ColorComponentG;
       uStack_378 = CONCAT44(ColorComponentB,fVar25);
       *pfVar3 = fVar25;
       pfVar3[1] = ColorComponentB;
@@ -12208,7 +12208,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
         SystemStateValue = LongData + 1;
       }
       if (((SystemParameterPointer2 == '\0') || ((NetworkRequestResult & 1) != 0)) &&
-         (NetworkRequestStatus = CalculateSystemValue((double)((float)(int)NetworkRequestResult * 0.19634955),SUB84((double)param_6,0),
+         (NetworkRequestStatus = CalculateSystemValue((double)((float)(int)NetworkRequestResult * 0.19634955),SUB84((double)SystemSixthParameter,0),
                                 (double)param_7), NetworkRequestStatus != '\0')) {
         fStack_370 = *(float *)(&uStack_2e0 + SystemStateValue * 2) - *(float *)(&uStack_2e0 + LongData * 2);
         uStack_378 = CONCAT44(afStack_2e8[SystemStateValue * 4 + 1] - afStack_2e8[LongData * 4 + 1],

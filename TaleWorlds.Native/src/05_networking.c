@@ -1700,24 +1700,24 @@ NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t C
   NetworkByte ValidationBuffer [32];                    // 验证缓冲区
   NetworkByte EncryptionBuffer [32];                    // 加密缓冲区
   
-  ValidationResult = DecodePacket(PacketData, EncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
-  if (((int)ValidationResult == 0) &&
-     (ValidationResult = DecodePacket(PacketData, ValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)ValidationResult == 0)) {
+  SecurityValidationResult = DecodePacket(PacketData, EncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
+  if (((int)SecurityValidationResult == 0) &&
+     (SecurityValidationResult = DecodePacket(PacketData, ValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
-    if ((int)ValidationResult == 0) {
+    SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    if ((int)SecurityValidationResult == 0) {
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
-      if ((int)ValidationResult == 0) {
+      SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
+      if ((int)SecurityValidationResult == 0) {
           FinalizePacketProcessing(PacketData, ValidationBuffer);
       }
     }
   }
-  return ValidationResult;
+  return SecurityValidationResult;
 }
 
 /**

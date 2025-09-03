@@ -5262,7 +5262,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
  * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
  * 这是ValidateObjectHandleFromRegister函数的另一个版本，提供了替代的验证逻辑
  */
-uint32_t ValidateObjectHandleFromRegisterAlternative(void)
+uint32_t ValidateObjectHandleFromRegisterAlternate(void)
 {
   int64_t SystemRegisterContext;
   int64_t ValidatedObjectMemoryAddress;
@@ -5292,6 +5292,16 @@ uint32_t ValidateObjectHandleFromRegisterAlternative(void)
  * 当主异常处理路径不可用时，使用此替代路径
  * 
  * @return 无返回值
+ * @note 此函数会执行系统退出操作
+ * @warning 这是一个异常处理函数，调用后系统将退出
+ */
+/**
+ * @brief 触发系统异常替代路径
+ * 
+ * 该函数负责触发系统异常处理的替代路径
+ * 当主异常处理路径不可用时，使用此替代路径
+ * 
+ * @return void 无返回值
  * @note 此函数会执行系统退出操作
  * @warning 这是一个异常处理函数，调用后系统将退出
  */
