@@ -16675,8 +16675,8 @@ uint32_t HandleResourceHashProcessing(int64_t *ResourceTablePointer, int Resourc
     }
     TotalProcessed = 0;
     ProcessedBytes = 0;
-    HashIndex = *(uint3 *)((int64_t)ResourceIndex * 3 + ResourceTablePointer[6]);
-    while (EntryIndex = (uint)HashIndex, EntryIndex != 0xffffff) {
+    HashTableIndex = *(uint3 *)((int64_t)ResourceIndex * 3 + ResourceTablePointer[6]);
+    while (EntryIndex = (uint)HashTableIndex, EntryIndex != 0xffffff) {
       HashValue = *(uint *)(*ResourceTablePointer + (uint64_t)EntryIndex * 8);
       if ((HashValue & 0xffffff) != 0xffffff) {
         ResourceOffset = (uint64_t)(HashValue & 0xffffff) + ResourceTablePointer[4];
