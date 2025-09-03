@@ -18865,8 +18865,8 @@ void InitializeSystemInfoAndUserEnvironment(void)
     AlternateStringBuffer = (void* *)0x0;
     SystemDataProcessingFlag = 0;
     SystemGlobalDataReferencePtr2 = &SystemGlobalDataReference;
-    GlobalDataFlags2 = 0;
-    AlternateStringBuffer2 = (void* *)0x0;
+    GlobalDataFlagsSecondary = 0;
+    AlternateStringBufferSecondary = (void* *)0x0;
     SystemInitFlag = 0;
     SystemMemoryOffset = (long long *)ConcatenatedValue44(SystemMemoryOffset.HighPart,0x10);
     OperationResult = GetComputerNameA(ComputerNameBufferPointer,&MemoryBufferSize);
@@ -18923,8 +18923,8 @@ HandleMemoryBufferOverflow:
     if (AlternateStringBuffer2 != (void* *)0x0) {
         SystemCleanupFunction();
     }
-    AlternateStringBuffer2 = (void* *)0x0;
-    GlobalDataFlags2 = GlobalDataFlags2 & MAX_UNSIGNED_32_BIT00000000;
+    AlternateStringBufferSecondary = (void* *)0x0;
+    GlobalDataFlagsSecondary = GlobalDataFlagsSecondary & MAX_UNSIGNED_32_BIT00000000;
     SystemGlobalDataReferencePtr2 = &SystemMemoryAllocatorReference;
     SystemGlobalDataReferencePtr = &SystemGlobalDataReference;
     if (AlternateStringBuffer != (void* *)0x0) {
