@@ -395,6 +395,7 @@ uint32_t NetworkConnectionPoolDeallocationCount;
 /**
  * 初始化网络连接池 - 初始化网络连接池
  * 此函数负责初始化网络连接池，为后续连接做准备
+ * @note 此函数会在系统启动时调用，确保连接池可用
  */
 void InitializeNetworkConnectionPool(void);
 
@@ -412,13 +413,15 @@ void *NetworkConnectionRoutingConfigDataD = &NetworkConnectionRoutingConfigDataS
 
 /**
  * 初始化网络套接字句柄 - 初始化网络套接字句柄
- * 此函数负责初始化网络套接字句柄
+ * 此函数负责初始化网络套接字句柄，为网络通信做准备
+ * @note 此函数会在网络连接建立前调用
  */
 void InitializeNetworkSocketHandle(void);
 
 /**
  * 绑定网络套接字 - 绑定网络套接字
  * 此函数负责绑定网络套接字到指定的地址和端口
+ * @note 此函数使用全局配置中的IP地址和端口号
  */
 void BindNetworkSocket(void);
 
@@ -426,19 +429,22 @@ uint32_t NetworkSocketBindingInfo;
 
 /**
  * 监听网络连接 - 监听网络连接
- * 此函数负责监听网络连接请求
+ * 此函数负责监听网络连接请求，等待客户端连接
+ * @note 此函数会使套接字进入监听状态
  */
 void ListenNetworkConnections(void);
 
 /**
  * 接受网络连接 - 接受网络连接
- * 此函数负责接受网络连接请求
+ * 此函数负责接受网络连接请求，建立新的客户端连接
+ * @note 此函数会为新的连接分配资源并初始化连接状态
  */
 void AcceptNetworkConnection(void);
 
 /**
  * 关闭网络连接 - 关闭网络连接
- * 此函数负责关闭网络连接
+ * 此函数负责关闭网络连接，释放相关资源
+ * @note 此函数会清理连接状态并释放分配的资源
  */
 void CloseNetworkConnection(void);
 
@@ -547,25 +553,29 @@ uint32_t NetworkConnectionEventHandler;
 
 /**
  * 传输数据 - 传输数据
- * 此函数负责传输数据
+ * 此函数负责通过网络连接传输数据
+ * @note 此函数会处理数据分包和重传机制
  */
 void TransmitData(void);
 
 /**
  * 检索网络数据 - 检索网络数据
- * 此函数负责检索网络数据
+ * 此函数负责从网络连接中检索接收到的数据
+ * @note 此函数会处理数据包的重组和验证
  */
 void RetrieveNetworkData(void);
 
 /**
  * 验证网络数据包真实性 - 验证网络数据包的真实性
- * 此函数负责验证网络数据包的真实性
+ * 此函数负责验证网络数据包的真实性和完整性
+ * @note 此函数会检查数据包的签名和校验和
  */
 void ValidateNetworkPacketAuthenticity(void);
 
 /**
  * 处理网络数据包处理 - 处理网络数据包处理
- * 此函数负责处理网络数据包处理
+ * 此函数负责处理网络数据包的接收和发送逻辑
+ * @note 此函数会根据数据包类型调用相应的处理函数
  */
 void ProcessNetworkPacketHandling(void);
 

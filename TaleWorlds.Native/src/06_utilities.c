@@ -75719,7 +75719,18 @@ void CleanupMemoryResourceContext(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void Unwind_18090ad10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源上下文处理函数
+ * 
+ * 该函数负责清理系统级别的资源上下文
+ * 执行系统资源的释放和清理工作
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ * @note 此函数处理系统资源的清理
+ */
+void CleanupSystemResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75733,7 +75744,18 @@ void Unwind_18090ad10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ad30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理线程资源上下文处理函数
+ * 
+ * 该函数负责清理线程相关的资源上下文
+ * 释放线程资源和同步对象
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ * @note 此函数专门处理线程资源的清理
+ */
+void CleanupThreadResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75747,7 +75769,18 @@ void Unwind_18090ad30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ad50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理文件资源上下文处理函数
+ * 
+ * 该函数负责清理文件相关的资源上下文
+ * 释放文件句柄和相关资源
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ * @note 此函数专门处理文件资源的清理
+ */
+void CleanupFileResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75761,7 +75794,18 @@ void Unwind_18090ad50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ad70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理数据库资源上下文处理函数
+ * 
+ * 该函数负责清理数据库相关的资源上下文
+ * 释放数据库连接和相关资源
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ * @note 此函数专门处理数据库资源的清理
+ */
+void CleanupDatabaseResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
