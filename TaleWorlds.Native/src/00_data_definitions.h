@@ -4085,10 +4085,10 @@ LabelSystemOperationExit:
     } while (uStack_2f0 < uStack_150);
   }
   StackBufferPointer = &SystemMemoryPool;
-  puStack_90 = aStackParameter3;
-  aStackParameter3[0] = 0;
+  UnsignedStackPointer = StackParameterBuffer;
+  StackParameterBuffer[0] = 0;
   StackBufferSize = 16;
-  strcpy_s(aStackParameter3,64,&SystemStackBufferA);
+  strcpy_s(StackParameterBuffer,64,&SystemStackBufferA);
   BooleanFlag = ProcessSystemData(SystemDataPointer,&StackBufferPointer);
   StackBufferPointer = &SystemBufferTemplate;
   if (BooleanFlag != '\0') {
@@ -10682,7 +10682,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   ulonglong uStack_a8;
   uint64_t *StackPointerBuffer;
   void *StackBufferPointer;
-  uint32_t *puStack_90;
+  uint32_t *UnsignedStackPointer;
   uint32_t StackBufferSize;
   uint64_t StackParameter3;
   int *piStack_78;
@@ -10922,11 +10922,11 @@ Label_18062e8bc:
           pMemoryAddress2 = (uint8_t *)0x0;
           StackBufferPointer = &SystemNullPointer;
           StackParameter3 = 0;
-          puStack_90 = (uint32_t *)0x0;
+          UnsignedStackPointer = (uint32_t *)0x0;
           StackBufferSize = 0;
           pMemoryAddress0 = (uint32_t *)MemoryAllocateEx(SystemMemoryAllocator,0x16,0x13);
           *(uint8_t *)pMemoryAddress0 = 0;
-          puStack_90 = pMemoryAddress0;
+          UnsignedStackPointer = pMemoryAddress0;
           uVar6 = MemoryValidateEx(pMemoryAddress0);
           StackParameter3 = CONCAT44(StackParameter3._4_4_,uVar6);
           *pMemoryAddress0 = 0x6f632022;
@@ -11002,7 +11002,7 @@ char * SystemStringProcessBuffer(uint64_t SystemContextPointer,uint64_t BufferSi
   uint32_t *puStack_a8;
   uint32_t uStack_a0;
   ulonglong StackLimitValue;
-  void *puStack_90;
+  void *UnsignedStackPointer;
   uint32_t *pStackBufferSize;
   uint32_t StackParameter3;
   uint64_t StackParameter4;
@@ -11087,7 +11087,7 @@ Label_18062ee56:
 Label_18062eece:
     *SystemSixthParameter = pNetworkRequestStatus1;
     if (pNetworkRequestStatus1 == (char *)0x0) {
-      puStack_90 = &SystemNullPointer;
+      UnsignedStackPointer = &SystemNullPointer;
       StackParameter4 = 0;
       pStackBufferSize = (uint32_t *)0x0;
       StackParameter3 = 0;

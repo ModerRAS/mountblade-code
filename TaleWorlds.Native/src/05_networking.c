@@ -1779,10 +1779,10 @@ NetworkHandle NetworkProcessValidatedPacket(int64_t ConnectionContext, int64_t *
     return NetworkErrorInvalidPacket;
   }
   NetworkStatus QuaternaryValidation = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth);
-  ValidationDataArray[0] = QuaternaryValidation;
-  ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ValidationDataArray, 4);
-  if ((int)ProcessingResult != 0) {
-    return ProcessingResult;
+  ValidationStatusArray[0] = QuaternaryValidation;
+  PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
+  if ((int)PacketProcessingResult != 0) {
+    return PacketProcessingResult;
   }
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorInvalidPacket;
