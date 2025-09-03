@@ -1257,8 +1257,8 @@ void* SystemDataBufferStandardExtraThirtySix;
 void* SystemDataBufferStandardExtraThirtySeven;
 void* SystemDataBufferStandardExtraThirtyEight;
 void* SystemDataBufferStandardExtraThirtyNine;
-void* SystemDataBufferStandardExtra40;
-void* SystemDataBufferStandardExtra41;
+void* SystemDataBufferStandardExtraForty;
+void* SystemDataBufferStandardExtraFortyOne;
 
 // 系统初始化协调器
 void* SystemInitializationCoordinator;
