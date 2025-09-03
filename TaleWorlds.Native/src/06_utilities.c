@@ -27646,15 +27646,15 @@ SecurityValidationLoop:
             ResourceHashStartPointer = ResourceHashStartPointer + 1) {
           ResourceHashMemoryPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),0x28,&MemoryBlockTemplate,0xc1c,0)
           ;
-          if (SystemDataPointer == 0) {
+          if (ResourceHashMemoryPointer == 0) {
             ResourceCount = 0x26;
             goto SecurityValidationLoop;
           }
           PrimaryResourceHash = *ResourceHashStartPointer;
-          *(int64_t *)SystemDataPointer = SystemDataPointer;
-          *(int64_t *)(SystemDataPointer + 8) = SystemDataPointer;
-          *(uint32_t *)(SystemDataPointer + 0x10) = PrimaryResourceHash;
-          *(uint8_t *)(SystemDataPointer + 0x18) = 0;
+          *(int64_t *)ResourceHashMemoryPointer = ResourceHashMemoryPointer;
+          *(int64_t *)(ResourceHashMemoryPointer + 8) = ResourceHashMemoryPointer;
+          *(uint32_t *)(ResourceHashMemoryPointer + 0x10) = PrimaryResourceHash;
+          *(uint8_t *)(ResourceHashMemoryPointer + 0x18) = 0;
           *(uint32_t *)(SystemDataPointer + 0x20) = 0;
           ResourceContextOffset = VerifyResourceIntegrity(SystemContextRegister + 0x58,SystemDataPointer);
           ResourceCount = (uint64_t)ResourceContextOffset;
