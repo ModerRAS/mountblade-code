@@ -5109,6 +5109,15 @@ void InitializeSystemResources(void) {
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  * @warning 验证失败时会触发系统退出操作
  */
+/**
+ * @brief 验证对象句柄有效性
+ * 
+ * 该函数用于验证对象句柄的有效性，确保对象可以安全使用
+ * 通过上下文验证来检查对象的合法性和状态
+ * 
+ * @param ObjectHandleToValidate 要验证的对象句柄
+ * @return uint8_t 验证结果，0表示成功，非0表示失败
+ */
 uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
   uint8_t ValidationStatus;
   int64_t ValidatedContextAddress;
@@ -5142,15 +5151,23 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
  * @note 此函数直接从寄存器读取对象指针，需要确保寄存器状态正确
  * @warning 验证失败时会触发系统退出操作
  */
+/**
+ * @brief 从寄存器验证对象句柄
+ * 
+ * 该函数从系统寄存器中获取对象句柄并进行验证
+ * 主要用于系统级别的对象句柄验证操作
+ * 
+ * @return uint32_t 验证结果，0表示成功，非0表示失败
+ */
 uint32_t ValidateObjectHandleFromRegister(void) {
-  int64_t RegisterContext = 0;
+  int64_t SystemRegister = 0;
   int64_t ObjectMemoryAddress;
   
-  if (RegisterContext == 0) {
+  if (SystemRegister == 0) {
     ObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryAddress = RegisterContext + -8;
+    ObjectMemoryAddress = SystemRegister - 8;
   }
   if (*(int64_t *)(ObjectMemoryAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
