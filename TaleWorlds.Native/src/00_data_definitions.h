@@ -776,6 +776,24 @@ void* SystemGlobalDataPointerManager;
 void* SystemGlobalDataPointerHandler;
 void* SystemGlobalDataPointerProcessor;
 
+// 全局系统数据指针 - 用于存储系统核心数据
+void* GlobalSystemDataPointer;
+
+// 全局输入系统数据指针 - 用于存储输入系统相关的数据
+void* GlobalUnknownInputDataPointer;
+
+// 全局网络系统数据指针 - 用于存储网络系统相关的数据
+void* GlobalUnknownNetworkDataPointer;
+
+// 全局字符串处理数据库 - 用于存储字符串处理相关的数据
+void* GlobalUnknownDataBase;
+
+// 系统未知数据常量 - 用于存储系统配置和处理的未知数据
+char SystemUnknownData1[] = "SystemConfigurationData1";
+char SystemUnknownData2[] = "SystemConfigurationData2";
+char SystemUnknownData3[] = "SystemConfigurationData3";
+char SystemUnknownData4[] = "SystemConfigurationData4";
+
 // 字符串处理器数据基址 - 用于存储字符串处理器的数据结构
 void* StringProcessorDatabaseMain;
 void* StringProcessorDatabaseBackup;

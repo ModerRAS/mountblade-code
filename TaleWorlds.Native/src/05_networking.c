@@ -1081,12 +1081,16 @@ NETWORK_PROCESSING_LOOP:
 }
 
 /**
- * 处理连接状态 - 处理网络连接状态变化
- * 此函数负责处理网络连接状态的变化，包括连接建立、断开、重连等状态转换
+ * @brief 处理网络连接状态变化
+ * 
+ * 处理网络连接状态的变化，包括连接建立、断开、重连等状态转换。
+ * 此函数会根据数据包内容更新连接状态，并触发相应的状态转换操作。
+ * 
  * @param ConnectionContext 连接上下文句柄，包含当前连接的状态信息
  * @param PacketData 数据包数据，包含状态更新的相关信息
  * @return NetworkHandle 处理结果句柄，0表示成功，其他值表示错误码
- * @note 此函数会根据数据包内容更新连接状态，并触发相应的状态转换操作
+ * 
+ * @note 此函数使用状态机模式处理连接状态转换
  * @warning 如果状态转换失败，系统会记录错误日志并尝试恢复到安全状态
  */
 NetworkHandle NetworkProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
@@ -1143,10 +1147,15 @@ NETWORK_PROCESSING_LOOP:
 }
 
 /**
- * 完成连接处理器 - 完成网络连接处理器的最终化操作
- * 此函数负责完成网络连接处理器的最终化操作，释放相关资源
- * @return NetworkHandle 完成结果句柄，0x26表示成功完成
- * @note 此函数在网络连接处理完成后调用，确保所有资源正确释放
+ * @brief 完成网络连接处理器
+ * 
+ * 完成网络连接处理器的最终化操作，释放相关资源。
+ * 此函数在网络连接处理完成后调用，确保所有资源正确释放。
+ * 
+ * @return NetworkHandle 完成结果句柄，NetworkConnectionFinalizeValue表示成功完成
+ * 
+ * @note 此函数是连接处理流程的最后一步
+ * @warning 确保在调用此函数前所有连接操作已经完成
  */
 NetworkHandle NetworkFinalizeConnectionHandler(void)
 {
