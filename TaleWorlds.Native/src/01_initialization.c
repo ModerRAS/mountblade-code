@@ -13525,7 +13525,7 @@ int InitializeSystemGlobalDataTable(void)
   long long DataTableStatus;
   void* SystemRegisterValue;
   
-  SystemGlobalDataPointerD = &SystemMemoryNodeTemplateA;
+  SystemGlobalDataQuaternary = &SystemMemoryNodeTemplateA;
   SystemGlobalDataReferenceB = &SystemGlobalDataBufferB;
 
 // 函数: void InitializeSystemSearchNodeManager(void)
@@ -15107,7 +15107,7 @@ int InitializeSystemModuleF(void)
   long long SystemOperationStatus;
   void* SystemRegister;
   
-  SystemGlobalDataPointerE = &SystemMemoryNodeTemplateB;
+  SystemGlobalDataQuinary = &SystemMemoryNodeTemplateB;
   SystemGlobalDataReferenceC = &SystemGlobalDataBufferC;
 
 /**
@@ -18228,7 +18228,7 @@ void SystemNetworkManagerInitializer(void)
   uint32_t StackBufferSize;
   uint8_t SystemProcessingBuffer[136];
   
-  stackPointerParameter = &SystemGlobalDataPointerC;
+  stackPointerParameter = &SystemGlobalDataTertiary;
   StackBufferPointer = StackBuffer;
   SystemProcessingBuffer[0] = 0;
   StackBufferSize = 0x10;
@@ -20851,8 +20851,8 @@ void InitializeSystemCoreEngine(void)
   verticalResolutionFactor = (float)GetSystemResolutionFactor(SystemOperationFlags,&VerticalResolutionBuffer);
   VerticalResolutionBuffer = &SystemMemoryAllocatorReference;
   CurrentThreadId = GetSystemInitializationStatus();
-  if (0 < SystemConfigDataPointerD) {
-    InitializeSystemConfiguration(&SystemConfigurationTemplate,&SystemConfigPathBuffer,0,SystemConfigDataPointerD + -1);
+  if (0 < SystemConfigDataQuaternary) {
+    InitializeSystemConfiguration(&SystemConfigurationTemplate,&SystemConfigPathBuffer,0,SystemConfigDataQuaternary + -1);
     SystemPathLengthCounter = SystemPathLengthCounter + -1;
     SystemPathOffset = (long long)SystemPathLengthCounter;
     systemCounter = -1;
