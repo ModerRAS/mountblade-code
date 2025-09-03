@@ -61255,9 +61255,9 @@ void InitializeSystemDataPrimaryPointer(void)
  * 该函数负责初始化系统数据指针002
  * 设置系统数据指针到系统数据结构
  * 
- * @note 此函数会设置 SystemDataPointer002 到 SystemDataStructure
+ * @note 此函数会设置 SystemDataSecondaryPointer 到 SystemDataStructure
  */
-void InitializeSystemDataPointer002(void)
+void InitializeSystemDataSecondaryPointer(void)
 
 {
   SystemDataSecondaryPointer = &SystemDataStructure;

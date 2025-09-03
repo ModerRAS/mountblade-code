@@ -1831,22 +1831,22 @@ NetworkHandle NetworkProcessValidatedPacket(int64_t ConnectionContext, int64_t *
  */
 NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, NetworkHandle *PacketData)
 {
-  NetworkHandle ValidationStatusCode;                     // 验证状态码
-  NetworkByte SecurityValidationBuffer [32];            // 安全验证缓冲区
-  NetworkByte EncryptionBuffer [32];                     // 加密缓冲区
+  NetworkHandle PacketValidationStatusCode;                     // 数据包验证状态码
+  NetworkByte ConnectionSecurityBuffer [32];            // 连接安全验证缓冲区
+  NetworkByte ConnectionEncryptionBuffer [32];                     // 连接加密缓冲区
   
-  ValidationStatusCode = DecodePacket(PacketData, EncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
-  if (((int)ValidationStatusCode == 0) &&
-     (ValidationStatusCode = DecodePacket(PacketData, SecurityValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)ValidationStatusCode == 0)) {
+  PacketValidationStatusCode = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
+  if (((int)PacketValidationStatusCode == 0) &&
+     (PacketValidationStatusCode = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)PacketValidationStatusCode == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    ValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
-    if ((int)ValidationStatusCode == 0) {
+    PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    if ((int)PacketValidationStatusCode == 0) {
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      ValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
+      PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
       if ((((int)ValidationStatusCode == 0) && (ValidationStatusCode = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)ValidationStatusCode == 0)) &&
          (ValidationStatusCode = HandlePacketData(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)ValidationStatusCode == 0)) {
           FinalizePacketProcessing(PacketData, SecurityValidationBuffer);
