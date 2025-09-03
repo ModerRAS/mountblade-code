@@ -202,7 +202,6 @@
 #define FileResourceTableOffset 0x888
 #define FileResourceHashEndOffset 0x890
 
-// Resource counter offset constants
 #define ResourceCounterOffset78 0x78
 #define ResourceCounterOffset88 0x88
 #define ResourceCounterOffsetA0 0xa0
@@ -75460,6 +75459,15 @@ void ProcessResourceContextAtOffset70(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
+/**
+ * @brief 处理偏移量0x78处的资源上下文
+ * 
+ * 该函数从验证上下文的指定偏移量获取资源上下文
+ * 并调用资源上下文中的方法处理相关操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
 void ProcessResourceContextAtOffset78(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -75474,6 +75482,15 @@ void ProcessResourceContextAtOffset78(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
+/**
+ * @brief 处理偏移量0x80处的资源上下文
+ * 
+ * 该函数从验证上下文的指定偏移量获取资源上下文
+ * 并调用资源上下文中的方法处理相关操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
 void ProcessResourceContextAtOffset80(uint8_t ObjectContext,int64_t ValidationContext)
 
 {

@@ -12747,31 +12747,31 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
 {
   uint MemoryAddress;
   longlong LongCounter;
-  byte bVar3;
+  byte NetworkStatusFlag;
   uint32_t *pNetworkRequestResult;
   uint64_t MemoryAllocationResult;
-  uint64_t uVar6;
+  uint64_t NetworkOperationResult;
   longlong SystemStateValue;
   longlong LongOffset;
   uint32_t UnsignedSize;
-  longlong lStackX_8;
-  uint8_t auStack_28 [16];
-  uVar6 = *(uint64_t *)(param_1 + 0x28);
+  longlong StackVariable8;
+  uint8_t StackBuffer28 [16];
+  NetworkOperationResult = *(uint64_t *)(NetworkContextPointer + 0x28);
   pNetworkRequestResult = (uint32_t *)GetStringProcessingResult();
-  LongCounter = *param_4;
+  LongCounter = *TimeoutParameter;
   UnsignedSize = *pNetworkRequestResult;
   LongOffset = LongCounter;
-  if ((*(uint *)(param_2 + 0x1c) >> 1 & 1) != 0) {
-    LongOffset = *param_3;
+  if ((*(uint *)(OperationType + 0x1c) >> 1 & 1) != 0) {
+    LongOffset = *RequestDataPointer;
     SystemStateValue = LongCounter - LongOffset;
-    uVar6 = *(uint64_t *)(param_1 + 0x30);
+    NetworkOperationResult = *(uint64_t *)(NetworkContextPointer + 0x30);
     if (-1 < SystemStateValue) {
       if (SystemStateValue < 1) {
         UnsignedSize = 0;
         LongOffset = LongCounter;
       }
       else {
-        MemoryAddress = *(uint *)(*(longlong *)(*(longlong *)(param_1 + 0x38) + 8) + 0x774);
+        MemoryAddress = *(uint *)(*(longlong *)(*(longlong *)(NetworkContextPointer + 0x38) + 8) + 0x774);
         if (MemoryAddress != 48000) {
           SystemStateValue = (SystemStateValue * 48000) / (longlong)(ulonglong)MemoryAddress;
         }
@@ -12783,26 +12783,26 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
       }
     }
   }
-  if (param_6 != '\0') {
-    (**(code **)(**(longlong **)(param_2 + 0x10) + 0x30))(*(longlong **)(param_2 + 0x10),auStack_28)
+  if (OperationFlag1 != '\0') {
+    (**(code **)(**(longlong **)(OperationType + 0x10) + 0x30))(*(longlong **)(OperationType + 0x10),StackBuffer28)
     ;
-    MemoryAllocationResult = AllocateNetworkResources(uVar6,auStack_28,LongOffset,
-                          *(uint32_t *)(*(longlong *)(param_2 + 0x10) + 0xb4));
+    MemoryAllocationResult = AllocateNetworkResources(NetworkOperationResult,StackBuffer28,LongOffset,
+                          *(uint32_t *)(*(longlong *)(OperationType + 0x10) + 0xb4));
     if ((int)MemoryAllocationResult != 0) {
       return MemoryAllocationResult;
     }
   }
-  uVar6 = ProcessNetworkCommunication(uVar6,*(uint64_t *)(param_2 + 0x10),LongOffset,*param_5,UnsignedSize,0,0,&lStackX_8);
-  if ((int)uVar6 == 0) {
-    if (param_7 != (char)uVar6) {
-      SetMemoryOffset(lStackX_8,LongOffset);
+  NetworkOperationResult = ProcessNetworkCommunication(NetworkOperationResult,*(uint64_t *)(OperationType + 0x10),LongOffset,*ResponseDataPointer,UnsignedSize,0,0,&StackVariable8);
+  if ((int)NetworkOperationResult == 0) {
+    if (OperationFlag2 != (char)NetworkOperationResult) {
+      SetMemoryOffset(StackVariable8,LongOffset);
     }
-    bVar3 = (byte)(*(uint *)(param_2 + 0x1c) >> 4) & 1;
-    *(uint *)(lStackX_8 + 0x4c) =
-         ~((bVar3 ^ 1) * 2) & ((uint)bVar3 + (uint)bVar3 | *(uint *)(lStackX_8 + 0x4c));
-    uVar6 = 0;
+    NetworkStatusFlag = (byte)(*(uint *)(OperationType + 0x1c) >> 4) & 1;
+    *(uint *)(StackVariable8 + 0x4c) =
+         ~((NetworkStatusFlag ^ 1) * 2) & ((uint)NetworkStatusFlag + (uint)NetworkStatusFlag | *(uint *)(StackVariable8 + 0x4c));
+    NetworkOperationResult = 0;
   }
-  return uVar6;
+  return NetworkOperationResult;
 }
     SystemProcessingEnabledFlag = '\x01';
   }
@@ -12811,20 +12811,20 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
 uint64_t SystemInitializeAudio(void)
 {
   char NetworkRequestStatus;
-  int StringIndex;
-  uint StringProcessingResult;
-  uint64_t in_stack_00000030;
+  int DeviceCapsResult;
+  uint AudioProcessingResult;
+  uint64_t AudioDeviceCaps;
   InitializeMemoryManager();
   FreeExternalReference(free_exref);
-  StringIndex = timeGetDevCaps(&stack0x00000030,8);
-  StringProcessingResult = 1;
-  if (StringIndex == 0) {
-    StringProcessingResult = 1;
-    if (1 < (uint)in_stack_00000030) {
-      StringProcessingResult = (uint)in_stack_00000030;
+  DeviceCapsResult = timeGetDevCaps(&AudioDeviceCaps,8);
+  AudioProcessingResult = 1;
+  if (DeviceCapsResult == 0) {
+    AudioProcessingResult = 1;
+    if (1 < (uint)AudioDeviceCaps) {
+      AudioProcessingResult = (uint)AudioDeviceCaps;
     }
   }
-  ProcessStringResult(StringProcessingResult);
+  ProcessStringResult(AudioProcessingResult);
   NetworkRequestStatus = GetSystemState();
   if (NetworkRequestStatus == '\0') {
     return 0x809200ff;
