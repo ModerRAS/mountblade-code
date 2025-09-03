@@ -8106,8 +8106,8 @@ uint8_t ValidateObjectAndProcessBufferContext(int64_t ObjectContext, int64_t Sys
     }
     ProcessingResult = ValidateBufferContext(*(uint8_t *)(*(int64_t *)(ObjectContextBuffer + ObjectContextSecondaryDataOffset) + BufferContextValidationOffset),
                                 ObjectContext + ObjectContextValidationDataOffset);
-    if ((int)ProcessingStatusCode == 0) {
-      ProcessingStatusCode = ProcessSystemObjectWithCleanup(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
+    if ((int)ProcessingResult == 0) {
+      ProcessingResult = ProcessSystemObjectWithCleanup(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
     }
   }
   return ProcessingResult;
