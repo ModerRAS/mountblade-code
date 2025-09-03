@@ -70997,7 +70997,7 @@ void ValidateSystemResourceContext(void);
  * 
  *FUN_18020eba0：ConfigureSystemResourceContext
  */
-char ConfigureSystemResourceContext(void* resourcePointer, int configFlag, long long additionalParameter, long long configurationFlag, long long configurationMask);
+char ConfigureSystemResourceContext(void* ResourcePointer, int ConfigFlag, long long AdditionalParameter, long long ConfigurationFlag, long long ConfigurationMask);
 
 /**
  * @brief 完成系统资源配置函数
@@ -71027,7 +71027,7 @@ void CleanupSystemResourceHandler(void);
  * 
  *FUN_18064e0d0：ReleaseSystemResourceHandle
  */
-void ReleaseSystemResourceHandle(void* resourceHandle, int releaseFlag);
+void ReleaseSystemResourceHandle(void* ResourceHandle, int ReleaseFlag);
 
 /**
  * @brief 处理系统资源数据函数
@@ -71043,7 +71043,7 @@ void ReleaseSystemResourceHandle(void* resourceHandle, int releaseFlag);
  * 
  *FUN_180060e40：ProcessSystemResourceData
  */
-char ProcessSystemResourceData(void* resourcePointer, void* dataPointer, void* resultPointer, long long configurationFlag, long long SystemOperationStatus);
+char ProcessSystemResourceData(void* ResourcePointer, void* DataPointer, void* ResultPointer, long long ConfigurationFlag, long long SystemOperationStatus);
 
 /**
  * @brief 验证系统资源状态函数

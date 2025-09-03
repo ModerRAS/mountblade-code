@@ -27317,13 +27317,13 @@ uint64_t ProcessResourceHashCalculationAndValidation(void)
   uint32_t secondaryFloatValidationResult;
   uint32_t resourceHashValidationCode;
   
-  pSecurityHashValue = (uint32_t *)AllocateMemoryBlock();
+  SecurityHashValuePointer = (uint32_t *)AllocateMemoryBlock();
   ResourceCount = 0;
   ResourceContextOffset = *(uint *)(SystemRegisterContext + 8);
   PrimaryResourceHash = *securityHashValuePointer;
-  ValidationStatusCode = pSecurityHashValue[1];
-  ValidationStatusCode = pSecurityHashValue[2];
-  LoopIncrement = pSecurityHashValue[3];
+  ValidationStatusCode = SecurityHashValuePointer[1];
+  ValidationStatusCode = SecurityHashValuePointer[2];
+  LoopIncrement = SecurityHashValuePointer[3];
   *(uint32_t *)(SystemExecutionPointer + -0x19) = PrimaryResourceHash;
   *(uint32_t *)(SystemExecutionPointer + -0x15) = ResourceHashStatus;
   *(uint32_t *)(SystemExecutionPointer + -0x11) = ResourceHashStatus;
@@ -29980,17 +29980,6 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-/**
- * @brief 次级上下文异常处理器
- * 
- * 该函数负责处理次级异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
 void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** SecondaryExceptionHandlerFunctionPointer;
   
@@ -30037,12 +30026,23 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
+/**
+ * @brief 四级上下文异常处理器
+ * 
+ * 该函数负责处理四级异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
+ * @param SystemContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
 void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  uint8_t *ResourceHashDataPointer;
+  uint8_t *QuaternaryResourceHashDataPointer;
   
-  ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
-  *ResourceHashDataPointer = &ResourceHashTemplate;
-  *ResourceHashDataPointer = &ResourceAllocationTemplate;
+  QuaternaryResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
+  *QuaternaryResourceHashDataPointer = &ResourceHashTemplate;
+  *QuaternaryResourceHashDataPointer = &ResourceAllocationTemplate;
   *ResourceHashPtr = &ResourceCacheTemplate;
   return;
 }
