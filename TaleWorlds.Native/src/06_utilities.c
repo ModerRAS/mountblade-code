@@ -7583,7 +7583,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
    (*(int64_t *)(StackParameterBuffer + StackParameterBufferDataOffset) + (int64_t)*(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) * 8) =
        StackParameterContext;
   *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) = *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) + 1;
-ResourceErrorHandler:
+ResourceManagementErrorHandler:
         ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + SystemContextResourceManagerOffset));
 }
 
