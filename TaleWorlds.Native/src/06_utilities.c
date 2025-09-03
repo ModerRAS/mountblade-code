@@ -29974,15 +29974,6 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
 /**
  * @brief 主上下文异常处理器
  * 
- * 该函数负责处理主上下文中的异常情况，调用主异常处理程序
- * 主要用于系统级别的异常处理和资源清理
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- */
-/**
- * @brief 主上下文异常处理器
- * 
  * 该函数负责处理主上下文中的异常情况，执行异常处理逻辑。
  * 主要用于处理程序运行时出现的主要异常事件。
  * 

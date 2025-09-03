@@ -12868,51 +12868,51 @@ uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatP
   int64_t ModuleInitializationResult;
   uint BufferSize;
   uint StringProcessingResult;
-  char cVar4;
-  byte bVar5;
+  char CharacterValue;
+  byte AudioFormatFlag;
   int LoopCounterValue;
   uint UnsignedValue;
   uint16_t *pUnsignedIndex;
   uint16_t *pUnsignedSize;
-  byte abStackX_18 [8];
-  longlong lStackX_20;
+  byte StackBuffer18 [8];
+  longlong StackVariable20;
   if (SystemProcessingEnabledFlag == '\0') {
     return 0x80920005;
   }
-  if (param_2 == (uint *)0x0) {
+  if (AudioFormatPointer == (uint *)0x0) {
     return 0x80920001;
   }
   LoopCounterValue = GetLoopCounter();
   if (LoopCounterValue != 0) {
     return 0x809200ff;
   }
-  LoopCounterValue = GetStringIndex(param_1);
+  LoopCounterValue = GetStringIndex(BufferSizeParameter);
   if (LoopCounterValue < 0) {
     ClearSystemBuffer();
     return 0x80920003;
   }
-  ProcessSystemTask(param_2);
-  LoopCounterValue = CalculateLoopValue(param_1,&lStackX_20);
+  ProcessSystemTask(AudioFormatPointer);
+  LoopCounterValue = CalculateLoopValue(BufferSizeParameter,&StackVariable20);
   if (LoopCounterValue == 0) {
-    FinalizeLoopCounter(param_1,abStackX_18);
-    if (*(longlong *)(lStackX_20 + 0x160) != 0) {
-      cVar4 = GetCharacterValue();
-      UnsignedValue = *(uint *)(*(longlong *)(lStackX_20 + 0x160) + 0xc);
-      if (cVar4 == '\0') {
+    FinalizeLoopCounter(BufferSizeParameter,StackBuffer18);
+    if (*(longlong *)(StackVariable20 + 0x160) != 0) {
+      CharacterValue = GetCharacterValue();
+      UnsignedValue = *(uint *)(*(longlong *)(StackVariable20 + 0x160) + 0xc);
+      if (CharacterValue == '\0') {
         UnsignedValue = UnsignedValue & 0xffdefffe;
       }
-      *param_2 = UnsignedValue;
-      *(uint8_t *)(param_2 + 1) = *(uint8_t *)(*(longlong *)(lStackX_20 + 0x160) + 0x10);
-      *(uint8_t *)((longlong)param_2 + 5) =
-           *(uint8_t *)(*(longlong *)(lStackX_20 + 0x160) + 0x11);
-      *(uint8_t *)((longlong)param_2 + 6) =
-           *(uint8_t *)(*(longlong *)(lStackX_20 + 0x160) + 0x12);
-      *(uint8_t *)((longlong)param_2 + 7) =
-           *(uint8_t *)(*(longlong *)(lStackX_20 + 0x160) + 0x13);
-      *(uint8_t *)((longlong)param_2 + 9) =
-           *(uint8_t *)(*(longlong *)(lStackX_20 + 0x160) + 0x15);
-      *(uint8_t *)(param_2 + 2) = *(uint8_t *)(*(longlong *)(lStackX_20 + 0x160) + 0x14);
-      if ((*(char *)(lStackX_20 + 0x68) == '\x01') && ((abStackX_18[0] & 8) != 0)) {
+      *AudioFormatPointer = UnsignedValue;
+      *(uint8_t *)(AudioFormatPointer + 1) = *(uint8_t *)(*(longlong *)(StackVariable20 + 0x160) + 0x10);
+      *(uint8_t *)((longlong)AudioFormatPointer + 5) =
+           *(uint8_t *)(*(longlong *)(StackVariable20 + 0x160) + 0x11);
+      *(uint8_t *)((longlong)AudioFormatPointer + 6) =
+           *(uint8_t *)(*(longlong *)(StackVariable20 + 0x160) + 0x12);
+      *(uint8_t *)((longlong)AudioFormatPointer + 7) =
+           *(uint8_t *)(*(longlong *)(StackVariable20 + 0x160) + 0x13);
+      *(uint8_t *)((longlong)AudioFormatPointer + 9) =
+           *(uint8_t *)(*(longlong *)(StackVariable20 + 0x160) + 0x15);
+      *(uint8_t *)(AudioFormatPointer + 2) = *(uint8_t *)(*(longlong *)(StackVariable20 + 0x160) + 0x14);
+      if ((*(char *)(StackVariable20 + 0x68) == '\x01') && ((StackBuffer18[0] & 8) != 0)) {
         ModuleInitializationResult = *(longlong *)(lStackX_20 + 0x160);
         UnsignedValue = *(uint *)(ModuleInitializationResult + 0x74);
         BufferSize = *(uint *)(ModuleInitializationResult + 0x78);
