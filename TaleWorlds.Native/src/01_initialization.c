@@ -35442,7 +35442,7 @@ void ConfigureSystemResourceManager(long long systemResourcePointer, void* confi
  * @param additionalParameter 额外参数
  * @param configurationFlag 配置标志
  * 
- *FUN_18005ab20：InitializeSystemResourceManager
+ *InitializeSystemResourceManager
  */
 void InitializeSystemResourceManager(long long systemResourcePointer, void* configurationDataPointer, void* additionalParameter, void* configurationFlag)
 {
@@ -35466,7 +35466,7 @@ void InitializeSystemResourceManager(long long systemResourcePointer, void* conf
  * @param AdditionalParameter 额外参数，用于扩展功能
  * @param ConfigurationFlag 配置标志，用于控制配置行为
  * 
- *FUN_18005ab50：InitializeSystemResourceA
+ *InitializeSystemResourceA
  */
 void InitializeSystemResourceA(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
