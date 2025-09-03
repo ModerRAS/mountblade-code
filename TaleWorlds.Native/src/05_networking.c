@@ -757,7 +757,7 @@ uint32_t NetworkConnectionTable;                       // 网络连接表管理�
 void InitializeNetworkConnectionPool(void)
 {
   // 初始化连接池配置参数
-  NetworkConnectionPoolCapacity = 1000;           // 设置连接池最大容量
+  NetworkConnectionPoolCapacity = CONNECTION_POOL_CAPACITY;           // 设置连接池最大容量
   NetworkConnectionPoolAllocationCount = 0;        // 重置分配计数器
   NetworkConnectionPoolDeallocationCount = 0;      // 重置释放计数器
   NetworkConnectionPoolHealthStatus = 0x01;         // 设置健康状态为正常
