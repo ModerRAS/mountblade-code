@@ -50225,11 +50225,11 @@ void* InitializeSystemThreadObject(void)
   if (ThreadObjectHandle == 0) {
     return;
   }
-  *(void* *)(resourceDataIndex + 0x3500) = 0;
-  *(void* *)(resourceDataIndex + 0x3508) = 0;
-  *(uint32_t *)(resourceDataIndex + 0x3530) = 0;
-  *(void* *)(resourceDataIndex + 0x3538) = 0;
-  *(void*2 *)(resourceDataIndex + 0x3540) = 0x100;
+  *(void* *)(ThreadObjectHandle + 0x3500) = 0;
+  *(void* *)(ThreadObjectHandle + 0x3508) = 0;
+  *(uint32_t *)(ThreadObjectHandle + 0x3530) = 0;
+  *(void* *)(ThreadObjectHandle + 0x3538) = 0;
+  *(void*2 *)(ThreadObjectHandle + 0x3540) = 0x100;
   *(void* *)(resourceDataIndex + 0x6a48) = 0;
   *(void* *)(resourceDataIndex + 0x6a50) = 0;
   *(uint32_t *)(resourceDataIndex + 0x6a78) = 0;

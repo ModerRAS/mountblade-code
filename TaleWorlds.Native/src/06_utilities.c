@@ -4526,6 +4526,9 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
   int64_t *NullDataPointer;
   int64_t MemoryContextHandle;
   int64_t ValidationContext;
+  int PackageValidationStatusCode;
+  int64_t *ResourceTablePointerPointer;
+  int OperationStatusCode;
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterSecondaryOffset),&ValidationContext);
   ValidationStatusCode = (int)OperationResult;
@@ -4547,6 +4550,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
       }
       if (((*(uint *)(*(int64_t *)(ValidationContext + ValidationContextObjectDataOffset) + ValidationContextSecurityDataOffset) >> 2 & 1) == 0) &&
          (OperationResult = InitializeMemoryContext(MemoryContextHandle), (int)OperationResult != 0)) {
+        OperationStatusCode = (int)OperationResult;
         return OperationStatusCode;
       }
       ResourceTablePointerPointer = (int64_t *)(MemoryContextHandle + MemoryContextResourceTablePointerOffset);
