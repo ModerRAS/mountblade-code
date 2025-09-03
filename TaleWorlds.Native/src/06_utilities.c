@@ -4238,17 +4238,6 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数在游戏循环中定期调用以维护对象集合的完整性
  * @warning 验证失败的对象将被标记为无效状态并可能被移除
  */
-/**
- * @brief 处理游戏对象集合
- * 
- * 该函数负责处理游戏中的对象集合，包括对象的验证、状态更新和批量处理
- * 主要用于游戏逻辑中的对象管理和批量操作
- * 
- * @param GameContext 游戏上下文，包含游戏相关的状态和数据
- * @param SystemContext 系统上下文，包含系统运行时的状态信息
- * @return 无返回值
- * @note 这是一个内部处理函数，由系统自动调用
- */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int ProcessingResult;
@@ -33636,12 +33625,12 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContext, int64_t ValidationCo
   int64_t ResourceTablePointer;
   int64_t ResourceIndex;
   uint64_t ResourceCount;
-  uint64_t resourceProcessingIndex;
+  uint64_t ResourceProcessingIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
-  resourceProcessingIndex = 0;
+  ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);
@@ -33685,12 +33674,12 @@ void UnwindResourceTablePointerCleanup(uint8_t ObjectContext, int64_t Validation
   int64_t ResourceTablePointer;
   int64_t ResourceIndex;
   uint64_t ResourceCount;
-  uint64_t resourceProcessingIndex;
+  uint64_t ResourceProcessingIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
-  resourceProcessingIndex = 0;
+  ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);
@@ -33734,12 +33723,12 @@ void UnwindBatchResourceRelease(uint8_t ObjectContext, int64_t ValidationContext
   int64_t ResourceTablePointer;
   int64_t ResourceIndex;
   uint64_t ResourceCount;
-  uint64_t resourceProcessingIndex;
+  uint64_t ResourceProcessingIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
-  resourceProcessingIndex = 0;
+  ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);
@@ -33971,12 +33960,12 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContext,int64_t ValidationC
   int64_t ResourceTablePointer;
   int64_t ResourceIndex;
   uint64_t ResourceCount;
-  uint64_t resourceProcessingIndex;
+  uint64_t ResourceProcessingIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
-  resourceProcessingIndex = 0;
+  ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);
@@ -34019,12 +34008,12 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContext,int64_t ValidationC
   int64_t ResourceTablePointer;
   int64_t ResourceIndex;
   uint64_t ResourceCount;
-  uint64_t resourceProcessingIndex;
+  uint64_t ResourceProcessingIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
-  resourceProcessingIndex = 0;
+  ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + resourceProcessingIndex * 8);

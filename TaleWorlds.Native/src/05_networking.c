@@ -696,6 +696,7 @@ uint32_t NetworkCallbackData;
 uint32_t NetworkCallbackSize;
 uint32_t NetworkCallbackIndex;
 
+uint32_t ProcessedConnectionHandlePacket;
 uint32_t NetworkConnectionTable;
 uint32_t SecurityValidationData;
 uint32_t NetworkBufferTemplate;
