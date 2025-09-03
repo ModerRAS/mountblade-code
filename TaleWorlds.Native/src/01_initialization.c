@@ -34250,7 +34250,7 @@ void CleanupSystemResources(long long* SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针数组，包含需要清理的资源
  * 
- *FUN_180059640：CleanupSystemResourcesIterator
+ * 原始函数名：FUN_180059640
  */
 void CleanupSystemResourcesIterator(long long* SystemResourceManager)
 
@@ -34279,7 +34279,7 @@ void CleanupSystemResourcesIterator(long long* SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针，包含需要重置的资源信息
  * 
- *FUN_1800596a0：ResetSystemResources
+ * 原始函数名：FUN_1800596a0
  */
 void ResetSystemResources(void* *SystemResourceManager)
 
@@ -34337,7 +34337,7 @@ void ValidateSystemResourceCleanup(long long SystemResourceManager)
  * @param AdditionalParameter 额外参数，用于控制复制行为
  * @return 返回处理后的资源指针
  * 
- *FUN_180059780：CopySystemResourceDataExtended
+ * 原始函数名：FUN_180059780
  */
 void* * CopySystemResourceDataExtended(void* *SystemResourceManager,void* *ConfigurationDataPointer,void* *AdditionalParameter)
 
