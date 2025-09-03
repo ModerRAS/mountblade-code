@@ -804,26 +804,26 @@ void NetworkAcceptConnection(void)
 {
   // 分配新的连接资源
   NetworkConnectionContext = 0x01;                      // 初始化连接上下文
-  NetworkConnectionContextSize = 0x200;                // 设置连接上下文大小
+  NetworkConnectionContextSize = CONTEXT_SIZE_512B;                // 设置连接上下文大小
   
   // 设置连接参数
-  NetworkConnectionQuality = 0x05;                     // 设置连接质量为良好
-  NetworkConnectionBandwidth = 0x1000;                 // 设置连接带宽为4KB
-  NetworkConnectionLatency = 0x32;                     // 设置连接延迟为50ms
+  NetworkConnectionQuality = CONNECTION_QUALITY_GOOD;                     // 设置连接质量为良好
+  NetworkConnectionBandwidth = BANDWIDTH_4KB;                 // 设置连接带宽为4KB
+  NetworkConnectionLatency = LATENCY_50MS;                     // 设置连接延迟为50ms
   NetworkConnectionReliability = 0x01;                 // 设置连接可靠性为高
   
   // 初始化安全参数
-  NetworkSecurityLevel = 0x03;                         // 设置安全级别为高
-  NetworkAuthenticationType = 0x01;                    // 设置认证类型为密码认证
-  NetworkEncryptionAlgorithm = 0x01;                   // 设置加密算法为AES
-  NetworkCompressionMethod = 0x01;                      // 设置压缩方法为ZLIB
+  NetworkSecurityLevel = SECURITY_LEVEL_HIGH;                         // 设置安全级别为高
+  NetworkAuthenticationType = AUTH_TYPE_PASSWORD;                    // 设置认证类型为密码认证
+  NetworkEncryptionAlgorithm = ENCRYPTION_AES;                   // 设置加密算法为AES
+  NetworkCompressionMethod = COMPRESSION_ZLIB;                      // 设置压缩方法为ZLIB
   
   // 初始化会话参数
   NetworkSessionEncryptionKey = 0x12345678;            // 设置会话加密密钥
-  NetworkSessionTimeoutDuration = 0x493E0;              // 设置会话超时时间为300秒
-  NetworkHandshakeTimeout = 0x1388;                     // 设置握手超时时间为5秒
-  NetworkAuthenticationTimeout = 0x1388;               // 设置认证超时时间为5秒
-  NetworkEncryptionTimeout = 0x1388;                   // 设置加密超时时间为5秒
+  NetworkSessionTimeoutDuration = TIMEOUT_5_MINUTES;              // 设置会话超时时间为300秒
+  NetworkHandshakeTimeout = TIMEOUT_5_SECONDS;                     // 设置握手超时时间为5秒
+  NetworkAuthenticationTimeout = TIMEOUT_5_SECONDS;               // 设置认证超时时间为5秒
+  NetworkEncryptionTimeout = TIMEOUT_5_SECONDS;                   // 设置加密超时时间为5秒
   
   // 更新连接统计
   NetworkActiveConnectionsCount++;                     // 增加活跃连接计数
@@ -1087,16 +1087,16 @@ void NetworkRetrieveData(void)
   
   // 初始化数据包队列
   NetworkPacketQueue = 0x01;                            // 初始化数据包队列
-  NetworkPacketQueueSize = 0x100;                       // 设置数据包队列大小为256
+  NetworkPacketQueueSize = PACKET_QUEUE_SIZE;                       // 设置数据包队列大小为256
   
   // 初始化缓冲区管理
   NetworkBufferManager = 0x01;                          // 初始化缓冲区管理器
-  NetworkBufferSize = 0x1000;                            // 设置缓冲区大小为4KB
+  NetworkBufferSize = BUFFER_SIZE_4KB;                            // 设置缓冲区大小为4KB
   NetworkBufferIndex = 0x00;                            // 重置缓冲区索引
   
   // 初始化数据包上下文
   NetworkPacketContext = 0x01;                          // 初始化数据包上下文
-  NetworkPacketContextSize = 0x100;                    // 设置数据包上下文大小为256字节
+  NetworkPacketContextSize = CONTEXT_SIZE_256B;                    // 设置数据包上下文大小为256字节
   NetworkPacketData = 0x01;                             // 初始化数据包数据
   NetworkPacketIndex = 0x00;                            // 重置数据包索引
   
