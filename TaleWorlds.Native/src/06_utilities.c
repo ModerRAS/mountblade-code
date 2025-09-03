@@ -76074,7 +76074,17 @@ void ProcessSystemResourceCleanup(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void Unwind_18090af50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统上下文清理操作
+ * 
+ * 该函数在异常处理过程中清理系统上下文，确保上下文正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态信息
+ * 
+ * @note 此函数通常在异常处理时调用，用于清理0x298偏移处的上下文
+ */
+void ProcessSystemContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -76856,7 +76866,17 @@ void Unwind_18090b4c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b4d0(void)
+/**
+ * @brief 销毁互斥量
+ * 
+ * 该函数用于销毁系统中的互斥量，释放相关的系统资源。
+ * 这是系统资源清理的重要组成部分，确保在程序退出或资源不再需要时正确释放互斥量。
+ * 
+ * @return void 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
+ * @warning 调用此函数后，相关的互斥量将不再可用
+ */
+void DestroyMutex(void)
 
 {
   MutexDestroyInPlace();
@@ -76865,7 +76885,19 @@ void Unwind_18090b4d0(void)
 
 
 
-void Unwind_18090b4e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 销毁验证上下文中的互斥量
+ * 
+ * 该函数用于销毁验证上下文中指定偏移位置的互斥量。
+ * 通过验证上下文中的计数器偏移量来定位并销毁相应的互斥量资源。
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含互斥量销毁所需的上下文信息
+ * @return void 无返回值
+ * @note 此函数通过ValidationContextSecondaryCountOffset偏移量定位互斥量
+ * @warning 调用此函数后会释放指定的互斥量资源
+ */
+void DestroyMutexInValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   MutexDestroyInPlace(*(uint8_t *)(ValidationContext + ValidationContextSecondaryCountOffset));
@@ -100031,13 +100063,25 @@ void ExecuteValidationContextCheck(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_180912580(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 处理主资源清理操作
+ * 
+ * 该函数负责处理系统主资源的清理操作，包括循环计数器管理和资源操作执行。
+ * 主要用于系统关闭或异常情况下的资源释放。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文指针
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @note 此函数会递减全局展开上下文的计数器
+ * @warning 清理操作不可逆，请确保在正确的时机调用
+ */
+void ProcessPrimaryResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
-  int64_t LoopCounter;
+  int64_t ResourceLoopCounter;
   
-  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x28);
-  if (LoopCounter != 0) {
+  ResourceLoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x28);
+  if (ResourceLoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }

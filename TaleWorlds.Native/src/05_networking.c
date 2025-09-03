@@ -1136,7 +1136,7 @@ NETWORK_PROCESSING_LOOP:
  * @return NetworkHandle 完成结果句柄，0x26表示成功完成
  * @note 此函数在网络连接处理完成后调用，确保所有资源正确释放
  */
-NetworkHandle FinalizeConnectionHandler(void)
+NetworkHandle NetworkFinalizeConnectionHandler(void)
 {
   return NetworkConnectionFinalizeValue;
 }
@@ -1148,7 +1148,7 @@ NetworkHandle FinalizeConnectionHandler(void)
  * @note 此函数在连接断开或系统关闭时调用，确保资源正确释放
  * @warning 清理过程中如果遇到错误，系统会记录日志但继续执行清理操作
  */
-void CleanupConnectionResources(NetworkHandle ConnectionContext)
+void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
 {
   int32_t ConnectionPrimaryStatus;
   int32_t DataProcessingResult;
@@ -1174,7 +1174,7 @@ void CleanupConnectionResources(NetworkHandle ConnectionContext)
  * @note 此函数会进行多层验证，包括数据包解码、头部验证和完整性检查
  * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
  */
-NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t ConnectionContext)
+NetworkHandle NetworkValidatePacketIntegrityHandler(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
   NetworkHandle ValidationResult;
   NetworkByte PacketValidationBuffer [32];
@@ -1214,7 +1214,7 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
  * @note 此函数会根据数据包类型选择不同的处理路径
  * @warning 处理过程中如果发现数据包损坏或格式错误，会立即返回错误码
  */
-NetworkHandle ValidateAndProcessNetworkPacket(int64_t ConnectionContext, int64_t *PacketData)
+NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t *PacketData)
 {
   NetworkHandle PacketProcessingStatus;
   NetworkStatus ConnectionStateArray [6];
