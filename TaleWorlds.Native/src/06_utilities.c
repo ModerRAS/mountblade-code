@@ -60254,7 +60254,7 @@ void ExecuteResourceHandlerCallbackTertiary(uint8_t ObjectContext, int64_t Valid
  * @param ValidationContext 验证上下文指针，包含资源状态信息
  * @remark 原始函数名：Unwind_1809073d0
  */
-void ExecuteResourceHandlerCallbackOffset8818(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteResourceHandlerCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t **resourceContext;
@@ -60673,7 +60673,7 @@ void SetResourceHashAddressToAllocationTemplate(uint8_t ObjectContext,int64_t Va
  * @note 此函数用于将资源哈希表指针指向特定的哈希表003
  * @warning 确保验证上下文中的资源哈希表指针有效
  */
-void SetResourceHashTablePointerToTable003(uint8_t ObjectContext,int64_t ValidationContext)
+void SetResourceHashTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + ResourceContextTertiaryOffset) = &TertiaryResourceHashTable;
@@ -61444,7 +61444,7 @@ void InitializeSystemDataTertiaryPointer(void)
  * 
  * 该函数负责初始化系统数据指针001，指向系统数据结构
  */
-void InitializeSystemDataQuaternaryPointer001(void)
+void InitializeSystemDataQuaternaryPointer(void)
 {
   SystemDataQuaternaryPointer = &SystemDataStructure;
   return;
@@ -61458,7 +61458,7 @@ void InitializeSystemDataQuaternaryPointer001(void)
  * 
  * 该函数负责初始化系统数据指针002，指向系统数据结构
  */
-void InitializeSystemDataStructureReference002(void)
+void InitializeSystemDataStructureSecondaryReference(void)
 {
   SystemDataSecondaryReferencePointer = &SystemDataStructure;
   return;
@@ -61472,7 +61472,7 @@ void InitializeSystemDataStructureReference002(void)
  * 
  * 该函数负责初始化系统数据指针003，指向系统数据结构
  */
-void InitializeSystemDataStructureReference003(void)
+void InitializeSystemDataStructureTertiaryReference(void)
 {
   SystemDataTertiaryReferencePointer = &SystemDataStructure;
   return;
@@ -62160,7 +62160,7 @@ void InitializeSystemResourceHandlerExtendedContext(uint8_t ObjectContext,int64_
 
 
 
-void UnwindSystemResourceHandler001(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceHandlerPrimary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -62178,7 +62178,7 @@ void UnwindSystemResourceHandler001(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void UnwindSystemResourceHandler002(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceHandlerSecondary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -63161,7 +63161,7 @@ void ExecuteValidationContextCallbackAtOperationOffset(uint8_t ObjectContext, in
  * @return 无返回值
  * @note 此函数会执行验证上下文0x210位置的回调函数
  */
-void ExecuteValidationContextCallbackAtOffset210(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteValidationContextCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x210) != (code *)0x0) {
@@ -63423,7 +63423,7 @@ void ValidateResourceHashAndExecuteCleanup(uint8_t ObjectContext,int64_t Validat
  * @return 无返回值
  * @note 此函数主要用于系统初始化过程
  */
-void SetSystemDataStructurePointerAtOffset360(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtPrimaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x360) = &SystemDataStructure;
@@ -63489,7 +63489,7 @@ void CleanupResourceDataFlagBit2(uint8_t ObjectContext,int64_t ValidationContext
  * @return 无返回值
  * @note 此函数主要用于系统初始化过程
  */
-void SetSystemDataStructurePointerAtOffset218(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtSecondaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x218) = &SystemDataStructure;
@@ -64241,7 +64241,7 @@ void CleanupResourceDataFlagBit1(uint8_t ObjectContext,int64_t ValidationContext
  * @param ValidationContext 验证上下文，包含验证所需的数据和参数
  * @return 无返回值
  */
-void SetSystemDataStructurePointerAtOffset480(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtTertiaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x480) = &SystemDataStructure;
@@ -66224,7 +66224,7 @@ void UnwindMutexUnlockHandlerPrimary(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void UnwindMutexUnlockSecondary180908890(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindMutexUnlockSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -66238,7 +66238,7 @@ void UnwindMutexUnlockSecondary180908890(uint8_t ObjectContext, int64_t Validati
 
 
 
-void UnwindResourceOperationHandler1809088a0(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -66250,7 +66250,7 @@ void UnwindResourceOperationHandler1809088a0(uint8_t ObjectContext, int64_t Vali
 
 
 
-void UnwindResourceHashInitializer1809088d0(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindResourceHashInitializer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
