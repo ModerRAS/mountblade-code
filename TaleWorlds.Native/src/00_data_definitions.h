@@ -7185,7 +7185,7 @@ longlong SystemModuleInitialize(uint64_t SystemId, longlong *ModuleArray, longlo
   ulonglong StringProcessingResult;
   uint64_t NetworkRequestResult;
   uint64_t *pMemoryAllocationResult;
-  uint uVar6;
+  uint ModuleCount;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _SystemConfigurationTemplate) {
     ValidateSystemConfigurationTemplate(&SystemConfigurationTemplate);
@@ -7211,8 +7211,8 @@ longlong SystemModuleInitialize(uint64_t SystemId, longlong *ModuleArray, longlo
     }
   }
   StringProcessingResult = 0;
-  uVar6 = (uint)(moduleArray[1] - *moduleArray >> 3);
-  if (uVar6 != 0) {
+  ModuleCount = (uint)(moduleArray[1] - *moduleArray >> 3);
+  if (ModuleCount != 0) {
     do {
       ModuleInitializationResult = *(longlong *)(*moduleArray + StringProcessingResult * 8);
       if (*(int *)(ModuleInitializationResult + 8) == *(int *)(moduleData + 8)) {
@@ -7220,7 +7220,7 @@ longlong SystemModuleInitialize(uint64_t SystemId, longlong *ModuleArray, longlo
       }
       BufferSize = (int)StringProcessingResult + 1;
       StringProcessingResult = (ulonglong)BufferSize;
-    } while (BufferSize < uVar6);
+    } while (BufferSize < ModuleCount);
   }
   (**(code **)(**(longlong **)(&SystemModuleDataTable + (ulonglong)*(uint *)(moduleData + 0x8c) * 8) + 8))();
   return *(longlong *)(&SystemModuleDataTable + (ulonglong)*(uint *)(moduleData + 0x8c) * 8);
