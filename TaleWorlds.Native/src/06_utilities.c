@@ -34468,8 +34468,8 @@ void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,
   ValidationStatusCode = 0xfffffffffffffffe;
   *ResourceHashPtr = &ResourceHashTable002;
   StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-  while (operationStatus != '\0') {
-    operationStatus = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,ResourceHashStatus);
+  while (ResourceOperationStatus != '\0') {
+    ResourceOperationStatus = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   if (ResourceHashAddress[1] == 0) {
     ResourceHashAddress[1] = 0;
@@ -45993,16 +45993,16 @@ void CleanupResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext,ui
 
 {
   uint8_t *ResourceHashPtr;
-  char statusIndicator;
-  char operationStatus;
+  char ResourceStatusIndicator;
+  char ResourceOperationStatus;
   uint8_t ResourceHashStatus;
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x160);
   ValidationStatusCode = 0xfffffffffffffffe;
   *ResourceHashPtr = &ResourceHashTable002;
   StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-  while (operationStatus != '\0') {
-    operationStatus = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,ResourceHashStatus);
+  while (ResourceOperationStatus != '\0') {
+    ResourceOperationStatus = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
   if (ResourceHashAddress[1] == 0) {
     ResourceHashAddress[1] = 0;
