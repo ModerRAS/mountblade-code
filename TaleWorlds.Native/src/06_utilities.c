@@ -9470,7 +9470,7 @@ void UpdateSystemConfigurationAndExecute(int64_t ConfigObject, int64_t SystemCon
  * @param operationMode 操作模式，指定处理方式
  * @return uint8_t 操作结果状态码，0表示成功，非0表示错误
  */
-uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int64_t ValidationContext,uint8_t securityFlags,uint8_t operationMode)
+uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int64_t ValidationContext,uint8_t SecurityFlags,uint8_t OperationMode)
 
 {
   float ValidationFloatValue;
