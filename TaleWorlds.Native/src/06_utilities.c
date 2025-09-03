@@ -4623,13 +4623,15 @@ void CheckSystemFlags(void)
   uint64_t SystemFlagValidationToken;
   void* ObjectResourceBuffer;
   
+  // 生成安全验证令牌
+  SystemFlagValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)&SystemSecurityValidationBuffer;
+  
   // 检查系统标志位状态
   if ((*(uint *)(SystemRuntimeData + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
           TriggerSystemFlagHandler();
   }
   // 释放标志检查资源并执行清理
   ReleaseFlagCheckResources(&ObjectResourceBuffer);
-  SystemFlagValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)&SystemSecurityValidationBuffer;
   ExecuteFlagCheckCleanup(SystemFlagValidationToken);
 }
 
