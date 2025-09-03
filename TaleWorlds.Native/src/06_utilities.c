@@ -5780,18 +5780,7 @@ uint8_t InitializeObjectHandleDetailed(void)
 
 
 
- /**
- * @brief 清理系统资源
- * 
- * 该函数负责清理系统运行过程中产生的临时资源
- * 释放内存，重置系统状态，为下次运行做准备
- */
-void CleanupSystemResources(void)
-
-{
-  return;
-}
-
+ 
 
 
 /**
@@ -7136,7 +7125,7 @@ void HandleSystemObjectQueue(int64_t ObjectHandle, int64_t QueueContext)
   uint8_t SystemQueueContextBuffer [2];
   
   QueueTailPointer = (int64_t *)0x0;
-  QueueContextBuffer[0] = 0;
+  SystemQueueContextBuffer[0] = 0;
   QueueProcessingStatus = InitializeProcessingQueue(QueueContextBuffer);
   if ((QueueProcessingStatus == 0) && (QueueProcessingStatus = ValidateQueueContext(*(uint8_t *)(queueContext + QueueContextValidationDataOffset)), QueueProcessingStatus == 0)) {
     QueueHeadPointer = (int64_t *)(*(int64_t *)(queueContext + QueueContextHeadPointerOffset) + -8);
