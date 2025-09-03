@@ -19610,14 +19610,14 @@ void ProcessSystemStringCopy(long long targetBuffer, long long sourceString)
  * @param sourceData 源数据指针
  * @param copyLength 复制长度
  */
-void ProcessSystemMemoryCopy(long long targetBuffer,void* sourceData,int copyLength)
+void ProcessSystemMemoryCopy(long long TargetBuffer,void* SourceData,int CopyLength)
 
 {
-  if (copyLength + 1 < 0x400) {
-      memcpy(*(uint8_t **)(targetBuffer + 8),sourceData,(long long)copyLength);
+  if (CopyLength + 1 < 0x400) {
+      memcpy(*(uint8_t **)(TargetBuffer + 8),SourceData,(long long)CopyLength);
   }
-  **(uint8_t **)(targetBuffer + 8) = 0;
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(TargetBuffer + 8) = 0;
+  *(uint32_t *)(TargetBuffer + 0x10) = 0;
   return;
 }
 
