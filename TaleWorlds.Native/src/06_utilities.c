@@ -9086,13 +9086,13 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
   
   ValidationContext = ContextPointer - 8;
   if (ContextPointer == 0) {
-    ValidationContext = (uint64_t)loopCounter;
+    ValidationContext = (uint64_t)LoopCounter;
   }
   ValidationRange = *(int *)(ValidationContext + ValidationContextSizeOffset);
   FloatArrayStart = (float *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
   if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
     FloatArrayPointer = FloatArrayStart;
-    iterationIndex = loopCounter;
+    iterationIndex = LoopCounter;
     do {
       ArrayIterationIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatArrayStart) + (int64_t)FloatArrayPointer);
       if (ArrayIterationIndex != -1) {
@@ -9111,7 +9111,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
         if (ResourceTablePointerPointer == 0) {
           return ErrorInvalidResourceData;
         }
-        if (*(uint *)(ResourceTablePointerPointer + 0x30) != loopCounter) {
+        if (*(uint *)(ResourceTablePointerPointer + 0x30) != LoopCounter) {
           return ErrorResourceValidationFailed;
         }
         FifthFloatResult = *(float *)(ResourceTablePointerPointer + 0x38);
@@ -9131,9 +9131,9 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
         if (OperationResult != -1) {
           *(float *)(*(int64_t *)(ContextResourceHashStatus + 0x20) + 4 + (int64_t)OperationResult * 0x18) = *floatParameterValue;
         }
-        loopCounter = loopCounter + 1;
+        LoopCounter = LoopCounter + 1;
         floatParameterValue = floatParameterValue + 1;
-      } while ((int)loopCounter < *(int *)(ResourceContext + 0x18));
+      } while ((int)LoopCounter < *(int *)(ResourceContext + 0x18));
     }
   }
         ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
@@ -9640,7 +9640,7 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int
   if ((int)ResourceHashStatus != 0) {
     return ResourceHashStatus;
   }
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextLoopCounterOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextLoopCounterOffset);
   if (*(int *)(SystemContextPointer + SystemContextOperationFlagOffset) != 0) {
     if (((*(int *)(SystemContextPointer + SystemContextStatusFlag1Offset) == 0) && (*(int *)(SystemContextPointer + SystemContextStatusFlag2Offset) == 0)) ||
        (InitializeSecurityContext(&SecurityContextBuffer),
@@ -11689,7 +11689,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
   }
   ResourcePoolCount = (int)ResourcePoolHandle[1];
   if (ResourcePoolCount < 0) {
-    loopCounter = (int64_t)-ResourcePoolCount;
+    LoopCounter = (int64_t)-ResourcePoolCount;
     if (ResourcePoolCount < 0) {
       ResourceEntryPointer = (uint32_t *)((int64_t)ResourcePoolCount * 0x10 + *ResourcePoolHandle + 4);
       do {
@@ -11697,8 +11697,8 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
         *ResourceEntryPointer = 0xffffffff;
         *(uint8_t *)(ResourceEntryPointer + 1) = 0;
         ResourceEntryPointer = ResourceEntryPointer + 4;
-        loopCounter = loopCounter + -1;
-      } while (loopCounter != 0);
+        LoopCounter = LoopCounter + -1;
+      } while (LoopCounter != 0);
       ResourcePoolFlags = *(uint *)((int64_t)ResourcePoolHandle + 0xc);
     }
   }
@@ -12090,7 +12090,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
     if ((9.223372e+18 <= calculatedFloatValue) && (fifthFloatResult = calculatedFloatValue - 9.223372e+18, calculatedFloatValue < 9.223372e+18)) {
       ResourceTablePointerPointer = -0x8000000000000000;
     }
-    loopCounter = *(int64_t *)(ObjectContext + ObjectContextResourceTablePointerOffset);
+    LoopCounter = *(int64_t *)(ObjectContext + ObjectContextResourceTablePointerOffset);
     int64_t ArrayIterationIndex = *(int64_t *)(ObjectContext + ObjectContextDataOffset3);
     if (ArrayIterationIndex == 0) {
       CalculatedFloatResult = (float)*(uint *)(ObjectContext + ObjectContextMatrixScaleOffset) * CalculatedFloatResult;
@@ -12317,7 +12317,7 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
   if (((!ZeroFlag) && (*(int *)(dataContext + ResourceContextSecondaryOffset) != 0)) &&
      (OperationStatusCode = *(int *)(*(int64_t *)(SystemContextData + 0x70) +
                       (int64_t)(int)(*(int *)(dataContext + ResourceContextSecondaryOffset) - 1U & CleanupFlag) * 4), OperationResult != -1)) {
-    loopCounter = *(int64_t *)(SystemContextData + 0x80);
+    LoopCounter = *(int64_t *)(SystemContextData + 0x80);
     do {
       ResourceTablePointer = (int64_t)OperationResult;
       if (*(uint *)(SystemContextPointer + ResourceTablePointer * 0x10) == CleanupFlag) {
@@ -13458,7 +13458,7 @@ uint8_t ExpandResourceTablePointerCapacity(int64_t ObjectContext)
   int TableEntryIndex;
   
   if ((*(int64_t *)(ObjectContext + 8) != 0) && (TableEntryIndex = *(int *)(ObjectContext + ObjectContextMatrixScaleOffset), 0 < TableEntryIndex)) {
-    loopCounter = *(int64_t *)(ObjectContext + ObjectContextRangeDataOffset);
+    LoopCounter = *(int64_t *)(ObjectContext + ObjectContextRangeDataOffset);
     if (0x40000 < TableEntryIndex) {
       ResourceTablePointer = AllocateResourceTablePointer(SystemContextPointer + 0x40000,10);
       if (ResourceTablePointer != 0) {
@@ -13715,7 +13715,7 @@ ResourceProcessingHandler:
   if (((CleanupFlag != '\0') || (*(int *)(*(int64_t *)(ValidationContext + SystemContextTertiaryResourceManagerOffset) + 0x34) == 0)) &&
      (ValidationStatusCode = ProcessResourceOperation(ObjectContext,ValidationContext,CleanupOption), ValidationStatusCode == 0)) {
     for (ProcessingStatusCode = 0; (-1 < ResourceHashStatus && (ResourceHashStatus < *(int *)(ValidationContext + ValidationContextResourceCountOffset))); ValidationStatusCode = ResourceHashStatus + 1) {
-      loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + (int64_t)ResourceHashStatus * 8);
+      LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + (int64_t)ResourceHashStatus * 8);
       ResourceTablePointer = *(int64_t *)(SystemResourceContext + 0x68);
       if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (ResourceTablePointer != 0)) {
         GraphicsDataFlag = 0;
@@ -13762,7 +13762,7 @@ ResourceProcessingHandler:
       }
     }
     for (ProcessingStatusCode = 0; (-1 < ResourceHashStatus && (ResourceHashStatus < *(int *)(ValidationContext + ValidationContextSecondaryCountOffset))); ValidationStatusCode = ResourceHashStatus + 1) {
-      loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + (int64_t)ResourceHashStatus * 8);
+      LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + (int64_t)ResourceHashStatus * 8);
       ResourceTablePointer = *(int64_t *)(SystemResourceContext + 0x68);
       if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (ResourceTablePointer != 0)) {
         GraphicsDataFlag = 0;
@@ -13809,7 +13809,7 @@ ResourceProcessingHandler:
       }
     }
     for (ProcessingStatusCode = 0; (-1 < ResourceHashStatus && (ResourceHashStatus < *(int *)(ValidationContext + ValidationContextTertiaryCountOffset))); ValidationStatusCode = ResourceHashStatus + 1) {
-      loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + (int64_t)ResourceHashStatus * 8);
+      LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + (int64_t)ResourceHashStatus * 8);
       ResourceTablePointer = *(int64_t *)(SystemResourceContext + 0x68);
       if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (ResourceTablePointer != 0)) {
         GraphicsDataFlag = 0;
@@ -13856,7 +13856,7 @@ ResourceProcessingHandler:
       }
     }
     for (ProcessingStatusCode = 0; (-1 < ResourceHashStatus && (ResourceHashStatus < *(int *)(ValidationContext + ResourceContextSecondaryOffset))); ValidationStatusCode = ResourceHashStatus + 1) {
-      loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + (int64_t)ResourceHashStatus * 8);
+      LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + (int64_t)ResourceHashStatus * 8);
       ResourceTablePointer = *(int64_t *)(SystemResourceContext + 0x68);
       if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (ResourceTablePointer != 0)) {
         GraphicsDataFlag = 0;
@@ -13906,7 +13906,7 @@ ResourceProcessingHandler:
     ProcessingStatusCode = 0;
     do {
       if ((ResourceHashStatus < 0) || (*(int *)(ValidationContext + 200) <= ResourceHashStatus)) break;
-      loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextResourceTableOffset) + (int64_t)ResourceHashStatus * 8);
+      LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextResourceTableOffset) + (int64_t)ResourceHashStatus * 8);
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + 0x48);
       if (ResourceTablePointer != 0) {
         GraphicsDataFlag = 0;
@@ -14821,14 +14821,14 @@ void SystemInitializerPrimary(void)
                 contextBufferPointer = StackContextBuffer;
                 resourceTemplatePointer = &SystemResourceTemplateHardware;
                 floatRegisterValue = FloatRegisterValue;
-                floatResourceValue = loopCounterValue;
+                floatResourceValue = LoopCounterValue;
                 StackFloatSecondaryValue = InputFloatValue;
                 ResourceIndexTertiary = GetAndValidateResourceData(InputFloatValue,&PrimaryObjectResourceBuffer);
                 if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
               }
-              FloatIterationValue = (float)((int)loopCounterValue + 1);
+              FloatIterationValue = (float)((int)LoopCounterValue + 1);
               FloatDataPointer = FloatPointer + 1;
-            } while ((int)loopCounterValue < 4);
+            } while ((int)LoopCounterValue < 4);
             FloatDataPointer = (float *)&SystemFloatTemplateActive;
             FloatIterationValue = FloatRegisterValue;
             do {
@@ -14837,14 +14837,14 @@ void SystemInitializerPrimary(void)
                 contextBufferPointer = StackContextBuffer;
                 resourceTemplatePointer = &SystemResourceTemplateInput;
                 floatRegisterValue = FloatRegisterValue;
-                floatResourceValue = loopCounterValue;
+                floatResourceValue = LoopCounterValue;
                 StackFloatSecondaryValue = InputFloatValue;
                 ResourceIndexTertiary = GetAndValidateResourceData(InputFloatValue,&PrimaryObjectResourceBuffer);
                 if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
               }
-              FloatIterationValue = (float)((int)loopCounterValue + 1);
+              FloatIterationValue = (float)((int)LoopCounterValue + 1);
               FloatDataPointer = FloatPointer + 1;
-            } while ((int)loopCounterValue < 6);
+            } while ((int)LoopCounterValue < 6);
             ResourceSecurityHashValue = CalculateSecurityHash(ResourceRegisterPointer + 200);
             ResourceHashValidationQuaternary = resourceHashValidationValue;
             if ((float)(ResourceSecurityHashValue / 0x30) != 0.0) {
@@ -15089,14 +15089,14 @@ void CalculateFloatValueAndValidateResources(void)
             contextBufferPointer = StackContextBuffer;
             resourceTemplatePointer = &SystemResourceTemplateHardware;
             floatRegisterValue = FloatRegisterValue;
-            floatResourceValue = loopCounterValue;
+            floatResourceValue = LoopCounterValue;
             StackFloatSecondaryValue = InputFloatValue;
             ResourceIndexTertiary = GetAndValidateResourceData(InputFloatValue,&PrimaryObjectResourceBuffer);
             if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
           }
-          FloatIterationValue = (float)((int)loopCounterValue + 1);
+          FloatIterationValue = (float)((int)LoopCounterValue + 1);
           FloatDataPointer = FloatPointer + 1;
-        } while ((int)loopCounterValue < 4);
+        } while ((int)LoopCounterValue < 4);
         FloatDataPointer = (float *)&SystemFloatTemplateActive;
         FloatIterationValue = FloatRegisterValue;
         do {
@@ -15105,14 +15105,14 @@ void CalculateFloatValueAndValidateResources(void)
             contextBufferPointer = StackContextBuffer;
             resourceTemplatePointer = &SystemResourceTemplateInput;
             floatRegisterValue = FloatRegisterValue;
-            floatResourceValue = loopCounterValue;
+            floatResourceValue = LoopCounterValue;
             StackFloatSecondaryValue = InputFloatValue;
             ResourceIndexTertiary = GetAndValidateResourceData(InputFloatValue,&PrimaryObjectResourceBuffer);
             if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
           }
-          FloatIterationValue = (float)((int)loopCounterValue + 1);
+          FloatIterationValue = (float)((int)LoopCounterValue + 1);
           FloatDataPointer = FloatPointer + 1;
-        } while ((int)loopCounterValue < 6);
+        } while ((int)LoopCounterValue < 6);
         ResourceSecurityHashValue = CalculateSecurityHash(ResourceRegisterPointer + 200);
         ResourceHashValidationTertiary = secondaryFloatResult;
         if ((float)(ResourceSecurityHashValue / 0x30) != 0.0) {
@@ -15513,7 +15513,7 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContext)
   SecondaryOperationParameter = 0x20214;
   ValidationStatusCode = GetAndValidateResourceData(ObjectContext,&NetworkRequestTemplatePointer);
   if ((int)ValidationStatusCode == 0) {
-    loopCounter = *(int64_t *)(ObjectContext[1] + 0x78);
+    LoopCounter = *(int64_t *)(ObjectContext[1] + 0x78);
     ResourceIndex = GetThreadContext();
     if (ResourceIndex == 0) {
       ValidationStatusCode = ErrorInvalidObjectHandle;
@@ -16059,7 +16059,7 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *ObjectContext,char Validatio
       ObjectContext[2] = ResourceHashStatus;
       OperationCounter = 0;
       primaryOperationParameter = 0;
-      if (loopCounter != 0) {
+      if (LoopCounter != 0) {
         primaryOperationParameter = LoopIncrement;
       }
       SystemMemoryConfigPointer = &SystemMemoryConfigTemplateSecondary;
@@ -21677,7 +21677,7 @@ void ValidateAndProcessResourceData(int64_t ObjectContext, uint8_t *ValidationCo
             }
             if (*(int *)(ResourceData[1] + 0x18) == 0) {
               ValidationStatusCode = *ValidationContext;
-              loopCounter = *(int64_t *)(ObjectContext + ObjectContextProcessingDataOffset) + (int64_t)checksumResourceHashStatus * 8;
+              LoopCounter = *(int64_t *)(ObjectContext + ObjectContextProcessingDataOffset) + (int64_t)checksumResourceHashStatus * 8;
               ResourceTablePointerEntry = CalculateResourceHash(ResourceHashStatus,SystemContextPointer);
               if (ResourceTablePointerEntry != 0) {
                 return;
@@ -21745,7 +21745,7 @@ void ResourceDataValidationProcessor(void)
           }
           if (*(int *)(ValidationContextPointer[1] + 0x18) == 0) {
             ValidationStatusCode = *ValidationContextPointer;
-            loopCounter = *(int64_t *)(ResourceContextPointer + 0x20) + (int64_t)ProcessingResult * 8;
+            LoopCounter = *(int64_t *)(ResourceContextPointer + 0x20) + (int64_t)ProcessingResult * 8;
             ResourceTablePointerEntry = CalculateResourceHash(ResourceHashStatus,SystemContextPointer);
             if (ResourceTablePointerEntry != 0) {
               return;
@@ -31720,7 +31720,7 @@ void CleanupSystemDataOnException(uint8_t ObjectContext, int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerA;
   if (*(char *)(SystemContextPointer + 0xd1) != '\0') {
     SystemMemoryCleanup();
@@ -31761,7 +31761,7 @@ void ResetResourceManagerOnException(uint8_t ObjectContext, int64_t ValidationCo
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   *(uint8_t *)(SystemContextPointer + 0xd8) = &SystemResourceHandlerA;
   if (*(char *)(SystemContextPointer + 0x189) != '\0') {
     SystemMemoryCleanup();
@@ -32130,7 +32130,7 @@ void ResourceTablePointerCleanupHandler(uint8_t ObjectContext, int64_t Validatio
   int64_t ResourceIndex;
   
   pResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x50);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x58);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x58);
   for (ResourceIndex = *pResourceTablePointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x48) {
     CleanupResourceHandle(ResourceIndex);
   }
@@ -32263,7 +32263,7 @@ void ResourceTablePointerValidationHandler(uint8_t ObjectContext,int64_t Validat
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x10);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x18);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x18);
   ResourceIndex = *ResourceTablePointerPointer;
   while( true ) {
     if (ResourceIndex == SystemContextPointer) {
@@ -32690,7 +32690,7 @@ void SystemResourceHandlerInitializer(uint8_t ObjectContext, int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -33357,7 +33357,7 @@ void CleanupResourceTablePointerBuffer(uint8_t ObjectContext,int64_t ValidationC
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x70);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x78);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x78);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     HandleBufferOperations(ResourceIndex);
   }
@@ -33629,7 +33629,7 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContext, int64_t ValidationCo
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
@@ -33678,7 +33678,7 @@ void UnwindResourceTablePointerCleanup(uint8_t ObjectContext, int64_t Validation
   
   ResourceIndex = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
@@ -33727,7 +33727,7 @@ void UnwindBatchResourceRelease(uint8_t ObjectContext, int64_t ValidationContext
   
   ResourceIndex = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
@@ -33780,7 +33780,7 @@ void UnwindExceptionResourceValidator(uint8_t ObjectContext,int64_t ValidationCo
   int32_t *ResourceReferenceCountPointer;
   uint8_t *ResourceHashStatusAddress;
   int64_t ResourceIndex;
-  uint64_t memoryAddressMask;
+  uint64_t MemoryAddressMask;
   
   ValidationStatusCodeAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x30);
   if (ResourceHashStatusAddress == (uint8_t *)0x0) {
@@ -33964,7 +33964,7 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContext,int64_t ValidationC
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
@@ -34012,7 +34012,7 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContext,int64_t ValidationC
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ResourceCount = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceProcessingIndex = 0;
   if (ResourceCount != 0) {
     do {
@@ -34054,7 +34054,7 @@ void UnwindSystemResourceProcessorSetupStandard(uint8_t ObjectContext,int64_t Va
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
           ExecuteSystemEmergencyExit();
@@ -34084,7 +34084,7 @@ void CleanupSystemResourceHandlerPrimary(uint8_t ObjectContext,int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
           ExecuteSystemEmergencyExit();
@@ -34114,7 +34114,7 @@ void CleanupSystemResourceHandlerB(uint8_t ObjectContext,int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -34241,7 +34241,7 @@ void SystemResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x90);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x90);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -34726,7 +34726,7 @@ void SystemGarbageCollector(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   MutexDestroyInPlace();
   RegisterResourceHandler(SystemContextPointer + 0x3e0,0x20,0x20,ReleaseSystemResource,ResourceHashStatus);
@@ -34916,7 +34916,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationCo
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -35792,7 +35792,7 @@ void UnwindContextResetter(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset);
   FinalizeResourceOperation(SystemContextPointer + 0x40);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
@@ -35812,7 +35812,7 @@ void UnwindFinalCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,u
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   MutexDestroyInPlace();
   ProcessResourceOperation(SystemContextPointer + 0x110,*(uint8_t *)(SystemContextPointer + 0x120),CleanupOption,CleanupFlag,ResourceHashStatus);
@@ -35831,7 +35831,7 @@ void UnwindResourceInitializer(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -35849,7 +35849,7 @@ void UnwindSystemValidator(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
           ExecuteSystemEmergencyExit();
   }
@@ -35942,7 +35942,7 @@ void UnwindDataProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
           ExecuteSystemEmergencyExit();
   }
@@ -35999,7 +35999,7 @@ void UnwindThreadManager(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x48);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
           ExecuteSystemEmergencyExit();
   }
@@ -36152,7 +36152,7 @@ void UnwindAsyncCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,u
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   MutexDestroyInPlace();
   ProcessResourceOperation(SystemContextPointer + 0x110,*(uint8_t *)(SystemContextPointer + 0x120),CleanupOption,CleanupFlag,ResourceHashStatus);
@@ -36577,7 +36577,7 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext,int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   InitializeResourceSystem();
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
@@ -36698,7 +36698,7 @@ void ProcessResourceContextValidation(uint8_t ObjectContext,int64_t ValidationCo
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   *(uint8_t *)(SystemContextPointer + 0x40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
           ExecuteSystemEmergencyExit();
@@ -37697,7 +37697,7 @@ void ProcessResourceTransactionSecondary(uint8_t ObjectContext, int64_t Validati
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x140) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x140))(SystemContextPointer + 0x130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -37739,7 +37739,7 @@ void ProcessResourceTransactionTertiary(uint8_t ObjectContext, int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1b0))(SystemContextPointer + 0x1a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -37781,7 +37781,7 @@ void ProcessResourceTransactionQuaternary(uint8_t ObjectContext, int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x220) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x220))(SystemContextPointer + 0x210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -37823,7 +37823,7 @@ void ProcessResourceTransactionQuinary(uint8_t ObjectContext, int64_t Validation
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x290) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x290))(SystemContextPointer + 0x280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -37865,7 +37865,7 @@ void ProcessResourceTransactionSenary(uint8_t ObjectContext, int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + ResourceContextTertiaryOffset0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ResourceContextTertiaryOffset0))(SystemContextPointer + 0x2f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -37907,7 +37907,7 @@ void ProcessResourceTransactionSeptenary(uint8_t ObjectContext, int64_t Validati
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x370) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x370))(SystemContextPointer + 0x360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -37949,7 +37949,7 @@ void ProcessResourceTransactionOctonary(uint8_t ObjectContext, int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x3e0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x3e0))(SystemContextPointer + 0x3d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -37991,7 +37991,7 @@ void ProcessResourceTransactionNonary(uint8_t ObjectContext, int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x450) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x450))(SystemContextPointer + 0x440,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38033,7 +38033,7 @@ void ProcessResourceTransactionDenary(uint8_t ObjectContext, int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x510) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x510))(SystemContextPointer + 0x500,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38096,7 +38096,7 @@ void ValidateMemoryAccess(uint8_t ObjectContext, int64_t ValidationContext, uint
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x580) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x580))(SystemContextPointer + 0x570,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38184,7 +38184,7 @@ void ValidateMemoryAccessTertiary(uint8_t ObjectContext, int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x140) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x140))(SystemContextPointer + 0x130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38226,7 +38226,7 @@ void ValidateMemoryAccessQuaternary(uint8_t ObjectContext, int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1b0))(SystemContextPointer + 0x1a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38268,7 +38268,7 @@ void ValidateMemoryAccessQuinary(uint8_t ObjectContext, int64_t ValidationContex
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x220) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x220))(SystemContextPointer + 0x210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38310,7 +38310,7 @@ void ValidateMemoryAccessSenary(uint8_t ObjectContext, int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x290) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x290))(SystemContextPointer + 0x280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38352,7 +38352,7 @@ void ValidateMemoryAccessSeptenary(uint8_t ObjectContext, int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + ResourceContextTertiaryOffset0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ResourceContextTertiaryOffset0))(SystemContextPointer + 0x2f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38394,7 +38394,7 @@ void ValidateMemoryAccessOctonary(uint8_t ObjectContext, int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x370) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x370))(SystemContextPointer + 0x360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38436,7 +38436,7 @@ void ValidateMemoryAccessNonary(uint8_t ObjectContext, int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x3e0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x3e0))(SystemContextPointer + 0x3d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38478,7 +38478,7 @@ void ValidateMemoryAccessDenary(uint8_t ObjectContext, int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x450) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x450))(SystemContextPointer + 0x440,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38520,7 +38520,7 @@ void ValidateMemoryAccessUndenary(uint8_t ObjectContext, int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x510) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x510))(SystemContextPointer + 0x500,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38583,7 +38583,7 @@ void ValidateMemoryAccessDuodenary(uint8_t ObjectContext, int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x580) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x580))(SystemContextPointer + 0x570,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38623,7 +38623,7 @@ void ValidateContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x88);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x88);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
           ExecuteSystemEmergencyExit();
@@ -38653,7 +38653,7 @@ void ValidateContextSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x88);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x88);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -38739,7 +38739,7 @@ void UnwindSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x4c0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x4c0))(SystemContextPointer + 0x4b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38779,7 +38779,7 @@ void UnwindSystemDataStructureHandler(uint8_t ObjectContext,int64_t ValidationCo
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x530) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x530))(SystemContextPointer + 0x520,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38821,7 +38821,7 @@ void CleanupLocalContextResources(uint8_t ObjectContext, int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x5a0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x5a0))(SystemContextPointer + 0x590,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38863,7 +38863,7 @@ void ReleaseSystemDataStructures(uint8_t ObjectContext, int64_t ValidationContex
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x610) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x610))(SystemContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38905,7 +38905,7 @@ void CleanupResourceWithParameters(uint8_t ObjectContext,int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x680) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x680))(SystemContextPointer + 0x670,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38947,7 +38947,7 @@ void CleanupResourceWithValidation(uint8_t ObjectContext,int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x6f0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x6f0))(SystemContextPointer + 0x6e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -38975,7 +38975,7 @@ void CleanupResourceWithStatusCheck(uint8_t ObjectContext,int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x760) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x760))(SystemContextPointer + 0x750,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39018,7 +39018,7 @@ void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 2000) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 2000))(SystemContextPointer + 0x7c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39059,7 +39059,7 @@ void CleanupSystemResourceHandlerPrimary(uint8_t ObjectContext,int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + ContextReferenceCountOffset0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ContextReferenceCountOffset0))(SystemContextPointer + 0x830,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39100,7 +39100,7 @@ void CleanupSystemResourceHandlerSecondary(uint8_t ObjectContext,int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x8b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x8b0))(SystemContextPointer + 0x8a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39141,7 +39141,7 @@ void CleanupSystemResourceHandlerTertiary(uint8_t ObjectContext,int64_t Validati
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x920) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x920))(SystemContextPointer + 0x910,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39182,7 +39182,7 @@ void CleanupSystemResourceHandlerQuaternary(uint8_t ObjectContext,int64_t Valida
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x990) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x990))(SystemContextPointer + 0x980,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39223,7 +39223,7 @@ void CleanupSystemResourceHandlerQuinary(uint8_t ObjectContext,int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xa08) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa08))(SystemContextPointer + 0x9f8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39264,7 +39264,7 @@ void CleanupSystemResourceHandlerSenary(uint8_t ObjectContext,int64_t Validation
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xa80) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa80))(SystemContextPointer + 0xa70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39330,7 +39330,7 @@ void ValidateResourceContextExtended(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   *(uint8_t *)(SystemContextPointer + 0x10) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x18) != 0) {
           ExecuteSystemEmergencyExit();
@@ -39360,7 +39360,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   *(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x38) != 0) {
           ExecuteSystemEmergencyExit();
@@ -39448,7 +39448,7 @@ void CleanupDualResourceHandlers(uint8_t ObjectContext,int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x4c0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x4c0))(SystemContextPointer + 0x4b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39488,7 +39488,7 @@ void ProcessSystemResourceCleanupPrimary(uint8_t ObjectContext,int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x530) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x530))(SystemContextPointer + 0x520,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39528,7 +39528,7 @@ void ProcessSystemResourceCleanupSecondary(uint8_t ObjectContext,int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x5a0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x5a0))(SystemContextPointer + 0x590,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39568,7 +39568,7 @@ void ProcessSystemResourceCleanupTertiary(uint8_t ObjectContext,int64_t Validati
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x610) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x610))(SystemContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39608,7 +39608,7 @@ void ProcessSystemResourceCleanupPhaseFour(uint8_t ObjectContext,int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x680) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x680))(SystemContextPointer + 0x670,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39650,7 +39650,7 @@ void CleanupSystemResourcesPhaseOne(uint8_t ObjectContext, int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x6f0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x6f0))(SystemContextPointer + 0x6e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39692,7 +39692,7 @@ void CleanupSystemResourcesPhaseTwo(uint8_t ObjectContext, int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x760) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x760))(SystemContextPointer + 0x750,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39734,7 +39734,7 @@ void CleanupSystemResourcesPhaseThree(uint8_t ObjectContext, int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 2000) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 2000))(SystemContextPointer + 0x7c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39776,7 +39776,7 @@ void CleanupSystemResourceHandlerPhaseFour(uint8_t ObjectContext, int64_t Valida
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + ContextReferenceCountOffset0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ContextReferenceCountOffset0))(SystemContextPointer + 0x830,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39818,7 +39818,7 @@ void CleanupSystemResourceHandlerPhaseFive(uint8_t ObjectContext, int64_t Valida
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x8b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x8b0))(SystemContextPointer + 0x8a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39860,7 +39860,7 @@ void CleanupSystemResourceHandlerPhaseSix(uint8_t ObjectContext, int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x920) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x920))(SystemContextPointer + 0x910,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39902,7 +39902,7 @@ void CleanupSystemResourceHandlerPhaseSeven(uint8_t ObjectContext, int64_t Valid
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x990) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x990))(SystemContextPointer + 0x980,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39942,7 +39942,7 @@ void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xa08) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa08))(SystemContextPointer + 0x9f8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -39982,7 +39982,7 @@ void CleanupAdvancedSystemResourceHandler(uint8_t ObjectContext,int64_t Validati
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xa80) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa80))(SystemContextPointer + 0xa70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40022,7 +40022,7 @@ void ReleaseObjectContextResources(uint8_t ObjectContext, int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x88);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x88);
   *(uint8_t *)(SystemContextPointer + 0x10) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x18) != 0) {
           ExecuteSystemEmergencyExit();
@@ -40052,7 +40052,7 @@ void ReleaseValidationContextResources(uint8_t ObjectContext, int64_t Validation
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x88);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x88);
   *(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x38) != 0) {
           ExecuteSystemEmergencyExit();
@@ -40112,7 +40112,7 @@ void CleanupThreadManagerResources(uint8_t ObjectContext, int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 400) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 400))(SystemContextPointer + 0x180,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40175,7 +40175,7 @@ void CleanupFileSystemResources(uint8_t ObjectContext, int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x250) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x250))(SystemContextPointer + 0x240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40236,7 +40236,7 @@ void CleanupExtendedSystemResourceHandler(uint8_t ObjectContext,int64_t Validati
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x310) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x310))(SystemContextPointer + ResourceContextTertiaryOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40299,7 +40299,7 @@ void ResetSystemResourceHandlers(uint8_t ObjectContext, int64_t ValidationContex
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x3d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x3d0))(SystemContextPointer + 0x3c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40348,7 +40348,7 @@ void CleanupSystemResourceHandlerBasic(uint8_t ObjectContext,int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x490) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x490))(SystemContextPointer + 0x480,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40411,7 +40411,7 @@ void CleanupSystemResourceHandlerPhaseOne(uint8_t ObjectContext,int64_t Validati
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x550) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x550))(SystemContextPointer + 0x540,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40474,7 +40474,7 @@ void CleanupSystemResourceHandlerPhaseTwo(uint8_t ObjectContext,int64_t Validati
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x610) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x610))(SystemContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40537,7 +40537,7 @@ void CleanupSystemResourceHandlerPhaseThree(uint8_t ObjectContext,int64_t Valida
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x6d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x6d0))(SystemContextPointer + 0x6c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40600,7 +40600,7 @@ void CleanupSystemResourceHandlerPhaseFour(uint8_t ObjectContext,int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x790) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x790))(SystemContextPointer + ResourceContextSecondaryOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40664,7 +40664,7 @@ void CleanupThreadPoolContextAndManageSystemState(uint8_t ObjectContext, int64_t
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x850) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x850))(SystemContextPointer + ContextReferenceCountOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40728,7 +40728,7 @@ void CleanupMemoryPoolContextAndProcessSystemState(uint8_t ObjectContext, int64_
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x910) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x910))(SystemContextPointer + 0x900,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40792,7 +40792,7 @@ void CleanupEventSystemContextAndManageSystemResources(uint8_t ObjectContext, in
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x9d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x9d0))(SystemContextPointer + 0x9c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40856,7 +40856,7 @@ void CleanupLoggingSystemContextAndProcessSystemState(uint8_t ObjectContext, int
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xa90) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa90))(SystemContextPointer + 0xa80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -40984,7 +40984,7 @@ void CleanupSecuritySystemContextAndProcessSystemState(uint8_t ObjectContext, in
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xc10) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xc10))(SystemContextPointer + 0xc00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41048,7 +41048,7 @@ void CleanupConfigurationSystemContextAndManageSystemResources(uint8_t ObjectCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xcd0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xcd0))(SystemContextPointer + 0xcc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41112,7 +41112,7 @@ void CleanupDiagnosticsSystemContextAndProcessSystemState(uint8_t ObjectContext,
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xd40) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xd40))(SystemContextPointer + 0xd30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41155,7 +41155,7 @@ void CleanupPerformanceMonitoringContextAndManageSystemResources(uint8_t ObjectC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xdb0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xdb0))(SystemContextPointer + 0xda0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41197,7 +41197,7 @@ void CleanupSystemResourceHandlerGraphicsGroup(uint8_t ObjectContext,int64_t Val
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xe20) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xe20))(SystemContextPointer + 0xe10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41239,7 +41239,7 @@ void CleanupSystemResourceHandlerAudioGroup(uint8_t ObjectContext,int64_t Valida
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xee0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xee0))(SystemContextPointer + 0xed0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41302,7 +41302,7 @@ void CleanupSystemResourceHandlerNetworkGroup(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 4000) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 4000))(SystemContextPointer + 0xf90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41365,7 +41365,7 @@ void CleanupSystemResourceHandlerPhysicsGroup(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1060) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1060))(SystemContextPointer + 0x1050,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41428,7 +41428,7 @@ void CleanupSystemResourceHandlerInputGroup(uint8_t ObjectContext,int64_t Valida
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x10d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x10d0))(SystemContextPointer + 0x10c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41470,7 +41470,7 @@ void CleanupSystemResourceHandlerMemoryGroup(uint8_t ObjectContext,int64_t Valid
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1140) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1140))(SystemContextPointer + 0x1130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41512,7 +41512,7 @@ void CleanupSystemResourceHandlerSecurityGroup(uint8_t ObjectContext,int64_t Val
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x11b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x11b0))(SystemContextPointer + 0x11a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41554,7 +41554,7 @@ void CleanupSystemResourceHandlerSetDuodecimal(uint8_t ObjectContext,int64_t Val
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1220) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1220))(SystemContextPointer + 0x1210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41596,7 +41596,7 @@ void CleanupSystemResourceHandlerSetTredecimal(uint8_t ObjectContext,int64_t Val
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1290) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1290))(SystemContextPointer + 0x1280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41638,7 +41638,7 @@ void CleanupSystemResourceHandlerThreadSet(uint8_t ObjectContext,int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1300) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1300))(SystemContextPointer + 0x12f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41680,7 +41680,7 @@ void CleanupSystemResourceHandlerFileSet(uint8_t ObjectContext,int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1370) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1370))(SystemContextPointer + 0x1360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -41792,7 +41792,7 @@ void ResetSystemResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -41874,7 +41874,7 @@ void CleanupObjectContext(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -41961,7 +41961,7 @@ void ResetObjectContext(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -41990,7 +41990,7 @@ void UnwindSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
           ExecuteSystemEmergencyExit();
@@ -42020,7 +42020,7 @@ void UnwindSystemResourceSecondaryHandler(uint8_t ObjectContext,int64_t Validati
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemResourceContext + 0x68) != 0) {
           ExecuteSystemEmergencyExit();
@@ -42050,7 +42050,7 @@ void UnwindSystemResourceTertiaryHandler(uint8_t ObjectContext,int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x88) != 0) {
           ExecuteSystemEmergencyExit();
@@ -42108,7 +42108,7 @@ void ResetSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   *(uint8_t *)(SystemContextPointer + 0x60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemResourceContext + 0x68) != 0) {
           ExecuteSystemEmergencyExit();
@@ -42168,7 +42168,7 @@ void ResetMultiLayerSystemResourceHandler(uint8_t ObjectContext, int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 400) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 400))(SystemContextPointer + 0x180,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42238,7 +42238,7 @@ void ExecuteSystemResourceCleanupPrimaryBatch(uint8_t ObjectContext, int64_t Val
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x250) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x250))(SystemContextPointer + 0x240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42308,7 +42308,7 @@ void ExecuteSystemResourceCleanupSecondaryBatch(uint8_t ObjectContext, int64_t V
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x310) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x310))(SystemContextPointer + ResourceContextTertiaryOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42389,7 +42389,7 @@ void SystemResourceCleanupBatchHandler(uint8_t ObjectContext, int64_t Validation
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x3d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x3d0))(SystemContextPointer + 0x3c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42470,7 +42470,7 @@ void SystemResourceCleanupBatchSecondaryHandler(uint8_t ObjectContext, int64_t V
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x490) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x490))(SystemContextPointer + 0x480,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42626,7 +42626,7 @@ void InitializeSystemResourceHandlers(uint8_t ObjectContext,int64_t ValidationCo
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x610) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x610))(SystemContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42689,7 +42689,7 @@ void SetupSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext,
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x6d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x6d0))(SystemContextPointer + 0x6c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42752,7 +42752,7 @@ void ConfigureResourceValidation(uint8_t ObjectContext,int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x790) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x790))(SystemContextPointer + ResourceContextSecondaryOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42815,7 +42815,7 @@ void CleanupResourceBlockGraphicsGroup(uint8_t ObjectContext,int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x850) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x850))(SystemContextPointer + ContextReferenceCountOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42878,7 +42878,7 @@ void CleanupResourceBlockAudioGroup(uint8_t ObjectContext,int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x910) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x910))(SystemContextPointer + 0x900,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -42941,7 +42941,7 @@ void CleanupResourceBlockNetworkGroup(uint8_t ObjectContext,int64_t ValidationCo
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x9d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x9d0))(SystemContextPointer + 0x9c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43004,7 +43004,7 @@ void CleanupResourceBlockPhysicsGroup(uint8_t ObjectContext,int64_t ValidationCo
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xa90) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa90))(SystemContextPointer + 0xa80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43067,7 +43067,7 @@ void CleanupResourceBlockInputGroup(uint8_t ObjectContext,int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xb50) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xb50))(SystemContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43130,7 +43130,7 @@ void CleanupResourceBlockMemoryGroup(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xc10) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xc10))(SystemContextPointer + 0xc00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43193,7 +43193,7 @@ void CleanupResourceBlockSecurityGroup(uint8_t ObjectContext,int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xcd0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xcd0))(SystemContextPointer + 0xcc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43256,7 +43256,7 @@ void CleanupResourceBlockThreadGroup(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xd40) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xd40))(SystemContextPointer + 0xd30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43298,7 +43298,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xdb0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xdb0))(SystemContextPointer + 0xda0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43340,7 +43340,7 @@ void ValidateSystemResourceContext(uint8_t ObjectContext,int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xe20) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xe20))(SystemContextPointer + 0xe10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43382,7 +43382,7 @@ void CleanupSystemResourceMemory(uint8_t ObjectContext,int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xee0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xee0))(SystemContextPointer + 0xed0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43445,7 +43445,7 @@ void ReleaseSystemResourceHandle(uint8_t ObjectContext,int64_t ValidationContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 4000) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 4000))(SystemContextPointer + 0xf90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43508,7 +43508,7 @@ void FreeSystemResourceMemory(uint8_t ObjectContext,int64_t ValidationContext,ui
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1060) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1060))(SystemContextPointer + 0x1050,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43571,7 +43571,7 @@ void ResetSystemResourceState(uint8_t ObjectContext,int64_t ValidationContext,ui
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x10d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x10d0))(SystemContextPointer + 0x10c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43613,7 +43613,7 @@ void InitializeResourceHandler(uint8_t ObjectContext,int64_t ValidationContext,u
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1140) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1140))(SystemContextPointer + 0x1130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43655,7 +43655,7 @@ void ConfigureSystemResourceManager(uint8_t ObjectContext,int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x11b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x11b0))(SystemContextPointer + 0x11a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43697,7 +43697,7 @@ void ValidateSystemResourceIntegrity(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1220) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1220))(SystemContextPointer + 0x1210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43741,7 +43741,7 @@ void InitializeSystemResourceHandlerSecondary(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1290) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1290))(SystemContextPointer + 0x1280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43785,7 +43785,7 @@ void InitializeSystemResourceHandlerTertiary(uint8_t ObjectContext,int64_t Valid
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1300) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1300))(SystemContextPointer + 0x12f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -43827,7 +43827,7 @@ void ExecuteSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContex
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1370) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1370))(SystemContextPointer + 0x1360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -44283,7 +44283,7 @@ void ReleaseSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
           ExecuteSystemEmergencyExit();
@@ -46175,7 +46175,7 @@ void HandleExceptionAndResourceTablePointer(uint8_t ObjectContext,int64_t Valida
   int64_t LoopCounter;
   int64_t ResourceTablePointer;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   *(uint8_t *)(SystemContextPointer + 0x60) = *(uint8_t *)(ValidationContext + 0x70);
   ResourceTablePointer = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   if (ResourceTablePointer == 0) {
@@ -46200,7 +46200,7 @@ void HandleException(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   CleanupSystemResources(SystemContextPointer);
   ResetSystemMemory(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 8,0);
   ConfigureSystemParameters(*(uint8_t *)(SystemContextPointer + 0x50),*(uint8_t *)(ValidationContext + ValidationContextTertiaryCountOffset));
@@ -46290,7 +46290,7 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceHandle;
   
   ResourceCount = *(uint64_t *)(ValidationContext + 0x20);
-  loopCounter = *(int64_t *)(ValidationContext + 0x90);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x90);
   SystemDataPointer = *(int64_t *)(SystemContextPointer + 0x40);
   LoopIncrement = *(uint64_t *)(ValidationContext + ResourceContextTertiaryOffset);
   ResourceTablePointer = *(int64_t *)(ValidationContext + 0xa0);
@@ -47009,7 +47009,7 @@ void InitializeLocalContextAndResourceHandler(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x38) != 0) {
           ExecuteSystemEmergencyExit();
@@ -49592,7 +49592,7 @@ void ExecuteResourceCleanupCallbacks(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0xa8);
+  LoopCounter = *(int64_t *)(ValidationContext + 0xa8);
   if (*(code **)(SystemContextPointer + 0x198) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x198))(SystemContextPointer + 0x188,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -49623,7 +49623,7 @@ void ExecuteResourceValidationCallbacks(uint8_t ObjectContext,int64_t Validation
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x48);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (*(code **)(SystemContextPointer + 0x198) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x198))(SystemContextPointer + 0x188,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -51835,7 +51835,7 @@ void UnwindAndCleanupResourceIndexPointer(uint8_t ObjectContext,int64_t Validati
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x38);
   MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -51881,7 +51881,7 @@ void UnwindResourceContextCleanupBasic(uint8_t ObjectContext,int64_t ValidationC
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x38);
   MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -51928,7 +51928,7 @@ void UnwindResourceContextCleanupExtended(uint8_t ObjectContext,int64_t Validati
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -52634,7 +52634,7 @@ void HandleSystemResourceCleanupException(uint8_t ObjectContext, int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   CleanupSystemResources(SystemContextPointer);
   ResetSystemMemory(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 8,0);
   FinalizeSystemSetup(*(uint8_t *)(SystemContextPointer + 0x50),*(uint8_t *)(ValidationContext + ResourceContextSecondaryOffset));
@@ -52892,7 +52892,7 @@ void ProcessResourceTablePointerCleanup(uint8_t ObjectContext, int64_t Validatio
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x3c8);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x3d0);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x3d0);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
     ProcessResourceIndex(ResourceIndex);
   }
@@ -53335,7 +53335,7 @@ void ProcessResourceTablePointerIndexTraversal(uint8_t ObjectContext, int64_t Va
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x3c8);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x3d0);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x3d0);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
     ProcessResourceIndex(ResourceIndex);
   }
@@ -54731,7 +54731,7 @@ void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(int64_t *)(SystemContextPointer + 0x40) != 0) {
           ExecuteSystemEmergencyExit();
   }
@@ -54762,7 +54762,7 @@ void ResetSystemContextStatusFlags(uint8_t ObjectContext, int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(int64_t *)(SystemContextPointer + 0x52) != 0) {
           ExecuteSystemEmergencyExit();
   }
@@ -54990,7 +54990,7 @@ void ResetSystemCounterStatus(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
   if (*(int64_t *)(SystemContextPointer + 0x12) != 0) {
           ExecuteSystemEmergencyExit();
   }
@@ -55046,7 +55046,7 @@ void ResetSystemStatusFlags(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   if (*(int64_t *)(SystemContextPointer + 0x12) != 0) {
           ExecuteSystemEmergencyExit();
   }
@@ -55102,7 +55102,7 @@ void ResetResourceIndexCounter(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   if (*(int64_t *)(SystemContextPointer + 0x12) != 0) {
           ExecuteSystemEmergencyExit();
   }
@@ -55507,7 +55507,7 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext, int64_t Validation
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x48);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x48);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -59540,7 +59540,7 @@ void ReleaseSystemResourceHandleAndCheckEmergencyExit(uint8_t ObjectContext,int6
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ReleaseSystemResourceHandle(*(uint8_t *)(SystemContextPointer + 0xb0));
   *(uint8_t *)(SystemContextPointer + 0xb0) = 0;
   if (*(int64_t *)(SystemContextPointer + 0xb8) != 0) {
@@ -61220,7 +61220,7 @@ void ValidateResourceVersionExtended(uint8_t ObjectContext,int64_t ValidationCon
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 8);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x10);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x10);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x60) {
     CheckResourceVersion(ResourceIndex);
   }
@@ -61859,7 +61859,7 @@ void UnwindSystemResourceHandler001(uint8_t ObjectContext,int64_t ValidationCont
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x60) != 0) {
           ExecuteSystemEmergencyExit();
@@ -62242,7 +62242,7 @@ void InitializeSystemResourceHandlerTemplateB(uint8_t ObjectContext, int64_t Val
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x28);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x28);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -65317,7 +65317,7 @@ void CleanupResourceTablePointer(uint8_t ObjectContext,int64_t ValidationContext
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   MutexDestroyInPlace();
   RegisterResourceHandler(SystemContextPointer + 0x3e0,0x20,0x20,ReleaseSystemResource,ResourceHashStatus);
@@ -66019,7 +66019,7 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext, int64_t Validation
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
           ExecuteSystemEmergencyExit();
@@ -66037,7 +66037,7 @@ void HandleExceptionType180908910(uint8_t ObjectContext, int64_t ValidationConte
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x20);
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
           ExecuteSystemEmergencyExit();
@@ -66867,7 +66867,7 @@ void FinalizeResourceTablePointerOperation(uint8_t ObjectContext,int64_t Validat
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -67430,7 +67430,7 @@ void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x1b8);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x1b8);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -68101,7 +68101,7 @@ void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContex
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   ResourceHashStatus = 0xfffffffffffffffe;
   MutexDestroyInPlace();
   ProcessResourceOperation(SystemContextPointer + 0x110,*(uint8_t *)(SystemContextPointer + 0x120),CleanupOption,CleanupFlag,ResourceHashStatus);
@@ -68698,7 +68698,7 @@ void ProcessSystemResourceCleanupPhase1(uint8_t ObjectContext,int64_t Validation
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   if (*(int64_t **)(SystemContextPointer + 0x1d50) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x1d50) + 0x38))();
   }
@@ -69873,7 +69873,7 @@ void UpdateValidationContextResourceTablePointerSecondary(uint8_t ObjectContext,
   int64_t LoopCounter;
   int64_t ResourceTablePointer;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x148);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x148);
   for (ResourceTablePointer = *(int64_t *)(ValidationContext + 0x140); ResourceTablePointer != SystemContextPointer; ResourceTablePointer = ResourceTablePointer + 0x78) {
     UpdateResourceTablePointer(ResourceTablePointer);
   }
@@ -70478,7 +70478,7 @@ void CleanupResourceHashUnwindA(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t LoopCounter;
   int64_t ResourceTablePointer;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x1c0);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x1c0);
   for (ResourceTablePointer = *(int64_t *)(ValidationContext + 0x1b8); ResourceTablePointer != SystemContextPointer; ResourceTablePointer = ResourceTablePointer + 0x78) {
     UpdateResourceTablePointer(ResourceTablePointer);
   }
@@ -70961,7 +70961,7 @@ void UnwindSystemResourceProcessingM(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 0x58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x60) != 0) {
           ExecuteSystemEmergencyExit();
@@ -71003,7 +71003,7 @@ void UnwindSystemResourceProcessingP(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -71021,7 +71021,7 @@ void UnwindSystemResourceProcessingQ(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
           ExecuteSystemEmergencyExit();
@@ -72190,7 +72190,7 @@ void UnwindSystemResourceTemplateHandler(uint8_t ObjectContext,int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
           ExecuteSystemEmergencyExit();
@@ -73053,7 +73053,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   *(uint8_t *)(SystemContextPointer + 0x560) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x568) != 0) {
           ExecuteSystemEmergencyExit();
@@ -74785,7 +74785,7 @@ void ValidateSystemContextResourceState(uint8_t ObjectContext, int64_t Validatio
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
@@ -75906,7 +75906,7 @@ void Unwind_18090af70(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   LoopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
-  loopCounter = *(int64_t *)(ResourceIndex + 0x2a8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 0x2a8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -76602,7 +76602,7 @@ void Unwind_18090b4b0(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
   LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -76638,7 +76638,7 @@ void Unwind_18090b4c0(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
   LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -76692,7 +76692,7 @@ void Unwind_18090b4f0(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -76728,7 +76728,7 @@ void Unwind_18090b500(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -77029,7 +77029,7 @@ void Unwind_18090b7d0(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   LoopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
-  loopCounter = *(int64_t *)(ResourceIndex + 0x2a8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 0x2a8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -77657,7 +77657,7 @@ void Unwind_18090bd10(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x48);
   LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -77693,7 +77693,7 @@ void Unwind_18090bd20(uint8_t ObjectContext,int64_t ValidationContext)
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x48);
   LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
-  loopCounter = *(int64_t *)(ResourceIndex + 8);
+  LoopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (MemoryAddressIncrement != 0) {
     do {
@@ -78387,7 +78387,7 @@ void Unwind_18090c150(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x48);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x48);
   if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
@@ -78422,7 +78422,7 @@ void Unwind_18090c170(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset);
   if (*(int64_t **)(SystemContextPointer + 0x40) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x40) + 0x38))();
   }
@@ -78807,7 +78807,7 @@ void Unwind_18090c310(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
           ExecuteSystemEmergencyExit();
@@ -79135,7 +79135,7 @@ void Unwind_18090c4b0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x118);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x118);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -79219,7 +79219,7 @@ void Unwind_18090c510(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x118);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x118);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -79298,13 +79298,13 @@ void Unwind_18090c540(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -79343,13 +79343,13 @@ void Unwind_18090c550(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -79417,13 +79417,13 @@ void Unwind_18090c590(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -79482,13 +79482,13 @@ void Unwind_18090c5c0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -79527,13 +79527,13 @@ void Unwind_18090c5d0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -79583,13 +79583,13 @@ void Unwind_18090c5f0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -79628,13 +79628,13 @@ void Unwind_18090c600(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80341,13 +80341,13 @@ void Unwind_18090ca20(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80397,13 +80397,13 @@ void Unwind_18090ca40(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80464,13 +80464,13 @@ void Unwind_18090ca70(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80529,13 +80529,13 @@ void Unwind_18090caa0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80594,13 +80594,13 @@ void Unwind_18090cad0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80659,13 +80659,13 @@ void Unwind_18090cb00(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80713,13 +80713,13 @@ void Unwind_18090cb20(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80767,13 +80767,13 @@ void Unwind_18090cb40(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80823,13 +80823,13 @@ void Unwind_18090cb60(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80877,13 +80877,13 @@ void Unwind_18090cb80(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -80964,13 +80964,13 @@ void Unwind_18090cbd0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -81029,13 +81029,13 @@ void Unwind_18090cc00(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -81193,13 +81193,13 @@ void Unwind_18090cce0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -81317,7 +81317,7 @@ void Unwind_18090ce00(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x38);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x38);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -81362,7 +81362,7 @@ void Unwind_18090ce20(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -81470,7 +81470,7 @@ void FinalizeSystemOperations(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -81545,7 +81545,7 @@ void ExecuteSystemShutdown(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x38);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x38);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -84794,7 +84794,7 @@ void Unwind_18090d530(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x130);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x130);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -84841,7 +84841,7 @@ void Unwind_18090d560(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x130);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x130);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -84894,7 +84894,7 @@ void Unwind_18090d590(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceSecurityProcessingOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceSecurityProcessingOffset);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -85050,7 +85050,7 @@ void Unwind_18090d660(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   if (*(int64_t **)(SystemContextPointer + 0xed0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0xed0) + 0x38))();
@@ -85938,7 +85938,7 @@ void Unwind_18090de80(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0xe0);
+  LoopCounter = *(int64_t *)(ValidationContext + 0xe0);
   ValidationStatusCode = 0xfffffffffffffffe;
   if (*(int64_t **)(SystemContextPointer + 0xed0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0xed0) + 0x38))();
@@ -86747,13 +86747,13 @@ void Unwind_18090e760(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -86804,13 +86804,13 @@ void Unwind_18090e7a0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -86849,13 +86849,13 @@ void Unwind_18090e7b0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -86894,13 +86894,13 @@ void Unwind_18090e7c0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -86939,13 +86939,13 @@ void Unwind_18090e7d0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -86984,13 +86984,13 @@ void Unwind_18090e7e0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -87029,13 +87029,13 @@ void Unwind_18090e7f0(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -87074,13 +87074,13 @@ void Unwind_18090e800(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -87130,13 +87130,13 @@ void Unwind_18090e820(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -87186,13 +87186,13 @@ void Unwind_18090e840(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -87242,13 +87242,13 @@ void Unwind_18090e860(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -87353,7 +87353,7 @@ void Unwind_18090e8e0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x28);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x28);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -87530,7 +87530,7 @@ void SetSystemResourceHandlerTemplateAndCheckEmergencyExit(uint8_t ObjectContext
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x28);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x28);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -87754,13 +87754,13 @@ void Unwind_18090eb00(uint8_t ObjectContext,int64_t ValidationContext)
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
-      loopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
+      LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
       if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
+      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
       OperationStatusCode = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
@@ -87797,7 +87797,7 @@ void Unwind_18090eb20(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset8);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset8);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -87844,7 +87844,7 @@ void Unwind_18090eb50(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset8);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset8);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -87933,7 +87933,7 @@ void Unwind_18090ec00(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -87994,7 +87994,7 @@ void Unwind_18090ec40(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -88167,7 +88167,7 @@ void Unwind_18090ed30(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -88821,7 +88821,7 @@ void Unwind_18090efe0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t DataOffset;
   int64_t *ResourceTablePointerPointerPointer;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   ResourceTablePointerPointer = (int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset0);
   ResourceIndex = *(int64_t *)(SystemContextPointer + 0x310);
   LoopOffset = *(int64_t *)(SystemContextPointer + 800);
@@ -89236,7 +89236,7 @@ void Unwind_18090f140(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -89254,7 +89254,7 @@ void Unwind_18090f150(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
           ExecuteSystemEmergencyExit();
@@ -89272,7 +89272,7 @@ void Unwind_18090f160(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
           ExecuteSystemEmergencyExit();
@@ -89318,7 +89318,7 @@ void Unwind_18090f190(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x10) != 0) {
           ExecuteSystemEmergencyExit();
@@ -89662,7 +89662,7 @@ void Unwind_18090f2d0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x180);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x188);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x188);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x30) {
     ExecuteResourceFinalization();
   }
@@ -89771,7 +89771,7 @@ void Unwind_18090f370(uint8_t ObjectContext,int64_t ValidationContext)
   uint ValidationStatusCode;
   int64_t *ContextPointer;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   ProcessingStatusCode = 0;
   LoopOffsetPointer = (int64_t *)(SystemContextPointer + 600);
   do {
@@ -89804,7 +89804,7 @@ void Unwind_18090f3b0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   if (*(int64_t **)(SystemContextPointer + 0x398) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x398) + 0x38))();
   }
@@ -90086,7 +90086,7 @@ void Unwind_18090f650(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   *(uint8_t *)(SystemContextPointer + 0x4140) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4148) != 0) {
           ExecuteSystemEmergencyExit();
@@ -90104,7 +90104,7 @@ void Unwind_18090f670(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   *(uint8_t *)(SystemContextPointer + 0x4190) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4198) != 0) {
           ExecuteSystemEmergencyExit();
@@ -90791,7 +90791,7 @@ void Unwind_18090fac0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x120);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x120);
   if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
   }
@@ -90838,7 +90838,7 @@ void Unwind_18090faf0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x120);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x120);
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -91260,7 +91260,7 @@ void Unwind_18090fe50(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 8);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x10);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x10);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
@@ -91385,7 +91385,7 @@ void Unwind_18090ff10(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset0) + 0x18);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset0) + 0x20);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset0) + 0x20);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
@@ -91523,7 +91523,7 @@ void Unwind_18090ffe0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + 8);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + 0x10);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + 0x10);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
@@ -91586,7 +91586,7 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 8);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x10);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x10);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x128) {
     ProcessResourceCleanup(ResourceIndex);
   }
@@ -91675,7 +91675,7 @@ void UnwindThreadCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 8);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x10);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x10);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
       (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
@@ -91820,7 +91820,7 @@ void Unwind_180910080(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   if (*(int64_t **)(SystemContextPointer + 0x68) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x68) + 0x38))();
   }
@@ -91905,7 +91905,7 @@ void Unwind_1809100d0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   
   ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8);
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10);
   for (ResourceIndex = *ResourceTablePointerPointer; ResourceIndex != SystemContextPointer; ResourceIndex = ResourceIndex + 0x18) {
     if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
       (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
@@ -91946,7 +91946,7 @@ void Unwind_1809100f0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(int64_t **)(SystemContextPointer + 0x68) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x68) + 0x38))();
   }
@@ -92018,7 +92018,7 @@ void Unwind_180910110(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
           ExecuteSystemEmergencyExit();
@@ -92036,7 +92036,7 @@ void Unwind_180910130(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
           ExecuteSystemEmergencyExit();
@@ -92092,7 +92092,7 @@ void Unwind_1809101c0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x110) != 0) {
           ExecuteSystemEmergencyExit();
@@ -92110,7 +92110,7 @@ void Unwind_1809101e0(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x20);
   if (*(int64_t **)(SystemContextPointer + 0x68) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(SystemContextPointer + 0x68) + 0x38))();
   }
@@ -93416,7 +93416,7 @@ void Unwind_1809107a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xa00) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa00))(SystemContextPointer + 0x9f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93444,7 +93444,7 @@ void Unwind_1809107c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xa70) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa70))(SystemContextPointer + 0xa60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93472,7 +93472,7 @@ void Unwind_1809107e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xae0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xae0))(SystemContextPointer + 0xad0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93500,7 +93500,7 @@ void Unwind_180910800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xb50) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xb50))(SystemContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93528,7 +93528,7 @@ void Unwind_180910820(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xbc0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xbc0))(SystemContextPointer + 0xbb0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93556,7 +93556,7 @@ void Unwind_180910840(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xc30) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xc30))(SystemContextPointer + 0xc20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93584,7 +93584,7 @@ void Unwind_180910860(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xca0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xca0))(SystemContextPointer + 0xc90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93612,7 +93612,7 @@ void Unwind_180910880(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xd10) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xd10))(SystemContextPointer + ResourceContextExtendedOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93640,7 +93640,7 @@ void Unwind_1809108a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xd80) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xd80))(SystemContextPointer + 0xd70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93668,7 +93668,7 @@ void Unwind_1809108c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xdf0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xdf0))(SystemContextPointer + 0xde0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93696,7 +93696,7 @@ void Unwind_1809108e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xe60) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xe60))(SystemContextPointer + 0xe50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93724,7 +93724,7 @@ void Unwind_180910900(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xed0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xed0))(SystemContextPointer + 0xec0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93752,7 +93752,7 @@ void Unwind_180910920(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xf40) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xf40))(SystemContextPointer + 0xf30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93780,7 +93780,7 @@ void Unwind_180910940(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xfb0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xfb0))(SystemContextPointer + 4000,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93808,7 +93808,7 @@ void Unwind_180910960(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1020) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1020))(SystemContextPointer + 0x1010,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93836,7 +93836,7 @@ void Unwind_180910980(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1090) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1090))(SystemContextPointer + 0x1080,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93864,7 +93864,7 @@ void Unwind_1809109a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1100) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1100))(SystemContextPointer + 0x10f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93892,7 +93892,7 @@ void Unwind_1809109c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1170) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1170))(SystemContextPointer + 0x1160,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93920,7 +93920,7 @@ void Unwind_1809109e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x11e0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x11e0))(SystemContextPointer + 0x11d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93948,7 +93948,7 @@ void Unwind_180910a00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1250) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1250))(SystemContextPointer + 0x1240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -93976,7 +93976,7 @@ void Unwind_180910a20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x12c0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x12c0))(SystemContextPointer + 0x12b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94004,7 +94004,7 @@ void Unwind_180910a40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1330) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1330))(SystemContextPointer + 0x1320,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94032,7 +94032,7 @@ void Unwind_180910a60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x13a0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x13a0))(SystemContextPointer + 0x1390,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94060,7 +94060,7 @@ void Unwind_180910a80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1410) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1410))(SystemContextPointer + 0x1400,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94088,7 +94088,7 @@ void Unwind_180910aa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1480) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1480))(SystemContextPointer + 0x1470,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94116,7 +94116,7 @@ void Unwind_180910ac0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x14f0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x14f0))(SystemContextPointer + 0x14e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94144,7 +94144,7 @@ void Unwind_180910ae0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1560) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1560))(SystemContextPointer + 0x1550,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94172,7 +94172,7 @@ void Unwind_180910b00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x15d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x15d0))(SystemContextPointer + 0x15c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94200,7 +94200,7 @@ void Unwind_180910b20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1640) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1640))(SystemContextPointer + 0x1630,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94228,7 +94228,7 @@ void Unwind_180910b40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x16b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x16b0))(SystemContextPointer + 0x16a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94256,7 +94256,7 @@ void Unwind_180910b60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1720) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1720))(SystemContextPointer + 0x1710,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94284,7 +94284,7 @@ void Unwind_180910b80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1790) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1790))(SystemContextPointer + 0x1780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94312,7 +94312,7 @@ void Unwind_180910ba0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1800) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1800))(SystemContextPointer + 0x17f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94340,7 +94340,7 @@ void Unwind_180910bc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1870) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1870))(SystemContextPointer + 0x1860,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94368,7 +94368,7 @@ void Unwind_180910be0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x18e0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x18e0))(SystemContextPointer + 0x18d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94396,7 +94396,7 @@ void Unwind_180910c00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1950) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1950))(SystemContextPointer + 0x1940,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94424,7 +94424,7 @@ void Unwind_180910c20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x19c0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x19c0))(SystemContextPointer + 0x19b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94452,7 +94452,7 @@ void Unwind_180910c40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1a30) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1a30))(SystemContextPointer + 0x1a20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94480,7 +94480,7 @@ void Unwind_180910c60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1aa0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1aa0))(SystemContextPointer + 0x1a90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94508,7 +94508,7 @@ void Unwind_180910c80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1b10) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1b10))(SystemContextPointer + 0x1b00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94536,7 +94536,7 @@ void Unwind_180910ca0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1b80) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1b80))(SystemContextPointer + 0x1b70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94564,7 +94564,7 @@ void Unwind_180910cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1bf0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1bf0))(SystemContextPointer + 0x1be0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94592,7 +94592,7 @@ void Unwind_180910ce0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1c60) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1c60))(SystemContextPointer + 0x1c50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94620,7 +94620,7 @@ void Unwind_180910d00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1cd0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1cd0))(SystemContextPointer + 0x1cc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94648,7 +94648,7 @@ void Unwind_180910d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1d40) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1d40))(SystemContextPointer + 0x1d30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94676,7 +94676,7 @@ void Unwind_180910d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x1db0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1db0))(SystemContextPointer + 0x1da0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94704,7 +94704,7 @@ void Unwind_180910d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + ErrorInvalidResourceData20) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorInvalidResourceData20))(SystemContextPointer + ErrorInvalidResourceData10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94732,7 +94732,7 @@ void Unwind_180910d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + ErrorInvalidResourceData90) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorInvalidResourceData90))(SystemContextPointer + SystemResourceCleanupOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94760,7 +94760,7 @@ void Unwind_180910da0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + ErrorResourceValidationFailed00) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorResourceValidationFailed00))(SystemContextPointer + ErrorInvalidResourceDataf0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94788,7 +94788,7 @@ void Unwind_180910dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + ErrorResourceValidationFailed70) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorResourceValidationFailed70))(SystemContextPointer + ErrorResourceValidationFailed60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94816,7 +94816,7 @@ void Unwind_180910de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + ErrorResourceValidationFailede0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorResourceValidationFailede0))(SystemContextPointer + ErrorResourceValidationFailedd0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94844,7 +94844,7 @@ void Unwind_180910e00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x2050) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2050))(SystemContextPointer + 0x2040,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94872,7 +94872,7 @@ void Unwind_180910e20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x20c0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x20c0))(SystemContextPointer + 0x20b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94900,7 +94900,7 @@ void Unwind_180910e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x2130) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2130))(SystemContextPointer + 0x2120,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94928,7 +94928,7 @@ void Unwind_180910e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x21a0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x21a0))(SystemContextPointer + 0x2190,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94956,7 +94956,7 @@ void Unwind_180910e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x2210) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2210))(SystemContextPointer + 0x2200,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -94984,7 +94984,7 @@ void Unwind_180910ea0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x2280) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2280))(SystemContextPointer + 0x2270,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95012,7 +95012,7 @@ void Unwind_180910ec0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x22f0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x22f0))(SystemContextPointer + 0x22e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95040,7 +95040,7 @@ void Unwind_180910ee0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x2360) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2360))(SystemContextPointer + 0x2350,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95068,7 +95068,7 @@ void Unwind_180910f00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x23d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x23d0))(SystemContextPointer + 0x23c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95096,7 +95096,7 @@ void Unwind_180910f20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x2440) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2440))(SystemContextPointer + 0x2430,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95124,7 +95124,7 @@ void Unwind_180910f40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x24b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x24b0))(SystemContextPointer + 0x24a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95152,7 +95152,7 @@ void Unwind_180910f60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x2520) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2520))(SystemContextPointer + 0x2510,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95180,7 +95180,7 @@ void Unwind_180910f80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x2590) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2590))(SystemContextPointer + 0x2580,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95208,7 +95208,7 @@ void Unwind_180910fa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x2600) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2600))(SystemContextPointer + 0x25f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95302,7 +95302,7 @@ void ExecuteAdvancedResourceCleanupOperation1(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xa00) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa00))(SystemContextPointer + 0x9f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95352,7 +95352,7 @@ void ExecuteAdvancedResourceCleanupOperation2(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xa70) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xa70))(SystemContextPointer + 0xa60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95402,7 +95402,7 @@ void ExecuteAdvancedResourceCleanupOperation3(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xae0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xae0))(SystemContextPointer + 0xad0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95452,7 +95452,7 @@ void ExecuteAdvancedResourceCleanupOperation4(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xb50) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xb50))(SystemContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95502,7 +95502,7 @@ void ExecuteAdvancedResourceCleanupOperation5(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xbc0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xbc0))(SystemContextPointer + 0xbb0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95552,7 +95552,7 @@ void ExecuteAdvancedResourceCleanupOperation6(uint8_t ObjectContext,int64_t Vali
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xc30) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xc30))(SystemContextPointer + 0xc20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95580,7 +95580,7 @@ void Unwind_1809110c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xca0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xca0))(SystemContextPointer + 0xc90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95608,7 +95608,7 @@ void Unwind_1809110e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xd10) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xd10))(SystemContextPointer + ResourceContextExtendedOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95636,7 +95636,7 @@ void Unwind_180911100(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xd80) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xd80))(SystemContextPointer + 0xd70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95664,7 +95664,7 @@ void Unwind_180911120(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xdf0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xdf0))(SystemContextPointer + 0xde0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95692,7 +95692,7 @@ void Unwind_180911140(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xe60) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xe60))(SystemContextPointer + 0xe50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95720,7 +95720,7 @@ void Unwind_180911160(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xed0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xed0))(SystemContextPointer + 0xec0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95748,7 +95748,7 @@ void Unwind_180911180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xf40) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xf40))(SystemContextPointer + 0xf30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95776,7 +95776,7 @@ void Unwind_1809111a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0xfb0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0xfb0))(SystemContextPointer + 4000,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95804,7 +95804,7 @@ void Unwind_1809111c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1020) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1020))(SystemContextPointer + 0x1010,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95832,7 +95832,7 @@ void Unwind_1809111e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1090) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1090))(SystemContextPointer + 0x1080,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95860,7 +95860,7 @@ void Unwind_180911200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1100) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1100))(SystemContextPointer + 0x10f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95888,7 +95888,7 @@ void Unwind_180911220(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1170) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1170))(SystemContextPointer + 0x1160,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95916,7 +95916,7 @@ void Unwind_180911240(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x11e0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x11e0))(SystemContextPointer + 0x11d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95944,7 +95944,7 @@ void Unwind_180911260(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1250) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1250))(SystemContextPointer + 0x1240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -95972,7 +95972,7 @@ void Unwind_180911280(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x12c0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x12c0))(SystemContextPointer + 0x12b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96000,7 +96000,7 @@ void Unwind_1809112a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1330) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1330))(SystemContextPointer + 0x1320,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96028,7 +96028,7 @@ void Unwind_1809112c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x13a0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x13a0))(SystemContextPointer + 0x1390,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96056,7 +96056,7 @@ void Unwind_1809112e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1410) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1410))(SystemContextPointer + 0x1400,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96084,7 +96084,7 @@ void Unwind_180911300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1480) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1480))(SystemContextPointer + 0x1470,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96112,7 +96112,7 @@ void Unwind_180911320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x14f0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x14f0))(SystemContextPointer + 0x14e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96140,7 +96140,7 @@ void Unwind_180911340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1560) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1560))(SystemContextPointer + 0x1550,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96168,7 +96168,7 @@ void Unwind_180911360(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x15d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x15d0))(SystemContextPointer + 0x15c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96196,7 +96196,7 @@ void Unwind_180911380(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1640) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1640))(SystemContextPointer + 0x1630,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96224,7 +96224,7 @@ void Unwind_1809113a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x16b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x16b0))(SystemContextPointer + 0x16a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96252,7 +96252,7 @@ void Unwind_1809113c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1720) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1720))(SystemContextPointer + 0x1710,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96280,7 +96280,7 @@ void Unwind_1809113e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1790) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1790))(SystemContextPointer + 0x1780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96308,7 +96308,7 @@ void Unwind_180911400(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1800) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1800))(SystemContextPointer + 0x17f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96336,7 +96336,7 @@ void Unwind_180911420(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1870) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1870))(SystemContextPointer + 0x1860,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96364,7 +96364,7 @@ void Unwind_180911440(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x18e0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x18e0))(SystemContextPointer + 0x18d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96392,7 +96392,7 @@ void Unwind_180911460(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1950) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1950))(SystemContextPointer + 0x1940,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96420,7 +96420,7 @@ void Unwind_180911480(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x19c0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x19c0))(SystemContextPointer + 0x19b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96448,7 +96448,7 @@ void Unwind_1809114a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1a30) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1a30))(SystemContextPointer + 0x1a20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96476,7 +96476,7 @@ void Unwind_1809114c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1aa0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1aa0))(SystemContextPointer + 0x1a90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96504,7 +96504,7 @@ void Unwind_1809114e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1b10) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1b10))(SystemContextPointer + 0x1b00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96532,7 +96532,7 @@ void Unwind_180911500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1b80) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1b80))(SystemContextPointer + 0x1b70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96560,7 +96560,7 @@ void Unwind_180911520(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1bf0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1bf0))(SystemContextPointer + 0x1be0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96588,7 +96588,7 @@ void Unwind_180911540(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1c60) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1c60))(SystemContextPointer + 0x1c50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96616,7 +96616,7 @@ void Unwind_180911560(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1cd0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1cd0))(SystemContextPointer + 0x1cc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96644,7 +96644,7 @@ void Unwind_180911580(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1d40) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1d40))(SystemContextPointer + 0x1d30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96672,7 +96672,7 @@ void Unwind_1809115a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x1db0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x1db0))(SystemContextPointer + 0x1da0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96700,7 +96700,7 @@ void Unwind_1809115c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + ErrorInvalidResourceData20) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorInvalidResourceData20))(SystemContextPointer + ErrorInvalidResourceData10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96728,7 +96728,7 @@ void Unwind_1809115e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + ErrorInvalidResourceData90) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorInvalidResourceData90))(SystemContextPointer + SystemResourceCleanupOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96756,7 +96756,7 @@ void Unwind_180911600(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + ErrorResourceValidationFailed00) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorResourceValidationFailed00))(SystemContextPointer + ErrorInvalidResourceDataf0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96784,7 +96784,7 @@ void Unwind_180911620(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + ErrorResourceValidationFailed70) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorResourceValidationFailed70))(SystemContextPointer + ErrorResourceValidationFailed60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96812,7 +96812,7 @@ void Unwind_180911640(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + ErrorResourceValidationFailede0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + ErrorResourceValidationFailede0))(SystemContextPointer + ErrorResourceValidationFailedd0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96840,7 +96840,7 @@ void Unwind_180911660(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x2050) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2050))(SystemContextPointer + 0x2040,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96868,7 +96868,7 @@ void Unwind_180911680(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x20c0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x20c0))(SystemContextPointer + 0x20b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96896,7 +96896,7 @@ void Unwind_1809116a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x2130) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2130))(SystemContextPointer + 0x2120,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96924,7 +96924,7 @@ void Unwind_1809116c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x21a0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x21a0))(SystemContextPointer + 0x2190,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96952,7 +96952,7 @@ void Unwind_1809116e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x2210) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2210))(SystemContextPointer + 0x2200,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -96980,7 +96980,7 @@ void Unwind_180911700(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x2280) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2280))(SystemContextPointer + 0x2270,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -97008,7 +97008,7 @@ void Unwind_180911720(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x22f0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x22f0))(SystemContextPointer + 0x22e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -97036,7 +97036,7 @@ void Unwind_180911740(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x2360) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2360))(SystemContextPointer + 0x2350,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -97064,7 +97064,7 @@ void Unwind_180911760(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x23d0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x23d0))(SystemContextPointer + 0x23c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -97092,7 +97092,7 @@ void Unwind_180911780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x2440) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2440))(SystemContextPointer + 0x2430,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -97120,7 +97120,7 @@ void Unwind_1809117a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x24b0) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x24b0))(SystemContextPointer + 0x24a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -97148,7 +97148,7 @@ void Unwind_1809117c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x2520) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2520))(SystemContextPointer + 0x2510,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -97176,7 +97176,7 @@ void Unwind_1809117e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x2590) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2590))(SystemContextPointer + 0x2580,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -97204,7 +97204,7 @@ void Unwind_180911800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + 0x2600) != (code *)0x0) {
     (**(code **)(SystemContextPointer + 0x2600))(SystemContextPointer + 0x25f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
@@ -97794,8 +97794,8 @@ void Unwind_180911b00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -97812,8 +97812,8 @@ void Unwind_180911b10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x18);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x18);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -97830,8 +97830,8 @@ void Unwind_180911b20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x28);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x28);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -97848,8 +97848,8 @@ void Unwind_180911b30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x68);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x68);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98069,8 +98069,8 @@ void Unwind_180911c30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1538);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1538);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98087,15 +98087,15 @@ void Unwind_180911c40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1620);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1620);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1608);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1608);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98112,8 +98112,8 @@ void Unwind_180911c60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1aa8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1aa8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98130,8 +98130,8 @@ void Unwind_180911c80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ab8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ab8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98148,8 +98148,8 @@ void Unwind_180911ca0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ac8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ac8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98166,8 +98166,8 @@ void Unwind_180911cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ad8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ad8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98184,8 +98184,8 @@ void Unwind_180911ce0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ae8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ae8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98202,8 +98202,8 @@ void Unwind_180911d00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1b88);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1b88);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98220,8 +98220,8 @@ void Unwind_180911d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1b98);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1b98);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98238,8 +98238,8 @@ void Unwind_180911d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ba8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1ba8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98256,8 +98256,8 @@ void Unwind_180911d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1bb8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1bb8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98274,8 +98274,8 @@ void Unwind_180911d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1bc8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1bc8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98292,8 +98292,8 @@ void Unwind_180911da0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1c70);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1c70);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98310,8 +98310,8 @@ void Unwind_180911dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + ErrorInvalidResourceData50);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + ErrorInvalidResourceData50);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98397,8 +98397,8 @@ void Unwind_180911e00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + ErrorInvalidResourceData90);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + ErrorInvalidResourceData90);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98415,8 +98415,8 @@ void Unwind_180911e20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + ErrorInvalidResourceDataa0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + ErrorInvalidResourceDataa0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98435,22 +98435,22 @@ void Unwind_180911e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t ResourceTablePointer;
   
   ResourceTablePointer = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
-  loopCounter = *(int64_t *)(ResourceTablePointer + ErrorInvalidResourceDatad8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + ErrorInvalidResourceDatad8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + ErrorInvalidResourceDatac8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + ErrorInvalidResourceDatac8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + ErrorInvalidResourceDatab8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + ErrorInvalidResourceDatab8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98472,22 +98472,22 @@ void Unwind_180911e60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceTablePointer = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   ExecuteSystemFinalization();
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x2d68);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x2d68);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x2d58);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x2d58);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x2d48);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x2d48);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98504,8 +98504,8 @@ void Unwind_180911e80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2dd8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2dd8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98522,8 +98522,8 @@ void Unwind_180911ea0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2e10);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2e10);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98540,8 +98540,8 @@ void Unwind_180911ec0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2e20);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2e20);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98558,8 +98558,8 @@ void Unwind_180911ee0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2e30);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2e30);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98576,8 +98576,8 @@ void Unwind_180911f00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2e50);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2e50);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98604,8 +98604,8 @@ void Unwind_180911f50(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 200);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 200);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98622,8 +98622,8 @@ void Unwind_180911f70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0xe0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0xe0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98640,8 +98640,8 @@ void Unwind_180911f90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98658,8 +98658,8 @@ void Unwind_180911fa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x18);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x18);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98676,8 +98676,8 @@ void Unwind_180911fb0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x80) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x80) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98694,8 +98694,8 @@ void Unwind_180911fc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98712,8 +98712,8 @@ void Unwind_180911fd0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x20);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x20);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98730,8 +98730,8 @@ void Unwind_180911fe0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x30);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x30);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98748,8 +98748,8 @@ void ExecuteSystemResourceCleanupPrimaryBatch(uint8_t ObjectContext, int64_t Val
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x48);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x48);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98766,8 +98766,8 @@ void ExecuteSystemResourceCleanupSecondaryBatch(uint8_t ObjectContext, int64_t V
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x58);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x58);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98784,8 +98784,8 @@ void Unwind_180912010(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x68);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x68);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98802,8 +98802,8 @@ void Unwind_180912020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x1530);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x1530);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98820,8 +98820,8 @@ void Unwind_180912040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 200);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 200);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98838,8 +98838,8 @@ void Unwind_180912060(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xe0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xe0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98856,8 +98856,8 @@ void Unwind_180912080(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98874,8 +98874,8 @@ void Unwind_180912090(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x20);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x20);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98892,8 +98892,8 @@ void Unwind_1809120a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x30);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x30);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98910,8 +98910,8 @@ void Unwind_1809120b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x90);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x90);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98928,8 +98928,8 @@ void Unwind_1809120d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xc0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xc0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98946,8 +98946,8 @@ void Unwind_1809120f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xd0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xd0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98964,8 +98964,8 @@ void Unwind_180912110(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xe0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xe0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -98982,8 +98982,8 @@ void Unwind_180912130(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xf0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0xf0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99000,8 +99000,8 @@ void Unwind_180912150(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x1530);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x1530);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99018,8 +99018,8 @@ void Unwind_180912170(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99038,36 +99038,36 @@ void Unwind_180912180(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t ResourceTablePointer;
   
   ResourceTablePointer = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
-  loopCounter = *(int64_t *)(ResourceTablePointer + ErrorResourceValidationFailed0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + ErrorResourceValidationFailed0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + SystemOperationContextOffset);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + SystemOperationContextOffset);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x1d0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x1d0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x1c0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x1c0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 400);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 400);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99084,8 +99084,8 @@ void Unwind_1809121a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x220);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x220);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99102,8 +99102,8 @@ void Unwind_1809121c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2c0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2c0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99120,8 +99120,8 @@ void Unwind_1809121e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2d0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2d0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99143,50 +99143,50 @@ void Unwind_180912200(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceTablePointer = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   SystemResourceInitializationComplete();
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x390);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x390);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x378);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x378);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x368);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x368);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x358);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x358);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x318);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x318);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x308);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x308);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x2f8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x2f8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99203,8 +99203,8 @@ void Unwind_180912220(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x90);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x90);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99221,8 +99221,8 @@ void Unwind_180912240(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xc0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xc0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99239,8 +99239,8 @@ void Unwind_180912260(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xd0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xd0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99257,8 +99257,8 @@ void Unwind_180912280(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xf0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xf0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99277,36 +99277,36 @@ void Unwind_1809122a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t ResourceTablePointer;
   
   ResourceTablePointer = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
-  loopCounter = *(int64_t *)(ResourceTablePointer + ErrorResourceValidationFailed0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + ErrorResourceValidationFailed0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + SystemOperationContextOffset);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + SystemOperationContextOffset);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x1d0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x1d0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x1c0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x1c0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 400);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 400);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99323,8 +99323,8 @@ void Unwind_1809122c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x220);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x220);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99341,8 +99341,8 @@ void Unwind_1809122e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x2c0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x2c0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99359,8 +99359,8 @@ void Unwind_180912300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x2d0);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x2d0);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99382,50 +99382,50 @@ void Unwind_180912320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceTablePointer = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   SystemResourceInitializationComplete();
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x390);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x390);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x378);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x378);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x368);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x368);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x358);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x358);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x318);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x318);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x308);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x308);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,ResourceHashStatus);
   }
-  loopCounter = *(int64_t *)(ResourceTablePointer + 0x2f8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ResourceTablePointer + 0x2f8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99442,8 +99442,8 @@ void Unwind_180912340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x38);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x38);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99460,8 +99460,8 @@ void Unwind_180912350(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x48) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x48) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99478,8 +99478,8 @@ void Unwind_180912360(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x38);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x38);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99526,8 +99526,8 @@ void Unwind_180912400(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 200) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 200) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99544,8 +99544,8 @@ void Unwind_180912410(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 200) + 0x18);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 200) + 0x18);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99562,8 +99562,8 @@ void Unwind_180912420(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 200) + 0x28);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 200) + 0x28);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99580,8 +99580,8 @@ void Unwind_180912430(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x28) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x28) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99598,8 +99598,8 @@ void Unwind_180912440(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x48);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x48);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99616,8 +99616,8 @@ void Unwind_180912450(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x58);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x58);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99634,8 +99634,8 @@ void Unwind_180912460(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x68);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x68);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99672,8 +99672,8 @@ void Unwind_1809124d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99690,8 +99690,8 @@ void Unwind_1809124e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextDataOffset);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99709,14 +99709,14 @@ void Unwind_1809124f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextOperationOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   SystemResourceCleanupHandler(*(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset));
   *(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset) = 0;
   *(uint8_t *)(SystemContextPointer + 0x18) = 0;
   *(uint8_t *)(SystemContextPointer + 0x10) = 0;
-  loopCounter = *(int64_t *)(SystemContextPointer + 0x28);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(SystemContextPointer + 0x28);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99733,8 +99733,8 @@ void Unwind_180912500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + 0x28);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + 0x28);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99751,8 +99751,8 @@ void Unwind_180912510(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x28);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x28);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99769,8 +99769,8 @@ void Unwind_180912520(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99787,8 +99787,8 @@ void Unwind_180912530(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x18);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x18);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99805,8 +99805,8 @@ void Unwind_180912540(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99833,8 +99833,8 @@ void Unwind_180912580(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x28);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x28);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99851,16 +99851,16 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
+  if (LoopCounter != 0) {
     *(uint8_t *)(ValidationContext + 0x50) = 0;
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ValidationContext + 0x48);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + 0x48);
+  if (LoopCounter != 0) {
     *(uint8_t *)(ValidationContext + 0x40) = 0;
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
@@ -99868,15 +99868,15 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint32_t *)(ValidationContext + ValidationContextDataOffset) = 0;
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
           ProcessResourceOperation(SystemContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  loopCounter = *(int64_t *)(ValidationContext + 0x48);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + 0x48);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99893,8 +99893,8 @@ void Unwind_1809125a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x48);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + 0x48);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99911,8 +99911,8 @@ void Unwind_1809125b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99929,8 +99929,8 @@ void Unwind_1809125c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextResourceTableOffset) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextResourceTableOffset) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -99977,8 +99977,8 @@ void Unwind_180912660(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0xa8) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0xa8) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100005,8 +100005,8 @@ void Unwind_1809126a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x28);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x28);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100062,8 +100062,8 @@ void Unwind_180912770(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + ResourceContextTertiaryOffset);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100086,8 +100086,8 @@ void Unwind_180912780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   *(uint8_t *)(ValidationContext + 0x1d0) = 0;
   *(uint8_t *)(ValidationContext + 0x1b8) = 0;
   *(uint8_t *)(ValidationContext + 0x1b0) = 0;
-  loopCounter = *(int64_t *)(ValidationContext + 0x1c8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + 0x1c8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100110,8 +100110,8 @@ void Unwind_180912790(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   *(uint8_t *)(ValidationContext + ValidationContextResourceTableOffset) = 0;
   *(uint8_t *)(ValidationContext + 0xa8) = 0;
   *(uint8_t *)(ValidationContext + 0xa0) = 0;
-  loopCounter = *(int64_t *)(ValidationContext + 0xb8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + 0xb8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100134,8 +100134,8 @@ void Unwind_1809127a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   *(uint8_t *)(ValidationContext + ValidationContextResourceTableOffset) = 0;
   *(uint8_t *)(ValidationContext + 0xa8) = 0;
   *(uint8_t *)(ValidationContext + 0xa0) = 0;
-  loopCounter = *(int64_t *)(ValidationContext + 0xb8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + 0xb8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100158,8 +100158,8 @@ void Unwind_1809127b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   *(uint8_t *)(ValidationContext + 0x1d0) = 0;
   *(uint8_t *)(ValidationContext + 0x1b8) = 0;
   *(uint8_t *)(ValidationContext + 0x1b0) = 0;
-  loopCounter = *(int64_t *)(ValidationContext + 0x1c8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(ValidationContext + 0x1c8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100177,14 +100177,14 @@ void Unwind_1809127c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   SystemResourceCleanupHandler(*(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset));
   *(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset) = 0;
   *(uint8_t *)(SystemContextPointer + 0x18) = 0;
   *(uint8_t *)(SystemContextPointer + 0x10) = 0;
-  loopCounter = *(int64_t *)(SystemContextPointer + 0x28);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(SystemContextPointer + 0x28);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100223,8 +100223,8 @@ void Unwind_1809127e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x18);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x18);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100241,8 +100241,8 @@ void Unwind_1809127f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x18);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x18);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100259,8 +100259,8 @@ void Unwind_180912800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + 8);
-  if (loopCounter != 0) {
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + 8);
+  if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
@@ -100276,7 +100276,7 @@ void Unwind_180912810(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 0x88) = 0;
   *(uint8_t *)(SystemContextPointer + 0x90) = 0;
   *(uint8_t *)(SystemContextPointer + 0x9c) = 0;
@@ -100490,7 +100490,7 @@ void ConfigureSystemResourceHandlerV1(uint8_t ObjectContext, int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x388) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x390) != 0) {
           ExecuteSystemEmergencyExit();
@@ -100518,7 +100518,7 @@ void ConfigureSystemResourceHandlerV2(uint8_t ObjectContext, int64_t ValidationC
 {
   int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   *(uint8_t *)(SystemContextPointer + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x3b0) != 0) {
           ExecuteSystemEmergencyExit();
@@ -101603,7 +101603,7 @@ void CleanupMemoryPoolResources(void)
     ValidationStatusCode = MemoryPoolEndAddress - MemoryPoolStartAddress & 0xfffffffffffffff8;
     SystemContextPointer = MemoryPoolStartAddress;
     if (0xfff < ResourceHashStatus) {
-      loopCounter = *(int64_t *)(MemoryPoolStartAddress + -8);
+      LoopCounter = *(int64_t *)(MemoryPoolStartAddress + -8);
       ValidationStatusCode = ResourceHashStatus + 0x27;
       if (ErrorResourceValidationFailed < (MemoryPoolStartAddress - SystemContextPointer) - 8U) {
               _invalid_parameter_noinfo_noreturn();
@@ -103387,7 +103387,7 @@ void ReleaseResourceHashStatusTable(void)
     ValidationStatusCode = SystemMemoryEndAddress - SystemMemoryBufferPointer & 0xfffffffffffffff0;
     SystemContextPointer = SystemMemoryBufferPointer;
     if (0xfff < ResourceHashStatus) {
-      loopCounter = *(int64_t *)(SystemMemoryBufferPointer + -8);
+      LoopCounter = *(int64_t *)(SystemMemoryBufferPointer + -8);
       if (ErrorResourceValidationFailed < (SystemMemoryBufferPointer - SystemContextPointer) - 8U) {
               _invalid_parameter_noinfo_noreturn(SystemMemoryBufferPointer - SystemContextPointer,ResourceHashStatus + 0x27);
       }

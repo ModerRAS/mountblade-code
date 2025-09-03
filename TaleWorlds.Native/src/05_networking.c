@@ -713,22 +713,33 @@ uint32_t NetworkConnectionStateFlag;
 uint32_t ConnectionProcessingResult;
 uint32_t NetworkConnectionProcessedCount;
 
-// 初始化连接状态 - 设置网络连接的初始状态
+/**
+ * 初始化网络连接状态 - 设置网络连接的初始状态
+ * 此函数负责初始化网络连接的状态缓冲区，设置连接参数，并准备连接上下文
+ * @note 此函数会在连接建立前调用，确保所有状态数据正确初始化
+ */
 void InitializeConnectionState(void)
 {
-  uint8_t *ConnectionStateBuffer;
-  int32_t InitializationStatus;
-  int64_t SystemContextData;
-  int32_t ConnectionHandleId;
-  uint32_t StateFlags;
-  int32_t SessionId;
-  uint64_t *StateData;
-  int64_t ContextPointer;
+  uint8_t *ConnectionStateBuffer;          // 连接状态缓冲区指针
+  int32_t InitializationStatus;            // 初始化状态标志
+  int64_t SystemContextData;               // 系统上下文数据
+  int32_t ConnectionHandleId;              // 连接句柄ID
+  uint32_t StateFlags;                     // 状态标志位
+  int32_t SessionId;                       // 会话ID
+  uint64_t *StateData;                     // 状态数据指针
+  int64_t ContextPointer;                  // 上下文指针
   
+  // 计算连接状态缓冲区位置
   ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + ConnectionStateBufferOffset);
+  
+  // 验证会话ID并初始化连接状态
   if (*(int *)(*(int64_t *)(SystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == SessionId) {
-    *ConnectionStateBuffer = 0;
+    *ConnectionStateBuffer = 0;  // 重置状态缓冲区
+    
+    // 计算并对齐连接状态数据
     *(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + 8) = ((int)ConnectionStateBuffer - ConnectionHandleId) + 4U & 0xfffffffc;
+    
+    // 初始化连接上下文
     InitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(ContextPointer + NetworkContextSystemOffset));
     if (InitializationStatus == 0) {
       *StateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionHandleId) + ConnectionStateDataOffset);
@@ -738,17 +749,30 @@ void InitializeConnectionState(void)
   CopyConnectionBuffer(ConnectionStateBuffer);
 }
 
-// 重置网络连接指针 - 清理连接数据和状态
+/**
+ * 重置网络连接指针 - 清理连接数据和状态
+ * 此函数负责重置网络连接的数据指针，清理连接状态，并释放相关资源
+ * @note 此函数通常在连接断开或重置时调用
+ */
 void ResetNetworkConnectionPointer(void)
 {
-  int64_t NetworkConnectionContextData;
-  uint64_t *NetworkConnectionDataBufferPointer;
+  int64_t NetworkConnectionContextData;          // 网络连接上下文数据
+  uint64_t *NetworkConnectionDataBufferPointer; // 网络连接数据缓冲区指针
   
+  // 重置连接数据缓冲区指针
   *NetworkConnectionDataBufferPointer = (uint64_t)*(uint *)(NetworkConnectionContextData + ConnectionStateDataOffset);
+  
+  // 清理连接堆栈
   CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
 }
 
-// 验证连接参数 - 检查连接参数的有效性和安全性
+/**
+ * 验证连接参数 - 检查连接参数的有效性和安全性
+ * 此函数负责验证网络连接参数的有效性，包括地址、端口、协议等参数的检查
+ * @param NetworkConnectionParameters 网络连接参数指针
+ * @return 验证结果，0表示验证成功，非0值表示验证失败的具体错误码
+ * @note 此函数是连接建立前的安全检查步骤
+ */
 uint32_t ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
 {
   // 函数实现省略，保持原有逻辑
