@@ -1696,13 +1696,12 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  */
 NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
-  NetworkHandle SecurityValidationResult;                        // 安全验证结果
-  NetworkByte ValidationBuffer [32];                    // 验证缓冲区
-  NetworkByte EncryptionBuffer [32];                    // 加密缓冲区
+  NetworkByte PacketValidationBuffer [32];                    // 数据包验证缓冲区
+  NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区
   
-  SecurityValidationResult = DecodePacket(PacketData, EncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
+  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
   if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodePacket(PacketData, ValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)SecurityValidationResult == 0)) {
+     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
@@ -1713,7 +1712,7 @@ NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t C
       }
       SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
       if ((int)SecurityValidationResult == 0) {
-          FinalizePacketProcessing(PacketData, ValidationBuffer);
+          FinalizePacketProcessing(PacketData, PacketValidationBuffer);
       }
     }
   }
