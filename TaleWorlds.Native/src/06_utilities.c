@@ -4083,7 +4083,8 @@ uint8_t EventHandlerExtendedSlotSeventyTwo;
 uint8_t EventHandlerExtendedSlotSeventyThree;
 // 事件处理器扩展槽七十四 - 第七十四号扩展事件处理器槽
 uint8_t EventHandlerExtendedSlotSeventyFour;
-uint8_t SystemEventHandlerCustomReserved75;
+// 事件处理器扩展槽七十五 - 第七十五号扩展事件处理器槽
+uint8_t EventHandlerExtendedSlotSeventyFive;
 // 事件处理器槽九十 - 第九十号事件处理器槽
 uint8_t EventHandlerSlotNumberNinety;
 // 事件处理器槽九十一 - 第九十一号事件处理器槽
@@ -4105,11 +4106,16 @@ uint8_t SystemEventManagerMainEventSlot;
 // 事件处理器槽 - 管理事件处理槽位
 uint8_t EventHandlerSlotMain;
 uint8_t SystemEventCallbackFunctionSlot;
-uint8_t SystemEventManagerSlotNumberSix;
-uint8_t SystemEventManagerSlotNumberSeven;
-uint8_t SystemEventManagerSlotNumberEight;
-uint8_t SystemEventManagerSlotNumberNine;
-uint8_t SystemEventManagerSlotNumberTen;
+// 系统事件管理器槽六 - 第六号系统事件管理器槽
+uint8_t SystemEventManagerSlotSix;
+// 系统事件管理器槽七 - 第七号系统事件管理器槽
+uint8_t SystemEventManagerSlotSeven;
+// 系统事件管理器槽八 - 第八号系统事件管理器槽
+uint8_t SystemEventManagerSlotEight;
+// 系统事件管理器槽九 - 第九号系统事件管理器槽
+uint8_t SystemEventManagerSlotNine;
+// 系统事件管理器槽十 - 第十号系统事件管理器槽
+uint8_t SystemEventManagerSlotTen;
 uint8_t SystemEventManagerSlotEleven;
 uint8_t SystemEventManagerSlotTwelve;
 uint8_t SystemEventManagerSlotThirteen;
