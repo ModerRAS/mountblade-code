@@ -10116,25 +10116,25 @@ Label_1806099ea:
             StringProcessingResult = 0x13;
             goto Label_18060bbae;
           }
-          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39148,1);
+          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAT,1);
           if (NetworkRequestStatus != '\0') goto Label_18060a91e;
-          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a392d0,1);
+          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAU,1);
           if (NetworkRequestStatus != '\0') {
             StringProcessingResult = 0x15;
             goto Label_18060bbae;
           }
-          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a392b8,1);
+          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAV,1);
           if (NetworkRequestStatus != '\0') {
             StringProcessingResult = 0x16;
             goto Label_18060bbae;
           }
-          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39308,1);
+          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAW,1);
           if (NetworkRequestStatus != '\0') goto Label_18060965b;
-          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a392e8,1);
+          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAX,1);
           if (NetworkRequestStatus != '\0') goto Label_18060ba49;
-          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39250,1);
+          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAY,1);
           if (NetworkRequestStatus != '\0') goto Label_18060b1d7;
-          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39230,1);
+          NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAZ,1);
           if (NetworkRequestStatus != '\0') {
 Label_18060b1f5:
             StringProcessingResult = 0x1a;

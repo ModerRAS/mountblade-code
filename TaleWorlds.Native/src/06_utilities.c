@@ -16549,7 +16549,7 @@ uint32_t ValidateResourceHashIndex(uint8_t ObjectContext,uint64_t ValidationCont
   uint8_t ResourceHash;
   int ProcessingStatusCode;
   int PackageValidationStatusCode;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   uint8_t *ResourceDataSecondaryPointer;
   uint8_t *ContextResourceHashStatusAddress;
   uint ResourceIndex;
@@ -17986,7 +17986,7 @@ uint8_t ProcessResourceRegistry(uint8_t *ObjectContext, uint8_t ValidationContex
   int PackageValidationStatusCode;
   int64_t ResourceContext;
   int64_t SystemExecutionPointer;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   uint64_t ResourceContextOffset;
   int64_t MemoryAddress;
   uint64_t SecurityHashValue;
@@ -21179,7 +21179,7 @@ uint64_t ProcessResourceDataB(void)
   int64_t *processPointer;
   int64_t ResourceTablePointer;
   uint ValidationStatusCode;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   int64_t InputParameterValue;
   uint64_t ResourceContextOffset;
   uint ConfigurationFlags;
@@ -21350,7 +21350,7 @@ uint64_t ProcessResourceDataC(void)
   int64_t *processPointer;
   int64_t ResourceTablePointer;
   uint ValidationStatusCode;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   uint64_t ResourceContextOffset;
   uint ConfigurationFlags;
   int64_t *ResourceContext;
@@ -21503,7 +21503,7 @@ uint64_t ProcessResourceDataD(void)
   int64_t *processPointer;
   int64_t ResourceTablePointer;
   uint ValidationStatusCode;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   uint64_t ResourceContextOffset;
   uint ConfigurationFlags;
   int64_t *ResourceContext;
@@ -21869,7 +21869,7 @@ uint8_t ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int 
   uint ResourceHash;
   int ProcessingStatusCode;
   int PackageValidationStatusCode;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   uint ResourceContextOffset;
   int64_t MemoryAddress;
   uint SecurityHashValue;
@@ -21990,7 +21990,7 @@ void ResourceIntegrityValidator(void)
   int ProcessingStatusCode;
   uint ValidationStatusCode;
   uint8_t *ResourceContext;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   int64_t MemoryRegion;
   int ResourceDataAddressD;
   int64_t SystemContextRegister;
@@ -23954,7 +23954,7 @@ uint64_t ResourceContextValidationHandler(void)
   int64_t *processPointer;
   int64_t ResourceTablePointer;
   uint64_t ResourceHashStatus;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   uint64_t ResourceContextOffset;
   uint64_t ContextResourceHashStatus;
   int PackageValidationStatusCode;
@@ -24210,7 +24210,7 @@ uint64_t ResourceIntegrityValidationHandler(void)
   int64_t *processPointer;
   int64_t ResourceTablePointer;
   uint64_t ResourceHashStatus;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   uint64_t ResourceContextOffset;
   uint64_t ContextResourceHashStatus;
   int PackageValidationStatusCode;
@@ -24468,7 +24468,7 @@ uint64_t ProcessFloatParameterResourceHash(float ObjectContext)
   int64_t *processPointer;
   int64_t ResourceTablePointer;
   uint64_t ResourceHashStatus;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   uint64_t ResourceContextOffset;
   uint64_t ContextResourceHashStatus;
   int PackageValidationStatusCode;
@@ -26732,7 +26732,7 @@ uint64_t ProcessResourceDataExtraction(int64_t ObjectContext,int64_t *Validation
   int64_t *processPointer;
   uint64_t ResourceHashStatus;
   uint ValidationStatusCode;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   uint ConfigurationFlags;
   uint64_t SecurityHashValue;
   uint ResourceValidationBuffer [2];
@@ -26862,7 +26862,7 @@ uint64_t ValidateAndProcessResourceData(void)
   uint64_t ResourceHashStatus;
   uint64_t ResourceHashStatus;
   int64_t *ResourceContext;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   int64_t SystemContext;
   uint ResourceContextOffset;
   uint ConfigurationFlags;
@@ -26975,7 +26975,7 @@ uint64_t ValidateAndProcessResourceDataVariantB(void)
   uint64_t ResourceHashStatus;
   uint64_t ResourceHashStatus;
   int64_t *ResourceContext;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   int64_t SystemContext;
   uint ResourceContextOffset;
   uint ConfigurationFlags;
@@ -27085,7 +27085,7 @@ uint64_t ValidateAndProcessResourceDataVariantC(void)
   uint64_t ResourceHashStatus;
   uint64_t ResourceHashStatus;
   int64_t *ResourceContext;
-  uint ArrayStepSize;
+  uint ArrayElementStepSize;
   int64_t SystemContext;
   uint ResourceContextOffset;
   uint ConfigurationFlags;
