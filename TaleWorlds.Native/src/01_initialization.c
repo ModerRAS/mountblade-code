@@ -31435,14 +31435,14 @@ void SystemExceptionHandler(void)
 
 
 
-// 函数: void ReleaseSystemResources(long long* SystemResourceManager)
+// 函数: void FreeSystemResourcesFromManager(long long* SystemResourceManager)
 /**
  * @brief 系统资源释放函数
  * 
  * 该函数负责释放系统资源，遍历资源指针数组并调用相应的释放函数。
  * 用于系统资源管理和内存清理工作。
  */
-void ReleaseSystemResources(long long* SystemResourceManager)
+void FreeSystemResourcesFromManager(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -60251,8 +60251,7 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
  * 
  * @return 无返回值
  * 
- * 原始函数名：FUN_180078143
- */
+  */
 void InitializeSystemDataIndexPointer(void)
 
 {
