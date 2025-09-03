@@ -8443,7 +8443,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
       }
     }
   }
-  return ValidationStatusCode;
+  return ObjectValidationStatus;
 }
 
 
