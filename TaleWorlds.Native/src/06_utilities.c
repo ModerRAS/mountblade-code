@@ -4870,10 +4870,10 @@ uint8_t CleanupObjectHandle(void)
  * 
  * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作
  */
-uint8_t ValidateCharacterParameter(char CharacterParameter)
+uint8_t ValidateCharacterParameter(char CharToValidate)
 
 {
-  if (CharacterParameter != '\0') {
+  if (CharToValidate != '\0') {
           ExecuteSystemExitOperation();
   }
   return 0;
@@ -4908,26 +4908,26 @@ void InitializeSystemResources(void)
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  * @warning 验证失败时会触发系统退出操作
  */
-uint8_t ValidateObjectHandle(int64_t ObjectHandle)
+uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
 
 {
   uint8_t ValidationStatusCode;
-  int64_t ValidationMemoryBuffer;
+  int64_t HandleMemoryBuffer;
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandle + ObjectHandleMemoryOffset), &ValidationMemoryBuffer);
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &HandleMemoryBuffer);
   if ((int)ValidationStatusCode != 0) {
     return ValidationStatusCode;
   }
-  if (ValidationMemoryBuffer == 0) {
-    ValidationMemoryBuffer = 0;
+  if (HandleMemoryBuffer == 0) {
+    HandleMemoryBuffer = 0;
   }
   else {
-    ValidationMemoryBuffer = ValidationMemoryBuffer + -8;
+    HandleMemoryBuffer = HandleMemoryBuffer + -8;
   }
-  if (*(int64_t *)(ValidationMemoryBuffer + ObjectHandleMemoryOffset) == 0) {
+  if (*(int64_t *)(HandleMemoryBuffer + ObjectHandleMemoryOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ValidationMemoryBuffer + ObjectHandleMemoryOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + ObjectHandleMemoryOffset), 1);
 }
 
 
