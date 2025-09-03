@@ -30032,7 +30032,7 @@ void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemCo
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindQuinaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleQuinaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashDataPointer;
   
   ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
@@ -30055,7 +30055,7 @@ void UnwindQuinaryContextExceptionHandler(uint8_t ExceptionContext, int64_t Syst
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindSenaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleSenaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   **(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
   return;
 }
@@ -32935,12 +32935,12 @@ void ClearShaderProgramState(uint8_t ObjectContext,int64_t ValidationContext,uin
  * @note 此函数用于异常处理器初始化
  * @warning 初始化失败可能导致异常处理不可用
  */
-void UnwindExceptionHandlerBase(uint8_t ObjectContext,int64_t ValidationContext)
+void HandleBaseException(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
+  int64_t ExceptionLoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
+  ExceptionLoopCounter = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   *(uint8_t *)(SystemContextPointer + 0x40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x48) != 0) {
           ExecuteSystemEmergencyExit();
@@ -35061,7 +35061,7 @@ void UnwindProcessControllerSetup(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void UnwindExceptionHandlerSetup(uint8_t ObjectContext,int64_t ValidationContext)
+void SetupExceptionHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -35147,7 +35147,7 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindSystemDataStructureExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleSystemDataStructureException(uint8_t ExceptionContext, int64_t SystemContext) {
   *(uint8_t **)(*(int64_t *)(SystemContext + SystemContextResourceOffset) + 0x438) = &SystemDataStructure;
   return;
 }
