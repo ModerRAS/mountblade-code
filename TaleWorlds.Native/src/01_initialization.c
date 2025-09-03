@@ -19091,9 +19091,9 @@ SymbolInitializationCleanup:
   SystemDataProcessingCounter = 0;
   SecondarySystemBuffer = (void* *)0x0;
   SystemGlobalDataPointer = &SystemMemoryAllocatorReference;
-  int mutexUnlockResult = _Mtx_unlock(threadMutexPointer);
-  if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+  int MutexUnlockResult = _Mtx_unlock(ThreadMutexPointer);
+  if (MutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(MutexUnlockResult);
   }
 SkipLibraryHandleInitialization:
   void* allocatedMemoryBlock1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
@@ -19573,14 +19573,14 @@ void GuardCheckICall(void)
  * @param MemoryFreeParam2 内存释放参数2
  * @return 返回内存分配器引用指针
  */
-void* * SystemMemoryAllocatorReferenceManager(void* *SystemResourceManager,ulong long MemoryFlags,void* MemoryFreeParam1,void* MemoryFreeParam2)
+void** SystemMemoryAllocatorReferenceManager(void** systemResourceManager, unsigned long long memoryFlags, void* memoryFreeParam1, void* memoryFreeParam2)
 
 {
-  *SystemResourceManager = &SystemMemoryAllocatorReference;
-  if ((MemoryFlags & 1) != 0) {
-    free(SystemResourceManager,0x418,MemoryFreeParam1,MemoryFreeParam2,InvalidHandleValue);
+  *systemResourceManager = &SystemMemoryAllocatorReference;
+  if ((memoryFlags & 1) != 0) {
+    free(systemResourceManager, 0x418, memoryFreeParam1, memoryFreeParam2, InvalidHandleValue);
   }
-  return SystemResourceManager;
+  return systemResourceManager;
 }
 
 
@@ -19605,7 +19605,7 @@ void* * SystemMemoryAllocatorReferenceManager(void* *SystemResourceManager,ulong
  * @param targetBuffer 目标缓冲区指针
  * @param sourceString 源字符串指针
  */
-void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
+void ProcessSystemStringCopy(long long targetBuffer, long long sourceString)
 
 {
   long long stringLength;
@@ -24182,12 +24182,12 @@ void SystemInitializerB(long long systemContext,void* initParameter,void* initFl
 void SystemDataPointerSetter(void* *dataPointer)
 
 {
-  int mutexUnlockResult;
+  int MutexUnlockResult;
   
   SystemDataHeaderStorage = *dataPointer;
-  mutexUnlockResult = _Mtx_unlock(0x180c91970);
-  if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+  MutexUnlockResult = _Mtx_unlock(0x180c91970);
+  if (MutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(MutexUnlockResult);
   }
   return;
 }
