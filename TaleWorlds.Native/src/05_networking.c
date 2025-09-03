@@ -788,17 +788,17 @@ uint32_t ValidateConnectionParameters(int64_t *NetworkConnectionParameters)
  */
 NetworkHandle ProcessConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
-  long long NetworkContextArray;
+  long long NetworkContextData;
   long long *NetworkOperationStatusPointer;
   int NetworkOperationFlag;
   
-  NetworkContextArray = 0;
+  NetworkContextData = 0;
   if (NetworkOperationFlag == 0) {
 LabelNetworkValidationStart:
     if ((0 < *(int *)((long long)NetworkOperationStatusPointer + 0xc)) && (*NetworkOperationStatusPointer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *NetworkOperationStatusPointer, &SecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *NetworkOperationStatusPointer = NetworkContextArray;
+    *NetworkOperationStatusPointer = NetworkContextData;
     *(int *)((long long)NetworkOperationStatusPointer + 0xc) = NetworkOperationFlag;
     return 0;
   }
