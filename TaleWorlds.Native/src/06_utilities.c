@@ -18974,15 +18974,15 @@ void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
       if (ResourceHashStatus != 0) {
         return;
       }
-      ValidationStatusCode = GetResourceProperty(FloatingPointCalculationResult,LoopOffset + 0x1c);
+      ValidationStatusCode = GetResourceProperty(FloatingPointCalculationResult,LoopOffset + SystemRegisterContextResourceProperty2Offset);
       if (ResourceHashStatus != 0) {
         return;
       }
-      ValidationStatusCode = GetResourceProperty(primaryValidationStatusCode,LoopOffset + 0x28);
+      ValidationStatusCode = GetResourceProperty(primaryValidationStatusCode,LoopOffset + SystemRegisterContextResourceProperty3Offset);
       if (ResourceHashStatus != 0) {
         return;
       }
-      ValidationStatusCode = GetResourceProperty(tertiaryFloatResult,LoopOffset + 0x34);
+      ValidationStatusCode = GetResourceProperty(tertiaryFloatResult,LoopOffset + SystemRegisterContextResourceProperty4Offset);
       if (ResourceHashStatus != 0) {
         return;
       }
@@ -18990,15 +18990,15 @@ void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
       ObjectContext = FloatingPointResultThird;
     } while (ProcessStatus < *(int *)(SystemRegisterContext + SystemRegisterContextProcessCountOffset));
   }
-  ResourceHash = *(uint *)(SystemRegisterContext + 400);
+  ResourceHash = *(uint *)(SystemRegisterContext + SystemRegisterContextResourceHashOffset);
   ValidationStatusCodeAddress = *(uint8_t **)(ResourceContext + 8);
-  if (ResourceHash < 0x8000) {
-    *(short *)(SystemExecutionPointer + 0x20) = (short)ResourceHash;
+  if (ResourceHash < ResourceHashThreshold) {
+    *(short *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = (short)ResourceHash;
     ResourceContextOffset = 2;
   }
   else {
     ResourceContextOffset = 4;
-    *(uint *)(SystemExecutionPointer + 0x20) = (ResourceHash & 0xffffc000 | 0x4000) * 2 | ResourceHash & 0x7fff;
+    *(uint *)(SystemExecutionPointer + SystemExecutionPointerResourceOffset) = (ResourceHash & ResourceHashMaskPreserve | ResourceHashFlagBit) * 2 | ResourceHash & ResourceHashValueMask;
   }
   ProcessStatus = (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,SystemExecutionPointer + 0x20,ResourceContextOffset);
   if (ProcessStatus == 0) {
