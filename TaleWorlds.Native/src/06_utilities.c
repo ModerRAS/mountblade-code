@@ -4776,7 +4776,7 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
-uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
+uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ObjectValidationResult;
   int64_t ObjectValidationBuffer [4];
