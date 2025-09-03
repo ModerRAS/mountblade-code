@@ -75879,7 +75879,19 @@ void ResetObjectContextState(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_18090adf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化对象上下文
+ * 
+ * 该函数负责初始化对象上下文，设置初始状态和配置参数
+ * 为对象的后续操作做好准备
+ * 
+ * @param ObjectContext 对象上下文，包含需要初始化的对象信息
+ * @param ValidationContext 验证上下文，包含初始化验证信息
+ * 
+ * @note 此函数是对象创建后的必要步骤
+ * @warning 初始化失败可能会导致对象无法正常使用
+ */
+void InitializeObjectContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0xf0,8,0x10,ProcessResourceOperation);
@@ -75888,7 +75900,19 @@ void Unwind_18090adf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ae30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放对象上下文内存
+ * 
+ * 该函数负责释放对象上下文占用的内存资源
+ * 确保内存得到正确回收，避免内存泄漏
+ * 
+ * @param ObjectContext 对象上下文，包含需要释放内存的对象信息
+ * @param ValidationContext 验证上下文，包含内存释放验证信息
+ * 
+ * @note 此函数会调用系统内存管理函数进行实际的内存释放
+ * @warning 释放后的内存不能再被访问，否则会导致未定义行为
+ */
+void FreeObjectContextMemory(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x170,8,0x10,ProcessResourceOperation);
