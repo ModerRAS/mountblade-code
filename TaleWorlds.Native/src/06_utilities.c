@@ -5234,37 +5234,30 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
  */
 uint32_t ValidateObjectHandleFromRegisterAlternate(void)
 {
-  int64_t SystemRegisterContext;
-  int64_t ValidatedObjectMemoryAddress;
+  int64_t RegisterObjectContext;
+  int64_t ValidatedMemoryAddress;
   
-  if (SystemRegisterContext == 0) {
-    ValidatedObjectMemoryAddress = 0;
+  // 根据寄存器上下文计算验证后的内存地址
+  if (RegisterObjectContext == 0) {
+    ValidatedMemoryAddress = 0;
   }
   else {
-    ValidatedObjectMemoryAddress = SystemRegisterContext - 8;
+    ValidatedMemoryAddress = RegisterObjectContext - 8;
   }
   
-  if (*(int64_t *)(ValidatedObjectMemoryAddress + ObjectHandleOffset) == 0) {
+  // 验证对象句柄是否有效
+  if (*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedObjectMemoryAddress + ObjectHandleOffset), 1);
-  return 0;
+  // 执行系统退出操作
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset), 1);
+  return OperationSuccessCode;
 }
 
 
 
 
-/**
- * @brief 触发系统异常替代路径
- * 
- * 该函数负责触发系统异常处理的替代路径
- * 当主异常处理路径不可用时，使用此替代路径
- * 
- * @return 无返回值
- * @note 此函数会执行系统退出操作
- * @warning 这是一个异常处理函数，调用后系统将退出
- */
 /**
  * @brief 触发系统异常替代路径
  * 
