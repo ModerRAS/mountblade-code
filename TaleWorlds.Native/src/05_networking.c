@@ -475,6 +475,7 @@ uint32_t NetworkSecurityLevel;                                 // 网络安全�
 uint32_t NetworkAuthenticationType;                           // 网络认证类型
 uint32_t NetworkEncryptionAlgorithm;                          // 网络加密算法
 uint32_t NetworkCompressionMethod;                             // 网络压缩方法
+uint32_t NetworkSessionTimeoutDuration;                         // 网络会话超时持续时间
 uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针
 uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针
 uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小
