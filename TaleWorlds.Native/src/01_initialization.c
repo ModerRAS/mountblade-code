@@ -276,7 +276,7 @@ void InitializeSystemBuffer(void* BufferAddress, int InitFlag, int Parameter);
  * @param dataPointer 数据指针，指定要更新的系统数据
  * @return 无返回值
  */
-void UpdateSystemData(void* dataPointer);
+void UpdateSystemData(void* DataPointer);
 
 /**
  * @brief 验证系统内存分配
@@ -50083,25 +50083,25 @@ InitializeSystemMemoryAllocatorWithHashNodes(long long* SystemResourceManager,vo
       }
       ConfigurationFlag[0x2f] = 0;
       ConfigurationFlag[0x30] = _guard_check_icall;
-      if (ConfigurationFlag + 0x2d != SystemHashNodeData + 2) {
-        pSystemOperationResult = (code *)SystemHashNodeData[4];
+      if (ConfigurationFlag + 0x2d != HashNodeIterator + 2) {
+        SystemOperationCallback = (code *)HashNodeIterator[4];
         if (SystemStringPointer != (code *)0x0) {
-          (*pSystemOperationResult)(ConfigurationFlag + 0x2d,SystemHashNodeData + 2,2);
-          pSystemOperationResult = (code *)SystemHashNodeData[4];
+          (*SystemOperationCallback)(ConfigurationFlag + 0x2d,HashNodeIterator + 2,2);
+          SystemOperationCallback = (code *)HashNodeIterator[4];
         }
-        ConfigurationFlag[0x2f] = pSystemOperationResult;
-        ConfigurationFlag[0x30] = SystemHashNodeData[5];
-        SystemHashNodeData[4] = 0;
-        SystemHashNodeData[5] = _guard_check_icall;
+        ConfigurationFlag[0x2f] = SystemOperationCallback;
+        ConfigurationFlag[0x30] = HashNodeIterator[5];
+        HashNodeIterator[4] = 0;
+        HashNodeIterator[5] = _guard_check_icall;
       }
-      ConfigurationFlag[0x31] = SystemHashNodeData[6];
-      ConfigurationFlag[0x32] = SystemHashNodeData[7];
-      ConfigurationFlag[0x33] = SystemHashNodeData[8];
-      ConfigurationFlag[0x34] = SystemHashNodeData[9];
+      ConfigurationFlag[0x31] = HashNodeIterator[6];
+      ConfigurationFlag[0x32] = HashNodeIterator[7];
+      ConfigurationFlag[0x33] = HashNodeIterator[8];
+      ConfigurationFlag[0x34] = HashNodeIterator[9];
       *SystemResourceManager = *SystemResourceManager + 0x1a8;
       ConfigurationFlag = (void* *)*SystemResourceManager;
-      SystemDataPointer = SystemHashNodeData + 10;
-      SystemHashNodeData = SystemHashNodeData + 0x35;
+      SystemDataPointer = HashNodeIterator + 10;
+      HashNodeIterator = HashNodeIterator + 0x35;
     } while (SystemDataPointer != AdditionalParameter);
   }
   return SystemResourceManager;
