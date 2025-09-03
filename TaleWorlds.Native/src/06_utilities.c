@@ -76448,7 +76448,17 @@ void CleanupSystemResourceD(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_18090b150(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理器(偏移量0x348)
+ * 
+ * 该函数通过偏移量0x348获取资源上下文并执行资源处理回调
+ * 主要用于系统资源管理和清理操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文指针
+ * @remark 原始函数名：Unwind_18090b150
+ */
+void ExecuteSystemResourceHandlerOffset348(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -76462,7 +76472,17 @@ void Unwind_18090b150(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b170(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理器(偏移量0x350)
+ * 
+ * 该函数通过偏移量0x350获取资源上下文并执行资源处理回调
+ * 主要用于系统资源管理和清理操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文指针
+ * @remark 原始函数名：Unwind_18090b170
+ */
+void ExecuteSystemResourceHandlerOffset350(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
