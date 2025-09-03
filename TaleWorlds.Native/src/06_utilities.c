@@ -4976,11 +4976,13 @@ void RaiseSystemException(void) {
 /**
  * @brief 清理系统资源
  * 
- * 该函数负责清理系统资源，释放不再使用的内存和对象
- * 目前为空实现，预留用于后续系统资源清理逻辑
+ * 该函数负责清理系统资源，释放不再使用的内存和对象。
+ * 目前为空实现，预留用于后续系统资源清理逻辑。
+ * 
+ * @return void 无返回值
+ * @note 此函数通常在系统关闭或资源回收时调用
  */
 void CleanupSystemResources(void)
-
 {
   // 预留系统资源清理逻辑
   return;
@@ -30005,16 +30007,6 @@ void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
- * @brief 处理次级上下文异常
- * 
- * 该函数用于处理系统次级上下文中的异常情况
- * 通过调用注册的次级异常处理器来处理异常
- * 
- * @param ExceptionContext 异常上下文
- * @param SystemContext 系统上下文指针
- * @return 无返回值
  */
 void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** ExceptionHandlerPointer;
