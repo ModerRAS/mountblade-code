@@ -25013,80 +25013,85 @@ OPERATION_CHECKPOINT:
 
 
 /**
- * 验证和处理资源数据完整性
- * 该函数负责验证资源数据的完整性，包括哈希计算、边界检查和数据处理
- * @return 处理状态码：0表示成功，其他值表示错误
+ * @brief 验证和处理资源数据完整性
+ * 
+ * 该函数负责验证资源数据的完整性，包括哈希计算、边界检查和数据处理。
+ * 执行资源访问验证、哈希计算和资源清理操作。
+ * 
+ * @return uint64_t 处理状态码：0表示成功，其他值表示错误
+ * @note 这是一个简化版本的函数，适用于基本的资源完整性验证需求
+ * @warning 调用此函数前必须确保资源系统已正确初始化
  */
 uint64_t ValidateAndProcessResourceDataIntegrity(void)
 
 {
-  int64_t *processPointer;
-  uint ResourceHashStatus;
-  int64_t InputParameterValue;
-  uint64_t ResourceHashStatus;
-  int ResultRecordIndex;
-  int64_t SystemExecutionPointer;
-  int64_t *SystemContext;
-  uint ResourceSizeLimit;
-  uint ResourceIndexCounter;
+  int64_t *ProcessContextPointer;
+  uint ResourceValidationStatus;
+  int64_t ResourceHandleParameter;
+  uint64_t ResourceHashResult;
+  int ResourceOperationIndex;
+  int64_t SystemExecutionContext;
+  int64_t *ResourceSystemContext;
+  uint ResourceDataSize;
+  uint ResourceAccessIndex;
   
-  ValidationStatusCode = ErrorInvalidObjectHandle;
-  if (*(int *)(InputParameter + 0x18) == 0) {
-    ResourceContext = (int64_t *)*SystemContext;
-    if (*ResourceContext == 0) {
-      ValidationStatusCode = ErrorInvalidObjectHandle;
+  ResourceValidationStatus = ErrorInvalidObjectHandle;
+  if (*(int *)(ResourceHandleParameter + 0x18) == 0) {
+    ResourceSystemContext = (int64_t *)*SystemExecutionContext;
+    if (*ResourceSystemContext == 0) {
+      ResourceValidationStatus = ErrorInvalidObjectHandle;
     }
     else {
-      if (ResourceContext[2] != 0) {
-        ResourceIndexCounter = 0;
-        ValidationStatusCode = ValidateResourceAccess(*ResourceContext,&ResourceAccessBuffer);
-        if ((int)ResourceHashStatus != 0) {
-          return ResourceHashStatus;
+      if (ResourceSystemContext[2] != 0) {
+        ResourceAccessIndex = 0;
+        ResourceValidationStatus = ValidateResourceAccess(*ResourceSystemContext, &ResourceAccessBuffer);
+        if ((int)ResourceHashResult != 0) {
+          return ResourceHashResult;
         }
-        if ((uint64_t)ResourceContext[2] < (uint64_t)ResourceIndexCounter + 4) {
-          ValidationStatusCode = 0x11;
+        if ((uint64_t)ResourceSystemContext[2] < (uint64_t)ResourceAccessIndex + 4) {
+          ResourceValidationStatus = 0x11;
           goto ResourceValidationFailed;
         }
       }
-      ValidationStatusCode = CalculateResourceHash(*ResourceContext,&ResourceSizeLimit,1,4,0);
+      ResourceValidationStatus = CalculateResourceHash(*ResourceSystemContext, &ResourceDataSize, 1, 4, 0);
     }
 VALIDATION_CHECKPOINT:
-    if ((int)ResourceHashStatus != 0) {
-      return ResourceHashStatus;
+    if ((int)ResourceHashResult != 0) {
+      return ResourceHashResult;
     }
-    if (0x3ff < ResourceSizeLimit) {
+    if (0x3ff < ResourceDataSize) {
       return 0xd;
     }
-    ValidationStatusCode = GetResourceHandle(SystemExecutionPointer + 0x48);
-    if ((int)ValidationStatusCode == 0) goto ResourceValidationSuccess;
+    ResourceValidationStatus = GetResourceHandle(SystemExecutionContext + 0x48);
+    if ((int)ResourceValidationStatus == 0) goto ResourceValidationSuccess;
   }
   else {
-    ValidationStatusCode = ErrorInvalidObjectHandle;
+    ResourceValidationStatus = ErrorInvalidObjectHandle;
   }
-  if ((int)ResourceHashStatus != 0) {
-    return ResourceHashStatus;
+  if ((int)ResourceHashResult != 0) {
+    return ResourceHashResult;
   }
 OPERATION_CHECKPOINT:
-  OperationStatusCode = 0;
+  ResourceOperationStatus = 0;
   if (0 < (int)ResourceCount) {
     do {
-      ValidationStatusCode = ValidateResourceHandle();
-      if ((int)ResourceHashStatus != 0) {
-        return ResourceHashStatus;
+      ResourceValidationStatus = ValidateResourceHandle();
+      if ((int)ResourceHashResult != 0) {
+        return ResourceHashResult;
       }
-      OperationStatusCode = OperationResult + 1;
-    } while (OperationResult < (int)ResourceCount);
+      ResourceOperationStatus = ResourceOperationResult + 1;
+    } while (ResourceOperationResult < (int)ResourceCount);
   }
-  if (*(uint *)(SystemContext + 8) < 0x6e) {
-    ValidationStatusCode = 0;
+  if (*(uint *)(ResourceSystemContext + 8) < 0x6e) {
+    ResourceValidationStatus = 0;
   }
-  else if (*(int *)(SystemContext[1] + 0x18) == 0) {
-    ValidationStatusCode = ProcessResourceHash(*SystemContext,SystemExecutionPointer + 0x5c);
+  else if (*(int *)(ResourceSystemContext[1] + 0x18) == 0) {
+    ResourceValidationStatus = ProcessResourceHash(*ResourceSystemContext, SystemExecutionContext + 0x5c);
   }
-  if (ValidationStatusCode != 0) {
-    return (uint64_t)ResourceHashStatus;
+  if (ResourceValidationStatus != 0) {
+    return (uint64_t)ResourceHashResult;
   }
-        CleanupResourceData();
+  CleanupResourceData();
 }
 
 
@@ -30084,38 +30089,40 @@ uint8_t ProcessResourceIdentifierList(int64_t ObjectContext, uint8_t *Validation
 /**
  * @brief 验证纹理资源标识符
  * 
- * 该函数负责验证纹理资源的标识符
- * 确保纹理资源标识符符合纹理系统的规范
+ * 该函数负责验证纹理资源的标识符，确保纹理资源标识符符合纹理系统的规范。
+ * 执行资源处理、数据校验和清理操作，确保纹理资源的完整性和有效性。
  * 
- * @param ObjectContext 参数1，包含纹理资源相关数据
- * @param ValidationContext 参数2，包含纹理资源标识符信息
+ * @param TextureResourceContext 纹理资源上下文，包含纹理资源相关数据
+ * @param TextureValidationContext 纹理验证上下文，包含纹理资源标识符信息
  * @return uint8_t 验证结果，0表示成功，非0表示失败
+ * @note 函数会进行多重验证以确保纹理资源的完整性
+ * @warning 如果纹理资源数据无效，函数会提前返回错误状态
  */
-uint8_t ValidateTextureResourceId(uint8_t ObjectContext,int64_t ValidationContext)
+uint8_t ValidateTextureResourceId(uint8_t TextureResourceContext, int64_t TextureValidationContext)
 
 {
-  uint8_t ResourceHash;
-  uint8_t DataChecksumBuffer [32];
+  uint8_t TextureValidationHash;
+  uint8_t TextureChecksumBuffer[32];
   
   if (*(uint *)(ResourceData + 0x40) < 0x31) {
-    ResourceHash = ProcessSystemResource(ObjectContext,ValidationContext,0x544e5645);
-    if ((int)ResourceHash == 0) {
-      ResourceHash = 0;
+    TextureValidationHash = ProcessSystemResource(TextureResourceContext, TextureValidationContext, 0x544e5645);
+    if ((int)TextureValidationHash == 0) {
+      TextureValidationHash = 0;
     }
   }
   else {
-    ResourceHash = CalculateDataChecksum(ValidationContext,DataChecksumBuffer,1,0x5453494c,0x544e5645);
-    if ((int)ResourceHash == 0) {
-      ResourceHash = ProcessSystemResource(ObjectContext,ValidationContext,0x42545645);
-      if ((int)ResourceHash == 0) {
-        ResourceHash = AccessSystemData(ObjectContext,ValidationContext);
-        if ((int)ResourceHash == 0) {
-                CleanupResourceBuffer(ValidationContext,DataChecksumBuffer);
+    TextureValidationHash = CalculateDataChecksum(TextureValidationContext, TextureChecksumBuffer, 1, 0x5453494c, 0x544e5645);
+    if ((int)TextureValidationHash == 0) {
+      TextureValidationHash = ProcessSystemResource(TextureResourceContext, TextureValidationContext, 0x42545645);
+      if ((int)TextureValidationHash == 0) {
+        TextureValidationHash = AccessSystemData(TextureResourceContext, TextureValidationContext);
+        if ((int)TextureValidationHash == 0) {
+          CleanupResourceBuffer(TextureValidationContext, TextureChecksumBuffer);
         }
       }
     }
   }
-  return ResourceHash;
+  return TextureValidationHash;
 }
 
 
