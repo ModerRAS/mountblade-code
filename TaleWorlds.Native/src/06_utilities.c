@@ -8544,7 +8544,7 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer, int64_t Cont
     uint32_t MatrixProjectionFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixWComponentOffset);
     uint32_t MatrixViewFlags = *(uint32_t *)(ObjectContext + ObjectContextSecurityContextOffset);
     uint32_t MatrixWorldFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
-    *(uint32_t *)(MatrixContextPointer + 0x58) = *(uint32_t *)(ObjectContext + ObjectContextFloatValueOffset);
+    *(uint32_t *)(MatrixContextPointer + MatrixContextFloatValueOffset) = *(uint32_t *)(ObjectContext + ObjectContextFloatValueOffset);
     *(uint32_t *)(MatrixContextPointer + MatrixProjectionDataOffset) = MatrixProjectionFlags;
     *(uint32_t *)(MatrixContextPointer + MatrixViewDataOffset) = MatrixViewFlags;
     *(uint32_t *)(MatrixContextPointer + MatrixWorldDataOffset) = MatrixWorldFlags;
