@@ -155,6 +155,16 @@
 #define SystemExecutionStatusOffset 0x98
 #define SystemStatusConstant 0x1c
 
+// 系统清理相关常量
+#define SystemCleanupHandlerOffset 0x8b0
+#define SystemCleanupDataOffset 0x8a0
+#define SystemResourceTemplatePointerOffset 0x878
+#define SystemCleanupStatusOffset 0x880
+#define SystemCleanupCounterOffset 0x890
+#define SystemSecondaryResourceOffset 0x858
+#define SystemSecondaryCleanupStatusOffset 0x860
+#define SystemSecondaryCleanupCounterOffset 0x870
+
 // 范围检查相关常量
 #define RangeLowerBoundOffset 0x38
 #define RangeUpperBoundOffset 0x3c
@@ -1504,14 +1514,14 @@ void* InitializeFileSystem(void);
  * 设置数据库连接、查询和事务管理的相关机制
  */
 void* InitializeDatabaseSystem(void);
-void* DatabaseConnectionPool;
-void* DatabaseQueryCache;
-void* DatabaseTransactionManager;
-void* DatabaseIndexManager;
-void* DatabaseSchemaManager;
-void* DatabaseRecordManager;
-void* DatabaseLockManager;
-void* DatabaseBackupManager;
+void* DatabaseConnectionPool;                 // 数据库连接池
+void* DatabaseQueryCache;                     // 数据库查询缓存
+void* DatabaseTransactionManager;             // 数据库事务管理器
+void* DatabaseIndexManager;                   // 数据库索引管理器
+void* DatabaseSchemaManager;                  // 数据库模式管理器
+void* DatabaseRecordManager;                  // 数据库记录管理器
+void* DatabaseLockManager;                    // 数据库锁管理器
+void* DatabaseBackupManager;                  // 数据库备份管理器
 void* DatabaseConfigurationTable;
 void* DatabaseConnectionTable;
 void* DatabaseTransactionTable;
