@@ -15622,7 +15622,7 @@ LoopExit:
       uint32_t ChecksumValue = DataChecksumBuffer[0];
       uint32_t EncryptionParam = encryptionFlag;
       int ResultIndex = ResultCounter;
-      int ResourceValidationStatusCode = GetAndValidateResourceData(ObjectContext,&SecurityContextPointer);
+      int ResourceValidationStatus = GetAndValidateResourceData(ObjectContext,&SecurityContextPointer);
       if (ResourceHashStatus != 0) goto LoopExit;
       int ProcessingCounter = 0;
       int TableEntryIndex = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
@@ -15636,12 +15636,12 @@ LoopExit:
           if (((char)ResourceTablePointer == '\0') && (int SystemStatusResult = CheckSystemStatus(ObjectContext,1), SystemStatusResult != 0))
           goto LoopExit;
           int MemoryOperationResult = (**(code **)(MemoryOperationTemplate + 0x10))(&MemoryOperationTemplate,ProcessingBuffer,0x200);
-          ProcessDataBuffer((int64_t)ProcessingBuffer + (int64_t)memoryOperationResult,0x200 - memoryOperationResult,10);
-          int ObjectOperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ProcessingBuffer);
-          if (objectOperationResult != 0) goto LoopExit;
+          ProcessDataBuffer((int64_t)ProcessingBuffer + (int64_t)MemoryOperationResult,0x200 - MemoryOperationResult,10);
+          int ObjectOperationStatus = (**(code **)(*ObjectContext + 8))(ObjectContext,ProcessingBuffer);
+          if (ObjectOperationResult != 0) goto LoopExit;
           if ((char)ResourceTablePointer == '\0') {
-            int SecondaryOperationStatusCode = (**(code **)(*ObjectContext + ObjectContextValidationDataOffset))(ObjectContext);
-            if (secondaryOperationResult != 0) goto LoopExit;
+            int SecondaryOperationStatus = (**(code **)(*ObjectContext + ObjectContextValidationDataOffset))(ObjectContext);
+            if (SecondaryOperationResult != 0) goto LoopExit;
             *(uint8_t *)(ObjectContext + 4) = 0;
           }
           ProcessingCounter = ProcessingCounter + 1;
