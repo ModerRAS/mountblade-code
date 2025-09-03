@@ -89,6 +89,13 @@
 #define ValidationSizeLimit 0x3fffffff
 #define ResourceSizeLimit 0x3fffffff
 
+// 资源清理相关常量
+#define DirectoryResourceTableOffset 0x8a8
+#define DirectoryResourceHashPointerOffset 0x8b0
+#define ResourceHashStatusAddressOffset 0x8c8
+#define StreamResourceLockOffset 0x8e8
+#define StreamResourceStatusOffset 0x8f8
+
 // 浮点数相关常量
 #define FloatInfinityMask 0x7f800000
 #define FloatNegativeInfinity 0xbf800000
@@ -35613,7 +35620,7 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
   }
   MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & MemoryAddressAlignmentMask;
   if (MemoryAddressMask != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
+    ResourceIndex = MemoryAddressIncrement + MemoryResourceDataOffset + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * MemoryResourceEntrySize;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
@@ -35651,9 +35658,9 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
 void ReleaseStreamResourceLock(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceOperation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8e8,
-                *(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8f8),CleanupOption,CleanupFlag,
-                0xfffffffffffffffe);
+  ProcessResourceOperation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + StreamResourceLockOffset,
+                *(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + StreamResourceStatusOffset),CleanupOption,CleanupFlag,
+                MemoryCleanupTriggerValue);
   return;
 }
 
