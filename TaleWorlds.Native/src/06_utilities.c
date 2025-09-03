@@ -30008,7 +30008,7 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindQuaternaryContextExceptionHandler(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashDataPointer;
   
   ResourceHashDataPointer = *(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset);
