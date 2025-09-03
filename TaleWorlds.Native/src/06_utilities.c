@@ -7723,7 +7723,7 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
   *(uint8_t *)(*(int64_t *)(ResourceContext + ResourceDataPointerOffset) + (int64_t)*(int *)(ResourceContext + ResourceCountOffset) * 8) =
        StackParameterContext;
   *(int *)(ResourceContext + ResourceCountOffset) = *(int *)(ResourceContext + ResourceCountOffset) + 1;
-SystemErrorHandler:
+SystemOperationErrorHandler:
         ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + ValidationContextLoopCounterOffset));
 }
 
@@ -8249,7 +8249,7 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
       goto ObjectContextProcessingComplete;
     }
   }
-  *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
+  *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
   ProcessingStatusCode = ProcessSystemObjectState(*(uint8_t *)(ContextPointer + SystemOperationContextOffset));
 ObjectContextProcessingComplete:
   if ((int)ProcessingStatusCode == 0) {
@@ -8493,7 +8493,7 @@ uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer,int64_t Conte
         return ResourceValidationStatusCode;
       }
     }
-    *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
+    *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
     uint32_t SystemOperationStatusCode = ExecuteSystemOperation(*(uint8_t *)(MatrixContextPointer + SystemOperationContextOffset));
     if ((int)SystemOperationStatusCode == 0) {
       return 0;
@@ -9123,7 +9123,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
         return loopCondition;
       }
     }
-    *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
+    *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
     OperationResult = ExecuteSystemOperation(*(uint8_t *)(ResourceTablePointerSystemContext + SystemOperationContextOffset));
     if ((int)loopCondition == 0) {
       return 0;
@@ -9469,7 +9469,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int6
       return ResourceHashStatus;
     }
   }
-  *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
+  *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
   ValidationStatusCode = ExecuteSystemOperation(*(uint8_t *)(ContextPointer + SystemOperationContextOffset));
   if ((int)ValidationStatusCode == 0) {
     return 0;
@@ -9545,7 +9545,7 @@ ValidationCompleteLabel:
       return ResourceHashStatus;
     }
   }
-  *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
+  *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
   ValidationStatusCode = ExecuteSystemOperation(*(uint8_t *)(ResourceIndex + SystemOperationContextOffset));
   if ((int)ValidationStatusCode == 0) {
     return 0;
@@ -9599,7 +9599,7 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, in
       return ResourceHash;
     }
   }
-  *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
+  *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
   ResourceHash = ExecuteSystemOperation(*(uint8_t *)(ResourceTablePointer + SystemOperationContextOffset));
   if ((int)ResourceHash == 0) {
     return 0;
@@ -13263,7 +13263,7 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
     ResourceCapacityMultiplier = 0;
     CommandParameters[0] = 0;
     ResourceValidationFlag = 0;
-    ResourceHandlerParam = 0xffffffffffffffff;
+    ResourceHandlerParam = UInt64MaximumValue;
     ResourceHandlerArray[0] = -1;
     SetupResourceHandlers(DataHandlerContextPointer,&ResourceHandlerParam,ResourceHandlerArray);
     SystemCommandArray[0] = ResourceHandlerArray[0];
@@ -16039,7 +16039,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
           ResourceContextEnd = (int64_t *)(uint64_t)ResourceHashGeneratedValue;
         } while ((int)ResourceHashGeneratedValue < ProcessStatus);
       }
-      MaximumUnsignedValue = 0xffffffffffffffff;
+      MaximumUnsignedValue = UInt64MaximumValue;
       TempFloatBuffer[0] = -NAN;
       ResourceContextPointer = (int64_t *)(*(int64_t *)(ObjectContext[1] + 0x90) + 0x38);
       ResourceSettingsConfigFlag(ResourceContextPointer,&MaximumUnsignedValue,TempFloatBuffer);
@@ -16050,7 +16050,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
         do {
           do {
             LocalContextPointer = (int64_t)(int)ValidationFloatBuffer[0] * 0x20;
-            ResourceProcessingMask = 0xffffffffffffffff;
+            ResourceProcessingMask = UInt64MaximumValue;
             AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0].FloatValue,0xffffffff);
             PointerStackPrimary = *(int64_t **)(ResourceContextNull[2] + 0x18 + LocalContextPointer);
             AudioSampleRate = LocalContextPointer;
