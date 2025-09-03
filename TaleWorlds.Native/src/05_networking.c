@@ -520,6 +520,7 @@ void *NetworkConnectionQuaternaryProcessingConfig;// 网络连接第四处理配
 void *NetworkConnectionQuinaryProcessingConfig;  // 网络连接第五处理配置数据
 
 // 网络连接上下文和数据变量
+uint32_t NetworkConnectionContext;                          // 网络连接上下文
 uint32_t NetworkConnectionContextData;                      // 网络连接上下文数据
 uint32_t NetworkConnectionSecurityContext;                 // 网络连接安全上下文
 uint32_t NetworkConnectionBufferPool;                      // 网络连接缓冲池
@@ -562,6 +563,7 @@ uint32_t NetworkConnectionPoolAllocationCount;         // 网络连接池分配�
 uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放计数
 uint32_t NetworkConnectionPoolCapacity;                 // 网络连接池容量
 uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引
+uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理器
 
 /**
  * @brief 网络连接表变量 - 管理网络连接的表结构和索引

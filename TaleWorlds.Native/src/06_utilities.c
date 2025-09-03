@@ -1602,27 +1602,27 @@ void* SystemDatabaseConfig;                      // 系统数据库配置
 void* SystemSecurityConfig;                     // 系统安全配置
 void* SystemLoggingConfig;                      // 系统日志配置
 void* SystemPerformanceConfig;                   // 系统性能配置
-void* SystemLocalizationConfiguration;
-void* SystemModdingConfig;
-void* SystemDebugConfig;
-void* SystemConfigurationTable;
-void* SystemStatusTable;
-void* SystemResourceTablePointer;
-void* SystemResourceConfigurationBuffer;
-void* SystemStatusInformationBuffer;
-void* SystemMemoryAllocationBuffer;
-void* SystemThreadManagementBuffer;
-void* SystemEventProcessingBuffer;
-void* SystemTimerReferenceBuffer;
-void* SystemSynchronizationBuffer;
-void* SystemLockManagementBuffer;
-void* SystemSemaphoreControlBuffer;
-void* SystemMutexHandleBuffer;
+void* SystemLocalizationConfiguration;        // 系统本地化配置
+void* SystemModdingConfig;                     // 系统模组配置
+void* SystemDebugConfig;                       // 系统调试配置
+void* SystemConfigurationTable;                // 系统配置表
+void* SystemStatusTable;                       // 系统状态表
+void* SystemResourceTablePointer;              // 系统资源表指针
+void* SystemResourceConfigurationBuffer;     // 系统资源配置缓冲区
+void* SystemStatusInformationBuffer;          // 系统状态信息缓冲区
+void* SystemMemoryAllocationBuffer;           // 系统内存分配缓冲区
+void* SystemThreadManagementBuffer;           // 系统线程管理缓冲区
+void* SystemEventProcessingBuffer;            // 系统事件处理缓冲区
+void* SystemTimerReferenceBuffer;              // 系统定时器引用缓冲区
+void* SystemSynchronizationBuffer;            // 系统同步缓冲区
+void* SystemLockManagementBuffer;             // 系统锁管理缓冲区
+void* SystemSemaphoreControlBuffer;            // 系统信号量控制缓冲区
+void* SystemMutexHandleBuffer;                 // 系统互斥锁句柄缓冲区
 // 条件变量缓冲区 - 缓存条件变量数据
-void* ConditionVariableDataBuffer;
+void* ConditionVariableDataBuffer;             // 条件变量数据缓冲区
 // 屏障管理器缓冲区 - 缓存屏障管理器数据
-void* BarrierManagerBuffer;
-void* MemoryPoolBuffer;
+void* BarrierManagerBuffer;                     // 屏障管理器缓冲区
+void* MemoryPoolBuffer;                         // 内存池缓冲区
 void* TaskExecutionQueueBuffer;
 void* StackManagerDataBuffer;
 void* SystemLinkedListBuffer;
