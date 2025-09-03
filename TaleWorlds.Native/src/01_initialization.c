@@ -1471,7 +1471,7 @@ void InitializeGameCoreSystem(void)
     }
     PreviousSystemNodePointer = CurrentSystemNodePointer;
     CurrentSystemNodePointer = NextSystemNodePointer;
-    IsSystemNodeActive = *(bool*)((long long)NextSystemNodePointer + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    IsSystemNodeActive = *(bool*)((long long)NextSystemNodePointer + SystemNodeActiveFlagOffset);
   }
   
   if ((PreviousSystemNodePointer == SystemRootNodePointer) || 
@@ -1535,7 +1535,7 @@ void InitializeSystemDataTableBaseAllocator(void)
     }
     PreviousSystemNodePointer = CurrentSystemNodePointer;
     CurrentSystemNodePointer = NextSystemNodePointer;
-    IsSystemNodeActive = *(bool*)((long long)NextSystemNodePointer + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    IsSystemNodeActive = *(bool*)((long long)NextSystemNodePointer + SystemNodeActiveFlagOffset);
   }
   
   if ((PreviousSystemNodePointer == SystemRootNodePointer) || 

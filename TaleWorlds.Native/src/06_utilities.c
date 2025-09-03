@@ -13497,8 +13497,8 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
                 ValidateDataIntegrity(&ResourceAllocationFlag,0);
                 return ContextResourceHashStatus;
               }
-              ResourceHashInitialValue = (uint64_t)ResourceValidationFlag.Field44;
-              ResourceCapacityIndex = (int)ResourceValidationFlag;
+              ResourceHashInitialValue = (uint64_t)ResourceValidationFlag.HighPart;
+              ResourceCapacityIndex = (int)ResourceValidationFlag.LowPart;
             }
             CommandParameters[0] = ResourceCapacityIndex + 1;
             ContextValidationStatusCode = (uint64_t)CommandParameters[0];
