@@ -2662,7 +2662,7 @@ void InitializeSystemDataTableStructureA(void)
   SystemRootPointer = (long long*)GetSystemRootPointer();
   DataTablePointer = (void* *)*SystemRootPointer;
   DataTypeFlag = *(char*)((long long)DataTablePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemDataReference = &SystemDataNodeJ;
+  SystemDataReference = &SystemDataNodeJ;
   PreviousNode = DataTablePointer;
   CurrentNode = (void* *)DataTablePointer[1];
   while (DataTypeFlag == '\0') {
@@ -2687,7 +2687,7 @@ void InitializeSystemDataTableStructureA(void)
   PreviousNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   PreviousNode[NodeDataPointerIndex] = &SystemDataNodeK;
   PreviousNode[NodeFlagIndex] = 0;
-  PreviousNode[10] = systemDataReference;
+  PreviousNode[10] = SystemDataReference;
   return;
 }
 
@@ -24268,16 +24268,16 @@ void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* clea
 
 {
   void* *memoryPointer;
-  long long systemDataReference;
+  long long SystemDataReference;
   int memoryBlockCount;
   long long blockIndex;
   
-  systemDataReference = SystemMemoryPoolPointer;
+  SystemDataReference = SystemMemoryPoolPointer;
   memoryBlockCount = (int)(*(long long *)(SystemMemoryPoolPointer + 0x38) - *(long long *)(SystemMemoryPoolPointer + 0x30) >> 3);
   blockIndex = 0;
   if (0 < memoryBlockCount) {
     do {
-      memoryPointer = *(void* **)(*(long long *)(systemDataReference + 0x30) + blockIndex * 8);
+      memoryPointer = *(void* **)(*(long long *)(SystemDataReference + 0x30) + blockIndex * 8);
       if (memoryPointer != (void* *)0x0) {
         memoryPointer[4] = &SystemGlobalDataReference;
         if (memoryPointer[5] != 0) {
@@ -24295,18 +24295,18 @@ void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* clea
         }
           SystemCleanupFunction();
       }
-      *(void* *)(*(long long *)(systemDataReference + 0x30) + blockIndex * 8) = 0;
+      *(void* *)(*(long long *)(SystemDataReference + 0x30) + blockIndex * 8) = 0;
       blockIndex = blockIndex + 1;
     } while (blockIndex < memoryBlockCount);
   }
-  *(void* *)(systemDataReference + 0x38) = *(void* *)(systemDataReference + 0x30);
-  blockIndex = systemDataReference + 0x50;
-  ProcessMemoryBlock(blockIndex,*(void* *)(systemDataReference + 0x60),cleanupFlag,cleanupParameter,InvalidHandleValue);
+  *(void* *)(SystemDataReference + 0x38) = *(void* *)(SystemDataReference + 0x30);
+  blockIndex = SystemDataReference + 0x50;
+  ProcessMemoryBlock(blockIndex,*(void* *)(SystemDataReference + 0x60),cleanupFlag,cleanupParameter,InvalidHandleValue);
   *(long long *)blockIndex = blockIndex;
-  *(long long *)(systemDataReference + 0x58) = blockIndex;
-  *(void* *)(systemDataReference + 0x60) = 0;
-  *(uint8_t *)(systemDataReference + 0x68) = 0;
-  *(void* *)(systemDataReference + 0x70) = 0;
+  *(long long *)(SystemDataReference + 0x58) = blockIndex;
+  *(void* *)(SystemDataReference + 0x60) = 0;
+  *(uint8_t *)(SystemDataReference + 0x68) = 0;
+  *(void* *)(SystemDataReference + 0x70) = 0;
   return;
 }
 
@@ -25875,7 +25875,7 @@ uint32_t GetSystemResourceStatus(void)
   void* *presourceAddress;
   uint CurrentThreadId;
   int CalculationFlags;
-  void* *systemDataReference;
+  void* *SystemDataReference;
   long long bufferOffset;
   uint stringBufferPosition;
   ulong long stringBufferCapacity;
@@ -25893,27 +25893,27 @@ uint32_t GetSystemResourceStatus(void)
             (*(long long *)(SystemGlobalStatusFlags + 8) + 0xcc +
             (ulong long)(*(uint *)(*(long long *)(SystemGlobalStatusFlags + 8) + 0x13c) & 1) * 0x48);
   if ((SystemOperationStatusArray.TertiaryField != 0) && (SystemOperationStatusArray.SecondaryField != 0)) {
-    systemDataReference = &SystemGlobalDataReference;
+    SystemDataReference = &SystemGlobalDataReference;
     SystemStackFlagB0 = 0;
     systemOffsetCounter = 0;
     systemDataBuffer = 0;
-    ProcessSystemData(&systemDataReference,SystemOperationStatusArray.PrimaryField);
+    ProcessSystemData(&SystemDataReference,SystemOperationStatusArray.PrimaryField);
     CurrentThreadId = systemDataBuffer + 1;
-    ExecuteSystemCommand(&systemDataReference,CurrentThreadId);
+    ExecuteSystemCommand(&SystemDataReference,CurrentThreadId);
     *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
     systemDataBuffer = CurrentThreadId;
-    ProcessSystemData(&systemDataReference,SystemOperationStatusArray.PrimaryExtended >> 0x20);
+    ProcessSystemData(&SystemDataReference,SystemOperationStatusArray.PrimaryExtended >> 0x20);
     CurrentThreadId = systemDataBuffer + 1;
-    ExecuteSystemCommand(&systemDataReference,CurrentThreadId);
+    ExecuteSystemCommand(&SystemDataReference,CurrentThreadId);
     *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
     systemDataBuffer = CurrentThreadId;
-    ProcessSystemData(&systemDataReference,SystemOperationStatusArray.SecondaryExtended & MAX_UNSIGNED_32_BIT);
+    ProcessSystemData(&SystemDataReference,SystemOperationStatusArray.SecondaryExtended & MAX_UNSIGNED_32_BIT);
     CalculationFlags = systemDataBuffer + 1;
-    ExecuteSystemCommand(&systemDataReference,CalculationFlags);
+    ExecuteSystemCommand(&SystemDataReference,CalculationFlags);
     *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
     systemDataBuffer = CalculationFlags;
-    ProcessSystemData(&systemDataReference,SystemOperationStatusArray.SecondaryExtended >> 0x20);
-    presourceAddress = (void* *)CreateSystemObject(SystemCounterBuffer80,&systemDataReference);
+    ProcessSystemData(&SystemDataReference,SystemOperationStatusArray.SecondaryExtended >> 0x20);
+    presourceAddress = (void* *)CreateSystemObject(SystemCounterBuffer80,&SystemDataReference);
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xe30,presourceAddress);
     *presourceAddress = &SystemGlobalDataReference;
     if (presourceAddress[1] != 0) {
@@ -25922,7 +25922,7 @@ uint32_t GetSystemResourceStatus(void)
     presourceAddress[1] = 0;
     *(uint32_t *)(presourceAddress + 3) = 0;
     *presourceAddress = &SystemMemoryAllocatorReference;
-    systemDataReference = &SystemGlobalDataReference;
+    SystemDataReference = &SystemGlobalDataReference;
     if (systemOffsetCounter != 0) {
         SystemCleanupFunction();
     }
