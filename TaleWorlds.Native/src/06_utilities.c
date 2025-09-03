@@ -8096,15 +8096,15 @@ uint8_t ValidateObjectAndProcessBufferContext(int64_t ObjectContext, int64_t Sys
   uint8_t ProcessingResult;
   int64_t ObjectContextBuffer;
   
-  ProcessingStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ObjectContextBuffer);
-  if ((int)ProcessingStatusCode == 0) {
+  ProcessingResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ObjectContextBuffer);
+  if ((int)ProcessingResult == 0) {
     if (ObjectContextBuffer != 0) {
       ObjectContextBuffer = ObjectContextBuffer + -8;
     }
     if (*(int64_t *)(ObjectContextBuffer + ObjectContextSecondaryDataOffset) == 0) {
       return ErrorInvalidResourceData;
     }
-    ProcessingStatusCode = ValidateBufferContext(*(uint8_t *)(*(int64_t *)(ObjectContextBuffer + ObjectContextSecondaryDataOffset) + BufferContextValidationOffset),
+    ProcessingResult = ValidateBufferContext(*(uint8_t *)(*(int64_t *)(ObjectContextBuffer + ObjectContextSecondaryDataOffset) + BufferContextValidationOffset),
                                 ObjectContext + ObjectContextValidationDataOffset);
     if ((int)ProcessingStatusCode == 0) {
       ProcessingStatusCode = ProcessSystemObjectWithCleanup(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
