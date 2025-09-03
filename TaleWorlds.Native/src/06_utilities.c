@@ -27592,6 +27592,7 @@ uint64_t ProcessResourceHashCalculationAndValidation(void)
   uint32_t PrimaryResourceHash;
   uint32_t SecondaryFloatValidationResult;
   uint32_t ResourceHashValidationCode;
+  int64_t ResourceHashMemoryPointer;
   
   SecurityHashValuePointer = (uint32_t *)AllocateMemoryBlock();
   ResourceCount = 0;
