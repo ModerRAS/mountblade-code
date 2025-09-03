@@ -4388,6 +4388,16 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数会进行安全验证，确保只有有效的对象被处理
  * @warning 调用此函数前必须确保游戏上下文和系统上下文已正确初始化
  */
+/**
+ * @brief 处理游戏对象集合
+ * 
+ * 该函数用于处理游戏对象集合的批量操作，包括对象验证、状态检查和清理。
+ * 通过安全验证和上下文句柄获取，确保对象处理的安全性。
+ * 
+ * @param GameContext 游戏上下文，包含游戏相关的状态信息
+ * @param SystemContext 系统上下文，包含系统相关的状态信息
+ * @return void 无返回值
+ */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int ObjectValidationStatusCode;
@@ -4972,7 +4982,17 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 成功时对象的引用计数会增加1
  * @warning 如果对象句柄无效，返回ErrorInvalidObjectHandle错误码
  */
-uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，用于对象生命周期管理。
+ * 通过验证对象上下文，找到对象实例并增加其引用计数。
+ * 同时检查系统状态以确保操作的安全性。
+ * 
+ * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
+uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
   int64_t ObjectValidationData [4];
