@@ -1571,7 +1571,7 @@ void InitializeSystemDataTableBaseAllocator(void)
  */
 void InitializeSystemDataTableAllocator(void)
 {
-  char isSystemNodeActive;
+  bool IsSystemNodeActive;
   void** systemDataTablePointer;
   int nodeIdentifierComparisonResult;
   long long* systemMemoryPointer;
@@ -1586,12 +1586,12 @@ void InitializeSystemDataTableAllocator(void)
   
   systemDataTablePointer = (long long*)GetSystemRootPointer();
   systemRootNodePointer = (void**)*systemDataTablePointer;
-  isSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  IsSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   systemInitializationFlag = 0;
   previousSystemNode = systemRootNodePointer;
   currentSystemNode = (void**)systemRootNodePointer[1];
   
-  while (isSystemNodeActive == '\0') {
+  while (IsSystemNodeActive == '\0') {
     nodeIdentifierComparisonResult = memcmp(currentSystemNode + 4, &SYSTEM_DATA_TABLE_SYSTEM_IDENTIFIER1, SYSTEM_IDENTIFIER_SIZE);
     if (nodeIdentifierComparisonResult < 0) {
       nextSystemNode = (void**)currentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
@@ -1602,7 +1602,7 @@ void InitializeSystemDataTableAllocator(void)
     }
     previousSystemNode = currentSystemNode;
     currentSystemNode = nextSystemNode;
-    isSystemNodeActive = *(char*)((long long)nextSystemNode + SystemNodeActiveFlagOffset);
+    IsSystemNodeActive = *(char*)((long long)nextSystemNode + SystemNodeActiveFlagOffset);
   }
   
   if ((previousSystemNode == systemRootNodePointer) || 
@@ -1637,7 +1637,7 @@ void InitializeSystemDataTableAllocator(void)
  */
 void InitializeSystemCoreConfig(void)
 {
-  char isSystemNodeActive;
+  bool IsSystemNodeActive;
   void** systemDataTablePointer;
   int nodeIdentifierComparisonResult;
   long long* systemMemoryPointer;
@@ -1652,12 +1652,12 @@ void InitializeSystemCoreConfig(void)
   
   systemDataTablePointer = (long long*)GetSystemRootPointer();
   systemRootNodePointer = (void**)*systemDataTablePointer;
-  isSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  IsSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   systemInitializationFlag = 0;
   previousSystemNode = systemRootNodePointer;
   currentSystemNode = (void**)systemRootNodePointer[1];
   
-  while (isSystemNodeActive == '\0') {
+  while (IsSystemNodeActive == '\0') {
     nodeIdentifierComparisonResult = memcmp(currentSystemNode + 4, &SYSTEM_MEMORY_SYSTEM_IDENTIFIER1, SYSTEM_IDENTIFIER_SIZE);
     if (nodeIdentifierComparisonResult < 0) {
       nextSystemNode = (void**)currentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
@@ -1668,7 +1668,7 @@ void InitializeSystemCoreConfig(void)
     }
     previousSystemNode = currentSystemNode;
     currentSystemNode = nextSystemNode;
-    isSystemNodeActive = *(char*)((long long)nextSystemNode + SystemNodeActiveFlagOffset);
+    IsSystemNodeActive = *(char*)((long long)nextSystemNode + SystemNodeActiveFlagOffset);
   }
   
   if ((previousSystemNode == systemRootNodePointer) || 
@@ -39977,10 +39977,10 @@ void* * ExpandSystemResourceAllocator(long long SystemResourceManager)
     }
     ResourceAddressPointer[4] = PrimaryResourcePointer;
     ResourceAddressPointer[2] = ThreadLocalStorage;
-    ResourceAddressPointer[3] = SystemDataPointer0;
+    ResourceAddressPointer[3] = SystemDataPointer;
     *ResourceAddressPointer = *(void* *)(SystemResourceManager + 0x58);
     ResourceAddressPointer[1] = *(long long *)(SystemResourceManager + 0x58) - 1U & resourceCounter - 1U;
-    SystemDataPointer0 = (void* *)CONCAT71((int7)(resourceCounter - 1U >> 8),1);
+    SystemDataPointer = (void* *)CONCAT71((int7)(resourceCounter - 1U >> 8),1);
     *(void* **)(SystemResourceManager + 0x60) = ResourceAddressPointer;
     *(long long *)(SystemResourceManager + 0x58) = *(long long *)(SystemResourceManager + 0x58) << 1;
   }
