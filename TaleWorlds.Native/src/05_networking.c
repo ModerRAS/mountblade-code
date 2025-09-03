@@ -465,7 +465,7 @@ void NetworkSecurityGuardCheck(uint64_t SecurityValue);
  * @param ConnectionContext 连接上下文
  * @return 清理结果，0表示成功，其他值表示错误码
  */
-int CleanupNetworkConnectionContext(int64_t ConnectionContext);
+int32_t CleanupNetworkConnectionContext(int64_t ConnectionContext);
 
 /**
  * 验证缓冲区超时 - 验证缓冲区的超时时间
@@ -475,7 +475,7 @@ int CleanupNetworkConnectionContext(int64_t ConnectionContext);
  * @param ValidationResult 验证结果
  * @return 验证结果，0表示成功，其他值表示错误码
  */
-int ValidateBufferTimeout(int64_t BufferData, int TimeoutValue, int64_t ValidationResult);
+int32_t ValidateBufferTimeout(int64_t BufferData, int32_t TimeoutValue, int64_t ValidationResult);
 
 /**
  * 使用加密处理缓冲区 - 使用加密处理缓冲区
@@ -485,7 +485,7 @@ int ValidateBufferTimeout(int64_t BufferData, int TimeoutValue, int64_t Validati
  * @param EncryptionKey 加密密钥
  * @return 处理结果，0表示成功，其他值表示错误码
  */
-int ProcessBufferWithEncryption(int64_t EncryptedBuffer, int BufferSize, int64_t EncryptionKey);
+int32_t ProcessBufferWithEncryption(int64_t EncryptedBuffer, int32_t BufferSize, int64_t EncryptionKey);
 
 /**
  * 管理网络句柄 - 管理网络句柄
@@ -495,7 +495,7 @@ int ProcessBufferWithEncryption(int64_t EncryptedBuffer, int BufferSize, int64_t
  * @param HandleContext 句柄上下文
  * @return 管理结果，0表示成功，其他值表示错误码
  */
-int ManageNetworkHandle(int64_t ConnectionHandle, int HandleSize, int64_t HandleContext);
+int32_t ManageNetworkHandle(int64_t ConnectionHandle, int32_t HandleSize, int64_t HandleContext);
 
 /**
  * 网络加密数据包数据 - 网络加密数据包数据
@@ -505,7 +505,7 @@ int ManageNetworkHandle(int64_t ConnectionHandle, int HandleSize, int64_t Handle
  * @param EncryptionKey 加密密钥
  * @return 加密结果，0表示成功，其他值表示错误码
  */
-int NetworkEncryptPacketData(int64_t PacketData, int PacketSize, int64_t EncryptionKey);
+int32_t NetworkEncryptPacketData(int64_t PacketData, int32_t PacketSize, int64_t EncryptionKey);
 
 /**
  * 网络处理安全上下文 - 网络处理安全上下文
@@ -515,7 +515,7 @@ int NetworkEncryptPacketData(int64_t PacketData, int PacketSize, int64_t Encrypt
  * @param ContextData 上下文数据
  * @return 处理结果，0表示成功，其他值表示错误码
  */
-int NetworkProcessSecurityContext(int64_t SecurityContext, int ContextSize, int64_t ContextData);
+int32_t NetworkProcessSecurityContext(int64_t SecurityContext, int32_t ContextSize, int64_t ContextData);
 
 /**
  * 网络获取连接数量 - 网络获取连接数量
@@ -523,7 +523,7 @@ int NetworkProcessSecurityContext(int64_t SecurityContext, int ContextSize, int6
  * @param ConnectionContext 连接上下文
  * @return 连接数量
  */
-int NetworkGetConnectionCount(int64_t ConnectionContext);
+int32_t NetworkGetConnectionCount(int64_t ConnectionContext);
 
 /**
  * 网络通过索引获取连接 - 网络通过索引获取连接
@@ -532,7 +532,7 @@ int NetworkGetConnectionCount(int64_t ConnectionContext);
  * @param ConnectionIndex 连接索引
  * @return 连接句柄
  */
-int64_t NetworkGetConnectionByIndex(int64_t ConnectionContext, int ConnectionIndex);
+int64_t NetworkGetConnectionByIndex(int64_t ConnectionContext, int32_t ConnectionIndex);
 
 /**
  * 网络验证连接协议 - 网络验证连接协议
@@ -541,7 +541,7 @@ int64_t NetworkGetConnectionByIndex(int64_t ConnectionContext, int ConnectionInd
  * @param PacketData 数据包数据
  * @return 验证结果，0表示成功，其他值表示错误码
  */
-int NetworkValidateConnectionProtocol(int64_t NetworkData, int64_t PacketData);
+int32_t NetworkValidateConnectionProtocol(int64_t NetworkData, int64_t PacketData);
 
 uint32_t NetworkConnectionEventHandler;
 

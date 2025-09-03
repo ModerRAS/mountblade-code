@@ -4242,7 +4242,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   int OperationResult;
   int64_t CurrentObjectIndex;
   int ProcessedObjectCount;
-  uint8_t ObjectMetaDataBuffer[32];
+  uint8_t ObjectMetadataBuffer[32];
   int64_t ObjectHandleBuffer[2];
   uint8_t *DataBufferPointer;
   int CurrentPosition;
@@ -4250,7 +4250,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   uint8_t ProcessingWorkspace[512];
   uint64_t SecurityValidationKey;
   
-  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetaDataBuffer;
+  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetadataBuffer;
   OperationResult = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleBuffer);
   if ((OperationResult == 0) && (*(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
     DataBufferPointer = ProcessingWorkspace;
@@ -4407,9 +4407,9 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   uint64_t CurrentRegistrationIndex;
   int64_t *RegistrationBasePointer;
   int64_t RegistrationStackPointer;
-  char SystemObjectName[16];
-  int RegistrationCounter;
-  int CalculatedRegistrationSize;
+  char SystemObjectNameBuffer[16];
+  int RegistrationIterationCounter;
+  int CalculatedRegistrationEntrySize;
   
   // 获取注册上下文数据
   ValidationStatusCode = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationStackPointer);
@@ -30122,6 +30122,16 @@ void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemCo
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
+/**
+ * @brief 处理第五级上下文异常
+ * 
+ * 该函数用于处理系统第五级上下文中的异常情况
+ * 主要处理资源分配和缓存相关的异常
+ * 
+ * @param ExceptionContext 异常上下文
+ * @param SystemContext 系统上下文指针
+ * @return 无返回值
+ */
 void HandleFifthLevelContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashDataPointer;
   
@@ -35337,20 +35347,20 @@ void ProcessFileHandleCleanup(uint8_t ObjectContext, int64_t ValidationContext, 
 void ProcessDirectoryHandleCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  uint8_t *ResourceHashPtr;
-  int64_t *ResourceTablePointerPointer;
+  uint8_t *ResourceHashPointer;
+  int64_t *ResourceTablePointer;
   uint8_t *ResourceHashStatusPointer;
-  uint8_t *PackageValidationStatusCodePointer;
+  uint8_t *ValidationStatusPointer;
   int64_t ResourceCleanupStepValue;
   uint8_t ResourceCleanupCompleteFlag;
   
-  ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8a8);
+  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8a8);
   ResourceCleanupStepValue = 0xfffffffffffffffe;
-  ResourceHashPtr = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8b0);
-  for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointerPointer; ResourceHashStatusPointer != ResourceHashPtr; PackageValidationStatusCodePointer = ResourceHashStatusPointer + 4) {
+  ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8b0);
+  for (ValidationStatusPointer = (uint8_t *)*ResourceTablePointer; ResourceHashStatusPointer != ResourceHashPointer; ValidationStatusPointer = ResourceHashStatusPointer + 4) {
     (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer,0,CleanupOption,CleanupFlag,ResourceCleanupStepValue);
   }
-  if (*ResourceTablePointerPointer == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
         ExecuteSystemEmergencyExit();
