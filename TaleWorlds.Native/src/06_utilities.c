@@ -46497,8 +46497,8 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
           ResourceIndexPointer[1] & *ResourceIndexPointer - 1U) * 8) + 8) = 0;
       ResourceIndexPointer = *(int64_t **)(SystemContextPointer + 0x60);
       ResourceIndexPointer[1] = ResourceIndexPointer[1] - 1U & *ResourceIndexPointer - 1U;
-      SystemDataPointer = *(int64_t *)(SystemDataPointer + 0x100);
-      if (SystemDataPointer == 0) break;
+      ExceptionMemoryPointer = *(int64_t *)(ExceptionMemoryPointer + 0x100);
+      if (ExceptionMemoryPointer == 0) break;
       ResourceCount = *(uint64_t *)(ValidationContext + 0x20);
     }
   }
@@ -65364,7 +65364,7 @@ void InitializeSystemDataPointer(void)
 void UnwindSystemDataInitialization(void)
 
 {
-  SystemDataPointer = &SystemDataStructure;
+  int64_t *SystemDataInitializationPointer = &SystemDataStructure;
   return;
 }
 
