@@ -3208,7 +3208,7 @@ void InitializeSystemStringProcessor(void)
   StringProcessCallbackPointer = &SystemStringProcessorNode;
   StringDataBufferPointer = StringDataBuffer;
   StringDataBuffer[0] = 0;
-  StringBufferSize = 0xb;
+  StringBufferSize = SYSTEM_STRING_BUFFER_SIZE_DEFAULT;
   strcpy_s(StringDataBuffer,StringBufferSize,&SystemStringProcessorTemplate,SystemStringParameter,InvalidHandleValue);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessCallbackPointer);
   return;

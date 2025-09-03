@@ -100312,13 +100312,13 @@ void ProcessSystemStateReset(uint8_t SystemHandle, int64_t ContextPointer)
 void ProcessSystemStateResetWithCallback(uint8_t SystemHandle, int64_t ContextPointer)
 
 {
-  char systemState;
-  int systemStatus;
+  char SystemStateFlag;
+  int SystemStatusCode;
   
   ResourceManagerInitFlag();
-  systemState = *(char *)(ContextPointer + 0x38);
-  systemStatus = GetSystemStatus();
-  if ((systemStatus != 0) && (systemState == '\0')) {
+  SystemStateFlag = *(char *)(ContextPointer + 0x38);
+  SystemStatusCode = GetSystemStatus();
+  if ((SystemStatusCode != 0) && (SystemStateFlag == '\0')) {
     LOCK();
     void* SystemDataStructurePointer;
     UNLOCK();
@@ -102741,28 +102741,28 @@ void InitializeSystemDataStructureCK(void)
 void ReleaseResourceReference(void)
 
 {
-  int64_t *referenceCountPointer;
-  int *secondaryCountPointer;
-  int secondaryCountValue;
-  int64_t referenceCountValue;
-  int64_t *resourceManagerPointer;
+  int64_t *ReferenceCountPointer;
+  int *SecondaryCountPointer;
+  int SecondaryCountValue;
+  int64_t ReferenceCountValue;
+  int64_t *ResourceManagerPointer;
   
-  resourceManagerPointer = ResourceManagerMainPointer;
+  ResourceManagerPointer = ResourceManagerMainPointer;
   if (ResourceManagerMainPointer != (int64_t *)0x0) {
     LOCK();
-    referenceCountPointer = ResourceManagerMainPointer + 1;
-    referenceCountValue = *referenceCountPointer;
-    *(int *)referenceCountPointer = (int)*referenceCountPointer + -1;
+    ReferenceCountPointer = ResourceManagerMainPointer + 1;
+    ReferenceCountValue = *ReferenceCountPointer;
+    *(int *)ReferenceCountPointer = (int)*ReferenceCountPointer + -1;
     UNLOCK();
-    if ((int)referenceCountValue == 1) {
-      (**(code **)*resourceManagerPointer)(resourceManagerPointer);
+    if ((int)ReferenceCountValue == 1) {
+      (**(code **)*ResourceManagerPointer)(ResourceManagerPointer);
       LOCK();
-      secondaryCountPointer = (int *)((int64_t)resourceManagerPointer + 0xc);
-      secondaryCountValue = *secondaryCountPointer;
-      *secondaryCountPointer = *secondaryCountPointer + -1;
+      SecondaryCountPointer = (int *)((int64_t)ResourceManagerPointer + 0xc);
+      SecondaryCountValue = *SecondaryCountPointer;
+      *SecondaryCountPointer = *SecondaryCountPointer + -1;
       UNLOCK();
-      if (secondaryCountValue == 1) {
-        (**(code **)(*resourceManagerPointer + 8))(resourceManagerPointer);
+      if (SecondaryCountValue == 1) {
+        (**(code **)(*ResourceManagerPointer + 8))(ResourceManagerPointer);
       }
     }
   }
