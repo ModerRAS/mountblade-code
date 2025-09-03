@@ -1005,7 +1005,7 @@ void* ModuleDependencySystemConfig;                      // 系统模块依赖�
 bool ModuleDependencySystemEnabled;                      // 系统模块依赖系统启用标志
 void* ModuleDependencyPersistentStorage;                 // 系统模块依赖持久化存储
 void* ModuleDependencyCacheStorage;                      // 系统模块依赖缓存存储
-void* ModuleDependencyRuntimeBuffer;                    // 系统模块依赖运行时缓冲区
+void* ModuleDependencyRuntimeDataBuffer;                    // 系统模块依赖运行时缓冲区
 uint32_t ModuleDependencySystemVersion;                  // 系统模块依赖系统版本
 uint32_t ModuleDependencyBuildVersion;                    // 系统模块依赖构建版本
 uint32_t ModuleDependencyIntegrityChecksum;              // 系统模块依赖完整性校验和
