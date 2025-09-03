@@ -400,7 +400,7 @@ uint32_t NetworkProcessArrayData(int64_t NetworkContextArray, uint32_t ArrayInde
  * @param ConnectionFlags 连接标志
  * @return uint32_t 关闭结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
+uint32_t NetworkCloseConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
 
 // =============================================================================
 // 网络系统全局变量

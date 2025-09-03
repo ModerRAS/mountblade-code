@@ -4774,7 +4774,7 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
-uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
+uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
   int64_t ObjectValidationData [4];
@@ -4811,7 +4811,7 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文参数，包含对象的初始化信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeBasicObjectHandle(int64_t ObjectContext) {
+uint8_t CreateBasicObjectHandle(int64_t ObjectContext) {
   uint8_t HandleValidationResult;
   int64_t ValidatedContextPointer;
   
