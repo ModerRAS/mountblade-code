@@ -390,7 +390,7 @@ uint32_t ValidateMemoryAccessSafety(void* MemoryAddress, uint64_t AccessValidati
  * @param TerminationSecurityToken 终止安全令牌，用于验证终止操作的合法性
  * @return 无返回值，函数不会返回
  */
-void ShutdownSystem(uint64_t TerminationSecurityToken);
+void TerminateSystemProcess(uint64_t TerminationSecurityToken);
 
 /**
  * @brief 检查系统状态
