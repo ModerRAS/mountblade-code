@@ -363,11 +363,6 @@
 #define SystemCombineParameterAndValidationRegisters CombineParameterAndValidationRegisters
 #define SystemCombineInputRegisters CombineInputRegisters
 
-#define SystemSecurityValidationKeySeed 0x12345678
-#define ArrayElementPointerOffset 0x10
-#define ArrayElementSizeMultiplier 0x18
-#define ResourceTableEntrySize 4
-#define ResourceTableEntryOffset 0x94
 
 #define SystemTemporaryVariableInitialValue -0x8000000000000000
 #define SystemTemporarySecondaryVariableInitialValue -0x80000000
@@ -7585,7 +7580,7 @@ SystemErrorHandler:
  * @param SystemContext 系统上下文指针
  * @param bufferContext 缓冲区上下文指针
  */
-void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferContext)
+void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t BufferContextParameter)
 
 {
   int PackageValidationStatusCode;
@@ -7598,7 +7593,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   int64_t PrimaryContextPointer;
   int64_t SecondaryContextPointer;
   
-  ValidationStatus = ProcessSystemContext(SystemContext, bufferContext, *(uint8_t *)(secondaryContextPointer + 8));
+  ValidationStatus = ProcessSystemContext(SystemContext, BufferContextParameter, *(uint8_t *)(SecondaryContextPointer + 8));
   if (ValidationStatus != 0) {
     return;
   }
