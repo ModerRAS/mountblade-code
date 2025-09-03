@@ -1847,9 +1847,9 @@ NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, Network
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      ValidationStatus = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
-      if ((((int)ValidationStatus == 0) && (ValidationStatus = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)ValidationStatus == 0)) &&
-         (ValidationStatus = HandlePacketData(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)ValidationStatus == 0)) {
+      ValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
+      if ((((int)ValidationStatusCode == 0) && (ValidationStatusCode = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)ValidationStatusCode == 0)) &&
+         (ValidationStatusCode = HandlePacketData(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)ValidationStatusCode == 0)) {
           FinalizePacketProcessing(PacketData, SecurityValidationBuffer);
       }
     }
