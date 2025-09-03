@@ -75,11 +75,11 @@
 #define NetworkPacketStatusQuaternaryOffset 0x44
 
 // 网络数据包魔数
-#define NetworkPacketMagicSilive 0x5453494c
-#define NetworkPacketMagicTivel 0x54495645
-#define NetworkPacketMagicBivel 0x42495645
-#define NetworkPacketMagicTnvel 0x544e5645
-#define NetworkPacketMagicBtvel 0x42545645
+#define NetworkPacketMagicSilive 0x5453494c    // "LIVE" - 表示活跃连接
+#define NetworkPacketMagicTivel 0x54495645    // "EVIT" - 表示数据包验证
+#define NetworkPacketMagicBivel 0x42495645    // "EVIB" - 表示二进制数据
+#define NetworkPacketMagicTnvel 0x544e5645    // "EVNT" - 表示事件数据
+#define NetworkPacketMagicBtvel 0x42545645    // "EVBT" - 表示批处理数据
 
 // 网络连接相关偏移量
 #define NetworkConnectionHeaderOffset 0x10
@@ -104,16 +104,16 @@
 #define NetworkStatusTerminator 0x06
 
 // 网络系统常量
-#define NetworkMagicDeadFood 0xdeadf00d
-#define NetworkMaxIntValue 0x7fffffff
-#define NetworkFloatOne 0x3f800000
-#define NetworkFloatNegativeOne 0xbf800000
-#define NetworkFloatMax 0x7f7fffff
-#define NetworkErrorInvalidPacket 0x1c
-#define NetworkConnectionFinalizeValue 0x7d
-#define NetworkPacketSizeLimit 0x55
-#define NetworkPacketSizeAlternative 0x53
-#define NetworkPacketStatusLimit 0x31
+#define NetworkMagicDeadFood 0xdeadf00d       // 调试魔数，用于内存检查
+#define NetworkMaxIntValue 0x7fffffff          // 最大32位有符号整数值
+#define NetworkFloatOne 0x3f800000             // 浮点数1.0的十六进制表示
+#define NetworkFloatNegativeOne 0xbf800000     // 浮点数-1.0的十六进制表示
+#define NetworkFloatMax 0x7f7fffff             // 最大浮点数值
+#define NetworkErrorInvalidPacket 0x1c         // 无效数据包错误码
+#define NetworkConnectionFinalizeValue 0x7d    // 连接完成状态值
+#define NetworkPacketSizeLimit 0x55            // 数据包大小限制（85字节）
+#define NetworkPacketSizeAlternative 0x53      // 替代数据包大小限制（83字节）
+#define NetworkPacketStatusLimit 0x31           // 数据包状态限制（49字节）
 
 // 网络缓冲区对齐和大小常量
 #define NetworkBufferAlignmentMask 0xfffffffc
@@ -484,14 +484,14 @@ uint32_t NetworkSecurityPolicyData;                        // 网络安全策略
 uint32_t NetworkSecurityCertificateData;                   // 网络安全证书数据
 
 // 网络连接池管理变量
-uint32_t NetworkConnectionPoolData;                        // 网络连接池数据
-uint32_t NetworkConnectionPoolMetadata;                    // 网络连接池元数据
-uint32_t NetworkConnectionPoolStatistics;                  // 网络连接池统计信息
-uint32_t NetworkConnectionPoolConfiguration;                // 网络连接池配置
-uint32_t NetworkConnectionPoolHealthStatus;                 // 网络连接池健康状态
-uint32_t NetworkConnectionPoolPerformanceMetrics;           // 网络连接池性能指标
-uint32_t NetworkConnectionPoolAllocationCount;              // 网络连接池分配计数
-uint32_t NetworkConnectionPoolDeallocationCount;            // 网络连接池释放计数
+uint32_t NetworkConnectionPoolData;                    // 网络连接池数据指针
+uint32_t NetworkConnectionPoolMetadata;                // 网络连接池元数据
+uint32_t NetworkConnectionPoolStatistics;              // 网络连接池统计信息
+uint32_t NetworkConnectionPoolConfiguration;            // 网络连接池配置
+uint32_t NetworkConnectionPoolHealthStatus;             // 网络连接池健康状态
+uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能指标
+uint32_t NetworkConnectionPoolAllocationCount;         // 网络连接池分配计数
+uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放计数
 
 // =============================================================================
 // 网络连接池和套接字管理函数
@@ -746,21 +746,22 @@ void NetworkProcessPacketHandling(void);
  */
 void NetworkManageErrorHandling(void);
 
-uint32_t NetworkErrorProcessor;
-uint32_t NetworkErrorCounter;
-uint32_t NetworkConnectionAttempts;
-uint32_t NetworkConnectionFailures;
-uint32_t NetworkBytesSent;
-uint32_t NetworkBytesReceived;
-uint32_t NetworkPacketsSent;
-uint32_t NetworkPacketsReceived;
-uint32_t NetworkConnectionTime;
-uint32_t NetworkLastActivity;
-uint32_t NetworkBandwidthUsage;
-uint32_t NetworkLatency;
-uint32_t NetworkPacketLoss;
-uint32_t NetworkPacketRetransmissionCount;
-uint32_t ActiveNetworkConnectionsCount;
+// 网络错误和统计变量
+uint32_t NetworkErrorProcessor;                    // 网络错误处理器句柄
+uint32_t NetworkErrorCounter;                      // 网络错误计数器
+uint32_t NetworkConnectionAttempts;                // 网络连接尝试次数
+uint32_t NetworkConnectionFailures;                // 网络连接失败次数
+uint32_t NetworkBytesSent;                          // 网络发送字节数
+uint32_t NetworkBytesReceived;                      // 网络接收字节数
+uint32_t NetworkPacketsSent;                        // 网络发送数据包数量
+uint32_t NetworkPacketsReceived;                    // 网络接收数据包数量
+uint32_t NetworkConnectionTime;                    // 网络连接时间
+uint32_t NetworkLastActivity;                      // 网络最后活动时间
+uint32_t NetworkBandwidthUsage;                     // 网络带宽使用量
+uint32_t NetworkLatency;                            // 网络延迟
+uint32_t NetworkPacketLoss;                         // 网络数据包丢失率
+uint32_t NetworkPacketRetransmissionCount;          // 网络数据包重传次数
+uint32_t ActiveNetworkConnectionsCount;             // 活跃网络连接数量
 
 uint32_t NetworkConnectionRequestQueue;
 uint32_t PendingNetworkRequestsCount;
