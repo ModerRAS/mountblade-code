@@ -7178,6 +7178,17 @@ Label_18032bb25:
   ProcessSystemDataResources(0x180d497e0);
   return 0x180d497e0;
 }
+/**
+ * @brief 初始化系统模块
+ * 
+ * 该函数负责初始化系统中的各个模块，包括内存分配、网络配置等
+ * 主要用于系统启动时的模块初始化工作
+ * 
+ * @param SystemId 系统ID，标识要初始化的系统
+ * @param ModuleArray 模块数组指针，包含要初始化的模块信息
+ * @param ModuleData 模块数据，包含模块的配置信息
+ * @return longlong 返回初始化结果，成功返回模块句柄，失败返回0
+ */
 longlong SystemModuleInitialize(uint64_t SystemId, longlong *ModuleArray, longlong ModuleData)
 {
   int64_t ModuleInitializationResult;

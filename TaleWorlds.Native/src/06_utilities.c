@@ -7606,7 +7606,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t BufferConte
   if (ValidationStatus != 0) {
     return;
   }
-  CapacityCheck = (int)*(uint *)(secondaryContextPointer + BufferContextCapacityOffset) >> ErrorResourceValidationFailed;
+  CapacityCheck = (int)*(uint *)(SecondaryContextPointer + BufferContextCapacityOffset) >> ErrorResourceValidationFailed;
   BufferSize = (*(uint *)(secondaryContextPointer + BufferContextCapacityOffset) ^ CapacityCheck) - CapacityCheck;
   ValidationStatus = *(int *)(secondaryContextPointer + BufferContextSizeOffset) + 1;
   if (OperationResult < ResourceIndex) {
