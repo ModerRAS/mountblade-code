@@ -440,10 +440,10 @@ uint32_t NetworkCloseConnection(int64_t *NetworkConnectionContext, uint32_t Conn
 // =============================================================================
 
 // 网络连接基础配置变量
-uint32_t ConnectionTableHandle;                    // 网络连接表管理句柄
-uint32_t ConnectionStatusFlags;                    // 网络连接状态标志位
-uint32_t ConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
-uint32_t ConnectionMaxLimit;                  // 网络最大连接数限制
+uint32_t NetworkConnectionTableHandle;                    // 网络连接表管理句柄
+uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志位
+uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
+uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制
 uint32_t ConnectionAttributeFlags;                // 网络连接属性标志位
 uint32_t ConnectionStateFlags;                     // 网络连接状态标志位
 

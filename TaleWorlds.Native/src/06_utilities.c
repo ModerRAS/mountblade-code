@@ -1160,10 +1160,10 @@ void* AudioSystemHandle;                                 // 音频系统句柄
  */
 void InitializeNetworkSystemModule(void);
 // 网络系统模块全局变量
-void* NetworkSystemInstance;                            // 系统网络系统实例
-void* NetworkSystemConfiguration;                       // 系统网络系统配置
-uint32_t NetworkSystemInitializationStatus;             // 系统网络系统初始化状态
-void* NetworkSystemHandle;                               // 系统网络系统句柄
+void* NetworkSystemInstance;                            // 网络系统实例
+void* NetworkSystemConfiguration;                       // 网络系统配置
+uint32_t NetworkSystemInitializationStatus;             // 网络系统初始化状态
+void* NetworkSystemHandle;                               // 网络系统句柄
 
 
 /**
@@ -1352,9 +1352,9 @@ void OptimizeResourceUsage(void);
  */
 void MonitorResourcePerformance(void);
 
-void* ResourceManagerHandle;               // 资源管理器句柄
+void* ResourceManagerHandle;                         // 资源管理器句柄
 // 资源管理器全局变量
-uint32_t ResourceManagementStatusCode;               // 资源管理状态
+uint32_t ResourceManagementStatusCode;               // 资源管理状态码
 void* ResourceConfigurationContext;                   // 资源配置上下文
 void* ResourceStatusMonitor;                         // 资源状态监控器
 void* SmallBufferPool;                               // 小型缓冲池
