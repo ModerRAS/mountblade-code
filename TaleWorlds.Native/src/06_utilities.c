@@ -1997,10 +1997,10 @@ void* SystemLoggingConfigTable;
 void* SystemNetworkConfigTable;
 void* SystemSecurityConfigTableTertiary;
 void* SystemSecurityConfigTable;
-void* SystemEventConfigTableQuaternary;
-void* SystemLoggingConfigTableQuaternary;
-void* SystemAuditConfigTableSecondary;
-void* SystemDiagnosticsConfigTableSecondary;
+void* SystemEventConfigTableQuaternary;                      // 系统事件配置表第四级
+void* SystemLoggingConfigTableQuaternary;                   // 系统日志配置表第四级
+void* SystemAuditConfigTableSecondary;                      // 系统审计配置表第二级
+void* SystemDiagnosticsConfigTableSecondary;                // 系统诊断配置表第二级
 
  /**
  * @brief 初始化本地化系统
