@@ -1,5 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 网络系统常量定义
 #define NetworkContextSystemOffset 0x98
 #define NetworkSessionDataOffset 0x200
 #define ConnectionStateBufferOffset 0x28
@@ -12,23 +13,28 @@
 #define NetworkPacketHeaderSize 0x18
 #define NetworkStatusFieldOffset 2
 
+// 网络状态标志位
 #define NetworkStatusActiveFlag 0x1
 #define NetworkStatusSecureFlag 0x2
 #define NetworkStatusConnectedFlag 0x4
 
+// 网络错误代码
 #define NetworkErrorInvalidHandle 0xFFFFFFFF
 #define NetworkErrorConnectionFailed 0xFFFFFFFE
 #define NetworkErrorTimeout 0xFFFFFFFD
 #define NetworkErrorSecurity 0xFFFFFFFC
 #define NetworkErrorInitializationFailed 0x1f
 
+// 网络连接类型定义
 #define NetworkConnectionTypeBase 0x20200
 #define NetworkConnectionTypeRange 0x100
 #define NetworkConnectionTypePrimary 0x20214
 
+// 网络系统配置常量
 #define NetworkSystemDebugFlag 0x80
 #define NetworkSystemStatusOffset 0x10
 
+// 网络连接相关偏移量
 #define NetworkConnectionContextOffset 0x78
 #define NetworkConnectionValidationOffset 0x24
 #define NetworkConnectionStatusOffset 0x98
@@ -57,6 +63,7 @@
 #define NetworkSecurityContextOffset 0x44
 #define NetworkEncryptionKeyOffset 0x50
 
+// 网络数据包相关偏移量
 #define NetworkPacketTableIndexOffset 0x88
 #define NetworkPacketTableDataOffset 0x80
 #define NetworkPacketEntrySize 0x10
@@ -67,18 +74,21 @@
 #define NetworkPacketStatusTertiaryOffset 0x40
 #define NetworkPacketStatusQuaternaryOffset 0x44
 
+// 网络数据包魔数
 #define NetworkPacketMagicSilive 0x5453494c
 #define NetworkPacketMagicTivel 0x54495645
 #define NetworkPacketMagicBivel 0x42495645
 #define NetworkPacketMagicTnvel 0x544e5645
 #define NetworkPacketMagicBtvel 0x42545645
 
+// 网络状态常量
 #define NetworkStatusActive 0x01
 #define NetworkStatusInactive 0x00
 #define NetworkStatusReserved 0x02
 #define NetworkStatusSpecial 0x03
 #define NetworkStatusTerminator 0x06
 
+// 网络系统常量
 #define NetworkMagicDeadFood 0xdeadf00d
 #define NetworkMaxIntValue 0x7fffffff
 #define NetworkFloatOne 0x3f800000
@@ -88,7 +98,7 @@
 #define NetworkConnectionBusy 0x4b
 #define NetworkSecurityValidationFailed 0xffffffc0
 
-/* 网络缓冲区对齐掩码 */
+// 网络缓冲区对齐和大小常量
 #define NetworkBufferAlignmentMask 0xfffffffc
 #define NetworkBitShift31Value 0x1f
 #define NetworkByteMaskValue 0xff
