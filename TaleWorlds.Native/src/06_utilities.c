@@ -4308,26 +4308,26 @@ void ValidateSystemObjectCollection(void)
   uint32_t MaximumCollectionCapacity;
   uint64_t SecurityValidationHash;
   
-  if (*(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset) != 0) {
-    CollectionBuffer = ProcessingWorkspace;
-    ProcessedObjectCount = 0;
-    RetrievedObjectCount = 0;
-    MaximumCapacity = MaximumCapacityLimit;
-    ValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
+  if (*(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset) != 0) {
+    ObjectCollectionBuffer = ProcessingWorkspace;
+    ValidatedObjectCount = 0;
+    RetrievedObjectTotal = 0;
+    MaximumCollectionCapacity = MaximumCapacityLimit;
+    ObjectValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemContextPointer + SystemContextSecondaryDataOffset), *(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (ValidationResult == 0) {
-      RetrievedObjectCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
-      if (0 < RetrievedObjectCount) {
-        CurrentPosition = PointerSizeBytes;
+    if (ObjectValidationResult == 0) {
+      RetrievedObjectTotal = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
+      if (0 < RetrievedObjectTotal) {
+        BufferPosition = PointerSizeBytes;
         do {
-          SystemObjectId = *(uint8_t *)(CollectionBuffer + CurrentPosition);
-          ValidationResult = ValidateSystemObject(SystemObjectId);
-          if (ValidationResult != 2) {
-                  HandleInvalidSystemObject(SystemObjectId, 1);
+          CurrentSystemObjectId = *(uint8_t *)(ObjectCollectionBuffer + BufferPosition);
+          ObjectValidationResult = ValidateSystemObject(CurrentSystemObjectId);
+          if (ObjectValidationResult != 2) {
+                  HandleInvalidSystemObject(CurrentSystemObjectId, 1);
           }
-          ProcessedObjectCount++;
-          CurrentPosition += 8;
-        } while (ProcessedObjectCount < RetrievedObjectCount);
+          ValidatedObjectCount++;
+          BufferPosition += 8;
+        } while (ValidatedObjectCount < RetrievedObjectTotal);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
@@ -4764,31 +4764,14 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数负责增加指定对象的引用计数，这是对象生命周期管理的重要部分。
- * 函数会先验证对象上下文的有效性，然后安全地增加对象的引用计数。
- * 
- * @param ObjectContext 对象上下文，包含对象的引用信息和状态数据
- * @return uint8_t 操作结果状态码，0表示成功，非0表示错误码
- * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
- * @warning 如果对象上下文无效，函数会返回相应的错误码
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数用于增加指定对象的引用计数，确保对象在使用期间不会被意外释放
- * 引用计数是内存管理的重要机制，用于跟踪对象被引用的次数
- * 
- * @param ObjectContext 对象上下文指针
- * @return 操作结果状态码，0表示成功，非0表示失败
- */
-/**
- * @brief 增加对象引用计数
- * 
  * 该函数用于增加系统对象的引用计数，这是对象生命周期管理的重要部分。
  * 当对象被引用时，需要增加其引用计数以确保对象不会被提前释放。
+ * 函数会先验证对象上下文的有效性，然后安全地增加对象的引用计数。
  * 
  * @param ObjectContext 对象上下文指针，包含对象的引用信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
+ * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
+ * @warning 如果对象上下文无效，函数会返回相应的错误码
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedMemoryAddress;
@@ -4884,10 +4867,10 @@ uint8_t CleanupObjectHandle(void)
  * 
  * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作
  */
-uint8_t ValidateCharacterParameter(char CharToValidate)
+uint8_t ValidateCharacterParameter(char CharacterToValidate)
 
 {
-  if (CharToValidate != '\0') {
+  if (CharacterToValidate != '\0') {
           ExecuteSystemExitOperation();
   }
   return 0;
@@ -4925,23 +4908,23 @@ void InitializeSystemResources(void)
 uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
 
 {
-  uint8_t ValidationStatusCode;
-  int64_t HandleMemoryBuffer;
+  uint8_t ContextValidationResult;
+  int64_t ValidatedMemoryPointer;
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &HandleMemoryBuffer);
-  if ((int)ValidationStatusCode != 0) {
-    return ValidationStatusCode;
+  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &ValidatedMemoryPointer);
+  if ((int)ContextValidationResult != 0) {
+    return ContextValidationResult;
   }
-  if (HandleMemoryBuffer == 0) {
-    HandleMemoryBuffer = 0;
+  if (ValidatedMemoryPointer == 0) {
+    ValidatedMemoryPointer = 0;
   }
   else {
-    HandleMemoryBuffer = HandleMemoryBuffer + -8;
+    ValidatedMemoryPointer = ValidatedMemoryPointer + -8;
   }
-  if (*(int64_t *)(HandleMemoryBuffer + ObjectHandleMemoryOffset) == 0) {
+  if (*(int64_t *)(ValidatedMemoryPointer + ObjectHandleMemoryOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + ObjectHandleMemoryOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryPointer + ObjectHandleMemoryOffset), 1);
 }
 
 
@@ -5016,26 +4999,26 @@ void CleanupSystemResources(void)
  */
 uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
 {
-  uint8_t ValidationResult;
-  int64_t HandleMemoryPointer;
+  uint8_t ContextValidationStatus;
+  int64_t ValidatedMemoryAddress;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &HandleMemoryPointer);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &ValidatedMemoryAddress);
+  if ((int)ContextValidationStatus != 0) {
+    return ContextValidationStatus;
   }
   
-  if (HandleMemoryPointer == 0) {
-    HandleMemoryPointer = 0;
+  if (ValidatedMemoryAddress == 0) {
+    ValidatedMemoryAddress = 0;
   }
   else {
-    HandleMemoryPointer = HandleMemoryPointer - 8;
+    ValidatedMemoryAddress = ValidatedMemoryAddress - 8;
   }
   
-  if (*(int64_t *)(HandleMemoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
+  if (*(int64_t *)(ValidatedMemoryAddress + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryPointer + HandleMemoryBufferHeaderOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + HandleMemoryBufferHeaderOffset), 1);
   return 0;
 }
 
