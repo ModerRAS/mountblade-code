@@ -52696,7 +52696,7 @@ ThreadConfigurationComplete:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = ConcatenatedSystemValue(SystemMemoryOffset.HighPart,ThreadContextFlag);
   }
-LAB_180070f81:
+SystemInitializationComplete:
   *(void*2 *)(SystemMemoryContext + StackValue2) = 10;
   SystemOperationStatus4 = ResourceHash + 0xd;
   StackValue2 = CurrentThreadId;
@@ -52717,7 +52717,7 @@ LAB_180070f81:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = ConcatenatedSystemValue(SystemMemoryOffset.HighPart,ThreadContextFlag);
   }
-LAB_180071000:
+MemoryAllocationComplete:
   resourceDataIndex5 = SystemConfigurationData;
   ThreadLocalStorage = (void* *)(SystemMemoryContext + StackValue2);
   *ThreadLocalStorage = 0x6973736572707845;
