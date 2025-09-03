@@ -5164,7 +5164,7 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * @return void 无返回值
  * @warning 此函数会立即终止系统运行，只在严重错误时使用
  */
-void TriggerSystemException(void) {
+void RaiseSystemException(void) {
   ExecuteSystemExitOperation();
 }
 
@@ -101918,7 +101918,7 @@ void DestroyThreadSyncObjects(void)
  * 该函数负责关闭系统文件句柄
  * 释放系统资源
  */
-void CloseSystemHandle(void)
+void ReleaseSystemHandle(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
