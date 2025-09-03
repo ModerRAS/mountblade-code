@@ -25771,7 +25771,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
           if (*(int *)(SystemAllocationFlags + 0x30) == 0) goto AllocationFlagCheck;
           if (*(int *)(resourceCounter + 0x30) == 0) goto ResourceAllocationCheck;
           ResourceStringPointer = *(byte **)(SystemAllocationFlags + 0x28);
-          SystemThreadHandle4 = *(long long *)(resourceCounter + 0x28) - (long long)resourceStringPointer;
+          SystemThreadHandle4 = *(long long *)(resourceCounter + 0x28) - (long long)ResourceStringPointer;
           goto AllocationHandler;
         }
         SystemUtilityHandler(extraout_XMM0_Da,resourceCounter);
@@ -25827,7 +25827,7 @@ void UpdateSystemRenderManager(long long SystemResourceManager)
   }
   else {
     if (*(char *)(SystemResourceManager + 0x3d4) != '\0') {
-      systemCounter = *(int *)(SystemNodeManagerPointer + 0x1ea0);
+      SystemCounter = *(int *)(SystemNodeManagerPointer + 0x1ea0);
       if ((*(char *)(SystemResourceManager + 0x3d5) != '\0') || (isTextureUpdateRequired)) {
         currentThreadId = 1;
       }
