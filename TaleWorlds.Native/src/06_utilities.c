@@ -7156,11 +7156,11 @@ void ValidateObjectStateAndDispatchB(int64_t ObjectContext, int64_t SchedulerCon
     ValidationStatusCode = ProcessSchedulerFinalization(SchedulerContext, ObjectContext + ObjectContextHandleDataOffset, &BufferContext);
     if (ValidationStatusCode == 0) {
       ValidationStatusCode = ValidateBufferContext(BufferContext, ObjectContext + ObjectContextMatrixFlagsOffset);
-      if (ValidationStatusCode == 0) goto ValidationCompleteLabel;
+      if (ValidationStatusCode == 0) goto ValidationCompleteHandler;
     }
     return;
   }
-ValidationCompleteLabel:
+ValidationCompleteHandler:
         ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + SchedulerContextObjectOffset), ObjectContext);
 }
 
@@ -7507,7 +7507,7 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   *(int64_t *)(*(int64_t *)(BufferContext + BufferContextDataOffset) + (int64_t)*(int *)(BufferContext + BufferContextSizeOffset) * 8) =
        MemoryContextBuffer;
   *(int *)(BufferContext + BufferContextSizeOffset) = *(int *)(BufferContext + BufferContextSizeOffset) + 1;
-ErrorHandler:
+SystemErrorHandler:
         ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset),ObjectContext);
 }
 
