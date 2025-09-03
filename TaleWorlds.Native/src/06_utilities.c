@@ -103544,7 +103544,7 @@ void InitializeSystemDataStructureBR(void)
 void InitializeSystemDataStructureBR(void)
 
 {
-  SystemDataStructureReference010 = &SystemDataStructure;
+  SystemDataStructurePrimaryReference = &SystemDataStructure;
   return;
 }
 
@@ -103684,7 +103684,7 @@ void InitializeSystemDataStructureBY(void)
 void InitializeSystemDataStructureBY(void)
 
 {
-  SystemDataStructureReference017 = &SystemDataStructure;
+  SystemDataStructureSecondaryReference = &SystemDataStructure;
   return;
 }
 
