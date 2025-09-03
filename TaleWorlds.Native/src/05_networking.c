@@ -1189,6 +1189,9 @@ uint32_t NetworkConnectionStateFlags;                       // 网络连接状�
 uint32_t NetworkConnectionProcessingResults;               // 网络连接处理结果
 uint32_t NetworkConnectionProcessedCounts;                  // 网络连接已处理数量
 
+// 网络连接缓冲区管理
+uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓冲区
+
 /**
  * @brief 初始化网络连接状态
  * 
@@ -1481,7 +1484,9 @@ NetworkMainProcessingLoop:
           PacketFlagsBuffer = PacketFlagsBuffer + 5;
         } while (ProcessingCounter != 0);
       }
-      goto NetworkProcessingLoop;
+NetworkProcessingLoop:
+      // 网络处理循环完成，继续后续处理
+      return 0;
     }
   }
   return NetworkConnectionFinalizeValue;
