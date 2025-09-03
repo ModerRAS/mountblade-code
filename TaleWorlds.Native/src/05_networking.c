@@ -1050,8 +1050,8 @@ void NetworkTransmitData(void)
   // 初始化数据包缓冲区
   NetworkPacketBufferPointer = 0x01;                     // 初始化数据包缓冲区指针
   NetworkPacketHeaderPointer = 0x01;                     // 初始化数据包头指针
-  NetworkPacketPayloadSize = 0x400;                      // 设置数据包负载大小为1KB
-  NetworkMaxPacketSize = 0x800;                         // 设置最大数据包大小为2KB
+  NetworkPacketPayloadSize = PACKET_PAYLOAD_1KB;                      // 设置数据包负载大小为1KB
+  NetworkMaxPacketSize = MAX_PACKET_SIZE_2KB;                         // 设置最大数据包大小为2KB
   
   // 初始化传输统计
   NetworkBytesSent = 0;                                 // 重置发送字节数

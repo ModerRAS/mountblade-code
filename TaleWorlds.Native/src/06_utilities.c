@@ -1013,9 +1013,9 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
 #define SystemInitializationStatusCode ErrorInvalidResourceData
 #define SystemVersionInfoStatusCode ResourceValidationError
 #define SystemObjectValidationResult ErrorInvalidResourceData
-#define SystemResourceProcessingStatusCode ErrorResourceValidationFailed
+#define SystemResourceProcessingStatusCode ResourceValidationError
 #define SystemMemoryAllocationStatusCode ErrorInvalidResourceData
-#define SystemDataValidationResultCode ErrorResourceValidationFailed
+#define SystemDataValidationResultCode ResourceValidationError
 
 // 验证上下文相关偏移量常量
 #define ValidationContextMutexDestroyOffset 0x2e0
