@@ -19222,9 +19222,9 @@ uint8_t CalculateResourceDataHash(int64_t ResourceContext, uint8_t *ResourceData
   
   DataLength = *(int *)(ResourceData + 1) - 1;
   if (*(int *)(ResourceData + 1) < 1) {
-    dataLength = 0;
+    DataLength = 0;
   }
-  if (dataLength < 0x8000) {
+  if (DataLength < 0x8000) {
     lengthBuffer[0] = CONCAT22(lengthBuffer[0].ShortValue,(short)dataLength);
     ResourceHash = 2;
   }
