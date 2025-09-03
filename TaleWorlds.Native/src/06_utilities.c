@@ -80009,7 +80009,8 @@ void Unwind_18090c8e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c8f0(uint8_t ObjectContext,int64_t ValidationContext)
+// 函数: 设置系统数据结构指针 - 在验证上下文中设置系统数据结构指针
+void SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x750) = &SystemDataStructure;
@@ -80018,7 +80019,8 @@ void Unwind_18090c8f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c900(uint8_t ObjectContext,int64_t ValidationContext)
+// 函数: 执行系统清理回调 - 执行系统清理的回调函数
+void ExecuteSystemCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x200) != (int64_t *)0x0) {
@@ -80029,7 +80031,8 @@ void Unwind_18090c900(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c910(uint8_t ObjectContext,int64_t ValidationContext)
+// 函数: 设置扩展数据结构指针 - 在验证上下文中设置扩展数据结构指针
+void SetExtendedDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x7f0) = &SystemDataStructure;
@@ -80038,7 +80041,8 @@ void Unwind_18090c910(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c920(uint8_t ObjectContext,int64_t ValidationContext)
+// 函数: 执行次要系统清理回调 - 执行次要系统清理的回调函数
+void ExecuteSecondarySystemCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x1d0) != (int64_t *)0x0) {
