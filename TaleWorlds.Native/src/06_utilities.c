@@ -1339,10 +1339,10 @@ void* TextureDescriptorTable;                // 纹理描述符表
  */
 void InitializeAudioSystem(void);
 void* AudioSystemInstance;                  // 音频系统实例
-void* AudioDeviceHandle;                     // 音频设备句柄
-void* AudioMixerHandle;                      // 音频混音器句柄
-void* AudioBufferPool;                       // 音频缓冲池
-void* AudioStreamManager;                    // 音频流管理器
+void* AudioDeviceInstance;                    // 音频设备实例
+void* AudioMixerInstance;                     // 音频混音器实例
+void* AudioBufferPoolInstance;                // 音频缓冲池实例
+void* AudioStreamManagerInstance;             // 音频流管理器实例
 
  /**
  * @brief 初始化物理引擎
@@ -1365,11 +1365,11 @@ void* PhysicsSolverInstance;                 // 物理求解器实例
  */
 void InitializeInputManager(void);
 void* InputSystemInstance;                  // 输入系统实例
-void* InputDeviceManager;                   // 输入设备管理器
-void* KeyboardInputHandler;                 // 键盘输入处理器
-void* MouseInputHandler;                    // 鼠标输入处理器
-void* GameControllerManager;                // 游戏控制器管理器
-void* InputEventQueue;                      // 输入事件队列
+void* InputDeviceManagerInstance;            // 输入设备管理器实例
+void* KeyboardInputHandlerInstance;          // 键盘输入处理器实例
+void* MouseInputHandlerInstance;             // 鼠标输入处理器实例
+void* GameControllerManagerInstance;        // 游戏控制器管理器实例
+void* InputEventQueueInstance;               // 输入事件队列实例
 
  /**
  * @brief 初始化网络管理器
