@@ -66338,7 +66338,7 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContext, int64_t Validation
 
 
 
-void HandleExceptionType180908910(uint8_t ObjectContext, int64_t ValidationContext)
+void HandleExceptionType(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -66356,7 +66356,7 @@ void HandleExceptionType180908910(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void UnwindMemoryManager180908920(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindMemoryManager(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -66368,7 +66368,7 @@ void UnwindMemoryManager180908920(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void UnwindSystemCleanupHandler180908950(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindSystemCleanupHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
