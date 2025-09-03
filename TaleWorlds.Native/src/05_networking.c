@@ -116,241 +116,311 @@
 #define NetworkConnectionReportSize 0xf
 #define NetworkPacketReportSize 0xc
 
-/* 函数声明 */
+// =============================================================================
+// 网络系统函数声明
+// =============================================================================
+
 /**
- * 比较网络连接时间戳 - 比较两个网络连接的时间戳
- * 此函数用于比较两个网络连接的时间戳，确定连接的先后顺序
+ * @brief 比较网络连接时间戳
+ * 
+ * 比较两个网络连接的时间戳，确定连接的先后顺序和时间关系
+ * 
  * @param FirstTimestamp 第一个时间戳指针
  * @param SecondTimestamp 第二个时间戳指针
- * @return 比较结果，0表示相等，正数表示第一个大于第二个，负数表示第一个小于第二个
+ * @return uint32_t 比较结果：0表示相等，正数表示第一个大于第二个，负数表示第一个小于第二个
  */
 uint32_t CompareNetworkTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
+
 /**
- * 处理网络连接数据 - 处理网络连接中的数据包
- * 此函数负责处理网络连接中的数据包，包括数据验证和状态更新
+ * @brief 处理网络连接数据包数据
+ * 
+ * 处理网络连接中的数据包，包括数据验证、状态更新和错误处理
+ * 
  * @param ConnectionContext 连接上下文指针
  * @param PacketData 数据包数据
  * @param BufferSize 缓冲区大小指针
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
+
 /**
- * 发送网络数据包数据 - 通过网络发送数据包
- * 此函数负责通过网络连接发送数据包数据
+ * @brief 发送网络数据包
+ * 
+ * 通过网络连接发送数据包数据，处理数据分包和重传机制
+ * 
  * @param SocketContext 套接字上下文
  * @param ConnectionHandle 连接句柄
  * @param PacketBuffer 数据包缓冲区
- * @return 发送结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 发送结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t TransmitNetworkPacket(int64_t SocketContext, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
+
 /**
- * 验证网络数据包 - 验证网络数据包的完整性和有效性
- * 此函数负责验证网络数据包的格式和内容是否有效
+ * @brief 验证网络数据包完整性
+ * 
+ * 验证网络数据包的格式、内容完整性和有效性
+ * 
  * @param PacketData 数据包数据
  * @param ConnectionContext 连接上下文
- * @return 验证结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t ValidateNetworkPacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
+
 /**
- * 处理网络连接请求 - 处理网络连接请求和验证
- * 此函数负责处理网络连接请求，验证连接参数，并建立安全连接
+ * @brief 处理网络连接请求
+ * 
+ * 处理网络连接请求，验证连接参数，建立安全连接
+ * 
  * @param ConnectionContext 连接上下文指针
  * @param RequestBuffer 请求缓冲区指针
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t HandleNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
+
 /**
- * 执行网络数据传输 - 执行网络数据传输操作
- * 此函数负责在网络连接之间传输数据
+ * @brief 执行网络数据传输
+ * 
+ * 在网络连接之间传输数据，处理数据加密和压缩
+ * 
  * @param SourceBuffer 源缓冲区
  * @param TransferSize 传输大小
  * @param DestinationBuffer 目标缓冲区指针
  * @param TransferFlags 传输标志
- * @return 传输结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 传输结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t PerformNetworkDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
+
 /**
- * 处理网络数据包 - 处理网络数据包的接收和发送
- * 此函数负责处理网络数据包，包括优先级处理
+ * @brief 处理网络数据包
+ * 
+ * 处理网络数据包的接收和发送，包括优先级处理
+ * 
  * @param PacketBuffer 数据包缓冲区
  * @param HasPriorityFlag 是否具有优先级标志
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t HandleNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
+
 /**
- * 创建网络迭代上下文 - 创建网络连接处理的迭代上下文
- * 此函数负责创建用于网络连接处理的迭代上下文
+ * @brief 创建网络迭代上下文
+ * 
+ * 创建用于网络连接处理的迭代上下文
+ * 
  * @param ConnectionContext 连接上下文
  * @param ValidationResult 验证结果
  * @param IterationFlag 迭代标志
- * @return 创建结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 创建结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t CreateNetworkIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
 
 /**
- * 处理网络堆栈数据 - 处理网络协议栈的数据
- * 此函数负责处理网络协议栈中的数据
+ * @brief 处理网络堆栈数据
+ * 
+ * 处理网络协议栈中的数据，进行协议解析和数据处理
+ * 
  * @param StackBuffer 堆栈缓冲区指针
  * @param ContextData 上下文数据
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t HandleNetworkStackData(int64_t *StackBuffer, int64_t ContextData);
 
 /**
- * 验证网络连接句柄 - 验证网络连接句柄的有效性
- * 此函数负责验证网络连接句柄是否有效
+ * @brief 验证网络连接句柄
+ * 
+ * 验证网络连接句柄的有效性和安全性
+ * 
  * @param ConnectionContext 连接上下文句柄
  * @param PacketData 数据包数据句柄
- * @return 验证结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t VerifyNetworkConnectionHandle(NetworkHandle ConnectionContext, NetworkHandle PacketData);
 
 /**
- * 获取连接句柄 - 获取网络连接的句柄
- * 此函数负责获取网络连接的句柄
+ * @brief 获取网络连接句柄
+ * 
+ * 获取网络连接的句柄，用于后续的网络操作
+ * 
  * @param ConnectionContext 连接上下文指针
- * @return 连接句柄
+ * @return NetworkHandle 连接句柄
  */
 NetworkHandle GetConnectionHandle(int64_t *ConnectionContext);
+
 /**
- * 验证网络连接条目 - 验证网络连接表中的条目
- * 此函数负责验证网络连接表中的条目是否有效
+ * @brief 验证网络连接条目
+ * 
+ * 验证网络连接表中的条目是否有效和安全
+ * 
  * @param ConnectionContext 连接上下文
  * @param NetworkFlags 网络标志
- * @return 验证结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t VerifyNetworkConnectionEntry(int64_t ConnectionContext, uint32_t NetworkFlags);
 
 /**
- * 初始化网络上下文 - 初始化网络连接的上下文
- * 此函数负责初始化网络连接的上下文数据
+ * @brief 初始化网络上下文
+ * 
+ * 初始化网络连接的上下文数据和状态信息
+ * 
  * @param NetworkContext 网络上下文
- * @return 初始化结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t InitializeNetworkContext(int64_t NetworkContext);
 
 /**
- * 处理网络上下文条目 - 处理网络上下文中的条目
- * 此函数负责处理网络上下文中的条目数据
+ * @brief 处理网络上下文条目
+ * 
+ * 处理网络上下文中的条目数据，进行数据验证和处理
+ * 
  * @param NetworkContextEntry 网络上下文条目
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t HandleNetworkContextEntry(int64_t NetworkContextEntry);
 
 /**
- * 处理网络连接数据 - 处理网络连接的数据传输
- * 此函数负责处理网络连接中的数据传输
+ * @brief 处理网络连接数据
+ * 
+ * 处理网络连接中的数据传输，包括数据验证和状态更新
+ * 
  * @param NetworkContextEntry 网络上下文条目
  * @param NetworkContextArray 网络上下文数组
  * @param ConnectionContext 连接上下文
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t HandleNetworkConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
+
 /**
- * 处理辅助连接数据 - 处理网络连接的辅助数据
- * 此函数负责处理网络连接中的辅助数据传输
+ * @brief 处理辅助连接数据
+ * 
+ * 处理网络连接中的辅助数据传输和验证
+ * 
  * @param ConnectionContext 连接上下文
  * @param ConnectionData 连接数据
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t HandleSecondaryConnectionData(int64_t ConnectionContext, int64_t ConnectionData);
+
 /**
- * 验证网络上下文条目 - 验证网络上下文条目的有效性
- * 此函数负责验证网络上下文条目是否有效
+ * @brief 验证网络上下文条目
+ * 
+ * 验证网络上下文条目的有效性和安全性
+ * 
  * @param NetworkContextEntry 网络上下文条目
- * @return 验证结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t VerifyNetworkContextEntry(int64_t NetworkContextEntry);
 
 /**
- * 初始化网络连接 - 初始化网络连接
- * 此函数负责初始化网络连接
+ * @brief 初始化网络连接
+ * 
+ * 初始化网络连接，设置连接参数和状态
+ * 
  * @param ConnectionHandle 连接句柄
- * @return 初始化结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t InitializeNetworkConnection(NetworkHandle ConnectionHandle);
 
 /**
- * 验证网络连接状态 - 验证网络连接的状态
- * 此函数负责验证网络连接的状态是否有效
+ * @brief 验证网络连接状态
+ * 
+ * 验证网络连接的状态是否有效和可用
+ * 
  * @param ConnectionHandle 连接句柄
- * @return 验证结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t VerifyNetworkConnectionStatus(NetworkHandle ConnectionHandle);
 
 /**
- * 重置网络连接状态 - 重置网络连接的状态
- * 此函数负责重置网络连接的状态
+ * @brief 重置网络连接状态
+ * 
+ * 重置网络连接的状态，清理连接数据
  */
 void ResetNetworkConnectionState(void);
 
 /**
- * 处理网络验证队列 - 处理网络验证队列
- * 此函数负责处理网络验证队列中的项目
+ * @brief 处理网络验证队列
+ * 
+ * 处理网络验证队列中的项目，进行连接验证
+ * 
  * @param ValidationContext 验证上下文
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t ProcessNetworkValidationQueue(int64_t ValidationContext);
 
 /**
- * 清理网络连接缓存 - 清理网络连接的缓存
- * 此函数负责清理网络连接的缓存数据
+ * @brief 清理网络连接缓存
+ * 
+ * 清理网络连接的缓存数据，释放内存资源
  */
 void ClearNetworkConnectionCache(void);
 
 /**
- * 初始化网络缓冲区 - 初始化网络缓冲区
- * 此函数负责初始化网络缓冲区
+ * @brief 初始化网络缓冲区
+ * 
+ * 初始化网络缓冲区，设置缓冲区参数
+ * 
  * @param BufferPointer 缓冲区指针
- * @return 初始化结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t InitializeNetworkBuffer(int64_t BufferPointer);
 
 /**
- * 处理网络数组数据 - 处理网络数组数据
- * 此函数负责处理网络数组数据
+ * @brief 处理网络数组数据
+ * 
+ * 处理网络数组数据，进行数据验证和处理
+ * 
  * @param NetworkContextArray 网络上下文数组
  * @param ArrayIndex 数组索引
- * @return 处理结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex);
 
 /**
- * 关闭网络连接 - 关闭网络连接
- * 此函数负责关闭网络连接
+ * @brief 关闭网络连接
+ * 
+ * 关闭网络连接，释放相关资源
+ * 
  * @param NetworkConnectionContext 网络连接上下文指针
  * @param ConnectionFlags 连接标志
- * @return 关闭结果句柄，0表示成功，其他值表示错误码
+ * @return uint32_t 关闭结果句柄，0表示成功，其他值表示错误码
  */
 uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
 
-/* 全局变量声明 */
+// =============================================================================
+// 网络系统全局变量
+// =============================================================================
+
+// 网络连接基础配置变量
 uint32_t NetworkConnectionTableHandle;                    // 网络连接表句柄
 uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志
 uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时持续时间
-uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针
-uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针
 uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制
 uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志
+uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志
+
+// 网络协议和地址配置
 uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型
 uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址
 uint32_t NetworkServerPortNumber;                         // 网络服务器端口号
 uint32_t NetworkClientIpAddress;                          // 网络客户端IP地址
 uint32_t NetworkClientPortNumber;                         // 网络客户端端口号
+
+// 网络套接字和缓冲区配置
 uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符
 uint32_t NetworkSocketCategory;                           // 网络套接字类别
 uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型
-uint32_t NetworkConnectionPoolSize;                       // 网络连接池大小
+uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针
+uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针
 uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小
 uint32_t NetworkReceiveBufferSize;                        // 网络接收缓冲区大小
 uint32_t NetworkSendBufferCapacity;                       // 网络发送缓冲区容量
 uint32_t NetworkReceiveBufferCapacity;                    // 网络接收缓冲区容量
+
+// 网络数据包和安全配置
 uint32_t NetworkPacketPayloadSize;                        // 网络数据包负载大小
 uint32_t NetworkMaxPacketSize;                            // 网络最大数据包大小
 uint32_t NetworkEncryptionKey;                            // 网络加密密钥
 uint32_t NetworkCompressionLevel;                         // 网络压缩级别
-uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志
 
 void *NetworkConnectionInitializationConfigDataPointer;
 void *NetworkConnectionAlternateConfigDataPointer;
