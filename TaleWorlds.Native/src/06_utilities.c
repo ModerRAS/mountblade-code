@@ -4649,9 +4649,9 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
       }
       else {
         // 验证对象注册数据
-        uint8_t DataValidationStatusCode = ValidateObjectRegistrationData(RegistrationData + RegistrationValidationDataOffset, RegistrationHandle);
-        if ((int)DataValidationStatusCode != 0) {
-          return DataValidationStatusCode;
+        uint8_t DataValidationStatus = ValidateObjectRegistrationData(RegistrationData + RegistrationValidationDataOffset, RegistrationHandle);
+        if ((int)DataValidationStatus != 0) {
+          return DataValidationStatus;
         }
       }
     }
