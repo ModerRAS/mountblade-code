@@ -1690,8 +1690,8 @@ void InitializeSystemMemoryPool(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_ALLOCATOR_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_ALLOCATOR_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
-  hashTableNode[NodeFlagIndex] = SYSTEM_ALLOCATOR_NODE_FLAG;
-  hashTableNode[10] = ResourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = SYSTEM_ALLOCATOR_NODE_FLAG;
+  HashTableNode[10] = ResourceInitializationCallback;
   return;
 }
 
@@ -1717,7 +1717,7 @@ void InitializeSystemThreadPool(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   long long MemoryAllocationSize;
   void** AllocatedMemoryNode;
@@ -1750,8 +1750,8 @@ void InitializeSystemThreadPool(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
-  hashTableNode[NodeFlagIndex] = SYSTEM_CONFIGURATION_NODE_FLAG;
-  hashTableNode[10] = ResourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = SYSTEM_CONFIGURATION_NODE_FLAG;
+  HashTableNode[10] = ResourceInitializationCallback;
   return;
 }
 
@@ -1777,7 +1777,7 @@ void InitializeSystemEventManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   long long MemoryAllocationSize;
   void** AllocatedMemoryNode;
@@ -1810,8 +1810,8 @@ void InitializeSystemEventManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemEventData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = ResourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = ResourceInitializationCallback;
   return;
 }
 
@@ -1838,7 +1838,7 @@ void InitializeSystemResourceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   long long MemoryAllocationSize;
   void** AllocatedMemoryNode;
@@ -1871,8 +1871,8 @@ void InitializeSystemResourceManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemRootNode;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = ResourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = ResourceInitializationCallback;
   return;
 }
 
@@ -2432,13 +2432,13 @@ void InitializeSystemEventManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -2462,8 +2462,8 @@ void InitializeSystemEventManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2511,8 +2511,8 @@ void InitializeSystemConfigurationNode(void)
     NodeFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateJ,PreviousNode + 4,System_IDENTIFIER_SIZE), ComparisonResult < 0)) {
-    currentThreadId = GetSystemMemorySize(SystemTablePointer);
-    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
+    CurrentThreadId = GetSystemMemorySize(SystemTablePointer);
+    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,CurrentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,CurrentThreadId);
     PreviousNode = AllocatedNode;
   }
   PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID1;
@@ -2540,7 +2540,7 @@ void InitializeSystemResourceNode(void)
   void** SystemRootPointer;
   int ComparisonResult;
   long long *SystemTablePointer;
-  long long currentThreadId;
+  long long CurrentThreadId;
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
@@ -2567,8 +2567,8 @@ void InitializeSystemResourceNode(void)
     NodeFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateK,PreviousNode + 4,System_IDENTIFIER_SIZE), ComparisonResult < 0)) {
-    currentThreadId = GetSystemMemorySize(SystemTablePointer);
-    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
+    CurrentThreadId = GetSystemMemorySize(SystemTablePointer);
+    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,CurrentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,CurrentThreadId);
     PreviousNode = AllocatedNode;
   }
   PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID1;
@@ -2596,7 +2596,7 @@ void InitializeSystemMemoryNode(void)
   void** SystemRootPointer;
   int ComparisonResult;
   long long *SystemTablePointer;
-  long long currentThreadId;
+  long long CurrentThreadId;
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
@@ -2623,8 +2623,8 @@ void InitializeSystemMemoryNode(void)
     NodeFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateL,PreviousNode + 4,0x10), ComparisonResult < 0)) {
-    currentThreadId = GetSystemMemorySize(SystemTablePointer);
-    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
+    CurrentThreadId = GetSystemMemorySize(SystemTablePointer);
+    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,CurrentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,CurrentThreadId);
     PreviousNode = AllocatedNode;
   }
   PreviousNode[NodeIdentifier1Index] = 0x402feffe4481676e;
@@ -2652,7 +2652,7 @@ void InitializeSystemDataTableStructureA(void)
   void** DataTablePointer;
   int NodeIdentifierCompareResult;
   long long *SystemRootPointer;
-  long long currentThreadId;
+  long long CurrentThreadId;
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
@@ -2679,8 +2679,8 @@ void InitializeSystemDataTableStructureA(void)
     DataTypeFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   if ((PreviousNode == DataTablePointer) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateM,PreviousNode + 4,0x10), NodeIdentifierCompareResult < 0)) {
-    currentThreadId = GetSystemMemorySize(SystemRootPointer);
-    AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
+    CurrentThreadId = GetSystemMemorySize(SystemRootPointer);
+    AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,CurrentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,CurrentThreadId);
     PreviousNode = NewNodePointer;
   }
   PreviousNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
@@ -2708,7 +2708,7 @@ void InitializeSystemDataTableStructureB(void)
   void** DataTablePointer;
   int NodeIdentifierCompareResult;
   long long* SystemRootPointer;
-  long long currentThreadId;
+  long long CurrentThreadId;
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
@@ -2735,8 +2735,8 @@ void InitializeSystemDataTableStructureB(void)
     DataTypeFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   if ((PreviousNode == DataTablePointer) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateN,PreviousNode + 4,0x10), NodeIdentifierCompareResult < 0)) {
-    currentThreadId = GetSystemMemorySize(SystemRootPointer);
-    AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
+    CurrentThreadId = GetSystemMemorySize(SystemRootPointer);
+    AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,CurrentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,CurrentThreadId);
     PreviousNode = NewNodePointer;
   }
   PreviousNode[NodeIdentifier1Index] = 0x4140994454d56503;
@@ -2768,13 +2768,13 @@ void InitializeSystemDataTableStructureC(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionE;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionE;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -2798,8 +2798,8 @@ void InitializeSystemDataTableStructureC(void)
   HashTableNode[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
   HashTableNode[NodeIdentifier2Index] = 0xc160408bde99e59f;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2824,13 +2824,13 @@ void InitializeSystemDataTableStructureD(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionF;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionF;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -2854,8 +2854,8 @@ void InitializeSystemDataTableStructureD(void)
   HashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
   HashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2880,13 +2880,13 @@ void InitializeSystemDataTableStructureE(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunction;
+  SystemSearchFunctionPointer = GetSystemSearchFunction;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -2910,8 +2910,8 @@ void InitializeSystemDataTableStructureE(void)
   HashTableNode[NodeIdentifier1Index] = 0x406be72011d07d37;
   HashTableNode[NodeIdentifier2Index] = 0x71876af946c867ab;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2936,13 +2936,13 @@ void InitializeSystemDataTableStructureF(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionB;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionB;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -2966,8 +2966,8 @@ void InitializeSystemDataTableStructureF(void)
   HashTableNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
   HashTableNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2992,7 +2992,7 @@ void InitializeSystemDataTableStructureG(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3022,8 +3022,8 @@ void InitializeSystemDataTableStructureG(void)
   HashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
   HashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3048,13 +3048,13 @@ void InitializeSystemDataTableStructureH(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionG;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionG;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -3078,8 +3078,8 @@ void InitializeSystemDataTableStructureH(void)
   HashTableNode[NodeIdentifier1Index] = 0x40db4257e97d3df8;
   HashTableNode[NodeIdentifier2Index] = 0x81d539e33614429f;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeN;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3104,7 +3104,7 @@ void InitializeSystemDataTableStructureI(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3134,8 +3134,8 @@ void InitializeSystemDataTableStructureI(void)
   HashTableNode[NodeIdentifier1Index] = 0x4e33c4803e67a08f;
   HashTableNode[NodeIdentifier2Index] = 0x703a29a844ce399;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeO;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3153,13 +3153,13 @@ void InitializeSystemDataTableStructureI(void)
 int InitializeSystemStringProcessingGlobals(void)
 
 {
-  long long systemInitializationStatus;
+  long long SystemInitializationStatus;
   void* SystemConfigurationValue;
   
   SystemStringProcessingPrimaryBuffer = &SystemStringProcessingReferenceTable;
   SystemStringProcessingSecondaryBuffer = &SystemStringProcessingConfigurationTable;
   
-  return systemInitializationStatus;
+  return SystemInitializationStatus;
 }
 
 /**
@@ -3210,13 +3210,13 @@ void InitializeSystemMemoryManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -3240,8 +3240,8 @@ void InitializeSystemMemoryManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3263,7 +3263,7 @@ void InitializeSystemDataStructure(void)
   void** SystemRootPointer;
   int ComparisonResult;
   long long *SystemTablePointer;
-  long long currentThreadId;
+  long long CurrentThreadId;
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
@@ -3290,8 +3290,8 @@ void InitializeSystemDataStructure(void)
     NodeFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateI,PreviousNode + 4,System_IDENTIFIER_SIZE), ComparisonResult < 0)) {
-    currentThreadId = GetSystemMemorySize(SystemTablePointer);
-    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,currentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,currentThreadId);
+    CurrentThreadId = GetSystemMemorySize(SystemTablePointer);
+    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,CurrentThreadId + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,CurrentThreadId);
     PreviousNode = AllocatedNode;
   }
   PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID1;
@@ -3318,7 +3318,7 @@ void InitializeSystemDataTable(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3348,8 +3348,8 @@ void InitializeSystemDataTable(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3369,7 +3369,7 @@ void InitializeSystemNodeTree(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3399,8 +3399,8 @@ void InitializeSystemNodeTree(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3420,7 +3420,7 @@ void InitializeMemoryAllocator(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3450,8 +3450,8 @@ void InitializeMemoryAllocator(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3471,7 +3471,7 @@ void InitializeResourcePool(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* ResourcePoolCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3501,8 +3501,8 @@ void InitializeResourcePool(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -3522,7 +3522,7 @@ void InitializeConfigurationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3552,8 +3552,8 @@ void InitializeConfigurationManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3573,13 +3573,13 @@ void InitializeEventSystem(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionF;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionF;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -3603,8 +3603,8 @@ void InitializeEventSystem(void)
   HashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
   HashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3628,13 +3628,13 @@ void InitializeSystemMemoryManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -3658,8 +3658,8 @@ void InitializeSystemMemoryManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3683,13 +3683,13 @@ void InitializeSystemThreadPoolManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -3713,8 +3713,8 @@ void InitializeSystemThreadPoolManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3738,7 +3738,7 @@ void InitializeSystemResourceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3768,8 +3768,8 @@ void InitializeSystemResourceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3795,7 +3795,7 @@ void InitializeSystemNodeTree(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3825,8 +3825,8 @@ void InitializeSystemNodeTree(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3852,7 +3852,7 @@ void InitializeSystemDataTable(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3882,8 +3882,8 @@ void InitializeSystemDataTable(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3907,7 +3907,7 @@ void InitializeSystemEventHandler(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3937,8 +3937,8 @@ void InitializeSystemEventHandler(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -3962,7 +3962,7 @@ void InitializeSystemNetworkManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -3992,8 +3992,8 @@ void InitializeSystemNetworkManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4017,13 +4017,13 @@ void InitializeSystemSecurityManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -4047,8 +4047,8 @@ void InitializeSystemSecurityManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4072,13 +4072,13 @@ void InitializeSystemPerformanceMonitor(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -4102,8 +4102,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4127,7 +4127,7 @@ void InitializeSystemDebugManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4157,8 +4157,8 @@ void InitializeSystemDebugManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4184,7 +4184,7 @@ void InitializeSystemMemoryAllocator(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4214,8 +4214,8 @@ void InitializeSystemMemoryAllocator(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4241,7 +4241,7 @@ void InitializeSystemResourcePool(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4271,8 +4271,8 @@ void InitializeSystemResourcePool(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4298,7 +4298,7 @@ void InitializeSystemConfigurationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4328,8 +4328,8 @@ void InitializeSystemConfigurationManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -4355,7 +4355,7 @@ void InitializeSystemResourceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* *resourceInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4385,8 +4385,8 @@ void InitializeSystemResourceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4412,7 +4412,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4442,8 +4442,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
   HashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4469,7 +4469,7 @@ void InitializeSystemDebugManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   code *debugInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4499,8 +4499,8 @@ void InitializeSystemDebugManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
   HashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4526,13 +4526,13 @@ void InitializeSystemEventHandler(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -4556,8 +4556,8 @@ void InitializeSystemEventHandler(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4583,13 +4583,13 @@ void InitializeSystemNetworkManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -4613,8 +4613,8 @@ void InitializeSystemNetworkManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4640,7 +4640,7 @@ void InitializeSystemSecurityManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4670,8 +4670,8 @@ void InitializeSystemSecurityManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4697,7 +4697,7 @@ void InitializeSystemDataTableStructureA(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4727,8 +4727,8 @@ void InitializeSystemDataTableStructureA(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4754,7 +4754,7 @@ void InitializeSystemResourceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* systemCallbackData;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4786,8 +4786,8 @@ void InitializeSystemResourceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4813,7 +4813,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemPerformanceCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4845,8 +4845,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = systemPerformanceCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = systemPerformanceCallback;
   return;
 }
 
@@ -4872,7 +4872,7 @@ void InitializeSystemDebugManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* systemDebugData;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -4904,8 +4904,8 @@ void InitializeSystemDebugManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5217,7 +5217,7 @@ void InitializeSystemEventManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   code *systemInitializationFunction;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -5247,8 +5247,8 @@ void InitializeSystemEventManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &EventManagerNodeData;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5274,7 +5274,7 @@ void InitializeSystemDataManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   code *systemInitializationFunction;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -5304,8 +5304,8 @@ void InitializeSystemDataManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &DataManagerNodeData;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5331,7 +5331,7 @@ void InitializeSystemResourceNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* systemResourceFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -5361,8 +5361,8 @@ void InitializeSystemResourceNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &ResourceNodeData;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5389,7 +5389,7 @@ void InitializeSystemNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* nodeManagerCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -5419,8 +5419,8 @@ void InitializeSystemNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5447,7 +5447,7 @@ void InitializeSystemDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -5477,8 +5477,8 @@ void InitializeSystemDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5505,7 +5505,7 @@ void InitializeSystemResourceNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -5535,8 +5535,8 @@ void InitializeSystemResourceNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -5563,7 +5563,7 @@ void InitializeSystemMemoryNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -5593,8 +5593,8 @@ void InitializeSystemMemoryNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5651,13 +5651,13 @@ void InitializeSystemConfigurationNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -5681,8 +5681,8 @@ void InitializeSystemConfigurationNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5708,13 +5708,13 @@ void InitializeSystemEventNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -5738,8 +5738,8 @@ void InitializeSystemEventNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5764,7 +5764,7 @@ void InitializeSystemResourceNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (void*)GetSystemRootPointer();
@@ -5795,7 +5795,7 @@ void InitializeSystemResourceNode(void)
   SystemCurrentNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   SystemCurrentNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   SystemCurrentNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[NodeFlagIndex] = 0;
   SystemCurrentNode[10] = resourceInitializationCallback;
   return;
 }
@@ -5852,8 +5852,8 @@ void InitializeSystemEventNode(void)
   SystemCurrentNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   SystemCurrentNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   SystemCurrentNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5909,7 +5909,7 @@ void InitializeSystemMemoryNode(void)
   SystemCurrentNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   SystemCurrentNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   SystemCurrentNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[NodeFlagIndex] = 0;
   SystemCurrentNode[10] = resourceInitializationCallback;
   return;
 }
@@ -5935,7 +5935,7 @@ void InitializeRenderingSystem(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* RenderingInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -5965,8 +5965,8 @@ void InitializeRenderingSystem(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -5992,7 +5992,7 @@ void InitializeSystemConfigurationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -6022,8 +6022,8 @@ void InitializeSystemConfigurationManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6364,13 +6364,13 @@ void InitializeSystemDataTableNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -6394,8 +6394,8 @@ void InitializeSystemDataTableNode(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6422,13 +6422,13 @@ void InitializeSystemConfigurationNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -6452,8 +6452,8 @@ void InitializeSystemConfigurationNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6480,7 +6480,7 @@ void InitializeSystemEventNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -6510,8 +6510,8 @@ void InitializeSystemEventNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6538,7 +6538,7 @@ void InitializeSystemNodeTreeProcessor(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -6568,8 +6568,8 @@ void InitializeSystemNodeTreeProcessor(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6596,7 +6596,7 @@ void InitializeSystemMemoryPoolManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -6626,8 +6626,8 @@ void InitializeSystemMemoryPoolManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6654,7 +6654,7 @@ void InitializeSystemServiceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -6684,8 +6684,8 @@ void InitializeSystemServiceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -6712,7 +6712,7 @@ void InitializeSystemResourceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -6742,8 +6742,8 @@ void InitializeSystemResourceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6770,13 +6770,13 @@ void InitializeSystemEventHandler(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -6800,8 +6800,8 @@ void InitializeSystemEventHandler(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6828,13 +6828,13 @@ void InitializeSystemTaskManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -6858,8 +6858,8 @@ void InitializeSystemTaskManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6886,7 +6886,7 @@ void InitializeSystemDataProcessor(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -6916,8 +6916,8 @@ void InitializeSystemDataProcessor(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6944,7 +6944,7 @@ void InitializeSystemCommunicationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -6974,8 +6974,8 @@ void InitializeSystemCommunicationManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7002,7 +7002,7 @@ void InitializeSystemMemoryManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7032,8 +7032,8 @@ void InitializeSystemMemoryManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7060,7 +7060,7 @@ void InitializeSystemThreadManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7090,8 +7090,8 @@ void InitializeSystemThreadManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -7117,7 +7117,7 @@ void InitializeSystemResourceInitializer(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7148,8 +7148,8 @@ void InitializeSystemResourceInitializer(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7239,7 +7239,7 @@ void InitializeSystemEventManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   code *eventHandlerFunction;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7270,8 +7270,8 @@ void InitializeSystemEventManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
   HashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7298,13 +7298,13 @@ void InitializeSystemSearchManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionE;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionE;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -7328,8 +7328,8 @@ void InitializeSystemSearchManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
   HashTableNode[NodeIdentifier2Index] = 0xc160408bde99e59f;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7356,13 +7356,13 @@ void InitializeSystemIndexManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunction;
+  SystemSearchFunctionPointer = GetSystemSearchFunction;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -7386,8 +7386,8 @@ void InitializeSystemIndexManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x406be72011d07d37;
   HashTableNode[NodeIdentifier2Index] = 0x71876af946c867ab;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7414,13 +7414,13 @@ void InitializeSystemCacheManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionB;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionB;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -7444,8 +7444,8 @@ void InitializeSystemCacheManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
   HashTableNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7472,13 +7472,13 @@ void InitializeSystemLogManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -7502,8 +7502,8 @@ void InitializeSystemLogManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7530,13 +7530,13 @@ void InitializeSystemPerformanceMonitor(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -7560,8 +7560,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7588,7 +7588,7 @@ void InitializeSystemResourceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7618,8 +7618,8 @@ void InitializeSystemResourceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7646,7 +7646,7 @@ void InitializeSystemEventDispatcher(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7676,8 +7676,8 @@ void InitializeSystemEventDispatcher(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7704,7 +7704,7 @@ void InitializeSystemSecurityManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7734,8 +7734,8 @@ void InitializeSystemSecurityManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7762,7 +7762,7 @@ void InitializeSystemConfigurationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7792,8 +7792,8 @@ void InitializeSystemConfigurationManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -7820,7 +7820,7 @@ void InitializeSystemNetworkManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7850,8 +7850,8 @@ void InitializeSystemNetworkManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7878,13 +7878,13 @@ void InitializeSystemStorageManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionG;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionG;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -7908,8 +7908,8 @@ void InitializeSystemStorageManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x40db4257e97d3df8;
   HashTableNode[NodeIdentifier2Index] = 0x81d539e33614429f;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeN;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7936,7 +7936,7 @@ void InitializeSystemProcessManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -7966,8 +7966,8 @@ void InitializeSystemProcessManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4e33c4803e67a08f;
   HashTableNode[NodeIdentifier2Index] = 0x703a29a844ce399;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeO;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7994,13 +7994,13 @@ void InitializeSystemThreadManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -8024,8 +8024,8 @@ void InitializeSystemThreadManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8076,7 +8076,7 @@ void InitializeSystemEventProcessor(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[NodeFlagIndex] = 4;
   eventPreviousNode[10] = eventCallbackPointer;
   return;
 }
@@ -8097,7 +8097,7 @@ void InitializeSystemResourceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8127,8 +8127,8 @@ void InitializeSystemResourceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8148,7 +8148,7 @@ void InitializeSystemMemoryManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8178,8 +8178,8 @@ void InitializeSystemMemoryManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8199,7 +8199,7 @@ void InitializeSystemLogManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8229,8 +8229,8 @@ void InitializeSystemLogManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8250,7 +8250,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8280,8 +8280,8 @@ void InitializeSystemPerformanceMonitor(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -8301,7 +8301,7 @@ void InitializeSystemSecurityMonitor(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8331,8 +8331,8 @@ void InitializeSystemSecurityMonitor(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8352,13 +8352,13 @@ void InitializeSystemNetworkManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionE;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionE;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -8382,8 +8382,8 @@ void InitializeSystemNetworkManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
   HashTableNode[NodeIdentifier2Index] = 0xc160408bde99e59f;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8403,13 +8403,13 @@ void InitializeSystemStorageManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionF;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionF;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -8433,8 +8433,8 @@ void InitializeSystemStorageManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
   HashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8454,13 +8454,13 @@ void InitializeSystemMemoryManagerNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionG;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionG;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -8484,8 +8484,8 @@ void InitializeSystemMemoryManagerNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x40db4257e97d3df8;
   HashTableNode[NodeIdentifier2Index] = 0x81d539e33614429f;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeN;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8505,7 +8505,7 @@ void InitializeSystemConfigurationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8535,8 +8535,8 @@ void InitializeSystemConfigurationManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4e33c4803e67a08f;
   HashTableNode[NodeIdentifier2Index] = 0x703a29a844ce399;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeO;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8556,7 +8556,7 @@ void InitializeSystemThreadManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8586,8 +8586,8 @@ void InitializeSystemThreadManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
   HashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8607,13 +8607,13 @@ void InitializeSystemProcessManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -8637,8 +8637,8 @@ void InitializeSystemProcessManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8658,13 +8658,13 @@ void InitializeSystemDeviceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -8688,8 +8688,8 @@ void InitializeSystemDeviceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8709,7 +8709,7 @@ void InitializeSystemServiceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8739,8 +8739,8 @@ void InitializeSystemServiceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8760,7 +8760,7 @@ void InitializeSystemDriverManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8790,8 +8790,8 @@ void InitializeSystemDriverManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8818,7 +8818,7 @@ void InitializeSystemModuleManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8848,8 +8848,8 @@ void InitializeSystemModuleManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8869,7 +8869,7 @@ void InitializeSystemComponentManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8899,8 +8899,8 @@ void InitializeSystemComponentManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -8920,7 +8920,7 @@ void InitializeSystemPluginManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -8950,8 +8950,8 @@ void InitializeSystemPluginManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9066,13 +9066,13 @@ void InitializeSystemFrameworkManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -9096,8 +9096,8 @@ void InitializeSystemFrameworkManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9128,7 +9128,7 @@ void InitializeSystemSearchManagerD(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeActiveFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   previousSystemNode = SystemRootNode;
   currentSystemNode = (void**)SystemRootNode[1];
   
@@ -9181,7 +9181,7 @@ void InitializeSystemResourceNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9211,8 +9211,8 @@ void InitializeSystemResourceNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9235,7 +9235,7 @@ void InitializeSystemMemoryNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   code *systemInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9265,8 +9265,8 @@ void InitializeSystemMemoryNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9289,7 +9289,7 @@ void InitializeSystemDataTableNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9319,8 +9319,8 @@ void InitializeSystemDataTableNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9343,7 +9343,7 @@ void InitializeSystemConfigurationNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemConfigurationData;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9373,8 +9373,8 @@ void InitializeSystemConfigurationNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = systemConfigurationData;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = systemConfigurationData;
   return;
 }
 
@@ -9393,7 +9393,7 @@ void InitializeSystemEventNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9423,8 +9423,8 @@ void InitializeSystemEventNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9443,7 +9443,7 @@ void InitializeSystemThreadNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9473,8 +9473,8 @@ void InitializeSystemThreadNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
   HashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9516,7 +9516,7 @@ void InitializeSystemSecurityNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9546,8 +9546,8 @@ void InitializeSystemSecurityNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
   HashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
   HashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9566,7 +9566,7 @@ void InitializeSystemNetworkNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9596,8 +9596,8 @@ void InitializeSystemNetworkNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
   HashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9628,7 +9628,7 @@ void InitializeSystemAudioNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9658,8 +9658,8 @@ void InitializeSystemAudioNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
   HashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9690,7 +9690,7 @@ void InitializeSystemInputNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9720,8 +9720,8 @@ void InitializeSystemInputNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
   HashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9752,7 +9752,7 @@ void InitializeSystemPhysicsNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9782,8 +9782,8 @@ void InitializeSystemPhysicsNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
   HashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
   HashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9814,7 +9814,7 @@ void InitializeSystemFileSystemNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9844,8 +9844,8 @@ void InitializeSystemFileSystemNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
   HashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
   HashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9876,7 +9876,7 @@ void InitializeSystemDatabaseNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9906,8 +9906,8 @@ void InitializeSystemDatabaseNode(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemEventData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9935,7 +9935,7 @@ void InitializeSystemConfigurationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -9965,8 +9965,8 @@ void InitializeSystemConfigurationManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemRootNode;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9997,7 +9997,7 @@ void InitializeSystemConfigurationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -10027,8 +10027,8 @@ void InitializeSystemConfigurationManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
   HashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10056,7 +10056,7 @@ void InitializeSystemNetworkConfigurationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -10086,8 +10086,8 @@ void InitializeSystemNetworkConfigurationManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
   HashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10115,13 +10115,13 @@ void InitializeSystemSearchConfigurationManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionF;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionF;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -10145,8 +10145,8 @@ void InitializeSystemSearchConfigurationManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
   HashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10426,13 +10426,13 @@ void InitializeSystemStringProcessorE(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -10456,8 +10456,8 @@ void InitializeSystemStringProcessorE(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10476,13 +10476,13 @@ void InitializeSystemStringProcessorF(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -10506,8 +10506,8 @@ void InitializeSystemStringProcessorF(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10526,7 +10526,7 @@ void InitializeSystemStringProcessorG(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -10556,8 +10556,8 @@ void InitializeSystemStringProcessorG(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10576,7 +10576,7 @@ void InitializeSystemStringProcessorH(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -10606,8 +10606,8 @@ void InitializeSystemStringProcessorH(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10626,7 +10626,7 @@ void InitializeSystemStringProcessorI(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -10656,8 +10656,8 @@ void InitializeSystemStringProcessorI(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10676,7 +10676,7 @@ void InitializeSystemStringProcessorJ(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -10706,8 +10706,8 @@ void InitializeSystemStringProcessorJ(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -10726,7 +10726,7 @@ void InitializeSystemStringProcessorK(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -10756,8 +10756,8 @@ void InitializeSystemStringProcessorK(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10776,13 +10776,13 @@ void InitializeSystemStringProcessorL(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -10806,8 +10806,8 @@ void InitializeSystemStringProcessorL(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10826,13 +10826,13 @@ void InitializeSystemStringProcessorM(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -10856,8 +10856,8 @@ void InitializeSystemStringProcessorM(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10876,7 +10876,7 @@ void InitializeSystemStringProcessorN(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -10906,8 +10906,8 @@ void InitializeSystemStringProcessorN(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10926,7 +10926,7 @@ void InitializeSystemStringProcessorO(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -10956,8 +10956,8 @@ void InitializeSystemStringProcessorO(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10976,7 +10976,7 @@ void InitializeSystemStringProcessorP(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11006,8 +11006,8 @@ void InitializeSystemStringProcessorP(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11026,7 +11026,7 @@ void InitializeSystemStringProcessorQ(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11056,8 +11056,8 @@ void InitializeSystemStringProcessorQ(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -11076,7 +11076,7 @@ void InitializeSystemStringProcessorR(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11106,8 +11106,8 @@ void InitializeSystemStringProcessorR(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11126,13 +11126,13 @@ void InitializeSystemStringProcessorS(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -11156,8 +11156,8 @@ void InitializeSystemStringProcessorS(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11176,13 +11176,13 @@ void InitializeSystemStringProcessorT(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -11206,8 +11206,8 @@ void InitializeSystemStringProcessorT(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11226,7 +11226,7 @@ void InitializeSystemStringProcessorU(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11256,8 +11256,8 @@ void InitializeSystemStringProcessorU(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11276,7 +11276,7 @@ void InitializeSystemStringProcessorV(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11306,8 +11306,8 @@ void InitializeSystemStringProcessorV(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11326,7 +11326,7 @@ void InitializeSystemStringProcessorW(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11356,8 +11356,8 @@ void InitializeSystemStringProcessorW(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11376,7 +11376,7 @@ void InitializeSystemStringProcessorX(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11406,8 +11406,8 @@ void InitializeSystemStringProcessorX(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -11426,7 +11426,7 @@ void InitializeSystemStringProcessorY(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11456,8 +11456,8 @@ void InitializeSystemStringProcessorY(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11484,13 +11484,13 @@ void InitializeSystemStringProcessorZ(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -11514,8 +11514,8 @@ void InitializeSystemStringProcessorZ(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11534,13 +11534,13 @@ void InitializeSystemMemoryManagerA(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -11564,8 +11564,8 @@ void InitializeSystemMemoryManagerA(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11584,7 +11584,7 @@ void InitializeSystemMemoryManagerB(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11614,8 +11614,8 @@ void InitializeSystemMemoryManagerB(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11634,7 +11634,7 @@ void InitializeSystemMemoryManagerC(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11664,8 +11664,8 @@ void InitializeSystemMemoryManagerC(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11684,7 +11684,7 @@ void InitializeSystemMemoryManagerD(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11714,8 +11714,8 @@ void InitializeSystemMemoryManagerD(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11734,7 +11734,7 @@ void InitializeSystemMemoryManagerE(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11764,8 +11764,8 @@ void InitializeSystemMemoryManagerE(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -11784,7 +11784,7 @@ void InitializeSystemMemoryManagerF(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11814,8 +11814,8 @@ void InitializeSystemMemoryManagerF(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11839,7 +11839,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11869,8 +11869,8 @@ void InitializeSystemMemoryAllocatorSetup(void)
   HashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
   HashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
   HashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11894,7 +11894,7 @@ void InitializeSystemDataTableConfigurator(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11924,8 +11924,8 @@ void InitializeSystemDataTableConfigurator(void)
   HashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
   HashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11944,7 +11944,7 @@ void InitializeSystemMemoryManagerG(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -11974,8 +11974,8 @@ void InitializeSystemMemoryManagerG(void)
   HashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
   HashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11994,7 +11994,7 @@ void InitializeSystemMemoryManagerH(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12024,8 +12024,8 @@ void InitializeSystemMemoryManagerH(void)
   HashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
   HashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12044,7 +12044,7 @@ void InitializeSystemMemoryManagerI(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12074,8 +12074,8 @@ void InitializeSystemMemoryManagerI(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
   HashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
   HashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12102,7 +12102,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12132,8 +12132,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
   HashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
   HashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12160,7 +12160,7 @@ void InitializeSystemEventDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12190,8 +12190,8 @@ void InitializeSystemEventDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemEventData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12218,7 +12218,7 @@ void InitializeSystemResourceNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12248,8 +12248,8 @@ void InitializeSystemResourceNode(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemRootNode;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12276,7 +12276,7 @@ void InitializeSystemMemoryNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12306,8 +12306,8 @@ void InitializeSystemMemoryNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
   HashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -12334,7 +12334,7 @@ void InitializeSystemDeviceNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12364,8 +12364,8 @@ void InitializeSystemDeviceNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
   HashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12439,7 +12439,7 @@ void InitializeSystemMemoryNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12469,8 +12469,8 @@ void InitializeSystemMemoryNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
   HashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
   HashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -12496,7 +12496,7 @@ void InitializeSystemDeviceNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12526,8 +12526,8 @@ void InitializeSystemDeviceNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
   HashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12553,7 +12553,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12583,8 +12583,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
   HashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12610,7 +12610,7 @@ void InitializeSystemEventDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12640,8 +12640,8 @@ void InitializeSystemEventDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
   HashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12667,7 +12667,7 @@ void InitializeSystemMemoryAllocatorNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12697,8 +12697,8 @@ void InitializeSystemMemoryAllocatorNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
   HashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
   HashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12724,7 +12724,7 @@ void InitializeSystemConfigurationNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12754,8 +12754,8 @@ void InitializeSystemConfigurationNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
   HashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
   HashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12781,7 +12781,7 @@ void InitializeSystemEventNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12811,8 +12811,8 @@ void InitializeSystemEventNode(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemEventData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12838,7 +12838,7 @@ void InitializeSystemResourceNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12868,8 +12868,8 @@ void InitializeSystemResourceNode(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemRootNode;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12895,7 +12895,7 @@ void InitializeSystemDataNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12925,8 +12925,8 @@ void InitializeSystemDataNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
   HashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -12952,7 +12952,7 @@ void InitializeSystemStringProcessor(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -12982,8 +12982,8 @@ void InitializeSystemStringProcessor(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
   HashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13067,13 +13067,13 @@ void InitializeSystemConfigurationDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -13097,8 +13097,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13124,13 +13124,13 @@ void InitializeSystemEventDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -13154,8 +13154,8 @@ void InitializeSystemEventDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13181,7 +13181,7 @@ void InitializeSystemResourceDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13211,8 +13211,8 @@ void InitializeSystemResourceDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13238,7 +13238,7 @@ void InitializeSystemDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13268,8 +13268,8 @@ void InitializeSystemDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13295,7 +13295,7 @@ void InitializeSystemStringDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13325,8 +13325,8 @@ void InitializeSystemStringDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13352,7 +13352,7 @@ void InitializeSystemMemoryDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13382,8 +13382,8 @@ void InitializeSystemMemoryDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -13409,7 +13409,7 @@ void InitializeSystemDeviceDataNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13439,8 +13439,8 @@ void InitializeSystemDeviceDataNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13484,13 +13484,13 @@ void InitializeSystemSearchNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionF;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionF;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -13514,8 +13514,8 @@ void InitializeSystemSearchNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
   HashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13541,13 +13541,13 @@ void InitializeSystemDebugNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -13571,8 +13571,8 @@ void InitializeSystemDebugNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13598,13 +13598,13 @@ void InitializeSystemLoggingNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -13628,8 +13628,8 @@ void InitializeSystemLoggingNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13655,7 +13655,7 @@ void InitializeSystemPerformanceNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13685,8 +13685,8 @@ void InitializeSystemPerformanceNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13712,7 +13712,7 @@ void InitializeSystemSecurityNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13742,8 +13742,8 @@ void InitializeSystemSecurityNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13769,7 +13769,7 @@ void InitializeSystemNetworkNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13799,8 +13799,8 @@ void InitializeSystemNetworkNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13826,7 +13826,7 @@ void InitializeSystemThreadNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13856,8 +13856,8 @@ void InitializeSystemThreadNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -13883,7 +13883,7 @@ void InitializeSystemProcessNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -13913,8 +13913,8 @@ void InitializeSystemProcessNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13941,13 +13941,13 @@ void InitializeSystemEventManagerG(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -13971,8 +13971,8 @@ void InitializeSystemEventManagerG(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13999,13 +13999,13 @@ void InitializeSystemEventManagerH(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -14029,8 +14029,8 @@ void InitializeSystemEventManagerH(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14057,7 +14057,7 @@ void InitializeSystemEventManagerI(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14087,8 +14087,8 @@ void InitializeSystemEventManagerI(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14109,7 +14109,7 @@ void InitializeSystemEventManagerJ(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14139,8 +14139,8 @@ void InitializeSystemEventManagerJ(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14161,7 +14161,7 @@ void InitializeSystemEventManagerK(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14191,8 +14191,8 @@ void InitializeSystemEventManagerK(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14213,7 +14213,7 @@ void InitializeSystemEventManagerL(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14243,8 +14243,8 @@ void InitializeSystemEventManagerL(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -14265,7 +14265,7 @@ void InitializeSystemEventManagerM(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14295,8 +14295,8 @@ void InitializeSystemEventManagerM(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14423,7 +14423,7 @@ void InitializeSystemResourceManagerA(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14453,8 +14453,8 @@ void InitializeSystemResourceManagerA(void)
   HashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
   HashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
   HashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14475,7 +14475,7 @@ void InitializeSystemResourceManagerB(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14505,8 +14505,8 @@ void InitializeSystemResourceManagerB(void)
   HashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
   HashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14527,7 +14527,7 @@ void InitializeSystemResourceManagerC(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14557,8 +14557,8 @@ void InitializeSystemResourceManagerC(void)
   HashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
   HashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14579,7 +14579,7 @@ void InitializeSystemResourceManagerD(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14609,8 +14609,8 @@ void InitializeSystemResourceManagerD(void)
   HashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
   HashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14631,7 +14631,7 @@ void InitializeSystemResourceManagerE(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14661,8 +14661,8 @@ void InitializeSystemResourceManagerE(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
   HashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
   HashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14684,7 +14684,7 @@ void InitializeSystemResourceManagerF(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14714,8 +14714,8 @@ void InitializeSystemResourceManagerF(void)
   HashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
   HashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
   HashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14737,7 +14737,7 @@ void InitializeSystemResourceManagerG(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14767,8 +14767,8 @@ void InitializeSystemResourceManagerG(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemEventData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14790,7 +14790,7 @@ void InitializeSystemResourceManagerH(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14820,8 +14820,8 @@ void InitializeSystemResourceManagerH(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemRootNode;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14843,7 +14843,7 @@ void InitializeSystemResourceManagerI(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14873,8 +14873,8 @@ void InitializeSystemResourceManagerI(void)
   HashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
   HashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14896,7 +14896,7 @@ void InitializeSystemResourceManagerJ(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -14926,8 +14926,8 @@ void InitializeSystemResourceManagerJ(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
   HashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15062,7 +15062,7 @@ void InitializeSystemDebugManagerA(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15092,8 +15092,8 @@ void InitializeSystemDebugManagerA(void)
   HashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
   HashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15115,7 +15115,7 @@ void InitializeSystemDebugManagerB(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15145,8 +15145,8 @@ void InitializeSystemDebugManagerB(void)
   HashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
   HashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15168,7 +15168,7 @@ void InitializeSystemDebugManagerC(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15198,8 +15198,8 @@ void InitializeSystemDebugManagerC(void)
   HashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
   HashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
   HashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15226,7 +15226,7 @@ void InitializeSystemResourceAllocator(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15256,8 +15256,8 @@ void InitializeSystemResourceAllocator(void)
   HashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
   HashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15284,7 +15284,7 @@ void InitializeSystemDataTableAllocator(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15314,8 +15314,8 @@ void InitializeSystemDataTableAllocator(void)
   HashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
   HashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15335,7 +15335,7 @@ void InitializeSystemResourceComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15365,8 +15365,8 @@ void InitializeSystemResourceComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
   HashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15386,7 +15386,7 @@ void InitializeSystemAllocatorComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15416,8 +15416,8 @@ void InitializeSystemAllocatorComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
   HashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
   HashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15437,7 +15437,7 @@ void InitializeSystemConfigurationComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15467,8 +15467,8 @@ void InitializeSystemConfigurationComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
   HashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
   HashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15488,7 +15488,7 @@ void InitializeSystemCoreComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15518,8 +15518,8 @@ void InitializeSystemCoreComponent(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemEventData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15539,7 +15539,7 @@ void InitializeSystemMemoryComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15569,8 +15569,8 @@ void InitializeSystemMemoryComponent(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemRootNode;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15590,7 +15590,7 @@ void InitializeSystemThreadComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15620,8 +15620,8 @@ void InitializeSystemThreadComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
   HashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15641,7 +15641,7 @@ void InitializeSystemEventComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15671,8 +15671,8 @@ void InitializeSystemEventComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
   HashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15692,7 +15692,7 @@ void InitializeSystemSecurityComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15722,8 +15722,8 @@ void InitializeSystemSecurityComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
   HashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15743,7 +15743,7 @@ void InitializeSystemNetworkComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -15773,8 +15773,8 @@ void InitializeSystemNetworkComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
   HashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15794,13 +15794,13 @@ void InitializeSystemDatabaseComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionF;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionF;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -15824,8 +15824,8 @@ void InitializeSystemDatabaseComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x45425dc186a5d575;
   HashTableNode[NodeIdentifier2Index] = 0xfab48faa65382fa5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeM;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15845,13 +15845,13 @@ void InitializeSystemLoggingComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionE;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionE;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -15875,8 +15875,8 @@ void InitializeSystemLoggingComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
   HashTableNode[NodeIdentifier2Index] = 0xc160408bde99e59f;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15896,13 +15896,13 @@ void InitializeSystemPerformanceComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunction;
+  SystemSearchFunctionPointer = GetSystemSearchFunction;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -15926,8 +15926,8 @@ void InitializeSystemPerformanceComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x406be72011d07d37;
   HashTableNode[NodeIdentifier2Index] = 0x71876af946c867ab;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15947,13 +15947,13 @@ void InitializeSystemDiagnosticComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionB;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionB;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -15977,8 +15977,8 @@ void InitializeSystemDiagnosticComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
   HashTableNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15998,13 +15998,13 @@ void InitializeSystemDebugComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -16028,8 +16028,8 @@ void InitializeSystemDebugComponent(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -16049,13 +16049,13 @@ void InitializeSystemPluginComponent(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -16079,8 +16079,8 @@ void InitializeSystemPluginComponent(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -16101,7 +16101,7 @@ void InitializeSystemSubcomponentA(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16131,8 +16131,8 @@ void InitializeSystemSubcomponentA(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16153,7 +16153,7 @@ void InitializeSystemSubcomponentB(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16183,8 +16183,8 @@ void InitializeSystemSubcomponentB(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -16205,7 +16205,7 @@ void InitializeSystemSubcomponentC(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16235,8 +16235,8 @@ void InitializeSystemSubcomponentC(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16257,7 +16257,7 @@ void InitializeSystemSubcomponentD(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16287,8 +16287,8 @@ void InitializeSystemSubcomponentD(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -16309,7 +16309,7 @@ void InitializeSystemSubcomponentE(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16339,8 +16339,8 @@ void InitializeSystemSubcomponentE(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16361,7 +16361,7 @@ void InitializeSystemSubcomponentF(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16391,8 +16391,8 @@ void InitializeSystemSubcomponentF(void)
   HashTableNode[NodeIdentifier1Index] = 0x42bea5b911d9c4bf;
   HashTableNode[NodeIdentifier2Index] = 0x1aa83fc0020dc1b6;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16413,7 +16413,7 @@ void InitializeSystemSubcomponentG(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16443,8 +16443,8 @@ void InitializeSystemSubcomponentG(void)
   HashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
   HashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16465,7 +16465,7 @@ void InitializeSystemSubcomponentH(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16495,8 +16495,8 @@ void InitializeSystemSubcomponentH(void)
   HashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
   HashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16572,7 +16572,7 @@ void InitializeSystemSubcomponentI(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16602,8 +16602,8 @@ void InitializeSystemSubcomponentI(void)
   HashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
   HashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16624,7 +16624,7 @@ void InitializeSystemSubcomponentJ(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16654,8 +16654,8 @@ void InitializeSystemSubcomponentJ(void)
   HashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
   HashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16676,7 +16676,7 @@ void InitializeSystemSubcomponentK(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16706,8 +16706,8 @@ void InitializeSystemSubcomponentK(void)
   HashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
   HashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16728,7 +16728,7 @@ void InitializeSystemSubcomponentL(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16758,8 +16758,8 @@ void InitializeSystemSubcomponentL(void)
   HashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
   HashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16829,7 +16829,7 @@ void InitializeSystemSubcomponentN(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16859,8 +16859,8 @@ void InitializeSystemSubcomponentN(void)
   HashTableNode[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
   HashTableNode[NodeIdentifier2Index] = 0x727b256e3af32585;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16885,7 +16885,7 @@ void InitializeSystemNodeManagerPrimary(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -16915,8 +16915,8 @@ void InitializeSystemNodeManagerPrimary(void)
   HashTableNode[NodeIdentifier1Index] = 0x41ffd0b76c1e136f;
   HashTableNode[NodeIdentifier2Index] = 0x25db30365f277abb;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 2;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 2;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -16941,13 +16941,13 @@ void InitializeSystemSearchManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   code *systemSearchCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunction;
+  SystemSearchFunctionPointer = GetSystemSearchFunction;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -16971,8 +16971,8 @@ void InitializeSystemSearchManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x406be72011d07d37;
   HashTableNode[NodeIdentifier2Index] = 0x71876af946c867ab;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -16998,13 +16998,13 @@ void InitializeSystemNodeManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionB;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionB;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -17028,8 +17028,8 @@ void InitializeSystemNodeManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x40afa5469b6ac06d;
   HashTableNode[NodeIdentifier2Index] = 0x2f4bab01d34055a5;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -17057,13 +17057,13 @@ void InitializeSystemSearchManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNode = (void**)*SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  systemSearchFunctionPointer = GetSystemSearchFunctionC;
+  SystemSearchFunctionPointer = GetSystemSearchFunctionC;
   HashTableNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -17087,8 +17087,8 @@ void InitializeSystemSearchManager(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -17115,7 +17115,7 @@ void InitializeSystemEventManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   code *eventSearchFunctionPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17145,8 +17145,8 @@ void InitializeSystemEventManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x431d7c8d7c475be2;
   HashTableNode[NodeIdentifier2Index] = 0xb97f048d2153e1b0;
   HashTableNode[NodeDataPointerIndex] = &SystemEventNodeF;
-  hashTableNode[NodeFlagIndex] = 4;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 4;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -17173,7 +17173,7 @@ void InitializeSystemResourceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17203,8 +17203,8 @@ void InitializeSystemResourceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   HashTableNode[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeG;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -17231,7 +17231,7 @@ void InitializeSystemDeviceManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   code *deviceInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17261,8 +17261,8 @@ void InitializeSystemDeviceManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x49086ba08ab981a7;
   HashTableNode[NodeIdentifier2Index] = 0xa9191d34ad910696;
   HashTableNode[NodeDataPointerIndex] = &SystemDeviceNodeH;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = deviceSystemEventCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = deviceSystemEventCallback;
   return;
 }
 
@@ -17289,7 +17289,7 @@ void InitializeSystemMemoryManager(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17319,8 +17319,8 @@ void InitializeSystemMemoryManager(void)
   HashTableNode[NodeIdentifier1Index] = 0x402feffe4481676e;
   HashTableNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   HashTableNode[NodeDataPointerIndex] = &SystemMemoryNodeI;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = memoryInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = memoryInitializationCallback;
   return;
 }
 
@@ -17345,7 +17345,7 @@ void SystemDataNodeInitializerM(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17375,8 +17375,8 @@ void SystemDataNodeInitializerM(void)
   HashTableNode[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
   HashTableNode[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeK;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = SystemStackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = SystemStackPointer;
   return;
 }
 
@@ -17401,7 +17401,7 @@ void InitializeSystemResourceInitializationNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17431,8 +17431,8 @@ void InitializeSystemResourceInitializationNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4140994454d56503;
   HashTableNode[NodeIdentifier2Index] = 0x399eced9bb5517ad;
   HashTableNode[NodeDataPointerIndex] = &SystemDataNodeL;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -17457,7 +17457,7 @@ void InitializeGameCoreSystemNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17487,8 +17487,8 @@ void InitializeGameCoreSystemNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4fc124d23d41985f;
   HashTableNode[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
   HashTableNode[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -17513,7 +17513,7 @@ void InitializeBaseAllocatorNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17543,8 +17543,8 @@ void InitializeBaseAllocatorNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4770584fbb1df897;
   HashTableNode[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -17569,7 +17569,7 @@ void InitializeSystemDataTableNode(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17599,8 +17599,8 @@ void InitializeSystemDataTableNode(void)
   HashTableNode[NodeIdentifier1Index] = 0x4666df49b97e0f10;
   HashTableNode[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -17625,7 +17625,7 @@ void ResourceInitializationCallbackSetter(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17655,8 +17655,8 @@ void ResourceInitializationCallbackSetter(void)
   HashTableNode[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
   HashTableNode[NodeIdentifier2Index] = 0xdc42c056bbde8482;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -17681,7 +17681,7 @@ void SystemAllocatorNodeInitializer(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17711,8 +17711,8 @@ void SystemAllocatorNodeInitializer(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c868a42644030f6;
   HashTableNode[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
   HashTableNode[NodeDataPointerIndex] = &SystemAllocatorNodeId;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -17737,7 +17737,7 @@ void SystemConfigurationNodeInitializer(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17767,8 +17767,8 @@ void SystemConfigurationNodeInitializer(void)
   HashTableNode[NodeIdentifier1Index] = 0x40ea3a798283cbbb;
   HashTableNode[NodeIdentifier2Index] = 0x7f74eb2c5a7fadae;
   HashTableNode[NodeDataPointerIndex] = &SystemConfigurationData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -17793,7 +17793,7 @@ void SystemEventNodeInitializer(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17823,8 +17823,8 @@ void SystemEventNodeInitializer(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemEventData;
-  hashTableNode[NodeFlagIndex] = 3;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 3;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -17849,7 +17849,7 @@ void SystemMemoryManagementNodeInitializer(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17879,8 +17879,8 @@ void SystemMemoryManagementNodeInitializer(void)
   HashTableNode[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTableNode[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
   HashTableNode[NodeDataPointerIndex] = &SystemRootNode;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -17905,7 +17905,7 @@ void SystemThreadManagerInitializer(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   void* SystemCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17935,8 +17935,8 @@ void SystemThreadManagerInitializer(void)
   HashTableNode[NodeIdentifier1Index] = 0x421c3cedd07d816d;
   HashTableNode[NodeIdentifier2Index] = 0xbec25de793b7afa6;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
-  hashTableNode[NodeFlagIndex] = 0;
-  hashTableNode[10] = eventCallbackPointer;
+  HashTableNode[NodeFlagIndex] = 0;
+  HashTableNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -17961,7 +17961,7 @@ void SystemResourceTrackerInitializer(void)
   void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
-  void** hashTableNode;
+  void** HashTableNode;
   uint64_t SystemInitFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -17991,8 +17991,8 @@ void SystemResourceTrackerInitializer(void)
   HashTableNode[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
   HashTableNode[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
   HashTableNode[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
-  hashTableNode[NodeFlagIndex] = 1;
-  hashTableNode[10] = resourceInitializationCallback;
+  HashTableNode[NodeFlagIndex] = 1;
+  HashTableNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -20546,7 +20546,7 @@ void InitializeSystemController(long long* SystemResourceManager,void* *SystemCo
 {
   long long *PrimaryResourcePointer;
   long long *ResourceStackPointer;
-  void** hashTableNode;
+  void** HashTableNode;
   long long *MemoryStackPointer;
   long long **StackReferencePointer;
   uint32_t SystemStatusFlag;
@@ -20746,7 +20746,7 @@ void InitializeSystemCoreEngine(void)
   SystemOperationFlags = strcpy_s(SystemVerticalResolutionBuffer,0x40,&SystemDataBufferTemplateJ);
   verticalResolutionFactor = (float)GetSystemResolutionFactor(SystemOperationFlags,&VerticalResolutionBuffer);
   VerticalResolutionBuffer = &SystemMemoryAllocatorReference;
-  currentThreadId = GetSystemInitializationStatus();
+  CurrentThreadId = GetSystemInitializationStatus();
   if (0 < SystemConfigDataPointerD) {
     InitializeSystemConfiguration(&SystemConfigurationTemplate,&SystemConfigPathBuffer,0,SystemConfigDataPointerD + -1);
     SystemPathLengthCounter = SystemPathLengthCounter + -1;
@@ -20777,7 +20777,7 @@ void InitializeSystemCoreEngine(void)
     *(double *)(SystemThreadFlags + 0xb8 + SystemInitializationDataStart) = (double)(1.0 / horizontalResolutionFactor);
     *(int *)(SystemThreadFlags + 0xb0 + SystemInitializationDataStart) = (int)(long long)SystemScaleFactorXStorage;
     *(int *)(SystemThreadFlags + 200 + SystemInitializationDataStart) = (int)(long long)SystemScaleFactorYStorage;
-    *(double *)(SystemThreadFlags + 0x20 + SystemInitializationDataStart) = (double)(currentThreadId >> 0x14);
+    *(double *)(SystemThreadFlags + 0x20 + SystemInitializationDataStart) = (double)(CurrentThreadId >> 0x14);
     SystemGlobalDataReference = &SystemGlobalDataReference;
     if (SystemCleanupRequiredFlag != 0) {
         SystemCleanupFunction();
@@ -21795,13 +21795,13 @@ void* * CreateSystemResourceManager(long long SystemResourceManager,long long *C
   void** SystemDataTable;
   void* *SystemHashNodeData;
   void* *presourceAddress;
-  void* currentThreadId;
+  void* CurrentThreadId;
   
-  currentThreadId = 0xfffffffffffffffe;
+  CurrentThreadId = 0xfffffffffffffffe;
   SystemHashNodeData = (void* *)CreateSystemResourceTemplate();
   if (*ConfigurationDataPointer != 0) {
-    currentThreadId = InitializeSystemResourceHandle(SystemResourceManager,*ConfigurationDataPointer,SystemHashNodeData,ConfigurationFlag,currentThreadId);
-    *SystemHashNodeData = currentThreadId;
+    CurrentThreadId = InitializeSystemResourceHandle(SystemResourceManager,*ConfigurationDataPointer,SystemHashNodeData,ConfigurationFlag,CurrentThreadId);
+    *SystemHashNodeData = CurrentThreadId;
   }
   SystemHashEntryPointer = SystemHashNodeData;
   for (PrimaryResourcePointer = (long long *)ConfigurationDataPointer[1]; PrimaryResourcePointer != (long long *)0x0; PrimaryResourcePointer = (long long *)PrimaryResourcePointer[1]) {
@@ -21815,8 +21815,8 @@ void* * CreateSystemResourceManager(long long SystemResourceManager,long long *C
     *(char *)(presourceAddress + 3) = (char)PrimaryResourcePointer[3];
     SystemHashEntryPointer[1] = presourceAddress;
     if (*PrimaryResourcePointer != 0) {
-      currentThreadId = InitializeSystemResourceHandle(SystemResourceManager,*PrimaryResourcePointer,presourceAddress);
-      *presourceAddress = currentThreadId;
+      CurrentThreadId = InitializeSystemResourceHandle(SystemResourceManager,*PrimaryResourcePointer,presourceAddress);
+      *presourceAddress = CurrentThreadId;
     }
     SystemHashEntryPointer = presourceAddress;
   }
@@ -23034,14 +23034,14 @@ void DestroySystemMutex(void* *SystemResourceManager)
  * 管理系统内存的分配和释放操作
  * 
  * @param memoryContext 内存上下文指针
- * @param currentThreadId 分配大小
+ * @param CurrentThreadId 分配大小
  * @return 返回内存指针
  */
-void* SystemMemoryAllocator(void* memoryContext, unsigned long long currentThreadId)
+void* SystemMemoryAllocator(void* memoryContext, unsigned long long CurrentThreadId)
 
 {
   DestroySystemMutex();
-  if ((currentThreadId & 1) != 0) {
+  if ((CurrentThreadId & 1) != 0) {
     free(memoryContext,0x78);
   }
   return memoryContext;
@@ -23451,9 +23451,9 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
   void** SystemDataTable;
   int NodeIdentifierCompareResult;
   int systemIndex;
-  void* currentThreadId;
+  void* CurrentThreadId;
   
-  currentThreadId = 0xfffffffffffffffe;
+  CurrentThreadId = 0xfffffffffffffffe;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
@@ -23468,7 +23468,7 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
   }
   systemIndex = *(int *)(SystemResourceManager + 2);
   systemCounter = systemIndex + 6;
-  ExecuteSystemCommand(SystemResourceManager,systemCounter,AdditionalParameter,ConfigurationFlag,1,currentThreadId);
+  ExecuteSystemCommand(SystemResourceManager,systemCounter,AdditionalParameter,ConfigurationFlag,1,CurrentThreadId);
   SystemDataPointer = (uint32_t *)((ulong long)*(uint *)(SystemResourceManager + 2) + SystemResourceManager[1]);
   *SystemDataPointer = 0x2e2f2e2e;
   *(void*2 *)(SystemDataPointer + 1) = 0x2f2e;
@@ -23715,11 +23715,11 @@ void SetSystemThreadId(uint32_t *threadIdPointer)
 
 {
   int mainThreadId;
-  int currentThreadId;
+  int CurrentThreadId;
   
   mainThreadId = *(int *)(**(long long **)(SystemAllocationTemplate + 8) + 0x48);
-  currentThreadId = _Thrd_id();
-  if (currentThreadId != mainThreadId) {
+  CurrentThreadId = _Thrd_id();
+  if (CurrentThreadId != mainThreadId) {
     SystemCurrentThreadId = *threadIdPointer;
   }
   return;
@@ -24744,21 +24744,21 @@ void SystemMemoryInitialize(long long SystemResourceManager)
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long ResourceHash;
   
   ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
-  currentThreadId = 0;
+  CurrentThreadId = 0;
   if (ResourceHash != 0) {
     do {
-      SystemThreadHandle = *(long long *)(SystemBufferAddress + currentThreadId * 8);
+      SystemThreadHandle = *(long long *)(SystemBufferAddress + CurrentThreadId * 8);
       if (SystemThreadHandle != 0) {
           SystemCleanupFunction(SystemThreadHandle);
       }
-      *(void* *)(SystemBufferAddress + currentThreadId * 8) = 0;
-      currentThreadId = currentThreadId + 1;
-    } while (currentThreadId < ResourceHash);
+      *(void* *)(SystemBufferAddress + CurrentThreadId * 8) = 0;
+      CurrentThreadId = CurrentThreadId + 1;
+    } while (CurrentThreadId < ResourceHash);
     ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
@@ -25803,7 +25803,7 @@ void UpdateSystemRenderManager(long long SystemResourceManager)
   uint32_t resourceCreationFlags;
   int NodeIdentifierCompareResult;
   bool isTextureUpdateRequired;
-  void* currentThreadId;
+  void* CurrentThreadId;
   bool isSystemInitialized;
   
   SystemIntegerPointer = (int *)(SystemResourceManager + 0x3d0);
@@ -25873,7 +25873,7 @@ uint32_t GetSystemResourceStatus(void)
   long long SystemThreadHandle;
   long long ResourceDataOffset;
   void* *presourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   int CalculationFlags;
   void* *systemDataReference;
   long long bufferOffset;
@@ -25898,15 +25898,15 @@ uint32_t GetSystemResourceStatus(void)
     systemOffsetCounter = 0;
     systemDataBuffer = 0;
     ProcessSystemData(&systemDataReference,SystemOperationStatusArray.PrimaryField);
-    currentThreadId = systemDataBuffer + 1;
-    ExecuteSystemCommand(&systemDataReference,currentThreadId);
+    CurrentThreadId = systemDataBuffer + 1;
+    ExecuteSystemCommand(&systemDataReference,CurrentThreadId);
     *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
-    systemDataBuffer = currentThreadId;
+    systemDataBuffer = CurrentThreadId;
     ProcessSystemData(&systemDataReference,SystemOperationStatusArray.PrimaryExtended >> 0x20);
-    currentThreadId = systemDataBuffer + 1;
-    ExecuteSystemCommand(&systemDataReference,currentThreadId);
+    CurrentThreadId = systemDataBuffer + 1;
+    ExecuteSystemCommand(&systemDataReference,CurrentThreadId);
     *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
-    systemDataBuffer = currentThreadId;
+    systemDataBuffer = CurrentThreadId;
     ProcessSystemData(&systemDataReference,SystemOperationStatusArray.SecondaryExtended & MAX_UNSIGNED_32_BIT);
     CalculationFlags = systemDataBuffer + 1;
     ExecuteSystemCommand(&systemDataReference,CalculationFlags);
@@ -25938,15 +25938,15 @@ uint32_t GetSystemResourceStatus(void)
     secondarySystemOffsetCounter = 0;
     systemConfigurationValue = 0;
     ProcessSystemData(&SystemDataBufferPointerA8,SystemOperationStatusArray.PrimaryField);
-    currentThreadId = secondarySystemDataBuffer + 1;
-    ExecuteSystemCommand(&SystemDataBufferPointerA8,currentThreadId);
+    CurrentThreadId = secondarySystemDataBuffer + 1;
+    ExecuteSystemCommand(&SystemDataBufferPointerA8,CurrentThreadId);
     *(void*2 *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
-    secondarySystemDataBuffer = currentThreadId;
+    secondarySystemDataBuffer = CurrentThreadId;
     ProcessSystemData(&SystemDataBufferPointerA8,aSystemOperationStatus._0_8_ >> 0x20);
-    currentThreadId = secondarySystemDataBuffer + 1;
-    ExecuteSystemCommand(&SystemDataBufferPointerA8,currentThreadId);
+    CurrentThreadId = secondarySystemDataBuffer + 1;
+    ExecuteSystemCommand(&SystemDataBufferPointerA8,CurrentThreadId);
     *(void*2 *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
-    secondarySystemDataBuffer = currentThreadId;
+    secondarySystemDataBuffer = CurrentThreadId;
     ProcessSystemData(&SystemDataBufferPointerA8,aSystemOperationStatus._8_8_ & MAX_UNSIGNED_32_BIT);
     CalculationFlags = secondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointerA8,CalculationFlags);
@@ -26035,7 +26035,7 @@ void SystemResourceInitializer(void* resourceManagerPointer,void* memoryAllocati
   uint resourceCreationFlags;
   long long ResourceDataOffset;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   void* *pencryptionValue68;
   long long LocalMemoryBuffer;
   uint systemProcessFlags58;
@@ -26048,44 +26048,44 @@ void SystemResourceInitializer(void* resourceManagerPointer,void* memoryAllocati
   systemProcessFlags58 = 0;
   if (*(int *)(SystemNodeManagerPointer + 0x1ea0) == 0) {
     SystemOperationStatus = *(uint *)(SystemMemoryManagerPointer + 0xe40);
-    currentThreadId = (ulong long)SystemOperationStatus;
+    CurrentThreadId = (ulong long)SystemOperationStatus;
     if (*(long long *)(SystemMemoryManagerPointer + 0xe38) != 0) {
-      ExecuteSystemCommand(&pencryptionValue68,currentThreadId,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
+      ExecuteSystemCommand(&pencryptionValue68,CurrentThreadId,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
     }
     if (SystemOperationStatus != 0) {
-        memcpy(systemMemoryOffset,*(void* *)(ResourceDataOffset + 0xe38),currentThreadId);
+        memcpy(systemMemoryOffset,*(void* *)(ResourceDataOffset + 0xe38),CurrentThreadId);
     }
     if (systemMemoryOffset != 0) {
-      *(uint8_t *)(currentThreadId + systemMemoryOffset) = 0;
+      *(uint8_t *)(CurrentThreadId + systemMemoryOffset) = 0;
     }
     ConcatenatedValue44 = ConcatenatedValue44(*(uint32_t *)(ResourceDataOffset + 0xe4c),(uint32_t)ThreadContextFlag);
   }
   ResourceDataOffset = SystemMemoryManagerPointer;
   systemProcessFlags58 = 0;
   SystemOperationStatus = *(uint *)(SystemMemoryManagerPointer + 0xf00);
-  currentThreadId = (ulong long)SystemOperationStatus;
+  CurrentThreadId = (ulong long)SystemOperationStatus;
   if (*(long long *)(SystemMemoryManagerPointer + 0xef8) != 0) {
-    ExecuteSystemCommand(&pencryptionValue68,currentThreadId);
+    ExecuteSystemCommand(&pencryptionValue68,CurrentThreadId);
   }
   if (SystemOperationStatus != 0) {
-      memcpy(systemMemoryOffset,*(void* *)(ResourceDataOffset + 0xef8),currentThreadId);
+      memcpy(systemMemoryOffset,*(void* *)(ResourceDataOffset + 0xef8),CurrentThreadId);
   }
   if (systemMemoryOffset != 0) {
-    *(uint8_t *)(currentThreadId + systemMemoryOffset) = 0;
+    *(uint8_t *)(CurrentThreadId + systemMemoryOffset) = 0;
   }
   SystemBufferAddress = SystemMemoryManagerPointer;
   ConcatenatedValue44 = ConcatenatedValue44(*(uint32_t *)(ResourceDataOffset + 0xf0c),(uint32_t)ThreadContextFlag);
   resourceCreationFlags = *(uint *)(SystemMemoryManagerPointer + 0xfc0);
-  currentThreadId = (ulong long)resourceCreationFlags;
+  CurrentThreadId = (ulong long)resourceCreationFlags;
   systemProcessFlags58 = SystemOperationStatus;
   if (*(long long *)(SystemMemoryManagerPointer + 0xfb8) != 0) {
-    ExecuteSystemCommand(&pencryptionValue68,currentThreadId);
+    ExecuteSystemCommand(&pencryptionValue68,CurrentThreadId);
   }
   if (resourceCreationFlags != 0) {
-      memcpy(systemMemoryOffset,*(void* *)(SystemBufferAddress + 0xfb8),currentThreadId);
+      memcpy(systemMemoryOffset,*(void* *)(SystemBufferAddress + 0xfb8),CurrentThreadId);
   }
   if (systemMemoryOffset != 0) {
-    *(uint8_t *)(currentThreadId + systemMemoryOffset) = 0;
+    *(uint8_t *)(CurrentThreadId + systemMemoryOffset) = 0;
   }
   ConcatenatedValue44 = ConcatenatedValue44(*(uint32_t *)(SystemBufferAddress + 0xfcc),(uint32_t)ThreadContextFlag);
   pencryptionValue68 = &SystemGlobalDataReference;
@@ -26276,21 +26276,21 @@ void SystemMemoryManager(long long SystemResourceManager)
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long ResourceHash;
   
   ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
-  currentThreadId = 0;
+  CurrentThreadId = 0;
   if (ResourceHash != 0) {
     do {
-      SystemThreadHandle = *(long long *)(SystemBufferAddress + currentThreadId * 8);
+      SystemThreadHandle = *(long long *)(SystemBufferAddress + CurrentThreadId * 8);
       if (SystemThreadHandle != 0) {
           SystemCleanupFunction(SystemThreadHandle);
       }
-      *(void* *)(SystemBufferAddress + currentThreadId * 8) = 0;
-      currentThreadId = currentThreadId + 1;
-    } while (currentThreadId < ResourceHash);
+      *(void* *)(SystemBufferAddress + CurrentThreadId * 8) = 0;
+      CurrentThreadId = CurrentThreadId + 1;
+    } while (CurrentThreadId < ResourceHash);
     ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
@@ -26338,21 +26338,21 @@ void SystemMemoryCleanup(long long SystemResourceManager)
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long ResourceHash;
   
   ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
-  currentThreadId = 0;
+  CurrentThreadId = 0;
   if (ResourceHash != 0) {
     do {
-      SystemThreadHandle = *(long long *)(SystemBufferAddress + currentThreadId * 8);
+      SystemThreadHandle = *(long long *)(SystemBufferAddress + CurrentThreadId * 8);
       if (SystemThreadHandle != 0) {
           SystemCleanupFunction(SystemThreadHandle);
       }
-      *(void* *)(SystemBufferAddress + currentThreadId * 8) = 0;
-      currentThreadId = currentThreadId + 1;
-    } while (currentThreadId < ResourceHash);
+      *(void* *)(SystemBufferAddress + CurrentThreadId * 8) = 0;
+      CurrentThreadId = CurrentThreadId + 1;
+    } while (CurrentThreadId < ResourceHash);
     ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
@@ -26935,7 +26935,7 @@ void* * SystemResourceCopier(void* *SystemResourceManager,void* *ConfigurationDa
   long long SystemThreadHandle;
   long long ResourceDataOffset;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   long long SystemThreadFlags;
   uint8_t *hashTableNode;
   long long SystemMemoryAddress;
@@ -26984,9 +26984,9 @@ void* * SystemResourceCopier(void* *SystemResourceManager,void* *ConfigurationDa
     }
     else {
       SystemBufferAddress = SystemResourceManager[0x44];
-      currentThreadId = SystemBufferAddress - SystemThreadFlags >> 2;
-      if (currentThreadId < ThreadContextFlag) {
-        SystemMemoryAddress = currentThreadId * 4 + ResourceDataOffset;
+      CurrentThreadId = SystemBufferAddress - SystemThreadFlags >> 2;
+      if (CurrentThreadId < ThreadContextFlag) {
+        SystemMemoryAddress = CurrentThreadId * 4 + ResourceDataOffset;
         if (ResourceDataOffset != SystemMemoryAddress) {
             memmove(SystemThreadFlags,ResourceDataOffset);
         }
@@ -27192,7 +27192,7 @@ bool SystemResourceValidator(long long SystemResourceManager)
   byte byteValue;
   bool isValidOperation;
   byte *stringPointer;
-  uint currentThreadId;
+  uint CurrentThreadId;
   int CalculationFlags;
   long long localDataIndex;
   void** SystemNextNode;
@@ -27220,11 +27220,11 @@ bool SystemResourceValidator(long long SystemResourceManager)
         else {
           stringPointer = SystemByteBuffer28;
           do {
-            currentThreadId = (uint)stringPointer[SystemThreadStorage[5] - (long long)SystemByteBuffer28];
-            CalculationFlags = *stringPointer - currentThreadId;
-            if (*stringPointer != currentThreadId) break;
+            CurrentThreadId = (uint)stringPointer[SystemThreadStorage[5] - (long long)SystemByteBuffer28];
+            CalculationFlags = *stringPointer - CurrentThreadId;
+            if (*stringPointer != CurrentThreadId) break;
             stringPointer = stringPointer + 1;
-          } while (currentThreadId != 0);
+          } while (CurrentThreadId != 0);
           isValidOperation = 0 < CalculationFlags;
           if (CalculationFlags < 1) {
             SystemHashBucket = (void* *)SystemThreadStorage[1];
@@ -27248,11 +27248,11 @@ SystemValidationCheck:
         localDataIndex = (long long)SystemByteBuffer28 - (long long)stringPointer;
         do {
           byteValue = *stringPointer;
-          currentThreadId = (uint)stringPointer[localDataIndex];
-          if (byteValue != currentThreadId) break;
+          CurrentThreadId = (uint)stringPointer[localDataIndex];
+          if (byteValue != CurrentThreadId) break;
           stringPointer = stringPointer + 1;
-        } while (currentThreadId != 0);
-        if ((int)(byteValue - currentThreadId) < 1) goto SystemValueValidationCheck;
+        } while (CurrentThreadId != 0);
+        if ((int)(byteValue - CurrentThreadId) < 1) goto SystemValueValidationCheck;
       }
     }
   }
@@ -27351,7 +27351,7 @@ void SystemMemoryAllocator(long long resourceManagerPointer,long long allocation
   uint32_t resourceCreationFlags;
   int NodeIdentifierCompareResult;
   void* *presourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   long long SystemThreadFlags;
   void* ThreadContextFlag;
   void* *pStackParameterC;
@@ -27368,9 +27368,9 @@ void SystemMemoryAllocator(long long resourceManagerPointer,long long allocation
   SystemThreadFlags = 0;
   if ((*(long long *)(SystemResourceManager + 0xe0) - *PrimaryResourcePointer & MAX_UNSIGNED_32_BITffffffe0U) != 0) {
     InitializeConfigurationData(ConfigurationDataPointer);
-    currentThreadId = *(long long *)(SystemResourceManager + 0xe0) - *PrimaryResourcePointer >> 5;
-    if (0 < (int)currentThreadId) {
-      currentThreadId = currentThreadId & MAX_UNSIGNED_32_BIT;
+    CurrentThreadId = *(long long *)(SystemResourceManager + 0xe0) - *PrimaryResourcePointer >> 5;
+    if (0 < (int)CurrentThreadId) {
+      CurrentThreadId = CurrentThreadId & MAX_UNSIGNED_32_BIT;
       do {
         if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
           *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
@@ -27380,8 +27380,8 @@ void SystemMemoryAllocator(long long resourceManagerPointer,long long allocation
           ProcessSystemConfiguration(ConfigurationDataPointer,*PrimaryResourcePointer + SystemThreadFlags);
         }
         SystemThreadFlags = SystemThreadFlags + 0x20;
-        currentThreadId = currentThreadId - 1;
-      } while (currentThreadId != 0);
+        CurrentThreadId = CurrentThreadId - 1;
+      } while (CurrentThreadId != 0);
     }
     return;
   }
@@ -27514,7 +27514,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   float calculationResult1;
   float calculationResult2;
   ulong long threadContextValue;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   int CalculationFlags;
   uint renderStatusValue1;
   long long SystemMemoryAddress;
@@ -27659,15 +27659,15 @@ SystemFlagHandlerCheck:
     scaleResult2 = 1.0;
   }
   else {
-    currentThreadId = (ulong long)renderStatus5;
+    CurrentThreadId = (ulong long)renderStatus5;
     SystemOperationStatus = (ulong long)renderStatus3;
     renderStatus4 = renderStatus3;
     renderStatusValue1 = renderStatus5;
-    while (threadContextValue = currentThreadId, 0 < (int)renderStatusValue1) {
+    while (threadContextValue = CurrentThreadId, 0 < (int)renderStatusValue1) {
       renderStatus4 = (uint)threadContextValue;
       SystemOperationStatus = (long long)(int)SystemOperationStatus % (long long)(int)renderStatus4;
       renderStatusValue1 = (uint)SystemOperationStatus;
-      currentThreadId = SystemOperationStatus & MAX_UNSIGNED_32_BIT;
+      CurrentThreadId = SystemOperationStatus & MAX_UNSIGNED_32_BIT;
       SystemOperationStatus = threadContextValue;
     }
     CalculationFlags = (int)renderStatus3 / (int)renderStatus4;
@@ -28085,7 +28085,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   uint8_t *threadBuffer;
   ulong long bufferOffset;
   void* *dataTemplatePointer;
-  long long currentThreadId;
+  long long CurrentThreadId;
   uint threadFlags;
   uint8_t encryptionBuffer [32];
   uint8_t bufferFlags;
@@ -28131,12 +28131,12 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   InitializeProcessSystem(processNameBuffer,&SystemDataBufferTemplateI,processId);
   systemHandle = -1;
   do {
-    currentThreadId = systemHandle;
-    systemHandle = currentThreadId + 1;
-  } while (processNameBuffer[currentThreadId + 1] != '\0');
-  if (0 < (int)(currentThreadId + 1)) {
-    ExecuteSystemCommand(&configPointer,(int)currentThreadId + 7);
-      memcpy((ulong long)configFlags + configValue,processNameBuffer,(long long)((int)currentThreadId + 2));
+    CurrentThreadId = systemHandle;
+    systemHandle = CurrentThreadId + 1;
+  } while (processNameBuffer[CurrentThreadId + 1] != '\0');
+  if (0 < (int)(CurrentThreadId + 1)) {
+    ExecuteSystemCommand(&configPointer,(int)CurrentThreadId + 7);
+      memcpy((ulong long)configFlags + configValue,processNameBuffer,(long long)((int)CurrentThreadId + 2));
   }
   dataTemplatePointer = &SystemResourceTemplate;
   if (SystemGraphicsFlag != '\0') {
@@ -29358,7 +29358,7 @@ void ProcessSystemNodeResource(long long SystemResourceManager)
   char validationStatusFlag;
   int NodeIdentifierCompareResult;
   void* *presourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   int CalculationFlags;
   char *resourceStringPointer;
   long long *pSystemMemoryAddress;
@@ -29471,11 +29471,11 @@ SystemCounterContinue:
         *(void* *)(*(long long *)(SystemResourceManager + 0x48) + resourceDataIndex4 * 8) = 0;
         resourceCounter = *(long long *)(SystemResourceManager + 0x48) + resourceDataIndex4 * 8;
         SystemOperationFlags = resourceCounter + 8;
-        currentThreadId = *(ulong long *)(SystemResourceManager + 0x50);
-        if (SystemOperationFlags < currentThreadId) {
-            memmove(resourceCounter,SystemOperationFlags,currentThreadId - SystemOperationFlags);
+        CurrentThreadId = *(ulong long *)(SystemResourceManager + 0x50);
+        if (SystemOperationFlags < CurrentThreadId) {
+            memmove(resourceCounter,SystemOperationFlags,CurrentThreadId - SystemOperationFlags);
         }
-        resourceCounter = currentThreadId - 8;
+        resourceCounter = CurrentThreadId - 8;
         *(long long *)(SystemResourceManager + 0x50) = resourceCounter;
         SystemOperationStatus7 = SystemOperationStatus7 + -1;
         SystemContextPointer = SystemContextPointer + -1;
@@ -29515,7 +29515,7 @@ void ManageSystemResourceData(long long SystemResourceManager,void* Configuratio
   void** SystemDataTable;
   ulong long resourceAllocationContext;
   ulong long resourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   long long SystemThreadFlags;
   uint SystemLoopCounter;
   ulong long OperationCode;
@@ -29526,12 +29526,12 @@ void ManageSystemResourceData(long long SystemResourceManager,void* Configuratio
   resourceAllocationContext = 0;
   SystemDataPointer = (ulong long *)(SystemResourceManager + 0x48);
   resourceAddress = *SystemDataPointer;
-  currentThreadId = resourceAllocationContext;
+  CurrentThreadId = resourceAllocationContext;
   OperationCode = resourceAllocationContext;
   if ((long long)(*(long long *)(SystemResourceManager + 0x50) - resourceAddress) >> 3 != 0) {
     do {
-      HandleMemoryOperation(*(void* *)(resourceAddress + currentThreadId));
-      SystemHashEntryPointer = *(void* **)(*SystemDataPointer + currentThreadId);
+      HandleMemoryOperation(*(void* *)(resourceAddress + CurrentThreadId));
+      SystemHashEntryPointer = *(void* **)(*SystemDataPointer + CurrentThreadId);
       if (SystemHashEntryPointer != (void* *)0x0) {
         if (SystemHashEntryPointer[9] != 0) {
             SystemCleanupFunction();
@@ -29552,25 +29552,25 @@ void ManageSystemResourceData(long long SystemResourceManager,void* Configuratio
         }
           SystemCleanupFunction();
       }
-      *(void* *)(*SystemDataPointer + currentThreadId) = 0;
+      *(void* *)(*SystemDataPointer + CurrentThreadId) = 0;
       ThreadContextFlag = (int)OperationCode + 1;
       resourceAddress = *SystemDataPointer;
-      currentThreadId = currentThreadId + 8;
+      CurrentThreadId = CurrentThreadId + 8;
       OperationCode = (ulong long)ThreadContextFlag;
     } while ((ulong long)(long long)(int)ThreadContextFlag <
              (ulong long)((long long)(*(long long *)(SystemResourceManager + 0x50) - resourceAddress) >> 3));
   }
   ResizeSystemMemoryPool(SystemDataPointer,0);
   resourceAddress = *(ulong long *)(SystemResourceManager + 0x50);
-  currentThreadId = *SystemDataPointer;
+  CurrentThreadId = *SystemDataPointer;
   ThreadContextFlag = *(uint *)(SystemResourceManager + 0x60);
-  resourceCounter = resourceAddress - currentThreadId;
+  resourceCounter = resourceAddress - CurrentThreadId;
   SystemThreadFlags = resourceCounter >> 3;
   if (SystemThreadFlags != 0) {
     resourceAllocationContext = CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemThreadFlags * 8,ThreadContextFlag & 0xff,ConfigurationFlag,SystemOperationFlags,0,0,0,ThreadContextFlag);
   }
   SystemThreadFlags = resourceAllocationContext + SystemThreadFlags * 8;
-  if (currentThreadId == resourceAddress) {
+  if (CurrentThreadId == resourceAddress) {
     resourceAddress = *SystemDataPointer;
     *SystemDataPointer = resourceAllocationContext;
     *(long long *)(SystemResourceManager + 0x50) = SystemThreadFlags;
@@ -29581,7 +29581,7 @@ void ManageSystemResourceData(long long SystemResourceManager,void* Configuratio
     }
       SystemCleanupFunction();
   }
-    memmove(resourceAllocationContext,currentThreadId,resourceCounter,ConfigurationFlag,SystemOperationFlags,resourceAllocationContext,SystemThreadFlags,SystemThreadFlags);
+    memmove(resourceAllocationContext,CurrentThreadId,resourceCounter,ConfigurationFlag,SystemOperationFlags,resourceAllocationContext,SystemThreadFlags,SystemThreadFlags);
 }
 
 
@@ -30722,21 +30722,21 @@ void ReleaseSystemMemoryHandles(long long SystemResourceManager)
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long ResourceHash;
   
   ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
-  currentThreadId = 0;
+  CurrentThreadId = 0;
   if (ResourceHash != 0) {
     do {
-      SystemThreadHandle = *(long long *)(SystemBufferAddress + currentThreadId * 8);
+      SystemThreadHandle = *(long long *)(SystemBufferAddress + CurrentThreadId * 8);
       if (SystemThreadHandle != 0) {
           SystemCleanupFunction(SystemThreadHandle);
       }
-      *(void* *)(SystemBufferAddress + currentThreadId * 8) = 0;
-      currentThreadId = currentThreadId + 1;
-    } while (currentThreadId < ResourceHash);
+      *(void* *)(SystemBufferAddress + CurrentThreadId * 8) = 0;
+      CurrentThreadId = CurrentThreadId + 1;
+    } while (CurrentThreadId < ResourceHash);
     ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
@@ -30784,21 +30784,21 @@ void CleanupSystemResourceArray(long long SystemResourceManager)
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long ResourceHash;
   
   ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
-  currentThreadId = 0;
+  CurrentThreadId = 0;
   if (ResourceHash != 0) {
     do {
-      SystemThreadHandle = *(long long *)(SystemBufferAddress + currentThreadId * 8);
+      SystemThreadHandle = *(long long *)(SystemBufferAddress + CurrentThreadId * 8);
       if (SystemThreadHandle != 0) {
           SystemCleanupFunction(SystemThreadHandle);
       }
-      *(void* *)(SystemBufferAddress + currentThreadId * 8) = 0;
-      currentThreadId = currentThreadId + 1;
-    } while (currentThreadId < ResourceHash);
+      *(void* *)(SystemBufferAddress + CurrentThreadId * 8) = 0;
+      CurrentThreadId = CurrentThreadId + 1;
+    } while (CurrentThreadId < ResourceHash);
     ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
@@ -31130,21 +31130,21 @@ void CleanupSystemBuffer(long long SystemResourceManager)
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long ResourceHash;
   
   ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
-  currentThreadId = 0;
+  CurrentThreadId = 0;
   if (ResourceHash != 0) {
     do {
-      SystemThreadHandle = *(long long *)(SystemBufferAddress + currentThreadId * 8);
+      SystemThreadHandle = *(long long *)(SystemBufferAddress + CurrentThreadId * 8);
       if (SystemThreadHandle != 0) {
           SystemCleanupFunction(SystemThreadHandle);
       }
-      *(void* *)(SystemBufferAddress + currentThreadId * 8) = 0;
-      currentThreadId = currentThreadId + 1;
-    } while (currentThreadId < ResourceHash);
+      *(void* *)(SystemBufferAddress + CurrentThreadId * 8) = 0;
+      CurrentThreadId = CurrentThreadId + 1;
+    } while (CurrentThreadId < ResourceHash);
     ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
@@ -31193,21 +31193,21 @@ void DeepCleanupSystemResources(long long SystemResourceManager)
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long ResourceHash;
   
   ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
-  currentThreadId = 0;
+  CurrentThreadId = 0;
   if (ResourceHash != 0) {
     do {
-      SystemThreadHandle = *(long long *)(SystemBufferAddress + currentThreadId * 8);
+      SystemThreadHandle = *(long long *)(SystemBufferAddress + CurrentThreadId * 8);
       if (SystemThreadHandle != 0) {
           SystemCleanupFunction(SystemThreadHandle);
       }
-      *(void* *)(SystemBufferAddress + currentThreadId * 8) = 0;
-      currentThreadId = currentThreadId + 1;
-    } while (currentThreadId < ResourceHash);
+      *(void* *)(SystemBufferAddress + CurrentThreadId * 8) = 0;
+      CurrentThreadId = CurrentThreadId + 1;
+    } while (CurrentThreadId < ResourceHash);
     ResourceHash = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
@@ -31504,13 +31504,13 @@ void ProcessSystemStringData(long long SystemResourceManager,long long Configura
   long long SystemThreadHandle;
   char *pathStringPointer;
   char *pSystemOperationStatusFlag;
-  void* currentThreadId;
+  void* CurrentThreadId;
   void* *memoryAllocationEnd;
   long long SystemStatusFlag48;
   uint32_t SystemOperationCounter;
   ulong long SystemContextValue;
   
-  currentThreadId = 0xfffffffffffffffe;
+  CurrentThreadId = 0xfffffffffffffffe;
   pathStringPointer = *(char **)(SystemResourceManager + 8);
   initializationStatusFlag = *pathStringPointer;
   pSystemOperationStatusFlag = pathStringPointer;
@@ -31522,7 +31522,7 @@ void ProcessSystemStringData(long long SystemResourceManager,long long Configura
         SystemContextValue = 0;
         SystemStatusFlag48 = 0;
         SystemOperationCounter = 0;
-        ProcessSystemMemoryAllocation(&memoryAllocationEnd,pSystemOperationStatusFlag,(int)pathStringPointer - (int)pSystemOperationStatusFlag,ConfigurationFlag,currentThreadId);
+        ProcessSystemMemoryAllocation(&memoryAllocationEnd,pSystemOperationStatusFlag,(int)pathStringPointer - (int)pSystemOperationStatusFlag,ConfigurationFlag,CurrentThreadId);
         pSystemOperationStatusFlag = pathStringPointer + 1;
         if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
           *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
@@ -31547,7 +31547,7 @@ void ProcessSystemStringData(long long SystemResourceManager,long long Configura
       SystemContextValue = 0;
       SystemStatusFlag48 = 0;
       SystemOperationCounter = 0;
-      ProcessSystemMemoryAllocation(&memoryAllocationEnd,pSystemOperationStatusFlag,(int)pathStringPointer - (int)pSystemOperationStatusFlag,ConfigurationFlag,currentThreadId);
+      ProcessSystemMemoryAllocation(&memoryAllocationEnd,pSystemOperationStatusFlag,(int)pathStringPointer - (int)pSystemOperationStatusFlag,ConfigurationFlag,CurrentThreadId);
       if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
         *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
         InitializeSystemMemoryAllocator();
@@ -32625,22 +32625,22 @@ void ProcessSystemResourceRange(long long* SystemResourceManager,long long Confi
   long long SystemThreadHandle;
   long long ResourceDataOffset;
   ulong long resourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   
   if (AdditionalParameter == ConfigurationFlag) {
     return;
   }
   SystemThreadHandle = SystemResourceManager[1];
-  currentThreadId = ConfigurationFlag - AdditionalParameter >> 3;
-  if ((ulong long)(SystemResourceManager[2] - SystemThreadHandle >> 3) < currentThreadId) {
+  CurrentThreadId = ConfigurationFlag - AdditionalParameter >> 3;
+  if ((ulong long)(SystemResourceManager[2] - SystemThreadHandle >> 3) < CurrentThreadId) {
     ResourceDataOffset = *SystemResourceManager;
     SystemThreadHandle = SystemThreadHandle - ResourceDataOffset >> 3;
     resourceAddress = SystemThreadHandle * 2;
     if (SystemThreadHandle == 0) {
       resourceAddress = 1;
     }
-    if (resourceAddress <= SystemThreadHandle + currentThreadId) {
-      resourceAddress = SystemThreadHandle + currentThreadId;
+    if (resourceAddress <= SystemThreadHandle + CurrentThreadId) {
+      resourceAddress = SystemThreadHandle + CurrentThreadId;
     }
     if (resourceAddress == 0) {
       SystemOperationStatus = 0;
@@ -32655,19 +32655,19 @@ void ProcessSystemResourceRange(long long* SystemResourceManager,long long Confi
       memmove(SystemOperationStatus,AdditionalParameter,ConfigurationFlag - AdditionalParameter);
   }
   resourceAddress = SystemThreadHandle - ConfigurationDataPointer >> 3;
-  if (currentThreadId < resourceAddress) {
-    ResourceDataOffset = SystemThreadHandle + currentThreadId * -8;
+  if (CurrentThreadId < resourceAddress) {
+    ResourceDataOffset = SystemThreadHandle + CurrentThreadId * -8;
     if (ResourceDataOffset != SystemThreadHandle) {
-        memmove(SystemThreadHandle,ResourceDataOffset,currentThreadId * 8);
+        memmove(SystemThreadHandle,ResourceDataOffset,CurrentThreadId * 8);
     }
-      memmove(SystemThreadHandle - ((SystemThreadHandle + currentThreadId * -8) - ConfigurationDataPointer & MAX_UNSIGNED_32_BITfffffff8),ConfigurationDataPointer);
+      memmove(SystemThreadHandle - ((SystemThreadHandle + CurrentThreadId * -8) - ConfigurationDataPointer & MAX_UNSIGNED_32_BITfffffff8),ConfigurationDataPointer);
   }
   ResourceDataOffset = AdditionalParameter + resourceAddress * 8;
   if (ResourceDataOffset != ConfigurationFlag) {
       memmove(SystemThreadHandle,ResourceDataOffset,ConfigurationFlag - ResourceDataOffset);
   }
   if (ConfigurationDataPointer != SystemThreadHandle) {
-      memmove(SystemThreadHandle + (currentThreadId - resourceAddress) * 8,ConfigurationDataPointer,SystemThreadHandle - ConfigurationDataPointer);
+      memmove(SystemThreadHandle + (CurrentThreadId - resourceAddress) * 8,ConfigurationDataPointer,SystemThreadHandle - ConfigurationDataPointer);
   }
     memmove(ConfigurationDataPointer + (resourceAddress - (ResourceDataOffset - AdditionalParameter >> 3)) * 8,AdditionalParameter,ResourceDataOffset - AdditionalParameter);
 }
@@ -33604,7 +33604,7 @@ void* * SystemResourceAllocator(void* *SystemResourceManager,uint8_t *Configurat
   bool isSystemActive;
   void* *SystemHashNodeData;
   void* *presourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   byte *pisThreadActive;
   long long localDataIndex;
   
@@ -33627,11 +33627,11 @@ SystemResourceLoop:
         localDataIndex = *(long long *)(AdditionalParameter + 8) - (long long)pisThreadActive;
         do {
           isByteValid = *pisThreadActive;
-          currentThreadId = (uint)pisThreadActive[localDataIndex];
-          if (isByteValid != currentThreadId) break;
+          CurrentThreadId = (uint)pisThreadActive[localDataIndex];
+          if (isByteValid != CurrentThreadId) break;
           pisThreadActive = pisThreadActive + 1;
-        } while (currentThreadId != 0);
-        isSystemActive = 0 < (int)(isByteValid - currentThreadId);
+        } while (CurrentThreadId != 0);
+        isSystemActive = 0 < (int)(isByteValid - CurrentThreadId);
       }
       if (!isSystemActive) goto SystemResourceLoop;
       presourceAddress = (void* *)presourceAddress[1];
@@ -33651,11 +33651,11 @@ SystemResourceLoop:
       localDataIndex = presourceAddress[5] - (long long)pisThreadActive;
       do {
         isByteValid = *pisThreadActive;
-        currentThreadId = (uint)pisThreadActive[localDataIndex];
-        if (isByteValid != currentThreadId) break;
+        CurrentThreadId = (uint)pisThreadActive[localDataIndex];
+        if (isByteValid != CurrentThreadId) break;
         pisThreadActive = pisThreadActive + 1;
-      } while (currentThreadId != 0);
-      if ((int)(isByteValid - currentThreadId) < 1) goto SystemResourceProcess;
+      } while (CurrentThreadId != 0);
+      if ((int)(isByteValid - CurrentThreadId) < 1) goto SystemResourceProcess;
     }
     *ConfigurationDataPointer = 1;
     return SystemHashNodeData;
@@ -34562,7 +34562,7 @@ void CleanupSystemResources(long long *ResourceHandle)
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   
   SystemHashNodeData = (void* *)*SystemResourceManager;
   if (SystemHashNodeData != (void* *)0x0) {
@@ -34587,11 +34587,11 @@ void CleanupSystemResources(long long *ResourceHandle)
   if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
-  if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
+  CurrentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
+  if (CurrentThreadId != 0) {
+    SystemBufferAddress = CurrentThreadId + 0x80 + ((long long)SystemHashNodeData - CurrentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
-    if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
+    if ((*(void ***)(CurrentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
       *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
       *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
@@ -34602,8 +34602,8 @@ void CleanupSystemResources(long long *ResourceHandle)
       }
     }
     else {
-      SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          SystemHashNodeData,currentThreadId,InvalidHandleValue);
+      SystemExceptionCheck(CurrentThreadId,CONCAT71(0xff000000,*(void ***)(CurrentThreadId + 0x70) == &ExceptionList),
+                          SystemHashNodeData,CurrentThreadId,InvalidHandleValue);
     }
   }
   return;
@@ -34654,11 +34654,11 @@ void InitializeSystemDataPointer(long long* SystemResourceManager)
   if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
-  if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
+  CurrentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
+  if (CurrentThreadId != 0) {
+    SystemBufferAddress = CurrentThreadId + 0x80 + ((long long)SystemHashNodeData - CurrentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
-    if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
+    if ((*(void ***)(CurrentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
       *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
       *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
@@ -34669,8 +34669,8 @@ void InitializeSystemDataPointer(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          SystemHashNodeData,currentThreadId,InvalidHandleValue);
+      SystemExceptionCheck(CurrentThreadId,CONCAT71(0xff000000,*(void ***)(CurrentThreadId + 0x70) == &ExceptionList),
+                          SystemHashNodeData,CurrentThreadId,InvalidHandleValue);
     }
   }
   return;
@@ -34720,7 +34720,7 @@ void CleanupSystemAndProcessBuffers(void)
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
   long long StringIteratorPointer;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   
   if ((*(long long *)(StringIteratorPointer + 0x30) != 0) &&
      (*(long long *)(*(long long *)(StringIteratorPointer + 0x30) + 0x10) != 0)) {
@@ -34736,11 +34736,11 @@ void CleanupSystemAndProcessBuffers(void)
   }
   SystemHashNodeData = *(void* **)(StringIteratorPointer + 0x18);
   if (SystemHashNodeData != (void* *)0x0) {
-    currentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
-    if (currentThreadId != 0) {
-      SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
+    CurrentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
+    if (CurrentThreadId != 0) {
+      SystemBufferAddress = CurrentThreadId + 0x80 + ((long long)SystemHashNodeData - CurrentThreadId >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
-      if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
+      if ((*(void ***)(CurrentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
         *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
         *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
         SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
@@ -34751,8 +34751,8 @@ void CleanupSystemAndProcessBuffers(void)
         }
       }
       else {
-        SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                            SystemHashNodeData,currentThreadId,InvalidHandleValue);
+        SystemExceptionCheck(CurrentThreadId,CONCAT71(0xff000000,*(void ***)(CurrentThreadId + 0x70) == &ExceptionList),
+                            SystemHashNodeData,CurrentThreadId,InvalidHandleValue);
       }
     }
     return;
@@ -34823,7 +34823,7 @@ void CleanupAndDestroySystemResources(long long* SystemResourceManager)
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
@@ -34850,11 +34850,11 @@ void CleanupAndDestroySystemResources(long long* SystemResourceManager)
   if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
-  if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
+  CurrentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
+  if (CurrentThreadId != 0) {
+    SystemBufferAddress = CurrentThreadId + 0x80 + ((long long)SystemHashNodeData - CurrentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
-    if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
+    if ((*(void ***)(CurrentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
       *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
       *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
@@ -34865,8 +34865,8 @@ void CleanupAndDestroySystemResources(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          SystemHashNodeData,currentThreadId,InvalidHandleValue);
+      SystemExceptionCheck(CurrentThreadId,CONCAT71(0xff000000,*(void ***)(CurrentThreadId + 0x70) == &ExceptionList),
+                          SystemHashNodeData,CurrentThreadId,InvalidHandleValue);
     }
   }
   return;
@@ -38795,12 +38795,12 @@ void* * ManageSystemResourceManager(void* *SystemResourceManager)
   ulong long resourceIndex;
   void* *SystemHashNodeData;
   ulong long resourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   void** SystemRootNode;
   long long localDataIndex;
   long long SystemMemoryAddress;
   
-  currentThreadId = 0;
+  CurrentThreadId = 0;
   SystemHashNodeData = SystemResourceManager + 0xb;
   *SystemResourceManager = 0;
   SystemMemoryAddress = 0x20;
@@ -38830,7 +38830,7 @@ void* * ManageSystemResourceManager(void* *SystemResourceManager)
   SystemResourceManager[6] = SystemResourceManager + 8;
   SystemResourceManager[4] = 6;
   resourceCreationFlags = CreateSystemThreadObject(SystemOperationStatus,0x7b0,10);
-  resourceAddress = currentThreadId;
+  resourceAddress = CurrentThreadId;
   if (resourceCreationFlags != 0) {
     SystemHashNodeData = (void* *)(resourceCreationFlags + 0x108);
     do {
@@ -38847,17 +38847,17 @@ void* * ManageSystemResourceManager(void* *SystemResourceManager)
   SystemResourceManager[3] = resourceAddress;
   if (resourceAddress == 0) {
     SystemResourceManager[4] = 0;
-    resourceAddress = currentThreadId;
+    resourceAddress = CurrentThreadId;
   }
   else {
     resourceAddress = SystemResourceManager[4];
   }
-  resourceCreationFlags = currentThreadId;
+  resourceCreationFlags = CurrentThreadId;
   if (resourceAddress != 0) {
     do {
       resourceCreationFlags = resourceCreationFlags + 1;
-      *(uint8_t *)(currentThreadId + 0x141 + SystemResourceManager[3]) = 0;
-      currentThreadId = currentThreadId + 0x148;
+      *(uint8_t *)(CurrentThreadId + 0x141 + SystemResourceManager[3]) = 0;
+      CurrentThreadId = CurrentThreadId + 0x148;
     } while (resourceCreationFlags < (ulong long)SystemResourceManager[4]);
   }
   return SystemResourceManager;
@@ -38930,7 +38930,7 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
   uint *SystemHashEntryPointer;
   ulong long *SystemHashNodeData;
   ulong long resourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   ulong long ResourceHash;
   ulong long *hashTableNode;
   long long SystemMemoryAddress;
@@ -38940,8 +38940,8 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
   bool isByteValid2;
   char acStackX_8 [16];
   
-  currentThreadId = GetCurrentThreadId();
-  SystemOperationStatus1 = (currentThreadId >> 0x10 ^ currentThreadId) * -0x7a143595;
+  CurrentThreadId = GetCurrentThreadId();
+  SystemOperationStatus1 = (CurrentThreadId >> 0x10 ^ CurrentThreadId) * -0x7a143595;
   SystemOperationStatus1 = (SystemOperationStatus1 >> QUADRANT_SHIFT_BITS ^ SystemOperationStatus1) * -0x3d4d51cb;
   SystemOperationFlags = (ulong long)(SystemOperationStatus1 >> 0x10 ^ SystemOperationStatus1);
   hashTableNode = *(ulong long **)(SystemResourceManager + 0x30);
@@ -38950,7 +38950,7 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
     while( true ) {
       ResourceHash = ResourceHash & *SystemHashNodeData - 1;
       SystemOperationStatus1 = *(uint *)(ResourceHash * 0x10 + SystemHashNodeData[1]);
-      if (SystemOperationStatus1 == currentThreadId) {
+      if (SystemOperationStatus1 == CurrentThreadId) {
         SystemMemoryAddress = *(long long *)(SystemHashNodeData[1] + 8 + ResourceHash * 0x10);
         if (SystemHashNodeData == hashTableNode) {
           return SystemMemoryAddress;
@@ -38962,7 +38962,7 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
             LOCK();
             isByteValid2 = *SystemHashEntryPointer == 0;
             if (isByteValid2) {
-              *SystemHashEntryPointer = currentThreadId;
+              *SystemHashEntryPointer = CurrentThreadId;
             }
             UNLOCK();
             if (isByteValid2) {
@@ -39041,7 +39041,7 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
           LOCK();
           isByteValid2 = *SystemHashEntryPointer == 0;
           if (isByteValid2) {
-            *SystemHashEntryPointer = currentThreadId;
+            *SystemHashEntryPointer = CurrentThreadId;
           }
           UNLOCK();
           if (isByteValid2) {
@@ -39232,7 +39232,7 @@ long long ManageSystemResourceAllocationPool(void)
   int *pointerToInteger2;
   uint resourceAllocationContext;
   ulong long *presourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   long long SystemThreadFlags;
   ulong long ThreadContextFlag;
   ulong long systemStackFramePtr;
@@ -39295,10 +39295,10 @@ long long ManageSystemResourceAllocationPool(void)
       ThreadContextFlag = *presourceAddress;
     } while (systemStackFramePtr < *presourceAddress >> 1);
     do {
-      currentThreadId = ThreadContextFlag;
-      ThreadContextFlag = currentThreadId * 2;
-    } while ((currentThreadId & SINE_LOOKUP_TABLE_SIZEffffffffffff) <= systemStackFramePtr);
-    systemDataIndexPtr = (ulong long *)CreateSystemThreadObject(SystemMemoryPoolTemplate,currentThreadId * 0x20 + 0x1f,10);
+      CurrentThreadId = ThreadContextFlag;
+      ThreadContextFlag = CurrentThreadId * 2;
+    } while ((CurrentThreadId & SINE_LOOKUP_TABLE_SIZEffffffffffff) <= systemStackFramePtr);
+    systemDataIndexPtr = (ulong long *)CreateSystemThreadObject(SystemMemoryPoolTemplate,CurrentThreadId * 0x20 + 0x1f,10);
     if (systemDataIndexPtr == (ulong long *)0x0) break;
     *systemDataIndexPtr = ThreadContextFlag;
     systemDataIndexPtr[1] = (ulong long)(-(int)(systemDataIndexPtr + 3) & 7) + (long long)(systemDataIndexPtr + 3);
@@ -39632,7 +39632,7 @@ void* ExpandSystemResourceAllocator(long long SystemResourceManager,long long Co
   long long SystemThreadHandle;
   void* resourceAllocationContext;
   void* *presourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long ResourceHash;
   void** SystemCurrentNode;
   void** SystemNextNode;
@@ -39648,16 +39648,16 @@ void* ExpandSystemResourceAllocator(long long SystemResourceManager,long long Co
   resourceCounter = 0;
   hashTableNode = (void* *)((ulong long)(-(int)(presourceAddress + 4) & 7) + (long long)(presourceAddress + 4));
   if (*(long long *)(SystemResourceManager + 0x60) != 0) {
-    currentThreadId = *(long long *)(SystemResourceManager + 0x70) - *(long long *)(SystemResourceManager + 0x60) & SystemThreadHandle - 1U;
+    CurrentThreadId = *(long long *)(SystemResourceManager + 0x70) - *(long long *)(SystemResourceManager + 0x60) & SystemThreadHandle - 1U;
     SystemThreadStorage = hashTableNode;
     do {
       resourceCounter = resourceCounter + 1;
-      ResourceHash = currentThreadId + 1 & SystemThreadHandle - 1U;
-      SystemDataPointer = (void* *)(*(long long *)(SystemResourceManager + 0x78) + currentThreadId * 0x10);
+      ResourceHash = CurrentThreadId + 1 & SystemThreadHandle - 1U;
+      SystemDataPointer = (void* *)(*(long long *)(SystemResourceManager + 0x78) + CurrentThreadId * 0x10);
       resourceAllocationContext = SystemDataPointer[1];
       *SystemThreadStorage = *SystemDataPointer;
       SystemThreadStorage[1] = resourceAllocationContext;
-      currentThreadId = ResourceHash;
+      CurrentThreadId = ResourceHash;
       SystemThreadStorage = SystemThreadStorage + 2;
     } while (ResourceHash != *(ulong long *)(SystemResourceManager + 0x70));
   }
@@ -40376,7 +40376,7 @@ long long AllocateFromResourcePool(long long SystemResourceManager)
   uint *SystemHashEntryPointer;
   uint resourceAllocationContext;
   ulong long resourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   long long SystemThreadFlags;
   long long localDataIndex;
   long long SystemMemoryAddress;
@@ -40412,19 +40412,19 @@ ResourceCreation:
       return SystemThreadFlags;
     }
     SystemHashEntryPointer = (uint *)(resourceCounter + 0x130);
-    currentThreadId = *SystemHashEntryPointer;
-    if ((currentThreadId & SINE_LOOKUP_TABLE_SIZEffff) == 0) {
+    CurrentThreadId = *SystemHashEntryPointer;
+    if ((CurrentThreadId & SINE_LOOKUP_TABLE_SIZEffff) == 0) {
 ResourceAllocationCheck:
       SystemThreadFlags = *(long long *)(SystemResourceManager + 0x28);
       goto ResourcePoolAllocation;
     }
     LOCK();
     resourceAllocationContext = *SystemHashEntryPointer;
-    if (currentThreadId == resourceAllocationContext) {
-      *SystemHashEntryPointer = currentThreadId + 1;
+    if (CurrentThreadId == resourceAllocationContext) {
+      *SystemHashEntryPointer = CurrentThreadId + 1;
     }
     UNLOCK();
-    if (currentThreadId != resourceAllocationContext) goto ResourceAllocationCheck;
+    if (CurrentThreadId != resourceAllocationContext) goto ResourceAllocationCheck;
     LOCK();
     SystemThreadFlags = *(long long *)(SystemResourceManager + 0x28);
     isByteValid0 = resourceCounter == SystemThreadFlags;
@@ -40443,10 +40443,10 @@ ResourceAllocationCheck:
       goto ResourceCreation;
     }
     LOCK();
-    currentThreadId = *SystemHashEntryPointer;
+    CurrentThreadId = *SystemHashEntryPointer;
     *SystemHashEntryPointer = *SystemHashEntryPointer - 1;
     UNLOCK();
-    if (currentThreadId == 0x80000001) {
+    if (CurrentThreadId == 0x80000001) {
       SystemMemoryAddress = *(long long *)(SystemResourceManager + 0x28);
       do {
         *(long long *)(resourceCounter + 0x138) = SystemMemoryAddress;
@@ -40461,11 +40461,11 @@ ResourceAllocationCheck:
         UNLOCK();
         if (isByteValid0) break;
         LOCK();
-        currentThreadId = *SystemHashEntryPointer;
+        CurrentThreadId = *SystemHashEntryPointer;
         *SystemHashEntryPointer = *SystemHashEntryPointer + 0x7fffffff;
         UNLOCK();
         SystemMemoryAddress = localDataIndex;
-      } while (currentThreadId == 1);
+      } while (CurrentThreadId == 1);
     }
   } while( true );
 }
@@ -40578,12 +40578,12 @@ void CleanupSystemResources(void* *SystemResourceManager)
     SystemResourceDataIndex = 0;
     if ((SystemResourceManager[5] & BIT_MASK_32_BIT) != 0) {
       SystemOperationFlags = SystemResourceManager[0xe] - SystemResourceManager[0xc];
-      currentThreadId = SystemResourceManager[0xd] - 1;
+      CurrentThreadId = SystemResourceManager[0xd] - 1;
       while( true ) {
-        SystemOperationFlags = SystemOperationFlags & currentThreadId;
+        SystemOperationFlags = SystemOperationFlags & CurrentThreadId;
         if ((ulong long)((*(long long *)(SystemResourceManager[0xf] + SystemOperationFlags * 0x10) + 0x20) - SystemResourceManager[5]) <
             0x8000000000000001) break;
-        currentThreadId = SystemOperationFlags + 1;
+        CurrentThreadId = SystemOperationFlags + 1;
         SystemOperationFlags = SystemResourceManager[0xd] - 1;
       }
       SystemResourceDataIndex = *(long long *)(SystemResourceManager[0xf] + 8 + SystemOperationFlags * 0x10);
@@ -40591,12 +40591,12 @@ void CleanupSystemResources(void* *SystemResourceManager)
     resourceCounter = SystemResourceManager[8];
 ResourceProcessingLoop:
     resourceCounter = *(long long *)(resourceCounter + 0x100);
-    currentThreadId = 0;
+    CurrentThreadId = 0;
     do {
-      if (*(char *)(resourceCounter + 0x110 + currentThreadId) == '\0') {
-        currentThreadId = 0;
+      if (*(char *)(resourceCounter + 0x110 + CurrentThreadId) == '\0') {
+        CurrentThreadId = 0;
         if (resourceCounter == SystemResourceDataIndex) {
-          currentThreadId = (ulong long)((uint)SystemResourceManager[5] & BIT_MASK_32_BIT);
+          CurrentThreadId = (ulong long)((uint)SystemResourceManager[5] & BIT_MASK_32_BIT);
         }
         if ((SystemResourceManager[4] & BIT_MASK_32_BIT) == 0) {
           SystemOperationFlags = 0x20;
@@ -40606,8 +40606,8 @@ ResourceProcessingLoop:
         }
         goto ThreadProcessingLoop;
       }
-      currentThreadId = currentThreadId + 1;
-    } while (currentThreadId < 0x20);
+      CurrentThreadId = CurrentThreadId + 1;
+    } while (CurrentThreadId < 0x20);
     goto ResourceValidationCheck;
   }
 ResourceCleanupHandler:
@@ -40617,15 +40617,15 @@ ResourceCleanupHandler:
   }
     SystemCleanupFunction();
   while( true ) {
-    resourceAddress = (uint)currentThreadId;
-    currentThreadId = currentThreadId + 1;
+    resourceAddress = (uint)CurrentThreadId;
+    CurrentThreadId = CurrentThreadId + 1;
     PrimaryResourcePointer = *(long long **)(resourceCounter + (ulong long)(resourceAddress & BIT_MASK_32_BIT) * 8);
     if (PrimaryResourcePointer != (long long *)0x0) {
       (**(code **)(*PrimaryResourcePointer + 0x38))();
     }
-    if (currentThreadId == 0x20) break;
+    if (CurrentThreadId == 0x20) break;
 ThreadProcessingLoop:
-    if ((resourceCounter == SystemResourceManager[8]) && (currentThreadId == SystemOperationFlags)) break;
+    if ((resourceCounter == SystemResourceManager[8]) && (CurrentThreadId == SystemOperationFlags)) break;
   }
 ResourceValidationCheck:
   localDataIndex = SystemResourceManager[8];
@@ -41595,7 +41595,7 @@ void SynchronizeSystemResources(long long* SystemResourceManager,long long *Conf
   long long SystemThreadHandle;
   long long *SystemResourceOffsetPointer;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   long long SystemThreadFlags;
   long long localDataIndex;
   long long SystemMemoryAddress;
@@ -41618,11 +41618,11 @@ void SynchronizeSystemResources(long long* SystemResourceManager,long long *Conf
       SystemMemoryAddress = SystemResourceManager[9] - SystemThreadFlags >> 3;
       SystemThreadHandle = SystemMemoryAddress * 8 + 8;
       if (ThreadContextFlag != 0) {
-        currentThreadId = ThreadContextFlag >> 1;
-        if (currentThreadId < 2) {
-          currentThreadId = 1;
+        CurrentThreadId = ThreadContextFlag >> 1;
+        if (CurrentThreadId < 2) {
+          CurrentThreadId = 1;
         }
-          memmove(localDataIndex + (ThreadContextFlag - currentThreadId) * 8,SystemThreadFlags,SystemThreadHandle);
+          memmove(localDataIndex + (ThreadContextFlag - CurrentThreadId) * 8,SystemThreadFlags,SystemThreadHandle);
       }
       SystemThreadFlags = SystemBufferAddress;
       if (SystemBufferAddress == 0) {
@@ -44453,7 +44453,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   int systemResult;
   uint32_t resourceAllocationContext;
   int systemIndex;
-  void* currentThreadId;
+  void* CurrentThreadId;
   ulong long ResourceHash;
   uint8_t SystemDataBuffer1f8 [32];
   void* *SystemGlobalDataReferencePtr;
@@ -44551,8 +44551,8 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   else {
 SystemIndexCheckPoint:
     InitializeSystemStackFlag(&pSystemStackFlag);
-    currentThreadId = ProcessSystemQueue(&SystemMemoryContext,&SystemQueueConfigPtr);
-    systemIndex = GetSystemCounter(&pSystemStackFlag,currentThreadId);
+    CurrentThreadId = ProcessSystemQueue(&SystemMemoryContext,&SystemQueueConfigPtr);
+    systemIndex = GetSystemCounter(&pSystemStackFlag,CurrentThreadId);
     SystemMemoryContext = &SystemGlobalDataReference;
     if (LocalStackInitializationFlag != 0) {
         SystemCleanupFunction();
@@ -44576,8 +44576,8 @@ SystemIndexCheckPoint:
     ResourceHash = CalculateResourceHash();
     ConfigureSystemDataBuffer(&pSystemConfigurationId,&SystemDataBufferSizeTemplate,ResourceHash / 0x100000 & MAX_UNSIGNED_32_BIT);
     asecondarySystemDataBuffer[0] = 0x48;
-    currentThreadId = GetCurrentProcess();
-    systemIndex = K32GetProcessMemoryInfo(currentThreadId,asecondarySystemDataBuffer,0x48);
+    CurrentThreadId = GetCurrentProcess();
+    systemIndex = K32GetProcessMemoryInfo(CurrentThreadId,asecondarySystemDataBuffer,0x48);
     ResourceHash = 0;
     if (systemIndex != 0) {
       ResourceHash = SystemThreadContext;
@@ -44616,8 +44616,8 @@ SystemIndexCheckPoint:
       ProcessSystemStackConfiguration(&pSystemStackFlag);
     }
     ppUnsignedStackFlagA8 = &SystemMemoryContext;
-    currentThreadId = CreateSystemObject(&SystemMemoryContext,&pSystemStackFlag);
-    InitializeSecurityContext(currentThreadId);
+    CurrentThreadId = CreateSystemObject(&SystemMemoryContext,&pSystemStackFlag);
+    InitializeSecurityContext(CurrentThreadId);
     ConfigureSecurityParameters(&pSystemStackFlag,SystemContextPointer);
     CleanupAndValidateSystemResources(&pSystemStackFlag);
     SetupSystemConfiguration(&SystemMemoryContext);
@@ -45304,7 +45304,7 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
   long long SystemThreadHandle;
   int NodeIdentifierCompareResult;
   void* resourceAddress;
-  void* currentThreadId;
+  void* CurrentThreadId;
   long long *pSystemThreadFlags;
   uint StackBuffer1 [2];
   long long LocalCounterValue;
@@ -45341,7 +45341,7 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
       resourceAddress = SystemManagerPointerStorage;
       if (*(long long *)(LocalCounterValue + 0x1c8) < 1) {
         resourceDataIndex = *(long long *)(SystemResourceManager + 0x20);
-        currentThreadId = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x40,8,10);
+        CurrentThreadId = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x40,8,10);
         pStackValue1 = (long long *)&SystemThreadContext;
         memoryAllocationEnd = &SystemMemoryAllocationEndMarker;
         pSystemEncryptionKey = &SystemMemoryAllocationStartMarker;
@@ -45353,7 +45353,7 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
         ResourceAddressHigh32Copy = ResourceAddressHigh32;
         systemProcessFlags58 = encryptionValue68;
         ThreadHandleHigh32Copy = ThreadHandleHigh32;
-        pSystemThreadFlags = (long long *)InitializeSystemResource(currentThreadId,&SystemThreadContext);
+        pSystemThreadFlags = (long long *)InitializeSystemResource(CurrentThreadId,&SystemThreadContext);
         if (pSystemThreadFlags != (long long *)0x0) {
           (**(code **)(*pSystemThreadFlags + 0x28))(pSystemThreadFlags);
         }
@@ -45461,13 +45461,13 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
   long long *resourcePoolPointer;
   long long ResourceDataOffset;
   long long SystemBufferAddress;
-  void* currentThreadId;
+  void* CurrentThreadId;
   void* ResourceHash;
   void** SystemCurrentNode;
   long long *pSystemMemoryAddress;
   int systemId;
   long long SystemResourceIndex;
-  void** hashTableNode;
+  void** HashTableNode;
   long long SystemResourceContextPointer;
   long long SystemResourceContextValue;
   void* systemDataBuffer;
@@ -45484,7 +45484,7 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
   SystemBufferAddress = *(long long *)(ResourceDataOffset + 0x150);
   pSystemMemoryAddress = (long long *)0x0;
   if (SystemBufferAddress != 0) {
-    currentThreadId = *(void* *)(ResourceDataOffset + 0x158);
+    CurrentThreadId = *(void* *)(ResourceDataOffset + 0x158);
     ResourceHash = *(void* *)(ResourceDataOffset + 0x1e0);
     SystemResourceIndex = *(long long *)(ResourceDataOffset + 0x140);
     ResourceDataOffset = *(long long *)(ResourceDataOffset + 0x1f0);
@@ -45493,7 +45493,7 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
       *pSystemMemoryAddress = (long long)&SystemMemoryPoolTemplate;
       *(bool *)(pSystemMemoryAddress + 1) = SystemBufferAddress == 3;
     }
-    (**(code **)(*pSystemMemoryAddress + 0x18))(pSystemMemoryAddress,StackBuffer,systemId + ResourceDataOffset,SystemResourceIndex,ResourceHash,currentThreadId);
+    (**(code **)(*pSystemMemoryAddress + 0x18))(pSystemMemoryAddress,StackBuffer,systemId + ResourceDataOffset,SystemResourceIndex,ResourceHash,CurrentThreadId);
       SystemCleanupFunction(pSystemMemoryAddress);
   }
   SystemAllocationMode = 3;
@@ -45766,14 +45766,14 @@ void* AllocateSystemMemoryWithMutex(long long SystemResourceManager,long long Co
   char validationStatusFlag;
   int NodeIdentifierCompareResult;
   void* resourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   void** SystemRootNode;
   ulong long ThreadContextFlag;
   ulong long OperationCode;
   
   OperationCode = *(ulong long *)(AdditionalParameter + 0x118) & MAX_UNSIGNED_32_BITfffff000;
-  currentThreadId = (*(long long *)(AdditionalParameter + 0x120) - OperationCode) + *(ulong long *)(AdditionalParameter + 0x118);
-  ThreadContextFlag = (ulong long)(-(uint)((currentThreadId & 0xfff) != 0) & 0x1000) + (currentThreadId & MAX_UNSIGNED_32_BITfffff000);
+  CurrentThreadId = (*(long long *)(AdditionalParameter + 0x120) - OperationCode) + *(ulong long *)(AdditionalParameter + 0x118);
+  ThreadContextFlag = (ulong long)(-(uint)((CurrentThreadId & 0xfff) != 0) & 0x1000) + (CurrentThreadId & MAX_UNSIGNED_32_BITfffff000);
   systemCounter = _Mtx_lock(SystemResourceManager + 0x200380);
   if (systemCounter != 0) {
     __Throw_C_error_std__YAXH_Z(systemCounter);
@@ -45801,7 +45801,7 @@ void* AllocateSystemMemoryWithMutex(long long SystemResourceManager,long long Co
         _SystemConfigSizePtr = 0;
         LOCK();
         _SystemStringBufferPtr = OperationCode;
-        uRam00000000000001c8 = currentThreadId;
+        uRam00000000000001c8 = CurrentThreadId;
         uRam00000000000001d0 = ThreadContextFlag;
         uRam00000000000001d8 = OperationCode;
         lRam00000000000001f8 = ConfigurationDataPointer;
@@ -46969,7 +46969,7 @@ void* * AllocateThreadLocalStorage(long long* SystemResourceManager)
   uint *SystemHashEntryPointer;
   ulong long *SystemHashNodeData;
   ulong long threadIdHash;
-  uint currentThreadId;
+  uint CurrentThreadId;
   ulong long ResourceHash;
   ulong long *hashTableNode;
   void** HashNextNode;
@@ -46983,8 +46983,8 @@ void* * AllocateThreadLocalStorage(long long* SystemResourceManager)
   bool isEntryAvailable;
   bool isSlotEmpty;
   
-  currentThreadId = GetCurrentThreadId();
-  SystemOperationStatus4 = (currentThreadId >> 0x10 ^ currentThreadId) * -0x7a143595;
+  CurrentThreadId = GetCurrentThreadId();
+  SystemOperationStatus4 = (CurrentThreadId >> 0x10 ^ CurrentThreadId) * -0x7a143595;
   SystemOperationStatus4 = (SystemOperationStatus4 >> QUADRANT_SHIFT_BITS ^ SystemOperationStatus4) * -0x3d4d51cb;
   SystemOperationStatus3 = (ulong long)(SystemOperationStatus4 >> 0x10 ^ SystemOperationStatus4);
   hashTableNode = (ulong long *)SystemResourceManager[6];
@@ -46993,7 +46993,7 @@ void* * AllocateThreadLocalStorage(long long* SystemResourceManager)
     while( true ) {
       ResourceHash = ResourceHash & *SystemHashNodeData - 1;
       SystemOperationStatus4 = *(uint *)(ResourceHash * 0x10 + SystemHashNodeData[1]);
-      if (SystemOperationStatus4 == currentThreadId) {
+      if (SystemOperationStatus4 == CurrentThreadId) {
         ThreadLocalStorageEntry = *(void* **)(SystemHashNodeData[1] + 8 + ResourceHash * 0x10);
         if (SystemHashNodeData == hashTableNode) {
           return ThreadLocalStorageEntry;
@@ -47005,7 +47005,7 @@ void* * AllocateThreadLocalStorage(long long* SystemResourceManager)
             LOCK();
             isSlotEmpty = *SystemHashEntryPointer == 0;
             if (isSlotEmpty) {
-              *SystemHashEntryPointer = currentThreadId;
+              *SystemHashEntryPointer = CurrentThreadId;
             }
             UNLOCK();
             if (isSlotEmpty) {
@@ -47146,7 +47146,7 @@ SystemEntryCheckPoint:
       LOCK();
       isSlotEmpty = *SystemHashEntryPointer == 0;
       if (isSlotEmpty) {
-        *SystemHashEntryPointer = currentThreadId;
+        *SystemHashEntryPointer = CurrentThreadId;
       }
       UNLOCK();
       if (isSlotEmpty) {
@@ -47179,7 +47179,7 @@ ulong long AllocateSystemResource(void* SystemResourceManager,void* *Configurati
   long long *resourcePoolPointer;
   void* resourceAllocationContext;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long *resourceEntryPointer;
   
   SystemBufferAddress = AllocateThreadLocalStorage();
@@ -47188,47 +47188,47 @@ ulong long AllocateSystemResource(void* SystemResourceManager,void* *Configurati
   }
   SystemOperationStatus = *(ulong long *)(SystemBufferAddress + 0x20);
   if ((SystemOperationStatus & BIT_MASK_32_BIT) == 0) {
-    currentThreadId = (*(long long *)(SystemBufferAddress + 0x28) - SystemOperationStatus) - 0x20;
-    if ((0x8000000000000000 < currentThreadId) &&
+    CurrentThreadId = (*(long long *)(SystemBufferAddress + 0x28) - SystemOperationStatus) - 0x20;
+    if ((0x8000000000000000 < CurrentThreadId) &&
        (resourcePoolPointer = *(long long **)(SystemBufferAddress + 0x60), resourcePoolPointer != (long long *)0x0)) {
-      currentThreadId = *resourcePoolPointer - 1U & resourcePoolPointer[1] + 1U;
-      resourceEntryPointer = *(ulong long **)(resourcePoolPointer[3] + currentThreadId * 8);
+      CurrentThreadId = *resourcePoolPointer - 1U & resourcePoolPointer[1] + 1U;
+      resourceEntryPointer = *(ulong long **)(resourcePoolPointer[3] + CurrentThreadId * 8);
       if ((*resourceEntryPointer == 1) || (resourceEntryPointer[1] == 0)) {
         *resourceEntryPointer = SystemOperationStatus;
-        resourcePoolPointer[1] = currentThreadId;
+        resourcePoolPointer[1] = CurrentThreadId;
       }
       else {
-        currentThreadId = GetSystemResourceStatus(SystemBufferAddress);
-        if ((char)currentThreadId == '\0') goto ThreadIdCheckPoint;
+        CurrentThreadId = GetSystemResourceStatus(SystemBufferAddress);
+        if ((char)CurrentThreadId == '\0') goto ThreadIdCheckPoint;
         resourcePoolPointer = *(long long **)(SystemBufferAddress + 0x60);
-        currentThreadId = *resourcePoolPointer - 1U & resourcePoolPointer[1] + 1U;
-        resourceEntryPointer = *(ulong long **)(resourcePoolPointer[3] + currentThreadId * 8);
+        CurrentThreadId = *resourcePoolPointer - 1U & resourcePoolPointer[1] + 1U;
+        resourceEntryPointer = *(ulong long **)(resourcePoolPointer[3] + CurrentThreadId * 8);
         *resourceEntryPointer = SystemOperationStatus;
-        resourcePoolPointer[1] = currentThreadId;
+        resourcePoolPointer[1] = CurrentThreadId;
       }
-      currentThreadId = GetResourceOffsetPointer(*(void* *)(SystemBufferAddress + 0x50));
-      if (currentThreadId != 0) {
-        *(void* *)(currentThreadId + 0x108) = 0;
-        resourceEntryPointer[1] = currentThreadId;
-        *(ulong long *)(SystemBufferAddress + 0x40) = currentThreadId;
+      CurrentThreadId = GetResourceOffsetPointer(*(void* *)(SystemBufferAddress + 0x50));
+      if (CurrentThreadId != 0) {
+        *(void* *)(CurrentThreadId + 0x108) = 0;
+        resourceEntryPointer[1] = CurrentThreadId;
+        *(ulong long *)(SystemBufferAddress + 0x40) = CurrentThreadId;
         goto ThreadIdCheckPointEnd;
       }
       resourcePoolPointer = *(long long **)(SystemBufferAddress + 0x60);
-      currentThreadId = resourcePoolPointer[1] - 1;
-      resourcePoolPointer[1] = *resourcePoolPointer - 1U & currentThreadId;
+      CurrentThreadId = resourcePoolPointer[1] - 1;
+      resourcePoolPointer[1] = *resourcePoolPointer - 1U & CurrentThreadId;
       resourceEntryPointer[1] = 0;
     }
 ThreadIdCheckPoint:
-    currentThreadId = currentThreadId & MAX_UNSIGNED_32_BITffffff00;
+    CurrentThreadId = CurrentThreadId & MAX_UNSIGNED_32_BITffffff00;
   }
   else {
 ThreadIdCheckPointEnd:
     resourceAllocationContext = *ConfigurationDataPointer;
     *(void* *)(*(long long *)(SystemBufferAddress + 0x40) + (ulong long)((uint)SystemOperationStatus & BIT_MASK_32_BIT) * 8) = resourceAllocationContext;
     *(ulong long *)(SystemBufferAddress + 0x20) = SystemOperationStatus + 1;
-    currentThreadId = CONCAT71((int7)((ulong long)resourceAllocationContext >> 8),1);
+    CurrentThreadId = CONCAT71((int7)((ulong long)resourceAllocationContext >> 8),1);
   }
-  return currentThreadId;
+  return CurrentThreadId;
 }
 
 
@@ -48176,7 +48176,7 @@ void AllocateAndConfigureSystemResource(long long SystemResourceManager,long lon
   long long *resourcePoolPointer;
   long long ResourceDataOffset;
   ulong long resourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   ulong long ResourceHash;
   void*7 ThreadContextFlag;
   
@@ -48202,10 +48202,10 @@ void AllocateAndConfigureSystemResource(long long SystemResourceManager,long lon
   *(void* *)(ConfigurationDataPointer + 0x198) = 0;
   *(void* *)(ConfigurationDataPointer + 400) = 0;
   *(void* *)(ConfigurationDataPointer + 0x188) = 0;
-  currentThreadId = (*(long long *)(ConfigurationDataPointer + 0x120) - (*(ulong long *)(ConfigurationDataPointer + 0x118) & MAX_UNSIGNED_32_BITfffff000))
+  CurrentThreadId = (*(long long *)(ConfigurationDataPointer + 0x120) - (*(ulong long *)(ConfigurationDataPointer + 0x118) & MAX_UNSIGNED_32_BITfffff000))
           + *(ulong long *)(ConfigurationDataPointer + 0x118);
-  ResourceHash = currentThreadId & MAX_UNSIGNED_32_BITfffff000;
-  ResourceDataOffset = (-(uint)((currentThreadId & 0xfff) != 0) & 0x1000) + ResourceHash;
+  ResourceHash = CurrentThreadId & MAX_UNSIGNED_32_BITfffff000;
+  ResourceDataOffset = (-(uint)((CurrentThreadId & 0xfff) != 0) & 0x1000) + ResourceHash;
   if (*(ulong long *)(SystemResourceManager + 0x360) < resourceAddress) {
     ThreadContextFlag = (void*7)(ResourceHash >> 8);
     if (resourceDataIndex == 0) {
@@ -49176,7 +49176,7 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
   uint *SystemHashEntryPointer;
   ulong long *SystemHashNodeData;
   ulong long resourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   ulong long ResourceHash;
   ulong long *hashTableNode;
   void** SystemNextNode;
@@ -49190,8 +49190,8 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
   bool isEntryAvailable;
   bool isSlotEmpty;
   
-  currentThreadId = GetCurrentThreadId();
-  SystemOperationStatus4 = (currentThreadId >> 0x10 ^ currentThreadId) * -0x7a143595;
+  CurrentThreadId = GetCurrentThreadId();
+  SystemOperationStatus4 = (CurrentThreadId >> 0x10 ^ CurrentThreadId) * -0x7a143595;
   SystemOperationStatus4 = (SystemOperationStatus4 >> QUADRANT_SHIFT_BITS ^ SystemOperationStatus4) * -0x3d4d51cb;
   SystemOperationStatus3 = (ulong long)(SystemOperationStatus4 >> 0x10 ^ SystemOperationStatus4);
   hashTableNode = (ulong long *)SystemResourceManager[6];
@@ -49200,7 +49200,7 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
     while( true ) {
       ResourceHash = ResourceHash & *SystemHashNodeData - 1;
       SystemOperationStatus4 = *(uint *)(ResourceHash * 0x10 + SystemHashNodeData[1]);
-      if (SystemOperationStatus4 == currentThreadId) {
+      if (SystemOperationStatus4 == CurrentThreadId) {
         ThreadLocalStorageEntry = *(void* **)(SystemHashNodeData[1] + 8 + ResourceHash * 0x10);
         if (SystemHashNodeData == hashTableNode) {
           return ThreadLocalStorageEntry;
@@ -49212,7 +49212,7 @@ void** GetThreadLocalStorageEntry(long long* SystemResourceManager)
             LOCK();
             isSlotEmpty = *SystemHashEntryPointer == 0;
             if (isSlotEmpty) {
-              *SystemHashEntryPointer = currentThreadId;
+              *SystemHashEntryPointer = CurrentThreadId;
             }
             UNLOCK();
             if (isSlotEmpty) {
@@ -49353,7 +49353,7 @@ EntryAvailableCheck:
       LOCK();
       isSlotEmpty = *SystemHashEntryPointer == 0;
       if (isSlotEmpty) {
-        *SystemHashEntryPointer = currentThreadId;
+        *SystemHashEntryPointer = CurrentThreadId;
       }
       UNLOCK();
       if (isSlotEmpty) {
@@ -49653,7 +49653,7 @@ long long CalculateAndFindSystemResourceManager(long long SystemResourceManager)
   uint *SystemHashEntryPointer;
   uint resourceAllocationContext;
   ulong long resourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   long long SystemThreadFlags;
   long long localDataIndex;
   long long SystemMemoryAddress;
@@ -49689,19 +49689,19 @@ ThreadContextComplete:
       return SystemThreadFlags;
     }
     SystemHashEntryPointer = (uint *)(resourceCounter + 0x3530);
-    currentThreadId = *SystemHashEntryPointer;
-    if ((currentThreadId & SINE_LOOKUP_TABLE_SIZEffff) == 0) {
+    CurrentThreadId = *SystemHashEntryPointer;
+    if ((CurrentThreadId & SINE_LOOKUP_TABLE_SIZEffff) == 0) {
 ThreadIdValidationCheck:
       SystemThreadFlags = *(long long *)(SystemResourceManager + 0x28);
       goto ContextValidationCheck;
     }
     LOCK();
     resourceAllocationContext = *SystemHashEntryPointer;
-    if (currentThreadId == resourceAllocationContext) {
-      *SystemHashEntryPointer = currentThreadId + 1;
+    if (CurrentThreadId == resourceAllocationContext) {
+      *SystemHashEntryPointer = CurrentThreadId + 1;
     }
     UNLOCK();
-    if (currentThreadId != resourceAllocationContext) goto ThreadIdValidationCheck;
+    if (CurrentThreadId != resourceAllocationContext) goto ThreadIdValidationCheck;
     LOCK();
     SystemThreadFlags = *(long long *)(SystemResourceManager + 0x28);
     isByteValid0 = resourceCounter == SystemThreadFlags;
@@ -49720,10 +49720,10 @@ ThreadIdValidationCheck:
       goto LAB_18006d9f6;
     }
     LOCK();
-    currentThreadId = *SystemHashEntryPointer;
+    CurrentThreadId = *SystemHashEntryPointer;
     *SystemHashEntryPointer = *SystemHashEntryPointer - 1;
     UNLOCK();
-    if (currentThreadId == 0x80000001) {
+    if (CurrentThreadId == 0x80000001) {
       SystemMemoryAddress = *(long long *)(SystemResourceManager + 0x28);
       do {
         *(long long *)(resourceCounter + 0x3538) = SystemMemoryAddress;
@@ -49738,11 +49738,11 @@ ThreadIdValidationCheck:
         UNLOCK();
         if (isByteValid0) break;
         LOCK();
-        currentThreadId = *SystemHashEntryPointer;
+        CurrentThreadId = *SystemHashEntryPointer;
         *SystemHashEntryPointer = *SystemHashEntryPointer + 0x7fffffff;
         UNLOCK();
         SystemMemoryAddress = localDataIndex;
-      } while (currentThreadId == 1);
+      } while (CurrentThreadId == 1);
     }
   } while( true );
 }
@@ -50350,7 +50350,7 @@ void CleanupSystemResourceManagers(long long* SystemResourceManager)
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   
   SystemHashNodeData = (void* *)*SystemResourceManager;
   if (SystemHashNodeData != (void* *)0x0) {
@@ -50375,11 +50375,11 @@ void CleanupSystemResourceManagers(long long* SystemResourceManager)
   if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
-  if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
+  CurrentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
+  if (CurrentThreadId != 0) {
+    SystemBufferAddress = CurrentThreadId + 0x80 + ((long long)SystemHashNodeData - CurrentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
-    if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
+    if ((*(void ***)(CurrentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
       *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
       *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
@@ -50390,8 +50390,8 @@ void CleanupSystemResourceManagers(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          SystemHashNodeData,currentThreadId,InvalidHandleValue);
+      SystemExceptionCheck(CurrentThreadId,CONCAT71(0xff000000,*(void ***)(CurrentThreadId + 0x70) == &ExceptionList),
+                          SystemHashNodeData,CurrentThreadId,InvalidHandleValue);
     }
   }
   return;
@@ -50417,7 +50417,7 @@ void CleanupResourceManagerExtendedPointers(long long* SystemResourceManager)
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   
   SystemHashNodeData = (void* *)*SystemResourceManager;
   if (SystemHashNodeData != (void* *)0x0) {
@@ -50442,11 +50442,11 @@ void CleanupResourceManagerExtendedPointers(long long* SystemResourceManager)
   if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
-  if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
+  CurrentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
+  if (CurrentThreadId != 0) {
+    SystemBufferAddress = CurrentThreadId + 0x80 + ((long long)SystemHashNodeData - CurrentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
-    if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
+    if ((*(void ***)(CurrentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
       *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
       *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
@@ -50457,8 +50457,8 @@ void CleanupResourceManagerExtendedPointers(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          SystemHashNodeData,currentThreadId,InvalidHandleValue);
+      SystemExceptionCheck(CurrentThreadId,CONCAT71(0xff000000,*(void ***)(CurrentThreadId + 0x70) == &ExceptionList),
+                          SystemHashNodeData,CurrentThreadId,InvalidHandleValue);
     }
   }
   return;
@@ -50502,7 +50502,7 @@ void CleanupSystemStringIteratorResources(void)
   void* *hashNodePointer;
   long long SystemBufferAddress;
   long long StringIteratorPointer;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   
   if ((*(long long *)(StringIteratorPointer + 0x30) != 0) &&
      (*(long long *)(*(long long *)(StringIteratorPointer + 0x30) + 0x10) != 0)) {
@@ -50518,11 +50518,11 @@ void CleanupSystemStringIteratorResources(void)
   }
   hashNodePointer = *(void* **)(StringIteratorPointer + 0x18);
   if (hashNodePointer != (void* *)0x0) {
-    currentThreadId = (ulong long)hashNodePointer & MAX_UNSIGNED_32_BITffc00000;
-    if (currentThreadId != 0) {
-      SystemBufferAddress = currentThreadId + 0x80 + ((long long)hashNodePointer - currentThreadId >> 0x10) * 0x50;
+    CurrentThreadId = (ulong long)hashNodePointer & MAX_UNSIGNED_32_BITffc00000;
+    if (CurrentThreadId != 0) {
+      SystemBufferAddress = CurrentThreadId + 0x80 + ((long long)hashNodePointer - CurrentThreadId >> 0x10) * 0x50;
       SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
-      if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
+      if ((*(void ***)(CurrentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
         *hashNodePointer = *(void* *)(SystemBufferAddress + 0x20);
         *(void* **)(SystemBufferAddress + 0x20) = hashNodePointer;
         resourceReferenceCount = (int *)(SystemBufferAddress + 0x18);
@@ -50533,8 +50533,8 @@ void CleanupSystemStringIteratorResources(void)
         }
       }
       else {
-        SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                            hashNodePointer,currentThreadId,InvalidHandleValue);
+        SystemExceptionCheck(CurrentThreadId,CONCAT71(0xff000000,*(void ***)(CurrentThreadId + 0x70) == &ExceptionList),
+                            hashNodePointer,CurrentThreadId,InvalidHandleValue);
       }
     }
     return;
@@ -50604,7 +50604,7 @@ void DestroySystemResources(long long* SystemResourceManager)
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
@@ -50631,11 +50631,11 @@ void DestroySystemResources(long long* SystemResourceManager)
   if (SystemHashNodeData == (void* *)0x0) {
     return;
   }
-  currentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
-  if (currentThreadId != 0) {
-    SystemBufferAddress = currentThreadId + 0x80 + ((long long)SystemHashNodeData - currentThreadId >> 0x10) * 0x50;
+  CurrentThreadId = (ulong long)SystemHashNodeData & MAX_UNSIGNED_32_BITffc00000;
+  if (CurrentThreadId != 0) {
+    SystemBufferAddress = CurrentThreadId + 0x80 + ((long long)SystemHashNodeData - CurrentThreadId >> 0x10) * 0x50;
     SystemBufferAddress = SystemBufferAddress - (ulong long)*(uint *)(SystemBufferAddress + 4);
-    if ((*(void ***)(currentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
+    if ((*(void ***)(CurrentThreadId + 0x70) == &ExceptionList) && (*(char *)(SystemBufferAddress + 0xe) == '\0')) {
       *SystemHashNodeData = *(void* *)(SystemBufferAddress + 0x20);
       *(void* **)(SystemBufferAddress + 0x20) = SystemHashNodeData;
       SystemIntegerPointer = (int *)(SystemBufferAddress + 0x18);
@@ -50646,8 +50646,8 @@ void DestroySystemResources(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(currentThreadId,CONCAT71(0xff000000,*(void ***)(currentThreadId + 0x70) == &ExceptionList),
-                          SystemHashNodeData,currentThreadId,InvalidHandleValue);
+      SystemExceptionCheck(CurrentThreadId,CONCAT71(0xff000000,*(void ***)(CurrentThreadId + 0x70) == &ExceptionList),
+                          SystemHashNodeData,CurrentThreadId,InvalidHandleValue);
     }
   }
   return;
@@ -52216,7 +52216,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   bool isSystemActive;
   char characterProcessingFlag;
   int systemIndex;
-  uint currentThreadId;
+  uint CurrentThreadId;
   uint ResourceHash;
   uint32_t ThreadContextFlag;
   int systemCode;
@@ -52283,10 +52283,10 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   SystemOperationMode = 4;
   ResourceHash = *(uint *)(resourceCounter + 0x10);
   SystemContextPointer = (ulong long)ResourceHash;
-  currentThreadId = 0;
+  CurrentThreadId = 0;
   if (*(long long *)(resourceCounter + 8) == 0) {
 LAB_180070a3f:
-    SystemOperationStatus4 = currentThreadId;
+    SystemOperationStatus4 = CurrentThreadId;
     if (ResourceHash != 0) {
         memcpy(SystemDataPointer0,*(void* *)(resourceCounter + 8),SystemContextPointer);
     }
@@ -52299,16 +52299,16 @@ LAB_180070a3f:
     SystemDataPointer0 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)systemIndex,0x13);
     *SystemDataPointer0 = 0;
     pUnsignedStackFlag110 = SystemDataPointer0;
-    currentThreadId = StartSystemThread(SystemDataPointer0);
-    EncryptionOffset2 = ConcatenatedValue44(EncryptionOffset2._4_4_,currentThreadId);
+    CurrentThreadId = StartSystemThread(SystemDataPointer0);
+    EncryptionOffset2 = ConcatenatedValue44(EncryptionOffset2._4_4_,CurrentThreadId);
     goto LAB_180070a3f;
   }
   if (SystemDataPointer0 != (uint8_t *)0x0) {
     SystemDataPointer0[SystemContextPointer] = 0;
   }
-  currentThreadId = *(uint *)(resourceCounter + 0x1c);
+  CurrentThreadId = *(uint *)(resourceCounter + 0x1c);
   EncryptionOffset1 = ResourceHash;
-  EncryptionOffset2._4_4_ = currentThreadId;
+  EncryptionOffset2._4_4_ = CurrentThreadId;
   if (ConfigurationDataPointer != 0) {
     resourceCounter = -1;
     do {
@@ -52406,8 +52406,8 @@ LAB_180070b00:
   }
   SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
   *SystemMemoryContext = 0;
-  currentThreadId = StartSystemThread(SystemMemoryContext);
-  SystemMemoryOffset = ConcatenatedValue44(SystemMemoryOffset.HighPart,currentThreadId);
+  CurrentThreadId = StartSystemThread(SystemMemoryContext);
+  SystemMemoryOffset = ConcatenatedValue44(SystemMemoryOffset.HighPart,CurrentThreadId);
   *(void*2 *)(SystemMemoryContext + StackValue2) = 10;
   StackValue2 = 1;
   ResourceHash = 2;
@@ -52419,7 +52419,7 @@ LAB_180070db8:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = ConcatenatedValue44(SystemMemoryOffset.HighPart,ThreadContextFlag);
   }
-  else if (currentThreadId < 3) {
+  else if (CurrentThreadId < 3) {
     SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
     StackValue2 = 1;
     SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,3,0x10);
@@ -52435,7 +52435,7 @@ LAB_180070db8:
     } while (*(char *)(ConfigurationDataPointer + resourceDataIndex5) != '\0');
     systemIndex = (int)resourceDataIndex5;
     if (0 < systemIndex) {
-      currentThreadId = ResourceHash;
+      CurrentThreadId = ResourceHash;
       if (systemIndex != -2) {
         SystemOperationStatus4 = systemIndex + 3;
         if (SystemMemoryContext == (uint8_t *)0x0) {
@@ -52447,7 +52447,7 @@ LAB_180070db8:
           *SystemMemoryContext = 0;
         }
         else {
-          currentThreadId = StackValue2;
+          CurrentThreadId = StackValue2;
           if (SystemOperationStatus4 <= (uint)SystemMemoryOffset) goto LAB_180070e64;
           SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
           StackValue2 = ResourceHash;
@@ -52455,10 +52455,10 @@ LAB_180070db8:
         }
         ThreadContextFlag = StartSystemThread(SystemMemoryContext);
         SystemMemoryOffset = ConcatenatedValue44(SystemMemoryOffset.HighPart,ThreadContextFlag);
-        currentThreadId = StackValue2;
+        CurrentThreadId = StackValue2;
       }
 LAB_180070e64:
-      StackValue2 = currentThreadId;
+      StackValue2 = CurrentThreadId;
         memcpy(SystemMemoryContext + StackValue2,ConfigurationDataPointer,(long long)((int)resourceDataIndex6 + 2));
     }
   }
@@ -52480,8 +52480,8 @@ LAB_180070ee8:
   StackValue2 = 3;
   ProcessSystemData(&pSystemThreadContext140,secondarySystemDataBuffer);
   ResourceHash = StackValue2;
-  currentThreadId = StackValue2 + 1;
-  if (currentThreadId != 0) {
+  CurrentThreadId = StackValue2 + 1;
+  if (CurrentThreadId != 0) {
     SystemOperationStatus4 = StackValue2 + 2;
     if (SystemMemoryContext == (uint8_t *)0x0) {
       if ((int)SystemOperationStatus4 < 0x10) {
@@ -52501,20 +52501,20 @@ LAB_180070ee8:
 LAB_180070f81:
   *(void*2 *)(SystemMemoryContext + StackValue2) = 10;
   SystemOperationStatus4 = ResourceHash + 0xd;
-  StackValue2 = currentThreadId;
+  StackValue2 = CurrentThreadId;
   if (SystemOperationStatus4 != 0) {
-    currentThreadId = ResourceHash + 0xe;
+    CurrentThreadId = ResourceHash + 0xe;
     if (SystemMemoryContext == (uint8_t *)0x0) {
-      if ((int)currentThreadId < 0x10) {
-        currentThreadId = 0x10;
+      if ((int)CurrentThreadId < 0x10) {
+        CurrentThreadId = 0x10;
       }
-      SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)currentThreadId,0x13);
+      SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)CurrentThreadId,0x13);
       *SystemMemoryContext = 0;
     }
     else {
-      if (currentThreadId <= (uint)SystemMemoryOffset) goto LAB_180071000;
+      if (CurrentThreadId <= (uint)SystemMemoryOffset) goto LAB_180071000;
       SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
-      SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,currentThreadId,0x10);
+      SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,CurrentThreadId,0x10);
     }
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryOffset = ConcatenatedValue44(SystemMemoryOffset.HighPart,ThreadContextFlag);
@@ -54970,7 +54970,7 @@ void ProcessSystemResourceOperationB(void)
   uint *SystemHashNodeData;
   long long SystemBufferAddress;
   long long *memoryBlockAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   long long systemResourceHandle;
   
   CopySystemMemoryData();
@@ -54987,12 +54987,12 @@ void ProcessSystemResourceOperationB(void)
   memoryBlockAddress[1] = SystemBufferAddress;
   if (*(ushort *)(systemResourceHandle + 0x62) != 0) {
     resourceCreationFlags = *(void* *)(systemResourceHandle + 0x5a);
-    currentThreadId = (ulong long)*(ushort *)(systemResourceHandle + 0x62) * 4;
-    if ((ulong long)((*memoryBlockAddress - SystemBufferAddress) + memoryBlockAddress[2]) <= currentThreadId) {
+    CurrentThreadId = (ulong long)*(ushort *)(systemResourceHandle + 0x62) * 4;
+    if ((ulong long)((*memoryBlockAddress - SystemBufferAddress) + memoryBlockAddress[2]) <= CurrentThreadId) {
       CopySystemMemoryData();
       SystemBufferAddress = memoryBlockAddress[1];
     }
-      memcpy(SystemBufferAddress,resourceCreationFlags,currentThreadId);
+      memcpy(SystemBufferAddress,resourceCreationFlags,CurrentThreadId);
   }
   return;
 }
@@ -55374,18 +55374,18 @@ void InitializeSystemBufferManager(long long SystemResourceManager)
   long long SystemBufferAddress;
   ulong long StringIteratorPointer;
   long long systemDataIndexPtr;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   long long SystemContextPointer;
   ulong long *resourceEntryPointer;
   long long systemResourceHandle;
   
-  currentThreadId = StringIteratorPointer & MAX_UNSIGNED_32_BIT;
+  CurrentThreadId = StringIteratorPointer & MAX_UNSIGNED_32_BIT;
   do {
     ResourceDataOffset = SystemResourceManager;
     SystemBufferAddress = *memoryBlockAddress;
     *(int **)(systemDataIndexPtr + 8) = (int *)(ResourceDataOffset + 8);
     SystemOperationStatus = *(int *)(ResourceDataOffset + 8);
-    resourceEntryPointer = (ulong long *)(SystemBufferAddress + currentThreadId);
+    resourceEntryPointer = (ulong long *)(SystemBufferAddress + CurrentThreadId);
     *(long long *)(systemDataIndexPtr + 8) = ResourceDataOffset + 0xc;
     if (0 < SystemOperationStatus) {
       *(short *)(resourceEntryPointer + 2) = (short)SystemOperationStatus;
@@ -55396,16 +55396,16 @@ void InitializeSystemBufferManager(long long SystemResourceManager)
       if (*resourceEntryPointer == 0) {
         *resourceEntryPointer = StringIteratorPointer;
         if ((ulong long)(ushort)resourceEntryPointer[2] == 0) {
-          currentThreadId = 0;
+          CurrentThreadId = 0;
           resourceCreationFlags = StringIteratorPointer;
         }
         else {
           resourceCreationFlags = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)(ushort)resourceEntryPointer[2] * 4,4);
-          currentThreadId = (ulong long)(ushort)resourceEntryPointer[2];
+          CurrentThreadId = (ulong long)(ushort)resourceEntryPointer[2];
         }
         resourceEntryPointer[1] = resourceCreationFlags;
-        if (currentThreadId != 0) {
-          StringIteratorPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,currentThreadId << 4,4);
+        if (CurrentThreadId != 0) {
+          StringIteratorPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,CurrentThreadId << 4,4);
         }
         *resourceEntryPointer = StringIteratorPointer;
           memcpy(resourceEntryPointer[1],*(void* *)(systemDataIndexPtr + 8),(long long)(SystemOperationStatus * 4));
@@ -55415,7 +55415,7 @@ void InitializeSystemBufferManager(long long SystemResourceManager)
     SystemBufferAddress = *memoryBlockAddress;
     *(int **)(systemDataIndexPtr + 8) = (int *)(ResourceDataOffset + 0x14);
     SystemOperationStatus = *(int *)(ResourceDataOffset + 0x14);
-    SystemBufferAddress = SystemBufferAddress + currentThreadId;
+    SystemBufferAddress = SystemBufferAddress + CurrentThreadId;
     *(long long *)(systemDataIndexPtr + 8) = ResourceDataOffset + 0x18;
     if (0 < SystemOperationStatus) {
       *(short *)(SystemBufferAddress + 0x22) = (short)SystemOperationStatus;
@@ -55426,23 +55426,23 @@ void InitializeSystemBufferManager(long long SystemResourceManager)
       if (*(long long *)(SystemBufferAddress + 0x12) == 0) {
         *(ulong long *)(SystemBufferAddress + 0x12) = StringIteratorPointer;
         if ((ulong long)*(ushort *)(SystemBufferAddress + 0x22) == 0) {
-          currentThreadId = 0;
+          CurrentThreadId = 0;
           resourceCreationFlags = StringIteratorPointer;
         }
         else {
           resourceCreationFlags = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)*(ushort *)(SystemBufferAddress + 0x22) * 4,4);
-          currentThreadId = (ulong long)*(ushort *)(SystemBufferAddress + 0x22);
+          CurrentThreadId = (ulong long)*(ushort *)(SystemBufferAddress + 0x22);
         }
         *(ulong long *)(SystemBufferAddress + 0x1a) = resourceCreationFlags;
-        if (currentThreadId != 0) {
-          StringIteratorPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,currentThreadId << 4,4);
+        if (CurrentThreadId != 0) {
+          StringIteratorPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,CurrentThreadId << 4,4);
         }
         *(ulong long *)(SystemBufferAddress + 0x12) = StringIteratorPointer;
           memcpy(*(void* *)(SystemBufferAddress + 0x1a),*(void* *)(systemDataIndexPtr + 8),(long long)(SystemOperationStatus * 4));
       }
         SystemCleanupFunction();
     }
-    currentThreadId = currentThreadId + 0x24;
+    CurrentThreadId = CurrentThreadId + 0x24;
     SystemContextPointer = SystemContextPointer + -1;
     SystemResourceManager = ResourceDataOffset + 0x18;
   } while (SystemContextPointer != 0);
@@ -55462,16 +55462,16 @@ void InitializeSystemBufferManager(long long SystemResourceManager)
       if (*(long long *)(systemResourceHandle + 0x52) == 0) {
         *(ulong long *)(systemResourceHandle + 0x52) = StringIteratorPointer;
         if ((ulong long)*(ushort *)(systemResourceHandle + 0x62) == 0) {
-          currentThreadId = 0;
+          CurrentThreadId = 0;
           resourceCreationFlags = StringIteratorPointer;
         }
         else {
           resourceCreationFlags = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)*(ushort *)(systemResourceHandle + 0x62) * 4,4);
-          currentThreadId = (ulong long)*(ushort *)(systemResourceHandle + 0x62);
+          CurrentThreadId = (ulong long)*(ushort *)(systemResourceHandle + 0x62);
         }
         *(ulong long *)(systemResourceHandle + 0x5a) = resourceCreationFlags;
-        if (currentThreadId != 0) {
-          StringIteratorPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,currentThreadId << 4,4);
+        if (CurrentThreadId != 0) {
+          StringIteratorPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,CurrentThreadId << 4,4);
         }
         *(ulong long *)(systemResourceHandle + 0x52) = StringIteratorPointer;
           memcpy(*(void* *)(systemResourceHandle + 0x5a),*(void* *)(systemDataIndexPtr + 8),
@@ -55489,16 +55489,16 @@ void InitializeSystemBufferManager(long long SystemResourceManager)
   if (*(long long *)(systemResourceHandle + 0x40) == 0) {
     *(ulong long *)(systemResourceHandle + 0x40) = StringIteratorPointer;
     if ((ulong long)*(ushort *)(systemResourceHandle + 0x50) == 0) {
-      currentThreadId = 0;
+      CurrentThreadId = 0;
       resourceCreationFlags = StringIteratorPointer;
     }
     else {
       resourceCreationFlags = CreateSystemThreadObject(SystemMemoryPoolTemplate,(ulong long)*(ushort *)(systemResourceHandle + 0x50) * 4,4);
-      currentThreadId = (ulong long)*(ushort *)(systemResourceHandle + 0x50);
+      CurrentThreadId = (ulong long)*(ushort *)(systemResourceHandle + 0x50);
     }
     *(ulong long *)(systemResourceHandle + 0x48) = resourceCreationFlags;
-    if (currentThreadId != 0) {
-      StringIteratorPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,currentThreadId << 4,4);
+    if (CurrentThreadId != 0) {
+      StringIteratorPointer = CreateSystemThreadObject(SystemMemoryPoolTemplate,CurrentThreadId << 4,4);
     }
     *(ulong long *)(systemResourceHandle + 0x40) = StringIteratorPointer;
       memcpy(*(void* *)(systemResourceHandle + 0x48),*(void* *)(systemDataIndexPtr + 8),(long long)(SystemOperationStatus * 4));
@@ -57495,7 +57495,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   uint32_t resourceCreationFlags;
   long long ResourceDataOffset;
   uint32_t resourceAddress;
-  uint32_t currentThreadId;
+  uint32_t CurrentThreadId;
   uint32_t ResourceHash;
   void* ThreadContextFlag;
   void* OperationCode;
@@ -57533,7 +57533,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   SystemResourceDataIndex = SystemResourceManager[0x1a];
   resourceAddress = *(uint32_t *)((long long)SystemResourceManager + 0xd4);
   resourceDataIndex2 = SystemResourceManager[0x1b];
-  currentThreadId = *(uint32_t *)((long long)SystemResourceManager + 0xdc);
+  CurrentThreadId = *(uint32_t *)((long long)SystemResourceManager + 0xdc);
   resourceDataIndex3 = SystemResourceManager[0x1c];
   ResourceHash = *(uint32_t *)((long long)SystemResourceManager + 0xe4);
   ResourceDataOffset = *ConfigurationDataPointer;
@@ -57542,7 +57542,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   *(int *)(ResourceDataOffset + 0xd0) = (int)SystemResourceDataIndex;
   *(uint32_t *)(ResourceDataOffset + 0xd4) = resourceAddress;
   *(int *)(ResourceDataOffset + 0xd8) = (int)resourceDataIndex2;
-  *(uint32_t *)(ResourceDataOffset + 0xdc) = currentThreadId;
+  *(uint32_t *)(ResourceDataOffset + 0xdc) = CurrentThreadId;
   *(int *)(ResourceDataOffset + 0xe0) = (int)resourceDataIndex3;
   *(uint32_t *)(ResourceDataOffset + 0xe4) = ResourceHash;
   if ((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x20) == 0) {
@@ -57633,7 +57633,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   resourceDataIndex5 = SystemResourceManager[0x31];
   resourceAddress = *(uint32_t *)((long long)SystemResourceManager + 0x18c);
   resourceDataIndex6 = SystemResourceManager[0x32];
-  currentThreadId = *(uint32_t *)((long long)SystemResourceManager + 0x194);
+  CurrentThreadId = *(uint32_t *)((long long)SystemResourceManager + 0x194);
   resourceDataIndex7 = SystemResourceManager[0x33];
   ResourceHash = *(uint32_t *)((long long)SystemResourceManager + 0x19c);
   ResourceDataOffset = *ConfigurationDataPointer;
@@ -57646,7 +57646,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   *(int *)(ResourceDataOffset + 0x188) = (int)resourceDataIndex5;
   *(uint32_t *)(ResourceDataOffset + 0x18c) = resourceAddress;
   *(int *)(ResourceDataOffset + 400) = (int)resourceDataIndex6;
-  *(uint32_t *)(ResourceDataOffset + 0x194) = currentThreadId;
+  *(uint32_t *)(ResourceDataOffset + 0x194) = CurrentThreadId;
   *(int *)(ResourceDataOffset + 0x198) = (int)resourceDataIndex7;
   *(uint32_t *)(ResourceDataOffset + 0x19c) = ResourceHash;
   pisByteValid = (byte *)(*ConfigurationDataPointer + 0xfd);
@@ -57791,7 +57791,7 @@ void ConfigureSystemResourceManagerThread(long long SystemResourceManager,long l
   long long SystemThreadHandle;
   uint8_t resourceAllocationContext;
   byte isResourceAvailable;
-  uint currentThreadId;
+  uint CurrentThreadId;
   long long SystemThreadFlags;
   long long *plocalDataIndex;
   
@@ -57806,13 +57806,13 @@ void ConfigureSystemResourceManagerThread(long long SystemResourceManager,long l
       isByteValid = *(byte *)(SystemResourceManager + 0xfd);
       isResourceAvailable = (byte)((uint)*(uint32_t *)(*(long long *)(SystemThreadHandle + 0x1e0) + 0x1588) >> 0x1b) << 7;
       *(byte *)(SystemResourceManager + 0xfd) = isResourceAvailable | isByteValid & 0x7f;
-      currentThreadId = *(uint *)(SystemThreadHandle + 0x138) & 0x3000;
-      if (currentThreadId == 0x1000) {
+      CurrentThreadId = *(uint *)(SystemThreadHandle + 0x138) & 0x3000;
+      if (CurrentThreadId == 0x1000) {
         *(uint8_t *)(SystemResourceManager + 0xf7) = 1;
       }
       else {
         resourceAllocationContext = 0;
-        if (currentThreadId == 0x2000) {
+        if (CurrentThreadId == 0x2000) {
           resourceAllocationContext = 2;
         }
         *(uint8_t *)(SystemResourceManager + 0xf7) = resourceAllocationContext;
@@ -58011,7 +58011,7 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
   uint32_t extraout_XMM0_Da;
   uint32_t SystemOperationStatus5;
   void* SystemContextValue;
-  void** hashTableNode;
+  void** HashTableNode;
   void** SystemStackPointer;
   uint InputStackParameterNegative38;
   void* SystemOperationStatusFlags;
@@ -59901,7 +59901,7 @@ void ExecuteSystemTransformOperations(void)
   void* resourceCreationFlags;
   void* resourceAllocationContext;
   void* resourceAddress;
-  void* currentThreadId;
+  void* CurrentThreadId;
   void* ResourceHash;
   void* ThreadContextFlag;
   void* OperationCode;
@@ -59924,7 +59924,7 @@ void ExecuteSystemTransformOperations(void)
   OperationCode = InputStackParameter90;
   ThreadContextFlag = InputStackParameter88;
   ResourceHash = InputStackParameter80;
-  currentThreadId = InputStackParameter78;
+  CurrentThreadId = InputStackParameter78;
   resourceAddress = InputStackParameter70;
   resourceAllocationContext = InputStackParameter68;
   resourceCreationFlags = InputStackParameter60;
@@ -59956,7 +59956,7 @@ void ExecuteSystemTransformOperations(void)
     *(void* *)(memoryBlockAddress + 0x160) = resourceCreationFlags;
     *(void* *)(memoryBlockAddress + 0x168) = resourceAllocationContext;
     *(void* *)(memoryBlockAddress + 0x170) = resourceAddress;
-    *(void* *)(memoryBlockAddress + 0x178) = currentThreadId;
+    *(void* *)(memoryBlockAddress + 0x178) = CurrentThreadId;
     *(void* *)(memoryBlockAddress + 0x180) = ResourceHash;
     *(void* *)(memoryBlockAddress + 0x188) = ThreadContextFlag;
     *(void* *)(memoryBlockAddress + 400) = OperationCode;
@@ -60766,9 +60766,9 @@ void ConfigureSystemResourceManager(void* *SystemResourceManager,void* Configura
   long long *resourcePoolPointer;
   long long ResourceDataOffset;
   uint32_t resourceAddress;
-  void* currentThreadId;
+  void* CurrentThreadId;
   
-  currentThreadId = 0xfffffffffffffffe;
+  CurrentThreadId = 0xfffffffffffffffe;
   if (0 < *(int *)(SystemDataBufferPointer + 0x40)) {
     SystemResourceManager[0x26] = *(void* *)(SystemDataBufferPointer + 0x38);
   }
@@ -60830,7 +60830,7 @@ void ConfigureSystemResourceManager(void* *SystemResourceManager,void* Configura
     ConfigureSystemResourceAddress(resourceAddress,SystemResourceManager + 0x18);
   }
   else {
-    (**(code **)((void* *)*SystemResourceManager + 0x10))(SystemResourceManager,0,AdditionalParameter,ConfigurationFlag,currentThreadId);
+    (**(code **)((void* *)*SystemResourceManager + 0x10))(SystemResourceManager,0,AdditionalParameter,ConfigurationFlag,CurrentThreadId);
   }
   return;
 }
@@ -65099,33 +65099,33 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
      (((*(float *)(SystemResourceManager + 0x238) == *(float *)(ConfigurationDataPointer + 0x44) &&
        (*(float *)(SystemResourceManager + 0x23c) == *(float *)(ConfigurationDataPointer + 0x48))) &&
       (*(float *)(SystemResourceManager + 0x240) == *(float *)(ConfigurationDataPointer + 0x4c))))) {
-    currentThreadId = *(void* *)(AdditionalParameter + 0x4c);
+    CurrentThreadId = *(void* *)(AdditionalParameter + 0x4c);
     *(void* *)(SystemResourceManager + 0x238) = *(void* *)(AdditionalParameter + 0x44);
-    *(void* *)(SystemResourceManager + 0x240) = currentThreadId;
+    *(void* *)(SystemResourceManager + 0x240) = CurrentThreadId;
   }
   if ((ConfigurationDataPointer == 0) ||
      (((*(float *)(SystemResourceManager + 0x248) == *(float *)(ConfigurationDataPointer + 0x54) &&
        (*(float *)(SystemResourceManager + 0x24c) == *(float *)(ConfigurationDataPointer + 0x58))) &&
       (*(float *)(SystemResourceManager + 0x250) == *(float *)(ConfigurationDataPointer + 0x5c))))) {
-    currentThreadId = *(void* *)(AdditionalParameter + 0x5c);
+    CurrentThreadId = *(void* *)(AdditionalParameter + 0x5c);
     *(void* *)(SystemResourceManager + 0x248) = *(void* *)(AdditionalParameter + 0x54);
-    *(void* *)(SystemResourceManager + 0x250) = currentThreadId;
+    *(void* *)(SystemResourceManager + 0x250) = CurrentThreadId;
   }
   if ((ConfigurationDataPointer == 0) ||
      (((*(float *)(SystemResourceManager + 0x2a8) == *(float *)(ConfigurationDataPointer + 100) &&
        (*(float *)(SystemResourceManager + 0x2ac) == *(float *)(ConfigurationDataPointer + 0x68))) &&
       (*(float *)(SystemResourceManager + 0x2b0) == *(float *)(ConfigurationDataPointer + 0x6c))))) {
-    currentThreadId = *(void* *)(AdditionalParameter + 0x6c);
+    CurrentThreadId = *(void* *)(AdditionalParameter + 0x6c);
     *(void* *)(SystemResourceManager + 0x2a8) = *(void* *)(AdditionalParameter + 100);
-    *(void* *)(SystemResourceManager + 0x2b0) = currentThreadId;
+    *(void* *)(SystemResourceManager + 0x2b0) = CurrentThreadId;
   }
   if ((ConfigurationDataPointer == 0) ||
      (((*(float *)(SystemResourceManager + 0x2b8) == *(float *)(ConfigurationDataPointer + 0x74) &&
        (*(float *)(SystemResourceManager + 700) == *(float *)(ConfigurationDataPointer + 0x78))) &&
       (*(float *)(SystemResourceManager + 0x2c0) == *(float *)(ConfigurationDataPointer + 0x7c))))) {
-    currentThreadId = *(void* *)(AdditionalParameter + 0x7c);
+    CurrentThreadId = *(void* *)(AdditionalParameter + 0x7c);
     *(void* *)(SystemResourceManager + 0x2b8) = *(void* *)(AdditionalParameter + 0x74);
-    *(void* *)(SystemResourceManager + 0x2c0) = currentThreadId;
+    *(void* *)(SystemResourceManager + 0x2c0) = CurrentThreadId;
   }
   if (sourceString == 0) {
     *(uint32_t *)(SystemResourceManager + 0x100) = *(uint32_t *)(AdditionalParameter + 0x30);
@@ -65330,12 +65330,12 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
   *(uint32_t *)(SystemResourceManager + 0x1fc) = *(uint32_t *)(AdditionalParameter + 0x8c);
   *(uint32_t *)(SystemResourceManager + 0x200) = *(uint32_t *)(AdditionalParameter + 0x90);
   *(uint32_t *)(SystemResourceManager + 0x204) = *(uint32_t *)(AdditionalParameter + 0x94);
-  currentThreadId = *(void* *)(AdditionalParameter + 0xa0);
+  CurrentThreadId = *(void* *)(AdditionalParameter + 0xa0);
   *(void* *)(SystemResourceManager + 0x274) = *(void* *)(AdditionalParameter + 0x98);
-  *(void* *)(SystemResourceManager + 0x27c) = currentThreadId;
-  currentThreadId = *(void* *)(AdditionalParameter + 0xb0);
+  *(void* *)(SystemResourceManager + 0x27c) = CurrentThreadId;
+  CurrentThreadId = *(void* *)(AdditionalParameter + 0xb0);
   *(void* *)(SystemResourceManager + 0x284) = *(void* *)(AdditionalParameter + 0xa8);
-  *(void* *)(SystemResourceManager + 0x28c) = currentThreadId;
+  *(void* *)(SystemResourceManager + 0x28c) = CurrentThreadId;
   resourceCreationFlags = *(uint32_t *)(AdditionalParameter + 0xbc);
   resourceAllocationContext = *(uint32_t *)(AdditionalParameter + 0xc0);
   resourceAddress = *(uint32_t *)(AdditionalParameter + 0xc4);
@@ -65750,20 +65750,20 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
   systemIndex = _Thrd_id();
   if (systemIndex == systemCounter) {
     resourceDataIndex = (ulong long)ConfigurationDataPointer * 0x18;
-    currentThreadId = *(void* *)(*(long long *)(SystemResourceManager + 0x1e0) + resourceDataIndex);
+    CurrentThreadId = *(void* *)(*(long long *)(SystemResourceManager + 0x1e0) + resourceDataIndex);
     pplStack_a0 = &plStack_a8;
     plStack_a8 = (long long *)*AdditionalParameter;
     if (plStack_a8 != (long long *)0x0) {
       (**(code **)(*plStack_a8 + 0x28))();
     }
-    ProcessThreadIdData(currentThreadId,&plStack_a8);
-    currentThreadId = *(void* *)(*(long long *)(SystemResourceManager + 0x1e0) + 8 + resourceDataIndex);
+    ProcessThreadIdData(CurrentThreadId,&plStack_a8);
+    CurrentThreadId = *(void* *)(*(long long *)(SystemResourceManager + 0x1e0) + 8 + resourceDataIndex);
     pplStack_a0 = &plStack_b8;
     plStack_b8 = (long long *)*ConfigurationFlag;
     if (plStack_b8 != (long long *)0x0) {
       (**(code **)(*plStack_b8 + 0x28))();
     }
-    ProcessThreadHandleData(currentThreadId,&plStack_b8);
+    ProcessThreadHandleData(CurrentThreadId,&plStack_b8);
     pSystemOperationResult = (char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + resourceDataIndex);
     LOCK();
     if (*pSystemOperationResult == '\x01') {
@@ -65772,7 +65772,7 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     UNLOCK();
   }
   else {
-    currentThreadId = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x40,8,0x20);
+    CurrentThreadId = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x40,8,0x20);
     pplStack_a0 = aplStack_58;
     plStack_b0 = &lStack_98;
     pSystemConfigurationData = (long long *)*AdditionalParameter;
@@ -65809,7 +65809,7 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     if (pSystemConfigurationData != (long long *)0x0) {
       (**(code **)(*pSystemConfigurationData + 0x38))();
     }
-    pSystemThreadFlags = (long long *)CreateMemoryAllocationHandle(currentThreadId,aplStack_58);
+    pSystemThreadFlags = (long long *)CreateMemoryAllocationHandle(CurrentThreadId,aplStack_58);
     pLocalSystemValue = pSystemThreadFlags;
     if (pSystemThreadFlags != (long long *)0x0) {
       (**(code **)(*pSystemThreadFlags + 0x28))(pSystemThreadFlags);
@@ -66608,7 +66608,7 @@ void ConfigureSystemResourceDataStructure(long long SystemResourceManager,long l
   long long SystemThreadHandle;
   uint resourceAllocationContext;
   void* resourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   long long *PrimaryResourcePointer;
   
   if (*(int *)(SystemResourceManager + 0x88) != 0) {
@@ -66630,19 +66630,19 @@ void ConfigureSystemResourceDataStructure(long long SystemResourceManager,long l
                             memcpy(SystemThreadHandle,*(void* *)(SystemResourceManager + 0x90),(long long)*(int *)(SystemResourceManager + 0x88) * 0xc);
       return;
     }
-    currentThreadId = 0;
+    CurrentThreadId = 0;
     if (*(int *)(SystemResourceManager + 0x88) != 0) {
       do {
-        resourceDataIndex = (long long)(int)currentThreadId * 0xc;
-        resourceAllocationContext = currentThreadId * 3;
+        resourceDataIndex = (long long)(int)CurrentThreadId * 0xc;
+        resourceAllocationContext = CurrentThreadId * 3;
         *(void*2 *)(SystemThreadHandle + (ulong long)resourceAllocationContext * 2) =
              *(void*2 *)(resourceDataIndex + *(long long *)(SystemResourceManager + 0x90));
         *(void*2 *)(SystemThreadHandle + (ulong long)(resourceAllocationContext + 1) * 2) =
              *(void*2 *)(*(long long *)(SystemResourceManager + 0x90) + 4 + resourceDataIndex);
         *(void*2 *)(SystemThreadHandle + (ulong long)(resourceAllocationContext + 2) * 2) =
              *(void*2 *)(*(long long *)(SystemResourceManager + 0x90) + 8 + resourceDataIndex);
-        currentThreadId = currentThreadId + 1;
-      } while (currentThreadId < *(uint *)(SystemResourceManager + 0x88));
+        CurrentThreadId = CurrentThreadId + 1;
+      } while (CurrentThreadId < *(uint *)(SystemResourceManager + 0x88));
     }
   }
   return;
@@ -67296,11 +67296,11 @@ void CheckSystemStatus(long long SystemResourceManager)
           ResourceHash = *(uint *)(*(long long *)(SystemResourceManager + 0x2d0) + 0x14);
           SystemOperationStatus4 = (ulong long)ResourceHash;
           resourceCreationFlags = *(uint *)(*(long long *)(SystemResourceManager + 0x2d0) + 0x18);
-          currentThreadId = (uint)SystemOperationStatus3;
-          if (currentThreadId == ResourceHash + systemOffset >> 0xb) {
+          CurrentThreadId = (uint)SystemOperationStatus3;
+          if (CurrentThreadId == ResourceHash + systemOffset >> 0xb) {
             OperationCode = resourceCreationFlags >> 0xb;
             if (OperationCode == resourceCreationFlags + ResourceHash >> 0xb) {
-                memcpy(*(long long *)(resourceCounter + 8 + SystemOperationStatus3 * 8) + (ulong long)(systemOffset + currentThreadId * -0x800) * 8
+                memcpy(*(long long *)(resourceCounter + 8 + SystemOperationStatus3 * 8) + (ulong long)(systemOffset + CurrentThreadId * -0x800) * 8
                      ,*(long long *)(resourceDataIndex5 + 8 + (ulong long)OperationCode * 8) +
                       (ulong long)(resourceCreationFlags + OperationCode * -0x800) * 8,(long long)(int)ResourceHash << 3);
             }
@@ -67308,8 +67308,8 @@ void CheckSystemStatus(long long SystemResourceManager)
           if (0 < (int)ResourceHash) {
             do {
               systemIndex = (int)SystemOperationStatus1;
-              currentThreadId = (resourceCreationFlags - systemOffset) + systemIndex;
-              ResourceHash = currentThreadId >> 0xb;
+              CurrentThreadId = (resourceCreationFlags - systemOffset) + systemIndex;
+              ResourceHash = CurrentThreadId >> 0xb;
               SystemOperationStatus3 = SystemOperationStatus1 >> 0xb;
               SystemOperationStatus1 = (ulong long)(systemIndex + 1);
               *(void* *)
@@ -67317,7 +67317,7 @@ void CheckSystemStatus(long long SystemResourceManager)
                (ulong long)(uint)(systemIndex + (int)SystemOperationStatus3 * -0x800) * 8) =
                    *(void* *)
                     (*(long long *)(resourceDataIndex5 + 8 + (ulong long)ResourceHash * 8) +
-                    (ulong long)(currentThreadId + ResourceHash * -0x800) * 8);
+                    (ulong long)(CurrentThreadId + ResourceHash * -0x800) * 8);
               SystemOperationStatus4 = SystemOperationStatus4 - 1;
             } while (SystemOperationStatus4 != 0);
           }
@@ -67331,16 +67331,16 @@ void CheckSystemStatus(long long SystemResourceManager)
     }
     else {
       SystemAllocationFlags = (long long)*(int *)(SystemDataMemoryContext + 0x9c8) * 0x488 + SystemDataMemoryContext + 0xb8;
-      currentThreadId = GetResourceIdentifier(SystemAllocationFlags);
-      resourceCreationFlags = currentThreadId >> 0xb;
+      CurrentThreadId = GetResourceIdentifier(SystemAllocationFlags);
+      resourceCreationFlags = CurrentThreadId >> 0xb;
       ResourceHash = *(uint *)(*(void* **)(SystemResourceManager + 0x2d0) + 1);
       SystemOperationStatus4 = (ulong long)ResourceHash;
       pSystemOutputStatus = (void* *)**(void* **)(SystemResourceManager + 0x2d0);
-      if (resourceCreationFlags == ResourceHash + currentThreadId >> 0xb) {
+      if (resourceCreationFlags == ResourceHash + CurrentThreadId >> 0xb) {
           memcpy(*(long long *)(SystemAllocationFlags + 8 + (ulong long)resourceCreationFlags * 8) +
-               (ulong long)(currentThreadId + resourceCreationFlags * -0x800) * 8,pSystemOutputStatus,(ulong long)ResourceHash << 3);
+               (ulong long)(CurrentThreadId + resourceCreationFlags * -0x800) * 8,pSystemOutputStatus,(ulong long)ResourceHash << 3);
       }
-      resourceCreationFlags = currentThreadId;
+      resourceCreationFlags = CurrentThreadId;
       if (ResourceHash != 0) {
         do {
           resourceAllocationContext = *pSystemOutputStatus;
@@ -67354,7 +67354,7 @@ void CheckSystemStatus(long long SystemResourceManager)
       }
       *(uint32_t *)(*(long long *)(SystemResourceManager + 0x2d0) + 0x14) =
            *(uint32_t *)(*(long long *)(SystemResourceManager + 0x2d0) + 8);
-      *(uint *)(*(long long *)(SystemResourceManager + 0x2d0) + 0x18) = currentThreadId;
+      *(uint *)(*(long long *)(SystemResourceManager + 0x2d0) + 0x18) = CurrentThreadId;
       *(int *)(*(long long *)(SystemResourceManager + 0x2d0) + 0xc) = SystemOperationStatus;
     }
   }
@@ -67373,7 +67373,7 @@ void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int Co
   void* resourceCreationFlags;
   int NodeIdentifierCompareResult;
   uint resourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   int CalculationFlags;
   uint SystemLoopCounter;
   long long memoryBlockAddress;
@@ -67387,42 +67387,42 @@ void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int Co
   
   if (ConfigurationDataPointer < 1) {
     if (AdditionalParameter == resourceIndex + -1) {
-      currentThreadId = *(int *)(SystemDataMemoryContext + 0x9c8) + 1U & 0x80000001;
-      if ((int)currentThreadId < 0) {
-        currentThreadId = (currentThreadId - 1 | 0xfffffffe) + 1;
+      CurrentThreadId = *(int *)(SystemDataMemoryContext + 0x9c8) + 1U & 0x80000001;
+      if ((int)CurrentThreadId < 0) {
+        CurrentThreadId = (CurrentThreadId - 1 | 0xfffffffe) + 1;
       }
-      resourceDataIndex3 = (long long)(int)currentThreadId * 0x488 + SystemDataMemoryContext + 0xb8;
+      resourceDataIndex3 = (long long)(int)CurrentThreadId * 0x488 + SystemDataMemoryContext + 0xb8;
       SystemMemoryAddress = (long long)*(int *)(SystemDataMemoryContext + 0x9c8) * 0x488 + SystemDataMemoryContext + 0xb8;
       SystemOutputStatus = GetResourceIdentifier(SystemMemoryAddress,*(uint32_t *)(SystemResourceManager + 0x14));
       CalculationFlags = (int)SystemOutputStatus;
       ThreadContextFlag = SystemOutputStatus & MAX_UNSIGNED_32_BIT;
       if (-1 < CalculationFlags) {
         SystemOperationStatus1 = SystemOutputStatus >> 0xb & BIT_MASK_32_BITffff;
-        currentThreadId = *(uint *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x14);
-        SystemOutputStatus = (ulong long)currentThreadId;
+        CurrentThreadId = *(uint *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x14);
+        SystemOutputStatus = (ulong long)CurrentThreadId;
         SystemOperationStatus = *(uint *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x18);
         resourceAddress = (uint)SystemOperationStatus1;
-        if (resourceAddress == currentThreadId + CalculationFlags >> 0xb) {
+        if (resourceAddress == CurrentThreadId + CalculationFlags >> 0xb) {
           ThreadContextFlag = SystemOperationStatus >> 0xb;
-          if (ThreadContextFlag == SystemOperationStatus + currentThreadId >> 0xb) {
+          if (ThreadContextFlag == SystemOperationStatus + CurrentThreadId >> 0xb) {
               memcpy(*(long long *)(SystemMemoryAddress + 8 + SystemOperationStatus1 * 8) + (ulong long)(CalculationFlags + resourceAddress * -0x800) * 8,
                    *(long long *)(resourceDataIndex3 + 8 + (ulong long)ThreadContextFlag * 8) +
-                   (ulong long)(SystemOperationStatus + ThreadContextFlag * -0x800) * 8,(long long)(int)currentThreadId << 3);
+                   (ulong long)(SystemOperationStatus + ThreadContextFlag * -0x800) * 8,(long long)(int)CurrentThreadId << 3);
           }
         }
-        if (0 < (int)currentThreadId) {
+        if (0 < (int)CurrentThreadId) {
           do {
             systemCounter = (int)ThreadContextFlag;
             resourceAddress = (SystemOperationStatus - CalculationFlags) + systemCounter;
-            currentThreadId = resourceAddress >> 0xb;
+            CurrentThreadId = resourceAddress >> 0xb;
             SystemOperationStatus1 = ThreadContextFlag >> 0xb;
             ThreadContextFlag = (ulong long)(systemCounter + 1);
             *(void* *)
              (*(long long *)(SystemMemoryAddress + 8 + SystemOperationStatus1 * 8) +
              (ulong long)(uint)(systemCounter + (int)SystemOperationStatus1 * -0x800) * 8) =
                  *(void* *)
-                  (*(long long *)(resourceDataIndex3 + 8 + (ulong long)currentThreadId * 8) +
-                  (ulong long)(resourceAddress + currentThreadId * -0x800) * 8);
+                  (*(long long *)(resourceDataIndex3 + 8 + (ulong long)CurrentThreadId * 8) +
+                  (ulong long)(resourceAddress + CurrentThreadId * -0x800) * 8);
             SystemOutputStatus = SystemOutputStatus - 1;
           } while (SystemOutputStatus != 0);
         }
@@ -67438,15 +67438,15 @@ void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int Co
     SystemMemoryAddress = (long long)*(int *)(SystemDataMemoryContext + 0x9c8) * 0x488 + SystemDataMemoryContext + 0xb8;
     resourceAddress = GetResourceIdentifier(SystemMemoryAddress);
     SystemOperationStatus = resourceAddress >> 0xb;
-    currentThreadId = *(uint *)(*(void* **)(memoryBlockAddress + 0x2d0) + 1);
-    SystemOutputStatus = (ulong long)currentThreadId;
+    CurrentThreadId = *(uint *)(*(void* **)(memoryBlockAddress + 0x2d0) + 1);
+    SystemOutputStatus = (ulong long)CurrentThreadId;
     SystemDataPointer0 = (void* *)**(void* **)(memoryBlockAddress + 0x2d0);
-    if (SystemOperationStatus == currentThreadId + resourceAddress >> 0xb) {
+    if (SystemOperationStatus == CurrentThreadId + resourceAddress >> 0xb) {
         memcpy(*(long long *)(SystemMemoryAddress + 8 + (ulong long)SystemOperationStatus * 8) +
-             (ulong long)(resourceAddress + SystemOperationStatus * -0x800) * 8,SystemDataPointer0,(ulong long)currentThreadId << 3);
+             (ulong long)(resourceAddress + SystemOperationStatus * -0x800) * 8,SystemDataPointer0,(ulong long)CurrentThreadId << 3);
     }
     SystemOperationStatus = resourceAddress;
-    if (currentThreadId != 0) {
+    if (CurrentThreadId != 0) {
       do {
         resourceCreationFlags = *SystemDataPointer0;
         SystemDataPointer0 = SystemDataPointer0 + 1;
@@ -67476,7 +67476,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager,l
   int systemResult;
   uint resourceAllocationContext;
   int systemIndex;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   uint ResourceHash;
   uint SystemLoopCounter;
   long long memoryBlockAddress;
@@ -67491,13 +67491,13 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager,l
   }
   SystemAllocationFlags = (long long)(int)resourceAllocationContext * 0x488 + ConfigurationDataPointer;
   ConfigurationDataPointer = (long long)*(int *)(ConfigurationDataPointer + 0x910) * 0x488 + ConfigurationDataPointer;
-  currentThreadId = GetResourceIdentifier(ConfigurationDataPointer,*(uint32_t *)(SystemResourceManager + 0x14));
-  systemIndex = (int)currentThreadId;
-  OperationCode = currentThreadId & MAX_UNSIGNED_32_BIT;
+  CurrentThreadId = GetResourceIdentifier(ConfigurationDataPointer,*(uint32_t *)(SystemResourceManager + 0x14));
+  systemIndex = (int)CurrentThreadId;
+  OperationCode = CurrentThreadId & MAX_UNSIGNED_32_BIT;
   if (-1 < systemIndex) {
-    ThreadContextFlag = currentThreadId >> 0xb & BIT_MASK_32_BITffff;
+    ThreadContextFlag = CurrentThreadId >> 0xb & BIT_MASK_32_BITffff;
     resourceAllocationContext = *(uint *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x14);
-    currentThreadId = (ulong long)resourceAllocationContext;
+    CurrentThreadId = (ulong long)resourceAllocationContext;
     SystemOperationStatus = *(uint *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x18);
     ThreadContextFlag = (uint)ThreadContextFlag;
     if (ThreadContextFlag == resourceAllocationContext + systemIndex >> 0xb) {
@@ -67521,8 +67521,8 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager,l
              *(void* *)
               (*(long long *)(SystemAllocationFlags + 8 + (ulong long)resourceAllocationContext * 8) +
               (ulong long)(ThreadContextFlag + resourceAllocationContext * -0x800) * 8);
-        currentThreadId = currentThreadId - 1;
-      } while (currentThreadId != 0);
+        CurrentThreadId = CurrentThreadId - 1;
+      } while (CurrentThreadId != 0);
     }
     *(int *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0x18) = systemIndex;
     *(uint32_t *)(*(long long *)(memoryBlockAddress + 0x2d0) + 0xc) = resourceIndex;
@@ -67599,7 +67599,7 @@ void ProcessSystemResourceManagerThread(long long SystemResourceManager,long lon
   void** SystemDataTable;
   void* *SystemHashNodeData;
   void* *presourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   int *pointerToInteger7;
   long long SystemMemoryAddress;
   ulong long ThreadContextFlag;
@@ -67619,11 +67619,11 @@ void ProcessSystemResourceManagerThread(long long SystemResourceManager,long lon
       SystemHashNodeData = SystemHashEntryPointer;
       resourceEntryPointer = presourceAddress;
       do {
-        currentThreadId = (int)resourceEntryPointer + 1;
-        resourceEntryPointer = (void* *)(ulong long)currentThreadId;
+        CurrentThreadId = (int)resourceEntryPointer + 1;
+        resourceEntryPointer = (void* *)(ulong long)CurrentThreadId;
         *SystemHashNodeData = 0;
         SystemHashNodeData = SystemHashNodeData + 1;
-      } while ((ulong long)(long long)(int)currentThreadId < ThreadContextFlag);
+      } while ((ulong long)(long long)(int)CurrentThreadId < ThreadContextFlag);
     }
     **(void* **)(SystemResourceManager + 0x2d0) = SystemHashEntryPointer;
     if (3 < (long long)ThreadContextFlag) {
@@ -67677,7 +67677,7 @@ void InitializeSystemResourceManagerData(void)
   long long systemStackFramePtr;
   long long systemDataIndexPtr;
   uint resourceAddress;
-  ulong long currentThreadId;
+  ulong long CurrentThreadId;
   int *pointerToInteger6;
   long long localDataIndex;
   ulong long systemResourceCounter;
@@ -67689,11 +67689,11 @@ void InitializeSystemResourceManagerData(void)
   }
   else {
     SystemHashEntryPointer = (ulong long *)CreateSystemThreadObject(SystemMemoryPoolTemplate,systemResourceCounter * 8,3);
-    currentThreadId = memoryBlockAddress & MAX_UNSIGNED_32_BIT;
+    CurrentThreadId = memoryBlockAddress & MAX_UNSIGNED_32_BIT;
     SystemHashNodeData = SystemHashEntryPointer;
     do {
-      resourceAddress = (int)currentThreadId + 1;
-      currentThreadId = (ulong long)resourceAddress;
+      resourceAddress = (int)CurrentThreadId + 1;
+      CurrentThreadId = (ulong long)resourceAddress;
       *SystemHashNodeData = memoryBlockAddress;
       SystemHashNodeData = SystemHashNodeData + 1;
     } while ((ulong long)(long long)(int)resourceAddress < systemResourceCounter);
@@ -68032,9 +68032,9 @@ void CleanupSystemResourceEncryption(char *SystemResourceManager,void* Configura
   long long *resourcePoolPointer;
   long long *SystemResourceOffsetPointer;
   long long SystemBufferAddress;
-  void* currentThreadId;
+  void* CurrentThreadId;
   
-  currentThreadId = 0xfffffffffffffffe;
+  CurrentThreadId = 0xfffffffffffffffe;
   resourceDataIndex = *(long long *)(SystemResourceManager + 8);
   if (resourceDataIndex != 0) {
     resourcePoolPointer = *(long long **)(SystemResourceManager + 0x18);
@@ -68054,7 +68054,7 @@ void CleanupSystemResourceEncryption(char *SystemResourceManager,void* Configura
         ExecuteSystemOperation(*(void* *)(SystemResourceManager + 8));
         SystemBufferAddress = *(long long *)(SystemResourceManager + 8);
       }
-      ProcessSystemDataBuffer(SystemBufferAddress,1,AdditionalParameter,ConfigurationFlag,currentThreadId);
+      ProcessSystemDataBuffer(SystemBufferAddress,1,AdditionalParameter,ConfigurationFlag,CurrentThreadId);
       *(uint32_t *)(resourceDataIndex + 0xf0) = 0;
       LOCK();
       *(uint8_t *)(resourceDataIndex + 0xec) = 0;
@@ -68225,7 +68225,7 @@ uint GetSystemResourceStatusFlag(void)
   byte isSystemActive;
   char characterProcessingFlag;
   int systemIndex;
-  uint currentThreadId;
+  uint CurrentThreadId;
   long long memoryBlockAddress;
   void* *StringIteratorPointer;
   bool isThreadActive;
@@ -68249,21 +68249,21 @@ uint GetSystemResourceStatusFlag(void)
 LAB_18007f89f:
   LOCK();
   SystemDataPointer = (uint *)(memoryBlockAddress + 0xe8);
-  currentThreadId = *SystemDataPointer;
+  CurrentThreadId = *SystemDataPointer;
   *SystemDataPointer = *SystemDataPointer - 1;
   UNLOCK();
   if (characterProcessingFlag == '\0') {
-    if (currentThreadId == 1) {
+    if (CurrentThreadId == 1) {
       ProcessSystemDataBuffer(*StringIteratorPointer,0);
     }
     LOCK();
     isSystemActive = *(byte *)(memoryBlockAddress + 0xec);
     *(byte *)(memoryBlockAddress + 0xec) = 0;
-    currentThreadId = (uint)isSystemActive;
+    CurrentThreadId = (uint)isSystemActive;
     UNLOCK();
   }
   *StringIteratorPointer = 0;
-  return currentThreadId;
+  return CurrentThreadId;
 }
 
 
@@ -68307,7 +68307,7 @@ void ProcessSystemResourceManagerPointer(long long SystemResourceManager)
   long long *resourcePoolPointer;
   byte *pisOperationComplete;
   char SystemOperationStatusFlag;
-  uint32_t currentThreadId;
+  uint32_t CurrentThreadId;
   uint ResourceHash;
   long long *plocalDataIndex;
   long long SystemMemoryAddress;
@@ -68332,9 +68332,9 @@ void ProcessSystemResourceManagerPointer(long long SystemResourceManager)
     *(int *)(SystemResourceManager + 0x28) = *(int *)(SystemGlobalStatusFlags + 0x224);
     if (0 < SystemOperationStatus5) {
       SystemResourceDataIndex = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
-      currentThreadId = AcquireResourceHandle(SystemResourceDataIndex,SystemOperationStatus5);
-      *(uint32_t *)(SystemResourceManager + 0x30) = currentThreadId;
-      ReleaseResourceHandle(SystemResourceDataIndex,currentThreadId);
+      CurrentThreadId = AcquireResourceHandle(SystemResourceDataIndex,SystemOperationStatus5);
+      *(uint32_t *)(SystemResourceManager + 0x30) = CurrentThreadId;
+      ReleaseResourceHandle(SystemResourceDataIndex,CurrentThreadId);
       if (*(long long *)(SystemResourceManager + 0x10) == 0) {
         if (*(int *)(SystemResourceManager + 0x18) != 0) {
           *(uint32_t *)(SystemResourceManager + 0x2c) = *(uint32_t *)(SystemResourceManager + 0x30);
@@ -68481,11 +68481,11 @@ void ProcessSystemResourceManagerPointer(long long SystemResourceManager)
         if (SystemOperationStatus5 != 0) {
           SystemOutputStatus = SystemOutputStatus & MAX_UNSIGNED_32_BIT;
           do {
-            currentThreadId = *SystemDataPointer9;
+            CurrentThreadId = *SystemDataPointer9;
             SystemDataPointer9 = SystemDataPointer9 + 1;
             *(uint32_t *)
              (*(long long *)(SystemThreadLocalStoragePointer + (ulong long)(SystemOperationStatusFlags >> 0xb) * 2 + 2) +
-             (ulong long)(SystemOperationStatusFlags + (SystemOperationStatusFlags >> 0xb) * -0x800) * 4) = currentThreadId;
+             (ulong long)(SystemOperationStatusFlags + (SystemOperationStatusFlags >> 0xb) * -0x800) * 4) = CurrentThreadId;
             SystemOutputStatus = SystemOutputStatus - 1;
             SystemOperationStatusFlags = SystemOperationStatusFlags + 1;
           } while (SystemOutputStatus != 0);
@@ -68508,7 +68508,7 @@ void ProcessSystemResourceManagerExtended(uint32_t SystemResourceManager)
   long long *resourcePoolPointer;
   byte *pisOperationComplete;
   char SystemOperationStatusFlag;
-  uint32_t currentThreadId;
+  uint32_t CurrentThreadId;
   uint ResourceHash;
   long long *plocalDataIndex;
   long long SystemMemoryAddress;
@@ -68533,9 +68533,9 @@ void ProcessSystemResourceManagerExtended(uint32_t SystemResourceManager)
   *(uint32_t *)(systemDataIndexPtr + 0x28) = SystemResourceManager;
   if (0 < SystemOperationStatus5) {
     SystemResourceDataIndex = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
-    currentThreadId = AcquireResourceHandle(SystemResourceDataIndex,SystemOperationStatus5);
-    *(uint32_t *)(systemDataIndexPtr + 0x30) = currentThreadId;
-    ReleaseResourceHandle(SystemResourceDataIndex,currentThreadId);
+    CurrentThreadId = AcquireResourceHandle(SystemResourceDataIndex,SystemOperationStatus5);
+    *(uint32_t *)(systemDataIndexPtr + 0x30) = CurrentThreadId;
+    ReleaseResourceHandle(SystemResourceDataIndex,CurrentThreadId);
     if (*(long long *)(systemDataIndexPtr + 0x10) == 0) {
       if (*(int *)(systemDataIndexPtr + 0x18) != 0) {
         *(uint32_t *)(systemDataIndexPtr + 0x2c) = *(uint32_t *)(systemDataIndexPtr + 0x30);
@@ -68683,11 +68683,11 @@ void ProcessSystemResourceManagerExtended(uint32_t SystemResourceManager)
       if (SystemOperationStatus5 != 0) {
         SystemOutputStatus = SystemOutputStatus & MAX_UNSIGNED_32_BIT;
         do {
-          currentThreadId = *SystemDataPointer9;
+          CurrentThreadId = *SystemDataPointer9;
           SystemDataPointer9 = SystemDataPointer9 + 1;
           *(uint32_t *)
            (*(long long *)(SystemThreadLocalStoragePointer + (ulong long)(SystemOperationStatusFlags >> 0xb) * 2 + 2) +
-           (ulong long)(SystemOperationStatusFlags + (SystemOperationStatusFlags >> 0xb) * -0x800) * 4) = currentThreadId;
+           (ulong long)(SystemOperationStatusFlags + (SystemOperationStatusFlags >> 0xb) * -0x800) * 4) = CurrentThreadId;
           SystemOutputStatus = SystemOutputStatus - 1;
           SystemOperationStatusFlags = SystemOperationStatusFlags + 1;
         } while (SystemOutputStatus != 0);
@@ -68709,7 +68709,7 @@ void ConfigureSystemResourceManagerExtended(void* SystemResourceManager,long lon
   long long *resourcePoolPointer;
   byte *pisOperationComplete;
   char SystemOperationStatusFlag;
-  uint32_t currentThreadId;
+  uint32_t CurrentThreadId;
   uint ResourceHash;
   long long *plocalDataIndex;
   long long SystemMemoryAddress;
@@ -68732,9 +68732,9 @@ void ConfigureSystemResourceManagerExtended(void* SystemResourceManager,long lon
   bool isSystemActive3;
   
   ConfigurationDataPointer = (long long)*(int *)(ConfigurationDataPointer + 0x250) * 0x128 + ConfigurationDataPointer;
-  currentThreadId = AcquireResourceHandle(ConfigurationDataPointer,resourceIdentifier);
-  *(uint32_t *)(systemDataIndexPtr + 0x30) = currentThreadId;
-  ReleaseResourceHandle(ConfigurationDataPointer,currentThreadId);
+  CurrentThreadId = AcquireResourceHandle(ConfigurationDataPointer,resourceIdentifier);
+  *(uint32_t *)(systemDataIndexPtr + 0x30) = CurrentThreadId;
+  ReleaseResourceHandle(ConfigurationDataPointer,CurrentThreadId);
   if (*(long long *)(systemDataIndexPtr + 0x10) == 0) {
     if (*(int *)(systemDataIndexPtr + 0x18) != 0) {
       *(uint32_t *)(systemDataIndexPtr + 0x2c) = *(uint32_t *)(systemDataIndexPtr + 0x30);
@@ -68880,11 +68880,11 @@ void ConfigureSystemResourceManagerExtended(void* SystemResourceManager,long lon
     if (SystemContextPointer != 0) {
       SystemOutputStatus = SystemOutputStatus & MAX_UNSIGNED_32_BIT;
       do {
-        currentThreadId = *SystemDataBufferPointer;
+        CurrentThreadId = *SystemDataBufferPointer;
         SystemDataBufferPointer = SystemDataBufferPointer + 1;
         *(uint32_t *)
          (*(long long *)(SystemThreadLocalStoragePointer + (ulong long)(SystemOperationStatus5 >> 0xb) * 2 + 2) +
-         (ulong long)(SystemOperationStatus5 + (SystemOperationStatus5 >> 0xb) * -0x800) * 4) = currentThreadId;
+         (ulong long)(SystemOperationStatus5 + (SystemOperationStatus5 >> 0xb) * -0x800) * 4) = CurrentThreadId;
         SystemOutputStatus = SystemOutputStatus - 1;
         SystemOperationStatus5 = SystemOperationStatus5 + 1;
       } while (SystemOutputStatus != 0);
@@ -68905,7 +68905,7 @@ void FinalizeSystemResourceManager(void)
   long long *resourcePoolPointer;
   byte *pisOperationComplete;
   uint32_t resourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   uint ResourceHash;
   long long *plocalDataIndex;
   long long SystemMemoryAddress;
@@ -69051,11 +69051,11 @@ void FinalizeSystemResourceManager(void)
     }
   }
   SystemStringTemplatePointer = *(uint32_t **)(systemDataIndexPtr + 0x38);
-  currentThreadId = ResourceHash >> 0xb;
+  CurrentThreadId = ResourceHash >> 0xb;
   *(uint *)(systemDataIndexPtr + 0x2c) = ResourceHash;
-  if (currentThreadId == SystemOutputStatus + ResourceHash >> 0xb) {
-      memcpy(*(long long *)(SystemThreadLocalStoragePointer + (ulong long)currentThreadId * 2 + 2) +
-           (ulong long)(ResourceHash + currentThreadId * -0x800) * 4,SystemStringTemplatePointer,(memoryBlockAddress & MAX_UNSIGNED_32_BIT) << 2);
+  if (CurrentThreadId == SystemOutputStatus + ResourceHash >> 0xb) {
+      memcpy(*(long long *)(SystemThreadLocalStoragePointer + (ulong long)CurrentThreadId * 2 + 2) +
+           (ulong long)(ResourceHash + CurrentThreadId * -0x800) * 4,SystemStringTemplatePointer,(memoryBlockAddress & MAX_UNSIGNED_32_BIT) << 2);
   }
   if (SystemOutputStatus != 0) {
     SystemOperationStatus8 = memoryBlockAddress & MAX_UNSIGNED_32_BIT;
@@ -69084,7 +69084,7 @@ void CleanupSystemResourceManagerFinal(void)
   long long *resourcePoolPointer;
   byte *pisOperationComplete;
   uint32_t resourceAddress;
-  uint currentThreadId;
+  uint CurrentThreadId;
   uint ResourceHash;
   long long *plocalDataIndex;
   long long SystemMemoryAddress;
@@ -69231,11 +69231,11 @@ void CleanupSystemResourceManagerFinal(void)
     }
   }
   SystemResourceStringPointer = *(uint32_t **)(systemDataIndexPtr + 0x38);
-  currentThreadId = ResourceHash >> 0xb;
+  CurrentThreadId = ResourceHash >> 0xb;
   *(uint *)(systemDataIndexPtr + 0x2c) = ResourceHash;
-  if (currentThreadId == SystemOperationStatus8 + ResourceHash >> 0xb) {
-      memcpy(*(long long *)(SystemDataConfigurationPointer + (ulong long)currentThreadId * 2 + 2) +
-           (ulong long)(ResourceHash + currentThreadId * -0x800) * 4,SystemResourceStringPointer,(systemAllocationOffset & MAX_UNSIGNED_32_BIT) << 2);
+  if (CurrentThreadId == SystemOperationStatus8 + ResourceHash >> 0xb) {
+      memcpy(*(long long *)(SystemDataConfigurationPointer + (ulong long)CurrentThreadId * 2 + 2) +
+           (ulong long)(ResourceHash + CurrentThreadId * -0x800) * 4,SystemResourceStringPointer,(systemAllocationOffset & MAX_UNSIGNED_32_BIT) << 2);
   }
   if (SystemOperationStatus8 != 0) {
     SystemOperationStatus7 = systemAllocationOffset & MAX_UNSIGNED_32_BIT;
@@ -69279,7 +69279,7 @@ void InitializeSystemThreadLocalStorage(void)
   uint resourceAllocationContext;
   char *pSystemOperationStatusFlag;
   uint *systemStackFramePtr;
-  uint currentThreadId;
+  uint CurrentThreadId;
   long long systemDataIndexPtr;
   uint32_t *resourceEntryPointer;
   ulong long ThreadContextFlag;
@@ -69292,15 +69292,15 @@ void InitializeSystemThreadLocalStorage(void)
   bool isByteValid2;
   
   LOCK();
-  currentThreadId = *systemStackFramePtr;
+  CurrentThreadId = *systemStackFramePtr;
   *systemStackFramePtr = *systemStackFramePtr + systemAllocationOffsetD;
   UNLOCK();
-  ThreadContextFlag = (ulong long)(currentThreadId >> 0xb);
-  SystemOperationFlags = (ulong long)((systemAllocationOffsetD - 1) + currentThreadId >> 0xb);
+  ThreadContextFlag = (ulong long)(CurrentThreadId >> 0xb);
+  SystemOperationFlags = (ulong long)((systemAllocationOffsetD - 1) + CurrentThreadId >> 0xb);
   if (ThreadContextFlag <= SystemOperationFlags) {
     pSystemOperationStatusFlag = (char *)((long long)systemStackFramePtr + ThreadContextFlag + 0x108);
     SystemResourceDataIndex = (SystemOperationFlags - ThreadContextFlag) + 1;
-    SystemThreadStorage = systemStackFramePtr + (ulong long)(currentThreadId >> 0xb) * 2 + 2;
+    SystemThreadStorage = systemStackFramePtr + (ulong long)(CurrentThreadId >> 0xb) * 2 + 2;
     do {
       systemId = (int)ThreadContextFlag;
       if (*(long long *)SystemThreadStorage == 0) {
@@ -69336,25 +69336,25 @@ void InitializeSystemThreadLocalStorage(void)
     SystemContextPointer = (void* *)(systemDataIndexPtr + 0x38);
   }
   resourceEntryPointer = (uint32_t *)*SystemContextPointer;
-  resourceAllocationContext = currentThreadId >> 0xb;
-  *(uint *)(systemDataIndexPtr + 0x2c) = currentThreadId;
-  if (resourceAllocationContext != systemAllocationOffsetD + currentThreadId >> 0xb) {
+  resourceAllocationContext = CurrentThreadId >> 0xb;
+  *(uint *)(systemDataIndexPtr + 0x2c) = CurrentThreadId;
+  if (resourceAllocationContext != systemAllocationOffsetD + CurrentThreadId >> 0xb) {
     if (systemAllocationOffsetD != 0) {
       ThreadContextFlag = (ulong long)systemAllocationOffsetD;
       do {
         SystemOperationStatus = *resourceEntryPointer;
         resourceEntryPointer = resourceEntryPointer + 1;
         *(uint32_t *)
-         (*(long long *)(systemStackFramePtr + (ulong long)(currentThreadId >> 0xb) * 2 + 2) +
-         (ulong long)(currentThreadId + (currentThreadId >> 0xb) * -0x800) * 4) = SystemOperationStatus;
+         (*(long long *)(systemStackFramePtr + (ulong long)(CurrentThreadId >> 0xb) * 2 + 2) +
+         (ulong long)(CurrentThreadId + (CurrentThreadId >> 0xb) * -0x800) * 4) = SystemOperationStatus;
         ThreadContextFlag = ThreadContextFlag - 1;
-        currentThreadId = currentThreadId + 1;
+        CurrentThreadId = CurrentThreadId + 1;
       } while (ThreadContextFlag != 0);
     }
     return;
   }
     memcpy(*(long long *)(systemStackFramePtr + (ulong long)resourceAllocationContext * 2 + 2) +
-         (ulong long)(currentThreadId + resourceAllocationContext * -0x800) * 4,resourceEntryPointer,(ulong long)systemAllocationOffsetD << 2);
+         (ulong long)(CurrentThreadId + resourceAllocationContext * -0x800) * 4,resourceEntryPointer,(ulong long)systemAllocationOffsetD << 2);
 }
 
 
@@ -70651,13 +70651,13 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
     if (0 < (int)AdditionalParameter) {
       SystemOperationStatus5 = (ulong long)AdditionalParameter;
       do {
-        currentThreadId = (long long)SystemOperationStatus1 / (long long)(int)systemResourceCounterD & MAX_UNSIGNED_32_BIT;
+        CurrentThreadId = (long long)SystemOperationStatus1 / (long long)(int)systemResourceCounterD & MAX_UNSIGNED_32_BIT;
         ThreadContextFlag = 0;
         SystemOutputStatus = SystemResourceIndex;
         if (SystemResourceIndex != 0) {
           do {
-            OperationCode = (uint)currentThreadId;
-            currentThreadId = currentThreadId >> 1;
+            OperationCode = (uint)CurrentThreadId;
+            CurrentThreadId = CurrentThreadId >> 1;
             ThreadContextFlag = ThreadContextFlag * 2 | OperationCode & 1;
             SystemOutputStatus = SystemOutputStatus - 1;
           } while (SystemOutputStatus != 0);
@@ -70667,19 +70667,19 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
           SystemOutputStatus = -SystemOutputStatus;
         }
         SystemOutputStatus = SystemOutputStatus & SINE_LOOKUP_TABLE_SIZE;
-        currentThreadId = (ulong long)SystemOutputStatus;
+        CurrentThreadId = (ulong long)SystemOutputStatus;
         OperationCode = SystemOutputStatus >> QUADRANT_SHIFT_BITS;
         if (SystemOutputStatus >> QUADRANT_SHIFT_BITS == 0) {
-          ResultValue2 = *(float *)(in_R11 + 0x4cc + currentThreadId * 4);
+          ResultValue2 = *(float *)(in_R11 + 0x4cc + CurrentThreadId * 4);
         }
         else if (OperationCode == 1) {
           ResultValue2 = -*(float *)(in_R11 + (0x4132 - (ulong long)SystemOutputStatus) * 4);
         }
         else if (OperationCode == 2) {
-          ResultValue2 = -*(float *)(in_R11 + -0xfb34 + currentThreadId * 4);
+          ResultValue2 = -*(float *)(in_R11 + -0xfb34 + CurrentThreadId * 4);
         }
         else if (OperationCode == 3) {
-          ResultValue2 = *(float *)(in_R11 + (0x8132 - currentThreadId) * 4);
+          ResultValue2 = *(float *)(in_R11 + (0x8132 - CurrentThreadId) * 4);
         }
         else {
           ResultValue2 = 0.0;
@@ -70689,19 +70689,19 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
           SystemOutputStatus = -SystemOutputStatus;
         }
         SystemOutputStatus = SystemOutputStatus & SINE_LOOKUP_TABLE_SIZE;
-        currentThreadId = (ulong long)SystemOutputStatus;
+        CurrentThreadId = (ulong long)SystemOutputStatus;
         ThreadContextFlag = SystemOutputStatus >> QUADRANT_SHIFT_BITS;
         if (SystemOutputStatus >> QUADRANT_SHIFT_BITS == 0) {
-          ResultValue1 = *(float *)(in_R11 + 0x4cc + currentThreadId * 4);
+          ResultValue1 = *(float *)(in_R11 + 0x4cc + CurrentThreadId * 4);
         }
         else if (ThreadContextFlag == 1) {
           ResultValue1 = -*(float *)(in_R11 + (0x4132 - (ulong long)SystemOutputStatus) * 4);
         }
         else if (ThreadContextFlag == 2) {
-          ResultValue1 = -*(float *)(in_R11 + -0xfb34 + currentThreadId * 4);
+          ResultValue1 = -*(float *)(in_R11 + -0xfb34 + CurrentThreadId * 4);
         }
         else if (ThreadContextFlag == 3) {
-          ResultValue1 = *(float *)(in_R11 + (0x8132 - currentThreadId) * 4);
+          ResultValue1 = *(float *)(in_R11 + (0x8132 - CurrentThreadId) * 4);
         }
         else {
           ResultValue1 = 0.0;
@@ -70718,7 +70718,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               SystemOperationStatusFlags = (ulong long)SystemOutputStatus;
               SystemBufferAddress = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               SystemOperationStatus3 = (ulong long)(SystemOutputStatus - 1);
-              currentThreadId = (ulong long)(SystemOutputStatus - 2);
+              CurrentThreadId = (ulong long)(SystemOutputStatus - 2);
               ThreadContextFlag = SystemOutputStatus - 3;
               MagnitudeSquared = *(float *)(SystemBufferAddress + 4 + (ulong long)ThreadContextFlag * 8);
               floatValue1 = *(float *)(SystemBufferAddress + (ulong long)ThreadContextFlag * 8);
@@ -70731,16 +70731,16 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + (ulong long)ThreadContextFlag * 8) = floatValue2 - InterpolationFactorV;
               *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (ulong long)ThreadContextFlag * 8) = floatValue3 - MagnitudeSquared;
               SystemBufferAddress = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
-              MagnitudeSquared = *(float *)(SystemBufferAddress + 4 + currentThreadId * 8);
-              floatValue1 = *(float *)(SystemBufferAddress + currentThreadId * 8);
+              MagnitudeSquared = *(float *)(SystemBufferAddress + 4 + CurrentThreadId * 8);
+              floatValue1 = *(float *)(SystemBufferAddress + CurrentThreadId * 8);
               floatValue2 = *(float *)(SystemBufferAddress + 8 + resourceDataIndex4 * 8);
               floatValue3 = *(float *)(SystemBufferAddress + 0xc + resourceDataIndex4 * 8);
               InterpolationFactorV = floatValue1 * ResultValue2 - MagnitudeSquared * ResultValue1;
               MagnitudeSquared = MagnitudeSquared * ResultValue2 + floatValue1 * ResultValue1;
               *(float *)(SystemBufferAddress + 8 + resourceDataIndex4 * 8) = InterpolationFactorV + floatValue2;
               *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0xc + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + currentThreadId * 8) = floatValue2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + currentThreadId * 8) = floatValue3 - MagnitudeSquared;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + CurrentThreadId * 8) = floatValue2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + CurrentThreadId * 8) = floatValue3 - MagnitudeSquared;
               SystemBufferAddress = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               MagnitudeSquared = *(float *)(SystemBufferAddress + SystemOperationStatus3 * 8);
               floatValue1 = *(float *)(SystemBufferAddress + 4 + SystemOperationStatus3 * 8);
@@ -70770,10 +70770,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
           if (resourceDataIndex4 < resourceCounter) {
             SystemOutputStatus = SystemOperationStatus0 + systemResourceCounterD;
             do {
-              currentThreadId = (ulong long)SystemOutputStatus;
+              CurrentThreadId = (ulong long)SystemOutputStatus;
               SystemBufferAddress = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
-              MagnitudeSquared = *(float *)(SystemBufferAddress + currentThreadId * 8);
-              floatValue1 = *(float *)(SystemBufferAddress + 4 + currentThreadId * 8);
+              MagnitudeSquared = *(float *)(SystemBufferAddress + CurrentThreadId * 8);
+              floatValue1 = *(float *)(SystemBufferAddress + 4 + CurrentThreadId * 8);
               floatValue2 = *(float *)(SystemBufferAddress + resourceDataIndex4 * 8);
               floatValue3 = *(float *)(SystemBufferAddress + 4 + resourceDataIndex4 * 8);
               InterpolationFactorV = MagnitudeSquared * ResultValue2 - floatValue1 * ResultValue1;
@@ -70781,8 +70781,8 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               *(float *)(SystemBufferAddress + resourceDataIndex4 * 8) = InterpolationFactorV + floatValue2;
               *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + resourceDataIndex4 * 8) = MagnitudeSquared + floatValue3;
               resourceDataIndex4 = resourceDataIndex4 + 1;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + currentThreadId * 8) = floatValue2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + currentThreadId * 8) = floatValue3 - MagnitudeSquared;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + CurrentThreadId * 8) = floatValue2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + CurrentThreadId * 8) = floatValue3 - MagnitudeSquared;
               SystemOutputStatus = SystemOutputStatus + 1;
             } while (resourceDataIndex4 < resourceCounter);
           }

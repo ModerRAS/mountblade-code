@@ -54087,7 +54087,7 @@ void UnwindReleaseSystemResourceAtPrimaryOffset(uint8_t ObjectContext,int64_t Va
 
 
 
-void UnwindReleaseSystemResourceAt0x88(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindReleaseSystemResourceAtSecondaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x44) & 2) != 0) {
@@ -54126,7 +54126,7 @@ void UnwindResetSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数会检查资源数据中的标志位来决定是否释放资源
  * @warning 调用此函数会修改资源数据中的标志位状态
  */
-void UnwindReleaseSystemResourceAtOffset108(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindReleaseSystemResourceAtMethodPointerOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x6c) & 1) != 0) {
@@ -54150,7 +54150,7 @@ void UnwindReleaseSystemResourceAtOffset108(uint8_t ObjectContext, int64_t Valid
  * @note 此函数会检查资源数据中的标志位来决定是否释放资源
  * @warning 调用此函数会修改资源数据中的标志位状态
  */
-void UnwindReleaseSystemResourceAtOffsetD0(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindReleaseSystemResourceAtExtendedOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x6c) & 2) != 0) {
@@ -58142,7 +58142,7 @@ void ExecuteResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationCont
  * @return 无返回值
  * @note 此函数通常在系统清理时调用
  */
-void ExecuteD0OffsetCleanup(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteExtendedOffsetCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if (*(int64_t **)(ValidationContext + ResourceContextExtendedOffset) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContext + ResourceContextExtendedOffset) + 0x38))();
@@ -58163,7 +58163,7 @@ void ExecuteD0OffsetCleanup(uint8_t ObjectContext, int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数通常在系统清理时调用
  */
-void ExecuteB0OffsetCleanup(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteSecondaryOffsetCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if (*(int64_t **)(ValidationContext + 0xb0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContext + 0xb0) + 0x38))();
@@ -62658,7 +62658,7 @@ void UnwindCleanupCallbackB(uint8_t ExceptionContext, int64_t SystemContext)
  * @return 无返回值
  * @note 此函数会设置系统数据结构指针到指定位置
  */
-void SetSystemDataStructurePointerToOffset2C0(uint8_t ObjectContext, int64_t ValidationContext)
+void SetSystemDataStructurePointerToContextOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x2c0) = &SystemDataStructure;
@@ -62773,7 +62773,7 @@ void ProcessResourceIndexValidation(uint8_t ObjectContext,int64_t ValidationCont
  * @return 无返回值
  * @note 此函数会执行验证上下文0x1d0位置的回调函数
  */
-void ExecuteValidationContextCallbackAtOffset1D0(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteValidationContextCallbackAtExtendedOffset(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x1d0) != (code *)0x0) {
@@ -62797,7 +62797,7 @@ void ExecuteValidationContextCallbackAtOffset1D0(uint8_t ObjectContext, int64_t 
  * @return 无返回值
  * @note 此函数会执行验证上下文ErrorResourceValidationFailed0位置的回调函数
  */
-void ExecuteValidationContextCallbackAtOffset1F0(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteValidationContextCallbackAtOperationOffset(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + ErrorResourceValidationFailed0) != (code *)0x0) {
@@ -75937,7 +75937,16 @@ void ValidateObjectContextSecurity(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_18090aeb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源上下文调用0x270
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * 
+ * 该函数从系统上下文中获取0x270偏移处的资源上下文，
+ * 并执行相应的资源处理操作。
+ * @remark 原始函数名：Unwind_18090aeb0
+ */
+void ExecuteResourceContextCall270(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75951,7 +75960,16 @@ void Unwind_18090aeb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090aed0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源上下文调用0x278
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * 
+ * 该函数从系统上下文中获取0x278偏移处的资源上下文，
+ * 并执行相应的资源处理操作。
+ * @remark 原始函数名：Unwind_18090aed0
+ */
+void ExecuteResourceContextCall278(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75965,7 +75983,16 @@ void Unwind_18090aed0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090aef0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源上下文调用0x280
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * 
+ * 该函数从系统上下文中获取0x280偏移处的资源上下文，
+ * 并执行相应的资源处理操作。
+ * @remark 原始函数名：Unwind_18090aef0
+ */
+void ExecuteResourceContextCall280(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -100014,7 +100041,19 @@ void Unwind_180912590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809125a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理系统资源清理操作的展开函数
+ * 
+ * 该函数负责在系统资源清理过程中处理特定的展开操作。
+ * 它会检查验证上下文中的计数器，如果计数器不为零，
+ * 则执行资源清理操作，并更新全局展开上下文。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源清理所需的数据和状态信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，指示是否执行强制清理
+ */
+void ProcessSystemResourceCleanupUnwind(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
