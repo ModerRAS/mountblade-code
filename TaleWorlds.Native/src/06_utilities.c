@@ -14338,7 +14338,7 @@ void ExecuteSimplifiedContextValidation(void)
 {
   int ProcessingStatusCode;
   int64_t SystemContext;
-  char systemFlag;
+  char SystemValidationFlag;
   int64_t *resourcePointer;
   uint8_t ValidationBuffer [8];
   uint64_t StackParameter;
@@ -14346,7 +14346,7 @@ void ExecuteSimplifiedContextValidation(void)
   OperationResult = (**(code **)(SystemContext + 0x10))();
   ProcessDataBuffer(ValidationBuffer + OperationResult,0x200 - OperationResult,10);
   OperationResult = (**(code **)(*resourcePointer + 8))();
-  if (((OperationResult == 0) && (systemFlag == '\0')) &&
+  if (((OperationResult == 0) && (SystemValidationFlag == '\0')) &&
      (OperationResult = (**(code **)(*resourcePointer + 0x18))(), OperationResult == 0)) {
     *(uint8_t *)(resourcePointer + 4) = 0;
   }
@@ -14368,7 +14368,7 @@ void SystemStatusProcessorPrimary(void)
 
 {
   int ProcessingStatusCode;
-  char SavedIndexLow;
+  char SystemStatusFlag;
   int64_t *SystemRegisterContext;
   uint64_t StackParameterSecurityKey;
   
