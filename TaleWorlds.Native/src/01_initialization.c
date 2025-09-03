@@ -22662,7 +22662,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
   
   systemDataBuffer = 0xfffffffffffffffe;
   SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBufferD8;
-  pUnsignedStackFlagA8 = &SystemDataBufferTemplateB;
+  UnsignedStackFlagPointer = &SystemDataBufferTemplateB;
   stackParameterA = SystemStackParameterC;
   systemConfigurationValue = 0;
   SystemStackParameterC[0] = 0;
