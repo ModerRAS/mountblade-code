@@ -53926,7 +53926,7 @@ void ProcessResourceHashValidationAndMemoryAddressVariant(uint8_t ObjectContext,
  * @note 此函数会检查验证上下文中指定偏移量的资源上下文
  * @warning 如果资源上下文不存在，函数将直接返回
  */
-void UnwindResourceContextFromValidationOffsetB8(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindResourceContextFromSecondaryOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -53952,7 +53952,7 @@ void UnwindResourceContextFromValidationOffsetB8(uint8_t ObjectContext, int64_t 
  * @note 此函数会检查验证上下文中指定偏移量的资源上下文
  * @warning 如果资源上下文不存在，函数将直接返回
  */
-void UnwindResourceContextFromValidationOffset30(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindResourceContextFromPrimaryOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
