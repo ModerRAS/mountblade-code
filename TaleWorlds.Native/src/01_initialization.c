@@ -20713,13 +20713,13 @@ void InitializeSystemCoreEngine(void)
   DataBufferPointer = DataBufferArray;
   DataBufferArray[0] = 0;
   ConfigurationFlags = 0xb;
-  strcpy_s(DataBuffer470,0x40,&SystemDataBufferTemplateK);
-  InitializeResourceManager(SystemSystemResourceManager,&pSystemEncryptionKey8,&LocalStackConfigurationPointer);
-  pSystemEncryptionKey8 = &SystemMemoryAllocatorReference;
+  strcpy_s(DataBufferArray,0x40,&SystemDataBufferTemplateK);
+  InitializeResourceManager(SystemSystemResourceManager,&SystemEncryptionKeyPointer,&LocalStackConfigurationPointer);
+  SystemEncryptionKeyPointer = &SystemMemoryAllocatorReference;
   SystemScaleFactorBuffer = &SystemDataBufferTemplateB;
-  DataBufferPtr420 = SystemScaleFactorXBuffer;
+  DataBufferPointerSecondary = SystemScaleFactorXBuffer;
   SystemScaleFactorXBuffer[0] = 0;
-  configurationFlags418 = 0x18;
+  ConfigurationFlagsSecondary = 0x18;
   SystemOperationFlags = strcpy_s(SystemScaleFactorXBuffer,0x40,&SystemDataBufferTemplateJ);
   SystemScaleFactorXStorage = (float)GetSystemScaleFactor(SystemOperationFlags,&SystemScaleFactorBuffer);
   SystemScaleFactorXStorage = 1.0 / SystemScaleFactorXStorage;
