@@ -30278,6 +30278,17 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会触发异常处理流程
  */
+/**
+ * @brief 主上下文异常处理器
+ * 
+ * 该函数负责处理主上下文中的异常情况，通过调用相应的异常处理函数
+ * 来处理系统运行时出现的异常。主要用于处理程序异常终止时的资源清理。
+ * 
+ * @param ExceptionContext 异常上下文，包含异常的类型和状态信息
+ * @param SystemContext 系统上下文，包含系统运行时状态数据
+ * @return void 无返回值
+ * @note 此函数在异常处理过程中被自动调用
+ */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerPointer;
   
