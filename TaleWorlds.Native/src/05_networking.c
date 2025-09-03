@@ -2134,55 +2134,55 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
                           uint32_t MagicNumber1, uint32_t MagicNumber2)
 {
   // 数据包解码变量
-  uint32_t DecodingStatus;                                // 解码状态
-  uint32_t MagicValidationResult;                         // 魔数验证结果
-  uint32_t DataIntegrityCheck;                            // 数据完整性检查
+  uint32_t DecodingStatusCode;                                // 解码状态码
+  uint32_t MagicNumberValidationResult;                      // 魔数验证结果
+  uint32_t PacketDataIntegrityCheck;                         // 数据包完整性检查
   
   // 初始化解码状态
-  DecodingStatus = 0x00;
-  MagicValidationResult = 0x00;
-  DataIntegrityCheck = 0x00;
+  DecodingStatusCode = 0x00;
+  MagicNumberValidationResult = 0x00;
+  PacketDataIntegrityCheck = 0x00;
   
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
     // 验证第一个魔数
     if (MagicNumber1 == NetworkPacketMagicSilive || MagicNumber1 == NetworkPacketMagicTivel) {
-      MagicValidationResult |= 0x01;
+      MagicNumberValidationResult |= 0x01;
     }
     
     // 验证第二个魔数
     if (MagicNumber2 == NetworkPacketMagicBivel || MagicNumber2 == NetworkMagicDebugFood) {
-      MagicValidationResult |= 0x02;
+      MagicNumberValidationResult |= 0x02;
     }
   }
   
   // 检查数据完整性
-  if (MagicValidationResult == 0x03) {
-    DataIntegrityCheck = 0x01;
+  if (MagicNumberValidationResult == 0x03) {
+    PacketDataIntegrityCheck = 0x01;
   }
   
   // 根据解码模式处理数据
   if (DecodingMode == 0x01) {
     // 基本解码模式
-    DecodingStatus = MagicValidationResult & 0x03;
+    DecodingStatusCode = MagicNumberValidationResult & 0x03;
   } else if (DecodingMode == 0x02) {
     // 严格解码模式
-    DecodingStatus = DataIntegrityCheck & 0x01;
+    DecodingStatusCode = PacketDataIntegrityCheck & 0x01;
   } else {
     // 默认解码模式
-    DecodingStatus = 0x01;
+    DecodingStatusCode = 0x01;
   }
   
   // 设置输出缓冲区
   if (OutputBuffer) {
     memset(OutputBuffer, 0, 32);
-    OutputBuffer[0] = (NetworkByte)DecodingStatus;
-    OutputBuffer[1] = (NetworkByte)MagicValidationResult;
-    OutputBuffer[2] = (NetworkByte)DataIntegrityCheck;
+    OutputBuffer[0] = (NetworkByte)DecodingStatusCode;
+    OutputBuffer[1] = (NetworkByte)MagicNumberValidationResult;
+    OutputBuffer[2] = (NetworkByte)PacketDataIntegrityCheck;
     OutputBuffer[3] = (NetworkByte)DecodingMode;
   }
   
-  return DecodingStatus;  // 返回解码状态
+  return DecodingStatusCode;  // 返回解码状态
 }
 
 /**
