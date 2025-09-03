@@ -376,7 +376,7 @@ uint32_t HandleSecondaryConnectionData(int64_t ConnectionContext, int64_t Connec
  * @param NetworkContextEntry 网络上下文条目
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkVerifyContextEntry(int64_t NetworkContextEntry);
+uint32_t VerifyContextEntry(int64_t NetworkContextEntry);
 
 /**
  * @brief 初始化网络连接
@@ -386,7 +386,7 @@ uint32_t NetworkVerifyContextEntry(int64_t NetworkContextEntry);
  * @param ConnectionHandle 连接句柄
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkInitializeConnection(NetworkHandle ConnectionHandle);
+uint32_t InitializeConnection(NetworkHandle ConnectionHandle);
 
 /**
  * @brief 验证网络连接状态
