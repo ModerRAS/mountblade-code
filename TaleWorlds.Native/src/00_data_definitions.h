@@ -6789,59 +6789,59 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
       return 0;
     }
     
-    uint32_t format_21_loop_counter = 0;
-    float *format_21_output_buffer = (float *)*color_data;
-    double format_21_luminance_sum = 0.0;
-    int64_t format_21_element_count = 0;
-    uint32_t format_21_processed_elements = 0;
-    uint32_t format_21_total_elements = (int)((ulonglong)color_data[1] >> 4);
-    float *format_21_input_buffer = format_21_output_buffer;
+    uint32_t ColorCorrectionLoopCounter = 0;
+    float *ColorOutputBuffer = (float *)*color_data;
+    double ColorLuminanceSum = 0.0;
+    int64_t ColorElementCount = 0;
+    uint32_t ColorProcessedElements = 0;
+    uint32_t ColorTotalElements = (int)((ulonglong)color_data[1] >> 4);
+    float *ColorInputBuffer = ColorOutputBuffer;
     
-    // 批量处理0x21格式的元素
-    if (3 < format_21_total_elements) {
-      uint32_t format_21_batch_counter = (format_21_total_elements - 4U >> 2) + 1;
-      uint64_t format_21_remaining_elements = (ulonglong)format_21_batch_counter;
-      format_21_element_count = (ulonglong)format_21_batch_counter * 4;
-      format_21_processed_elements = format_21_batch_counter * 4;
+    // 批量处理颜色校正格式的元素
+    if (3 < ColorTotalElements) {
+      uint32_t ColorBatchCounter = (ColorTotalElements - 4U >> 2) + 1;
+      uint64_t ColorRemainingElements = (ulonglong)ColorBatchCounter;
+      ColorElementCount = (ulonglong)ColorBatchCounter * 4;
+      ColorProcessedElements = ColorBatchCounter * 4;
       
       do {
-        float *format_21_red_component = format_21_input_buffer + 4;
-        float format_21_temp_value = *format_21_input_buffer;
-        float *format_21_green_component = format_21_input_buffer + 8;
-        float *format_21_blue_component = format_21_input_buffer + 9;
-        float *format_21_alpha_component = format_21_input_buffer + 6;
-        float *format_21_brightness_component = format_21_input_buffer + 0xc;
-        float *format_21_contrast_component = format_21_input_buffer + 0xd;
-        float *format_21_saturation_component = format_21_input_buffer + 5;
-        float *format_21_hue_component = format_21_input_buffer + 1;
-        float *format_21_lightness_component = format_21_input_buffer + 2;
-        float *format_21_chroma_component = format_21_input_buffer + 10;
-        float *format_21_gamma_component = format_21_input_buffer + 0xe;
-        format_21_input_buffer = format_21_input_buffer + 0x10;
+        float *ColorRedComponent = ColorInputBuffer + 4;
+        float ColorTempValue = *ColorInputBuffer;
+        float *ColorGreenComponent = ColorInputBuffer + 8;
+        float *ColorBlueComponent = ColorInputBuffer + 9;
+        float *ColorAlphaComponent = ColorInputBuffer + 6;
+        float *ColorBrightnessComponent = ColorInputBuffer + 0xc;
+        float *ColorContrastComponent = ColorInputBuffer + 0xd;
+        float *ColorSaturationComponent = ColorInputBuffer + 5;
+        float *ColorHueComponent = ColorInputBuffer + 1;
+        float *ColorLightnessComponent = ColorInputBuffer + 2;
+        float *ColorChromaComponent = ColorInputBuffer + 10;
+        float *ColorGammaComponent = ColorInputBuffer + 0xe;
+        ColorInputBuffer = ColorInputBuffer + 0x10;
         
-        format_21_luminance_sum = format_21_luminance_sum + 
-                                  (double)*format_21_red_component * 0.2126 + 
-                                  (double)format_21_temp_value * 0.2126 +
-                                  (double)*format_21_green_component * 0.2126 + 
-                                  (double)*format_21_brightness_component * 0.2126 +
-                                  (double)*format_21_contrast_component * 0.7152 +
-                                  (double)*format_21_blue_component * 0.7152 + 
-                                  (double)*format_21_saturation_component * 0.7152 +
-                                  (double)*format_21_hue_component * 0.7152 +
-                                  (double)*format_21_alpha_component * 0.0722 + 
-                                  (double)*format_21_lightness_component * 0.0722 +
-                                  (double)*format_21_chroma_component * 0.0722 + 
-                                  (double)*format_21_gamma_component * 0.0722;
+        ColorLuminanceSum = ColorLuminanceSum + 
+                                  (double)*ColorRedComponent * 0.2126 + 
+                                  (double)ColorTempValue * 0.2126 +
+                                  (double)*ColorGreenComponent * 0.2126 + 
+                                  (double)*ColorBrightnessComponent * 0.2126 +
+                                  (double)*ColorContrastComponent * 0.7152 +
+                                  (double)*ColorBlueComponent * 0.7152 + 
+                                  (double)*ColorSaturationComponent * 0.7152 +
+                                  (double)*ColorHueComponent * 0.7152 +
+                                  (double)*ColorAlphaComponent * 0.0722 + 
+                                  (double)*ColorLightnessComponent * 0.0722 +
+                                  (double)*ColorChromaComponent * 0.0722 + 
+                                  (double)*ColorGammaComponent * 0.0722;
                                   
-        format_21_remaining_elements = format_21_remaining_elements - 1;
-      } while (format_21_remaining_elements != 0);
+        ColorRemainingElements = ColorRemainingElements - 1;
+      } while (ColorRemainingElements != 0);
     }
     
-    // 处理0x21格式的剩余元素
-    if (format_21_processed_elements < format_21_total_elements) {
-      format_21_input_buffer = format_21_input_buffer + 2;
-      uint64_t format_21_remaining_elements = (ulonglong)(uint)(format_21_total_elements - format_21_processed_elements);
-      format_21_element_count = format_21_element_count + format_21_remaining_elements;
+    // 处理颜色校正格式的剩余元素
+    if (ColorProcessedElements < ColorTotalElements) {
+      ColorInputBuffer = ColorInputBuffer + 2;
+      uint64_t ColorRemainingElements = (ulonglong)(uint)(ColorTotalElements - ColorProcessedElements);
+      ColorElementCount = ColorElementCount + ColorRemainingElements;
       
       do {
         float *format_21_red_component = format_21_input_buffer + -1;

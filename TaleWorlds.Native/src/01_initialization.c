@@ -986,8 +986,8 @@ void* SystemDataNodeLinkageSecondary;             // 系统数据节点链接次
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
 void* SystemDataNodeLinkageQuaternary;            // 系统数据节点链接第四表
 void* SystemDataNodeLinkageQuinary;               // 系统数据节点链接第五表
-void* SystemConfigDataPointerGamma;        // 系统配置数据指针Gamma
-void* SystemConfigDataPointerEta;        // 系统配置数据指针Eta
+void* SystemConfigDataPointerTertiary;        // 系统配置数据指针第三
+void* SystemConfigDataPointerQuaternary;        // 系统配置数据指针第四
 void* SystemResourceTemplate;        // 系统资源模板
 void* SystemDebugStatusFlag;  // 系统调试状态标志
 void* SystemStringBuffer;        // 系统字符串缓冲区
@@ -18750,8 +18750,7 @@ SkipControllerInitialization:
  * @param reservedParam4 保留参数
  * @return 返回内存管理器指针
  */
-void* *
-CleanupSystemMemoryManager(void* *memoryManager,ulong long cleanupFlags,void* reservedParam3,void* reservedParam4)
+void* CleanupSystemMemoryManager(void** memoryManager, unsigned long long cleanupFlags, void* reservedParam3, void* reservedParam4)
 
 {
   *memoryManager = &SystemMemoryTemplateD;
@@ -18759,7 +18758,7 @@ CleanupSystemMemoryManager(void* *memoryManager,ulong long cleanupFlags,void* re
   *memoryManager = &SystemMemoryTemplateB;
   *memoryManager = &SystemMemoryTemplateA;
   if ((cleanupFlags & 1) != 0) {
-    free(memoryManager,0x28,reservedParam3,reservedParam4,InvalidHandleValue);
+    free(memoryManager, 0x28, reservedParam3, reservedParam4, InvalidHandleValue);
   }
   return memoryManager;
 }
@@ -18797,8 +18796,7 @@ void TerminateSystem(void)
  * 
  * @param SystemResourceManager 系统指针
  */
-void SetDefaultSystemPointer(void* *systemPointer)
-
+void SetDefaultSystemPointer(void** systemPointer)
 {
   *systemPointer = &SystemMemoryAllocatorReference;
   return;
@@ -20232,7 +20230,14 @@ void ProcessSystemMemoryRange(long long *MemoryRangePointer)
  * 
  * @param SystemResourceManager 系统资源管理器指针，包含需要初始化的资源信息
  * 
- * 初始化系统数据指针
+ * @brief 初始化系统数据指针
+ * 
+ * 该函数负责初始化系统数据指针，设置资源管理器的数据指针和哈希表。
+ * 函数会遍历资源哈希表，初始化每个条目的数据指针，并清理旧的资源数据。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，用于初始化数据指针
+ * @note 此函数在系统初始化过程中被调用，确保数据指针的正确设置
+ * @note 函数会调用SystemCleanupFunction()清理旧的资源数据
  */
 void InitializeSystemDataPointers(long long* SystemResourceManager)
 
