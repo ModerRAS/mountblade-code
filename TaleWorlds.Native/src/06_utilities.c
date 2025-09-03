@@ -4676,6 +4676,9 @@ void CheckSystemFlags(void)
   // 生成安全验证令牌
   SystemSecurityToken = SystemSecurityValidationKeySeed ^ (uint64_t)&SystemSecurityValidationBuffer;
   
+  // 初始化系统运行时上下文
+  SystemRuntimeContext = GetSystemRuntimeContext();
+  
   // 检查系统标志位状态
   if ((*(uint *)(SystemRuntimeContext + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
           TriggerSystemFlagHandler();
