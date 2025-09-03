@@ -12038,7 +12038,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolContext)
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ObjectContext,&ResourceAllocationTemplate,0x100,1);
     }
     *ObjectContext = 0;
-    ResourcePoolStatusCode = 0;
+    ResourcePoolStatus = 0;
     *(uint32_t *)((int64_t)ObjectContext + 0xc) = 0;
   }
   int ResourcePoolIndex = (int)ObjectContext[1];
