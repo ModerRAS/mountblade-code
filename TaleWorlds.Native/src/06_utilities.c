@@ -102934,7 +102934,7 @@ void InitializeSystemDataStructureAW(void)
 void InitializeSystemDataStructureAW(void)
 
 {
-  SystemDataPointer023 = &SystemDataStructure;
+  SystemDataPointerSecondary = &SystemDataStructure;
   return;
 }
 
