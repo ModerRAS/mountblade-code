@@ -5138,7 +5138,16 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToVerify) {
  * 
  * @return uint32_t 验证结果，0表示成功，非0表示失败
  */
-uint32_t VerifyObjectHandleFromRegister(void) {
+/**
+ * @brief 从寄存器验证对象句柄
+ * 
+ * 从系统寄存器获取对象指针，验证其有效性并执行相应操作。
+ * 此函数用于系统级别的对象句柄验证，通常在底层操作中使用。
+ * 
+ * @return uint32_t 验证结果，0表示成功，ErrorInvalidObjectHandle表示错误
+ * @note 此函数直接从寄存器读取对象指针，需要确保寄存器状态正确
+ */
+uint32_t ValidateObjectHandleFromRegister(void) {
   int64_t SystemRegisterValue = 0;
   int64_t ObjectMemoryLocation;
   

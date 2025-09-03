@@ -1608,9 +1608,9 @@ NetworkMainProcessingLoop:
         PacketFlagsBuffer = StatusBuffer;
         do {
           ConnectionContextData = (NetworkStatus *)((ConnectionContextHandle - (long long)StatusBuffer) + (long long)PacketFlagsBuffer);
-          NetworkStatus ValidationStatus = ConnectionContextData[1];
-          NetworkStatus TimeoutStatus = ConnectionContextData[2];
-          NetworkStatus SecondaryProcessingStatus = ConnectionContextData[3];
+          NetworkStatus CurrentValidationStatus = ConnectionContextData[1];
+          NetworkStatus CurrentTimeoutStatus = ConnectionContextData[2];
+          NetworkStatus CurrentSecondaryStatus = ConnectionContextData[3];
           *PacketFlagsBuffer = *ConnectionContextData;
           PacketFlagsBuffer[1] = ValidationStatus;
           PacketFlagsBuffer[2] = TimeoutStatus;
