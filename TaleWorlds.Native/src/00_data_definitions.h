@@ -3747,7 +3747,7 @@ Label_ModeCheckFailed:
                   UnsignedIndex = SystemDataCompare(&StackBufferPointer9,&SystemEncryptionModeString);
                   BufferSize1 = (ulonglong)(int)systemMode;
                   if (UnsignedIndex < StackValidationLimit2) {
-                    StringPointer = (char *)(StackStringData3 + BufferSize1);
+                    StringPointer = (char *)(StackStringBufferTertiary + BufferSize1);
                     do {
                       if (*StringPointer == ' ') goto Label_EncryptionSpaceFound;
                       UnsignedIndex = (int)BufferSize1 + 1;
@@ -3760,7 +3760,7 @@ Label_EncryptionSpaceFound:
                   UnsignedIndex = (int)BufferSize1 + 1;
                   BufferSize8 = (ulonglong)(int)UnsignedIndex;
                   if (UnsignedIndex < StackValidationLimit2) {
-                    StringPointer = (char *)(StackStringData3 + BufferSize8);
+                    StringPointer = (char *)(StackStringBufferTertiary + BufferSize8);
                     do {
                       if (*StringPointer == ' ') goto Label_StringSpaceFound;
                       BufferSize6 = (int)BufferSize8 + 1;

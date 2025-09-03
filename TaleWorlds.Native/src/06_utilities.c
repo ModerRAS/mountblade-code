@@ -58261,7 +58261,7 @@ void ResetResourceHashAddresss(uint8_t ObjectContext, int64_t ValidationContext)
  * @brief 设置资源哈希表003
  * 
  * 该函数负责在系统清理过程中设置资源哈希表003
- * 将验证上下文中的资源哈希表指针指向资源哈希表003
+ * 将验证上下文中的资源哈希表指针指向资源哈希表Tertiary
  * 
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数，包含资源哈希表指针信息
