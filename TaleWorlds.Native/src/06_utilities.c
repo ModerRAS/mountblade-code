@@ -4232,7 +4232,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   int64_t CurrentObjectIndex;
   int ProcessedObjectCount;
   uint8_t MetaDataBuffer[32];
-  int64_t HandleBuffer[2];
+  int64_t ObjectHandleBuffer[2];
   uint8_t *BufferData;
   int CurrentPosition;
   uint32_t MaximumProcessableObjects;
@@ -4240,13 +4240,13 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   uint64_t SecurityValidationKey;
   
   SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)MetaDataBuffer;
-  ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), HandleBuffer);
-  if ((ProcessingStatus == 0) && (*(int64_t *)(HandleBuffer[0] + RegistrationHandleOffset) != 0)) {
+  ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleBuffer);
+  if ((ProcessingStatus == 0) && (*(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
     BufferData = ProcessingWorkspace;
     ProcessedObjectCount = 0;
     CurrentPosition = 0;
     MaximumProcessableObjects = MaximumProcessableItemsLimit;
-    ProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(HandleBuffer[0] + RegistrationHandleOffset),
+    ProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleBuffer[0] + RegistrationHandleOffset),
                           &BufferData);
     if (ProcessingStatus == 0) {
       if (0 < CurrentPosition) {
@@ -10020,12 +10020,11 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext, int64_t V
 
 /**
  * @brief 处理浮点数数据验证和转换操作（无参数版本）
- * @param ObjectContext 数据上下文指针
+ * @param DataContext 数据上下文指针
  * @param ValidationContext 系统上下文指针，用于系统级操作
  * @return 操作状态码，0表示成功，非0表示错误
  */
-uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t ObjectContext, uint8_t ValidationContext)
-
+uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uint8_t ValidationContext)
 {
   float InputFloatValue;
   uint8_t ResourceHashStatus = 0;
@@ -10039,9 +10038,9 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t ObjectContext, u
   int ProcessingStatusCode = 0;
   
   SecurityValidationBuffer = 0;
-  ValidationStatusCode = ProcessDataHashing(SystemContext + ValidationContextHashOffset,ValidationContext,&SecurityValidationBuffer);
-  if ((int)ValidationStatusCode == 0) {
-    ResourceIndex = LookupResourceIndexPointer(SystemContext + ValidationContextHashOffset,SecurityValidationBuffer);
+  ProcessingStatusCode = ProcessDataHashing(SystemContext + ValidationContextHashOffset, ValidationContext, &SecurityValidationBuffer);
+  if ((int)ProcessingStatusCode == 0) {
+    ResourceIndex = LookupResourceIndexPointer(SystemContext + ValidationContextHashOffset, SecurityValidationBuffer);
     if ((*(uint *)(ResourceIndex + 0x34) >> 4 & 1) != 0) {
       return ErrorResourceValidationFailed;
     }
@@ -10058,12 +10057,12 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t ObjectContext, u
       ClampedFloatValue = RangeMaxValue;
     }
     *(float *)(ResourceContext + 0x18) = ClampedFloatValue;
-    ValidationStatusCode = ValidateResourceParameters(SystemContext + ValidationContextHashOffset,SecurityValidationBuffer,ClampedFloatValue);
-    if ((int)ValidationStatusCode == 0) {
-            ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset));
+    ProcessingStatusCode = ValidateResourceParameters(SystemContext + ValidationContextHashOffset, SecurityValidationBuffer, ClampedFloatValue);
+    if ((int)ProcessingStatusCode == 0) {
+      ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset));
     }
   }
-  return ValidationStatusCode;
+  return ProcessingStatusCode;
 }
 
 
@@ -10079,7 +10078,6 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t ObjectContext, u
  * @param SystemContext 系统上下文，用于系统级操作和错误处理
  */
 void ProcessObjectContextFloatRangeValidationAndClamping(void)
-
 {
   float InputValue;
   uint32_t ValidationRegister;
@@ -10088,13 +10086,21 @@ void ProcessObjectContextFloatRangeValidationAndClamping(void)
   int64_t ContextPointer;
   int64_t SystemPointer;
   float RangeMinValue;
+  float RangeMaxValue;
   uint32_t StackParameter;
   
-  RangeMinValue = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister,ValidationRegister) + 0x38);
+  RangeMinValue = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister, ValidationRegister) + 0x38);
   InputValue = *(float *)(ContextPointer + 0x18);
-  if ((RangeMinValue <= InputValue) &&
-     (RangeMinValue = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister,ValidationRegister) + 0x3c), InputValue <= RangeMinValue)) {
+  RangeMaxValue = *(float *)(CombineParameterAndValidationRegisters(ParameterRegister, ValidationRegister) + 0x3c);
+  
+  if ((RangeMinValue <= InputValue) && (InputValue <= RangeMaxValue)) {
     RangeMinValue = InputValue;
+  }
+  else if (InputValue < RangeMinValue) {
+    RangeMinValue = RangeMinValue;
+  }
+  else {
+    RangeMinValue = RangeMaxValue;
   }
   *(float *)(ContextPointer + 0x18) = RangeMinValue;
   PackageValidationStatusCode = ValidateResourceParameters(SystemPointer + ValidationContextHashOffset,StackParameter,RangeMinValue);
@@ -99995,7 +100001,17 @@ void Unwind_180912880(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180912890(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统内存资源
+ * 
+ * 该函数用于释放系统内存资源，执行内存清理操作
+ * 确保系统内存的正确释放和回收
+ * 
+ * @param ObjectContext 对象上下文句柄
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ */
+void ReleaseSystemMemoryResources(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x120);
@@ -100004,7 +100020,17 @@ void Unwind_180912890(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809128a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统内存资源（备份版本）
+ * 
+ * 该函数用于释放系统内存资源，执行内存清理操作
+ * 作为ReleaseSystemMemoryResources的备份实现
+ * 
+ * @param ObjectContext 对象上下文句柄
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ */
+void ReleaseSystemMemoryResourcesBackup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x120);
@@ -100013,7 +100039,17 @@ void Unwind_1809128a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809128b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统资源并更新状态
+ * 
+ * 该函数用于释放系统资源并更新资源状态标志
+ * 在资源不再需要时执行清理操作
+ * 
+ * @param ObjectContext 对象上下文句柄
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ */
+void ReleaseSystemResourcesWithStatusUpdate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
@@ -100025,7 +100061,17 @@ void Unwind_1809128b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809128e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器
+ * 
+ * 该函数用于注册资源处理器到系统中
+ * 配置资源处理的相关参数和回调函数
+ * 
+ * @param ObjectContext 对象上下文句柄
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ */
+void RegisterSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x80),0x48,7,ResourceTypeHandler048);
@@ -100034,7 +100080,17 @@ void Unwind_1809128e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180912910(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器
+ * 
+ * 该函数用于初始化系统资源处理器
+ * 设置资源处理模板和数据结构
+ * 
+ * @param ObjectContext 对象上下文句柄
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ */
+void InitializeSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -100059,7 +100115,17 @@ void Unwind_180912910(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180912930(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证并清理系统资源
+ * 
+ * 该函数用于验证系统资源的状态并执行清理操作
+ * 确保资源的正确释放和内存回收
+ * 
+ * @param ObjectContext 对象上下文句柄
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ */
+void ValidateAndCleanupSystemResources(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -100095,7 +100161,17 @@ void Unwind_180912930(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180912950(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 配置系统资源处理器（版本1）
+ * 
+ * 该函数用于配置系统资源处理器的第一个版本
+ * 设置资源处理的相关参数和状态
+ * 
+ * @param ObjectContext 对象上下文句柄
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ */
+void ConfigureSystemResourceHandlerV1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -100113,7 +100189,17 @@ void Unwind_180912950(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180912970(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 配置系统资源处理器（版本2）
+ * 
+ * 该函数用于配置系统资源处理器的第二个版本
+ * 设置资源处理的相关参数和状态
+ * 
+ * @param ObjectContext 对象上下文句柄
+ * @param ValidationContext 验证上下文指针
+ * @return 无返回值
+ */
+void ConfigureSystemResourceHandlerV2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -100132,7 +100218,17 @@ void Unwind_180912970(uint8_t ObjectContext,int64_t ValidationContext)
 
 uint32_t SystemConfigurationFlag;
 
- void ProcessSystemStateReset(uint8_t systemHandle, int64_t ContextPointer)
+ /**
+ * @brief 处理系统状态重置
+ * 
+ * 该函数用于处理系统状态的重置操作
+ * 在特定条件下执行系统状态的初始化和重置
+ * 
+ * @param SystemHandle 系统句柄
+ * @param ContextPointer 上下文指针
+ * @return 无返回值
+ */
+void ProcessSystemStateReset(uint8_t SystemHandle, int64_t ContextPointer)
 
 {
   char systemState;
@@ -100152,7 +100248,17 @@ uint32_t SystemConfigurationFlag;
 
 
 
- void ProcessSystemStateResetWithCallback(uint8_t systemHandle, int64_t ContextPointer)
+ /**
+ * @brief 处理系统状态重置（带回调）
+ * 
+ * 该函数用于处理系统状态的重置操作，支持回调函数
+ * 在特定条件下执行系统状态的初始化和重置
+ * 
+ * @param SystemHandle 系统句柄
+ * @param ContextPointer 上下文指针
+ * @return 无返回值
+ */
+void ProcessSystemStateResetWithCallback(uint8_t SystemHandle, int64_t ContextPointer)
 
 {
   char systemState;
@@ -100172,7 +100278,17 @@ uint32_t SystemConfigurationFlag;
 
 
 
- void ConfigureSystemParameters(uint8_t *parameterArray, int64_t configurationContext)
+ /**
+ * @brief 配置系统参数
+ * 
+ * 该函数用于配置系统的各种参数
+ * 根据传入的参数数组设置系统配置
+ * 
+ * @param ParameterArray 参数数组指针
+ * @param ConfigurationContext 配置上下文
+ * @return 无返回值
+ */
+void ConfigureSystemParameters(uint8_t *ParameterArray, int64_t ConfigurationContext)
 
 {
   ConfigureResourceSystem(*(uint8_t *)(configurationContext + 0x60),*(uint32_t *)(configurationContext + 0x68),
