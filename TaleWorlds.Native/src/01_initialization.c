@@ -1628,37 +1628,37 @@ void InitializeSystemCoreConfig(void)
   
   systemDataTablePointer = (long long*)GetSystemRootPointer();
   systemRootNodePointer = (void**)*systemDataTablePointer;
-  isSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + SystemNodeActiveFlagOffset);
+  isSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   systemInitializationFlag = 0;
   previousSystemNode = systemRootNodePointer;
   currentSystemNode = (void**)systemRootNodePointer[1];
   
   while (isSystemNodeActive == '\0') {
-    nodeIdentifierComparisonResult = memcmp(currentSystemNode + 4, &MEMORY_IDENTIFIER, SystemIdentifierSize);
+    nodeIdentifierComparisonResult = memcmp(currentSystemNode + 4, &SYSTEM_MEMORY_SYSTEM_IDENTIFIER1, SYSTEM_IDENTIFIER_SIZE);
     if (nodeIdentifierComparisonResult < 0) {
-      nextSystemNode = (void**)currentSystemNode[SystemNodeNextPointerOffset];
+      nextSystemNode = (void**)currentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
       currentSystemNode = previousSystemNode;
     }
     else {
-      nextSystemNode = (void**)currentSystemNode[SystemNodeHeadPointerOffset];
+      nextSystemNode = (void**)currentSystemNode[SYSTEM_NODE_HEAD_POINTER_OFFSET];
     }
     previousSystemNode = currentSystemNode;
     currentSystemNode = nextSystemNode;
-    isSystemNodeActive = *(char*)((long long)nextSystemNode + SystemNodeActiveFlagOffset);
+    isSystemNodeActive = *(char*)((long long)nextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   
   if ((previousSystemNode == systemRootNodePointer) || 
-      (nodeIdentifierComparisonResult = memcmp(&MEMORY_IDENTIFIER, previousSystemNode + 4, SystemIdentifierSize), nodeIdentifierComparisonResult < 0)) {
+      (nodeIdentifierComparisonResult = memcmp(&SYSTEM_MEMORY_SYSTEM_IDENTIFIER1, previousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), nodeIdentifierComparisonResult < 0)) {
     systemMemoryAllocationSize = GetSystemMemorySize(systemDataTablePointer);
-    AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, systemMemoryAllocationSize + SystemNodeAllocationExtraSize, systemMemoryAllocationSize);
+    AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, systemMemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, systemMemoryAllocationSize);
     previousSystemNode = allocatedSystemNode;
   }
   
-  previousSystemNode[SystemNodeIdentifier1Index] = SYSTEM_MEMORY_NODE_IDENTIFIER1;
-  previousSystemNode[SystemNodeIdentifier2Index] = SYSTEM_MEMORY_NODE_IDENTIFIER2;
-  previousSystemNode[SystemNodeDataPointerIndex] = &MemoryNodeId;
-  previousSystemNode[SystemNodeFlagIndex] = SYSTEM_MEMORY_NODE_FLAG;
-  previousSystemNode[SystemNodeHandlerIndex] = InitializationHandler;
+  previousSystemNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_MEMORY_SYSTEM_IDENTIFIER1;
+  previousSystemNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_MEMORY_SYSTEM_IDENTIFIER2;
+  previousSystemNode[SYSTEM_NODE_DATA_POINTER_INDEX] = &SYSTEM_MEMORY_SYSTEM_NODE_DATA;
+  previousSystemNode[SYSTEM_NODE_FLAG_INDEX] = SYSTEM_MEMORY_SYSTEM_FLAG;
+  previousSystemNode[SYSTEM_NODE_HANDLER_INDEX] = InitializationHandler;
   return;
 }
 
