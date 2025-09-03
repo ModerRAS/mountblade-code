@@ -19209,13 +19209,13 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   uint32_t SystemResourceHandle;
   void** StackBufferMedium1;
   long long SystemMemorySize;
-  uint SystemOperationFlag;
+  uint systemOperationFlag;
   void** StackBufferSmall1;
   void** StackBufferSmall2;
   uint32_t SystemConfigurationFlag;
   void* StackParameter;
   long long **mutexPointer;
-  long long *threadLocalStorage;
+  long long *threadLocalStorageBuffer;
   
   StackParameter = 0xfffffffffffffffe;
   systemHandle = GetSystemDebugHandle();
