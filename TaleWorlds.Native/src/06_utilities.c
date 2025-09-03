@@ -13459,7 +13459,7 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
               ContextValidationStatusCode = (uint64_t)ResourceCount;
               OperationStatusCode = (int)ResourceValidationFlag;
               if (ResourceCount != 0) {
-                ResourceCount = ResourceValidationFlag.Field44;
+                ResourceCount = ResourceValidationFlag.HighPart;
                 if ((int64_t)ResourceValidationFlag < 0) {
                   ResourceCount = -ResourceValidationFlag.Field44;
                 }
