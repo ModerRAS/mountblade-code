@@ -121,22 +121,22 @@
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
 
 // 网络缓冲区对齐和大小常量
-#define NetworkBufferAlignmentMask 0xfffffffc
-#define NetworkBitShift31Value 0x1f
-#define NetworkByteMaskValue 0xff
-#define NetworkConnectionAlignmentSize 4
-#define NetworkContextTableOffset 0xb0
-#define NetworkConnectionIdOffset 0x98
-#define NetworkStatusDataOffset 0x200
-#define NetworkResourceAllocationSize 0x20
-#define NetworkResourceAllocationSizeEx 0x28
-#define NetworkHandleStorageSize 0x30
-#define NetworkPacketProcessingSize 0x100
-#define NetworkValidationBufferSize 0x27
-#define NetworkErrorReportSize 0xb
-#define NetworkSecurityReportSize 0xd
-#define NetworkConnectionReportSize 0xf
-#define NetworkPacketReportSize 0xc
+#define NetworkBufferAlignmentMask 0xfffffffc    // 网络缓冲区对齐掩码（4字节对齐）
+#define NetworkBitShift31Value 0x1f              // 31位偏移值
+#define NetworkByteMaskValue 0xff                 // 字节掩码值
+#define NetworkConnectionAlignmentSize 4          // 网络连接对齐大小（4字节）
+#define NetworkContextTableOffset 0xb0            // 网络上下文表偏移量
+#define NetworkConnectionIdOffset 0x98            // 网络连接ID偏移量
+#define NetworkStatusDataOffset 0x200             // 网络状态数据偏移量
+#define NetworkResourceAllocationSize 0x20        // 网络资源分配大小（32字节）
+#define NetworkResourceAllocationSizeEx 0x28     // 网络资源扩展分配大小（40字节）
+#define NetworkHandleStorageSize 0x30            // 网络句柄存储大小（48字节）
+#define NetworkPacketProcessingSize 0x100         // 网络数据包处理大小（256字节）
+#define NetworkValidationBufferSize 0x27         // 网络验证缓冲区大小（39字节）
+#define NetworkErrorReportSize 0xb                // 网络错误报告大小（11字节）
+#define NetworkSecurityReportSize 0xd             // 网络安全报告大小（13字节）
+#define NetworkConnectionReportSize 0xf          // 网络连接报告大小（15字节）
+#define NetworkPacketReportSize 0xc               // 网络数据包报告大小（12字节）
 
 // =============================================================================
 // 网络系统函数声明
