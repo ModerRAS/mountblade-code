@@ -7455,15 +7455,15 @@ ValidateNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRequ
 }
 uint8_t SystemModuleInitializeFinal(void)
 {
-  uint in_EAX;
+  uint RegisterEax;  // EAX寄存器值
   int64_t ModuleInitializationResult;
   longlong LongCounter;
   longlong LongIndex;
-  uint8_t unaff_SIL;
+  uint8_t UnassignedSil;  // 未分配的SIL寄存器值
   ulonglong NetworkRequestResult;
-  uint *pMemoryAllocationResult;
-  uint64_t *unaff_R14;
-  longlong *unaff_R15;
+  uint *MemoryAllocationPointer;
+  uint64_t *UnassignedR14;  // 未分配的R14寄存器指针
+  longlong *UnassignedR15;  // 未分配的R15寄存器指针
   uint StackParameter70;  // 栈参数70，用于存储无符号整数参数
   LongIndex = 0;
   NetworkRequestResult = (ulonglong)in_EAX;
