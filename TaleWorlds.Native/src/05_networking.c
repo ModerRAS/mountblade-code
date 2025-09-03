@@ -160,22 +160,22 @@ uint32_t NetworkCompareTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimest
  * 
  * @param ConnectionContext 连接上下文指针
  * @param PacketData 数据包数据
- * @param BufferSize 缓冲区大小指针
+ * @param OutputBufferSize 输出缓冲区大小指针
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
+uint32_t NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int64_t PacketData, int64_t *OutputBufferSize);
 
 /**
  * @brief 发送网络数据包
  * 
  * 通过网络连接发送数据包数据，处理数据分包和重传机制
  * 
- * @param SocketContext 套接字上下文
+ * @param SocketDescriptor 套接字描述符
  * @param ConnectionHandle 连接句柄
  * @param PacketBuffer 数据包缓冲区
  * @return uint32_t 发送结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkTransmitPacket(int64_t SocketContext, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
+uint32_t NetworkTransmitPacket(int64_t SocketDescriptor, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
 
 /**
  * @brief 验证网络数据包完整性
@@ -194,10 +194,10 @@ uint32_t NetworkValidatePacketIntegrity(int64_t PacketData, int64_t ConnectionCo
  * 处理网络连接请求，验证连接参数，建立安全连接
  * 
  * @param ConnectionContext 连接上下文指针
- * @param RequestBuffer 请求缓冲区指针
+ * @param RequestData 请求数据指针
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t NetworkHandleConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
+uint32_t NetworkHandleConnectionRequest(int64_t *ConnectionContext, int64_t *RequestData);
 
 /**
  * @brief 执行网络数据传输
