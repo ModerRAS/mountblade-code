@@ -8372,30 +8372,29 @@ void CleanupSecurityTokenFunction(void)
  * 确保矩阵数据可以安全用于3D变换计算。函数会检查矩阵的多行元素是否存在
  * 无效的浮点数值，包括无穷大和NaN值，以及零向量特殊情况。
  * 
- * @param matrixDataPointer 矩阵数据指针，包含变换矩阵的所有元素
+ * @param MatrixDataPointer 矩阵数据指针，包含变换矩阵的所有元素
  * @param ContextPointer 上下文指针，包含系统状态和配置信息
  * @return uint8_t 验证状态，0表示成功，ErrorResourceValidationFailed表示验证失败，其他值表示具体错误类型
  * 
  * @note 该函数执行严格的浮点数验证，确保所有矩阵元素都是有效的数值
  * @warning 如果矩阵包含无效的浮点数值，系统将拒绝使用该矩阵进行变换计算
  */
-uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer,int64_t ContextPointer)
-
+uint8_t ValidateMatrixTransformationData(int64_t MatrixDataPointer, int64_t ContextPointer)
 {
-    uint8_t ValidationStatus;
-  int FirstRowInfinityStatus;
-  int SecondRowInfinityStatus;
-  int ThirdRowInfinityStatus;
-  int OverallInfinityStatus;
-  int FirstRowInfinityCheck;
-  int SecondRowInfinityCheck;
-  int ThirdRowInfinityCheck;
-  int InfinityValidationFlag;
-  int64_t TransformContext;
-  int64_t MatrixBuffer[2];
-  uint MatrixFlags;
-  float MatrixScaleFactor;
-  int64_t MatrixContextPointer;
+    uint8_t ValidationResult;
+    int FirstRowInfinityCheck;
+    int SecondRowInfinityCheck;
+    int ThirdRowInfinityCheck;
+    int OverallInfinityCheck;
+    int FirstRowValidationResult;
+    int SecondRowValidationResult;
+    int ThirdRowValidationResult;
+    int InfinityValidationFlag;
+    int64_t TransformContext;
+    int64_t MatrixValidationBuffer[2];
+    uint MatrixProcessingFlags;
+    float MatrixScaleValue;
+    int64_t MatrixContextPointer;
   
   MatrixContextPointer = 0;
   FirstRowInfinityStatus = 0;
