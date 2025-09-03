@@ -34669,7 +34669,7 @@ void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x38);
   ValidationStatusCode = 0xfffffffffffffffe;
-  *ResourceHashPtr = &ResourceHashTable002;
+  *ResourceHashPtr = &SecondaryResourceHashTable;
   StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (ResourceOperationStatus != '\0') {
     ResourceOperationStatus = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,ResourceHashStatus);
@@ -44427,7 +44427,7 @@ void ResetResourceCacheTemplates(uint8_t ObjectContext, int64_t ValidationContex
 void ResetResourceHashTablePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x50) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + 0x50) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -46212,7 +46212,7 @@ void CleanupResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext,ui
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x160);
   ValidationStatusCode = 0xfffffffffffffffe;
-  *ResourceHashPtr = &ResourceHashTable002;
+  *ResourceHashPtr = &SecondaryResourceHashTable;
   StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (ResourceOperationStatus != '\0') {
     ResourceOperationStatus = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,ResourceHashStatus);
@@ -46316,7 +46316,7 @@ void ProcessResourceHashOperations(uint8_t ObjectContext,int64_t ValidationConte
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x50);
   OperationStatusCode = 0xfffffffffffffffe;
-  *ResourceHashPtr = &ResourceHashTable002;
+  *ResourceHashPtr = &SecondaryResourceHashTable;
   StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (StatusCharacter != '\0') {
     StatusCharacter = ProcessResourceHashOperation(ResourceHashAddress,1,CleanupOption,CleanupFlag,OperationResult);
@@ -46354,7 +46354,7 @@ void ProcessResourceHashOperations(uint8_t ObjectContext,int64_t ValidationConte
 void SetResourceHashTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x40) = &ResourceHashTable004;
+  **(uint8_t **)(ValidationContext + 0x40) = &QuaternaryResourceHashTable;
   return;
 }
 
@@ -46568,7 +46568,7 @@ void ManageException(uint8_t ObjectContext,int64_t ValidationContext)
 void SetResourceHashTableAtPrimaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x50) = &ResourceHashTable004;
+  **(uint8_t **)(ValidationContext + 0x50) = &QuaternaryResourceHashTable;
   return;
 }
 
@@ -46833,7 +46833,7 @@ void ProcessResourceHashOperation(uint8_t ObjectContext,int64_t ValidationContex
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceContextTertiaryOffset);
   OperationFlag = 0xfffffffffffffffe;
-  *ResourceHashPtr = &ResourceHashTable002;
+  *ResourceHashPtr = &SecondaryResourceHashTable;
   OperationResult = ProcessResourceHashOperationInternal(ResourceHashAddress,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (OperationResult != '\0') {
     OperationResult = ProcessResourceHashOperationInternal(ResourceHashAddress,1,CleanupOption,CleanupFlag,OperationFlag);
@@ -50048,7 +50048,7 @@ void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationConte
 void InitializeResourceHashTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x40) = &ResourceHashTable002;
+  **(uint8_t **)(ValidationContext + 0x40) = &SecondaryResourceHashTable;
   return;
 }
 
@@ -50068,7 +50068,7 @@ void InitializeResourceHashTablePointer(uint8_t ObjectContext,int64_t Validation
 void InitializeSecondaryResourceHashTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + ValidationContextDataOffset) = &ResourceHashTable002;
+  **(uint8_t **)(ValidationContext + ValidationContextDataOffset) = &SecondaryResourceHashTable;
   return;
 }
 
@@ -50177,7 +50177,7 @@ void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext,int64_t Valid
   uint64_t ResourceHashInitial;
   
   ByteDataPointer = *(uint8_t **)(ValidationContext + 0x40);
-  *ResourceDataAddress = &ResourceHashTable003;
+  *ResourceDataAddress = &TertiaryResourceHashTable;
   *(uint8_t *)((int64_t)ResourceDataAddress + 0x162) = 1;
   ResourceTablePointerPointer = ResourceDataAddress + 0x1a;
   ResourceTablePointerMutexPointer = ResourceTablePointerPointer;
@@ -51044,7 +51044,7 @@ void ReleaseResourceTablePointer(uint8_t ObjectContext,int64_t ValidationContext
   uint64_t ResourceHashInitialValue;
   
   ByteDataPointer = *(uint8_t **)(ValidationContext + 0x2e8);
-  *ResourceDataSecondaryPointer = &ResourceHashTable003;
+  *ResourceDataSecondaryPointer = &TertiaryResourceHashTable;
   *(uint8_t *)((int64_t)ResourceDataAddress + 0x162) = 1;
   ResourceTablePointerPointer = ResourceDataAddress + 0x1a;
   ResourceTertiaryPointer = ResourceTablePointerPointer;
@@ -52771,7 +52771,7 @@ void ExecuteSystemCleanupCallbackExtended(uint8_t ObjectContext, int64_t Validat
  */
 void SetResourceHashTableToValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  **(uint8_t **)(ValidationContext + 0x50) = &ResourceHashTable004;
+  **(uint8_t **)(ValidationContext + 0x50) = &QuaternaryResourceHashTable;
   return;
 }
 
@@ -52790,7 +52790,7 @@ void SetResourceHashTableToValidationContext(uint8_t ObjectContext, int64_t Vali
  */
 void SetResourceHashTableToValidationContextExtended(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  **(uint8_t **)(ValidationContext + ValidationContextDataOffset) = &ResourceHashTable004;
+  **(uint8_t **)(ValidationContext + ValidationContextDataOffset) = &QuaternaryResourceHashTable;
   return;
 }
 
@@ -55092,7 +55092,7 @@ void UnwindCleanupResourceTablePointerAndContextData(uint8_t ObjectContext, int6
 void UnwindSetResourceHashTablePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x48) = &ResourceHashTable005;
+  **(uint8_t **)(ValidationContext + 0x48) = &QuinaryResourceHashTable;
   return;
 }
 
@@ -55116,7 +55116,7 @@ void UnwindInitializeResourceHashTableAndSystemData(uint8_t ObjectContext, int64
   uint8_t *ResourceHashPtr;
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x48);
-  *ResourceHashPtr = &ResourceHashTable006;
+  *ResourceHashPtr = &SenaryResourceHashTable;
   ResourceHashAddress[2] = &SystemDataStructure;
   *ResourceHashPtr = &ResourceAllocationTemplate;
   *ResourceHashPtr = &ResourceCacheTemplate;
@@ -55329,7 +55329,7 @@ void ResetResourceIndexCounter(uint8_t ObjectContext,int64_t ValidationContext)
 void InitializeResourceHashTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x40) = &ResourceHashTable005;
+  **(uint8_t **)(ValidationContext + 0x40) = &QuinaryResourceHashTable;
   return;
 }
 
@@ -55399,7 +55399,7 @@ void InitializeResourceHashTemplates(uint8_t ObjectContext,int64_t ValidationCon
   uint8_t *ResourceHashPtr;
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xa0);
-  *ResourceHashPtr = &ResourceHashTable006;
+  *ResourceHashPtr = &SenaryResourceHashTable;
   ResourceHashAddress[2] = &SystemDataStructure;
   *ResourceHashPtr = &ResourceAllocationTemplate;
   *ResourceHashPtr = &ResourceCacheTemplate;
@@ -55688,7 +55688,7 @@ void ConfigureSystemDataStructure(uint8_t ObjectContext,int64_t ValidationContex
 void SetupResourceHashTableThree(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0xa0) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + 0xa0) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -55739,7 +55739,7 @@ void ConfigureResourceHashTablesAndCache(uint8_t ObjectContext, int64_t Validati
   uint8_t *ResourceHashPtr;
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x50);
-  *ResourceHashPtr = &ResourceHashTable006;
+  *ResourceHashPtr = &SenaryResourceHashTable;
   ResourceHashAddress[2] = &SystemDataStructure;
   *ResourceHashPtr = &ResourceAllocationTemplate;
   *ResourceHashPtr = &ResourceCacheTemplate;
@@ -60583,7 +60583,7 @@ void SetResourceHashAddressToAllocationTemplate(uint8_t ObjectContext,int64_t Va
 void SetResourceHashTablePointerToTable003(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + ResourceContextTertiaryOffset) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + ResourceContextTertiaryOffset) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -60999,7 +60999,7 @@ void SetResourceHashAddressToCacheTemplate(uint8_t ObjectContext, int64_t Valida
 void ExecuteResourceCleanupCallbackOffset38(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x38) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + 0x38) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -61148,7 +61148,7 @@ void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t Vali
   uint8_t *ResourceValidationStatusCodeAddress;
   
   ResourceValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x50);
-  *ResourceValidationStatusCodeAddress = &ResourceValidationTable001;
+  *ResourceValidationStatusCodeAddress = &PrimaryResourceValidationTable;
   ResourceHashPtr = (uint8_t *)ResourceHashStatusAddress[0x11];
   if (ResourceHashPtr != (uint8_t *)0x0) {
     ResourceIndex = __RTCastToVoid(ResourceHashAddress);
@@ -61169,7 +61169,7 @@ void InitializeSystemResourceHandlerExtended2(uint8_t ObjectContext,int64_t Vali
   *(uint32_t *)(ResourceHashStatusAddress + 0x10) = 0;
   ResourceHashStatusAddress[0xd] = &SystemDataStructure;
   ResourceIntegrityValidator(ResourceHashStatusAddress + 7,ResourceHashStatusAddress[9]);
-  *ResourceValidationStatusCodeAddress = &ResourceValidationTable002;
+  *ResourceValidationStatusCodeAddress = &SecondaryResourceValidationTable;
   return;
 }
 
@@ -61222,7 +61222,7 @@ void InitializeSystemResourceHandlerExtended3(uint8_t ObjectContext,int64_t Vali
   uint8_t *ResourceValidationStatusCodeAddress;
   
   ResourceValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x40);
-  *ResourceValidationStatusCodeAddress = &ResourceValidationTable001;
+  *ResourceValidationStatusCodeAddress = &PrimaryResourceValidationTable;
   ResourceHashPtr = (uint8_t *)ResourceHashStatusAddress[0x11];
   if (ResourceHashPtr != (uint8_t *)0x0) {
     ResourceIndex = __RTCastToVoid(ResourceHashAddress);
@@ -61243,7 +61243,7 @@ void InitializeSystemResourceHandlerExtended3(uint8_t ObjectContext,int64_t Vali
   *(uint32_t *)(ResourceHashStatusAddress + 0x10) = 0;
   ResourceHashStatusAddress[0xd] = &SystemDataStructure;
   ResourceIntegrityValidator(ResourceHashStatusAddress + 7,ResourceHashStatusAddress[9]);
-  *ResourceValidationStatusCodeAddress = &ResourceValidationTable002;
+  *ResourceValidationStatusCodeAddress = &SecondaryResourceValidationTable;
   return;
 }
 
@@ -62169,7 +62169,7 @@ void ResetResourceValidationTable(uint8_t ObjectContext,int64_t ValidationContex
   uint8_t *ResourceHashPtr;
   
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x70);
-  *ResourceHashPtr = &ResourceValidationTable003;
+  *ResourceHashPtr = &TertiaryResourceValidationTable;
   if (ResourceHashAddress[3] != 0) {
           ExecuteSystemEmergencyExit();
   }
@@ -66209,7 +66209,7 @@ void InitializeResourceHashTableTemplates(uint8_t ObjectContext, int64_t Validat
 void SetResourceHashTable003(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x28) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + 0x28) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -71724,7 +71724,7 @@ void ResetResourceSystemDataPointer(uint8_t ObjectContext,int64_t ValidationCont
 void InitializeResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0xe0) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + 0xe0) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -89087,7 +89087,7 @@ void Unwind_18090edb0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090edc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + ResourceSecurityProcessingOffset) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + ResourceSecurityProcessingOffset) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -89151,7 +89151,7 @@ void Unwind_18090ee00(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090ee10(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x88) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + 0x88) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -89229,7 +89229,7 @@ void Unwind_18090ee60(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090ee70(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + ValidationContextSystemObjectOffset) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + ValidationContextSystemObjectOffset) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -92207,7 +92207,7 @@ void Unwind_18090ff50(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090ff70(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + ValidationContextMethodPointerOffset0) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + ValidationContextMethodPointerOffset0) = &TertiaryResourceHashTable;
   return;
 }
 
@@ -93501,7 +93501,7 @@ void Unwind_180910410(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180910420(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + ValidationContextDataOffset) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + ValidationContextDataOffset) = &TertiaryResourceHashTable;
   return;
 }
 
