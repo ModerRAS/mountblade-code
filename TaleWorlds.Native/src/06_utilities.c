@@ -5082,17 +5082,6 @@ uint8_t ValidateCharacterInput(char CharacterToValidate) {
 
 
 /**
- * @brief 初始化系统资源
- * 
- * 该函数负责初始化系统所需的资源，为后续操作做准备。
- * 目前为空实现，预留用于后续系统资源初始化逻辑。
- * 
- * @return void 无返回值
- */
-
-
-
-/**
  * @brief 验证对象句柄有效性
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作。
@@ -5170,14 +5159,6 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * 
  * @return void 无返回值
  * @warning 此函数会立即终止系统运行，只在严重错误时使用
- */
-/**
- * @brief 触发系统异常
- * 
- * 该函数用于触发系统异常处理机制
- * 主要用于处理系统级的错误和异常情况
- * 
- * @return void 无返回值
  */
 void TriggerSystemException(void) {
   ExecuteSystemExitOperation();

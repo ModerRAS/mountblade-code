@@ -1188,7 +1188,7 @@ void* SystemDataBufferCommonSeptenary;
 // 系统数据缓冲区 - 通用用途
 char SystemCommonFlagBufferPrimary;
 void* SystemDataBufferStandard01;
-void* SystemDataBufferStandard02;
+void* SystemDataBufferStandardSecondary;
 void* SystemDataBufferStandard03;
 void* SystemDataBufferStandard04;
 void* SystemDataBufferStandard05;
@@ -1199,7 +1199,7 @@ void* SystemDataBufferStandard09;
 void* SystemDataBufferStandard10;
 // 系统数据缓冲区 - 标准化命名
 void* SystemDataBufferStandard11;
-void* SystemDataBufferStandard12;
+void* SystemDataBufferStandardDozen;
 void* SystemDataBufferStandard13;
 void* SystemDataBufferStandard14;
 void* SystemDataBufferStandard15;
@@ -1209,7 +1209,7 @@ void* SystemDataBufferStandard18;
 void* SystemDataBufferStandard19;
 void* SystemDataBufferStandard20;
 void* SystemDataBufferStandard21;
-void* SystemDataBufferStandard22;
+void* SystemDataBufferStandardPair;
 void* SystemDataBufferStandard23;
 void* SystemDataBufferStandard24;
 void* SystemDataBufferStandard25;
