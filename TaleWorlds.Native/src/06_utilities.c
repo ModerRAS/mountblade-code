@@ -22458,8 +22458,8 @@ uint8_t * GetResourceDataAddressA(void)
   *(uint32_t *)(SystemExecutionPointer + -0x19) = ResourceHashStatusPrimary;
   *(uint32_t *)(SystemExecutionPointer + -0x15) = ResourceHashStatus;
   *(uint32_t *)(SystemExecutionPointer + -0x11) = ResourceHashStatus;
-  *(uint32_t *)(SystemExecutionPointer + -0xd) = LoopIncrement;
-  ResourceCount = 0;
+  *(uint32_t *)(SystemExecutionPointer + -0xd) = ResourceLoopIncrement;
+  ResourceProcessingCount = 0;
   ResourceHashDataPointer = ResourceHashAddress;
   if (ValidationCounter < 0x6d) {
     if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
