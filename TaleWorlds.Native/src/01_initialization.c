@@ -28,28 +28,26 @@
 #define SYSTEM_RESOURCE_MEMORY_POOL_OFFSET     5
 
 // 系统节点相关常量
-#define SystemNodeActiveFlagOffset         0x19
-#define SystemIdentifierSize                 0x10
-#define SystemNodeNextPointerOffset       2
-#define SystemNodeHeadPointerOffset       0
-#define SystemNodeAllocationExtraSize     0x20
+#define SYSTEM_NODE_ACTIVE_FLAG_OFFSET         0x19
+#define SYSTEM_IDENTIFIER_SIZE                 0x10
+#define SYSTEM_NODE_NEXT_POINTER_OFFSET       2
+#define SYSTEM_NODE_HEAD_POINTER_OFFSET       0
+#define SYSTEM_NODE_ALLOCATION_EXTRA_SIZE     0x20
 
 // 系统节点结构体字段索引
-#define SystemNodeIdentifier1Index         6
-#define SystemNodeIdentifier2Index         7
-#define SystemNodeDataPointerIndex        8
-#define SystemNodeFlagIndex                 9
-#define SystemNodeHandlerIndex            10
-#define GameCoreSystemIdentifier1             0x4fc124d23d41985f
-#define GameCoreSystemIdentifier2             0xe2f4a30d6e6ae482
-#define GameCoreSystemId                    0x4fc124d23d41985f
-#define GameCoreSystemNodeData                    0
-#define BaseAllocatorSystemIdentifier1       0x4770584fbb1df897
-#define BaseAllocatorSystemIdentifier2       0x47f249e43f66f2ab
-#define BaseAllocatorSystemFlag              1
-#define BaseAllocatorSystemNodeData              0
-#define BaseAllocatorSystemIdentifier1           0x4770584fbb1df897
-#define BaseAllocatorSystemIdentifier2           0x47f249e43f66f2ab
+#define SYSTEM_NODE_IDENTIFIER1_INDEX         6
+#define SYSTEM_NODE_IDENTIFIER2_INDEX         7
+#define SYSTEM_NODE_DATA_POINTER_INDEX        8
+#define SYSTEM_NODE_FLAG_INDEX                 9
+#define SYSTEM_NODE_HANDLER_INDEX            10
+#define GAME_CORE_SYSTEM_IDENTIFIER1             0x4fc124d23d41985f
+#define GAME_CORE_SYSTEM_IDENTIFIER2             0xe2f4a30d6e6ae482
+#define GAME_CORE_SYSTEM_ID                    0x4fc124d23d41985f
+#define GAME_CORE_SYSTEM_NODE_DATA                    0
+#define BASE_ALLOCATOR_SYSTEM_IDENTIFIER1       0x4770584fbb1df897
+#define BASE_ALLOCATOR_SYSTEM_IDENTIFIER2       0x47f249e43f66f2ab
+#define BASE_ALLOCATOR_SYSTEM_FLAG              1
+#define BASE_ALLOCATOR_SYSTEM_NODE_DATA              0
 #define SystemDataTableSystemIdentifier1     0x544e41445441424c
 #define SystemDataTableSystemIdentifier2     0x4552455345525441
 #define SystemDataTableSystemFlag           2
