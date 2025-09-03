@@ -50040,6 +50040,7 @@ void ExecuteResourceHashTableCleanup(uint8_t ObjectContext,int64_t ValidationCon
   int64_t *ResourceTablePointerPointer;
   uint8_t *HashEntryPointer;
   uint8_t LoopCondition;
+  uint64_t LoopIncrement;
   
   ResourceTablePointerPointer = *(int64_t **)(ValidationContext + ResourceTablePointerOffset);
   LoopIncrement = 0xfffffffffffffffe;
