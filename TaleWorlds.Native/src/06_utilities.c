@@ -5015,8 +5015,8 @@ uint8_t FreeObjectHandle(void) {
  * @param CharacterParameter 输入的字符参数，需要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t ValidateCharacterInput(char CharacterParameter) {
-  if (CharacterParameter != '\0') {
+uint8_t ValidateCharacterInput(char InputCharacter) {
+  if (InputCharacter != '\0') {
     ExecuteSystemExitOperation();
   }
   return 0;
@@ -5052,23 +5052,23 @@ void InitializeSystemResources(void) {
  * @warning 验证失败时会触发系统退出操作
  */
 uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
-  uint8_t ObjectValidationResult;
-  int64_t ValidatedObjectContextPointer;
+  uint8_t ValidationStatus;
+  int64_t ValidatedContextAddress;
   
-  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedObjectContextPointer);
-  if ((int)ObjectValidationResult != 0) {
-    return ObjectValidationResult;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedContextAddress);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  if (ValidatedObjectContextPointer == 0) {
-    ValidatedObjectContextPointer = 0;
+  if (ValidatedContextAddress == 0) {
+    ValidatedContextAddress = 0;
   }
   else {
-    ValidatedObjectContextPointer = ValidatedObjectContextPointer + -8;
+    ValidatedContextAddress = ValidatedContextAddress + -8;
   }
-  if (*(int64_t *)(ValidatedObjectContextPointer + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedObjectContextPointer + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset), 1);
   return 0;
 }
 
