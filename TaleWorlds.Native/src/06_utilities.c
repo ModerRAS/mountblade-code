@@ -55746,10 +55746,10 @@ void ExecuteResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationCont
 void ExecuteResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t resourceOperationParameter;
+  int64_t resourceOperationAddress;
   
-  resourceOperationParameter = *(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + 0x2e0;
-  ExecuteResourceOperation(resourceOperationParameter);
+  resourceOperationAddress = *(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + 0x2e0;
+  ExecuteResourceOperation(resourceOperationAddress);
   return;
 }
 
@@ -55767,10 +55767,10 @@ void ExecuteResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationCo
 void FinalizeResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t resourceFinalizationParameter;
+  int64_t resourceFinalizationAddress;
   
-  resourceFinalizationParameter = *(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + 0x2f0;
-  FinalizeResourceOperation(resourceFinalizationParameter);
+  resourceFinalizationAddress = *(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + 0x2f0;
+  FinalizeResourceOperation(resourceFinalizationAddress);
   return;
 }
 
@@ -60259,17 +60259,17 @@ void ExecuteDualResourceHandlerCallbacks(uint8_t ObjectContext, int64_t Validati
 
 {
   int64_t *processPointer;
-  int64_t resourceTable;
-  int64_t **resourceContext;
+  int64_t resourceTableAddress;
+  int64_t **resourceContextPointer;
   
-  resourceTable = *(int64_t *)(ValidationContext + 0x80);
-  resourceContext = *(int64_t **)(resourceTable + 0x18);
-  if (resourceContext != (int64_t **)0x0) {
-    (**(code **)(*resourceContext + 0x38))();
+  resourceTableAddress = *(int64_t *)(ValidationContext + 0x80);
+  resourceContextPointer = *(int64_t **)(resourceTableAddress + 0x18);
+  if (resourceContextPointer != (int64_t **)0x0) {
+    (**(code **)(*resourceContextPointer + 0x38))();
   }
-  resourceContext = *(int64_t **)(resourceTable + ValidationContextCleanupFunctionOffset);
-  if (resourceContext != (int64_t **)0x0) {
-    (**(code **)(*resourceContext + 0x38))();
+  resourceContextPointer = *(int64_t **)(resourceTableAddress + ValidationContextCleanupFunctionOffset);
+  if (resourceContextPointer != (int64_t **)0x0) {
+    (**(code **)(*resourceContextPointer + 0x38))();
   }
   return;
 }
@@ -105088,7 +105088,7 @@ void ExecuteResourceCleanup(void)
 void OptimizeResourceUsage(void)
 
 {
-  ResourceOptimizationDataPointer = &SystemDataStructure;
+  ResourceOptimizationManagerPointer = &SystemDataStructure;
   return;
 }
 
