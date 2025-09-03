@@ -1178,7 +1178,9 @@ uint32_t NetworkCallbackData;                        // 网络回调数据
 uint32_t NetworkCallbackSize;                        // 网络回调大小
 uint32_t NetworkCallbackIndex;                       // 网络回调索引
 
-// 网络连接处理变量
+/**
+ * @brief 网络连接处理变量 - 记录连接处理相关的状态和数据
+ */
 uint32_t ProcessedNetworkConnectionPacketHandle;          // 已处理的网络连接数据包句柄
 uint32_t NetworkSecurityValidationData;                    // 网络安全验证数据
 uint32_t NetworkBufferTemplatePointer;                     // 网络缓冲区模板指针
