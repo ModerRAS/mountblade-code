@@ -1014,9 +1014,9 @@ void* ModuleDependencyHandle;                            // 系统模块依赖�
 
 // 系统运行时全局变量
 int64_t GlobalSystemInputParameter;                        // 系统输入参数值
-int32_t SystemOperationStatusCode;                       // 系统操作状态码
-void* SystemRegisterContext;                              // 系统寄存器上下文数据
-void* SystemObjectContext;                                // 系统对象上下文缓冲区
+int32_t SystemOperationStatus;                       // 系统操作状态码
+void* SystemRegisterData;                              // 系统寄存器上下文数据
+void* SystemObjectContextBuffer;                                // 系统对象上下文缓冲区
 uint8_t SystemResourceAllocationTemplate;                 // 系统资源分配模板
 
 /**
