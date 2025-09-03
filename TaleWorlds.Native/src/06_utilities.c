@@ -11948,9 +11948,9 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolContext)
     ResourcePoolStatusCode = 0;
     *(uint32_t *)((int64_t)ObjectContext + 0xc) = 0;
   }
-  int ResourceIndex = (int)ObjectContext[1];
-  if (ResourceIndex < 0) {
-          memset(*ObjectContext + (int64_t)ResourceIndex * ResourceEntrySize,0,(int64_t)-ResourceIndex * ResourceEntrySize);
+  int ResourcePoolIndex = (int)ObjectContext[1];
+  if (ResourcePoolIndex < 0) {
+          memset(*ObjectContext + (int64_t)ResourcePoolIndex * ResourceEntrySize,0,(int64_t)-ResourcePoolIndex * ResourceEntrySize);
   }
   *(uint32_t *)(ObjectContext + 1) = 0;
   if ((0 < (int)((ResourceHashValidationCode ^ (int)ResourceHashValidationCode >> ErrorResourceValidationFailed) - ((int)ResourceHashValidationCode >> ErrorResourceValidationFailed))) &&
