@@ -967,7 +967,20 @@ void NetworkResetConnectionPointer(void)
  */
 uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameters)
 {
-  return 0;
+  // 检查参数指针是否有效
+  if (NetworkConnectionParameters == NULL) {
+    return NetworkErrorInvalidHandle;
+  }
+  
+  // 检查连接参数的基本结构
+  if (*NetworkConnectionParameters == 0) {
+    return NetworkErrorConnectionFailed;
+  }
+  
+  // 这里可以添加更多的参数验证逻辑
+  // 例如：验证IP地址格式、端口号范围、协议类型等
+  
+  return 0;  // 验证成功
 }
 
 /**
