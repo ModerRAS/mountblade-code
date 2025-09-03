@@ -12840,18 +12840,18 @@ uint32_t SystemAudioConfigure(int AudioFormatParameter,int SampleRateParameter,i
 {
   int LoopCounter;
   uint32_t BufferSize;
-  uint32_t aStackCounter5 [4];
+  uint32_t AudioConfigBuffer [4];
   if (SystemProcessingEnabledFlag == '\0') {
     return 0x80920005;
   }
-  if (((param_2 != 0) || (param_3 != 0)) || (3 < param_1 - 1U)) {
+  if (((SampleRateParameter != 0) || (ChannelCountParameter != 0)) || (3 < AudioFormatParameter - 1U)) {
     return 0x80920001;
   }
   LoopCounter = GetLoopCounter();
   if (LoopCounter != 0) {
     return 0x809200ff;
   }
-  LoopCounter = InitializeLoopCounter(param_1,aStackCounter5);
+  LoopCounter = InitializeLoopCounter(AudioFormatParameter,AudioConfigBuffer);
   if (LoopCounter < 0) {
     BufferSize = 0x809200ff;
     if (LoopCounter == -0x7ffeffff) {
@@ -12861,7 +12861,7 @@ uint32_t SystemAudioConfigure(int AudioFormatParameter,int SampleRateParameter,i
     return BufferSize;
   }
   ClearSystemBuffer();
-  return aStackCounter5[0];
+  return AudioConfigBuffer[0];
 }
 uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatPointer)
 {
