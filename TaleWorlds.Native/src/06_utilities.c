@@ -29990,16 +29990,6 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @warning 调用此函数会执行相应的异常处理逻辑
  */
 /**
- * @brief 处理主上下文异常
- * 
- * 该函数用于处理系统主上下文中的异常情况
- * 通过调用注册的主异常处理器来处理异常
- * 
- * @param ExceptionContext 异常上下文
- * @param SystemContext 系统上下文指针
- * @return 无返回值
- */
-/**
  * @brief 主上下文异常处理器
  * 
  * 该函数负责处理主异常情况下的资源清理和状态恢复
