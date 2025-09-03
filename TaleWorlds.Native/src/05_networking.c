@@ -2099,22 +2099,34 @@ void ValidateConnectionData(NetworkHandle ConnectionTable, int64_t ConnectionDat
 /**
  * @brief 验证连接安全性
  * 
- * 验证网络连接的安全性参数和配置
+ * 验证网络连接的安全性参数和配置，确保连接符合安全标准
  * 
- * @param ConnectionTable 连接表指针
- * @param ConnectionContext 连接上下文
- * @param SecurityValidationData 安全验证数据指针
- * @param ValidationBufferSize 验证缓冲区大小
- * @param SecurityMode 安全模式
- * @return void 验证结果
+ * @param ConnectionTable 连接表指针，用于管理连接状态
+ * @param ConnectionContext 连接上下文，包含连接的详细状态信息
+ * @param SecurityValidationData 安全验证数据指针，用于存储验证结果
+ * @param ValidationBufferSize 验证缓冲区大小，指定可用的存储空间
+ * @param SecurityMode 安全模式，指定验证的安全级别
+ * @return void 验证结果通过参数返回
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的安全验证逻辑
+ * @warning 简化实现仅执行基本的参数检查，不提供实际的安全性验证
  */
 void ValidateConnectionSecurity(NetworkHandle ConnectionTable, int64_t ConnectionContext, void* SecurityValidationData, 
                                uint32_t ValidationBufferSize, uint32_t SecurityMode)
 {
-  // 这里应该实现连接安全性验证逻辑
-  // 由于这是简化实现，仅执行基本的参数检查
+  // 简化实现：仅执行基本的参数检查和内存初始化
+  // 实际实现应该包括：
+  // 1. 验证连接表的完整性和有效性
+  // 2. 检查连接上下文的安全状态
+  // 3. 执行加密握手协议验证
+  // 4. 验证证书和身份信息
+  // 5. 检查网络流量模式是否异常
+  // 6. 实施访问控制策略
+  
   if (SecurityValidationData && ValidationBufferSize > 0) {
     memset(SecurityValidationData, 0, ValidationBufferSize);
+    // 在实际实现中，这里应该填充详细的验证结果数据
+    // 包括：安全级别、风险等级、建议措施等
   }
 }
 
