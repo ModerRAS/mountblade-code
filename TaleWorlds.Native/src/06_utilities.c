@@ -77490,7 +77490,7 @@ void Unwind_18090b5f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b610(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupOperation610(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -77504,7 +77504,7 @@ void Unwind_18090b610(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b630(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupOperation630(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -77518,7 +77518,7 @@ void Unwind_18090b630(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090b650(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupOperation650(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xf0,8,0x10,ProcessResourceOperation);
