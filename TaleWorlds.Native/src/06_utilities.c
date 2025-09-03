@@ -4533,7 +4533,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   ObjectValidationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleArray);
   if ((ObjectValidationStatus == 0) && (*(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset) != 0)) {
     ObjectListBuffer = ObjectProcessingBuffer;
-    ProcessedObjectCounter = 0;
+    ProcessedObjectCount = 0;
     TotalObjectsCount = 0;
     MaxProcessingLimit = MaximumProcessableItemsLimit;
     

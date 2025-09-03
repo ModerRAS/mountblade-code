@@ -1206,9 +1206,9 @@ void* SystemDataBufferStandardSenary;
 void* SystemDataBufferStandardSeptenary;
 void* SystemDataBufferStandardOctonary;
 void* SystemDataBufferStandardNonary;
-void* SystemDataBufferStandard10;
+void* SystemDataBufferStandardDenary;
 // 系统数据缓冲区 - 标准化命名
-void* SystemDataBufferStandard11;
+void* SystemDataBufferStandardUndenary;
 void* SystemDataBufferStandardDozen;
 void* SystemDataBufferStandard13;
 void* SystemDataBufferStandard14;
