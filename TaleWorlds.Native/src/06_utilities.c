@@ -1546,62 +1546,62 @@ void* DatabaseCondition;                       // 数据库条件变量
 void* DatabaseMemory;                          // 数据库内存
 void* DatabaseHeap;                            // 数据库堆
 void* DatabaseStackManager;                    // 数据库栈管理器
-void* DatabasePool;
-void* DatabaseConnectionPoolConfiguration;
-void* DatabaseConnectionPoolStatus;
-void* DatabaseConnectionPoolParams;
-void* DatabaseConnectionPoolCache;
-void* DatabaseConnectionPoolIndex;
-void* DatabaseConnectionPoolTransactionManager;
-void* DatabaseConnectionPoolBackupSystem;
-void* DatabaseQueryCacheManager;
-void* DatabaseQueryResultStorage;
-void* DatabaseQueryOptimizer;
-void* DatabaseQueryExecutionPlan;
-void* DatabaseTransactionLogger;
-void* DatabaseTransactionStateManager;
-void* DatabaseTransactionRollbackManager;
-void* DatabaseTransactionCommitManager;
-void* DatabaseSystemConfigTable;
-void* DatabaseSystemStatusTable;
-void* DatabaseSystemIndexTable;
-void* DatabaseSystemLockTable;
-void* DatabaseSystemCacheTable;
-void* DatabaseSystemConnectionTable;
-void* DatabaseSystemTransactionTable;
-void* DatabaseSystemBackupTable;
-void* ResourceManagementConfigTable;
-void* MemoryManagementConfigTable;
-void* ThreadManagementConfigTable;
-void* ProcessManagementConfigTable;
-void* EventManagementConfigTable;
-void* TimerManagementConfigTable;
-void* SynchronizationConfigTable;
-void* LockManagementConfigTable;
-void* SemaphoreManagementConfigTable;
-void* MutexManagementConfigTable;
-void* ConditionVariableConfigurationTable;
-void* ThreadBarrierConfigTable;
-void* MemoryPoolConfigTable;
-void* QueueManagementConfigTable;
-void* StackManagementConfigurationTable;
-void* LinkedListConfigTable;
-void* HashTableConfigTable;
-void* TreeStructureConfigTable;
-void* GraphStructureConfigTable;
-void* SystemCacheConfig;
-void* SystemNetworkConfig;
-void* SystemGraphicsConfig;
-void* SystemAudioConfig;
-void* SystemInputConfig;
-void* SystemPhysicsConfig;
-void* SystemAnimationConfig;
-void* SystemScriptingConfig;
-void* SystemFileSystemConfig;
-void* SystemDatabaseConfig;
-void* SystemSecurityConfig;
-void* SystemLoggingConfig;
-void* SystemPerformanceConfig;
+void* DatabasePool;                            // 数据库池
+void* DatabaseConnectionPoolConfiguration;     // 数据库连接池配置
+void* DatabaseConnectionPoolStatus;            // 数据库连接池状态
+void* DatabaseConnectionPoolParams;             // 数据库连接池参数
+void* DatabaseConnectionPoolCache;              // 数据库连接池缓存
+void* DatabaseConnectionPoolIndex;             // 数据库连接池索引
+void* DatabaseConnectionPoolTransactionManager; // 数据库连接池事务管理器
+void* DatabaseConnectionPoolBackupSystem;      // 数据库连接池备份系统
+void* DatabaseQueryCacheManager;               // 数据库查询缓存管理器
+void* DatabaseQueryResultStorage;              // 数据库查询结果存储
+void* DatabaseQueryOptimizer;                  // 数据库查询优化器
+void* DatabaseQueryExecutionPlan;              // 数据库查询执行计划
+void* DatabaseTransactionLogger;               // 数据库事务日志记录器
+void* DatabaseTransactionStateManager;          // 数据库事务状态管理器
+void* DatabaseTransactionRollbackManager;      // 数据库事务回滚管理器
+void* DatabaseTransactionCommitManager;        // 数据库事务提交管理器
+void* DatabaseSystemConfigTable;               // 数据库系统配置表
+void* DatabaseSystemStatusTable;               // 数据库系统状态表
+void* DatabaseSystemIndexTable;                // 数据库系统索引表
+void* DatabaseSystemLockTable;                 // 数据库系统锁表
+void* DatabaseSystemCacheTable;                // 数据库系统缓存表
+void* DatabaseSystemConnectionTable;           // 数据库系统连接表
+void* DatabaseSystemTransactionTable;          // 数据库系统事务表
+void* DatabaseSystemBackupTable;                // 数据库系统备份表
+void* ResourceManagementConfigTable;           // 资源管理配置表
+void* MemoryManagementConfigTable;            // 内存管理配置表
+void* ThreadManagementConfigTable;             // 线程管理配置表
+void* ProcessManagementConfigTable;            // 进程管理配置表
+void* EventManagementConfigTable;              // 事件管理配置表
+void* TimerManagementConfigTable;              // 定时器管理配置表
+void* SynchronizationConfigTable;              // 同步配置表
+void* LockManagementConfigTable;               // 锁管理配置表
+void* SemaphoreManagementConfigTable;           // 信号量管理配置表
+void* MutexManagementConfigTable;              // 互斥锁管理配置表
+void* ConditionVariableConfigurationTable;    // 条件变量配置表
+void* ThreadBarrierConfigTable;               // 线程屏障配置表
+void* MemoryPoolConfigTable;                   // 内存池配置表
+void* QueueManagementConfigTable;             // 队列管理配置表
+void* StackManagementConfigurationTable;       // 栈管理配置表
+void* LinkedListConfigTable;                   // 链表配置表
+void* HashTableConfigTable;                   // 哈希表配置表
+void* TreeStructureConfigTable;                // 树结构配置表
+void* GraphStructureConfigTable;               // 图结构配置表
+void* SystemCacheConfig;                       // 系统缓存配置
+void* SystemNetworkConfig;                      // 系统网络配置
+void* SystemGraphicsConfig;                    // 系统图形配置
+void* SystemAudioConfig;                       // 系统音频配置
+void* SystemInputConfig;                       // 系统输入配置
+void* SystemPhysicsConfig;                     // 系统物理配置
+void* SystemAnimationConfig;                    // 系统动画配置
+void* SystemScriptingConfig;                    // 系统脚本配置
+void* SystemFileSystemConfig;                   // 系统文件系统配置
+void* SystemDatabaseConfig;                      // 系统数据库配置
+void* SystemSecurityConfig;                     // 系统安全配置
+void* SystemLoggingConfig;                      // 系统日志配置
+void* SystemPerformanceConfig;                   // 系统性能配置
 void* SystemLocalizationConfiguration;
 void* SystemModdingConfig;
 void* SystemDebugConfig;
