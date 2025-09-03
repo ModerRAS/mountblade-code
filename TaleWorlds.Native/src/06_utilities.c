@@ -35574,9 +35574,9 @@ void ProcessDirectoryHandleCleanup(uint8_t ObjectContext,int64_t ValidationConte
   int64_t ResourceCleanupStepValue;
   uint8_t ResourceCleanupCompleteFlag;
   
-  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8a8);
-  ResourceCleanupStepValue = 0xfffffffffffffffe;
-  ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8b0);
+  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + DirectoryResourceTableOffset);
+  ResourceCleanupStepValue = MemoryCleanupTriggerValue;
+  ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + DirectoryResourceHashPointerOffset);
   for (ValidationStatusPointer = (uint8_t *)*ResourceTablePointer; ResourceHashStatusPointer != ResourceHashPointer; ValidationStatusPointer = ResourceHashStatusPointer + 4) {
     (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer,0,CleanupOption,CleanupFlag,ResourceCleanupStepValue);
   }
@@ -35607,11 +35607,11 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ResourceHashStatusAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8c8);
+  ResourceHashStatusAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + ResourceHashStatusAddressOffset);
   if (ResourceHashStatusAddress == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
+  MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & MemoryAddressAlignmentMask;
   if (MemoryAddressMask != 0) {
     ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
