@@ -26928,12 +26928,6 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
   void* systemValuePointer;
   int SystemOperationStatus;
   long long resourceDataIndex;
-  void** SystemDataTable;
-  code *programCounter;
-  uint8_t *systemDataPointer;
-  void* systemValuePointer;
-  int SystemOperationStatus;
-  long long resourceOffset;
   long long **memoryAllocationPointer;
   void*2 *systemTypedPointer;
   uint renderItemCounter;
@@ -26955,11 +26949,11 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
   void* stackValue58;
   ulong long loopCounter;
   
-  localDataIndex = SystemRuntimeCounter;
+  resourceDataIndex = SystemRuntimeCounter;
   stackValue68 = 0xfffffffffffffffe;
   *(void* *)(SystemRuntimeCounter + 0x2038) = *(void* *)(SystemRuntimeCounter + 0x2030);
-  systemTypedPointer = (void*2 *)(localDataIndex + 0x14);
-  localDataIndex = 0x100;
+  systemTypedPointer = (void*2 *)(resourceDataIndex + 0x14);
+  resourceDataIndex = 0x100;
   loopCounterValue = 0;
   do {
     *systemTypedPointer = 0;
