@@ -4309,7 +4309,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 void ValidateSystemObjectCollection(void)
 {
   uint8_t SystemObjectId;
-  int ValidationStatus;
+  int ValidationResult;
   int64_t ObjectContext;
   int64_t SystemContext;
   int64_t CurrentPosition;
@@ -4324,16 +4324,16 @@ void ValidateSystemObjectCollection(void)
     ProcessedObjectCount = 0;
     RetrievedObjectCount = 0;
     MaximumCapacity = MaximumCapacityLimit;
-    ValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
+    ValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (ValidationStatus == 0) {
+    if (ValidationResult == 0) {
       RetrievedObjectCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
       if (0 < RetrievedObjectCount) {
         CurrentPosition = PointerSizeBytes;
         do {
           SystemObjectId = *(uint8_t *)(CollectionBuffer + CurrentPosition);
-          ValidationStatus = ValidateSystemObject(SystemObjectId);
-          if (ValidationStatus != 2) {
+          ValidationResult = ValidateSystemObject(SystemObjectId);
+          if (ValidationResult != 2) {
                   HandleInvalidSystemObject(SystemObjectId, 1);
           }
           ProcessedObjectCount++;
@@ -4657,8 +4657,8 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
   (*(int *)(ObjectValidationBuffer[0] + ResourceCountOffset))++;
   if (*(int *)(ObjectValidationBuffer[0] + ResourceTertiaryCounterOffset) + *(int *)(ObjectValidationBuffer[0] + ResourceSecondaryCounterOffset) +
       *(int *)(ObjectValidationBuffer[0] + ResourceCountOffset) == 1) {
-    ObjectValidationContext[0] = 0;
-    SystemValidationStatusCode = ValidateSystemObjectConfiguration(ObjectValidationContext);
+    ObjectValidationBuffer[0] = 0;
+    SystemValidationStatusCode = ValidateSystemObjectConfiguration(ObjectValidationBuffer);
     if (SystemValidationStatusCode == 0) {
       SystemValidationStatusCode = ProcessSystemObjectValidation(SystemObjectHandle,*(uint8_t *)(SystemObjectHandle + 8),*(uint8_t *)(SystemContextParameters + SystemContextSecondaryDataOffset),
                             *(uint8_t *)(SystemContextParameters + 800));
@@ -11524,39 +11524,39 @@ uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
   uint ResourceChecksumValue;
   uint SystemOperationResultCode;
   
-  DataValidationStatus = *(uint *)((int64_t)DataContainerPointer + 0xc);
+  DataValidationStatus = *(uint *)((int64_t)DataContainerPointer + DataValidationStatusOffset);
   SystemOperationResultCode = ResourceChecksumValue ^ (int)ResourceChecksumValue >> ErrorResourceValidationFailed;
   if ((int)(ResourceChecksumValue - ((int)ResourceChecksumValue >> ErrorResourceValidationFailed)) < 0) {
-    if (0 < (int)DataContainerPointer[1]) {
+    if (ResourceIndexMinimum < (int)DataContainerPointer[ResourcePoolIndexOffset]) {
       return ResourceChecksumValue;
     }
-    if ((0 < (int)ResourceChecksumValue) && (*DataContainerPointer != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*DataContainerPointer,&ResourceAllocationTemplate,0x100,1);
+    if ((ResourceIndexMinimum < (int)ResourceChecksumValue) && (*DataContainerPointer != NullPointerValue)) {
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*DataContainerPointer,&ResourceAllocationTemplate,ResourceAllocationSize,ResourceAllocationFlag);
     }
-    *DataContainerPointer = 0;
-    DataValidationStatus = 0;
-    *(uint32_t *)((int64_t)DataContainerPointer + 0xc) = 0;
+    *DataContainerPointer = NullPointerValue;
+    DataValidationStatus = ValidationStatusSuccess;
+    *(uint32_t *)((int64_t)DataContainerPointer + DataValidationStatusOffset) = ValidationStatusSuccess;
   }
-  int ResourcePoolIndex = (int)DataContainerPointer[1];
-  if (ResourcePoolIndex < 0) {
-    if (ResourcePoolIndex < 0) {
-            memset(*DataContainerPointer + (int64_t)ResourcePoolIndex * 0xc,0,(uint64_t)(uint)-ResourcePoolIndex * 0xc);
+  int ResourcePoolIndex = (int)DataContainerPointer[ResourcePoolIndexOffset];
+  if (ResourcePoolIndex < ResourceIndexMinimum) {
+    if (ResourcePoolIndex < ResourceIndexMinimum) {
+            memset(*DataContainerPointer + (int64_t)ResourcePoolIndex * ResourceEntrySize,NullPointerValue,(uint64_t)(uint)-ResourcePoolIndex * ResourceEntrySize);
     }
   }
-  *(uint32_t *)(DataContainerPointer + 1) = 0;
+  *(uint32_t *)(DataContainerPointer + ResourcePoolIndexOffset) = ValidationStatusSuccess;
   DataValidationStatus = (ResourceChecksumValue ^ (int)ResourceChecksumValue >> ErrorResourceValidationFailed) - ((int)ResourceChecksumValue >> ErrorResourceValidationFailed);
-  if ((int)ResourceChecksumValue < 1) {
+  if ((int)ResourceChecksumValue < ResourceChecksumMinimum) {
     return ResourceChecksumValue;
   }
-  if (0 < (int)DataContainerPointer[1]) {
+  if (ResourceIndexMinimum < (int)DataContainerPointer[ResourcePoolIndexOffset]) {
     return ErrorInvalidObjectHandle;
   }
-  if ((0 < *(int *)((int64_t)DataContainerPointer + 0xc)) && (*DataContainerPointer != 0)) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*DataContainerPointer,&ResourceAllocationTemplate,0x100,1);
+  if ((ResourceIndexMinimum < *(int *)((int64_t)DataContainerPointer + DataValidationStatusOffset)) && (*DataContainerPointer != NullPointerValue)) {
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*DataContainerPointer,&ResourceAllocationTemplate,ResourceAllocationSize,ResourceAllocationFlag);
   }
-  *DataContainerPointer = 0;
-  *(uint32_t *)((int64_t)DataContainerPointer + 0xc) = 0;
-  return 0;
+  *DataContainerPointer = NullPointerValue;
+  *(uint32_t *)((int64_t)DataContainerPointer + DataValidationStatusOffset) = ValidationStatusSuccess;
+  return OperationSuccessCode;
 }
 
 
