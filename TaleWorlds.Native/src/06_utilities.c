@@ -30188,7 +30188,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会触发异常处理流程
  */
-void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerFunctionPointer;
   
   ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
@@ -30200,7 +30200,7 @@ void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */
-void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerFunctionPointer;
   
   ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
@@ -30223,7 +30223,7 @@ void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** ExceptionHandlerFunctionPointerTable;
   
   ExceptionHandlerFunctionPointerTable = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
