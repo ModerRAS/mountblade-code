@@ -1013,10 +1013,10 @@ void* ModuleDependencyHandle;                            // 系统模块依赖�
 
 // 系统运行时全局变量
 int64_t GlobalInputParameterValue;                        // 系统输入参数值
-int32_t SystemOperationStatusCode;                       // 系统操作状态
-void* RegisterContextData;                               // 系统寄存器上下文数据
-void* ObjectContextBuffer;                               // 系统对象上下文缓冲区
-uint8_t ResourceAllocationTemplate;                      // 系统资源分配模板
+int32_t SystemOperationStatusCode;                       // 系统操作状态码
+void* SystemRegisterContext;                              // 系统寄存器上下文数据
+void* SystemObjectContext;                                // 系统对象上下文缓冲区
+uint8_t SystemResourceAllocationTemplate;                 // 系统资源分配模板
 
 /**
  * @brief 初始化核心引擎模块
@@ -1031,10 +1031,10 @@ uint8_t ResourceAllocationTemplate;                      // 系统资源分配�
  */
 void InitializeCoreEngineModule(void);
 // 核心引擎模块全局变量
-void* CoreEngineInstance;                                // 系统核心引擎实例
-void* CoreEngineConfiguration;                           // 系统核心引擎配置
-uint32_t CoreEngineInitializationStatus;                // 系统核心引擎初始化状态
-void* CoreEngineHandle;                                  // 系统核心引擎句柄
+void* CoreEngineInstance;                                // 核心引擎实例
+void* CoreEngineConfiguration;                           // 核心引擎配置
+uint32_t CoreEngineInitializationStatus;                // 核心引擎初始化状态
+void* CoreEngineHandle;                                  // 核心引擎句柄
 
  /**
  * @brief 初始化渲染引擎模块
@@ -1049,11 +1049,11 @@ void* CoreEngineHandle;                                  // 系统核心引擎�
  */
 void InitializeRenderingEngineModule(void);
 // 渲染引擎模块全局变量
-void* RenderingEngineInstance;                          // 系统渲染引擎实例
-void* RenderingEngineConfiguration;                     // 系统渲染引擎配置
-uint32_t RenderingEngineInitializationStatus;           // 系统渲染引擎初始化状态
-void* RenderingEngineHandle;                             // 系统渲染引擎句柄
-void* RenderingEngineExecutionContext;                   // 系统渲染引擎执行上下文
+void* RenderingEngineInstance;                          // 渲染引擎实例
+void* RenderingEngineConfiguration;                     // 渲染引擎配置
+uint32_t RenderingEngineInitializationStatus;           // 渲染引擎初始化状态
+void* RenderingEngineHandle;                             // 渲染引擎句柄
+void* RenderingEngineExecutionContext;                   // 渲染引擎执行上下文
 /**
  * @brief 初始化图形系统模块
  * 
@@ -1067,11 +1067,11 @@ void* RenderingEngineExecutionContext;                   // 系统渲染引擎�
  */
 void InitializeGraphicsSystemModule(void);
 // 图形系统模块全局变量
-void* GraphicsSystemInstance;                            // 系统图形系统实例
-void* GraphicsSystemConfiguration;                       // 系统图形系统配置
-uint32_t GraphicsSystemInitializationStatus;             // 系统图形系统初始化状态
-void* GraphicsSystemHandle;                              // 系统图形系统句柄
-void* GraphicsSystemExecutionContext;                    // 系统图形系统执行上下文
+void* GraphicsSystemInstance;                            // 图形系统实例
+void* GraphicsSystemConfiguration;                       // 图形系统配置
+uint32_t GraphicsSystemInitializationStatus;             // 图形系统初始化状态
+void* GraphicsSystemHandle;                              // 图形系统句柄
+void* GraphicsSystemExecutionContext;                    // 图形系统执行上下文
 
 
 /**
@@ -1087,10 +1087,10 @@ void* GraphicsSystemExecutionContext;                    // 系统图形系统�
  */
 void InitializeAudioSystemModule(void);
 // 音频系统模块全局变量
-void* AudioSystemInstance;                              // 系统音频系统实例
-void* AudioSystemConfiguration;                         // 系统音频系统配置
-uint32_t AudioSystemInitializationStatus;               // 系统音频系统初始化状态
-void* AudioSystemHandle;                                 // 系统音频系统句柄
+void* AudioSystemInstance;                              // 音频系统实例
+void* AudioSystemConfiguration;                         // 音频系统配置
+uint32_t AudioSystemInitializationStatus;               // 音频系统初始化状态
+void* AudioSystemHandle;                                 // 音频系统句柄
 
 
 /**
