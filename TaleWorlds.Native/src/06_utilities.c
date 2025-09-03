@@ -4992,7 +4992,7 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
+uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ContextValidationResult;
   int64_t ObjectValidationData [4];
@@ -5013,7 +5013,7 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
     if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ContextValidationResult = CheckSystemStatus(), (int)ContextValidationResult != 0)) {
       return ContextValidationResult;
     }
-    return 0;
+    return OperationSuccessCode;
   }
   return ErrorInvalidObjectHandle;
 }
@@ -5027,7 +5027,7 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文，包含要初始化句柄的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandle(int64_t ObjectContext) {
+uint8_t SetupObjectHandle(int64_t ObjectContext) {
   uint8_t ValidationResult;
   int64_t ValidatedContextAddress;
   
@@ -5042,7 +5042,7 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
     if (*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset) != 0) {
             ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset), 1);
     }
-    ValidationResult = 0;
+    ValidationResult = OperationSuccessCode;
   }
   return ValidationResult;
 }
@@ -5066,7 +5066,7 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  * @note 此函数会触发系统退出操作来释放对象资源
  */
-uint8_t ReleaseObjectHandle(void) {
+uint8_t FreeObjectHandle(void) {
   int64_t ObjectHandle = 0;
   int64_t ObjectMemoryLocation;
   
@@ -5079,7 +5079,7 @@ uint8_t ReleaseObjectHandle(void) {
   if (*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset) != 0) {
     ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset), 1);
   }
-  return 0;
+  return OperationSuccessCode;
 }
 
 /**
@@ -5091,8 +5091,8 @@ uint8_t ReleaseObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示验证通过
  */
-uint8_t ValidateCharacterInput(char CharacterToValidate) {
-  if (CharacterToValidate != '\0') {
+uint8_t CheckCharacterValidity(char CharacterToCheck) {
+  if (CharacterToCheck != '\0') {
     ExecuteSystemExitOperation();
   }
   return OperationSuccessCode;
@@ -5110,11 +5110,11 @@ uint8_t ValidateCharacterInput(char CharacterToValidate) {
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
+uint8_t VerifyObjectHandle(int64_t ObjectHandleToVerify) {
   uint8_t ValidationStatus;
   int64_t ValidatedContextAddress;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedContextAddress);
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandleToVerify + ObjectHandleOffset), &ValidatedContextAddress);
   if ((int)ValidationStatus != 0) {
     return ValidationStatus;
   }
@@ -5128,7 +5128,7 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
     return ErrorInvalidObjectHandle;
   }
   ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset), 1);
-  return 0;
+  return OperationSuccessCode;
 }
 
 
@@ -5151,7 +5151,7 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate) {
  * 
  * @return uint32_t 验证结果，0表示成功，非0表示失败
  */
-uint32_t ValidateObjectHandleFromRegister(void) {
+uint32_t VerifyObjectHandleFromRegister(void) {
   int64_t SystemRegister = 0;
   int64_t ObjectMemoryAddress;
   
@@ -5165,7 +5165,7 @@ uint32_t ValidateObjectHandleFromRegister(void) {
     return ErrorInvalidObjectHandle;
   }
   ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectContextOffset), 1);
-  return 0;
+  return OperationSuccessCode;
 }
 
 
