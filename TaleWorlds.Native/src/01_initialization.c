@@ -29469,7 +29469,7 @@ void ProcessSystemNodeResource(long long SystemResourceManager)
   int SystemOperationStatus3;
   long long resourceDataIndex4;
   int SystemOperationStatus5;
-  long long resourceDataIndex6;
+  long long ResourceDataIndex;
   int SystemOperationStatus7;
   ulong long SystemOperationStatus8;
   int SystemContextPointer;
@@ -29480,14 +29480,14 @@ void ProcessSystemNodeResource(long long SystemResourceManager)
   resourceDataIndex2 = *(long long *)(SystemResourceManager + 0x48);
   if (resourceCounter - resourceDataIndex2 >> 3 != 0) {
     SystemContextPointer = 1;
-    resourceDataIndex6 = 8;
+    ResourceDataIndex = 8;
     SystemOperationStatus8 = SystemOperationFlags;
     do {
       SystemOperationStatus7 = (int)SystemOperationFlags;
       CalculationFlags = -1;
       if ((ulong long)(long long)SystemContextPointer < (ulong long)(resourceCounter - resourceDataIndex2 >> 3)) {
         resourceCounter = *(long long *)(SystemResourceManager + 0x50);
-        resourceDataIndex4 = resourceDataIndex6;
+        resourceDataIndex4 = ResourceDataIndex;
         SystemOperationStatus3 = SystemContextPointer;
         SystemOperationStatus5 = -1;
         do {
@@ -29580,12 +29580,12 @@ SystemCounterContinue:
         SystemOperationStatus7 = SystemOperationStatus7 + -1;
         SystemContextPointer = SystemContextPointer + -1;
         SystemOperationStatus8 = SystemOperationStatus8 - 8;
-        resourceDataIndex6 = resourceDataIndex6 + -8;
+        ResourceDataIndex = ResourceDataIndex + -8;
       }
       SystemOperationFlags = (ulong long)(SystemOperationStatus7 + 1U);
       SystemContextPointer = SystemContextPointer + 1;
       SystemOperationStatus8 = SystemOperationStatus8 + 8;
-      resourceDataIndex6 = resourceDataIndex6 + 8;
+      ResourceDataIndex = ResourceDataIndex + 8;
       resourceDataIndex2 = *(long long *)(SystemResourceManager + 0x48);
     } while ((ulong long)(long long)(int)(SystemOperationStatus7 + 1U) < (ulong long)(resourceCounter - resourceDataIndex2 >> 3));
   }
@@ -52329,7 +52329,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   byte isByteValid3;
   uint SystemOperationStatus4;
   long long resourceDataIndex5;
-  long long resourceDataIndex6;
+  long long ResourceDataIndex;
   void* *SystemDataBufferPointer;
   ulong long SystemContextPointer;
   uint8_t SystemConcatenatedBuffer448 [32];
@@ -52489,8 +52489,8 @@ LAB_180070b00:
   }
   resourceDataIndex5 = -1;
   do {
-    resourceDataIndex6 = resourceDataIndex5;
-    resourceDataIndex5 = resourceDataIndex6 + 1;
+    ResourceDataIndex = resourceDataIndex5;
+    resourceDataIndex5 = ResourceDataIndex + 1;
   } while (SystemDataBufferPointer[resourceDataIndex5] != '\0');
   systemIndex = (int)resourceDataIndex5;
   if (0 < systemIndex) {
@@ -52504,7 +52504,7 @@ LAB_180070b00:
       ThreadContextFlag = StartSystemThread(SystemMemoryContext);
       SystemMemoryOffset = ConcatenatedSystemValue(SystemMemoryOffset.HighPart,ThreadContextFlag);
     }
-      memcpy(SystemMemoryContext + StackValue2,SystemDataBufferPointer,(long long)((int)resourceDataIndex6 + 2));
+      memcpy(SystemMemoryContext + StackValue2,SystemDataBufferPointer,(long long)((int)ResourceDataIndex + 2));
   }
   SystemMemoryContext = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
   *SystemMemoryContext = 0;
@@ -52532,8 +52532,8 @@ LAB_180070db8:
   if (ConfigurationDataPointer != 0) {
     resourceDataIndex5 = -1;
     do {
-      resourceDataIndex6 = resourceDataIndex5;
-      resourceDataIndex5 = resourceDataIndex6 + 1;
+      ResourceDataIndex = resourceDataIndex5;
+      resourceDataIndex5 = ResourceDataIndex + 1;
     } while (*(char *)(ConfigurationDataPointer + resourceDataIndex5) != '\0');
     systemIndex = (int)resourceDataIndex5;
     if (0 < systemIndex) {
@@ -52561,7 +52561,7 @@ LAB_180070db8:
       }
 LAB_180070e64:
       StackValue2 = CurrentThreadId;
-        memcpy(SystemMemoryContext + StackValue2,ConfigurationDataPointer,(long long)((int)resourceDataIndex6 + 2));
+        memcpy(SystemMemoryContext + StackValue2,ConfigurationDataPointer,(long long)((int)ResourceDataIndex + 2));
     }
   }
   if (SystemMemoryContext == (uint8_t *)0x0) {
@@ -52627,15 +52627,15 @@ LAB_180071000:
   *ThreadLocalStorage = 0x6973736572707845;
   *(uint32_t *)(ThreadLocalStorage + 1) = 0x203a6e6f;
   *(uint8_t *)((long long)ThreadLocalStorage + 0xc) = 0;
-  resourceDataIndex6 = -1;
+  ResourceDataIndex = -1;
   StackValue2 = SystemOperationStatus4;
   if (SystemConfigurationData != 0) {
     do {
-      resourceDataIndex7 = resourceDataIndex6;
-      resourceDataIndex6 = resourceDataIndex7 + 1;
-    } while (*(char *)(SystemConfigurationData + resourceDataIndex6) != '\0');
-    if (0 < (int)resourceDataIndex6) {
-      systemIndex = SystemOperationStatus4 + (int)resourceDataIndex6;
+      resourceDataIndex7 = ResourceDataIndex;
+      ResourceDataIndex = resourceDataIndex7 + 1;
+    } while (*(char *)(SystemConfigurationData + ResourceDataIndex) != '\0');
+    if (0 < (int)ResourceDataIndex) {
+      systemIndex = SystemOperationStatus4 + (int)ResourceDataIndex;
       if (systemIndex != 0) {
         ResourceHash = systemIndex + 1;
         if (SystemMemoryContext == (uint8_t *)0x0) {
@@ -57608,7 +57608,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   long long resourceDataIndex3;
   long long resourceDataIndex4;
   long long resourceDataIndex5;
-  long long resourceDataIndex6;
+  long long ResourceDataIndex;
   long long resourceDataIndex7;
   void* SystemOperationStatus8;
   long long *PrimaryResourcePointer9;
@@ -57716,7 +57716,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   resourceDataIndex3 = SystemResourceManager[0x27];
   resourceDataIndex4 = SystemResourceManager[0x28];
   resourceDataIndex5 = SystemResourceManager[0x29];
-  resourceDataIndex6 = SystemResourceManager[0x2a];
+  ResourceDataIndex = SystemResourceManager[0x2a];
   resourceDataIndex7 = SystemResourceManager[0x2b];
   ResourceMemoryOffset = *ConfigurationDataPointer;
   *(long long *)(ResourceMemoryOffset + 0x120) = SystemResourceManager[0x24];
@@ -57725,7 +57725,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   *(long long *)(ResourceMemoryOffset + 0x138) = resourceDataIndex3;
   *(long long *)(ResourceMemoryOffset + 0x140) = resourceDataIndex4;
   *(long long *)(ResourceMemoryOffset + 0x148) = resourceDataIndex5;
-  *(long long *)(ResourceMemoryOffset + 0x150) = resourceDataIndex6;
+  *(long long *)(ResourceMemoryOffset + 0x150) = ResourceDataIndex;
   *(long long *)(ResourceMemoryOffset + 0x158) = resourceDataIndex7;
   SystemResourceDataIndex = SystemResourceManager[0x2d];
   resourceDataIndex2 = SystemResourceManager[0x2e];
@@ -57734,7 +57734,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   resourceCreationFlags = *(uint32_t *)((long long)SystemResourceManager + 0x184);
   resourceDataIndex5 = SystemResourceManager[0x31];
   resourceAddress = *(uint32_t *)((long long)SystemResourceManager + 0x18c);
-  resourceDataIndex6 = SystemResourceManager[0x32];
+  ResourceDataIndex = SystemResourceManager[0x32];
   CurrentThreadId = *(uint32_t *)((long long)SystemResourceManager + 0x194);
   resourceDataIndex7 = SystemResourceManager[0x33];
   ResourceHash = *(uint32_t *)((long long)SystemResourceManager + 0x19c);
@@ -57747,7 +57747,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   *(uint32_t *)(ResourceMemoryOffset + 0x184) = resourceCreationFlags;
   *(int *)(ResourceMemoryOffset + 0x188) = (int)resourceDataIndex5;
   *(uint32_t *)(ResourceMemoryOffset + 0x18c) = resourceAddress;
-  *(int *)(ResourceMemoryOffset + 400) = (int)resourceDataIndex6;
+  *(int *)(ResourceMemoryOffset + 400) = (int)ResourceDataIndex;
   *(uint32_t *)(ResourceMemoryOffset + 0x194) = CurrentThreadId;
   *(int *)(ResourceMemoryOffset + 0x198) = (int)resourceDataIndex7;
   *(uint32_t *)(ResourceMemoryOffset + 0x19c) = ResourceHash;
@@ -57766,7 +57766,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   PrimaryResourcePointer9 = (long long *)SystemResourceManager[0x4d];
   if (PrimaryResourcePointer9 != (long long *)0x0) {
     PrimaryResourcePointer = PrimaryResourcePointer9;
-    (**(code **)(*PrimaryResourcePointer9 + 0x28))(PrimaryResourcePointer9,resourceCreationFlags,(int)resourceDataIndex4,(int)resourceDataIndex6,ThreadCreationFlags);
+    (**(code **)(*PrimaryResourcePointer9 + 0x28))(PrimaryResourcePointer9,resourceCreationFlags,(int)resourceDataIndex4,(int)ResourceDataIndex,ThreadCreationFlags);
   }
   PrimaryResourcePointer = *(long long **)(ResourceMemoryOffset + 0x268);
   *(long long **)(ResourceMemoryOffset + 0x268) = PrimaryResourcePointer9;
@@ -62351,78 +62351,78 @@ void InitializeSystemResourcePool(void)
   ResourceCreationFlags = ((void* *)(ResourceDataIndex + ResourceMemoryOffset))[1];
   *(void* *)InterpolationFactorXPointer = *(void* *)(ResourceDataIndex + ResourceMemoryOffset);
   *(void* *)(InterpolationFactorXPointer + 2) = ResourceCreationFlags;
-  presourceAddress = (void* *)(resourceDataIndex6 + 0x10 + ResourceMemoryOffset1);
+  presourceAddress = (void* *)(ResourceDataIndex + 0x10 + ResourceMemoryOffset1);
   resourceCreationFlags9 = presourceAddress[1];
-  *(void* *)(pInterpolationFactorA + 4) = *presourceAddress;
-  *(void* *)(pInterpolationFactorA + 6) = resourceCreationFlags9;
-  presourceAddress = (void* *)(resourceDataIndex6 + 0x20 + ResourceMemoryOffset1);
+  *(void* *)(InterpolationFactorXPointer + 4) = *presourceAddress;
+  *(void* *)(InterpolationFactorXPointer + 6) = resourceCreationFlags9;
+  presourceAddress = (void* *)(ResourceDataIndex + 0x20 + ResourceMemoryOffset1);
   resourceCreationFlags9 = presourceAddress[1];
-  *(void* *)(pInterpolationFactorA + 8) = *presourceAddress;
-  *(void* *)(pInterpolationFactorA + 10) = resourceCreationFlags9;
-  presourceAddress = (void* *)(resourceDataIndex6 + 0x30 + ResourceMemoryOffset1);
+  *(void* *)(InterpolationFactorXPointer + 8) = *presourceAddress;
+  *(void* *)(InterpolationFactorXPointer + 10) = resourceCreationFlags9;
+  presourceAddress = (void* *)(ResourceDataIndex + 0x30 + ResourceMemoryOffset1);
   resourceCreationFlags9 = presourceAddress[1];
-  *(void* *)(pInterpolationFactorA + 0xc) = *presourceAddress;
-  *(void* *)(pInterpolationFactorA + 0xe) = resourceCreationFlags9;
-  resourceDataIndex6 = *(long long *)(systemDataIndexPtr + 0x10);
-  InterpolationFactorV = pInterpolationFactorA[8];
-  MagnitudeSquared = pInterpolationFactorA[9];
-  ResultValue1 = pInterpolationFactorA[10];
-  ResultValue2 = pInterpolationFactorA[0xb];
-  floatValue21 = *pInterpolationFactorA;
-  floatValue22 = pInterpolationFactorA[1];
-  floatValue23 = pInterpolationFactorA[2];
-  floatValue24 = pInterpolationFactorA[3];
-  floatValue25 = pInterpolationFactorA[4];
-  floatValue26 = pInterpolationFactorA[5];
-  floatValue27 = pInterpolationFactorA[6];
-  floatValue28 = pInterpolationFactorA[7];
-  BaseValue = *(float *)(resourceDataIndex6 + 0x374);
-  floatValue6 = *(float *)(resourceDataIndex6 + 0x370);
-  floatValue7 = *(float *)(resourceDataIndex6 + 0x378);
-  floatValue8 = *(float *)(resourceDataIndex6 + 900);
-  ScaleValue = *(float *)(resourceDataIndex6 + 0x394);
-  ScalingFactor = *(float *)(resourceDataIndex6 + 0x380);
-  OffsetValue = *(float *)(resourceDataIndex6 + 0x388);
-  RatioValue = *(float *)(resourceDataIndex6 + 0x390);
-  InterpolationFactorY = *(float *)(resourceDataIndex6 + 0x398);
+  *(void* *)(InterpolationFactorXPointer + 0xc) = *presourceAddress;
+  *(void* *)(InterpolationFactorXPointer + 0xe) = resourceCreationFlags9;
+  ResourceDataIndex = *(long long *)(systemDataIndexPtr + 0x10);
+  InterpolationFactorV = InterpolationFactorXPointer[8];
+  MagnitudeSquared = InterpolationFactorXPointer[9];
+  ResultValue1 = InterpolationFactorXPointer[10];
+  ResultValue2 = InterpolationFactorXPointer[0xb];
+  floatValue21 = *InterpolationFactorXPointer;
+  floatValue22 = InterpolationFactorXPointer[1];
+  floatValue23 = InterpolationFactorXPointer[2];
+  floatValue24 = InterpolationFactorXPointer[3];
+  floatValue25 = InterpolationFactorXPointer[4];
+  floatValue26 = InterpolationFactorXPointer[5];
+  floatValue27 = InterpolationFactorXPointer[6];
+  floatValue28 = InterpolationFactorXPointer[7];
+  BaseValue = *(float *)(ResourceDataIndex + 0x374);
+  floatValue6 = *(float *)(ResourceDataIndex + 0x370);
+  floatValue7 = *(float *)(ResourceDataIndex + 0x378);
+  floatValue8 = *(float *)(ResourceDataIndex + 900);
+  ScaleValue = *(float *)(ResourceDataIndex + 0x394);
+  ScalingFactor = *(float *)(ResourceDataIndex + 0x380);
+  OffsetValue = *(float *)(ResourceDataIndex + 0x388);
+  RatioValue = *(float *)(ResourceDataIndex + 0x390);
+  InterpolationFactorY = *(float *)(ResourceDataIndex + 0x398);
   *pInterpolationFactorX = BaseValue * floatValue25 + floatValue6 * floatValue21 + floatValue7 * InterpolationFactorV;
-  pInterpolationFactorA[1] = BaseValue * floatValue26 + floatValue6 * floatValue22 + floatValue7 * MagnitudeSquared;
-  pInterpolationFactorA[2] = BaseValue * floatValue27 + floatValue6 * floatValue23 + floatValue7 * ResultValue1;
-  pInterpolationFactorA[3] = BaseValue * floatValue28 + floatValue6 * floatValue24 + floatValue7 * ResultValue2;
-  pInterpolationFactorA[4] = floatValue8 * floatValue25 + ScalingFactor * floatValue21 + OffsetValue * InterpolationFactorV;
-  pInterpolationFactorA[5] = floatValue8 * floatValue26 + ScalingFactor * floatValue22 + OffsetValue * MagnitudeSquared;
-  pInterpolationFactorA[6] = floatValue8 * floatValue27 + ScalingFactor * floatValue23 + OffsetValue * ResultValue1;
-  pInterpolationFactorA[7] = floatValue8 * floatValue28 + ScalingFactor * floatValue24 + OffsetValue * ResultValue2;
-  pInterpolationFactorA[8] = ScaleValue * floatValue25 + RatioValue * floatValue21 + InterpolationFactorY * InterpolationFactorV;
-  pInterpolationFactorA[9] = ScaleValue * floatValue26 + RatioValue * floatValue22 + InterpolationFactorY * MagnitudeSquared;
-  pInterpolationFactorA[10] = ScaleValue * floatValue27 + RatioValue * floatValue23 + InterpolationFactorY * ResultValue1;
-  pInterpolationFactorA[0xb] = ScaleValue * floatValue28 + RatioValue * floatValue24 + InterpolationFactorY * ResultValue2;
-  resourceDataIndex6 = *(long long *)(memoryBlockAddress + 600);
-  if (*(int *)(resourceDataIndex6 + 0x28) != *(int *)(SystemGlobalStatusFlags + 0x224)) {
-    systemIndex0 = *(int *)(resourceDataIndex6 + 0x1c) + *(int *)(resourceDataIndex6 + 0x18);
-    *(int *)(resourceDataIndex6 + 0x28) = *(int *)(SystemGlobalStatusFlags + 0x224);
+  InterpolationFactorXPointer[1] = BaseValue * floatValue26 + floatValue6 * floatValue22 + floatValue7 * MagnitudeSquared;
+  InterpolationFactorXPointer[2] = BaseValue * floatValue27 + floatValue6 * floatValue23 + floatValue7 * ResultValue1;
+  InterpolationFactorXPointer[3] = BaseValue * floatValue28 + floatValue6 * floatValue24 + floatValue7 * ResultValue2;
+  InterpolationFactorXPointer[4] = floatValue8 * floatValue25 + ScalingFactor * floatValue21 + OffsetValue * InterpolationFactorV;
+  InterpolationFactorXPointer[5] = floatValue8 * floatValue26 + ScalingFactor * floatValue22 + OffsetValue * MagnitudeSquared;
+  InterpolationFactorXPointer[6] = floatValue8 * floatValue27 + ScalingFactor * floatValue23 + OffsetValue * ResultValue1;
+  InterpolationFactorXPointer[7] = floatValue8 * floatValue28 + ScalingFactor * floatValue24 + OffsetValue * ResultValue2;
+  InterpolationFactorXPointer[8] = ScaleValue * floatValue25 + RatioValue * floatValue21 + InterpolationFactorY * InterpolationFactorV;
+  InterpolationFactorXPointer[9] = ScaleValue * floatValue26 + RatioValue * floatValue22 + InterpolationFactorY * MagnitudeSquared;
+  InterpolationFactorXPointer[10] = ScaleValue * floatValue27 + RatioValue * floatValue23 + InterpolationFactorY * ResultValue1;
+  InterpolationFactorXPointer[0xb] = ScaleValue * floatValue28 + RatioValue * floatValue24 + InterpolationFactorY * ResultValue2;
+  ResourceDataIndex = *(long long *)(memoryBlockAddress + 600);
+  if (*(int *)(ResourceDataIndex + 0x28) != *(int *)(SystemGlobalStatusFlags + 0x224)) {
+    systemIndex0 = *(int *)(ResourceDataIndex + 0x1c) + *(int *)(ResourceDataIndex + 0x18);
+    *(int *)(ResourceDataIndex + 0x28) = *(int *)(SystemGlobalStatusFlags + 0x224);
     if (0 < systemIndex0) {
       SystemDataPointer4 = InputParameter58;
       ResourceMemoryOffset1 = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
-      resourceAllocationContext0 = AcquireResourceHandle(ResourceMemoryOffset1,systemIndex0,SystemBufferAddress3,pInterpolationFactorA,ConcatenatedSystemValue(InterpolationLowPart,InterpolationHighPart));
-      *(uint32_t *)(resourceDataIndex6 + 0x30) = resourceAllocationContext0;
+      resourceAllocationContext0 = AcquireResourceHandle(ResourceMemoryOffset1,systemIndex0,SystemBufferAddress3,InterpolationFactorXPointer,ConcatenatedSystemValue(InterpolationLowPart,InterpolationHighPart));
+      *(uint32_t *)(ResourceDataIndex + 0x30) = resourceAllocationContext0;
       ReleaseResourceHandle(ResourceMemoryOffset1,resourceAllocationContext0);
-      if (*(long long *)(resourceDataIndex6 + 0x10) == 0) {
-        if (*(int *)(resourceDataIndex6 + 0x18) != 0) {
-          *(uint32_t *)(resourceDataIndex6 + 0x2c) = *(uint32_t *)(resourceDataIndex6 + 0x30);
+      if (*(long long *)(ResourceDataIndex + 0x10) == 0) {
+        if (*(int *)(ResourceDataIndex + 0x18) != 0) {
+          *(uint32_t *)(ResourceDataIndex + 0x2c) = *(uint32_t *)(ResourceDataIndex + 0x30);
           return;
         }
       }
       else {
-        charStatus4 = *(char *)(resourceDataIndex6 + 0x44);
+        charStatus4 = *(char *)(ResourceDataIndex + 0x44);
         resourceAllocationContext7 = (ulong long)charStatus4;
-        PrimaryResourcePointer = (long long *)(resourceDataIndex6 + 0x38);
+        PrimaryResourcePointer = (long long *)(ResourceDataIndex + 0x38);
         systemIndex0 = (int)charStatus4;
-        if (*(int *)(resourceDataIndex6 + 0x40) == (int)charStatus4) {
+        if (*(int *)(ResourceDataIndex + 0x40) == (int)charStatus4) {
           SystemResourceOffsetPointer2 = (long long *)*PrimaryResourcePointer;
         }
         else {
-          *(int *)(resourceDataIndex6 + 0x40) = systemIndex0;
+          *(int *)(ResourceDataIndex + 0x40) = systemIndex0;
           if (*PrimaryResourcePointer != 0) {
               SystemCleanupFunction();
           }
@@ -62441,9 +62441,9 @@ void InitializeSystemResourcePool(void)
           resourceAllocationContext3 = (uint)charStatus4;
           systemIndex2 = systemIndex1;
           if ((0 < systemIndex0) && (0xf < resourceAllocationContext3)) {
-            systemCounter6 = *(int *)(resourceDataIndex6 + 0x2c);
+            systemCounter6 = *(int *)(ResourceDataIndex + 0x2c);
             resourcePoolPointer = (long long *)((long long)SystemResourceOffsetPointer2 + (long long)(charStatus4 + -1) * 4);
-            if ((((long long *)(resourceDataIndex6 + 0x2c) < SystemResourceOffsetPointer2) || (resourcePoolPointer < (long long *)(resourceDataIndex6 + 0x2c)))
+            if ((((long long *)(ResourceDataIndex + 0x2c) < SystemResourceOffsetPointer2) || (resourcePoolPointer < (long long *)(ResourceDataIndex + 0x2c)))
                && ((PrimaryResourcePointer < SystemResourceOffsetPointer2 || (systemIndex2 = 0, resourcePoolPointer < PrimaryResourcePointer)))) {
               resourceAllocationContext5 = resourceAllocationContext3 & 0x8000000f;
               if ((int)resourceAllocationContext5 < 0) {
@@ -62476,18 +62476,18 @@ void InitializeSystemResourcePool(void)
             }
           }
           for (ResourceMemoryOffset1 = (long long)systemIndex2; ResourceMemoryOffset1 < (long long)resourceAllocationContext7; ResourceMemoryOffset1 = ResourceMemoryOffset1 + 1) {
-            systemIndex1 = *(int *)(resourceDataIndex6 + 0x2c) + systemIndex2;
+            systemIndex1 = *(int *)(ResourceDataIndex + 0x2c) + systemIndex2;
             systemIndex2 = systemIndex2 + 1;
             *(int *)(*PrimaryResourcePointer + ResourceMemoryOffset1 * 4) = systemIndex1;
           }
-          systemIndex2 = *(int *)(resourceDataIndex6 + 0x18);
+          systemIndex2 = *(int *)(ResourceDataIndex + 0x18);
           systemIndex1 = 0;
           if (0 < (long long)systemIndex2) {
             ResourceMemoryOffset1 = 0;
             do {
-              systemCounter6 = *(int *)(resourceDataIndex6 + 0x30) + systemIndex1;
+              systemCounter6 = *(int *)(ResourceDataIndex + 0x30) + systemIndex1;
               systemIndex1 = systemIndex1 + 1;
-              pisOperationComplete = (byte *)(*(long long *)(resourceDataIndex6 + 0x10) + ResourceMemoryOffset1);
+              pisOperationComplete = (byte *)(*(long long *)(ResourceDataIndex + 0x10) + ResourceMemoryOffset1);
               ResourceMemoryOffset1 = ResourceMemoryOffset1 + 1;
               *(int *)(*PrimaryResourcePointer + (ulong long)*pisOperationComplete * 4) = systemCounter6;
             } while (ResourceMemoryOffset1 < systemIndex2);
@@ -62543,9 +62543,9 @@ void InitializeSystemResourcePool(void)
             } while (ResourceMemoryOffset1 != 0);
           }
         }
-        presourceAddress4 = *(uint32_t **)(resourceDataIndex6 + 0x38);
+        presourceAddress4 = *(uint32_t **)(ResourceDataIndex + 0x38);
         resourceAllocationContext5 = resourceAllocationContext3 >> 0xb;
-        *(uint *)(resourceDataIndex6 + 0x2c) = resourceAllocationContext3;
+        *(uint *)(ResourceDataIndex + 0x2c) = resourceAllocationContext3;
         if (resourceAllocationContext5 == (int)charStatus4 + resourceAllocationContext3 >> 0xb) {
             memcpy(*(long long *)(SystemHashNodeData9 + (ulong long)resourceAllocationContext5 * 2 + 2) +
                  (ulong long)(resourceAllocationContext3 + resourceAllocationContext5 * -0x800) * 4,presourceAddress4,(resourceAllocationContext7 & MAX_UNSIGNED_32_BIT) << 2);
@@ -65961,7 +65961,7 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
   int *SystemIntegerPointer2;
   float *pInterpolationFactorY;
   uint SystemOperationStatus4;
-  float *pInterpolationFactorA;
+  float *InterpolationFactorXPointer;
   uint32_t *SystemResourceStringPointer;
   uint32_t *SystemStringTemplatePointer;
   byte *pisByteValid8;
@@ -66057,11 +66057,11 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
       SystemThreadHandle2 = (ThreadHandle1 - 4U >> 2) + 1;
       SystemThreadHandle1 = SystemThreadHandle2 * 4;
       do {
-        *pResultValue2 = pInterpolationFactorA[-1];
-        pResultValue2[1] = 1.0 - *pInterpolationFactorA;
+        *pResultValue2 = InterpolationFactorXPointer[-1];
+        pResultValue2[1] = 1.0 - *InterpolationFactorXPointer;
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandle5);
-        *pResultValue2 = pInterpolationFactorA[0x16];
-        pResultValue2[1] = 1.0 - pInterpolationFactorA[0x17];
+        *pResultValue2 = InterpolationFactorXPointer[0x16];
+        pResultValue2[1] = 1.0 - InterpolationFactorXPointer[0x17];
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandle5);
         *pResultValue2 = pInterpolationFactorY[-1];
         pResultValue2[1] = 1.0 - *pInterpolationFactorY;
@@ -66069,7 +66069,7 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
         *pResultValue2 = pInterpolationFactorY[0x16];
         pResultValue2[1] = 1.0 - pInterpolationFactorY[0x17];
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandle5);
-        pInterpolationFactorX = pInterpolationFactorA + 0x5c;
+        pInterpolationFactorX = InterpolationFactorXPointer + 0x5c;
         pInterpolationFactorY = pInterpolationFactorY + 0x5c;
         SystemThreadHandle2 = SystemThreadHandle2 + -1;
       } while (SystemThreadHandle2 != 0);
@@ -66078,10 +66078,10 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
       pInterpolationFactorX = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x48 + SystemThreadHandle1 * 0x5c);
       ThreadHandle1 = ThreadHandle1 - SystemThreadHandle1;
       do {
-        *pResultValue2 = pInterpolationFactorA[-1];
-        pResultValue2[1] = 1.0 - *pInterpolationFactorA;
+        *pResultValue2 = InterpolationFactorXPointer[-1];
+        pResultValue2[1] = 1.0 - *InterpolationFactorXPointer;
         pResultValue2 = (float *)((long long)pResultValue2 + (long long)systemCode);
-        pInterpolationFactorX = pInterpolationFactorA + 0x17;
+        pInterpolationFactorX = InterpolationFactorXPointer + 0x17;
         ThreadHandle1 = ThreadHandle1 + -1;
       } while (ThreadHandle1 != 0);
     }
@@ -66094,11 +66094,11 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
       SystemThreadHandle2 = (ThreadHandle1 - 4U >> 2) + 1;
       SystemThreadHandle1 = SystemThreadHandle2 * 4;
       do {
-        *pResultValue2 = pInterpolationFactorA[-1];
-        pResultValue2[1] = 1.0 - *pInterpolationFactorA;
+        *pResultValue2 = InterpolationFactorXPointer[-1];
+        pResultValue2[1] = 1.0 - *InterpolationFactorXPointer;
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandle5);
-        *pResultValue2 = pInterpolationFactorA[0x16];
-        pResultValue2[1] = 1.0 - pInterpolationFactorA[0x17];
+        *pResultValue2 = InterpolationFactorXPointer[0x16];
+        pResultValue2[1] = 1.0 - InterpolationFactorXPointer[0x17];
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandle5);
         *pResultValue2 = pInterpolationFactorY[-1];
         pResultValue2[1] = 1.0 - *pInterpolationFactorY;
@@ -66106,7 +66106,7 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
         *pResultValue2 = pInterpolationFactorY[0x16];
         pResultValue2[1] = 1.0 - pInterpolationFactorY[0x17];
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandle5);
-        pInterpolationFactorX = pInterpolationFactorA + 0x5c;
+        pInterpolationFactorX = InterpolationFactorXPointer + 0x5c;
         pInterpolationFactorY = pInterpolationFactorY + 0x5c;
         SystemThreadHandle2 = SystemThreadHandle2 + -1;
       } while (SystemThreadHandle2 != 0);
@@ -66115,10 +66115,10 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
       pInterpolationFactorX = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x50 + SystemThreadHandle1 * 0x5c);
       ThreadHandle1 = ThreadHandle1 - SystemThreadHandle1;
       do {
-        *pResultValue2 = pInterpolationFactorA[-1];
-        pResultValue2[1] = 1.0 - *pInterpolationFactorA;
+        *pResultValue2 = InterpolationFactorXPointer[-1];
+        pResultValue2[1] = 1.0 - *InterpolationFactorXPointer;
         pResultValue2 = (float *)((long long)pResultValue2 + (long long)systemCode);
-        pInterpolationFactorX = pInterpolationFactorA + 0x17;
+        pInterpolationFactorX = InterpolationFactorXPointer + 0x17;
         ThreadHandle1 = ThreadHandle1 + -1;
       } while (ThreadHandle1 != 0);
     }
@@ -66185,13 +66185,13 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
       SystemThreadHandle2 = (ThreadHandle1 - 4U >> 2) + 1;
       SystemThreadHandle1 = SystemThreadHandle2 * 4;
       do {
-        *pResultValue2 = pInterpolationFactorA[-1];
-        pResultValue2[1] = *pInterpolationFactorA;
-        pResultValue2[2] = pInterpolationFactorA[1];
+        *pResultValue2 = InterpolationFactorXPointer[-1];
+        pResultValue2[1] = *InterpolationFactorXPointer;
+        pResultValue2[2] = InterpolationFactorXPointer[1];
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandle5);
-        *pResultValue2 = pInterpolationFactorA[0x16];
-        pResultValue2[1] = pInterpolationFactorA[0x17];
-        pResultValue2[2] = pInterpolationFactorA[0x18];
+        *pResultValue2 = InterpolationFactorXPointer[0x16];
+        pResultValue2[1] = InterpolationFactorXPointer[0x17];
+        pResultValue2[2] = InterpolationFactorXPointer[0x18];
         SystemStringTemplatePointer = (uint32_t *)((long long)pResultValue2 + SystemThreadHandle5);
         *SystemStringTemplatePointer = SystemResourceStringPointer[-1];
         SystemStringTemplatePointer[1] = *SystemResourceStringPointer;
@@ -66201,7 +66201,7 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
         SystemStringTemplatePointer[1] = SystemResourceStringPointer[0x17];
         SystemStringTemplatePointer[2] = SystemResourceStringPointer[0x18];
         pResultValue2 = (float *)((long long)SystemStringTemplatePointer + SystemThreadHandle5);
-        pInterpolationFactorX = pInterpolationFactorA + 0x5c;
+        pInterpolationFactorX = InterpolationFactorXPointer + 0x5c;
         SystemResourceStringPointer = SystemResourceStringPointer + 0x5c;
         SystemThreadHandle2 = SystemThreadHandle2 + -1;
       } while (SystemThreadHandle2 != 0);
@@ -66211,11 +66211,11 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
       pInterpolationFactorX = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 0x38 + SystemThreadHandle1 * 0x5c);
       ThreadHandle1 = ThreadHandle1 - SystemThreadHandle1;
       do {
-        pResultValue2[-2] = pInterpolationFactorA[-1];
-        pResultValue2[-1] = *pInterpolationFactorA;
-        *pResultValue2 = pInterpolationFactorA[1];
+        pResultValue2[-2] = InterpolationFactorXPointer[-1];
+        pResultValue2[-1] = *InterpolationFactorXPointer;
+        *pResultValue2 = InterpolationFactorXPointer[1];
         pResultValue2 = (float *)((long long)pResultValue2 + (long long)systemCode);
-        pInterpolationFactorX = pInterpolationFactorA + 0x17;
+        pInterpolationFactorX = InterpolationFactorXPointer + 0x17;
         ThreadHandle1 = ThreadHandle1 + -1;
       } while (ThreadHandle1 != 0);
     }
@@ -66228,12 +66228,12 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
       SystemThreadHandle5 = (ThreadHandle1 - 4U >> 2) + 1;
       SystemThreadHandle1 = SystemThreadHandle5 * 4;
       do {
-        *pResultValue2 = *pInterpolationFactorA;
-        pResultValue2[1] = pInterpolationFactorA[1];
-        pResultValue2[2] = pInterpolationFactorA[2];
-        if ((pInterpolationFactorY[-0x2e] * pInterpolationFactorY[-0x29] - pInterpolationFactorY[-0x2d] * pInterpolationFactorY[-0x2a]) * pInterpolationFactorA[4] +
-            (pInterpolationFactorY[-0x2d] * *pInterpolationFactorA - pInterpolationFactorA[-4] * pInterpolationFactorY[-0x29]) * pInterpolationFactorY[-0x26] +
-            (pInterpolationFactorA[-4] * pInterpolationFactorY[-0x2a] - *pInterpolationFactorA * pInterpolationFactorY[-0x2e]) * pInterpolationFactorY[-0x25] <= 0.0) {
+        *pResultValue2 = *InterpolationFactorXPointer;
+        pResultValue2[1] = InterpolationFactorXPointer[1];
+        pResultValue2[2] = InterpolationFactorXPointer[2];
+        if ((pInterpolationFactorY[-0x2e] * pInterpolationFactorY[-0x29] - pInterpolationFactorY[-0x2d] * pInterpolationFactorY[-0x2a]) * InterpolationFactorXPointer[4] +
+            (pInterpolationFactorY[-0x2d] * *InterpolationFactorXPointer - InterpolationFactorXPointer[-4] * pInterpolationFactorY[-0x29]) * pInterpolationFactorY[-0x26] +
+            (InterpolationFactorXPointer[-4] * pInterpolationFactorY[-0x2a] - *InterpolationFactorXPointer * pInterpolationFactorY[-0x2e]) * pInterpolationFactorY[-0x25] <= 0.0) {
           floatValue28 = -1.0;
         }
         else {
@@ -66241,12 +66241,12 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
         }
         pResultValue2[3] = floatValue28;
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandle2);
-        *pResultValue2 = pInterpolationFactorA[0x17];
-        pResultValue2[1] = pInterpolationFactorA[0x18];
-        pResultValue2[2] = pInterpolationFactorA[0x19];
-        if ((pInterpolationFactorY[-0x17] * pInterpolationFactorY[-0x12] - pInterpolationFactorY[-0x16] * pInterpolationFactorY[-0x13]) * pInterpolationFactorA[0x1b] +
-            (pInterpolationFactorA[0x17] * pInterpolationFactorY[-0x16] - pInterpolationFactorA[0x13] * pInterpolationFactorY[-0x12]) * pInterpolationFactorY[-0xf] +
-            (pInterpolationFactorA[0x13] * pInterpolationFactorY[-0x13] - pInterpolationFactorA[0x17] * pInterpolationFactorY[-0x17]) * pInterpolationFactorY[-0xe] <= 0.0
+        *pResultValue2 = InterpolationFactorXPointer[0x17];
+        pResultValue2[1] = InterpolationFactorXPointer[0x18];
+        pResultValue2[2] = InterpolationFactorXPointer[0x19];
+        if ((pInterpolationFactorY[-0x17] * pInterpolationFactorY[-0x12] - pInterpolationFactorY[-0x16] * pInterpolationFactorY[-0x13]) * InterpolationFactorXPointer[0x1b] +
+            (InterpolationFactorXPointer[0x17] * pInterpolationFactorY[-0x16] - InterpolationFactorXPointer[0x13] * pInterpolationFactorY[-0x12]) * pInterpolationFactorY[-0xf] +
+            (InterpolationFactorXPointer[0x13] * pInterpolationFactorY[-0x13] - InterpolationFactorXPointer[0x17] * pInterpolationFactorY[-0x17]) * pInterpolationFactorY[-0xe] <= 0.0
            ) {
           floatValue28 = -1.0;
         }
@@ -66282,7 +66282,7 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
         }
         pResultValue2[3] = floatValue28;
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandle2);
-        pInterpolationFactorX = pInterpolationFactorA + 0x5c;
+        pInterpolationFactorX = InterpolationFactorXPointer + 0x5c;
         pInterpolationFactorY = pInterpolationFactorY + 0x5c;
         SystemThreadHandle5 = SystemThreadHandle5 + -1;
       } while (SystemThreadHandle5 != 0);
@@ -66292,12 +66292,12 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
       pInterpolationFactorX = (float *)(*(long long *)(ConfigurationDataPointer + 0x68) + 8 + SystemThreadHandle1 * 0x5c);
       ThreadHandle1 = ThreadHandle1 - SystemThreadHandle1;
       do {
-        pResultValue2[-2] = pInterpolationFactorA[3];
-        pResultValue2[-1] = pInterpolationFactorA[4];
-        *pResultValue2 = pInterpolationFactorA[5];
-        if ((pInterpolationFactorA[5] * *pInterpolationFactorA - pInterpolationFactorA[1] * pInterpolationFactorA[4]) * pInterpolationFactorA[7] +
-            (pInterpolationFactorA[3] * pInterpolationFactorA[1] - pInterpolationFactorA[-1] * pInterpolationFactorA[5]) * pInterpolationFactorA[8] +
-            (pInterpolationFactorA[-1] * pInterpolationFactorA[4] - pInterpolationFactorA[3] * *pInterpolationFactorA) * pInterpolationFactorA[9] <= 0.0) {
+        pResultValue2[-2] = InterpolationFactorXPointer[3];
+        pResultValue2[-1] = InterpolationFactorXPointer[4];
+        *pResultValue2 = InterpolationFactorXPointer[5];
+        if ((InterpolationFactorXPointer[5] * *InterpolationFactorXPointer - InterpolationFactorXPointer[1] * InterpolationFactorXPointer[4]) * InterpolationFactorXPointer[7] +
+            (InterpolationFactorXPointer[3] * InterpolationFactorXPointer[1] - InterpolationFactorXPointer[-1] * InterpolationFactorXPointer[5]) * InterpolationFactorXPointer[8] +
+            (InterpolationFactorXPointer[-1] * InterpolationFactorXPointer[4] - InterpolationFactorXPointer[3] * *InterpolationFactorXPointer) * InterpolationFactorXPointer[9] <= 0.0) {
           floatValue28 = -1.0;
         }
         else {
@@ -66305,7 +66305,7 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
         }
         pResultValue2[1] = floatValue28;
         pResultValue2 = (float *)((long long)pResultValue2 + (long long)systemCode);
-        pInterpolationFactorX = pInterpolationFactorA + 0x17;
+        pInterpolationFactorX = InterpolationFactorXPointer + 0x17;
         ThreadHandle1 = ThreadHandle1 + -1;
       } while (ThreadHandle1 != 0);
     }
@@ -66595,20 +66595,20 @@ code_r0x00018007db1b:
       do {
         SystemThreadHandle4 = *(long long *)(ConfigurationDataPointer + 0x68);
         pInterpolationFactorX = (float *)(SystemThreadHandle1 + 0x34 + SystemThreadHandle4);
-        fStack_108 = *pInterpolationFactorA;
-        fStack_104 = pInterpolationFactorA[1];
-        fStack_100 = pInterpolationFactorA[2];
-        fStack_fc = pInterpolationFactorA[3];
+        fStack_108 = *InterpolationFactorXPointer;
+        fStack_104 = InterpolationFactorXPointer[1];
+        fStack_100 = InterpolationFactorXPointer[2];
+        fStack_fc = InterpolationFactorXPointer[3];
         pInterpolationFactorX = (float *)(SystemThreadHandle1 + 0x14 + SystemThreadHandle4);
-        fStack_f8 = *pInterpolationFactorA;
-        fStack_f4 = pInterpolationFactorA[1];
-        fStack_f0 = pInterpolationFactorA[2];
-        fStack_ec = pInterpolationFactorA[3];
+        fStack_f8 = *InterpolationFactorXPointer;
+        fStack_f4 = InterpolationFactorXPointer[1];
+        fStack_f0 = InterpolationFactorXPointer[2];
+        fStack_ec = InterpolationFactorXPointer[3];
         pInterpolationFactorX = (float *)(SystemThreadHandle1 + 0x24 + SystemThreadHandle4);
-        fStack_e8 = *pInterpolationFactorA;
-        fStack_e4 = pInterpolationFactorA[1];
-        fStack_e0 = pInterpolationFactorA[2];
-        fStack_dc = pInterpolationFactorA[3];
+        fStack_e8 = *InterpolationFactorXPointer;
+        fStack_e4 = InterpolationFactorXPointer[1];
+        fStack_e0 = InterpolationFactorXPointer[2];
+        fStack_dc = InterpolationFactorXPointer[3];
         floatValue31 = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
         if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * floatValue31 +
             fStack_e0 * (fStack_f4 * fStack_108 - fStack_f8 * fStack_104) < 0.0) {

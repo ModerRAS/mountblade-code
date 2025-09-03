@@ -1509,6 +1509,17 @@ NetworkProcessingLoop:
  * @note 此函数是连接处理流程的最后一步
  * @warning 确保在调用此函数前所有连接操作已经完成
  */
+/**
+ * @brief 完成网络连接系统
+ * 
+ * 完成网络连接系统的初始化和配置过程，返回系统完成状态。
+ * 此函数是网络连接系统初始化的最后一步，确保所有组件都已正确配置。
+ * 
+ * @return NetworkHandle 系统完成状态句柄，包含连接系统的最终配置信息
+ * 
+ * @note 此函数应在所有网络连接组件初始化完成后调用
+ * @warning 返回的句柄应被妥善保存，用于后续的网络连接管理操作
+ */
 NetworkHandle NetworkFinalizeConnectionSystem(void)
 {
   return NetworkConnectionFinalizeValue;
@@ -1563,19 +1574,6 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  * 
  * @note 此函数会进行多层验证，包括数据包解码、头部验证和完整性检查
  * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
- */
-/**
- * @brief 验证网络数据包安全性
- * 
- * 验证网络数据包的安全性和完整性，包括数据包格式验证、加密验证和完整性检查。
- * 此函数会进行多层安全验证，确保数据包的来源可信且内容未被篡改。
- * 
- * @param PacketData 数据包数据指针，包含待验证的数据包信息
- * @param ConnectionContext 连接上下文，包含连接状态和安全配置信息
- * @return NetworkHandle 验证结果句柄，0表示验证成功，非0值表示验证失败的具体错误码
- * 
- * @note 此函数会进行严格的安全验证，包括魔数验证、头部验证和完整性检查
- * @warning 验证过程中如果发现任何异常，会立即返回相应的错误码
  */
 NetworkHandle NetworkValidatePacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
