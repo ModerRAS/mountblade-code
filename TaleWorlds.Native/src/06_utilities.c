@@ -711,7 +711,7 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define ResourceSecondaryCounterOffset 0x54
 #define ResourceTertiaryCounterOffset 0x58
 #define ObjectHandleSecondaryOffset 0x8
-#define ObjectValidationContextOffset 0x10
+#define ObjectValidationBufferOffset 0x10
 #define ObjectDataPointerOffset 0x10
 #define ObjectContextHandleOffset 0x18
 #define SystemContextValidationOffset 0x10
@@ -4645,8 +4645,8 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
 uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemContextParameters)
 {
   int64_t SystemObjectHandle;
-  int SystemValidationStatusCode;
-  uint8_t AccessValidationStatusCode;
+  int SystemValidationResult;
+  uint8_t AccessValidationResult;
   int64_t ObjectValidationBuffer [2];
   
   AccessValidationStatusCode = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + ObjectHandleMemoryOffset), ObjectValidationBuffer);
@@ -4663,10 +4663,10 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
       SystemValidationStatusCode = ProcessSystemObjectValidation(SystemObjectHandle,*(uint8_t *)(SystemObjectHandle + 8),*(uint8_t *)(SystemContextParameters + SystemContextSecondaryDataOffset),
                             *(uint8_t *)(SystemContextParameters + 800));
       if (SystemValidationStatusCode == 0) {
-              ReleaseValidationResources(ObjectValidationContext);
+              ReleaseValidationResources(ObjectValidationBuffer);
       }
     }
-          ReleaseValidationResources(ObjectValidationContext);
+          ReleaseValidationResources(ObjectValidationBuffer);
   }
   return 0;
 }
@@ -8677,15 +8677,15 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t ComparisonParameter)
   uint8_t ComparisonResult;
   int64_t ValidationDataPointer;
   int64_t SystemValidationContext;
-  int64_t ObjectValidationContext;
+  int64_t ObjectValidationBuffer;
   int64_t ResultStackBuffer;
   
   if ((*(byte *)(ValidationDataPointer + 0x34) & 0x11) != 0) {
     return ErrorResourceValidationFailed;
   }
-  ComparisonResult = ValidateObjectContextAndProcessData(ComparisonParameter,ObjectValidationContext + ObjectValidationContextFlagOffset,ObjectValidationContext + ObjectContextProcessingDataOffset);
+  ComparisonResult = ValidateObjectContextAndProcessData(ComparisonParameter,ObjectValidationBuffer + ObjectValidationBufferFlagOffset,ObjectValidationBuffer + ObjectContextProcessingDataOffset);
   if ((int)ComparisonResult == 0) {
-    ProcessedFloatValue = *(float *)(ObjectValidationContext + ObjectContextProcessingDataOffset);
+    ProcessedFloatValue = *(float *)(ObjectValidationBuffer + ObjectContextProcessingDataOffset);
     if ((*(float *)(ValidationDataPointer + 0x38) <= ProcessedFloatValue) &&
        (ProcessedFloatValue < *(float *)(ValidationDataPointer + 0x3c) || ProcessedFloatValue == *(float *)(ValidationDataPointer + 0x3c))) {
       ComparisonResult = *(uint8_t *)(SystemValidationContext + ValidationContextSystemObjectOffset);
@@ -104183,7 +104183,7 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define ValidationContextValidationDataOffset 0x220
 
 // 对象验证上下文相关偏移量常量
-#define ObjectValidationContextFlagOffset 0x25
+#define ObjectValidationBufferFlagOffset 0x25
 #define SystemDataStructureSecondaryOffset 0x250
 
 // 系统上下文相关偏移量常量
