@@ -442,23 +442,137 @@ void AcceptNetworkConnection(void);
  */
 void CloseNetworkConnection(void);
 
+/**
+ * 验证网络连接ID - 验证网络连接的ID
+ * 此函数负责验证网络连接的ID是否有效
+ * @param ConnectionContext 连接上下文
+ * @param PacketData 数据包数据
+ * @param ValidationResult 验证结果
+ * @return 验证结果，0表示成功，其他值表示错误码
+ */
 int ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
+
+/**
+ * 网络安全守卫检查 - 网络安全守卫检查
+ * 此函数负责进行网络安全守卫检查
+ * @param SecurityValue 安全值
+ */
 void NetworkSecurityGuardCheck(uint64_t SecurityValue);
+
+/**
+ * 清理网络连接上下文 - 清理网络连接的上下文
+ * 此函数负责清理网络连接的上下文数据
+ * @param ConnectionContext 连接上下文
+ * @return 清理结果，0表示成功，其他值表示错误码
+ */
 int CleanupNetworkConnectionContext(int64_t ConnectionContext);
+
+/**
+ * 验证缓冲区超时 - 验证缓冲区的超时时间
+ * 此函数负责验证缓冲区的超时时间
+ * @param BufferData 缓冲区数据
+ * @param TimeoutValue 超时值
+ * @param ValidationResult 验证结果
+ * @return 验证结果，0表示成功，其他值表示错误码
+ */
 int ValidateBufferTimeout(int64_t BufferData, int TimeoutValue, int64_t ValidationResult);
+
+/**
+ * 使用加密处理缓冲区 - 使用加密处理缓冲区
+ * 此函数负责使用加密处理缓冲区数据
+ * @param EncryptedBuffer 加密缓冲区
+ * @param BufferSize 缓冲区大小
+ * @param EncryptionKey 加密密钥
+ * @return 处理结果，0表示成功，其他值表示错误码
+ */
 int ProcessBufferWithEncryption(int64_t EncryptedBuffer, int BufferSize, int64_t EncryptionKey);
+
+/**
+ * 管理网络句柄 - 管理网络句柄
+ * 此函数负责管理网络句柄
+ * @param ConnectionHandle 连接句柄
+ * @param HandleSize 句柄大小
+ * @param HandleContext 句柄上下文
+ * @return 管理结果，0表示成功，其他值表示错误码
+ */
 int ManageNetworkHandle(int64_t ConnectionHandle, int HandleSize, int64_t HandleContext);
+
+/**
+ * 网络加密数据包数据 - 网络加密数据包数据
+ * 此函数负责对网络数据包数据进行加密
+ * @param PacketData 数据包数据
+ * @param PacketSize 数据包大小
+ * @param EncryptionKey 加密密钥
+ * @return 加密结果，0表示成功，其他值表示错误码
+ */
 int NetworkEncryptPacketData(int64_t PacketData, int PacketSize, int64_t EncryptionKey);
+
+/**
+ * 网络处理安全上下文 - 网络处理安全上下文
+ * 此函数负责处理网络安全上下文
+ * @param SecurityContext 安全上下文
+ * @param ContextSize 上下文大小
+ * @param ContextData 上下文数据
+ * @return 处理结果，0表示成功，其他值表示错误码
+ */
 int NetworkProcessSecurityContext(int64_t SecurityContext, int ContextSize, int64_t ContextData);
+
+/**
+ * 网络获取连接数量 - 网络获取连接数量
+ * 此函数负责获取网络连接的数量
+ * @param ConnectionContext 连接上下文
+ * @return 连接数量
+ */
 int NetworkGetConnectionCount(int64_t ConnectionContext);
+
+/**
+ * 网络通过索引获取连接 - 网络通过索引获取连接
+ * 此函数负责通过索引获取网络连接
+ * @param ConnectionContext 连接上下文
+ * @param ConnectionIndex 连接索引
+ * @return 连接句柄
+ */
 int64_t NetworkGetConnectionByIndex(int64_t ConnectionContext, int ConnectionIndex);
+
+/**
+ * 网络验证连接协议 - 网络验证连接协议
+ * 此函数负责验证网络连接的协议
+ * @param NetworkData 网络数据
+ * @param PacketData 数据包数据
+ * @return 验证结果，0表示成功，其他值表示错误码
+ */
 int NetworkValidateConnectionProtocol(int64_t NetworkData, int64_t PacketData);
 
 uint32_t NetworkConnectionEventHandler;
+
+/**
+ * 传输数据 - 传输数据
+ * 此函数负责传输数据
+ */
 void TransmitData(void);
+
+/**
+ * 检索网络数据 - 检索网络数据
+ * 此函数负责检索网络数据
+ */
 void RetrieveNetworkData(void);
+
+/**
+ * 验证网络数据包真实性 - 验证网络数据包的真实性
+ * 此函数负责验证网络数据包的真实性
+ */
 void ValidateNetworkPacketAuthenticity(void);
+
+/**
+ * 处理网络数据包处理 - 处理网络数据包处理
+ * 此函数负责处理网络数据包处理
+ */
 void ProcessNetworkPacketHandling(void);
+
+/**
+ * 管理网络错误处理 - 管理网络错误处理
+ * 此函数负责管理网络错误处理
+ */
 void ManageNetworkErrorHandling(void);
 
 uint32_t NetworkErrorProcessor;
