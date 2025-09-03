@@ -1525,15 +1525,15 @@ NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int
             ConnectionContextDataArray = (NetworkStatus *)((ConnectionBaseAddressPointer - (long long)StatusBufferPointer) + (long long)PacketBufferPointer);
             
             // 提取连接状态信息
-            NetworkStatus PacketProcessingResult = NetworkConnectionContextDataArray[1];
-            NetworkStatus DataProcessingStatus = NetworkConnectionContextDataArray[2];
-            NetworkStatus ConnectionValidationResult = NetworkConnectionContextDataArray[3];
+            NetworkStatus CurrentPacketStatus = ConnectionContextDataArray[1];
+            NetworkStatus CurrentDataStatus = ConnectionContextDataArray[2];
+            NetworkStatus CurrentValidationResult = ConnectionContextDataArray[3];
             
             // 更新数据包缓冲区状态
-            *NetworkPacketBufferPointer = *NetworkConnectionContextDataArray;
-            NetworkPacketBufferPointer[1] = PacketProcessingResult;
-            NetworkPacketBufferPointer[2] = DataProcessingStatus;
-            NetworkPacketBufferPointer[3] = ConnectionValidationResult;
+            *PacketBufferPointer = *ConnectionContextDataArray;
+            PacketBufferPointer[1] = CurrentPacketStatus;
+            PacketBufferPointer[2] = CurrentDataStatus;
+            PacketBufferPointer[3] = CurrentValidationResult;
             NetworkPacketBufferPointer[4] = *(NetworkStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + -4 + (long long)(NetworkPacketBufferPointer + 5));
             
             // 更新迭代计数器
