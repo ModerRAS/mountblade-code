@@ -4687,12 +4687,12 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
  */
 uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
 {
-  uint64_t *SystemStatusFlagsPointer;
+  uint64_t *SystemStatusFlagsBuffer;
   int64_t ObjectInstancePointer;
   uint64_t StatusUpdateResult;
-  int64_t *ObjectCollectionIterator;
+  int64_t *ObjectCollectionIteratorPointer;
   int64_t SystemContextPointers[4];
-  uint32_t *ObjectStatusFlagsPointer;
+  uint32_t *ObjectStatusFlagsBuffer;
   
   StatusUpdateResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextPointers);
   if ((int)StatusUpdateResult == 0) {

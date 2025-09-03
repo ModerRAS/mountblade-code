@@ -869,7 +869,7 @@ NetworkHandle ProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t P
   NetworkStatus NetworkValidationStatus;
   NetworkStatus NetworkTimeoutStatus;
   NetworkStatus NetworkPacketProcessingResult2;
-  NetworkStatus *ConnectionHandlePacket;
+  NetworkStatus *ConnectionStatusPointer;
   int64_t NetworkConnectionIterator;
   NetworkStatus *PacketFlagsPointer;
   int64_t *NetworkOperationStatusPointer;
@@ -903,7 +903,7 @@ NETWORK_PROCESSING_LOOP:
           PacketFlagsPointer[1] = NetworkValidationStatus;
           PacketFlagsPointer[2] = NetworkTimeoutStatus;
           PacketFlagsPointer[3] = NetworkPacketProcessingResult2;
-          PacketFlagsPointer[4] = *(NetworkStatus *)((NetworkContext - (long long)pConnectionHandlePacket) + -4 + (long long)(PacketFlagsPointer + 5));
+          PacketFlagsPointer[4] = *(NetworkStatus *)((NetworkContext - (long long)ConnectionStatusPointer) + -4 + (long long)(PacketFlagsPointer + 5));
           NetworkContextIterator = NetworkContextIterator + -1;
           PacketFlagsPointer = PacketFlagsPointer + 5;
         } while (NetworkContextIterator != 0);
