@@ -4870,10 +4870,10 @@ uint8_t CleanupObjectHandle(void)
  * 
  * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作
  */
-uint8_t ValidateCharacterParameter(char CharToValidate)
+uint8_t ValidateCharacterParameter(char CharacterParameter)
 
 {
-  if (CharToValidate != '\0') {
+  if (CharacterParameter != '\0') {
           ExecuteSystemExitOperation();
   }
   return 0;
@@ -4908,13 +4908,13 @@ void InitializeSystemResources(void)
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  * @warning 验证失败时会触发系统退出操作
  */
-uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
+uint8_t ValidateObjectHandle(int64_t ObjectHandle)
 
 {
   uint8_t ValidationStatusCode;
   int64_t ValidationMemoryBuffer;
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &ValidationMemoryBuffer);
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandle + ObjectHandleMemoryOffset), &ValidationMemoryBuffer);
   if ((int)ValidationStatusCode != 0) {
     return ValidationStatusCode;
   }
@@ -30031,17 +30031,6 @@ void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCont
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-/**
- * @brief 四级上下文异常处理器
- * 
- * 该函数负责处理四级异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 
- * @param ExceptionContext 异常上下文参数，包含异常相关的状态信息
- * @param SystemContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
 void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *QuaternaryResourceHashDataPointer;
   
@@ -35035,9 +35024,9 @@ void UnwindResourceTablePointerSetup(uint8_t ObjectContext,int64_t ValidationCon
 void UnwindMemoryPoolInitializer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
+  int64_t LoopCounterValue;
   
-  loopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  LoopCounterValue = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 0x148) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceSecurityProcessingOffset) != 0) {
           ExecuteSystemEmergencyExit();
@@ -103020,15 +103009,19 @@ void ExecuteReferenceCountDecrementAndCleanup(void)
 
 
  /**
- * 初始化系统数据结构CP
+ * @brief 初始化系统资源处理器
+ * 
  * 设置全局系统数据结构指针，用于系统初始化
+ * 处理资源上下文的引用计数和回调函数执行
  */
-void InitializeSystemDataStructureCP(void)
+void InitializeSystemResourceProcessor(void)
 /**
- * 初始化系统数据结构CP
+ * @brief 初始化系统资源处理器
+ * 
  * 设置全局系统数据结构指针，用于系统初始化
+ * 处理资源上下文的引用计数和回调函数执行
  */
-void InitializeSystemDataStructureCP(void)
+void InitializeSystemResourceProcessor(void)
 
 {
   int64_t *processPointer;
