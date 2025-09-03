@@ -3626,7 +3626,7 @@ uint8_t ThreadAffinityTable;
 uint8_t ThreadLocalStorageTable;
 uint8_t ThreadSynchronizationTable;
 // 线程生命周期管理器 - 管理系统线程生命周期
-uint8_t ThreadLifecycleManager;
+uint8_t ThreadLifecycleManagerMain;
 uint8_t SystemThreadScheduler;
 uint8_t SystemThreadPool;
 uint8_t SystemThreadQueue;
@@ -3635,9 +3635,9 @@ uint8_t ThreadMonitorTable;
 uint8_t MemoryPoolBufferPrimary;
 uint8_t MemoryPoolBufferSecondary;
 // 第三级内存池缓冲区 - 用于存储第三级系统内存池数据
-uint8_t TertiaryMemoryPoolBuffer;
+uint8_t MemoryPoolBufferTertiary;
 uint8_t ResourceAllocationManager;
-uint8_t SystemMemoryManager;
+uint8_t SystemMemoryManagerSecondary;
 uint8_t ThreadContextManager;
 // 主数据缓冲区 - 用于存储主要的系统数据
 uint8_t PrimaryDataBuffer;

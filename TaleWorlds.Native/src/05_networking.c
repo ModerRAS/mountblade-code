@@ -1203,9 +1203,48 @@ uint32_t NetworkLatency;                            // 网络延迟
 uint32_t NetworkPacketLoss;                         // 网络数据包丢失率
 uint32_t NetworkPacketRetransmissionCount;          // 网络数据包重传次数
 uint32_t NetworkActiveConnectionsCount;             // 活跃网络连接数量
+uint32_t NetworkPacketSequence;                     // 网络数据包序列号
+uint32_t NetworkAcknowledgeNumber;                  // 网络确认号
+uint32_t NetworkWindowScale;                         // 网络窗口缩放
+uint32_t NetworkRetransmitTimer;                     // 网络重传计时器
+uint32_t NetworkKeepAliveTime;                        // 网络保持连接时间
+uint32_t NetworkHeartbeatTimeout;                    // 网络心跳超时时间
+uint32_t NetworkRoundTripTime;                         // 网络往返时间
+uint32_t NetworkBufferManager;                         // 网络缓冲区管理器
+uint32_t NetworkBufferSize;                             // 网络缓冲区大小
+uint32_t NetworkBufferIndex;                            // 网络缓冲区索引
+uint32_t NetworkPacketContext;                           // 网络数据包上下文
+uint32_t NetworkPacketContextSize;                       // 网络数据包上下文大小
+uint32_t NetworkPacketData;                              // 网络数据包数据
+uint32_t NetworkPacketIndex;                             // 网络数据包索引
+uint32_t NetworkPacketHeaderData;                        // 网络数据包头数据
+uint32_t NetworkPacketHeaderSize;                        // 网络数据包头大小
+uint32_t NetworkPacketTrailerData;                       // 网络数据包尾数据
+uint32_t NetworkPacketTrailerSize;                       // 网络数据包尾大小
+uint32_t PacketHashAlgorithm;                            // 数据包哈希算法
+uint32_t PacketSignatureMethod;                         // 数据包签名方法
+uint32_t PacketEncryptionKeyLength;                     // 数据包加密密钥长度
+uint32_t PacketValidationBufferPool;                     // 数据包验证缓冲池
+uint32_t PacketValidationBufferSize;                     // 数据包验证缓冲区大小
+uint32_t PacketSecurityValidationData;                   // 数据包安全验证数据
+uint32_t PacketSecurityEncryptionData;                   // 数据包安全加密数据
+uint32_t PacketSecurityAuthenticationData;              // 数据包安全认证数据
+uint32_t PacketSecurityAuthorizationData;               // 数据包安全授权数据
+uint32_t PacketSecurityAuditData;                        // 数据包安全审计数据
+uint32_t PacketSecurityPolicyData;                       // 数据包安全策略数据
+uint32_t PacketSecurityCertificateData;                  // 数据包安全证书数据
+uint32_t PacketEncryptionBuffer;                         // 数据包加密缓冲区
+uint32_t PacketCompressionBuffer;                        // 数据包压缩缓冲区
+uint32_t PacketDataCompressionLevel;                    // 数据包数据压缩级别
+uint32_t PacketCompressionLevel;                         // 数据包压缩级别
+uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算法类型
 
 uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列
 uint32_t NetworkPendingRequestsCount;               // 待处理网络请求数量
+uint32_t ConnectionManager;                            // 连接管理器
+uint32_t ConnectionData;                              // 连接数据
+uint32_t ConnectionSize;                              // 连接大小
+uint32_t ConnectionIndex;                              // 连接索引
 uint32_t NetworkSecurityConfigurationFlags;          // 网络安全配置标志
 uint32_t NetworkAuthenticationSecurityLevel;       // 网络认证安全级别
 uint32_t NetworkEncryptionAlgorithmType;            // 网络加密算法类型
@@ -1250,6 +1289,10 @@ uint32_t NetworkConnectionLoopCounter;                     // 网络连接循环
 uint32_t NetworkConnectionExtendedFlags;                       // 网络连接扩展标志
 uint32_t NetworkConnectionProcessingResults;               // 网络连接处理结果
 uint32_t NetworkConnectionProcessedCounts;                  // 网络连接已处理数量
+uint32_t NetworkConnectionJitterBuffer;                     // 网络连接抖动缓冲区
+uint32_t NetworkConnectionErrorRate;                        // 网络连接错误率
+uint32_t NetworkConnectionHealth;                           // 网络连接健康状态
+uint32_t NetworkConnectionStability;                        // 网络连接稳定性
 
 /**
  * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
