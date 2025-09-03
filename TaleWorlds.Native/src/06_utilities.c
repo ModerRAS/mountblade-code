@@ -4917,7 +4917,7 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   uint8_t ContextValidationResult;
   int64_t ObjectValidationData [4];
   
-  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationData);
+  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationData);
   if ((int)ContextValidationResult != 0) {
     return ContextValidationResult;
   }
@@ -4926,11 +4926,11 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
     ObjectValidationData[0] = ObjectValidationData[0] - 8;
   }
   
-  ValidatedObjectMemoryAddress = *(int64_t *)(ObjectValidationData[0] + ObjectHandleMemoryOffset);
+  ValidatedObjectMemoryAddress = *(int64_t *)(ObjectValidationData[0] + ObjectHandleOffset);
   if (ValidatedObjectMemoryAddress != 0) {
     *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusFlagsOffset) != '\0') && (ContextValidationResult = CheckSystemStatus(), (int)ContextValidationResult != 0)) {
+    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ContextValidationResult = CheckSystemStatus(), (int)ContextValidationResult != 0)) {
       return ContextValidationResult;
     }
     return 0;
@@ -4962,7 +4962,7 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
   uint8_t HandleValidationResult;
   int64_t ValidatedContextPointer;
   
-  HandleValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &ValidatedContextPointer);
+  HandleValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextPointer);
   if ((int)HandleValidationResult == 0) {
     if (ValidatedContextPointer == 0) {
       ValidatedContextPointer = 0;
@@ -4970,8 +4970,8 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
     else {
       ValidatedContextPointer = ValidatedContextPointer - 8;
     }
-    if (*(int64_t *)(ValidatedContextPointer + ObjectHandleMemoryOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + ObjectHandleMemoryOffset), 1);
+    if (*(int64_t *)(ValidatedContextPointer + ObjectHandleOffset) != 0) {
+            ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + ObjectHandleOffset), 1);
     }
     HandleValidationResult = 0;
   }
