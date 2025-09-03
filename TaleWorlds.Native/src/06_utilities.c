@@ -5365,38 +5365,44 @@ uint8_t HandleComplexObject(int64_t ObjectContext)
  */
 uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
 {
-  uint8_t ObjectValidationStatusCode;
-  int64_t ResourceContextData[2];
-  int64_t ValidationStackData[2];
+  uint8_t StatusValidationCode;
+  int64_t ResourceContextBuffer[2];
+  int64_t StackValidationBuffer[2];
   
-  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ValidationStackData);
-  if ((int)ObjectValidationStatusCode == 0) {
-    if (ValidationStackData[0] == 0) {
-      ValidationStackData[0] = 0;
+  // 验证对象上下文
+  StatusValidationCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), StackValidationBuffer);
+  if ((int)StatusValidationCode == 0) {
+    // 调整验证栈数据
+    if (StackValidationBuffer[0] == 0) {
+      StackValidationBuffer[0] = 0;
     }
     else {
-      ValidationStackData[0] = ValidationStackData[0] - 8;
+      StackValidationBuffer[0] = StackValidationBuffer[0] - 8;
     }
     
-    ResourceContextData[0] = 0;
-    ObjectValidationStatusCode = ValidateResourceContext(ValidationStackData[0], ObjectContext + ObjectContextProcessingDataOffset, ResourceContextData);
-    if ((int)ObjectValidationStatusCode == 0) {
-      if (ResourceContextData[0] != 0) {
-        if (*(int64_t *)(ResourceContextData[0] + 8) == 0) {
+    // 初始化资源上下文缓冲区
+    ResourceContextBuffer[0] = 0;
+    StatusValidationCode = ValidateResourceContext(StackValidationBuffer[0], ObjectContext + ObjectContextProcessingDataOffset, ResourceContextBuffer);
+    if ((int)StatusValidationCode == 0) {
+      // 处理资源上下文
+      if (ResourceContextBuffer[0] != 0) {
+        // 验证资源句柄
+        if (*(int64_t *)(ResourceContextBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
         
-        ObjectValidationStatusCode = ProcessResourceOperation(*(int64_t *)(ResourceContextData[0] + 8), 
+        // 执行资源操作
+        StatusValidationCode = ProcessResourceOperation(*(int64_t *)(ResourceContextBuffer[0] + 8), 
                                               *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),
                                               *(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
-        if ((int)ObjectValidationStatusCode != 0) {
-          return ObjectValidationStatusCode;
+        if ((int)StatusValidationCode != 0) {
+          return StatusValidationCode;
         }
       }
-      ObjectValidationStatusCode = 0;
+      StatusValidationCode = OperationSuccessCode;
     }
   }
-  return ObjectValidationStatusCode;
+  return StatusValidationCode;
 }
 
 
