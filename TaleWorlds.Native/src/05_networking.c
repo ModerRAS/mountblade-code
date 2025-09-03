@@ -114,7 +114,7 @@
  * @param SecondTimestamp 第二个时间戳指针
  * @return 比较结果，0表示相等，正数表示第一个大于第二个，负数表示第一个小于第二个
  */
-uint CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
+uint32_t CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
 /**
  * 处理网络连接数据 - 处理网络连接中的数据包
  * 此函数负责处理网络连接中的数据包，包括数据验证和状态更新
@@ -123,7 +123,7 @@ uint CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *Second
  * @param BufferSize 缓冲区大小指针
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint ProcessNetworkConnectionData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
+uint32_t ProcessNetworkConnectionData(int64_t *ConnectionContext, int64_t PacketData, int64_t *BufferSize);
 /**
  * 发送网络数据包数据 - 通过网络发送数据包
  * 此函数负责通过网络连接发送数据包数据
@@ -132,7 +132,7 @@ uint ProcessNetworkConnectionData(int64_t *ConnectionContext, int64_t PacketData
  * @param PacketBuffer 数据包缓冲区
  * @return 发送结果句柄，0表示成功，其他值表示错误码
  */
-uint SendNetworkPacketData(int64_t SocketContext, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
+uint32_t SendNetworkPacketData(int64_t SocketContext, NetworkHandle ConnectionHandle, int64_t PacketBuffer);
 /**
  * 验证网络数据包 - 验证网络数据包的完整性和有效性
  * 此函数负责验证网络数据包的格式和内容是否有效
@@ -140,7 +140,7 @@ uint SendNetworkPacketData(int64_t SocketContext, NetworkHandle ConnectionHandle
  * @param ConnectionContext 连接上下文
  * @return 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint ValidateNetworkPacket(int64_t PacketData, int64_t ConnectionContext);
+uint32_t ValidateNetworkPacket(int64_t PacketData, int64_t ConnectionContext);
 /**
  * 处理网络连接请求 - 处理网络连接请求和验证
  * 此函数负责处理网络连接请求，验证连接参数，并建立安全连接
@@ -148,7 +148,7 @@ uint ValidateNetworkPacket(int64_t PacketData, int64_t ConnectionContext);
  * @param RequestBuffer 请求缓冲区指针
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
+uint32_t ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestBuffer);
 /**
  * 执行网络数据传输 - 执行网络数据传输操作
  * 此函数负责在网络连接之间传输数据
@@ -158,7 +158,7 @@ uint ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *Reques
  * @param TransferFlags 传输标志
  * @return 传输结果句柄，0表示成功，其他值表示错误码
  */
-uint ExecuteNetworkDataTransfer(int64_t SourceBuffer, uint TransferSize, int64_t *DestinationBuffer, uint TransferFlags);
+uint32_t ExecuteNetworkDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
 /**
  * 处理网络数据包 - 处理网络数据包的接收和发送
  * 此函数负责处理网络数据包，包括优先级处理
