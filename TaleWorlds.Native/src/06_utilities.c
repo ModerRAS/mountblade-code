@@ -80001,8 +80001,16 @@ void Unwind_18090c7e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c7f0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 系统数据结构清理函数0x7f0
+ * 
+ * 该函数负责清理系统数据结构在偏移量0x200位置的相关资源。
+ * 这是系统资源管理的一部分，用于确保系统资源被正确释放。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void CleanupSystemDataStructure0x7f0(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if (*(int64_t **)(ValidationContext + 0x200) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContext + 0x200) + 0x38))();
