@@ -5142,38 +5142,38 @@ void ResetSystemState(void)
  */
 uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
 {
-  uint8_t ValidationStatusCode;
-  int64_t ProcessingResultBuffer[2];
-  int64_t ContextDataBuffer[2];
+  uint8_t ValidationStatus;
+  int64_t ResultBuffer[2];
+  int64_t ContextBuffer[2];
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextDataBuffer);
-  if ((int)ValidationStatusCode == 0) {
-    if (ContextDataBuffer[0] == 0) {
-      ContextDataBuffer[0] = 0;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextBuffer);
+  if ((int)ValidationStatus == 0) {
+    if (ContextBuffer[0] == 0) {
+      ContextBuffer[0] = 0;
     }
     else {
-      ContextDataBuffer[0] = ContextDataBuffer[0] - 8;
+      ContextBuffer[0] = ContextBuffer[0] - 8;
     }
     
-    ProcessingResultBuffer[0] = 0;
-    ValidationStatusCode = ProcessSystemContextValidation(ContextDataBuffer[0], ObjectContext + ObjectContextValidationDataOffset, ProcessingResultBuffer);
-    if ((int)ValidationStatusCode == 0) {
-      if (ProcessingResultBuffer[0] != 0) {
-        if (*(int64_t *)(ProcessingResultBuffer[0] + 8) == 0) {
+    ResultBuffer[0] = 0;
+    ValidationStatus = ProcessSystemContextValidation(ContextBuffer[0], ObjectContext + ObjectContextValidationDataOffset, ResultBuffer);
+    if ((int)ValidationStatus == 0) {
+      if (ResultBuffer[0] != 0) {
+        if (*(int64_t *)(ResultBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
         
-        ValidationStatusCode = ProcessResourceOperation(*(int64_t *)(ProcessingResultBuffer[0] + 8), 
+        ValidationStatus = ProcessResourceOperation(*(int64_t *)(ResultBuffer[0] + 8), 
                                                   *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset),
                                                   *(uint8_t *)(ObjectContext + ObjectContextStatusDataOffset));
-        if ((int)ValidationStatusCode != 0) {
-          return ValidationStatusCode;
+        if ((int)ValidationStatus != 0) {
+          return ValidationStatus;
         }
       }
-      ValidationStatusCode = 0;
+      ValidationStatus = 0;
     }
   }
-  return ValidationStatusCode;
+  return ValidationStatus;
 }
 
 
