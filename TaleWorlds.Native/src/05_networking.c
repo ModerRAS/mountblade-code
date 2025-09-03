@@ -869,22 +869,22 @@ uint32_t NetworkCallbackSize;
 uint32_t NetworkCallbackIndex;
 
 // 网络连接处理变量
-uint32_t ProcessedConnectionHandlePacket;          // 已处理的连接句柄数据包
-uint32_t NetworkConnectionTable;                    // 网络连接表
-uint32_t SecurityValidationData;                    // 安全验证数据
-uint32_t NetworkBufferTemplate;                     // 网络缓冲区模板
-uint32_t NetworkConnectionDataDefault;              // 网络连接默认数据
-uint32_t NetworkConnectionSourceAddress;            // 网络连接源地址
-uint32_t NetworkConnectionArrayIndex;               // 网络连接数组索引
-uint32_t NetworkPacketArrayPointer;                 // 网络数据包数组指针
-uint32_t NetworkConnectionPrimaryPointer;          // 网络连接主指针
-uint32_t NetworkPacketEntryPointer;                 // 网络数据包条目指针
-uint32_t NetworkConnectionTargetAddress;            // 网络连接目标地址
-uint32_t NetworkConnectionIndexCounter;             // 网络连接索引计数器
-uint32_t NetworkConnectionLoopCounter;              // 网络连接循环计数器
-uint32_t NetworkConnectionStateFlag;                // 网络连接状态标志
-uint32_t ConnectionProcessingResult;                // 连接处理结果
-uint32_t NetworkConnectionProcessedCount;           // 网络连接已处理数量
+uint32_t ProcessedNetworkConnectionPacketHandle;          // 已处理的网络连接数据包句柄
+uint32_t NetworkConnectionTablePointer;                    // 网络连接表指针
+uint32_t NetworkSecurityValidationData;                    // 网络安全验证数据
+uint32_t NetworkBufferTemplatePointer;                     // 网络缓冲区模板指针
+uint32_t NetworkConnectionDefaultData;                    // 网络连接默认数据
+uint32_t NetworkConnectionSourceAddress;                   // 网络连接源地址
+uint32_t NetworkConnectionArrayIndex;                      // 网络连接数组索引
+uint32_t NetworkPacketArrayPointer;                        // 网络数据包数组指针
+uint32_t NetworkConnectionPrimaryContextPointer;           // 网络连接主上下文指针
+uint32_t NetworkPacketEntryPointer;                        // 网络数据包条目指针
+uint32_t NetworkConnectionTargetAddress;                   // 网络连接目标地址
+uint32_t NetworkConnectionIndexCounter;                    // 网络连接索引计数器
+uint32_t NetworkConnectionLoopCounter;                     // 网络连接循环计数器
+uint32_t NetworkConnectionStateFlag;                       // 网络连接状态标志
+uint32_t NetworkConnectionProcessingResult;                // 网络连接处理结果
+uint32_t NetworkConnectionProcessedCount;                  // 网络连接已处理数量
 
 /**
  * @brief 初始化网络连接状态
@@ -1113,7 +1113,7 @@ NetworkMainProcessingLoop:
   if ((0 < *(int *)((long long)ConnectionContext + ConnectionParameterOffset)) && (*ConnectionContext != 0)) {
       ValidateConnectionSecurity(*(NetworkHandle *)(NetworkConnectionTable + NetworkConnectionTableOffset), *ConnectionContext, &SecurityValidationData, SecurityValidationBufferSize, 1);
   }
-  *ConnectionContext = (long long)ProcessedConnectionHandlePacket;
+  *ConnectionContext = (long long)ProcessedNetworkConnectionPacketHandle;
   *(int *)((long long)ConnectionContext + ConnectionParameterOffset) = PacketData;
   return 0;
 }
