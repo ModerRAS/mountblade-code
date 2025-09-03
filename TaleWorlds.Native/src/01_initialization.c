@@ -19199,11 +19199,11 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   char *searchPathPointer;
   void** stackPointer;
   unsigned long long SystemTimestamp;
-  uint stackFlags;
-  char ThreadState;
-  long long *threadLocalData;
+  uint stackOperationFlags;
+  char threadExecutionState;
+  long long *threadLocalDataBuffer;
   long long **threadManagerPointer;
-  long long PerformanceCounter;
+  long long performanceCounterValue;
   void** StackBufferLarge1;
   void** StackBufferLarge2;
   uint32_t SystemResourceHandle;
@@ -19247,7 +19247,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
     LibraryHandle = LoadLibraryA(&SystemStringConstantLibraryNameH);
     AllocatedMemoryPointer[0xb] = LibraryHandle;
     if (LibraryHandle != 0) goto LibraryHandleLoadedSuccessfully;
-    systemGlobalDataPtrB8 = &SystemGlobalDataReference;
+    systemGlobalDataPtr = &SystemGlobalDataReference;
     if (alternateBufferPtrB0 != (void* *)0x0) {
         SystemCleanupFunction();
     }
@@ -19258,7 +19258,7 @@ LibraryHandleLoadedSuccessfully:
       FunctionAddress = GetProcAddress(LibraryHandle,&SystemStringConstantFunctionNameI);
       AllocatedMemoryPointer[0xc] = FunctionAddress;
       if (FunctionAddress == 0) {
-        systemGlobalDataPtrB8 = &SystemGlobalDataReference;
+        systemGlobalDataPtr = &SystemGlobalDataReference;
         if (alternateBufferPtrB0 != (void* *)0x0) {
             SystemCleanupFunction();
         }
@@ -19271,14 +19271,14 @@ LibraryHandleLoadedSuccessfully:
     }
     SymbolInitializationResult = SymInitialize(SystemCurrentProcessHandle,SymbolSearchPath,1);
     if (SymbolInitializationResult == 0) {
-      systemGlobalDataPtrB8 = &SystemGlobalDataReference;
+      systemGlobalDataPtr = &SystemGlobalDataReference;
       if (alternateBufferPtrB0 != (void* *)0x0) {
           SystemCleanupFunction();
       }
     }
     else {
       *(char *)AllocatedMemoryPointer = '\x01';
-      systemGlobalDataPtrB8 = &SystemGlobalDataReference;
+      systemGlobalDataPtr = &SystemGlobalDataReference;
       if (alternateBufferPtrB0 != (void* *)0x0) {
           SystemCleanupFunction();
       }
@@ -43562,7 +43562,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
     }
     ProcessSystemResourceData(&SystemMemoryAllocationFlag,SystemHashNodeData,&SystemEventTemplate);
     resourceCreationFlags = (long long)HashTableNode - (long long)resourceEntryPointer >> 5;
-    systemGlobalDataPtrB8 = &SystemGlobalDataReference;
+    systemGlobalDataPtr = &SystemGlobalDataReference;
     SystemMemoryAllocationOffset = 0;
     MemoryAllocationSize = 0;
     SystemMemoryAllocationCount = 0;
@@ -43592,7 +43592,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
       HashTableNode = pStackParameterC;
       SystemReferenceCounterStorage = SystemReferenceCounterStorage - 1;
     }
-    systemGlobalDataPtrB8 = &SystemGlobalDataReference;
+    systemGlobalDataPtr = &SystemGlobalDataReference;
     if (LocalSystemBufferOffset != 0) {
         SystemCleanupFunction();
     }
