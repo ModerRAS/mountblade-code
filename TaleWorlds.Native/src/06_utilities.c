@@ -4970,7 +4970,16 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的元数据信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示错误
  */
-uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，确保对象在引用期间不会被释放。
+ * 在对象生命周期管理中起到关键作用。
+ * 
+ * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
+uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryLocation;
   uint8_t ObjectValidationResult;
   int64_t ObjectContextValidationBuffer [4];
@@ -5005,7 +5014,7 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文，包含要初始化句柄的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t SetupObjectHandle(int64_t ObjectContext) {
+uint8_t InitializeObjectHandle(int64_t ObjectContext) {
   uint8_t ContextValidationResult;
   int64_t ValidatedContextMemoryAddress;
   
@@ -5060,7 +5069,16 @@ uint8_t FreeObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示验证通过
  */
-uint8_t CheckCharacterValidity(char CharacterToCheck) {
+/**
+ * @brief 检查字符有效性
+ * 
+ * 检查传入字符的有效性，如果字符不为空则执行系统退出操作。
+ * 主要用于输入验证和安全性检查。
+ * 
+ * @param CharacterToCheck 要检查的字符
+ * @return uint8_t 检查结果，0表示成功
+ */
+uint8_t ValidateCharacter(char CharacterToCheck) {
   if (CharacterToCheck != '\0') {
     ExecuteSystemExitOperation();
   }

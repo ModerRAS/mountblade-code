@@ -1534,11 +1534,11 @@ NetworkHandle NetworkProcessConnectionPacketData(int64_t *ConnectionContext, int
             PacketBufferPointer[1] = CurrentPacketStatus;
             PacketBufferPointer[2] = CurrentDataStatus;
             PacketBufferPointer[3] = CurrentValidationResult;
-            NetworkPacketBufferPointer[4] = *(NetworkStatus *)((ConnectionBaseAddressPointer - (long long)NetworkStatusBufferPointer) + -4 + (long long)(NetworkPacketBufferPointer + 5));
+            PacketBufferPointer[4] = *(NetworkStatus *)((ConnectionBaseAddressPointer - (long long)StatusBufferPointer) + -4 + (long long)(PacketBufferPointer + 5));
             
             // 更新迭代计数器
             ProcessingIterationCounter = ProcessingIterationCounter - 1;
-            NetworkPacketBufferPointer = NetworkPacketBufferPointer + 5;
+            PacketBufferPointer = PacketBufferPointer + 5;
           } while (ProcessingIterationCounter != 0);
         }
         goto NetworkProcessingLoop;
