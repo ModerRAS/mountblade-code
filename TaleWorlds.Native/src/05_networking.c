@@ -2291,10 +2291,14 @@ void CleanupConnectionStack(void* ConnectionBuffer)
 /**
  * @brief 复制连接缓冲区
  * 
- * 复制网络连接的缓冲区数据，用于数据备份和传输
+ * 复制网络连接的缓冲区数据，用于数据备份和传输。此函数负责将源缓冲区中的
+ * 连接数据复制到目标位置，确保数据在传输过程中的完整性和一致性。
  * 
- * @param SourceBuffer 源缓冲区指针
+ * @param SourceBuffer 源缓冲区指针，包含要复制的连接数据
  * @return void 无返回值
+ * 
+ * @note 此函数是简化实现，实际应用中需要实现完整的数据复制逻辑
+ * @warning 如果源缓冲区为空，函数将不执行任何操作
  */
 void CopyConnectionBuffer(void* SourceBuffer)
 {
