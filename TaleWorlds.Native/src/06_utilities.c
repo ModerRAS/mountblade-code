@@ -4389,7 +4389,7 @@ uint8_t MemoryPoolBufferCommand;
 uint8_t MemoryPoolBufferResponse;
 uint8_t SystemDataBufferPrimary;
 uint8_t SystemConfigurationFlagActive;
-char SystemStatusCharacterBuffer;
+char SystemStatusTextBuffer;
 uint8_t SystemDataBufferSecondary;
 
  uint8_t MonitorResourcePerformancePrimary;
@@ -4402,7 +4402,7 @@ uint8_t SystemSyncFlagFast;
 uint8_t SystemThreadFlagGlobal;
 uint8_t SystemResourceFlagHighPriority;
 uint8_t SystemProcessFlagInteractive;
-char SystemStatusCharacterJournal;
+char SystemStatusTextJournal;
 uint8_t SystemDataBufferTertiary;
 uint8_t SystemDataBufferQuaternary;
 uint8_t SystemDataBufferQuinary;
