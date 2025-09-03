@@ -35014,18 +35014,18 @@ void ProcessResourceTablePointerCleanup(uint8_t ObjectContext, int64_t Validatio
 void ProcessSecondaryResourceTablePointerCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
-  int64_t *ResourceTablePointerPointer;
-  int64_t *ResourceIndexPointer;
+  int64_t *ProcessPointer;
+  int64_t *ResourceTableArrayPointer;
+  int64_t *ResourceEntryIterator;
   
-  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x48);
-  ResourceContext = (int64_t *)ResourceTablePointerPointer[1];
-  for (ResourceIndexPointer = (int64_t *)*ResourceTablePointerPointer; ResourceIndexPointer != ResourceContext; ResourceIndexPointer = ResourceIndexPointer + 1) {
-    if ((int64_t *)*ResourceIndexPointer != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*ResourceIndexPointer + 0x38))();
+  ResourceTableArrayPointer = *(int64_t **)(ValidationContext + 0x48);
+  ResourceContext = (int64_t *)ResourceTableArrayPointer[1];
+  for (ResourceEntryIterator = (int64_t *)*ResourceTableArrayPointer; ResourceEntryIterator != ResourceContext; ResourceEntryIterator = ResourceEntryIterator + 1) {
+    if ((int64_t *)*ResourceEntryIterator != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*ResourceEntryIterator + 0x38))();
     }
   }
-  if (*ResourceTablePointerPointer == 0) {
+  if (*ResourceTableArrayPointer == 0) {
     return;
   }
         ExecuteSystemEmergencyExit();
