@@ -6850,7 +6850,7 @@ int InitializeSystemManager(int64_t SystemManagerHandle)
  * @note 此函数在系统消息处理循环中调用
  * @warning 验证失败时会跳过资源操作
  */
-void ProcessMessageQueue(int64_t MessageQueueHandle, uint8_t SystemConfigData)
+void ProcessMessageQueue(int64_t MessageQueueHandle, uint8_t ConfigurationParameter)
 
 {
   uint8_t ValidationContext;
