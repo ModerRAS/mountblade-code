@@ -406,10 +406,10 @@ void *NetworkConnectionProcessingConfigData = &NetworkConnectionProcessingConfig
 void *NetworkConnectionTransportConfigData = &NetworkConnectionTransportConfigDataStructure;
 void *NetworkConnectionProtocolConfigData = &NetworkConnectionProtocolConfigDataStructure;
 void *NetworkConnectionValidationConfig = &NetworkConnectionValidationConfigStructure;
-void *NetworkConnectionRoutingConfigDataA = &NetworkConnectionRoutingConfigDataStructureA;
-void *NetworkConnectionRoutingConfigDataB = &NetworkConnectionRoutingConfigDataStructureB;
-void *NetworkConnectionRoutingConfigDataC = &NetworkConnectionRoutingConfigDataStructureC;
-void *NetworkConnectionRoutingConfigDataD = &NetworkConnectionRoutingConfigDataStructureD;
+void *NetworkConnectionRoutingConfigDataPrimary = &NetworkConnectionRoutingConfigDataStructureA;
+void *NetworkConnectionRoutingConfigDataSecondary = &NetworkConnectionRoutingConfigDataStructureB;
+void *NetworkConnectionRoutingConfigDataTertiary = &NetworkConnectionRoutingConfigDataStructureC;
+void *NetworkConnectionRoutingConfigDataQuaternary = &NetworkConnectionRoutingConfigDataStructureD;
 
 /**
  * 初始化网络套接字句柄 - 初始化网络套接字句柄
@@ -581,7 +581,8 @@ void ProcessNetworkPacketHandling(void);
 
 /**
  * 管理网络错误处理 - 管理网络错误处理
- * 此函数负责管理网络错误处理
+ * 此函数负责管理网络错误的处理和恢复
+ * @note 此函数会记录错误并尝试自动恢复
  */
 void ManageNetworkErrorHandling(void);
 
