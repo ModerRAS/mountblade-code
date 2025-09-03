@@ -1522,30 +1522,30 @@ void* DatabaseSchemaManager;                  // 数据库模式管理器
 void* DatabaseRecordManager;                  // 数据库记录管理器
 void* DatabaseLockManager;                    // 数据库锁管理器
 void* DatabaseBackupManager;                  // 数据库备份管理器
-void* DatabaseConfigurationTable;
-void* DatabaseConnectionTable;
-void* DatabaseTransactionTable;
-void* DatabaseIndexTable;
-void* DatabaseSchemaTable;
-void* DatabaseRecordTable;
-void* DatabaseLockTable;
-void* DatabaseBackupTable;
-void* DatabaseStatistics;
-void* DatabaseMetrics;
-void* DatabasePerformance;
-void* DatabaseLogger;
-void* DatabaseCache;
-void* DatabaseBuffer;
-void* DatabaseQueue;
-void* DatabaseEvent;
-void* DatabaseSignal;
-void* DatabaseThread;
-void* DatabaseMutex;
-void* DatabaseSemaphore;
-void* DatabaseCondition;
-void* DatabaseMemory;
-void* DatabaseHeap;
-void* DatabaseStackManager;
+void* DatabaseConfigurationTable;              // 数据库配置表
+void* DatabaseConnectionTable;                 // 数据库连接表
+void* DatabaseTransactionTable;                 // 数据库事务表
+void* DatabaseIndexTable;                      // 数据库索引表
+void* DatabaseSchemaTable;                     // 数据库模式表
+void* DatabaseRecordTable;                     // 数据库记录表
+void* DatabaseLockTable;                       // 数据库锁表
+void* DatabaseBackupTable;                     // 数据库备份表
+void* DatabaseStatistics;                     // 数据库统计信息
+void* DatabaseMetrics;                         // 数据库指标
+void* DatabasePerformance;                     // 数据库性能监控
+void* DatabaseLogger;                          // 数据库日志记录器
+void* DatabaseCache;                           // 数据库缓存
+void* DatabaseBuffer;                          // 数据库缓冲区
+void* DatabaseQueue;                           // 数据库队列
+void* DatabaseEvent;                           // 数据库事件
+void* DatabaseSignal;                          // 数据库信号量
+void* DatabaseThread;                          // 数据库线程
+void* DatabaseMutex;                           // 数据库互斥锁
+void* DatabaseSemaphore;                       // 数据库信号量
+void* DatabaseCondition;                       // 数据库条件变量
+void* DatabaseMemory;                          // 数据库内存
+void* DatabaseHeap;                            // 数据库堆
+void* DatabaseStackManager;                    // 数据库栈管理器
 void* DatabasePool;
 void* DatabaseConnectionPoolConfiguration;
 void* DatabaseConnectionPoolStatus;
