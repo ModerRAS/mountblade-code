@@ -4947,32 +4947,13 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数用于增加系统对象的引用计数，用于对象生命周期管理。
- * 通过验证对象上下文，找到对象实例并增加其引用计数。
- * 同时检查系统状态以确保操作的安全性。
- * 
- * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- * @note 成功时对象的引用计数会增加1
- * @warning 如果对象句柄无效，返回ErrorInvalidObjectHandle错误码
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数用于增加系统对象的引用计数，确保对象在使用过程中不会被意外释放。
- * 函数会先验证对象上下文的有效性，然后定位到对象的内存位置并增加其引用计数。
- * 
- * @param ObjectContext 对象上下文指针，包含对象的元数据信息
- * @return uint8_t 操作结果状态码，0表示成功，非0表示错误
- */
-/**
- * @brief 增加对象引用计数
- * 
  * 该函数用于增加系统对象的引用计数，确保对象在引用期间不会被释放。
  * 在对象生命周期管理中起到关键作用。
  * 
  * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ * @note 成功时对象的引用计数会增加1
+ * @warning 如果对象句柄无效，返回ErrorInvalidObjectHandle错误码
  */
 uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryLocation;
@@ -35041,35 +35022,46 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void UnwindSystemContextInitializer(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 解包系统上下文初始化器
+ * 
+ * 该函数负责解包系统上下文初始化器，处理资源表的清理和内存访问验证。
+ * 执行资源索引的更新、内存地址计算和系统清理操作。
+ * 
+ * @param SystemContextObject 系统上下文对象，包含系统初始化相关的配置信息
+ * @param SystemValidationContext 系统验证上下文，包含资源表和内存访问信息
+ * @note 此函数用于系统上下文的解包和清理操作
+ * @warning 如果内存访问验证失败，函数会执行系统紧急退出操作
+ */
+void UnwindSystemContextInitializer(uint8_t SystemContextObject, int64_t SystemValidationContext)
 
 {
-  int32_t *ResourceTablePointerIndexPointer;
-  uint8_t *ResourceHashStatusAddress;
-  int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  int32_t *ResourceTableIndexPointer;
+  uint8_t *ResourceValidationAddress;
+  int64_t ResourceEntryIndex;
+  uint64_t MemoryAlignmentOffset;
   
-  ValidationStatusCodeAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x48);
-  if (ResourceHashStatusAddress == (uint8_t *)0x0) {
+  ResourceValidationAddress = *(uint8_t **)(*(int64_t *)(SystemValidationContext + SystemContextOperationOffset) + 0x48);
+  if (ResourceValidationAddress == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
+  MemoryAlignmentOffset = (uint64_t)ResourceValidationAddress & 0xffffffffffc00000;
   if (MemoryAddressMask != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
-    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
-      *ResourceIndexPointer = *ResourceIndexPointer + -1;
-      if (*ResourceIndexPointer == 0) {
+    ResourceEntryIndex = MemoryAlignmentOffset + 0x80 + ((int64_t)ResourceValidationAddress - MemoryAlignmentOffset >> 0x10) * 0x50;
+    ResourceEntryIndex = ResourceEntryIndex - (uint64_t)*(uint *)(ResourceEntryIndex + 4);
+    if ((*(void ***)(MemoryAlignmentOffset + 0x70) == &ExceptionList) && (*(char *)(ResourceEntryIndex + 0xe) == '\0')) {
+      *ResourceValidationAddress = *(uint8_t *)(ResourceEntryIndex + 0x20);
+      *(uint8_t **)(ResourceEntryIndex + 0x20) = ResourceValidationAddress;
+      ResourceEntryCountPointer = (int *)(ResourceEntryIndex + 0x18);
+      *ResourceEntryCountPointer = *ResourceEntryCountPointer + -1;
+      if (*ResourceEntryCountPointer == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAlignmentOffset, CONCAT71(0xff000000, *(void ***)(MemoryAlignmentOffset + 0x70) == &ExceptionList),
+                          ResourceValidationAddress, MemoryAlignmentOffset, 0xfffffffffffffffe);
     }
   }
   return;
@@ -40061,27 +40053,29 @@ void CleanupSystemResourceHandlerPhaseSeven(uint8_t ObjectContext, int64_t Valid
 /**
  * @brief 清理系统资源处理器
  * 
- * 该函数负责清理和释放系统资源处理器
- * 包括内存管理、句柄清理和状态重置
+ * 该函数负责清理和释放系统资源处理器，包括内存管理、句柄清理和状态重置。
+ * 执行资源处理器的模板重置、内存释放和系统状态清理操作。
  * 
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
- * @param CleanupOption 清理选项
- * @param CleanupFlag 清理标志
+ * @param SystemObjectContext 系统对象上下文参数，包含要清理的系统对象信息
+ * @param SystemValidationContext 系统验证上下文参数，包含验证和清理相关的配置信息
+ * @param ResourceCleanupOption 资源清理选项，指定清理方式和策略
+ * @param SystemCleanupFlag 系统清理标志，指示清理状态和优先级
  * @return 无返回值
+ * @note 此函数通常在系统关闭或资源释放时被调用
+ * @warning 清理过程中如果检测到错误会触发系统紧急退出操作
  */
-void CleanupSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandler(uint8_t SystemObjectContext, int64_t SystemValidationContext, uint8_t ResourceCleanupOption, uint8_t SystemCleanupFlag)
 
 {
-  int64_t LoopCounter;
+  int64_t CleanupIterationCounter;
   
-  LoopCounter = *(int64_t *)(ValidationContext + 0x80);
+  CleanupIterationCounter = *(int64_t *)(SystemValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0xa08) != (code *)0x0) {
-    (**(code **)(SystemContextPointer + 0xa08))(SystemContextPointer + 0x9f8,0,0,CleanupFlag,0xfffffffffffffffe);
+    (**(code **)(SystemContextPointer + 0xa08))(SystemContextPointer + 0x9f8, 0, 0, SystemCleanupFlag, 0xfffffffffffffffe);
   }
   *(uint8_t *)(SystemContextPointer + 0x9d0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x9d8) != 0) {
-          ExecuteSystemEmergencyExit();
+    ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x9d8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x9e8) = 0;
