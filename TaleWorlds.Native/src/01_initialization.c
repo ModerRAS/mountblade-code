@@ -55629,7 +55629,7 @@ void InitializeSystemGlobalState(void)
     }
     *(void* *)(systemResourceHandle + 0x40) = StringIteratorPointer;
       memcpy(*(void* *)(systemResourceHandle + 0x48),*(void* *)(systemDataIndexPtr + 8),
-           (long long)((int)CONCAT62(unaff_0000002a,unaff_BP) * 4));
+           (long long)((int)CONCAT62(systemParameter,basePointer) * 4));
   }
     SystemCleanupFunction();
 }
