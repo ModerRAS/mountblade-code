@@ -841,7 +841,6 @@ void* SystemMemoryRegionExtendedSix;
  */
 void* SystemInitializationEntryPointGamma;
 
-// 函数: 系统初始化入口点D
 /**
  * @brief 系统初始化入口点D
  * 
@@ -849,7 +848,6 @@ void* SystemInitializationEntryPointGamma;
  */
 void* SystemInitializationEntryPointDelta;
 
-// 函数: 系统初始化入口点E
 /**
  * @brief 系统初始化入口点E
  * 
