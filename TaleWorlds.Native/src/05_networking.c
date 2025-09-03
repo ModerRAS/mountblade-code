@@ -1938,35 +1938,35 @@ void* ProcessConnectionRequest(NetworkHandle ConnectionTable, int64_t RequestDat
                              uint32_t FinalizeValue, uint32_t ProcessingFlags, uint32_t ValidationFlags, uint32_t ProcessingMode)
 {
   // 连接请求处理变量
-  static uint32_t ConnectionContextData[16];              // 连接上下文数据
-  uint32_t ConnectionStatus;                              // 连接状态
-  uint32_t ConnectionIdentifier;                          // 连接标识符
-  uint32_t SecurityValidationResult;                      // 安全验证结果
+  static uint32_t ConnectionRequestContextData[16];              // 连接请求上下文数据
+  uint32_t ConnectionProcessingStatus;                              // 连接处理状态
+  uint32_t ConnectionUniqueId;                          // 连接唯一标识符
+  uint32_t ConnectionSecurityValidationResult;                      // 连接安全验证结果
   
   // 初始化连接上下文数据
-  memset(ConnectionContextData, 0, sizeof(ConnectionContextData));
+  memset(ConnectionRequestContextData, 0, sizeof(ConnectionRequestContextData));
   
   // 设置连接基本信息
-  ConnectionStatus = 0x01;                               // 设置连接状态为活跃
-  ConnectionIdentifier = (uint32_t)(RequestData & 0xFFFF); // 从请求数据提取连接标识符
+  ConnectionProcessingStatus = 0x01;                               // 设置连接状态为活跃
+  ConnectionUniqueId = (uint32_t)(RequestData & 0xFFFF); // 从请求数据提取连接标识符
   
   // 验证连接安全性
-  SecurityValidationResult = 0x00;
+  ConnectionSecurityValidationResult = 0x00;
   if (SecurityValidationData) {
     memset(SecurityValidationData, 0, SecurityValidationBufferSize);
-    SecurityValidationResult = 0x01;  // 验证成功
+    ConnectionSecurityValidationResult = 0x01;  // 验证成功
   }
   
   // 设置连接上下文数据
-  ConnectionContextData[0] = ConnectionStatus;
-  ConnectionContextData[1] = ConnectionIdentifier;
-  ConnectionContextData[2] = SecurityValidationResult;
-  ConnectionContextData[3] = FinalizeValue;
-  ConnectionContextData[4] = ProcessingFlags;
-  ConnectionContextData[5] = ValidationFlags;
-  ConnectionContextData[6] = ProcessingMode;
+  ConnectionRequestContextData[0] = ConnectionProcessingStatus;
+  ConnectionRequestContextData[1] = ConnectionUniqueId;
+  ConnectionRequestContextData[2] = ConnectionSecurityValidationResult;
+  ConnectionRequestContextData[3] = FinalizeValue;
+  ConnectionRequestContextData[4] = ProcessingFlags;
+  ConnectionRequestContextData[5] = ValidationFlags;
+  ConnectionRequestContextData[6] = ProcessingMode;
   
-  return ConnectionContextData;
+  return ConnectionRequestContextData;
 }
 
 /**
