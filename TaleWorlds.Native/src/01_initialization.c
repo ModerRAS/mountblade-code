@@ -55602,7 +55602,7 @@ void InitializeSystemGlobalState(void)
 {
   void* SystemOperationStatus;
   ulong long resourceCreationFlags;
-  void*2 unaff_BP;
+  void* basePointer;
   void*6 unaff_0000002a;
   void* StringIteratorPointer;
   long long systemDataIndexPtr;
