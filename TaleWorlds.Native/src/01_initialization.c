@@ -55603,12 +55603,12 @@ void InitializeSystemGlobalState(void)
   void* SystemOperationStatus;
   ulong long resourceCreationFlags;
   void* basePointer;
-  void*6 unaff_0000002a;
+  void* systemParameter;
   void* StringIteratorPointer;
   long long systemDataIndexPtr;
   long long systemResourceHandle;
   
-  *(void*2 *)(systemResourceHandle + 0x50) = unaff_BP;
+  *(void*2 *)(systemResourceHandle + 0x50) = basePointer;
   if (*(long long *)(systemResourceHandle + 0x48) != 0) {
       SystemCleanupFunction();
   }
