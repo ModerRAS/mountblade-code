@@ -893,9 +893,9 @@ NETWORK_PROCESSING_LOOP:
       NetworkPacketProcessingResult = (int)NetworkOperationStatusPointer[1];
       NetworkContextIterator = (long long)NetworkPacketProcessingResult;
       if ((NetworkPacketProcessingResult != 0) && (NetworkContext = *NetworkOperationStatusPointer, 0 < NetworkPacketProcessingResult)) {
-        PacketFlagsPointer = pConnectionHandlePacket;
+        PacketFlagsPointer = ConnectionStatusPointer;
         do {
-          NetworkContextArray = (NetworkStatus *)((NetworkContext - (long long)pConnectionHandlePacket) + (long long)PacketFlagsPointer);
+          NetworkContextArray = (NetworkStatus *)((NetworkContext - (long long)ConnectionStatusPointer) + (long long)PacketFlagsPointer);
           NetworkValidationStatus = NetworkContextArray[1];
           NetworkTimeoutStatus = NetworkContextArray[2];
           NetworkPacketProcessingResult2 = NetworkContextArray[3];
