@@ -1241,10 +1241,10 @@ uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算�
 
 uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列
 uint32_t NetworkPendingRequestsCount;               // 待处理网络请求数量
-uint32_t ConnectionManager;                            // 连接管理器
-uint32_t ConnectionData;                              // 连接数据
-uint32_t ConnectionSize;                              // 连接大小
-uint32_t ConnectionIndex;                              // 连接索引
+uint32_t NetworkConnectionManager;                            // 连接管理器
+uint32_t NetworkConnectionData;                              // 连接数据
+uint32_t NetworkConnectionSize;                              // 连接大小
+uint32_t NetworkConnectionIndex;                              // 连接索引
 uint32_t NetworkThroughputMonitor;                     // 网络吞吐量监控器
 uint32_t NetworkLatencyMonitor;                         // 网络延迟监控器
 uint32_t NetworkBandwidthMonitor;                        // 网络带宽监控器
@@ -1271,10 +1271,10 @@ uint32_t NetworkAuthenticationTimeout;              // 网络认证超时时间
 uint32_t NetworkEncryptionTimeout;                   // 网络加密超时时间
 uint32_t NetworkConnectionReliability;              // 网络连接可靠性
 uint32_t NetworkConnectionPerformance;              // 网络连接性能
-uint32_t ConnectionTableIndex;               // 网络连接表索引
-uint32_t ConnectionTableSize;                 // 网络连接表大小
-uint32_t PacketQueue;                        // 网络数据包队列
-uint32_t PacketQueueSize;                     // 网络数据包队列大小
+uint32_t NetworkConnectionTableIndex;               // 网络连接表索引
+uint32_t NetworkConnectionTableSize;                 // 网络连接表大小
+uint32_t NetworkPacketQueue;                        // 网络数据包队列
+uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大小
 uint32_t NetworkEncryptionContext;                   // 网络加密上下文
 uint32_t NetworkCompressionContext;                  // 网络压缩上下文
 uint32_t NetworkAuthenticationContext;               // 网络认证上下文
@@ -2450,7 +2450,7 @@ NetworkHandle FinalizePacket(NetworkHandle *PacketData, int64_t FinalizeOffset, 
  * @param ConnectionHandle 连接句柄
  * @return int32_t 初始化结果状态码
  */
-int32_t InitializeConnectionContext(NetworkHandle ConnectionHandle)
+int32_t NetworkInitializeConnectionContext(NetworkHandle ConnectionHandle)
 {
   // 这里应该实现连接上下文初始化逻辑
   // 由于这是简化实现，返回成功状态
@@ -2465,7 +2465,7 @@ int32_t InitializeConnectionContext(NetworkHandle ConnectionHandle)
  * @param ConnectionBuffer 连接缓冲区指针
  * @return void 无返回值
  */
-void CleanupConnectionStack(void* ConnectionBuffer)
+void NetworkCleanupConnectionStack(void* ConnectionBuffer)
 {
   // 这里应该实现连接堆栈清理逻辑
   // 由于这是简化实现，仅执行基本的清理工作
@@ -2486,7 +2486,7 @@ void CleanupConnectionStack(void* ConnectionBuffer)
  * @note 此函数是简化实现，实际应用中需要实现完整的数据复制逻辑
  * @warning 如果源缓冲区为空，函数将不执行任何操作
  */
-void CopyConnectionBuffer(void* SourceBuffer)
+void NetworkCopyConnectionBuffer(void* SourceBuffer)
 {
   // 这里应该实现连接缓冲区复制逻辑
   // 由于这是简化实现，仅执行基本的复制工作
