@@ -1002,7 +1002,7 @@ LabelNetworkValidationStart:
  * @note 此函数在网络系统启动时调用，确保所有连接处理资源正确初始化
  * @warning 如果初始化失败，系统将无法建立新的网络连接
  */
-NetworkHandle InitializeConnectionHandler(void)
+NetworkHandle NetworkInitializeConnectionHandler(void)
 {
   return NetworkErrorConnectionFailed;
 }
@@ -1014,7 +1014,7 @@ NetworkHandle InitializeConnectionHandler(void)
  * @param PacketData 数据包数据
  * @return 处理结果句柄，0表示成功，其他值表示错误码
  */
-NetworkHandle ProcessNetworkConnectionData(int64_t *ConnectionContext, int32_t PacketData)
+NetworkHandle NetworkProcessConnectionDataHandler(int64_t *ConnectionContext, int32_t PacketData)
 {
   NetworkStatus *ConnectionStatusData;
   int32_t ConnectionCount;
@@ -1077,7 +1077,7 @@ NETWORK_PROCESSING_LOOP:
  * @note 此函数会根据数据包内容更新连接状态，并触发相应的状态转换操作
  * @warning 如果状态转换失败，系统会记录错误日志并尝试恢复到安全状态
  */
-NetworkHandle ProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
+NetworkHandle NetworkProcessConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   NetworkStatus *ContextArray;
   int32_t PacketProcessingResult;
