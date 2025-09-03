@@ -1854,7 +1854,7 @@ NetworkHandle NetworkValidateConnectionPacket(int64_t ConnectionContext, Network
       }
     }
   }
-  return ValidationStatus;
+  return ValidationStatusCode;
 }
 
 /**
