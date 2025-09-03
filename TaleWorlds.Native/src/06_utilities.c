@@ -4487,7 +4487,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   ObjectValidationResult = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleArray);
   if ((ObjectValidationResult == 0) && (*(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset) != 0)) {
     ObjectListDataBuffer = ObjectProcessingBuffer;
-    ProcessedObjectCount = 0;
+    ProcessedObjectsCount = 0;
     TotalObjectCount = 0;
     MaximumProcessingLimit = MaximumProcessableItemsLimit;
     
@@ -4495,6 +4495,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     ObjectValidationResult = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset),
                           &ObjectListDataBuffer);
     if (ObjectValidationResult == 0) {
+      TotalObjectCount = *(int *)(ObjectListDataBuffer + ObjectDataArraySizeOffset);
       if (0 < TotalObjectCount) {
         ObjectCollectionIndex = 0;
         do {
@@ -4503,9 +4504,9 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
           if (ObjectValidationResult != RegistrationStatusSuccess) {
                   HandleInvalidObject(CurrentObjectState, 1);
           }
-          ProcessedObjectCount++;
+          ProcessedObjectsCount++;
           ObjectCollectionIndex += ResourceEntrySizeBytes;
-        } while (ProcessedObjectCount < TotalObjectCount);
+        } while (ProcessedObjectsCount < TotalObjectCount);
       }
       FreeObjectListMemory(&ObjectListDataBuffer);
     }
