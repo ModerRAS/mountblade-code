@@ -3051,9 +3051,9 @@ uint8_t LogSystemThreadManager;
 int64_t SystemPerformanceTickCount;
 uint SystemConfigurationVersion;
 double SystemElapsedTime;
-double SystemFrequencyData;
+double SystemClockFrequency;
 int SystemStatusFlags;
-double SystemPerformanceMetrics;
+double SystemPerformanceMeasurements;
 uint8_t MemoryAllocatorStatus;
 uint8_t MemoryManagerStatus;
 uint8_t ResourcePoolStatus;
@@ -4769,15 +4769,6 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
  * @warning 如果对象上下文无效，函数会返回相应的错误码
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数用于增加指定对象的引用计数，确保对象不会被意外释放
- * 包含对象验证和引用计数更新操作
- * 
- * @param ObjectContext 对象上下文，包含要增加引用计数的对象信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;

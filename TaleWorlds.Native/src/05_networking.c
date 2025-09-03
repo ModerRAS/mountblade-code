@@ -1214,28 +1214,28 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  */
 NetworkHandle NetworkValidatePacketIntegrityHandler(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
-  NetworkHandle ValidationResult;
-  NetworkByte PacketValidationBuffer [32];
-  NetworkByte SecurityEncryptionBuffer [32];
+  NetworkHandle PacketValidationResult;
+  NetworkByte PacketValidationDataBuffer [32];
+  NetworkByte SecurityEncryptionDataBuffer [32];
   
-  ValidationResult = DecodePacket(PacketData, SecurityEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
-  if (((int)ValidationResult == 0) &&
-     (ValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDeadFood), (int)ValidationResult == 0)) {
+  PacketValidationResult = DecodePacket(PacketData, SecurityEncryptionDataBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
+  if (((int)PacketValidationResult == 0) &&
+     (PacketValidationResult = DecodePacket(PacketData, PacketValidationDataBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDeadFood), (int)PacketValidationResult == 0)) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
-    if ((int)ValidationResult == 0) {
+    PacketValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    if ((int)PacketValidationResult == 0) {
       if (*(int *)(PacketData[1] + 0x18) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffset1);
-      if ((int)ValidationResult == 0) {
-          FinalizePacketProcessing(PacketData, PacketValidationBuffer);
+      PacketValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffset1);
+      if ((int)PacketValidationResult == 0) {
+          FinalizePacketProcessing(PacketData, PacketValidationDataBuffer);
       }
     }
   }
-  return ValidationResult;
+  return PacketValidationResult;
 }
 
 /**
@@ -1254,10 +1254,10 @@ NetworkHandle NetworkValidatePacketIntegrityHandler(NetworkHandle *PacketData, i
  */
 NetworkHandle NetworkValidateAndProcessPacket(int64_t ConnectionContext, int64_t *PacketData)
 {
-  NetworkHandle PacketProcessingStatus;
-  NetworkStatus ConnectionStateArray [6];
-  NetworkStatus ConnectionValidationArray [4];
-  NetworkStatus ConnectionDataArray [4];
+  NetworkHandle NetworkPacketProcessingStatus;
+  NetworkStatus NetworkConnectionStateArray [6];
+  NetworkStatus NetworkConnectionValidationArray [4];
+  NetworkStatus NetworkConnectionDataArray [4];
   
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
     if (*(int *)(PacketData[1] + 0x18) != 0) {
