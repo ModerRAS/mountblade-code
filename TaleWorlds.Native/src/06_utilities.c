@@ -5128,35 +5128,38 @@ void ResetSystemState(void)
  */
 uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
 {
-  uint8_t OperationResult;
+  uint8_t ValidationResult;
   int64_t OperationResultBuffer[2];
   int64_t ContextHandleBuffer[2];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandleBuffer);
-  if ((int)OperationResult == 0) {
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandleBuffer);
+  if ((int)ValidationResult == 0) {
     if (ContextHandleBuffer[0] == 0) {
       ContextHandleBuffer[0] = 0;
     }
     else {
       ContextHandleBuffer[0] = ContextHandleBuffer[0] - 8;
     }
+    
     OperationResultBuffer[0] = 0;
-    OperationResult = ProcessSystemContextValidation(ContextHandleBuffer[0], ObjectContext + ObjectContextValidationDataOffset, OperationResultBuffer);
-    if ((int)OperationResult == 0) {
+    ValidationResult = ProcessSystemContextValidation(ContextHandleBuffer[0], ObjectContext + ObjectContextValidationDataOffset, OperationResultBuffer);
+    if ((int)ValidationResult == 0) {
       if (OperationResultBuffer[0] != 0) {
         if (*(int64_t *)(OperationResultBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
-        OperationResult = ProcessResourceOperation(*(int64_t *)(OperationResultBuffer[0] + 8), *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset),
-                                      *(uint8_t *)(ObjectContext + ObjectContextStatusDataOffset));
-        if ((int)OperationResult != 0) {
-          return OperationResult;
+        
+        ValidationResult = ProcessResourceOperation(*(int64_t *)(OperationResultBuffer[0] + 8), 
+                                                  *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset),
+                                                  *(uint8_t *)(ObjectContext + ObjectContextStatusDataOffset));
+        if ((int)ValidationResult != 0) {
+          return ValidationResult;
         }
       }
-      OperationResult = 0;
+      ValidationResult = 0;
     }
   }
-  return OperationResult;
+  return ValidationResult;
 }
 
 
