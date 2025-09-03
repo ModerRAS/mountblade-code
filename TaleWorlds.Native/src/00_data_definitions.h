@@ -907,10 +907,10 @@ void* GlobalUnknownNetworkDataPointer;
 void* GlobalUnknownDataBase;
 
 // 系统未知数据常量 - 用于存储系统配置和处理的未知数据
-char SystemUnknownData1[] = "SystemConfigurationData1";
-char SystemUnknownData2[] = "SystemConfigurationData2";
-char SystemUnknownData3[] = "SystemConfigurationData3";
-char SystemUnknownData4[] = "SystemConfigurationData4";
+char SystemConfigurationTemplateData1[] = "SystemConfigurationData1";
+char SystemConfigurationTemplateData2[] = "SystemConfigurationData2";
+char SystemConfigurationTemplateData3[] = "SystemConfigurationData3";
+char SystemConfigurationTemplateData4[] = "SystemConfigurationData4";
 
 // 字符串处理器数据基址 - 用于存储字符串处理器的数据结构
 void* StringProcessorDatabaseMain;
@@ -2048,22 +2048,22 @@ int InitializeMultiStringProcessorSystem(void)
   SystemDataPointer10 = &SystemDataTableEntry5;
   SystemDataTableEntry5 = 0;
   SystemDataSize5 = 32;
-  strcpy_s(&SystemDataTableEntry5,64,&SystemUnknownData1);
+  strcpy_s(&SystemDataTableEntry5,64,&SystemConfigurationTemplateData1);
   SystemDataPointer11 = &SystemMemoryPool;
   SystemDataPointer12 = &SystemDataTableEntry6;
   SystemDataTableEntry6 = 0;
   SystemDataSize6 = 0x13;
-  strcpy_s(&SystemDataTableEntry6,64,&SystemUnknownData2);
+  strcpy_s(&SystemDataTableEntry6,64,&SystemConfigurationTemplateData2);
   SystemDataPointer13 = &SystemMemoryPool;
   SystemDataPointer14 = &SystemDataTableEntry7;
   SystemDataTableEntry7 = 0;
   SystemDataSize7 = 0x16;
-  strcpy_s(&SystemDataTableEntry7,64,&SystemUnknownData3);
+  strcpy_s(&SystemDataTableEntry7,64,&SystemConfigurationTemplateData3);
   SystemDataPointer15 = &SystemMemoryPool;
   SystemDataPointer16 = &SystemDataTableEntry8;
   SystemDataTableEntry8 = 0;
   SystemDataSize8 = 0xf;
-  strcpy_s(&SystemDataTableEntry8,64,&SystemUnknownData4);
+  strcpy_s(&SystemDataTableEntry8,64,&SystemConfigurationTemplateData4);
   ModuleInitializationResult = RegisterSystemModule(&SystemModuleEntryPointB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -3569,7 +3569,7 @@ LabelValidateSpaceCharacter:
               UnsignedIndex = InitializeDataBuffer(&StackBufferPointer5,&SystemPerformanceModeString);
               BufferSize1 = (ulonglong)(int)systemMode;
               if (UnsignedIndex < StackValidationLimit) {
-                StringPointer = (char *)(StackStringData2 + BufferSize1);
+                StringPointer = (char *)(StackStringBufferSecondary + BufferSize1);
                 do {
                   LoopCounterValue = (int)BufferSize1;
                   if (*StringPointer == ' ') goto Label_FirstSpaceFound;
@@ -3582,7 +3582,7 @@ Label_FirstSpaceFound:
               UnsignedIndex = LoopCounterValue + 1;
               BufferSize1 = (ulonglong)(int)systemMode;
               if (UnsignedIndex < StackValidationLimit) {
-                StringPointer = (char *)(StackStringData2 + BufferSize1);
+                StringPointer = (char *)(StackStringBufferSecondary + BufferSize1);
                 do {
                   if (*StringPointer == ' ') goto Label_SecondSpaceFound;
                   BufferSize6 = (int)BufferSize1 + 1;
@@ -3619,10 +3619,10 @@ Label_SecondSpaceFound:
                 StackBufferPointer6 = &SystemBufferTemplate;
               }
               StackBufferPointer5 = &SystemNullPointer;
-              if (StackStringData2 != 0) {
+              if (StackStringBufferSecondary != 0) {
                 CleanupSystemResources();
               }
-              StackStringData2 = 0;
+              StackStringBufferSecondary = 0;
               StackParameter6 = 0;
               StackBufferPointer5 = &SystemBufferTemplate;
             }
@@ -10328,9 +10328,9 @@ Label_18060ba49:
         StringProcessingResult = 0x18;
         goto Label_18060bbae;
       }
-      NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38ed0,1);
+      NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataBN,1);
       if (NetworkRequestStatus != '\0') goto Label_18060b32d;
-      NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38f00,1);
+      NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataBO,1);
       if (NetworkRequestStatus != '\0') {
 Label_1806091a3:
         StringProcessingResult = 0x28;
@@ -11663,7 +11663,7 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&UNK_180a3cc0c,param_3,param_3 + 4,param_3 + 8);
+  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigA,param_3,param_3 + 4,param_3 + 8);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
@@ -11701,7 +11701,7 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&UNK_180a3cc1c,param_3,param_3 + 4);
+  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigB,param_3,param_3 + 4);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
@@ -11742,7 +11742,7 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   if (pcStack_28 != (char *)0x0) {
     pcVar4 = pcStack_28;
   }
-  LoopCounter = ProcessMemoryAllocation(pcVar4,&UNK_180a3c9f8,param_3,param_3 + 4,param_3 + 8,
+  LoopCounter = ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigC,param_3,param_3 + 4,param_3 + 8,
                         (uint32_t *)(param_3 + 0xc),uVar6);
   if (LoopCounter == 3) {
     *(uint32_t *)(param_3 + 0xc) = 0x3f800000;
@@ -11786,7 +11786,7 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&UNK_180a3c9f8,param_3 + 4,param_3 + 8,param_3 + 0xc,param_3,MemoryAllocationResult);
+  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigC,param_3 + 4,param_3 + 8,param_3 + 0xc,param_3,MemoryAllocationResult);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
@@ -11824,7 +11824,7 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
     if (pcStack_28 != (char *)0x0) {
       pcVar4 = pcStack_28;
     }
-    ProcessMemoryAllocation(pcVar4,&UNK_180a3ccc8,param_3,param_3 + 4,param_3 + 8,param_3 + 0x10,
+    ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigD,param_3,param_3 + 4,param_3 + 8,param_3 + 0x10,
                   param_3 + 0x14,param_3 + 0x18,param_3 + 0x20,param_3 + 0x24,param_3 + 0x28);
     pStackCounter4 = &SystemNullPointer;
     if (pcStack_28 != (char *)0x0) {

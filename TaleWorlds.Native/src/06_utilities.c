@@ -11718,7 +11718,7 @@ uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
  * 该函数用于管理对象的生命周期，包括初始化、更新和销毁操作
  * 主要用于对象的生命周期控制和资源管理
  * 
- * @param objectHandle 对象句柄，用于标识和管理特定的对象
+ * @param ObjectHandle 对象句柄，用于标识和管理特定的对象
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
 uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
@@ -11728,26 +11728,41 @@ uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
   int LifecycleProcessingStatusCode;
   uint8_t ResourceHashValidationCode;
   uint ArrayIterationStepSize;
+  int64_t *ObjectContext;
+  int64_t *DataContext;
+  int64_t *ResourceContext;
+  int64_t *SystemContext;
+  int OperationStatusCode;
+  int LoopIncrement;
+  int LoopCondition;
+  int ValidationStatusCode;
+  int ResourceHashStatus;
+  int OperationResult;
+  
+  ObjectContext = (int64_t *)ObjectHandle;
+  DataContext = ObjectContext;
+  SystemContext = DataContext;
   
   InitializeConfigurationContext();
-  FreeMemoryResource(ObjectContext + ObjectContextMemoryAllocationOffset);
-  OperationStatusCode = ProcessDataContextOperations(dataContext + 0x70);
-  if ((OperationStatusCode == 0) && (OperationStatusCode = FindEntryInResourcePool(dataContext + 0x80), OperationStatusCode == 0)) {
+  FreeMemoryResource((void *)(ObjectContext + ObjectContextMemoryAllocationOffset));
+  OperationStatusCode = ProcessDataContextOperations((void *)(DataContext + 0x70));
+  if ((OperationStatusCode == 0) && (OperationStatusCode = FindEntryInResourcePool((void *)(DataContext + 0x80)), OperationStatusCode == 0)) {
     *(uint32_t *)(ObjectContext + ObjectContextResourceCountOffset) = 0xffffffff;
-    *(uint32_t *)(dataContext + 0x94) = 0;
+    *(uint32_t *)(DataContext + 0x94) = 0;
   }
-  FindEntryInResourcePool(dataContext + 0x80);
-  ProcessDataContextOperations(dataContext + 0x70);
-  OperationStatusCode = ProcessDataContextOperations(ObjectContext + ObjectContextRangeDataOffset);
-  if ((OperationStatusCode == 0) && (OperationStatusCode = ValidateResourceEntryIntegrity(ObjectContext + 0x38), OperationStatusCode == 0)) {
+  FindEntryInResourcePool((void *)(DataContext + 0x80));
+  ProcessDataContextOperations((void *)(DataContext + 0x70));
+  OperationStatusCode = ProcessDataContextOperations((void *)(ObjectContext + ObjectContextRangeDataOffset));
+  if ((OperationStatusCode == 0) && (OperationStatusCode = ValidateResourceEntryIntegrity((void *)(ObjectContext + 0x38)), OperationStatusCode == 0)) {
     *(uint32_t *)(ObjectContext + ObjectContextHandleOffset) = 0xffffffff;
     *(uint32_t *)(ObjectContext + ObjectContextSecondaryHandleOffset) = 0;
   }
-  ValidateResourceEntryIntegrity(ObjectContext + 0x38);
-  ProcessDataContextOperations(ObjectContext + ObjectContextRangeDataOffset);
-  InitializeResourceEntryData(ObjectContext + ObjectContextValidationDataOffset);
+  ValidateResourceEntryIntegrity((void *)(ObjectContext + 0x38));
+  ProcessDataContextOperations((void *)(ObjectContext + ObjectContextRangeDataOffset));
+  InitializeResourceEntryData((void *)(ObjectContext + ObjectContextValidationDataOffset));
   ResourceContext = (int64_t *)(ObjectContext + 8);
   LoopIncrement = *(uint *)(ObjectContext + ObjectContextValidationDataOffset);
+  LoopCondition = LoopIncrement;
   if ((int)((LoopIncrement ^ (int)LoopCondition >> ErrorResourceValidationFailed) - ((int)LoopCondition >> ErrorResourceValidationFailed)) < 0) {
     if (0 < *(int *)(ObjectContext + SystemManagerContextOffset)) {
       return ErrorInvalidObjectHandle;
@@ -11760,8 +11775,9 @@ uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
     *(uint32_t *)(ObjectContext + ObjectContextValidationParamOffset) = 0;
   }
   OperationStatusCode = *(int *)(ObjectContext + SystemManagerContextOffset);
+  OperationResult = OperationStatusCode;
   if (OperationResult < 0) {
-          memset((int64_t)OperationResult + *ResourceContext,0,(int64_t)-OperationResult);
+          memset((void *)((int64_t)OperationResult + *ResourceContext),0,(int64_t)-OperationResult);
   }
   *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset) = 0;
   if ((0 < (int)((LoopIncrement ^ (int)LoopCondition >> ErrorResourceValidationFailed) - ((int)LoopCondition >> ErrorResourceValidationFailed))) &&
@@ -58252,9 +58268,9 @@ void ResetResourceHashAddresss(uint8_t ObjectContext, int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数通常在系统清理或资源重置时调用
  */
-void SetResourceHashTable003(uint8_t ObjectContext, int64_t ValidationContext)
+void SetResourceHashTableTertiary(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  **(uint8_t **)(ValidationContext + 0x178) = &ResourceHashTable003;
+  **(uint8_t **)(ValidationContext + 0x178) = &ResourceHashTableTertiary;
   return;
 }
 
@@ -61204,9 +61220,9 @@ void CompleteSystemCleanup(void)
  * 该函数负责初始化系统数据指针001
  * 设置系统数据指针到系统数据结构
  * 
- * @note 此函数会设置 SystemDataPointer001 到 SystemDataStructure
+ * @note 此函数会设置 SystemDataPrimaryPointer 到 SystemDataStructure
  */
-void InitializeSystemDataPointer001(void)
+void InitializeSystemDataPrimaryPointer001(void)
 
 {
   SystemDataPrimaryPointer = &SystemDataStructure;
@@ -61257,7 +61273,7 @@ void InitializeSystemDataPointer003(void)
  * 
  * 该函数负责初始化系统数据指针001，指向系统数据结构
  */
-void InitializeSystemDataPointer001(void)
+void InitializeSystemDataQuaternaryPointer001(void)
 {
   SystemDataQuaternaryPointer = &SystemDataStructure;
   return;
@@ -102378,7 +102394,7 @@ void InitializeSystemDataPointer016(void)
  * @brief 初始化系统数据结构AE
  * 
  * 该函数负责初始化系统的数据结构AE
- * 将全局变量 SystemDataPointer017 设置为指向 SystemDataStructure
+ * 将全局变量 SystemDataPrimaryPointer 设置为指向 SystemDataStructure
  */
 void InitializeSystemDataPrimaryPointer(void)
 
