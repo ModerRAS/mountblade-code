@@ -199,6 +199,8 @@
 #define SystemTemporarySecondaryVariableInitialValue -0x80000000
 #define FileResourceLockOffset 0x858
 #define FileResourceStatusOffset 0x868
+#define FileResourceTableOffset 0x888
+#define FileResourceHashEndOffset 0x890
 
 // Resource counter offset constants
 #define ResourceCounterOffset78 0x78
@@ -294,7 +296,7 @@
 #define SystemCombineSystemArrayWithByte CombineSystemArrayWithByte
 #define SystemCombineSystemArrayWithShort CombineSystemArrayWithShort
 #define SystemCombineSystemArrayWithInt CombineSystemArrayWithInt
-#define SystemCombineSystemContextWithValidation CombineSystemContextWithValidation
+#define SystemCombineSystemContextWithValidation MergeSystemContextWithValidation
 #define SystemCombineRegisterWithLoopCounter CombineRegisterWithLoopCounter
 #define SystemCombineValidationContextWithChar CombineValidationContextWithChar
 #define SystemCombineResourceHashWithFormat CombineResourceHashWithFormat
@@ -35234,26 +35236,29 @@ void ReleaseFileSystemLock(uint8_t FileSystemContext, int64_t SystemContext, uin
  * @note 此函数在文件操作完成后调用，确保资源正确释放
  * @warning 调用此函数前必须确保相关资源已正确初始化
  */
-void ProcessFileHandleCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+void ProcessFileHandleCleanup(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
-  uint8_t *ResourceHashPtr;
-  int64_t *ResourceTablePointerPointer;
+  uint8_t *ResourceHashEndPointer;
+  int64_t *ResourceTablePointer;
   uint8_t *ResourceHashStatusPointer;
-  uint8_t *PackageValidationStatusCodePointer;
+  uint8_t *ValidationStatusPointer;
   int64_t ResourceCleanupStepValue;
-  uint8_t ResourceCleanupCompleteFlag;
   
-  ResourceTablePointerPointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x888);
-  ResourceCleanupStepValue = 0xfffffffffffffffe;
-  ResourceHashPtr = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x890);
-  for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointerPointer; ResourceHashStatusPointer != ResourceHashPtr; PackageValidationStatusCodePointer = ResourceHashStatusPointer + 4) {
-    (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer,0,CleanupOption,CleanupFlag,ResourceCleanupStepValue);
+  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + FileResourceTableOffset);
+  ResourceCleanupStepValue = MemoryCleanupTriggerValue;
+  ResourceHashEndPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + FileResourceHashEndOffset);
+  
+  ResourceHashStatusPointer = (uint8_t *)*ResourceTablePointer;
+  while (ResourceHashStatusPointer != ResourceHashEndPointer) {
+    (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer, 0, CleanupOption, CleanupFlag, ResourceCleanupStepValue);
+    ResourceHashStatusPointer += 4;
   }
-  if (*ResourceTablePointerPointer == 0) {
+  
+  if (*ResourceTablePointer == 0) {
     return;
   }
-        ExecuteSystemEmergencyExit();
+  
+  ExecuteSystemEmergencyExit();
 }
 
 
@@ -45016,7 +45021,7 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext, int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAlignmentValue, CombineSystemContextWithValidation(0xff000000, *(void ***)(MemoryAlignmentValue + BufferOffsetTertiary) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAlignmentValue, MergeSystemContextWithValidation(0xff000000, *(void ***)(MemoryAlignmentValue + BufferOffsetTertiary) == &ExceptionList),
                           ResourceValidationStatusCodeAddress, MemoryAlignmentValue, 0xfffffffffffffffe);
     }
   }
