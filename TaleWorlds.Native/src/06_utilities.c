@@ -5421,7 +5421,7 @@ uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
  * @param ObjectContext 对象上下文参数，包含对象初始化所需的信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandleAdvanced(int64_t ObjectContext)
+uint8_t InitializeObjectHandleEnhanced(int64_t ObjectContext)
 
 {
   int64_t AvailableResourceCount;
