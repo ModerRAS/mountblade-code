@@ -485,6 +485,58 @@ void* SystemConfigurationData;
 // 系统帧计数器 - 用于跟踪游戏帧数
 void* SystemFrameCounter;
 
+// 系统渲染系统全局变量 - 用于存储渲染系统的状态和配置
+void* GlobalRenderingSystemEnabled;
+void* GlobalRenderingSystemFlags;
+void* GlobalRenderingSystemMaxValue;
+void* GlobalRenderingSystemStatus;
+
+// 系统物理引擎全局变量 - 用于存储物理引擎的状态和配置
+void* GlobalPhysicsEngineData;
+void* GlobalPhysicsEngineConfig;
+void* GlobalPhysicsEngineFlags;
+void* GlobalPhysicsEngineState;
+
+// 系统音频系统全局变量 - 用于存储音频系统的状态和配置
+void* GlobalAudioSystemData;
+void* GlobalAudioSystemConfig;
+void* GlobalAudioSystemFlags;
+void* GlobalAudioSystemState;
+
+// 系统输入系统全局变量 - 用于存储输入系统的状态和配置
+void* GlobalInputSystemData;
+void* GlobalInputSystemConfig;
+void* GlobalInputSystemFlags;
+void* GlobalInputSystemState;
+
+// 系统网络系统全局变量 - 用于存储网络系统的状态和配置
+void* GlobalNetworkSystemData;
+void* GlobalNetworkSystemConfig;
+void* GlobalNetworkSystemFlags;
+void* GlobalNetworkSystemState;
+
+// 系统文件系统全局变量 - 用于存储文件系统的状态和配置
+void* GlobalFileSystemData;
+void* GlobalFileSystemConfig;
+void* GlobalFileSystemFlags;
+void* GlobalFileSystemState;
+
+// 系统内存管理器全局变量 - 用于存储内存管理器的状态和配置
+void* GlobalMemoryManagerData;
+void* GlobalMemoryManagerConfig;
+void* GlobalMemoryManagerFlags;
+void* GlobalMemoryManagerState;
+
+// 系统渲染同步状态 - 用于存储渲染线程的同步状态
+void* RenderingSyncState;
+
+// 系统物理引擎同步状态 - 用于存储物理引擎的同步状态
+void* PhysicsSyncState;
+
+// 系统条件变量状态 - 用于存储条件变量的状态
+void* GlobalConditionMutexCStatus;
+void* GlobalConditionMutexDStatus;
+
 // 系统内存管理器指针 - 用于管理核心内存分配
 void* SystemMemoryManager;
 // 系统内存分配器 - 用于动态内存分配和释放操作
