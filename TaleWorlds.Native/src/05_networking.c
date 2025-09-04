@@ -1008,8 +1008,8 @@ void BindNetworkSocketToAddress(void)
   NetworkSocketBindingStatus = SOCKET_BOUND;                   // 设置绑定标志为已绑定
   
   // 初始化网络协议配置
-  NetworkConnectionProtocolType = 0x01;               // 设置协议类型为TCP
-  NetworkConnectionProtocolVersion = 0x01;            // 设置协议版本为1.0
+  NetworkConnectionProtocolType = NetworkSystemEnabled;               // 设置协议类型为TCP
+  NetworkConnectionProtocolVersion = NetworkSystemEnabled;            // 设置协议版本为1.0
   
   // 初始化缓冲区配置
   NetworkSendBufferSize = SEND_BUFFER_SIZE;                    // 设置发送缓冲区大小为64KB
@@ -2926,7 +2926,7 @@ NetworkHandle HandleNetworkPacketData(NetworkHandle *PacketData, int64_t HandleO
     PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult & 0x01;
   } else {
     // 默认处理模式
-    PacketDataProcessingResult = 0x01;
+    PacketDataProcessingResult = NetworkOperationSuccess;
   }
   
   return PacketDataProcessingResult;  // 返回数据处理结果
