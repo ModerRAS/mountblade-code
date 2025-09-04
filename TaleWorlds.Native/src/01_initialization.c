@@ -27114,8 +27114,8 @@ void InitializeSystemDataSynchronizer(long long systemResourceHandle,void* dataS
   calculationFlagPrimary = CheckSystemFlag(systemStatusFlags,0x52);
   calculationFlagSecondary = CheckSystemFlag(1,0x51);
   resourceDataPosition = 0xe0;
-  if (calculationFlag2 == '\0') {
-    if (calculationFlag1 == '\0') goto SystemValidation;
+  if (calculationFlagSecondary == '\0') {
+    if (calculationFlagPrimary == '\0') goto SystemValidation;
   }
   else {
 
