@@ -84471,7 +84471,16 @@ void ClearResourceDataOffset20Bit4AndRelease(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_18090cd90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据偏移0x20的标志位（位5）并释放系统资源
+ * 
+ * 检查资源数据偏移0x20处的第5位标志，如果置位则清除并释放对应的系统资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cd90
+ */
+void ClearResourceDataOffset20Bit5AndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 0x20) != 0) {
