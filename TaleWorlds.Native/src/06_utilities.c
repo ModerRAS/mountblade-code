@@ -9436,7 +9436,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
         if ((ArrayElementIndex < 0) || (ArrayElementIndex <= ArrayElementIndex)) {
           return ResourceValidationError;
         }
-        ResourceDataPointer = *(int64_t *)(ContextResourceHashStatus + 0x20) + (int64_t)ArrayElementIndex * 0x18;
+        ResourceDataPointer = *(int64_t *)(ContextResourceHashStatus + ContextResourceDataPointerOffset) + (int64_t)ArrayElementIndex * 0x18;
         if (ResourceDataPointer == 0) {
           return ErrorInvalidObjectHandle;
         }
@@ -9456,17 +9456,17 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
       }
       ProcessingIndex++;
       FloatArrayPointer++;
-    } while ((int)ProcessingIndex < *(int *)(ResourceContext + 0x18));
-    if (0 < *(int *)(ResourceContext + 0x18)) {
+    } while ((int)ProcessingIndex < *(int *)(ResourceContext + ContextResourceDataSizeOffset));
+    if (0 < *(int *)(ResourceContext + ContextResourceDataSizeOffset)) {
       ResourceTablePointerData = (ResourceContext + 0x20) - (int64_t)FloatArrayStart;
       do {
         ResourceElementIndex = *(int *)((int64_t)FloatArrayStart + ResourceTablePointerData);
         if (ResourceElementIndex != -1) {
-          *(float *)(*(int64_t *)(ContextResourceHashStatus + 0x20) + 4 + (int64_t)ResourceElementIndex * 0x18) = *FloatArrayStart;
+          *(float *)(*(int64_t *)(ContextResourceHashStatus + ContextResourceDataPointerOffset) + 4 + (int64_t)ResourceElementIndex * 0x18) = *FloatArrayStart;
         }
         ProcessingIndex++;
         FloatArrayStart++;
-      } while ((int)ProcessingIndex < *(int *)(ResourceContext + 0x18));
+      } while ((int)ProcessingIndex < *(int *)(ResourceContext + ContextResourceDataSizeOffset));
     }
   }
         ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
