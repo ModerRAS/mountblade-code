@@ -42,8 +42,8 @@
 #define NodeDataPointerIndex        8
 #define NodeActiveFlagIndex           9
 #define NodeHandlerIndex            10
-#define GameCoreSystemIdentifier1             0x4fc124d23d41985f
-#define GameCoreSystemIdentifier2             0xe2f4a30d6e6ae482
+#define GameCoreIdentifier1             0x4fc124d23d41985f
+#define GameCoreIdentifier2             0xe2f4a30d6e6ae482
 #define GameCoreSystemId                    0x4fc124d23d41985f
 #define GameCoreSystemNodeData               0
 #define BaseAllocatorSystemIdentifier1       0x4770584fbb1df897
@@ -29997,15 +29997,15 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
   uint8_t UnsignedStackFlagSecondary;
   void* *stackParameterB;
   void* *pStackParameterC;
-  uint systemFlag88;
-  ulong long SystemFlagTertiary;
+  uint SystemDebugFlag;
+  ulong long SystemResourceFlag;
   long long SystemPerformanceCounter;
   long long PerformanceCounterArray [2];
   char SystemCharBuffer [16];
-  ulong long ThreadContextFlag;
+  ulong long ThreadEncryptionKey;
   
   PerformanceCounterArray[1] = 0xfffffffffffffffe;
-  ThreadContextFlag = SystemEncryptionKeyTemplate ^ (ulong long)StackMemoryBufferC8;
+  ThreadEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)StackMemoryBufferC8;
   SystemProcessingBufferPointer = SystemPerformancePreviousStorage;
   if (SystemPerformancePreviousStorage == 0) {
     QueryPerformanceCounter(&SystemPerformanceCounter);
@@ -30021,7 +30021,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
   while( true ) {
     do {
       if (*(int *)(SystemResourceManager + 0xcc) == 0) {
-          ValidateSystemChecksum(ThreadContextFlag ^ (ulong long)StackMemoryBufferC8);
+          ValidateSystemChecksum(ThreadEncryptionKey ^ (ulong long)StackMemoryBufferC8);
       }
       Sleep(10);
       SystemProcessingBufferPointer = SystemPerformancePreviousStorage;
@@ -30034,12 +30034,12 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
     LOCK();
     *(uint32_t *)(SystemResourceManager + 200) = 1;
     UNLOCK();
-    stackParameterB = &SystemGlobalDataReference;
-    SystemFlagTertiary = 0;
-    pSystemConfigurationValue = (void* *)0x0;
-    systemFlag88 = 0;
-    ExecuteSystemCommand(&stackParameterB,0x1c);
-    SystemThreadContext = (uint32_t *)(pStackParameterC + systemFlag88);
+    StackParameterB = &SystemGlobalDataReference;
+    SystemResourceFlag = 0;
+    SystemConfigurationValue = (void* *)0x0;
+    SystemDebugFlag = 0;
+    ExecuteSystemCommand(&StackParameterB,0x1c);
+    SystemThreadContext = (uint32_t *)(StackParameterC + SystemDebugFlag);
     *SystemThreadContext = 0x73736f50;
     SystemThreadContext[1] = 0x656c6269;
     SystemThreadContext[2] = 0x61656420;
