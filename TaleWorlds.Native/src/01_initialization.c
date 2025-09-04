@@ -585,9 +585,9 @@ void* SystemCoreCacheConfiguration;            // 核心系统缓存配置
 void* SystemCoreEmergencyConfiguration;        // 核心系统紧急配置
 
 void* SystemPhysicsEnginePointer;                     // 物理系统指针
-void* NetworkSystemPointer;                     // 网络系统指针
-void* GameLogicSystemPointer;                   // 游戏逻辑系统指针
-void* UISystemPointer;                          // UI系统指针
+void* SystemNetworkEnginePointer;                     // 网络系统指针
+void* SystemGameLogicEnginePointer;                   // 游戏逻辑系统指针
+void* SystemUIEnginePointer;                          // UI系统指针
 
 /**
  * @brief 游戏渲染系统主入口点
