@@ -218,10 +218,10 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络数据包常量
 #define PACKET_HEADER_SIZE_32B 0x20            // 数据包头大小32字节
 #define PACKET_TRAILER_SIZE_16B 0x10           // 数据包尾大小16字节
-#define PACKET_PAYLOAD_1KB 0x400                // 数据包负载1KB
-#define MAX_PACKET_SIZE_2KB 0x800              // 最大数据包大小2KB
+#define PACKET_PAYLOAD_SIZE_1KB 0x400           // 数据包负载大小1KB
+#define MAXIMUM_PACKET_SIZE_2KB 0x800          // 最大数据包大小2KB
 #define PACKET_PROCESSING_SIZE_256B 0x100      // 数据包处理大小256字节
-#define VALIDATION_BUFFER_SIZE_39B 0x27       // 验证缓冲区大小39字节
+#define VALIDATION_BUFFER_SIZE_39B 0x27        // 验证缓冲区大小39字节
 #define NetworkErrorInvalidPacket 0x1c         // 无效数据包错误码
 #define NetworkConnectionFinalizeValue 0x7d    // 连接完成状态值 (125)
 #define NetworkConnectionBasicValidationMode 0x01    // 基本验证模式

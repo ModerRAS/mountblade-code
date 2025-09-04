@@ -5043,32 +5043,32 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ValidatedMemoryAddress;
-  uint8_t ValidationResult;
-  int64_t ObjectContextBuffer[4];
+  int64_t ValidatedObjectMemoryAddress;
+  uint8_t ContextValidationResult;
+  int64_t ObjectContextValidationBuffer[4];
   int64_t *ValidatedObjectPointer;
   
   // 验证对象上下文的有效性
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectContextBuffer);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectContextValidationBuffer);
+  if ((int)ContextValidationResult != 0) {
+    return ContextValidationResult;
   }
   
   // 调整对象验证缓冲区地址
-  ValidatedObjectPointer = (int64_t *)ObjectContextBuffer[0];
+  ValidatedObjectPointer = (int64_t *)ObjectContextValidationBuffer[0];
   if (ValidatedObjectPointer != 0) {
     ValidatedObjectPointer = (int64_t *)((int64_t)ValidatedObjectPointer - 8);
   }
   
   // 获取验证后的对象内存地址
-  ValidatedMemoryAddress = *(int64_t *)(ValidatedObjectPointer + ObjectHandleOffset);
-  if (ValidatedMemoryAddress != 0) {
+  ValidatedObjectMemoryAddress = *(int64_t *)(ValidatedObjectPointer + ObjectHandleOffset);
+  if (ValidatedObjectMemoryAddress != 0) {
     // 增加对象引用计数
-    *(int *)(ValidatedMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedMemoryAddress + ObjectReferenceCountOffset) + 1;
+    *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(ValidatedMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationResult = CheckSystemStatus(), (int)ValidationResult != 0)) {
-      return ValidationResult;
+    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ContextValidationResult = CheckSystemStatus(), (int)ContextValidationResult != 0)) {
+      return ContextValidationResult;
     }
     return OperationSuccessCode;
   }
@@ -5085,27 +5085,27 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @return uint8_t 初始化结果状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandle(int64_t ObjectContext) {
-  uint8_t ValidationResult;
-  int64_t MemoryAddressResult;
+  uint8_t ContextValidationResult;
+  int64_t ValidatedMemoryAddress;
   
   // 验证对象上下文并获取内存地址
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &MemoryAddressResult);
-  if ((int)ValidationResult == 0) {
+  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedMemoryAddress);
+  if ((int)ContextValidationResult == 0) {
     // 调整验证后的内存地址
-    if (MemoryAddressResult == 0) {
-      MemoryAddressResult = 0;
+    if (ValidatedMemoryAddress == 0) {
+      ValidatedMemoryAddress = 0;
     }
     else {
-      MemoryAddressResult = MemoryAddressResult - 8;
+      ValidatedMemoryAddress = ValidatedMemoryAddress - 8;
     }
     
     // 检查对象句柄是否有效，如果有效则执行系统退出操作
-    if (*(int64_t *)(MemoryAddressResult + ObjectHandleOffset) != 0) {
-      ExecuteSystemExitOperation(*(int64_t *)(MemoryAddressResult + ObjectHandleOffset), 1);
+    if (*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset) != 0) {
+      ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset), 1);
     }
-    ValidationResult = OperationSuccessCode;
+    ContextValidationResult = OperationSuccessCode;
   }
-  return ValidationResult;
+  return ContextValidationResult;
 }
 
 
