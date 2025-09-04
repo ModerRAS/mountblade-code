@@ -86677,7 +86677,16 @@ void ExecuteResourceContextCallbackAt13E8(uint8_t ObjectContext,int64_t Validati
  * @param ObjectContext 对象上下文，包含对象相关的状态信息
  * @param ValidationContext 验证上下文，包含验证所需的数据和参数
  */
-void ExecuteResourceContextCallbackAt1400(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数（1400版本）
+ * 
+ * 该函数用于执行资源上下文的回调函数，处理1400版本的回调操作
+ * 从系统上下文中获取资源上下文并执行相应的回调处理
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ */
+void ExecuteResourceContextCallback1400(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
