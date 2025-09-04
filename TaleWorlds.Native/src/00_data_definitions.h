@@ -10753,8 +10753,8 @@ Label_18062e8bc:
           pMemoryAddress0 = (uint32_t *)MemoryAllocateEx(SystemMemoryAllocator,0x15,0x13);
           *(uint8_t *)pMemoryAddress0 = 0;
           puStack_f0 = pMemoryAddress0;
-          uVar6 = MemoryValidateEx(pMemoryAddress0);
-          uStack_e0 = (char *)CONCAT44(uStack_e0._4_4_,uVar6);
+          MemoryValidationResult = MemoryValidateEx(pMemoryAddress0);
+          uStack_e0 = (char *)CONCAT44(uStack_e0._4_4_,MemoryValidationResult);
           *pMemoryAddress0 = 0x204c4d58;
           pMemoryAddress0[1] = 0x65646f6e;
           pMemoryAddress0[2] = 0x74697720;
