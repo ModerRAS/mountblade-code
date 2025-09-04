@@ -82,9 +82,16 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 
 // 状态数组索引常量
 #define PrimaryStateIndex 0                                    // 主要状态索引
+#define SecondaryValidationIndex 0                              // 第二级验证索引
 #define TertiaryValidationIndex 0                              // 第三级验证索引
 #define QuaternaryValidationIndex 0                            // 第四级验证索引
 #define PrimaryDataIndex 0                                     // 主要数据索引
+
+// 输出缓冲区索引常量
+#define DecodingStatusIndex 0                                  // 解码状态索引
+#define MagicValidationIndex 1                                  // 魔数验证索引
+#define DataIntegrityIndex 2                                    // 数据完整性索引
+#define DecodingModeIndex 3                                     // 解码模式索引
 
 // 网络连接相关偏移量 - 连接上下文和状态管理
 #define NetworkConnectionContextOffset 0x78                    // 网络连接上下文偏移量
@@ -2237,7 +2244,7 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
       return NetworkErrorCodeInvalidPacket;
     }
     NetworkStatus SecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionSecondaryValidationOffset);
-    SecurityValidationArray[0] = SecondaryValidationStatus;
+    SecurityValidationArray[SecondaryValidationIndex] = SecondaryValidationStatus;
     NetworkPacketProcessor ValidationProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
     PacketProcessingResult = ValidationProcessorFunction(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);
     if ((int)PacketProcessingResult != 0) {
@@ -2609,10 +2616,10 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   // 设置输出缓冲区
   if (OutputBuffer) {
     memset(OutputBuffer, 0, NetworkStandardBufferSize);
-    OutputBuffer[0] = (NetworkByte)DecodingStatus;
-    OutputBuffer[1] = (NetworkByte)MagicValidationResult;
-    OutputBuffer[2] = (NetworkByte)DataIntegrityStatus;
-    OutputBuffer[3] = (NetworkByte)DecodingMode;
+    OutputBuffer[DecodingStatusIndex] = (NetworkByte)DecodingStatus;
+    OutputBuffer[MagicValidationIndex] = (NetworkByte)MagicValidationResult;
+    OutputBuffer[DataIntegrityIndex] = (NetworkByte)DataIntegrityStatus;
+    OutputBuffer[DecodingModeIndex] = (NetworkByte)DecodingMode;
   }
   
   return DecodingStatus;  // 返回解码状态
@@ -3178,9 +3185,9 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     // 初始化输出缓冲区
     if (NetworkPacketValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
-      OutputBuffer[0] = (NetworkByte)DecodingMode;
-      OutputBuffer[1] = (NetworkByte)PrimaryMagicNumber;
-      OutputBuffer[2] = (NetworkByte)SecondaryMagicNumber;
+      OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
+      OutputBuffer[PrimaryMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
+      OutputBuffer[SecondaryMagicNumberIndex] = (NetworkByte)SecondaryMagicNumber;
     }
   }
   
