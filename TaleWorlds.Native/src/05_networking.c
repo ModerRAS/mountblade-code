@@ -2423,35 +2423,35 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 数据包头部处理变量
-  uint32_t HeaderProcessingStatusCode;                      // 头部处理状态码
-  uint32_t HeaderValidationResultCode;                      // 头部验证结果码
-  uint32_t ContextProcessingResultCode;                     // 上下文处理结果码
+  uint32_t HeaderProcessingStatus;                         // 头部处理状态
+  uint32_t HeaderValidationResult;                         // 头部验证结果
+  uint32_t ContextProcessingStatus;                        // 上下文处理状态
   
   // 初始化处理状态
-  HeaderProcessingStatusCode = 0x00;
-  HeaderValidationResultCode = 0x00;
-  ContextProcessingResultCode = 0x00;
+  HeaderProcessingStatus = NetworkValidationFailure;
+  HeaderValidationResult = NetworkValidationFailure;
+  ContextProcessingStatus = NetworkValidationFailure;
   
   // 验证数据包头部有效性
   if (PacketData != 0) {
-    HeaderValidationResultCode = 0x01;  // 头部验证通过
+    HeaderValidationResult = NetworkValidationSuccess;  // 头部验证通过
   }
   
   // 处理头部上下文
   if (HeaderContext != 0) {
-    ContextProcessingResultCode = 0x01;  // 上下文处理成功
+    ContextProcessingStatus = NetworkValidationSuccess;  // 上下文处理成功
   }
   
   // 综合处理结果
-  HeaderProcessingStatusCode = HeaderValidationResultCode & ContextProcessingResultCode;
+  HeaderProcessingStatus = HeaderValidationResult & ContextProcessingStatus;
   
   // 如果处理成功，更新头部状态
-  if (HeaderProcessingStatusCode == 0x01) {
+  if (HeaderProcessingStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的头部处理逻辑
     // 例如：解析头部字段、验证头部格式等
   }
   
-  return HeaderProcessingStatusCode;  // 返回处理状态
+  return HeaderProcessingStatus;  // 返回处理状态
 }
 
 /**
@@ -2850,29 +2850,29 @@ int32_t NetworkInitializeConnectionContext(NetworkHandle ConnectionHandle)
 void NetworkCleanupConnectionStack(void* ConnectionBuffer)
 {
   // 连接堆栈清理变量
-  uint32_t StackCleanupResult;                   // 堆栈清理结果
-  uint32_t MemoryReleaseResult;                  // 内存释放结果
-  uint32_t ResourceResetResult;                   // 资源重置结果
+  uint32_t CleanupOperationStatus;                // 清理操作状态
+  uint32_t MemoryReleaseStatus;                   // 内存释放状态
+  uint32_t ResourceResetStatus;                  // 资源重置状态
   
   // 初始化清理状态
-  StackCleanupResult = 0x00;
-  MemoryReleaseResult = 0x00;
-  ResourceResetResult = 0x00;
+  CleanupOperationStatus = NetworkValidationFailure;
+  MemoryReleaseStatus = NetworkValidationFailure;
+  ResourceResetStatus = NetworkValidationFailure;
   
   // 清理连接缓冲区
   if (ConnectionBuffer) {
     memset(ConnectionBuffer, 0, NetworkConnectionBufferSize);  // 清理连接缓冲区
-    MemoryReleaseResult = 0x01;  // 内存释放成功
+    MemoryReleaseStatus = NetworkValidationSuccess;  // 内存释放成功
   }
   
   // 重置相关资源
-  ResourceResetResult = 0x01;  // 资源重置成功
+  ResourceResetStatus = NetworkValidationSuccess;  // 资源重置成功
   
   // 综合清理结果
-  StackCleanupResult = MemoryReleaseResult & ResourceResetResult;
+  CleanupOperationStatus = MemoryReleaseStatus & ResourceResetStatus;
   
   // 如果清理成功，更新系统状态
-  if (StackCleanupResult == 0x01) {
+  if (CleanupOperationStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的清理后处理逻辑
     // 例如：更新系统统计信息、通知回调函数等
   }
@@ -2895,28 +2895,28 @@ void NetworkCleanupConnectionStack(void* ConnectionBuffer)
 void NetworkCopyConnectionBuffer(void* SourceBuffer)
 {
   // 连接缓冲区复制变量
-  uint32_t BufferCopyResult;                     // 缓冲区复制结果
-  uint32_t DataIntegrityCheck;                    // 数据完整性检查
-  uint32_t SecurityValidationResult;              // 安全验证结果
+  uint32_t CopyOperationStatus;                     // 复制操作状态
+  uint32_t DataValidationResult;                    // 数据验证结果
+  uint32_t SecurityCheckResult;                     // 安全检查结果
   
   // 初始化复制状态
-  BufferCopyResult = NetworkValidationFailure;
-  DataIntegrityCheck = NetworkValidationFailure;
-  SecurityValidationResult = NetworkValidationFailure;
+  CopyOperationStatus = NetworkValidationFailure;
+  DataValidationResult = NetworkValidationFailure;
+  SecurityCheckResult = NetworkValidationFailure;
   
   // 验证源缓冲区有效性
   if (SourceBuffer) {
-    DataIntegrityCheck = NetworkValidationSuccess;  // 数据完整性检查通过
-    SecurityValidationResult = NetworkValidationSuccess;  // 安全验证通过
+    DataValidationResult = NetworkValidationSuccess;  // 数据验证通过
+    SecurityCheckResult = NetworkValidationSuccess;  // 安全检查通过
     
     // 在实际实现中，这里应该实现实际的缓冲区复制逻辑
     // 包括：数据验证、加密复制、完整性检查等
     // 由于这是简化实现，暂时不执行具体操作
-    BufferCopyResult = DataIntegrityCheck & SecurityValidationResult;
+    CopyOperationStatus = DataValidationResult & SecurityCheckResult;
   }
   
   // 如果复制成功，更新系统状态
-  if (BufferCopyResult == NetworkValidationSuccess) {
+  if (CopyOperationStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的复制后处理逻辑
     // 例如：更新备份状态、记录日志、触发回调等
   }
