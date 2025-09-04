@@ -901,14 +901,14 @@ uint32_t NetworkConnectionRoutingConfigPrimary = 0x00;
  * 
  * 包含网络连接路由的次要配置参数，如负载均衡、故障转移、性能优化等
  */
-uint32_t NetworkConnectionRoutingConfigSecondaryData = 0x00;
+uint32_t NetworkConnectionRoutingConfigSecondary = 0x00;
 
 /**
  * @brief 网络连接路由第三配置数据
  * 
  * 包含网络连接路由的第三级配置参数，如缓存策略、压缩设置、安全过滤等
  */
-uint32_t NetworkConnectionRoutingConfigTertiaryData = 0x00;
+uint32_t NetworkConnectionRoutingConfigTertiary = 0x00;
 
 /**
  * @brief 网络连接路由第四配置数据
@@ -1225,7 +1225,7 @@ int32_t GetNetworkConnectionCount(int64_t ConnectionContext);
  * @param ConnectionIndex 连接索引
  * @return int64_t 连接句柄
  */
-int64_t NetworkGetConnectionByIndex(int64_t ConnectionContext, int32_t ConnectionIndex);
+int64_t GetNetworkConnectionByIndex(int64_t ConnectionContext, int32_t ConnectionIndex);
 
 /**
  * @brief 网络验证连接协议
