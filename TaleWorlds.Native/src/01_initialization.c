@@ -2098,7 +2098,7 @@ void InitializeSystemCoreData(void)
   long long *SystemDataTable;
   long long RequiredMemorySize;
   void** CurrentNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void** NextNodePointer;
   void** AllocatedNode;
   void* SystemInitializationCallback;
@@ -2295,7 +2295,7 @@ void InitializeRenderingSystemConfig(void)
   long long *SystemDataTable;
   long long RequiredMemorySize;
   void** CurrentNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void** NextNodePointer;
   void** AllocatedNode;
   void* RendererHandler;
@@ -2481,7 +2481,7 @@ void InitializeSystemMemoryAllocator(void)
   void** RootNodePointer;
   void** CurrentNodePointer;
   void** NextNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void* MemoryAllocatorCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -2767,7 +2767,7 @@ void InitializeSystemResourceNode(void)
   long long *SystemTablePointer;
   long long CurrentThreadId;
   void** CurrentNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void** NextNodePointer;
   void** AllocatedNode;
   void** InitializationCallback;
@@ -2823,7 +2823,7 @@ void InitializeSystemMemoryNode(void)
   long long *SystemTablePointer;
   long long CurrentThreadId;
   void** CurrentNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void** NextNodePointer;
   void** AllocatedNode;
   void* InitializationFlag;
@@ -2879,7 +2879,7 @@ void InitializeSystemDataTableStructureA(void)
   long long *SystemRootPointer;
   long long MemoryAllocationSize;
   void** CurrentNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void** NextNodePointer;
   void** AllocatedNodePointer;
   void** SystemDataReference;
@@ -2935,7 +2935,7 @@ void InitializeSystemDataTableStructureB(void)
   long long* SystemRootPointer;
   long long MemoryAllocationSize;
   void** CurrentNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void** NextNodePointer;
   void** AllocatedNodePointer;
   void* SystemInitializationFlag;
@@ -3490,7 +3490,7 @@ void InitializeSystemDataStructure(void)
   long long *SystemTablePointer;
   long long CurrentThreadId;
   void** CurrentNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void** NextNodePointer;
   void** AllocatedNode;
   void* *initializationFunction;
@@ -5216,7 +5216,7 @@ void InitializeSystemEventManager(void)
   void** RootNode;
   void** CurrentNodePointer;
   void** NextNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   code* EventCallbackPointer;
   
   DataTable = (long long*)GetSystemRootPointer();
@@ -5275,7 +5275,7 @@ void InitializeSystemNetworkManager(void)
   void* *RootNode;
   void** CurrentNodePointer;
   void** NextNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   code *NetworkCallbackPointer;
   
   DataTable = (long long*)GetSystemRootPointer();
@@ -5334,7 +5334,7 @@ void InitializeSystemConfigurationManager(void)
   void* *RootNodePointer;
   void** CurrentNodePointer;
   void** NextNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void* ConfigurationManagerInitializationFunction;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
@@ -5393,7 +5393,7 @@ void InitializeSystemResourceManager(void)
   void** RootNodePointer;
   void** CurrentNodePointer;
   void** NextNodePointer;
-  void** PreviousNode;
+  void** PreviousNodePointer;
   void* ResourceManagerInitializationFunction;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
