@@ -1749,7 +1749,7 @@ NetworkHandle ProcessNetworkConnectionRequest(NetworkHandle ConnectionContext, N
   // 连接请求处理变量
   int64_t NetworkConnectionContext;              // 网络连接上下文句柄
   int64_t *ConnectionValidationResult;          // 连接验证结果指针
-  int32_t ValidationStatusCode;               // 连接验证状态码
+  int32_t ConnectionValidationStatusCode;               // 连接验证状态码
   
   NetworkConnectionContext = 0;
   ValidationStatusCode = 0;  // 初始化验证状态码
