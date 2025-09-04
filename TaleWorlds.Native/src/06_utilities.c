@@ -181,12 +181,12 @@
 
 // 验证相关常量
 #define ValidationContextShift 3                        // 验证上下文位移量
-#define ValidationContextPropertyOffset1 0xc            // 验证上下文属性1偏移量
-#define ValidationContextPropertyOffset2 0x14           // 验证上下文属性2偏移量
-#define ValidationContextPropertyOffset3 0x18           // 验证上下文属性3偏移量
-#define ValidationContextPropertyOffset4 0x1c           // 验证上下文属性4偏移量
-#define ValidationContextPropertyOffset5 0xe            // 验证上下文属性5偏移量
-#define ValidationContextPropertyOffset6 0xf            // 验证上下文属性6偏移量
+#define ValidationContextPrimaryPropertyOffset 0xc            // 验证上下文主要属性偏移量
+#define ValidationContextSecondaryPropertyOffset 0x14           // 验证上下文次要属性偏移量
+#define ValidationContextTertiaryPropertyOffset 0x18           // 验证上下文第三属性偏移量
+#define ValidationContextQuaternaryPropertyOffset 0x1c           // 验证上下文第四属性偏移量
+#define ValidationContextFifthPropertyOffset 0xe            // 验证上下文第五属性偏移量
+#define ValidationContextSixthPropertyOffset 0xf            // 验证上下文第六属性偏移量
 #define ValidationContextSecondaryOffset 0x220           // 验证上下文次级偏移量
 #define PackageValidationStatusBit 1                      // 包验证状态位
 #define ValidationArraySizeMultiplier 3                    // 验证数组大小乘数
@@ -389,10 +389,10 @@
 #define SystemExecutionPointerResourceOffset 0x20
 
 // 系统寄存器上下文验证偏移常量
-#define SystemRegisterContextValidationOffset1 0x1a8
-#define SystemRegisterContextValidationOffset2 0x1ac
-#define SystemRegisterContextValidationOffset3 0x1b4
-#define SystemRegisterContextValidationOffset4 0x1b8
+#define SystemRegisterContextPrimaryValidationOffset 0x1a8
+#define SystemRegisterContextSecondaryValidationOffset 0x1ac
+#define SystemRegisterContextTertiaryValidationOffset 0x1b4
+#define SystemRegisterContextQuaternaryValidationOffset 0x1b8
 
 // 系统上下文偏移常量
 #define SystemContextTemplateOffset 0x1ad8
@@ -9305,8 +9305,8 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
  * 
  * @param ObjectContext 对象上下文指针，包含对象的状态和配置信息
  * @param SystemContext 系统上下文指针，包含系统运行环境信息
- * @param OperationControlParam1 第一个操作控制参数，用于控制操作类型
- * @param OperationControlParam2 第二个操作控制参数，用于控制操作行为
+ * @param OperationControlPrimaryParam 第一个操作控制参数，用于控制操作类型
+ * @param OperationControlSecondaryParam 第二个操作控制参数，用于控制操作行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
 uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectContext, int64_t SystemContext, uint8_t OperationControlPrimaryParam, uint8_t OperationControlSecondaryParam)
