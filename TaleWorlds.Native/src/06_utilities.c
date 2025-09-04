@@ -9342,8 +9342,8 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
     *(float *)(ObjectContext + ObjectContextProcessingDataOffset) = TemporaryFloatValue;
     *(float *)(ResourceTablePointerDataPointer + 4) = TemporaryFloatValue;
     ValidationStatus = ValidateBufferContext(ResourceTablePointerDataPointer,ObjectContext + ObjectContextHandleDataOffset);
-    if ((int)loopCondition != 0) {
-      return loopCondition;
+    if ((int)ValidationStatus != 0) {
+      return ValidationStatus;
     }
     ResourceTablePointerSystemContext = *(int64_t *)(validationContext + 0x98);
     if ((*(int *)(ResourceTablePointerSystemContext + SystemContextStatusFlag1Offset) != 0) || (*(int *)(ResourceTablePointerSystemContext + SystemContextStatusFlag2Offset) != 0)) {
@@ -9351,10 +9351,10 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
       InitializeSecurityContext(&SecurityContext,ObjectContext,OperationControlPrimaryParam,OperationControlSecondaryParam,SecurityContext);
       if (SecurityContext == SystemDataBaseAddress(ResourceTablePointerSystemContext)) {
         ValidationStatus = ProcessResourceValidation(ResourceTablePointerSystemContext,ObjectContext);
-        if ((int)loopCondition == 0) {
+        if ((int)ValidationStatus == 0) {
           return 0;
         }
-        return loopCondition;
+        return ValidationStatus;
       }
     }
     *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
