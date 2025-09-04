@@ -73246,7 +73246,19 @@ void RegisterResourceCleanupHandler(uint8_t ObjectContext, int64_t ValidationCon
  * 
  * @note 如果资源表为空，函数会直接返回；如果清理过程中出现错误，会触发系统紧急退出
  */
-void Unwind_ExecuteResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表指针清理操作
+ * 
+ * 该函数负责清理系统资源表指针，遍历资源表并执行相应的清理回调函数。
+ * 用于系统资源的释放和内存管理。
+ * 
+ * @param ObjectContext 对象上下文，包含清理操作的相关信息
+ * @param ValidationContext 验证上下文，包含资源验证的相关信息
+ * @return 无返回值
+ * 
+ * @note 原始函数名为Unwind_ExecuteResourceTablePointerCleanup
+ */
+void ExecuteResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -73268,7 +73280,19 @@ void Unwind_ExecuteResourceTablePointerCleanup(uint8_t ObjectContext,int64_t Val
 
 
 
-void Unwind_RegisterResourceHandlerWithValidation(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器并进行验证
+ * 
+ * 该函数负责注册系统资源处理器，并进行相应的验证操作。
+ * 用于系统资源管理和处理器的初始化。
+ * 
+ * @param ObjectContext 对象上下文，包含注册操作的相关信息
+ * @param ValidationContext 验证上下文，包含验证参数和配置信息
+ * @return 无返回值
+ * 
+ * @note 原始函数名为Unwind_RegisterResourceHandlerWithValidation
+ */
+void RegisterResourceHandlerWithValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x48),8,10,ProcessResourceOperation);
@@ -73277,7 +73301,21 @@ void Unwind_RegisterResourceHandlerWithValidation(uint8_t ObjectContext,int64_t 
 
 
 
-void Unwind_ProcessResourceValidationWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源验证并执行清理操作
+ * 
+ * 该函数负责处理系统资源的验证操作，并根据验证结果执行相应的清理操作。
+ * 用于系统资源的验证和清理管理。
+ * 
+ * @param ObjectContext 对象上下文，包含验证操作的相关信息
+ * @param ValidationContext 验证上下文，包含验证参数和配置信息
+ * @param CleanupOption 清理选项，指定清理操作的类型
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * 
+ * @note 原始函数名为Unwind_ProcessResourceValidationWithCleanup
+ */
+void ProcessResourceValidationWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + 0x48),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x10),
@@ -73287,7 +73325,21 @@ void Unwind_ProcessResourceValidationWithCleanup(uint8_t ObjectContext,int64_t V
 
 
 
-void Unwind_ValidateResourceContextAndCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 验证资源上下文并执行清理操作
+ * 
+ * 该函数负责验证系统资源的上下文信息，并根据验证结果执行相应的清理操作。
+ * 用于系统资源的安全验证和清理管理。
+ * 
+ * @param ObjectContext 对象上下文，包含验证操作的相关信息
+ * @param ValidationContext 验证上下文，包含验证参数和配置信息
+ * @param CleanupOption 清理选项，指定清理操作的类型
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * 
+ * @note 原始函数名为Unwind_ValidateResourceContextAndCleanup
+ */
+void ValidateResourceContextAndCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + 0x48),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x48) + 0x10),

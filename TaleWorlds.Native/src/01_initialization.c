@@ -19265,19 +19265,19 @@ SymbolInitializationCleanup:
     __Throw_C_error_std__YAXH_Z(MutexUnlockResult);
   }
 SkipLibraryHandleInitialization:
-  void* AllocatedMemoryBlock1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
-  *AllocatedMemoryBlock1 = 0;
+  void* AllocatedMemoryBlockPrimary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
+  *AllocatedMemoryBlockPrimary = 0;
   void* AllocatedMemoryBlockSecondary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
-  *AllocatedMemoryBlock1 = &SystemDebugDataBufferA;
+  *AllocatedMemoryBlockPrimary = &SystemDebugDataBufferA;
   *AllocatedMemoryBlockSecondary = &SystemDebugDataBufferB;
-  void* AllocatedMemoryBlock3 = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
-  uint8_t* AllocatedMemoryBlock4 = (uint8_t *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
-  *AllocatedMemoryBlock4 = 0;
-  AllocatedMemoryBlock3[2] = AllocatedMemoryBlock4;
-  SystemMemoryBlockStorage = AllocatedMemoryBlock3;
-  *AllocatedMemoryBlock3 = AllocatedMemoryBlock2;
-  AllocatedMemoryBlock3[1] = AllocatedMemoryBlock1;
-  AllocatedMemoryBlock3[3] = timerMemoryBlock;
+  void* AllocatedMemoryBlockTertiary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
+  uint8_t* AllocatedMemoryBlockQuaternary = (uint8_t *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
+  *AllocatedMemoryBlockQuaternary = 0;
+  AllocatedMemoryBlockTertiary[2] = AllocatedMemoryBlockQuaternary;
+  SystemMemoryBlockStorage = AllocatedMemoryBlockTertiary;
+  *AllocatedMemoryBlockTertiary = AllocatedMemoryBlock2;
+  AllocatedMemoryBlockTertiary[1] = AllocatedMemoryBlockPrimary;
+  AllocatedMemoryBlockTertiary[3] = timerMemoryBlock;
   timerMemoryBlock = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x198,8,3);
   SystemTimerStoragePointer = CreateSystemTimer(timerMemoryBlock);
   counterMemoryBlock = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xa8,8,3);
@@ -21867,23 +21867,23 @@ void* * SystemMemoryNodeFinder(long long* SystemResourceManager,void* *OutputNod
              long long SearchParameters)
 
 {
-  byte ByteValue;
-  bool ComparisonResult;
-  long long *MemoryListNode;
-  long long* MemorySystemPointer;
-  byte *StringPointer;
-  uint UIntValue;
-  long long LongValue;
-  void* VoidPointer;
-  long long *StackPointer;
+  byte CurrentByteValue;
+  bool NodeComparisonResult;
+  long long *MemoryListNodePointerPointer;
+  long long* MemorySystemContextPointer;
+  byte *StringDataPointer;
+  uint StringCharacterValue;
+  long long StringLengthDifference;
+  void* SystemVoidPointer;
+  long long *SystemStackPointer;
   
-  MemoryListNode = (long long *)*SystemResourceManager;
-  if ((TargetNodePointer == MemoryListNode) || (TargetNodePointer == SystemResourceManager)) {
+  MemoryListNodePointerPointer = (long long *)*SystemResourceManager;
+  if ((TargetNodePointer == MemoryListNodePointerPointer) || (TargetNodePointer == SystemResourceManager)) {
     if ((SystemResourceManager[4] != 0) && (*(int *)(SearchParameters + 0x10) != 0)) {
-      TargetNodePointer = MemoryListNode;
-      if (*(int *)(MemoryListNode + 6) != 0) {
+      TargetNodePointer = MemoryListNodePointer;
+      if (*(int *)(MemoryListNodePointer + 6) != 0) {
         StringPointer = *(byte **)(SearchParameters + 8);
-        LongValue = MemoryListNode[5] - (long long)StringPointer;
+        LongValue = MemoryListNodePointer[5] - (long long)StringPointer;
         do {
           ByteValue = *StringPointer;
           UIntValue = (uint)StringPointer[LongValue];
@@ -21902,7 +21902,7 @@ void* * SystemMemoryNodeFinder(long long* SystemResourceManager,void* *OutputNod
     }
   }
   else {
-    MemoryListNode = (long long *)SystemMemoryNodeGetNext(TargetNodePointer);
+    MemoryListNodePointer = (long long *)SystemMemoryNodeGetNext(TargetNodePointer);
     if (*(int *)(SearchParameters + 0x10) != 0) {
       if ((int)TargetNodePointer[6] != 0) {
         StringPointer = *(byte **)(SearchParameters + 8);
@@ -21915,8 +21915,8 @@ void* * SystemMemoryNodeFinder(long long* SystemResourceManager,void* *OutputNod
         } while (UIntValue != 0);
         if ((int)(ByteValue - UIntValue) < 1) goto ComparisonResultHandler;
       }
-      if ((int)MemoryListNode[6] != 0) {
-        StringPointer = (byte *)MemoryListNode[5];
+      if ((int)MemoryListNodePointer[6] != 0) {
+        StringPointer = (byte *)MemoryListNodePointer[5];
         LongValue = *(long long *)(SearchParameters + 8) - (long long)StringPointer;
         do {
           ByteValue = *StringPointer;
@@ -21927,29 +21927,29 @@ void* * SystemMemoryNodeFinder(long long* SystemResourceManager,void* *OutputNod
         if (0 < (int)(ByteValue - UIntValue)) {
           if (*TargetNodePointer == 0) goto TargetNodeValidationHandler;
           VoidPointer = 1;
-          TargetNodePointer = MemoryListNode;
-          goto MemoryListNodeAssignment;
+          TargetNodePointer = MemoryListNodePointer;
+          goto MemoryListNodePointerAssignment;
         }
       }
     }
   }
 SystemComparisonResultHandler:
   ComparisonResult = true;
-  MemoryListNode = (long long *)SystemResourceManager[SYSTEM_RESOURCE_HASH_TABLE_OFFSET];
+  MemoryListNodePointer = (long long *)SystemResourceManager[SYSTEM_RESOURCE_HASH_TABLE_OFFSET];
   MemorySystemPointer = SystemResourceManager;
-  while (MemoryListNode != (long long *)0x0) {
-    MemorySystemPointer = MemoryListNode;
-    if ((int)MemoryListNode[6] == 0) {
+  while (MemoryListNodePointer != (long long *)0x0) {
+    MemorySystemPointer = MemoryListNodePointer;
+    if ((int)MemoryListNodePointer[6] == 0) {
       ComparisonResult = false;
 MemoryListTraversal:
-      MemoryListNode = (long long *)*MemoryListNode;
+      MemoryListNodePointer = (long long *)*MemoryListNodePointer;
     }
     else {
       if (*(int *)(SearchParameters + 0x10) == 0) {
         ComparisonResult = true;
       }
       else {
-        StringPointer = (byte *)MemoryListNode[5];
+        StringPointer = (byte *)MemoryListNodePointer[5];
         LongValue = *(long long *)(SearchParameters + 8) - (long long)StringPointer;
         do {
           currentChar = *StringPointer;
@@ -52830,7 +52830,7 @@ MemoryAllocationComplete:
         ThreadContextFlag = StartSystemThread(SystemMemoryContext);
         SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContextFlag);
       }
-LAB_1800710b8:
+LABEL_TARGET_NODE_VALIDATION_START:
         memcpy(SystemMemoryContext + StackValue2,resourceDataIndex5,(long long)((int)resourceDataIndex7 + 2));
     }
   }
@@ -52852,7 +52852,7 @@ LAB_1800710b8:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContextFlag);
   }
-LAB_18007113f:
+LABEL_TARGET_NODE_VALIDATION_CONTINUE:
   *(void*2 *)(SystemMemoryContext + StackValue2) = 10;
   StackValue2 = systemIndex;
   if (resourceCounter != 0) {
@@ -53062,7 +53062,7 @@ LAB_18007113f:
     if (pSystemResourceDataIndex != (void* *)0x0) {
         SystemCleanupFunction();
     }
-LAB_1800718e9:
+LABEL_MEMORY_ALLOCATION_COMPLETE:
     SystemThreadState = 0;
     SystemResourceHandleF0 = (void* *)0x0;
     pMemoryBufferPointer = &SystemMemoryAllocatorReference;
@@ -53731,7 +53731,7 @@ LAB_1800726e7:
         ThreadContextFlag = StartSystemThread(ResourceBufferPointer130);
         SystemThreadContextFlags = ConcatenatedSystemValue(SystemThreadContextFlags._4_4_,ThreadContextFlag);
       }
-LAB_180072780:
+SystemMemoryAllocationComplete:
       *(void*2 *)(ResourceBufferPointer130 + SystemMemoryAllocationOffset) = 10;
       SystemOperationStatusFlags = ResourceHash + 0xd;
       SystemMemoryAllocationOffset = resourceAddress;
@@ -53805,7 +53805,7 @@ LAB_1800728ad:
         ThreadContextFlag = StartSystemThread(ResourceBufferPointer130);
         SystemThreadContextFlags = ConcatenatedSystemValue(SystemThreadContextFlags._4_4_,ThreadContextFlag);
       }
-LAB_180072934:
+SystemResourceOperationFinalize:
       *(void*2 *)(ResourceBufferPointer130 + SystemMemoryAllocationOffset) = 0xa0a;
       *(uint8_t *)((long long)(ResourceBufferPointer130 + SystemMemoryAllocationOffset) + 2) = 0;
       SystemMemoryAllocationOffset = resourceAddress;
