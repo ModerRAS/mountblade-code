@@ -1467,50 +1467,50 @@ void* GetSystemInitializationFunction;
  */
 void InitializeGameCoreSystem(void)
 {
-  bool IsSystemNodeActive;
-  void** SystemRootNodePointer;
-  int SystemIdentifierComparisonResult;
-  long long* SystemDataTablePointer;
-  long long SystemMemoryAllocationSize;
-  void** SystemCurrentNodePointer;
-  void** SystemPreviousNodePointer;
-  void** SystemNextNodePointer;
-  void** SystemAllocatedNodePointer;
-  void* SystemInitializationHandler;
+  bool IsNodeActive;
+  void** RootNodePointer;
+  int IdentifierComparisonResult;
+  long long* DataTablePointer;
+  long long MemoryAllocationSize;
+  void** CurrentNodePointer;
+  void** PreviousNodePointer;
+  void** NextNodePointer;
+  void** AllocatedNodePointer;
+  void* InitializationHandler;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
-  SystemRootNodePointer = (void**)*SystemDataTablePointer;
-  IsSystemNodeActive = *(bool*)((long long)SystemRootNodePointer[1] + SystemNodeActiveFlagOffset);
-  SystemInitializationHandler = GetGameCoreSystemInitializationFunction;
-  SystemPreviousNodePointer = SystemRootNodePointer;
-  SystemCurrentNodePointer = (void**)SystemRootNodePointer[1];
+  DataTablePointer = (long long*)GetSystemRootPointer();
+  RootNodePointer = (void**)*DataTablePointer;
+  IsNodeActive = *(bool*)((long long)RootNodePointer[1] + SystemNodeActiveFlagOffset);
+  InitializationHandler = GetGameCoreSystemInitializationFunction;
+  PreviousNodePointer = RootNodePointer;
+  CurrentNodePointer = (void**)RootNodePointer[1];
   
-  while (!IsSystemNodeActive) {
-    SystemIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &GameCoreSystemId, SystemIdentifierSize);
-    if (SystemIdentifierComparisonResult < 0) {
-      SystemNextNodePointer = (void**)SystemCurrentNodePointer[SystemNodeNextPointerOffset];
-      SystemCurrentNodePointer = SystemPreviousNodePointer;
+  while (!IsNodeActive) {
+    IdentifierComparisonResult = memcmp(CurrentNodePointer + 4, &GameCoreSystemId, SystemIdentifierSize);
+    if (IdentifierComparisonResult < 0) {
+      NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
+      CurrentNodePointer = PreviousNodePointer;
     }
     else {
-      SystemNextNodePointer = (void**)SystemCurrentNodePointer[SystemNodeHeadPointerOffset];
+      NextNodePointer = (void**)CurrentNodePointer[SystemNodeHeadPointerOffset];
     }
-    SystemPreviousNodePointer = SystemCurrentNodePointer;
-    SystemCurrentNodePointer = SystemNextNodePointer;
-    IsSystemNodeActive = *(bool*)((long long)SystemNextNodePointer + SystemNodeActiveFlagOffset);
+    PreviousNodePointer = CurrentNodePointer;
+    CurrentNodePointer = NextNodePointer;
+    IsNodeActive = *(bool*)((long long)NextNodePointer + SystemNodeActiveFlagOffset);
   }
   
-  if ((SystemPreviousNodePointer == SystemRootNodePointer) || 
-      (SystemIdentifierComparisonResult = memcmp(&GameCoreSystemId, SystemPreviousNodePointer + 4, SystemIdentifierSize), SystemIdentifierComparisonResult < 0)) {
-    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &SystemAllocatedNodePointer, SystemPreviousNodePointer, SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
-    SystemPreviousNodePointer = SystemAllocatedNodePointer;
+  if ((PreviousNodePointer == RootNodePointer) || 
+      (IdentifierComparisonResult = memcmp(&GameCoreSystemId, PreviousNodePointer + 4, SystemIdentifierSize), IdentifierComparisonResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
+    AllocateSystemMemory(DataTablePointer, &AllocatedNodePointer, PreviousNodePointer, MemoryAllocationSize + SystemNodeAllocationExtraSize, MemoryAllocationSize);
+    PreviousNodePointer = AllocatedNodePointer;
   }
   
-  SystemPreviousNodePointer[SystemNodeIdentifier1Index] = GameCoreSystemIdentifier1;
-  SystemPreviousNodePointer[SystemNodeIdentifier2Index] = GameCoreSystemIdentifier2;
-  SystemPreviousNodePointer[SystemNodeDataPointerIndex] = &GameCoreSystemNodeData;
-  SystemPreviousNodePointer[SystemNodeFlagIndex] = 0;
-  SystemPreviousNodePointer[SystemNodeHandlerIndex] = SystemInitializationHandler;
+  PreviousNodePointer[SystemNodeIdentifier1Index] = GameCoreSystemIdentifier1;
+  PreviousNodePointer[SystemNodeIdentifier2Index] = GameCoreSystemIdentifier2;
+  PreviousNodePointer[SystemNodeDataPointerIndex] = &GameCoreSystemNodeData;
+  PreviousNodePointer[SystemNodeFlagIndex] = 0;
+  PreviousNodePointer[SystemNodeHandlerIndex] = InitializationHandler;
   return;
 }
 
@@ -31840,21 +31840,21 @@ void ProcessSystemStringData(long long SystemResourceManager,long long Configura
       PathStringPointer = PathStringPointer + 1;
       StringProcessingFlag = *PathStringPointer;
     } while (StringProcessingFlag != '\0');
-    if (pSystemOperationStatusFlag != pathStringPointer) {
-      memoryAllocationEnd = &SystemGlobalDataReference;
+    if (StringProcessingPointer != PathStringPointer) {
+      MemoryAllocationEnd = &SystemGlobalDataReference;
       SystemContextValue = 0;
-      SystemStatusFlag48 = 0;
-      SystemOperationCounter = 0;
-      ProcessSystemMemoryAllocation(&memoryAllocationEnd,pSystemOperationStatusFlag,(int)pathStringPointer - (int)pSystemOperationStatusFlag,ConfigurationFlag,CurrentThreadId);
+      SystemProcessingStatus = 0;
+      OperationCounter = 0;
+      ProcessSystemMemoryAllocation(&MemoryAllocationEnd,StringProcessingPointer,(int)PathStringPointer - (int)StringProcessingPointer,ConfigurationFlag,CurrentThreadId);
       if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
         *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
         InitializeSystemMemoryAllocator();
       }
       else {
-        ProcessSystemConfiguration(ConfigurationDataPointer,&memoryAllocationEnd);
+        ProcessSystemConfiguration(ConfigurationDataPointer,&MemoryAllocationEnd);
       }
-      memoryAllocationEnd = &SystemGlobalDataReference;
-      if (SystemStatusFlag48 != 0) {
+      MemoryAllocationEnd = &SystemGlobalDataReference;
+      if (SystemProcessingStatus != 0) {
           SystemCleanupFunction();
       }
     }
