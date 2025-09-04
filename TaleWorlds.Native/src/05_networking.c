@@ -1819,7 +1819,7 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
   // 这里可以添加更多的参数验证逻辑
   // 例如：验证IP地址格式、端口号范围、协议类型等
   
-  return 0;  // 验证成功
+  return NetworkOperationSuccess;  // 验证成功
 }
 
 /**
@@ -1863,7 +1863,7 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
     }
     *NetworkConnectionValidationResult = NetworkConnectionContextId;
     *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset) = NetworkValidationStatusCode;
-    return 0;
+    return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
     NetworkConnectionContextId = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
@@ -1908,7 +1908,7 @@ NetworkHandle SetupNetworkSystem(void)
   // 这里可以添加更多的初始化逻辑
   // 例如：初始化套接字、设置协议栈、分配缓冲区等
   
-  return 0;  // 初始化成功
+  return NetworkOperationSuccess;  // 初始化成功
 }
 
 /**
@@ -1994,7 +1994,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   *ConnectionContext = (long long)NetworkProcessedPacketIdentifier;
   *(int *)((long long)ConnectionContext + ConnectionParameterOffset) = PacketData;
   
-  return 0;  // 处理成功
+  return NetworkOperationSuccess;  // 处理成功
 }
 
 /**
@@ -2033,7 +2033,7 @@ PrimaryNetworkProcessingComplete:
     }
     *ConnectionOperationBuffer = (long long)ProcessedPacketId;
     *(int *)((long long)ConnectionOperationBuffer + ConnectionParameterOffset) = ConnectionOperationCode;
-    return 0;
+    return NetworkOperationSuccess;
   }
   if (PacketIndex * ConnectionEntrySize - 1U < MaxIntValue) {
     ConnectionStatusPtr = (NetworkStatus *)
@@ -2060,7 +2060,7 @@ PrimaryNetworkProcessingComplete:
       }
 SecondaryNetworkProcessingComplete:
       // 网络处理循环完成，继续后续处理
-      return 0;
+      return NetworkOperationSuccess;
     }
   }
   return ConnectionCompletionHandle;
@@ -2715,7 +2715,7 @@ NetworkHandle ValidateNetworkPacketHeader(int64_t ConnectionContext, int64_t Pac
   // 6. 检查时间戳和序列号
   // 7. 验证校验和和CRC
   
-  return 0;  // 验证成功（简化实现）
+  return NetworkOperationSuccess;  // 验证成功（简化实现）
 }
 
 /**
@@ -2769,7 +2769,7 @@ NetworkHandle DecodePacketDataStream(int64_t PacketData, NetworkByte *OutputBuff
     // 在实际实现中，这里应该填充解码后的数据
     // 包括：有效负载数据、元数据、状态信息等
   }
-  return 0;  // 解码成功（简化实现）
+  return NetworkOperationSuccess;  // 解码成功（简化实现）
 }
 
 /**
@@ -2804,7 +2804,7 @@ NetworkHandle ProcessConnectionData(int64_t ConnectionContext, int64_t PacketDat
   // 7. 处理连接生命周期管理
   // 8. 触发相应的回调事件
   
-  return 0;  // 处理成功（简化实现）
+  return NetworkOperationSuccess;  // 处理成功（简化实现）
 }
 
 /**
