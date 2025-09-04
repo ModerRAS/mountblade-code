@@ -1310,18 +1310,18 @@ uint32_t NetworkConnectionEventProcessor;
 void TransmitNetworkData(void)
 {
   // 初始化数据包参数
-  NetworkPacketSequence = SEQUENCE_INITIAL;                         // 初始化数据包序列号
-  NetworkAcknowledgeNumber = ACK_INITIAL;                      // 初始化确认号
+  NetworkPacketSequence = NetworkSequenceInitialValue;                         // 初始化数据包序列号
+  NetworkAcknowledgeNumber = NetworkAckInitialValue;                      // 初始化确认号
   NetworkWindowScale = NetworkWindowScaleSixteen;                            // 设置窗口缩放为16
   NetworkRetransmitTimer = NetworkTimeoutFiveSeconds;                       // 设置重传计时器为5秒
   NetworkKeepAliveTime = NetworkHeartbeatThirtySeconds;                          // 设置保持连接时间为30秒
   NetworkHeartbeatTimeout = NetworkHeartbeatSixtySeconds;                      // 设置心跳超时时间为60秒
   
   // 初始化数据包缓冲区
-  NetworkPacketBufferPointer = BUFFER_ENABLED;                     // 初始化数据包缓冲区指针
-  NetworkPacketHeaderPointer = BUFFER_ENABLED;                     // 初始化数据包头指针
-  NetworkPacketPayloadSize = PACKET_PAYLOAD_SIZE_1KB;                      // 设置数据包负载大小为1KB
-  NetworkMaximumPacketSize = MAXIMUM_PACKET_SIZE_2KB;                         // 设置最大数据包大小为2KB
+  NetworkPacketBufferPointer = NetworkBufferEnabledFlag;                     // 初始化数据包缓冲区指针
+  NetworkPacketHeaderPointer = NetworkBufferEnabledFlag;                     // 初始化数据包头指针
+  NetworkPacketPayloadSize = NetworkPacketPayloadSize1Kilobyte;                      // 设置数据包负载大小为1KB
+  NetworkMaximumPacketSize = NetworkMaximumPacketSize2Kilobytes;                         // 设置最大数据包大小为2KB
   
   // 初始化传输统计
   NetworkBytesSent = 0;                                 // 重置发送字节数
