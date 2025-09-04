@@ -5092,7 +5092,7 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  */
 uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t MemoryAddress;
-  uint8_t ValidationStatus;
+  uint8_t ValidationStatusCode;
   int64_t ValidationBuffer [4];
   
   // 验证对象上下文的有效性
