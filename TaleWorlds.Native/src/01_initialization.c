@@ -1547,14 +1547,14 @@ void InitializeGameCoreSystem(void)
 void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsBaseAllocatorNodeActive;
-  void** RootNodePointerPointer;
+  void** RootNodePointer;
   int BaseAllocatorIdentifierComparisonResult;
   long long* SystemDataTablePointer;
   long long SystemMemoryAllocationSize;
-  void** CurrentNodePointerPointer;
-  void** SystemPreviousNodePointer;
-  void** NextNodePointerPointer;
-  void** SystemAllocatedNodePointer;
+  void** CurrentNodePointer;
+  void** PreviousNodePointer;
+  void** NextNodePointer;
+  void** AllocatedNodePointer;
   void* BaseAllocatorInitializationHandler;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
