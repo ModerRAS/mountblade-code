@@ -2933,7 +2933,7 @@ int InitializeSystemConfigurationManager(void)
 {
   int64_t ModuleInitializationResult;
   SystemConfigManagerStatus = 0;
-  uRam0000000180bfc158 = 0xf;
+  SystemConfigManagerMemoryFlag = 0xf;
   SystemConfigManagerFlag = 0;
   SystemConfigManagerCounter = 0;
   SystemConfigManagerIndex = 0;
@@ -3262,7 +3262,7 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
           SystemProcessStatus = 0;
           *(uint8_t *)(SystemEngineContext + 0x1f0) = 0;
           StackBuffer2C8 = &SystemNullPointer;
-          StackProcessingBuffer1 = 0;
+          StackProcessingBuffer = 0;
           SystemMemoryBufferPointer = (uint8_t *)0x0;
           SystemOperationStatusFlag = 0;
           if (pMemoryAddress7 != (void *)0x0) {
@@ -3281,7 +3281,7 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
               *pMemoryAddress1 = 0;
               StackMemoryPointer = pMemoryAddress1;
               allocationSize = GetMemoryAllocationSize(pMemoryAddress1);
-              StackProcessingBuffer1 = CONCAT44(StackProcessingBuffer1._4_4_,allocationSize);
+              StackProcessingBuffer = CONCAT44(StackProcessingBuffer._4_4_,allocationSize);
               memcpy(pMemoryAddress1,pMemoryAddress7,LoopCounter9);
             }
           }
@@ -3316,7 +3316,7 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
             *(uint16_t *)(SystemDataPointer + 0x24) = 0;
           }
           StackMemoryPointer = (uint8_t *)0x0;
-          StackProcessingBuffer1 = StackProcessingBuffer1 & 0xffffffff00000000;
+          StackProcessingBuffer = StackProcessingBuffer & 0xffffffff00000000;
           StackBufferPointer = &SystemBufferTemplate;
         }
         else if (systemMode == 0xb) {
@@ -3817,7 +3817,7 @@ Label_PathSeparatorFound:
                       BufferSize7 = SystemBufferSizeCheck();
                       pMemoryAddress6 = (uint8_t *)0x0;
                       StackSystemPointer = &SystemNullPointer;
-                      StackProcessId = 0;
+                      StackProcessIdentifier = 0;
                       StackBufferPointer = (uint8_t *)0x0;
                       StackProcessingCounter = 0;
                       BufferSize6 = StackParameter15 | 1;
@@ -3834,7 +3834,7 @@ Label_PathSeparatorFound:
                         *pMemoryAddress4 = 0;
                         StackBufferPointer = pMemoryAddress4;
                         pMemoryAddress1 = (uint8_t *)MemoryValidateEx(pMemoryAddress4);
-                        StackProcessId = CONCAT44(StackProcessId._4_4_,(int)pMemoryAddress1);
+                        StackProcessIdentifier = CONCAT44(StackProcessIdentifier._4_4_,(int)SystemMemoryBufferPointer);
                       }
                       SystemDataPointer = 1;
                       StringProcessingResult0 = 1;
@@ -3866,7 +3866,7 @@ Label_PathSeparatorFound:
                             }
                             StackBufferPointer = pMemoryAddress4;
                             BufferSize6 = MemoryValidateEx(pMemoryAddress4);
-                            StackProcessId = CONCAT44(StackProcessId._4_4_,BufferSize6);
+                            StackProcessIdentifier = CONCAT44(StackProcessIdentifier._4_4_,BufferSize6);
                             pMemoryAddress1 = (uint8_t *)(ulonglong)BufferSize6;
                           }
 Label_BufferSizeLimitReached:
@@ -3887,9 +3887,9 @@ Label_BufferSizeLimitReached:
                         SystemBufferValidate(pMemoryAddress4);
                       }
                       StackBufferPointer = (uint8_t *)0x0;
-                      StackProcessId = StackProcessId & 0xffffffff00000000;
+                      StackProcessIdentifier = StackProcessIdentifier & 0xffffffff00000000;
                       StackSystemPointer = &SystemBufferTemplate;
-                      pMemoryAddress1 = StackProcessingBuffer;
+                      SystemMemoryBufferPointer = StackProcessingBuffer;
                       pMemoryAddress7 = StackMemoryPointer;
                     }
                     else {
@@ -3904,7 +3904,7 @@ Label_BufferSizeLimitReached:
                       if (*(longlong *)(SystemDataPointer + 0x30) != 0) {
                         pMemoryAddress4[*(longlong *)(SystemDataPointer + 0x30)] = 0;
                       }
-                      *(uint32_t *)(SystemDataPointer + 0x44) = StackAlignmentValue._4_4_;
+                      *(uint32_t *)(SystemDataPointer + 0x44) = StackAlignmentMask._4_4_;
                     }
                   }
                 }
@@ -3926,7 +3926,7 @@ LabelSystemOperationExit:
         StackCounter40 = StackCounter40 + 1;
         pMemoryAddress4 = (uint8_t *)(ulonglong)StackCounter40;
         pMemoryAddress4[(longlong)StackProcessingBuffer] = 0;
-        pMemoryAddress1 = StackProcessingBuffer;
+        SystemMemoryBufferPointer = StackProcessingBuffer;
       }
       uStack_2f0 = uStack_2f0 + 1;
     } while (uStack_2f0 < uStack_150);
@@ -3948,7 +3948,7 @@ LabelSystemOperationExit:
     SystemBufferValidate(pMemoryAddress1);
   }
   StackProcessingBuffer = (uint8_t *)0x0;
-  StackAlignmentValue = StackAlignmentValue & 0xffffffff00000000;
+  StackAlignmentMask = StackAlignmentMask & 0xffffffff00000000;
   puStack_310 = &SystemBufferTemplate;
   SystemSecurityCheck(uStack_38 ^ (ulonglong)auStack_368);
   while (BytePointer = BytePointer + 1, UnsignedIndex != 0) {
@@ -4465,7 +4465,7 @@ Label_ModuleConfigurationStart:
     FloatResult = (float)fmodf(LongAddress,0x3f800000);
     if (0.5 < FloatResult) {
       StackSystemPointer = &SystemNullPointer;
-      StackProcessId = 0;
+      StackProcessIdentifier = 0;
       StackBufferPointer = (uint64_t *)0x0;
       StackProcessingCounter = 0;
       pUnsignedValue = (uint64_t *)MemoryAllocateEx(SystemMemoryAllocator,0x1c,0x13);
@@ -4538,7 +4538,7 @@ Label_ModuleConfigurationStart:
   InitializeGlobalState();
   if (SystemInitializationFlag != '\0') {
     StackSystemPointer = &SystemNullPointer;
-    StackProcessId = 0;
+    StackProcessIdentifier = 0;
     StackBufferPointer = (uint64_t *)0x0;
     StackProcessingCounter = 0;
     pUnsignedIndex = (uint64_t *)MemoryAllocateEx(SystemMemoryAllocator,0x19,0x13);
@@ -6080,7 +6080,7 @@ code_r0x0001802a1ade:
       SystemSecondaryParameter[3] = 3.4028235e+38;
     }
     else {
-      StackProcessingBuffer1 = 0;
+      StackProcessingBuffer = 0;
       uStack_2a8 = 0;
       SystemSecondaryParameter[0] = 0.0;
       SystemSecondaryParameter[1] = 0.0;
