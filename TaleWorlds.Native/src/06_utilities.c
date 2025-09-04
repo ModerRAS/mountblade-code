@@ -4482,6 +4482,13 @@ uint8_t SystemMemoryFlagKernel;
  * @note 该函数会进行安全验证和对象状态检查
  * @warning 处理大量对象时可能影响性能，建议在适当时机调用
  */
+/**
+ * 处理游戏对象集合
+ * 遍历并验证游戏中的所有对象，确保它们的状态有效
+ * 
+ * @param GameContext 游戏上下文指针
+ * @param SystemContext 系统上下文指针
+ */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int OperationStatusCode;
@@ -5160,6 +5167,15 @@ uint8_t ReleaseObjectHandle(void) {
  * 
  * @param CharacterToValidate 要验证的字符
  * @return 验证结果状态码
+ */
+/**
+ * 验证字符输入安全性
+ * 检查输入字符是否为空字符，如果不是则触发系统退出操作
+ * 
+ * @param CharacterToValidate 要验证的字符
+ * @return uint8_t 验证结果，0表示成功，非0表示失败
+ * @note 该函数用于防止非预期的字符输入，确保系统安全
+ * @warning 非空字符会导致系统退出，使用时需谨慎
  */
 uint8_t ValidateCharacterInput(char CharacterToValidate) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
@@ -35762,12 +35778,10 @@ void ProcessDirectoryHandleCleanup(uint8_t ObjectContext,int64_t ValidationConte
  * @return 无返回值
  * @note 此函数在资源清理过程中被调用
  */
-void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
+void UnwindResourceCleanupHandler(uint8_t ResourceContext, int64_t ValidationContext) {
   int32_t *ResourceReferenceCountPointer;
   uint8_t *ResourceHashStatusAddress;
-  int64_t ResourceIndex;
+  int64_t ResourceCleanupIndex;
   uint64_t MemoryAddressIncrement;
   
   ResourceHashStatusAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + ResourceHashStatusAddressOffset);
@@ -35776,12 +35790,12 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
   }
   MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & MemoryAddressAlignmentMask;
   if (MemoryAddressMask != 0) {
-    ResourceIndex = MemoryAddressIncrement + MemoryResourceDataOffset + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * MemoryResourceEntrySize;
-    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-      ResourceReferenceCountPointer = (int *)(ResourceIndex + 0x18);
+    ResourceCleanupIndex = MemoryAddressIncrement + MemoryResourceDataOffset + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * MemoryResourceEntrySize;
+    ResourceCleanupIndex = ResourceCleanupIndex - (uint64_t)*(uint *)(ResourceCleanupIndex + 4);
+    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceCleanupIndex + 0xe) == '\0')) {
+      *ResourceHashStatusAddress = *(uint8_t *)(ResourceCleanupIndex + 0x20);
+      *(uint8_t **)(ResourceCleanupIndex + 0x20) = ResourceHashStatusAddress;
+      ResourceReferenceCountPointer = (int *)(ResourceCleanupIndex + 0x18);
       *ResourceReferenceCountPointer = *ResourceReferenceCountPointer + -1;
       if (*ResourceReferenceCountPointer == 0) {
         SystemCleanupHandler();
@@ -35789,8 +35803,8 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashStatusAddress, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
   return;
