@@ -83468,7 +83468,11 @@ void SetSystemDataStructurePointerToValidationContext5A0(uint8_t ObjectContext, 
 
 
 
-void Unwind_18090cac0(void)
+/**
+ * 释放资源引用计数器并调用资源管理器清理函数
+ * 用于在异常处理过程中减少资源引用计数
+ */
+void Unwind_ReleaseResourceReferenceAndCleanup(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
