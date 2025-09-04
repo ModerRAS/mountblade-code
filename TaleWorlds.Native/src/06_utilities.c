@@ -6599,16 +6599,16 @@ uint64_t ValidateObjectPointerAndExecuteExit(int64_t ObjectPointer)
 uint32_t ValidateStackLocationAndExecuteExit(void)
 
 {
-  int64_t StackLocation;
+  int64_t ValidatedStackLocation;
   
-  StackLocation = InputParameter;
-  if (StackLocation != 0) {
-    StackLocation = StackLocation + -8;
+  ValidatedStackLocation = InputParameter;
+  if (ValidatedStackLocation != 0) {
+    ValidatedStackLocation = ValidatedStackLocation + -8;
   }
-  if (*(int64_t *)(StackLocation + ObjectContextValidationOffset) == 0) {
+  if (*(int64_t *)(ValidatedStackLocation + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackLocation + ObjectContextValidationOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedStackLocation + ObjectContextValidationOffset), 1);
 }
 
 
@@ -6678,16 +6678,16 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
 uint32_t ValidateStackObject(void)
 
 {
-  int64_t StackObjectPointer;
+  int64_t ValidatedStackObjectPointer;
   
-  StackObjectPointer = InputParameter;
-  if (StackObjectPointer != 0) {
-    StackObjectPointer = StackObjectPointer + -8;
+  ValidatedStackObjectPointer = InputParameter;
+  if (ValidatedStackObjectPointer != 0) {
+    ValidatedStackObjectPointer = ValidatedStackObjectPointer + -8;
   }
-  if (*(int64_t *)(StackObjectPointer + ObjectContextValidationOffset) == 0) {
+  if (*(int64_t *)(ValidatedStackObjectPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(StackObjectPointer + ObjectContextValidationOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(ValidatedStackObjectPointer + ObjectContextValidationOffset), 1);
 }
 
 
