@@ -21336,14 +21336,14 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   if (SystemResourceTemplate == '\0') {
     return;
   }
-  systemDataPointer = &SystemGlobalDataReference;
+  SystemDataPointer = &SystemGlobalDataReference;
   SystemStackFlagB0 = 0;
   SystemSystemStackBuffer = (void* *)0x0;
-  systemDataBuffer = 0;
+  SystemDataBuffer = 0;
   SystemOperationStatusFlags = *(uint *)(SystemGlobalStatusFlags + 0x180);
   SystemOperationFlags = (ulong long)SystemOperationStatusFlags;
   if (*(long long *)(SystemGlobalStatusFlags + 0x178) != 0) {
-    WriteDataToBuffer(&systemDataPointer,SystemOperationFlags,AdditionalParameter,ConfigurationFlag,1,InvalidHandleValue);
+    WriteDataToBuffer(&SystemDataPointer,SystemOperationFlags,AdditionalParameter,ConfigurationFlag,1,InvalidHandleValue);
   }
   if (SystemOperationStatusFlags != 0) {
       memcpy(SystemSystemStackBuffer,*(void* *)(SystemResourceDataIndex + 0x178),SystemOperationFlags);
@@ -21352,19 +21352,19 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
     SystemSystemStackBuffer[SystemOperationFlags] = 0;
   }
   SystemStackFlagB0 = ConcatenatedSystemValue(*(uint32_t *)(SystemResourceDataIndex + 0x18c),(uint32_t)SystemStackFlagB0);
-  systemDataBuffer = SystemOperationStatusFlags;
-  InitializeSystemDataBuffer(&systemDataPointer,5);
-  *(uint32_t *)(SystemSystemStackBuffer + systemDataBuffer) = 0x73676f6c;
-  *(void*2 *)((long long)(SystemSystemStackBuffer + systemDataBuffer) + 4) = 0x2f;
-  systemDataBuffer = 5;
-  InitializeSystemDataBuffer(&systemDataPointer,0x18);
-  SystemThreadStorage = (uint32_t *)(SystemSystemStackBuffer + systemDataBuffer);
+  SystemDataBuffer = SystemOperationStatusFlags;
+  InitializeSystemDataBuffer(&SystemDataPointer,5);
+  *(uint32_t *)(SystemSystemStackBuffer + SystemDataBuffer) = 0x73676f6c;
+  *(void*2 *)((long long)(SystemSystemStackBuffer + SystemDataBuffer) + 4) = 0x2f;
+  SystemDataBuffer = 5;
+  InitializeSystemDataBuffer(&SystemDataPointer,0x18);
+  SystemThreadStorage = (uint32_t *)(SystemSystemStackBuffer + SystemDataBuffer);
   *SystemThreadStorage = 0x66726570;
   SystemThreadStorage[1] = 0x616d726f;
   SystemThreadStorage[2] = 0x5f65636e;
   SystemThreadStorage[3] = 0x2e676f6c;
   SystemThreadStorage[4] = 0x747874;
-  systemDataBuffer = 0x18;
+  SystemDataBuffer = 0x18;
   SystemThreadContext = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x18,8,3);
   SystemValuePointer9 = &SystemStringTemplate;
   if (SystemStackPointerC0 != (void* *)0x0) {
